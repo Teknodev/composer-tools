@@ -1,0 +1,93 @@
+.container {
+  width: 100%;
+  padding: 20px 0 20px 0;
+
+  .max-content {
+    width: var(--composer-content-width);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: auto;
+
+    .badge-list {
+      display: flex;
+      flex-direction: column;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      height: max-content;
+      padding: 0;
+      min-width: 300px;
+      margin: 15px 0 15px 0;
+      .title {
+        color: white;
+        display: block;
+        background-color: var(--composer-primary-color);
+        font-weight: bold;
+        max-width: 100%;
+        padding: 10px 20px;
+        margin: 0;
+        .badge {
+          float: right;
+          height: 17px;
+          min-width: 15px;
+          max-width: 100px;
+          padding: 3px 6px;
+          line-height: 1.2;
+          white-space: nowrap;
+          vertical-align: middle;
+          font-size: 0.8rem;
+          color: black;
+          background: white;
+          text-align: center;
+          border-radius: 100%;
+        }
+      }
+      .list-group {
+        display: block;
+        margin: 0;
+        max-width: 300px;
+        list-style-type: none;
+        padding: 0;
+        .list-item {
+          cursor: pointer;
+          color: black;
+          background-color: white;
+          transition: all 0.5s;
+          padding: 15px 20px;
+          border-bottom: 1px solid rgb(245, 245, 245);
+          &:hover {
+            background-color: rgb(252, 252, 252);
+          }
+          .badge {
+            float: right;
+            height: 16px;
+            min-width: 20px;
+            max-width: 100px;
+            padding: 3px 6px;
+            line-height: 1.2;
+            white-space: nowrap;
+            vertical-align: middle;
+            font-size: 0.8rem;
+            color: #fff;
+            background: var(--composer-primary-color);
+            text-align: center;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .max-content {
+      .badge-list {
+        .list-group {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}

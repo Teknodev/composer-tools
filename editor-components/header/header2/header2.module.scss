@@ -1,0 +1,100 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0 50px 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  height: max-content;
+
+  .max-content {
+    width: var(--composer-content-width);
+    .wide-text-container {
+      display: flex;
+      padding-left: 300px;
+      margin: 0 auto 0 auto;
+      .wide-text {
+        display: block;
+        margin: auto 0 auto 0;
+        h3 {
+          font-weight: 800;
+          line-height: 1.4;
+          color: var(--composer-primary-color);
+          width: 60%;
+          margin-bottom: 5px;
+          font-size: 1.5em;
+        }
+        h1 {
+          font-weight: 800;
+          line-height: 1.4;
+          font-size: 3em;
+          margin-top: 0;
+          width: 60%;
+        }
+        p {
+          color: rgb(80, 80, 80);
+          width: 400px;
+          margin-bottom: 30px;
+          font-size: 1.1em;
+        }
+        .button {
+          cursor: pointer;
+          text-decoration: none;
+          text-align: center;
+          transition: 0.3s;
+          display: block;
+          color: white;
+          background-color: var(--composer-primary-color);
+          padding: 15px 30px;
+          border-radius: 5px;
+          border: 1px solid transparent;
+          width: 200px;
+          &:hover {
+            color: var(--composer-primary-color);
+            background-color: transparent;
+            border: 1px solid var(--composer-primary-color);
+          }
+        }
+      }
+      .image {
+        margin: auto 50px auto 0;
+        display: block;
+        img {
+          width: 400px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .max-content {
+      .wide-text-container {
+        display: block;
+        padding: 0;
+        width: 100%;
+        .wide-text {
+          text-align: center;
+          margin: 0;
+          h3 {
+            width: 100%;
+          }
+          h1 {
+            width: 100%;
+          }
+          p {
+            width: 100%;
+          }
+          .button {
+            margin-left: calc(50vw - 130px);
+          }
+        }
+        .image {
+          margin-left: calc(50vw - 230px);
+        }
+      }
+    }
+  }
+}

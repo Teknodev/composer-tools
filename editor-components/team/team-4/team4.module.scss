@@ -1,0 +1,80 @@
+.container {
+  width: 100%;
+
+  .max-content {
+    width: var(--composer-content-width);
+    display: grid;
+    place-items: center;
+    margin: auto;
+
+
+    .title {
+      word-break: break-word;
+      font-size: 3rem;
+    }
+
+    .description {
+      margin: 20px 0;
+    }
+
+    .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+
+      .team-member {
+        max-width: 220px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 20px;
+        background: #f6f6f6;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        .member-image {
+          max-height: 220px;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+
+        .name-and-position {
+          text-align: center;
+          font-weight: 500;
+          padding: 5px;
+          color: black;
+
+          :first-child {
+            font-size: 1.2rem;
+            font-weight: 700;
+          }
+
+          p {
+            margin: 5px 0 0 0;
+          }
+        }
+
+        .social-media-list {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+
+          .social-media-image {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            outline: 1px solid lightgray;
+            padding: 3px;
+            border-radius: 100%;
+            margin: 5px;
+          }
+        }
+      }
+    }
+  }
+}

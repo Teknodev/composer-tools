@@ -1,0 +1,95 @@
+.container {
+  width: 100%;
+  padding: 50px 0 50px 0;
+
+  .max-content {
+    display: flex;
+    justify-content: space-around;
+    width: var(--composer-content-width);
+    margin: auto;
+    .testimonials2 {
+      display: block;
+      width: var(--composer-content-width);
+      h1 {
+        margin: 0 auto 10px auto;
+        text-align: center;
+        font-weight: 800;
+        line-height: 1.4;
+        font-size: 40px;
+        margin-bottom: 50px;
+        margin-left: 20px;
+      }
+      .card-child {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .card {
+          margin-bottom: 20px;
+          padding: 20px;
+          min-width: 400px;
+          max-width: 400px;
+          height: max-content;
+          border: 1px solid var(--composer-tertiary-color);
+          border-radius: var(--composer-border-radius);
+          box-shadow: var(--composer-box-shadow);
+          span {
+            font-weight: 500;
+            font-size: 18px;
+          }
+          h5 {
+            opacity: 0.8;
+            font-weight: 200;
+            font-size: 14px;
+            margin-top: 50px;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+          }
+          .profile {
+            display: flex;
+            margin-bottom: 20px;
+            img {
+              border-radius: 100%;
+            }
+            .profile-text {
+              margin-left: 20px;
+              h2 {
+                font-weight: 600;
+                font-size: 20px;
+                margin-top: 3px;
+                margin-bottom: 0;
+                margin-left: 0;
+                margin-right: 0;
+              }
+              p {
+                margin-top: 3px;
+                margin-bottom: 0;
+                margin-left: 0;
+                margin-right: 0;
+                font-size: 15px;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+
+    .max-content {
+      .testimonials2 {
+        text-align: center;
+        margin: 0;
+        h1 {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0 20px 0;
+  box-shadow: var(--composer-box-shadow);
+
+  .max-content {
+    width: var(--composer-content-width);
+    margin: auto;
+
+    .footer-page {
+      display: block;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .max-content {
+      .footer-page {
+        text-align: center;
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+}

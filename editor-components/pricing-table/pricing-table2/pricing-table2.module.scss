@@ -1,0 +1,104 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0 20px 0;
+  flex-wrap: wrap;
+  .max-content {
+    .table {
+      display: flex;
+      flex-direction: column;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      border-radius: 10px;
+      padding: 20px;
+      height: max-content;
+      margin: 15px 0 15px 0;
+      .title {
+        color: var(--composer-primary-color);
+        text-align: center;
+        display: block;
+        margin: auto auto 10px auto;
+        font-weight: 450;
+      }
+      .item-div {
+        display: flex;
+        flex-direction: row;
+        .item {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          border-top: 3px solid var(--composer-primary-color);
+          box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+          border-radius: 10px;
+          min-width: 250px;
+          height: max-content;
+          padding: 15px 30px;
+          margin-right: 15px;
+          &:last-child {
+            margin-right: 0;
+          }
+          img {
+            text-align: center;
+            display: block;
+            margin: 0 auto 0 auto;
+          }
+          .price-text {
+            text-align: center;
+            display: block;
+            margin: 0;
+            font-weight: bold;
+            font-size: 2em;
+          }
+          .duration-text {
+            text-align: center;
+            display: block;
+            margin: auto 0 10px 0;
+            font-weight: 450;
+            font-size: 1.2em;
+            color: rgb(100, 100, 100);
+          }
+          .button {
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+            display: block;
+            margin: 20px auto 10px auto;
+            color: white;
+            background-color: var(--composer-primary-color);
+            padding: 10px 10px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            width: 100px;
+            &:hover {
+              color: var(--composer-primary-color);
+              background-color: transparent;
+              border: 1px solid var(--composer-primary-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .max-content {
+      .table {
+        .item-div {
+          display: block;
+          .item {
+            margin-bottom: 15px;
+            margin-right: 0;
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

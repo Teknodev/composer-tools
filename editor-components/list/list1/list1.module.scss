@@ -1,0 +1,96 @@
+.container {
+  width: 100%;
+  padding: 20px 0 20px 0;
+  .max-content {
+    width: var(--composer-content-width);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: auto;
+
+    .feature-accordion {
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--composer-box-shadow);
+      border-top: 5px solid var(--composer-primary-color);
+      border-radius: 5px;
+      height: max-content;
+      padding: 0 20px;
+      min-width: 300px;
+      margin: 15px 0 15px 0;
+      .title {
+        display: block;
+        font-weight: bold;
+        max-width: 150px;
+        padding: 0;
+        margin-bottom: 5px;
+      }
+      hr {
+        display: block;
+        width: 25%;
+        margin: 0 30px 20px 0;
+        border: 1px solid var(--composer-primary-color);
+        padding: 0;
+      }
+      .accordion-wrapper {
+        border-radius: 8px;
+        overflow: hidden;
+        width: 600px;
+        margin: 0 auto;
+        padding-bottom: 50px;
+        .accordion {
+          width: 100%;
+          color: white;
+          overflow: hidden;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          .accordion-label {
+            display: flex;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            font-weight: 600;
+            padding: 16px;
+            color: rgba(0, 0, 0, 0.85);
+            border-bottom: 1px rgba(0, 0, 0, 0.15) solid;
+            cursor: pointer;
+          }
+          .accordion-content {
+            max-height: 0;
+            padding: 0 16px;
+            background: white;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            p {
+              margin: 0;
+              color: var(--composer-primary-color);
+              font-size: 18px;
+            }
+          }
+          input:checked + .accordion-label::after {
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+          }
+          input:checked ~ .accordion-content {
+            max-height: 100vh;
+            padding: 16px;
+          }
+          input[type="radio"] {
+            visibility: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .max-content {
+      .feature-accordion {
+      }
+    }
+  }
+}

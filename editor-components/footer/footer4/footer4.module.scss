@@ -1,0 +1,172 @@
+.container {
+  width: 100%;
+  box-shadow: var(--composer-box-shadow);
+
+  .max-content {
+    width: var(--composer-content-width);
+    margin: auto;
+
+    .footer-page {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+
+      .subscribe {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1 {
+          width: 100%;
+          margin-top: 38px;
+          font-weight: 200;
+          font-size: 30px;
+          text-align: center;
+        }
+        button {
+          cursor: pointer;
+          transition: all 0.5s;
+          border: 1px solid white;
+          padding: 10px 20px;
+          color: var(--composer-primary-color);
+          background-color: white;
+          border-radius: 10px;
+          font-size: 18px;
+          font-weight: 600;
+          &:hover {
+            color: white;
+            background-color: transparent;
+          }
+        }
+      }
+      .items {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        .list-group {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 20px;
+          width: 300px;
+          .title {
+            h2 {
+              font-weight: 200;
+              font-size: 20px;
+            }
+          }
+          .text {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 100;
+            margin-left: 3px;
+            margin-top: 7px;
+            font-family: system-ui;
+          }
+        }
+      }
+    }
+    .footer-bottom {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      h2 {
+        font-weight: 200;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    width: 100%;
+  
+    .max-content {
+      width: var(--composer-content-width);
+      margin: auto;
+  
+      .footer-page {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+  
+        .subscribe {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          h1 {
+            width: 100%;
+            margin-top: 38px;
+            font-weight: 200;
+            font-size: 30px;
+            text-align: center;
+          }
+          button {
+            cursor: pointer;
+            transition: all 0.5s;
+            border: 1px solid white;
+            padding: 10px 20px;
+            color: var(--composer-primary-color);
+            background-color: white;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            &:hover {
+              color: white;
+              background-color: transparent;
+            }
+          }
+        }
+        .items {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          .list-group {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 300px;
+            .title {
+              h2 {
+                font-weight: 200;
+                font-size: 20px;
+              }
+            }
+            .text {
+              text-decoration: none;
+              color: white;
+              font-size: 16px;
+              font-weight: 100;
+              margin-left: 3px;
+              margin-top: 7px;
+              font-family: system-ui;
+            }
+          }
+        }
+      }
+      .footer-bottom {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        h2 {
+          font-weight: 200;
+        }
+      }
+    }
+  }
+}

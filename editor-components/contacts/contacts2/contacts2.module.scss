@@ -1,0 +1,73 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0 50px 0;
+  .max-content {
+    width: var(--composer-content-width);
+
+    .contacts2 {
+      display: block;
+      width: 100%;
+      h1 {
+        font-weight: 800;
+        line-height: 1.4;
+        font-size: 40px;
+        margin: 0 0 0 100px;
+      }
+      p {
+        width: 40%;
+        font-weight: 200;
+        line-height: 1.4;
+        font-size: 15px;
+        margin: 10px 0 60px 100px;
+      }
+      .card-child {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        img {
+          margin-top: 15px;
+          transition: all 0.5s;
+          border: 1px solid var(--composer-secondary-color);
+          border-radius: 100%;
+          padding: 10px;
+        }
+        .card {
+          display: flex;
+          .card-box {
+            display: block;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            min-width: 300px;
+            max-width: 300px;
+            height: max-content;
+            border-radius: 20px;
+            h2 {
+              font-weight: 800;
+              line-height: 1.4;
+              font-size: 20px;
+            }
+            h4 {
+              font-weight: 500;
+              font-size: 18px;
+              margin: 0;
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .contacts2 {
+      text-align: center;
+      margin: 0;
+    }
+  }
+}

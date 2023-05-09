@@ -1,0 +1,277 @@
+$transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+.container {
+  width: 100%;
+  .max-content {
+    width: var(--composer-content-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    .all-page {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .up-page {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px 0 20px;
+        margin-bottom: 5rem;
+        .badge {
+          color: var(--composer-primary-color);
+          border-radius: 10px;
+          font-size: 0.8rem;
+          background: rgb(244, 244, 244);
+          padding: 3px 5px;
+          display: inline-block;
+        }
+
+        .description {
+          font-size: 1.1rem;
+          max-width: 600px;
+          line-height: 1.7rem;
+        }
+        .title {
+          display: flex;
+          justify-content: space-between;
+          .left {
+            max-width: 50%;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .right {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            gap: 1rem;
+            .button {
+              border: 0px solid;
+              border-radius: 3px;
+              color: #fff;
+              cursor: pointer;
+              padding: 10px;
+              background: transparent;
+              transition: $transition;
+              opacity: 0.9;
+              &:hover {
+                opacity: 1;
+              }
+            }
+
+            .primary {
+              background-color: var(--composer-primary-color);
+            }
+            .secondary {
+              border: 1px solid rgb(200, 200, 200);
+              color: black;
+            }
+          }
+        }
+      }
+
+      .down-page {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .all-card {
+          display: flex;
+          justify-content: center;
+          .card {
+            width: 350px;
+            height: 350px;
+            min-width: 300px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            .name {
+              font-size: 2rem;
+              margin: 2rem 0rem 0rem;
+              opacity: 0.7;
+              transition: $transition;
+            }
+            .position {
+              color: var(--composer-primary-color);
+              opacity: 0.7;
+              transition: $transition;
+            }
+
+            img {
+              width: 100%;
+              height: 250px;
+              object-fit: cover;
+              transition: $transition;
+            }
+
+            &:hover {
+              .name {
+                opacity: 1;
+              }
+              .position {
+                opacity: 1;
+              }
+              img {
+                transform: scale(1.1);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    width: 100%;
+    .max-content {
+      width: var(--composer-content-width);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      max-width: 100%;
+  
+      .all-page {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+  
+        .up-page {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          padding: 0 20px 0 20px;
+          margin-bottom: 2rem;
+          .badge {
+            color: var(--composer-primary-color);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            background: rgb(244, 244, 244);
+            padding: 3px 5px;
+            display: inline-block;
+          }
+  
+          .description {
+            font-size: 1.1rem;
+            max-width: unset;
+            width: 100%;
+            line-height: 1.7rem;
+          }
+          .title {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .left {
+              max-width: 50%;
+              display: flex;
+              flex-direction: column;
+            }
+  
+            .right {
+              display: flex;
+              justify-content: end;
+              align-items: center;
+              gap: 1rem;
+              .button {
+                border: 0px solid;
+                border-radius: 3px;
+                color: #fff;
+                cursor: pointer;
+                padding: 10px;
+                background: transparent;
+                transition: $transition;
+                opacity: 0.9;
+                &:hover {
+                  opacity: 1;
+                }
+              }
+  
+              .primary {
+                background-color: var(--composer-primary-color);
+              }
+              .secondary {
+                border: 1px solid rgb(200, 200, 200);
+                color: black;
+              }
+            }
+          }
+        }
+  
+        .down-page {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          flex-wrap: wrap;
+  
+          .all-card {
+            width: 100% !important;
+            display: flex;
+            justify-content: unset;
+            .card {
+              width: 350px;
+              height: 350px;
+              min-width: 300px;
+              min-height: 300px;
+              display: flex;
+              flex-direction: column;
+              padding: 10px;
+              margin-bottom: 1rem;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+  
+              .name {
+                font-size: 2rem;
+                margin: 2rem 0rem 0rem;
+                opacity: 0.7;
+                transition: $transition;
+              }
+              .position {
+                color: var(--composer-primary-color);
+                opacity: 0.7;
+                transition: $transition;
+              }
+  
+              img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                transition: $transition;
+              }
+  
+              &:hover {
+                .name {
+                  opacity: 1;
+                }
+                .position {
+                  opacity: 1;
+                }
+                img {
+                  transform: scale(1.1);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}

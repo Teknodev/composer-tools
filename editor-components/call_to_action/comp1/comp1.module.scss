@@ -1,0 +1,64 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0 50px 0;
+  .max-content {
+    width: var(--composer-content-width);
+    .comp1-page {
+      display: block;
+      width: 100%;
+      h3 {
+        text-align: center;
+        font-weight: 200;
+        font-size: 18px;
+        margin: 0 0 20px 0;
+      }
+      h1 {
+        text-align: center;
+        font-weight: 700;
+        font-size: 45px;
+        line-height: 1.4;
+        margin: 0 auto 20px auto;
+        width: 450px;
+      }
+      .button {
+        margin: 0 auto 20px auto;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+        transition: 0.3s;
+        display: block;
+        color: white;
+        background-color: var(--composer-primary-color);
+        box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.3);
+        padding: 18px 20px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        width: 200px;
+        font-size: 16px;
+        font-weight: 550;
+        &:hover {
+          color: var(--composer-primary-color);
+          background-color: transparent;
+          border: 1px solid var(--composer-primary-color);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .comp1-page {
+      text-align: center;
+      margin: 0;
+      h1 {
+        width: 100%;
+      }
+    }
+  }
+}

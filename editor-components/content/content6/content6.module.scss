@@ -1,0 +1,130 @@
+.container {
+  width: 100%;
+
+  .max-content {
+    width: var(--composer-content-width);
+    margin: auto;
+
+    .wrapper {
+      width: 100%;
+      box-shadow: var(--composer-box-shadow);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      &.wrapper-reverse {
+        flex-flow: row-reverse;
+      }
+      .slider-parent {
+        .carousel {
+          width: 50vw;
+          height: 450px;
+          .img {
+            height: 450px;
+            width: auto;
+            object-fit: cover;
+          }
+
+          .slick-next {
+            left: 25px !important;
+            background-color: red !important  ;
+          }
+        }
+      }
+      .header-page {
+        width: 40%;
+        min-width: 380px;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        h1 {
+          text-transform: capitalize;
+          font-weight: revert;
+          margin-top: 0;
+          font-size: 72px;
+          width: 50%;
+          font-family: system-ui;
+          line-height: 1;
+          margin-bottom: 20px;
+        }
+        p {
+          font-weight: 500;
+          color: black;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .container {
+    width: 100%;
+
+    .max-content {
+      width: var(--composer-content-width);
+
+      .wrapper {
+        width: 100%;
+        box-shadow: var(--composer-box-shadow);
+        display: flex;
+        flex-wrap: unset;
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+
+        &.wrapper-reverse {
+          flex-flow: unset;
+        }
+        .slider-parent {
+          width: 100% !important;
+          display: flex;
+          justify-content: center !important;
+          .carousel {
+            width: 100% !important;
+            height: 450px;
+            min-width: 300px !important;
+            .img {
+              height: 350px;
+              min-height: unset;
+              width: 100% !important;
+              object-fit: cover;
+            }
+
+            .slick-next {
+              left: 25px !important;
+              background-color: red !important;
+            }
+          }
+        }
+        .header-page {
+          width: 100%;
+          padding: 10px 10px;
+          min-width: unset;
+          max-width: unset;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          h1 {
+            text-transform: capitalize;
+            font-weight: revert;
+            margin-top: 0;
+            font-size: 3rem;
+            width: 100%;
+            font-family: system-ui;
+            line-height: 1;
+            margin-bottom: 20px;
+          }
+          p {
+            font-weight: 500;
+            color: black;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

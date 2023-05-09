@@ -1,0 +1,104 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0 20px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .max-content {
+    width: var(--composer-content-width);
+
+    .comp4-page {
+      display: block;
+      padding: 80px 100px;
+      width: 100%;
+      h2 {
+        font-weight: 100;
+        line-height: 1.4;
+        width: 400px;
+        margin-bottom: 5px;
+        color: white;
+      }
+      h1 {
+        font-weight: 800;
+        line-height: 1.4;
+        font-size: 35px;
+        margin-top: 0;
+        color: white;
+        width: 400px;
+      }
+      .buttons {
+        display: flex;
+        .button {
+          cursor: pointer;
+          text-decoration: none;
+          text-align: center;
+          transition: 0.3s;
+          display: block;
+          color: black;
+          background-color: white;
+          padding: 15px 30px;
+          font-size: 18px;
+          font-weight: 400;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          width: 200px;
+          margin-top: 20px;
+          margin-right: 20px;
+          &:hover {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+          }
+        }
+        .button2 {
+          cursor: pointer;
+          text-decoration: none;
+          text-align: center;
+          transition: 0.3s;
+          display: block;
+          color: white;
+          background-color: transparent;
+          padding: 15px 30px;
+          font-size: 18px;
+          font-weight: 400;
+          border-radius: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          width: 200px;
+          margin-top: 20px;
+          &:hover {
+            border: 1px solid white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .comp4-page {
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      padding: 10px;
+      h1,
+      h2 {
+        text-align: center;
+        width: 100%;
+      }
+      .buttons {
+        display: block;
+        text-align: center;
+        .button,
+        .button2 {
+          margin-top: 20px;
+          margin-right: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

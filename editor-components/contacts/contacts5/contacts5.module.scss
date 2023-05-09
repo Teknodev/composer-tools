@@ -1,0 +1,109 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  .max-content{
+    width: var(--composer-content-width);
+    .contacts5 {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      .title {
+        display: block;
+        text-align: center;
+        background-color: var(--composer-secondary-color);
+        width: 100%;
+        h1 {
+          font-weight: 800;
+          line-height: 1.4;
+          font-size: 40px;
+          margin: 10px auto 60px auto;
+        }
+        p {
+          font-weight: 800;
+          line-height: 1.4;
+          font-size: 16px;
+          margin: 100px auto 0 auto;
+          color: var(--composer-primary-color);
+          text-transform: uppercase;
+        }
+      }
+      .contact-form {
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+        transition: 1s;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        padding: 20px 0 20px 0;
+        background-position: 0 150px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: var(--composer-secondary-color);
+        .form {
+          display: flex;
+          flex-direction: column;
+          background: rgba(250, 250, 250, 0.6);
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          border-radius: 15px;
+          padding: 20px;
+          width: 450px;
+          .input {
+            padding: 16px 10px;
+            border-radius: 10px;
+            background: rgba(250, 250, 250, 0.7);
+            border: 1px solid #8e8e8e91;
+            margin-bottom: 20px;
+            resize: none;
+            &:focus {
+              outline-color: var(--composer-primary-color);
+            }
+          }
+          .error-message {
+            color: red;
+            font-size: 0.6rem;
+            margin-top: 3px;
+          }
+          .submit-button {
+            height: 50px;
+            background-color: var(--composer-primary-color);
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.1s;
+            margin-top: 14px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            font-size: 18px;
+            color: white;
+            padding: 10px 50px;
+            font-weight: 700;
+            &:active {
+              background: var(--composer-secondary-color);
+              color: var(--composer-tertiary-color);
+            }
+          }
+        }
+      }
+    } 
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    .contacts5 {
+      text-align: center;
+      margin: 0;
+      .contact-left {
+        width: 100%;
+      }
+      .contact-right {
+        width: 100%;
+      }
+    }
+  }
+}

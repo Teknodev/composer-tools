@@ -1,0 +1,160 @@
+.container {
+  width: 100%;
+  .max-content {
+    width: var(--composer-content-width);
+    margin: auto;
+
+    .wrapper {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 5%;
+      width: 100%;
+      box-shadow: var(--composer-box-shadow);
+      .page {
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        min-width: 300px;
+        .header-page {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          h3 {
+            font-size: x-large;
+            font-weight: 100;
+            line-height: 1;
+            color: var(--composer-secondary-color);
+            width: 50px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+          }
+          h1 {
+            text-transform: uppercase;
+            color: var(--composer-primary-color);
+            font-weight: bolder;
+            margin-top: 0;
+            font-size: xxx-large;
+            margin-bottom: 0px;
+            width: 100px;
+          }
+          p {
+            font-size: larger;
+            font-weight: 100;
+            min-width: 250px;
+            max-width: 400px;
+          }
+          .button-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            min-width: 250px;
+            max-width: 400px;
+            justify-content: space-between;
+            .button-reverse {
+              cursor: pointer;
+              text-align: center;
+              transition: 0.3s;
+              display: block;
+              color: var(--composer-primary-color);
+              background-color: transparent;
+              padding: 11px 30px;
+              border-radius: 25px;
+              border: 1px solid var(--composer-primary-color);
+              width: 150px;
+              &:hover {
+                color: white;
+                border: 1px solid transparent;
+                background-color: var(--composer-primary-color);
+              }
+            }
+            .button {
+              cursor: pointer;
+              text-align: center;
+              transition: 0.3s;
+              display: block;
+              color: white;
+              background-color: var(--composer-primary-color);
+              padding: 11px 30px;
+              border-radius: 25px;
+              border: 1px solid transparent;
+              width: 150px;
+              &:hover {
+                color: var(--composer-primary-color);
+                background-color: transparent;
+                border: 1px solid var(--composer-primary-color);
+              }
+            }
+          }
+        }
+        .image {
+          min-width: 400px;
+          max-width: 600px;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  .container {
+    flex-direction: column;
+    min-width: 0 !important;
+    .max-content {
+      .header-page {
+        width: 100% !important;
+        margin: 0;
+        h3,
+        h1,
+        p {
+          width: 100% !important;
+          min-width: 0 !important;
+        }
+        .button-wrapper {
+          width: 100% !important;
+          max-width: 0 !important;
+          justify-content: center !important;
+        }
+      }
+      .image {
+        width: 100%;
+        min-width: 0 !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  .container {
+    flex-direction: column;
+    min-width: 0 !important;
+    .max-content {
+      .header-page {
+        width: 100% !important;
+        margin: 0;
+        h3,
+        h1,
+        p {
+          width: 100% !important;
+          min-width: 0 !important;
+          max-width: none !important;
+        }
+        .button-wrapper {
+          width: 100% !important;
+          min-width: 150px;
+          max-width: none !important;
+          justify-content: flex-start !important;
+        }
+      }
+      .image {
+        width: 100%;
+        min-width: 0 !important;
+      }
+    }
+  }
+}
