@@ -15,7 +15,7 @@ class LogoComp1Page extends LogoClouds {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit",
+      value: "Logo Clouds",
     });
     this.addProp({
       type: "array",
@@ -36,28 +36,28 @@ class LogoComp1Page extends LogoClouds {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1683297760717",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf000?alt=media&timestamp=1683297760717",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf001?alt=media&timestamp=1683297760717",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf002?alt=media&timestamp=1683297760717",
                   displayer: "Image",
                 },
               ],
@@ -78,28 +78,28 @@ class LogoComp1Page extends LogoClouds {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf003?alt=media&timestamp=1683297760717",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf004?alt=media&timestamp=1683297760717",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf005?alt=media&timestamp=1683297760717",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf006?alt=media&timestamp=1683297760717",
                   displayer: "Image",
                 },
               ],
@@ -129,7 +129,7 @@ class LogoComp1Page extends LogoClouds {
                   (section: any, index: number) => (
                     <div key={index} className={this.decorateCSS("image-child")}>
                       {section.items.map((item: any, index: number) => (
-                        <img key={index} width={180} height={90} src={item.value} />
+                        <img className={this.decorateCSS("image")} key={index} width={180} height={90} src={item.value} />
                       ))}
                     </div>
                   )

@@ -1,69 +1,68 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px 0 20px 0;
+  padding: 50px 0;
+
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    gap: 20px;
+
     .icon-boxes {
       display: flex;
       flex-direction: column;
       text-align: center;
-      border-radius: 20px;
+      border-radius: 6px;
       height: max-content;
-      width: 300px;
-      margin: 15px 0 15px 0;
+      min-width: 250px;
+      flex: 1 1;
+
       &:hover {
-        .image {
+        .image-background {
           transform: rotate(135deg);
           padding: 1px;
           box-shadow: var(--composer-primary-color) 0px 0px 10px;
-        }
-        img {
-          transform: rotate(-135deg);
+          .image {
+            transform: rotate(-135deg);
+          }
         }
       }
-      img {
-        transition: all 0.4s;
-        width: 60px;
-        padding: 10px;
-        margin: 0;
-      }
-      .image {
+      .image-background {
         transition: all 0.4s;
         display: flex;
         margin: auto;
-        margin-bottom: 20px;
         background-color: var(--composer-primary-color);
         padding: 1px;
-        border-radius: 5px;
+        border-radius: 6px;
+        .image {
+          transition: all 0.4s;
+          width: 60px;
+          padding: 10px;
+          margin: 0;
+        }
       }
       .title {
         display: block;
-        margin: 5px auto 10px auto;
+        margin: 12px auto;
         font-weight: bold;
-        max-width: 150px;
         color: var(--composer-primary-color);
       }
       .long-text {
         display: block;
-        margin: auto auto 20px auto;
         color: rgb(200, 200, 200);
-        max-width: 200px;
+        margin-bottom: 0;
       }
     }
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .icon-boxes {
-      width: 100%;
+    padding: 50px 20px;
+
+    .max-content {
+      gap: 60px !important;
     }
   }
 }

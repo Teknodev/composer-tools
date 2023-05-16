@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content2.module.scss";
 
@@ -13,16 +12,50 @@ class Content2 extends BaseContent {
       type: "array",
       key: "gallery",
       displayer: "gallery",
-      value: Array(6)
-        .fill(0)
-        .map((_, index) => {
-          return {
-            type: "image",
-            key: "image" + index,
-            displayer: "Image",
-            value: PlaceholderFiller.image(),
-          };
-        }),
+      value: [
+        {
+          type: "image",
+          key: "image1",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae1a68c3c2002cd2f9d0?alt=media&timestamp=1683295415432",
+        },
+        {
+          type: "image",
+          key: "image2",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae1a68c3c2002cd2f9d5?alt=media&timestamp=1683295415432",
+        },
+        {
+          type: "image",
+          key: "image3",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae1a68c3c2002cd2f9d1?alt=media&timestamp=1683295415432",
+        },
+        {
+          type: "image",
+          key: "image4",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae1a68c3c2002cd2f9d2?alt=media&timestamp=1683295415432",
+        },
+        {
+          type: "image",
+          key: "image5",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae1a68c3c2002cd2f9d3?alt=media&timestamp=1683295415432",
+        },
+        {
+          type: "image",
+          key: "image6",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae1a68c3c2002cd2f9d4?alt=media&timestamp=1683295415432",
+        },
+      ],
     });
   }
   getName(): string {

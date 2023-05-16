@@ -1,46 +1,37 @@
 .container {
   width: 100%;
-  padding: 50px 0 50px 0;
+  padding: 50px 0;
+
   .max-content {
     display: flex;
     justify-content: space-around;
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     margin: auto;
+    padding: 0 60px;
     .stats2-page {
-      display: block;
       width: 100%;
-      padding: 20px 100px;
       .bottom-child {
+        width: 100%;
         display: flex;
-        justify-content: space-between;
-        margin-top: 50px;
-        width: 900px;
-        margin: 0 auto 0 auto;
-        border-radius: 20px;
-        padding: 40px;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
         .card-title {
-          width: 600px;
+          width: 100%;
           h1 {
             width: 100%;
-            font-weight: 800;
-            font-size: 30px;
-            line-height: 1.4;
-            padding-right: 50px;
+            font-size: 2.5rem;
           }
         }
         .card {
-          width: 500px;
+          width: 100%;
           h4 {
-            font-weight: 800;
-            font-size: 35px;
-            line-height: 1.4;
+            font-size: 2.5rem;
             margin: 0;
-            margin: 20px 0 10px 0;
           }
           p {
-            font-weight: 500;
-            font-size: 17px;
-            line-height: 1.4;
+            font-size: 1.5rem;
+            margin: 20px 0;
           }
         }
       }
@@ -48,24 +39,22 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 768px) {
   .container {
     flex-direction: column;
-    gap: 20px;
+    gap: 60px;
 
     .max-content {
+      padding: 0;
       .stats2-page {
         text-align: center;
         margin: 0;
         .bottom-child {
-          margin: 0 auto 0 auto;
           display: block;
+          margin: 0 auto;
           width: 100%;
           .card-title {
             width: 100%;
-            h1 {
-              padding-right: 0;
-            }
           }
           .card {
             width: 100%;

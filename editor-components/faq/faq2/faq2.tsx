@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./faq2.module.scss";
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
-import { BaseFAQ, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseFAQ } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/link";
 
 type Card = {
@@ -19,28 +19,6 @@ class FaqContainer extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
-    let placeholder: TypeUsableComponentProps = {
-      type: "object",
-      key: "items",
-      displayer: "Items",
-      value: [
-        {
-          type: "string",
-          key: "cardTitle",
-          displayer: "Question",
-          value: PlaceholderFiller.shortText(),
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Answer",
-          value:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry \
-                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \
-                     but also the leap into electronic..",
-        },
-      ],
-    };
 
     this.addProp({
       type: "string",
@@ -53,21 +31,21 @@ class FaqContainer extends BaseFAQ {
       type: "string",
       key: "title",
       displayer: "Title Description",
-      value: PlaceholderFiller.mediumText(),
+      value: "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
     });
 
     this.addProp({
       type: "string",
       key: "title2",
       displayer: "Container Title",
-      value: PlaceholderFiller.shortText(),
+      value: "Shipping and Delivery",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Container Description",
-      value: PlaceholderFiller.mediumText(),
+      value: "This section of the website provides information on shipping options, delivery times, and tracking your order.",
     });
 
     this.addProp({
@@ -89,12 +67,132 @@ class FaqContainer extends BaseFAQ {
       key: "card",
       displayer: "Card",
       value: [
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Question",
+              value:
+                "What are the shipping options available?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Answer",
+              value:
+                "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Question",
+              value:
+                "How can I track my order?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Answer",
+              value:
+                "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Question",
+              value:
+                "What is your return policy?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Answer",
+              value:
+                " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Question",
+              value:
+                "How can I contact customer support?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Answer",
+              value:
+                "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Question",
+              value:
+                "Do you offer any discounts or promotions?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Answer",
+              value:
+                "Yes, we offer discounts and promotions from time to time. You can sign up for our newsletter to receive updates on our latest promotions.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Question",
+              value:
+                "What payment methods do you accept?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Answer",
+              value:
+                "We accept credit/debit cards, PayPal, and other digital payment methods. You can select your preferred payment method during checkout.",
+            },
+          ],
+        }
       ],
     });
 
@@ -170,9 +268,9 @@ class FaqContainer extends BaseFAQ {
               <p>{this.getPropValue("title")}</p>
             </div>
             <div className={this.decorateCSS("card-page")}>
-              {this.castToObject<Card[]>("card").map((item: Card) => {
+              {this.castToObject<Card[]>("card").map((item: Card, indexCard: number) => {
                 return (
-                  <div style={style()}>
+                  <div key={indexCard} style={style()}>
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("icon")}>
                         <div>?</div>
@@ -188,15 +286,17 @@ class FaqContainer extends BaseFAQ {
                 );
               })}
             </div>
-            <div className={this.decorateCSS("down-container")}>
+          </div>
+        </div>
+        <div className={this.decorateCSS("down-container")}>
               <div className={this.decorateCSS("child-container")}>
                 <h1>{this.getPropValue("title2")}</h1>
                 <p>{this.getPropValue("description")}</p>
                 <div className={this.decorateCSS("button-group")}>
                   {this.castToObject<Button[]>("buttons").map(
-                    (button: Button) => {
+                    (button: Button, indexButtons: number) => {
                       return (
-                        <ComposerLink path={button.link}>
+                        <ComposerLink key={indexButtons} path={button.link}>
                           <button
                             className={
                               this.decorateCSS("button") +
@@ -215,8 +315,6 @@ class FaqContainer extends BaseFAQ {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
       </div>
     );
   }

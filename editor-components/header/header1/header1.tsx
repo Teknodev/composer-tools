@@ -11,13 +11,14 @@ class Header1 extends BaseHeader {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: PlaceholderFiller.string()
+      value:
+        "In this blog post, we'll explore some practical tips and techniques for managing your time more effectively. ",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: PlaceholderFiller.string()
+      value: "In this blog post, we'll explore some practical tips and techniques for managing your time more effectively, so you can be more productive, reduce stress, and achieve your goals.",
     });
     this.addProp({
       type: "array",
@@ -33,30 +34,31 @@ class Header1 extends BaseHeader {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: PlaceholderFiller.string(),
+              value: "Go There",
             },
             {
               type: "page",
               key: "link",
               displayer: "URL",
-              value: PlaceholderFiller.string()
+              value: "",
             },
-          ]
-        }
-      ]
-    })
+          ],
+        },
+      ],
+    });
     this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
-      value: PlaceholderFiller.image()
+      value:
+        "https://visme.co/blog/wp-content/uploads/2022/12/15-Best-Practices-to-Help-You-Improve-Your-Time-Management-Skills-Thumbnail.jpg",
     });
     this.addProp({
       type: "page",
       key: "link",
       displayer: "URL",
-      value: PlaceholderFiller.string()
-    })
+      value: PlaceholderFiller.string(),
+    });
   }
 
   getName(): string {
@@ -65,39 +67,26 @@ class Header1 extends BaseHeader {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("header-page")}
-            
-          >
-            <h3
-              className={this.decorateCSS("title")}
-              
-            >
-              {this.getPropValue("subtitle")}
-            </h3>
-            <p
-              className={this.decorateCSS("long-text")}
-              
-            >
-              {this.getPropValue("title")}
-            </p>
+          <div className={this.decorateCSS("header-page")}>
+            <h3 className={this.decorateCSS("title")}>{this.getPropValue("subtitle")}</h3>
+            <p className={this.decorateCSS("long-text")}>{this.getPropValue("title")}</p>
             <div className={this.decorateCSS("button-group")}>
-              {this.castToObject<[]>("button").map((item: any) => {
+              {this.castToObject<[]>("button").map((item: any, indexItem: number) => {
                 return (
-                  <ComposerLink path={item.link}>
-                    <button className={this.decorateCSS("button")} >
+                  <ComposerLink key={indexItem} path={item.link}>
+                    <button className={this.decorateCSS("button")}>
                       {item.buttonText}
                     </button>
                   </ComposerLink>
-                )
+                );
               })}
             </div>
-            <img src={this.getPropValue("image")}></img>
+            <img
+              className={this.decorateCSS("image")}
+              src={this.getPropValue("image")}
+            ></img>
           </div>
         </div>
       </div>

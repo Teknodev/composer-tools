@@ -1,97 +1,142 @@
 import * as React from "react";
+import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./slider1.module.scss";
-import { BaseSlider } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
+import Slider from "react-slick";
+import ComposerLink from "../../../composer-base-components/Link/link";
+
+interface Button {
+  buttonText: string;
+  url: string;
+  isPrimary: boolean;
+}
 
 class Slider1 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
+
+    let button: TypeUsableComponentProps = {
+      type: "object",
+      key: "button",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Go There",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+        {
+          type: "boolean",
+          key: "isPrimary",
+          displayer: "Is Primary",
+          value: true,
+        },
+      ],
+    };
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Travel",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Exploring new places, experiencing different cultures, and meeting new people are all part of the joy of traveling.",
+    });
+
     this.addProp({
       type: "array",
-      key: "images",
-      displayer: "Images",
+      key: "slider",
+      displayer: "Slider",
       value: [
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: PlaceholderFiller.image(),
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee3?alt=media&timestamp=1683296164904",
+        },
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee2?alt=media&timestamp=1683296164904",
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "button1",
-      displayer: "Previous Button Title",
-      value: PlaceholderFiller.string(),
-    });
-    this.addProp({
-      type: "string",
-      key: "button2",
-      displayer: "Next Button Title",
-      value: PlaceholderFiller.string(),
-    });
 
-    this.state["componentProps"]["count"] = 0;
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [JSON.parse(JSON.stringify(button))],
+    });
   }
-
   getName(): string {
     return "Slider 1";
   }
-
-  prevButton(images: string[]) {
-    let count = this.state.componentProps["count"];
-    count--;
-
-    if (count < 0) {
-      count = images.length - 1;
-    }
-
-    this.state.componentProps["count"] = count;
-  }
-
-  nextButton(images: string[]) {
-    let count = this.state.componentProps["count"];
-    count++;
-    if (count == images.length) {
-      count = 0;
-    }
-    this.state.componentProps["count"] = count;
-  }
-
   render() {
-    let items = this.getPropValue("images");
-    let images = new Array();
-    items.forEach((item: { value: any }) => {
-      images.push(item.value);
-    });
-
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")} >
-            <button
-              className={this.decorateCSS("button")}
-              onClick={(e) => this.prevButton(images)}
-            >
-              {this.getPropValue("button1")}
-            </button>
-            <div className={this.decorateCSS("image")} >
-              <img src={images[this.state.componentProps["count"]]} />
+          <div className={this.decorateCSS("slider-parent")}>
+            <Slider {...settings} className={this.decorateCSS("carousel")}>
+              {this.getPropValue("slider").map(
+                (item: any, indexSlider: number) => (
+                  <img
+                    src={item.value}
+                    className={this.decorateCSS("img")}
+                    key={indexSlider}
+                  />
+                )
+              )}
+            </Slider>
+            <div className={this.decorateCSS("box")}>
+              <div className={this.decorateCSS("title")}>
+                <h1>{this.getPropValue("title")}</h1>
+              </div>
+              <p>{this.getPropValue("description")}</p>
+              <div className={this.decorateCSS("button-group")}>
+                {this.castToObject<Button[]>("buttons").map(
+                  (item: Button, indexButtons: number) => {
+                    return (
+                      <ComposerLink key={indexButtons} path={item.url}>
+                        <div
+                          className={`${this.decorateCSS("button")} ${
+                            item.isPrimary && this.decorateCSS("primary")
+                          }`}
+                        >
+                          {item.buttonText}
+                        </div>
+                      </ComposerLink>
+                    );
+                  }
+                )}
+              </div>
             </div>
-            <button
-              className={this.decorateCSS("button")}
-              onClick={() => this.nextButton(images)}
-            >
-              {this.getPropValue("button1")}
-            </button>
           </div>
         </div>
       </div>
     );
   }
 }
+
 export default Slider1;

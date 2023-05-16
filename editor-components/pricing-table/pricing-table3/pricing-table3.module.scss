@@ -1,26 +1,23 @@
 .container {
   width: 100%;
-  padding: 20px 0 20px 0;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
+    max-width: var(--composer-content-width);
     margin: auto;
 
     .page {
       width: 100%;
       display: flex;
       justify-content: center;
-      position: relative;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
 
       .child-page {
-        width: 50%;
+        flex: 1 1;
         display: flex;
-        justify-content: flex-end;
-        padding: 0 20px;
+        justify-content: end;
       }
 
       .texts {
@@ -28,7 +25,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 3rem;
+        gap: 20px;
 
         h1 {
           font-size: 3.5rem;
@@ -43,8 +40,11 @@
       }
 
       .child-page-right {
+        width: 100%;
+        max-width: 400px;
+
         box-shadow: var(--composer-box-shadow);
-        width: 60%;
+        border-radius: 6px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -54,7 +54,7 @@
         width: 100%;
         padding: 5%;
 
-        ul .list-item {
+        ul li {
           margin-bottom: 5%;
           overflow: hidden;
           white-space: pre-line;
@@ -73,6 +73,10 @@
             border-radius: 50%;
             background-color: var(--composer-primary-color);
             color: #fff;
+            img {
+              width: 15px;
+              height: 15px;
+            }
           }
         }
       }
@@ -144,335 +148,21 @@
           }
         }
       }
-      h1,
-      p,
-      h2 {
-        overflow: hidden;
-        white-space: pre-line;
-        text-overflow: ellipsis;
-        word-break: break-all;
-      }
     }
   }
 }
 
-@media only screen and (max-width: 1300px) and (min-width: 801px) {
+@media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
-    padding: 20px 0 20px 0;
+    padding: 50px 20px;
 
-    .max-content {
-      width: var(--composer-content-width);
-      display: flex;
+    .page {
       flex-direction: column;
-      justify-content: center;
-      flex-wrap: unset;
-      align-items: center;
-      .page {
+
+      .child-page{
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-
-        .child-page {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-        }
-
-        .texts {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          gap: 3rem;
-          margin-bottom: 20px;
-
-          h1 {
-            font-size: 3.5rem;
-            color: rgb(18, 22, 43);
-            opacity: 0.8;
-            margin: unset;
-          }
-          .title2 {
-            font-size: 1.5rem;
-            line-height: 25px;
-          }
-        }
-
-        .child-page-right {
-          box-shadow: var(--composer-box-shadow);
-          width: 50%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .right-up {
-          width: 100%;
-          padding: 5%;
-
-          ul .list-item {
-            margin-bottom: 5%;
-            overflow: hidden;
-            white-space: pre-line;
-            text-overflow: ellipsis;
-            word-break: break-all;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            .circle-icon {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 18px;
-              height: 18px;
-              border-radius: 50%;
-              background-color: var(--composer-primary-color);
-              color: #fff;
-            }
-          }
-        }
-
-        .right-down {
-          width: 100%;
-          padding: 5%;
-          display: flex;
-          flex-direction: column;
-
-          .right-down-up {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .little {
-              width: 50%;
-            }
-            .other {
-              width: 50%;
-              display: flex;
-              justify-content: flex-end;
-            }
-          }
-          .button-group {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            a {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              .button {
-                width: 75%;
-                height: 50px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                border: 1px solid var(--composer-primary-color);
-                border-radius: 6px;
-                font-size: 1.4rem;
-                background-color: var(--composer-primary-color);
-                color: white;
-                cursor: pointer;
-
-                &:hover {
-                  color: var(--composer-primary-color);
-                  background: transparent;
-                  border: 1px solid var(--composer-primary-color);
-                }
-
-                &.primary {
-                  background-color: var(--composer-secondary-color);
-                  border: 1px solid var(--composer-secondary-color);
-                  color: white;
-
-                  &:hover {
-                    color: var(--composer-secondary-color);
-                    background: transparent;
-                    border: 1px solid var(--composer-secondary-color);
-                  }
-                }
-              }
-            }
-          }
-        }
-        h1,
-        p,
-        h2 {
-          overflow: hidden;
-          white-space: pre-line;
-          text-overflow: ellipsis;
-          word-break: break-all;
-        }
-      }
-    }
-  }
-}
-
-
-@media only screen and (max-width:800px) {
-  .container {
-    width: 100%;
-    padding: 20px 0 20px 0;
-
-    .max-content {
-      width: var(--composer-content-width);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex-wrap: unset;
-      align-items: center;
-      .page {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-
-        .child-page {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-        }
-
-        .texts {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          gap: 1rem;
-          margin-bottom: 20px;
-
-          h1 {
-            font-size: 2rem;
-            color: rgb(18, 22, 43);
-            opacity: 0.8;
-            margin: unset;
-          }
-          .title2 {
-            font-size: 1.3rem;
-            line-height: 25px;
-          }
-        }
-
-        .child-page-right {
-          box-shadow: var(--composer-box-shadow);
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .right-up {
-          width: 100%;
-          padding: 5%;
-
-          ul .list-item {
-            margin-bottom: 5%;
-            overflow: hidden;
-            white-space: pre-line;
-            text-overflow: ellipsis;
-            word-break: break-all;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            .circle-icon {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 18px;
-              height: 18px;
-              border-radius: 50%;
-              background-color: var(--composer-primary-color);
-              color: #fff;
-            }
-          }
-        }
-
-        .right-down {
-          width: 100%;
-          padding: 5%;
-          display: flex;
-          flex-direction: column;
-
-          .right-down-up {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .little {
-              width: 50%;
-            }
-            .other {
-              width: 50%;
-              display: flex;
-              justify-content: flex-end;
-            }
-          }
-          .button-group {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            a {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              .button {
-                width: 75%;
-                height: 50px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                border: 1px solid var(--composer-primary-color);
-                border-radius: 6px;
-                font-size: 1.4rem;
-                background-color: var(--composer-primary-color);
-                color: white;
-                cursor: pointer;
-
-                &:hover {
-                  color: var(--composer-primary-color);
-                  background: transparent;
-                  border: 1px solid var(--composer-primary-color);
-                }
-
-                &.primary {
-                  background-color: var(--composer-secondary-color);
-                  border: 1px solid var(--composer-secondary-color);
-                  color: white;
-
-                  &:hover {
-                    color: var(--composer-secondary-color);
-                    background: transparent;
-                    border: 1px solid var(--composer-secondary-color);
-                  }
-                }
-              }
-            }
-          }
-        }
-        h1,
-        p,
-        h2 {
-          overflow: hidden;
-          white-space: pre-line;
-          text-overflow: ellipsis;
-          word-break: break-all;
+        .child-page-right{
+          max-width: unset !important;
         }
       }
     }

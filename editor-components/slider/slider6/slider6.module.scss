@@ -1,25 +1,25 @@
 .container {
   width: 100%;
-  padding: 20px 0 20px 0;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    max-width: var(--composer-content-width);
     margin: auto;
     .carousel {
-      width: 50%;
+      width: 100%;
       display: flex;
       justify-content: space-around;
       align-items: center;
 
       .img {
-        width: 20%;
+        width: 100%;
         height: 200px;
         object-fit: cover;
-        border-radius: 20px;
+        border-radius: 6px;
+      }
+
+      button {
+        display: none !important;
       }
     }
   }
@@ -27,15 +27,12 @@
 
 @media only screen and (max-width: 1000px) {
   .container {
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0 20px 0;
 
     .max-content {
-      width: var(--composer-content-width);
       .carousel {
         width: 80%;
         display: flex;
@@ -43,23 +40,21 @@
         align-items: center;
 
         .img {
-          width: 20%;
+          width: 100%;
           height: 150px;
           object-fit: cover;
-          border-radius: 20px;
+          border-radius: 6px;
         }
       }
     }
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
     padding: 20px 0 20px 0;
 
     .max-content {
-      width: var(--composer-content-width);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -74,7 +69,7 @@
           width: 20%;
           height: 100px;
           object-fit: cover;
-          border-radius: 20px;
+          border-radius: 6px;
         }
       }
     }

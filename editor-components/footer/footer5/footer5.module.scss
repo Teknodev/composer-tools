@@ -1,37 +1,39 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0 20px 0;
-  box-shadow: var(--composer-box-shadow);
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    box-shadow: var(--composer-box-shadow);
     display: flex;
     justify-content: center;
     margin: auto;
 
     .footer-list-page {
+      width: 100%;
+      padding: 20px;
       display: block;
+
       h2 {
         width: max-content;
-        margin: 40px auto 20px auto;
       }
+
       .item-div {
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
+
         .list-group {
-          border-radius: 5px;
-          display: block;
-          margin: 15px 0 0 0;
-          width: 250px;
-          list-style-type: circle;
-          padding: 0 100px 0 30px;
+          flex: 1 1;
+          padding-left: 15px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          min-width: 250px;
+          font-size: 1.2rem;
+
           .list-item {
             transition: all 0.5s;
             text-align: left;
-            width: 200px;
-            margin-top: 10px;
             &:hover {
               padding-left: 5px;
               color: var(--composer-primary-color);
@@ -43,15 +45,14 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .max-content {
-      .footer-list-page {
-        text-align: center;
-        width: 100%;
-        margin: 0;
+    padding: 50px 20px;
+
+    .footer-list-page {
+      h2 {
+        margin: auto;
+        margin-top: 40px !important;
       }
     }
   }

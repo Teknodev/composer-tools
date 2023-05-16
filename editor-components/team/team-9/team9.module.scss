@@ -1,0 +1,138 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+
+    .page {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .button-group {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        .button {
+          display: inline-block;
+          padding: 5px 10px;
+          border-radius: 4px;
+          cursor: pointer;
+          color: var(--composer-primary-color);
+          background-color: transparent;
+          border: 1px solid var(--composer-primary-color);
+          font-size: 13px;
+          font-weight: 900;
+
+          span {
+            font-size: 15px;
+          }
+
+          &:hover {
+            color: white;
+            background-color: var(--composer-primary-color);
+            border: 1px solid var(--composer-primary-color);
+          }
+        }
+      }
+
+      .text-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 40px;
+
+        h1 {
+          font-size: 3rem;
+          color: rgb(25, 26, 31);
+          margin: unset;
+        }
+
+        p {
+          margin-bottom: 0;
+          font-size: 1.5rem;
+          color: rgb(63, 63, 63);
+        }
+      }
+
+      .image-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+
+        .card {
+          height: 450px;
+          min-height: 200px;
+          position: relative;
+          border-radius: 6px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+          }
+
+          .person-info {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            bottom: 5%;
+            left: 10%;
+            gap: 10px;
+            opacity: 0;
+
+            h2 {
+              font-size: 2.5rem;
+              color: #fff;
+              margin: unset;
+            }
+
+            p {
+              font-size: 2rem;
+              color: #fff;
+              opacity: 0.8;
+              margin: unset;
+            }
+          }
+
+          &:hover {
+            img {
+              filter: blur(3px) brightness(60%);
+              transition: filter 1s;
+            }
+
+            .person-info {
+              opacity: 1;
+              transition: opacity 1s;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 50px 20px;
+
+    .image-container {
+      justify-content: unset !important;
+      .card {
+        width: unset !important;
+        flex: 1 1;
+        min-width: 250px !important;
+      }
+    }
+  }
+}

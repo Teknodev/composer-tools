@@ -1,71 +1,69 @@
 .container {
   width: 100%;
-  padding: 50px 0 50px 0;
+  padding: 50px 0;
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     display: flex;
-    justify-content: space-around;
     margin: auto;
     .stats4-page {
       display: block;
       width: 100%;
-      padding: 20px 100px;
+      padding: 0 100px;
       .bottom-child {
         display: flex;
-        justify-content: space-between;
         margin-top: 50px;
-        margin: 0 auto 0 auto;
-        border-radius: 20px;
+        margin: auto;
+        border-radius: 6px;
         padding: 40px;
         .title {
           display: block;
           h1 {
-            font-weight: 800;
-            font-size: 40px;
-            line-height: 1.4;
-            padding-right: 50px;
+            font-size: 3rem;
           }
           h3 {
-            width: 45%;
+            width: 50%;
             font-weight: 100;
-            font-size: 18px;
-            line-height: 1.4;
-            margin-bottom: 80px;
+            font-size: 1.5rem;
           }
         }
         .card {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
           min-width: 500px;
           max-width: 500px;
           height: 600px;
-          border-radius: 10px;
+          border-radius: 6px;
           padding: 40px;
+         background-size: contain;
+         background-repeat: no-repeat;
           .text-child {
             display: flex;
+            align-items:center; 
+            text-align: center;
+            justify-content: space-between;
             background-color: var(--composer-primary-color);
             color: white;
-            padding: 5px 30px;
+            padding: 5px 20px;
             border-radius: 10px;
-            margin-top: 300px;
+            margin-top: 350px;
             h4 {
-              font-weight: 800;
-              font-size: 35px;
-              line-height: 1.4;
-              margin: 17px 0 0 0;
-              width: 100px;
+              font-size: 2rem;
+              margin: 0;
             }
             p {
               width: 40%;
-              font-weight: 500;
-              font-size: 17px;
-              line-height: 1.4;
+              font-size: 1.5rem;
             }
           }
           .text-child-blur {
             display: flex;
+            justify-content: space-between;
+            align-items:center; 
+            text-align: center;
             color: white;
-            padding: 5px 30px;
+            padding: 5px 20px;
             border-radius: 10px;
-            margin-top: 20px;
             background-size: cover;
             background: linear-gradient(
               180deg,
@@ -74,17 +72,12 @@
             );
             backdrop-filter: blur(10px);
             h4 {
-              font-weight: 800;
-              font-size: 35px;
-              line-height: 1.4;
-              margin: 17px 0 0 0;
-              width: 100px;
+              font-size: 2rem;
+              margin: 0;
             }
             p {
               width: 40%;
-              font-weight: 500;
-              font-size: 17px;
-              line-height: 1.4;
+              font-size: 1.5rem;
             }
           }
         }
@@ -93,11 +86,10 @@
   }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1300px) {
   .container {
-    gap: 20px;
+    gap: 60px;
     .max-content {
-      width: var(--composer-content-width);
       flex-direction: column;
       .stats4-page {
         text-align: center;
@@ -105,12 +97,13 @@
         padding: 0;
         .bottom-child {
           display: block;
-          margin: 0 auto 0 auto;
+          margin: 0 auto;
+          padding: 20px;
           .title {
             width: 100%;
             h1 {
               width: 100%;
-              padding-right: 0;
+              margin: 20px 0;
             }
             h3 {
               width: 100%;
@@ -119,6 +112,9 @@
           .card {
             min-width: 100%;
             max-width: 100%;
+            .text-child {
+              margin-top: 300px;
+            }
           }
         }
       }

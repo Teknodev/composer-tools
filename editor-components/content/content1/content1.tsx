@@ -16,6 +16,7 @@ class Content1 extends BaseContent {
           key: "titleColored",
           displayer: "Title Colored",
           value: "Are you ready to turn more ad clicks into conversions?",
+          completion: "Alternative text to 'Are you ready to turn more ad clicks into conversions?'"
         },
         {
           type: "string",
@@ -27,19 +28,19 @@ class Content1 extends BaseContent {
           type: "string",
           key: "description",
           displayer: "Description",
-          value: PlaceholderFiller.shortText(),
+          value: "This statement is a call to action aimed at businesses or individuals looking to improve the effectiveness of their online advertising campaigns. ",
         },
         {
           type: "string",
           key: "buttonText",
           displayer: "Button Text",
-          value: PlaceholderFiller.string(),
+          value: "Yes",
         },
         {
           type: "string",
           key: "buttonTextTwo",
           displayer: "Button Text Two",
-          value: PlaceholderFiller.string(),
+          value: "Thanks",
         },
       ],
     });
@@ -49,33 +50,18 @@ class Content1 extends BaseContent {
   }
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("heading-page")}
-            
-          >
-            <h1
-              className={this.decorateCSS("heading-colored")}
-              
-            >
+          <div className={this.decorateCSS("heading-page")}>
+            <h1 className={this.decorateCSS("heading-colored")}>
               {this.getPropValue("heading")[0].value}
             </h1>
             <h3>{this.getPropValue("heading")[2].value}</h3>
-            <div
-              className={this.decorateCSS("button-wrapper")}
-              
-            >
-              <span className={this.decorateCSS("button")} >
+            <div className={this.decorateCSS("button-wrapper")}>
+              <span className={this.decorateCSS("button")}>
                 {this.getPropValue("heading")[3].value}
               </span>
-              <span
-                className={this.decorateCSS("button-reverse")}
-                
-              >
+              <span className={this.decorateCSS("button-reverse")}>
                 {this.getPropValue("heading")[4].value}
               </span>
             </div>

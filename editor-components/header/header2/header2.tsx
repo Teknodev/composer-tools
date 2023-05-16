@@ -16,31 +16,32 @@ class Header2 extends BaseHeader {
           type: "string",
           key: "subtitle",
           displayer: "Subtitle",
-          value: "Lorem ipsum dolor sit",
+          value: "Discover Online Shopping",
         },
         {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+          value: "Discover a New World of Online Shopping with Our Marketplace",
         },
         {
           type: "string",
           key: "description",
           displayer: "Description",
-          value: PlaceholderFiller.shortText(),
+          value: "Discover a new world of online shopping with our marketplace – where you'll find everything you need, from the latest trends in fashion and beauty to high-quality electronics and home goods, all at competitive prices.",
         },
         {
           type: "string",
           key: "buttonText",
           displayer: "Button Text",
-          value: PlaceholderFiller.string(),
+          value: "Go There",
         },
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://static.thenounproject.com/png/105256-200.png",
+          value:
+            "https://assets-global.website-files.com/5ad4b5ac3265e94b4f4625ea/6179a579f91da881be2c758b_morning-brew-ShVipPImS6k-unsplash_5c8728bacb20daf02414ecbdf89e0418_2000.png",
         },
         {
           type: "page",
@@ -58,26 +59,21 @@ class Header2 extends BaseHeader {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <section className={this.decorateCSS("wide-text-container")}>
-            <div className={this.decorateCSS("image")}>
-              <img src={this.getPropValue("wide-text")[4].value}></img>
-            </div>
+            <img
+              className={this.decorateCSS("image")}
+              src={this.getPropValue("wide-text")[4].value}
+            ></img>
             <div className={this.decorateCSS("wide-text")}>
               <h3>{this.getPropValue("wide-text")[0].value}</h3>
               <h1>{this.getPropValue("wide-text")[1].value}</h1>
               <p>{this.getPropValue("wide-text")[2].value}</p>
               <ComposerLink path={this.getPropValue("wide-text")[5].value}>
-                <a
-                  className={this.decorateCSS("button")}
-                  
-                >
+                <span className={this.decorateCSS("button")}>
                   {this.getPropValue("wide-text")[3].value}
-                </a>
+                </span>
               </ComposerLink>
             </div>
           </section>

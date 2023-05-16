@@ -1,27 +1,32 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0 20px 0;
+  padding: 50px 0;
+
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    margin: auto;
+    
     .content {
-      width: 100%;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 40px;
+      gap: 20px;
+
       .listed {
+        position: relative;
         display: flex;
         flex-direction: column;
         height: max-content;
         padding: 0;
-        width: 300px;
-        img {
+        flex: 1 1;
+        min-width: 250px;
+
+        .image {
           display: block;
           width: auto;
           padding: 0;
+          border-radius: 6px;
+          object-fit: cover;
         }
         .little-text {
           color: rgb(90, 88, 88);
@@ -49,8 +54,8 @@
           height: 70px;
           background-color: #fff;
           position: absolute;
-          top: 20px;
-          padding-top: 10px;
+          top: -30px;
+          padding: 10px;
           margin: 10px 0px 0px 10px;
           text-align: center;
         }
@@ -76,9 +81,12 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
+    padding: 50px 20px;
+
+    .content {
+      gap: 40px !important;
+    }
   }
 }

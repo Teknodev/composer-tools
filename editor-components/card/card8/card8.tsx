@@ -1,6 +1,6 @@
 import * as React from "react";
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
-import { BaseCard, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseCard } from "../../EditorComponent";
 import styles from "./card8.module.scss";
 
 type IMessages = {
@@ -12,33 +12,68 @@ type IMessages = {
 class Card8 extends BaseCard {
   constructor(props?: any) {
     super(props, styles);
-    let card: TypeUsableComponentProps =  {
-      type: "object",
-      key: "message",
-      displayer: "Message",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: PlaceholderFiller.string(),
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: PlaceholderFiller.mediumText(),
-        },
-      ],
-    }
     this.addProp({
       type: "array",
       key: "message-bar-card",
       displayer: "Message Bar Card",
       value: [
-       JSON.parse(JSON.stringify(card)),
-       JSON.parse(JSON.stringify(card)),
-       JSON.parse(JSON.stringify(card)),
+        {
+          type: "object",
+          key: "message",
+          displayer: "Message",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "The Advantages of Remote Work",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Remote work allows for greater flexibility, better work-life balance, and increased productivity. It also eliminates the need for lengthy commutes and reduces environmental impact. "
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "message",
+          displayer: "Message",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "The Importance of Diversity in the Workplace",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "A diverse workplace not only fosters a culture of inclusivity and acceptance, but also enhances creativity and innovation.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "message",
+          displayer: "Message",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "The Benefits of Learning a Second Language",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Learning a second language can improve cognitive function, enhance communication skills, and open up new opportunities for personal and professional growth.",
+            },
+          ],
+        },
       ],
     });
   }
@@ -49,31 +84,16 @@ class Card8 extends BaseCard {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")} >
+          <div className={this.decorateCSS("content")}>
             {this.castToObject<IMessages[]>("message-bar-card").map(
               (message: any, index: number) => (
-                <div
-                  className={this.decorateCSS("message")}
-                  
-                  key={index}
-                >
-                  <div
-                    className={this.decorateCSS("title")}
-                    
-                  >
+                <div className={this.decorateCSS("message")} key={index}>
+                  <div className={this.decorateCSS("title")}>
                     <h3>{message.title}</h3>
                   </div>
-                  <p
-                    className={this.decorateCSS("long-text")}
-                    
-                  >
-                    {message.description}
-                  </p>
+                  <p className={this.decorateCSS("long-text")}>{message.description}</p>
                 </div>
               )
             )}

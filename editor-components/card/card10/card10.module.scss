@@ -1,25 +1,30 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 50px 0 50px 0;
+  padding: 50px 0;
+
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    margin: auto;
+    
     .content {
-      width: 100%;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 40px;
+      gap: 20px;
+
       .message {
-        max-width: 40%;
-        margin: auto 0 auto 0;
-        display: block;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
         h1 {
           font-size: 2.3em;
+          margin: 0;
         }
         p {
-          font-size: 1.1em;
+          font-size: 1.2em;
+          margin: 20px 0;
         }
         .button {
           cursor: pointer;
@@ -31,7 +36,7 @@
           color: white;
           background-color: var(--composer-primary-color);
           padding: 15px 30px;
-          border-radius: 5px;
+          border-radius: 6px;
           border: 1px solid transparent;
           &:hover {
             color: var(--composer-primary-color);
@@ -40,36 +45,42 @@
           }
         }
       }
+
       .cards {
         display: flex;
-        width: 600px;
+        justify-content: center;
         flex-wrap: wrap;
+        gap: 20px;
+        flex: 1;
+
         .multiple {
           display: flex;
           flex-direction: column;
           text-align: center;
-          border-radius: 20px;
           height: max-content;
-          padding: 0;
-          min-width: 300px;
-          img {
-            display: block;
+          flex: 1 1;
+          padding: 20px;
+          min-width: 250px;
+          min-height: 350px;
+          box-shadow: var(--composer-box-shadow);
+          border-radius: 6px;
+          
+          .image {
             margin: auto;
-            width: 100px;
-            padding: 0;
+            max-width: 200px;
+            min-width: 100px;
+            border-radius: 6px;
+            object-fit: cover;
           }
+          
           .title {
-            display: block;
-            margin: 20px auto 20px auto;
             font-weight: bold;
-            max-width: 150px;
             color: var(--composer-primary-color);
           }
+
           .long-text {
-            display: block;
-            margin: auto auto 20px auto;
+            margin: 0;
             color: rgb(200, 200, 200);
-            max-width: 200px;
           }
         }
       }
@@ -77,29 +88,16 @@
   }
 }
 
-@media only screen and (max-width: 940px) {
+@media only screen and (max-width: 768px) {
   .container {
-    display: block;
-    flex-direction: column;
-    gap: 20px;
+    padding: 50px 20px;
+
     .content {
-      .message {
-        width: 90%;
-        max-width: 90%;
-        display: block;
+      flex-direction: column;
+      gap: 50px !important;
+      .message{
+        align-items: center;
         text-align: center;
-        margin: 0 auto 0 auto;
-        .button {
-          margin: 0 auto 0 auto;
-        }
-      }
-      .cards {
-        display: block;
-        width: 100%;
-        .multiple {
-          width: 100%;
-          min-width: 100%;
-        }
       }
     }
   }

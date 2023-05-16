@@ -1,15 +1,9 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./contacts5.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 
-type Item = {
-  title: string;
-  Text1th: string;
-  Text2th: string;
-};
 class Contacts5Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
@@ -17,13 +11,13 @@ class Contacts5Page extends BaseContacts {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: PlaceholderFiller.string(),
+      value: "Hello",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit amet consectetur",
+      value: "We have great UI designs",
     });
     this.addProp({
       type: "string",

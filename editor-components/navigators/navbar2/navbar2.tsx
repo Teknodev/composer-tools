@@ -14,6 +14,13 @@ class Navbar2 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "sticky",
+      displayer: "Is sticky",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "itemList",
       displayer: "Items",
@@ -58,7 +65,7 @@ class Navbar2 extends BaseNavigator {
             {
               type: "string",
               key: "text",
-              value: "Lorem ipsum dolor sit",
+              value: "Learn More",
               displayer: "Text",
             },
             {
@@ -85,17 +92,17 @@ class Navbar2 extends BaseNavigator {
             <img src={this.getPropValue("image")} width={200} />
             <div className={this.decorateCSS("items")}>
               {this.castToObject<[]>("itemList").map(
-                (data: any, index: number) => {
-                  return <h3 key={index}>{data.value}</h3>;
+                (data: any, indexItemList: number) => {
+                  return <h3 key={indexItemList}>{data.value}</h3>;
                 }
               )}
             </div>
             <div className={this.decorateCSS("button-child")}>
               {this.castToObject<[]>("buttonList").map(
-                (data: any, index: number) => {
+                (data: any, indexButtonList: number) => {
                   return (
-                    <ComposerLink path={data.value[1].value}>
-                      <button key={index}>{data.value[0].value}</button>
+                    <ComposerLink key={indexButtonList} path={data.value[1].value}>
+                      <button>{data.value[0].value}</button>
                     </ComposerLink>
                   );
                 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { getProjectHook } from "../custom-hooks/project";
+import getProjectID from "../composer-base-components/helpers/projectID";
 
 type TypeCSSProp = { [key: string]: {id:string, class: string}[] };
 export type iComponent = {
@@ -37,6 +37,7 @@ export type TypeUsableComponentProps = {
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
+  completion?: string;
 } & AvailablePropTypes & {
     getPropValue?: (propName: string) => any;
   };
@@ -54,11 +55,11 @@ export enum CATEGORIES {
   BOXES = "boxes",
   FORM = "form",
   DOWNLOAD = "download",
-  CALLTOACTION = "call To Action",
+  CALLTOACTION = "callToAction",
   SLIDER = "slider",
   FAQ = "faq",
   MODAL = "modal",
-  LOGOCLOUDS = "logo Clouds",
+  LOGOCLOUDS = "logoClouds",
   STATS = "stats",
 }
 
@@ -237,6 +238,12 @@ export abstract class BaseFooter extends Component {
   constructor(props: any, styles: any) {
     super(props, styles);
   }
+  
+  insertForm(name: string, data: Object) {
+    const project = getProjectID();
+    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class Team extends Component {
@@ -316,7 +323,7 @@ export abstract class BaseContacts extends Component {
   }
 
   insertForm(name: string, data: Object) {
-    const project = getProjectHook()._id;
+    const project = getProjectID();
     let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
     return axios.request(config).then((r: any) => r.data);
   }

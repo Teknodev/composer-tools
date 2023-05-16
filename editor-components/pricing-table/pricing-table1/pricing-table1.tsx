@@ -33,6 +33,43 @@ class PricingTable1 extends BasePricingTable {
               type: "string",
               key: "price",
               displayer: "Price",
+              value: "$50",
+            },
+            {
+              type: "string",
+              key: "duration",
+              displayer: "Duration",
+              value: "/week",
+            },
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Get started",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "pricing",
+          displayer: "Pricing",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Enterprise",
+            },
+            {
+              type: "string",
+              key: "price",
+              displayer: "Price",
               value: "$150",
             },
             {
@@ -55,6 +92,43 @@ class PricingTable1 extends BasePricingTable {
             },
           ],
         },
+        {
+          type: "object",
+          key: "pricing",
+          displayer: "Pricing",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Enterprise",
+            },
+            {
+              type: "string",
+              key: "price",
+              displayer: "Price",
+              value: "$350",
+            },
+            {
+              type: "string",
+              key: "duration",
+              displayer: "Duration",
+              value: "/years",
+            },
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Get started",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        }
       ],
     });
   }
@@ -65,44 +139,18 @@ class PricingTable1 extends BasePricingTable {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {this.castToObject<Pricing[]>("price").map(
-            (pricing: any, index: number) => (
-              <div
-                key={index}
-                className={this.decorateCSS("price")}
-                
-              >
-                <h2 className={this.decorateCSS("title")} >
-                  {pricing.title}
-                </h2>
-                <h1
-                  className={this.decorateCSS("price-text")}
-                  
-                >
-                  {pricing.price}
-                </h1>
-                <p
-                  className={this.decorateCSS("duration-text")}
-                  
-                >
-                  {pricing.duration}
-                </p>
-                <ComposerLink path={pricing.link}>
-                  <a
-                    className={this.decorateCSS("button")}
-                    
-                  >
-                    {pricing.buttonText}
-                  </a>
-                </ComposerLink>
-              </div>
-            )
-          )}
+          {this.castToObject<Pricing[]>("price").map((pricing: any, index: number) => (
+            <div key={index} className={this.decorateCSS("price")}>
+              <h2 className={this.decorateCSS("title")}>{pricing.title}</h2>
+              <h1 className={this.decorateCSS("price-text")}>{pricing.price}</h1>
+              <p className={this.decorateCSS("duration-text")}>{pricing.duration}</p>
+              <ComposerLink path={pricing.link}>
+                <span className={this.decorateCSS("button")}>{pricing.buttonText}</span>
+              </ComposerLink>
+            </div>
+          ))}
         </div>
       </div>
     );

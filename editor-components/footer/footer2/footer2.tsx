@@ -1,6 +1,5 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer2.module.scss";
 
@@ -32,7 +31,8 @@ class Footer2Page extends BaseFooter {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: PlaceholderFiller.shortText(),
+      value:
+        "Contact Us: Get in touch with us for customer support, sales inquiries, and more.",
     });
     this.addProp({
       type: "string",
@@ -120,7 +120,7 @@ class Footer2Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Menu",
             },
             {
               type: "array",
@@ -136,7 +136,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Products",
                     },
                     {
                       type: "page",
@@ -155,7 +155,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Create Website",
                     },
                     {
                       type: "page",
@@ -174,7 +174,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Secure Cloud Hosting",
                     },
                     {
                       type: "page",
@@ -193,7 +193,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Engage Your Audince",
                     },
                     {
                       type: "page",
@@ -216,7 +216,7 @@ class Footer2Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Company",
             },
             {
               type: "array",
@@ -232,7 +232,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "About",
                     },
                     {
                       type: "page",
@@ -251,7 +251,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Careers",
                     },
                     {
                       type: "page",
@@ -270,7 +270,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Support",
                     },
                     {
                       type: "page",
@@ -289,7 +289,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value:"Pricing",
                     },
                     {
                       type: "page",
@@ -312,7 +312,7 @@ class Footer2Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Resources",
             },
             {
               type: "array",
@@ -328,7 +328,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Blog",
                     },
                     {
                       type: "page",
@@ -347,7 +347,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Ebooks",
                     },
                     {
                       type: "page",
@@ -366,7 +366,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Whitepapers",
                     },
                     {
                       type: "page",
@@ -385,7 +385,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Website Grader",
                     },
                     {
                       type: "page",
@@ -409,36 +409,41 @@ class Footer2Page extends BaseFooter {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("subscribe")}>
               <img src={this.getPropValue("logo")} width={200} height={100} />
               <p>{this.getPropValue("description")}</p>
               <div className={this.decorateCSS("social")}>
-                {this.castToObject<any[]>("social").map((item: IconsValues) => (
-                  <ComposerLink path={item.socialLink}>
-                    <img src={item.socialIcon} width={20} height={20} />
-                  </ComposerLink>
-                ))}
+                {this.castToObject<any[]>("social").map(
+                  (item: IconsValues, indexSocial: number) => (
+                    <ComposerLink key={indexSocial} path={item.socialLink}>
+                      <img src={item.socialIcon} width={20} height={20} />
+                    </ComposerLink>
+                  )
+                )}
               </div>
             </div>
             <div className={this.decorateCSS("items")}>
-              {this.castToObject<any[]>("footer").map((item: FooterValues) => (
-                <ul className={this.decorateCSS("list")}>
-                  <li className={this.decorateCSS("title")}>
-                    <h2>{item.footerTitle}</h2>
-                  </li>
-                  {item.footerText.map((v: FooterTextValues) => (
-                    <ComposerLink path={v.path}>
-                      <li className={this.decorateCSS("text")}>{v.footerText}</li>
-                    </ComposerLink>
-                  ))}
-                </ul>
-              ))}
+              {this.castToObject<any[]>("footer").map(
+                (item: FooterValues, indexFooter: number) => (
+                  <ul key={indexFooter} className={this.decorateCSS("list")}>
+                    <li className={this.decorateCSS("title")}>
+                      <h2>{item.footerTitle}</h2>
+                    </li>
+                    {item.footerText.map(
+                      (v: FooterTextValues, indexFooterText: number) => (
+                        <ComposerLink key={indexFooterText} path={v.path}>
+                          <li className={this.decorateCSS("text")}>
+                            {v.footerText}
+                          </li>
+                        </ComposerLink>
+                      )
+                    )}
+                  </ul>
+                )
+              )}
             </div>
           </div>
           <div className={this.decorateCSS("footer-bottom")}>

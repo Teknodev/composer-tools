@@ -1,0 +1,104 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    .child {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      .card {
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 20px;
+        box-shadow: var(--composer-box-shadow);
+        background: white;
+        min-height: 550px;
+        max-height: 600px;
+        margin: 0 70px;
+        .left {
+          display: flex;
+          flex-direction: column;
+          padding: 20px 60px;
+          gap: 20px;
+          width: 100%;
+          .title {
+            font-size: 3.5rem;
+          }
+          .description {
+            font-size: 1.4rem;
+          }
+          .button {
+            transition: all 0.3s;
+            cursor: pointer;
+            width: max-content;
+            background: var(--composer-primary-color);
+            border: 1px solid var(--composer-primary-color);
+            border-radius: 10px;
+            padding: 10px 20px;
+            color: white;
+            font-size: 1.4rem;
+            &:hover {
+              color: var(--composer-primary-color);
+              background: transparent;
+            }
+          }
+        }
+        .right {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            padding: 10px;
+            width: 100%;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 600px;
+            height: 100%;
+          }
+        }
+      }
+      .background-image {
+        width: 100%;
+        position: absolute;
+        z-index: 0;
+        bottom: -30px;
+        padding: 20px;
+        img {
+          border-radius: 20px;
+          width: 100%;
+          max-height: 550px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .container {
+    .max-content {
+      .child {
+        .card {
+          max-height: max-content;
+          flex-direction: column;
+          .left {
+            padding: 20px 50px;
+            text-align: center;
+          }
+          .right {
+            padding: 0;
+          }
+        }
+        .background-image {
+          padding: 0 5px;
+          bottom: 30px;
+        }
+      }
+    }
+  }
+}

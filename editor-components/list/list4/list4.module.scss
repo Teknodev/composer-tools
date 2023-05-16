@@ -1,44 +1,49 @@
 .container {
   width: 100%;
-  padding: 20px 0 20px 0;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    max-width: var(--composer-content-width);
     margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 
     .feature-list {
-      margin: 15px 0 15px 0;
       display: flex;
       flex-direction: column;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      box-shadow: var(--composer-box-shadow);
       border-top: 5px solid var(--composer-primary-color);
-      border-radius: 5px;
+      border-radius: 6px;
       height: max-content;
-      padding: 0 20px;
-      min-width: 300px;
+      min-width: 250px;
+      flex: 1 1;
+      padding: 20px;
+
       .title {
         display: block;
         font-weight: bold;
-        max-width: 150px;
         padding: 0;
-        margin-bottom: 5px;
+        margin: 0 0 5px 0;
       }
       hr {
         display: block;
-        width: 25%;
-        margin: 0 30px 20px 0;
+        width: 100%;
+        max-width: 180px;
+        margin: 0 0 12px 0;
         border: 1px solid var(--composer-primary-color);
         padding: 0;
       }
       .list-group {
+        margin: 0 0 0 20px;
+        padding: 0;
         display: block;
-        margin: 0 0 20px 0;
-        max-width: 300px;
         list-style-type: circle;
-        padding: 0 0 0 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        
         .list-item {
           transition: all 0.5s;
           margin-bottom: 5px;
@@ -52,9 +57,8 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
+    padding: 50px 20px;
   }
 }

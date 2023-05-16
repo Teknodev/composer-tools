@@ -4,162 +4,629 @@ import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/plac
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer6.module.scss";
 
+type FooterValues = {
+  footerTitle: string;
+  footerText: FooterTextValues[];
+};
+
+type FooterTextValues = {
+  footerText: string;
+  path: string;
+};
+
 class Footer6Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "company-name",
-      displayer: "Company Name",
-      value: PlaceholderFiller.string(),
-    });
-    this.addProp({
-      type: "string",
-      key: "company-desc",
-      displayer: "Company Description",
-      value: PlaceholderFiller.shortText(),
-    });
-    this.addProp({
-      type: "image",
-      key: "company-image",
-      displayer: "Company Image",
-      value: PlaceholderFiller.image(),
-    });
-    this.addProp({
-      type: "string",
-      key: "footer-text",
-      displayer: "Footer Text",
-      value: PlaceholderFiller.shortText(),
-    });
-
-    this.addProp({
-      type: "object",
-      key: "socialIconInstagram",
-      displayer: "Social Icon Instgram",
-      value: [
-        {
-          type: "page",
-          key: "path",
-          displayer: "Instgram Path",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Instgram Icon",
-          value: PlaceholderFiller.image(),
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "socialIconFacebook",
-      displayer: "Social Icon Facebook",
-      value: [
-        {
-          type: "page",
-          key: "path",
-          displayer: "Facebook Path",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Facebook Path",
-          value: PlaceholderFiller.image(),
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "socialIconLinkedin",
-      displayer: "Social Icon Linkledin",
-      value: [
-        {
-          type: "page",
-          key: "path",
-          displayer: "Linkledin Path",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Linkledin Icon",
-          value: PlaceholderFiller.image(),
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "socialIconTwitter",
-      displayer: "Social Icon Twitter",
-      value: [
-        {
-          type: "page",
-          key: "path",
-          displayer: "Twitter Path",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Twitter Icon",
-          value: PlaceholderFiller.image(),
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "object",
+      type: "array",
       key: "footer",
       displayer: "Footer",
       value: [
         {
           type: "object",
-          key: "footer_value-Comp",
-          displayer: "Footer Values",
+          key: "footer-title",
+          displayer: "Footer Column",
           value: [
             {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Product",
+            },
+            {
               type: "array",
-              key: "column",
-              displayer: "Column",
+              key: "footerText",
+              displayer: "Footer Text",
               value: [
                 {
                   type: "object",
-                  key: "footer_value",
-                  displayer: "Footer Column Values",
+                  key: "footer-text",
+                  displayer: "Text Values",
                   value: [
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Column Title",
-                      value: PlaceholderFiller.string(),
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Vision",
                     },
                     {
-                      type: "array",
-                      key: "title",
-                      displayer: "Column Texts",
-                      value: [
-                        {
-                          type: "object",
-                          key: "title",
-                          displayer: "Column Text",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: PlaceholderFiller.string(),
-                            },
-                            {
-                              type: "page",
-                              key: "path",
-                              displayer: "Path",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Company Track",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Learning Hub",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Software Reviews",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Add Your Product",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Research Hub",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Research Agenda",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Top Categories",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "CRM Software",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Project Management Software",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Expense Management Software",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Video Conferencing Software",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Online Backup Software",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "E-Commerce Platforms",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Accounting Software",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Company",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "About",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "User Help Center",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Company Gives",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Careers",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Team",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "News",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Contact",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Policies",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Community Guidelines",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Company Scoring Methodologies",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Terms of Use ",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Privacy Policies",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Legal",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Do not sell my personal information",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Content Usage Guidelines",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
                     },
                   ],
                 },
@@ -170,107 +637,32 @@ class Footer6Page extends BaseFooter {
       ],
     });
   }
-
+  getImageUrl(): string {
+    return "https://static.thenounproject.com/png/105256-200.png";
+  }
   getName(): string {
     return "Footer 6";
+  }
+  getDescription(): string {
+    return "A nicely placed footer";
   }
   render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer")}>
-            <div className={this.decorateCSS("row")}>
-              <div className={this.decorateCSS("footercol-company")}>
-                <ul className={this.decorateCSS("list-group")}>
-                  <li className={this.decorateCSS("li")}>
-                    <img
-                      className={this.decorateCSS("img")}
-                      src={this.getPropValue("company-image")}
-                      alt="logo"
-                    />
-                  </li>
-                  <li className={this.decorateCSS("company-title")}>
-                    <h4 className={this.decorateCSS("hover_underline")}>
-                      {this.getPropValue("company-name")}
-                    </h4>
-                  </li>
-                  <li className={this.decorateCSS("li")}>
-                    <p>{this.getPropValue("company-desc")}</p>
-                  </li>
-                </ul>
-              </div>
-              {this.getPropValue("footer")[0].value[0].value.map(
-                (item: any, index: number) => (
-                  <div
-                    key={"footer" + index}
-                    className={this.decorateCSS("footer-col-content")}
-                  >
-                    <ul className={this.decorateCSS("list-group")}>
-                      <li className={this.decorateCSS("li")}>
-                        <h4 className={this.decorateCSS("hover_underline")}>
-                          {item.value[0].value}
-                        </h4>
-                      </li>
-                      {item.value[1].value.map((v: any, index: number) => {
-                        return (
-                          <li key={"item" + index}>
-                            <span>{v.value[0].value}</span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                )
-              )}
-            </div>
-            <div className={this.decorateCSS("bottom-section")}>
-              <span>{this.getPropValue("footer-text")}</span>
-              <ul className={this.decorateCSS("social_links")}>
-                <li className={this.decorateCSS("li")}>
-                  <span>Follow:</span>
+          <div className={this.decorateCSS("footer-page")}>
+            {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => (
+              <ul key={indexFooter} className={this.decorateCSS("list-group")}>
+                <li className={this.decorateCSS("title")}>
+                  <h3>{item.footerTitle}</h3>
                 </li>
-                <li className={this.decorateCSS("li")}>
-                  <ComposerLink
-                    path={this.getPropValue("socialIconLinkedin")[0].value}
-                  >
-                    <img
-                      src={this.getPropValue("socialIconLinkedin")[1].value}
-                      className={this.decorateCSS("icon")}
-                    />
+                {item.footerText.map((v: FooterTextValues, indexFooterText: number) => (
+                  <ComposerLink key={indexFooterText} path={v.path}>
+                    <li className={this.decorateCSS("text")}>{v.footerText}</li>
                   </ComposerLink>
-                </li>
-                <li className={this.decorateCSS("li")}>
-                  <ComposerLink
-                    path={this.getPropValue("socialIconFacebook")[0].value}
-                  >
-                    <img
-                      src={this.getPropValue("socialIconFacebook")[1].value}
-                      className={this.decorateCSS("icon")}
-                    />
-                  </ComposerLink>
-                </li>
-                <li className={this.decorateCSS("li")}>
-                  <ComposerLink
-                    path={this.getPropValue("socialIconInstagram")[0].value}
-                  >
-                    <img
-                      src={this.getPropValue("socialIconInstagram")[1].value}
-                      className={this.decorateCSS("icon")}
-                    />
-                  </ComposerLink>
-                </li>
-                <li className={this.decorateCSS("li")}>
-                  <ComposerLink
-                    path={this.getPropValue("socialIconTwitter")[0].value}
-                  >
-                    <img
-                      src={this.getPropValue("socialIconTwitter")[1].value}
-                      className={this.decorateCSS("icon")}
-                    />
-                  </ComposerLink>
-                </li>
+                ))}
               </ul>
-            </div>
+            ))}
           </div>
         </div>
       </div>

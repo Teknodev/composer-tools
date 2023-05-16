@@ -2,7 +2,6 @@ import Slider from "react-slick";
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider4.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 class Slider4 extends BaseSlider {
   constructor(props?: any) {
@@ -16,31 +15,31 @@ class Slider4 extends BaseSlider {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: PlaceholderFiller.image(),
+          value:"https://yunti.files.wordpress.com/2016/09/manzara_08_tam35-blogspot-com.jpg",
         },
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: PlaceholderFiller.image(),
+          value: "https://galeri13.uludagsozluk.com/663/manzara-fotograflari_2145330.jpg",
         },
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: PlaceholderFiller.image(),
+          value: "https://www.camhotel.com.tr/uploads/images/blog/manzara-fotograflari/kapadokya.jpg",
         },
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: PlaceholderFiller.image(),
+          value: "https://www.dostkelimeler.com/wp-content/uploads/2016/07/Doga-manzara-resmi.jpg",
         },
       ],
     });
   }
   getName(): string {
-    return "Slider 3";
+    return "Slider 4";
   }
   render() {
     const settings = {
@@ -64,8 +63,7 @@ class Slider4 extends BaseSlider {
                 <img
                   src={item.value}
                   className={this.decorateCSS("img")}
-                  
-                  key={index}
+                  key={`slider4-${index}`}
                 />
               ))}
             </Slider>

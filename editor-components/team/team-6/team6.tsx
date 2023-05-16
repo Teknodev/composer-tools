@@ -60,58 +60,137 @@ class Team6 extends Team {
       ],
     };
     super(props, styles);
-    let placeholder: TypeUsableComponentProps = {
-      type: "object",
-      key: "item",
-      displayer: "Items",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: PlaceholderFiller.image(),
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: PlaceholderFiller.string(),
-        },
-        {
-          type: "string",
-          key: "position",
-          displayer: "Position",
-          value: PlaceholderFiller.string(),
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: PlaceholderFiller.string(),
-        },
-        {
-          type: "array",
-          key: "platforms",
-          displayer: "Social Medias",
-          value: [
-            JSON.parse(JSON.stringify(twitter)),
-            JSON.parse(JSON.stringify(facebook)),
-          ],
-        },
-      ],
-    };
-
     this.addProp({
       type: "array",
       key: "items",
       displayer: "Card",
       value: [
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
+        {
+          type: "object",
+          key: "item",
+          displayer: "Items",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://images.pexels.com/photos/1800456/pexels-photo-1800456.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Jacklyn Mia",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo/Founder",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve common goals.",
+            },
+            {
+              type: "array",
+              key: "platforms",
+              displayer: "Social Medias",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Items",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Kirsten Gertie",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Web Developer",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Web developers are professionals who design, build, and maintain websites and web applications.",
+            },
+            {
+              type: "array",
+              key: "platforms",
+              displayer: "Social Medias",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Items",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Lachlan Linnette",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "UI/UX Developer",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "UI/UX design is a crucial aspect of creating a successful digital product or service. UI stands for user interface, while UX stands for user experience.",
+            },
+            {
+              type: "array",
+              key: "platforms",
+              displayer: "Social Medias",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+              ],
+            },
+          ],
+        },
       ],
     });
 
@@ -119,14 +198,14 @@ class Team6 extends Team {
       type: "string",
       key: "title1",
       displayer: "Title-1",
-      value: PlaceholderFiller.string(),
+      value: "Our Team",
     });
 
     this.addProp({
       type: "string",
       key: "title2",
       displayer: "Title-3",
-      value: PlaceholderFiller.string(),
+      value: "We work in collaboration, harmony, and trust to achieve our goals.",
     });
 
     this.addProp({
@@ -181,44 +260,21 @@ class Team6 extends Team {
   }
 
   render() {
-    const littleScreen = {
-      width: "100%",
-      display: "flex",
-      flex: "wrap",
-      justifyContent: "center",
-    };
-
-    const wideScreen = {
-      width: 100 / this.getPropValue("itemCount") + "%",
-      display: "flex",
-      justifyContent: "center",
-    };
-
-    let style = function () {
-      if (window.innerWidth < 800) {
-        return littleScreen;
-      } else {
-        return wideScreen;
-      }
-    };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div></div>
             <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </div>
               <div className={this.decorateCSS("text-group")}>
                 <h1>{this.getPropValue("title1")}</h1>
                 <p>{this.getPropValue("title2")}</p>
               </div>
               <div className={this.decorateCSS("button-group")}>
                 {this.castToObject<Button[]>("buttons").map(
-                  (button: Button) => {
+                  (button: Button, indexButtons: number) => {
                     return (
-                      <ComposerLink path={button.link}>
+                      <ComposerLink key={indexButtons} path={button.link}>
                         <button
                           className={
                             this.decorateCSS("button") +
@@ -237,29 +293,40 @@ class Team6 extends Team {
               </div>
             </div>
             <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("items").map((card: Card) => {
-                return (
-                  <div className={this.decorateCSS("all-card")} style={{width: 100 / this.getPropValue("itemCount") + "%"}}>
-                    <div className={this.decorateCSS("card")}>
-                      <img src={card.image} alt="" />
-                      <h2>{card.name}</h2>
-                      <p className={this.decorateCSS("position")}>
-                        {card.position}
-                      </p>
-                      <p>{card.description}</p>
-                      <div className={this.decorateCSS("icon-group")}>
-                        {card.platforms.map((item: any) => {
-                          return (
-                            <ComposerLink path={item.url}>
-                              <img src={item.icon} alt="" />
-                            </ComposerLink>
-                          );
-                        })}
+              {this.castToObject<Card[]>("items").map(
+                (card: Card, indexItems: number) => {
+                  return (
+                    <div
+                      key={indexItems}
+                      className={this.decorateCSS("all-card")}
+                      style={{
+                        width: 90 / this.getPropValue("itemCount") + "%",
+                      }}
+                    >
+                      <div className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("top")}>
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={card.image}
+                          />
+                          <h2>{card.name}</h2>
+                          <p className={this.decorateCSS("position")}>{card.position}</p>
+                        </div>
+                        <p>{card.description}</p>
+                        <div className={this.decorateCSS("icon-group")}>
+                          {card.platforms.map((item: any, indexPlatforms: number) => {
+                            return (
+                              <ComposerLink key={indexPlatforms} path={item.url}>
+                                <img src={item.icon} />
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                }
+              )}
             </div>
           </div>
         </div>

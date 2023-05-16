@@ -16,7 +16,7 @@ class Contacts2Page extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit",
+      value: "If you want to contact we,",
     });
     this.addProp({
       type: "string",
@@ -54,7 +54,7 @@ class Contacts2Page extends BaseContacts {
                     {
                       type: "string",
                       key: "title",
-                      value: PlaceholderFiller.string(),
+                      value: "Mail",
                       displayer: "1th Text",
                     },
                     {
@@ -163,7 +163,7 @@ class Contacts2Page extends BaseContacts {
                   <div key={index} className={this.decorateCSS("card-child")}>
                     {section.items.map((item: any, index: number) => (
                       <div key={index} className={this.decorateCSS("card")}>
-                        <img width={50} height={50} src={item.value[0].value} />
+                        <img className={this.decorateCSS("image")} width={50} height={50} src={item.value[0].value} />
                         <div className={this.decorateCSS("card-box")}>
                           <h2>{item.value[1].value}</h2>
                           <h4>{item.value[2].value}</h4>

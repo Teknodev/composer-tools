@@ -1,47 +1,78 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats5.module.scss";
 
+type ICard = {
+  title: string;
+  description: string;
+};
 class Stats5Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "string",
-      key: "leftCardTitle",
-      displayer: "Left Card Title",
-      value: "50,000",
-    });
-    this.addProp({
-      type: "string",
-      key: "leftCardDescription",
-      displayer: "Left Card Description",
-      value: "Lorem ipsum dolor sit amet",
-    });
-    this.addProp({
-      type: "string",
-      key: "centerCardTitle",
-      displayer: "Center Card Title",
-      value: "35K+",
-    });
-    this.addProp({
-      type: "string",
-      key: "centerCardDescription",
-      displayer: "Center Card Description",
-      value: "Lorem ipsum dolor sit amet",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightCardTitle",
-      displayer: "Right Card Title",
-      value: "2,500",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightCardDescription",
-      displayer: "Right Card Description",
-      value: "Lorem ipsum dolor sit amet",
+      type: "array",
+      key: "card-content",
+      displayer: "Card Content",
+      value: [
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "20K+",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "total sales",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "35K+",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "total registers",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "2.5M+",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "categories",
+            },
+          ],
+        },
+      ],
     });
   }
 
@@ -51,26 +82,17 @@ class Stats5Page extends BaseStats {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats5-page")}>
-            <div className={this.decorateCSS("bottom-child")}>
-              <div className={this.decorateCSS("card")}>
-                <h4>{this.getPropValue("leftCardTitle")}</h4>
-                <p>{this.getPropValue("leftCardDescription")}</p>
-              </div>
-              <div className={this.decorateCSS("card")}>
-                <h4>{this.getPropValue("centerCardTitle")}</h4>
-                <p>{this.getPropValue("centerCardDescription")}</p>
-              </div>
-              <div className={this.decorateCSS("card")}>
-                <h4>{this.getPropValue("rightCardTitle")}</h4>
-                <p>{this.getPropValue("rightCardDescription")}</p>
-              </div>
-            </div>
+          <div className={this.decorateCSS("bottom-child")}>
+            {this.castToObject<ICard[]>("card-content").map(
+              (cardData: any, indexCard: number) => (
+                <div key={indexCard} className={this.decorateCSS("card")}>
+                  <h4>{cardData.title}</h4>
+                  <p>{cardData.description}</p>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>

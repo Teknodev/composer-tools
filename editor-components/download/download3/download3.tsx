@@ -1,77 +1,156 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import styles from "./download3.module.scss";
-import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/link";
+import { BaseDownload } from "../../EditorComponent";
+import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
-class DownloadCard3 extends BaseDownload {
-  constructor(props?: any) {
-    super(props, styles);
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: PlaceholderFiller.string(),
-    });
 
-    this.addProp({
-      type: "string",
-      key: "description",
-      value: PlaceholderFiller.shortText(),
-      displayer: "Description",
-    });
+type Button = {
+    buttonText1: string,
+    buttonText2: string,
+    url: string,
+    buttonImage: string,
+};
 
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      value: PlaceholderFiller.string(),
-      displayer: "Button Text",
-    });
+class Download3 extends BaseDownload {
+    constructor(props?: any) {
+        super(props, styles);
 
-    this.addProp({
-      type: "page",
-      key: "buttonLink",
-      value: "",
-      displayer: "Button URL",
-    });
-  }
+        let googlePlayIcon = require("./google-play.png")
+        let appStoreIcon = require("./pngegg.png")
+        let yogaImg = require("./yogaimg.png")
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "Online Yoga, from Home",
+        });
 
-  getName(): string {
-    return "Download 3";
-  }
+        this.addProp({
+            type: "image",
+            key: "image",
+            displayer: "Image",
+            value: yogaImg,
+        })
 
-  render() {
-    return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("basic-page")}>
-            <div className={this.decorateCSS("page-1")}>
-              <div className={this.decorateCSS("box")}>
-                <h2>{this.getPropValue("title")}</h2>
-              </div>
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "With the rise of virtual platforms and technology, individuals can now participate in online yoga classes and receive instruction from qualified teachers without leaving their house.",
+        });
 
-              <div className={this.decorateCSS("box")}>
-                <h5>{this.getPropValue("description")}</h5>
-              </div>
 
-              <div className={this.decorateCSS("box")}>
-                <div className={this.decorateCSS("button")}>
-                  <ComposerLink path={this.getPropValue("buttonLink")}>
-                    <p className={this.decorateCSS("buttonText")}>
-                      {this.getPropValue("buttonText")}
-                    </p>
-                  </ComposerLink>
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                {
+                    type: "object",
+                    key: "button",
+                    displayer: "Displayer",
+                    value: [
+                        {
+                            type: "string",
+                            key: "buttonText1",
+                            displayer: "Button Text",
+                            value: "DOWNLOAD ON THE",
+                        },
+                        {
+                            type: "string",
+                            key: "buttonText2",
+                            displayer: "Button Text",
+                            value: "App Store",
+                        },
+                        {
+                            type: "page",
+                            key: "url",
+                            displayer: "Button Url",
+                            value: "",
+                        },
+                        {
+                            type: "image",
+                            key: "buttonImage",
+                            displayer: "In Button Icon",
+                            value: appStoreIcon,
+                        }
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "button",
+                    displayer: "Displayer",
+                    value: [
+                        {
+                            type: "string",
+                            key: "buttonText1",
+                            displayer: "Button Text",
+                            value: "GET IT ON",
+                        },
+                        {
+                            type: "string",
+                            key: "buttonText2",
+                            displayer: "Button Text",
+                            value: "Google Play",
+                        },
+                        {
+                            type: "page",
+                            key: "url",
+                            displayer: "Button Url",
+                            value: "",
+                        },
+                        {
+                            type: "image",
+                            key: "buttonImage",
+                            displayer: "In Button Icon",
+                            value: googlePlayIcon,
+                        }
+                    ],
+                }
+            ]
+        });
+    }
+
+    getName(): string {
+        return "Download-3";
+    }
+
+
+    render() {
+        return (
+            <div className={this.decorateCSS("container")}>
+                <div className={this.decorateCSS("max-content")}>
+                    <div className={this.decorateCSS("page")}>
+                        <div className={this.decorateCSS("image-container")}>
+                            <img src={this.getPropValue("image")} alt="image" className={this.decorateCSS("image")} />
+                        </div>
+                        <div className={this.decorateCSS("group-container")}>
+                            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+                            <div className={this.decorateCSS("button-group")}>
+                                {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
+                                    return (
+                                        <ComposerLink key={`dw-3-btn-${index}`} path={item.url}>
+                                            <div  className={this.decorateCSS("button")}>
+                                                <img src={item.buttonImage} alt="icon" className={this.decorateCSS("button-logo")} />
+                                                <div className={this.decorateCSS("button-texts")}>
+                                                    <p className={this.decorateCSS("up-text")}>{item.buttonText1}</p>
+                                                    <p className={this.decorateCSS("down-text")}>{item.buttonText2}</p>
+                                                </div>
+                                            </div>
+                                        </ComposerLink>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
-export default DownloadCard3;
+export default Download3;
+

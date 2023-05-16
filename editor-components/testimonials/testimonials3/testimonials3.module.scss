@@ -1,57 +1,48 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 50px 0 50px 0;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
+    padding: 20px;
+    max-width: var(--composer-content-width);
+    box-shadow: var(--composer-box-shadow);
     margin: auto;
 
     .testimonials3 {
       display: block;
       width: 100%;
-      h1 {
-        margin: 0 auto 10px auto;
-        text-align: center;
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 40px;
-        margin-bottom: 50px;
-        margin-left: 20px;
-      }
+
       .card-child {
         display: flex;
-        justify-content: center;
         flex-wrap: wrap;
         text-align: center;
-        img {
-          margin-bottom: 20px;
-        }
+        gap: 20px;
         .card {
-          display: block;
-          margin-bottom: 20px;
-          min-width: 400px;
-          max-width: 400px;
+          display: flex;
+          flex-direction: column;
+          min-width: 250px;
+          justify-content: center;
+          align-items: center;
           height: max-content;
-          border-radius: 20px;
+          flex: 1 1;
+          .stars {
+            display: flex;
+            gap: 5px;
+            img {
+              width: 15px;
+              height: 15px;
+            }
+          }
+
           span {
             font-weight: 500;
-            font-size: 25px;
-            margin-top: 0;
-            margin-bottom: 0;
-            margin-left: 0;
-            margin-right: 0;
+            font-size: 2rem;
+            margin: 20px 0;
           }
           h5 {
-            opacity: 0.8;
             font-weight: 200;
-            font-size: 14px;
-            margin-top: 10px;
-            margin-bottom: 0;
-            margin-left: 0;
-            margin-right: 0;
+            font-size: 1rem;
+            margin: 0;
           }
         }
       }
@@ -59,16 +50,13 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
+    padding: 50px 20px;
     .max-content {
       .testimonials3 {
-        text-align: center;
-        margin: 0;
-        h1 {
-          width: 100%;
+        .card-child {
+          gap: 60px;
         }
       }
     }

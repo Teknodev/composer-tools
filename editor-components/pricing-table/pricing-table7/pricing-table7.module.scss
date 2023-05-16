@@ -1,0 +1,109 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .price {
+      transition: 0.5s;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--composer-box-shadow);
+      border-radius: 6px;
+      height: max-content;
+      padding: 20px;
+      flex: 1 1;
+      min-width: 250px;
+
+      &:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        transform: translateY(-10px);
+      }
+      .title {
+        margin-top: 0;
+        padding: 0 40px;
+        h3 {
+          margin-bottom: 0;
+          font-size: 1.8rem;
+          font-weight: 500;
+        }
+      }
+      .price-text {
+        margin: 0;
+        padding: 15px 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-top: 2px dashed #f4f5fe;
+        border-bottom: 2px dashed #f4f5fe;
+        font-weight: 600;
+        font-size: 2.5rem;
+
+        .duration-text {
+          margin: 0;
+          color: #4a6f8a;
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+      }
+      .features {
+        margin: 30px 40px 0 40px;
+        padding-left: 0;
+        text-align: left;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        li {
+          font-size: 1.3em;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          img {
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+      .button {
+        border: none;
+        overflow: hidden;
+        z-index: 1;
+        color: #fff;
+        background-color: var(--composer-primary-color);
+        transition: 0.5s;
+        border-radius: 5px;
+        font-weight: 500;
+        font-size: 1.2rem;
+        padding: 13px 30px;
+        margin: 30px 40px 0 40px;
+        gap: 5px;
+        display: flex;
+        width: fit-content;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 15px;
+          height: 15px;
+        }
+        &:hover {
+          color: #fff;
+          background-color: var(--composer-secondary-color);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 50px 20px;
+  }
+}

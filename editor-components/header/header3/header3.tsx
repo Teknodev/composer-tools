@@ -1,6 +1,5 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header3.module.scss";
 
@@ -15,25 +14,26 @@ class Header3 extends BaseHeader {
         {
           type: "string",
           key: "subtitle",
-          value: "Lorem ipsum dolor sit",
+          value: "Explore the World's Best Travel",
           displayer: "Subtitle",
         },
         {
           type: "string",
           key: "title",
-          value: PlaceholderFiller.shortText(),
+          value: "Explore the World's Best Travel Destinations with Our Guide ",
           displayer: "Title",
         },
         {
           type: "string",
           key: "buttonText",
-          value: PlaceholderFiller.string(),
+          value: "Go There",
           displayer: "Button Text",
         },
         {
           type: "image",
           key: "image",
-          value: "https://static.thenounproject.com/png/105256-200.png",
+          value:
+            "https://static01.nyt.com/images/2019/12/29/travel/29TRIPPEDUP-points/29TRIPPEDUP-points-superJumbo.jpg",
           displayer: "Image",
         },
         {
@@ -52,26 +52,23 @@ class Header3 extends BaseHeader {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("header-page")}>
               <h3>{this.getPropValue("header")[0].value}</h3>
               <h1>{this.getPropValue("header")[1].value}</h1>
               <ComposerLink path={this.getPropValue("header")[4].value}>
-                <span
-                  className={this.decorateCSS("button")}
-                  
-                >
+                <span className={this.decorateCSS("button")}>
                   {this.getPropValue("header")[2].value}
                 </span>
               </ComposerLink>
             </div>
-            <div className={this.decorateCSS("image")}>
-              <img src={this.getPropValue("header")[3].value}></img>
+            <div className={this.decorateCSS("image-background")}>
+              <img
+                className={this.decorateCSS("image")}
+                src={this.getPropValue("header")[3].value}
+              ></img>
             </div>
           </div>
         </div>

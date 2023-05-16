@@ -15,7 +15,7 @@ class Contacts4Page extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit amet consectetur",
+      value: "We have great UI designs",
     });
     this.addProp({
       type: "string",
@@ -29,7 +29,6 @@ class Contacts4Page extends BaseContacts {
       displayer: "Image",
       value: "https://wallpaperaccess.com/full/84248.png",
     });
-
 
     this.addProp({
       type: "array",
@@ -121,22 +120,16 @@ class Contacts4Page extends BaseContacts {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <h1>{this.getPropValue("title")}</h1>
           <p>{this.getPropValue("description")}</p>
           <div className={this.decorateCSS("contacts4")}>
             <div className={this.decorateCSS("contact-left")}>
-              <center>
-                <img
-                  width={600}
-                  height={400}
-                  src={this.getPropValue("image")}
-                />
-              </center>
+              <img
+                src={this.getPropValue("image")}
+                className={this.decorateCSS("image")}
+              />
             </div>
             <div className={this.decorateCSS("contact-right")}>
               <div className={this.decorateCSS("contact-info")}>
@@ -145,7 +138,9 @@ class Contacts4Page extends BaseContacts {
                     <div key={index}>
                       <h3>{data.title}</h3>
                       <h2>{data.Text1th}</h2>
-                      <h2 className={this.decorateCSS("margin-bottom")}>{data.Text2th}</h2>
+                      <h2 className={this.decorateCSS("margin-bottom")}>
+                        {data.Text2th}
+                      </h2>
                     </div>
                   )
                 )}

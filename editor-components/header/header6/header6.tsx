@@ -1,140 +1,188 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header6.module.scss";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import ComposerLink from "../../../composer-base-components/Link/link";
 
 class Header6 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "object",
-      key: "icons",
-      displayer: "Icons",
-      value: [
-        {
-          type: "image",
-          key: "mail-icon",
-          value:
-            "https://static-00.iconduck.com/assets.00/mail-icon-512x419-8cvam21t.png",
-          displayer: "Mail Icon",
-        },
-        {
-          type: "image",
-          key: "phone-icon",
-          value: "https://cdn-icons-png.flaticon.com/512/5068/5068731.png",
-          displayer: "Phone Icon",
-        },
-        {
-          type: "image",
-          key: "icon-left",
-          value:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png",
-          displayer: "Left Icon",
-        },
-        {
-          type: "image",
-          key: "icon-center",
-          value:
-            "https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png",
-          displayer: "Center Icon",
-        },
-        {
-          type: "image",
-          key: "icon-right",
-          value: "https://cdn-icons-png.flaticon.com/512/174/174855.png",
-          displayer: "Right Icon",
-        },
-        {
-          type: "page",
-          key: "icon-left-link",
-          value: "",
-          displayer: "Left Icon Link",
-        },
-        {
-          type: "page",
-          key: "icon-center-link",
-          value: "",
-          displayer: "Center Icon Link",
-        },
-        {
-          type: "page",
-          key: "icon-right-link",
-          value: "",
-          displayer: "Right Icon Link",
-        },
-      ],
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Web & Mobile Development",
     });
     this.addProp({
-      type: "object",
-      key: "header",
-      displayer: "Header",
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "At [Company Name], we specialize in delivering high-quality web and mobile development services that help businesses of all sizes establish a strong online presence and reach their target audience.",
+    });
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://hepro-react.envytheme.com/images/services/service1.png",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "item-list",
+      displayer: "Item List",
       value: [
         {
-          type: "string",
-          key: "mail",
-          value: "mail@gmail.com",
-          displayer: "Mail",
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Responsive Design",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
-          key: "phone",
-          value: "+1-202-555-0000",
-          displayer: "Phone",
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Custom Web Development",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Mobile App Development",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "E-commerce Development",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Website Maintenance",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Web Design",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
         },
       ],
     });
   }
+
   getName(): string {
     return "Header 6";
   }
+
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("infobar-left")}>
-            <h3>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[0].value}
-              />
-              {this.getPropValue("header")[0].value}
-            </h3>
-            <h3>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[1].value}
-              />
-              {this.getPropValue("header")[1].value}
-            </h3>
-          </div>
-          <div className={this.decorateCSS("infobar-right")}>
-            <ComposerLink path={this.getPropValue("icons")[5].value}>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[2].value}
-              />
-            </ComposerLink>
-            <ComposerLink path={this.getPropValue("icons")[6].value}>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[3].value}
-              />
-            </ComposerLink>
-            <ComposerLink path={this.getPropValue("icons")[7].value}>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[4].value}
-              />
-            </ComposerLink>
-          </div>
+          <section className={this.decorateCSS("child-container")}>
+            <div className={this.decorateCSS("left-content")}>
+              <h2>{this.getPropValue("title")}</h2>
+              <p>{this.getPropValue("description")}</p>
+              <div className={this.decorateCSS("row")}>
+                {this.getPropValue("item-list").map(
+                  (itemData: any, indexItemData: number) => {
+                    return (
+                      <div key={indexItemData} className={this.decorateCSS("col")}>
+                        <ComposerLink path={itemData.value[1].value}>
+                          <div className={this.decorateCSS("box")}>
+                            <VerifiedIcon />
+                            {itemData.value[0].value}
+                          </div>
+                        </ComposerLink>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
+            </div>
+            <div className={this.decorateCSS("right-content")}>
+              <img src={this.getPropValue("image")} alt="image" />
+            </div>
+          </section>
         </div>
       </div>
     );

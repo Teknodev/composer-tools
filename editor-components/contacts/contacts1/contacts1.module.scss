@@ -1,47 +1,45 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 50px 0 50px 0;
+  padding: 50px 0;
+
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    margin: auto;
 
     .contacts1 {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
       width: 100%;
+
       h1 {
         text-align: center;
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 40px;
-        margin-left: 20px;
+        font-size: 3rem;
+        margin: 0;
       }
       p {
-        margin: 0 auto 10px auto;
-        width: 40%;
         text-align: center;
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 15px;
-        margin-bottom: 50px;
+        font-weight: 200;
+        font-size: 1.4rem;
+        margin: 0;
       }
       .card-child {
         display: flex;
-        justify-content: center;
+        flex-direction: row;
         flex-wrap: wrap;
+        gap: 20px;
         .card {
           display: block;
-          margin-left: 20px;
-          margin-bottom: 20px;
+          flex: 1 1;
+          position: relative;
+          min-width: 250px;
           padding: 20px;
-          min-width: 400px;
-          max-width: 400px;
           height: max-content;
           border: 1px solid rgba(149, 157, 165, 0.2);
-          border-radius: 20px;
+          border-radius: 6px;
           background-color: white;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          img {
+          box-shadow: var(--composer-box-shadow);
+          .image {
             transition: all 0.5s;
             border: 1px solid rgba(0, 0, 0, 0.274);
             border-radius: 100%;
@@ -49,16 +47,14 @@
           }
           h2 {
             text-align: center;
-            font-weight: 800;
-            line-height: 1.4;
-            font-size: 25px;
+            font-size: 2rem;
+            margin: 20px 0;
           }
           h4 {
             text-align: center;
             font-weight: 500;
-            font-size: 18px;
-            margin: 0;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin: 20px 0;
           }
           &:hover {
             img {
@@ -73,13 +69,16 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
+    padding: 50px 20px;
     gap: 20px;
-    .contacts1 {
-      text-align: center;
-      margin: 0;
+    
+    .max-content {
+      .contacts1 {
+        text-align: center;
+        margin: 0;
+      }
     }
   }
 }

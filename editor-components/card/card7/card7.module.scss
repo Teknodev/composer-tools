@@ -1,42 +1,46 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  padding: 50px 0;
+
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    margin: auto;
+    
     .content {
-      width: 100%;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 40px;
+      gap: 20px;
+
       .listed {
         display: flex;
         flex-direction: column;
         text-align: center;
         box-shadow: var(--composer-box-shadow);
-        border-radius: var(--composer-border-radius);
-        height: max-content;
+        border-radius: 6px;
+        min-height: 400px;
         padding: 20px;
-        width: 300px;
-        margin: 15px 0 15px 0;
-        img {
+        flex: 1 1;
+        min-width: 250px;
+
+        .image {
           display: block;
           margin: auto;
-          width: 100px;
+          max-height: 120px;
+          min-height: 80px;
           padding: 0;
+          border-radius: 6px;
+          object-fit: cover;
         }
         .title {
           display: block;
           margin: 20px auto 20px auto;
           font-weight: bold;
-          max-width: 150px;
         }
         .long-text {
           display: block;
           margin: auto auto 20px auto;
           color: rgb(200, 200, 200);
-          max-width: 200px;
         }
         .button {
           cursor: pointer;
@@ -44,11 +48,10 @@
           text-align: center;
           transition: 0.3s;
           display: block;
-          margin: 0 auto 10px auto;
           color: white;
           background-color: var(--composer-primary-color);
           padding: 15px 30px;
-          border-radius: 5px;
+          border-radius: 6px;
           border: 1px solid transparent;
           &:hover {
             color: var(--composer-primary-color);
@@ -60,8 +63,7 @@
           border-radius: 5px;
           border-top: 3px solid var(--composer-primary-color);
           display: block;
-          margin: 15px 0 0 0;
-          max-width: 300px;
+          margin: 20px 0 0 0;
           list-style-type: circle;
           padding: 0 100px 0 30px;
           .list-item {
@@ -80,18 +82,8 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .content {
-      width: 100%;
-      .listed {
-        width: 100%;
-        .list-group {
-          margin: 0 auto 0 auto;
-        }
-      }
-    }
+    padding: 50px 20px;
   }
 }
