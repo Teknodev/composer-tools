@@ -16,7 +16,7 @@ class Contacts1Page extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit",
+      value: "Please Contact Us",
     });
     this.addProp({
       type: "string",
@@ -54,7 +54,7 @@ class Contacts1Page extends BaseContacts {
                     {
                       type: "string",
                       key: "title",
-                      value: PlaceholderFiller.string(),
+                      value: "Adress",
                       displayer: "1th Text",
                     },
                     {
@@ -79,8 +79,7 @@ class Contacts1Page extends BaseContacts {
                     {
                       type: "image",
                       key: "image",
-                      value:
-                        "https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png",
+                      value: "https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png",
                       displayer: "Image",
                     },
                     {
@@ -151,7 +150,7 @@ class Contacts1Page extends BaseContacts {
     return (
       <div
         className={this.decorateCSS("container")}
-        
+
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("contacts1")}>
@@ -164,7 +163,7 @@ class Contacts1Page extends BaseContacts {
                     {section.items.map((item: any, index: number) => (
                       <div key={index} className={this.decorateCSS("card")}>
                         <center>
-                          <img width={80} height={80} src={item.value[0].value} />
+                          <img className={this.decorateCSS("image")} width={80} height={80} src={item.value[0].value} />
                         </center>
                         <h2>{item.value[1].value}</h2>
                         <h4>{item.value[2].value}</h4>

@@ -1,46 +1,38 @@
 .container {
   width: 100%;
-  padding: 50px 0 50px 0;
+  padding: 50px 0;
 
   .max-content {
     display: flex;
-    justify-content: space-around;
-    width: var(--composer-content-width);
+    justify-content: center;
+    max-width: var(--composer-content-width);
     margin: auto;
+    
     .testimonials2 {
       display: block;
-      width: var(--composer-content-width);
+      
       h1 {
-        margin: 0 auto 10px auto;
         text-align: center;
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 40px;
-        margin-bottom: 50px;
-        margin-left: 20px;
+        font-size: 3rem;
+        margin: 0 0 40px 0;
       }
-      .card-child {
+      section {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
+        gap: 20px;
+        
         .card {
-          margin-bottom: 20px;
           padding: 20px;
-          min-width: 400px;
-          max-width: 400px;
-          height: max-content;
-          border: 1px solid var(--composer-tertiary-color);
-          border-radius: var(--composer-border-radius);
+          min-width: 250px;
+          border-radius: 6px;
           box-shadow: var(--composer-box-shadow);
-          span {
-            font-weight: 500;
-            font-size: 18px;
-          }
+          flex: 1 1;
+
           h5 {
             opacity: 0.8;
             font-weight: 200;
-            font-size: 14px;
-            margin-top: 50px;
+            font-size: 1rem;
             margin-bottom: 0;
             margin-left: 0;
             margin-right: 0;
@@ -50,26 +42,25 @@
             margin-bottom: 20px;
             img {
               border-radius: 100%;
+              object-fit: cover;
             }
             .profile-text {
               margin-left: 20px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+
               h2 {
-                font-weight: 600;
-                font-size: 20px;
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
+                margin: 0;
               }
               p {
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 15px;
+                margin: 5px 0 !important;
                 text-transform: uppercase;
               }
             }
+          }
+          span{
+            font-size: 1.1rem;
           }
         }
       }
@@ -77,19 +68,8 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-
-    .max-content {
-      .testimonials2 {
-        text-align: center;
-        margin: 0;
-        h1 {
-          width: 100%;
-        }
-      }
-    }
+    padding: 50px 20px;
   }
 }

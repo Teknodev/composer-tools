@@ -1,0 +1,81 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    .child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      .logo {
+        max-width: 200px;
+        width: 200px;
+        img {
+          width: 100%;
+        }
+      }
+      .title {
+        text-align: center;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(
+          90deg,
+          var(--composer-primary-color),
+          var(--composer-secondary-color)
+        );
+        -webkit-background-clip: text;
+        font-size: 4.5rem;
+        font-weight: 700;
+      }
+      .description {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 0;
+      }
+      .button {
+        transition: all 0.3s;
+        cursor: pointer;
+        width: max-content;
+        background: linear-gradient(
+          90deg,
+          var(--composer-primary-color),
+          var(--composer-secondary-color)
+        );
+        border: 1px solid var(--composer-primary-color);
+        border-radius: 10px;
+        padding: 10px 20px;
+        color: white;
+        font-size: 1.4rem;
+        &:hover {
+          color: var(--composer-primary-color);
+          background: transparent;
+        }
+      }
+      .wide-image {
+        width: 100%;
+        max-width: 600px;
+        border-radius: 20px;
+        background: linear-gradient(
+          90deg,
+          var(--composer-primary-color),
+          var(--composer-secondary-color)
+        );
+        padding: 5px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    .max-content {
+      .child {
+        padding: 0 20px;
+      }
+    }
+  }
+}

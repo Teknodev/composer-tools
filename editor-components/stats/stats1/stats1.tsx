@@ -1,60 +1,113 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats1.module.scss";
+
+type ICard = {
+  subtitle: string;
+  title: string;
+  description: string;
+};
 
 class Stats1Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit amet consectetur",
+      value: "User Statistics on the Website",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: PlaceholderFiller.shortText(),
+      value:
+        "Understanding user behavior on a website is important for improving user experience and engagement.",
     });
     this.addProp({
-      type: "string",
-      key: "leftCardSubtitle",
-      displayer: "Left Card Subtitle",
-      value: PlaceholderFiller.string(),
+      type: "array",
+      key: "card-content",
+      displayer: "Card Content",
+      value: [
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "registers",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "50,000",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "sign up daily",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "sales",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "2,500",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "daily total sales",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "registers",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "4,500",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "daily registers",
+            },
+          ],
+        },
+      ],
     });
-    this.addProp({
-      type: "string",
-      key: "leftCardTitle",
-      displayer: "Left Card Title",
-      value: "50,000",
-    });
-    this.addProp({
-      type: "string",
-      key: "leftCardDescription",
-      displayer: "Left Card Description",
-      value: "Lorem ipsum dolor sit amet",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightCardSubtitle",
-      displayer: "Right Card Subtitle",
-      value: PlaceholderFiller.string(),
-    });
-    this.addProp({
-      type: "string",
-      key: "rightCardTitle",
-      displayer: "Right Card Title",
-      value: "2,500",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightCardDescription",
-      displayer: "Right Card Description",
-      value: "Lorem ipsum dolor sit amet",
-    });
+
   }
 
   getName(): string {
@@ -63,25 +116,21 @@ class Stats1Page extends BaseStats {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats1-page")}>
             <h1>{this.getPropValue("title")}</h1>
             <h3>{this.getPropValue("description")}</h3>
             <div className={this.decorateCSS("bottom-child")}>
-              <div className={this.decorateCSS("card")}>
-                <h5>{this.getPropValue("leftCardSubtitle")}</h5>
-                <h4>{this.getPropValue("leftCardTitle")}</h4>
-                <p>{this.getPropValue("leftCardDescription")}</p>
-              </div>
-              <div className={this.decorateCSS("card")}>
-                <h5>{this.getPropValue("rightCardSubtitle")}</h5>
-                <h4>{this.getPropValue("rightCardTitle")}</h4>
-                <p>{this.getPropValue("rightCardDescription")}</p>
-              </div>
+              {this.castToObject<ICard[]>("card-content").map(
+                (cardData: any, indexCard: number) => (
+                  <div key={indexCard} className={this.decorateCSS("card")}>
+                    <h5>{cardData.subtitle}</h5>
+                    <h4>{cardData.title}</h4>
+                    <p>{cardData.description}</p>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>

@@ -1,148 +1,86 @@
 .container {
   width: 100%;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-    .wrapper {
-      width: 100%;
-      padding: 50px;
+    .header {
+      text-align: initial;
+      margin: 0;
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      .image {
-        width: 50%;
-        min-width: 400px;
-        max-width: 600px;
-        img {
-          width: 100% !important;
-        }
+      flex-direction: column;
+      gap: 20px;
+
+      span {
+        margin: 0;
+        font-weight: 800;
+        color: #0d57ff;
+        text-transform: uppercase;
       }
-      .header-page {
-        width: 50%;
-        max-width: 500px;
-        min-width: 300px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-end;
-        h3 {
-          font-size: x-large;
-          font-weight: 100;
-          line-height: 1;
-          margin-bottom: 5px;
-          text-transform: uppercase;
+      h2 {
+        font-size: 4rem;
+        margin: 0;
+      }
+    }
+    .card-child {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      .card {
+        background-color: var(--composer-primary-color);
+        width: 25%;
+        position: relative;
+        border-radius: 6px;
+        padding: 30px;
+        min-width: 250px;
+        min-height: 400px;
+        flex: 1 1;
+        i {
+          width: 110px;
+          height: 110px;
+          display: flex;
+          justify-content: center;
+          background-color: white;
+          border-radius: 50%;
+          align-items: center;
+          img {
+            height: 65px;
+          }
         }
-        .first-header {
-          font-weight: 100;
-          font-family: system-ui;
-        }
-        .second-header {
-          font-size: 70px;
-          font-family: system-ui;
-          font-weight: revert;
-        }
-        .third-header {
-          font-size: xx-large;
-          font-weight: 100;
-          margin: 0;
-        }
-        .fourht-header {
-          margin-top: 37px;
-          font-family: system-ui;
-          font-size: 36px;
-        }
-        h1 {
-          text-transform: uppercase;
-          font-weight: revert;
-          font-size: 43px;
-          margin-top: 0;
-          margin-bottom: 0px;
+        h5 {
+          font-size: 1.5rem;
+          margin: 20px 0;
+          color: #fff;
         }
         p {
-          font-size: 20px;
-          font-weight: 100;
-          min-width: 250px;
-          max-width: 400px;
-          word-break: break-all;
-        }
-        .button-wrapper {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          .button {
-            cursor: pointer;
-            text-align: center;
-            transition: 0.3s;
-            display: block;
-            color: white;
-            background-color: var(--composer-secondary-color);
-            padding: 11px 30px;
-            border-radius: 25px;
-            border: 1px solid transparent;
-            width: 150px;
-            &:hover {
-              color: var(--composer-secondary-color);
-              background-color: transparent;
-              border: 1px solid var(--composer-secondary-color);
-            }
-          }
-        }
-        .image {
-          min-width: 400px;
-          width: 50%;
-          max-width: 600px;
-          img {
-            width: 100%;
-          }
+          font-size: 1.3rem;
+          color: #ffffff;
+          margin: 0;
+          font-weight: 400;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          white-space: normal;
         }
       }
     }
   }
 }
-@media only screen and (max-width: 970px) {
+
+@media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
-
+    padding: 50px 20px;
     .max-content {
-      width: var(--composer-content-width);
-      .wrapper {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      .header {
         width: 100%;
-        .image {
-          min-width: auto !important;
-          width: 100%;
-          img {
-            width: 100%;
-          }
-        }
-        .header-page {
-          text-align: center;
-          width: 100% !important;
-          min-width: auto !important;
-          margin: 0;
-          h3,
-          h1,
-          p {
-            width: 100% !important;
-            min-width: auto !important;
-            max-width: none !important;
-          }
-          .second-header {
-            min-width: auto !important;
-
-            font-size: 30px !important;
-          }
-          .button-wrapper {
-            min-width: auto !important;
-            width: 100% !important;
-            max-width: none !important;
-            justify-content: center !important;
-          }
-        }
+        text-align: center;
       }
     }
   }

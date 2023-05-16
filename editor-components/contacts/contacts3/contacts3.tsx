@@ -1,7 +1,6 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./contacts3.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 
@@ -17,7 +16,7 @@ class Contacts3Page extends BaseContacts {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: PlaceholderFiller.string(),
+      value: "Please sent message",
     });
     this.addProp({
       type: "string",
@@ -120,10 +119,7 @@ class Contacts3Page extends BaseContacts {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("contacts3")}>
             <div className={this.decorateCSS("contact-left")}>
@@ -135,7 +131,7 @@ class Contacts3Page extends BaseContacts {
                     <div key={index}>
                       <h3>{data.title}</h3>
                       <h2>{data.Text1th}</h2>
-                      <h2 className={this.decorateCSS("margin-bottom")}>{data.Text2th}</h2>
+                      <h2>{data.Text2th}</h2>
                     </div>
                   )
                 )}
@@ -160,7 +156,6 @@ class Contacts3Page extends BaseContacts {
                       value={values.name}
                       onChange={handleChange}
                       className={this.decorateCSS("input")}
-                      
                     />
                     <ErrorMessage
                       className={this.decorateCSS("error-message")}
@@ -175,7 +170,6 @@ class Contacts3Page extends BaseContacts {
                       value={values.email}
                       onChange={handleChange}
                       className={this.decorateCSS("input")}
-                      
                     />
                     <ErrorMessage
                       className={this.decorateCSS("error-message")}
@@ -190,7 +184,6 @@ class Contacts3Page extends BaseContacts {
                       value={values.message}
                       onChange={handleChange}
                       className={this.decorateCSS("input")}
-                      
                       rows={5}
                     />
                     <ErrorMessage
@@ -198,11 +191,7 @@ class Contacts3Page extends BaseContacts {
                       name="message"
                       component={"span"}
                     />
-                    <button
-                      className={this.decorateCSS("submit-button")}
-                      
-                      type="submit"
-                    >
+                    <button className={this.decorateCSS("submit-button")} type="submit">
                       {this.getPropValue("button_text")}
                     </button>
                   </Form>

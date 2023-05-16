@@ -38,44 +38,19 @@ class Footer5Page extends BaseFooter {
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "Products",
                   displayer: "Item",
                 },
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "Create Website",
                   displayer: "Item",
                 },
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
-                  displayer: "Item",
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "table-item",
-              displayer: "Footer",
-              value: [
-                {
-                  type: "string",
-                  key: "item",
-                  value: PlaceholderFiller.string(),
-                  displayer: "Item",
-                },
-                {
-                  type: "string",
-                  key: "item",
-                  value: PlaceholderFiller.string(),
-                  displayer: "Item",
-                },
-                {
-                  type: "string",
-                  key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "Secure Cloud Hosting",
                   displayer: "Item",
                 },
               ],
@@ -88,19 +63,19 @@ class Footer5Page extends BaseFooter {
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "About",
                   displayer: "Item",
                 },
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "Careers",
                   displayer: "Item",
                 },
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "Support",
                   displayer: "Item",
                 },
               ],
@@ -113,19 +88,44 @@ class Footer5Page extends BaseFooter {
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "Blog",
                   displayer: "Item",
                 },
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "Ebooks",
                   displayer: "Item",
                 },
                 {
                   type: "string",
                   key: "item",
-                  value: PlaceholderFiller.string(),
+                  value: "Whitepapers",
+                  displayer: "Item",
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "table-item",
+              displayer: "Footer",
+              value: [
+                {
+                  type: "string",
+                  key: "item",
+                  value: "Help Center",
+                  displayer: "Item",
+                },
+                {
+                  type: "string",
+                  key: "item",
+                  value: "Contact Us",
+                  displayer: "Item",
+                },
+                {
+                  type: "string",
+                  key: "item",
+                  value: "Privacy Policy",
                   displayer: "Item",
                 },
               ],
@@ -142,20 +142,24 @@ class Footer5Page extends BaseFooter {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-list-page")}>
             <div className={this.decorateCSS("item-div")}>
               {this.getPropValue("footer-table-item").map(
-                (table: any, index: number) => {
-                  return table.value.map((tableItem: any) => {
+                (table: any) => {
+                  return table.value.map((tableItem: any, indexTableItem: number) => {
                     return (
-                      <ul key={index} className={this.decorateCSS("list-group")}>
-                        {tableItem.value.map((tableData: any) => {
-                          return <li className={this.decorateCSS("li")}>{tableData.value}</li>;
+                      <ul
+                        key={indexTableItem}
+                        className={this.decorateCSS("list-group")}
+                      >
+                        {tableItem.value.map((tableData: any, indexTableData: number) => {
+                          return (
+                            <li key={indexTableData} className={this.decorateCSS("list-item")}>
+                              {tableData.value}
+                            </li>
+                          );
                         })}
                       </ul>
                     );

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials3.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 type Item = {
   image: string;
@@ -33,23 +32,24 @@ class Testimonials3Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://www.clipartmax.com/png/full/336-3368343_image-result-for-5-5-stars-clipart-blue-five-star-rating-blue.png",
-                      displayer: "Image",
+                      type: "string",
+                      key: "star",
+                      value: "5",
+                      displayer: "Star",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''Lorem ipsum dolor sit amet''",
+                      value: "''good and responsive design''",
                       displayer: "Subtitle",
+                      completion: "Testimonial about agency that mentions one of the following benefits: friendly approach, potential partnership"
                     },
                     {
                       type: "string",
                       key: "title",
-                      value: PlaceholderFiller.string(),
+                      value: "Matt Kenton",
                       displayer: "Title",
+                      completion: "Full name 1"
                     },
                   ],
                 },
@@ -59,23 +59,24 @@ class Testimonials3Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://www.clipartmax.com/png/full/336-3368343_image-result-for-5-5-stars-clipart-blue-five-star-rating-blue.png",
-                      displayer: "Image",
+                      type: "string",
+                      key: "star",
+                      value: "5",
+                      displayer: "Star",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''Lorem ipsum dolor sit amet''",
+                      value: "''fast and good support team''",
                       displayer: "Subtitle",
+                      completion: "Testimonial about agency that mentions one of the following benefits: high technical quality, crystal clear communication"
                     },
                     {
                       type: "string",
                       key: "title",
-                      value: PlaceholderFiller.string(),
+                      value: "Tamsen Fannie",
                       displayer: "Title",
+                      completion: "Full name 2"
                     },
                   ],
                 },
@@ -85,23 +86,24 @@ class Testimonials3Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://www.clipartmax.com/png/full/336-3368343_image-result-for-5-5-stars-clipart-blue-five-star-rating-blue.png",
-                      displayer: "Image",
+                      type: "string",
+                      key: "start",
+                      value: "5",
+                      displayer: "Star",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''Lorem ipsum dolor sit amet''",
+                      value: "''Innovative designs and easy use''",
                       displayer: "Subtitle",
+                      completion: "Testimonial about agency that mentions one of the following benefits: fast development, low cost"
                     },
                     {
                       type: "string",
                       key: "title",
-                      value: PlaceholderFiller.string(),
+                      value: "Brynn Samantha",
                       displayer: "Title",
+                      completion: "Full name 3"
                     },
                   ],
                 },
@@ -119,29 +121,29 @@ class Testimonials3Page extends Testimonials {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials3")}>
-            <section>
-              {this.castToObject<ISection[]>("card-items").map(
-                (section: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("card-child")}>
-                    {section.items.map((item: any, index: number) => (
-                      <div key={index}>
-                        <img width={150} height={25} src={item.value[0].value} />
-                        <div className={this.decorateCSS("card")}>
-                          <span>{item.value[1].value}</span>
-                          <h5>{item.value[2].value}</h5>
-                        </div>
+            {this.castToObject<ISection[]>("card-items").map(
+              (section: any, index: number) => (
+                <div key={index} className={this.decorateCSS("card-child")}>
+                  {section.items.map((item: any, index: number) => (
+                    <div
+                      key={`testimonials3-${index}`}
+                      className={this.decorateCSS("card")}
+                    >
+                      <div className={styles["stars"]}>
+                        {[...Array(Number(item.value[0].value))].map((item: any, index: number) => (
+                          <img key={`star-testimonials3${index}`} src="https://cdn-icons-png.flaticon.com/512/118/118669.png" />
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                )
-              )}
-            </section>
+                      <span>{item.value[1].value}</span>
+                      <h5>{item.value[2].value}</h5>
+                    </div>
+                  ))}
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>

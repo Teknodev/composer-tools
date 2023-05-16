@@ -1,57 +1,60 @@
 .container {
   width: 100%;
-  padding: 20px 0 20px 0;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    max-width: var(--composer-content-width);
     margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 
     .icon-list {
       display: flex;
       flex-direction: column;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      box-shadow: var(--composer-box-shadow);
       border-top: 5px solid var(--composer-primary-color);
-      border-radius: 5px;
+      border-radius: 6px;
       height: max-content;
-      padding: 0 20px;
-      min-width: 300px;
-      margin: 15px 0 15px 0;
+      min-width: 250px;
+      flex: 1 1;
+      padding: 20px;
+
       .title {
         display: block;
         font-weight: bold;
-        max-width: 150px;
         padding: 0;
-        margin-bottom: 5px;
+        margin: 0 0 5px 0;
       }
       hr {
         display: block;
-        width: 25%;
-        margin: 0 30px 20px 0;
+        width: 100%;
+        max-width: 180px;
+        margin: 0 0 12px 0;
         border: 1px solid var(--composer-primary-color);
         padding: 0;
       }
       .list-group {
-        display: block;
-        margin: 0 0 20px 0;
-        max-width: 300px;
-        list-style-type: none;
+        margin: 0;
         padding: 0;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        
         .list-item {
           display: flex;
           cursor: pointer;
           color: black;
           background-color: white;
           transition: all 0.5s;
-          border-radius: 5px;
+          border-radius: 6px;
           border-left: 3px solid var(--composer-primary-color);
-          margin-bottom: 10px;
           box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
           height: 40px;
           &:hover {
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            box-shadow: var(--composer-box-shadow);
             img {
               margin-right: 10px;
             }
@@ -71,16 +74,8 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .max-content {
-      .icon-list {
-        .list-group {
-          max-width: 100%;
-        }
-      }
-    }
+    padding: 50px 20px;
   }
 }

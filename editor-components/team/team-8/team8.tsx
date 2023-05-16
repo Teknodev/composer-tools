@@ -1,37 +1,10 @@
 import * as React from "react";
 import styles from "./team8.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
+import { Team } from "../../EditorComponent";
 
 class Team8 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    let placeholder: TypeUsableComponentProps = {
-      type: "object",
-      key: "team-member",
-      displayer: "Team Member",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: PlaceholderFiller.image(),
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Name",
-          value: "Jason Covereye",
-        },
-        {
-          type: "string",
-          key: "position",
-          displayer: "Position",
-          value: "Ceo",
-        },
-      ],
-    };
 
     this.addProp({
       type: "string",
@@ -44,55 +17,108 @@ class Team8 extends Team {
       key: "team-members",
       displayer: "Team Members",
       value: [
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
+        {
+          type: "object",
+          key: "team-member",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Jason Covereye",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "team-member",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://images.pexels.com/photos/7647920/pexels-photo-7647920.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Vaughn Edison",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Web Developer",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "team-member",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Shantel Kiera",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "UI/UX Developer",
+            },
+          ],
+        },
       ],
     });
   }
-
 
   getName(): string {
     return "Team Page";
   }
 
-
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <span className={this.decorateCSS("title")} >
+          <h1 className={this.decorateCSS("title")}>
             {this.getPropValue("title")}
-          </span>
+          </h1>
 
-          <div
-            className={this.decorateCSS("team-members")}
-            
-          >
+          <div className={this.decorateCSS("team-members")}>
             {this.getPropValue("team-members").map(
               (teamMember: any, index: number) => (
-                <div
-                  key={index}
-                  className={this.decorateCSS("team-member")}
-                  
-                >
-                  <div
-                    
-                    className={this.decorateCSS("name-and-position")}
-                  >
+                <div key={index} className={this.decorateCSS("team-member")}>
+                  <div className={this.decorateCSS("name-and-position")}>
                     <img
-                      
                       className={this.decorateCSS("member-image")}
                       src={teamMember.value[0].value}
                       alt={teamMember.value[1].value}
                     />
-                    <div
-                      
-                      className={this.decorateCSS("content")}
-                    >
+                    <div className={this.decorateCSS("content")}>
                       <span>{teamMember.value[1].value}</span>
                       <p>{teamMember.value[2].value}</p>
                     </div>

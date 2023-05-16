@@ -1,24 +1,29 @@
 .container {
   width: 100%;
-  box-shadow: var(--composer-box-shadow);
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    box-shadow: var(--composer-box-shadow);
     margin: auto;
 
+    .logo {
+      flex: 1;
+    }
     .footer-page {
+      flex: 3;
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
-      padding: 20px 20px 60px 20px;
-      .logo {
-        margin-right: 100px;
-      }
+      padding: 20px;
+
       .items {
         display: flex;
-        margin-left: 40px;
+        flex-wrap: wrap;
+        gap: 20px;
+
         .list-group {
           list-style: none;
           padding: 0;
@@ -27,22 +32,21 @@
           flex-direction: column;
           justify-content: flex-start;
           align-items: flex-start;
-          margin-right: 100px;
-          margin-top: 20px;
+          flex: 1 1;
+          min-width: 250px;
+
           .title {
             color: black;
             h2 {
               font-weight: 200;
-              font-size: 20px;
+              font-size: 1.8rem;
             }
           }
           .text {
             text-decoration: none;
             color: black;
-            font-size: 16px;
+            font-size: 1.2rem;
             font-weight: 100;
-            margin-left: 3px;
-            margin-top: 7px;
             font-family: system-ui;
           }
         }
@@ -51,29 +55,18 @@
   }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 768px) {
   .container {
-    .max-content {
-      .footer-page {
-        .subscribe {
-          width: 100%;
-          text-align: center;
-        }
-        .logo {
-          margin-left: 20px;
-        }
-        .items {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          .list-group {
-            align-items: normal;
-            text-align: center;
-            margin-right: 100px;
-            margin-top: 20px;
-          }
-        }
+    padding: 50px 20px;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .items {
+      .list-group {
+        align-items: center !important;
       }
     }
   }

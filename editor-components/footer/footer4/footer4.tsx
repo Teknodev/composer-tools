@@ -4,11 +4,6 @@ import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/plac
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer4.module.scss";
 
-type IconsValues = {
-  socialIcon: string;
-  socialLink: string;
-};
-
 type FooterValues = {
   footerTitle: string;
   footerText: FooterTextValues[];
@@ -26,13 +21,13 @@ class Footer4Page extends BaseFooter {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit amet",
+      value: "About Us: Learn more about our company and our mission.",
     });
     this.addProp({
       type: "string",
       key: "buttonText",
       displayer: "Button Text",
-      value: "Lorem ipsum",
+      value: "Who Are We",
     });
     this.addProp({
       type: "page",
@@ -55,7 +50,7 @@ class Footer4Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Menu",
             },
             {
               type: "array",
@@ -71,7 +66,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Products",
                     },
                     {
                       type: "page",
@@ -90,7 +85,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Create Website",
                     },
                     {
                       type: "page",
@@ -109,7 +104,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Secure Cloud Hosting",
                     },
                     {
                       type: "page",
@@ -128,7 +123,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Engage Your Audince",
                     },
                     {
                       type: "page",
@@ -151,7 +146,7 @@ class Footer4Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Company",
             },
             {
               type: "array",
@@ -167,7 +162,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "About",
                     },
                     {
                       type: "page",
@@ -186,7 +181,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Careers",
                     },
                     {
                       type: "page",
@@ -205,7 +200,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Support",
                     },
                     {
                       type: "page",
@@ -224,7 +219,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Pricing",
                     },
                     {
                       type: "page",
@@ -247,7 +242,7 @@ class Footer4Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Resources",
             },
             {
               type: "array",
@@ -263,7 +258,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Blog",
                     },
                     {
                       type: "page",
@@ -282,7 +277,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Ebooks",
                     },
                     {
                       type: "page",
@@ -301,7 +296,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Whitepapers",
                     },
                     {
                       type: "page",
@@ -320,7 +315,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Website Grader",
                     },
                     {
                       type: "page",
@@ -344,10 +339,7 @@ class Footer4Page extends BaseFooter {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("subscribe")}>
@@ -357,18 +349,22 @@ class Footer4Page extends BaseFooter {
               </ComposerLink>
             </div>
             <div className={this.decorateCSS("items")}>
-              {this.castToObject<any[]>("footer").map((item: FooterValues) => (
-                <ul className={this.decorateCSS("list-group")}>
-                  <li className={this.decorateCSS("title")}>
-                    <h2>{item.footerTitle}</h2>
-                  </li>
-                  {item.footerText.map((v: FooterTextValues) => (
-                    <ComposerLink path={v.path}>
-                      <li className={this.decorateCSS("text")}>{v.footerText}</li>
-                    </ComposerLink>
-                  ))}
-                </ul>
-              ))}
+              {this.castToObject<any[]>("footer").map(
+                (item: FooterValues, indexFooter: number) => (
+                  <ul key={indexFooter} className={this.decorateCSS("list-group")}>
+                    <li className={this.decorateCSS("title")}>
+                      <h2>{item.footerTitle}</h2>
+                    </li>
+                    {item.footerText.map(
+                      (v: FooterTextValues, indexFooterText: number) => (
+                        <ComposerLink key={indexFooterText} path={v.path}>
+                          <li className={this.decorateCSS("text")}>{v.footerText}</li>
+                        </ComposerLink>
+                      )
+                    )}
+                  </ul>
+                )
+              )}
             </div>
           </div>
         </div>

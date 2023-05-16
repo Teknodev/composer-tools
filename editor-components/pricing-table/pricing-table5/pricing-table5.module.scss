@@ -1,0 +1,105 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .price {
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--composer-box-shadow);
+      border-radius: 6px;
+      height: max-content;
+      padding: 20px;
+      flex: 1 1;
+      min-width: 250px;
+
+      .image {
+        border-radius: 6px;
+        box-shadow: var(--composer-box-shadow);
+        margin-bottom: 15px;
+        align-self: center;
+        object-fit: contain;
+        max-width: 300px;
+        max-height: 180px;
+      }
+      .title {
+        display: flex;
+        font-weight: 450;
+        align-items: center;
+        gap: 10px;
+        .stars {
+          img {
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+      .price-text {
+        display: flex;
+        font-weight: bold;
+        font-size: 1.9em;
+        color: var(--composer-primary-color);
+        .duration-text {
+          text-align: center;
+          margin: 7px auto 10px 5px;
+          font-weight: 450;
+          font-size: 0.75em;
+          color: rgb(200, 200, 200);
+        }
+      }
+      .button-child {
+        border-top: 1px solid rgb(200, 200, 200);
+        .button {
+          margin-top: 15px;
+          cursor: pointer;
+          text-decoration: none;
+          text-align: center;
+          transition: 0.3s;
+          display: block;
+          width: max-content;
+          color: white;
+          background-color: var(--composer-primary-color);
+          padding: 10px 30px;
+          border-radius: 6px;
+          border: 1px solid transparent;
+          &:hover {
+            color: var(--composer-primary-color);
+            background-color: transparent;
+            border: 1px solid var(--composer-primary-color);
+          }
+        }
+      }
+      ul {
+        border-radius: 5px;
+        border-top: 3px solid var(--composer-primary-color);
+        display: block;
+        margin: 15px 0 0 0;
+        list-style-type: circle;
+        padding: 0 100px 0 30px;
+        li {
+          transition: all 0.5s;
+          text-align: left;
+          width: 200px;
+          margin-top: 10px;
+          &:hover {
+            padding-left: 5px;
+            color: var(--composer-primary-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 50px 20px;
+  }
+}

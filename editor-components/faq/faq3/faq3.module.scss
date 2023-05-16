@@ -1,10 +1,10 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 .container {
   width: 100%;
-  padding-top: 2rem;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     display: flex;
     justify-content: center;
     margin: auto;
@@ -18,7 +18,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         width: 100%;
         display: flex;
         flex-direction: column;
-        padding-left: 5.6%;
         margin-bottom: 5rem;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -54,17 +53,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .card-page {
         width: 100%;
         display: flex;
-        justify-content: space-around;
-        align-items: center;
+        justify-content: space-between;
         flex-wrap: wrap;
         margin-bottom: 3rem;
         gap: 1rem;
 
         .card {
-          width: 350px;
-          height: 400px;
-          min-width: 200px;
-          min-height: 200px;
+          min-width: 250px;
+          min-height: 250px;
           display: flex;
           flex-direction: column;
           overflow: hidden;
@@ -100,7 +96,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             display: flex;
             justify-content: center;
             width: 50px;
-            height: 54px;
+            height: 50px;
             border-radius: 50%;
             background: var(--composer-primary-color);
             position: relative;
@@ -115,15 +111,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       }
       .down-container {
         width: 100%;
-        height: 300px;
+        min-height: 300px;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 8rem;
-
+        
         .child-container {
-          width: 92%;
-          height: 300px;
+          width: 100%;
+          min-height: 300px;
           background-color: var(--composer-secondary-color);
           display: flex;
           justify-content: center;
@@ -133,11 +128,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           text-overflow: ellipsis;
           white-space: pre-line;
           word-break: break-all;
-          padding: 0 2rem;
+          padding: 20px;
           text-align: center;
 
           h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             letter-spacing: 0.02em;
             margin: unset;
             color: #fff;
@@ -145,7 +140,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           }
 
           p {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: #797979;
           }
 
@@ -158,7 +153,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .button {
               border: 0px solid;
-              border-radius: 3px;
+              border-radius: 6px;
               color: #fff;
               cursor: pointer;
               padding: 10px;
@@ -183,169 +178,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
-    padding-top: 1rem;
-    .max-content {
-      width: var(--composer-content-width);
-      display: flex;
-      justify-content: center;
-      .page {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        .up-page {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          padding-left: 1rem;
-          margin-bottom: 4rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: pre-line;
-          word-break: break-all;
-
-          h1 {
-            font-size: 2.5rem;
-            color: rgb(42, 51, 66);
-            opacity: 0.9;
-          }
-
-          p {
-            font-size: 1.4rem;
-          }
-
-          .badge {
-            color: var(--composer-primary-color);
-            border-radius: 10px;
-            font-size: 0.8rem;
-            background: rgb(244, 244, 244);
-            padding: 3px 5px;
-            display: inline-block;
-            width: max-content;
-          }
-        }
-
-        .card-page {
-          width: 100%;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          flex-wrap: wrap;
-          margin-bottom: 3rem;
-
-          .card {
-            width: 100%;
-            height: 350px;
-            min-width: unset;
-            min-height: unset;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            white-space: pre-line;
-            text-overflow: ellipsis;
-            margin-bottom: 2rem;
-            overflow: hidden;
-            padding: 1rem;
-
-            .title {
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: pre-line;
-              word-break: break-all;
-            }
-
-            .description {
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: pre-line;
-              word-break: break-all;
-              font-size: 1.2rem;
-              line-height: 2rem;
-            }
-
-            .icon {
-              display: flex;
-              justify-content: center;
-              width: 35px;
-              height: 35px;
-              border-radius: 50%;
-              background: var(--composer-primary-color);
-              position: relative;
-              align-items: center;
-
-              div {
-                color: #fff;
-                font-size: 1.5rem;
-              }
-            }
-          }
-        }
-        .down-container {
-          background-color: unset;
-          width: 100%;
-          height: 150px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          .child-container {
-            width: 90%;
-            height: 150px;
-            background-color: var(--composer-secondary-color);
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: pre-line;
-            word-break: break-all;
-            padding: 0 2rem;
-
-            h1 {
-              font-size: 1.5rem;
-            }
-
-            p {
-              font-size: 1rem;
-            }
-
-            .button-group {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              gap: 1rem;
-              margin-top: 1rem;
-
-              .button {
-                border: 0px solid;
-                border-radius: 3px;
-                color: #fff;
-                cursor: pointer;
-                padding: 10px;
-                background: transparent;
-                transition: $transition;
-                opacity: 0.9;
-                &:hover {
-                  opacity: 1;
-                }
-              }
-              .primary {
-                background-color: var(--composer-primary-color);
-              }
-              .secondary {
-                border: 1px solid rgb(200, 200, 200);
-                color: black;
-              }
-            }
-          }
-        }
-      }
-    }
+    padding: 50px 20px;
   }
 }

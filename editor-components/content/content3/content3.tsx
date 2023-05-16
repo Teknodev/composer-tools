@@ -10,51 +10,46 @@ class Content3 extends BaseContent {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: PlaceholderFiller.image(),
+      value:
+        "https://imageio.forbes.com/blogs-images/alejandrocremades/files/2018/07/desk-3139127_1920-1200x773.jpg?format=jpg&width=960",
     });
     this.addProp({
       type: "string",
       key: "buttonText",
       displayer: "Button Text",
-      value: PlaceholderFiller.string(),
+      value: "Continue",
     });
     this.addProp({
       type: "string",
       key: "content",
       displayer: "Content",
-      value: PlaceholderFiller.shortText(),
-    });
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: PlaceholderFiller.string(),
+      value: "The success of a small business can be attributed to various factors such as providing quality products or services, having a strong brand identity, building a loyal customer base, and implementing effective marketing strategies.",
     });
     this.addProp({
       type: "string",
       key: "secondTitle",
       displayer: "Second Title",
-      value: PlaceholderFiller.string(),
+      value: "business.",
     });
     this.addProp({
       type: "string",
       key: "secondSubtitle",
       displayer: "Second Subtitle",
-      value: PlaceholderFiller.string(),
+      value: "the success of a small",
     });
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: PlaceholderFiller.string(),
+      value: "12/12/2023",
     });
 
     this.addProp({
       type: "boolean",
       key: "true",
       displayer: "Column direction",
-      value: true
-    })
+      value: true,
+    });
   }
 
   getName(): string {
@@ -63,40 +58,31 @@ class Content3 extends BaseContent {
 
   render() {
     return (
-
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
-            <div className={this.decorateCSS("image")}>
-              <img src={this.getPropValue("image")}></img>
+          <div
+            className={`${this.decorateCSS("wrapper")} ${
+              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
+            }`}
+          >
+            <div className={this.decorateCSS("image-background")}>
+              <img
+                className={this.decorateCSS("image")}
+                src={this.getPropValue("image")}
+              ></img>
             </div>
-            <div
-              className={this.decorateCSS("header-page")}
-            >
-              <h1
-                className={this.decorateCSS("first-header")}
-              >
+            <div className={this.decorateCSS("header-page")}>
+              <p className={this.decorateCSS("first-header")}>
                 {this.getPropValue("subtitle")}
-              </h1>
-              <h1
-                className={this.decorateCSS("second-header")}
-              >
+              </p>
+              <h1 className={this.decorateCSS("second-header")}>
                 {this.getPropValue("secondSubtitle")}
               </h1>
-              <h3
-                className={this.decorateCSS("third-header")}
-              >
+              <h3 className={`${this.decorateCSS("third-header")}`}>
                 {this.getPropValue("secondTitle")}
               </h3>
-              <h3
-                className={this.decorateCSS("fourht-header")}
-              >
-                {this.getPropValue("title")}
-              </h3>
               <p>{this.getPropValue("content")}</p>
-              <div
-                className={this.decorateCSS("button-wrapper")}
-              >
+              <div className={this.decorateCSS("button-wrapper")}>
                 <span className={this.decorateCSS("button")}>
                   {this.getPropValue("buttonText")}
                 </span>

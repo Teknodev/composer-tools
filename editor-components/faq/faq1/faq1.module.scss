@@ -1,14 +1,13 @@
 .container {
   width: 100%;
-  height: 100%;
-  padding: 20px 0 20px 0;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     margin: auto;
+
     .page {
       width: 100%;
       height: 100%;
@@ -16,14 +15,13 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px 0 20px 0;
 
       .card {
-        width: 50%;
-        background: rgb(244, 244, 244);
+        width: 100%;
+        background: rgb(248, 248, 248);
         margin-bottom: 10px;
-        border-radius: 20px;
-        transition-delay: 1s;
+        border-radius: 6px;
+        transition-delay: 3s;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -84,82 +82,15 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .max-content {
-      width: var(--composer-content-width);
-      .page {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 0 20px 0;
+    padding: 50px 20px;
 
-        .card {
-          width: 80%;
-          background: rgb(244, 244, 244);
-          margin-bottom: 10px;
-          border-radius: 20px;
-          transition-delay: 1s;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-
-          &:hover {
-            p {
-              display: block;
-            }
-
-            .img-1 {
-              display: none;
-            }
-          }
-
-          .img-1 {
-            display: block;
-          }
-
-          p {
-            display: none;
-            padding: 0 15px 0 15px;
-            font-size: 0.6rem;
-            overflow: hidden;
-            white-space: wrap;
-            text-overflow: ellipsis;
-            line-height: 20px;
-            color: rgb(42, 51, 66);
-            opacity: 0.9;
-          }
-
-          h2 {
-            width: 90%;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            font-size: 1rem;
-            letter-spacing: 0.02em;
-            color: rgb(42, 51, 66);
-            opacity: 0.9;
-          }
-
-          .in-box {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px 0 10px;
-          }
-
-          img {
-            width: 5%;
-            display: block;
-          }
-        }
-      }
+    h2 {
+      font-size: 1.4rem !important;
+    }
+    p {
+      font-size: 1.1rem !important;
     }
   }
 }

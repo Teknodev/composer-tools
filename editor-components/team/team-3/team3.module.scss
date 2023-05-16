@@ -1,8 +1,9 @@
 .container {
   width: 100%;
-  padding-top: 1rem;
+  padding: 50px 0;
+
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     display: flex;
     justify-content: center;
     margin: auto;
@@ -14,51 +15,49 @@
       justify-content: center;
       align-items: center;
 
-      .badge {
-        color: var(--composer-primary-color);
-        border-radius: 10px;
-        font-size: 0.8rem;
-        background: rgb(244, 244, 244);
-        padding: 3px 5px;
-        display: inline-block;
-      }
-
       .text-group {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        margin-bottom: 5rem;
+
+        h1 {
+          font-size: 3.5rem;
+          margin: 0 0 12px;
+          text-align: center;
+        }
+        p {
+          font-size: 1.5rem;
+          margin: 0 0 40px;
+          text-align: center;
+        }
       }
 
       .down-page {
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
 
         .all-card {
+          min-width: 250px;
           .card {
             width: 100%;
-            height: 350px;
-            min-width: 180px;
-            min-height: 150px;
+            min-width: 250px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 1rem;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            gap: 1rem;
+
+            h2{
+             margin-bottom: 0; 
+            }
 
             p {
               color: var(--composer-primary-color);
+              font-size: 1.2rem;
+              margin: 10px 0 20px;
             }
 
             .profile-image {
@@ -72,7 +71,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              gap: 0.6rem;
+              gap: 10px;
 
               img {
                 object-fit: cover;
@@ -85,113 +84,20 @@
         }
       }
     }
-    h1 {
-      font-size: 3.5rem;
-      font-weight: bold;
-    }
-    p {
-      font-size: 1.4rem;
-    }
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 1rem;
+    padding: 50px 20px;
 
-    .max-content {
-      width: var(--composer-content-width);
-
-      .page {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .badge {
-          color: var(--composer-primary-color);
-          border-radius: 10px;
-          font-size: 0.8rem;
-          background: rgb(244, 244, 244);
-          padding: 3px 5px;
-          display: inline-block;
-        }
-
-        .text-group {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          margin-bottom: 5rem;
-        }
-
-        .down-page {
-          width: 100%;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          flex-wrap: wrap;
-
-          .all-card {
-            width: 100% !important;
-
-            .card {
-              width: 100%;
-              height: 350px;
-              min-width: 180px;
-              min-height: 150px;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              padding-top: 1rem;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              gap: 1rem;
-
-              p {
-                color: var(--composer-primary-color);
-              }
-
-              .profile-image {
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 50%;
-              }
-
-              .icon-group {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 0.6rem;
-
-                img {
-                  object-fit: cover;
-                  width: 20px;
-                  height: 20px;
-                  margin: 0.5rem;
-                }
-              }
-            }
-          }
-        }
-      }
-      h1 {
-        font-size: 2.5rem;
-        font-weight: bold;
-      }
-      p {
-        font-size: 1.4rem;
+    .down-page {
+      gap: 60px !important;
+      .all-card {
+        width: unset !important;
+        flex: 1 1 !important;
       }
     }
   }
 }
+

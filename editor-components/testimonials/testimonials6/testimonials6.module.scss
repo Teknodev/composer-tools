@@ -1,11 +1,10 @@
 .container {
   width: 100%;
-  padding: 50px 0 50px 0;
-  box-shadow: var(--composer-box-shadow);
+  padding: 50px 0;
+
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     display: flex;
-    justify-content: space-around;
     margin: auto;
 
     .testimonials6 {
@@ -13,60 +12,67 @@
       width: 100%;
       h1 {
         text-align: center;
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 40px;
-        margin-bottom: 50px;
+        font-size: 3rem;
+        margin: 0 0 40px 0;
       }
-      .card-child {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        .card {
-          display: grid;
-          margin-bottom: 20px;
-          margin-left: 20px;
-          min-width: 300px;
-          max-width: 300px;
-          height: max-content;
-          border-radius: 20px;
-          background-color: white;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          padding: 20px;
 
-          .profile {
+      section {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+
+        .card-child {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 20px;
+
+          .card {
+            flex: 1 1;
+            min-width: 250px;
+            border-radius: 6px;
+            background-color: white;
+            box-shadow: var(--composer-box-shadow);
+            padding: 20px;
             display: flex;
-            margin-bottom: 20px;
-            img {
-              border-radius: 100%;
-            }
-            .profile-text {
-              margin-left: 20px;
-              h2 {
-                font-weight: 600;
-                font-size: 20px;
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-              }
-              p {
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 15px;
-                text-transform: uppercase;
+            flex-direction: column;
+            .stars {
+              display: flex;
+              gap: 5px;
+              img {
+                width: 15px;
+                height: 15px;
               }
             }
-          }
-          span {
-            font-weight: 200;
-            font-size: 15px;
-            margin-top: 20px;
-            margin-bottom: 40px;
-            margin-left: 0;
-            margin-right: 0;
+
+            .profile {
+              display: flex;
+              img {
+                border-radius: 100%;
+                object-fit: cover;
+              }
+              .profile-text {
+                margin-left: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                h2 {
+                  margin: 0;
+                  font-weight: 600;
+                  font-size: 1.5rem;
+                }
+                p {
+                  margin: 0;
+                  font-size: 1.2rem;
+                  text-transform: uppercase;
+                }
+              }
+            }
+            span {
+              font-size: 1.2rem;
+              margin: 20px 0;
+            }
           }
         }
       }
@@ -74,16 +80,15 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
+    padding: 50px 20px;
+
     .max-content {
       .testimonials6 {
-        text-align: center;
-        margin: 0;
-        h1 {
-          width: 100%;
+        .card {
+          align-items: center;
+          text-align: center;
         }
       }
     }

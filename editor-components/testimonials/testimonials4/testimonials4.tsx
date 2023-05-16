@@ -1,11 +1,6 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials4.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
-
-type Item = {
-  image: string;
-};
 
 class Testimonials4Page extends Testimonials {
   constructor(props?: any) {
@@ -21,13 +16,14 @@ class Testimonials4Page extends Testimonials {
       type: "string",
       key: "longtext",
       displayer: "Long Text",
-      value: PlaceholderFiller.mediumText(),
+      value:
+        "I really like the clean and simple aesthetic of flat design. It's great for creating a modern and minimal look, and it also works well for responsive design since it's easy to adapt to different screen sizes. Plus, the lack of textures and gradients makes it easier to focus on the content itself.",
     });
     this.addProp({
       type: "string",
       key: "name",
       displayer: "Name",
-      value: PlaceholderFiller.string(),
+      value: "Jerrie Corinna",
     });
     this.addProp({
       type: "string",
@@ -42,20 +38,14 @@ class Testimonials4Page extends Testimonials {
   }
 
   render() {
-
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={"max-content"}>
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials4")}>
-            <div className={styles["card"]}>
-              <div className={this.decorateCSS("card-child")}>
-                <h1>{this.getPropValue("longtext")}</h1>
-                <h3>{this.getPropValue("name")}</h3>
-                <h4>{this.getPropValue("rank")}</h4>
-              </div>
+            <div className={this.decorateCSS("card")}>
+              <h1>{this.getPropValue("longtext")}</h1>
+              <h3>{this.getPropValue("name")}</h3>
+              <h4>{this.getPropValue("rank")}</h4>
             </div>
           </div>
         </div>

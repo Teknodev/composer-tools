@@ -15,13 +15,14 @@ class Testimonials7Page extends Testimonials {
     this.addProp({
       type: "string",
       key: "title",
-      value: PlaceholderFiller.string(),
+      value: "Testimonials",
       displayer: "Title",
     });
     this.addProp({
       type: "string",
       key: "description",
-      value: PlaceholderFiller.shortText(),
+      value:
+        "Read what our satisfied customers have to say about their experience with our products/services in these testimonials.",
       displayer: "Description",
     });
     this.addProp({
@@ -48,25 +49,26 @@ class Testimonials7Page extends Testimonials {
                       type: "image",
                       key: "image",
                       value:
-                        "https://www.kingstowncollege.ie/wp-content/uploads/2022/03/team-development-plan.jpeg",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644b8f5bf72de2002caaab58?alt=media&timestamp=1682673510171",
                       displayer: "Image",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''" + PlaceholderFiller.string() + "''",
+                      value: "''DESIGN''",
                       displayer: "Subtitle",
                     },
                     {
                       type: "string",
                       key: "text",
-                      value: PlaceholderFiller.shortText(),
+                      value:
+                        "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
                       displayer: "text",
                     },
                     {
                       type: "string",
                       key: "author",
-                      value: PlaceholderFiller.string(),
+                      value: "Joe Karsyn",
                       displayer: "Author",
                     },
                   ],
@@ -80,25 +82,26 @@ class Testimonials7Page extends Testimonials {
                       type: "image",
                       key: "image",
                       value:
-                        "https://www.kingstowncollege.ie/wp-content/uploads/2022/03/team-development-plan.jpeg",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644b9105f72de2002caaab76?alt=media&timestamp=1682673935647",
                       displayer: "Image",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''" + PlaceholderFiller.string() + "''",
+                      value: "''FINANCE WEBSITE''",
                       displayer: "Subtitle",
                     },
                     {
                       type: "string",
                       key: "text",
-                      value: PlaceholderFiller.shortText(),
+                      value:
+                        "As a software developer, my main responsibility is to design, code, and test software programs that meet the specific needs of clients or organizations.",
                       displayer: "text",
                     },
                     {
                       type: "string",
                       key: "author",
-                      value: PlaceholderFiller.string(),
+                      value: "",
                       displayer: "Author",
                     },
                   ],
@@ -117,10 +120,7 @@ class Testimonials7Page extends Testimonials {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials7")}>
             <h1>{this.getPropValue("title")}</h1>
@@ -128,22 +128,20 @@ class Testimonials7Page extends Testimonials {
             <section>
               {this.castToObject<ISection[]>("card-items").map(
                 (section: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("card-child")}>
-                    {section.items.map((item: any, index: number) => (
-                      <div key={index}>
-                        <div className={this.decorateCSS("card")}>
-                          <div>
-                            <img
-                              width={280}
-                              height={180}
-                              src={item.value[0].value}
-                            />
-                          </div>
-                          <div>
-                            <span>{item.value[1].value}</span>
-                            <h5>{item.value[2].value}</h5>
-                            <span>{item.value[3].value}</span>
-                          </div>
+                  <div
+                    key={`testimonials7-${index}`}
+                    className={this.decorateCSS("card-child")}
+                  >
+                    {section.items.map((item: any, indexCard: number) => (
+                      <div
+                        key={`testimonials7-card-${indexCard}`}
+                        className={this.decorateCSS("card")}
+                      >
+                        <img width={280} height={180} src={item.value[0].value} />
+                        <div className={this.decorateCSS("content")}>
+                          <span>{item.value[1].value}</span>
+                          <h5>{item.value[2].value}</h5>
+                          <span>{item.value[3].value}</span>
                         </div>
                       </div>
                     ))}

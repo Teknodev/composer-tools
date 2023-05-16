@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./faq4.module.scss";
-import { BaseFAQ, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseFAQ } from "../../EditorComponent";
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 type Card = {
@@ -12,25 +12,6 @@ class FaqButton extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
-    let placeholder: TypeUsableComponentProps = {
-      type: "object",
-      key: "items",
-      displayer: "Items",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: PlaceholderFiller.mediumText(),
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: PlaceholderFiller.longText(),
-        },
-      ],
-    };
 
     this.addProp({
       type: "string",
@@ -43,7 +24,7 @@ class FaqButton extends BaseFAQ {
       type: "string",
       key: "text",
       displayer: "Page Title Description",
-      value: PlaceholderFiller.shortText(),
+      value: "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
     });
 
     this.addProp({
@@ -58,10 +39,85 @@ class FaqButton extends BaseFAQ {
       key: "card",
       displayer: "Card",
       value: [
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                "What are the shipping options available?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                "How can I track my order?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's ",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                " What is your return policy?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+            },
+          ],
+        },{
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                " How can I contact customer support?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+            },
+          ],
+        }
       ],
     });
   }
@@ -90,9 +146,9 @@ class FaqButton extends BaseFAQ {
             </div>
             <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("card").map(
-                (card: Card, index: any) => {
+                (card: Card, indexCard: any) => {
                   return (
-                    <div className={this.decorateCSS("card")} key={"card"}>
+                    <div className={this.decorateCSS("card")} key={indexCard}>
                       <div className={this.decorateCSS("child-container")}>
                         <div className={this.decorateCSS("card-title")}>
                           <h3>{card.title}</h3>
@@ -100,17 +156,17 @@ class FaqButton extends BaseFAQ {
                         <div className={this.decorateCSS("icon")}>
                           <img
                             src={
-                              this.activeIndex == index
+                              this.activeIndex == indexCard
                                 ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
                                 : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
                             }
-                            onClick={() => handleButton(index)}
+                            onClick={() => handleButton(indexCard)}
                           />
                         </div>
                       </div>
                       <p
                         className={`${
-                          this.activeIndex == index
+                          this.activeIndex == indexCard
                             ? this.decorateCSS("text")
                             : this.decorateCSS("hide")
                         }`}

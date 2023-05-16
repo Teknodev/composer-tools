@@ -1,217 +1,124 @@
 .container {
   width: 100%;
-  padding: 3rem 0 0 0;
+  padding: 50px 0;
+
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     margin: auto;
-    .page {
-      width: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
 
-      .up-page {
-        width: 100%;
-        margin-bottom: 3rem;
-        padding-left: 4.5rem;
+    .up-page {
+      width: 100%;
 
-        .badge {
-          color: var(--composer-primary-color);
-          border-radius: 10px;
-          font-size: 0.8rem;
-          background: rgb(244, 244, 244);
-          padding: 3px 5px;
-          display: inline-block;
-        }
-
-        .text-group {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          margin-bottom: 2rem;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
+      .badge {
+        color: var(--composer-primary-color);
+        border-radius: 6px;
+        font-size: 0.8rem;
+        background: rgb(244, 244, 244);
       }
 
-      .down-page {
+      .text-group {
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
+        justify-content: center;
+
+        h1 {
+          font-size: 3.5rem;
+          margin: 0 0 12px;
+        }
+
+        p {
+          font-size: 1.5rem;
+          margin: 0 0 40px;
+        }
+      }
+    }
+
+    .down-page {
+      width: 100%;
+      gap: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .all-card {
+        display: flex;
+        justify-content: center;
         flex-wrap: wrap;
-        align-items: center;
+        min-width: 250px;
 
-        .all-card {
+        .card {
+          flex: 1 1;
+          width: 100%;
+          height: 250px;
+          min-width: 250px;
+          min-height: 150px;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          justify-content: space-between;
 
-          .card {
-            width: 350px;
-            height: 350px;
-            min-width: 180px;
-            min-height: 150px;
-            display: flex;
-            flex-direction: column;
-            padding-top: 20px;
-            padding-left: 25%;
-            border-radius: 10px;
-            overflow: hidden;
-            white-space: pre-line;
-            word-break: break-all;
-            text-overflow: ellipsis;
-            margin-bottom: 2rem;
-
+          .top {
             .position {
+              margin: 0;
               font-size: 1.2rem;
               color: var(--composer-primary-color);
             }
 
-            img {
+            h2 {
+              margin: 10px 0;
+            }
+
+            .image {
               width: 80px;
               height: 80px;
               border-radius: 50%;
               object-fit: cover;
-              margin-bottom: 0.5rem;
             }
+          }
 
-            .icon-group {
-              display: flex;
-              gap: 1rem;
+          p {
+            margin: 16px 0;
+            font-size: 1.1rem;
+          }
 
-              img {
-                width: 20px;
-                height: 20px;
-                object-fit: cover;
-              }
+          .icon-group {
+            display: flex;
+            gap: 10px;
+
+            img {
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
             }
           }
         }
       }
     }
-    h3 {
-      font-size: 2rem;
-      margin-bottom: -0.8rem;
-    }
-    h4 {
-      font-size: 1.4rem;
-    }
-    h5 {
-      font-size: 1.2rem;
-    }
+  }
+  h3 {
+    font-size: 2rem;
+    margin-bottom: -0.8rem;
+  }
+  h4 {
+    font-size: 1.4rem;
+  }
+  h5 {
+    font-size: 1.2rem;
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .max-content {
-      width: var(--composer-content-width);
-      max-width: 100%;
-      .page {
-        width: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    padding: 50px 20px;
 
-        .up-page {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 2rem;
-          padding-left: unset;
-
-          .badge {
-            color: var(--composer-primary-color);
-            border-radius: 10px;
-            font-size: 0.8rem;
-            background: rgb(244, 244, 244);
-            padding: 3px 5px;
-            width: fit-content;
-            margin-left: 5px;
-          }
-
-          .text-group {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 2rem;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-          }
-        }
-
-        .down-page {
-          width: 100%;
-          display: flex;
-          justify-content: space-around;
-          flex-wrap: wrap;
-          align-items: center;
-
-          .all-card {
-            width: 100% !important;
-            display: flex !important;
-            justify-content: center !important;
-
-            .card {
-              width: 100%;
-              min-width: unset;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              padding-top: 20px;
-              border-radius: 10px;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              margin: unset;
-              padding-left: unset;
-
-              img {
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                object-fit: cover;
-                margin-bottom: 0.5rem;
-              }
-
-              .icon-group {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 1rem;
-
-                img {
-                  width: 20px;
-                  height: 20px;
-                  margin: 1rem;
-                }
-              }
-            }
-          }
-        }
-      }
-      h3 {
-        font-size: 1.5rem;
-        margin-bottom: -0.8rem;
-      }
-      h4 {
-        font-size: 1.2rem;
-      }
-      h5 {
-        font-size: 1rem;
+    .down-page {
+      gap: 60px !important;
+      .all-card {
+        width: unset !important;
+        flex: 1 1 !important;
       }
     }
   }

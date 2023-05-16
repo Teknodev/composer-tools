@@ -1,0 +1,54 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    .call-to-action8-page {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      width: 100%;
+      padding: 0 100px;
+      .top-child {
+        border-bottom: 1px solid rgb(211, 211, 211);
+        h1 {
+          font-size: 4rem;
+          margin: 0 0 60px 0;
+        }
+      }
+      .bottom-child {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 40px;
+        .card {
+          display: block;
+          position: relative;
+          flex: 1 1;
+          min-width: 250px;
+          h3 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+          }
+          p {
+            font-size: 1.3rem;
+            margin: 10px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    .max-content {
+      .call-to-action8-page {
+        padding: 0 20px;
+        text-align: center;
+        margin: 0;
+      }
+    }
+  }
+}

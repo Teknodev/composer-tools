@@ -4,11 +4,6 @@ import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/plac
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer3.module.scss";
 
-type IconsValues = {
-  socialIcon: string;
-  socialLink: string;
-};
-
 type FooterValues = {
   footerTitle: string;
   footerText: FooterTextValues[];
@@ -43,7 +38,7 @@ class Footer3Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Menu",
             },
             {
               type: "array",
@@ -59,7 +54,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Products",
                     },
                     {
                       type: "page",
@@ -78,7 +73,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Create Website",
                     },
                     {
                       type: "page",
@@ -97,7 +92,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Secure Cloud Hosting",
                     },
                     {
                       type: "page",
@@ -116,7 +111,103 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "Engage Your Audince",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Company",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "About",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Careers",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Support",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Pricing",
                     },
                     {
                       type: "page",
@@ -139,7 +230,7 @@ class Footer3Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Resources",
             },
             {
               type: "array",
@@ -155,7 +246,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Blog",
                     },
                     {
                       type: "page",
@@ -174,7 +265,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Ebooks",
                     },
                     {
                       type: "page",
@@ -193,7 +284,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Whitepapers",
                     },
                     {
                       type: "page",
@@ -212,7 +303,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Website Grader",
                     },
                     {
                       type: "page",
@@ -235,7 +326,7 @@ class Footer3Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Get Help",
             },
             {
               type: "array",
@@ -251,7 +342,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Help Center",
                     },
                     {
                       type: "page",
@@ -270,7 +361,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Contact Us",
                     },
                     {
                       type: "page",
@@ -289,7 +380,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Privacy Policy",
                     },
                     {
                       type: "page",
@@ -308,103 +399,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "footer-title",
-          displayer: "Footer Column",
-          value: [
-            {
-              type: "string",
-              key: "footerTitle",
-              displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
-            },
-            {
-              type: "array",
-              key: "footerText",
-              displayer: "Footer Text",
-              value: [
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: PlaceholderFiller.string(),
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: PlaceholderFiller.string(),
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: PlaceholderFiller.string(),
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Login",
                     },
                     {
                       type: "page",
@@ -428,24 +423,23 @@ class Footer3Page extends BaseFooter {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("logo")}>
               <img src={this.getPropValue("logo")} width={200} height={100} />
             </div>
             <div className={this.decorateCSS("items")}>
-              {this.castToObject<any[]>("footer").map((item: FooterValues) => (
-                <ul className={this.decorateCSS("list-group")}>
+              {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => (
+                <ul key={indexFooter} className={this.decorateCSS("list-group")}>
                   <li className={this.decorateCSS("title")}>
                     <h2>{item.footerTitle}</h2>
                   </li>
-                  {item.footerText.map((v: FooterTextValues) => (
-                    <ComposerLink path={v.path}>
-                      <li className={this.decorateCSS("text")}>{v.footerText}</li>
+                  {item.footerText.map((v: FooterTextValues, indexFooterText: number) => (
+                    <ComposerLink key={indexFooterText} path={v.path}>
+                      <li className={this.decorateCSS("text")}>
+                        {v.footerText}
+                      </li>
                     </ComposerLink>
                   ))}
                 </ul>

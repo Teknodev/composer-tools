@@ -1,7 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
-import { BaseCard, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseCard } from "../../EditorComponent";
 import styles from "./card5.module.scss";
 
 type Features = {
@@ -14,41 +13,16 @@ type Features = {
 class Card5 extends BaseCard {
   constructor(props?: any) {
     super(props, styles);
-    let card: TypeUsableComponentProps = {
-      type: "object",
-      key: "features",
-      displayer: "Features",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          value: PlaceholderFiller.string(),
-          displayer: "Title",
-        },
-        {
-          type: "string",
-          key: "description",
-          value: PlaceholderFiller.shortText(),
-          displayer: "Description",
-        },
-        {
-          type: "image",
-          key: "image",
-          value: "https://static.thenounproject.com/png/105256-200.png",
-          displayer: "Image",
-        },
-      ],
-    };
     this.addProp({
       type: "string",
       key: "card-title",
-      value: PlaceholderFiller.string(),
+      value: "Card",
       displayer: "Card Title",
     });
     this.addProp({
       type: "string",
       key: "card-button",
-      value: PlaceholderFiller.string(),
+      value: "Learn More",
       displayer: "Card Button Text",
     });
     this.addProp({
@@ -62,9 +36,87 @@ class Card5 extends BaseCard {
       key: "features-card",
       displayer: "Features Card",
       value: [
-        JSON.parse(JSON.stringify(card)),
-        JSON.parse(JSON.stringify(card)),
-        JSON.parse(JSON.stringify(card)),
+        {
+          type: "object",
+          key: "features",
+          displayer: "Features",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "Explore the Latest Tech Gadgets",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "From the newest smartphones to the latest smart home devices, our website features a wide range of tech gadgets to suit every need and budget. Browse our cards to discover the latest tech innovations and stay up-to-date with the ever-evolving world of technology.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://www.re-thinkingthefuture.com/wp-content/uploads/2021/01/A2797-10-must-have-gadgets-for-every-architect.jpg",
+              displayer: "Image",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "features",
+          displayer: "Features",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "Top 5 Hiking Trails in the Pacific Northwest",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "If you love hiking and exploring the great outdoors, you won't want to miss these top 5 hiking trails in the Pacific Northwest. From scenic coastal hikes to challenging mountain treks, these trails offer stunning views and unforgettable experiences.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://koa.com/blog/images/diablo-lake-north-cascades-national-park.jpg?preset=blogPhoto",
+              displayer: "Image",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "features",
+          displayer: "Features",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "5 Easy DIY Home Decor Projects",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "Want to give your home a fresh new look without breaking the bank? these 5 easy DIY home decor projects that you can do yourself! From creating a gallery wall to adding a pop of color with a painted accent piece, these projects are simple and affordable update home decor.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://imageio.forbes.com/specials-images/imageserve/6123b033133106144df23946/0x0.jpg?format=jpg&width=1200",
+              displayer: "Image",
+            },
+          ],
+        },
       ],
     });
   }
@@ -75,39 +127,18 @@ class Card5 extends BaseCard {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")} >
-            <div className={this.decorateCSS("title")} >
-              <h1>{this.getPropValue("card-title")}</h1>
-            </div>
+          <div className={this.decorateCSS("content")}>
+            <h1>{this.getPropValue("card-title")}</h1>
 
             <div className={this.decorateCSS("card")}>
               {this.castToObject<Features[]>("features-card").map(
                 (features: any, index: number) => (
-                  <div
-                    className={this.decorateCSS("features")}
-                    
-                    key={index}
-                  >
-                    <img
-                      className={this.decorateCSS("image")}
-                      
-                      src={features.image}
-                    ></img>
-                    <h3
-                      className={this.decorateCSS("title")}
-                      
-                    >
-                      {features.title}
-                    </h3>
-                    <p
-                      className={this.decorateCSS("long-text")}
-                      
-                    >
+                  <div className={this.decorateCSS("features")} key={index}>
+                    <img className={this.decorateCSS("image")} src={features.image}></img>
+                    <h3 className={this.decorateCSS("title")}>{features.title}</h3>
+                    <p className={this.decorateCSS("long-text")}>
                       {features.description}
                     </p>
                   </div>
@@ -115,7 +146,7 @@ class Card5 extends BaseCard {
               )}
             </div>
 
-            <div className={this.decorateCSS("button")} >
+            <div className={this.decorateCSS("button")}>
               <ComposerLink path={this.getPropValue("link")}>
                 {this.getPropValue("card-button")}
               </ComposerLink>

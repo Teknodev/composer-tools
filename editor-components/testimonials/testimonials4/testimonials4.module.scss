@@ -1,11 +1,10 @@
 .container {
   width: 100%;
+  padding: 50px 0;
 
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     display: flex;
-    justify-content: space-around;
-    padding: 50px 0 50px 0;
     margin: auto;
 
     .testimonials4 {
@@ -14,62 +13,36 @@
 
       .card {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        background-repeat: no-repeat;
-        background-size: cover;
         width: 100%;
-        padding: 10px;
-        .card-child {
-          filter: blur(10px);
-          padding: 2rem;
-          h1 {
-            font-size: 30px;
-            font-weight: 400;
-            margin-bottom: 60px;
-            color: white;
-            word-break: break-all;
-          }
-          h3 {
-            margin: 5px 0;
-            opacity: 0.9;
-            font-size: 20px;
-            color: white;
-            word-break: break-all;
-          }
-          h4 {
-            margin: 5px 0;
-            opacity: 0.6;
-            font-weight: 100;
-            color: white;
-            word-break: break-all;
-            font-size: 15px;
-          }
+
+        h1 {
+          font-size: 2rem;
+        }
+        h3 {
+          opacity: 0.9;
+          font-size: 1.5rem;
+          margin: 20px 0 5px 0;
+        }
+        h4 {
+          opacity: 0.6;
+          font-weight: 100;
+          font-size: 1rem;
+          margin: 0;
         }
       }
     }
   }
-
 }
 
-@media only screen and (max-width: 1250px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
+    padding: 50px 20px;
     .max-content {
-      width: var(--composer-content-width);
-
       .testimonials4 {
         text-align: center;
-        margin: 0;
-        padding: 0;
-        
-      .card {
-        .card-child {
-          width: 100%;
-        }
-        }
       }
     }
-
   }
 }

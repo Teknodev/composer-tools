@@ -16,13 +16,13 @@ class LogoComp2Page extends LogoClouds {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit",
+      value: "Logo Clouds",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "description",
-      value: PlaceholderFiller.shortText(),
+      value: "Sponsors can range from small local businesses to multinational corporations and can sponsor everything from sports teams to music festivals to non-profit organizations.",
     });
     this.addProp({
       type: "array",
@@ -43,28 +43,28 @@ class LogoComp2Page extends LogoClouds {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1683297977192",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1683297977192",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1683297977192",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf053?alt=media&timestamp=1683297977192",
                   displayer: "Image",
                 },
               ],
@@ -85,28 +85,28 @@ class LogoComp2Page extends LogoClouds {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf052?alt=media&timestamp=1683297977192",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf051?alt=media&timestamp=1683297977192",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf050?alt=media&timestamp=1683297977192",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://thefocaltimes.com/wp-content/uploads/2021/10/LOGOIPSUM-01.png",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf04f?alt=media&timestamp=1683297977192",
                   displayer: "Image",
                 },
               ],

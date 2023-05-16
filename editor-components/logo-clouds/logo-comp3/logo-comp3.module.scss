@@ -1,60 +1,37 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 50px 0 50px 0;
+  padding: 50px 0;
   box-shadow: var(--composer-box-shadow);
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    margin: auto;
     .logo-comp3-page {
       display: block;
       width: 100%;
       h1 {
-        margin: 0 auto 10px auto;
+        margin: 30px 0;
         text-align: center;
-        width: 60%;
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 35px;
-        margin-top: 20px;
+        font-size: 3rem;
         text-transform: uppercase;
       }
       h3 {
         width: 100%;
-        margin: 0 auto 10px auto;
+        margin: 0;
         text-align: center;
-        width: 60%;
-        font-weight: 400;
-        line-height: 1.4;
-        margin-bottom: 40px;
         text-transform: uppercase;
       }
       .image-child {
+        display: flex;
         width: 100%;
         align-items: center;
-        img {
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        .image {
           background-color: white;
           box-shadow: var(--composer-box-shadow);
-          margin-left: 20px;
-          margin-bottom: 20px;
-          border-radius: 15px;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .container {
-    flex-direction: column;
-    gap: 20px;
-    .max-content {
-      .logo-comp3-page {
-        text-align: center;
-        margin: 0;
-        h1,
-        h3 {
-          width: 100%;
+          border-radius: 6px;
+          object-fit: contain;
         }
       }
     }

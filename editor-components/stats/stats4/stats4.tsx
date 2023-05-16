@@ -11,13 +11,13 @@ class Stats4Page extends BaseStats {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit amet consectetur",
+      value: "User Statistics on the Website",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: PlaceholderFiller.shortText(),
+      value: "Understanding user behavior on a website is important for improving user experience and engagement.",
     });
     this.addProp({
       type: "string",
@@ -29,14 +29,14 @@ class Stats4Page extends BaseStats {
       type: "string",
       key: "topCardDescription",
       displayer: "Top Card Description",
-      value: "Lorem ipsum dolor sit amet",
+      value: "sign up daily",
     });
     this.addProp({
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
       value:
-        "https://img.freepik.com/free-photo/vertical-shot-road-with-magnificent-mountains-blue-sky-captured-california_181624-44891.jpg?w=2000",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644b7bc3f72de2002caaa9a2?alt=media&timestamp=1682668493790",
     });
 
     this.addProp({
@@ -49,7 +49,7 @@ class Stats4Page extends BaseStats {
       type: "string",
       key: "bottomCardDescription",
       displayer: "Bottom Card Description",
-      value: "Lorem ipsum dolor sit amet",
+      value: "daily total sales",
     });
   }
 

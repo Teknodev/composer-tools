@@ -17,8 +17,7 @@ class Form1 extends BaseContacts {
     this.addProp({
       type: "image",
       displayer: "Image",
-      value:
-        "https://img.freepik.com/free-vector/organic-flat-man-customer-support_23-2148893295.jpg?w=1380&t=st=1676887003~exp=1676887603~hmac=abdac364434d1a9dd93276315c3c25c0ac0383484d75a4686e899022d1de8312",
+      value:"https://img.freepik.com/free-vector/organic-flat-man-customer-support_23-2148893295.jpg?w=1380&t=st=1676887003~exp=1676887603~hmac=abdac364434d1a9dd93276315c3c25c0ac0383484d75a4686e899022d1de8312",
       key: "image",
     });
 

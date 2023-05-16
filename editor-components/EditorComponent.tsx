@@ -37,6 +37,7 @@ export type TypeUsableComponentProps = {
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
+  completion?: string;
 } & AvailablePropTypes & {
     getPropValue?: (propName: string) => any;
   };
@@ -54,11 +55,11 @@ export enum CATEGORIES {
   BOXES = "boxes",
   FORM = "form",
   DOWNLOAD = "download",
-  CALLTOACTION = "call To Action",
+  CALLTOACTION = "callToAction",
   SLIDER = "slider",
   FAQ = "faq",
   MODAL = "modal",
-  LOGOCLOUDS = "logo Clouds",
+  LOGOCLOUDS = "logoClouds",
   STATS = "stats",
 }
 
@@ -237,9 +238,9 @@ export abstract class BaseFooter extends Component {
   constructor(props: any, styles: any) {
     super(props, styles);
   }
-
+  
   insertForm(name: string, data: Object) {
-    const project = getProjectHook();
+    const project = getProjectHook()._id;
     let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
     return axios.request(config).then((r: any) => r.data);
   }

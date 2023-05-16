@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials5.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 type Item = {
   image: string;
@@ -15,7 +14,7 @@ class Testimonials5Page extends Testimonials {
     this.addProp({
       type: "string",
       key: "title",
-      value: PlaceholderFiller.string(),
+      value: "Testimonials",
       displayer: "title",
     });
     this.addProp({
@@ -39,28 +38,28 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://www.clipartmax.com/png/full/336-3368343_image-result-for-5-5-stars-clipart-blue-five-star-rating-blue.png",
-                      displayer: "Image",
+                      type: "string",
+                      key: "star",
+                      value: "5",
+                      displayer: "Star",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''" + PlaceholderFiller.string() + "''",
+                      value: "''DESIGN''",
                       displayer: "Subtitle",
                     },
                     {
                       type: "string",
                       key: "text",
-                      value: PlaceholderFiller.shortText(),
+                      value:
+                        "Their communication skills were top-notch, and they made sure to keep us informed throughout the entire process.",
                       displayer: "text",
                     },
                     {
                       type: "string",
                       key: "author",
-                      value: PlaceholderFiller.string(),
+                      value: "Derren Avalon",
                       displayer: "Author",
                     },
                   ],
@@ -71,28 +70,28 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://www.clipartmax.com/png/full/336-3368343_image-result-for-5-5-stars-clipart-blue-five-star-rating-blue.png",
-                      displayer: "Image",
+                      type: "string",
+                      key: "star",
+                      value: "5",
+                      displayer: "Star",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''" + PlaceholderFiller.string() + "''",
+                      value: "''LEARNING PLATFORM''",
                       displayer: "Subtitle",
                     },
                     {
                       type: "string",
                       key: "text",
-                      value: PlaceholderFiller.shortText(),
+                      value:
+                        "An online learning platform can provide access to educational content from anywhere with an internet connection.",
                       displayer: "text",
                     },
                     {
                       type: "string",
                       key: "author",
-                      value: PlaceholderFiller.string(),
+                      value: "Jaylyn Kaleigh",
                       displayer: "Author",
                     },
                   ],
@@ -103,28 +102,28 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://www.clipartmax.com/png/full/336-3368343_image-result-for-5-5-stars-clipart-blue-five-star-rating-blue.png",
-                      displayer: "Image",
+                      type: "string",
+                      key: "star",
+                      value: "5",
+                      displayer: "Star",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''" + PlaceholderFiller.string() + "''",
+                      value: "''FINANCE WEBSITE''",
                       displayer: "Subtitle",
                     },
                     {
                       type: "string",
                       key: "text",
-                      value: PlaceholderFiller.shortText(),
+                      value:
+                        "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
                       displayer: "text",
                     },
                     {
                       type: "string",
                       key: "author",
-                      value: PlaceholderFiller.string(),
+                      value: "Candyce Jeannine",
                       displayer: "Author",
                     },
                   ],
@@ -135,28 +134,28 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://www.clipartmax.com/png/full/336-3368343_image-result-for-5-5-stars-clipart-blue-five-star-rating-blue.png",
-                      displayer: "Image",
+                      type: "string",
+                      key: "star",
+                      value: "5",
+                      displayer: "Star",
                     },
                     {
                       type: "string",
                       key: "subtitle",
-                      value: "''" + PlaceholderFiller.string() + "''",
+                      value: "''E-COMMERCE''",
                       displayer: "Subtitle",
                     },
                     {
                       type: "string",
                       key: "text",
-                      value: PlaceholderFiller.shortText(),
+                      value:
+                        "An e-commerce website can provide a platform for businesses to sell their products online.",
                       displayer: "text",
                     },
                     {
                       type: "string",
                       key: "author",
-                      value: PlaceholderFiller.string(),
+                      value: "Kasey Kim",
                       displayer: "Author",
                     },
                   ],
@@ -175,35 +174,34 @@ class Testimonials5Page extends Testimonials {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials5")}>
             <h1>{this.getPropValue("title")}</h1>
-            <section>
-              {this.castToObject<ISection[]>("card-items").map(
-                (section: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("card-child")}>
-                    {section.items.map((item: any, index: number) => (
-                      <div key={index}>
-                        <div className={this.decorateCSS("card")}>
-                          <img
-                            width={120}
-                            height={20}
-                            src={item.value[0].value}
-                          />
-                          <span>{item.value[1].value}</span>
-                          <h5>{item.value[2].value}</h5>
-                          <span>{item.value[3].value}</span>
-                        </div>
+            {this.castToObject<ISection[]>("card-items").map(
+              (section: any, index: number) => (
+                <div
+                  key={`testimonials5-${index}`}
+                  className={this.decorateCSS("card-child")}
+                >
+                  {section.items.map((item: any, indexCard: number) => (
+                    <div
+                      key={`testimonials5-card-${indexCard}`}
+                      className={this.decorateCSS("card")}
+                    >
+                      <div className={styles["stars"]}>
+                        {[...Array(Number(item.value[0].value))].map((item: any, index: number) => (
+                          <img key={`star-testimonials5${index}`} src="https://cdn-icons-png.flaticon.com/512/118/118669.png"/>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                )
-              )}
-            </section>
+                      <span>{item.value[1].value}</span>
+                      <h5>{item.value[2].value}</h5>
+                      <span>{item.value[3].value}</span>
+                    </div>
+                  ))}
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>

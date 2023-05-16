@@ -1,19 +1,20 @@
 .container {
   width: 100%;
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
     margin: auto;
-    nav {
+    .navigator {
       display: flex;
-      height: 66px;
       align-items: center;
       width: 100%;
       justify-content: space-between;
-      padding: 50px 20px;
+      padding: 20px;
+      height: fit-content;
       .items {
         display: flex;
         gap: 15px;
         h3 {
+          cursor: pointer;
           margin-top: 35px;
           transition: all 0.5s;
           font-weight: 200;
@@ -29,7 +30,7 @@
           transition: all 0.5s;
           background-color: var(--composer-primary-color);
           border: 1px solid var(--composer-primary-color);
-          border-radius: 10px;
+          border-radius: 6px;
           font-size: 15px;
           font-weight: 700;
           color: white;
@@ -46,10 +47,52 @@
   }
 }
 
+.container-sticky {
+  @extend .container;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
 @media only screen and (max-width: 1400px) {
   .container {
-    nav {
+    .max-content {
+      max-width: 100%;
+      .navigator {
+        padding: 20px;
+      }
+    }
+  }
+}
 
+@media only screen and (max-width: 1100px) {
+  .container {
+    .max-content {
+      max-width: 100%;
+      .navigator {
+        display: block;
+        text-align: center;
+        .items {
+          width: max-content;
+          margin: 0 auto 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  .container {
+    .max-content {
+      .navigator {
+        display: block;
+        text-align: center;
+        .items {
+          display: block;
+          width: max-content;
+          margin: 0 auto 0 auto;
+        }
+      }
     }
   }
 }

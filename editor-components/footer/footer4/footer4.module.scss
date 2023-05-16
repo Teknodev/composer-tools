@@ -1,12 +1,14 @@
 .container {
   width: 100%;
-  box-shadow: var(--composer-box-shadow);
-
+  padding: 50px 0;
+  
   .max-content {
-    width: var(--composer-content-width);
+    max-width: var(--composer-content-width);
+    box-shadow: var(--composer-box-shadow);
     margin: auto;
 
     .footer-page {
+      padding: 20px;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -20,24 +22,24 @@
         align-items: center;
         h1 {
           width: 100%;
-          margin-top: 38px;
-          font-weight: 200;
-          font-size: 30px;
+          font-size: 2.5rem;
           text-align: center;
+          margin-top: 0;
         }
         button {
           cursor: pointer;
           transition: all 0.5s;
-          border: 1px solid white;
+          border: 1px solid var(--composer-primary-color);
           padding: 10px 20px;
-          color: var(--composer-primary-color);
-          background-color: white;
-          border-radius: 10px;
-          font-size: 18px;
+          color: #fff;
+          border-radius: 6px;
+          font-size: 1.5rem;
           font-weight: 600;
+          background-color: var(--composer-primary-color);
           &:hover {
-            color: white;
             background-color: transparent;
+            color: var(--composer-primary-color);
+            border: 1px solid var(--composer-primary-color);
           }
         }
       }
@@ -45,29 +47,31 @@
         display: flex;
         width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+
+
         .list-group {
+          flex: 1 1;
+          min-width: 250px;
           list-style: none;
           padding: 0;
           margin: 0;
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-top: 20px;
-          width: 300px;
+          gap: 10px;
+          
           .title {
             h2 {
               font-weight: 200;
-              font-size: 20px;
+              font-size: 1.8rem;
             }
           }
           .text {
             text-decoration: none;
-            color: white;
-            font-size: 16px;
-            font-weight: 100;
-            margin-left: 3px;
-            margin-top: 7px;
-            font-family: system-ui;
+            font-size: 1.2rem;
+            color: black;
           }
         }
       }
@@ -76,7 +80,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-bottom: 40px;
+      
       h2 {
         font-weight: 200;
       }
@@ -84,87 +88,22 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
-  
-    .max-content {
-      width: var(--composer-content-width);
-      margin: auto;
-  
-      .footer-page {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-wrap: wrap;
-  
-        .subscribe {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          h1 {
-            width: 100%;
-            margin-top: 38px;
-            font-weight: 200;
-            font-size: 30px;
-            text-align: center;
-          }
-          button {
-            cursor: pointer;
-            transition: all 0.5s;
-            border: 1px solid white;
-            padding: 10px 20px;
-            color: var(--composer-primary-color);
-            background-color: white;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            &:hover {
-              color: white;
-              background-color: transparent;
-            }
-          }
-        }
-        .items {
-          display: flex;
-          width: 100%;
-          justify-content: center;
-          .list-group {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-            width: 300px;
-            .title {
-              h2 {
-                font-weight: 200;
-                font-size: 20px;
-              }
-            }
-            .text {
-              text-decoration: none;
-              color: white;
-              font-size: 16px;
-              font-weight: 100;
-              margin-left: 3px;
-              margin-top: 7px;
-              font-family: system-ui;
-            }
-          }
-        }
+    padding: 50px 20px;
+
+    .subscribe {
+      h1{
+        font-size: 2rem !important; 
       }
-      .footer-bottom {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 40px;
+      button {
+        font-size: 1.2rem !important;
+      }
+    }
+    .list-group {
+      .title {
         h2 {
-          font-weight: 200;
+          font-size: 1.5rem !important;
         }
       }
     }

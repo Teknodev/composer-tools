@@ -1,82 +1,78 @@
 .container {
   width: 100%;
-  padding: 20px 0 20px 0;
-  .max-content {
-    width: var(--composer-content-width);
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: auto;
+  padding: 50px 0;
 
-    .feature-accordion {
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .badge-list {
       display: flex;
       flex-direction: column;
       box-shadow: var(--composer-box-shadow);
-      border-top: 5px solid var(--composer-primary-color);
-      border-radius: 5px;
       height: max-content;
-      padding: 0 20px;
-      min-width: 300px;
-      margin: 15px 0 15px 0;
+      min-width: 250px;
+      flex: 1 1;
+      border-radius: 6px;
+      overflow: hidden;
+
       .title {
+        color: white;
         display: block;
+        background-color: var(--composer-primary-color);
         font-weight: bold;
-        max-width: 150px;
-        padding: 0;
-        margin-bottom: 5px;
+        max-width: 100%;
+        margin: 0;
+        padding: 10px 20px;
+        .badge {
+          float: right;
+          height: 17px;
+          min-width: 15px;
+          max-width: 100px;
+          padding: 3px 6px;
+          line-height: 1.2;
+          white-space: nowrap;
+          vertical-align: middle;
+          font-size: 1rem;
+          color: black;
+          background: white;
+          text-align: center;
+          border-radius: 100%;
+        }
       }
-      hr {
+      .list-group {
         display: block;
-        width: 25%;
-        margin: 0 30px 20px 0;
-        border: 1px solid var(--composer-primary-color);
+        margin: 0;
+        list-style-type: none;
         padding: 0;
-      }
-      .accordion-wrapper {
-        border-radius: 8px;
-        overflow: hidden;
-        width: 600px;
-        margin: 0 auto;
-        padding-bottom: 50px;
-        .accordion {
-          width: 100%;
-          color: white;
-          overflow: hidden;
-          &:last-child {
-            margin-bottom: 0;
+        .list-item {
+          padding: 20px;
+          cursor: pointer;
+          color: black;
+          background-color: white;
+          transition: all 0.5s;
+          border-bottom: 1px solid rgb(245, 245, 245);
+          &:hover {
+            background-color: rgb(252, 252, 252);
           }
-          .accordion-label {
-            display: flex;
-            -webkit-box-pack: justify;
-            justify-content: space-between;
-            font-weight: 600;
-            padding: 16px;
-            color: rgba(0, 0, 0, 0.85);
-            border-bottom: 1px rgba(0, 0, 0, 0.15) solid;
-            cursor: pointer;
-          }
-          .accordion-content {
-            max-height: 0;
-            padding: 0 16px;
-            background: white;
-            -webkit-transition: all 0.3s;
-            transition: all 0.3s;
-            p {
-              margin: 0;
-              color: var(--composer-primary-color);
-              font-size: 18px;
-            }
-          }
-          input:checked + .accordion-label::after {
-            -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
-          }
-          input:checked ~ .accordion-content {
-            max-height: 100vh;
-            padding: 16px;
-          }
-          input[type="radio"] {
-            visibility: hidden;
+          .badge {
+            float: right;
+            height: 16px;
+            min-width: 20px;
+            max-width: 100px;
+            padding: 3px 6px;
+            line-height: 1.2;
+            white-space: nowrap;
+            vertical-align: middle;
+            font-size: 1rem;
+            color: #fff;
+            background: var(--composer-primary-color);
+            text-align: center;
+            border-radius: 3px;
           }
         }
       }
@@ -84,13 +80,8 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .max-content {
-      .feature-accordion {
-      }
-    }
+    padding: 50px 20px;
   }
 }
