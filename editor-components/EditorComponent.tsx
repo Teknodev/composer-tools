@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { getPublishedProject } from "../custom-hooks/project";
+import { getProjectHook } from "../custom-hooks/project";
 
 type TypeCSSProp = { [key: string]: {id:string, class: string}[] };
 export type iComponent = {
@@ -316,7 +316,7 @@ export abstract class BaseContacts extends Component {
   }
 
   insertForm(name: string, data: Object) {
-    const project = getPublishedProject()._id;
+    const project = getProjectHook()._id;
     let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
     return axios.request(config).then((r: any) => r.data);
   }
