@@ -237,6 +237,12 @@ export abstract class BaseFooter extends Component {
   constructor(props: any, styles: any) {
     super(props, styles);
   }
+
+  insertForm(name: string, data: Object) {
+    const project = getProjectHook();
+    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class Team extends Component {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/link";
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
-import { BaseContacts, BaseFooter } from "../../EditorComponent";
+import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer1.module.scss";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -21,7 +21,7 @@ type FooterTextValues = {
   path: string;
 };
 
-class Footer1Page extends BaseContacts {
+class Footer1Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
