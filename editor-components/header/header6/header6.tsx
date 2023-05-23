@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header6.module.scss";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Header6 extends BaseHeader {
   constructor(props?: any) {

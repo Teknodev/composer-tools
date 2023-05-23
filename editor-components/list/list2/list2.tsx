@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseList } from "../../EditorComponent";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list2.module.scss";
 
 class List2 extends BaseList {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Header1 extends BaseHeader {
   constructor(props?: any) {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./slider1.module.scss";
 import Slider from "react-slick";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface Button {
   buttonText: string;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar1.module.scss";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 
 class Navbar1 extends BaseNavigator {

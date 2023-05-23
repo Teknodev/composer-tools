@@ -1,5 +1,5 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar3.module.scss";
 

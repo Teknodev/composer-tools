@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./faq3.module.scss";
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseFAQ } from "../../EditorComponent";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   cardTitle: string;

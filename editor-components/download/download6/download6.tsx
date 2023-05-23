@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./download6.module.scss";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
 
 type Button = {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table1.module.scss";
 

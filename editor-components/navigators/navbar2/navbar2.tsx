@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar2.module.scss";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Navbar2 extends BaseNavigator {
   constructor(props?: any) {
