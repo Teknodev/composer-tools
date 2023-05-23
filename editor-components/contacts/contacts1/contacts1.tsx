@@ -22,7 +22,7 @@ class Contacts1Page extends BaseContacts {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: PlaceholderFiller.shortText(),
+      value: "You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form.",
     });
     this.addProp({
       type: "array",
@@ -48,7 +48,7 @@ class Contacts1Page extends BaseContacts {
                       type: "image",
                       key: "image",
                       value:
-                        "https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb8c5fba070002b74a852?alt=media&timestamp=1684846790397",
                       displayer: "Image",
                     },
                     {
@@ -60,13 +60,13 @@ class Contacts1Page extends BaseContacts {
                     {
                       type: "string",
                       key: "1th-text",
-                      value: "lorem@mail.com",
+                      value: "27 13 Lowe Haven",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "2th-text",
-                      value: "support@mail.com",
+                      value: "28 14 Lowe Haven",
                       displayer: "2th Text",
                     },
                   ],
@@ -79,25 +79,25 @@ class Contacts1Page extends BaseContacts {
                     {
                       type: "image",
                       key: "image",
-                      value: "https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png",
+                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb37dfba070002b74a624?alt=media&timestamp=1684845438304",
                       displayer: "Image",
                     },
                     {
                       type: "string",
                       key: "title",
-                      value: PlaceholderFiller.string(),
+                      value: "Phone",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "1th-text",
-                      value: "lorem@mail.com",
+                      value: "111 345 45 99",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "2th-text",
-                      value: "support@mail.com",
+                      value: "111 346 45 99",
                       displayer: "2th Text",
                     },
                   ],
@@ -117,19 +117,19 @@ class Contacts1Page extends BaseContacts {
                     {
                       type: "string",
                       key: "card-title",
-                      value: PlaceholderFiller.string(),
+                      value: "Email",
                       displayer: "Card Title",
                     },
                     {
                       type: "string",
                       key: "1th-text",
-                      value: "lorem@mail.com",
+                      value: "business@info.com",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "2th-text",
-                      value: "support@mail.com",
+                      value: "support@info.com",
                       displayer: "2th Text",
                     },
                   ],
@@ -162,9 +162,9 @@ class Contacts1Page extends BaseContacts {
                   <div key={index} className={this.decorateCSS("card-child")}>
                     {section.items.map((item: any, index: number) => (
                       <div key={index} className={this.decorateCSS("card")}>
-                        <center>
+                        <div className={this.decorateCSS("img-child")}>
                           <img className={this.decorateCSS("image")} width={80} height={80} src={item.value[0].value} />
-                        </center>
+                        </div>
                         <h2>{item.value[1].value}</h2>
                         <h4>{item.value[2].value}</h4>
                         <h4>{item.value[3].value}</h4>
