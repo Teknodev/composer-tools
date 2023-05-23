@@ -108,6 +108,11 @@
               display: flex;
               gap: 3px;
 
+              img {
+                width: 20px;
+                height: 20px;
+              }
+
               .star {
                 color: var(--composer-primary-color);
               }

@@ -196,8 +196,8 @@ class PricingTable5 extends BasePricingTable {
                   {pricing.title}
                   <div className={this.decorateCSS("stars")}>
                     {[...Array(Number(pricing.stars))].map(
-                      (item: any, index: number) => (
-                        <img src="https://cdn-icons-png.flaticon.com/512/118/118669.png"/>
+                      (item: any, indexStars: number) => (
+                        <img key={`stars-${indexStars}`} src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
                       )
                     )}
                   </div>

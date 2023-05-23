@@ -40,8 +40,10 @@
               padding: 12px 22px;
               cursor: pointer;
               transition: 0.5s;
-              svg {
+              img {
                 margin-right: 10px;
+                width: 20px;
+                height: 20px;
               }
               &:hover {
                 background-color: var(--composer-primary-color);

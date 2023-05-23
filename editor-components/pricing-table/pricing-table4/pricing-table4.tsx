@@ -5,7 +5,6 @@ import {
   TypeUsableComponentProps,
 } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import CheckIcon from "@mui/icons-material/Check";
 
 type Pricing = {
   title1: string;

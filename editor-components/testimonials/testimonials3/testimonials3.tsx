@@ -134,7 +134,7 @@ class Testimonials3Page extends Testimonials {
                     >
                       <div className={styles["stars"]}>
                         {[...Array(Number(item.value[0].value))].map((item: any, index: number) => (
-                          <img key={`star-testimonials3${index}`} src="https://cdn-icons-png.flaticon.com/512/118/118669.png" />
+                          <img key={`star-testimonials3${index}`} src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
                         ))}
                       </div>
                       <span>{item.value[1].value}</span>

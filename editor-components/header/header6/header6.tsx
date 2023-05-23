@@ -169,7 +169,7 @@ class Header6 extends BaseHeader {
                       <div key={indexItemData} className={this.decorateCSS("col")}>
                         <ComposerLink path={itemData.value[1].value}>
                           <div className={this.decorateCSS("box")}>
-                            <VerifiedIcon />
+                            <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
                             {itemData.value[0].value}
                           </div>
                         </ComposerLink>

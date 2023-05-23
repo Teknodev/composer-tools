@@ -3,7 +3,6 @@ import styles from "./pricing-table6.module.scss";
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import CheckIcon from '@mui/icons-material/Check';
 
 type Pricing = {
   cardTitle1: string;

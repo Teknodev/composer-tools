@@ -98,12 +98,14 @@
           display: flex;
           justify-content: space-between;
           padding: 10px 25px;
-          svg {
+          .img-hamburger {
             cursor: pointer;
             transition: 0.4s;
             font-weight: 100;
             font-size: 30px;
             margin: auto 0 auto 0;
+            width: 25px;
+            height: 25px;
             &:hover {
               transform: rotate(90deg);
             }
