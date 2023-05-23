@@ -2,8 +2,6 @@ import * as React from "react";
 import styles from "./download10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 type Button = {
   buttonText1: string;
