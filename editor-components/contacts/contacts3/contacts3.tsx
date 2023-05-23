@@ -22,7 +22,7 @@ class Contacts3Page extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Lorem ipsum dolor sit amet consectetur",
+      value: "Contact Us",
     });
     this.addProp({
       type: "string",
@@ -67,13 +67,13 @@ class Contacts3Page extends BaseContacts {
             {
               type: "string",
               key: "Text1th",
-              value: "info@mail.com",
+              value: "business@info.com",
               displayer: "1th Text",
             },
             {
               type: "string",
               key: "Text2th",
-              value: "support@mail.com",
+              value: "support@info.com",
               displayer: "2th Text",
             },
           ],
@@ -92,13 +92,13 @@ class Contacts3Page extends BaseContacts {
             {
               type: "string",
               key: "Text1th",
-              value: "+1 111 2222 333",
+              value: "111 345 45 99",
               displayer: "1th Text",
             },
             {
               type: "string",
               key: "Text2th",
-              value: "+1 111 2222 333",
+              value: "111 346 45 99",
               displayer: "2th Text",
             },
           ],
