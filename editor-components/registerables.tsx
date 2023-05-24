@@ -66,6 +66,7 @@ import HeaderComponent7 from "./header/header7/header7";
 import HeaderComponent8 from "./header/header8/header8";
 import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
+import HeaderComponent11 from "./header/header11/header11";
 import CardComponent1 from "./card/card1/card1";
 import CardComponent2 from "./card/card2/card2";
 import CardComponent3 from "./card/card3/card3";
@@ -197,6 +198,7 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent8(),
     new HeaderComponent9(),
     new HeaderComponent10(),
+    new HeaderComponent11(),
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),
