@@ -48,7 +48,7 @@ class Contacts2Page extends BaseContacts {
                       type: "image",
                       key: "image",
                       value:
-                        "https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb8c5fba070002b74a852?alt=media&timestamp=1684846790397",
                       displayer: "Image",
                     },
                     {
@@ -80,7 +80,7 @@ class Contacts2Page extends BaseContacts {
                       type: "image",
                       key: "image",
                       value:
-                        "https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb37dfba070002b74a624?alt=media&timestamp=1684845438304",
                       displayer: "Image",
                     },
                     {
@@ -163,7 +163,9 @@ class Contacts2Page extends BaseContacts {
                   <div key={index} className={this.decorateCSS("card-child")}>
                     {section.items.map((item: any, index: number) => (
                       <div key={index} className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("img-child")}>
                         <img className={this.decorateCSS("image")} width={50} height={50} src={item.value[0].value} />
+                        </div>
                         <div className={this.decorateCSS("card-box")}>
                           <h2>{item.value[1].value}</h2>
                           <h4>{item.value[2].value}</h4>
