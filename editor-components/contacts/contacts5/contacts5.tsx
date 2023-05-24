@@ -17,7 +17,7 @@ class Contacts5Page extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "We contact us",
+      value: "Contact us",
     });
     this.addProp({
       type: "string",
