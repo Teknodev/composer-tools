@@ -15,13 +15,13 @@ class Contacts4Page extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "We have great UI designs",
+      value: "We contact us",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: PlaceholderFiller.shortText(),
+      value:"You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form. ",
     });
     this.addProp({
       type: "image",
@@ -49,13 +49,13 @@ class Contacts4Page extends BaseContacts {
             {
               type: "string",
               key: "Text1th",
-              value: "info@mail.com",
+              value: "business@info.com",
               displayer: "1th Text",
             },
             {
               type: "string",
               key: "Text2th",
-              value: "support@mail.com",
+              value: "support@info.com",
               displayer: "2th Text",
             },
           ],
@@ -74,13 +74,13 @@ class Contacts4Page extends BaseContacts {
             {
               type: "string",
               key: "Text1th",
-              value: "+1 111 2222 333",
+              value: "111 345 45 99",
               displayer: "1th Text",
             },
             {
               type: "string",
               key: "Text2th",
-              value: "+1 111 2222 333",
+              value: "111 346 45 99",
               displayer: "2th Text",
             },
           ],
@@ -99,13 +99,13 @@ class Contacts4Page extends BaseContacts {
             {
               type: "string",
               key: "Text1th",
-              value: "5087 S Archer Ave",
+              value: "27 13 Lowe Haven",
               displayer: "1th Text",
             },
             {
               type: "string",
               key: "Text2th",
-              value: "60632, Chicago",
+              value: "28 14 Lowe Haven",
               displayer: "2th Text",
             },
           ],
