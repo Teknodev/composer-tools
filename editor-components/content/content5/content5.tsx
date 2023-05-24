@@ -128,7 +128,7 @@ class Content5 extends BaseContent {
                 (data: any, index: number) => (
                   <div key={index} className={this.decorateCSS("items")}>
                     <div className={this.decorateCSS("logo-icon")}>
-                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
+                      <img src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646dc6fbfba070002b74c38e?alt=media&timestamp=1684915965833" />
                     </div>
                     <span>{data.itemText}</span>
                   </div>
