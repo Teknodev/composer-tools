@@ -22,7 +22,7 @@ class Contacts2Page extends BaseContacts {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: PlaceholderFiller.shortText(),
+      value: "You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form. ",
     });
     this.addProp({
       type: "array",
@@ -54,19 +54,19 @@ class Contacts2Page extends BaseContacts {
                     {
                       type: "string",
                       key: "title",
-                      value: "Mail",
+                      value: "Adress",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "1th-text",
-                      value: "lorem@mail.com",
+                      value: "27 13 Lowe Haven",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "2th-text",
-                      value: "support@mail.com",
+                      value: "28 14 Lowe Haven",
                       displayer: "2th Text",
                     },
                   ],
@@ -86,19 +86,19 @@ class Contacts2Page extends BaseContacts {
                     {
                       type: "string",
                       key: "title",
-                      value: PlaceholderFiller.string(),
+                      value: "Phone",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "1th-text",
-                      value: "lorem@mail.com",
+                      value: "111 345 45 99",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "2th-text",
-                      value: "support@mail.com",
+                      value: "111 346 45 99",
                       displayer: "2th Text",
                     },
                   ],
@@ -118,19 +118,19 @@ class Contacts2Page extends BaseContacts {
                     {
                       type: "string",
                       key: "card-title",
-                      value: PlaceholderFiller.string(),
+                      value: "Email",
                       displayer: "Card Title",
                     },
                     {
                       type: "string",
                       key: "1th-text",
-                      value: "lorem@mail.com",
+                      value: "business@info.com",
                       displayer: "1th Text",
                     },
                     {
                       type: "string",
                       key: "2th-text",
-                      value: "support@mail.com",
+                      value: "support@info.com",
                       displayer: "2th Text",
                     },
                   ],
@@ -151,7 +151,7 @@ class Contacts2Page extends BaseContacts {
     return (
       <div
         className={this.decorateCSS("container")}
-        
+
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("contacts2")}>
