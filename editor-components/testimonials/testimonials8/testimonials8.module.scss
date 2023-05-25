@@ -1,0 +1,75 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+
+  .max-content {
+    display: flex;
+    justify-content: center;
+    max-width: var(--composer-content-width);
+    margin: auto;
+    
+    .testimonials2 {
+      display: block;
+      
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin: 0 0 40px 0;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        
+        .card {
+          padding: 20px;
+          min-width: 250px;
+          border-radius: 6px;
+          box-shadow: var(--composer-box-shadow);
+          flex: 1 1;
+
+          h5 {
+            opacity: 0.8;
+            font-weight: 200;
+            font-size: 1rem;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+          }
+          .profile {
+            display: flex;
+            margin-bottom: 20px;
+            img {
+              border-radius: 100%;
+              object-fit: cover;
+            }
+            .profile-text {
+              margin-left: 20px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+
+              h2 {
+                margin: 0;
+              }
+              p {
+                margin: 5px 0 !important;
+                text-transform: uppercase;
+              }
+            }
+          }
+          span{
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 50px 20px;
+  }
+}
