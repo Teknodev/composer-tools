@@ -11,7 +11,7 @@
       justify-content: space-around;
       align-items: center;
       gap: 20px;
-     
+
       .header-page {
         text-align: center;
         display: flex;
@@ -23,7 +23,7 @@
           margin: 0;
         }
         h1 {
-          padding: 20px 0;
+          margin: 0;
         }
         .button {
           cursor: pointer;
@@ -44,16 +44,14 @@
           }
         }
       }
-      .card-child{
-        width: 50%;
+      .card-child {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 100%;
+        width: 50%;
         gap: 20px;
 
         .card {
-          width: 100%;
           background-color: var(--composer-primary-color);
           border-radius: 10px;
           padding: 20px 20px 0 20px;
@@ -61,7 +59,7 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
-  
+
           img {
             width: 40px;
             height: 40px;
@@ -85,10 +83,21 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content {
+      display: flex;
 
-    .content {
-      flex-direction: column;
-      gap: 50px !important;
+      .content {
+        flex-direction: column;
+
+        .header-page {
+          width: 100%;
+          gap: 20px;
+        }
+        .card-child{
+          width: 100%;
+
+        }
+      }
     }
   }
 }

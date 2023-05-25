@@ -68,20 +68,20 @@ class Header11 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646b76dbfba070002b74850c?alt=media&timestamp=1684764380744",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27a4fba070002b74f37f?alt=media&timestamp=1685006245609",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Convert Better",
+              value: "Trained A.I.",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Higher Conversion Rates Up to 14x better conversion rates than ad creatives designed with no data-driven approach.",
+                "Our machine learning model is learning every day and provides up-to-date creatives with a sole purpose: conversion.",
             },
           ],
         },
@@ -96,20 +96,20 @@ class Header11 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646b7b84fba070002b748643?alt=media&timestamp=1684765573382",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27e7fba070002b74f3b2?alt=media&timestamp=1685006312349",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Save Time & Money",
+              value: "Better Conversions",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Cut up to 90% of design tasks and costs. Spend your time and money on your startup.",
+                "Up to 14x better conversion rates than ad creatives designed with no data-driven approach.",
             },
           ],
         },
@@ -124,20 +124,20 @@ class Header11 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646b7b77fba070002b74863f?alt=media&timestamp=1684765560789",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f28cbfba070002b74f407?alt=media&timestamp=1685006549635",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Impress Clients",
+              value: "Super Scalable",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Generate hundreds of converting ad creative variations while staying on-brand.",
+                "1 creative or 10,000 creatives a month, Composer is designed to match your ad creative/banner needs.",
             },
           ],
         },
