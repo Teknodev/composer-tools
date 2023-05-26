@@ -158,20 +158,21 @@ class Testimonials8Page extends Testimonials {
     return (
 
       <div className={this.decorateCSS("container")}>
-        <Swiper
-          effect={"flip"}
-          navigation={true}
-          modules={[EffectFlip, Navigation]}
-          className="mySwiper"
-        >
+        <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("testimonials2")}>
+            <div>
+              <h1>{this.getPropValue("title")}</h1>
+            </div>
+            <Swiper
+              effect={"flip"}
+              navigation={true}
+              modules={[EffectFlip, Navigation]}
+              className="mySwiper"
+            >
 
-          {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
-            <SwiperSlide key={`tsm-8-${index}`}>
-              <div className={this.decorateCSS("max-content")}>
-                <div className={this.decorateCSS("testimonials2")}>
-                  <div>
-                    <h1>{this.getPropValue("title")}</h1>
-                  </div>
+              {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
+                <SwiperSlide key={`tsm-8-${index}`}>
+
                   <section>
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("profile")}>
@@ -185,11 +186,13 @@ class Testimonials8Page extends Testimonials {
                       <h5>{item.time}</h5>
                     </div>
                   </section>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+
+
       </div>
 
     );

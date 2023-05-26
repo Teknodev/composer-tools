@@ -9,8 +9,7 @@
     margin: auto;
     
     .testimonials2 {
-      display: block;
-      
+      width: 100%;
       h1 {
         text-align: center;
         font-size: 3rem;
@@ -27,7 +26,6 @@
           min-width: 250px;
           border-radius: 6px;
           box-shadow: var(--composer-box-shadow);
-          flex: 1 1;
 
           h5 {
             opacity: 0.8;
