@@ -1,8 +1,8 @@
-export const loadFont = (fonts: string[]) => (async () => {
-  const WebFont = await require("webfontloader");
+var WebFont = require("webfontloader");
+export function loadFont(font: string[]) {
   WebFont.load({
     google: {
-      families: fonts,
+      families: [...font],
     },
   });
-});
+}
