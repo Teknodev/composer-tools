@@ -9,12 +9,14 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+      gap: 20px;
 
       .boxes-title {
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
+        gap: 20px;
         h1 {
           color: var(--composer-primary-color);
           margin: 0;
@@ -30,6 +32,10 @@
         align-items: center;
         gap: 20px;
         .box {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          width: 100%;
           .message {
             display: flex;
             flex-direction: column;
@@ -64,6 +70,10 @@
         }
 
         .box2 {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          width: 100%;
           .message2 {
             display: flex;
             flex-direction: column;
@@ -94,8 +104,13 @@
 
 @media only screen and (max-width: 768px) {
   .container {
+    padding: 50px 20px;
     .max-content {
-      max-width: var(--composer-content-width);
+      .wrapper {
+        .box-child {
+          flex-direction: column;
+        }
+      }
     }
   }
 }
