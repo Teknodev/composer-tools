@@ -16,8 +16,8 @@
       box-shadow: var(--composer-box-shadow);
       border-top: 5px solid var(--composer-primary-color);
       border-radius: 6px;
-      height: max-content;
       min-width: 250px;
+      min-height: 100px;
       flex: 1 1;
       padding: 20px;
 
@@ -46,13 +46,14 @@
         .list-item {
           display: flex;
           cursor: pointer;
+          align-items: center;
           color: black;
           background-color: white;
           transition: all 0.5s;
           border-radius: 6px;
           border-left: 3px solid var(--composer-primary-color);
           box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
-          height: 40px;
+          min-height: 70px;
           &:hover {
             box-shadow: var(--composer-box-shadow);
             img {
@@ -64,6 +65,8 @@
             box-shadow: 4px 0 28px -4px rgba(149, 157, 165, 0.3);
             padding: 5px;
             margin-right: 15px;
+            width: 70px;
+            height: 70px;
           }
           h4 {
             margin-top: 11px;

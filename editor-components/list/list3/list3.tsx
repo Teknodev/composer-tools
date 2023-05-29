@@ -148,7 +148,7 @@ class List3 extends BaseList {
                   {title.value[1].value.map((icon: any, indexListGroup: number) => {
                     return (
                       <li key={indexListGroup} className={this.decorateCSS("list-item")}>
-                        <img src={icon.value[1].value} alt="icon" width={40} />
+                        <img src={icon.value[1].value} alt="icon" />
                         <h4>{icon.value[0].value}</h4>
                       </li>
                     );
