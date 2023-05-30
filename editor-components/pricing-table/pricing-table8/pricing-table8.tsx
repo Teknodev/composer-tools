@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table8.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type IIconBoxes = {
   title: string;
@@ -9,6 +10,7 @@ type IIconBoxes = {
   hasFeature: boolean;
   price: string;
   featureCount: number;
+  link: string;
 };
 
 class PricingTable8 extends BasePricingTable {
@@ -104,6 +106,12 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Feature Count",
               value: 2,
             },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
           ],
         },
         {
@@ -148,6 +156,12 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Feature Count",
               value: 4,
             },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
           ],
         },
         {
@@ -191,6 +205,12 @@ class PricingTable8 extends BasePricingTable {
               key: "featureCount",
               displayer: "Feature Count",
               value: 6,
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
             },
           ],
         },
@@ -268,9 +288,11 @@ class PricingTable8 extends BasePricingTable {
                   <p>{this.renderFeatureIcons(pricing)}</p>
                 </div>
                 <p className={this.decorateCSS("price")}>{pricing.price}</p>
-                <button className={this.decorateCSS("get-started-button")}>
-                  Get Started
-                </button>
+                <ComposerLink path={pricing.link} key={index}>
+                  <button className={this.decorateCSS("get-started-button")}>
+                    Get Started
+                  </button>
+                </ComposerLink>
               </div>
             )
           )}
