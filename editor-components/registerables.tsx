@@ -30,6 +30,7 @@ import SliderComponent4 from "./slider/slider4/slider4";
 import SliderComponent5 from "./slider/slider5/slider5";
 import SliderComponent6 from "./slider/slider6/slider6";
 import SliderComponent7 from "./slider/slider7/slider7";
+import SliderComponent8 from "./slider/slider8/slider8";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -127,7 +128,6 @@ import NavbarComponent2 from "./navigators/navbar2/navbar2";
 import NavbarComponent3 from "./navigators/navbar3/navbar3";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 
-
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     new DownloadComponent1(),
@@ -161,6 +161,7 @@ function Registerables(composer: ComponentsRegistery) {
     new SliderComponent5(),
     new SliderComponent6(),
     new SliderComponent7(),
+    new SliderComponent8(),
     new PricingComponent1(),
     new PricingComponent2(),
     new PricingComponent3(),
@@ -256,7 +257,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent5(),
     new FooterComponent6(),
     new FooterComponent7(),
-    new TermsOfUseModal()
+    new TermsOfUseModal(),
   ]);
 }
 
