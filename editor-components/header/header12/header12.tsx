@@ -203,10 +203,10 @@ class Header12 extends BaseHeader {
                 <img className={this.decorateCSS("logoimage")} src={this.getPropValue("image")} />
               </div>
 
-              <div className={this.decorateCSS("box2")}>
+              <div className={this.decorateCSS("box")}>
                 {this.castToObject<IMessages[]>("message-bar-card2").map(
                   (message: any, index: number) => (
-                    <div className={this.decorateCSS("message2")} key={`hdr-card2-12-${index}`}>
+                    <div className={`${this.decorateCSS("message")} ${this.decorateCSS("right-message")}`} key={`hdr-card2-12-${index}`}>
                       <div className={this.decorateCSS("title")}>
                         <h3>{message.title}</h3>
                       </div>
