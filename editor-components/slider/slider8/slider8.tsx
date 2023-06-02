@@ -191,7 +191,7 @@ class Slider8 extends BaseSlider {
                       className={this.decorateCSS("slider-inner-div")}
                       key={`sld-8-${index}`}
                     >
-                      <div className={this.decorateCSS("deneme")}>
+                      <div className={this.decorateCSS("content-div")}>
                         <div className={this.decorateCSS("img-div")}>
                           <img
                             src={item.image}
