@@ -2,6 +2,12 @@
   width: 100%;
   padding: 50px 0;
 
+  @mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -34,9 +40,7 @@
       }
     }
     .card-child {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
       gap: 20px;
       padding: 0 5px;
       .card {
@@ -48,10 +52,9 @@
         min-height: 400px;
         height: 100%;
         flex: 1 1;
-        display: flex;
+        @include flex-center;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+
         &:hover {
           background-color: var(--composer-secondary-color);
           transition: all 0.1s ease-in-out;
@@ -66,11 +69,9 @@
           }
         }
         i {
-          display: flex;
-          align-items: center;
-          justify-content: center;
           width: 100px;
           height: 100px;
+          @include flex-center;
           background-color: var(--composer-secondary-color);
           border-radius: 50%;
 
