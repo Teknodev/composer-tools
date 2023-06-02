@@ -15,28 +15,28 @@ class Content11 extends BaseContent {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Create advertising materials for each platform.",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "title",
+      displayer: "Title",
       value:
         "Reate creatives/banners for any advertising platform such as Facebook and Instagram Ads, Google Ads, LinkedIn Ads, Twitter Ads, Pinterest Ads, and any Display Advertising platform. A single tool that fulfills all your advertising design needs.",
     });
     this.addProp({
       type: "string",
       key: "subtitle2",
-      displayer: "Subtitle2",
+      displayer: "Outer title of the card",
       value: "Social Media Dimensions",
     });
     this.addProp({
       type: "string",
       key: "subtitle2-description",
-      displayer: "Subtitle2Description",
+      displayer: "Outer Description of the card",
       value: "The most common sizes for social media advertising",
     });
 
@@ -53,13 +53,13 @@ class Content11 extends BaseContent {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Card Title",
               value: "Post Size",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Card Description",
               value:
                 "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
             },
@@ -87,13 +87,13 @@ class Content11 extends BaseContent {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "Landscape Size",
+              displayer: "Card Title",
+              value: "Land Size",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Card Description",
               value:
                 "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
             },
@@ -120,13 +120,13 @@ class Content11 extends BaseContent {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Card Title",
               value: "Story Size",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Card Description",
               value:
                 "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
             },
@@ -145,6 +145,7 @@ class Content11 extends BaseContent {
             },
           ],
         },
+
         {
           type: "object",
           key: "card",
@@ -153,46 +154,13 @@ class Content11 extends BaseContent {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "Vertical Dimension",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27e2fba070002b74f3ae?alt=media&timestamp=1685006292040",
-            },
-            {
-              type: "string",
-              key: "size",
-              displayer: "Size",
-              value: "1080x1350",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
+              displayer: "Card Title",
               value: "Pin Size",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Card Description",
               value:
                 "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
             },
@@ -224,8 +192,8 @@ class Content11 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            <h2>{this.getPropValue("title")}</h2>
-            <span>{this.getPropValue("subtitle")}</span>
+            <h2>{this.getPropValue("subtitle")}</h2>
+            <span>{this.getPropValue("title")}</span>
             <h3>{this.getPropValue("subtitle2")}</h3>
             <span>{this.getPropValue("subtitle2-description")}</span>
           </div>
