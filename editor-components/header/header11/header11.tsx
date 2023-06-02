@@ -155,8 +155,8 @@ class Header11 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("header-page")}>
-              <h3>{this.getPropValue("title")}</h3>
-              <h1>{this.getPropValue("description")}</h1>
+              <h1>{this.getPropValue("title")}</h1>
+              <h2>{this.getPropValue("description")}</h2>
               {this.castToObject<[]>("button").map((item: any, indexButton: number) => {
                 return (
                   <ComposerLink key={`hdr-11-${indexButton}`} path={item.link}>
