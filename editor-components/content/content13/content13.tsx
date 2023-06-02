@@ -1,10 +1,15 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content13.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Horizontals = {
   title: string;
   description: string;
+  image: string;
+};
+type smallImages = {
+  url: string;
   image: string;
 };
 class Content13 extends BaseContent {
@@ -136,7 +141,7 @@ class Content13 extends BaseContent {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64745c88fba070002b756109?alt=media&timestamp=1685350822008",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6479fe666f95a2002c649b56?alt=media&timestamp=1685716566616",
               displayer: "Image",
             },
           ],
@@ -164,7 +169,7 @@ class Content13 extends BaseContent {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/647467a6fba070002b7562ea?alt=media&timestamp=1685350849292",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6479fc086f95a2002c649a6c?alt=media&timestamp=1685716331416",
               displayer: "Image",
             },
           ],
@@ -205,53 +210,144 @@ class Content13 extends BaseContent {
       displayer: "Small Social Media Images",
       value: [
         {
-          type: "image",
-          key: "smallImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756910?alt=media&timestamp=1685356321123",
-          displayer: "Image",
+          type: "object",
+          key: "box",
+          displayer: "Facebook",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756910?alt=media&timestamp=1685356321123",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
         },
         {
-          type: "image",
-          key: "smallImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756913?alt=media&timestamp=1685356321123",
-          displayer: "Image",
+          type: "object",
+          key: "box",
+          displayer: "Instagram",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756913?alt=media&timestamp=1685356321123",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
         },
         {
-          type: "image",
-          key: "smallImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756912?alt=media&timestamp=1685356321123",
-          displayer: "Image",
+          type: "object",
+          key: "box",
+          displayer: "Google",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756912?alt=media&timestamp=1685356321123",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
         },
         {
-          type: "image",
-          key: "smallImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756915?alt=media&timestamp=1685356321123",
-          displayer: "Image",
+          type: "object",
+          key: "box",
+          displayer: "LinkedIn",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756915?alt=media&timestamp=1685356321123",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
         },
         {
-          type: "image",
-          key: "smallImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756911?alt=media&timestamp=1685356321123",
-          displayer: "Image",
+          type: "object",
+          key: "box",
+          displayer: "Twitter",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756911?alt=media&timestamp=1685356321123",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
         },
         {
-          type: "image",
-          key: "smallImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756914?alt=media&timestamp=1685356321123",
-          displayer: "Image",
+          type: "object",
+          key: "box",
+          displayer: "Pinterest",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756914?alt=media&timestamp=1685356321123",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
         },
         {
-          type: "image",
-          key: "smallImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b75690f?alt=media&timestamp=1685356321123",
-          displayer: "Image",
+          type: "object",
+          key: "box",
+          displayer: "Youtube",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b75690f?alt=media&timestamp=1685356321123",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
         },
       ],
     });
@@ -296,15 +392,17 @@ class Content13 extends BaseContent {
             )}
           </div>
           <div className={this.decorateCSS("small-image-container")}>
-            {this.getPropValue("smallImages").map(
-              (image: any, index: number) => (
-                <div className={this.decorateCSS("small-image")}>
-                  <img
-                    src={image.value}
-                    alt={`Small Image ${index + 1}`}
-                    key={index}
-                  />
-                </div>
+            {this.castToObject<smallImages[]>("smallImages").map(
+              (smallimage: any, index: number) => (
+                <ComposerLink key={index} path={smallimage.url}>
+                  <div className={this.decorateCSS("small-image")}>
+                    <img
+                      src={smallimage.image}
+                      alt={`Small Image ${index + 1}`}
+                      key={index}
+                    />
+                  </div>
+                </ComposerLink>
               )
             )}
           </div>
