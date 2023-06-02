@@ -167,7 +167,7 @@ class Slider8 extends BaseSlider {
   }
   render() {
     const settings = {
-      dots: false,
+      dots: true,
       infinite: true,
       speed: 700,
       autoplay: true,
@@ -191,18 +191,20 @@ class Slider8 extends BaseSlider {
                       className={this.decorateCSS("slider-inner-div")}
                       key={`sld-8-${index}`}
                     >
-                      <div className={this.decorateCSS("img-div")}>
-                        <img
-                          src={item.image}
-                          className={this.decorateCSS("img")}
-                        />
-                      </div>
-                      <div className={this.decorateCSS("header-page")}>
-                        <h1 className={this.decorateCSS("first-header")}>
-                          {item.imagesubtitle}
-                        </h1>
-                        <h3>{item.imagetitle}</h3>
-                        <p>{item.imagedescription}</p>
+                      <div className={this.decorateCSS("deneme")}>
+                        <div className={this.decorateCSS("img-div")}>
+                          <img
+                            src={item.image}
+                            className={this.decorateCSS("img")}
+                          />
+                        </div>
+                        <div className={this.decorateCSS("header-page")}>
+                          <h1 className={this.decorateCSS("first-header")}>
+                            {item.imagesubtitle}
+                          </h1>
+                          <h3>{item.imagetitle}</h3>
+                          <p>{item.imagedescription}</p>
+                        </div>
                       </div>
                     </div>
                   )
