@@ -2,6 +2,7 @@ import * as React from "react";
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content3.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Content3 extends BaseContent {
   constructor(props?: any) {
@@ -14,16 +15,37 @@ class Content3 extends BaseContent {
         "https://imageio.forbes.com/blogs-images/alejandrocremades/files/2018/07/desk-3139127_1920-1200x773.jpg?format=jpg&width=960",
     });
     this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Continue",
+      type: "array",
+      key: "buttonprop",
+      displayer: "Button Prop",
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "Button",
+          value: [
+            {
+              type: "string",
+              key: "buttontext",
+              displayer: "Button Text",
+              value: "Continue",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
     this.addProp({
       type: "string",
       key: "content",
       displayer: "Content",
-      value: "The success of a small business can be attributed to various factors such as providing quality products or services, having a strong brand identity, building a loyal customer base, and implementing effective marketing strategies.",
+      value:
+        "The success of a small business can be attributed to various factors such as providing quality products or services, having a strong brand identity, building a loyal customer base, and implementing effective marketing strategies.",
     });
     this.addProp({
       type: "string",
@@ -83,9 +105,15 @@ class Content3 extends BaseContent {
               </h3>
               <p>{this.getPropValue("content")}</p>
               <div className={this.decorateCSS("button-wrapper")}>
-                <span className={this.decorateCSS("button")}>
-                  {this.getPropValue("buttonText")}
-                </span>
+                {this.getPropValue("buttonprop").map(
+                  (button: any, index: number) => (
+                    <ComposerLink path={button.value[0].value} key={index}>
+                      <span className={this.decorateCSS("button")}>
+                        {button.value[0].value}
+                      </span>
+                    </ComposerLink>
+                  )
+                )}
               </div>
             </div>
           </div>
