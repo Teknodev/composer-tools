@@ -3,7 +3,6 @@ import { BaseContacts } from "../../EditorComponent";
 import styles from "./contacts5.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Contacts5Page extends BaseContacts {
   constructor(props?: any) {
@@ -39,23 +38,10 @@ class Contacts5Page extends BaseContacts {
       value: "Write message",
     });
     this.addProp({
-      type: "object",
-      key: "buttonprop",
-      displayer: "Button",
-      value: [
-        {
-          type: "string",
-          key: "button_text",
-          displayer: "Button Text",
-          value: "Send Message",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "URL",
-          value: "",
-        },
-      ],
+      type: "string",
+      key: "button_text",
+      displayer: "Button Text",
+      value: "Send Message",
     });
     this.addProp({
       type: "image",
@@ -138,16 +124,12 @@ class Contacts5Page extends BaseContacts {
                       name="message"
                       component={"span"}
                     />
-                    <ComposerLink
-                      path={this.getPropValue("buttonprop")[1].value}
+                    <button
+                      className={this.decorateCSS("submit-button")}
+                      type="submit"
                     >
-                      <button
-                        className={this.decorateCSS("submit-button")}
-                        type="submit"
-                      >
-                        {this.getPropValue("buttonprop")[0].value}
-                      </button>
-                    </ComposerLink>
+                      {this.getPropValue("button_text")}
+                    </button>
                   </Form>
                 )}
               </Formik>
