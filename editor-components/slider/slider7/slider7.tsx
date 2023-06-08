@@ -11,6 +11,7 @@ type Card = {
   image: string;
   title: string;
   button: string;
+  url: string;
   price: string;
 };
 
@@ -48,6 +49,12 @@ class Slider7 extends BaseSlider {
               value: "Buy Now",
             },
             {
+              type: "page",
+              key: "url",
+              displayer: "Button Url",
+              value: "",
+            },
+            {
               type: "string",
               key: "price",
               displayer: "Price",
@@ -78,6 +85,12 @@ class Slider7 extends BaseSlider {
               key: "button",
               displayer: "Button",
               value: "Buy Now",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Url",
+              value: "",
             },
             {
               type: "string",
@@ -112,6 +125,12 @@ class Slider7 extends BaseSlider {
               value: "Buy Now",
             },
             {
+              type: "page",
+              key: "url",
+              displayer: "Button Url",
+              value: "",
+            },
+            {
               type: "string",
               key: "price",
               displayer: "Price",
@@ -142,6 +161,12 @@ class Slider7 extends BaseSlider {
               key: "button",
               displayer: "Button",
               value: "Buy Now",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Url",
+              value: "",
             },
             {
               type: "string",
@@ -176,6 +201,12 @@ class Slider7 extends BaseSlider {
               value: "Buy Now",
             },
             {
+              type: "page",
+              key: "url",
+              displayer: "Button Url",
+              value: "",
+            },
+            {
               type: "string",
               key: "price",
               displayer: "Price",
@@ -206,6 +237,12 @@ class Slider7 extends BaseSlider {
               key: "button",
               displayer: "Button",
               value: "Buy Now",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Url",
+              value: "",
             },
             {
               type: "string",
@@ -242,7 +279,7 @@ class Slider7 extends BaseSlider {
                   <img src={item.image} className={this.decorateCSS("img")} />
                   <h1>{item.title}</h1>
                   <div className={this.decorateCSS("button")}>
-                    <ComposerLink path="">{item.button}</ComposerLink>
+                    <ComposerLink path={item.url}>{item.button}</ComposerLink>
                     <h2>{item.price}</h2>
                   </div>
                 </div>

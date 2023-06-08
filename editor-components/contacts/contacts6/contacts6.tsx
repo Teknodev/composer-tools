@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Yup from "yup";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./form1.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Contacts6Page extends BaseContacts {
   constructor(props?: any) {
@@ -44,10 +45,23 @@ class Contacts6Page extends BaseContacts {
     });
 
     this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "Submit",
+      type: "object",
+      key: "buttonprop",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "button_text",
+          displayer: "Button Text",
+          value: "Submit",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
     });
   }
 
@@ -125,12 +139,14 @@ class Contacts6Page extends BaseContacts {
                     name="message"
                     component={"span"}
                   />
-                  <button
-                    className={this.decorateCSS("submit-button")}
-                    type="submit"
-                  >
-                    {this.getPropValue("button_text")}
-                  </button>
+                  <ComposerLink path={this.getPropValue("buttonprop")[1].value}>
+                    <button
+                      className={this.decorateCSS("submit-button")}
+                      type="submit"
+                    >
+                      {this.getPropValue("buttonprop")[0].value}
+                    </button>
+                  </ComposerLink>
                 </Form>
               )}
             </Formik>
