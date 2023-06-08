@@ -129,6 +129,7 @@ import NavbarComponent1 from "./navigators/navbar1/navbar1";
 import NavbarComponent2 from "./navigators/navbar2/navbar2";
 import NavbarComponent3 from "./navigators/navbar3/navbar3";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
+import SurveyModal from "./modal/survey-modal/survey-modal";
 
 
 function Registerables(composer: ComponentsRegistery) {
@@ -262,7 +263,8 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent5(),
     new FooterComponent6(),
     new FooterComponent7(),
-    new TermsOfUseModal()
+    new TermsOfUseModal(),
+    new SurveyModal()
   ]);
 }
 
