@@ -49,10 +49,10 @@ class Stats7Page extends BaseStats {
               value: "Products",
             },
             {
-              type: "string",
+              type: "number",
               key: "title",
               displayer: "Title",
-              value: "300",
+              value: 300,
             },
           
           ],
@@ -69,10 +69,10 @@ class Stats7Page extends BaseStats {
               value: "Web Template",
             },
             {
-              type: "string",
+              type: "number",
               key: "title",
               displayer: "Title",
-              value: "85",
+              value: 85,
             },
           
           ],
@@ -89,10 +89,10 @@ class Stats7Page extends BaseStats {
               value: "Mobile Template",
             },
             {
-              type: "string",
+              type: "number",
               key: "title",
               displayer: "Title",
-              value: "200",
+              value: 200,
             },
             
           ],
