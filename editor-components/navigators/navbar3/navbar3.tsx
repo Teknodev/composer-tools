@@ -23,31 +23,83 @@ class Navbar3 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "itemList",
-      displayer: "Items",
+      displayer: "Item List",
       value: [
         {
-          type: "string",
+          type: "object",
           key: "items",
-          value: "Features",
-          displayer: "Item",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Features",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
+          type: "object",
           key: "items",
-          value: "Solutions",
-          displayer: "Item",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Solutions",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
+          type: "object",
           key: "items",
-          value: "Resources",
-          displayer: "Item",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Resources",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
+          type: "object",
           key: "items",
-          value: "Pricing",
-          displayer: "Item",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Pricing",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
       ],
     });
@@ -99,7 +151,14 @@ class Navbar3 extends BaseNavigator {
               <img src={this.getPropValue("image")} width={200} />
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
-                  return <h3 key={indexItemList}>{data.value}</h3>;
+                  return (
+                    <ComposerLink
+                      key={indexItemList}
+                      path={data.value[1].value}
+                    >
+                      <h3 key={indexItemList}>{data.value[0].value}</h3>
+                    </ComposerLink>
+                  );
                 }
               )}
             </div>
@@ -107,7 +166,10 @@ class Navbar3 extends BaseNavigator {
               {this.castToObject<[]>("buttonList").map(
                 (data: any, indexButtonList: number) => {
                   return (
-                    <ComposerLink key={indexButtonList} path={data.value[1].value}>
+                    <ComposerLink
+                      key={indexButtonList}
+                      path={data.value[1].value}
+                    >
                       <button>{data.value[0].value}</button>
                     </ComposerLink>
                   );
