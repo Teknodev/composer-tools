@@ -1,14 +1,15 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   .max-content {
     display: flex;
     justify-content: space-around;
     max-width: var(--composer-content-width);
     margin: auto;
-    background-repeat: no-repeat;
-    background-size: cover;
+
     .stats1-page {
       display: block;
       width: 100%;
