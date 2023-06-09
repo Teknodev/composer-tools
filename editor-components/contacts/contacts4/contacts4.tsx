@@ -1,7 +1,6 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./contacts4.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 type Item = {
   title: string;

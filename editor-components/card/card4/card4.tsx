@@ -7,7 +7,7 @@ type Card = {
   category: string;
   title: string;
   description: string;
-  number: string;
+  number: number;
   text: string;
 };
 

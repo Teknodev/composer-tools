@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import styles from "./team1.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -29,7 +28,7 @@ class Team1 extends Team {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: PlaceholderFiller.string(),
+          value: "",
         },
       ],
     };
@@ -49,7 +48,7 @@ class Team1 extends Team {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: PlaceholderFiller.string(),
+          value: "",
         },
       ],
     };
@@ -69,7 +68,7 @@ class Team1 extends Team {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: PlaceholderFiller.string(),
+          value: "",
         },
       ],
     };
@@ -89,7 +88,7 @@ class Team1 extends Team {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: PlaceholderFiller.string(),
+          value: "",
         },
       ],
     };

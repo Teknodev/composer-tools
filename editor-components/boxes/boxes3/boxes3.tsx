@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseBoxes, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./boxes3.module.scss";
 

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -24,7 +23,7 @@ class Content1 extends BaseContent {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: PlaceholderFiller.string(),
+          value:  "business",
         },
         {
           type: "string",

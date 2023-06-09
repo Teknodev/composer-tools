@@ -1,6 +1,5 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
 
@@ -86,7 +85,7 @@ class CallToAction10Page extends BaseCallToAction {
             {
               type: "string",
               key: "listedItem",
-              value: PlaceholderFiller.shortText(),
+              value: "Join Our NewsletterGet the latest news and updates about our products, special offers, and promotions delivered straight to your inbox.",
               displayer: "Item",
             },
           ],

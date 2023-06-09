@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "./team7.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface Card {
@@ -30,7 +29,7 @@ class Team7 extends Team {
                     type: "page",
                     key: "url",
                     displayer: "Url",
-                    value: PlaceholderFiller.string()
+                    value: ""
                 }
             ]
         };
@@ -52,7 +51,7 @@ class Team7 extends Team {
                     type: "page",
                     key: "url",
                     displayer: "Url",
-                    value: PlaceholderFiller.string()
+                    value:""
                 }
             ]
         };
@@ -74,7 +73,7 @@ class Team7 extends Team {
                     type: "page",
                     key: "url",
                     displayer: "Url",
-                    value: PlaceholderFiller.string()
+                    value: ""
                 }
             ]
         };
@@ -242,7 +241,7 @@ class Team7 extends Team {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: PlaceholderFiller.shortText(),
+            value: "",
         });
 
         this.addProp({

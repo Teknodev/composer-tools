@@ -1,8 +1,6 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer5.module.scss";
-import { type } from "@testing-library/user-event/dist/type";
 
 class Footer5Page extends BaseFooter {
   constructor(props?: any) {

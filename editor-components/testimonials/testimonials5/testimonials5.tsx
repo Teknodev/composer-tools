@@ -38,9 +38,9 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "string",
+                      type: "number",
                       key: "star",
-                      value: "5",
+                      value: 5,
                       displayer: "Star",
                     },
                     {
@@ -70,9 +70,9 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "string",
+                      type: "number",
                       key: "star",
-                      value: "5",
+                      value: 5,
                       displayer: "Star",
                     },
                     {
@@ -102,9 +102,9 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "string",
+                      type: "number",
                       key: "star",
-                      value: "5",
+                      value: 5,
                       displayer: "Star",
                     },
                     {
@@ -134,9 +134,9 @@ class Testimonials5Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "string",
+                      type: "number",
                       key: "star",
-                      value: "5",
+                      value: 5,
                       displayer: "Star",
                     },
                     {

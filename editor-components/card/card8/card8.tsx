@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseCard } from "../../EditorComponent";
 import styles from "./card8.module.scss";
 
