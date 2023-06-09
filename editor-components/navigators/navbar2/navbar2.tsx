@@ -130,12 +130,17 @@ class Navbar2 extends BaseNavigator {
         },
       ],
     });
+    this.state["componentProps"]["navActive"] = false;
   }
 
   getName(): string {
     return "Navbar 2";
   }
-
+  navClick() {
+    let value: boolean = this.state.componentProps["navActive"];
+    this.state.componentProps["navActive"] = !value;
+    console.log("test", this.state.componentProps["navActive"]);
+  }
   render() {
     return (
       <div className={this.decorateCSS("container")}>
@@ -170,6 +175,21 @@ class Navbar2 extends BaseNavigator {
                 }
               )}
             </div>
+          </nav>
+          <nav className={this.decorateCSS("navigator-mobile")}>
+            <div className={this.decorateCSS("navbar")}>
+              <img src={this.getPropValue("image")} width={200} />
+              <img
+                className={this.decorateCSS("img-hamburger")}
+                src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
+                onClick={() => {
+                  this.navClick();
+                }}
+              />
+            </div>
+            {this.state.componentProps["navActive"] == true && (
+              <div className={this.decorateCSS("navbar-child")}></div>
+            )}
           </nav>
         </div>
       </div>
