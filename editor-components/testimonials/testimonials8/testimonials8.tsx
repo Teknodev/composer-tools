@@ -5,7 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/effect-flip";
 import "swiper/css/navigation";
-import { EffectFlip, Navigation } from "swiper";
+import "swiper/css/pagination";
+import { EffectFlip,Pagination, Navigation} from "swiper";
 
 type Item = {
   image: string;
@@ -165,14 +166,14 @@ class Testimonials8Page extends Testimonials {
             </div>
             <Swiper
               effect={"flip"}
+              grabCursor={true}
+              pagination={true}
               navigation={true}
-              modules={[EffectFlip, Navigation]}
+              modules={[EffectFlip, Pagination, Navigation]}
               className="mySwiper"
             >
-
               {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
                 <SwiperSlide key={`tsm-8-${index}`}>
-
                   <section>
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("profile")}>
