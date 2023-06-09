@@ -19,6 +19,7 @@ import ContentComponent2 from "./content/content2/content2";
 import ContentComponent3 from "./content/content3/content3";
 import ContentComponent4 from "./content/content4/content4";
 import ContentComponent5 from "./content/content5/content5";
+// import ContentComponent6 from "./content/content5/content6";
 import ContentComponent7 from "./content/content7/content7";
 import ContentComponent8 from "./content/content8/content8";
 import ContentComponent9 from "./content/content9/content9";
@@ -152,6 +153,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent3(),
     new ContentComponent4(),
     new ContentComponent5(),
+    // new ContentComponent6(),
     new ContentComponent7(),
     new ContentComponent8(),
     new ContentComponent9(),
