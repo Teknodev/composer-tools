@@ -122,11 +122,11 @@ export abstract class Component
       this.state.componentProps.props[i] = this.attachValueGetter(
         this.state.componentProps.props[i]
       );
-      this.setState({ componentProps: { ...this.state.componentProps } });
+      this.state = ({ componentProps: { ...this.state.componentProps } });
   }
   setCSSClasses(key: string, value: {id: string, class: string}[]) {
     this.state.componentProps.cssClasses[key] = value;
-    this.setState({ componentProps: { ...this.state.componentProps } });
+    this.state = ({ componentProps: { ...this.state.componentProps } });
   }
   decorateCSS(cssValue: string) {
     let cssClass = [this.styles[cssValue]];
