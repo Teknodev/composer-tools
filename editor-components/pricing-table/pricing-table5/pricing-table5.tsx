@@ -99,7 +99,6 @@ class PricingTable5 extends BasePricingTable {
               key: "price",
               value: "$150",
               displayer: "Price",
-              completion: "Price of product, with currency"
             },
             {
               type: "string",
@@ -112,7 +111,6 @@ class PricingTable5 extends BasePricingTable {
               key: "buttonText",
               value: "Get started",
               displayer: "Button Text",
-              completion: "Button Text for call to buy"
             },
             {
               type: "page",

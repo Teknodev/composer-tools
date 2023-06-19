@@ -37,7 +37,6 @@ export type TypeUsableComponentProps = {
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
-  completion?: string;
 } & AvailablePropTypes & {
     getPropValue?: (propName: string) => any;
   };

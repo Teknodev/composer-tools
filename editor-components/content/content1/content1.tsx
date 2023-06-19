@@ -16,8 +16,6 @@ class Content1 extends BaseContent {
           key: "titleColored",
           displayer: "Title Colored",
           value: "Are you ready to turn more ad clicks into conversions?",
-          completion:
-            "Alternative text to 'Are you ready to turn more ad clicks into conversions?'",
         },
         {
           type: "string",
