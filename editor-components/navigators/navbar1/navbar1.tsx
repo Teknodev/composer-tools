@@ -23,31 +23,83 @@ class Navbar1 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "itemList",
-      displayer: "Items",
+      displayer: "Item List",
       value: [
         {
-          type: "string",
+          type: "object",
           key: "items",
-          value: "Features",
-          displayer: "Item",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Features",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
+          type: "object",
           key: "items",
-          value: "Solutions",
-          displayer: "Item",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Solutions",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
+          type: "object",
           key: "items",
-          value: "Resources",
-          displayer: "Item",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Resources",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
+          type: "object",
           key: "items",
-          value: "Pricing",
-          displayer: "Item",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Pricing",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
       ],
     });
@@ -101,7 +153,14 @@ class Navbar1 extends BaseNavigator {
             <div className={this.decorateCSS("items")}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
-                  return <h3 key={indexItemList}>{data.value}</h3>;
+                  return (
+                    <ComposerLink
+                      key={indexItemList}
+                      path={data.value[1].value}
+                    >
+                      <h3 key={indexItemList}>{data.value[0].value}</h3>
+                    </ComposerLink>
+                  );
                 }
               )}
               {this.castToObject<[]>("buttonList").map(
@@ -121,9 +180,15 @@ class Navbar1 extends BaseNavigator {
           <nav className={this.decorateCSS("navigator-mobile")}>
             <div className={this.decorateCSS("navbar")}>
               <img src={this.getPropValue("image")} width={200} />
-              <img className={this.decorateCSS("img-hamburger")} src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187" onClick={() => {this.navClick()}} />
+              <img
+                className={this.decorateCSS("img-hamburger")}
+                src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
+                onClick={() => {
+                  this.navClick();
+                }}
+              />
             </div>
-            {(this.state.componentProps["navActive"] == true) && (
+            {this.state.componentProps["navActive"] == true && (
               <div className={this.decorateCSS("navbar-child")}></div>
             )}
           </nav>

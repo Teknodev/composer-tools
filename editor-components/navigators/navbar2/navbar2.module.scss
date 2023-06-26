@@ -1,8 +1,10 @@
 .container {
   width: 100%;
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
+
     nav {
       display: flex;
       height: 66px;
@@ -10,9 +12,11 @@
       width: 100%;
       justify-content: space-between;
       padding: 50px 20px;
+
       .items {
         display: flex;
         gap: 15px;
+
         h3 {
           cursor: pointer;
           transition: all 0.5s;
@@ -23,7 +27,11 @@
           }
         }
       }
+
       .button-child {
+        display: flex;
+        align-items: center;
+        gap: 15px;
         button {
           cursor: pointer;
           transition: all 0.5s;
@@ -44,19 +52,20 @@
         }
       }
     }
+    .navigator-mobile {
+      display: none;
+      visibility: hidden;
+    }
   }
-}
 
-.container-sticky {
-  @extend .container;
-  position: fixed;
-  top: 0;
-  z-index: 10;
-}
+  .container-sticky {
+    @extend .container;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
 
-
-@media only screen and (max-width: 1400px) {
-  .container {
+  @media only screen and (max-width: 1400px) {
     .max-content {
       max-width: 100%;
       nav {
@@ -64,19 +73,64 @@
       }
     }
   }
-}
 
-@media only screen and (max-width: 1100px) {
-  .container {
+  @media only screen and (max-width: 1100px) {
     .max-content {
       max-width: 100%;
       nav {
-        display: block;
+        display: flex;
         text-align: center;
         padding: 50px 20px;
         .items {
           width: max-content;
-          margin: 0 auto 0 auto;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 870px) {
+    .max-content {
+      nav {
+        display: none;
+        visibility: hidden;
+      }
+
+      .navigator-mobile {
+        display: block;
+        visibility: visible;
+
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 25px;
+          height: 100%;
+
+          .img-hamburger {
+            cursor: pointer;
+            transition: 0.4s;
+            font-weight: 100;
+            font-size: 30px;
+            width: 25px;
+            height: 25px;
+
+            &:hover {
+              transform: rotate(90deg);
+            }
+          }
+        }
+
+        .navbar-hidden {
+          display: block;
+          visibility: visible;
+        }
+
+        .navbar-child {
+          transition: all 0.5s;
+          height: 200px; /* Değerini ihtiyaca göre ayarlayın */
+          background-color: black;
+          color: white;
         }
       }
     }
