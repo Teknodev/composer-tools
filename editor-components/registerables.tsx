@@ -57,6 +57,8 @@ import TeamComponent10 from "./team/team-10/team10";
 import TeamComponent11 from "./team/team-11/team11";
 import TeamComponent12 from "./team/team-12/team12";
 import TeamComponent13 from "./team/team-13/team13";
+import TeamComponent14 from "./team/team-14/team14";
+import TeamComponent15 from "./team/team-15/team15";
 import HeaderComponent1 from "./header/header1/header1";
 import HeaderComponent2 from "./header/header2/header2";
 import HeaderComponent3 from "./header/header3/header3";
@@ -69,22 +71,20 @@ import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
 import HeaderComponent11 from "./header/header11/header11";
 import HeaderComponent12 from "./header/header12/header12";
-import CardComponent1 from "./card/card1/card1";
-import CardComponent2 from "./card/card2/card2";
-import CardComponent3 from "./card/card3/card3";
-import CardComponent4 from "./card/card4/card4";
-import CardComponent5 from "./card/card5/card5";
-import CardComponent6 from "./card/card6/card6";
-import CardComponent7 from "./card/card7/card7";
-import CardComponent8 from "./card/card8/card8";
-import CardComponent9 from "./card/card9/card9";
-import CardComponent10 from "./card/card10/card10";
-import CardComponent11 from "./card/card11/card11";
-import CardComponent12 from "./card/card12/card12";
-import CardComponent13 from "./card/card13/card13";
-import BoxesComponent3 from "./boxes/boxes3/boxes3";
-import BoxesComponent2 from "./boxes/boxes2/boxes2";
-import BoxesComponent1 from "./boxes/boxes1/boxes1";
+import FeatureComponent1 from "./feature/feature1/feature1";
+import FeatureComponent2 from "./feature/feature2/feature2";
+import FeatureComponent3 from "./feature/feature3/feature3";
+import FeatureComponent4 from "./feature/feature4/feature4";
+import FeatureComponent5 from "./feature/feature5/feature5";
+import FeatureComponent6 from "./feature/feature6/feature6";
+import FeatureComponent7 from "./feature/feature7/feature7";
+import FeatureComponent8 from "./feature/feature8/feature8";
+import FeatureComponent9 from "./feature/feature9/feature9";
+import FeatureComponent10 from "./feature/feature10/feature10";
+import FeatureComponent11 from "./feature/feature11/feature11";
+import FeatureComponent12 from "./feature/feature12/feature12";
+import FeatureComponent13 from "./feature/feature13/feature13";
+import FeatureComponent14 from "./feature/feature14/feature14";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -193,6 +193,7 @@ function Registerables(composer: ComponentsRegistery) {
     new TeamComponent11(),
     new TeamComponent12(),
     new TeamComponent13(),
+    new TeamComponent14(),
     new HeaderComponent1(),
     new HeaderComponent2(),
     new HeaderComponent3(),
@@ -208,22 +209,20 @@ function Registerables(composer: ComponentsRegistery) {
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),
-    new BoxesComponent1(),
-    new BoxesComponent2(),
-    new BoxesComponent3(),
-    new CardComponent1(),
-    new CardComponent2(),
-    new CardComponent3(),
-    new CardComponent4(),
-    new CardComponent5(),
-    new CardComponent6(),
-    new CardComponent7(),
-    new CardComponent8(),
-    new CardComponent9(),
-    new CardComponent10(),
-    new CardComponent11(),
-    new CardComponent12(),
-    new CardComponent13(),
+    new FeatureComponent1(),
+    new FeatureComponent2(),
+    new FeatureComponent3(),
+    new FeatureComponent4(),
+    new FeatureComponent5(),
+    new FeatureComponent6(),
+    new FeatureComponent7(),
+    new FeatureComponent8(),
+    new FeatureComponent9(),
+    new FeatureComponent10(),
+    new FeatureComponent11(),
+    new FeatureComponent12(),
+    new FeatureComponent13(),
+    new FeatureComponent14(),
     new CallToAction1(),
     new CallToAction2(),
     new CallToAction3(),

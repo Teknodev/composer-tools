@@ -1,6 +1,5 @@
 import axios from "axios";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { getProjectHook } from "../custom-hooks/project";
 
 type TypeCSSProp = { [key: string]: {id:string, class: string}[] };
@@ -44,14 +43,12 @@ export type TypeUsableComponentProps = {
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
   TESTIMONIALS = "testimonials",
-  CARD = "card",
   LIST = "list",
   HEADER = "header",
   PRICING = "pricing",
   FOOTER = "footer",
   TEAM = "team",
   CONTENT = "content",
-  BOXES = "boxes",
   FORM = "form",
   DOWNLOAD = "download",
   CALLTOACTION = "callToAction",
@@ -60,6 +57,7 @@ export enum CATEGORIES {
   MODAL = "modal",
   LOGOCLOUDS = "logoClouds",
   STATS = "stats",
+  FEATURE = "feature"
 }
 
 export abstract class Component
@@ -204,13 +202,6 @@ export abstract class Testimonials extends Component {
   }
 }
 
-export abstract class BaseCard extends Component {
-  protected category = CATEGORIES.CARD;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
-}
-
 export abstract class BaseList extends Component {
   protected category = CATEGORIES.LIST;
   constructor(props: any, styles: any) {
@@ -254,13 +245,6 @@ export abstract class Team extends Component {
 
 export abstract class BaseContent extends Component {
   protected category = CATEGORIES.CONTENT;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
-}
-
-export abstract class BaseBoxes extends Component {
-  protected category = CATEGORIES.BOXES;
   constructor(props: any, styles: any) {
     super(props, styles);
   }
@@ -325,5 +309,12 @@ export abstract class BaseContacts extends Component {
     const project = getProjectHook()._id;
     let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
     return axios.request(config).then((r: any) => r.data);
+  }
+}
+
+export abstract class BaseFeature extends Component {
+  protected category = CATEGORIES.FEATURE;
+  constructor(props: any, styles: any) {
+    super(props, styles);
   }
 }
