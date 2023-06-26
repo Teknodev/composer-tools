@@ -34,6 +34,7 @@ import SliderComponent4 from "./slider/slider4/slider4";
 import SliderComponent5 from "./slider/slider5/slider5";
 import SliderComponent6 from "./slider/slider6/slider6";
 import SliderComponent7 from "./slider/slider7/slider7";
+import SliderComponent8 from "./slider/slider8/slider8";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -172,6 +173,7 @@ function Registerables(composer: ComponentsRegistery) {
     new SliderComponent5(),
     new SliderComponent6(),
     new SliderComponent7(),
+    new SliderComponent8(),
     new PricingComponent1(),
     new PricingComponent2(),
     new PricingComponent3(),
