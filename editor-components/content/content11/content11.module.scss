@@ -42,7 +42,7 @@
     .card-child {
       @include flex-center;
       gap: 20px;
-      padding: 0 5px;
+      
       .card {
         background-color: var(--composer-primary-color);
         position: relative;
