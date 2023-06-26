@@ -6,7 +6,7 @@ import styles from "./pricing-table5.module.scss";
 type PriceList = {
   image: string;
   title: string;
-  stars: string;
+  stars: number;
   price: string;
   duration: string;
   buttonText: string;
@@ -39,9 +39,9 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Title",
             },
             {
-              type: "string",
+              type: "number",
               key: "stars",
-              value: "5",
+              value: 5,
               displayer: "Stars",
             },
             {
@@ -89,9 +89,9 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Title",
             },
             {
-              type: "string",
+              type: "number",
               key: "stars",
-              value: "5",
+              value: 5,
               displayer: "Stars",
             },
             {
@@ -99,7 +99,6 @@ class PricingTable5 extends BasePricingTable {
               key: "price",
               value: "$150",
               displayer: "Price",
-              completion: "Price of product, with currency"
             },
             {
               type: "string",
@@ -112,7 +111,6 @@ class PricingTable5 extends BasePricingTable {
               key: "buttonText",
               value: "Get started",
               displayer: "Button Text",
-              completion: "Button Text for call to buy"
             },
             {
               type: "page",
@@ -141,9 +139,9 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Title",
             },
             {
-              type: "string",
+              type: "number",
               key: "stars",
-              value: "5",
+              value: 5,
               displayer: "Stars",
             },
             {

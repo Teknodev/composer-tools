@@ -1,8 +1,7 @@
 import Slider from "react-slick";
 import * as React from "react";
-import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseSlider} from "../../EditorComponent";
 import styles from "./slider6.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 

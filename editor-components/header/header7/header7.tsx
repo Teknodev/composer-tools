@@ -1,6 +1,5 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header7.module.scss";
 
@@ -25,7 +24,6 @@ class Header7 extends BaseHeader {
       key: "content",
       displayer: "Content",
       value: "Blogging has become an increasingly popular way for individuals and businesses to share their ideas, connect with their audience, and establish their online presence. In this blog post, we'll explore some of the key benefits of blogging and provide some tips on how to create successful blog content.",
-      completion: "Header content",
     });
 
     this.addProp({

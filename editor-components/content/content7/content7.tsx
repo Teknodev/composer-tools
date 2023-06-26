@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content7.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Content7 extends BaseContent {
   constructor(props?: any) {
@@ -26,16 +27,30 @@ class Content7 extends BaseContent {
         "Web design is a crucial aspect of building a successful online presence. Your website is often the first point of contact between you and your audience, and its design can significantly impact how your brand is perceived.",
     });
     this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "More Info",
+      type: "object",
+      key: "button",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "More Info",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Button Link",
+          value: "",
+        },
+      ],
     });
     this.addProp({
       type: "image",
       key: "wideImage",
       displayer: "Wide Image",
-      value: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
+      value:
+        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
     });
   }
 
@@ -58,10 +73,15 @@ class Content7 extends BaseContent {
             <span className={this.decorateCSS("description")}>
               {this.getPropValue("description")}
             </span>
-            <img className={this.decorateCSS("wide-image")} src={this.getPropValue("wideImage")} />
-            <span className={this.decorateCSS("button")}>
-              {this.getPropValue("buttonText")}
-            </span>
+            <img
+              className={this.decorateCSS("wide-image")}
+              src={this.getPropValue("wideImage")}
+            />
+            <ComposerLink path={this.getPropValue("button")[1].value}>
+              <span className={this.decorateCSS("button")}>
+                {this.getPropValue("button")[0].value}
+              </span>
+            </ComposerLink>
           </div>
         </div>
       </div>

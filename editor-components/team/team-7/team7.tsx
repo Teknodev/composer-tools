@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "./team7.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface Card {
@@ -30,7 +29,7 @@ class Team7 extends Team {
                     type: "page",
                     key: "url",
                     displayer: "Url",
-                    value: PlaceholderFiller.string()
+                    value: ""
                 }
             ]
         };
@@ -52,7 +51,7 @@ class Team7 extends Team {
                     type: "page",
                     key: "url",
                     displayer: "Url",
-                    value: PlaceholderFiller.string()
+                    value:""
                 }
             ]
         };
@@ -74,7 +73,7 @@ class Team7 extends Team {
                     type: "page",
                     key: "url",
                     displayer: "Url",
-                    value: PlaceholderFiller.string()
+                    value: ""
                 }
             ]
         };
@@ -95,14 +94,12 @@ class Team7 extends Team {
                     key: "name",
                     displayer: "Person Name",
                     value: "John Smith",
-                    completion: "Full name 1"
                 },
                 {
                     type: "string",
                     key: "position",
                     displayer: "Position",
                     value: "CEO",
-                    completion: "Position 1"
                 },
                 {
                     type: "array",
@@ -133,14 +130,12 @@ class Team7 extends Team {
                     key: "name",
                     displayer: "Person Name",
                     value: "Mary Johnson",
-                    completion: "Full name 2"
                 },
                 {
                     type: "string",
                     key: "position",
                     displayer: "Position",
                     value: "CEO",
-                    completion: "Position 2"
                 },
                 {
                     type: "array",
@@ -171,14 +166,12 @@ class Team7 extends Team {
                     key: "name",
                     displayer: "Person Name",
                     value: "Sarah Brown",
-                    completion: "Full name 3"
                 },
                 {
                     type: "string",
                     key: "position",
                     displayer: "Position",
                     value: "Marketing Manager",
-                    completion: "Position 3"
                 },
                 {
                     type: "array",
@@ -209,14 +202,12 @@ class Team7 extends Team {
                     key: "name",
                     displayer: "Person Name",
                     value: "Jessica Anderson",
-                    completion: "Full name 4"
                 },
                 {
                     type: "string",
                     key: "position",
                     displayer: "Position",
                     value: "Business Representative",
-                    completion: "Position 4"
                 },
                 {
                     type: "array",
@@ -242,7 +233,7 @@ class Team7 extends Team {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: PlaceholderFiller.shortText(),
+            value: "",
         });
 
         this.addProp({
