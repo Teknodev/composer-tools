@@ -1,6 +1,5 @@
 import * as React from "react";
 import styles from "./faq2.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseFAQ } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 

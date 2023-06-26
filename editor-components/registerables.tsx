@@ -19,10 +19,13 @@ import ContentComponent2 from "./content/content2/content2";
 import ContentComponent3 from "./content/content3/content3";
 import ContentComponent4 from "./content/content4/content4";
 import ContentComponent5 from "./content/content5/content5";
-import ContentComponent6 from "./content/content6/content6";
+// import ContentComponent6 from "./content/content5/content6";
 import ContentComponent7 from "./content/content7/content7";
 import ContentComponent8 from "./content/content8/content8";
 import ContentComponent9 from "./content/content9/content9";
+import ContentComponent10 from "./content/content10/content10";
+import ContentComponent11 from "./content/content11/content11";
+import ContentComponent12 from "./content/content12/content12";
 import ContentComponent13 from "./content/content13/content13";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
@@ -57,6 +60,8 @@ import TeamComponent10 from "./team/team-10/team10";
 import TeamComponent11 from "./team/team-11/team11";
 import TeamComponent12 from "./team/team-12/team12";
 import TeamComponent13 from "./team/team-13/team13";
+import TeamComponent14 from "./team/team-14/team14";
+import TeamComponent15 from "./team/team-15/team15";
 import HeaderComponent1 from "./header/header1/header1";
 import HeaderComponent2 from "./header/header2/header2";
 import HeaderComponent3 from "./header/header3/header3";
@@ -67,22 +72,22 @@ import HeaderComponent7 from "./header/header7/header7";
 import HeaderComponent8 from "./header/header8/header8";
 import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
-import CardComponent1 from "./card/card1/card1";
-import CardComponent2 from "./card/card2/card2";
-import CardComponent3 from "./card/card3/card3";
-import CardComponent4 from "./card/card4/card4";
-import CardComponent5 from "./card/card5/card5";
-import CardComponent6 from "./card/card6/card6";
-import CardComponent7 from "./card/card7/card7";
-import CardComponent8 from "./card/card8/card8";
-import CardComponent9 from "./card/card9/card9";
-import CardComponent10 from "./card/card10/card10";
-import CardComponent11 from "./card/card11/card11";
-import CardComponent12 from "./card/card12/card12";
-import CardComponent13 from "./card/card13/card13";
-import BoxesComponent3 from "./boxes/boxes3/boxes3";
-import BoxesComponent2 from "./boxes/boxes2/boxes2";
-import BoxesComponent1 from "./boxes/boxes1/boxes1";
+import HeaderComponent11 from "./header/header11/header11";
+import HeaderComponent12 from "./header/header12/header12";
+import FeatureComponent1 from "./feature/feature1/feature1";
+import FeatureComponent2 from "./feature/feature2/feature2";
+import FeatureComponent3 from "./feature/feature3/feature3";
+import FeatureComponent4 from "./feature/feature4/feature4";
+import FeatureComponent5 from "./feature/feature5/feature5";
+import FeatureComponent6 from "./feature/feature6/feature6";
+import FeatureComponent7 from "./feature/feature7/feature7";
+import FeatureComponent8 from "./feature/feature8/feature8";
+import FeatureComponent9 from "./feature/feature9/feature9";
+import FeatureComponent10 from "./feature/feature10/feature10";
+import FeatureComponent11 from "./feature/feature11/feature11";
+import FeatureComponent12 from "./feature/feature12/feature12";
+import FeatureComponent13 from "./feature/feature13/feature13";
+import FeatureComponent14 from "./feature/feature14/feature14";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -110,6 +115,7 @@ import StatsComponent3 from "./stats/stats3/stats3";
 import StatsComponent4 from "./stats/stats4/stats4";
 import StatsComponent5 from "./stats/stats5/stats5";
 import StatsComponent6 from "./stats/stats6/stats6";
+import StatsComponent7 from "./stats/stats7/stats7";
 import ContactsComponent1 from "./contacts/contacts1/contacts1";
 import ContactsComponent2 from "./contacts/contacts2/contacts2";
 import ContactsComponent3 from "./contacts/contacts3/contacts3";
@@ -127,6 +133,7 @@ import NavbarComponent1 from "./navigators/navbar1/navbar1";
 import NavbarComponent2 from "./navigators/navbar2/navbar2";
 import NavbarComponent3 from "./navigators/navbar3/navbar3";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
+import NoticeModal from "./modal/notice-modal/notice";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -150,10 +157,13 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent3(),
     new ContentComponent4(),
     new ContentComponent5(),
-    new ContentComponent6(),
+    // new ContentComponent6(),
     new ContentComponent7(),
     new ContentComponent8(),
     new ContentComponent9(),
+    new ContentComponent10(),
+    new ContentComponent11(),
+    new ContentComponent12(),
     new ContentComponent13(),
     new SliderComponent1(),
     new SliderComponent2(),
@@ -188,6 +198,7 @@ function Registerables(composer: ComponentsRegistery) {
     new TeamComponent11(),
     new TeamComponent12(),
     new TeamComponent13(),
+    new TeamComponent14(),
     new HeaderComponent1(),
     new HeaderComponent2(),
     new HeaderComponent3(),
@@ -198,25 +209,25 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent8(),
     new HeaderComponent9(),
     new HeaderComponent10(),
+    new HeaderComponent11(),
+    new HeaderComponent12(),
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),
-    new BoxesComponent1(),
-    new BoxesComponent2(),
-    new BoxesComponent3(),
-    new CardComponent1(),
-    new CardComponent2(),
-    new CardComponent3(),
-    new CardComponent4(),
-    new CardComponent5(),
-    new CardComponent6(),
-    new CardComponent7(),
-    new CardComponent8(),
-    new CardComponent9(),
-    new CardComponent10(),
-    new CardComponent11(),
-    new CardComponent12(),
-    new CardComponent13(),
+    new FeatureComponent1(),
+    new FeatureComponent2(),
+    new FeatureComponent3(),
+    new FeatureComponent4(),
+    new FeatureComponent5(),
+    new FeatureComponent6(),
+    new FeatureComponent7(),
+    new FeatureComponent8(),
+    new FeatureComponent9(),
+    new FeatureComponent10(),
+    new FeatureComponent11(),
+    new FeatureComponent12(),
+    new FeatureComponent13(),
+    new FeatureComponent14(),
     new CallToAction1(),
     new CallToAction2(),
     new CallToAction3(),
@@ -244,6 +255,7 @@ function Registerables(composer: ComponentsRegistery) {
     new StatsComponent4(),
     new StatsComponent5(),
     new StatsComponent6(),
+    new StatsComponent7(),
     new ContactsComponent1(),
     new ContactsComponent2(),
     new ContactsComponent3(),
@@ -258,6 +270,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent6(),
     new FooterComponent7(),
     new TermsOfUseModal(),
+    new NoticeModal()
   ]);
 }
 

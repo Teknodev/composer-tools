@@ -1,6 +1,5 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action6.module.scss";
 

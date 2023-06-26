@@ -1,7 +1,7 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content1.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Content1 extends BaseContent {
   constructor(props?: any) {
@@ -16,31 +16,57 @@ class Content1 extends BaseContent {
           key: "titleColored",
           displayer: "Title Colored",
           value: "Are you ready to turn more ad clicks into conversions?",
-          completion: "Alternative text to 'Are you ready to turn more ad clicks into conversions?'"
         },
         {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: PlaceholderFiller.string(),
+          value:  "business",
         },
         {
           type: "string",
           key: "description",
           displayer: "Description",
-          value: "This statement is a call to action aimed at businesses or individuals looking to improve the effectiveness of their online advertising campaigns. ",
+          value:
+            "This statement is a call to action aimed at businesses or individuals looking to improve the effectiveness of their online advertising campaigns. ",
         },
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Yes",
+          type: "object",
+          key: "button",
+          displayer: "Button",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Yes",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
-          key: "buttonTextTwo",
-          displayer: "Button Text Two",
-          value: "Thanks",
+          type: "object",
+          key: "buttontwo",
+          displayer: "Second Button",
+          value: [
+            {
+              type: "string",
+              key: "buttonTextTwo",
+              displayer: "Button Text Two",
+              value: "Thanks",
+            },
+            {
+              type: "page",
+              key: "link2",
+              displayer: "Link",
+              value: "",
+            },
+          ],
         },
       ],
     });
@@ -58,12 +84,20 @@ class Content1 extends BaseContent {
             </h1>
             <h3>{this.getPropValue("heading")[2].value}</h3>
             <div className={this.decorateCSS("button-wrapper")}>
-              <span className={this.decorateCSS("button")}>
-                {this.getPropValue("heading")[3].value}
-              </span>
-              <span className={this.decorateCSS("button-reverse")}>
-                {this.getPropValue("heading")[4].value}
-              </span>
+              <ComposerLink
+                path={this.getPropValue("heading")[3].value[1].value}
+              >
+                <span className={this.decorateCSS("button")}>
+                  {this.getPropValue("heading")[3].value[0].value}
+                </span>
+              </ComposerLink>
+              <ComposerLink
+                path={this.getPropValue("heading")[4].value[1].value}
+              >
+                <span className={this.decorateCSS("button-reverse")}>
+                  {this.getPropValue("heading")[4].value[0].value}
+                </span>
+              </ComposerLink>
             </div>
           </div>
         </div>

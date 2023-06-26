@@ -1,13 +1,13 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./contacts1.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 type Item = {
   image: string;
 };
 type ISection = {
   section: Item[];
+  
 };
 class Contacts1Page extends BaseContacts {
   constructor(props?: any) {
