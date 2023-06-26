@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "./faq1.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 type FAQ = {
   subtitle: string;

@@ -1,6 +1,5 @@
 import * as React from "react";
 import styles from "./faq5.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseFAQ, TypeUsableComponentProps } from "../../EditorComponent";
 
 type Card = {

@@ -66,10 +66,7 @@ class Contacts5Page extends BaseContacts {
       backgroundImage: `url('${this.getPropValue("backgroundImage")}')`,
     };
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("contacts5")}>
             <div className={this.decorateCSS("title")}>
@@ -94,7 +91,6 @@ class Contacts5Page extends BaseContacts {
                       value={values.name}
                       onChange={handleChange}
                       className={this.decorateCSS("input")}
-                      
                     />
                     <ErrorMessage
                       className={this.decorateCSS("error-message")}
@@ -108,7 +104,6 @@ class Contacts5Page extends BaseContacts {
                       value={values.email}
                       onChange={handleChange}
                       className={this.decorateCSS("input")}
-                      
                     />
                     <ErrorMessage
                       className={this.decorateCSS("error-message")}
@@ -122,7 +117,6 @@ class Contacts5Page extends BaseContacts {
                       value={values.message}
                       onChange={handleChange}
                       className={this.decorateCSS("input")}
-                      
                       rows={5}
                     />
                     <ErrorMessage
@@ -132,7 +126,6 @@ class Contacts5Page extends BaseContacts {
                     />
                     <button
                       className={this.decorateCSS("submit-button")}
-                      
                       type="submit"
                     >
                       {this.getPropValue("button_text")}

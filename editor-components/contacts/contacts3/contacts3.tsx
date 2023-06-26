@@ -191,7 +191,10 @@ class Contacts3Page extends BaseContacts {
                       name="message"
                       component={"span"}
                     />
-                    <button className={this.decorateCSS("submit-button")} type="submit">
+                    <button
+                      className={this.decorateCSS("submit-button")}
+                      type="submit"
+                    >
                       {this.getPropValue("button_text")}
                     </button>
                   </Form>

@@ -48,6 +48,12 @@ class Footer1Page extends BaseFooter {
       displayer: "Subscription Button Text",
       value: "Subscribe",
     });
+    this.addProp({
+      type: "page",
+      key: "link",
+      displayer: "Subscription Button Link",
+      value: "",
+    });
 
     this.addProp({
       type: "image",
@@ -574,9 +580,11 @@ class Footer1Page extends BaseFooter {
                         value={values.message}
                         onChange={handleChange}
                       ></input>
-                      <button type="submit">
-                        {this.getPropValue("subscriptionButtonText")}
-                      </button>
+                      <ComposerLink path={this.getPropValue("link")}>
+                        <button type="submit">
+                          {this.getPropValue("subscriptionButtonText")}
+                        </button>
+                      </ComposerLink>
                     </Form>
                   )}
                 </Formik>

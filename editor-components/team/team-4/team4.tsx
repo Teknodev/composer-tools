@@ -76,7 +76,7 @@ class Team4 extends Team {
                       value: "",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "url",
                       displayer: "URL",
                       value: "",
@@ -128,7 +128,7 @@ class Team4 extends Team {
                       value: "",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "url",
                       displayer: "URL",
                       value: "",
@@ -180,7 +180,7 @@ class Team4 extends Team {
                       value: "",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "url",
                       displayer: "URL",
                       value: "",
@@ -203,7 +203,9 @@ class Team4 extends Team {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
+          <span className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </span>
           <p className={this.decorateCSS("description")}>
             {this.getPropValue("description")}
           </p>
@@ -211,7 +213,10 @@ class Team4 extends Team {
           <div className={this.decorateCSS("team-members")}>
             {this.castToObject<TeamMember[]>("teamMembers").map(
               (teamMember: TeamMember, indexTeamMembers: number) => (
-                <div key={indexTeamMembers} className={this.decorateCSS("team-member")}>
+                <div
+                  key={indexTeamMembers}
+                  className={this.decorateCSS("team-member")}
+                >
                   <img
                     className={this.decorateCSS("member-image")}
                     src={teamMember.image}
@@ -225,7 +230,10 @@ class Team4 extends Team {
                   <div className={this.decorateCSS("social-media-list")}>
                     {teamMember.socialMedias.map(
                       (socialMedia: SocialMedia, indexSocialMedias: number) => (
-                        <ComposerLink key={indexSocialMedias} path={socialMedia.url}>
+                        <ComposerLink
+                          key={indexSocialMedias}
+                          path={socialMedia.url}
+                        >
                           <img
                             className={this.decorateCSS("social-media-image")}
                             src={socialMedia.icon}

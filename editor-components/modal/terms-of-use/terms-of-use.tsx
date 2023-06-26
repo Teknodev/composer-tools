@@ -1,6 +1,5 @@
 import * as React from "react";
 import ComposerModalClose from "../../../composer-base-components/close/close";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./terms-of-use.module.scss";
 
@@ -17,13 +16,13 @@ class TermsOfUseModal extends BaseModal {
     this.addProp({
       type: "string",
       key: "terms-of-use-title",
-      value: PlaceholderFiller.string(),
+      value: "Acceptance of Terms",
       displayer: "Title",
     });
     this.addProp({
       type: "string",
       key: "term-of-use-content",
-      value: PlaceholderFiller.extraLongText(),
+      value: "By accessing or using our services, you acknowledge that you have read, understood, and agree to be bound by these terms, as well as any additional terms and conditions provided within our services.",
       displayer: "Description",
     });
     this.addProp({

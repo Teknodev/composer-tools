@@ -1,7 +1,6 @@
 import * as React from "react";
 import { LogoClouds } from "../../EditorComponent";
 import styles from "./logo-comp2.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 type Item = {
   image: string;
