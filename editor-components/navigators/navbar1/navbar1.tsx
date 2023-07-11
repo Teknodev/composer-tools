@@ -89,7 +89,6 @@ class Navbar1 extends BaseNavigator {
   navClick() {
     let value: boolean = this.state.componentProps["navActive"];
     this.state.componentProps["navActive"] = !value;
-    console.log("test", this.state.componentProps["navActive"]);
   }
 
   render() {

@@ -61,6 +61,7 @@ export enum CATEGORIES {
   MODAL = "modal",
   LOGOCLOUDS = "logoClouds",
   STATS = "stats",
+  FEATURE = "feature"
 }
 
 export abstract class Component
