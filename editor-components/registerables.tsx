@@ -76,6 +76,8 @@ import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
 import HeaderComponent11 from "./header/header11/header11";
 import HeaderComponent12 from "./header/header12/header12";
+import HeaderComponent17 from "./header/header17/header17";
+import HeaderComponent20 from "./header/header20/header20";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -216,6 +218,8 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent10(),
     new HeaderComponent11(),
     new HeaderComponent12(),
+    new HeaderComponent17(),
+    new HeaderComponent20(),
     new HeaderComponent13(),
     new NavbarComponent1(),
     new NavbarComponent2(),
