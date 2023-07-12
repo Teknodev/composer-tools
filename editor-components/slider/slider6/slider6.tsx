@@ -1,9 +1,10 @@
-import Slider from "react-slick";
+
 import * as React from "react";
 import { BaseSlider} from "../../EditorComponent";
 import styles from "./slider6.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Card = {
   image: string;
@@ -116,7 +117,7 @@ class Slider6 extends BaseSlider {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <Slider {...settings} className={this.decorateCSS("carousel")}>
+          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
             {this.castToObject<Card[]>("slider").map(
               (item: Card, index: number) => (
                 <img
@@ -126,7 +127,7 @@ class Slider6 extends BaseSlider {
                 />
               )
             )}
-          </Slider>
+          </ComposerSlider>
         </div>
       </div>
     );
