@@ -75,6 +75,8 @@ import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
 import HeaderComponent11 from "./header/header11/header11";
 import HeaderComponent12 from "./header/header12/header12";
+import HeaderComponent13 from "./header/header13/header13";
+import HeaderComponent21 from "./header/header21/header21";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -135,7 +137,6 @@ import NavbarComponent2 from "./navigators/navbar2/navbar2";
 import NavbarComponent3 from "./navigators/navbar3/navbar3";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import NoticeModal from "./modal/notice-modal/notice";
-import HeaderComponent13 from "./header/header13/header13";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -215,6 +216,7 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent11(),
     new HeaderComponent12(),
     new HeaderComponent13(),
+    new HeaderComponent21(),
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),
@@ -274,7 +276,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent6(),
     new FooterComponent7(),
     new TermsOfUseModal(),
-    new NoticeModal()
+    new NoticeModal(),
   ]);
 }
 
