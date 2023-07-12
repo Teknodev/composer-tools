@@ -6,11 +6,11 @@ export function getBoxShadowAndRgba({
     opacity,
     blur_radius,
   }: {
-    color?: string;
+    color: string;
     vertical_length?: number;
     horizontal_length?: number;
     spread_radius?: number;
-    opacity?: number;
+    opacity: number;
     blur_radius?: number;
   }) {
     const rgba =

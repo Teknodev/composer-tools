@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import styles from "./download4.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -63,7 +62,7 @@ class Download4 extends BaseDownload {
               type: "page",
               key: "url",
               displayer: "URL",
-              value: PlaceholderFiller.string(),
+              value: "",
             },
             {
               type: "boolean",

@@ -1,6 +1,5 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header2.module.scss";
 

@@ -23,10 +23,10 @@ class List1 extends BaseList {
               value: "Top 10 Books to Read This Summer",
             },
             {
-              type: "string",
+              type: "number",
               key: "link-badge",
               displayer: "Link Badge",
-              value: "1",
+              value: 1,
             },
             {
               type: "array",
@@ -74,10 +74,10 @@ class List1 extends BaseList {
               value: "5 Essential Tools for Remote Work Success",
             },
             {
-              type: "string",
+              type: "number",
               key: "link-badge",
               displayer: "Link Badge",
-              value: "2",
+              value: 2,
             },
             {
               type: "array",
@@ -125,10 +125,10 @@ class List1 extends BaseList {
               value: "7 Tips for a Healthier Lifestyle",
             },
             {
-              type: "string",
+              type: "number",
               key: "link-badge",
               displayer: "Link Badge",
-              value: "3",
+              value: 3,
             },
             {
               type: "array",
