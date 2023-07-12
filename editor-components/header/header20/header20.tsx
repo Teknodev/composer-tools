@@ -1,223 +1,243 @@
 import * as React from "react";
-import styles from "./header12.module.scss";
+import styles from "./header20.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 
-// type Button = {
-//   buttonText: string;
-//   url: string;
-//   isPrimary: boolean;
-//   buttonImage: string;
-// };
 
-type IMessages = {
-  title: string;
-  description: string;
-};
-class Header12 extends BaseHeader {
+class Header20 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
 
     this.addProp({
-      type: "string",
-      key: "title",
-      value: "Find winning creatives fast",
-      displayer: "Title",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      value:
-        "Test different messages, background and designs. Find winning ad creatives that can bring your startup to the next level. Let Composer be the unfair advantage against your competitors.",
-      displayer: "Description",
-    });
-
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf154?alt=media&timestamp=1685102167066",
-    });
-
-
-    this.addProp({
       type: "array",
-      key: "message-bar-card",
-      displayer: "Message Bar Card",
+      displayer: "Items",
+      key: "items",
       value: [
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          displayer: "Item Left",
+          key: "item-left",
           value: [
             {
               type: "string",
-              key: "title",
               displayer: "Title",
-              value: "The Advantages of Remote Work",
+              key: "title",
+              value: "MATTIS LAOREET SAPIEN",
             },
             {
               type: "string",
-              key: "description",
               displayer: "Description",
-              value: "Remote work allows for greater flexibility, better work-life balance, and increased productivity. It also eliminates the need for lengthy commutes and reduces environmental impact. "
+              key: "description",
+              value: "Porta\nConsectetur\nImperdiet\nFrigilla",
+            },
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/banner-1-opt.jpg",
+            },
+            {
+              type: "object",
+              displayer: "Button",
+              key: "button",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          displayer: "Item Right",
+          key: "item-right",
           value: [
             {
               type: "string",
-              key: "title",
               displayer: "Title",
-              value: "The Importance of Diversity in the Workplace",
+              key: "title",
+              value: "SEMPER",
             },
             {
               type: "string",
-              key: "description",
               displayer: "Description",
-              value: "A diverse workplace not only fosters a culture of inclusivity and acceptance, but also enhances creativity and innovation.",
+              key: "description",
+              value: "Feugiat\nScelerisque\nImperdiet",
+            },
+
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/finaly-banner-handmade-9-opt.jpg",
+            },
+            {
+              type: "object",
+              displayer: "Button",
+              key: "button",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          displayer: "Item Right Bottom Left",
+          key: "item-right-bottom-left",
           value: [
             {
               type: "string",
-              key: "title",
               displayer: "Title",
-              value: "The Benefits of Learning a Second Language",
+              key: "title",
+              value: "SEMPER",
             },
             {
               type: "string",
-              key: "description",
               displayer: "Description",
-              value: "Learning a second language can improve cognitive function, enhance communication skills, and open up new opportunities for personal and professional growth.",
+              key: "description",
+              value: "Adipiscing\nSodales",
+            },
+
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/finaly-banner-handmade-7-opt.jpg",
+            },
+            {
+              type: "object",
+              displayer: "Button",
+              key: "button",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
             },
           ],
         },
       ],
     });
 
-    this.addProp({
-      type: "array",
-      key: "message-bar-card2",
-      displayer: "Message Bar Card2",
-      value: [
-        {
-          type: "object",
-          key: "message2",
-          displayer: "Message2",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "The Advantages of Remote Work",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Remote work allows for greater flexibility, better work-life balance, and increased productivity. It also eliminates the need for lengthy commutes and reduces environmental impact. "
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "message2",
-          displayer: "Message2",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "The Importance of Diversity in the Workplace",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "A diverse workplace not only fosters a culture of inclusivity and acceptance, but also enhances creativity and innovation.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "message2",
-          displayer: "Message2",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "The Benefits of Learning a Second Language",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Learning a second language can improve cognitive function, enhance communication skills, and open up new opportunities for personal and professional growth.",
-            },
-          ],
-        },
-      ],
-    });
+      this.addProp({
+        type: "image",
+        displayer: "Item Right Bottom Right",
+        key: "item-right-bottom-right",
+        value: "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/finaly-banner-handmade-8-opt.jpg",
+      });
   }
 
   getName(): string {
-    return "Header-12";
+    return "Header-20";
   }
 
   render() {
+    let items: any = this.castToObject("items");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("boxes-title")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <p>{this.getPropValue("description")}</p>
-            </div>
-            <div className={this.decorateCSS("box-child")}>
-              <div className={this.decorateCSS("box")}>
-                {this.castToObject<IMessages[]>("message-bar-card").map(
-                  (message: any, index: number) => (
-                    <div className={this.decorateCSS("message")} key={`hdr-card-12-${index}`}>
-                      <div className={this.decorateCSS("title")}>
-                        <h3>{message.title}</h3>
-                      </div>
-                      <p className={this.decorateCSS("long-text")}>{message.description}</p>
-                    </div>
-                  )
-                )}
-              </div>
-
-              <div className={this.decorateCSS("boxes-logo")}>
-                <img className={this.decorateCSS("logoimage")} src={this.getPropValue("image")} />
-              </div>
-
-              <div className={this.decorateCSS("box")}>
-                {this.castToObject<IMessages[]>("message-bar-card2").map(
-                  (message: any, index: number) => (
-                    <div className={`${this.decorateCSS("message")} ${this.decorateCSS("right-message")}`} key={`hdr-card2-12-${index}`}>
-                      <div className={this.decorateCSS("title")}>
-                        <h3>{message.title}</h3>
-                      </div>
-                      <p className={this.decorateCSS("long-text")}>{message.description}</p>
-                    </div>
-                  )
-                )}
-
+            <div className={this.decorateCSS("left")}>
+              <div className={this.decorateCSS("item")}>
+                <div className={this.decorateCSS("background-image")}>
+                  <img src={items[0].image} alt={items[0].title} />
+                </div>
+                <div className={this.decorateCSS("content")}>
+                  <div className={this.decorateCSS("title")}>
+                    {items[0].title}
+                  </div>
+                  <div className={this.decorateCSS("description")}>
+                    {items[0].description}
+                  </div>
+                  <div>
+                    <button className={this.decorateCSS("button")}>
+                      {items[0].button[0].value}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-
+            <div className={this.decorateCSS("right")}>
+              <div className={this.decorateCSS("top")}>
+                <div className={this.decorateCSS("item")}>
+                  <div className={this.decorateCSS("background-image")}>
+                    <img src={items[1].image} alt={items[1].title} />
+                  </div>
+                  <div className={this.decorateCSS("content")}>
+                    <div className={this.decorateCSS("title")}>
+                      {items[1].title}
+                    </div>
+                    <div className={this.decorateCSS("description")}>
+                      {items[1].description}
+                    </div>
+                    <div>
+                      <button className={this.decorateCSS("button")}>
+                        {items[1].button[0].value}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={this.decorateCSS("bottom")}>
+                <div className={this.decorateCSS("item")}>
+                  <div className={this.decorateCSS("background-image")}>
+                    <img src={items[2].image} alt={items[2].title} />
+                  </div>
+                  <div className={this.decorateCSS("content")}>
+                    <div className={this.decorateCSS("title")}>
+                      {items[2].title}
+                    </div>
+                    <div className={this.decorateCSS("description")}>
+                      {items[2].description}
+                    </div>
+                    <div>
+                      <button className={this.decorateCSS("button")}>
+                        {items[2].button[0].value}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className={this.decorateCSS("item")}>
+                  <div className={this.decorateCSS("background-image")}>
+                    <img src={this.getPropValue('item-right-bottom-right')}/>
+                  </div>  
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -225,4 +245,4 @@ class Header12 extends BaseHeader {
   }
 }
 
-export default Header12;
+export default Header20;
