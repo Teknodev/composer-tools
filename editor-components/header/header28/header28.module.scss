@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100;400;500;700&family=Plus+Jakarta+Sans&family=Roboto:wght@100;400&display=swap');
+
+.container {
+  width: 100%;
+
+
+
+
+  .wrapper {
+    height: 100vh;
+    .carousel > button:first-child {
+      content: "";
+      z-index: 10;
+      position: absolute !important;
+      left: 0.8%;
+    }
+
+    
+
+    .carousel > :last-child {
+      content: "";
+      position: absolute !important;
+      left: 98.2% !important;
+    }
+    
+    .carousel {
+      height: 100%;
+
+      
+
+      
+
+      .items{
+        position: relative;
+
+        .max-content {
+          max-width: var(--composer-content-width);
+          margin: auto;
+      
+        }
+
+        .background{
+          object-fit: contain;
+          z-index: -1;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          height: 100%;
+          width: 100%;
+        }
+        
+        .item-box {
+          padding: 50px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          padding-top: 50px;
+          gap: 150px;
+
+          .text-content{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+
+            .upper-title{
+              color: #f2ad44;
+              font-size: 3rem;
+              overflow-wrap: break-word;
+              word-wrap: break-word;
+            }
+            .lower-title{
+              color: #ffffffff;
+              font-size: 4rem;
+              overflow-wrap: break-word;
+              font-weight: bold;
+              word-wrap: break-word;
+
+            }
+            .text{
+              color: #ffffffcc;
+              font-size: 1.5rem;
+              overflow-wrap: break-word;
+              word-wrap: break-word;
+
+            }
+            .action-button {
+              color: white;
+              size: 200px;
+              background-color: #f2ad44;
+              padding: 15px;
+            }
+          }
+
+          .image {
+            z-index: 5;
+          }
+        }
+
+      }
+
+    }
+  }
+}
