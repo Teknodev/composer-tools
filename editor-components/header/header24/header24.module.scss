@@ -1,0 +1,124 @@
+.container {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+  }
+    .wrapper{
+      border-radius: 10px;
+
+      .carousel > button:first-child {
+        z-index: 10;
+        position: absolute !important;
+        left: 0.8%;
+      }
+  
+      .carousel > :last-child {
+        position: absolute !important;
+        left: 98.2% !important;
+      }
+      
+      .carousel {
+      width: 100%;
+
+      .items{
+        background-color: rgba(71, 168, 233, 0.185);
+
+        .wrapper-slick{
+          position: relative;
+          width: 100%;
+          height: 100vh;
+          display: flex; 
+          justify-content: center;
+          align-items: center;
+
+          .background1{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+          }
+    
+          .background2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+    
+          .background3 {
+            position: absolute;
+            left: 20%;
+          }
+    
+          .img-background{
+            z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+    
+          .top-img {
+            z-index: 3;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+    
+          .text-container{
+            display: flex;
+            align-items: center;
+            gap: 200px;
+            .upper-text{
+              z-index: 4;
+              font-size: 6rem;
+              color:white;
+              font-weight: bold;
+            }
+    
+            
+    
+    
+    
+            .lower-text{
+              z-index: 1;
+              font-size: 6rem;
+              color: white;
+              font-weight: bold;
+            }
+          }
+    
+          .circle{
+            position: absolute;
+            border-radius: 50%;
+            width: 650px;
+            height: 650px;
+            background-color: rgba(71, 168, 233, 0.247);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+        
+    
+            .innerCircle{
+              position: absolute;
+              border-radius: 50%;
+              width: 400px;
+              height: 400px;
+              background-color: rgba(71, 168, 233, 0.199);
+    
+            }
+          }
+        }
+        
+
+      }
+      }
+     
+
+      
+    }
+  }
