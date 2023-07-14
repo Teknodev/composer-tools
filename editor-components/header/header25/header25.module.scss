@@ -5,7 +5,7 @@
     height: 100%;
     .carousel {
       width: 100%;
-      >ul {
+      > ul {
         transform: translateY(-40px) translateX(-50%);
         background-color: white;
         border-radius: 100px;
@@ -13,9 +13,9 @@
         position: absolute;
         left: 50%;
         padding: 0px 5px;
-        li{
-          button{
-            &:before{
+        li {
+          button {
+            &:before {
               font-size: 15px;
             }
           }
@@ -75,7 +75,7 @@
                   border: 0px;
                   color: white;
                   margin: 12px;
-                 
+
                   font-weight: bold;
                   &:last-child {
                     border: 2px solid #b09782;
@@ -103,6 +103,96 @@
               height: 120px;
               position: absolute;
               top: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    .wrapper {
+      .carousel{
+        > ul {
+          transform: translateY(-40px) translateX(-50%);
+          background-color: white;
+          border-radius: 100px;
+          width: auto;
+          position: absolute;
+          left: 50%;
+          padding: 0px 2px;
+          li {
+            button {
+              &:before {
+                font-size: 8px;
+              }
+            }
+          }
+        }
+        .item{
+          .max-content{
+            overflow: hidden;
+            .left{
+              .content{
+                .title{
+                  margin-top: 8px;
+                  font-size: 3.5rem;
+                }
+                .description{
+                  width: 60%;
+                  margin-top: 12px;
+                  font-size: 1.5rem;
+                }
+                .buttons{
+                  margin-top: 12px;
+                  .button{
+                    padding: 8px 12px;
+                    font-size: 0.9rem;
+                  }
+                }
+              }
+            }
+            .right{
+              .image{
+                height: 60px;
+                left: -50px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container{
+    .wrapper{
+      .carousel{
+        .item{
+          .max-content{
+            .left{
+              .content{
+                .title{
+                  margin-top: 4px;
+                  font-size: 2.5rem;
+                }
+                .description{
+                  font-size: 1.3rem;
+                }
+                .buttons{
+                  margin-top: 8px;
+                  .button{
+                    padding: 8px 10px;
+                    font-size: 0.8rem;
+                  }
+                }
+              }
+            }
+            .right{
+              .image{
+                display: none;
+              }
             }
           }
         }
