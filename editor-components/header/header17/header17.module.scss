@@ -111,6 +111,10 @@
             background-color: white;
             border: 0;
             color: black;
+            cursor: pointer;
+          }
+          .button:hover {
+            background-color: rgba(218, 220, 221, 0.753);
           }
         }
       }
