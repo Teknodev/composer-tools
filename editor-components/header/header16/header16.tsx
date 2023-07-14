@@ -1,8 +1,8 @@
 import * as React from "react";
 import styles from "./header16.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import * as Yup from "yup";
-import { ErrorMessage, Formik, Form } from "formik";
+
+
 
 class HeaderComponent16 extends BaseHeader {
   constructor(props?: any) {
@@ -61,9 +61,7 @@ class HeaderComponent16 extends BaseHeader {
         "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-delivery-top-bg-1.jpg?id=55173",
     });
   }
-  validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-  });
+  
 
   getName(): string {
     return "Header-16";

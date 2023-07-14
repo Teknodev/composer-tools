@@ -1,0 +1,171 @@
+import * as React from "react";
+import styles from "./header31.module.scss";
+import { BaseHeader } from "../../EditorComponent";
+
+class HeaderComponent31 extends BaseHeader {
+  constructor(props?: any) {
+    super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "The Guarantor of Your Successs",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "description",
+      value: "Comprehensive legal support",
+    });
+    this.addProp({
+      type: "object",
+      key: "button",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "GET CONSULT",
+        },
+        {
+          type: "page",
+          key: "buttonPath",
+          displayer: "Button Path",
+          value: "",
+        },
+      ],
+    });
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value:
+        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/05/w-lawyer-pic-opt.png.webp",
+    });
+    this.addProp({
+      type: "image",
+      key: "background-image",
+      displayer: "Background Image",
+      value:
+        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/05/w-lawyer-pic-bg-opt.jpg?id=35885",
+    });
+    this.addProp({
+      type: "string",
+      key: "left-bottom-top",
+      displayer: "left-bottom-top",
+      value: "1500",
+    });
+    this.addProp({
+      type: "string",
+      key: "left-bottom-bottom",
+      displayer: "left-bottom-bottom",
+      value: "Companies in service",
+    });
+    this.addProp({
+      type: "string",
+      key: "middle-bottom-top",
+      displayer: "middle-bottom-top",
+      value: "180",
+    });
+    this.addProp({
+      type: "string",
+      key: "middle-bottom-bottom",
+      displayer: "middle-bottom-bottom",
+      value: "Received licenses",
+    });
+    this.addProp({
+      type: "string",
+      key: "right-bottom-top",
+      displayer: "right-bottom-top",
+      value: "12",
+    });
+    this.addProp({
+      type: "string",
+      key: "right-bottom-bottom",
+      displayer: "right-bottom-bottom",
+      value: "Professional lawyers",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "true",
+      displayer: "Column direction",
+      value: false,
+    });
+  }
+
+  getName(): string {
+    return "Header-31";
+  }
+  render() {
+    const button = this.getPropValue("button");
+
+    return (
+      <div
+        style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+        }}
+        className={this.decorateCSS("container")}
+      >
+        <div className={this.decorateCSS("max-content")}>
+          <div
+            className={`${this.decorateCSS("wrapper")} ${
+              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
+            }`}
+          >
+            <div className={this.decorateCSS("left")}>
+              <div className={this.decorateCSS("content")}>
+                  <div className={this.decorateCSS("main-content")}>
+                    <h3 className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                    </h3>
+                    <h1 className={this.decorateCSS("title")}>
+                      {this.getPropValue("title")}
+                    </h1>
+                  </div>
+
+                <div className={this.decorateCSS("form")}>
+                  <input
+                    placeholder="Your Name"
+                    type="text"
+                    className={this.decorateCSS("name")}
+                  />
+                  <input
+                    placeholder="Phone Number"
+                    type="text"
+                    className={this.decorateCSS("phone")}
+                  />
+                  <button className={this.decorateCSS("button")}>
+                    {button[0].value}
+                  </button>
+                </div>
+                <div className={this.decorateCSS("bottom-content")}>
+                  <div className={this.decorateCSS("left-bottom")}>
+                    <h1>{this.getPropValue("left-bottom-top")}</h1>
+                    <h3>{this.getPropValue("left-bottom-bottom")}</h3>
+                  </div>
+                  <div className={this.decorateCSS("middle-bottom")}>
+                    <h1>{this.getPropValue("middle-bottom-top")}</h1>
+                    <h3>{this.getPropValue("middle-bottom-bottom")}</h3>
+                  </div>
+                  <div className={this.decorateCSS("right-bottom")}>
+                    <h1>{this.getPropValue("right-bottom-top")}</h1>
+                    <h3>{this.getPropValue("right-bottom-bottom")}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={this.decorateCSS("right")}>
+              <img
+                className={this.decorateCSS("image")}
+                src={this.getPropValue("image")}
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+export default HeaderComponent31;
