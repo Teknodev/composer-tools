@@ -12,7 +12,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
       background-color: #fff;
       &.wrapper-reverse {
         flex-flow: row-reverse;
@@ -95,8 +94,8 @@
         }
       }
       .image {
-        height: 82.4%;
-        width: 40.1%;
+        height: 700px;
+        width: 100%;
       }
     }
   }
@@ -163,8 +162,9 @@
           }
         }
         .image {
-          height: 80%;
-          width: 45%;
+          height: 470px;
+          width: 100%;
+          margin-left: 7% ;
         }
       }
     }
@@ -180,30 +180,45 @@
       
     
       .wrapper{
+        flex-direction: column;
+        height: max-content;
+        justify-content: start;
+        align-items: flex-start;
+        padding: 0;
+
+        &.wrapper-reverse {
+          flex-flow: column-reverse;
+        }
         .first {
-          width: 63%;
+          width: 100%;
+          padding: 18px;
           .up {
             gap: 15px;
             .title {
-              font-size: 2.5em;
-              width: 50%;
+              font-size: 4em;
+              width: 100%;
+              justify-content: flex-start;
             }
             .description {
-              font-size: 1em;
-              
+              width: 100%;
+              font-size: 1.2em;
             }
             .button-and-input {
-              gap: 5px;
+              gap: 15px;
+              flex-direction: column;
               .input {
-                height: 25px;
-                width: 65%;
-                font-size: 0.6em;
-                border: #acacac solid 1.6px;
+                height: 37px;
+                width: 100%;
+                font-size: 1em;
+                border: #acacacb2 solid 2.7px;
+                border-radius: 6%;
+                box-shadow: #535252;
               }
               .button {
-                width: 20%;
-                height: 25px;
-                font-size: 0.4em;
+                width: 35%;
+                height: 37px;
+                font-size: 0.8em;
+                margin: 0;
               }
             }
           }
@@ -216,7 +231,7 @@
                 font-size: 1.4em;
               }
               .description1 {
-                font-size: 1em;
+                font-size: 1.2em;
               }
             }
             .card2 {
@@ -225,7 +240,7 @@
                 font-size: 1.4em;
               }
               .description2 {
-                font-size: 1em;
+                font-size: 1.2em;
               }
             }
             .card1,.card2 {
@@ -234,8 +249,9 @@
           }
         }
         .image {
-          height: 80.1%;
-          width: 37%;
+          height: 350px;
+          width: 100%;
+          margin-left: 7%;
         }
       }
     }

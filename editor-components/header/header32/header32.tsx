@@ -96,7 +96,7 @@ class Header32 extends BaseHeader {
                 <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div> 
                 <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
                 <div className={this.decorateCSS("button-and-input")}>
-                  <input placeholder="Your phone number" className={this.decorateCSS("input")} type="text" />
+                  <input placeholder="  Your phone number" className={this.decorateCSS("input")} type="text" />
                   <button className={this.decorateCSS("button")}>{button[0].value}</button>
                 </div>
               </div>
@@ -117,8 +117,8 @@ class Header32 extends BaseHeader {
                 </div>
               </div>
             </div>
-            <div style={{backgroundImage: `url(${this.getPropValue("image")})`}}
-              className={this.decorateCSS("image")} >
+            <div>
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="image" />
             </div> 
           </div>
         </div>
