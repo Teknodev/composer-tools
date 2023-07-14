@@ -1,0 +1,100 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+  
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+  
+    .wrapper{
+      width: 100%;
+      height: 800px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      background-color: #fff;
+      &.wrapper-reverse {
+        flex-flow: row-reverse;
+      }   
+      .first {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 40%;
+        padding: 50px;
+        justify-content: center;
+        gap: 40px;
+        .up {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          .title {
+            font-weight: bold;
+            font-size: 7em;
+          }
+          .description {
+            font-size: 1.5em;
+            color: #535252;
+          }
+          .button-and-input {
+            gap: 20px;
+            .input {
+              border-radius: 5%;
+              height: 45px;
+              width: 45%;
+              border: #acacac solid 2px;
+            }
+            .button {
+              padding: auto;
+              background-color:blue ;
+              width: 21%;
+              height: 45px;
+              border-radius: 7%;
+              margin-left: 3%;
+              color: white;
+              border: transparent;
+            }
+          }
+        }
+        .down {
+          display: flex;
+          flex-direction: row;
+          .card1 {
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            .title1 {
+              font-weight: bold;
+              font-size: 1.5em;
+            }
+            .description1 {
+              font-size: 1.4em;
+              color: #535252;
+            }
+          }
+          .card2 {
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            .title2 {
+              font-weight: bold;
+              font-size: 1.5em;
+            }
+            .description2 {
+              font-size: 1.4em;
+              color: #535252;
+            }
+          }
+          .card1,.card2 {
+            width: 40%;
+          }
+        }
+      }
+      .image {
+        height: 82.4%;
+        width: 30.3%;
+      }
+    }
+  }
+}
