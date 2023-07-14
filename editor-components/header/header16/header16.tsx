@@ -70,22 +70,37 @@ class HeaderComponent16 extends BaseHeader {
   }
 
   render() {
-
     const button = this.getPropValue("button");
 
     return (
-      <div  style={{backgroundImage: `url(${this.getPropValue("background-image")})` }} className={this.decorateCSS("container")}>
+      <div
+        style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+        }}
+        className={this.decorateCSS("container")}
+      >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("content")}>
                 <h1>{this.getPropValue("title")}</h1>
                 <p>{this.getPropValue("description")}</p>
-              </div>
-              <div>
-                <button className={this.decorateCSS("button")}>
-                  {button[0].value}
-                </button>
+
+                <div className={this.decorateCSS("form")}>
+                  <input
+                    placeholder="Your Name"
+                    type="text"
+                    className={this.decorateCSS("name")}
+                  />
+                  <input
+                    placeholder="Phone Number"
+                    type="text"
+                    className={this.decorateCSS("phone")}
+                  />
+                  <button className={this.decorateCSS("button")}>
+                    {button[0].value}
+                  </button>
+                </div>
               </div>
             </div>
             <div className={this.decorateCSS("right")}>
