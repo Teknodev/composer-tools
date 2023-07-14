@@ -60,6 +60,12 @@ class HeaderComponent16 extends BaseHeader {
       value:
         "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-delivery-top-bg-1.jpg?id=55173",
     });
+    this.addProp({
+      type: "boolean",
+      key: "true",
+      displayer: "Column direction",
+      value: true,
+    });
   }
   validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -76,7 +82,9 @@ class HeaderComponent16 extends BaseHeader {
     return (
       <div  style={{backgroundImage: `url(${this.getPropValue("background-image")})` }} className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
+          <div className={`${this.decorateCSS("wrapper")} ${
+              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
+            }`}>
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("content")}>
                 <h1>{this.getPropValue("title")}</h1>

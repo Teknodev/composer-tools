@@ -31,25 +31,22 @@
           width: 85px;
           height: 2px;
         }
-        .divider-underline {
-          margin-top: 4px;
-          margin-left: 8px;
-          background-color: black;
-          width: 72px;
-          height: 2px;
-        }
+        
         .title {
           font-weight: lighter;
           font-size: 4rem;
           width: 55%;
           color: black;
           line-height: 60px;
+         
         }
         .button {
           border: 0px;
           color: black;
           justify-content: flex-start;
           font-weight: bold;
+          border-bottom: 1px solid #000;
+          padding-bottom: 6px;
           &:hover {
             color: grey;
           }
