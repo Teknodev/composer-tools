@@ -38,6 +38,7 @@
             color: #535252;
           }
           .button-and-input {
+            display: flex;
             gap: 20px;
             .input {
               border-radius: 5%;
@@ -48,12 +49,14 @@
             .button {
               padding: auto;
               background-color:blue ;
-              width: 21%;
+              width: 22%;
               height: 45px;
               border-radius: 7%;
-              margin-left: 3%;
+              margin-left: 1%;
               color: white;
               border: transparent;
+              font-weight: bold;
+              font-size: 0.9em;
             }
           }
         }
@@ -93,8 +96,150 @@
       }
       .image {
         height: 82.4%;
-        width: 30.3%;
+        width: 40.1%;
       }
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+  padding: 10px 0;
+  
+    .max-content {
+      max-width: var(--composer-content-width);
+      margin: auto;
+      
+    
+      .wrapper{
+        .first {
+          width: 55%;
+          .up {
+            gap: 40px;
+            .title {
+              font-size: 4em;
+            }
+            .description {
+              font-size: 1.3em;
+            }
+            .button-and-input {
+              gap: 15px;
+              .input {
+                height: 35px;
+                width: 72%;
+              }
+              .button {
+                width: 20%;
+                height: 35px;
+                font-size: 0.7em;
+                font-weight: bold;
+              }
+            }
+          }
+          .down {
+            flex-direction: column;
+            gap: 10px;
+            .card1 {
+              gap: 10px;
+              .title1 {
+                font-size: 1.2em;
+              }
+              .description1 {
+                font-size: 1em;
+              }
+            }
+            .card2 {
+              gap: 10px;
+              .title2 {
+                font-size: 1.2em;
+              }
+              .description2 {
+                font-size: 1em;
+              }
+            }
+            .card1,.card2 {
+              width: 100%;
+            }
+          }
+        }
+        .image {
+          height: 80%;
+          width: 45%;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container {
+  padding: 10px 0;
+  
+    .max-content {
+      max-width: var(--composer-content-width);
+      margin: auto;
+      
+    
+      .wrapper{
+        .first {
+          width: 63%;
+          .up {
+            gap: 15px;
+            .title {
+              font-size: 2.5em;
+              width: 50%;
+            }
+            .description {
+              font-size: 1em;
+              
+            }
+            .button-and-input {
+              gap: 5px;
+              .input {
+                height: 25px;
+                width: 65%;
+                font-size: 0.6em;
+                border: #acacac solid 1.6px;
+              }
+              .button {
+                width: 20%;
+                height: 25px;
+                font-size: 0.4em;
+              }
+            }
+          }
+          .down {
+            flex-direction: column;
+            gap: 15px;
+            .card1 {
+              gap: 6px;
+              .title1 {
+                font-size: 1.4em;
+              }
+              .description1 {
+                font-size: 1em;
+              }
+            }
+            .card2 {
+              gap: 6px;
+              .title2 {
+                font-size: 1.4em;
+              }
+              .description2 {
+                font-size: 1em;
+              }
+            }
+            .card1,.card2 {
+              width: 100%;
+            }
+          }
+        }
+        .image {
+          height: 80.1%;
+          width: 37%;
+        }
+      }
+    }
+  }
+}
+
+
