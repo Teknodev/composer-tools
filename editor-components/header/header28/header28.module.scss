@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100;400;500;700&family=Plus+Jakarta+Sans&family=Roboto:wght@100;400&display=swap');
 
 .container {
   width: 100%;
 
-
-
-
   .wrapper {
     height: 100vh;
+
     .carousel > button:first-child {
       content: "";
       z-index: 10;
@@ -25,10 +22,6 @@
     .carousel {
       height: 100%;
 
-      
-
-      
-
       .items{
         position: relative;
 
@@ -39,7 +32,7 @@
         }
 
         .background{
-          object-fit: contain;
+          object-fit: cover;
           z-index: -1;
           position: absolute;
           top: 0px;
@@ -60,7 +53,8 @@
           .text-content{
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 35px;
+            justify-content: center;
 
 
             .upper-title{
@@ -100,5 +94,114 @@
       }
 
     }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+.container {
+
+  .wrapper {
+
+    .carousel > button:first-child {
+
+    }
+
+    
+
+    .carousel > :last-child {
+      left: 96.5% ;
+
+    }
+    
+    .carousel {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      width: 100%;
+
+      .items{
+        padding: 50px 20px;
+
+        height: 100%;
+        width: 100%;
+        .max-content {
+      
+        }
+
+        .background{
+
+          height: 100vh;
+          object-fit:cover;
+        }
+        
+        .item-box {
+          display: flex;
+          flex-direction: column;
+          height: 100vh;
+          gap:100px ;
+          .text-content{
+            .upper-title{
+              font-size: 2rem;
+              text-align: center;
+
+            }
+            .lower-title{
+              font-size: 2.5rem;
+              text-align: center;
+            }
+            .text{
+            font-size: 1rem;
+            text-align: center;
+
+            }
+            .action-button {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+             padding: 15px;
+            }
+          }
+
+          .image {
+            width: 50%;
+            height: 70%;
+          }
+        }
+
+      }
+
+    }
+  }
+}
+}
+
+
+@media only screen and (max-width: 500px) {
+  .container {
+
+    .wrapper {
+  
+      .carousel > button:first-child {
+  
+      }
+  
+      
+  
+      .carousel > :last-child {
+        left: 93% ;
+  
+      }
+
+      .carousel{
+        .items{
+          .item-box{
+            .image{
+              width: 75%;
+            }
+          }
+        }
+      }
+}
   }
 }
