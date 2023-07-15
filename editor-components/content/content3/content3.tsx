@@ -106,7 +106,7 @@ class Content3 extends BaseContent {
               <div className={this.decorateCSS("button-wrapper")}>
                 {this.getPropValue("buttonprop").map(
                   (button: any, index: number) => (
-                    <ComposerLink path={button.value[0].value} key={index}>
+                    <ComposerLink path={button.value[1].value} key={index}>
                       <span className={this.decorateCSS("button")}>
                         {button.value[0].value}
                       </span>
