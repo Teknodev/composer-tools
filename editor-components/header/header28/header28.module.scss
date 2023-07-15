@@ -11,16 +11,15 @@
     .carousel > button:first-child {
       content: "";
       z-index: 10;
-      position: absolute !important;
+      position: absolute;
       left: 0.8%;
     }
 
     
 
     .carousel > :last-child {
-      content: "";
-      position: absolute !important;
-      left: 98.2% !important;
+      position: absolute ;
+      left: 98.2% ;
     }
     
     .carousel {
