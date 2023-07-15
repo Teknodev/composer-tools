@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100;400;500;700&family=Plus+Jakarta+Sans&family=Roboto:wght@100;400&display=swap');
-
+$gap:30px;
+$width-of-items: 600px;
 .container {
   width: 100%;
-  padding-top: 20px;
   
 
 
@@ -19,40 +18,43 @@
     cursor: -webkit-grabbing;
   }
 
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    overflow: hidden;
 
-  }
 
 
   .wrapper {
     right: 20px;
     position: relative;
     margin: 20px;
+    margin-top: 0px;
     display: flex;
     width: 100%;
 
     .carousel > button:first-child {
       z-index: 10;
-      position: absolute !important;
+      position: absolute ;
       left: 0.8%;
     }
 
     .carousel > :last-child {
-      position: absolute !important;
-      left: 98.2% !important;
+      position: absolute ;
+      left: 98.2% ;
     }
 
     .carousel {
       width: 100%;
 
+      .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        overflow: hidden;
+    
+      }
+
       .items {
         width: 100%;
 
         display: flex;
-        height: 500px;
+        height: 100vh;
 
         position: relative;
 
@@ -73,7 +75,6 @@
       
         .content {
           height: 100%;
-          font-family: 'Commissioner', sans-serif;
           display: flex;
           width: 100%;
 
@@ -99,15 +100,17 @@
               position: absolute;
               right: 0;
               bottom: 0;
-              padding: 50px;
+              padding: 100px;
+              margin-bottom: $gap;
               width: 65%;
-              height: 70%;
+              height: auto;
               .year {
       
               color: #bbb ;
               font-size: 4rem;
               font-weight: 700;
               padding: 10px;
+              word-wrap: break-word;
       
       
               }
@@ -133,6 +136,7 @@
               display: flex;
               flex-direction: row;
               padding-right: 30%;
+              margin-bottom: $gap;
               position: absolute;
               right: 0;
               bottom: 0;
@@ -145,7 +149,6 @@
                 background-repeat: no-repeat;
                 background-position: 87% 50%;
                 border: none;
-                font-family: 'Commissioner', sans-serif;
                 padding: 20px;
                 width: 200px;
                 font-size: 1.5rem;
@@ -178,3 +181,162 @@
 
 
 
+@media only screen and (max-width: 768px) {
+  .container {
+  
+    .wrapper {
+  
+  
+      .carousel > button:first-child {
+      
+      }
+  
+      .carousel > :last-child {
+        left: 96%;
+      }
+  
+      .carousel {
+  
+        .max-content {
+       
+      
+        }
+  
+        .items {
+  
+          .background-img {
+ 
+            img {
+             
+            }
+          }
+        
+          .content {
+            flex-direction: column;
+
+            &.content-reverse {
+              flex-flow: column-reverse;
+            }
+            .left{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              .item {
+                right: auto;
+                bottom: auto;
+                margin: 0px 0px;
+                width: $width-of-items;
+                .year {
+                  font-size: 3rem;
+                }
+          
+                .title {
+                  font-size: 2rem;                  
+                }
+              }
+            }
+          
+            .right{
+              display: flex;
+              justify-content: center;
+        
+              div {
+                right: auto;
+                bottom: auto;
+                margin: 0px 0px;
+                padding-right: 0px;
+                width: $width-of-items;
+                
+        
+                .action-button {
+                  text-align: center;
+                  display: block;
+                  width: 100%;
+                }
+              }
+          
+              
+          
+          
+            }
+          }
+  
+        }
+      }
+  
+  
+  
+  
+  
+    }
+  
+  }
+}
+
+
+@media only screen and (max-width: 400px) {
+  .container {
+  
+    .wrapper {
+  
+  
+      .carousel > button:first-child {
+        top:45%;
+
+      }
+  
+      .carousel > :last-child {
+        left: 94%;
+        top:45%;
+      }
+  
+      .carousel {
+  
+        .max-content {
+       
+      
+        }
+  
+        .items {
+  
+          .background-img {
+ 
+            img {
+            }
+          }
+        
+          .content {
+            .left{
+              .item {
+                padding: 10px 10px;
+                width: 300px;
+                .year {
+                  font-size: 2rem;
+                }
+          
+                .title {
+                  font-size: 1.5rem;
+                  margin-right: 0px;
+                }
+              }
+            }
+          
+            .right{
+        
+              div {
+                width: 300px;
+        
+                .action-button {
+                  font-size: 1.4rem;
+                }
+              }
+            }
+          }
+  
+        }
+      }
+  
+    }
+  
+  }
+}
