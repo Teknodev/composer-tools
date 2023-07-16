@@ -143,3 +143,113 @@
     }
   }
 }
+@media only screen and (max-width: 768px) {
+  .container{
+    .max-content{
+
+    }
+    .wrapper{
+      flex-direction: column;
+      .left{
+        text-align: center;
+        .content{
+          .main-content{
+            .title{
+              font-size: 4rem;
+              width: 100%;
+
+            }
+            .description{
+              font-size: 1.5rem;
+              width: 100%;
+
+            }
+          }
+          .form{
+            flex-direction: column;
+            margin: 0px;
+            width: 100%;
+            input{
+              width: 100%;
+              margin: 4px;
+            
+
+            }
+            .button{
+              width: 30%;
+              margin: 4px;
+             
+
+            }
+          }
+          .bottom-content{
+            display: none;
+          }
+        }
+      }
+      .right{
+        img{
+          max-width: 45%;
+          left:400px ;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container{
+    overflow: hidden;
+    .wrapper{
+      flex-direction: column;
+      
+      .left{
+        text-align: center;
+        padding: 12px;
+        .content{
+          .main-content{
+            .title{
+              font-size: 3rem;
+              width: 100%;
+              margin-bottom: 16px !important;
+              margin-top: 8px !important;
+
+            }
+            .description{
+              font-size: 1.3rem;
+              width: 100%;
+
+            }
+          }
+          .form{
+            flex-direction: column;
+            margin: 0px;
+            width: 100%;
+            input{
+              width: 100%;
+              margin: 4px;
+            
+
+            }
+            .button{
+              width: 50%;
+              margin: 4px;
+             
+
+            }
+          }
+          .bottom-content{
+            display: none;
+          }
+        }
+      }
+      .right{
+       
+        img{
+          max-width: 90%;
+          left: 50px;
+        }
+      }
+    }
+  }
+}
+
