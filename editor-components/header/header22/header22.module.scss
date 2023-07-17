@@ -1,0 +1,206 @@
+.container {
+    width: 100%;
+
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+    }
+
+    .wrapper {
+        display: flex;
+        width: 100%;
+        height: 600px;
+
+        .slider-parent {
+            width: 100%;
+            margin: auto;
+            height: 100%;
+            .carousel {
+                height: 90%;
+                width: 100%;
+                 .content {
+                    position: relative;
+                    width: 100%;
+                    height: 600px;
+                    .description {
+                        width: 50%;
+                        padding-left: 400px;
+                        padding-top: 150px;
+                        font-size: 6rem;
+                        position: absolute;
+                        z-index: 5;
+                        color: white;
+                    }
+
+                    .background-image {
+                        .background-description {
+                            h1 {
+                                display: flex;
+                                margin-top: 20px;
+                                position: absolute;
+                                font-size: 15rem;
+                                font-weight: bold;
+                                color: white;
+                                opacity: 0.1;
+                                z-index: 1;
+                                text-align: center;
+                            }
+                        }
+
+                        .img1 {
+                            display: flex;
+                            background-color: black;
+                            width: 100%;
+                            height: 100%;
+                            align-items: center;
+                            justify-content: center;
+                            position: absolute;
+                            overflow: hidden;
+                            img {
+                                height: 100%; 
+                                
+                                opacity: 0.5;
+                            }
+                        }
+
+                        .img2 {
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            z-index: 2;
+                            overflow: hidden;
+                            object-fit: cover;
+                            display: flex;
+                            
+                            img {
+                                margin-left: 50%;
+                                height: 100%;
+                                
+                            }
+                        }
+
+                        .img3 {
+                            display: flex;
+                            width: 100%;
+                            height: 100%;
+                            align-items: center;
+                            justify-content: center;
+                            position: absolute;
+                            overflow: hidden;
+                            z-index: 3;
+                            img {
+                                height: 100%; 
+                              
+                                opacity: 0.5;
+                            }
+
+                        }
+
+
+
+                    }
+                }
+
+                >ul {
+                    transform: translateY(-5px) translateX(-50%);
+                    background-color: white;
+                    border-radius: 100px;
+                    width: auto;
+                    position: absolute;
+                    left: 50%;
+                    padding: 0px 5px;
+                    li {
+                        button {
+                            &:before {
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+
+                >button {
+                    z-index: 10;
+                    margin-left: 70px;
+                    margin-right: 130px;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        transform: rotateZ(135deg);
+                        font-size: 100px;
+                        width: 50px;
+                        height: 50px;
+                        border-top: 3px solid white;
+                        border-left: 3px solid white;
+                    }
+                }
+
+                >button:first-of-type {
+                    &:before {
+                        transform: rotateZ(-45deg);
+                    }
+                }
+
+                >button:last-of-type {
+                    &:before {
+                        transform: rotateZ(135deg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        .max-content {
+            .wrapper {
+                .slider-parent {
+                    .carousel {
+                        width: 100%;
+                        
+                        .content {
+                            width: 100%;
+                            
+                            .description {
+                                padding-top: 50%;
+                                width: 80%;
+                                padding-left: 20%;
+                                font-size: 4rem;
+                                opacity: 0.90;
+                                
+                            }
+
+                            .background-image {
+                                .background-description {
+                                    height: 100%;
+                                    h1 {
+                                        width: 100%;
+                                        position: absolute;
+                                        font-size: 7rem;
+                                        font-weight: bold;
+                                        color: white;
+                                        opacity: 0.1;
+                                        z-index: 1;
+                                        text-align: center;
+                                    }
+
+                                }
+                               
+                                .img2 {
+                                     
+                                    img {
+                                        object-fit:cover; 
+                                        height: 100%;
+                                        margin-left: 0%;
+                                        overflow: hidden; 
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
