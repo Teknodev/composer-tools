@@ -5,6 +5,36 @@
     height: 100%;
     .carousel {
       width: 100%;
+      > button {
+        z-index: 10;
+        margin-left: 70px;
+        margin-right: 110px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          transform: rotateZ(135deg);
+          font-size: 50px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      > button:first-of-type {
+        &:before {
+          transform: rotateZ(-45deg);
+          border-top: 3px solid white;
+          border-left: 3px solid white;
+        }
+      }
+
+      > button:last-of-type {
+        &:before {
+          transform: rotateZ(135deg);
+          border-top: 3px solid white;
+          border-left: 3px solid white;
+        }
+      }
       > ul {
         transform: translateY(-40px) translateX(-50%);
         background-color: white;
@@ -68,26 +98,26 @@
               .buttons {
                 z-index: 2;
                 margin-top: 24px;
-                .button {
-                  padding: 12px 18px;
-                  border-radius: 24px;
-                  background: var(--composer-primary-color);
-                  border: 0px;
-                  color: white;
-                  margin: 12px;
-
-                  font-weight: bold;
-                  &:last-child {
-                    border: 2px solid #b09782;
-                    border-color: #b09782;
-                    background: transparent;
-                    color: #8c7b6e;
-                  }
-                  &:hover:last-child {
-                    background: #b09782;
+                display: flex;
+                  .button {
+                    padding: 12px 18px;
+                    border-radius: 24px;
+                    background: var(--composer-primary-color);
+                    border: 0px;
                     color: white;
+                    margin: 12px;
+                    font-weight: bold;
+                    &:last-child {
+                      border: 2px solid #b09782;
+                      border-color: #b09782;
+                      background: transparent;
+                      color: #8c7b6e;
+                    }
+                    &:hover:last-child {
+                      background: #b09782;
+                      color: white;
+                    }
                   }
-                }
               }
             }
           }
@@ -113,7 +143,37 @@
 @media only screen and (max-width: 768px) {
   .container {
     .wrapper {
-      .carousel{
+      .carousel {
+        > button {
+          z-index: 10;
+          margin-left: 30px;
+          margin-right: 50px;
+  
+          &:before {
+            content: "";
+            position: absolute;
+            transform: rotateZ(135deg);
+            font-size: 50px;
+            width: 20px;
+            height: 20px;
+          }
+        }
+  
+        > button:first-of-type {
+          &:before {
+            transform: rotateZ(-45deg);
+            border-top: 3px solid white;
+            border-left: 3px solid white;
+          }
+        }
+  
+        > button:last-of-type {
+          &:before {
+            transform: rotateZ(135deg);
+            border-top: 3px solid white;
+            border-left: 3px solid white;
+          }
+        }
         > ul {
           transform: translateY(-40px) translateX(-50%);
           background-color: white;
@@ -130,31 +190,31 @@
             }
           }
         }
-        .item{
-          .max-content{
+        .item {
+          .max-content {
             overflow: hidden;
-            .left{
-              .content{
-                .title{
+            .left {
+              .content {
+                .title {
                   margin-top: 8px;
                   font-size: 3.5rem;
                 }
-                .description{
+                .description {
                   width: 60%;
                   margin-top: 12px;
                   font-size: 1.5rem;
                 }
-                .buttons{
+                .buttons {
                   margin-top: 12px;
-                  .button{
+                  .button {
                     padding: 8px 12px;
                     font-size: 0.9rem;
                   }
                 }
               }
             }
-            .right{
-              .image{
+            .right {
+              .image {
                 height: 60px;
                 left: -50px;
               }
@@ -166,31 +226,61 @@
   }
 }
 @media only screen and (max-width: 400px) {
-  .container{
-    .wrapper{
-      .carousel{
-        .item{
-          .max-content{
-            .left{
-              .content{
-                .title{
+  .container {
+    .wrapper {
+      .carousel {
+        > button {
+          z-index: 10;
+          margin-left: 30px;
+          margin-right: 50px;
+  
+          &:before {
+            content: "";
+            position: absolute;
+            transform: rotateZ(135deg);
+            font-size: 50px;
+            width: 14px;
+            height: 14px;
+          }
+        }
+  
+        > button:first-of-type {
+          &:before {
+            transform: rotateZ(-45deg);
+            border-top: 3px solid white;
+            border-left: 3px solid white;
+          }
+        }
+  
+        > button:last-of-type {
+          &:before {
+            transform: rotateZ(135deg);
+            border-top: 3px solid white;
+            border-left: 3px solid white;
+          }
+        }
+        .item {
+          .max-content {
+            .left {
+              .content {
+                .title {
                   margin-top: 4px;
                   font-size: 2.5rem;
                 }
-                .description{
+                .description {
                   font-size: 1.3rem;
                 }
-                .buttons{
+                .buttons {
                   margin-top: 8px;
-                  .button{
+                  .button {
                     padding: 8px 10px;
                     font-size: 0.8rem;
                   }
                 }
               }
             }
-            .right{
-              .image{
+            .right {
+              .image {
                 display: none;
               }
             }

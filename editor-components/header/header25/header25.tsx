@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./header25.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ISliderData = {
   title: string;
@@ -222,7 +222,6 @@ class HeaderComponent25 extends BaseHeader {
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/11/flowers-slider-2-bg-opt.jpg",
             },
             {
-                
               type: "object",
               displayer: "Button",
               key: "button",
@@ -306,12 +305,20 @@ class HeaderComponent25 extends BaseHeader {
                           {item.description}
                         </div>
                         <div className={this.decorateCSS("buttons")}>
+                          <ComposerLink
+                            path={item.button[1].value} className={this.decorateCSS("composer-link")}
+                          >
                             <button className={this.decorateCSS("button")}>
                               {item.button[0].value}
                             </button>
+                          </ComposerLink>
+                          <ComposerLink
+                            path={item.button2[1].value} className={this.decorateCSS("composer-link")}
+                          >
                             <button className={this.decorateCSS("button")}>
                               {item.button2[0].value}
                             </button>
+                          </ComposerLink>
                         </div>
                       </div>
                     </div>
