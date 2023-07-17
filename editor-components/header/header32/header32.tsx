@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./header32.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
 class Header32 extends BaseHeader {
@@ -98,7 +99,9 @@ class Header32 extends BaseHeader {
                 <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
                 <div className={this.decorateCSS("button-and-input")}>
                   <input placeholder="  Your phone number" className={this.decorateCSS("input")} type="text" />
-                  <a href={button[1].value}><button className={this.decorateCSS("button")}>{button[0].value}</button></a>
+                  <ComposerLink path={this.getPropValue("button")[1].value}>
+                    <button className={this.decorateCSS("button")}>{button[0].value}</button>
+                  </ComposerLink>
                 </div>
               </div>
               <div className={this.decorateCSS("down")}>
