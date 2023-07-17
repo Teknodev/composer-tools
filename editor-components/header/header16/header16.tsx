@@ -3,6 +3,7 @@ import styles from "./header16.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import * as Yup from "yup";
 import { ErrorMessage, Formik, Form } from "formik";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class HeaderComponent16 extends BaseHeader {
   constructor(props?: any) {
@@ -97,9 +98,11 @@ class HeaderComponent16 extends BaseHeader {
                     type="text"
                     className={this.decorateCSS("phone")}
                   />
-                  <button className={this.decorateCSS("button")}>
-                    {button[0].value}
-                  </button>
+                  <ComposerLink path={this.getPropValue("button")[1].value}>
+                    <button className={this.decorateCSS("button")}>
+                      {button[0].value}
+                    </button>
+                  </ComposerLink>
                 </div>
               </div>
             </div>

@@ -32,14 +32,15 @@
           .form {
             background-color: white;
             border-radius: 12px;
+            display: flex;
 
             input {
               padding: 12px;
-              margin: 8px;
+              margin: 6px;
               width: 30%;
               border: 3px solid #e5e5e5;
               &:last-child {
-                margin-right: 44px !important;
+                margin-right: 43px !important;
               }
             }
             .button {
