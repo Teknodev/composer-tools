@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./header31.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class HeaderComponent31 extends BaseHeader {
   constructor(props?: any) {
@@ -115,14 +116,14 @@ class HeaderComponent31 extends BaseHeader {
           >
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("content")}>
-                  <div className={this.decorateCSS("main-content")}>
-                    <h3 className={this.decorateCSS("description")}>
-                      {this.getPropValue("description")}
-                    </h3>
-                    <h1 className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </h1>
-                  </div>
+                <div className={this.decorateCSS("main-content")}>
+                  <h3 className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </h3>
+                  <h1 className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </h1>
+                </div>
 
                 <div className={this.decorateCSS("form")}>
                   <input
@@ -135,9 +136,11 @@ class HeaderComponent31 extends BaseHeader {
                     type="text"
                     className={this.decorateCSS("phone")}
                   />
-                  <button className={this.decorateCSS("button")}>
-                    {button[0].value}
-                  </button>
+                  <ComposerLink path={this.getPropValue("button")[1].value}>
+                    <button className={this.decorateCSS("button")}>
+                      {button[0].value}
+                    </button>
+                  </ComposerLink>
                 </div>
                 <div className={this.decorateCSS("bottom-content")}>
                   <div className={this.decorateCSS("left-bottom")}>
