@@ -6,21 +6,38 @@
     height: 100vh;
 
     .carousel > button:first-child {
-      content: "";
-      z-index: 10;
-      position: absolute;
-      left: 0.8%;
+      &:before {
+        transform: rotateZ(-45deg);
+    }
     }
 
     
 
     .carousel > :last-child {
-      position: absolute ;
-      left: 98.2% ;
+      margin-right: 120px;
+
+      &:before {
+        transform: rotateZ(135deg);
+    }
     }
     
     .carousel {
       height: 100%;
+
+      >button{
+        z-index: 10;
+        margin-left: 70px;
+        &:before {
+            content: "";
+            position: absolute;
+            transform: rotateZ(135deg);
+            font-size: 100px;
+            width: 50px;
+            height: 50px;
+            border-top: 3px solid white;
+            border-left: 3px solid white;
+        }
+      }
 
       .items{
         position: relative;
@@ -104,13 +121,12 @@
   .wrapper {
 
     .carousel > button:first-child {
-
     }
 
     
 
     .carousel > :last-child {
-      left: 96.5% ;
+      margin-right: 115px;
 
     }
     
@@ -183,17 +199,24 @@
     .wrapper {
   
       .carousel > button:first-child {
-  
+        margin-left: 40px;
       }
   
       
   
       .carousel > :last-child {
-        left: 93% ;
+        margin-right: 60px;
   
       }
 
       .carousel{
+        >button {
+          &:before{
+            height: 20px;
+            width: 20px;
+          }
+          
+        }
         .items{
           .item-box{
             .image{

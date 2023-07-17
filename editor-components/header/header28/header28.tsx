@@ -63,16 +63,23 @@ class Header28 extends BaseHeader {
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-slider-1-opt.png",
             },
             {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Read More",
-            },
-            {
-              type: "string",
-              displayer: "Link",
-              key: "link",
-              value: "",
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Read More",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
             },
           ],
         },
@@ -115,16 +122,23 @@ class Header28 extends BaseHeader {
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-slider-2-opt.png",
             },
             {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Read More",
-            },
-            {
-              type: "string",
-              displayer: "Link",
-              key: "link",
-              value: "",
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Read More",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
             },
           ],
         },
@@ -167,16 +181,23 @@ class Header28 extends BaseHeader {
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-slider-3-opt.png",
             },
             {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Read More",
-            },
-            {
-              type: "string",
-              displayer: "Link",
-              key: "link",
-              value: "",
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Read More",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
             },
           ],
         },
@@ -199,7 +220,7 @@ class Header28 extends BaseHeader {
       slidesToScroll: 1,
     };
 
-    console.log(this.getPropValue("slider")[0].value);
+    console.log(this.getPropValue("slider")[0].value[5].value[0].value);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -230,9 +251,9 @@ class Header28 extends BaseHeader {
                         {item.value[2].value}
                       </div>
 
-                      <ComposerLink path={item.value}>
+                      <ComposerLink path={item.value[5].value[1].value}>
                         <span className={this.decorateCSS("action-button")}>
-                          {item.value[5].value}
+                          {item.value[5].value[0].value}
                         </span>
                       </ComposerLink>
                     </div>
