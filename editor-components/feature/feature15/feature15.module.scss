@@ -1,0 +1,117 @@
+.container {
+  width: 100%;
+  padding: 50px 0;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+
+    .content {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .description-card {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .subtitle {
+          font-size: 1.7rem;
+          color: var(--composer-secondary-color);
+        }
+
+        .title {
+          font-size: 2.5rem;
+          color: var(--composer-primary-color);
+        }
+
+        .text {
+          font-size: 1.5rem;
+          width: 350px;
+        }
+
+        .button {
+          cursor: pointer;
+          text-align: center;
+          transition: 0.3s;
+          display: block;
+          color: white;
+          background-color: var(--composer-primary-color);
+          padding: 15px 30px;
+          border-radius: 6px;
+          border: 1px solid transparent;
+          text-decoration: none;
+          width: max-content;
+
+          &:hover {
+            color: var(--composer-primary-color);
+            background-color: transparent;
+            border: 1px solid var(--composer-primary-color);
+          }
+        }
+      }
+      .item-card {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        img {
+          width: 100px;
+          height: 100px;
+        }
+
+        .title {
+          font-size: 2.5rem;
+          color: var(--composer-primary-color);
+        }
+
+        .text {
+          font-size: 2rem;
+          font-weight: 400;
+          width: 350px;
+        }
+
+        .button {
+          border-bottom: 2px solid var(--composer-primary-color);
+          cursor: pointer;
+        }
+
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 50px 20px;
+    .max-content {
+      .content {
+        display: flex;
+        gap: 40px;
+        .description-card {
+          text-align: center;
+          .subtitle {
+            width: 100%;
+          }
+  
+          .title {
+            width: 100%;
+          }
+  
+          .text {
+            width: 100%;
+          }
+  
+          .button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
