@@ -6,18 +6,36 @@
       border-radius: 10px;
 
       .carousel > button:first-child {
-        z-index: 10;
-        position: absolute ;
-        left: 0.8%;
+        &:before {
+          transform: rotateZ(-45deg);
+      }
+        
       }
   
       .carousel > :last-child {
-        position: absolute ;
-        left: 98.2% ;
+        &:before {
+          transform: rotateZ(135deg);
+      }
       }
       
       .carousel {
       width: 100%;
+
+      button {
+        z-index: 10;
+        margin-left: 70px;
+        margin-right: 130px;
+        &:before {
+            content: "";
+            position: absolute;
+            transform: rotateZ(135deg);
+            font-size: 100px;
+            width: 50px;
+            height: 50px;
+            border-top: 3px solid white;
+            border-left: 3px solid white;
+        }
+      }
 
       .max-content {
         max-width: var(--composer-content-width);
@@ -138,10 +156,12 @@
         .wrapper{
     
           .carousel > button:first-child {
+            margin-left: 40px;
           }
       
           .carousel > :last-child {
-            left: 96.5%;
+            margin-right: 90px;
+
           }
           
           .carousel {
@@ -210,13 +230,23 @@
         .wrapper{
     
           .carousel > button:first-child {
+            margin-left: 30px;
+
           }
       
           .carousel > :last-child {
-            left: 94%;
+            margin-right: 40px;
+
           }
           
           .carousel {
+
+            button {
+              &:before { 
+                height: 10px;
+                width: 10px;
+              }
+            }
     
           .items{
     
