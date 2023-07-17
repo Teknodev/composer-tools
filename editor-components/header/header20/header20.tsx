@@ -184,9 +184,11 @@ class Header20 extends BaseHeader {
                     {items[0].description}
                   </div>
                   <div>
+                    <a href={items[0].button[1].value}>
                     <button className={this.decorateCSS("button")}>
                       {items[0].button[0].value}
                     </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -205,9 +207,11 @@ class Header20 extends BaseHeader {
                       {items[1].description}
                     </div>
                     <div>
+                      <a href={items[1].button[1].value}>
                       <button className={this.decorateCSS("button")}>
                         {items[1].button[0].value}
                       </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -225,9 +229,11 @@ class Header20 extends BaseHeader {
                       {items[2].description}
                     </div>
                     <div>
+                        <a href={items[2].button[1].value}>
                       <button className={this.decorateCSS("button")}>
                         {items[2].button[0].value}
                       </button>
+                      </a>
                     </div>
                   </div>
                 </div>
