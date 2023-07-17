@@ -241,7 +241,6 @@ class HeaderComponent15 extends BaseHeader {
     const settings = {
       dots: true,
       infinite: true,
-      speed: 700,
       slidesToShow: 1,
       slidesToScroll: 1,
     };
