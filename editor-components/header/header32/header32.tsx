@@ -92,6 +92,7 @@ class Header32 extends BaseHeader {
               this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
             }`}>
             <div className={this.decorateCSS("first")}>
+            
               <div className={this.decorateCSS("up")}>
                 <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div> 
                 <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
