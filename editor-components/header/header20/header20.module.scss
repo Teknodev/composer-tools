@@ -14,7 +14,7 @@ $gap: 20px;
     height: 580px;
     margin-left: auto;
     margin-right: auto;
-    
+    overflow-wrap: break-word;
     .left {
       flex: 1;
       .item {
@@ -230,37 +230,18 @@ $gap: 20px;
           width: 100%;
           height: 100%;
           overflow: hidden;
-          img {
-            transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-            transform: scale(1);
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-          }
         }
         .content {
-          z-index: 5;
-          display: flex;
           flex-direction: column;
-          gap: 15px;
-          color: black;
           
           .title {
             font-size: 1.2rem;
-            font-weight: bold;
-            color: #669b6b;;
           }
           .description {
             font-size: 2.5rem;
           }
           .button {
-            padding: 10px;
-            background: var(--composer-primary-color);
-            border: 0px;
-            color: black;
             font-size: 1em;
-            background: transparent !important;
-            border-bottom: #459647 solid 2px;
             height: 75%;
           }
         }
@@ -272,15 +253,11 @@ $gap: 20px;
   .container {
     padding: 30px 0;
     .max-content {
-      max-width: var(--composer-content-width);
-      margin: auto;
     }
   
-    .wrapper {
-      display: flex;
+    .wrapper {  
       flex-direction: column;
       width: 40%;
-      gap: $gap;
       height: 780px;
       margin-right: 100%;
       
@@ -292,23 +269,18 @@ $gap: 20px;
           .content{
             .title{
               font-size: 1.2rem;
-              color: #669b6b;;
             }
             .description{
               font-size: 1.8rem;
-              width: 40%;
             }
             .button {
-              height: 75%;
             }
           }
         }
       }
       .right {
         flex: 1;
-        display: flex;
         flex-direction: column;
-        gap: $gap;
         height: 100%;
         .top {
           flex: 1 ;
@@ -317,26 +289,18 @@ $gap: 20px;
             .content{
               .title{
                 font-size: 1.2rem;
-                color: #669b6b;;
               }
               .description{
                 font-size: 2rem;
-                width: 50%;
               }
             }
           }
         }
         .bottom {
-          display: flex;
           flex-direction: row;
-          gap: $gap;
           flex: 2;
 
           .button {
-            color: black !important;
-            background: transparent !important;
-            height: 75%;
-            
           }
           .item {
             flex: 0.220;
@@ -345,56 +309,22 @@ $gap: 20px;
       }
       .item {
         padding: 25px;
-        display: flex;
-        justify-content: flex-start;
-        position: relative;
-        height: 100%;
-        &:hover {
-          .background-image {
-            img {
-              transform: scale(1.1);
-            }
-          }
-        }
         .background-image {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
           img {
-            transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-            transform: scale(1);
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
           }
         }
         .content {
-          z-index: 5;
-          display: flex;
           flex-direction: column;
-          gap: 15px;
-          color: black;
           
           .title {
             font-size: 1.2rem;
-            font-weight: bold;
-            color: #669b6b;;
           }
           .description {
             font-size: 2rem;
           }
           .button {
-            padding: 10px;
-            background: var(--composer-primary-color);
-            border: 0px;
-            color: black;
             font-size: 0.9em;
-            background: transparent !important;
             border-bottom: #459647 solid 2px;
-            height: 75%;
           }
         }
       }
