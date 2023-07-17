@@ -31,7 +31,7 @@ class Header32 extends BaseHeader {
           value: "CALL ME BACK" 
         },
         {
-          type: "string",
+          type: "page",
           key: "url",
           displayer: "URL",
           value: ""
@@ -98,7 +98,7 @@ class Header32 extends BaseHeader {
                 <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
                 <div className={this.decorateCSS("button-and-input")}>
                   <input placeholder="  Your phone number" className={this.decorateCSS("input")} type="text" />
-                  <button className={this.decorateCSS("button")}>{button[0].value}</button>
+                  <a href={button[1].value}><button className={this.decorateCSS("button")}>{button[0].value}</button></a>
                 </div>
               </div>
               <div className={this.decorateCSS("down")}>
