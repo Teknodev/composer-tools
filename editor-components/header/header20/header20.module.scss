@@ -22,21 +22,22 @@ $gap: 20px;
         .content{
           text-overflow: ellipsis;
           white-space: nowrap;
-          max-width: 625px;
           
           .title{
             font-size: 1.2rem;
             color: #669b6b;
-            
+            max-width: 200px;
+            overflow: hidden;
           }
           .description{
             font-size: 3.5rem; 
-            text-overflow: ellipsis;
+            max-width: 550px;
             overflow: hidden;
-            width: 100%;
           }
           .button {
             height: 75%;
+            max-width: 100px;
+            overflow: hidden;
           }
         }
       }
@@ -53,14 +54,18 @@ $gap: 20px;
           .content{
             text-overflow: ellipsis;
             white-space:nowrap;
-            max-width: 150px;
+            max-width: 100px;
             .title{
               font-size: 1.2rem;
               color: #669b6b;;
+              max-width: 200px;
+              overflow: hidden;
             }
             .description{
               font-size: 2.5rem;
-              width: 50%;
+              width: 1200px;
+              overflow: hidden;
+              max-width: 1100px;
             }
           }
         }
@@ -73,7 +78,8 @@ $gap: 20px;
           color: black !important;
           background: transparent !important;
           height: 75%;
-          
+          max-width: 100px;
+          overflow: hidden;
         }
         .item {
           flex: 1;
@@ -123,9 +129,13 @@ $gap: 20px;
           font-size: 1.2rem;
           font-weight: bold;
           color: #669b6b;
+          max-width: 100px;
+          overflow: hidden;
         }
         .description {
           font-size: 2.5rem;
+          max-width: 200px;
+          overflow: hidden;
         }
         .button {
           padding: 10px;
@@ -136,6 +146,8 @@ $gap: 20px;
           background: transparent !important;
           border-bottom: #459647 solid 2px;
           height: 75%;
+          max-width: 100px;
+          overflow: hidden;
         }
       }
     }
@@ -166,6 +178,8 @@ $gap: 20px;
           .content{
             .title{
               font-size: 1.2rem;
+              max-width: 200px;
+              overflow: hidden;
             }
             .description{
               font-size: 3.5rem;
@@ -183,15 +197,14 @@ $gap: 20px;
         .top {
           height: 100%;
           flex: 4;
+          width: auto;
           .item{
-            width: fit-content;
             .content{
               .title{
                 font-size: 1.2rem;
               }
               .description{
                 font-size: 2.5rem;
-                width: 50%;
               }
             }
           }
@@ -218,6 +231,7 @@ $gap: 20px;
           }
           .description {
             font-size: 2.5rem;
+            max-width: 170px;
           }
           .button {
             font-size: 1em;
@@ -262,9 +276,9 @@ $gap: 20px;
         flex-direction: column;
         height: 100%;
         .top {
-          flex: 1 ;
+          flex: 1;
+          width: auto;
           .item{
-            width: fit-content;
             .content{
               .title{
                 font-size: 1.2rem;
@@ -277,16 +291,15 @@ $gap: 20px;
         }
         .bottom {
           flex-direction: row;
-          flex: 2;
 
           .button {
           }
           .item {
-            flex: 0.220;
           }
         }
       }
       .item {
+        width: 360px;
         padding: 25px;
         .background-image {
           img {
