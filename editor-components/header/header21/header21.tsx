@@ -278,8 +278,7 @@ class HeaderComponent21 extends BaseHeader {
 
   render() {
     let items: any = this.castToObject("items");
-    console.log(this.castToObject("socialMedias"));
-    console.log(items);
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -289,36 +288,33 @@ class HeaderComponent21 extends BaseHeader {
             </div>
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("top")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("content")}>
-                    <h1 className={this.decorateCSS("title")}>
-                      {items[0].title}
-                    </h1>
-                    <div className={this.decorateCSS("button")}>
-                      {items[0].button[0].value}
-                    </div>
-                    <div className={this.decorateCSS("icons")}>
-                      <li>
-                        {this.castToObject<icons[]>("socialMedias").map(
-                          (icons: any, index: number) => (
-                            <ComposerLink key={index} path={icons.url}>
-                              <div className={this.decorateCSS("icon-div")}>
-                                <img
-                                  src={icons.image}
-                                  alt={`Small Image ${index + 1}`}
-                                  key={index}
-                                />
-                              </div>
-                            </ComposerLink>
-                          )
-                        )}
-                      </li>
-                    </div>
-                  </div>
+                <div className={this.decorateCSS("title")}>
+                  <h1>{items[0].title}</h1>
+                </div>
+
+                <div className={this.decorateCSS("button")}>
+                  <h5>{items[0].button[0].value}</h5>
+                </div>
+                <div className={this.decorateCSS("icons")}>
+                  <li>
+                    {this.castToObject<icons[]>("socialMedias").map(
+                      (icons: any, index: number) => (
+                        <ComposerLink key={index} path={icons.url}>
+                          <div className={this.decorateCSS("icon-div")}>
+                            <img
+                              src={icons.image}
+                              alt={`Small Image ${index + 1}`}
+                              key={index}
+                            />
+                          </div>
+                        </ComposerLink>
+                      )
+                    )}
+                  </li>
                 </div>
               </div>
               <div className={this.decorateCSS("bottom")}>
-                <ul>
+                <li>
                   <a href={items[1].direction1[1].value}>
                     {items[1].direction1[0].value}
                   </a>
@@ -334,7 +330,7 @@ class HeaderComponent21 extends BaseHeader {
                   <a href={items[1].direction5[1].value}>
                     {items[1].direction5[0].value}
                   </a>
-                </ul>
+                </li>
               </div>
             </div>
             <div className={this.decorateCSS("right")}>
