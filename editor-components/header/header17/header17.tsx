@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./header17.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ISliderData = {
   title: string;
@@ -197,11 +198,11 @@ class Header17 extends BaseHeader {
                         {item.title}
                       </div>
                       <div>
-                        <a href={item.button[1].value}>
+                        <ComposerLink href={item.button[1].value}>
                         <button className={this.decorateCSS("button") }>
                           {item.button[0].value}
                         </button>
-                        </a>
+                        </ComposerLink>
                       </div>
                     </div>
                   </div>
