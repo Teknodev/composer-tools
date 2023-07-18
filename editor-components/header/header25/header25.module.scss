@@ -89,7 +89,6 @@
                 margin-top: 24px;
                 overflow: hidden;
                 text-overflow: ellipsis;
-
               }
               .description {
                 z-index: 2;
@@ -99,31 +98,33 @@
                 margin-top: 24px;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                
               }
               .buttons {
                 z-index: 2;
                 margin-top: 24px;
                 display: flex;
-                  .button {
-                    padding: 12px 18px;
-                    border-radius: 24px;
-                    background: var(--composer-primary-color);
-                    border: 0px;
-                    color: white;
-                    margin: 12px;
-                    font-weight: bold;
-                    &:last-child {
-                      border: 2px solid #b09782;
-                      border-color: #b09782;
-                      background: transparent;
-                      color: #8c7b6e;
-                    }
-                    &:hover:last-child {
-                      background: #b09782;
-                      color: white;
-                    }
+                .button {
+                  padding: 12px 18px;
+                  border-radius: 24px;
+                  background: var(--composer-primary-color);
+                  border: 0px;
+                  color: white;
+                  margin: 12px;
+                  font-weight: bold;
+                  max-width: 200px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  &:last-child {
+                    border: 2px solid #b09782;
+                    border-color: #b09782;
+                    background: transparent;
+                    color: #8c7b6e;
                   }
+                  &:hover:last-child {
+                    background: #b09782;
+                    color: white;
+                  }
+                }
               }
             }
           }
@@ -185,6 +186,7 @@
                   .button {
                     padding: 8px 12px;
                     font-size: 0.9rem;
+                    max-width: 175px;
                   }
                 }
               }
@@ -192,7 +194,7 @@
             .right {
               .image {
                 height: 60px;
-                left: -50px;
+                left: -40px;
               }
             }
           }
@@ -232,6 +234,7 @@
                   .button {
                     padding: 8px 10px;
                     font-size: 0.8rem;
+                    max-width: 150px;
                   }
                 }
               }
