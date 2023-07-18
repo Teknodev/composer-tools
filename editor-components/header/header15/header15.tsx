@@ -4,6 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Slide = {
   image: string;
@@ -50,45 +51,6 @@ class HeaderComponent15 extends BaseHeader {
               key: "image",
               value:
                 "https://a6n4d3q9.rocketcdn.me/accessories/wp-content/uploads/sites/7/2022/04/w-accessories-slider.jpg",
-            },
-
-            {
-              type: "object",
-              displayer: "First Button",
-              key: "firstButton",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "TO SHOP",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Second Button",
-              key: "secondButton",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "READ MORE",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
             },
           ],
         },
@@ -224,6 +186,51 @@ class HeaderComponent15 extends BaseHeader {
         },
       ],
     });
+    this.addProp({
+      type: "array",
+      key: "buttonprop",
+      displayer: "Button Prop",
+      value: [
+        {
+          type: "object",
+          displayer: "First Button",
+          key: "firstButton",
+          value: [
+            {
+              type: "string",
+              displayer: "Button Text",
+              key: "button-text",
+              value: "TO SHOP",
+            },
+            {
+              type: "page",
+              displayer: "Button URL",
+              key: "button-url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Second Button",
+          key: "secondButton",
+          value: [
+            {
+              type: "string",
+              displayer: "Button Text",
+              key: "button-text",
+              value: "READ MORE",
+            },
+            {
+              type: "page",
+              displayer: "Button URL",
+              key: "button-url",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
 
     this.addProp({
       type: "boolean",
@@ -271,12 +278,25 @@ class HeaderComponent15 extends BaseHeader {
                           {item.description}
                         </h3>
                         <div className={this.decorateCSS("buttons")}>
-                          <button className={this.decorateCSS("firstButton")}>
-                            {item.firstButton[0].value}
-                          </button>
-                          <button className={this.decorateCSS("secondButton")}>
-                            {item.secondButton[0].value}
-                          </button>
+                          {this.getPropValue("buttonprop").map(
+                            (button: any, index: number) => (
+                              <ComposerLink
+                                path={button.value[0].value}
+                                key={index}
+                              >
+                                <button
+                                  className={this.decorateCSS("firstButton")}
+                                >
+                                  {item.firstButton[0].value}
+                                </button>
+                                <button
+                                  className={this.decorateCSS("secondButton")}
+                                >
+                                  {item.secondButton[0].value}
+                                </button>
+                              </ComposerLink>
+                            )
+                          )}
                         </div>
                       </div>
                     </div>
