@@ -29,6 +29,9 @@
       .content {
         position: absolute;
         top: 50%;
+        width: 50%;
+        overflow: hidden;
+        text-overflow: ellipsis;
         .divider {
           background-color: black;
           width: 85px;
@@ -44,7 +47,7 @@
         .title {
           font-weight: lighter;
           font-size: 4rem;
-          width: 55%;
+          
           color: black;
           line-height: 60px;
         }
@@ -76,13 +79,11 @@
       
       .right{
         display: none;
-        .image{
-
-        }
       }
       .middle{
         .content{
           top: 25%;
+          width: 70%;
           .title{
             font-size: 3rem;
             line-height: 50px;
@@ -90,11 +91,9 @@
           .button{
             font-size: 1rem;
           }
-
-        }
-      }
-      .left{
-        .image{
+          .divider-underline {
+           margin-left: 4px;
+          }
 
         }
       }
@@ -109,16 +108,20 @@
       .middle{
         .content{
           top: 25%;
+          width: 80%;
           .title{
-            font-size: 2rem;
+            font-size: 1.8rem;
             line-height: 30px;
+            margin-top: 8px !important;
+            margin-bottom: 8px !important;
           }
           .button{
             font-size: 0.8rem;
+            padding: 1px 0px;
           }
           .divider-underline {
             margin-top: 0px;
-            margin-left: 8px;
+            margin-left: 2px;
             background-color: black;
             width: 52px;
             height: 1px;
@@ -130,8 +133,6 @@
           }
 
         }
-      }
-      .left{
       }
     }
   }
