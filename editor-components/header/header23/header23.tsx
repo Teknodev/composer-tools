@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./header23.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class HeaderComponent23 extends BaseHeader {
   constructor(props?: any) {
@@ -70,9 +71,11 @@ class HeaderComponent23 extends BaseHeader {
                   {this.getPropValue("title")}
                 </h1>
                 <div>
-                  <button className={this.decorateCSS("button")}>
-                    {button[0].value}
-                  </button>
+                  <ComposerLink path={this.getPropValue("button")[1].value}>
+                    <button className={this.decorateCSS("button")}>
+                      {button[0].value}
+                    </button>
+                  </ComposerLink>
                 </div>
                 <div className={this.decorateCSS("divider-underline")}></div>
               </div>
