@@ -13,15 +13,19 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+       
         .content {
           padding: 32px;
-          width: 60%;
           text-align: start;
+          width: 600px;
+          overflow: hidden;
+          text-overflow: ellipsis;
           h1 {
             font-size: 5rem;
             color: #2f1c64;
             font-weight: bold;
             line-height: 1.2;
+         
           }
           p {
             font-size: 1.5rem;
@@ -33,7 +37,7 @@
             background-color: white;
             border-radius: 12px;
             display: flex;
-
+            align-items: center;
             input {
               padding: 12px;
               margin: 6px;
@@ -50,6 +54,9 @@
               background: var(--composer-primary-color);
               border: 0px;
               color: white;
+              width: 150px;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
         }
@@ -91,11 +98,12 @@
               flex-direction: column;
               padding: 32px;
               margin: 48px;
+              align-items: start;
               input {
                 width: 100%;
               }
               .button {
-                width: 100%;
+                width: 410px;
                 margin-top: 12px;
                 padding: 18px;
               }
@@ -132,11 +140,12 @@
               padding: 12px;
               margin: 16px;
               input{
-                margin: 1px;
+                margin: 2px;
               }
               .button{
                 padding: 12px;
                 margin-left: 0px;
+                width: 260px;
               }
             }
           }
