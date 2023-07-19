@@ -1,9 +1,8 @@
 import * as React from "react";
 import styles from "./header16.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import * as Yup from "yup";
-import { ErrorMessage, Formik, Form } from "formik";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 
 class HeaderComponent16 extends BaseHeader {
   constructor(props?: any) {
@@ -68,9 +67,7 @@ class HeaderComponent16 extends BaseHeader {
       value: true,
     });
   }
-  validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-  });
+  
 
   getName(): string {
     return "Header-16";
