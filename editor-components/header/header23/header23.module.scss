@@ -1,0 +1,139 @@
+.container {
+  width: 100%;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+  }
+  .wrapper {
+    display: flex;
+    width: 100%;
+    height: 775px;
+    .right {
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      .image {
+        width: 80%;
+        position: absolute;
+        right: 250px;
+        top: 50px;
+        
+      }
+    }
+    .middle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      .content {
+        position: absolute;
+        top: 50%;
+        width: 50%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        .divider {
+          background-color: black;
+          width: 85px;
+          height: 2px;
+        }
+        .divider-underline {
+          margin-top: 4px;
+          margin-left: 8px;
+          background-color: black;
+          width: 72px;
+          height: 2px;
+        }
+        .title {
+          font-weight: lighter;
+          font-size: 4rem;
+          
+          color: black;
+          line-height: 60px;
+        }
+        .button {
+          border: 0px;
+          color: black;
+          justify-content: flex-start;
+          font-weight: bold;
+          &:hover {
+            color: grey;
+          }
+        }
+      }
+    }
+    .left {
+      flex: 1;
+      .image {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    .max-content{}
+    .wrapper{
+      height: max-content;
+      
+      .right{
+        display: none;
+      }
+      .middle{
+        .content{
+          top: 25%;
+          width: 70%;
+          .title{
+            font-size: 3rem;
+            line-height: 50px;
+          }
+          .button{
+            font-size: 1rem;
+          }
+          .divider-underline {
+           margin-left: 4px;
+          }
+
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content{}
+    .wrapper{
+      height: max-content;
+      .middle{
+        .content{
+          top: 25%;
+          width: 80%;
+          .title{
+            font-size: 1.8rem;
+            line-height: 30px;
+            margin-top: 8px !important;
+            margin-bottom: 8px !important;
+          }
+          .button{
+            font-size: 0.8rem;
+            padding: 1px 0px;
+          }
+          .divider-underline {
+            margin-top: 0px;
+            margin-left: 2px;
+            background-color: black;
+            width: 52px;
+            height: 1px;
+          }
+          .divider {
+            background-color: black;
+            width: 72px;
+            height: 1px;
+          }
+
+        }
+      }
+    }
+  }
+}

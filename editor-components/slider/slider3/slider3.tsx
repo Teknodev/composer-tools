@@ -1,9 +1,9 @@
-import Slider from "react-slick";
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider3.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 class Slider3 extends BaseSlider {
   constructor(props?: any) {
@@ -89,7 +89,7 @@ class Slider3 extends BaseSlider {
               <p>{this.getPropValue("content")}</p>
             </div>
             <div className={this.decorateCSS("slider-parent")}>
-              <Slider {...settings} className={this.decorateCSS("carousel")}>
+              <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {this.getPropValue("header")[0].value.map(
                   (item: any, index: number) => (
                     <img
@@ -99,7 +99,7 @@ class Slider3 extends BaseSlider {
                     />
                   )
                 )}
-              </Slider>
+              </ComposerSlider>
             </div>
           </div>
         </div>

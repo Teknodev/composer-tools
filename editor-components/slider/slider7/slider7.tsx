@@ -1,10 +1,11 @@
-import Slider from "react-slick";
+
 import * as React from "react";
 import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./slider7.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Card = {
   image: string;
@@ -271,7 +272,7 @@ class Slider7 extends BaseSlider {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <Slider {...settings} className={this.decorateCSS("carousel")}>
+          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
             {this.castToObject<Card[]>("slider").map(
               (item: Card, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("card")}>
@@ -284,7 +285,7 @@ class Slider7 extends BaseSlider {
                 </div>
               )
             )}
-          </Slider>
+          </ComposerSlider>
         </div>
       </div>
     );
