@@ -3,6 +3,7 @@ import styles from "./header16.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import * as Yup from "yup";
 import { ErrorMessage, Formik, Form } from "formik";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class HeaderComponent16 extends BaseHeader {
   constructor(props?: any) {
@@ -76,11 +77,15 @@ class HeaderComponent16 extends BaseHeader {
   }
 
   render() {
-
     const button = this.getPropValue("button");
 
     return (
-      <div  style={{backgroundImage: `url(${this.getPropValue("background-image")})` }} className={this.decorateCSS("container")}>
+      <div
+        style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+        }}
+        className={this.decorateCSS("container")}
+      >
         <div className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("wrapper")} ${
               this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
@@ -89,11 +94,24 @@ class HeaderComponent16 extends BaseHeader {
               <div className={this.decorateCSS("content")}>
                 <h1>{this.getPropValue("title")}</h1>
                 <p>{this.getPropValue("description")}</p>
-              </div>
-              <div>
-                <button className={this.decorateCSS("button")}>
-                  {button[0].value}
-                </button>
+
+                <div className={this.decorateCSS("form")}>
+                  <input
+                    placeholder="Your Name"
+                    type="text"
+                    className={this.decorateCSS("name")}
+                  />
+                  <input
+                    placeholder="Phone Number"
+                    type="text"
+                    className={this.decorateCSS("phone")}
+                  />
+                  <ComposerLink path={this.getPropValue("button")[1].value}>
+                    <button className={this.decorateCSS("button")}>
+                      {button[0].value}
+                    </button>
+                  </ComposerLink>
+                </div>
               </div>
             </div>
             <div className={this.decorateCSS("right")}>

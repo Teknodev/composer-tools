@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./header20.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
 class Header20 extends BaseHeader {
@@ -184,9 +185,11 @@ class Header20 extends BaseHeader {
                     {items[0].description}
                   </div>
                   <div>
+                    <ComposerLink path={items[0].button[1].value}>
                     <button className={this.decorateCSS("button")}>
                       {items[0].button[0].value}
                     </button>
+                    </ComposerLink>
                   </div>
                 </div>
               </div>
@@ -205,9 +208,11 @@ class Header20 extends BaseHeader {
                       {items[1].description}
                     </div>
                     <div>
+                      <ComposerLink path={items[1].button[1].value}>
                       <button className={this.decorateCSS("button")}>
                         {items[1].button[0].value}
                       </button>
+                      </ComposerLink>
                     </div>
                   </div>
                 </div>
@@ -225,9 +230,11 @@ class Header20 extends BaseHeader {
                       {items[2].description}
                     </div>
                     <div>
+                        <ComposerLink path={items[2].button[1].value}>
                       <button className={this.decorateCSS("button")}>
                         {items[2].button[0].value}
                       </button>
+                      </ComposerLink>
                     </div>
                   </div>
                 </div>

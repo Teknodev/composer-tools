@@ -1,11 +1,138 @@
-.container{
-    width: 100%;
-    .max-content{
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .wrapper{
+.container {
+  width: 100%;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    .wrapper {
+      display: flex;
+      width: 100%;
+      height: 900px;
+      .left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       
+        .content {
+          padding: 32px;
+          text-align: start;
+          width: 600px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          h1 {
+            font-size: 5rem;
+            color: #2f1c64;
+            font-weight: bold;
+            line-height: 1.2;
+         
+          }
+          p {
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: #777777;
+            margin-bottom: 48px;
+          }
+          .form {
+            background-color: white;
+            border-radius: 12px;
             display: flex;
+            align-items: center;
+            input {
+              padding: 12px;
+              margin: 6px;
+              width: 30%;
+              border: 3px solid #e5e5e5;
+              &:last-child {
+                margin-right: 43px !important;
+              }
+            }
+            .button {
+              margin-left: 8px;
+              padding: 12px 32px;
+              border-radius: 5px;
+              background: var(--composer-primary-color);
+              border: 0px;
+              color: white;
+              width: 150px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+      }
+      .right {
+        flex: 1;
+        position: relative;
+        .image {
+          position: absolute;
+          width: 800px;
+          height: 800px;
+          z-index: 5;
+          bottom: 0px;
+          right: 100px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    .max-content {
+      .wrapper {
+        flex-direction: column;
+        height: 1150px;
+        .left {
+          .content {
+            padding: 16px;
+            width: 80%;
+            h1 {
+              font-size: 4rem;
+              text-align: center;
+            }
+            p {
+              text-align: center;
+            }
+            .form {
+              display: flex;
+              flex-direction: column;
+              padding: 32px;
+              margin: 48px;
+              align-items: start;
+              input {
+                width: 100%;
+              }
+              .button {
+                width: 410px;
+                margin-top: 12px;
+                padding: 18px;
+              }
+            }
+          }
+        }
+        .right {
+          flex: 1;
+          .image {
+            bottom: 0px;
+            width: 600px;
+            height: 600px;
+            right: -150px;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content {
+      .wrapper {
+        height: 900px;
+        .left {
+          text-align: center;
+          .content {
             width: 100%;
+
             height: 1000px;
             flex-wrap: wrap;
             &.wrapper-reverse {
@@ -41,21 +168,30 @@
 
                 }
 
-            }
-            .right{
-                flex: 1;
-                position: relative;
-                .image{
-                    position: absolute;
-                    width: 100%;
-                    height: 800px;
-                    z-index: 5;
-                    bottom: 0px;
-                    position: absolute;
-                    right: -75px;
-                }
-            }
 
+            }
+            .form {
+              padding: 12px;
+              margin: 16px;
+              input{
+                margin: 2px;
+              }
+              .button{
+                padding: 12px;
+                margin-left: 0px;
+                width: 260px;
+              }
+            }
+          }
         }
+        .right {
+          flex: 1;
+          .image {
+            width: 400px;
+            height: 400px;
+          }
+        }
+      }
     }
+  }
 }
