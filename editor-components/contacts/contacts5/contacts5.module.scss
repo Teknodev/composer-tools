@@ -47,6 +47,7 @@
         .form {
           display: flex;
           flex-direction: column;
+          text-align: center;
           gap: 20px;
           background: rgba(250, 250, 250, 0.6);
           box-shadow: var(--composer-box-shadow);
@@ -79,6 +80,7 @@
             font-size: 1.5rem;
             color: white;
             padding: 10px 50px;
+            width: 100%;
             &:active {
               background: var(--composer-secondary-color);
               color: var(--composer-tertiary-color);

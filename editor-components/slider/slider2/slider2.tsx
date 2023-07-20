@@ -4,8 +4,9 @@ import {
   TypeUsableComponentProps,
 } from "../../EditorComponent";
 import styles from "./slider2.module.scss";
-import Slider from "react-slick";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Button = {
   buttonText: string;
@@ -96,7 +97,7 @@ class Slider2 extends BaseSlider {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
-            <Slider {...settings} className={this.decorateCSS("carousel")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {this.getPropValue("slider").map(
                 (item: any, indexSlider: number) => (
                   <img
@@ -106,7 +107,7 @@ class Slider2 extends BaseSlider {
                   />
                 )
               )}
-            </Slider>
+            </ComposerSlider>
             <div className={this.decorateCSS("box")}>
               <h2>{this.getPropValue("header")}</h2>
               <h1>{this.getPropValue("subtitle")}</h1>
