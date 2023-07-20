@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import styles from "./pricing-table3.module.scss";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -119,7 +118,7 @@ class PricingTable3 extends BasePricingTable {
           type: "page",
           key: "url",
           displayer: "URL",
-          value: PlaceholderFiller.string(),
+          value: "",
         },
         {
           type: "boolean",

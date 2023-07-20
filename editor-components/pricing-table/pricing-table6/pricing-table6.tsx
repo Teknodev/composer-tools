@@ -1,6 +1,5 @@
 import * as React from "react";
 import styles from "./pricing-table6.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -8,7 +7,7 @@ type Pricing = {
   cardTitle1: string;
   list: TypeUsableComponentProps[];
   buttons: { buttonTitle: string; url: string; isPrimary: boolean }[];
-  price: string;
+  price: number;
   description: string;
   activeTag: string;
   active: boolean;
@@ -72,10 +71,10 @@ class PricingMultipleTwo extends BasePricingTable {
               value: "$",
             },
             {
-              type: "string",
+              type: "number",
               key: "price",
               displayer: "Price",
-              value: "50",
+              value: 50,
             },
             {
               type: "string",
@@ -159,7 +158,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: PlaceholderFiller.string(),
+                      value: "",
                     },
                     {
                       type: "boolean",
@@ -191,10 +190,10 @@ class PricingMultipleTwo extends BasePricingTable {
               value: "$",
             },
             {
-              type: "string",
+              type: "number",
               key: "price",
               displayer: "Price",
-              value: "100",
+              value: 100,
             },
             {
               type: "string",
@@ -278,7 +277,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: PlaceholderFiller.string(),
+                      value: "",
                     },
                     {
                       type: "boolean",
