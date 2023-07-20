@@ -303,7 +303,6 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent6(),
     new FooterComponent7(),
     new FooterComponent8(),
-    new TermsOfUseModal()
     new TermsOfUseModal(),
     new NoticeModal(),
   ]);
