@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer5.module.scss";
 
@@ -36,72 +35,61 @@ class Footer5Page extends BaseFooter {
               displayer: "Footer",
               value: [
                 {
-                  type: "string",
+                  type: "object",
                   key: "item",
-                  value: "Products",
                   displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Products",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
+                  type: "object",
                   key: "item",
-                  value: "Create Website",
                   displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Create Website",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
+                  type: "object",
                   key: "item",
-                  value: "Secure Cloud Hosting",
                   displayer: "Item",
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "table-item",
-              displayer: "Footer",
-              value: [
-                {
-                  type: "string",
-                  key: "item",
-                  value: "About",
-                  displayer: "Item",
-                },
-                {
-                  type: "string",
-                  key: "item",
-                  value: "Careers",
-                  displayer: "Item",
-                },
-                {
-                  type: "string",
-                  key: "item",
-                  value: "Support",
-                  displayer: "Item",
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "table-item",
-              displayer: "Footer",
-              value: [
-                {
-                  type: "string",
-                  key: "item",
-                  value: "Blog",
-                  displayer: "Item",
-                },
-                {
-                  type: "string",
-                  key: "item",
-                  value: "Ebooks",
-                  displayer: "Item",
-                },
-                {
-                  type: "string",
-                  key: "item",
-                  value: "Whitepapers",
-                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Secure Cloud Hosting",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -111,22 +99,189 @@ class Footer5Page extends BaseFooter {
               displayer: "Footer",
               value: [
                 {
-                  type: "string",
+                  type: "object",
                   key: "item",
-                  value: "Help Center",
                   displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "About",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
+                  type: "object",
                   key: "item",
-                  value: "Contact Us",
                   displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Careers",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
+                  type: "object",
                   key: "item",
-                  value: "Privacy Policy",
                   displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Support",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "table-item",
+              displayer: "Footer",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Blog",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Ebooks",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Whitepapers",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "table-item",
+              displayer: "Footer",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Help Center",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Contact Us",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item-title",
+                      value: "Privacy Policy",
+                      displayer: "Item Title",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -146,26 +301,31 @@ class Footer5Page extends BaseFooter {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-list-page")}>
             <div className={this.decorateCSS("item-div")}>
-              {this.getPropValue("footer-table-item").map(
-                (table: any) => {
-                  return table.value.map((tableItem: any, indexTableItem: number) => {
+              {this.getPropValue("footer-table-item").map((table: any) => {
+                return table.value.map(
+                  (tableItem: any, indexTableItem: number) => {
                     return (
                       <ul
                         key={indexTableItem}
                         className={this.decorateCSS("list-group")}
                       >
-                        {tableItem.value.map((tableData: any, indexTableData: number) => {
-                          return (
-                            <li key={indexTableData} className={this.decorateCSS("list-item")}>
-                              {tableData.value}
-                            </li>
-                          );
-                        })}
+                        {tableItem.value.map(
+                          (tableData: any, indexTableData: number) => {
+                            return (
+                              <li
+                                key={indexTableData}
+                                className={this.decorateCSS("list-item")}
+                              >
+                                {tableData.value[0].value}
+                              </li>
+                            );
+                          }
+                        )}
                       </ul>
                     );
-                  });
-                }
-              )}
+                  }
+                );
+              })}
             </div>
             <h2>{this.getPropValue("footer")[0].value}</h2>
           </div>

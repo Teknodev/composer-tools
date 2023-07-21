@@ -1,5 +1,6 @@
-import Slider from "react-slick";
+
 import * as React from "react";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider4.module.scss";
 
@@ -58,7 +59,7 @@ class Slider4 extends BaseSlider {
             className={this.decorateCSS("slider-parent")}
             
           >
-            <Slider {...settings} className={this.decorateCSS("carousel")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {this.getPropValue("slider").map((item: any, index: number) => (
                 <img
                   src={item.value}
@@ -66,7 +67,7 @@ class Slider4 extends BaseSlider {
                   key={`slider4-${index}`}
                 />
               ))}
-            </Slider>
+            </ComposerSlider>
           </div>
         </div>
       </div>

@@ -72,7 +72,7 @@
     .max-content {
       max-width: 100%;
       .navigator {
-        display: block;
+        display: flex;
         text-align: center;
         padding: 50px 20px;
         .items {

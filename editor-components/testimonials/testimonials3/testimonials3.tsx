@@ -32,9 +32,9 @@ class Testimonials3Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "string",
+                      type: "number",
                       key: "star",
-                      value: "5",
+                      value: 5,
                       displayer: "Star",
                     },
                     {
@@ -42,14 +42,12 @@ class Testimonials3Page extends Testimonials {
                       key: "subtitle",
                       value: "''good and responsive design''",
                       displayer: "Subtitle",
-                      completion: "Testimonial about agency that mentions one of the following benefits: friendly approach, potential partnership"
                     },
                     {
                       type: "string",
                       key: "title",
                       value: "Matt Kenton",
                       displayer: "Title",
-                      completion: "Full name 1"
                     },
                   ],
                 },
@@ -59,9 +57,9 @@ class Testimonials3Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "string",
+                      type: "number",
                       key: "star",
-                      value: "5",
+                      value: 5,
                       displayer: "Star",
                     },
                     {
@@ -69,14 +67,12 @@ class Testimonials3Page extends Testimonials {
                       key: "subtitle",
                       value: "''fast and good support team''",
                       displayer: "Subtitle",
-                      completion: "Testimonial about agency that mentions one of the following benefits: high technical quality, crystal clear communication"
                     },
                     {
                       type: "string",
                       key: "title",
                       value: "Tamsen Fannie",
                       displayer: "Title",
-                      completion: "Full name 2"
                     },
                   ],
                 },
@@ -86,9 +82,9 @@ class Testimonials3Page extends Testimonials {
                   displayer: "Card",
                   value: [
                     {
-                      type: "string",
+                      type: "number",
                       key: "start",
-                      value: "5",
+                      value: 5,
                       displayer: "Star",
                     },
                     {
@@ -96,14 +92,12 @@ class Testimonials3Page extends Testimonials {
                       key: "subtitle",
                       value: "''Innovative designs and easy use''",
                       displayer: "Subtitle",
-                      completion: "Testimonial about agency that mentions one of the following benefits: fast development, low cost"
                     },
                     {
                       type: "string",
                       key: "title",
                       value: "Brynn Samantha",
                       displayer: "Title",
-                      completion: "Full name 3"
                     },
                   ],
                 },

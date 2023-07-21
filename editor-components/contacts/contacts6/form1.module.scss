@@ -60,6 +60,7 @@
           border: none;
           cursor: pointer;
           transition: 0.1s;
+          width: 100%;
 
           &:active {
             background: var(--composer-secondary-color);

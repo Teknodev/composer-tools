@@ -44,6 +44,10 @@
         }
       }
     }
+    .navigator-mobile {
+      display: none;
+      visibility: hidden;
+    }
   }
 }
 
@@ -70,7 +74,7 @@
     .max-content {
       max-width: 100%;
       .navigator {
-        display: block;
+        display: flex;
         text-align: center;
         .items {
           width: max-content;
@@ -91,6 +95,47 @@
           display: block;
           width: max-content;
           margin: 0 auto 0 auto;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 870px) {
+  .container {
+    .max-content {
+      .navigator {
+        display: none;
+        visibility: hidden;
+      }
+      .navigator-mobile {
+        display: block;
+        visibility: visible;
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 25px;
+          .img-hamburger {
+            cursor: pointer;
+            transition: 0.4s;
+            font-weight: 100;
+            font-size: 30px;
+            margin: auto 0 auto 0;
+            width: 25px;
+            height: 25px;
+            &:hover {
+              transform: rotate(90deg);
+            }
+          }
+        }
+        .navbar-hidden {
+          display: block;
+          visibility: visible;
+        }
+        .navbar-child {
+          transition: all 0.5s;
+          height: 200px;
+          background-color: black;
+          color: white;
         }
       }
     }
