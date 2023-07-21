@@ -4,6 +4,8 @@ import { BaseModal } from "../../EditorComponent";
 import styles from "./survey-modal.module.scss";
 import * as Yup from "yup";
 import { ErrorMessage, Formik, Form } from "formik";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 
 class SurveyModal extends BaseModal {
   constructor(props?: any) {
@@ -27,30 +29,33 @@ class SurveyModal extends BaseModal {
       value: "What your name ?",
       displayer: "Question",
     })
-    this.addProp({
-      type: "string",
-      key: "question2",
-      value: "Did you like our site ?",
-      displayer: "Question",
-    })
+    
     this.addProp({
       type: "string",
       key: "question3",
-      value: "what are your suggestions ?",
+      value: "What are your suggestions ?",
       displayer: "Question",
     })
 
+    
     this.addProp({
-      type: "string",
-      key: "button-text",
-      displayer: "Button Text",
-      value: "Send",
-    });
-    this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "Submit",
+      type: "object",
+      key: "button",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Submit",
+        },
+        {
+          type: "page",
+          key: "buttonPath",
+          displayer: "Button Path",
+          value: "",
+        },
+      ],
     });
   }
   validationSchema = Yup.object().shape({
@@ -64,6 +69,7 @@ class SurveyModal extends BaseModal {
   }
 
   render() {
+    const button = this.getPropValue("button");
     return (
       <div className={this.decorateCSS("container")} >
         <div className={this.decorateCSS("max-content")}>
@@ -97,14 +103,7 @@ class SurveyModal extends BaseModal {
                       onChange={handleChange}
                       className={this.decorateCSS("input")}
                     />
-                    <p>{this.getPropValue("question2")}</p>
-                    <input
-                      type="text"
-                      name="message"
-                      value={values.message}
-                      onChange={handleChange}
-                      className={this.decorateCSS("input")}
-                    />
+                    
                     <p>{this.getPropValue("question3")}</p>
                     <input
                       type="text"
@@ -118,12 +117,14 @@ class SurveyModal extends BaseModal {
               </Formik>
             </div>
             <ComposerModalClose>
+              <ComposerLink path={this.getPropValue("button")[1].value}>
               <button
                 className={this.decorateCSS("button")}
                 type="submit"
               >
-                {this.getPropValue("button_text")}
+               {button[0].value}
               </button>
+              </ComposerLink>
             </ComposerModalClose>
           </div>
         </div>

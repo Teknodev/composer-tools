@@ -9,22 +9,21 @@ width: 100%;
     align-items: center;
     .content {
       display: flex;
-      gap: 10px;
       justify-content: center;
       align-items: center; 
       flex-direction: column;
-      margin: 20px;
       min-width: 400px;
       min-height: 500px;
       border-radius: 6px;
       box-shadow: var(--composer-box-shadow);
-      padding: 20px;
+      padding: 12px;
       background: white;
   
       .image {
         width: 100px;
         height: 100px;
         border-radius: 6px;
+        margin-bottom: 4px;
       }
       h2{
         margin: 0;
@@ -35,7 +34,7 @@ width: 100%;
         display: flex;
         flex-direction: column;
         .input{
-          padding: 10px 50px;
+          padding: 10px 25px;
           border-radius: 10px;
           outline: none;
           border: 1px solid #8e8e8e91;
