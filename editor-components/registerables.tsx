@@ -307,7 +307,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent7(),
     new FooterComponent8(),
     new TermsOfUseModal(),
-    new SurveyModal()
+    new SurveyModal(),
     new NoticeModal(),
     new SubscriptionModal(),
 
