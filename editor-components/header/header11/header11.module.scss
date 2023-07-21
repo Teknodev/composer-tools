@@ -18,10 +18,12 @@
         flex-direction: column;
         align-items: center;
         width: 50%;
+        gap: 20px;
+
         h2 {
           margin: 20px;
         }
-        h1{
+        h1 {
           color: var(--composer-primary-color);
           margin: 0;
         }
@@ -93,9 +95,8 @@
           width: 100%;
           gap: 20px;
         }
-        .card-child{
+        .card-child {
           width: 100%;
-
         }
       }
     }

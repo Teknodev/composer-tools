@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -57,7 +56,7 @@ class Header1 extends BaseHeader {
       type: "page",
       key: "link",
       displayer: "URL",
-      value: PlaceholderFiller.string(),
+      value: "",
     });
   }
 

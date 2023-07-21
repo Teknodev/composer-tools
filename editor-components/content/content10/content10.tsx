@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content10.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   title: string;
@@ -21,16 +22,28 @@ class Content10 extends BaseContent {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Spend your money on creatives that convert, make the most of the strongest artificial intelligence on the ad creation market.",
+      value:
+        "Spend your money on creatives that convert, make the most of the strongest artificial intelligence on the ad creation market.",
     });
     this.addProp({
-      type: "string",
-      key: "button",
+      type: "object",
+      key: "buttonprop",
       displayer: "Button",
-      value: "Generate Ad Creatives",
+      value: [
+        {
+          type: "string",
+          key: "button",
+          displayer: "Button",
+          value: "Generate Ad Creatives",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "URL",
+          value: "",
+        },
+      ],
     });
-
-
 
     this.addProp({
       type: "array",
@@ -122,16 +135,7 @@ class Content10 extends BaseContent {
         },
       ],
     });
-
-
-
   }
-
-
-
-
-
-
 
   getName(): string {
     return "Content 10";
@@ -144,13 +148,18 @@ class Content10 extends BaseContent {
           <div className={this.decorateCSS("header")}>
             <h2>{this.getPropValue("title")}</h2>
             <p>{this.getPropValue("description")}</p>
-            <button>{this.getPropValue("button")}</button>
+            <ComposerLink path={this.getPropValue("buttonprop")[1].value}>
+              <button>{this.getPropValue("buttonprop")[0].value}</button>
+            </ComposerLink>
           </div>
 
           <div className={this.decorateCSS("card-child")}>
             {this.castToObject<Card[]>("content-card").map(
               (card: Card, index: number) => (
-                <div key={`cnt-10-card-${index}`} className={this.decorateCSS("card")}>
+                <div
+                  key={`cnt-10-card-${index}`}
+                  className={this.decorateCSS("card")}
+                >
                   <i>
                     <img src={card.image} />
                   </i>

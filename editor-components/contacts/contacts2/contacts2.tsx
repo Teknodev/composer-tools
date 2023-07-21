@@ -1,7 +1,6 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./contacts2.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 
 type Item = {
   image: string;

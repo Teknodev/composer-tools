@@ -89,9 +89,9 @@ class Download10 extends BaseDownload {
     });
 
     this.addProp({
-      type: "string",
+      type: "number",
       key: "stars",
-      value: "5",
+      value:5,
       displayer: "Stars",
     });
   }
