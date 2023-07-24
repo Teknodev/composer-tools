@@ -284,7 +284,7 @@ class HeaderComponent15 extends BaseHeader {
                                 path={button.value[0].value}
                                 key={index}
                               >
-                                <button
+                                {/* <button
                                   className={this.decorateCSS("firstButton")}
                                 >
                                   {item.firstButton[0].value}
@@ -293,7 +293,7 @@ class HeaderComponent15 extends BaseHeader {
                                   className={this.decorateCSS("secondButton")}
                                 >
                                   {item.secondButton[0].value}
-                                </button>
+                                </button> */}
                               </ComposerLink>
                             )
                           )}
