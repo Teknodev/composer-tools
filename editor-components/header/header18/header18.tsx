@@ -164,8 +164,6 @@ class Header18 extends BaseHeader {
       slidesToScroll: 1,
     };
 
-    console.log(this.getPropValue("column"));
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("wrapper")}>

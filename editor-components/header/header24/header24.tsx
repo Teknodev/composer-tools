@@ -194,7 +194,6 @@ class Header24 extends BaseHeader {
   }
 
   render() {
-    console.log(this.getPropValue("slider")[0].value[1].value);
 
     const settings = {
       dots: false,
