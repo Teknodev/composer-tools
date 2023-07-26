@@ -143,6 +143,7 @@ import NavbarComponent2 from "./navigators/navbar2/navbar2";
 import NavbarComponent3 from "./navigators/navbar3/navbar3";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import NoticeModal from "./modal/notice-modal/notice";
+import DiscountModal from "./modal/discount-modal/discount-modal";
 import HeaderComponent13 from "./header/header13/header13";
 
 function Registerables(composer: ComponentsRegistery) {
@@ -291,6 +292,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent7(),
     new TermsOfUseModal(),
     new NoticeModal(),
+    new DiscountModal(),
   ]);
 }
 
