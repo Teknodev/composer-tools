@@ -1,9 +1,7 @@
 import * as React from "react";
 import styles from "./header15.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Slide = {
@@ -17,11 +15,9 @@ type Slide = {
     value: string;
   }[];
 };
-
 class HeaderComponent15 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
       type: "array",
       displayer: "Slides",
@@ -30,7 +26,7 @@ class HeaderComponent15 extends BaseHeader {
         {
           type: "object",
           displayer: "First Slide",
-          key: "first-slide",
+          key: "firstSlide",
           value: [
             {
               type: "string",
@@ -52,12 +48,51 @@ class HeaderComponent15 extends BaseHeader {
               value:
                 "https://a6n4d3q9.rocketcdn.me/accessories/wp-content/uploads/sites/7/2022/04/w-accessories-slider.jpg",
             },
+
+            {
+              type: "object",
+              displayer: "First Button",
+              key: "firstButton",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "TO SHOP",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              displayer: "Second Button",
+              key: "secondButton",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
           ],
         },
         {
           type: "object",
           displayer: "Second Slide",
-          key: "second-slide",
+          key: "secondSlide",
           value: [
             {
               type: "string",
@@ -121,8 +156,8 @@ class HeaderComponent15 extends BaseHeader {
         },
         {
           type: "object",
-          displayer: "First Slide",
-          key: "third-slide",
+          displayer: "Third Slide",
+          key: "thirdSlide",
           value: [
             {
               type: "string",
@@ -231,60 +266,58 @@ class HeaderComponent15 extends BaseHeader {
         },
       ],
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "true",
-      displayer: "Column",
-      value: true,
-    });
   }
-
   getName(): string {
     return "Header-15";
   }
-
   render() {
     const settings = {
       dots: true,
       infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
     };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("wrapper")} ${
-              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
-            }`}
+          <ComposerSlider
+            {...settings}
+            className={this.decorateCSS("carousel")}
           >
-            <Slider {...settings} className={this.decorateCSS("carousel")}>
-              {this.castToObject<Slide[]>("slides").map(
-                (item: Slide, index: number) => (
-                  <div
-                    className={this.decorateCSS("slider-inner-div")}
-                    key={`sld-8-${index}`}
-                  >
-                    <div className={this.decorateCSS("item")}>
-                      <div className={this.decorateCSS("background-image")}>
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <div className={this.decorateCSS("content")}>
-                        <h1 className={this.decorateCSS("title")}>
-                          {item.title}
-                        </h1>
-                        <h3 className={this.decorateCSS("description")}>
-                          {item.description}
-                        </h3>
-                        <div className={this.decorateCSS("buttons")}>
-                          {this.getPropValue("buttonprop").map(
+            {this.castToObject<Slide[]>("slides").map(
+              (item: Slide, index: number) => (
+                <div
+                  className={this.decorateCSS("slider-inner-div")}
+                  key={`sld-8-${index}`}
+                >
+                  <div className={this.decorateCSS("item")}>
+                    <div className={this.decorateCSS("background-image")}>
+                      <img src={item.image} alt={item.title} />
+                    </div>
+                    <div className={this.decorateCSS("content")}>
+                      <h1 className={this.decorateCSS("title")}>
+                        {item.title}
+                      </h1>
+                      <h3 className={this.decorateCSS("description")}>
+                        {item.description}
+                      </h3>
+                      <div className={this.decorateCSS("buttons")}>
+                        <button className={this.decorateCSS("firstButton")}>
+                          {item.firstButton[0].value}
+                        </button>
+                        <button className={this.decorateCSS("secondButton")}>
+                          {item.secondButton[0].value}
+                        </button>
+                        {/* {this.getPropValue("buttonprop").map(
                             (button: any, index: number) => (
                               <ComposerLink
                                 path={button.value[0].value}
                                 key={index}
                               >
-                                {/* <button
+                                <button
                                   className={this.decorateCSS("firstButton")}
                                 >
                                   {item.firstButton[0].value}
@@ -293,22 +326,20 @@ class HeaderComponent15 extends BaseHeader {
                                   className={this.decorateCSS("secondButton")}
                                 >
                                   {item.secondButton[0].value}
-                                </button> */}
+                                </button>
                               </ComposerLink>
                             )
-                          )}
-                        </div>
+                          )} */}
                       </div>
                     </div>
                   </div>
-                )
-              )}
-            </Slider>
-          </div>
+                </div>
+              )
+            )}
+          </ComposerSlider>
         </div>
       </div>
     );
   }
 }
-
 export default HeaderComponent15;
