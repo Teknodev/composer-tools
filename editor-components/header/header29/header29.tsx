@@ -115,9 +115,7 @@ class HeaderComponent29 extends BaseHeader {
               )}
             </div>
             <div className={this.decorateCSS("right")}>
-              <div className={this.decorateCSS("image")}>
-                <img src={items[1].value} alt={items[1].displayer} />
-              </div>
+              <img src={items[1].value} alt={items[1].displayer} />
             </div>
           </div>
         </div>
