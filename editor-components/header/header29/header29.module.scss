@@ -26,33 +26,38 @@
           font-size: 72px;
           font-weight: 800;
           overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
         }
       }
       .description {
-        font-size: 18px;
         width: 100%;
-        color: #849aaa;
+        h3 {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+          font-size: 25px;
+          color: #849aaa;
+          font-weight: lighter;
+        }
       }
       .button-wrapper {
         display: flex;
         justify-content: start !important;
-        justify-content: space-evenly;
         cursor: auto;
         .button {
-          a {
-            text-decoration: none;
-          }
           cursor: pointer;
           padding: 15px 28px;
           border-radius: 5px;
           min-height: 48px;
-          font-size: 14px;
+          font-size: 13px;
           text-align: center;
           display: inline-block;
           background-color: #0099ff;
           border: 0px;
           color: white;
-          :hover {
+          text-decoration: none !important;
+          &:hover {
             background-color: #0068ad;
           }
         }
@@ -124,7 +129,12 @@
       .left {
         .title {
           h1 {
-            font-size: 50px;
+            font-size: 40px;
+          }
+        }
+        .description {
+          h3 {
+            font-size: 15px;
           }
         }
       }

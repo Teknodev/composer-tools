@@ -8,7 +8,7 @@ class HeaderComponent29 extends BaseHeader {
     super(props, styles);
 
     this.addProp({
-      type: "array",
+      type: "object",
       displayer: "Items",
       key: "items",
       value: [
@@ -50,7 +50,7 @@ class HeaderComponent29 extends BaseHeader {
       ],
     });
     this.addProp({
-      type: "array",
+      type: "object",
       key: "buttonprop",
       displayer: "Button Prop",
       value: [
