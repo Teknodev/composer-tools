@@ -42,6 +42,8 @@ import PricingComponent4 from "./pricing-table/pricing-table4/pricing-table4";
 import PricingComponent5 from "./pricing-table/pricing-table5/pricing-table5";
 import PricingComponent6 from "./pricing-table/pricing-table6/pricing-table6";
 import PricingComponent7 from "./pricing-table/pricing-table7/pricing-table7";
+import PricingComponent8 from "./pricing-table/pricing-table8/pricing-table8";
+import PricingComponent9 from "./pricing-table/pricing-table9/pricing-table9";
 import FaqComponent1 from "./faq/faq1/faq1";
 import FaqComponent2 from "./faq/faq2/faq2";
 import FaqComponent3 from "./faq/faq3/faq3";
@@ -75,7 +77,19 @@ import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
 import HeaderComponent11 from "./header/header11/header11";
 import HeaderComponent12 from "./header/header12/header12";
+import HeaderComponent13 from "./header/header13/header13";
+import HeaderComponent15 from "./header/header15/header15";
+import HeaderComponent23 from "./header/header23/header23";
+import HeaderComponent16 from "./header/header16/header16";
+import HeaderComponent18 from "./header/header18/header18";
+import HeaderComponent19 from "./header/header19/header19";
+import HeaderComponent17 from "./header/header17/header17";
+import HeaderComponent20 from "./header/header20/header20";
+import HeaderComponent24 from "./header/header24/header24";
+import HeaderComponent25 from "./header/header25/header25";
 import HeaderComponent29 from "./header/header29/header29";
+import HeaderComponent31 from "./header/header31/header31";
+import HeaderComponent32 from "./header/header32/header32";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -111,6 +125,7 @@ import TestimonialsComponent4 from "./testimonials/testimonials4/testimonials4";
 import TestimonialsComponent5 from "./testimonials/testimonials5/testimonials5";
 import TestimonialsComponent6 from "./testimonials/testimonials6/testimonials6";
 import TestimonialsComponent7 from "./testimonials/testimonials7/testimonials7";
+import TestimonialsComponent8 from "./testimonials/testimonials8/testimonials8";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -131,11 +146,16 @@ import FooterComponent4 from "./footer/footer4/footer4";
 import FooterComponent5 from "./footer/footer5/footer5";
 import FooterComponent6 from "./footer/footer6/footer6";
 import FooterComponent7 from "./footer/footer7/footer7";
+import FooterComponent8 from "./footer/footer8/footer8";
 import NavbarComponent1 from "./navigators/navbar1/navbar1";
 import NavbarComponent2 from "./navigators/navbar2/navbar2";
 import NavbarComponent3 from "./navigators/navbar3/navbar3";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
+import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
+import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
+
+
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -182,6 +202,8 @@ function Registerables(composer: ComponentsRegistery) {
     new PricingComponent5(),
     new PricingComponent6(),
     new PricingComponent7(),
+    new PricingComponent8(),
+    new PricingComponent9(),
     new FaqComponent1(),
     new FaqComponent2(),
     new FaqComponent3(),
@@ -214,7 +236,19 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent10(),
     new HeaderComponent11(),
     new HeaderComponent12(),
+    new HeaderComponent15(),
+    new HeaderComponent16(),
+    new HeaderComponent18(),
+    new HeaderComponent19(),
+    new HeaderComponent17(),
+    new HeaderComponent20(),
+    new HeaderComponent13(),
+    new HeaderComponent24(), 
+    new HeaderComponent23(),
+    new HeaderComponent25(),
     new HeaderComponent29(),
+    new HeaderComponent31(),
+    new HeaderComponent32(),
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),
@@ -253,6 +287,7 @@ function Registerables(composer: ComponentsRegistery) {
     new TestimonialsComponent5(),
     new TestimonialsComponent6(),
     new TestimonialsComponent7(),
+    new TestimonialsComponent8(),
     new StatsComponent1(),
     new StatsComponent2(),
     new StatsComponent3(),
@@ -273,8 +308,12 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent5(),
     new FooterComponent6(),
     new FooterComponent7(),
+    new FooterComponent8(),
     new TermsOfUseModal(),
     new NoticeModal(),
+    new SurveyModal(),
+    new NoticeModal(),
+    new SubscriptionModal(),
   ]);
 }
 
