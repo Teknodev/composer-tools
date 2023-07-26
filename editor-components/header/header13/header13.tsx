@@ -263,9 +263,11 @@ class HeaderComponent13 extends BaseHeader {
   render() {
     let itemsRight: any = this.getPropValue("item-right");
     let itemsRightBottomLeft: any = this.getPropValue("item-right-bottom-left");
-    let itemsRightBottomRight: any = this.getPropValue("item-right-bottom-left");
-    
-    console.log("ITEMREIgHT", itemsRight);
+    let itemsRightBottomRight: any = this.getPropValue(
+      "item-right-bottom-left"
+    );
+
+    // console.log("ITEMREIgHT", itemsRight);
 
     const settings = {
       dots: true,
@@ -289,7 +291,10 @@ class HeaderComponent13 extends BaseHeader {
               >
                 {this.castToObject<ISliderData[]>("slider").map(
                   (item: ISliderData, index: number) => (
-                    <div className={this.decorateCSS("item")} key={`key${index}`}>
+                    <div
+                      className={this.decorateCSS("item")}
+                      key={`key${index}`}
+                    >
                       <div className={this.decorateCSS("background-image")}>
                         <img src={item.image} alt={item.title} />
                       </div>
@@ -335,7 +340,10 @@ class HeaderComponent13 extends BaseHeader {
               <div className={this.decorateCSS("bottom")}>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={itemsRightBottomLeft[2].value} alt={itemsRightBottomLeft[0].value} />
+                    <img
+                      src={itemsRightBottomLeft[2].value}
+                      alt={itemsRightBottomLeft[0].value}
+                    />
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("title")}>
@@ -353,7 +361,10 @@ class HeaderComponent13 extends BaseHeader {
                 </div>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={itemsRightBottomRight[2].value} alt={itemsRightBottomRight[0].value} />
+                    <img
+                      src={itemsRightBottomRight[2].value}
+                      alt={itemsRightBottomRight[0].value}
+                    />
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("title")}>
