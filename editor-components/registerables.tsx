@@ -87,6 +87,7 @@ import HeaderComponent17 from "./header/header17/header17";
 import HeaderComponent20 from "./header/header20/header20";
 import HeaderComponent24 from "./header/header24/header24";
 import HeaderComponent25 from "./header/header25/header25";
+import HeaderComponent29 from "./header/header29/header29";
 import HeaderComponent31 from "./header/header31/header31";
 import HeaderComponent32 from "./header/header32/header32";
 import FeatureComponent1 from "./feature/feature1/feature1";
@@ -153,8 +154,6 @@ import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
-
-
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     new DownloadComponent1(),
@@ -244,6 +243,7 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent24(), 
     new HeaderComponent23(),
     new HeaderComponent25(),
+    new HeaderComponent29(),
     new HeaderComponent31(),
     new HeaderComponent32(),
     new NavbarComponent1(),
@@ -310,7 +310,6 @@ function Registerables(composer: ComponentsRegistery) {
     new SurveyModal(),
     new NoticeModal(),
     new SubscriptionModal(),
-
   ]);
 }
 
