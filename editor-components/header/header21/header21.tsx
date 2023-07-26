@@ -12,7 +12,7 @@ class HeaderComponent21 extends BaseHeader {
     super(props, styles);
 
     this.addProp({
-      type: "array",
+      type: "object",
       displayer: "Items",
       key: "items",
       value: [
@@ -58,7 +58,7 @@ class HeaderComponent21 extends BaseHeader {
         },
 
         {
-          type: "array",
+          type: "object",
           displayer: "Directions",
           key: "directions",
           value: [
@@ -278,7 +278,7 @@ class HeaderComponent21 extends BaseHeader {
 
   render() {
     let items: any = this.castToObject("items");
-
+    console.log(items);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -291,9 +291,17 @@ class HeaderComponent21 extends BaseHeader {
                 <div className={this.decorateCSS("title")}>
                   <h1>{items[0].title}</h1>
                 </div>
-
-                <div className={this.decorateCSS("button")}>
-                  <h5>{items[0].button[0].value}</h5>
+                <div className={this.decorateCSS("button-and-input")}>
+                  <input
+                    placeholder="Your email address"
+                    className={this.decorateCSS("input")}
+                    type="text"
+                  />
+                  <ComposerLink path={items[0].button[1].value}>
+                    <div className={this.decorateCSS("button")}>
+                      <button>{items[0].button[0].value}</button>
+                    </div>
+                  </ComposerLink>
                 </div>
                 <div className={this.decorateCSS("icons")}>
                   <li>
