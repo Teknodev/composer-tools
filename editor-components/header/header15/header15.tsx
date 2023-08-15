@@ -65,7 +65,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -84,7 +84,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -130,7 +130,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -149,7 +149,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -195,7 +195,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -214,7 +214,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },

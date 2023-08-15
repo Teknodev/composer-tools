@@ -64,7 +64,7 @@ class Download11 extends BaseDownload {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "URL",
+                            displayer: "Button Link",
                             value: "",
                         },
                         {
@@ -102,7 +102,7 @@ class Download11 extends BaseDownload {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "URL",
+                            displayer: "Button Link",
                             value: "",
                         },
                         {

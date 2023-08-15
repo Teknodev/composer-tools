@@ -32,7 +32,7 @@ class Content3 extends BaseContent {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],

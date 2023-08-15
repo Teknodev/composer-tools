@@ -50,7 +50,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -87,7 +87,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -124,7 +124,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],

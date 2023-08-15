@@ -45,13 +45,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -83,13 +83,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -121,13 +121,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -159,13 +159,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -197,13 +197,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -235,13 +235,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {

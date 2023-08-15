@@ -157,7 +157,7 @@ class PricingMultipleTwo extends BasePricingTable {
                     {
                       type: "page",
                       key: "url",
-                      displayer: "URL",
+                      displayer: "Button Link",
                       value: "",
                     },
                     {
@@ -276,7 +276,7 @@ class PricingMultipleTwo extends BasePricingTable {
                     {
                       type: "page",
                       key: "url",
-                      displayer: "URL",
+                      displayer: "Button Link",
                       value: "",
                     },
                     {

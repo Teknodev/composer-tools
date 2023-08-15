@@ -56,7 +56,7 @@ class Header18 extends BaseHeader {
             },
             {
               type: "page",
-              displayer: "Button URL",
+              displayer: "Button Link",
               key: "button-url",
               value: "",
             },
@@ -94,7 +94,7 @@ class Header18 extends BaseHeader {
             },
             {
               type: "page",
-              displayer: "Button URL",
+              displayer: "Button Link",
               key: "button-url",
               value: "",
             },
@@ -132,7 +132,7 @@ class Header18 extends BaseHeader {
             },
             {
               type: "page",
-              displayer: "Button URL",
+              displayer: "Button Link",
               key: "button-url",
               value: "",
             },
