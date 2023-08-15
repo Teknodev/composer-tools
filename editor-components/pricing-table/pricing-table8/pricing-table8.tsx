@@ -39,7 +39,7 @@ class PricingTable8 extends BasePricingTable {
             {
               type: "page",
               key: "url",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],

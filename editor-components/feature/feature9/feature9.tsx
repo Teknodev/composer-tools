@@ -43,17 +43,17 @@ class Feature9 extends BaseFeature {
               displayer: "Button Text",
             },
             {
+              type: "page",
+              key: "link",
+              displayer: "Button Link",
+              value: "",
+            },
+            {
               type: "image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa361?alt=media&timestamp=1682597705111",
               displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
             },
           ],
         },
@@ -82,17 +82,17 @@ class Feature9 extends BaseFeature {
               displayer: "Button Text",
             },
             {
+              type: "page",
+              key: "link",
+              displayer: "Button Link",
+              value: "",
+            },
+            {
               type: "image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa360?alt=media&timestamp=1682597705111",
               displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
             },
           ],
         },
@@ -121,17 +121,17 @@ class Feature9 extends BaseFeature {
               displayer: "Button Text",
             },
             {
+              type: "page",
+              key: "link",
+              displayer: "Button Link",
+              value: "",
+            },
+            {
               type: "image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa35f?alt=media&timestamp=1682597705111",
               displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
             },
           ],
         },

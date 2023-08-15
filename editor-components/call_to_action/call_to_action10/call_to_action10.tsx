@@ -44,7 +44,7 @@ class CallToAction10Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
     this.addProp({

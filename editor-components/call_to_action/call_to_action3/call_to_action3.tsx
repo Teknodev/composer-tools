@@ -33,7 +33,7 @@ class CallToAction3Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "buttonLink",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
   }

@@ -45,7 +45,7 @@ class Header11 extends BaseHeader {
             {
               type: "page",
               key: "link",
-              displayer: "URL",
+              displayer: "Button Link",
               value: "",
             },
           ],

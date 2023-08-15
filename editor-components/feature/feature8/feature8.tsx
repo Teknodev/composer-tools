@@ -23,12 +23,12 @@ class Feature8 extends BaseFeature {
       type: "string",
       key: "card-button",
       value: "Learn More",
-      displayer: "Card Button Text",
+      displayer: "Button Text",
     });
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
     this.addProp({

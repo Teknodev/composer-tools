@@ -117,7 +117,7 @@ class PricingTable3 extends BasePricingTable {
         {
           type: "page",
           key: "url",
-          displayer: "URL",
+          displayer: "Button Link",
           value: "",
         },
         {

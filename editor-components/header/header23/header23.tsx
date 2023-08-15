@@ -41,7 +41,7 @@ class HeaderComponent23 extends BaseHeader {
         {
           type: "page",
           key: "buttonPath",
-          displayer: "Button Path",
+          displayer: "Button Link",
           value: "",
         },
       ],

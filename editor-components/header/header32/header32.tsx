@@ -34,7 +34,7 @@ class Header32 extends BaseHeader {
         {
           type: "page",
           key: "url",
-          displayer: "URL",
+          displayer: "Button Link",
           value: ""
         }
       ]
