@@ -149,7 +149,6 @@ import FooterComponent7 from "./footer/footer7/footer7";
 import FooterComponent8 from "./footer/footer8/footer8";
 import NavbarComponent1 from "./navigators/navbar1/navbar1";
 import NavbarComponent2 from "./navigators/navbar2/navbar2";
-import NavbarComponent3 from "./navigators/navbar3/navbar3";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
@@ -247,8 +246,7 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent31(),
     new HeaderComponent32(),
     new NavbarComponent1(),
-    new NavbarComponent2(),
-    new NavbarComponent3(),
+    new NavbarComponent2(),    
     new FeatureComponent1(),
     new FeatureComponent2(),
     new FeatureComponent3(),
