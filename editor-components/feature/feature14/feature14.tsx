@@ -52,7 +52,7 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -90,7 +90,7 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -128,7 +128,7 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],

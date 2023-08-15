@@ -65,7 +65,7 @@ class Slider2 extends BaseSlider {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
       ],

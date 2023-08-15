@@ -73,7 +73,7 @@ class DownloadCard1 extends BaseDownload {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Button Link",
               value: "",
             },
             {

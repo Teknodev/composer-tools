@@ -39,7 +39,7 @@ class Content9 extends BaseContent {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
       ],

@@ -46,7 +46,7 @@ class CallToAction7Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "leftButtonPage",
-      displayer: "Left Button Page",
+      displayer: "Left Button Link",
       value: "",
     });
     this.addProp({
@@ -84,7 +84,7 @@ class CallToAction7Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "rightButtonPage",
-      displayer: "Right Button Page",
+      displayer: "Right Button Link",
       value: "",
     });
     this.addProp({

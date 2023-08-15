@@ -31,7 +31,7 @@ class Team9 extends Team {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
       ],

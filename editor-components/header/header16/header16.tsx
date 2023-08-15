@@ -35,7 +35,7 @@ class HeaderComponent16 extends BaseHeader {
         {
           type: "page",
           key: "buttonPath",
-          displayer: "Button Path",
+          displayer: "Button Link",
           value: "",
         },
       ],
