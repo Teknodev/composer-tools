@@ -76,7 +76,7 @@ class PricingTable8 extends BasePricingTable {
               value: "$50",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -151,7 +151,7 @@ class PricingTable8 extends BasePricingTable {
               value: "$100",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -226,7 +226,7 @@ class PricingTable8 extends BasePricingTable {
               value: "$150",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:

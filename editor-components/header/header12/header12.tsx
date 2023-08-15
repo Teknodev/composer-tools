@@ -44,7 +44,7 @@ class Header12 extends BaseHeader {
     this.addProp({
       type: "array",
       key: "message-bar-card",
-      displayer: "Message Bar Card",
+      displayer: "Message Bar Card Right",
       value: [
         {
           type: "object",
@@ -109,7 +109,7 @@ class Header12 extends BaseHeader {
     this.addProp({
       type: "array",
       key: "message-bar-card2",
-      displayer: "Message Bar Card2",
+      displayer: "Message Bar Card Left",
       value: [
         {
           type: "object",

@@ -263,7 +263,7 @@ class HeaderComponent13 extends BaseHeader {
   render() {
     let itemsRight: any = this.getPropValue("item-right");
     let itemsRightBottomLeft: any = this.getPropValue("item-right-bottom-left");
-    let itemsRightBottomRight: any = this.getPropValue("item-right-bottom-left");
+    let itemsRightBottomRight: any = this.getPropValue("item-right-bottom-right");
 
     const settings = {
       dots: true,

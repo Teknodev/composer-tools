@@ -37,7 +37,7 @@ class PricingTable2 extends BasePricingTable {
           displayer: "Table Item",
           value: [
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8a95f72de2002caaa7ab?alt=media&timestamp=1682606753782",
@@ -74,7 +74,7 @@ class PricingTable2 extends BasePricingTable {
           displayer: "Table Item",
           value: [
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8a95f72de2002caaa7aa?alt=media&timestamp=1682606753783",
@@ -111,7 +111,7 @@ class PricingTable2 extends BasePricingTable {
           displayer: "Table Item",
           value: [
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8a95f72de2002caaa7a9?alt=media&timestamp=1682606753783",

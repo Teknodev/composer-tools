@@ -49,28 +49,28 @@ class Header24 extends BaseHeader {
             },
             {
               type: "image",
-              displayer: "Background1",
+              displayer: "Background 1",
               key: "background1",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-3-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background2",
+              displayer: "Background 2",
               key: "background2",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-1-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background3",
+              displayer: "Background 3",
               key: "background3",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-4-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background4",
+              displayer: "Background 4",
               key: "background4",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
@@ -103,28 +103,28 @@ class Header24 extends BaseHeader {
             },
             {
               type: "image",
-              displayer: "Background1",
+              displayer: "Background 1",
               key: "background1",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-3-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background2",
+              displayer: "Background 2",
               key: "background2",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-1-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background3",
+              displayer: "Background 3",
               key: "background3",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-4-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background4",
+              displayer: "Background 4",
               key: "background4",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
@@ -157,28 +157,28 @@ class Header24 extends BaseHeader {
             },
             {
               type: "image",
-              displayer: "Background1",
+              displayer: "Background 1",
               key: "background1",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-3-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background2",
+              displayer: "Background 2",
               key: "background2",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-1-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background3",
+              displayer: "Background 3",
               key: "background3",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-4-new-opt.png",
             },
             {
               type: "image",
-              displayer: "Background4",
+              displayer: "Background 4",
               key: "background4",
               value:
                 "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
