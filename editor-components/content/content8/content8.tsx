@@ -32,7 +32,7 @@ class Content8 extends BaseContent {
         {
           type: "page",
           key: "url",
-          displayer: "URL",
+          displayer: "Button Link",
           value: "",
         },
       ],

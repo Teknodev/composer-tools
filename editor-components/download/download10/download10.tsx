@@ -69,7 +69,7 @@ class Download10 extends BaseDownload {
         {
           type: "page",
           key: "url",
-          displayer: "Button Url",
+          displayer: "Button Link",
           value: "",
         },
         {

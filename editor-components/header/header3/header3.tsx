@@ -30,17 +30,17 @@ class Header3 extends BaseHeader {
           displayer: "Button Text",
         },
         {
+          type: "page",
+          key: "link",
+          displayer: "Button Link",
+          value: "",
+        },
+        {
           type: "image",
           key: "image",
           value:
             "https://static01.nyt.com/images/2019/12/29/travel/29TRIPPEDUP-points/29TRIPPEDUP-points-superJumbo.jpg",
           displayer: "Image",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
         },
       ],
     });

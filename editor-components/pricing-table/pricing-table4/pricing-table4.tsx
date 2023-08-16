@@ -45,7 +45,6 @@ class PricingMultiple extends BasePricingTable {
       value:
         "Pricing is a crucial element of any business strategy, and small businesses need to adopt effective pricing strategies to stay competitive.",
     });
-    
     this.addProp({
       type: "number",
       key: "itemCount",

@@ -20,7 +20,6 @@ type Buttons = {
 class PricingTable8 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
       type: "array",
       key: "cards",
