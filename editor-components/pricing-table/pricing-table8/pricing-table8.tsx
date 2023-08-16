@@ -10,6 +10,7 @@ type IIconBoxes = {
   image: string;
   price: string;
   link: string;
+  buttons: Buttons[];
 };
 type Buttons = {
   buttonText: string;
@@ -19,33 +20,6 @@ type Buttons = {
 class PricingTable8 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Get Started",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Link",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
 
     this.addProp({
       type: "array",
@@ -125,6 +99,32 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Get Started",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            }
           ],
         },
         {
@@ -200,6 +200,32 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Get Started",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            }
           ],
         },
         {
@@ -275,6 +301,32 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Get Started",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            }
           ],
         },
       ],
@@ -286,7 +338,6 @@ class PricingTable8 extends BasePricingTable {
   }
 
   render() {
-    const buttons: Buttons[] = this.castToObject<Buttons[]>("buttons");
   
     return (
       <div className={this.decorateCSS("container")}>
@@ -315,7 +366,7 @@ class PricingTable8 extends BasePricingTable {
   
               <p className={this.decorateCSS("price")}>{card.price}</p>
   
-              {buttons.map((button: Buttons, buttonIndex: number) => (
+              {card.buttons.map((button: Buttons, buttonIndex: number) => (
                 <ComposerLink path={button.url} key={buttonIndex}>
                   <button className={this.decorateCSS("get-started-button")}>
                     {button.buttonText}

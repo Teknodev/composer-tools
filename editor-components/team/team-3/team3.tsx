@@ -229,7 +229,7 @@ class Team3 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Row",
+      displayer: "Item Count in a Row",
       value: 4,
     });
   }

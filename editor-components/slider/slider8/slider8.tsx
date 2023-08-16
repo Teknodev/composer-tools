@@ -155,12 +155,6 @@ class Slider8 extends BaseSlider {
       ],
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "true",
-      displayer: "Column",
-      value: true,
-    });
   }
   getName(): string {
     return "Slider 8";
@@ -179,9 +173,7 @@ class Slider8 extends BaseSlider {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("wrapper")} ${
-              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
-            }`}
+            className={this.decorateCSS("wrapper")}
           >
             <div className={this.decorateCSS("slider-parent")}>
               <Slider {...settings} className={this.decorateCSS("carousel")}>

@@ -21,12 +21,12 @@
       }
 
       .texts {
-        width: 100%;
+        width: 90%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 20px;
-
+        
         h1 {
           font-size: 3.5rem;
           color: rgb(18, 22, 43);
@@ -42,7 +42,7 @@
       .child-page-right {
         width: 100%;
         max-width: 400px;
-
+        margin: 20px 100px;
         box-shadow: var(--composer-box-shadow);
         border-radius: 6px;
         display: flex;
@@ -52,8 +52,11 @@
 
       .right-up {
         width: 100%;
-        padding: 5%;
-
+        padding: 5% 5% 0 5%;
+        h4{
+          font-size: 2rem;
+          margin-bottom: 35px;
+        }
         ul li {
           margin-bottom: 5%;
           overflow: hidden;
@@ -68,8 +71,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 18px;
-            height: 18px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background-color: var(--composer-primary-color);
             color: #fff;
@@ -83,18 +86,20 @@
 
       .right-down {
         width: 100%;
-        padding: 5%;
+        padding-bottom: 5%;
         display: flex;
         flex-direction: column;
 
         .right-down-up {
           width: 100%;
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
 
           .little {
-            width: 50%;
+            width: 20%;
+            display: flex;
+            flex-direction: column;
           }
           .other {
             width: 50%;
@@ -109,22 +114,18 @@
           justify-content: center;
           align-items: center;
           gap: 10px;
-          a {
-            width: 100%;
-            display: flex;
-            justify-content: center;
             .button {
-              width: 75%;
+              width: 100%;
               height: 50px;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              border: 1px solid var(--composer-primary-color);
+              background-color: var(--composer-secondary-color);
+              border: 1px solid var(--composer-secondary-color);
+              color: white;
               border-radius: 6px;
               font-size: 1.4rem;
-              background-color: var(--composer-primary-color);
-              color: white;
               cursor: pointer;
 
               &:hover {
@@ -134,8 +135,8 @@
               }
 
               &.primary {
-                background-color: var(--composer-secondary-color);
-                border: 1px solid var(--composer-secondary-color);
+                border: 1px solid var(--composer-primary-color);
+                background-color: var(--composer-primary-color);
                 color: white;
 
                 &:hover {
@@ -143,7 +144,6 @@
                   background: transparent;
                   border: 1px solid var(--composer-secondary-color);
                 }
-              }
             }
           }
         }

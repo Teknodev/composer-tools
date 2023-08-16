@@ -28,7 +28,7 @@ class Download2 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Image",
-            value: "https://rare-gallery.com/uploads/posts/5301109-phone-work-hand-holding-woman-working-iphone-iphone-x-testing-notes-paper-pen-laptop-app-x-white-tool-ten-technology-tech-png-images.jpg"
+            value: "https://img.freepik.com/free-photo/business-success-report-graph-concept_53876-124755.jpg?w=1060&t=st=1692185178~exp=1692185778~hmac=796fb7f0e21c407260bf68259936134b5b680cd0edb37f7155e0ea6ce602da57"
         })
 
         this.addProp({

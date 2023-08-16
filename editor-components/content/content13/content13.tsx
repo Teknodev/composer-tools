@@ -12,6 +12,11 @@ type smallImages = {
   url: string;
   image: string;
 };
+
+type Button = {
+  buttonText: string;
+  url: string;
+}
 class Content13 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -28,7 +33,32 @@ class Content13 extends BaseContent {
       value:
         "Generate social post creatives for any social media platform such as: Facebook, Instagram, LinkedIn, Twitter, Pinterest and so on. One tool to cover all your social design needs.",
     });
-
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "Button",
+          value: [ 
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Generate Ad Creatives",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Button Link",
+                  value: "",
+                }
+          ]
+        }
+      ]
+    });
     this.addProp({
       type: "array",
       key: "horizontal",
@@ -407,7 +437,14 @@ class Content13 extends BaseContent {
             )}
           </div>
           <div className={this.decorateCSS("button-container")}>
-            <button>Generate Ad Creatives</button>
+                {this.castToObject<any>("buttons").map((
+                  button: Button, index: number) => (
+                    <ComposerLink path={button.url} key={index}>
+                      <button className={this.decorateCSS("button")}>
+                        {button.buttonText}
+                      </button>
+                    </ComposerLink>
+                  ))}
           </div>
         </div>
       </div>

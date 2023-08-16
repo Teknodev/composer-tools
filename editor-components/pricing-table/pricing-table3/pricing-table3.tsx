@@ -196,7 +196,7 @@ class PricingTable3 extends BasePricingTable {
                           <ComposerLink key={indexButtons} path={item.url}>
                             <button
                               className={`${this.decorateCSS("button")} ${
-                                item.isPrimary && this.decorateCSS("primary")
+                                item.isPrimary ? this.decorateCSS("primary") : ""
                               }`}
                             >
                               {item.buttonText}

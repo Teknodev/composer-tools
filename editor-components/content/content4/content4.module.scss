@@ -17,14 +17,15 @@
       gap: 20px;
 
       span {
-        margin: 0;
+        margin:0;
         font-weight: 800;
-        color: #0d57ff;
+        font-size: 2rem;
+        color: var(--composer-primary-color);
         text-transform: uppercase;
       }
       h2 {
         font-size: 4rem;
-        margin: 0;
+        margin:0;
       }
     }
     .card-child {
@@ -33,6 +34,7 @@
       align-items: center;
       gap: 20px;
       flex-wrap: wrap;
+      margin: 0;
       .card {
         background-color: var(--composer-primary-color);
         width: 25%;
