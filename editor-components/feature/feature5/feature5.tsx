@@ -5,6 +5,7 @@ import styles from "./feature5.module.scss";
 type IBasicCard = {
   title: string;
   description: string;
+  image: string;
 };
 class Feature5 extends BaseFeature {
   constructor(props?: any) {
@@ -19,6 +20,12 @@ class Feature5 extends BaseFeature {
           key: "basic",
           displayer: "Basic",
           value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://images01.nicepage.com/c461c07a441a5d220e8feb1a/a17abde8d83650a582a28432/users-with-speech-bubbles-vector_53876-82250.jpg",
+            },
             {
               type: "string",
               key: "title",
@@ -40,6 +47,12 @@ class Feature5 extends BaseFeature {
           displayer: "Basic",
           value: [
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://images01.nicepage.com/c461c07a441a5d220e8feb1a/3b242447f922540fbe750cab/fdf.jpg",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -59,6 +72,12 @@ class Feature5 extends BaseFeature {
           key: "basic",
           displayer: "Basic",
           value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://images01.nicepage.com/c461c07a441a5d220e8feb1a/8cc47b39e719570b996d9879/dsds.jpg",
+            },
             {
               type: "string",
               key: "title",
@@ -90,6 +109,7 @@ class Feature5 extends BaseFeature {
             {this.castToObject<IBasicCard[]>("basic-card").map(
               (basic: any, index: number) => (
                 <div className={this.decorateCSS("basic")} key={index}>
+                  <img src={basic.image} alt="" />
                   <h3 className={this.decorateCSS("title")}>{basic.title}</h3>
                   <p className={this.decorateCSS("long-text")}>{basic.description}</p>
                 </div>

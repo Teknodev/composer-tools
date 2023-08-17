@@ -133,6 +133,7 @@ import StatsComponent4 from "./stats/stats4/stats4";
 import StatsComponent5 from "./stats/stats5/stats5";
 import StatsComponent6 from "./stats/stats6/stats6";
 import StatsComponent7 from "./stats/stats7/stats7";
+import StatsComponent8 from "./stats/stats8/stats8";
 import ContactsComponent1 from "./contacts/contacts1/contacts1";
 import ContactsComponent2 from "./contacts/contacts2/contacts2";
 import ContactsComponent3 from "./contacts/contacts3/contacts3";
@@ -292,6 +293,7 @@ function Registerables(composer: ComponentsRegistery) {
     new StatsComponent5(),
     new StatsComponent6(),
     new StatsComponent7(),
+    new StatsComponent8(),
     new ContactsComponent1(),
     new ContactsComponent2(),
     new ContactsComponent3(),

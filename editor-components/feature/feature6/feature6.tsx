@@ -35,9 +35,15 @@ class Feature6 extends BaseFeature {
                 "A team of scientists has identified a new species of butterfly in the heart of the Amazon rainforest. The butterfly, which has been named Papilio amazonica, has distinctive markings and is the first new butterfly species to be discovered in the region in over a decade.",
             },
             {
+              type: "boolean",
+              key: "badgeCheck",
+              displayer: "Badge",
+              value: true,
+            },
+            {
               type: "string",
               key: "badge",
-              displayer: "Badge",
+              displayer: "Badge Text",
               value: "NEW",
             },
           ],
@@ -62,9 +68,15 @@ class Feature6 extends BaseFeature {
                 "Meditation has been shown to have numerous positive effects on both mental and physical health. From reducing stress and anxiety to improving sleep and focus, discover the many ways that meditation can help you live a happier and healthier life.",
             },
             {
+              type: "boolean",
+              key: "badgeCheck",
+              displayer: "Badge",
+              value: true,
+            },
+            {
               type: "string",
               key: "badge",
-              displayer: "Badge",
+              displayer: "Badge Text",
               value: "NEW",
             },
           ],
@@ -89,9 +101,15 @@ class Feature6 extends BaseFeature {
                 "Time management is crucial for achieving your goals and maximizing productivity. Learn the essential strategies for effectively managing your time, including setting priorities, creating a schedule, and minimizing distractions. Start making the most of your time today!",
             },
             {
+              type: "boolean",
+              key: "badgeCheck",
+              displayer: "Badge",
+              value: true,
+            },
+            {
               type: "string",
               key: "badge",
-              displayer: "Badge",
+              displayer: "Badge Text",
               value: "NEW",
             },
           ],
@@ -113,7 +131,7 @@ class Feature6 extends BaseFeature {
               (basic: any, index: number) => (
                 <div className={this.decorateCSS("basic-badge")} key={index}>
                   <h3 className={this.decorateCSS("title")}>
-                    <span className={this.decorateCSS("badge")}>{basic.badge}</span>
+                    {basic.badgeCheck && (<span className={this.decorateCSS("badge")}>{basic.badge}</span>)}
                     {basic.title}
                   </h3>
                   <p className={this.decorateCSS("long-text")}>{basic.description}</p>

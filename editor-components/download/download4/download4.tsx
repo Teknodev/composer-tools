@@ -3,77 +3,159 @@ import styles from "./download4.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type Button = {
+interface Cards {
+  map(arg0: (card: Card, index: number) => React.JSX.Element): React.ReactNode;
+  card: Card[];
+}
+interface Card {
+  backgroundImage: string;
+  logo: string;
+  title: string;
   buttonText: string;
-  url: string;
-  isPrimary: boolean;
-};
+  buttonLink: string;
+  information: string;
+}
 class Download4 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
- 
-
-    this.addProp({
-      type: "string",
-      key: "title2",
-      value: "Connect With Customers.",
-      displayer: "Title-2",
-    });
-
-   
-    this.addProp({
-      type: "string",
-      key: "text2",
-      value: "To connect with customers, businesses need to understand their needs, preferences, and behaviors. One effective way to do this is through personalized communication and engagement.",
-      displayer: "Description-2",
-    });
-
-    this.addProp({
-      type: "image",
-      key: "image",
-      value: "https://img.freepik.com/free-photo/close-up-woman-holding-smartphone_23-2148708802.jpg?size=626&ext=jpg&ga=GA1.1.1849377565.1680873032&semt=robertav1_2_sidr",
-      displayer: "Image",
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "reverse",
-      displayer: "Reverse",
-      value: false,
-    });
 
     this.addProp({
       type: "array",
-      key: "buttons",
-      displayer: "Button",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
-          type: "object",
-          key: "button",
-          displayer: "Button",
+          type: "array",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value: "https://bilbo.surge.sh/codepen/download-cards/apple.png"
+            },
+            {
+              type: "image",
+              key: "logo",
+              displayer: "Logo",
+              value: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpdFZ6LTg87NeCR_Ap6gF3pdcXG4ybOHSk3mnxJZRM-xt2R9lAM9mg8O7FM596SmOrdkg&usqp=CAU"
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Download For"
+            },
             {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "Download Mobile App",
+              value: "IOS"
             },
             {
               type: "page",
-              key: "url",
+              key: "buttonLink",
               displayer: "Button Link",
-              value: "",
+              value: ""
             },
             {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: false,
-            },
-          ],
+              type: "string",
+              key: "information",
+              displayer: "Information",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
+            }
+          ]
         },
-      ],
+        {
+          type: "array",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value: "https://bilbo.surge.sh/codepen/download-cards/android.png"
+            },
+            {
+              type: "image",
+              key: "logo",
+              displayer: "Logo",
+              value: "https://cdn-icons-png.flaticon.com/512/14/14415.png"
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Download For"
+            },
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Android"
+            },
+            {
+              type: "page",
+              key: "buttonLink",
+              displayer: "Button Link",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "information",
+              displayer: "Information",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
+            }
+          ]
+        },
+        {
+          type: "array",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value: "https://bilbo.surge.sh/codepen/download-cards/web.png"
+            },
+            {
+              type: "image",
+              key: "logo",
+              displayer: "Logo",
+              value: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Windows_logo_2012-Black.svg/1200px-Windows_logo_2012-Black.svg.png"
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Download For"
+            },
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Windows"
+            },
+            {
+              type: "page",
+              key: "buttonLink",
+              displayer: "Button Link",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "information",
+              displayer: "Information",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
+            }
+          ]
+        }
+      ]
     });
+
   }
 
   getName(): string {
@@ -84,48 +166,31 @@ class Download4 extends BaseDownload {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("basic-page")} ${
-              this.getPropValue("reverse") &&
-              this.decorateCSS("basic-page-reverse")
-            }`}
-          >
-            <div
-              className={`${this.decorateCSS("page-1")} ${
-                this.getPropValue("reverse") &&
-                this.decorateCSS("page-1-border")
-              }`}
-            >
-              
-              <div className={this.decorateCSS("box")}>
-                <h1>{this.getPropValue("title2")}</h1>
-              </div>
-              <div className={this.decorateCSS("box")}>
-                <p>
-                  {this.getPropValue("text2")}
-                </p>
-               
-              </div>
-              <div className={this.decorateCSS("box")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (item: Button, index: number) => {
-                    return (
-                      <ComposerLink key={`dw-4-btn-${index}`}  path={item.url}>
-                        <button
-                          className={`${this.decorateCSS("button")} ${
-                            item.isPrimary && this.decorateCSS("button-color")
-                          }`}
-                        >
-                          {item.buttonText}
-                        </button>
+          <div className={this.decorateCSS("cards-container")}>
+            <div className={this.decorateCSS("cards")}>
+              {this.castToObject<Cards>("cards").map((card: Card, index: number) => {
+                return (
+                  <div className={this.decorateCSS("card")} key={index}>
+                    <div className={this.decorateCSS("card-background")}>
+                      <img src={card.backgroundImage} alt="" />
+                    </div>
+                    <div className={this.decorateCSS("card-logo")}>
+                      <img src={card.logo} alt="" />
+                    </div>
+                    <div className={this.decorateCSS("card-title")}>
+                      <h2>{card.title}</h2>
+                    </div>
+                    <div className={this.decorateCSS("card-button")}>
+                      <ComposerLink path={card.buttonLink}>
+                        <button>{card.buttonText}</button>
                       </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-            <div className={this.decorateCSS("page-2")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} />
+                    </div>
+                    <div className={this.decorateCSS("card-information")}>
+                      <p>{card.information}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

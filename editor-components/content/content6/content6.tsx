@@ -179,7 +179,6 @@ class Content6 extends BaseContent {
                         </div>
                         <div className={this.decorateCSS("wrapper")}>
                             <div className={styles["bg-container"]} style={styling}>
-                                {/* <img className={styles["bg-image"]} src={this.getPropValue("backgroundImage")} /> */}
                                 {this.castToObject<Card[]>("cards").map(
                                     (card: Card, index: number) => (
                                         <img className={this.decorateCSS("image")} src={card.image}></img>
