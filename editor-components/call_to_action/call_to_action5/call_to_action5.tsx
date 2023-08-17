@@ -21,7 +21,7 @@ class CallToAction5Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae4968c3c2002cd2f9e5?alt=media&timestamp=1683017803252",
+        "https://clarity.microsoft.com/blog/wp-content/uploads/2021/07/13.png",
     });
     this.addProp({
       type: "string",
