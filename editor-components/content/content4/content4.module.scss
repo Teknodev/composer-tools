@@ -152,6 +152,7 @@
         margin: 0 10px;
         padding: 10px 30px;
         border-radius: 10px;
+        cursor: pointer;
         &:hover {
           background-color: var(--composer-primary-color-hover);
           color: var(--composer-primary-color);

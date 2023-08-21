@@ -29,7 +29,7 @@ class PricingTable5 extends BasePricingTable {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8b72f72de2002caaa7cf?alt=media&timestamp=1682606976136",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
               displayer: "Image",
             },
             {
@@ -79,7 +79,7 @@ class PricingTable5 extends BasePricingTable {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8b72f72de2002caaa7ce?alt=media&timestamp=1682606976136",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
               displayer: "Image",
             },
             {
@@ -129,7 +129,7 @@ class PricingTable5 extends BasePricingTable {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8b72f72de2002caaa7cd?alt=media&timestamp=1682606976136",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
               displayer: "Image",
             },
             {
@@ -172,6 +172,16 @@ class PricingTable5 extends BasePricingTable {
         },
       ],
     });
+
+    this.addProp({
+      type: "select",
+      key: "select",
+      displayer: "Location of Border",
+      value: "None",
+      additionalParams: {
+        selectItems: ["None", "Top" , "Bottom" , "All Around"],
+      }
+    })
   }
 
   getName(): string {
@@ -179,12 +189,13 @@ class PricingTable5 extends BasePricingTable {
   }
 
   render() {
+    const selectValue = this.getPropValue("select");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<PriceList[]>("price-list").map(
             (pricing: any, index: number) => (
-              <div key={index} className={this.decorateCSS("price")}>
+              <div key={index} className={`${this.decorateCSS("price")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
                 <img
                   className={this.decorateCSS("image")}
                   src={pricing.image}

@@ -29,7 +29,7 @@
           .img-container{            
             width: 75px;
             height: 75px;
-            background-color: #1366F2;
+            background-color: var(--composer-primary-color);
             border-radius: var(--composer-border-radius);
             display: flex;
             justify-content: center;

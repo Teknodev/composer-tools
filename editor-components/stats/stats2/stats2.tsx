@@ -45,16 +45,16 @@ class Stats2Page extends BaseStats {
               value: "71,897",
             },
             {
-              type: "string",
-              key: "increaseValue",
-              displayer: "Increase or Decrease Value",
-              value: "5,2",
-            },
-            {
               type: "boolean",
               key: "isIncrease",
-              displayer: "Increase or Decrease",
+              displayer: "Adjust the Stats Percent",
               value: true,
+            },
+            {
+              type: "string",
+              key: "increaseValue",
+              displayer: "Percent Value",
+              value: "5,2",
             },
             {
               type: "string",
@@ -94,16 +94,16 @@ class Stats2Page extends BaseStats {
               value: "14,926",
             },
             {
-              type: "string",
-              key: "increaseValue",
-              displayer: "Increase or Decrease Value",
-              value: "8,9",
-            },
-            {
               type: "boolean",
               key: "isIncrease",
-              displayer: "Increase or Decrease",
+              displayer: "Adjust the Stats Percent",
               value: true,
+            },
+            {
+              type: "string",
+              key: "increaseValue",
+              displayer: "Percent Value",
+              value: "8,9",
             },
             {
               type: "string",
@@ -143,16 +143,16 @@ class Stats2Page extends BaseStats {
               value: "24.65%",
             },
             {
-              type: "string",
-              key: "increaseValue",
-              displayer: "Increase or Decrease Value",
-              value: "3,9",
-            },
-            {
               type: "boolean",
               key: "isIncrease",
-              displayer: "Increase or Decrease",
+              displayer: "Adjust the Stats Percent",
               value: false,
+            },
+            {
+              type: "string",
+              key: "increaseValue",
+              displayer: "Percent Value",
+              value: "3,9",
             },
             {
               type: "string",

@@ -21,17 +21,14 @@ class Navbar1 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "left",
-      displayer: "Item List Left Side",
-      value: false,
-    });
-    this.addProp({
-      type: "boolean",
-      key: "right",
-      displayer: "Item List Right Side",
-      value: false,
-    });
+      type: "select",
+      key: "select",
+      displayer: "Location of Items",
+      value: "Center",
+      additionalParams: {
+        selectItems: ["Left", "Right" , "Center"],
+      }
+    })
 
     this.addProp({
       type: "array",
@@ -154,13 +151,13 @@ class Navbar1 extends BaseNavigator {
     this.state.componentProps["navActive"] = !value;
   }
   render() {
+    const selectValue = this.getPropValue("select");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
         <nav>
             <img src={this.getPropValue("image")} width={200} />
-            <div className={`${this.decorateCSS("items")} ${this.getPropValue("left") ? this.decorateCSS("left") : this.getPropValue("right") ? this.decorateCSS("right") : ""}`}>
-              {this.castToObject<[]>("itemList").map(
+            <div className={`${this.decorateCSS("items")} ${selectValue === "Left" ? this.decorateCSS("left") : selectValue === "Right" ? this.decorateCSS("right") : selectValue === "Center" && ""}`}>              {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
                   return (
                     <ComposerLink
@@ -203,7 +200,6 @@ class Navbar1 extends BaseNavigator {
             <div className={this.decorateCSS("navbar-child")}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
-                  {console.log("Rendering navbar-child")}
                   return (
                     <ComposerLink
                       key={indexItemList}
