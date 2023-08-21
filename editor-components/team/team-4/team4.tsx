@@ -73,7 +73,7 @@ class Team4 extends Team {
                       type: "image",
                       key: "icon",
                       displayer: "Icon",
-                      value: "",
+                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
                     },
                     {
                       type: "page",
@@ -125,7 +125,7 @@ class Team4 extends Team {
                       type: "image",
                       key: "icon",
                       displayer: "Icon",
-                      value: "",
+                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
                     },
                     {
                       type: "page",
@@ -177,7 +177,7 @@ class Team4 extends Team {
                       type: "image",
                       key: "icon",
                       displayer: "Icon",
-                      value: "",
+                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
                     },
                     {
                       type: "page",

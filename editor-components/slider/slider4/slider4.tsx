@@ -34,7 +34,7 @@ class Slider4 extends BaseSlider {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://www.dostkelimeler.com/wp-content/uploads/2016/07/Doga-manzara-resmi.jpg",
+          value: "https://media.istockphoto.com/id/1161769559/photo/panoramic-bird-view-of-antalya-and-mediterranean-seacoast-and-beach-with-a-paraglider-antalya.jpg?s=612x612&w=0&k=20&c=BtpqGt8GwIu66v49mKIkh17yTd3FPyAOmPORB-L6zt0=",
         },
       ],
     });

@@ -277,7 +277,6 @@ class HeaderComponent25 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-    console.log(this.castToObject("slider"));
 
     return (
       <div className={this.decorateCSS("container")}>

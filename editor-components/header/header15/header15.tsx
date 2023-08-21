@@ -224,13 +224,6 @@ class HeaderComponent15 extends BaseHeader {
         },
       ],
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "true",
-      displayer: "Column",
-      value: true,
-    });
   }
 
   getName(): string {
@@ -249,10 +242,7 @@ class HeaderComponent15 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("wrapper")} ${
-              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
-            }`}
-          >
+            className={this.decorateCSS("wrapper")}>
             <Slider {...settings} className={this.decorateCSS("carousel")}>
               {this.castToObject<Slide[]>("slides").map(
                 (item: Slide, index: number) => (

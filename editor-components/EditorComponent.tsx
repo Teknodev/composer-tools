@@ -24,7 +24,8 @@ type AvailablePropTypes =
   | { type: "array"; value: TypeUsableComponentProps[] }
   | { type: "object"; value: TypeUsableComponentProps[] }
   | { type: "image"; value: string }
-  | { type: "select"; value: string };
+  | { type: "select"; value: string }
+  | { type: "color"; value: string};
 
 export type TypeReactComponent = {
   type: string;

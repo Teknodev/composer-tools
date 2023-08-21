@@ -32,19 +32,19 @@ class Slider3 extends BaseSlider {
           displayer: "Slider",
           value: [
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/pvD1l2BmfrE/maxresdefault.jpg",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/RFdtXi4Jr7o/maxresdefault.jpg",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/25zB8JIr71Y/maxresdefault.jpg",

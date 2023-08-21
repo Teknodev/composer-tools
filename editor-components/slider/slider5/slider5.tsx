@@ -96,7 +96,7 @@ class Slider5 extends BaseSlider {
       infinite: true,
       speed: 500,
       autoplay: true,
-      autoplaySpeed: 1000,
+      autoplaySpeed: 2500,
       slidesToShow: 3,
       slidesToScroll: 1,
       vertical: true,

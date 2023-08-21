@@ -1,137 +1,149 @@
 import * as React from "react";
 import styles from "./download4.module.scss";
-import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { BaseDownload } from "../../EditorComponent";
+
 
 type Button = {
-  buttonText: string;
-  url: string;
-  isPrimary: boolean;
+    buttonText1: string,
+    buttonText2: string,
+    url: string,
+    buttonImage: string,
 };
+
 class Download4 extends BaseDownload {
-  constructor(props?: any) {
-    super(props, styles);
- 
+    constructor(props?: any) {
+        super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "title2",
-      value: "Connect With Customers.",
-      displayer: "Title-2",
-    });
+        let googlePlayIcon = require("./google-play.png")
+        let appStoreIcon = require("./pngegg.png")
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "Start with lucky,Grow your business",
+        });
 
-   
-    this.addProp({
-      type: "string",
-      key: "text2",
-      value: "To connect with customers, businesses need to understand their needs, preferences, and behaviors. One effective way to do this is through personalized communication and engagement.",
-      displayer: "Description-2",
-    });
+        this.addProp({
+            type: "image",
+            key: "image",
+            displayer: "Image",
+            value: "https://img.freepik.com/free-photo/business-success-report-graph-concept_53876-124755.jpg?w=1060&t=st=1692185178~exp=1692185778~hmac=796fb7f0e21c407260bf68259936134b5b680cd0edb37f7155e0ea6ce602da57"
+        })
 
-    this.addProp({
-      type: "image",
-      key: "image",
-      value: "https://img.freepik.com/free-photo/close-up-woman-holding-smartphone_23-2148708802.jpg?size=626&ext=jpg&ga=GA1.1.1849377565.1680873032&semt=robertav1_2_sidr",
-      displayer: "Image",
-    });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "To grow a business, it's important to establish clear goals, identify and target the right audience, continually innovate and adapt to changing market trends, and build strong relationships with customers and stakeholders.",
+        });
 
-    this.addProp({
-      type: "boolean",
-      key: "reverse",
-      displayer: "Reverse",
-      value: false,
-    });
 
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Button",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Download Mobile App",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: false,
-            },
-          ],
-        },
-      ],
-    });
-  }
 
-  getName(): string {
-    return "Download-4";
-  }
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                {
+                    type: "object",
+                    key: "button",
+                    displayer: "Displayer",
+                    value: [
+                        {
+                            type: "string",
+                            key: "buttonText1",
+                            displayer: "Button Text",
+                            value: "DOWNLOAD ON THE",
+                        },
+                        {
+                            type: "string",
+                            key: "buttonText2",
+                            displayer: "Button Text",
+                            value: "App Store",
+                        },
+                        {
+                            type: "page",
+                            key: "url",
+                            displayer: "Button Link",
+                            value: "",
+                        },
+                        {
+                            type: "image",
+                            key: "buttonImage",
+                            displayer: "In Button Icon",
+                            value: appStoreIcon,
+                        }
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "button",
+                    displayer: "Displayer",
+                    value: [
+                        {
+                            type: "string",
+                            key: "buttonText1",
+                            displayer: "Button Text",
+                            value: "GET IT ON",
+                        },
+                        {
+                            type: "string",
+                            key: "buttonText2",
+                            displayer: "Button Text",
+                            value: "Google Play",
+                        },
+                        {
+                            type: "page",
+                            key: "url",
+                            displayer: "Button Link",
+                            value: "",
+                        },
+                        {
+                            type: "image",
+                            key: "buttonImage",
+                            displayer: "In Button Icon",
+                            value: googlePlayIcon,
+                        }
+                    ],
+                }
+            ]
+        });
+    }
 
-  render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("basic-page")} ${
-              this.getPropValue("reverse") &&
-              this.decorateCSS("basic-page-reverse")
-            }`}
-          >
-            <div
-              className={`${this.decorateCSS("page-1")} ${
-                this.getPropValue("reverse") &&
-                this.decorateCSS("page-1-border")
-              }`}
-            >
-              
-              <div className={this.decorateCSS("box")}>
-                <h1>{this.getPropValue("title2")}</h1>
-              </div>
-              <div className={this.decorateCSS("box")}>
-                <p>
-                  {this.getPropValue("text2")}
-                </p>
-               
-              </div>
-              <div className={this.decorateCSS("box")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (item: Button, index: number) => {
-                    return (
-                      <ComposerLink key={`dw-4-btn-${index}`}  path={item.url}>
-                        <button
-                          className={`${this.decorateCSS("button")} ${
-                            item.isPrimary && this.decorateCSS("button-color")
-                          }`}
-                        >
-                          {item.buttonText}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
+    getName(): string {
+        return "Download-4";
+    }
+
+
+    render() {
+        return (
+            <div className={this.decorateCSS("container")}>
+                <div className={this.decorateCSS("max-content")}>
+                    <div className={this.decorateCSS("page")}>
+                        <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                        <img src={this.getPropValue("image")} alt="" className={this.decorateCSS("image")} />
+                        <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+                        <div className={this.decorateCSS("button-group")}>
+                            {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
+                                return (
+                                    <ComposerLink key={`dw-2-btn-${index}`} path={item.url} >
+                                        <div className={this.decorateCSS("button")}>
+                                            <img src={item.buttonImage} alt="icon" className={this.decorateCSS("button-logo")} />
+                                            <div className={this.decorateCSS("button-texts")}>
+                                                <p className={this.decorateCSS("up-text")}>{item.buttonText1}</p>
+                                                <p className={this.decorateCSS("down-text")}>{item.buttonText2}</p>
+                                            </div>
+                                        </div>
+                                    </ComposerLink>
+                                )
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className={this.decorateCSS("page-2")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default Download4;

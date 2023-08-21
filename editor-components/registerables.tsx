@@ -19,7 +19,7 @@ import ContentComponent2 from "./content/content2/content2";
 import ContentComponent3 from "./content/content3/content3";
 import ContentComponent4 from "./content/content4/content4";
 import ContentComponent5 from "./content/content5/content5";
-// import ContentComponent6 from "./content/content5/content6";
+import ContentComponent6 from "./content/content6/content6";
 import ContentComponent7 from "./content/content7/content7";
 import ContentComponent8 from "./content/content8/content8";
 import ContentComponent9 from "./content/content9/content9";
@@ -133,6 +133,7 @@ import StatsComponent4 from "./stats/stats4/stats4";
 import StatsComponent5 from "./stats/stats5/stats5";
 import StatsComponent6 from "./stats/stats6/stats6";
 import StatsComponent7 from "./stats/stats7/stats7";
+import StatsComponent8 from "./stats/stats8/stats8";
 import ContactsComponent1 from "./contacts/contacts1/contacts1";
 import ContactsComponent2 from "./contacts/contacts2/contacts2";
 import ContactsComponent3 from "./contacts/contacts3/contacts3";
@@ -176,7 +177,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent3(),
     new ContentComponent4(),
     new ContentComponent5(),
-    // new ContentComponent6(),
+    new ContentComponent6(),
     new ContentComponent7(),
     new ContentComponent8(),
     new ContentComponent9(),
@@ -292,6 +293,7 @@ function Registerables(composer: ComponentsRegistery) {
     new StatsComponent5(),
     new StatsComponent6(),
     new StatsComponent7(),
+    new StatsComponent8(),
     new ContactsComponent1(),
     new ContactsComponent2(),
     new ContactsComponent3(),

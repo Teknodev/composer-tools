@@ -90,13 +90,12 @@
             .icons-bar {
               height: 0;
               transition: height 1s, gap 1s;
-              a {
                 .icon {
                   width: 0;
                   height: 0;
                   transition: height 1s;
                 }
-              }
+              
             }
           }
 
@@ -113,15 +112,12 @@
               justify-content: flex-start;
               height: 20px;
               gap: 10px;
-
-              a {
                 .icon {
                   width: 20px;
                   height: 20px;
                   object-fit: cover;
                   background-color: #fff;
                 }
-              }
             }
           }
         }

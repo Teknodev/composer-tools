@@ -9,7 +9,7 @@ class Header19 extends BaseHeader {
     super(props, styles);
 
     this.addProp({
-      type: "array",
+      type: "object",
       key: "left-side",
       displayer: "Left Side",
       value: [
@@ -80,7 +80,7 @@ class Header19 extends BaseHeader {
     });
 
     this.addProp({
-      type: "array",
+      type: "object",
       key: "right-side",
       displayer: "Right Side",
       value: [

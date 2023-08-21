@@ -9,8 +9,10 @@
     .call-to-action2-page {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
       gap: 20px;
-      padding: 20px 0;
+      padding: 20px 10px;
       h2 {
         font-weight: 100;
         color: white;

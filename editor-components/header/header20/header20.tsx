@@ -10,7 +10,7 @@ class Header20 extends BaseHeader {
 
 
     this.addProp({
-      type: "array",
+      type: "object",
       displayer: "Items",
       key: "items",
       value: [
@@ -155,10 +155,17 @@ class Header20 extends BaseHeader {
     });
 
       this.addProp({
-        type: "image",
+       type: "object",
         displayer: "Item Right Bottom Right",
         key: "item-right-bottom-right",
-        value: "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/finaly-banner-handmade-8-opt.jpg",
+        value: [
+          {
+            type: "image",
+            displayer: "Item Right Bottom Right",
+            key: "item-right-bottom-right-photo",
+            value: "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/finaly-banner-handmade-8-opt.jpg",
+          }
+        ]
       });
   }
 
@@ -240,7 +247,7 @@ class Header20 extends BaseHeader {
                 </div>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={this.getPropValue('item-right-bottom-right')}/>
+                    <img src={this.getPropValue('item-right-bottom-right')[0].value}/>
                   </div>  
                 </div>
               </div>
