@@ -21,6 +21,19 @@ class Navbar1 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "left",
+      displayer: "Item List Left Side",
+      value: false,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "right",
+      displayer: "Item List Right Side",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "itemList",
       displayer: "Item List",
@@ -130,26 +143,23 @@ class Navbar1 extends BaseNavigator {
         },
       ],
     });
-
-    this.state["componentProps"]["navActive"] = false;
+    this.state["componentProps"]["navActive"] = true;
   }
 
   getName(): string {
     return "Navbar 1";
   }
-
   navClick() {
     let value: boolean = this.state.componentProps["navActive"];
     this.state.componentProps["navActive"] = !value;
   }
-
   render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <nav className={this.decorateCSS("navigator")}>
+        <nav>
             <img src={this.getPropValue("image")} width={200} />
-            <div className={this.decorateCSS("items")}>
+            <div className={`${this.decorateCSS("items")} ${this.getPropValue("left") ? this.decorateCSS("left") : this.getPropValue("right") ? this.decorateCSS("right") : ""}`}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
                   return (
@@ -162,6 +172,8 @@ class Navbar1 extends BaseNavigator {
                   );
                 }
               )}
+            </div>
+            <div className={this.decorateCSS("button-child")}>
               {this.castToObject<[]>("buttonList").map(
                 (data: any, indexButtonList: number) => {
                   return (
@@ -187,9 +199,23 @@ class Navbar1 extends BaseNavigator {
                 }}
               />
             </div>
-            {this.state.componentProps["navActive"] == true && (
-              <div className={this.decorateCSS("navbar-child")}></div>
-            )}
+            {this.state.componentProps["navActive"] && (
+            <div className={this.decorateCSS("navbar-child")}>
+              {this.castToObject<[]>("itemList").map(
+                (data: any, indexItemList: number) => {
+                  {console.log("Rendering navbar-child")}
+                  return (
+                    <ComposerLink
+                      key={indexItemList}
+                      path={data.value[1].value}
+                    >
+                      <h3 key={indexItemList}>{data.value[0].value}</h3>
+                    </ComposerLink>
+                  );
+                }
+              )}
+            </div>
+          )}
           </nav>
         </div>
       </div>
