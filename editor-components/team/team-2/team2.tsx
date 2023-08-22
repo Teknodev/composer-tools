@@ -214,6 +214,15 @@ class Team2 extends Team {
         },
       ],
     });
+    this.addProp({
+      type: "select",
+      key: "select",
+      displayer: "Location of Border",
+      value: "Bottom",
+      additionalParams: {
+        selectItems: ["None", "Top" , "Bottom" , "All Around"],
+      }
+    })
   }
 
   getName(): string {
@@ -221,12 +230,13 @@ class Team2 extends Team {
   }
 
   render() {
+    const selectValue = this.getPropValue("select");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<TeamCardMember[]>("team-card").map(
             (team: any, index: number) => (
-              <div className={this.decorateCSS("team")} key={index}>
+              <div className={`${this.decorateCSS("team")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`} key={index}>
                 <img className={this.decorateCSS("image")} src={team.image}></img>
                 <h3 className={this.decorateCSS("title")}>{team.name}</h3>
                 <p className={this.decorateCSS("long-text")}>

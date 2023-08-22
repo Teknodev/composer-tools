@@ -363,7 +363,6 @@ class PricingTable2 extends BasePricingTable {
         {this.castToObject<PricingProps>("pricingTableItem").map(
           (table: PricingItems, index: number) => {
             table.cardList.map((listItem: string, index: number) => {
-              console.log(listItem)
             } )
             return (
               <div key={index} className={this.decorateCSS("item-card")}>
