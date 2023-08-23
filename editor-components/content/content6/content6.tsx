@@ -24,7 +24,7 @@ class Content6 extends BaseContent {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "How",
+            value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         });
 
 
@@ -40,10 +40,8 @@ class Content6 extends BaseContent {
             type: "image",
             key: "backgroundImage",
             displayer: "BackgroundImage",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64590b95f72de2002cab04e4?alt=media&timestamp=1683557280405",
+            value: "",
         });
-
-
 
         this.addProp({
             type: "array",
@@ -67,13 +65,6 @@ class Content6 extends BaseContent {
                             displayer: "Description",
                             value: "We gather creative content from all the leading social and visual platforms.",
                         },
-                        {
-                            type: "image",
-                            key: "image",
-                            displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645911c3f72de2002cab07f6?alt=media&timestamp=1683558862497",
-                        },
                     ],
                 },
                 {
@@ -92,13 +83,6 @@ class Content6 extends BaseContent {
                             key: "description",
                             displayer: "Description",
                             value: "We analyze each collected ad element and create over 80 data points per visual.",
-                        },
-                        {
-                            type: "image",
-                            key: "image",
-                            displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64591200f72de2002cab07fa?alt=media&timestamp=1683558924651",
                         },
                     ],
                 },
@@ -119,13 +103,6 @@ class Content6 extends BaseContent {
                             displayer: "Description",
                             value: "We train our unique machine learning model using the data points and the performance of the ad elements.",
                         },
-                        {
-                            type: "image",
-                            key: "image",
-                            displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6459122ef72de2002cab07fe?alt=media&timestamp=1683558972982",
-                        },
                     ],
                 },
                 {
@@ -144,13 +121,6 @@ class Content6 extends BaseContent {
                             key: "description",
                             displayer: "Description",
                             value: "Our unique productive artificial intelligence rapidly generates high ROI ad elements and ranks them based on their expected conversion rates.",
-                        },
-                        {
-                            type: "image",
-                            key: "image",
-                            displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64591266f72de2002cab0802?alt=media&timestamp=1683559026950",
                         },
                     ],
                 },

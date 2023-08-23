@@ -140,6 +140,15 @@ class Contacts2Page extends BaseContacts {
         },
       ],
     });
+    this.addProp({
+      type: "select",
+      key: "select",
+      displayer: "Location of Border",
+      value: "Top",
+      additionalParams: {
+        selectItems: ["None", "Top" , "Bottom" , "All Around"],
+      }
+    })
   }
 
   getName(): string {
@@ -147,10 +156,10 @@ class Contacts2Page extends BaseContacts {
   }
 
   render() {
+    const selectValue = this.getPropValue("select");
     return (
       <div
         className={this.decorateCSS("container")}
-
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("contacts2")}>
@@ -161,7 +170,7 @@ class Contacts2Page extends BaseContacts {
                 (section: any, index: number) => (
                   <div key={index} className={this.decorateCSS("card-child")}>
                     {section.items.map((item: any, index: number) => (
-                      <div key={index} className={this.decorateCSS("card")}>
+                      <div key={index} className={`${this.decorateCSS("card")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
                         <div className={this.decorateCSS("img-child")}>
                         <img className={this.decorateCSS("image")} width={50} height={50} src={item.value[0].value} />
                         </div>

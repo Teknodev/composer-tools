@@ -56,7 +56,7 @@ class CallToAction2Page extends BaseCallToAction {
             <h1>{this.getPropValue("title")}</h1>
             <h2>{this.getPropValue("description")}</h2>
           </div>
-          <div className={this.decorateCSS("call-to-action2-page")}>
+          <div className={this.decorateCSS("call-to-action2-page-buttons")}>
             <ComposerLink path={this.getPropValue("firstButtonLink")}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("firstButtonText")}

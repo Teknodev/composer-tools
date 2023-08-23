@@ -113,6 +113,32 @@ class Content4 extends BaseContent {
             },
           ],
         },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Dedicated Server",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "A dedicated server refers to a type of web hosting service where a single server is allocated exclusively to a single client or website. In other words, the entire physical server is dedicated to serving the needs of that client or website alone.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: serverimg3,
+            },
+          ],
+        },
       ],
     });
   }
@@ -129,7 +155,6 @@ class Content4 extends BaseContent {
             <span>{this.getPropValue("subtitle")}</span>
             <h2>{this.getPropValue("title")}</h2>
           </div>
-
           <div className={this.decorateCSS("card-child")}>
             {this.castToObject<Card[]>("content-card").map(
               (card: Card, index: number) => (

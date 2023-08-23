@@ -38,6 +38,7 @@
           object-fit: cover;
           border-top-right-radius: 6px;
           border-bottom-right-radius: 6px;
+          padding: 25px;
         }
       }
 
@@ -84,6 +85,7 @@
           object-fit: cover;
           border-top-left-radius: 6px;
           border-bottom-left-radius: 6px;
+          padding: 25px;
         }
       }
 
@@ -120,7 +122,7 @@
           justify-content: center;
           align-items: center;
           gap: 10px;
-
+          margin-top: 20px;
           .button {
             transition: all 0.5s;
             display: inline-block;

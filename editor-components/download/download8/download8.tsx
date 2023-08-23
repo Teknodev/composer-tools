@@ -20,7 +20,7 @@ class Download8 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Background Image",
-            value: "http://m.gettywallpapers.com/wp-content/uploads/2021/12/Desktop-Wallpapers.jpg",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1692795803063",
         });
 
         this.addProp({

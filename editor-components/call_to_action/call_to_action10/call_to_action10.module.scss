@@ -15,6 +15,7 @@
         flex-direction: column;
         justify-content: center;
         gap: 20px;
+        margin-right: 20px;
         h2 {
           font-weight: 200;
           font-size: 1.7rem;
@@ -34,7 +35,6 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
-          margin-left: -3em;
           list-style: none;
           li {
             img {
@@ -69,11 +69,11 @@
         }
       }
       .image-background {
+        margin-left: 80px;
         width: 100%;
         .image {
-          width: 100%;
+          width: 70%;
           border-radius: 6px;
-          height: 100%;
         }
       }
     }

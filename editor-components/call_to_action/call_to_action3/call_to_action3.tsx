@@ -22,7 +22,7 @@ class CallToAction3Page extends BaseCallToAction {
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://wallpaperaccess.com/full/754632.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e61314057bdf002c29caad?alt=media&timestamp=1692801618391",
     });
     this.addProp({
       type: "string",
@@ -37,7 +37,7 @@ class CallToAction3Page extends BaseCallToAction {
       value: "",
     });
   }
-
+  
   getName(): string {
     return "Call To Action 3";
   }

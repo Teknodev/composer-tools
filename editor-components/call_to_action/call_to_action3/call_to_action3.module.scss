@@ -3,7 +3,7 @@
   display: flex;
   padding: 150px 0;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: fill;
   justify-content: center;
   .max-content {
     max-width: var(--composer-content-width);

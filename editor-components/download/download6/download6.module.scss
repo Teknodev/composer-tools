@@ -34,11 +34,10 @@
         text-overflow: ellipsis;
         word-break: break-all;
         white-space: pre-wrap;
-        background-color: var(--composer-primary-color);
         height: 10%;
         overflow: hidden;
         transition: all 1s;
-
+        border: 1px solid #fff;
         h1 {
           margin: unset;
           font-size: 1rem;
