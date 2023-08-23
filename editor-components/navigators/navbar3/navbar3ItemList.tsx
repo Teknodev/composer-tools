@@ -111,8 +111,9 @@ export default class Navbar3ItemList extends BaseNavigator {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("bottom-line")}>
             <nav  style={{ display: "flex", alignItems: "center",  justifyContent: "center" }} className={this.decorateCSS("topnav")}>
-            <div className={this.decorateCSS("bottom-line")}>
+            
             <div className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""}`}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
@@ -128,8 +129,9 @@ export default class Navbar3ItemList extends BaseNavigator {
                 }
               )}
             </div>
-            </div>
+           
           </nav>
+          </div>
           <nav className={this.decorateCSS("navigator-mobile")}>
             <div className={this.decorateCSS("navbar")}>
               <img src={this.getPropValue("image")} width={200} />
