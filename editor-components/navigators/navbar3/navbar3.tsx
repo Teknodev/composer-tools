@@ -7,7 +7,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { FormControl, Select, MenuItem } from '@mui/material';
 import { useState } from "react";
 import ChangeLanguage from './changeLanguage';
-import Navbar3ItemList from "./navbar3ItemList";
 
 
 class Navbar3 extends BaseNavigator {
@@ -23,6 +22,18 @@ class Navbar3 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "image",
+      key: "profile",
+      displayer: "Profile",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dbad057bdf002c29bea4?alt=media&timestamp=1692785591878",
+    })
+    this.addProp({
+      type: "image",
+      key: "searchBar",
+      displayer: "Search Bar",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dc18057bdf002c29beba?alt=media&timestamp=1692785699698",
+      });
+    this.addProp({
       type: "boolean",
       key: "middle",
       displayer: "Item List Middle",
@@ -33,6 +44,89 @@ class Navbar3 extends BaseNavigator {
         key: "title",
         displayer: "Title",
         value: "Title",
+    });
+    this.addProp({
+      type: "array",
+      key: "itemList",
+      displayer: "Item List",
+      value: [
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Features",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Solutions",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Resources",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "item",
+              value: "Pricing",
+              displayer: "Item",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
    
     this.state["componentProps"]["navActive"] = true;
@@ -60,11 +154,42 @@ class Navbar3 extends BaseNavigator {
               <div style={{marginRight:"20px"}}>
               <ChangeLanguage />
               </div>
-              <SearchIcon style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
-              <PersonOutlineIcon style={{ fontSize: '48px', color:"gray" }}/>
+               <img
+              src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dbad057bdf002c29bea4?alt=media&timestamp=1692785591878" 
+              alt="User Profile"
+              width="50"
+              height="50"
+              style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
+              <img
+              src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dc18057bdf002c29beba?alt=media&timestamp=1692785699698" 
+              alt="User Profile"
+              width="50" 
+              height="50"
+              style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
+              <img ></img>
             </div>
           </nav>  
-          <Navbar3ItemList></Navbar3ItemList>
+          <div className={this.decorateCSS("bottom-line")}>
+            <nav  style={{ display: "flex", alignItems: "center",  justifyContent: "center" }} className={this.decorateCSS("topnav")}>
+            
+            <div className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""}`}>
+              {this.castToObject<[]>("itemList").map(
+                (data: any, indexItemList: number) => {
+                  return (
+                    <ComposerLink
+                      key={indexItemList}
+                      path={data.value[1].value}>
+                       
+                        <a  key={indexItemList} style={{ fontSize: '24px',marginRight:"10px" }}>{data.value[0].value}</a>
+                        
+                    </ComposerLink>
+                  );
+                }
+              )}
+            </div>
+           
+          </nav>
+          </div>
                     
           
           <nav className={this.decorateCSS("navigator-mobile")}>
