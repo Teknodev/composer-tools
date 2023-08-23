@@ -6,7 +6,6 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import SearchIcon from '@mui/icons-material/Search';
 import { FormControl, Select, MenuItem } from '@mui/material';
 import { useState } from "react";
-import ChangeLanguage from './changeLanguage';
 
 
 class Navbar3 extends BaseNavigator {
@@ -175,7 +174,6 @@ class Navbar3 extends BaseNavigator {
             <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
             <div style={{ display: "flex", alignItems: "center" }}>
               <div style={{marginRight:"20px"}}>
-              <ChangeLanguage />
               </div>
               <ComposerLink>
               <img
