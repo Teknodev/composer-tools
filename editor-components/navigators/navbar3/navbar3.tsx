@@ -22,16 +22,42 @@ class Navbar3 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "image",
+      type: "object",
       key: "profile",
       displayer: "Profile",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dbad057bdf002c29bea4?alt=media&timestamp=1692785591878",
+      value: [
+      {
+        type: "image",
+        key: "profile",
+        displayer: "Profile",
+        value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dbad057bdf002c29bea4?alt=media&timestamp=1692785591878",
+      },
+      {
+        type: "page",
+        key: "url",
+        displayer: "Url",
+        value: "",
+      }
+      ]
     })
     this.addProp({
-      type: "image",
+      type: "object",
       key: "searchBar",
       displayer: "Search Bar",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dc18057bdf002c29beba?alt=media&timestamp=1692785699698",
+      value: [
+        {
+          type: "image",
+          key: "searchBar",
+          displayer: "Search Bar",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dc18057bdf002c29beba?alt=media&timestamp=1692785699698",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        }
+      ],
       });
     this.addProp({
       type: "boolean",
@@ -140,9 +166,6 @@ class Navbar3 extends BaseNavigator {
     this.state.componentProps["navActive"] = !value;
   }
   
-   changeLanguage(){
-    
-   }
   render() {
     
     return (
@@ -154,19 +177,22 @@ class Navbar3 extends BaseNavigator {
               <div style={{marginRight:"20px"}}>
               <ChangeLanguage />
               </div>
-               <img
-              src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dbad057bdf002c29bea4?alt=media&timestamp=1692785591878" 
-              alt="User Profile"
-              width="50"
-              height="50"
-              style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
+              <ComposerLink>
               <img
-              src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5dc18057bdf002c29beba?alt=media&timestamp=1692785699698" 
-              alt="User Profile"
-              width="50" 
-              height="50"
-              style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
-              <img ></img>
+                src={this.getPropValue("profile")[0].value }
+                alt="search bar"
+                width="50"
+                height="50"
+                style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
+              </ComposerLink>
+              <ComposerLink>
+              <img
+                src={this.getPropValue("searchBar")[0].value} 
+                alt="profile"
+                width="50" 
+                height="50"
+                style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
+              </ComposerLink>
             </div>
           </nav>  
           <div className={this.decorateCSS("bottom-line")}>
