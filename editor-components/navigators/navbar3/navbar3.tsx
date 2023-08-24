@@ -170,11 +170,12 @@ class Navbar3 extends BaseNavigator {
     return (
       <div className={this.decorateCSS("container")} >
         <div className={this.decorateCSS("max-content")} >
+        
+        <div className={this.decorateCSS("disable")}>
         <nav style={{backgroundColor:"#F1EBE7"}}>
             <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <div style={{marginRight:"20px"}}>
-              </div>
+              
               <ComposerLink>
               <img
                 src={this.getPropValue("profile")[0].value }
@@ -193,43 +194,83 @@ class Navbar3 extends BaseNavigator {
               </ComposerLink>
             </div>
           </nav>  
-          <div className={this.decorateCSS("bottom-line")}>
-            <nav  style={{ display: "flex", alignItems: "center",  justifyContent: "center" }} className={this.decorateCSS("topnav")}>
+          
+           <div className={this.decorateCSS("bottom-line")}>
+           <nav  style={{ display: "flex", alignItems: "center",  justifyContent: "center" }} className={this.decorateCSS("topnav")}>
             
-            <div className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""}`}>
+            <div className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""}`}
+                    style={{ display: "flex", alignItems: "center" }}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
                   return (
-                    <ComposerLink
+                      <ComposerLink
                       key={indexItemList}
                       path={data.value[1].value}>
                        
-                        <a  key={indexItemList} style={{ fontSize: '24px',marginRight:"10px" }}>{data.value[0].value}</a>
+                        <a  key={indexItemList} style={{ fontSize: '200%'}}>{data.value[0].value}</a>
                         
-                    </ComposerLink>
+                    </ComposerLink>                    
                   );
                 }
               )}
             </div>
-           
-          </nav>
-          </div>
-                    
-          
-          <nav className={this.decorateCSS("navigator-mobile")}>
-            <div className={this.decorateCSS("navbar")}>
-              <img src={this.getPropValue("image")} width={200} />
-              <img
-                className={this.decorateCSS("img-hamburger")}
-                src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
-                onClick={() => {
-                    this.navClick();
-                }}
-              />
-              
-            </div>
             
           </nav>
+           </div>
+        </div>
+        
+          
+       
+        <div  className={this.decorateCSS("navigator-mobile")}>
+        <nav  className={this.decorateCSS("navigator-mobile")} style={{backgroundColor:"#F1EBE7"}}>
+            <div className={this.decorateCSS("navbar")}>
+            <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              
+              <ComposerLink>
+              <img
+                src={this.getPropValue("profile")[0].value }
+                alt="search bar"
+                width="50"
+                height="50"
+                style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
+              </ComposerLink>
+              <ComposerLink>
+              <img
+                src={this.getPropValue("searchBar")[0].value} 
+                alt="profile"
+                width="50" 
+                height="50"
+                style={{ fontSize: '48px', marginRight:"20px", color:"gray"}}/>
+              </ComposerLink>
+            </div>
+            </div>
+          </nav>
+          <nav  className={this.decorateCSS("navigator-mobile")} style={{ alignItems: "center",  justifyContent: "center", height:"100%"}}>
+            <div className={this.decorateCSS("topnav")}>
+            <div className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""}`}
+                    style={{ display: "flex", alignItems: "center" }}>
+              {this.castToObject<[]>("itemList").map(
+                (data: any, indexItemList: number) => {
+                  return (
+                      <ComposerLink
+                      key={indexItemList}
+                      path={data.value[1].value}>
+                       
+                        <a  key={indexItemList}>{data.value[0].value}</a>
+                        
+                    </ComposerLink>                    
+                  );
+                }
+              )}
+            </div>
+            
+            </div>
+          </nav>
+        </div>
+                    
+          
+         
         </div>
       </div>
     );
