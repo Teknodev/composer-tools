@@ -140,6 +140,7 @@ import ContactsComponent3 from "./contacts/contacts3/contacts3";
 import ContactsComponent4 from "./contacts/contacts4/contacts4";
 import ContactsComponent5 from "./contacts/contacts5/contacts5";
 import ContactsComponent6 from "./contacts/contacts6/contacts6";
+import ContactsComponent8 from "./contacts/contacts8/contacts8";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -298,6 +299,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContactsComponent4(),
     new ContactsComponent5(),
     new ContactsComponent6(),
+    new ContactsComponent8(),
     new FooterComponent1(),
     new FooterComponent2(),
     new FooterComponent3(),
