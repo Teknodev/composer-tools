@@ -1,7 +1,8 @@
 .container {
     width: 100%;
     padding: 50px 0;
-  
+    display: flex;
+    justify-content: center;
     .max-content {
       max-width: var(--composer-content-width);
       .cards-container{
@@ -18,7 +19,7 @@
             flex-direction: column;
             width: 300px;
             box-shadow: var(--composer-box-shadow);
-            margin: 20px 0;
+            margin: 20px 40px;
             .card-background{
               width: 100%;
               img{

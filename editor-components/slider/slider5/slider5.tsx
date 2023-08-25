@@ -97,7 +97,7 @@ class Slider5 extends BaseSlider {
       speed: 500,
       autoplay: true,
       autoplaySpeed: 2500,
-      slidesToShow: 3,
+      slidesToShow: 1,
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
@@ -105,13 +105,17 @@ class Slider5 extends BaseSlider {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+          <div className={this.decorateCSS("carousel")}>
+
+          <ComposerSlider {...settings} >
             {this.castToObject<Card[]>("slider").map(
               (item: Card, index: number) => (
                 <img src={item.image} key={index} />
               )
             )}
           </ComposerSlider>
+          </div>
+
         </div>
       </div>
     );

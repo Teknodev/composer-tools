@@ -29,7 +29,7 @@ class Content10 extends BaseContent {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5ceb8057bdf002c29bb4a?alt=media&timestamp=1692782244914"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5ceb8057bdf002c29bb4a?alt=media&timestamp=1692967262397"
     })
     this.addProp({
       type: "object",

@@ -43,7 +43,7 @@ class DownloadCard1 extends BaseDownload {
     this.addProp({
       type: "image",
       key: "image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af1668c3c2002cd2fa38?alt=media&timestamp=1692792293084",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af1668c3c2002cd2fa38?alt=media&timestamp=1692972147210",
       displayer: "Image",
     });
 
