@@ -259,7 +259,7 @@ class Contacts8Page extends BaseContacts {
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
-                    <h3>{this.getPropValue("name")}</h3>
+                    <h3 style={{marginTop:"50px"}}>{this.getPropValue("name")}</h3>
                     <input
                       placeholder={this.getPropValue("name")}
                       type="text"

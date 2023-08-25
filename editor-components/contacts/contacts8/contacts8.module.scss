@@ -107,8 +107,9 @@
         border-radius: 6px;
         padding: 20px;
         height: 545px;
-        width: 355px;
+        width: 410px;
         background-color: #CFD8DC;
+        
         .input {
           padding: 16px 10px;
           border-radius: 10px;
@@ -132,6 +133,9 @@
           background-color:#455A64;
           align-items: center;
           color: white;
+          justify-content: center; /* Center vertically */
+          align-items: center;
+          align-self: center;
           cursor: pointer;
           transition: 0.1s;
           margin-top: 15px;
