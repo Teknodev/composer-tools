@@ -1,6 +1,8 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./contacts8.module.scss";
+import { ErrorMessage, Form, Formik } from "formik";
+import * as Yup from "yup";
 
 type Item = {
   image: string;
@@ -24,6 +26,88 @@ class Contacts8Page extends BaseContacts {
       displayer: "Description",
       value: "You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form.",
     });
+    this.addProp({
+      type: "string",
+      key: "name",
+      displayer: "1th Placeholder",
+      value: "First & last name",
+    });
+    this.addProp({
+      type: "string",
+      key: "email",
+      displayer: "2th Placeholder",
+      value: "Email address",
+    });
+    this.addProp({
+      type: "string",
+      key: "message",
+      displayer: "3th Placeholder",
+      value: "Write message",
+    });
+    this.addProp({
+      type: "string",
+      key: "button_text",
+      displayer: "Button Text",
+      value: "Send Message",
+    });
+    this.addProp({
+      type: "array",
+      key: "info-items",
+      displayer: "Info Items",
+      value: [
+        {
+          type: "object",
+          key: "info",
+          displayer: "Info",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "EMAIL",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "Text1th",
+              value: "business@info.com",
+              displayer: "1th Text",
+            },
+            {
+              type: "string",
+              key: "Text2th",
+              value: "support@info.com",
+              displayer: "2th Text",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "info",
+          displayer: "Info",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "PHONE",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "Text1th",
+              value: "111 345 45 99",
+              displayer: "1th Text",
+            },
+            {
+              type: "string",
+              key: "Text2th",
+              value: "111 346 45 99",
+              displayer: "2th Text",
+            },
+          ],
+        },
+      ],
+    });
+  
     this.addProp({
       type: "array",
       key: "card-items",
@@ -145,6 +229,11 @@ class Contacts8Page extends BaseContacts {
   getName(): string {
     return "Contacts 8";
   }
+  validationSchema = Yup.object().shape({
+    name: Yup.string().required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+    message: Yup.string().min(5, "Min 5 character!").required("Required"),
+  });
 
   render() {
     return (
@@ -155,8 +244,77 @@ class Contacts8Page extends BaseContacts {
         <div className={this.decorateCSS("max-content")}>
         
           <section>
-            
-              <div className={this.decorateCSS("left")}>
+           
+              <div className={this.decorateCSS("right")} >
+              <p>{this.getPropValue("subtitle")}</p>
+              
+              <div className={this.decorateCSS("contact-right")}>
+              <Formik
+                initialValues={{ name: "", email: "", message: "" }}
+                validationSchema={this.validationSchema}
+                onSubmit={(data, { resetForm }) => {
+                  this.insertForm("Contact Us", data);
+                  resetForm();
+                }}
+              >
+                {({ handleChange, values }) => (
+                  <Form className={this.decorateCSS("form")}>
+                    <h3>{this.getPropValue("name")}</h3>
+                    <input
+                      placeholder={this.getPropValue("name")}
+                      type="text"
+                      name="name"
+                      value={values.name}
+                      onChange={handleChange}
+                      className={this.decorateCSS("input")}
+                    />
+                    <ErrorMessage
+                      className={this.decorateCSS("error-message")}
+                      name="name"
+                      component={"span"}
+                    />
+                    <h3>{this.getPropValue("email")}</h3>
+                    <input
+                      placeholder={this.getPropValue("email")}
+                      type="text"
+                      name="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      className={this.decorateCSS("input")}
+                    />
+                    <ErrorMessage
+                      className={this.decorateCSS("error-message")}
+                      name="email"
+                      component={"span"}
+                    />
+                    <h3>{this.getPropValue("message")}</h3>
+                    <textarea
+                      placeholder={this.getPropValue("message")}
+                      id="text"
+                      name="message"
+                      value={values.message}
+                      onChange={handleChange}
+                      className={this.decorateCSS("input")}
+                      rows={5}
+                    />
+                    <ErrorMessage
+                      className={this.decorateCSS("error-message")}
+                      name="message"
+                      component={"span"}
+                    />
+                    <button
+                      className={this.decorateCSS("submit-button")}
+                      type="submit"
+                    >
+                      {this.getPropValue("button_text")}
+                    </button>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+            </div>
+
+             <div className={this.decorateCSS("left")}>
               
                 {this.castToObject<ISection[]>("card-items").map(
                 (section: any, index: number) => (
@@ -176,13 +334,6 @@ class Contacts8Page extends BaseContacts {
               )}
             
               </div>
-
-              <div className={this.decorateCSS("right")} style={{flexDirection:"row"}}>
-                <div className={this.decorateCSS("content")}>
-                <h1>{this.getPropValue("title")}</h1>
-                <p>{this.getPropValue("description")}</p>
-                </div>
-            </div>
             </section>
           
          

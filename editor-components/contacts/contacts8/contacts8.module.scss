@@ -10,7 +10,8 @@
       width: 100%;
       display: flex;
       align-items: center;
-      margin-left: 194px;
+      margin-left: 250px;
+      
     }
 
     .contacts8 {
@@ -23,26 +24,24 @@
 
     .card-child {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       flex-wrap: wrap;
       gap: -4px;
       margin-top: 123px;
-      margin-right: 660px;
     }
 
     .card {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       gap: 20px;
       flex: 1 1 calc(33.33% - 20px); /* Adjust the width as needed */
-      position: relative;
-      min-width: 250px;
+      min-width: 20px;
       padding: 20px;
       height: max-content;
+      background-color: #78909C;
       border: 1px solid rgba(149, 157, 165, 0.2);
       border-radius: 6px;
-      background-color: white;
       box-shadow: var(--composer-box-shadow);
 
       .img-child {
@@ -51,6 +50,7 @@
         width: 80px;
         height: 80px;
         transition: all 0.5s;
+        background-color: white;
 
         .image {
           padding: 20px;
@@ -59,24 +59,23 @@
     }
 
     .left {
-      width: 80%;
+      width: 75%;
       height: 600px;
-      background-color: #fddcc356;
       border-radius: 8px;
-      padding-left: 20px;
-      margin-right: 154px;
+      margin-left: -41px;
+      
     }
 
     .right {
-      width: 30%;
-      min-height: 470px;
-      background-color: red;
+      width: 264px;
+      min-height: 400px;
+      background-color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 30px;
       border-radius: 8px;
-      margin-left: -794px;
+      margin-left: 1000px;
+      position: absolute;
     }
 
     .right h1 {
@@ -99,6 +98,55 @@
       display: inline-block;
       letter-spacing: 2px;
     }
+   
+      .form {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        box-shadow: var(--composer-box-shadow);
+        border-radius: 6px;
+        padding: 20px;
+        height: 545px;
+        width: 355px;
+        background-color: #CFD8DC;
+        .input {
+          padding: 16px 10px;
+          border-radius: 10px;
+          border: 1px solid #8e8e8e91;
+          resize: none;
+          &:focus {
+            outline-color: var(--composer-primary-color);
+          }
+        }
+        .error-message {
+          color: red;
+          font-size: 0.6rem;
+          margin-top: 3px;
+        }
+        .submit-button {
+          width: max-content;
+          height: 50px;
+          background-color: var(--composer-primary-color);
+          border-radius: 6px;
+          border: none;
+          background-color:#455A64;
+          align-items: center;
+          color: white;
+          cursor: pointer;
+          transition: 0.1s;
+          margin-top: 15px;
+          box-shadow: var(--composer-box-shadow);
+          font-size: 1.5rem;
+          color: white;
+          padding: 10px 50px;
+          font-weight: 500;
+          &:active {
+            background: var(--composer-secondary-color);
+            color: var(--composer-tertiary-color);
+          }
+        }
+      }
+    
   }
 }
 
