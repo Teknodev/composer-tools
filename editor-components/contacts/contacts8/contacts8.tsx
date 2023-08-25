@@ -153,11 +153,12 @@ class Contacts8Page extends BaseContacts {
 
       >
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("contacts8")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <p>{this.getPropValue("description")}</p>
-            <section>
-              {this.castToObject<ISection[]>("card-items").map(
+        
+          <section>
+            
+              <div className={this.decorateCSS("left")}>
+              
+                {this.castToObject<ISection[]>("card-items").map(
                 (section: any, index: number) => (
                   <div key={index} className={this.decorateCSS("card-child")}>
                     {section.items.map((item: any, index: number) => (
@@ -173,8 +174,18 @@ class Contacts8Page extends BaseContacts {
                   </div>
                 )
               )}
+            
+              </div>
+
+              <div className={this.decorateCSS("right")} style={{flexDirection:"row"}}>
+                <div className={this.decorateCSS("content")}>
+                <h1>{this.getPropValue("title")}</h1>
+                <p>{this.getPropValue("description")}</p>
+                </div>
+            </div>
             </section>
-          </div>
+          
+         
         </div>
       </div>
     );
