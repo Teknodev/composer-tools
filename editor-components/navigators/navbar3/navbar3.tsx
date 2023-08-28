@@ -2,11 +2,6 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import SearchIcon from '@mui/icons-material/Search';
-import { FormControl, Select, MenuItem } from '@mui/material';
-import { useState } from "react";
-
 
 class Navbar3 extends BaseNavigator {
   
@@ -58,18 +53,20 @@ class Navbar3 extends BaseNavigator {
         }
       ],
       });
-    this.addProp({
-      type: "boolean",
-      key: "middle",
-      displayer: "Item List Middle",
-      value: false,
-    });
+
     this.addProp({
         type: "string",
         key: "title",
         displayer: "Title",
         value: "Title",
     });
+    this.addProp({
+      type: "color",
+      key: "color",
+      displayer: "Background Color of Navbar",
+      value: "#F1EBE7",
+  });
+
     this.addProp({
       type: "array",
       key: "itemList",
@@ -166,13 +163,15 @@ class Navbar3 extends BaseNavigator {
   }
   
   render() {
-    
+    const styling = {
+      backgroundColor: `${this.getPropValue("color")}`,
+    };
     return (
       <div className={this.decorateCSS("container")} >
         <div className={this.decorateCSS("max-content")} >
         
         <div className={this.decorateCSS("disable")}>
-        <nav style={{backgroundColor:"#F1EBE7"}}>
+        <nav style={styling}>
             <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
             <div style={{ display: "flex", alignItems: "center" }}>
               
