@@ -9,7 +9,7 @@
 
   .max-content {
     max-width: var(--composer-content-width);
-    box-shadow: var(--composer-box-shadow);
+    min-width: 100%;
     .toppom{
       display: flex;
       justify-content: space-around;
@@ -21,9 +21,9 @@
         margin: 30px 50px 30px 0;
         min-width: 20%;
         .logo{
-          padding: 20px;
+          text-align: left;
           img{
-            width: 80px;
+            width: 60px;
           }
         }
         .footer-infos{
