@@ -1,3 +1,7 @@
+:root {
+  --composer--primary-color: var(--composer-primary-color);
+}
+
 .container {
   width: 100%;
   padding: 50px 0;
@@ -37,11 +41,10 @@
       flex-direction: row;
       align-items: center;
       gap: 20px;
-      flex: 1 1 calc(33.33% - 20px); /* Adjust the width as needed */
+      flex: 1 1 calc(33.33% - 20px); 
       min-width: 20px;
       padding: 20px;
       height: max-content;
-      background-color: #78909C;
       border: 1px solid rgba(149, 157, 165, 0.2);
       border-radius: 6px;
       box-shadow: var(--composer-box-shadow);
@@ -110,7 +113,6 @@
         padding: 20px;
         height: 100%;
         width: 100%;
-        background-color: #CFD8DC;
         margin-right: 150px;
         
         
@@ -137,7 +139,7 @@
           background-color:#455A64;
           align-items: center;
           color: white;
-          justify-content: center; /* Center vertically */
+          justify-content: center;
           align-items: center;
           align-self: center;
           cursor: pointer;

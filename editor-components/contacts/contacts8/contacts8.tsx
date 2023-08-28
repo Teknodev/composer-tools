@@ -27,6 +27,12 @@ class Contacts8Page extends BaseContacts {
       value: "You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form.",
     });
     this.addProp({
+      type: "color",
+      key: "backgroundColor",
+      displayer: "Background Color of Form",
+      value: "#e0e2e2",
+    })
+    this.addProp({
       type: "string",
       key: "name",
       displayer: "1th Placeholder",
@@ -236,6 +242,9 @@ class Contacts8Page extends BaseContacts {
   });
 
   render() {
+    const styling = {
+      backgroundColor: this.getPropValue("backgroundColor")
+    }
     return (
       <div
         className={this.decorateCSS("container")}
@@ -258,7 +267,7 @@ class Contacts8Page extends BaseContacts {
                 }}
               >
                 {({ handleChange, values }) => (
-                  <Form className={this.decorateCSS("form")}>
+                  <Form className={this.decorateCSS("form")} style={styling}>
                     <h3 style={{marginTop:"50px"}}>{this.getPropValue("name")}</h3>
                     <input
                       placeholder={this.getPropValue("name")}
