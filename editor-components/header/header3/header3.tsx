@@ -39,7 +39,7 @@ class Header3 extends BaseHeader {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b1cf68c3c2002cd2fab5?alt=media&timestamp=1692610490141",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b1cf68c3c2002cd2fab5?alt=media&timestamp=1693233963031",
           displayer: "Image",
         },
       ],

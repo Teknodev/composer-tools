@@ -26,6 +26,12 @@ class CallToAction7Page extends BaseCallToAction {
         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Globe_icon-white.svg/1200px-Globe_icon-white.svg.png",
     });
     this.addProp({
+      type: "color",
+      key: "cardBackgroundColor",
+      displayer: "Card Background Color",
+      value: "#e0e0e0",
+    })
+    this.addProp({
       type: "string",
       key: "leftTitle",
       displayer: "Left Title",
@@ -101,6 +107,9 @@ class CallToAction7Page extends BaseCallToAction {
   }
 
   render() {
+    const styling = {
+      backgroundColor: this.getPropValue("cardBackgroundColor"),
+    }
     return (
       <div
         className={this.decorateCSS("container")}
@@ -112,7 +121,7 @@ class CallToAction7Page extends BaseCallToAction {
               <h1>{this.getPropValue("title")}</h1>
               <h3>{this.getPropValue("description")}</h3>
             </div>
-            <div className={this.decorateCSS("card-child")}>
+            <div className={this.decorateCSS("card-child")} style={styling}>
               <img className={this.decorateCSS("image")} src={this.getPropValue("leftIcon")} width={35} height={35} />
               <h1>{this.getPropValue("leftTitle")}</h1>
               <h3>{this.getPropValue("leftDescription")}</h3>
@@ -127,7 +136,7 @@ class CallToAction7Page extends BaseCallToAction {
                 </span>
               </ComposerLink>
             </div>
-            <div className={this.decorateCSS("card-child")}>
+            <div className={this.decorateCSS("card-child")} style={styling}>
               <img className={this.decorateCSS("image")} src={this.getPropValue("rightIcon")} width={35} height={35} />
               <h1>{this.getPropValue("rightTitle")}</h1>
               <h3>{this.getPropValue("rightDescription")}</h3>

@@ -11,7 +11,7 @@ class Content3 extends BaseContent {
       key: "image",
       displayer: "Image",
       value:
-        "https://imageio.forbes.com/blogs-images/alejandrocremades/files/2018/07/desk-3139127_1920-1200x773.jpg?format=jpg&width=960",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae4968c3c2002cd2f9e5?alt=media&timestamp=1693230627411",
     });
     this.addProp({
       type: "array",
@@ -81,6 +81,7 @@ class Content3 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("content")}>
           <div
             className={`${this.decorateCSS("wrapper")} ${
               this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
@@ -115,6 +116,7 @@ class Content3 extends BaseContent {
                 )}
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

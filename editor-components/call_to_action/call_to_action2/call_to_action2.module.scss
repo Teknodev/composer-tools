@@ -1,7 +1,6 @@
 .container {
   width: 100%;
   padding: 50px 0;
-  background-image: linear-gradient(to right, var(--composer-primary-color) , var(--composer-secondary-color));
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -82,13 +81,12 @@
       h1, h2 {
         width: 100% !important;
       }
-      .button {
-        margin-top: 0;
-        width: 100% !important;
-      }
-      .button2 {
-        width: 100% !important;
-      }
     }
+      .call-to-action2-page-buttons{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+      }
   }
 }
