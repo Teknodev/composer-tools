@@ -32,7 +32,7 @@
         align-items: center;
         position: absolute;
         bottom: 0;
-        transition: height 1s;
+        transition: height 0.5s;
         white-space: pre-line;
         word-break: break-all;
         overflow: hidden;
@@ -43,13 +43,13 @@
           color: #fff;
           font-size: 3rem;
           opacity: 1;
-          transition: opacity 1s;
+          transition: opacity 0.5s;
         }
         p {
           color: #fff;
           font-size: 2rem;
           opacity: 0.8;
-          transition: opacity 1s;
+          transition: opacity 0.5s;
         }
       }
       .right-content {
@@ -59,7 +59,7 @@
         align-items: center;
         position: absolute;
         right: calc(-100vw - 100px);
-        transition: all 1s;
+        transition: all 0.5s;
 
         .card {
           width: 50%;
@@ -127,7 +127,7 @@
               align-items: center;
               gap: 10px;
               opacity: 0;
-              transition: opacity 1s;
+              transition: opacity 0.5s;
 
               .button {
                 margin: 20px 0;
