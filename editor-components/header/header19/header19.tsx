@@ -72,7 +72,7 @@ class Header19 extends BaseHeader {
               key: "left-image",
               displayer: "Background",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2017/01/fashion-split-1-left.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcae1057bdf002c2ad7a3?alt=media&timestamp=1693305546889",
             },
           ],
         },
@@ -100,7 +100,7 @@ class Header19 extends BaseHeader {
               key: "left-image",
               displayer: "Background",
               value:
-                "https://cdn.fashiola.co.uk/L356474659/men-tops-zara-flowers-top-available-in-more-colours.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcae1057bdf002c2ad7a4?alt=media&timestamp=1693305546889",
             },
           ],
         },

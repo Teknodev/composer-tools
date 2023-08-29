@@ -33,7 +33,7 @@ class Header24 extends BaseHeader {
               displayer: "Top Image",
               key: "top-image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-img.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8ed?alt=media&timestamp=1693306974629",
             },
             {
               type: "string",
@@ -52,28 +52,28 @@ class Header24 extends BaseHeader {
               displayer: "Background 1",
               key: "background1",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-3-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8ee?alt=media&timestamp=1693306974629",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-1-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8ef?alt=media&timestamp=1693306974629",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-4-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8f1?alt=media&timestamp=1693306974629",
             },
             {
               type: "image",
               displayer: "Background 4",
               key: "background4",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8f0?alt=media&timestamp=1693306974629",
             },
           ],
         },
@@ -87,7 +87,7 @@ class Header24 extends BaseHeader {
               displayer: "Top Image",
               key: "top-image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-img.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad961?alt=media&timestamp=1693307539687",
             },
             {
               type: "string",
@@ -106,28 +106,28 @@ class Header24 extends BaseHeader {
               displayer: "Background 1",
               key: "background1",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-3-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad962?alt=media&timestamp=1693307539687",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-1-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad963?alt=media&timestamp=1693307539687",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-4-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad964?alt=media&timestamp=1693307539687",
             },
             {
               type: "image",
               displayer: "Background 4",
               key: "background4",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad965?alt=media&timestamp=1693307539687",
             },
           ],
         },
@@ -141,7 +141,7 @@ class Header24 extends BaseHeader {
               displayer: "Top Image",
               key: "top-image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-img.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd323057bdf002c2ad98e?alt=media&timestamp=1693307661626",
             },
             {
               type: "string",
@@ -160,21 +160,21 @@ class Header24 extends BaseHeader {
               displayer: "Background 1",
               key: "background1",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-3-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd323057bdf002c2ad98f?alt=media&timestamp=1693307661626",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-1-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd323057bdf002c2ad98d?alt=media&timestamp=1693307661626",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-4-new-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd323057bdf002c2ad98c?alt=media&timestamp=1693307661626",
             },
             {
               type: "image",

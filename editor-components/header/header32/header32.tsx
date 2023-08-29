@@ -43,7 +43,7 @@ class Header32 extends BaseHeader {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/05/w-investment-pic-opt.png.webp",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddf78057bdf002c2adb7a?alt=media&timestamp=1693310817348",
     });
     this.addProp({
       type: "string",

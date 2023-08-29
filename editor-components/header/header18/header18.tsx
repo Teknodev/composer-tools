@@ -46,7 +46,7 @@ class Header18 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/05/w-architecture-slider-2-opt-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc94d057bdf002c2ad72e?alt=media&timestamp=1693305142416",
             },
             {
               type: "string",
@@ -84,7 +84,7 @@ class Header18 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/05/w-architecture-slider-1-opt-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc94d057bdf002c2ad72d?alt=media&timestamp=1693305142417",
             },
             {
               type: "string",
@@ -122,7 +122,7 @@ class Header18 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-architecture-slider-3-opt.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc94d057bdf002c2ad72c?alt=media&timestamp=1693305142417",
             },
             {
               type: "string",

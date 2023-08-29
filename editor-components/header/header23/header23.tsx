@@ -18,14 +18,14 @@ class HeaderComponent23 extends BaseHeader {
       key: "right-image",
       displayer: "Right Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2020/01/w-mf-slider-1-1-min.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddbe1057bdf002c2adac3?alt=media&timestamp=1693309899505",
     });
     this.addProp({
       type: "image",
       key: "left-image",
       displayer: "Left Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2020/01/w-mf-slider-1-min.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddbe1057bdf002c2adac2?alt=media&timestamp=1693309899505",
     });
     this.addProp({
       type: "object",

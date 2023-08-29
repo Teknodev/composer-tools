@@ -42,14 +42,14 @@ class HeaderComponent31 extends BaseHeader {
       key: "image",
       displayer: "Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/05/w-lawyer-pic-opt.png.webp",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edded6057bdf002c2adb5e?alt=media&timestamp=1693310655431",
     });
     this.addProp({
       type: "image",
       key: "background-image",
       displayer: "Background Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/05/w-lawyer-pic-bg-opt.jpg?id=35885",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edded6057bdf002c2adb5f?alt=media&timestamp=1693310655431",
     });
     this.addProp({
       type: "string",
