@@ -32,14 +32,13 @@ class Header12 extends BaseHeader {
         "Test different messages, background and designs. Find winning ad creatives that can bring your startup to the next level. Let Composer be the unfair advantage against your competitors.",
       displayer: "Description",
     });
-
+    
     this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf154?alt=media&timestamp=1685102167066",
     });
-
 
     this.addProp({
       type: "array",

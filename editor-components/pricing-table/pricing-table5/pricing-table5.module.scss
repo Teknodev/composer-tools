@@ -13,21 +13,33 @@
     .price {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
       box-shadow: var(--composer-box-shadow);
-      border-radius: 6px;
       height: max-content;
-      padding: 20px;
+      padding: 35px 20px;
       flex: 1 1;
       min-width: 250px;
-
+      border-radius: 10px;
+      margin: 0 10px;
+      &.border-top{
+        border-top: 3px solid var(--composer-primary-color);
+      }
+      &.border-bottom {
+        border-bottom: 3px solid var(--composer-primary-color);
+      }
+      &.border-all {
+        border: 3px solid var(--composer-primary-color);
+      }
       .image {
         border-radius: 6px;
         box-shadow: var(--composer-box-shadow);
         margin-bottom: 15px;
         align-self: center;
         object-fit: contain;
-        max-width: 300px;
+        max-width: 250px;
         max-height: 180px;
+        padding: 5px;
       }
       .title {
         display: flex;

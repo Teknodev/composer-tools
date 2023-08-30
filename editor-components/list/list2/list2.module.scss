@@ -6,7 +6,9 @@ $cardColor: #1e1e1e;
 .container {
   width: 100%;
   padding: 50px 0;
-
+  display: flex;
+  justify-content: center;
+  
   .max-content {
     max-width: var(--composer-content-width);
     gap: 20px;
@@ -44,7 +46,7 @@ $cardColor: #1e1e1e;
       .content {
         background-color: var(--composer-primary-color);
         display: grid;
-        padding: 0.5em calc(1em + 1.5rem) 0.5em calc(1em + 1rem); /* Adjust padding as needed */
+        padding: 0.5em calc(1em + 1.5rem) 0.5em calc(1em + 1rem); 
         grid-template-areas:
           "icon title"
           "icon text";

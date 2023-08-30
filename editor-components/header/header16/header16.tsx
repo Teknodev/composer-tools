@@ -51,14 +51,14 @@ class HeaderComponent16 extends BaseHeader {
       key: "image",
       displayer: "Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-delivery-girl-1.png.webp",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc7b0057bdf002c2ad640?alt=media&timestamp=1693304729496",
     });
     this.addProp({
       type: "image",
       key: "background-image",
       displayer: "Background Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-delivery-top-bg-1.jpg?id=55173",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc7b0057bdf002c2ad641?alt=media&timestamp=1693304729496",
     });
     this.addProp({
       type: "boolean",

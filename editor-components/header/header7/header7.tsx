@@ -70,7 +70,7 @@ class Header7 extends BaseHeader {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://www.blogtyrant.com/wp-content/uploads/2017/02/how-to-write-a-good-blog-post.png",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b25d68c3c2002cd2fad1?alt=media&timestamp=1693234196296",
     });
   }
   getName(): string {

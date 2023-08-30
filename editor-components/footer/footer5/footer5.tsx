@@ -1,294 +1,309 @@
 import * as React from "react";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer5.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Footer5Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "object",
-      key: "footer",
-      displayer: "Footer",
+      type: "image",
+      key: "footer-logo",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4b552057bdf002c29938a?alt=media&timestamp=1692710207706",
+      displayer: "Footer Logo",
+    })
+    this.addProp({
+      type: "array",
+      key: "footerInfos",
+      displayer: "Footer Infos",
+      value: [
+            {
+              type: "string",
+              key: "footerInfoTitle",
+              displayer: "Footer Info Title",
+              value: "Office: (623) 680-4899"
+            },
+            {
+              type: "string",
+              key: "footerInfoTitle",
+              displayer: "Footer Info Title",
+              value: "Fax: (623) 680-4899"
+            },
+            {
+              type: "string",
+              key: "footerInfoTitle",
+              displayer: "Footer Info Title",
+              value: "1606 W. Whispering Wind Dr. Suite 2"
+            },
+            {
+              type: "string",
+              key: "footerInfoTitle",
+              displayer: "Footer Info Title",
+              value: "ROC B-3 242965"
+            },
+            {
+              type: "string",
+              key: "footerInfoTitle",
+              displayer: "Footer Info Title",
+              value: "ROC KA 291558"
+            },
+      ]
+    })
+    this.addProp({
+      type: "array",
+      key: "footerSocials",
+      displayer: "Footer Socials",
+      value: [
+        {
+        type: "object",
+        key: "footerSocialIconBox",
+        displayer: "Footer Social Icon Box",
+        value: [
+          {
+            type: "page",
+            key: "footerSocialIconLink",
+            displayer: "Footer Social Icon Link",
+            value: ""
+          },
+          {
+            type: "image",
+            key: "footerInfoSocialIcon",
+            displayer: "Footer Info Social Icon",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299694?alt=media&timestamp=1692713363046"
+          },
+          ]
+        },
+        {
+        type: "object",
+        key: "footerSocialIconBox",
+        displayer: "Footer Social Icon Box",
+        value: [
+          {
+            type: "page",
+            key: "footerSocialIconLink",
+            displayer: "Footer Social Icon Link",
+            value: ""
+          },
+          {
+            type: "image",
+            key: "footerInfoSocialIcon",
+            displayer: "Footer Info Social Icon",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299693?alt=media&timestamp=1692713363046"
+          },
+          ]
+        },
+        {
+        type: "object",
+        key: "footerSocialIconBox",
+        displayer: "Footer Social Icon Box",
+        value: [
+          {
+            type: "page",
+            key: "footerSocialIconLink",
+            displayer: "Footer Social Icon Link",
+            value: ""
+          },
+          {
+            type: "image",
+            key: "footerInfoSocialIcon",
+            displayer: "Footer Info Social Icon",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299692?alt=media&timestamp=1692713363046"
+          },
+          ]
+        },
+      ]
+    })
+    this.addProp({
+      type: "array",
+      key: "footerLinks",
+      displayer: "Footer Links",
       value: [
         {
           type: "string",
-          key: "footer-text",
-          value: "© 2023 All rights reserved.",
-          displayer: "Footer Text",
+          key: "footerLinkSubTitle",
+          displayer: "Footer Link Subtitle",
+          value: "Quick Links"
         },
-      ],
-    });
-
+        {
+          type: "array",
+          key: "footerLinkRow",
+          displayer: "Footer Link Row",
+          value: [
+                {
+                  type: "object",
+                  key: "footerLinkBox",
+                  displayer: "Footer Link Box",
+                  value: [
+                    {
+                      type: "page",
+                      key: "footerLink",
+                      displayer: "Footer Link",
+                      value: ""
+                    },
+                    {
+                      type: "string",
+                      key: "footerLinkTitle",
+                      displayer: "Footer Link Title",
+                      value: "Markets We Serve"
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "footerLinkBox",
+                  displayer: "Footer Link Box",
+                  value: [
+                    {
+                      type: "page",
+                      key: "footerLink",
+                      displayer: "Footer Link",
+                      value: ""
+                    },
+                    {
+                      type: "string",
+                      key: "footerLinkTitle",
+                      displayer: "Footer Link Title",
+                      value: "Subcontractors"
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "footerLinkBox",
+                  displayer: "Footer Link Box",
+                  value: [
+                    {
+                      type: "page",
+                      key: "footerLink",
+                      displayer: "Footer Link",
+                      value: ""
+                    },
+                    {
+                      type: "string",
+                      key: "footerLinkTitle",
+                      displayer: "Footer Link Title",
+                      value: "Warrenty"
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "footerLinkBox",
+                  displayer: "Footer Link Box",
+                  value: [
+                    {
+                      type: "page",
+                      key: "footerLink",
+                      displayer: "Footer Link",
+                      value: ""
+                    },
+                    {
+                      type: "string",
+                      key: "footerLinkTitle",
+                      displayer: "Footer Link Title",
+                      value: "Testimonials"
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "footerLinkBox",
+                  displayer: "Footer Link Box",
+                  value: [
+                    {
+                      type: "page",
+                      key: "footerLink",
+                      displayer: "Footer Link",
+                      value: ""
+                    },
+                    {
+                      type: "string",
+                      key: "footerLinkTitle",
+                      displayer: "Footer Link Title",
+                      value: "Latest News"
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "footerLinkBox",
+                  displayer: "Footer Link Box",
+                  value: [
+                    {
+                      type: "page",
+                      key: "footerLink",
+                      displayer: "Footer Link",
+                      value: ""
+                    },
+                    {
+                      type: "string",
+                      key: "footerLinkTitle",
+                      displayer: "Footer Link Title",
+                      value: "Contact Us"
+                    },
+                  ]
+                },
+          ]
+        }
+      ]
+    })
     this.addProp({
-      type: "array",
-      key: "footer-table-item",
-      displayer: "Footer Table Item",
+      type: "object",
+      key: "footerForm",
+      displayer: "Footer Form",
       value: [
         {
-          type: "object",
-          key: "table-items",
-          displayer: "Table Item",
-          value: [
-            {
-              type: "array",
-              key: "table-item",
-              displayer: "Footer",
-              value: [
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Products",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Create Website",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Secure Cloud Hosting",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "table-item",
-              displayer: "Footer",
-              value: [
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "About",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Careers",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Support",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "table-item",
-              displayer: "Footer",
-              value: [
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Blog",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Ebooks",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Whitepapers",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "table-item",
-              displayer: "Footer",
-              value: [
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Help Center",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Contact Us",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item-title",
-                      value: "Privacy Policy",
-                      displayer: "Item Title",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          type: "string",
+          key: "footerFormTitle",
+          displayer: "Footer Form Title",
+          value: "Stay Connected"
         },
-      ],
+        {
+          type: "string",
+          key: "footerFormPlaceholder",
+          displayer: "Footer Form Placeholder",
+          value: "Type your email here"
+        },
+        {
+          type: "string",
+          key: "footerFormButton",
+          displayer: "Footer Form Button",
+          value: "Join"
+        },
+        {
+          type: "page",
+          key: "footerFormPage",
+          displayer: "Footer Form Page",
+          value: ""
+        }
+      ]
+    })
+    this.addProp({
+      type: "object",
+      key: "footerAboutUs",
+      displayer: "Footer About Us",
+      value: [
+        {
+          type: "string",
+          key: "footerAboutUsTitle",
+          displayer: "Footer About Us Title",
+          value: "About Us"
+        },
+        {
+          type: "string",
+          key: "footerAboutUsText",
+          displayer: "Footer About Us Text",
+          value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod eu lorem et ultricies. In porta lorem at dui semper porttitor. Nullam quis cursus dui. Cras tincidunt vehicula tellus eu facilisis. Donec nisi turpis, iaculis et arcu a, aliquet ultrices nisl. Nam in pharetra odio, ac blandit metus. Suspendisse potenti. Praesent elementum diam non orci cursus rutrum. Pellentesque condimentum ultrices dignissim. Sed a tempor ligula, vel luctus sapien. Mauris vehicula rutrum massa. Duis condimentum, ex quis ullamcorper rhoncus, erat libero tempor arcu, condimentum facilisis tellus lectus ut nunc. Pellentesque vitae faucibus diam. Vestibulum eu erat ex. Ut justo neque, varius aliquet erat vel, scelerisque convallis lacus. Mauris semper lorem mauris, sed dignissim eros consectetur nec."
+        }
+      ]
+    })
+    this.addProp({
+      type: "string",
+      key: "footer-bottom-text",
+      value: "© 2021 HQ Construction LLC. All Rights Reserved.",
+      displayer: "Footer Text",
     });
+
   }
 
   getName(): string {
@@ -299,35 +314,66 @@ class Footer5Page extends BaseFooter {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-list-page")}>
-            <div className={this.decorateCSS("item-div")}>
-              {this.getPropValue("footer-table-item").map((table: any) => {
-                return table.value.map(
-                  (tableItem: any, indexTableItem: number) => {
-                    return (
-                      <ul
-                        key={indexTableItem}
-                        className={this.decorateCSS("list-group")}
-                      >
-                        {tableItem.value.map(
-                          (tableData: any, indexTableData: number) => {
-                            return (
-                              <li
-                                key={indexTableData}
-                                className={this.decorateCSS("list-item")}
-                              >
-                                {tableData.value[0].value}
-                              </li>
-                            );
-                          }
-                        )}
-                      </ul>
-                    );
-                  }
-                );
-              })}
+          <div className={this.decorateCSS("toppom")}>
+            <div className={this.decorateCSS("footer-left")}>
+              <div className={this.decorateCSS("logo")}>
+                <img src={this.getPropValue("footer-logo")} alt="logo" />
+              </div>
+              <div className={this.decorateCSS("footer-infos")}>
+              {this.castToObject<[]>("footerInfos").map((info: any, index: number) => (
+                  <div className={this.decorateCSS("footer-info-row")} key={index}>
+                    <p>{info.value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className={this.decorateCSS("social-icons")}>
+                {this.castToObject<[]>("footerSocials").map((social: any, index: number) => (
+                  <div className={this.decorateCSS("social-icon-row")} key={index}>
+                    <ComposerLink path={social.value[0].value}>
+                      <img src={social.value[1].value} alt="social-icon" />
+                    </ComposerLink>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h2>{this.getPropValue("footer")[0].value}</h2>
+            <div className={this.decorateCSS("footer-center")}>
+              <div className={this.decorateCSS("footer-links")}>
+                <h2>{this.getPropValue("footerLinks")[0].value}</h2>
+                {this.getPropValue("footerLinks")[1].value.map((link: any, index: number) => (
+                  <div className={this.decorateCSS("footer-link-row")} key={index}>
+                    <ComposerLink path={link.value[0].value}>
+                      <p>{link.value[1].value}</p>
+                    </ComposerLink>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={this.decorateCSS("footer-right")}>
+              <div className={this.decorateCSS("footer-form")}>
+                <h2> 
+                  {this.getPropValue("footerForm")[0].value}
+                </h2>
+                <div className={this.decorateCSS("input-box")}>
+                  <input type="text" placeholder="Type your email here" />
+                  <ComposerLink path={
+                    this.getPropValue("footerForm")[3].value
+                  }>
+                    <button>{this.getPropValue("footerForm")[2].value}</button>
+                  </ComposerLink>
+                </div>
+              </div>
+              <div className={this.decorateCSS("footer-text-area")}>
+                <h2>
+                  {this.getPropValue("footerAboutUs")[0].value}
+                </h2>
+                <p>
+                  {this.getPropValue("footerAboutUs")[1].value}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className={this.decorateCSS("bottom")}>
+            <p>{this.getPropValue("footer-bottom-text")}</p>
           </div>
         </div>
       </div>

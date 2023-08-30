@@ -35,7 +35,7 @@ class HeaderComponent29 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://woodmart.xtemos.com/wp-content/uploads/2021/06/w-education-top-bg.svg?id=38455",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edde21057bdf002c2adb30?alt=media&timestamp=1693310475090",
             },
           ],
         },
@@ -45,7 +45,7 @@ class HeaderComponent29 extends BaseHeader {
           displayer: "Right Image",
           key: "rightImage",
           value:
-            "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/06/w-education-slider-img-1-opt-1.jpg.webp",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edde21057bdf002c2adb2f?alt=media&timestamp=1693310475090",
         },
       ],
     });

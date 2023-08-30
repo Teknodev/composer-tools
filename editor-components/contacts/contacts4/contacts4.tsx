@@ -26,7 +26,7 @@ class Contacts4Page extends BaseContacts {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edf62b057bdf002c2adec0?alt=media&timestamp=1693316630697",
     });
 
     this.addProp({

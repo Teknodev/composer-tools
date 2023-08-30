@@ -7,43 +7,48 @@ class Content9 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "The Power of Advertising",
-    });
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec6a8c057bdf002c2aa09a?alt=media&timestamp=1693215349696"
+    })
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Influencing Minds and Shaping Markets",
-    });
+      value: "About Us"
+    })
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Attract Customers with Cryptocurrency"
+    })
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "From billboards to television commercials to social media ads, we are constantly bombarded with marketing messages trying to persuade us to buy, believe, or support something. The power of advertising is undeniable, as it has the ability to influence minds and shape markets.",
-    });
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. Ven enatis tellus in scelerisque felis.Aliquam id diam maecenas ultricies mi eget mauris."
+    })
     this.addProp({
       type: "object",
-      key: "buttonprop",
+      key: "button",
       displayer: "Button",
       value: [
         {
           type: "string",
-          key: "button",
-          displayer: "Button",
-          value: "More Info",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Read More"
         },
         {
           type: "page",
-          key: "url",
+          key: "buttonLink",
           displayer: "Button Link",
-          value: "",
-        },
-      ],
-    });
+          value: ""
+        }
+      ]
+    })
   }
 
   getName(): string {
@@ -55,12 +60,27 @@ class Content9 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("child")}>
-            <div className={this.decorateCSS("card")}>
-              <h2>{this.getPropValue("subtitle")}</h2>
-              <h1>{this.getPropValue("title")}</h1>
-              <p>{this.getPropValue("description")}</p>
-              <ComposerLink path={this.getPropValue("buttonprop")[1].value}>
-                <button>{this.getPropValue("buttonprop")[0].value}</button>
+            <div className={this.decorateCSS("img-div")}>
+              <img className={this.decorateCSS("img")} src={
+                this.getPropValue("image")
+              } alt="" />
+            </div>
+            <div className={this.decorateCSS("right-side")}>
+              <h3 className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </h3>
+              <h1 className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </h1>
+              <p className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </p>
+              <ComposerLink path={
+                this.getPropValue("button")[1].value
+              }>
+                <button className={this.decorateCSS("button")}>
+                  {this.getPropValue("button")[0].value}
+                </button>
               </ComposerLink>
             </div>
           </div>

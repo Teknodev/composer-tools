@@ -60,7 +60,7 @@ class CallToAction5Page extends BaseCallToAction {
             {
               type: "string",
               key: "listedItem",
-              value: "Join us now and be a part of the movement to create a better world for future generations",
+              value: "Join us now and be a part of the movement to create a better world for future generations to come.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
               displayer: "Item",
             },
           ],
@@ -73,7 +73,7 @@ class CallToAction5Page extends BaseCallToAction {
             {
               type: "string",
               key: "listedItem",
-              value: "Take the first step towards your dreams and start your journey with us",
+              value: "Take the first step towards your dreams and start your journey with us.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
               displayer: "Item",
             },
           ],
@@ -139,7 +139,7 @@ class CallToAction5Page extends BaseCallToAction {
                   </span>
                 </ComposerLink>
               </div>
-
+                  
               <p>
                 <img
                   width={13}

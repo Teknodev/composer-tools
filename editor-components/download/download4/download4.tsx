@@ -28,7 +28,7 @@ class Download4 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Image",
-            value: "https://img.freepik.com/free-photo/business-success-report-graph-concept_53876-124755.jpg?w=1060&t=st=1692185178~exp=1692185778~hmac=796fb7f0e21c407260bf68259936134b5b680cd0edb37f7155e0ea6ce602da57"
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5f9a9057bdf002c29c5ef?alt=media&timestamp=1692793237065"
         })
 
         this.addProp({

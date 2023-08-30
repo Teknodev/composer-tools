@@ -50,7 +50,7 @@ class Header1 extends BaseHeader {
       key: "image",
       displayer: "Image",
       value:
-        "https://visme.co/blog/wp-content/uploads/2022/12/15-Best-Practices-to-Help-You-Improve-Your-Time-Management-Skills-Thumbnail.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b18868c3c2002cd2faad?alt=media&timestamp=1693233916133",
     });
     this.addProp({
       type: "page",

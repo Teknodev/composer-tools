@@ -48,21 +48,21 @@ class HeaderComponent25 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/12/flowers-slider-1-img.png.webp",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafb?alt=media&timestamp=1693310193039",
             },
             {
               type: "image",
               displayer: "Flower Image",
               key: "flower_image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/11/flowers-slider-txt-element.jpg.png.webp",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
             },
             {
               type: "image",
               displayer: "Background Image",
               key: "background_image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/12/flowers-slider-1-bg.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafc?alt=media&timestamp=1693310193039",
             },
             {
               type: "object",
@@ -127,21 +127,21 @@ class HeaderComponent25 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/12/flowers-slider-3-img.png.webp",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf7?alt=media&timestamp=1693310193039",
             },
             {
               type: "image",
               displayer: "Flower Image",
               key: "flower_image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/11/flowers-slider-txt-element.jpg.png.webp",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
             },
             {
               type: "image",
               displayer: "Background Image",
               key: "background_image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/12/flowers-slider-3-bg.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf8?alt=media&timestamp=1693310193039",
             },
             {
               type: "object",
@@ -205,21 +205,21 @@ class HeaderComponent25 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/12/flowers-slider-2-img.png.webp",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf9?alt=media&timestamp=1693310193039",
             },
             {
               type: "image",
               displayer: "Flower Image",
               key: "flower_image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/11/flowers-slider-txt-element.jpg.png.webp",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
             },
             {
               type: "image",
               displayer: "Background Image",
               key: "background_image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2018/11/flowers-slider-2-bg-opt.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafa?alt=media&timestamp=1693310193039",
             },
             {
               type: "object",

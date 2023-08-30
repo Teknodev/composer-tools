@@ -1,7 +1,6 @@
 .container {
   width: 100%;
   padding: 50px 0;
-  background-image: linear-gradient(to right, var(--composer-primary-color) , var(--composer-secondary-color));
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -12,7 +11,7 @@
       align-items: flex-start;
       justify-content: center;
       gap: 20px;
-      padding: 20px 10px;
+      padding: 20px;
       h2 {
         font-weight: 100;
         color: white;
@@ -23,7 +22,13 @@
         color: white;
         margin: 0;
       }
+    }
+    .call-to-action2-page-buttons{
+      width: 98%;
+      display: flex;
+      justify-content: flex-end;
       .button {
+        margin: 0 20px;
         cursor: pointer;
         text-decoration: none;
         text-align: center;
@@ -55,7 +60,6 @@
         font-size: 1.5rem;
         font-weight: 400;
         border-radius: 6px;
-        border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.4);
         width: 250px;
         &:hover {
@@ -77,13 +81,12 @@
       h1, h2 {
         width: 100% !important;
       }
-      .button {
-        margin-top: 0;
-        width: 100% !important;
-      }
-      .button2 {
-        width: 100% !important;
-      }
     }
+      .call-to-action2-page-buttons{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+      }
   }
 }

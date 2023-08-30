@@ -16,21 +16,21 @@ class Download9 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645b4bcdf72de2002cab20d0?alt=media&timestamp=1683704791616",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e604f0057bdf002c29c806?alt=media&timestamp=1692796124621",
         });
 
         this.addProp({
             type: "image",
             key: "leftImage",
             displayer: "Left Container Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645b4b9ef72de2002cab20c6?alt=media&timestamp=1683704746048",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e607da057bdf002c29c8e9?alt=media&timestamp=1692797031449",
         });
 
         this.addProp({
             type: "image",
             key: "rightImage",
             displayer: "Right Container Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645b4b9ef72de2002cab20c5?alt=media&timestamp=1683704746048",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e607da057bdf002c29c8e9?alt=media&timestamp=1692797031449",
         });
 
        

@@ -131,7 +131,7 @@ class Header4 extends BaseHeader {
       key: "image",
       displayer: "Image",
       value:
-        "https://www.verywellfit.com/thmb/wqBuFrNckqrvDCu03mNu1dFcS5M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/1231593-f-i-t-t-principle-what-you-need-for-great-workouts-5b11504731283400369fba5d-a00f22ef5be1441d9678c52b4a7f1cc2.png",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b1f868c3c2002cd2fab9?alt=media&timestamp=1693233999280",
     });
   }
 

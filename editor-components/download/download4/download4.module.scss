@@ -16,10 +16,11 @@
         font-size: 4.5rem;
         word-break: break-word;
         text-align: center;
+        margin-bottom: 10px;
       }
 
       .image {
-        width: 100%;
+        width: 80%;
         height: 500px;
         object-fit: cover;
       }
@@ -43,8 +44,8 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 10px 20px;
-          width: 200px;
+          padding: 15px 20px;
+          width: 250px;
           background-color: var(--composer-primary-color);
           border: 1px solid var(--composer-primary-color);
           border-radius: 10px;
