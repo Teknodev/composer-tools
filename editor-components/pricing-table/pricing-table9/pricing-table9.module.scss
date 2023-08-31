@@ -3,7 +3,7 @@
   overflow-x: auto;
 }
 .table {
-  width: 100%;
+  max-width: var(--composer-content-width);
   border-collapse: collapse;
 
   th,
