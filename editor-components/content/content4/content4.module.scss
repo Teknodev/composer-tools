@@ -10,13 +10,14 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 35px;
 
       .h-group {
         display: flex;
         align-items: center;
         text-align: center;
         flex-direction: column;
+        width: 100%;
       }
 
       h1 {
@@ -40,10 +41,8 @@
         min-height: 130px;
         padding: 10px;
         flex: 1 1;
-        min-width: 600px;
         justify-content: center;
         flex-wrap: wrap;
-
         &:hover {
           box-shadow: var(--composer-box-shadow-hover);
           background-color: var(--composer-primary-color);

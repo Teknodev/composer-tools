@@ -302,17 +302,21 @@ class Content12 extends BaseContent {
               {this.castToObject<Card[]>("team-members").map(
                 (item: Card, indexTeamMembers: number) => {
                   return (
+                    <div style={{
+                      width: 90 / this.getPropValue("reverse") + "%",
+                      display: "flex",
+                      justifyContent: "space-around",
+                    }}>
                     <div
                       key={indexTeamMembers}
-                      style={{ width: 90 / this.getPropValue("reverse") + "%" }}
                       className={this.decorateCSS("basic-card")}
-                    >
+                      >
                       <div className={this.decorateCSS("card")}>
                         <img
                           className={this.decorateCSS("image")}
                           src={item.image}
                           alt="person"
-                        />
+                          />
 
                         {item.cardRowTitles.map(
                           (itemData: cardRowItems, indexItemData: number) => {
@@ -323,12 +327,12 @@ class Content12 extends BaseContent {
                               >
                                 <div
                                   className={this.decorateCSS("itemData-box")}
-                                >
+                                  >
                                   <div
                                     className={this.decorateCSS(
                                       "itemData-title"
                                     )}
-                                  >
+                                    >
                                     <p className={this.decorateCSS("p-title")}>
                                       {itemData.titleRow}
                                     </p>
@@ -346,7 +350,8 @@ class Content12 extends BaseContent {
                               </div>
                             );
                           }
-                        )}
+                          )}
+                        </div>
                       </div>
                     </div>
                   );

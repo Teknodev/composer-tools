@@ -6,7 +6,7 @@
     max-width: var(--composer-content-width);
     display: flex;
     flex-wrap: wrap;
-    margin: auto;
+    justify-content: space-around;
     gap: 20px;
 
     .team {

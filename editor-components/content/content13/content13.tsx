@@ -51,7 +51,7 @@ class Content4 extends BaseContent {
               key: "description",
               displayer: "Description",
               value:
-                "Web hosting refers to the service of providing space on a server to host a website or web application on the internet. Web hosting providers offer various hosting plans and packages to suit different website requirements, including shared hosting, dedicated hosting, cloud hosting, and VPS (Virtual Private Server) hosting.",
+                "Web hosting refers to the service of providing space on a server to host a website or web application on the internet. Web hosting providers offer various hosting plans and packages to suit different website requirements, including shared hosting, dedicated hosting.",
             },
             {
               type: "image",
@@ -141,6 +141,12 @@ class Content4 extends BaseContent {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 4,
+    });
   }
 
   getName(): string {
@@ -157,14 +163,19 @@ class Content4 extends BaseContent {
           </div>
           <div className={this.decorateCSS("card-child")}>
             {this.castToObject<Card[]>("content-card").map(
+              
               (card: Card, index: number) => (
-                <div key={`cnt-4-card-${index}`} className={this.decorateCSS("card")}>
-                  <i>
-                    <img alt="server" src={card.image} />
-                  </i>
-                  <h5>{card.title}</h5>
-                  <p>{card.description}</p>
-                </div>
+                <div style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
+                  <div key={`cnt-4-card-${index}`} className={this.decorateCSS("card")}>
+                    <i>
+                      <img alt="server" src={card.image} />
+                    </i>
+                    <h5>{card.title}</h5>
+                    <p>{card.description}</p>
+                  </div>
+              </div>
               )
             )}
           </div>

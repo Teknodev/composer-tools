@@ -430,6 +430,12 @@ class PricingTable7 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -441,6 +447,9 @@ class PricingTable7 extends BasePricingTable {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<Pricing[]>("price").map((pricing: any, index: number) => (
+            <div style={{
+              width: 90 / this.getPropValue("itemCount") + "%",
+            }}>
             <div key={`price7-${index}`} className={this.decorateCSS("price")}>
               <h2 className={this.decorateCSS("title")}>{pricing.title}</h2>
               <h1 className={this.decorateCSS("price-text")}>
@@ -464,6 +473,7 @@ class PricingTable7 extends BasePricingTable {
                 </span>
               </ComposerLink>
             </div>
+          </div>
           ))}
         </div>
       </div>

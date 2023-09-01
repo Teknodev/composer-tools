@@ -45,7 +45,7 @@ class PricingMultipleTwo extends BasePricingTable {
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 3,
+      value: 2,
     });
 
     this.addProp({

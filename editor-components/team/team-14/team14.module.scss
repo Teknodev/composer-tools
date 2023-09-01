@@ -7,7 +7,7 @@
     margin: auto;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
 
@@ -27,8 +27,8 @@
 
       &:hover {
         .little-container {
-          opacity: 0.8;
-          transition: 0.5s;
+          opacity: 0.6;
+          transition: 0.3s all ease-in-out;
         }
         .image {
           transform: scale(1.1);

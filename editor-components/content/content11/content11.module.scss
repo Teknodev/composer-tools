@@ -42,7 +42,8 @@
     .card-child {
       @include flex-center;
       gap: 20px;
-      
+      justify-content: space-around;
+      flex-wrap: wrap;
       .card {
         background-color: transparent;
         position: relative;

@@ -6,7 +6,7 @@
     max-width: var(--composer-content-width);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     margin: auto;
 
     .title,.description{
@@ -27,7 +27,7 @@
       flex-wrap: wrap;
       justify-content: center;
       width: 100%;
-      gap: 20px;
+      gap: 50px;
 
       .team-member {
         flex: 1 1;

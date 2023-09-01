@@ -319,6 +319,12 @@ class List2 extends BaseList {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 4,
+    });
   }
 
   getName(): string {
@@ -332,7 +338,13 @@ class List2 extends BaseList {
               <ol className={this.decorateCSS("olcards")}>
           {this.castToObject<List2Props>("link-main").map((title: List2Items, indexLinkMain: number) => {
             return (
-                <li>
+                <li style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minWidth : "200px",
+                }}>
                   <div className={this.decorateCSS("content")}>
                     <img src={title.listEmoji}/>
                     <div className={this.decorateCSS("title")}>{title.listTitle}</div>

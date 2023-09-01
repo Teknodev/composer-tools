@@ -433,6 +433,7 @@ class PricingTable9 extends BasePricingTable {
 
     return (
       <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
         <table className={this.decorateCSS("table")}>
           <thead>
             <tr>
@@ -487,6 +488,7 @@ class PricingTable9 extends BasePricingTable {
             </tr>
           </tbody>
         </table>
+      </div>
       </div>
     );
   }

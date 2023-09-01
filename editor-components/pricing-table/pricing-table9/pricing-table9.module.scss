@@ -2,9 +2,12 @@
   width: 100%;
   overflow-x: auto;
 }
-.table {
+.max-content {
   max-width: var(--composer-content-width);
+  margin: auto;
+.table {
   border-collapse: collapse;
+  width: 100%;
 
   th,
   td {
@@ -38,6 +41,7 @@
 .button:hover {
   background-color: white;
   color: var(--composer-primary-color);
+}
 }
 @media only screen and (max-width: 768px) {
   .table {

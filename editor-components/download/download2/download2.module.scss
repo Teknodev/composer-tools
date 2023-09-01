@@ -17,7 +17,6 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            width: 300px;
             box-shadow: var(--composer-box-shadow);
             margin: 20px 40px;
             .card-background{
@@ -57,8 +56,7 @@
               justify-content: center;
               align-items: center;
               button{
-                width: 250px;
-                padding: 10px 0;
+                padding: 10px 30px;
                 border: 1px solid gray;
                 border-radius: 5px;
                 color: rgb(0, 0, 0);
@@ -88,6 +86,27 @@
   @media only screen and (max-width: 768px) {
     .container {
       .max-content {
+        .cards-container{
+          .cards{
+            flex-direction: column;
+            .card{
+              margin: 20px 0;
+              width: 100%;
+              .card-logo{
+                padding: 10px;
+                margin: 20px 0;
+                img{
+                  width: 40px;
+                }
+              }
+              .card-button{
+                button{
+                  padding: 10px;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

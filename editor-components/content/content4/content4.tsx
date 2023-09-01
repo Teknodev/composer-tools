@@ -381,6 +381,12 @@ class Content4 extends BaseContent {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -399,6 +405,9 @@ class Content4 extends BaseContent {
 
             {this.castToObject<Horizontals[]>("horizontal").map(
               (horizontals: any, index: number) => (
+                <div style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
                 <div className={this.decorateCSS("horizontal")} key={index}>
                   <div className={this.decorateCSS("block")}>
                     <div className={this.decorateCSS("title-desc-block")}>
@@ -407,7 +416,7 @@ class Content4 extends BaseContent {
                       </h3>
                       <div
                         className={this.decorateCSS("title-description-div")}
-                      >
+                        >
                         <p className={this.decorateCSS("title-description")}>
                           {horizontals.description}
                         </p>
@@ -418,6 +427,7 @@ class Content4 extends BaseContent {
                     </div>
                   </div>
                 </div>
+              </div>
               )
             )}
           </div>
