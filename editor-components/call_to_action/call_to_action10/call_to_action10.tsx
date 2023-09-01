@@ -105,6 +105,7 @@ class CallToAction10Page extends BaseCallToAction {
           <section className={this.decorateCSS("call-to-action10-container")}>
             <div className={this.decorateCSS("image-background")}>
               <img
+                alt=""
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
               ></img>
@@ -120,6 +121,7 @@ class CallToAction10Page extends BaseCallToAction {
                     return (
                       <li key={index}>
                         <img
+                          alt=""
                           width={15}
                           height={15}
                           src={this.getPropValue("listImage")}

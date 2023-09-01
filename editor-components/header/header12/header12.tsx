@@ -200,7 +200,7 @@ class Header12 extends BaseHeader {
               </div>
 
               <div className={this.decorateCSS("boxes-logo")}>
-                <img className={this.decorateCSS("logoimage")} src={this.getPropValue("image")} />
+                <img className={this.decorateCSS("logoimage")} src={this.getPropValue("image")} alt=""/>
               </div>
 
               <div className={this.decorateCSS("box")}>

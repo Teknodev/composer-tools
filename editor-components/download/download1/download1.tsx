@@ -140,7 +140,7 @@ class DownloadCard1 extends BaseDownload {
               </div>
             </div>
             <div className={this.decorateCSS("page-2")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt=""/>
             </div>
           </div>
         </div>

@@ -65,6 +65,7 @@ class Slider4 extends BaseSlider {
                   src={item.value}
                   className={this.decorateCSS("img")}
                   key={`slider4-${index}`}
+                  alt=""
                 />
               ))}
             </ComposerSlider>

@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "./header19.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import { object } from "yup";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Header19 extends BaseHeader {

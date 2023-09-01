@@ -384,7 +384,7 @@ class Content13 extends BaseContent {
                       </div>
                     </div>
                     <div className={this.decorateCSS("image")}>
-                      <img src={horizontals.image}></img>
+                      <img src={horizontals.image} alt=""></img>
                     </div>
                   </div>
                 </div>
@@ -398,7 +398,7 @@ class Content13 extends BaseContent {
                   <div className={this.decorateCSS("small-image")}>
                     <img
                       src={smallimage.image}
-                      alt={`Small Image ${index + 1}`}
+                      alt={`Small ${index + 1}`}
                       key={index}
                     />
                   </div>

@@ -186,6 +186,7 @@ class PricingTable5 extends BasePricingTable {
             (pricing: any, index: number) => (
               <div key={index} className={this.decorateCSS("price")}>
                 <img
+                  alt=""
                   className={this.decorateCSS("image")}
                   src={pricing.image}
                   width={280}
@@ -195,7 +196,8 @@ class PricingTable5 extends BasePricingTable {
                   <div className={this.decorateCSS("stars")}>
                     {[...Array(Number(pricing.stars))].map(
                       (item: any, indexStars: number) => (
-                        <img key={`stars-${indexStars}`} src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
+                        <img key={`stars-${indexStars}`} src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"
+                        alt=""/>
                       )
                     )}
                   </div>

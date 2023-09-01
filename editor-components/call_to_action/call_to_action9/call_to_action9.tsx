@@ -93,14 +93,14 @@ class CallToAction9Page extends BaseCallToAction {
 
             <div className={this.decorateCSS("sponsor-container")}>
               <div className={this.decorateCSS("sponsor")}>
-                <img src={this.getPropValue("top-left")} />
-                <img src={this.getPropValue("top-center")} />
-                <img src={this.getPropValue("top-right")} />
+                <img src={this.getPropValue("top-left")} alt=""/>
+                <img src={this.getPropValue("top-center")} alt=""/>
+                <img src={this.getPropValue("top-right")} alt=""/>
               </div>
               <div className={this.decorateCSS("sponsor")}>
-                <img src={this.getPropValue("bottom-left")} />
-                <img src={this.getPropValue("bottom-center")} />
-                <img src={this.getPropValue("bottom-right")} />
+                <img src={this.getPropValue("bottom-left")} alt=""/>
+                <img src={this.getPropValue("bottom-center")} alt=""/>
+                <img src={this.getPropValue("bottom-right")} alt=""/>
               </div>
             </div>
           </div>

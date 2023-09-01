@@ -286,12 +286,7 @@ class PricingMultiple extends BasePricingTable {
     return "Multiple Pricing Card";
   }
   render() {
-    const littleScreen = {
-      width: "100%",
-      display: "flex",
-      flex: "wrap",
-      justifyContent: "center",
-    };
+   
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -337,7 +332,7 @@ class PricingMultiple extends BasePricingTable {
                                         "circle-icon"
                                       )}
                                     >
-                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
+                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
                                     </div>
                                     {item.value}
                                   </li>

@@ -4,16 +4,6 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type ISliderData = {
-  title: string;
-  image: string;
-  description: string;
-  button: IButton[];
-};
-
-type IButton = {
-  value: string;
-};
 
 class Header18 extends BaseHeader {
   constructor(props?: any) {

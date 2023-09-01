@@ -172,7 +172,7 @@ class Header11 extends BaseHeader {
                 (card: Card, index: number) => (
                   <div key={`hdr-11-card-${index}`} className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("img-child")}>
-                      <img src={card.image} />
+                      <img src={card.image} alt=""/>
                     </div>
                     <h5>{card.title}</h5>
                     <p>{card.description}</p>

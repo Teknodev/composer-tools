@@ -100,16 +100,16 @@ class Download9 extends BaseDownload {
             <div className={this.decorateCSS("container")}>
                 <div className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("page")}>
-                        <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="background-image" />
+                        <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="background" />
                         <div className={this.decorateCSS("left-container")}>
-                            <img className={this.decorateCSS("left-image")} src={this.getPropValue("leftImage")} alt="left-image" />
+                            <img className={this.decorateCSS("left-image")} src={this.getPropValue("leftImage")} alt="left" />
                         </div>
                         <div className={this.decorateCSS("middle-container")}>
                             <h1 className={this.decorateCSS("middle-title")}>{this.getPropValue("middleTitle")}</h1>
                             <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
                         </div>
                         <div className={this.decorateCSS("right-container")}>
-                            <img className={this.decorateCSS("right-image")} src={this.getPropValue("rightImage")} alt="right-image" />
+                            <img className={this.decorateCSS("right-image")} src={this.getPropValue("rightImage")} alt="right" />
                         </div>
                         <div className={this.decorateCSS("hover-container")}>
                             <h1 className={this.decorateCSS("card-title")}>{this.getPropValue("cardTitle")}</h1>

@@ -92,7 +92,7 @@ export abstract class Component
   }
   getPropValue(propName: string): any {
     let props: TypeUsableComponentProps[] = this.state.componentProps.props.filter(
-      (prop: TypeUsableComponentProps) => prop.key == propName
+      (prop: TypeUsableComponentProps) => prop.key === propName
     );
     let prop = props[0] || null;
     return prop?.value;
@@ -116,24 +116,41 @@ export abstract class Component
       .indexOf(key);
 
 
-      this.state.componentProps.props[i].value = value;
-      this.state.componentProps.props[i] = this.attachValueGetter(
-        this.state.componentProps.props[i]
-      );
-      this.state = ({ componentProps: { ...this.state.componentProps } });
+      
+      const componentPropsCopy = { ...this.state.componentProps };
+      const updatedProps = { ...componentPropsCopy.props[i] };
+      updatedProps.value = value;
+      const updatedPropsWithValueGetter = this.attachValueGetter(updatedProps);
+      componentPropsCopy.props[i] = updatedPropsWithValueGetter;
+      this.setState({ componentProps: componentPropsCopy });
+
+      // this.state.componentProps.props[i].value = value;
+      // this.state.componentProps.props[i] = this.attachValueGetter(
+      //   this.state.componentProps.props[i]
+      // );
+      // this.state = ({ componentProps: { ...this.state.componentProps } });
 
   }
+  // setCSSClasses(key: string, value: { id: string, class: string }[]) {
+  //   this.state.componentProps.cssClasses[key] = value;
+  //   this.state = ({ componentProps: { ...this.state.componentProps } });
+  // }
+  
   setCSSClasses(key: string, value: { id: string, class: string }[]) {
+    const componentPropsCopy = { ...this.state.componentProps };
+    const cssClassesCopy = { ...componentPropsCopy.cssClasses };
+    cssClassesCopy[key] = value;
     this.state.componentProps.cssClasses[key] = value;
-    this.state = ({ componentProps: { ...this.state.componentProps } });
+    this.setState({ componentProps: componentPropsCopy});
   }
+
   decorateCSS(cssValue: string) {
     let cssClass = [this.styles[cssValue]];
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
     cssManuplations.forEach(([key, value]: any) => {
-      if (key == cssValue) {
+      if (key === cssValue) {
         value.forEach((el: any) => {
           cssClass.push(el.class);
         });
@@ -150,7 +167,7 @@ export abstract class Component
             propValueItem = this.attachValueGetter(propValueItem);
             propValueItem["getPropValue"] = (propName: string) => {
               return (propValueItem.value as TypeUsableComponentProps[]).filter(
-                (prop: TypeUsableComponentProps) => prop.key == propName
+                (prop: TypeUsableComponentProps) => prop.key === propName
               )[0].value;
             };
           }
@@ -191,45 +208,33 @@ export abstract class Component
 
 export abstract class BaseNavigator extends Component {
   protected category = CATEGORIES.NAVIGATOR;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }
 
 export abstract class Testimonials extends Component {
   protected category = CATEGORIES.TESTIMONIALS;
 
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+ 
 }
 
 export abstract class BaseList extends Component {
   protected category = CATEGORIES.LIST;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }
 
 export abstract class BaseHeader extends Component {
   protected category = CATEGORIES.HEADER;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+ 
 }
 
 export abstract class BasePricingTable extends Component {
   protected category = CATEGORIES.PRICING;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }
 
 export abstract class BaseFooter extends Component {
   protected category = CATEGORIES.FOOTER;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+ 
 
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
@@ -240,51 +245,37 @@ export abstract class BaseFooter extends Component {
 
 export abstract class Team extends Component {
   protected category = CATEGORIES.TEAM;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+ 
 }
 
 export abstract class BaseContent extends Component {
   protected category = CATEGORIES.CONTENT;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }
 
 export abstract class BaseDownload extends Component {
   protected category = CATEGORIES.DOWNLOAD;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }
 
 export abstract class BaseCallToAction extends Component {
   protected category = CATEGORIES.CALLTOACTION;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }
 
 export abstract class BaseSlider extends Component {
   protected category = CATEGORIES.SLIDER;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }
 
 export abstract class BaseFAQ extends Component {
   protected category = CATEGORIES.FAQ;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+ 
 }
 
 export abstract class BaseModal extends Component {
   protected category = CATEGORIES.MODAL;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
     let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
@@ -294,23 +285,17 @@ export abstract class BaseModal extends Component {
 
 export abstract class LogoClouds extends Component {
   protected category = CATEGORIES.LOGOCLOUDS;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }
 
 export abstract class BaseStats extends Component {
   protected category = CATEGORIES.STATS;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+ 
 }
 
 export abstract class BaseContacts extends Component {
   protected category = CATEGORIES.FORM;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
@@ -321,7 +306,5 @@ export abstract class BaseContacts extends Component {
 
 export abstract class BaseFeature extends Component {
   protected category = CATEGORIES.FEATURE;
-  constructor(props: any, styles: any) {
-    super(props, styles);
-  }
+  
 }

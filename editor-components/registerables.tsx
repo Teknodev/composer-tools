@@ -64,7 +64,6 @@ import TeamComponent11 from "./team/team-11/team11";
 import TeamComponent12 from "./team/team-12/team12";
 import TeamComponent13 from "./team/team-13/team13";
 import TeamComponent14 from "./team/team-14/team14";
-import TeamComponent15 from "./team/team-15/team15";
 import HeaderComponent1 from "./header/header1/header1";
 import HeaderComponent2 from "./header/header2/header2";
 import HeaderComponent3 from "./header/header3/header3";

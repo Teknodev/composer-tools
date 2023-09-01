@@ -66,6 +66,7 @@ class Header3 extends BaseHeader {
             </div>
             <div className={this.decorateCSS("image-background")}>
               <img
+                alt=""
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("header")[3].value}
               ></img>

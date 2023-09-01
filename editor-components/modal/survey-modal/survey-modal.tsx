@@ -3,7 +3,7 @@ import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./survey-modal.module.scss";
 import * as Yup from "yup";
-import { ErrorMessage, Formik, Form } from "formik";
+import {  Formik, Form } from "formik";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
@@ -75,6 +75,7 @@ class SurveyModal extends BaseModal {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")} >
             <img
+              alt=""
               className={this.decorateCSS("image")}
               src={this.getPropValue("image")}
             ></img>

@@ -146,7 +146,7 @@ class Navbar2 extends BaseNavigator {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <nav>
-            <img src={this.getPropValue("image")} width={200} />
+            <img src={this.getPropValue("image")} width={200} alt=""/>
             <div className={this.decorateCSS("items")}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
@@ -178,8 +178,9 @@ class Navbar2 extends BaseNavigator {
           </nav>
           <nav className={this.decorateCSS("navigator-mobile")}>
             <div className={this.decorateCSS("navbar")}>
-              <img src={this.getPropValue("image")} width={200} />
+              <img src={this.getPropValue("image")} width={200} alt=""/>
               <img
+                alt=""
                 className={this.decorateCSS("img-hamburger")}
                 src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
                 onClick={() => {
@@ -187,7 +188,7 @@ class Navbar2 extends BaseNavigator {
                 }}
               />
             </div>
-            {this.state.componentProps["navActive"] == true && (
+            {this.state.componentProps["navActive"] === true && (
               <div className={this.decorateCSS("navbar-child")}></div>
             )}
           </nav>

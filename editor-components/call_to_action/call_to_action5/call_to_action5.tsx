@@ -104,7 +104,7 @@ class CallToAction5Page extends BaseCallToAction {
         <div className={this.decorateCSS("max-content")}>
           <section className={this.decorateCSS("call-to-action5-container")}>
             <div className={this.decorateCSS("image-background")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("image")}></img>
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt=""></img>
             </div>
             <div className={this.decorateCSS("call-to-action5")}>
               <h1>{this.getPropValue("title")}</h1>
@@ -115,6 +115,7 @@ class CallToAction5Page extends BaseCallToAction {
                     return (
                       <li key={index}>
                         <img
+                          alt=""
                           width={15}
                           height={15}
                           src={this.getPropValue("listImage")}
@@ -142,6 +143,7 @@ class CallToAction5Page extends BaseCallToAction {
 
               <p>
                 <img
+                  alt=""
                   width={13}
                   height={13}
                   src={this.getPropValue("warningImage")}

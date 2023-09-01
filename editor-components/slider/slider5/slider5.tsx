@@ -108,7 +108,7 @@ class Slider5 extends BaseSlider {
           <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
             {this.castToObject<Card[]>("slider").map(
               (item: Card, index: number) => (
-                <img src={item.image} key={index} />
+                <img src={item.image} key={index} alt=""/>
               )
             )}
           </ComposerSlider>
