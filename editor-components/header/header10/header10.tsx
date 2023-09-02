@@ -69,7 +69,7 @@ class Header10 extends BaseHeader {
                 </div>
               </div>
               <div className={this.decorateCSS("right-content")}>
-                <img src={this.getPropValue("cardImage")} />
+                <img src={this.getPropValue("cardImage")} alt=""/>
               </div>
             </div>
           </div>

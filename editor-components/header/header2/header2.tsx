@@ -62,6 +62,7 @@ class Header2 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <section className={this.decorateCSS("wide-text-container")}>
             <img
+              alt=""
               className={this.decorateCSS("image")}
               src={this.getPropValue("wide-text")[4].value}
             ></img>

@@ -3,9 +3,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table2.module.scss";
 
-type Pricing = {
-  PricingItems : object[]
-};
 type PricingItems = {
   cardTitle: string,
   cardPrice: string,

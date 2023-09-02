@@ -186,6 +186,7 @@ class Slider8 extends BaseSlider {
                       <div className={this.decorateCSS("content-div")}>
                         <div className={this.decorateCSS("img-div")}>
                           <img
+                            alt=""
                             src={item.image}
                             className={this.decorateCSS("img")}
                           />

@@ -1,18 +1,12 @@
 import * as React from "react";
 import styles from "./faq3.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   cardTitle: string;
   description: string;
 };
 
-type Button = {
-  link: string;
-  text: string;
-  isPrimary: boolean;
-};
 
 class FaqContainerTwo extends BaseFAQ {
   constructor(props?: any) {

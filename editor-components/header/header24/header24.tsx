@@ -3,16 +3,7 @@ import styles from "./header24.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-type ISliderData = {
-  title: string;
-  image: string;
-  description: string;
-  button: IButton[];
-};
 
-type IButton = {
-  value: string;
-};
 
 class Header24 extends BaseHeader {
   constructor(props?: any) {

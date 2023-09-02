@@ -152,6 +152,7 @@ class Feature9 extends BaseFeature {
               (horizontals: any, index: number) => (
                 <div className={this.decorateCSS("horizontal")} key={index}>
                   <img
+                    alt=""
                     className={this.decorateCSS("image")}
                     src={horizontals.image}
                   ></img>

@@ -140,7 +140,7 @@ class Content10 extends BaseContent {
                     className={this.decorateCSS("card")}
                   >
                     <i>
-                      <img src={card.image} />
+                      <img src={card.image} alt=""/>
                     </i>
                     <h5>{card.title}</h5>
                     <p>{card.description}</p>

@@ -89,6 +89,7 @@ class Content3 extends BaseContent {
           >
             <div className={this.decorateCSS("image-background")}>
               <img
+                alt=""
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
               ></img>
