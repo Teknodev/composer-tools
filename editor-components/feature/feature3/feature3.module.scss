@@ -8,6 +8,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: space-around;
 
     .simple-boxes {
       width: 100%;
@@ -49,6 +50,9 @@
 
     .max-content {
       gap: 60px !important;
+      .card-item-count{
+        min-width: 100%;
+      }
     }
   }
 }

@@ -175,7 +175,7 @@ class Download2 extends BaseDownload {
             <div className={this.decorateCSS("cards")}>
               {this.castToObject<Cards>("cards").map((card: Card, index: number) => {
                 return (
-                  <div style={{
+                  <div className={this.decorateCSS("card-item-count")} style={{
                     width: 90 / this.getPropValue("itemCount") + "%",
                   }}>
                     <div className={this.decorateCSS("card")} key={index}>

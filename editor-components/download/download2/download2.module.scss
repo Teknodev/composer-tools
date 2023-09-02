@@ -89,22 +89,21 @@
         .cards-container{
           .cards{
             flex-direction: column;
-            .card{
-              margin: 20px 0;
-              width: 100%;
-              .card-logo{
-                padding: 10px;
+            .card-item-count{
+              justify-content: center;
+              min-width: 70%;
+              .card{
                 margin: 20px 0;
-                img{
-                  width: 40px;
-                }
-              }
-              .card-button{
-                button{
+                width: 100%;
+                .card-logo{
                   padding: 10px;
+                  margin: 20px 0;
+                  img{
+                    width: 40px;
+                  }
                 }
-              }
             }
+          }
           }
         }
       }

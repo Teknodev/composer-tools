@@ -5,7 +5,8 @@
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-    
+    display: flex;
+    justify-content: space-around;
     .content {
       display: flex;
       justify-content: center;
@@ -21,6 +22,7 @@
       .card {
         width: 100%;
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 20px;
         
@@ -35,7 +37,6 @@
           box-shadow: var(--composer-box-shadow);
           padding: 20px;
           flex: 1 1;
-          min-width: 250px;
           
           &:hover {
             border: 1px solid var(--composer-primary-color);
@@ -89,5 +90,12 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      .content{
+        .card-item-count{
+          min-width: 100%;
+        }
+      }
+    }
   }
 }
