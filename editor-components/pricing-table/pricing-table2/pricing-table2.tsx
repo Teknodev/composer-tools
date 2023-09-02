@@ -360,6 +360,7 @@ class PricingTable2 extends BasePricingTable {
         {this.castToObject<PricingProps>("pricingTableItem").map(
           (table: PricingItems, index: number) => {
             table.cardList.map((listItem: string, index: number) => {
+               return '';
             } )
             return (
               <div key={index} className={this.decorateCSS("item-card")}>
