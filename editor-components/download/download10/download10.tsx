@@ -162,7 +162,7 @@ class Download10 extends BaseDownload {
                       )
                     )}
                   </div>
-                  <h1 className={this.decorateCSS("number")}></h1>
+                  <h1 className={this.decorateCSS("number")}>''</h1>
                   <p className={this.decorateCSS("info")}>
                     {this.getPropValue("text2")}
                   </p>
