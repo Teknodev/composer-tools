@@ -117,17 +117,33 @@ export abstract class Component
       .indexOf(key);
 
 
-      this.state.componentProps.props[i].value = value;
-      this.state.componentProps.props[i] = this.attachValueGetter(
-        this.state.componentProps.props[i]
-      );
-      this.state = ({ componentProps: { ...this.state.componentProps } });
+      const componentPropsCopy = { ...this.state.componentProps };
+      const updatedProps = { ...componentPropsCopy.props[i] };
+      updatedProps.value = value;
+      const updatedPropsWithValueGetter = this.attachValueGetter(updatedProps);
+      componentPropsCopy.props[i] = updatedPropsWithValueGetter;
+      this.setState({ componentProps: componentPropsCopy });
+
+      // this.state.componentProps.props[i].value = value;
+      // this.state.componentProps.props[i] = this.attachValueGetter(
+      //   this.state.componentProps.props[i]
+      // );
+      // this.state = ({ componentProps: { ...this.state.componentProps } });
 
   }
+  // setCSSClasses(key: string, value: { id: string, class: string }[]) {
+  //   this.state.componentProps.cssClasses[key] = value;
+  //   this.state = ({ componentProps: { ...this.state.componentProps } });
+  // }
+  
   setCSSClasses(key: string, value: { id: string, class: string }[]) {
+    const componentPropsCopy = { ...this.state.componentProps };
+    const cssClassesCopy = { ...componentPropsCopy.cssClasses };
+    cssClassesCopy[key] = value;
     this.state.componentProps.cssClasses[key] = value;
-    this.state = ({ componentProps: { ...this.state.componentProps } });
+    this.setState({ componentProps: componentPropsCopy});
   }
+
   decorateCSS(cssValue: string) {
     let cssClass = [this.styles[cssValue]];
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
