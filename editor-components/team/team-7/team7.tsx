@@ -277,7 +277,7 @@ class Team7 extends Team {
                             {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
                                 return (
                                     <div key={indexCard} style={{ width: 90 / this.getPropValue("reverse") + "%" }} className={this.decorateCSS("card")}>
-                                        <img className={this.decorateCSS("person-image")} src={item.image} alt="image" />
+                                        <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
                                         <div className={this.decorateCSS("person-info")}>
                                             <div className={this.decorateCSS("text-group")}>
                                                 <h1>{item.name}</h1>

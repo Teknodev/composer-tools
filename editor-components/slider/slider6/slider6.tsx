@@ -1,9 +1,10 @@
-import Slider from "react-slick";
+
 import * as React from "react";
 import { BaseSlider} from "../../EditorComponent";
 import styles from "./slider6.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Card = {
   image: string;
@@ -66,7 +67,7 @@ class Slider6 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://cdn2.outdoorphotographer.com/2019/08/Brian_Matiash_Layers_01.jpg",
+              value: "https://media.istockphoto.com/id/1161769559/photo/panoramic-bird-view-of-antalya-and-mediterranean-seacoast-and-beach-with-a-paraglider-antalya.jpg?s=612x612&w=0&k=20&c=BtpqGt8GwIu66v49mKIkh17yTd3FPyAOmPORB-L6zt0=",
             },
           ],
         },
@@ -108,7 +109,7 @@ class Slider6 extends BaseSlider {
       infinite: true,
       speed: 500,
       autoplay: true,
-      autoplaySpeed: 1000,
+      autoplaySpeed: 2500,
       slidesToShow: 5,
       slidesToScroll: 1,
       focusOnSelect: true,
@@ -116,17 +117,18 @@ class Slider6 extends BaseSlider {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <Slider {...settings} className={this.decorateCSS("carousel")}>
+          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
             {this.castToObject<Card[]>("slider").map(
               (item: Card, index: number) => (
                 <img
+                  alt=""
                   src={item.image}
                   className={this.decorateCSS("img")}
                   key={index}
                 />
               )
             )}
-          </Slider>
+          </ComposerSlider>
         </div>
       </div>
     );

@@ -1,8 +1,9 @@
 import * as React from "react";
 import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./slider1.module.scss";
-import Slider from "react-slick";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface Button {
   buttonText: string;
@@ -28,7 +29,7 @@ class Slider1 extends BaseSlider {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
         {
@@ -98,17 +99,18 @@ class Slider1 extends BaseSlider {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
-            <Slider {...settings} className={this.decorateCSS("carousel")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {this.getPropValue("slider").map(
                 (item: any, indexSlider: number) => (
                   <img
+                    alt=""
                     src={item.value}
                     className={this.decorateCSS("img")}
                     key={indexSlider}
                   />
                 )
               )}
-            </Slider>
+            </ComposerSlider>
             <div className={this.decorateCSS("box")}>
               <div className={this.decorateCSS("title")}>
                 <h1>{this.getPropValue("title")}</h1>

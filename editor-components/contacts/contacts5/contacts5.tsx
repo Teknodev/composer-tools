@@ -11,7 +11,7 @@ class Contacts5Page extends BaseContacts {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Hello",
+      value: "Get In Touch",
     });
     this.addProp({
       type: "string",
@@ -49,6 +49,54 @@ class Contacts5Page extends BaseContacts {
       displayer: "Background Image",
       value: "https://wallpaperaccess.com/full/754632.jpg",
     });
+    this.addProp({
+      type: "string",
+      key: "adress",
+      displayer: "Adress",
+      value: "192 West 19th Street, Suite 200, New York, NY 12036",
+    })
+    this.addProp({
+      type: "image",
+      key: "adressImage",
+      displayer: "Adress Image",
+      value: "https://cdn-icons-png.flaticon.com/512/64/64113.png",
+    })
+    this.addProp({
+      type: "string",
+      key: "phone",
+      displayer: "Phone",
+      value: "+ 1235 2355 98",
+    })
+    this.addProp({
+      type: "image",
+      key: "phoneImage",
+      displayer: "Phone Image",
+      value: "https://www.freeiconspng.com/thumbs/phone-icon/office-phone-icon--25.png",
+    })
+    this.addProp({
+      type: "string",
+      key: "email",
+      displayer: "Email",
+      value: "info@yoursite.com"
+    })
+    this.addProp({
+      type: "image",
+      key: "emailImage",
+      displayer: "Email Image",
+      value: "https://cdn-icons-png.flaticon.com/512/725/725680.png",
+    })
+    this.addProp({
+      type: "string",
+      key: "website",
+      displayer: "Website",
+      value: "www.yoursite.com"
+    })
+    this.addProp({
+      type: "image",
+      key: "websiteImage",
+      displayer: "Website Image",
+      value: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Globe_icon.svg/1200px-Globe_icon.svg.png"
+    })
   }
 
   validationSchema = Yup.object().shape({
@@ -60,20 +108,15 @@ class Contacts5Page extends BaseContacts {
   getName(): string {
     return "Contacts 5";
   }
-
   render() {
-    const styling = {
-      backgroundImage: `url('${this.getPropValue("backgroundImage")}')`,
-    };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("contacts5")}>
-            <div className={this.decorateCSS("title")}>
-              <p>{this.getPropValue("subtitle")}</p>
-              <h1>{this.getPropValue("title")}</h1>
-            </div>
-            <div className={this.decorateCSS("contact-form")} style={styling}>
+          <div className={this.decorateCSS("contact-container")}>
+            <div className={this.decorateCSS("contacts5-left")}>
+              <h1>{this.getPropValue("subtitle")}</h1>
+              <div className={this.decorateCSS("contacts5")}>
+            <div className={this.decorateCSS("contact-form")}>
               <Formik
                 initialValues={{ name: "", email: "", message: "" }}
                 validationSchema={this.validationSchema}
@@ -134,6 +177,38 @@ class Contacts5Page extends BaseContacts {
                 )}
               </Formik>
             </div>
+          </div>
+            </div> 
+          
+          <div className={this.decorateCSS("contacts5-right")}>
+            <h1>{this.getPropValue("title")}</h1>
+            <div className={this.decorateCSS("infos")}>
+                <div className={this.decorateCSS("info-row")}>
+                  <div className={this.decorateCSS("img-div")}>
+                    <img src={this.getPropValue("adressImage")} alt="" />
+                  </div>
+                    <p><strong>Adress: </strong>{this.getPropValue("adress")}</p>
+                </div>
+                <div className={this.decorateCSS("info-row")}>
+                  <div className={this.decorateCSS("img-div")}>
+                    <img src={this.getPropValue("phoneImage")} alt="" />
+                  </div>
+                    <p><strong>Phone: </strong>{this.getPropValue("phone")}</p>
+                </div>
+                <div className={this.decorateCSS("info-row")}>
+                  <div className={this.decorateCSS("img-div")}>
+                    <img src={this.getPropValue("emailImage")} alt="" />
+                  </div>
+                    <p><strong>Email: </strong>{this.getPropValue("email")}</p>
+                </div>
+                <div className={this.decorateCSS("info-row")}>
+                  <div className={this.decorateCSS("img-div")}>
+                    <img src={this.getPropValue("websiteImage")} alt="" />
+                  </div>
+                    <p><strong>Website: </strong>{this.getPropValue("website")}</p>
+                </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>

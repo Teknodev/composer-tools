@@ -157,7 +157,7 @@ class PricingMultipleTwo extends BasePricingTable {
                     {
                       type: "page",
                       key: "url",
-                      displayer: "URL",
+                      displayer: "Button Link",
                       value: "",
                     },
                     {
@@ -276,7 +276,7 @@ class PricingMultipleTwo extends BasePricingTable {
                     {
                       type: "page",
                       key: "url",
-                      displayer: "URL",
+                      displayer: "Button Link",
                       value: "",
                     },
                     {
@@ -390,7 +390,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                     className={this.decorateCSS("li")}
                                   >
                                     <div className={this.decorateCSS("circle-icon")}>
-                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
+                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
                                     </div>
                                     {el.value}
                                   </li>

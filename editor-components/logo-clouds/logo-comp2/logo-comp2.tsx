@@ -136,7 +136,7 @@ class LogoComp2Page extends LogoClouds {
                   (section: any, index: number) => (
                     <div key={index} className={this.decorateCSS("image-child")}>
                       {section.items.map((item: any, index: number) => (
-                        <img key={index} width={180} height={90} src={item.value} />
+                        <img key={index} width={180} height={90} src={item.value} alt=""/>
                       ))}
                     </div>
                   )

@@ -41,7 +41,7 @@ class Header10 extends BaseHeader {
       key: "cardImage",
       displayer: "Card Image",
       value:
-        "https://theairambulanceservice.org.uk/wp-content/uploads/fly-images/202063/Screenshot-2020-06-30-at-09.18.45-e1596723111517-652x278-c.png",
+        "https://assets.website-files.com/62d901050b694cd462d2879c/62ed19dbdf1bb80122008552_620bea4ea84d32768b6235c6_1aa.jpeg",
     });
   }
 
@@ -69,7 +69,7 @@ class Header10 extends BaseHeader {
                 </div>
               </div>
               <div className={this.decorateCSS("right-content")}>
-                <img src="https://assets.website-files.com/62d901050b694cd462d2879c/62ed19dbdf1bb80122008552_620bea4ea84d32768b6235c6_1aa.jpeg" />
+                <img src={this.getPropValue("cardImage")} alt=""/>
               </div>
             </div>
           </div>

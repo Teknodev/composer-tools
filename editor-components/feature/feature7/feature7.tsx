@@ -170,7 +170,7 @@ class Feature7 extends BaseFeature {
           <div className={this.decorateCSS("content")}>
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => (
               <div key={indexCards} className={this.decorateCSS("listed")}>
-                <img className={this.decorateCSS("image")} src={card.image}></img>
+                <img className={this.decorateCSS("image")} src={card.image} alt=""></img>
                 <p className={this.decorateCSS("little-text")}>{card.category}</p>
                 <p className={this.decorateCSS("title")}>{card.title}</p>
                 <p className={this.decorateCSS("title-description")}>

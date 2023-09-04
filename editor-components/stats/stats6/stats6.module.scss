@@ -1,12 +1,6 @@
 .container {
   width: 100%;
   padding: 50px 0;
-  background-image: linear-gradient(
-    62deg,
-    var(--composer-primary-color) 0%,
-    var(--composer-secondary-color) 100%
-  );
-  color: white;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -21,9 +15,12 @@
         text-align: center;
         min-width: 250px;
         flex: 1 1;
-
+        box-shadow: var(--composer-box-shadow);
+        border-radius: var(--composer-border-radius);
+        padding: 30px 0;
         img {
           border-radius: 20px;
+          box-shadow: var(--composer-box-shadow);
         }
         h4 {
           font-size: 3rem;

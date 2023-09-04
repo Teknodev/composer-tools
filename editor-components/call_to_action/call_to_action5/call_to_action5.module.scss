@@ -8,7 +8,7 @@
 
     .call-to-action5-container {
       display: flex;
-      gap: 20px;
+      align-items: center;
       .call-to-action5 {
         flex: 1;
         display: flex;
@@ -86,13 +86,13 @@
         }
       }
       .image-background {
-        flex: 1;
-        display: block;
         object-fit: cover;
+        margin-right: 50px;
         .image {
           border-radius: 6px;
           height: 100%;
-          width: 100%;
+          width: 800px;
+          object-fit: cover;
         }
       }
     }

@@ -44,7 +44,7 @@ class Content1 extends BaseContent {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -63,7 +63,7 @@ class Content1 extends BaseContent {
             {
               type: "page",
               key: "link2",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
