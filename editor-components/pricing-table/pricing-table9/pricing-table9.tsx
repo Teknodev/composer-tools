@@ -14,22 +14,9 @@ type Pricing = {
 interface Feature {
   infeature: object[];
   featureTitle: string;
-  basic: basic[];
-  standard: standard[];
-  advenced: advenced[];
+  featureOptions: string;
 }
 
-interface basic {
-  hasFeature: boolean;
-}
-
-interface standard {
-  hasFeature: boolean;
-}
-
-interface advenced {
-  hasFeature: boolean;
-}
 
 class PricingTable9 extends BasePricingTable {
   constructor(props?: any) {
@@ -44,13 +31,13 @@ class PricingTable9 extends BasePricingTable {
       type: "string",
       key: "title2",
       displayer: "Title 2",
-      value: "Standart",
+      value: "Standard",
     });
     this.addProp({
       type: "string",
       key: "title3",
       displayer: "Title 3",
-      value: "Advenced",
+      value: "Advanced",
     });
     this.addProp({
       type: "array",
@@ -69,44 +56,12 @@ class PricingTable9 extends BasePricingTable {
               value: "Customization",
             },
             {
-              type: "object",
-              key: "basic",
-              displayer: "Basic",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for first column",
-                  value: false,
-                },
-              ],
+              type: "string",
+              key: "featureOptions",
+              displayer: "Feature Options",
+              value: "Basic",
             },
-            {
-              type: "object",
-              key: "standard",
-              displayer: "Standard",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for second column",
-                  value: false,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "advenced",
-              displayer: "Advenced",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for third column",
-                  value: true,
-                },
-              ],
-            },
+            
           ],
         },
         {
@@ -121,43 +76,10 @@ class PricingTable9 extends BasePricingTable {
               value: "Live Chat",
             },
             {
-              type: "object",
-              key: "basic",
-              displayer: "Basic",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for first column",
-                  value: false,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "standard",
-              displayer: "Standard",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for second column",
-                  value: false,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "advenced",
-              displayer: "Advenced",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for third column",
-                  value: true,
-                },
-              ],
+              type: "string",
+              key: "featureOptions",
+              displayer: "Feature Options",
+              value: "Basic",
             },
           ],
         },
@@ -173,43 +95,10 @@ class PricingTable9 extends BasePricingTable {
               value: "Support",
             },
             {
-              type: "object",
-              key: "basic",
-              displayer: "Basic",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for first column",
-                  value: false,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "standard",
-              displayer: "Standard",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for second column",
-                  value: true,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "advenced",
-              displayer: "Advenced",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for third column",
-                  value: true,
-                },
-              ],
+              type: "string",
+              key: "featureOptions",
+              displayer: "Feature Options",
+              value: "Basic, Standard",
             },
           ],
         },
@@ -225,43 +114,10 @@ class PricingTable9 extends BasePricingTable {
               value: "Email Marketing",
             },
             {
-              type: "object",
-              key: "basic",
-              displayer: "Basic",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for first column",
-                  value: true,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "standard",
-              displayer: "Standard",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for second column",
-                  value: true,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "advenced",
-              displayer: "Advenced",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for third column",
-                  value: true,
-                },
-              ],
+              type: "string",
+              key: "featureOptions",
+              displayer: "Feature Options",
+              value: "Basic, Standard, Advanced",
             },
           ],
         },
@@ -277,43 +133,10 @@ class PricingTable9 extends BasePricingTable {
               value: "Analytics",
             },
             {
-              type: "object",
-              key: "basic",
-              displayer: "Basic",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for first column",
-                  value: true,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "standard",
-              displayer: "Standard",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for second column",
-                  value: true,
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "advenced",
-              displayer: "Advenced",
-              value: [
-                {
-                  type: "boolean",
-                  key: "hasFeature",
-                  displayer: "Has feature for third column",
-                  value: true,
-                },
-              ],
+              type: "string",
+              key: "featureOptions",
+              displayer: "Feature Options",
+              value: "Basic, Standard, Advanced",
             },
           ],
         },
@@ -321,14 +144,14 @@ class PricingTable9 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "array",
+      type: "object",
       key: "price",
       displayer: "Price Informations",
       value: [
         {
           type: "object",
           key: "pricing",
-          displayer: "Pricing",
+          displayer: "Pricing 1",
           value: [
             {
               type: "string",
@@ -359,7 +182,7 @@ class PricingTable9 extends BasePricingTable {
         {
           type: "object",
           key: "pricing",
-          displayer: "Pricing",
+          displayer: "Pricing 2",
           value: [
             {
               type: "string",
@@ -390,7 +213,7 @@ class PricingTable9 extends BasePricingTable {
         {
           type: "object",
           key: "pricing",
-          displayer: "Pricing",
+          displayer: "Pricing 3",
           value: [
             {
               type: "string",
@@ -445,46 +268,81 @@ class PricingTable9 extends BasePricingTable {
           </thead>
           <tbody>
             {this.castToObject<Feature[]>("pricefeatures").map(
-              (feature: any, index: number) => (
+            (feature: any, index: number) => {
+              const lowerFeatureOptions = (feature.featureOptions).toLowerCase();
+              return (
                 <tr key={index}>
                   <td>{feature.featureTitle}</td>
-                  <td>
-                    {feature.basic[0].value ? <span>✔️</span> : <span>❌</span>}
-                  </td>
-                  <td>
-                    {feature.standard[0].value ? (
-                      <span>✔️</span>
-                    ) : (
-                      <span>❌</span>
-                    )}
-                  </td>
-                  <td>
-                    {feature.advenced[0].value ? (
-                      <span>✔️</span>
-                    ) : (
-                      <span>❌</span>
-                    )}
-                  </td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title1").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title2").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title3").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
                 </tr>
-              )
-            )}
+              );
+            }
+  )}
 
             <tr>
               <td></td>
-              {pricingData.map((pricing: Pricing, index: number) => (
-                <td key={index}>
+                <td>
                   <span className={this.decorateCSS("price-info")}>
-                    <span>per</span> {pricing.duration}
+                    <span>per</span> {
+                      pricingData[0].price
+                    }
                     <br></br>
-                    {pricing.price}
+                    {
+                      pricingData[0].duration
+                    }
                   </span>
-                  <ComposerLink path={pricing.link}>
+                  <ComposerLink path={
+                    pricingData[0].link
+                  }>
                     <span className={this.decorateCSS("button")}>
-                      {pricing.buttonText}
+                      {
+                        pricingData[0].buttonText
+                      }
                     </span>
                   </ComposerLink>
                 </td>
-              ))}
+                <td>
+                  <span className={this.decorateCSS("price-info")}>
+                    <span>per</span> {
+                      pricingData[1].price
+                    }
+                    <br></br>
+                    {
+                      pricingData[1].duration
+                    }
+                  </span>
+                  <ComposerLink path={
+                    pricingData[1].link
+                  }>
+                    <span className={this.decorateCSS("button")}>
+                      {
+                        pricingData[1].buttonText
+                      }
+                    </span>
+                  </ComposerLink>
+                </td>
+                <td>
+                  <span className={this.decorateCSS("price-info")}>
+                    <span>per</span> {
+                      pricingData[2].price
+                    }
+                    <br></br>
+                    {
+                      pricingData[2].duration
+                    }
+                  </span>
+                  <ComposerLink path={
+                    pricingData[2].link
+                  }>
+                    <span className={this.decorateCSS("button")}>
+                      {
+                        pricingData[2].buttonText
+                      }
+                    </span>
+                  </ComposerLink>
+                </td>
             </tr>
           </tbody>
         </table>
