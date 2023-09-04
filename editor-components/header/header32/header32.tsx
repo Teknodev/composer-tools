@@ -122,7 +122,7 @@ class Header32 extends BaseHeader {
               </div>
             </div>
             <div>
-                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="image" />
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />
             </div> 
           </div>
         </div>

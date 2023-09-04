@@ -172,7 +172,7 @@ class Contacts2Page extends BaseContacts {
                     {section.items.map((item: any, index: number) => (
                       <div key={index} className={`${this.decorateCSS("card")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
                         <div className={this.decorateCSS("img-child")}>
-                        <img className={this.decorateCSS("image")} width={50} height={50} src={item.value[0].value} />
+                        <img className={this.decorateCSS("image")} width={50} height={50} src={item.value[0].value} alt=""/>
                         </div>
                         <div className={this.decorateCSS("card-box")}>
                           <h2>{item.value[1].value}</h2>

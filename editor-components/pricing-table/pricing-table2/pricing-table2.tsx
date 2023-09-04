@@ -3,9 +3,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table2.module.scss";
 
-type Pricing = {
-  PricingItems : object[]
-};
 type PricingItems = {
   cardTitle: string,
   cardPrice: string,
@@ -363,6 +360,7 @@ class PricingTable2 extends BasePricingTable {
         {this.castToObject<PricingProps>("pricingTableItem").map(
           (table: PricingItems, index: number) => {
             table.cardList.map((listItem: string, index: number) => {
+               return '';
             } )
             return (
               <div key={index} className={this.decorateCSS("item-card")}>

@@ -160,7 +160,7 @@ class Testimonials2Page extends Testimonials {
                 (item: Item, index: number) => (
                   <div key={index} className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("profile")}>
-                      <img width={50} height={50} src={item.image} />
+                      <img width={50} height={50} src={item.image} alt=""/>
                       <div className={this.decorateCSS("profile-text")}>
                         <h2>{item.name}</h2>
                         <p>{item.nameId}</p>

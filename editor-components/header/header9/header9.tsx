@@ -70,7 +70,7 @@ class Header9 extends BaseHeader {
             </ComposerLink>
           </div>
           <div className={this.decorateCSS("image-background")}>
-            <img className={this.decorateCSS("image")} src={this.getPropValue("wide-text")[4].value}></img>
+            <img className={this.decorateCSS("image")} src={this.getPropValue("wide-text")[4].value} alt=""></img>
           </div>
         </section>
       </div>

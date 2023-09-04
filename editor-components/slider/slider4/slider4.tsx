@@ -275,6 +275,7 @@ class Slider4 extends BaseSlider {
               {this.castToObject<Slider4Props[]>("slider").map((item: Slider4Props, index: number) => (
                 <div className={this.decorateCSS("card")}>
                   <img
+                  alt=""
                   src={item.image}
                   className={this.decorateCSS("img")}
                   key={`slider4-${index}`}

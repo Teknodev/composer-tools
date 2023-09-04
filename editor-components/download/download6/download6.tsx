@@ -82,7 +82,7 @@ class Download6 extends BaseDownload {
               <img
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
-                alt="background-image"
+                alt="background"
               />
             </div>
             <div className={this.decorateCSS("text-container")}>

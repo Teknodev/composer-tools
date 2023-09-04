@@ -168,7 +168,7 @@ class PricingTable3 extends BasePricingTable {
                       return (
                         <li className={this.decorateCSS("list-item")} key={indexText}>
                           <div className={this.decorateCSS("circle-icon")}>
-                            <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
+                            <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
                           </div>
                           {price.value}
                         </li>

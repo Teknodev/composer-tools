@@ -426,7 +426,7 @@ class Footer3Page extends BaseFooter {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("logo")}>
-              <img src={this.getPropValue("logo")} width={200} height={100} />
+              <img src={this.getPropValue("logo")} width={200} height={100} alt=""/>
             </div>
             <div className={this.decorateCSS("items")}>
               {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => (

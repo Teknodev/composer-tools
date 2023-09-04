@@ -122,13 +122,14 @@ class CallToAction7Page extends BaseCallToAction {
               <h3>{this.getPropValue("description")}</h3>
             </div>
             <div className={this.decorateCSS("card-child")} style={styling}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("leftIcon")} width={35} height={35} />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("leftIcon")} width={35} height={35} alt=""/>
               <h1>{this.getPropValue("leftTitle")}</h1>
               <h3>{this.getPropValue("leftDescription")}</h3>
               <ComposerLink path={this.getPropValue("leftButtonPage")}>
                 <span>
                   {this.getPropValue("leftButtonText")}
                   <img
+                    alt=""
                     src={this.getPropValue("leftButtonIcon")}
                     width={15}
                     height={15}
@@ -137,13 +138,14 @@ class CallToAction7Page extends BaseCallToAction {
               </ComposerLink>
             </div>
             <div className={this.decorateCSS("card-child")} style={styling}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("rightIcon")} width={35} height={35} />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("rightIcon")} width={35} height={35} alt=""/>
               <h1>{this.getPropValue("rightTitle")}</h1>
               <h3>{this.getPropValue("rightDescription")}</h3>
               <ComposerLink path={this.getPropValue("rightButtonPage")}>
                 <span>
                   {this.getPropValue("rightButtonText")}
                   <img
+                    alt=""
                     src={this.getPropValue("rightButtonIcon")}
                     width={15}
                     height={15}

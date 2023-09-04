@@ -70,7 +70,7 @@ class Team11 extends Team {
             <div className={this.decorateCSS("team-members")}>
               {this.getPropValue("team-members").map(
                 (item: any, indexTeamMembers: number) => (
-                  <img key={indexTeamMembers} src={item.value} />
+                  <img key={indexTeamMembers} src={item.value} alt=""/>
                 )
               )}
             </div>

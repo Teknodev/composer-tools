@@ -247,7 +247,7 @@ class Header20 extends BaseHeader {
                 </div>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={this.getPropValue('item-right-bottom-right')[0].value}/>
+                    <img src={this.getPropValue('item-right-bottom-right')[0].value} alt=""/>
                   </div>  
                 </div>
               </div>
