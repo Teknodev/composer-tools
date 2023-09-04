@@ -31,7 +31,7 @@ class Team9 extends Team {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -54,7 +54,7 @@ class Team9 extends Team {
     this.addProp({
       type: "number",
       key: "reverse",
-      displayer: "Reverse Count",
+      displayer: "Item Count in a Row",
       value: 3,
     });
 

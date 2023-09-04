@@ -33,9 +33,8 @@
         padding: 40px 30px;
         width: 100%;
         min-height: 300px;
-        color: white;
-        background-color: var(--composer-primary-color);
         margin-right: 20px;
+        box-shadow: var(--composer-box-shadow);
         h1 {
           margin: 0;
         }
@@ -46,7 +45,6 @@
         }
         span {
           text-decoration: none;
-          color: white;
           transition: all 0.5s;
           display: flex;
           font-size: 1.5rem;

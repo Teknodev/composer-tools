@@ -26,13 +26,10 @@
         );
         -webkit-background-clip: text;
         font-size: 4.5rem;
-        font-weight: 700;
+        font-weight: bold;
+        letter-spacing: 1px;
       }
-      .description {
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 0;
-      }
+      
       .button {
         transition: all 0.3s;
         cursor: pointer;
@@ -52,9 +49,28 @@
           background: transparent;
         }
       }
+      .desc-box{
+        display: flex;
+        justify-content: center;
+      .description {
+        text-align: left;
+        font-size: 1.5rem;
+        font-weight: 0;
+        width: 20%;
+        min-height: 100%;
+        padding: 20px;
+        background: linear-gradient(
+          90deg,
+          var(--composer-primary-color),
+          var(--composer-secondary-color)
+        );
+        border-radius: 10px;
+        color: white;
+        margin-left: 10px;
+      }
       .wide-image {
-        width: 100%;
-        max-width: 600px;
+        width: 50%;
+        max-width: 350px;
         border-radius: 20px;
         background: linear-gradient(
           90deg,
@@ -65,6 +81,7 @@
         img {
           width: 100%;
         }
+      }
       }
     }
   }
