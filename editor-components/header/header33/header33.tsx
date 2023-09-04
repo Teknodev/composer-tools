@@ -46,7 +46,7 @@ class HeaderComponent33 extends BaseHeader {
           displayer: "Background Image 1",
           key: "background1",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5ed75057bdf002c2c2cb1?alt=media&timestamp=1693838686881",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5ed75057bdf002c2c2cb1?alt=media&timestamp=1693841998226",
         },
       ],
     });

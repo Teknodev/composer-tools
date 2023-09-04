@@ -116,20 +116,11 @@ export abstract class Component
       .map((prop: any) => prop.key)
       .indexOf(key);
 
-
-      const componentPropsCopy = { ...this.state.componentProps };
-      const updatedProps = { ...componentPropsCopy.props[i] };
-      updatedProps.value = value;
-      const updatedPropsWithValueGetter = this.attachValueGetter(updatedProps);
-      componentPropsCopy.props[i] = updatedPropsWithValueGetter;
-      this.setState({ componentProps: componentPropsCopy });
-
-      // this.state.componentProps.props[i].value = value;
-      // this.state.componentProps.props[i] = this.attachValueGetter(
-      //   this.state.componentProps.props[i]
-      // );
-      // this.state = ({ componentProps: { ...this.state.componentProps } });
-
+      this.state.componentProps.props[i].value = value;
+      this.state.componentProps.props[i] = this.attachValueGetter(
+        this.state.componentProps.props[i]
+      );
+      this.setState({ componentProps: { ...this.state.componentProps } });
   }
   // setCSSClasses(key: string, value: { id: string, class: string }[]) {
   //   this.state.componentProps.cssClasses[key] = value;
