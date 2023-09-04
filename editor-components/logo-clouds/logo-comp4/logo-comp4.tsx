@@ -33,7 +33,7 @@ class LogoComp4Page extends LogoClouds {
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg",
+      value: "https://images.unsplash.com/photo-1464618663641-bbdd760ae84a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2Vic2l0ZSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
     });
     this.addProp({
       type: "array",
@@ -103,7 +103,7 @@ class LogoComp4Page extends LogoClouds {
                   (section: any, index: number) => (
                     <div key={index} className={this.decorateCSS("image-child")}>
                       {section.items.map((item: any, index: number) => (
-                        <img className={this.decorateCSS("image")} key={index} width={180} height={90} src={item.value} />
+                        <img className={this.decorateCSS("image")} key={index} width={180} height={90} src={item.value} alt=""/>
                       ))}
                     </div>
                   )

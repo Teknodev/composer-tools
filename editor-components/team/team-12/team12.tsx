@@ -22,7 +22,7 @@ class Team12 extends Team {
     this.addProp({
       type: "number",
       key: "reverse",
-      displayer: "Reverse Item Count",
+      displayer: "Item Count in a Row",
       value: 3,
     });
 

@@ -24,7 +24,6 @@ class Header7 extends BaseHeader {
       key: "content",
       displayer: "Content",
       value: "Blogging has become an increasingly popular way for individuals and businesses to share their ideas, connect with their audience, and establish their online presence. In this blog post, we'll explore some of the key benefits of blogging and provide some tips on how to create successful blog content.",
-      completion: "Header content",
     });
 
     this.addProp({
@@ -41,7 +40,7 @@ class Header7 extends BaseHeader {
         {
           type: "page",
           key: "buttonPath",
-          displayer: "Button Path",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -61,7 +60,7 @@ class Header7 extends BaseHeader {
         {
           type: "page",
           key: "buttonPath",
-          displayer: "Button Path",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -71,7 +70,7 @@ class Header7 extends BaseHeader {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://www.blogtyrant.com/wp-content/uploads/2017/02/how-to-write-a-good-blog-post.png",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b25d68c3c2002cd2fad1?alt=media&timestamp=1693234196296",
     });
   }
   getName(): string {
@@ -116,7 +115,7 @@ class Header7 extends BaseHeader {
                 </div>
               </div>
               <div className={this.decorateCSS("image-background")}>
-                <img className={this.decorateCSS("image")} src={this.getPropValue("image")}></img>
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt=""></img>
               </div>
             </div>
           </div>

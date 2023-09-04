@@ -11,6 +11,7 @@ type Pricing = {
   list: TypeUsableComponentProps[];
   title2: string;
   title3: string;
+  buttons: Array<Button>;
 };
 
 type Button = {
@@ -44,40 +45,6 @@ class PricingMultiple extends BasePricingTable {
       value:
         "Pricing is a crucial element of any business strategy, and small businesses need to adopt effective pricing strategies to stay competitive.",
     });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "GET",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: true,
-            },
-          ],
-        },
-      ],
-    });
-
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -138,7 +105,6 @@ class PricingMultiple extends BasePricingTable {
                 },
               ],
             },
-
             {
               type: "string",
               key: "title2",
@@ -151,6 +117,38 @@ class PricingMultiple extends BasePricingTable {
               displayer: "Title-3",
               value: "/monthly",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "GET",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      key: "isPrimary",
+                      displayer: "Is primary",
+                      value: true,
+                    },
+                  ]
+                }
+                ],
+              },
           ],
         },
         {
@@ -214,6 +212,38 @@ class PricingMultiple extends BasePricingTable {
               displayer: "Title-3",
               value: "/monthly",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "GET",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      key: "isPrimary",
+                      displayer: "Is primary",
+                      value: true,
+                    },
+                  ]
+                }
+                ],
+              },
           ],
         },
         {
@@ -277,6 +307,38 @@ class PricingMultiple extends BasePricingTable {
               displayer: "Title-3",
               value: "/monthly",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "GET",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      key: "isPrimary",
+                      displayer: "Is primary",
+                      value: true,
+                    },
+                  ]
+                }
+                ],
+              },
           ],
         },
       ],
@@ -286,13 +348,6 @@ class PricingMultiple extends BasePricingTable {
     return "Multiple Pricing Card";
   }
   render() {
-    const littleScreen = {
-      width: "100%",
-      display: "flex",
-      flex: "wrap",
-      justifyContent: "center",
-    };
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -337,7 +392,7 @@ class PricingMultiple extends BasePricingTable {
                                         "circle-icon"
                                       )}
                                     >
-                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
+                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
                                     </div>
                                     {item.value}
                                   </li>
@@ -347,28 +402,28 @@ class PricingMultiple extends BasePricingTable {
                           </ul>
                         </div>
                         <div className={this.decorateCSS("card-down")}>
-                          {this.castToObject<Button[]>("buttons").map(
-                            (item: Button, indexButtons: number) => {
-                              return (
-                                <ComposerLink
-                                  key={indexButtons}
-                                  path={item.url}
-                                >
-                                  <button
-                                    className={
-                                      this.decorateCSS("button") +
-                                      " " +
-                                      (item.isPrimary
-                                        ? this.decorateCSS("primary")
-                                        : this.decorateCSS("secondary"))
-                                    }
-                                  >
-                                    {item.buttonText}
-                                  </button>
-                                </ComposerLink>
-                              );
-                            }
-                          )}
+                                {price.buttons.map(
+                                  (item: Button, indexButtons: number) => {
+                                    return (
+                                      <ComposerLink
+                                        key={indexButtons}
+                                        path={item.url}
+                                      >
+                                        <button
+                                          className={
+                                            this.decorateCSS("button") +
+                                            " " +
+                                            (item.isPrimary
+                                              ? this.decorateCSS("primary")
+                                              : this.decorateCSS("secondary"))
+                                          }
+                                        >
+                                          {item.buttonText}
+                                        </button>
+                                      </ComposerLink>
+                                    );
+                                  }
+                                )}
                         </div>
                       </div>
                     </div>

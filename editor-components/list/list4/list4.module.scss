@@ -14,13 +14,16 @@
       display: flex;
       flex-direction: column;
       box-shadow: var(--composer-box-shadow);
-      border-top: 5px solid var(--composer-primary-color);
+      border-top: 5px solid var(--composer-secondary-color);
       border-radius: 6px;
       height: max-content;
       min-width: 250px;
       flex: 1 1;
-      padding: 20px;
-
+      padding: 20px 20px 60px 20px;
+      -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%); 
+      clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%);
+      background: var(--composer-primary-color);
+      color: white;
       .title {
         display: block;
         font-weight: bold;
@@ -32,7 +35,7 @@
         width: 100%;
         max-width: 180px;
         margin: 0 0 12px 0;
-        border: 1px solid var(--composer-primary-color);
+        border: 1px solid var(--composer-secondary-color);
         padding: 0;
       }
       .list-group {
@@ -48,8 +51,7 @@
           transition: all 0.5s;
           margin-bottom: 5px;
           &:hover {
-            padding-left: 5px;
-            color: var(--composer-primary-color);
+            padding-left: 2px;
           }
         }
       }

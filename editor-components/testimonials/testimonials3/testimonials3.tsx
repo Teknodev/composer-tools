@@ -42,14 +42,12 @@ class Testimonials3Page extends Testimonials {
                       key: "subtitle",
                       value: "''good and responsive design''",
                       displayer: "Subtitle",
-                      completion: "Testimonial about agency that mentions one of the following benefits: friendly approach, potential partnership"
                     },
                     {
                       type: "string",
                       key: "title",
                       value: "Matt Kenton",
                       displayer: "Title",
-                      completion: "Full name 1"
                     },
                   ],
                 },
@@ -69,14 +67,12 @@ class Testimonials3Page extends Testimonials {
                       key: "subtitle",
                       value: "''fast and good support team''",
                       displayer: "Subtitle",
-                      completion: "Testimonial about agency that mentions one of the following benefits: high technical quality, crystal clear communication"
                     },
                     {
                       type: "string",
                       key: "title",
                       value: "Tamsen Fannie",
                       displayer: "Title",
-                      completion: "Full name 2"
                     },
                   ],
                 },
@@ -96,14 +92,12 @@ class Testimonials3Page extends Testimonials {
                       key: "subtitle",
                       value: "''Innovative designs and easy use''",
                       displayer: "Subtitle",
-                      completion: "Testimonial about agency that mentions one of the following benefits: fast development, low cost"
                     },
                     {
                       type: "string",
                       key: "title",
                       value: "Brynn Samantha",
                       displayer: "Title",
-                      completion: "Full name 3"
                     },
                   ],
                 },
@@ -134,7 +128,9 @@ class Testimonials3Page extends Testimonials {
                     >
                       <div className={styles["stars"]}>
                         {[...Array(Number(item.value[0].value))].map((item: any, index: number) => (
-                          <img key={`star-testimonials3${index}`} src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
+                          <img key={`star-testimonials3${index}`} 
+                          alt=""
+                          src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
                         ))}
                       </div>
                       <span>{item.value[1].value}</span>

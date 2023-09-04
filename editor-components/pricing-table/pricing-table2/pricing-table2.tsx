@@ -3,143 +3,341 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table2.module.scss";
 
-type Pricing = {
-  image: string;
-  price: string;
-  duration: string;
-  buttonText: string;
-  link: string;
+type PricingItems = {
+  cardTitle: string,
+  cardPrice: string,
+  cardDuration: string,
+  cardImg: string,
+  cardList: string[],
+  cardButtonText: string,
+  cardButtonLink: string
+  map(arg0: (table: PricingItems, index: number) => React.JSX.Element): React.ReactNode;
+};
+
+type PricingProps = {
+  items: PricingItems[]
+  map(arg0: (table: PricingItems, index: number) => React.JSX.Element): React.ReactNode;
 };
 class PricingTable2 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "object",
-      key: "pricing-table",
-      displayer: "Pricing Table",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Pricing Table",
-        },
-      ],
+      type: "string",
+      key: "pricing-table-subtitle",
+      displayer: "Subtitle",
+      value: "WORK PACKAGES"
+    });
+    this.addProp({
+      type: "string",
+      key: "pricing-table-title",
+      displayer: "Title",
+      value: "Pricing Plans"
+    });
+    this.addProp({
+      type: "string",
+      key: "pricing-table-description",
+      displayer: "Desctiption",
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     });
     this.addProp({
       type: "array",
-      key: "pricing-table-item",
+      key: "pricingTableItem",
       displayer: "Pricing Table Item",
       value: [
         {
           type: "object",
-          key: "table-item",
+          key: "tableItem",
           displayer: "Table Item",
           value: [
             {
               type: "string",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8a95f72de2002caaa7ab?alt=media&timestamp=1682606753782",
+              key: "cardTitle",
+              displayer: "Pricing Title",
+              value: "Basic Package"
             },
             {
               type: "string",
-              key: "price",
+              key: "cardPrice",
               displayer: "Price",
-              value: "$50",
+              value: "$450"
             },
             {
               type: "string",
-              key: "duration",
+              key: "cardDuration",
               displayer: "Duration",
-              value: "Enterprise",
+              value: "/month"
+            },
+            {
+              type: "image",
+              key: "cardImg",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3423f057bdf002c295a4b?alt=media&timestamp=1692615215226"
+            },
+            {
+              type: "array",
+              key: "cardList",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Website Design"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Graphic Designing"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Web Development"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Business Consulting"
+                },
+              ]
             },
             {
               type: "string",
-              key: "buttonText",
+              key: "cardButtonText",
               displayer: "Button Text",
-              value: "Get started",
+              value: "Select Now"
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
+              key: "cardButtonLink",
+              displayer: "Button Link",
+              value: ""
+            }
           ],
         },
         {
           type: "object",
-          key: "table-item",
+          key: "tableItem",
           displayer: "Table Item",
           value: [
             {
               type: "string",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8a95f72de2002caaa7aa?alt=media&timestamp=1682606753783",
+              key: "cardTitle",
+              displayer: "Pricing Title",
+              value: "Basic Package"
             },
             {
               type: "string",
-              key: "price",
+              key: "cardPrice",
               displayer: "Price",
-              value: "$150",
+              value: "$450"
             },
             {
               type: "string",
-              key: "duration",
+              key: "cardDuration",
               displayer: "Duration",
-              value: "Enterprise",
+              value: "/month"
+            },
+            {
+              type: "image",
+              key: "cardImg",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3423f057bdf002c295a4a?alt=media&timestamp=1692615215226"
+            },
+            {
+              type: "array",
+              key: "cardList",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Website Design"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Graphic Designing"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Web Development"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Business Consulting"
+                },
+              ]
             },
             {
               type: "string",
-              key: "buttonText",
+              key: "cardButtonText",
               displayer: "Button Text",
-              value: "Get started",
+              value: "Select Now"
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
+              key: "cardButtonLink",
+              displayer: "Button Link",
+              value: ""
+            }
           ],
         },
         {
           type: "object",
-          key: "table-item",
+          key: "tableItem",
           displayer: "Table Item",
           value: [
             {
               type: "string",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8a95f72de2002caaa7a9?alt=media&timestamp=1682606753783",
+              key: "cardTitle",
+              displayer: "Pricing Title",
+              value: "Basic Package"
             },
             {
               type: "string",
-              key: "price",
+              key: "cardPrice",
               displayer: "Price",
-              value: "$350",
+              value: "$450"
             },
             {
               type: "string",
-              key: "duration",
+              key: "cardDuration",
               displayer: "Duration",
-              value: "Enterprise",
+              value: "/month"
+            },
+            {
+              type: "image",
+              key: "cardImg",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3423f057bdf002c295a49?alt=media&timestamp=1692615215226"
+            },
+            {
+              type: "array",
+              key: "cardList",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Website Design"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Graphic Designing"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Web Development"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Business Consulting"
+                },
+              ]
             },
             {
               type: "string",
-              key: "buttonText",
+              key: "cardButtonText",
               displayer: "Button Text",
-              value: "Get started",
+              value: "Select Now"
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
+              key: "cardButtonLink",
+              displayer: "Button Link",
+              value: ""
+            }
+          ],
+        },
+        {
+          type: "object",
+          key: "tableItem",
+          displayer: "Table Item",
+          value: [
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Pricing Title",
+              value: "Basic Package"
             },
+            {
+              type: "string",
+              key: "cardPrice",
+              displayer: "Price",
+              value: "$450"
+            },
+            {
+              type: "string",
+              key: "cardDuration",
+              displayer: "Duration",
+              value: "/month"
+            },
+            {
+              type: "image",
+              key: "cardImg",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3423f057bdf002c295a4c?alt=media&timestamp=1692615215226"
+            },
+            {
+              type: "array",
+              key: "cardList",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Website Design"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Graphic Designing"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Web Development"
+                },
+                {
+                  type: "string",
+                  key: "cardListItem",
+                  displayer: "List Item",
+                  value: "✅ Business Consulting"
+                },
+              ]
+            },
+            {
+              type: "string",
+              key: "cardButtonText",
+              displayer: "Button Text",
+              value: "Select Now"
+            },
+            {
+              type: "page",
+              key: "cardButtonLink",
+              displayer: "Button Link",
+              value: ""
+            }
           ],
         },
       ],
@@ -153,39 +351,52 @@ class PricingTable2 extends BasePricingTable {
   render() {
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("table")}>
-            <h1 className={this.decorateCSS("title")}>
-              {this.getPropValue("pricing-table")[0].value}
-            </h1>
-            <div className={this.decorateCSS("item-div")}>
-              {this.castToObject<Pricing[]>("pricing-table-item").map(
-                (table: any, index: number) => {
-                  return (
-                    <div className={this.decorateCSS("item")} key={index}>
-                      <img
-                        className={this.decorateCSS("image")}
-                        src={table.image}
-                        alt="icon"
-                        width={100}
-                      />
-                      <p className={this.decorateCSS("duration-text")}>
-                        {table.duration}
-                      </p>
-                      <h1 className={this.decorateCSS("price-text")}>{table.price}</h1>
-                      <ComposerLink path={table.link}>
-                        <span className={this.decorateCSS("button")}>
-                          {table.buttonText}
-                        </span>
-                      </ComposerLink>
-                    </div>
-                  );
-                }
-              )}
-            </div>
-          </div>
-        </div>
+  <div className={this.decorateCSS("max-content")}>
+    <div className={this.decorateCSS("table")}>
+      <h3 className={this.decorateCSS("subtitle")}>{this.getPropValue("pricing-table-subtitle")}</h3>
+      <h1 className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</h1>
+      <p className={this.decorateCSS("description")}>{this.getPropValue("pricing-table-description")}</p>
+      <div className={this.decorateCSS("item-div")}>
+        {this.castToObject<PricingProps>("pricingTableItem").map(
+          (table: PricingItems, index: number) => {
+            table.cardList.map((listItem: string, index: number) => {
+               return '';
+            } )
+            return (
+              <div key={index} className={this.decorateCSS("item-card")}>
+                <div className={this.decorateCSS("card-upper")}>
+                  <h3 className={this.decorateCSS("card-title")}>{table.cardTitle}</h3>
+                  <div className={this.decorateCSS("card-price")}>
+                    <span className={this.decorateCSS("price")}>{table.cardPrice}</span>
+                    <span className={this.decorateCSS("duration")}>{table.cardDuration}</span>
+                  </div>
+                </div>
+                <div className={this.decorateCSS("card-bottom")}>
+                  <div className={this.decorateCSS("card-img")}>
+                    <img src={table.cardImg} alt="card-img" />
+                  </div>
+                  <ul className={this.decorateCSS("card-list")}>
+                    {table.cardList.map((listItem: any, index: number) => {
+                      return (
+                        <li key={index} className={this.decorateCSS("card-list-item")}>
+                          <span className={this.decorateCSS("list-item")}>{listItem.value}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <ComposerLink path={table.cardButtonLink}>
+                    <button className={this.decorateCSS("card-button")}>{table.cardButtonText}</button>
+                  </ComposerLink>
+                </div>
+              </div>
+            );
+          }
+        )}
       </div>
+    </div>
+  </div>
+</div>
+
     );
   }
 }

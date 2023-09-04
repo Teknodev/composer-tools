@@ -305,6 +305,7 @@ class Team6 extends Team {
                       <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("top")}>
                           <img
+                            alt=""
                             className={this.decorateCSS("image")}
                             src={card.image}
                           />
@@ -316,7 +317,7 @@ class Team6 extends Team {
                           {card.platforms.map((item: any, indexPlatforms: number) => {
                             return (
                               <ComposerLink key={indexPlatforms} path={item.url}>
-                                <img src={item.icon} />
+                                <img src={item.icon} alt=""/>
                               </ComposerLink>
                             );
                           })}

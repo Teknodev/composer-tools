@@ -29,7 +29,7 @@ class PricingTable5 extends BasePricingTable {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8b72f72de2002caaa7cf?alt=media&timestamp=1682606976136",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
               displayer: "Image",
             },
             {
@@ -65,7 +65,7 @@ class PricingTable5 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -79,7 +79,7 @@ class PricingTable5 extends BasePricingTable {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8b72f72de2002caaa7ce?alt=media&timestamp=1682606976136",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
               displayer: "Image",
             },
             {
@@ -99,7 +99,6 @@ class PricingTable5 extends BasePricingTable {
               key: "price",
               value: "$150",
               displayer: "Price",
-              completion: "Price of product, with currency"
             },
             {
               type: "string",
@@ -112,12 +111,11 @@ class PricingTable5 extends BasePricingTable {
               key: "buttonText",
               value: "Get started",
               displayer: "Button Text",
-              completion: "Button Text for call to buy"
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -131,7 +129,7 @@ class PricingTable5 extends BasePricingTable {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8b72f72de2002caaa7cd?alt=media&timestamp=1682606976136",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
               displayer: "Image",
             },
             {
@@ -167,13 +165,23 @@ class PricingTable5 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
         },
       ],
     });
+
+    this.addProp({
+      type: "select",
+      key: "select",
+      displayer: "Location of Border",
+      value: "None",
+      additionalParams: {
+        selectItems: ["None", "Top" , "Bottom" , "All Around"],
+      }
+    })
   }
 
   getName(): string {
@@ -181,13 +189,15 @@ class PricingTable5 extends BasePricingTable {
   }
 
   render() {
+    const selectValue = this.getPropValue("select");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<PriceList[]>("price-list").map(
             (pricing: any, index: number) => (
-              <div key={index} className={this.decorateCSS("price")}>
+              <div key={index} className={`${this.decorateCSS("price")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
                 <img
+                  alt=""
                   className={this.decorateCSS("image")}
                   src={pricing.image}
                   width={280}
@@ -197,7 +207,9 @@ class PricingTable5 extends BasePricingTable {
                   <div className={this.decorateCSS("stars")}>
                     {[...Array(Number(pricing.stars))].map(
                       (item: any, indexStars: number) => (
-                        <img key={`stars-${indexStars}`} src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
+                        <img key={`stars-${indexStars}`} 
+                        alt=""
+                        src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
                       )
                     )}
                   </div>

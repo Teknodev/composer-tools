@@ -12,8 +12,8 @@
 
       .image-container {
         width: 100%;
-        background-color: var(--composer-primary-color);
         height: 500px;
+        box-shadow: var(--composer-box-shadow);
         .image {
           width: 100%;
           height: 100%;
@@ -31,30 +31,31 @@
         padding: 50px 0;
 
         .title {
-          font-size: 5.5rem;
+          font-size: 4.5rem;
           word-break: break-word;
-          width: 30%;
+          width: 20%;
           text-align: center;
           margin: 0;
         }
 
         .description {
-          font-size: 1.7rem;
+          font-size: 2rem;
           opacity: 0.7;
           word-break: break-word;
-          width: 30%;
+          width: 60%;
           line-height: 30px;
           margin: 0;
+          padding: 0 45px;
         }
 
         .button-group {
-          width: 30%;
+          width: 20%;
           display: flex;
           flex-direction: column;
           justify-content: center;
           gap: 20px;
+          padding: 0 20px 0 0;
           .button {
-            width: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
