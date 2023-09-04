@@ -102,7 +102,7 @@ class Header14 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/megamarket/wp-content/uploads/sites/6/2021/12/slider-2-2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
             },
 
           ],
@@ -130,7 +130,7 @@ class Header14 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/megamarket/wp-content/uploads/sites/6/2022/05/banner-servises.jpg.webp",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
             },
 
           ],
@@ -158,7 +158,7 @@ class Header14 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/megamarket/wp-content/uploads/sites/6/2021/12/shipping-banner-x2.jpg.webp",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
             },
             {
               type: "object",
@@ -192,8 +192,6 @@ class Header14 extends BaseHeader {
 
   render() {
     let items: any = this.castToObject("items");
-    // let button : any =this.getPropValue("buttonprop");
-    // console.log({button});
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
