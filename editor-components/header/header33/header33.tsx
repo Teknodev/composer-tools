@@ -28,13 +28,6 @@ class HeaderComponent33 extends BaseHeader {
               value: "MERRY CHRISTMAS",
             },
             {
-              type: "image",
-              displayer: "Side Image",
-              key: "image",
-              value:
-                "https://woodmart.xtemos.com/wp-content/uploads/revslider/slider-christmas/xmas-tree.svg",
-            },
-            {
               type: "string",
               displayer: "Message",
               key: "message",
@@ -53,42 +46,7 @@ class HeaderComponent33 extends BaseHeader {
           displayer: "Background Image 1",
           key: "background1",
           value:
-            "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/revslider/slider-christmas/xmas-bg.jpg",
-        },
-        {
-          type: "image",
-          displayer: "Background Image 2",
-          key: "background2",
-          value:
-            "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/revslider/slider-christmas/xmas-l-1.png",
-        },
-        {
-          type: "image",
-          displayer: "Background Image 3",
-          key: "background3",
-          value:
-            "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/revslider/slider-christmas/xmas-l-2.png",
-        },
-        {
-          type: "image",
-          displayer: "Background Image 4",
-          key: "background4",
-          value:
-            "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/revslider/slider-christmas/xmas-l-3.png",
-        },
-        {
-          type: "image",
-          displayer: "Background Image 5",
-          key: "background5",
-          value:
-            "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/revslider/slider-christmas/xmas-l-4.png",
-        },
-        {
-          type: "image",
-          displayer: "Background Image 6",
-          key: "background6",
-          value:
-            "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/revslider/slider-christmas/xmas-snow-1.png",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5ed75057bdf002c2c2cb1?alt=media&timestamp=1693838686881",
         },
       ],
     });
@@ -134,39 +92,12 @@ class HeaderComponent33 extends BaseHeader {
             <div className={this.decorateCSS("background-1")}>
               <img src={items[1].value} alt={items[1].displayer} />
             </div>
-            <div className={this.decorateCSS("background-2")}>
-              <img src={items[2].value} alt={items[2].displayer} />
-            </div>
-            <div className={this.decorateCSS("background-3")}>
-              <img src={items[3].value} alt={items[3].displayer} />
-            </div>
-            <div className={this.decorateCSS("background-4")}>
-              <img src={items[4].value} alt={items[4].displayer} />
-            </div>
-            <div className={this.decorateCSS("background-5")}>
-              <img src={items[5].value} alt={items[5].displayer} />
-            </div>
-            <div className={this.decorateCSS("background-6")}>
-              <img src={items[6].value} alt={items[6].displayer} />
-            </div>
             <div className={this.decorateCSS("items")}>
               <div className={this.decorateCSS("top")}>
                 <div className={this.decorateCSS("content")}>
-                  <div className={this.decorateCSS("left-side")}>
-                    <img
-                      src={items[0].value[1].value}
-                      alt={items[0].value[1].displayer}
-                    />
-                  </div>
                   <h1 className={this.decorateCSS("title")}>
                     {items[0].title}
                   </h1>
-                  <div className={this.decorateCSS("right-side")}>
-                    <img
-                      src={items[0].value[1].value}
-                      alt={items[0].value[1].displayer}
-                    />
-                  </div>
                 </div>
               </div>
               <div className={this.decorateCSS("bottom")}>
