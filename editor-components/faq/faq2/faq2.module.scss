@@ -173,8 +173,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 @media only screen and (max-width: 768px) {
   .container {
-    .up-page, .card-page {
-      padding: 0px 20px;
+    .max-content{
+      .card-item-count{
+        min-width: 100%;
+      }
+      .up-page, .card-page {
+        padding: 0px 20px;
+      }
     }
+    
   }
 }

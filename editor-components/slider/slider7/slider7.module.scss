@@ -99,6 +99,8 @@
     padding: 20px 0 20px 0;
 
     .max-content {
+      align-items: center;
+      flex-direction: column;
       .carousel {
         width: 100%;
         display: flex;

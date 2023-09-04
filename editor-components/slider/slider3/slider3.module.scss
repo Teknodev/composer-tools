@@ -73,7 +73,10 @@
         .slider-parent{
           width: 100%;
           .carousel{
-            width: 50%;
+            width: 100%;
+            .img{
+              height: auto;
+            }
           }
         }
         .slider-parent,
