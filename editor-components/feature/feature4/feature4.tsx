@@ -52,7 +52,7 @@ class Feature4 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -91,7 +91,7 @@ class Feature4 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -130,7 +130,7 @@ class Feature4 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -151,7 +151,7 @@ class Feature4 extends BaseFeature {
             {this.castToObject<Verticals[]>("vertical-card").map(
               (vertical: any, index: number) => (
                 <div className={this.decorateCSS("vertical")} key={index}>
-                  <img className={this.decorateCSS("image")} src={vertical.image}></img>
+                  <img className={this.decorateCSS("image")} src={vertical.image} alt=""></img>
                   <h3 className={this.decorateCSS("title")}>{vertical.title}</h3>
                   <p className={this.decorateCSS("long-text")}>{vertical.description}</p>
 

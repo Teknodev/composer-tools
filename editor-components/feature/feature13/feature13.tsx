@@ -15,12 +15,12 @@ class Feature13 extends BaseFeature {
     this.addProp({
       type: "object",
       key: "component-position",
-      displayer: "Component Position",
+      displayer: "Column Direction",
       value: [
         {
-          type: "string",
+          type: "boolean",
           key: "position",
-          value: "left",
+          value: false,
           displayer: "Position",
         },
       ],
@@ -180,7 +180,7 @@ class Feature13 extends BaseFeature {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {this.getPropValue("component-position")[0].value == "left" && (
+            {this.getPropValue("component-position")[0].value === true && (
               <div className={this.decorateCSS("message")}>
                 <h1>{this.getPropValue("text")[0].value}</h1>
                 <p>{this.getPropValue("text")[1].value}</p>
@@ -197,7 +197,7 @@ class Feature13 extends BaseFeature {
               {this.castToObject<CardMultiple[]>("multiple-card").map(
                 (multiple: any, index: number) => (
                   <div className={this.decorateCSS("multiple")} key={index}>
-                    <img className={this.decorateCSS("image")} src={multiple.image}></img>
+                    <img className={this.decorateCSS("image")} src={multiple.image} alt=""></img>
                     <h3 className={this.decorateCSS("title")}>{multiple.title}</h3>
                     <p className={this.decorateCSS("long-text")}>
                       {multiple.description}
@@ -207,7 +207,7 @@ class Feature13 extends BaseFeature {
               )}
             </div>
 
-            {this.getPropValue("component-position")[0].value == "right" && (
+            {this.getPropValue("component-position")[0].value === false && (
               <div className={this.decorateCSS("message")}>
                 <h1>{this.getPropValue("text")[0].value}</h1>
                 <p>{this.getPropValue("text")[1].value}</p>
@@ -220,16 +220,6 @@ class Feature13 extends BaseFeature {
           </div>
         </div>
 
-        {this.getPropValue("component-position")[0].value == "right" && (
-          <div className={this.decorateCSS("content")}>
-            <h1>{this.getPropValue("text")[0].value}</h1>
-            <p>{this.getPropValue("text")[1].value}</p>
-
-            <span className={this.decorateCSS("button")}>
-              {this.getPropValue("text")[2].value}
-            </span>
-          </div>
-        )}
       </div>
     );
   }

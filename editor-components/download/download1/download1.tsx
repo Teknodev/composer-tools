@@ -43,7 +43,7 @@ class DownloadCard1 extends BaseDownload {
     this.addProp({
       type: "image",
       key: "image",
-      value: "https://www.xupler.com/wp-content/uploads/2018/10/increase-mobile-app-downloads1.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af1668c3c2002cd2fa38?alt=media&timestamp=1692972147210",
       displayer: "Image",
     });
 
@@ -73,7 +73,7 @@ class DownloadCard1 extends BaseDownload {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -107,17 +107,14 @@ class DownloadCard1 extends BaseDownload {
                 }`}
             >
               <div className={this.decorateCSS("box")}>
-                <p>&#8901;{this.getPropValue("title1")}</p>
+                <p className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</p>
               </div>
               <div className={this.decorateCSS("box")}>
-                <h1>{this.getPropValue("title2")}</h1>
-              </div>
-              <div className={this.decorateCSS("box")}>
-                <p>
+                <p className={this.decorateCSS("text2")}>
                   <span>✔</span>
                   {this.getPropValue("text2")}
                 </p>
-                <p>
+                <p className={this.decorateCSS("text3")}>
                   <span>✔</span>
                   {this.getPropValue("text3")}
                 </p>
@@ -140,7 +137,7 @@ class DownloadCard1 extends BaseDownload {
               </div>
             </div>
             <div className={this.decorateCSS("page-2")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt=""/>
             </div>
           </div>
         </div>

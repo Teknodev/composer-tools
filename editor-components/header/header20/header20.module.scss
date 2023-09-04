@@ -14,23 +14,31 @@ $gap: 20px;
     height: 580px;
     margin-left: auto;
     margin-right: auto;
-    
     .left {
       flex: 1;
       .item {
         align-items: flex-start;
         padding: 50px;
         .content{
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          
           .title{
             font-size: 1.2rem;
-            color: #669b6b;;
+            color: #669b6b;
+            max-width: 200px;
+            overflow: hidden;
           }
           .description{
-            font-size: 3.5rem;
-            width: 40%;
+            font-size: 3.5rem; 
+            max-width: 550px;
+            overflow: hidden;
+            white-space: pre-wrap;
           }
           .button {
             height: 75%;
+            max-width: 100px;
+            overflow: hidden;
           }
         }
       }
@@ -45,13 +53,20 @@ $gap: 20px;
         flex: 2 ;
         .item{
           .content{
+            text-overflow: ellipsis;
+            white-space:nowrap;
+            max-width: 100px;
             .title{
               font-size: 1.2rem;
               color: #669b6b;;
+              max-width: 200px;
+              overflow: hidden;
             }
             .description{
               font-size: 2.5rem;
-              width: 50%;
+              width: 1200px;
+              overflow: hidden;
+              white-space: pre-wrap;
             }
           }
         }
@@ -64,7 +79,8 @@ $gap: 20px;
           color: black !important;
           background: transparent !important;
           height: 75%;
-          
+          max-width: 100px;
+          overflow: hidden;
         }
         .item {
           flex: 1;
@@ -100,19 +116,28 @@ $gap: 20px;
         }
       }
       .content {
+        width:auto;
         z-index: 5;
         display: flex;
         flex-direction: column;
         gap: 15px;
         color: black;
+        text-overflow: ellipsis;
+        white-space:nowrap;
+        max-width: 625px;
         
         .title {
           font-size: 1.2rem;
           font-weight: bold;
-          color: #669b6b;;
+          color: #669b6b;
+          max-width: 100px;
+          overflow: hidden;
         }
         .description {
           font-size: 2.5rem;
+          max-width: 200px;
+          overflow: hidden;
+          white-space: pre-wrap;
         }
         .button {
           padding: 10px;
@@ -123,6 +148,8 @@ $gap: 20px;
           background: transparent !important;
           border-bottom: #459647 solid 2px;
           height: 75%;
+          max-width: 100px;
+          overflow: hidden;
         }
       }
     }
@@ -130,4 +157,171 @@ $gap: 20px;
 }
 
 @media only screen and (max-width: 768px) {
+  .container {
+    padding: 20px 0;
+    .max-content {
+    }
+  
+    .wrapper {
+      flex-direction: column;
+      width: 64%;
+      height: 700px;
+      margin-right: 30%;
+      
+      .left {
+        flex:0;
+        .item {
+          
+          width: fit-content;
+          align-items: flex-start;
+          padding: 50px;
+          width: 17.7cm;
+          height: 10cm;
+          .content{
+            .title{
+              font-size: 1.2rem;
+              max-width: 200px;
+              overflow: hidden;
+            }
+            .description{
+              font-size: 3.5rem;
+            }
+            .button {
+            }
+          }
+        }
+      }
+      .right {
+        flex: 1;
+        flex-direction: row;
+        height: 7cm;
+        width: 17.7cm;
+        .top {
+          height: 100%;
+          flex: 4;
+          width: auto;
+          .item{
+            .content{
+              .title{
+                font-size: 1.2rem;
+              }
+              .description{
+                font-size: 2.5rem;
+              }
+            }
+          }
+        }
+        .bottom {
+          flex-direction: column;
+          width: 20%;
+          .button {
+            height: 75%;
+          }
+          .item {
+            flex: 1;
+          }
+        }
+      }
+      .item {
+        padding: 25px;
+        justify-content: flex-start;
+        .background-image {
+        }
+        .content {
+          .title {
+            font-size: 1.2rem;
+          }
+          .description {
+            font-size: 2.5rem;
+            max-width: 170px;
+          }
+          .button {
+            font-size: 1em;
+            height: 75%;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container {
+    padding: 30px 0;
+    .max-content {
+    }
+  
+    .wrapper {  
+      flex-direction: column;
+      width: 40%;
+      height: 780px;
+      margin-right: 100%;
+      
+      .left {
+        width: max-content;
+        .item {
+          width: fit-content;
+          padding: 30px;
+          .content{
+            .title{
+              font-size: 1.2rem;
+            }
+            .description{
+              font-size: 1.8rem;
+            }
+            .button {
+            }
+          }
+        }
+      }
+      .right {
+        flex: 1;
+        flex-direction: column;
+        height: 100%;
+        .top {
+          flex: 1;
+          width: auto;
+          .item{
+            .content{
+              .title{
+                font-size: 1.2rem;
+              }
+              .description{
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+        .bottom {
+          flex-direction: row;
+
+          .button {
+          }
+          .item {
+          }
+        }
+      }
+      .item {
+        width: 360px;
+        padding: 25px;
+        .background-image {
+          img {
+          }
+        }
+        .content {
+          flex-direction: column;
+          
+          .title {
+            font-size: 1.2rem;
+          }
+          .description {
+            font-size: 2rem;
+          }
+          .button {
+            font-size: 0.9em;
+            border-bottom: #459647 solid 2px;
+          }
+        }
+      }
+    }
+  }
 }

@@ -30,7 +30,7 @@ class Stats7Page extends BaseStats {
       key: "backgroundImage",
       displayer: "Background Image",
       value:
-        "https://resimdiyari.com/_data/i/upload/2012/10/11/20121011142538-0d933501-me.jpg",
+        "https://st2.depositphotos.com/39005438/42096/i/450/depositphotos_420968308-stock-photo-blue-gradient-blurred-background-dark.jpg",
     });
     this.addProp({
       type: "array",

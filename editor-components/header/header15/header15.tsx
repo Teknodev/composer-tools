@@ -46,7 +46,7 @@ class HeaderComponent15 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/accessories/wp-content/uploads/sites/7/2022/04/w-accessories-slider.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e4?alt=media&timestamp=1693304455863",
             },
 
             {
@@ -62,7 +62,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -81,7 +81,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -112,7 +112,7 @@ class HeaderComponent15 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/accessories/wp-content/uploads/sites/7/2022/04/accessories-slide-2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e3?alt=media&timestamp=1693304455863",
             },
             {
               type: "object",
@@ -127,7 +127,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -146,7 +146,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -177,7 +177,7 @@ class HeaderComponent15 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/accessories/wp-content/uploads/sites/7/2022/04/accessories-slide-3.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e2?alt=media&timestamp=1693304455863",
             },
             {
               type: "object",
@@ -192,7 +192,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -211,7 +211,7 @@ class HeaderComponent15 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -330,6 +330,34 @@ class HeaderComponent15 extends BaseHeader {
                               </ComposerLink>
                             )
                           )} */}
+          <div
+            className={this.decorateCSS("wrapper")}>
+            <Slider {...settings} className={this.decorateCSS("carousel")}>
+              {this.castToObject<Slide[]>("slides").map(
+                (item: Slide, index: number) => (
+                  <div
+                    className={this.decorateCSS("slider-inner-div")}
+                    key={`sld-8-${index}`}
+                  >
+                    <div className={this.decorateCSS("item")}>
+                      <div className={this.decorateCSS("background-image")}>
+                        <img src={item.image} alt={item.title} />
+                      </div>
+                      <div className={this.decorateCSS("content")}>
+                        <h1 className={this.decorateCSS("title")}>
+                          {item.title}
+                        </h1>
+                        <h3 className={this.decorateCSS("description")}>
+                          {item.description}
+                        </h3>
+                        <div className={this.decorateCSS("buttons")}>
+                          <button className={this.decorateCSS("firstButton")}>
+                            {item.firstButton[0].value}
+                          </button>
+                          <button className={this.decorateCSS("secondButton")}>
+                            {item.secondButton[0].value}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  box-shadow: var(--composer-box-shadow);
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -28,26 +27,27 @@
         .input {
           width: max-content;
           border-radius: 6px;
-          border: 1px solid rgba(0, 0, 0, 0.2);
           input {
             border: none;
-            padding: 0 10px;
+            padding: 20px 10px;
             background-color: transparent;
             outline: none;
             font-size: 16px;
             font-weight: 100;
             color: rgba(0, 0, 0, 0.4);
-            width: 200px;
+            width: 300px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: var(--composer-border-radius);
           }
           button {
             cursor: pointer;
             padding: 15px 20px;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
             border: none;
             background-color: var(--composer-primary-color);
             color: white;
             font-size: 18px;
+            width: 300px;
+            border-radius: var(--composer-border-radius);
           }
         }
       }

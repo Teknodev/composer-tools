@@ -20,10 +20,10 @@ class CallToAction4Page extends BaseCallToAction {
     });
     this.addProp({
       type: "image",
-      key: "backgroundImage",
-      displayer: "Background Image",
+      key: "image",
+      displayer: "Image",
       value:
-        "https://static.vecteezy.com/system/resources/previews/006/852/804/original/abstract-blue-background-simple-design-for-your-website-free-vector.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436958968c3c2002cd2f2d8?alt=media&timestamp=1693223971560",
     });
     this.addProp({
       type: "string",
@@ -56,12 +56,8 @@ class CallToAction4Page extends BaseCallToAction {
   }
 
   render() {
-    const styling = {
-      backgroundImage: `url('${this.getPropValue("backgroundImage")}')`,
-    };
-
     return (
-      <div className={this.decorateCSS("container")} style={styling}>
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action4-page")}>
             <h1>{this.getPropValue("title")}</h1>
@@ -82,6 +78,9 @@ class CallToAction4Page extends BaseCallToAction {
                 </span>
               </ComposerLink>
             </div>
+          </div>
+          <div className={this.decorateCSS("image-container")}>
+            <img src={this.getPropValue("image")} alt="" />
           </div>
         </div>
       </div>

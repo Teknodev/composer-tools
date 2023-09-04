@@ -8,7 +8,7 @@
     
     .content {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       flex-wrap: wrap;
       gap: 20px;
 
@@ -20,8 +20,13 @@
         min-height: 200px;
         padding: 20px;
         flex: 1 1;
-        min-width: 250px;
-
+        max-width: 300px;
+        img{
+          width: 60%;
+          height: 60%;
+          object-fit: cover;
+          border-radius: 6px;
+        }
         .title {
           display: block;
           font-weight: bold;

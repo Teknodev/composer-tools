@@ -1,18 +1,12 @@
 import * as React from "react";
 import styles from "./faq3.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   cardTitle: string;
   description: string;
 };
 
-type Button = {
-  link: string;
-  text: string;
-  isPrimary: boolean;
-};
 
 class FaqContainerTwo extends BaseFAQ {
   constructor(props?: any) {
@@ -31,20 +25,6 @@ class FaqContainerTwo extends BaseFAQ {
       key: "title",
       displayer: "Title Description",
       value: "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title2",
-      displayer: "Container Title",
-      value: "Shipping and Delivery",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Container Description",
-      value: "This section of the website provides information on shipping options, delivery times, and tracking your order.",
     });
 
     this.addProp({
@@ -104,7 +84,7 @@ class FaqContainerTwo extends BaseFAQ {
               key: "description",
               displayer: "Answer",
               value:
-                "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
+                "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number.",
             },
           ],
         },
@@ -126,102 +106,6 @@ class FaqContainerTwo extends BaseFAQ {
               displayer: "Answer",
               value:
                 "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "cardTitle",
-              displayer: "Question",
-              value:
-                "How can I contact customer support?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Answer",
-              value:
-                "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "cardTitle",
-              displayer: "Question",
-              value:
-                "Do you offer any discounts or promotions?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Answer",
-              value:
-                "Yes, we offer discounts and promotions from time to time. You can sign up for our newsletter to receive updates on our latest promotions.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "cardTitle",
-              displayer: "Question",
-              value:
-                "What payment methods do you accept?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Answer",
-              value:
-                "We accept credit/debit cards, PayPal, and other digital payment methods. You can select your preferred payment method during checkout.",
-            },
-          ],
-        }
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Open Positions",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: true,
             },
           ],
         },
@@ -285,7 +169,7 @@ class FaqContainerTwo extends BaseFAQ {
                 );
               })}
             </div>
-            <div className={this.decorateCSS("down-container")}>
+            {/* <div className={this.decorateCSS("down-container")}>
               <div className={this.decorateCSS("child-container")}>
                 <h1>{this.getPropValue("title2")}</h1>
                 <p>{this.getPropValue("description")}</p>
@@ -311,7 +195,7 @@ class FaqContainerTwo extends BaseFAQ {
                   )}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

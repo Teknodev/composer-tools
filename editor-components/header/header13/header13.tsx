@@ -59,7 +59,7 @@ class HeaderComponent13 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -104,7 +104,7 @@ class HeaderComponent13 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -152,7 +152,7 @@ class HeaderComponent13 extends BaseHeader {
             },
             {
               type: "page",
-              displayer: "Button URL",
+              displayer: "Button Link",
               key: "button-url",
               value: "",
             },
@@ -199,7 +199,7 @@ class HeaderComponent13 extends BaseHeader {
             },
             {
               type: "page",
-              displayer: "Button URL",
+              displayer: "Button Link",
               key: "button-url",
               value: "",
             },
@@ -266,9 +266,7 @@ class HeaderComponent13 extends BaseHeader {
     let itemsRightBottomRight: any = this.getPropValue(
       "item-right-bottom-left"
     );
-
-    // console.log("ITEMREIgHT", itemsRight);
-
+    let itemsRightBottomRight: any = this.getPropValue("item-right-bottom-right");
     const settings = {
       dots: true,
       infinite: true,
@@ -278,8 +276,7 @@ class HeaderComponent13 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-
-    console.log(this.castToObject("slider"));
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
