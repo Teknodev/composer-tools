@@ -33,7 +33,7 @@ class HeaderComponent21 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-developer-top-bg.jpg?id=55205",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5e27c057bdf002c2c29ff?alt=media&timestamp=1693835875557",
             },
             {
               type: "object",
@@ -159,13 +159,6 @@ class HeaderComponent21 extends BaseHeader {
             },
           ],
         },
-        {
-          type: "image",
-          displayer: "Right Image",
-          key: "rightImage",
-          value:
-            "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-developer-face-1.png.webp",
-        },
       ],
     });
     this.addProp({
@@ -278,7 +271,6 @@ class HeaderComponent21 extends BaseHeader {
 
   render() {
     let items: any = this.castToObject("items");
-    console.log(items);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -339,11 +331,6 @@ class HeaderComponent21 extends BaseHeader {
                     {items[1].direction5[0].value}
                   </a>
                 </li>
-              </div>
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <div className={this.decorateCSS("image")}>
-                <img src={items[2].value} alt={items[2].displayer} />
               </div>
             </div>
           </div>
