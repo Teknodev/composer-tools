@@ -108,24 +108,32 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
-    .all-cards {
-      display: flex;
+    .max-content{
+      align-items: center;
       flex-direction: column;
-    }
-    .page {
-      .title-card {
-        h1 {
-          font-size: 3rem !important;
+      .card-item-count{
+        min-width: 100%;
+      }
+      .all-cards {
+        display: flex;
+        flex-direction: column;
+      }
+      .page {
+        .title-card {
+          h1 {
+            font-size: 3rem !important;
+          }
+        }
+      }
+  
+      .all-cards {
+        gap: 60px !important;
+        .basic-card {
+          width: unset !important;
+          flex: 1 1;
         }
       }
     }
-
-    .all-cards {
-      gap: 60px !important;
-      .basic-card {
-        width: unset !important;
-        flex: 1 1;
-      }
-    }
+   
   }
 }

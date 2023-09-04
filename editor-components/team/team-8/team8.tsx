@@ -117,7 +117,7 @@ class Team8 extends Team {
           <div className={this.decorateCSS("team-members")}>
             {this.getPropValue("team-members").map(
               (teamMember: any, index: number) => (
-                <div style={{
+                <div className={this.decorateCSS("card-item-count")} style={{
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
                 <div key={index} className={this.decorateCSS("team-member")}>

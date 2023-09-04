@@ -66,5 +66,12 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      align-items: center;
+      flex-direction: column;
+      .card-item-count{
+        min-width: 100%;
+      }
+    }
   }
 }

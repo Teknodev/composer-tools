@@ -92,9 +92,19 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
-
-    .basic-page {
+    .max-content{
       flex-direction: column;
+      align-items: center;
+      .basic-page {
+        flex-direction: column;
+        .page-2{
+          justify-content: center;
+        }
+        .image{
+          width: 100%;
+        }
+      }
     }
+    
   }
 }

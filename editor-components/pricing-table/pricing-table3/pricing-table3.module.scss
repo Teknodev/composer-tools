@@ -156,15 +156,24 @@
   .container {
     padding: 50px 20px;
 
-    .page {
+    .max-content{
+      align-items: center;
       flex-direction: column;
-
-      .child-page{
-        width: 100%;
-        .child-page-right{
-          max-width: unset !important;
+      .page {
+        flex-direction: column;
+        .right-down{
+          .right-down-up{
+            justify-content: space-between;
+          }
+        }
+        .child-page{
+          width: 100%;
+          .child-page-right{
+            max-width: unset !important;
+          }
         }
       }
+      
     }
   }
 }

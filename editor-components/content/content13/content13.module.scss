@@ -82,6 +82,11 @@
   .container {
     padding: 50px 20px;
     .max-content {
+      align-items: center;
+      flex-direction: column;
+      .card-item-count{
+        min-width: 100%;
+      }
       .header {
         width: 100%;
         text-align: center;

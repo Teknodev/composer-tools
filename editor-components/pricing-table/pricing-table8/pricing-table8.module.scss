@@ -132,12 +132,17 @@
   }
 
   @media only screen and (max-width: 768px) {
-    padding: 50px 20px;
 
     .max-content {
       gap: 20px !important;
+      align-items: center;
+      flex-direction: column;
+      .card-item-count{
+        min-width: 100%;
+      }
       .pricing {
         max-width: 40% !important;
+        margin: 0 250px;
         .list-group{
           width: 80% !important;
           height: 250px !important;
@@ -179,7 +184,13 @@
 
     .max-content {
       gap: 20px !important;
+      align-items: center;
+      flex-direction: column;
+      .card-item-count{
+        min-width: 100%;
+      }
       .pricing {
+        margin: 0%;
         max-width: 100% !important;
         .list-group{
           width: 80% !important;

@@ -219,7 +219,7 @@ class Team4 extends Team {
           <div className={this.decorateCSS("team-members")}>
             {this.castToObject<TeamMember[]>("teamMembers").map(
               (teamMember: TeamMember, indexTeamMembers: number) => (
-                <div style={{
+                <div className={this.decorateCSS("card-item-count")} style={{
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
                 <div

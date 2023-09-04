@@ -113,7 +113,7 @@ class Team14 extends Team {
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<Portfolio[]>("portfolio").map(
             (portfolio: Portfolio, indexPortfolio: number) => (
-              <div style={{
+              <div className={this.decorateCSS("card-item-count")} style={{
                 width: 90 / this.getPropValue("itemCount") + "%",
               }}>
 

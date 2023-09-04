@@ -60,10 +60,17 @@
 
 @media only screen and (max-width: 768px) {
   .container {
-    padding: 50px 20px;
-
-    .price-text{
-      font-size: 2.4rem !important;
+    .max-content{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      display: flexbox;
+      .card-item-count{
+        min-width: 100%;
+      }
+      
     }
+
+    
   }
 }

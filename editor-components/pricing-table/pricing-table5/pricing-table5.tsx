@@ -201,7 +201,7 @@ class PricingTable5 extends BasePricingTable {
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<PriceList[]>("price-list").map(
             (pricing: any, index: number) => (
-              <div style={{
+              <div className={this.decorateCSS("card-item-count")} style={{
                 width: 90 / this.getPropValue("itemCount") + "%",
               }}>
               <div key={index} className={`${this.decorateCSS("price")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
