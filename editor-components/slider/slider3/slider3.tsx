@@ -1,9 +1,9 @@
-import Slider from "react-slick";
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider3.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 class Slider3 extends BaseSlider {
   constructor(props?: any) {
@@ -32,19 +32,19 @@ class Slider3 extends BaseSlider {
           displayer: "Slider",
           value: [
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/pvD1l2BmfrE/maxresdefault.jpg",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/RFdtXi4Jr7o/maxresdefault.jpg",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/25zB8JIr71Y/maxresdefault.jpg",
@@ -89,17 +89,18 @@ class Slider3 extends BaseSlider {
               <p>{this.getPropValue("content")}</p>
             </div>
             <div className={this.decorateCSS("slider-parent")}>
-              <Slider {...settings} className={this.decorateCSS("carousel")}>
+              <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {this.getPropValue("header")[0].value.map(
                   (item: any, index: number) => (
                     <img
+                      alt=""
                       src={item.value}
                       className={this.decorateCSS("img")}
                       key={index}
                     />
                   )
                 )}
-              </Slider>
+              </ComposerSlider>
             </div>
           </div>
         </div>

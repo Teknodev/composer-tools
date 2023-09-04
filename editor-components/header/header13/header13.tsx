@@ -1,20 +1,31 @@
 import * as React from "react";
 import styles from "./header13.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
+type ISliderData = {
+  title: string;
+  image: string;
+  description: string;
+  button: IButton[];
+};
+
+type IButton = {
+  value: string;
+};
 class HeaderComponent13 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
       type: "array",
-      displayer: "Items",
-      key: "items",
+      displayer: "Slider Carousel",
+      key: "slider",
       value: [
         {
           type: "object",
-          displayer: "Item Left",
-          key: "item-left",
+          displayer: "Item 1",
+          key: "item1",
           value: [
             {
               type: "string",
@@ -48,7 +59,7 @@ class HeaderComponent13 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -58,14 +69,14 @@ class HeaderComponent13 extends BaseHeader {
         },
         {
           type: "object",
-          displayer: "Item Right",
-          key: "item-right",
+          displayer: "Item 2",
+          key: "item2",
           value: [
             {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "Aurora Headset",
+              value: "The New Google Pixel 7",
             },
             {
               type: "string",
@@ -73,13 +84,12 @@ class HeaderComponent13 extends BaseHeader {
               key: "description",
               value: "Shop gret deals on MacBook, iPad, iPhone and more.",
             },
-
             {
               type: "image",
               displayer: "Image",
               key: "image",
               value:
-                "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
+                "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2022/10/apple-shopping-event.jpg",
             },
             {
               type: "object",
@@ -94,7 +104,7 @@ class HeaderComponent13 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -102,95 +112,143 @@ class HeaderComponent13 extends BaseHeader {
             },
           ],
         },
+      ],
+    });
+    this.addProp({
+      type: "object",
+      displayer: "Item Right",
+      key: "item-right",
+      value: [
         {
-          type: "object",
-          displayer: "Item Right Bottom Left",
-          key: "item-right-bottom-left",
-          value: [
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "New Dual Sense",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "For playstation 5",
-            },
+          type: "string",
+          displayer: "Title",
+          key: "title",
+          value: "Aurora Headset",
+        },
+        {
+          type: "string",
+          displayer: "Description",
+          key: "description",
+          value: "Shop gret deals on MacBook, iPad, iPhone and more.",
+        },
 
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "Pre-Order Now",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-          ],
+        {
+          type: "image",
+          displayer: "Image",
+          key: "image",
+          value:
+            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
         },
         {
           type: "object",
-          displayer: "Item Right Bottom Right",
-          key: "item-right-bottom-right",
+          displayer: "Button",
+          key: "button",
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Instant Cameras",
+              displayer: "Button Text",
+              key: "button-text",
+              value: "Pre-Order Now",
             },
+            {
+              type: "page",
+              displayer: "Button Link",
+              key: "button-url",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      displayer: "Item Right Bottom Left",
+      key: "item-right-bottom-left",
+      value: [
+        {
+          type: "string",
+          displayer: "Title",
+          key: "title",
+          value: "New Dual Sense",
+        },
+        {
+          type: "string",
+          displayer: "Description",
+          key: "description",
+          value: "For playstation 5",
+        },
+
+        {
+          type: "image",
+          displayer: "Image",
+          key: "image",
+          value:
+            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
+        },
+        {
+          type: "object",
+          displayer: "Button",
+          key: "button",
+          value: [
             {
               type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Get photo paper as a gift",
+              displayer: "Button Text",
+              key: "button-text",
+              value: "Pre-Order Now",
             },
+            {
+              type: "page",
+              displayer: "Button Link",
+              key: "button-url",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
 
+    this.addProp({
+      type: "object",
+      displayer: "Item Right Bottom Right",
+      key: "item-right-bottom-right",
+      value: [
+        {
+          type: "string",
+          displayer: "Title",
+          key: "title",
+          value: "Instant Cameras",
+        },
+        {
+          type: "string",
+          displayer: "Description",
+          key: "description",
+          value: "Get photo paper as a gift",
+        },
+
+        {
+          type: "image",
+          displayer: "Image",
+          key: "image",
+          value:
+            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
+        },
+        {
+          type: "object",
+          displayer: "Button",
+          key: "button",
+          value: [
             {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
+              type: "string",
+              displayer: "Button Text",
+              key: "button-text",
+              value: "Pre-Order Now",
             },
             {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "Pre-Order Now",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
+              type: "page",
+              displayer: "Button URL",
+              key: "button-url",
+              value: "",
             },
           ],
         },
@@ -203,47 +261,69 @@ class HeaderComponent13 extends BaseHeader {
   }
 
   render() {
-    let items: any = this.castToObject("items");
+    let itemsRight: any = this.getPropValue("item-right");
+    let itemsRightBottomLeft: any = this.getPropValue("item-right-bottom-left");
+    let itemsRightBottomRight: any = this.getPropValue("item-right-bottom-right");
+
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("item")}>
-                <div className={this.decorateCSS("background-image")}>
-                  <img src={items[0].image} alt={items[0].title} />
-                </div>
-                <div className={this.decorateCSS("content")}>
-                  <div className={this.decorateCSS("title")}>
-                    {items[0].title}
-                  </div>
-                  <div className={this.decorateCSS("description")}>
-                    {items[0].description}
-                  </div>
-                  <div>
-                    <button className={this.decorateCSS("button")}>
-                      {items[0].button[0].value}
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <ComposerSlider
+                {...settings}
+                className={this.decorateCSS("carousel")}
+              >
+                {this.castToObject<ISliderData[]>("slider").map(
+                  (item: ISliderData, index: number) => (
+                    <div className={this.decorateCSS("item")} key={`key${index}`}>
+                      <div className={this.decorateCSS("background-image")}>
+                        <img src={item.image} alt={item.title} />
+                      </div>
+                      <div className={this.decorateCSS("content")}>
+                        <div className={this.decorateCSS("title")}>
+                          {item.title}
+                        </div>
+                        <div className={this.decorateCSS("description")}>
+                          {item.description}
+                        </div>
+                        <div>
+                          <button className={this.decorateCSS("button")}>
+                            {item.button[0].value}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )}
+              </ComposerSlider>
             </div>
             <div className={this.decorateCSS("right")}>
               <div className={this.decorateCSS("top")}>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={items[1].image} alt={items[1].title} />
+                    <img src={itemsRight[2].value} alt={itemsRight[0].value} />
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("title")}>
-                      {items[1].title}
+                      {itemsRight[0].value}
                     </div>
                     <div className={this.decorateCSS("description")}>
-                      {items[1].description}
+                      {itemsRight[1].value}
                     </div>
                     <div>
                       <button className={this.decorateCSS("button")}>
-                        {items[1].button[0].value}
+                        {itemsRight[3].value[0].value}
                       </button>
                     </div>
                   </div>
@@ -252,36 +332,36 @@ class HeaderComponent13 extends BaseHeader {
               <div className={this.decorateCSS("bottom")}>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={items[2].image} alt={items[2].title} />
+                    <img src={itemsRightBottomLeft[2].value} alt={itemsRightBottomLeft[0].value} />
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("title")}>
-                      {items[2].title}
+                      {itemsRightBottomLeft[0].value}
                     </div>
                     <div className={this.decorateCSS("description")}>
-                      {items[2].description}
+                      {itemsRightBottomLeft[1].value}
                     </div>
                     <div>
                       <button className={this.decorateCSS("button")}>
-                        {items[2].button[0].value}
+                        {itemsRightBottomLeft[3].value[0].value}
                       </button>
                     </div>
                   </div>
                 </div>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={items[3].image} alt={items[3].title} />
+                    <img src={itemsRightBottomRight[2].value} alt={itemsRightBottomRight[0].value} />
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("title")}>
-                      {items[3].title}
+                      {itemsRightBottomRight[0].value}
                     </div>
                     <div className={this.decorateCSS("description")}>
-                      {items[3].description}
+                      {itemsRightBottomRight[1].value}
                     </div>
                     <div>
                       <button className={this.decorateCSS("button")}>
-                        {items[3].button[0].value}
+                        {itemsRightBottomRight[3].value[0].value}
                       </button>
                     </div>
                   </div>

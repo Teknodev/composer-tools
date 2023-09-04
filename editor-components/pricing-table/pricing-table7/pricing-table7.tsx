@@ -55,7 +55,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -190,7 +190,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -325,7 +325,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -451,7 +451,7 @@ class PricingTable7 extends BasePricingTable {
                 {pricing.item.map((data: any, index: number) => {
                   return (
                     <li key={`price7-list-${index}`}>
-                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
+                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
                       {data.itemText}
                     </li>
                   );
@@ -459,7 +459,7 @@ class PricingTable7 extends BasePricingTable {
               </div>
               <ComposerLink path={pricing.link}>
                 <span className={this.decorateCSS("button")}>
-                  <img src="https://cdn.iconscout.com/icon/free/png-256/whatshot-1782408-1512428.png" />
+                  <img src="https://cdn.iconscout.com/icon/free/png-256/whatshot-1782408-1512428.png" alt=""/>
                   {pricing.buttonText}
                 </span>
               </ComposerLink>

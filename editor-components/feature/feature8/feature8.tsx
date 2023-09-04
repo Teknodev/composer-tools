@@ -23,12 +23,12 @@ class Feature8 extends BaseFeature {
       type: "string",
       key: "card-button",
       value: "Learn More",
-      displayer: "Card Button Text",
+      displayer: "Button Text",
     });
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
     this.addProp({
@@ -136,7 +136,7 @@ class Feature8 extends BaseFeature {
               {this.castToObject<Features[]>("features-card").map(
                 (features: any, index: number) => (
                   <div className={this.decorateCSS("features")} key={index}>
-                    <img className={this.decorateCSS("image")} src={features.image}></img>
+                    <img className={this.decorateCSS("image")} src={features.image} alt=""></img>
                     <h3 className={this.decorateCSS("title")}>{features.title}</h3>
                     <p className={this.decorateCSS("long-text")}>
                       {features.description}

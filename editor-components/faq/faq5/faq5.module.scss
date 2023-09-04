@@ -7,7 +7,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
     .page {
       width: 100%;
       display: flex;
@@ -26,8 +25,7 @@
           background: rgb(244, 244, 244);
           padding: 4px 6px;
           display: inline-block;
-          margin-top: 1rem;
-          margin-bottom: 1rem;
+          margin-bottom: 2rem;
           width: 70px;
           text-align: center;
         }
@@ -67,7 +65,7 @@
             justify-content: space-between;
             align-items: center;
             text-align: center;
-
+            padding: 10px 0;
             .icon {
               width: 25px;
               height: 25px;

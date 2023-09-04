@@ -1,8 +1,17 @@
 import * as React from "react";
 import { BaseList } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list2.module.scss";
 
+interface List2Props {
+  map(arg0: (title: any, indexLinkMain: number) => React.JSX.Element): React.ReactNode;
+  List2Items: List2Items;
+}
+interface List2Items {
+  listEmoji: string;
+  listTitle: string;
+  listDesc: string;
+  link: string;
+}
 class List2 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
@@ -16,37 +25,35 @@ class List2 extends BaseList {
           key: "title",
           displayer: "Title",
           value: [
-            {
-              type: "string",
-              key: "link-title",
-              displayer: "Link Title",
-              value: "Top 10 Books to Read This Summer",
-            },
-            {
-              type: "array",
-              key: "link-list",
-              displayer: "Link List",
-              value: [
-                {
-                  type: "object",
-                  key: "link-list-item",
-                  displayer: "Link List Item",
-                  value: [
                     {
                       type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Looking for some great summer reading? Check out our list of the top 10 books to read this season, featuring a mix of bestsellers, new releases, and classics.",
+                      key: "listNumber",
+                      displayer: "List Number",
+                      value: "1",
+                    },
+                    {
+                      type: "image",
+                      key: "listEmoji",
+                      displayer: "List Emoji",
+                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
+                    },
+                    {
+                      type: "string",
+                      key: "listTitle",
+                      displayer: "List Title",
+                      value: "Lorem Ipsum",
+                    },
+                    {
+                      type: "string",
+                      key: "listDesc",
+                      displayer: "List Description",
+                      value: "Want to improve your health and well-being?",
                     },
                     {
                       type: "page",
                       key: "link",
                       displayer: "Link",
                       value: "",
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
@@ -55,37 +62,35 @@ class List2 extends BaseList {
           key: "title",
           displayer: "Title",
           value: [
-            {
-              type: "string",
-              key: "link-title",
-              displayer: "Link Title",
-              value: "5 Essential Tools for Remote Work Success",
-            },
-            {
-              type: "array",
-              key: "link-list",
-              displayer: "Link List",
-              value: [
-                {
-                  type: "object",
-                  key: "link-list-item",
-                  displayer: "Link List Item",
-                  value: [
                     {
                       type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Whether you're working from home or on the go, these 5 tools are essential for staying productive and organized. ",
+                      key: "listNumber",
+                      displayer: "List Number",
+                      value: "2",
+                    },
+                    {
+                      type: "image",
+                      key: "listEmoji",
+                      displayer: "List Emoji",
+                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
+                    },
+                    {
+                      type: "string",
+                      key: "listTitle",
+                      displayer: "List Title",
+                      value: "Lorem Ipsum",
+                    },
+                    {
+                      type: "string",
+                      key: "listDesc",
+                      displayer: "List Description",
+                      value: "Want to improve your health and well-being?",
                     },
                     {
                       type: "page",
                       key: "link",
                       displayer: "Link",
                       value: "",
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
@@ -94,27 +99,29 @@ class List2 extends BaseList {
           key: "title",
           displayer: "Title",
           value: [
-            {
-              type: "string",
-              key: "link-title",
-              displayer: "Link Title",
-              value: "7 Tips for a Healthier Lifestyle",
-            },
-            {
-              type: "array",
-              key: "link-list",
-              displayer: "Link List",
-              value: [
-                {
-                  type: "object",
-                  key: "link-list-item",
-                  displayer: "Link List Item",
-                  value: [
                     {
                       type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
+                      key: "listNumber",
+                      displayer: "List Number",
+                      value: "3",
+                    },
+                    {
+                      type: "image",
+                      key: "listEmoji",
+                      displayer: "List Emoji",
+                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
+                    },
+                    {
+                      type: "string",
+                      key: "listTitle",
+                      displayer: "List Title",
+                      value: "Lorem Ipsum",
+                    },
+                    {
+                      type: "string",
+                      key: "listDesc",
+                      displayer: "List Description",
+                      value: "Want to improve your health and well-being?",
                     },
                     {
                       type: "page",
@@ -123,10 +130,191 @@ class List2 extends BaseList {
                       value: "",
                     },
                   ],
-                },
-              ],
-            },
-          ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+                    {
+                      type: "string",
+                      key: "listNumber",
+                      displayer: "List Number",
+                      value: "3",
+                    },
+                    {
+                      type: "image",
+                      key: "listEmoji",
+                      displayer: "List Emoji",
+                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
+                    },
+                    {
+                      type: "string",
+                      key: "listTitle",
+                      displayer: "List Title",
+                      value: "Lorem Ipsum",
+                    },
+                    {
+                      type: "string",
+                      key: "listDesc",
+                      displayer: "List Description",
+                      value: "Want to improve your health and well-being?",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+                    {
+                      type: "string",
+                      key: "listNumber",
+                      displayer: "List Number",
+                      value: "3",
+                    },
+                    {
+                      type: "image",
+                      key: "listEmoji",
+                      displayer: "List Emoji",
+                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
+                    },
+                    {
+                      type: "string",
+                      key: "listTitle",
+                      displayer: "List Title",
+                      value: "Lorem Ipsum",
+                    },
+                    {
+                      type: "string",
+                      key: "listDesc",
+                      displayer: "List Description",
+                      value: "Want to improve your health and well-being?",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+                    {
+                      type: "string",
+                      key: "listNumber",
+                      displayer: "List Number",
+                      value: "3",
+                    },
+                    {
+                      type: "image",
+                      key: "listEmoji",
+                      displayer: "List Emoji",
+                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
+                    },
+                    {
+                      type: "string",
+                      key: "listTitle",
+                      displayer: "List Title",
+                      value: "Lorem Ipsum",
+                    },
+                    {
+                      type: "string",
+                      key: "listDesc",
+                      displayer: "List Description",
+                      value: "Want to improve your health and well-being?",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+                    {
+                      type: "string",
+                      key: "listNumber",
+                      displayer: "List Number",
+                      value: "3",
+                    },
+                    {
+                      type: "image",
+                      key: "listEmoji",
+                      displayer: "List Emoji",
+                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
+                    },
+                    {
+                      type: "string",
+                      key: "listTitle",
+                      displayer: "List Title",
+                      value: "Lorem Ipsum",
+                    },
+                    {
+                      type: "string",
+                      key: "listDesc",
+                      displayer: "List Description",
+                      value: "Want to improve your health and well-being?",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+                    {
+                      type: "string",
+                      key: "listNumber",
+                      displayer: "List Number",
+                      value: "3",
+                    },
+                    {
+                      type: "image",
+                      key: "listEmoji",
+                      displayer: "List Emoji",
+                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
+                    },
+                    {
+                      type: "string",
+                      key: "listTitle",
+                      displayer: "List Title",
+                      value: "Lorem Ipsum",
+                    },
+                    {
+                      type: "string",
+                      key: "listDesc",
+                      displayer: "List Description",
+                      value: "Want to improve your health and well-being?",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
         },
       ],
     });
@@ -140,23 +328,19 @@ class List2 extends BaseList {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {this.getPropValue("link-main").map((title: any, indexLinkMain: number) => {
+              <ol className={this.decorateCSS("olcards")}>
+          {this.castToObject<List2Props>("link-main").map((title: List2Items, indexLinkMain: number) => {
             return (
-              <div className={this.decorateCSS("feature-list")} key={indexLinkMain}>
-                <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
-                <hr />
-                <ul className={this.decorateCSS("list-group")}>
-                  {title.value[1].value.map((table: any, indexListGroup: number) => (
-                    <ComposerLink key={indexListGroup} path={table.value[1].value}>
-                      <li className={this.decorateCSS("list-item")}>
-                        {table.value[0].value}
-                      </li>
-                    </ComposerLink>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+                <li>
+                  <div className={this.decorateCSS("content")}>
+                    <img src={title.listEmoji} alt=""/>
+                    <div className={this.decorateCSS("title")}>{title.listTitle}</div>
+                    <div className={this.decorateCSS("text")}>{title.listDesc}</div>
+                  </div>
+                </li>
+                );
+              })}
+              </ol>            
         </div>
       </div>
     );

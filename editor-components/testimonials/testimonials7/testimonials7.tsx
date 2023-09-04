@@ -136,7 +136,7 @@ class Testimonials7Page extends Testimonials {
                         key={`testimonials7-card-${indexCard}`}
                         className={this.decorateCSS("card")}
                       >
-                        <img width={280} height={180} src={item.value[0].value} />
+                        <img width={280} height={180} src={item.value[0].value} alt=""/>
                         <div className={this.decorateCSS("content")}>
                           <span>{item.value[1].value}</span>
                           <h5>{item.value[2].value}</h5>

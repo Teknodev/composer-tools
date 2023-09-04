@@ -1,19 +1,12 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  display: flex;
+  justify-content: center;
 
   .max-content {
     max-width: var(--composer-content-width);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: auto;
-
     .basic-page {
-      width: 100%;
-      height: 100%;
-      background-color: rgb(254, 255, 255);
       display: flex;
       justify-content: space-between;
       gap: 20px;
@@ -33,18 +26,33 @@
         flex-direction: column;
 
         .box {
+          .title1{
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 0;
+            margin: 20px 0;
+          }
+          .text2{
+            font-size: 1.5rem;
+            font-weight: 400;
+          }
+          .text3{
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 0;
+          }
           .button {
-            margin-top: 16px;
+            margin-top: 6px;
             cursor: pointer;
             text-align: center;
             transition: 0.3s;
             display: block;
             background-color: var(--composer-primary-color);
-            padding: 5px 20px;
+            padding: 10px 20px;
             border-radius: 6px;
             border: 1px solid transparent;
             width: 200px;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             color: #fff;
             &:hover {
               background-color: transparent;
@@ -65,12 +73,13 @@
         }
       }
       .page-2 {
-        align-items: center;
+        display: flex;
+        justify-content: flex-end;
 
         .image {
-          width: 100%;
           max-height: 450px;
           object-fit: cover;
+          margin: 0 !important;
         }
       }
       p {

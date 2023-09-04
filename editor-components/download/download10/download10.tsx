@@ -69,7 +69,7 @@ class Download10 extends BaseDownload {
         {
           type: "page",
           key: "url",
-          displayer: "Button Url",
+          displayer: "Button Link",
           value: "",
         },
         {
@@ -156,11 +156,13 @@ class Download10 extends BaseDownload {
                   <div className={this.decorateCSS("stars")}>
                     {[...Array(Number(this.getPropValue("stars")))].map(
                       (item: any, index: number) => (
-                        <img src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
+                        <img 
+                        alt=""
+                        src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
                       )
                     )}
                   </div>
-                  <h1 className={this.decorateCSS("number")}></h1>
+                  <h1 className={this.decorateCSS("number")}>''</h1>
                   <p className={this.decorateCSS("info")}>
                     {this.getPropValue("text2")}
                   </p>

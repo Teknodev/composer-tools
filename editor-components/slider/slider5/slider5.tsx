@@ -1,9 +1,10 @@
-import Slider from "react-slick";
+
 import * as React from "react";
 import { BaseSlider} from "../../EditorComponent";
 import styles from "./slider5.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Card = {
   image: string;
@@ -95,8 +96,8 @@ class Slider5 extends BaseSlider {
       infinite: true,
       speed: 500,
       autoplay: true,
-      autoplaySpeed: 1000,
-      slidesToShow: 3,
+      autoplaySpeed: 2500,
+      slidesToShow: 1,
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
@@ -104,13 +105,17 @@ class Slider5 extends BaseSlider {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <Slider {...settings} className={this.decorateCSS("carousel")}>
+          <div className={this.decorateCSS("carousel")}>
+
+          <ComposerSlider {...settings} >
             {this.castToObject<Card[]>("slider").map(
               (item: Card, index: number) => (
-                <img src={item.image} key={index} />
+                <img src={item.image} key={index} alt=""/>
               )
             )}
-          </Slider>
+          </ComposerSlider>
+          </div>
+
         </div>
       </div>
     );

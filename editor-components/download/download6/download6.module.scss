@@ -34,11 +34,10 @@
         text-overflow: ellipsis;
         word-break: break-all;
         white-space: pre-wrap;
-        background-color: var(--composer-primary-color);
         height: 10%;
         overflow: hidden;
-        transition: all 1s;
-
+        transition: all 0.5s;
+        border: 1px solid #fff;
         h1 {
           margin: unset;
           font-size: 1rem;
@@ -95,10 +94,10 @@
         .text-container {
           height: 100%;
           bottom: 0;
-          transition: all 1s;
+          transition: all 0.5s;
 
           h1 {
-            transition: font-size 1s;
+            transition: font-size 0.5s;
             margin: unset;
             font-size: 3rem;
             opacity: 1;
@@ -159,7 +158,7 @@
         }
         &:hover {
           .text-container {
-            transition: height 1s;
+            transition: height 0.5s;
             height: 100%;
             bottom: 0;
 

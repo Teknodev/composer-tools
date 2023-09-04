@@ -150,7 +150,7 @@ class Testimonials1Page extends Testimonials {
                         className={this.decorateCSS("card")}
                       >
                         <div className={this.decorateCSS("profile")}>
-                          <img width={50} height={50} src={item.value[0].value} />
+                          <img width={50} height={50} src={item.value[0].value} alt=""/>
                           <div className={this.decorateCSS("profile-text")}>
                             <h2>{item.value[1].value}</h2>
                             <p>{item.value[2].value}</p>
@@ -158,7 +158,7 @@ class Testimonials1Page extends Testimonials {
                         </div>
                         <h5>{item.value[3].value}</h5>
                         <center>
-                          <img width={180} height={90} src={item.value[4].value} />
+                          <img width={180} height={90} src={item.value[4].value} alt=""/>
                         </center>
                       </div>
                     ))}

@@ -27,46 +27,62 @@
         background-color: var(--composer-primary-color);
         color: white;
         border-radius: 6px;
+        padding: 10px 20px;
+        border: 1px solid var(--composer-primary-color);
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
         &:hover {
           color: var(--composer-primary-color);
           background: transparent;
-          border: 1px solid var(--composer-primary-color);
-          padding: 10px 20px;
         }
       }
     }
-    .card-child {
+    .card-left{
       display: flex;
-      justify-content: center;
-      width: 100%;
-      gap: 20px;
-
-      .card {
-        width: 100%;
-        background-color: var(--composer-primary-color);
-        border-radius: 10px;
-        padding: 20px 20px 0 20px;
-        min-height: 250px;
+      .card-child {
         display: flex;
+        justify-content: center;
         flex-direction: column;
+        width: 50%;
         gap: 20px;
-
-        img {
-          width: 40px;
-          height: 40px;
+        .card {
+          width: 100%;
+          border-radius: 10px;
+          padding: 20px 20px 0 20px;
+          min-height: 250px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          box-shadow: var(--composer-box-shadow);
+          img {
+            width: 40px;
+            height: 40px;
+          }
+          h5 {
+            font-size: 2.4rem;
+            margin: 0;
+            color: rgb(0, 0, 0);
+          }
+          p {
+            font-size: 1.2rem;
+            margin: 0;
+            color: rgb(0, 0, 0);
+          }
         }
-        h5 {
-          font-size: 2rem;
-          margin: 0;
-          color: white;
-        }
-        p {
-          font-size: 1.2rem;
-          margin: 0;
-          color: white;
+      }
+      .image{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          width: 80%;
+          height: 80%;
+          object-fit: contain;
         }
       }
     }
+    
   }
 }
 

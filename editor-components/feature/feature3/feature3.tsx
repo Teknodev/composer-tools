@@ -115,6 +115,7 @@ class Feature3 extends BaseFeature {
               key={index}
             >
               <img
+                alt=""
                 className={this.decorateCSS("image")}
                 
                 src={simplebox.image}

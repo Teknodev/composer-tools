@@ -8,7 +8,8 @@
       display: flex;
       justify-content: space-between;
       gap: 50px;
-      width: 100%;
+      width: 80%;
+      margin: auto;
       .left-image {
         margin-left: 50px;
         .image {
@@ -16,6 +17,7 @@
           height: 300px;
           border-radius: 6px;
           transform: rotate(-15deg);
+          border-radius: 10px;
         }
       }
       .right-image {
@@ -25,6 +27,7 @@
           height: 300px;
           border-radius: 6px;
           transform: rotate(15deg);
+          border-radius: 10px;
         }
       }
       .call-to-action6-child {
