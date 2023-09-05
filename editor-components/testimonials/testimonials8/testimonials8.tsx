@@ -1,10 +1,6 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials8.module.scss";
-import "swiper/css";
-import "swiper/css/effect-flip";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Item = {
