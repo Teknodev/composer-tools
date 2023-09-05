@@ -96,7 +96,7 @@ class CallToAction3Page extends BaseCallToAction {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec7cc7057bdf002c2aa3ea?alt=media&timestamp=1693220016082"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec7cc7057bdf002c2aa3ea?alt=media&timestamp=1693899536058"
     })
   }
   
