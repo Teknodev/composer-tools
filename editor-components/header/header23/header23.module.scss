@@ -16,8 +16,8 @@
       .image {
         width: 80%;
         position: absolute;
-        right: 250px;
         top: 50px;
+        
         
       }
     }
@@ -30,7 +30,6 @@
         position: absolute;
         top: 50%;
         width: 50%;
-        overflow: hidden;
         text-overflow: ellipsis;
         .divider {
           background-color: black;
