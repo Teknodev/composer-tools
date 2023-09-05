@@ -167,6 +167,7 @@ class Download5 extends BaseDownload {
             </div>
             <div className={this.decorateCSS("page-2")}>
               <img
+                alt=""
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
               />

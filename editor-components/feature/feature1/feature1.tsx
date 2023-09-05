@@ -131,6 +131,13 @@ class Feature1 extends BaseFeature {
                   <p className={this.decorateCSS("long-text")}>
                     {circlebox.description}
                   </p>
+              <div className={this.decorateCSS("circle-boxes")} key={index}>
+                <div className={this.decorateCSS("image-background")}>
+                  <img
+                    alt=""
+                    className={this.decorateCSS("image")}
+                    src={circlebox.image}
+                  />
                 </div>
               </div>
             )

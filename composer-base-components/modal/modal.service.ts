@@ -22,5 +22,6 @@ class ModalService {
     (this.events[name] || []).forEach((fn) => fn(...args));
   }
 }
+const newModel = new ModalService()
 
-export default new ModalService();
+export default newModel;

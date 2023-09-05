@@ -114,7 +114,7 @@ class Download8 extends BaseDownload {
                 <div className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("page")}>
                         <div className={this.decorateCSS("image-child")}>
-                            <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="background image" />
+                            <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="background" />
                         </div>
                         <div className={this.decorateCSS("left-content")}>
                             <h1>{this.getPropValue("leftContentTitle")}</h1>

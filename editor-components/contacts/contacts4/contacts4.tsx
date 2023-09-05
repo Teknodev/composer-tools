@@ -128,6 +128,7 @@ class Contacts4Page extends BaseContacts {
                 <p>{this.getPropValue("description")}</p>
                 <div className={this.decorateCSS("contact-left")}>
                 <img
+                  alt=""
                   src={this.getPropValue("image")}
                   className={this.decorateCSS("image")}
                 />

@@ -145,7 +145,7 @@ class Feature8 extends BaseFeature {
                     width: 90 / this.getPropValue("itemCount") + "%",
                   }}>
                   <div className={this.decorateCSS("features")} key={index}>
-                    <img className={this.decorateCSS("image")} src={features.image}></img>
+                    <img className={this.decorateCSS("image")} src={features.image} alt=""></img>
                     <h3 className={this.decorateCSS("title")}>{features.title}</h3>
                     <p className={this.decorateCSS("long-text")}>
                       {features.description}

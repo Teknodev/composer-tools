@@ -322,7 +322,7 @@ class Team1 extends Team {
                 >
                   <div className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("top")}>
-                      <img className={this.decorateCSS("image")} src={card.image} />
+                      <img className={this.decorateCSS("image")} src={card.image} alt=""/>
                       <h2>{card.name}</h2>
                       <p className={this.decorateCSS("position")}>{card.position}</p>
                     </div>

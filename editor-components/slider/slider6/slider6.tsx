@@ -121,6 +121,7 @@ class Slider6 extends BaseSlider {
             {this.castToObject<Card[]>("slider").map(
               (item: Card, index: number) => (
                 <img
+                  alt=""
                   src={item.image}
                   className={this.decorateCSS("img")}
                   key={index}

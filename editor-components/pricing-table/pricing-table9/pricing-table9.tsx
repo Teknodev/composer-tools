@@ -252,8 +252,6 @@ class PricingTable9 extends BasePricingTable {
   render() {
     const pricingData = this.castToObject<Pricing[]>("price");
 
-    const pricingTitles = pricingData.map((pricing: Pricing) => pricing.title);
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
