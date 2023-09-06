@@ -1,16 +1,20 @@
 .container {
   width: 100%;
-padding: 50px 0;
   .max-content {
     max-width: 100%;
     margin: auto;
+    width: var(--composer-content-width);
+    display: flex;
+    justify-content: center;
     .child {
       display: flex;
+      position: relative;
       flex-direction: column;
-width: var(--composer-component-width);
+      width: 100%;
       gap: 20px;
       align-items: center;
-            .card {
+
+        .card {
         z-index: 1;
         display: flex;
         flex-direction: row;
@@ -20,7 +24,7 @@ width: var(--composer-component-width);
         background: white;
         min-height: 550px;
         max-height: 600px;
-        margin: 0 70px;
+        margin: 0 550px;
                 .left {
           display: flex;
           flex-direction: column;

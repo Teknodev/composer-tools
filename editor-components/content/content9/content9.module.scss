@@ -1,8 +1,12 @@
 .container {
   width: 100%;
   padding: 50px 20px;
+  justify-content: center;
+  display: flex;
   .max-content {
     max-width: var(--composer-content-width);
+    justify-content: center;
+    display: flex;
     .child {
       display: flex;
       align-items: center;
