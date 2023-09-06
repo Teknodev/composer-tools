@@ -1,11 +1,12 @@
 .container {
   width: 100%;
-  align-items: center;
   .max-content{
-    max-width: var(--composer-content-width);
-    
+    max-width: 100%;
+   justify-content: center;
+   display: flex;
+   
   .wrapper {
-    width: 100%;
+    width: var(--composer-content-width);
     height: 100%;
     .carousel {
       width: 100%;
@@ -253,4 +254,5 @@
     }
   }
   }
+
 }

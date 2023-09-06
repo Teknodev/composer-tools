@@ -1,10 +1,16 @@
 .container {
   width: 100%;
   margin-bottom: 20px;
-
+  .max-content {
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  
+  }
     .wrapper{
       border-radius: 10px;
-
+      width: var(--composer-content-width);
       .carousel > button:first-child {
         &:before {
           transform: rotateZ(-45deg);
@@ -37,10 +43,7 @@
         }
       }
 
-      .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-      }
+      
 
       .items{
         background-color: rgba(71, 168, 233, 0.185);
@@ -143,10 +146,10 @@
 
       }
       }
-     
+    }
 
       
-    }
+    
   }
 
   @media only screen and (max-width: 768px) {

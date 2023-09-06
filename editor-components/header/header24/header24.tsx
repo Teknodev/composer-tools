@@ -198,13 +198,15 @@ class Header24 extends BaseHeader {
 
     return (
       <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
         <div className={this.decorateCSS("wrapper")}>
+        
           <ComposerSlider
             {...settings}
             className={this.decorateCSS("carousel")}
           >
             {this.getPropValue("slider").map((item: any, index: number) => (
-              <div className={this.decorateCSS("max-content")}>
+              
                 <div className={this.decorateCSS("items")} key={`key${index}`}>
                   <div className={this.decorateCSS("wrapper-slick")}>
                     <img
@@ -244,10 +246,11 @@ class Header24 extends BaseHeader {
                       <div className={this.decorateCSS("innerCircle")}></div>
                     </div>
                   </div>
-                </div>
+               
               </div>
             ))}
           </ComposerSlider>
+          </div>
         </div>
       </div>
     );

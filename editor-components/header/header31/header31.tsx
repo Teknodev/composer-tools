@@ -103,12 +103,12 @@ class HeaderComponent31 extends BaseHeader {
 
     return (
       <div
-        style={{
-          backgroundImage: `url(${this.getPropValue("background-image")})`,
-        }}
+        
         className={this.decorateCSS("container")}
       >
-        <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")} style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+        }}>
           <div
             className={`${this.decorateCSS("wrapper")} ${
               this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
