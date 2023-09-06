@@ -112,8 +112,8 @@ class Stats7Page extends BaseStats {
     };
 
     return (
-      <div className={this.decorateCSS("container")} style={styling}>
-        <div className={this.decorateCSS("max-content")}>
+      <div className={this.decorateCSS("container")} >
+        <div className={this.decorateCSS("max-content")} style={styling}>
           <div className={this.decorateCSS("stats1-page")}>
             <div className={this.decorateCSS("title-child")}>
               <h1>{this.getPropValue("title")}</h1>
