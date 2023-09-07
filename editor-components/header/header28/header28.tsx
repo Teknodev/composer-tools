@@ -4,13 +4,6 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type ISliderData = {
-  title: string;
-  image: string;
-  description: string;
-  button: IButton[];
-};
-
 type IButton = {
   value: string;
 };
@@ -53,14 +46,14 @@ class Header28 extends BaseHeader {
               displayer: "Background",
               key: "background",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-bg-slider-1-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98797057bdf002c2cdd77?alt=media&timestamp=1694074789884",
             },
             {
               type: "image",
               displayer: "Item",
               key: "img-item",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-slider-1-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98c6c057bdf002c2cde77?alt=media&timestamp=1694076027692",
             },
             {
               type: "object",
@@ -112,14 +105,14 @@ class Header28 extends BaseHeader {
               displayer: "Background",
               key: "background",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-slider-bg-2-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98797057bdf002c2cdd77?alt=media&timestamp=1694074789884",
             },
             {
               type: "image",
               displayer: "Item",
               key: "img-item",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-slider-2-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98c6c057bdf002c2cde78?alt=media&timestamp=1694076027692",
             },
             {
               type: "object",
@@ -171,14 +164,14 @@ class Header28 extends BaseHeader {
               displayer: "Background",
               key: "background",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-slider-bg-3-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98797057bdf002c2cdd77?alt=media&timestamp=1694074789884",
             },
             {
               type: "image",
               displayer: "Item",
               key: "img-item",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/drink-slider-3-opt.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98c6c057bdf002c2cde76?alt=media&timestamp=1694076027692",
             },
             {
               type: "object",
@@ -214,7 +207,7 @@ class Header28 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 440,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -251,11 +244,13 @@ class Header28 extends BaseHeader {
                         {item.value[2].value}
                       </div>
 
-                      <ComposerLink path={item.value[5].value[1].value}>
-                        <span className={this.decorateCSS("action-button")}>
+                      <span className={this.decorateCSS("action-button")}>
+                        <ComposerLink path={item.value[5].value[1].value}>
+                          <div className={this.decorateCSS("button-content")}>
                           {item.value[5].value[0].value}
-                        </span>
-                      </ComposerLink>
+                          </div>
+                        </ComposerLink>
+                      </span>
                     </div>
 
                     <img
