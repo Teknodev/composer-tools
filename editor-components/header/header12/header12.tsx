@@ -32,7 +32,7 @@ class Header12 extends BaseHeader {
         "Test different messages, background and designs. Find winning ad creatives that can bring your startup to the next level. Let Composer be the unfair advantage against your competitors.",
       displayer: "Description",
     });
-
+    
     this.addProp({
       type: "image",
       key: "image",
@@ -40,11 +40,10 @@ class Header12 extends BaseHeader {
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf154?alt=media&timestamp=1685102167066",
     });
 
-
     this.addProp({
       type: "array",
       key: "message-bar-card",
-      displayer: "Message Bar Card",
+      displayer: "Message Bar Card Right",
       value: [
         {
           type: "object",
@@ -109,7 +108,7 @@ class Header12 extends BaseHeader {
     this.addProp({
       type: "array",
       key: "message-bar-card2",
-      displayer: "Message Bar Card2",
+      displayer: "Message Bar Card Left",
       value: [
         {
           type: "object",
@@ -200,7 +199,7 @@ class Header12 extends BaseHeader {
               </div>
 
               <div className={this.decorateCSS("boxes-logo")}>
-                <img className={this.decorateCSS("logoimage")} src={this.getPropValue("image")} />
+                <img className={this.decorateCSS("logoimage")} src={this.getPropValue("image")} alt=""/>
               </div>
 
               <div className={this.decorateCSS("box")}>

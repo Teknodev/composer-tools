@@ -21,7 +21,7 @@ class CallToAction6Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
     this.addProp({
@@ -34,7 +34,7 @@ class CallToAction6Page extends BaseCallToAction {
       type: "string",
       key: "commentAuthor",
       displayer: "Comment Author",
-      value: "- " + "John Doe",
+      value: "- John Doe",
     });
     this.addProp({
       type: "image",
@@ -63,7 +63,7 @@ class CallToAction6Page extends BaseCallToAction {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action6-page")}>
             <div className={this.decorateCSS("left-image")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("leftImage")} />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("leftImage")} alt=""/>
             </div>
 
             <div className={this.decorateCSS("call-to-action6-child")}>
@@ -83,7 +83,7 @@ class CallToAction6Page extends BaseCallToAction {
             </div>
 
             <div className={this.decorateCSS("right-image")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("rightImage")} />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("rightImage")} alt=""/>
             </div>
           </div>
         </div>

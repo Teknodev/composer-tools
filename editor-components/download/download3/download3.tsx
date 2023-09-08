@@ -66,7 +66,7 @@ class Download3 extends BaseDownload {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "Button Url",
+                            displayer: "Button Link",
                             value: "",
                         },
                         {
@@ -97,7 +97,7 @@ class Download3 extends BaseDownload {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "Button Url",
+                            displayer: "Button Link",
                             value: "",
                         },
                         {
@@ -123,7 +123,7 @@ class Download3 extends BaseDownload {
                 <div className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("page")}>
                         <div className={this.decorateCSS("image-container")}>
-                            <img src={this.getPropValue("image")} alt="image" className={this.decorateCSS("image")} />
+                            <img src={this.getPropValue("image")} alt="" className={this.decorateCSS("image")} />
                         </div>
                         <div className={this.decorateCSS("group-container")}>
                             <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>

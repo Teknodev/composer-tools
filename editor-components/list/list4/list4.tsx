@@ -109,6 +109,105 @@ class List4 extends BaseList {
             },
           ],
         },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+            {
+              type: "string",
+              key: "list-title",
+              displayer: "List Title",
+              value: "7 Tips for a Healthier Lifestyle",
+            },
+            {
+              type: "array",
+              key: "features-list",
+              displayer: "Features List",
+              value: [
+                {
+                  type: "object",
+                  key: "feature-list-item",
+                  displayer: "Feature List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "list-item",
+                      displayer: "List Item",
+                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+            {
+              type: "string",
+              key: "list-title",
+              displayer: "List Title",
+              value: "7 Tips for a Healthier Lifestyle",
+            },
+            {
+              type: "array",
+              key: "features-list",
+              displayer: "Features List",
+              value: [
+                {
+                  type: "object",
+                  key: "feature-list-item",
+                  displayer: "Feature List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "list-item",
+                      displayer: "List Item",
+                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+            {
+              type: "string",
+              key: "list-title",
+              displayer: "List Title",
+              value: "7 Tips for a Healthier Lifestyle",
+            },
+            {
+              type: "array",
+              key: "features-list",
+              displayer: "Features List",
+              value: [
+                {
+                  type: "object",
+                  key: "feature-list-item",
+                  displayer: "Feature List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "list-item",
+                      displayer: "List Item",
+                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
       ],
     });
   }

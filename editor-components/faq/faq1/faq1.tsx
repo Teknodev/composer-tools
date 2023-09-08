@@ -92,6 +92,7 @@ class Faq extends BaseFAQ {
                 <div className={this.decorateCSS("in-box")}>
                   <h2>{card.subtitle}</h2>
                   <img
+                    alt=""
                     src={"https://www.svgrepo.com/show/80156/down-arrow.svg"}
                     className={this.decorateCSS("img-1")}
                   />

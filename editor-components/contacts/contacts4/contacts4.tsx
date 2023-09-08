@@ -26,7 +26,7 @@ class Contacts4Page extends BaseContacts {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://wallpaperaccess.com/full/84248.png",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edf62b057bdf002c2adec0?alt=media&timestamp=1693316630697",
     });
 
     this.addProp({
@@ -121,31 +121,36 @@ class Contacts4Page extends BaseContacts {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <h1>{this.getPropValue("title")}</h1>
-          <p>{this.getPropValue("description")}</p>
-          <div className={this.decorateCSS("contacts4")}>
-            <div className={this.decorateCSS("contact-left")}>
-              <img
-                src={this.getPropValue("image")}
-                className={this.decorateCSS("image")}
-              />
-            </div>
-            <div className={this.decorateCSS("contact-right")}>
-              <div className={this.decorateCSS("contact-info")}>
-                {this.castToObject<Item[]>("info-items").map(
-                  (data: any, index: number) => (
-                    <div key={index}>
-                      <h3>{data.title}</h3>
-                      <h2>{data.Text1th}</h2>
-                      <h2 className={this.decorateCSS("margin-bottom")}>
-                        {data.Text2th}
-                      </h2>
-                    </div>
-                  )
-                )}
+          <div className={this.decorateCSS("contacts")}>
+              
+              <div className={this.decorateCSS("contact-left-left")}>
+                <h1>{this.getPropValue("title")}</h1>
+                <p>{this.getPropValue("description")}</p>
+                <div className={this.decorateCSS("contact-left")}>
+                <img
+                  alt=""
+                  src={this.getPropValue("image")}
+                  className={this.decorateCSS("image")}
+                />
               </div>
             </div>
+              <div className={this.decorateCSS("contact-right")}>
+                <div className={this.decorateCSS("contact-info")}>
+                  {this.castToObject<Item[]>("info-items").map(
+                    (data: any, index: number) => (
+                      <div key={index}>
+                        <h3>{data.title}</h3>
+                        <h2>{data.Text1th}</h2>
+                        <h2 className={this.decorateCSS("margin-bottom")}>
+                          {data.Text2th}
+                        </h2>
+                      </div>
+                    )
+                  )}
+                </div>
+            </div>
           </div>
+          
         </div>
       </div>
     );

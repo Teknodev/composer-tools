@@ -18,23 +18,24 @@
         .title {
           display: block;
           h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            margin: 0 20px 10px 0;
           }
           h3 {
-            width: 50%;
+            width: 70%;
             font-weight: 100;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            opacity: 0.8;
           }
         }
         .card {
           display: flex;
           flex-direction: column;
           gap: 20px;
-          min-width: 500px;
-          max-width: 500px;
           height: 600px;
           border-radius: 6px;
           padding: 40px;
+          width: 70%;
          background-size: cover;
          background-repeat: no-repeat;
           .text-child {

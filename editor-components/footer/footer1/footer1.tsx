@@ -593,6 +593,7 @@ class Footer1Page extends BaseFooter {
           </div>
           <div className={this.decorateCSS("footer-bottom")}>
             <img
+              alt=""
               src={this.getPropValue("footerLogo")}
               width={200}
               height={100}
@@ -602,7 +603,7 @@ class Footer1Page extends BaseFooter {
               {this.castToObject<any[]>("social").map(
                 (item: IconsValues, indexSocial: number) => (
                   <ComposerLink key={indexSocial} path={item.socialLink}>
-                    <img src={item.socialIcon} width={20} height={20} />
+                    <img src={item.socialIcon} width={20} height={20} alt=""/>
                   </ComposerLink>
                 )
               )}

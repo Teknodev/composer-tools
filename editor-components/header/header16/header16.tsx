@@ -1,8 +1,8 @@
 import * as React from "react";
 import styles from "./header16.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import * as Yup from "yup";
-import { ErrorMessage, Formik, Form } from "formik";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 
 class HeaderComponent16 extends BaseHeader {
   constructor(props?: any) {
@@ -35,7 +35,7 @@ class HeaderComponent16 extends BaseHeader {
         {
           type: "page",
           key: "buttonPath",
-          displayer: "Button Path",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -51,41 +51,64 @@ class HeaderComponent16 extends BaseHeader {
       key: "image",
       displayer: "Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-delivery-girl-1.png.webp",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc7b0057bdf002c2ad640?alt=media&timestamp=1693304729496",
     });
     this.addProp({
       type: "image",
       key: "background-image",
       displayer: "Background Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-delivery-top-bg-1.jpg?id=55173",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc7b0057bdf002c2ad641?alt=media&timestamp=1693304729496",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "true",
+      displayer: "Column direction",
+      value: true,
     });
   }
-  validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-  });
+  
 
   getName(): string {
     return "Header-16";
   }
 
   render() {
-
     const button = this.getPropValue("button");
 
     return (
-      <div  style={{backgroundImage: `url(${this.getPropValue("background-image")})` }} className={this.decorateCSS("container")}>
+      <div
+        style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+        }}
+        className={this.decorateCSS("container")}
+      >
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
+          <div className={`${this.decorateCSS("wrapper")} ${
+              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
+            }`}>
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("content")}>
                 <h1>{this.getPropValue("title")}</h1>
                 <p>{this.getPropValue("description")}</p>
-              </div>
-              <div>
-                <button className={this.decorateCSS("button")}>
-                  {button[0].value}
-                </button>
+
+                <div className={this.decorateCSS("form")}>
+                  <input
+                    placeholder="Your Name"
+                    type="text"
+                    className={this.decorateCSS("name")}
+                  />
+                  <input
+                    placeholder="Phone Number"
+                    type="text"
+                    className={this.decorateCSS("phone")}
+                  />
+                  <ComposerLink path={this.getPropValue("button")[1].value}>
+                    <button className={this.decorateCSS("button")}>
+                      {button[0].value}
+                    </button>
+                  </ComposerLink>
+                </div>
               </div>
             </div>
             <div className={this.decorateCSS("right")}>

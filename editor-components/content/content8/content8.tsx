@@ -32,7 +32,7 @@ class Content8 extends BaseContent {
         {
           type: "page",
           key: "url",
-          displayer: "URL",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -77,11 +77,11 @@ class Content8 extends BaseContent {
                 </ComposerLink>
               </div>
               <div className={this.decorateCSS("right")}>
-                <img src={this.getPropValue("image")} />
+                <img src={this.getPropValue("image")} alt=""/>
               </div>
             </div>
             <div className={this.decorateCSS("background-image")}>
-              <img src={this.getPropValue("backgroundImage")} />
+              <img src={this.getPropValue("backgroundImage")} alt=""/>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./header20.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
 class Header20 extends BaseHeader {
@@ -9,7 +10,7 @@ class Header20 extends BaseHeader {
 
 
     this.addProp({
-      type: "array",
+      type: "object",
       displayer: "Items",
       key: "items",
       value: [
@@ -35,7 +36,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/banner-1-opt.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad87b?alt=media&timestamp=1693306471422",
             },
             {
               type: "object",
@@ -50,7 +51,7 @@ class Header20 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -81,7 +82,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/finaly-banner-handmade-9-opt.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad87a?alt=media&timestamp=1693306471422",
             },
             {
               type: "object",
@@ -96,7 +97,7 @@ class Header20 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -127,7 +128,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/finaly-banner-handmade-7-opt.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad878?alt=media&timestamp=1693306471422",
             },
             {
               type: "object",
@@ -142,7 +143,7 @@ class Header20 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -154,10 +155,17 @@ class Header20 extends BaseHeader {
     });
 
       this.addProp({
-        type: "image",
+       type: "object",
         displayer: "Item Right Bottom Right",
         key: "item-right-bottom-right",
-        value: "https://a6n4d3q9.rocketcdn.me/handmade/wp-content/uploads/sites/3/2018/10/finaly-banner-handmade-8-opt.jpg",
+        value: [
+          {
+            type: "image",
+            displayer: "Item Right Bottom Right",
+            key: "item-right-bottom-right-photo",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad879?alt=media&timestamp=1693306471422",
+          }
+        ]
       });
   }
 
@@ -184,9 +192,11 @@ class Header20 extends BaseHeader {
                     {items[0].description}
                   </div>
                   <div>
+                    <ComposerLink path={items[0].button[1].value}>
                     <button className={this.decorateCSS("button")}>
                       {items[0].button[0].value}
                     </button>
+                    </ComposerLink>
                   </div>
                 </div>
               </div>
@@ -205,9 +215,11 @@ class Header20 extends BaseHeader {
                       {items[1].description}
                     </div>
                     <div>
+                      <ComposerLink path={items[1].button[1].value}>
                       <button className={this.decorateCSS("button")}>
                         {items[1].button[0].value}
                       </button>
+                      </ComposerLink>
                     </div>
                   </div>
                 </div>
@@ -225,15 +237,17 @@ class Header20 extends BaseHeader {
                       {items[2].description}
                     </div>
                     <div>
+                        <ComposerLink path={items[2].button[1].value}>
                       <button className={this.decorateCSS("button")}>
                         {items[2].button[0].value}
                       </button>
+                      </ComposerLink>
                     </div>
                   </div>
                 </div>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={this.getPropValue('item-right-bottom-right')}/>
+                    <img src={this.getPropValue('item-right-bottom-right')[0].value} alt=""/>
                   </div>  
                 </div>
               </div>

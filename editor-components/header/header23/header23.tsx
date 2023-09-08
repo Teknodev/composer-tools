@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./header23.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class HeaderComponent23 extends BaseHeader {
   constructor(props?: any) {
@@ -17,14 +18,14 @@ class HeaderComponent23 extends BaseHeader {
       key: "right-image",
       displayer: "Right Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2020/01/w-mf-slider-1-1-min.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddbe1057bdf002c2adac3?alt=media&timestamp=1693309899505",
     });
     this.addProp({
       type: "image",
       key: "left-image",
       displayer: "Left Image",
       value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2020/01/w-mf-slider-1-min.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddbe1057bdf002c2adac2?alt=media&timestamp=1693309899505",
     });
     this.addProp({
       type: "object",
@@ -40,7 +41,7 @@ class HeaderComponent23 extends BaseHeader {
         {
           type: "page",
           key: "buttonPath",
-          displayer: "Button Path",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -70,9 +71,11 @@ class HeaderComponent23 extends BaseHeader {
                   {this.getPropValue("title")}
                 </h1>
                 <div>
-                  <button className={this.decorateCSS("button")}>
-                    {button[0].value}
-                  </button>
+                  <ComposerLink path={this.getPropValue("button")[1].value}>
+                    <button className={this.decorateCSS("button")}>
+                      {button[0].value}
+                    </button>
+                  </ComposerLink>
                 </div>
                 <div className={this.decorateCSS("divider-underline")}></div>
               </div>
