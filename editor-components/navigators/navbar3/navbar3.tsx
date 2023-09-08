@@ -206,7 +206,7 @@ class Navbar3 extends BaseNavigator {
                       key={indexItemList}
                       path={data.value[1].value}>
                        
-                        <a  key={indexItemList} style={{ fontSize: '200%'}}>{data.value[0].value}</a>
+                        <button key={indexItemList} style={{ fontSize: '200%'}}>{data.value[0].value}</button>
                         
                     </ComposerLink>                    
                   );
@@ -256,7 +256,7 @@ class Navbar3 extends BaseNavigator {
                       key={indexItemList}
                       path={data.value[1].value}>
                        
-                        <a  key={indexItemList}>{data.value[0].value}</a>
+                        <a href="a" key={indexItemList}>{data.value[0].value}</a>
                         
                     </ComposerLink>                    
                   );

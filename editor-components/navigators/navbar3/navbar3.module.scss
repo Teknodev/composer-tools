@@ -84,7 +84,7 @@
     border-bottom: 1px solid #5c5d5fd7;
   }
 
-  .topnav a {
+  .topnav button {
     float: left;
     display: block;
     color: black;
@@ -92,15 +92,17 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    border-bottom: 3px solid transparent;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
     }
 
-  .topnav a:hover {
-    border-bottom: 3px solid red;
+  .topnav button:hover {
+    border-bottom: 3px solid var(--composer-primary-color);
   }
 
-  .topnav a.active {
-  border-bottom: 3px solid red;
+  .topnav button.active {
+  border-bottom: 3px solid var(--composer-primary-color);
 }
     }
   

@@ -26,11 +26,11 @@ class Stats7Page extends BaseStats {
         "Understanding user behavior on a website is important for improving user experience and engagement.",
     });
     this.addProp({
-      type: "image",
-      key: "backgroundImage",
-      displayer: "Background Image",
+      type: "color",
+      key: "backgroundColor",
+      displayer: "Background Color",
       value:
-        "https://st2.depositphotos.com/39005438/42096/i/450/depositphotos_420968308-stock-photo-blue-gradient-blurred-background-dark.jpg",
+        "#CDC1A9",
     });
     this.addProp({
       type: "array",
@@ -108,7 +108,7 @@ class Stats7Page extends BaseStats {
 
   render() {
     const styling = {
-      backgroundImage: `url('${this.getPropValue("backgroundImage")}')`,
+      backgroundColor: this.getPropValue("backgroundColor"),
     };
 
     return (

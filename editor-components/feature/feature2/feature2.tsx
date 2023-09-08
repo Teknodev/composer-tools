@@ -125,7 +125,7 @@ class Feature2 extends BaseFeature {
                 <div
                   className={this.decorateCSS("image-background")}
                 >
-                  <img className={this.decorateCSS("image")} src={iconbox.image}></img>
+                  <img className={this.decorateCSS("image")} src={iconbox.image} alt=""></img>
                 </div>
                 <h3 className={this.decorateCSS("title")}>
                   {iconbox.title}

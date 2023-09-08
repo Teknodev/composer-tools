@@ -69,7 +69,7 @@ class Contacts6Page extends BaseContacts {
             <img
               className={this.decorateCSS("image")}
               src={this.getPropValue("image")}
-              alt="contact image"
+              alt="contact"
             />
           </div>
           <div className={this.decorateCSS("form-container")}>

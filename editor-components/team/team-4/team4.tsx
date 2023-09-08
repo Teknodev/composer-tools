@@ -244,6 +244,7 @@ class Team4 extends Team {
                           path={socialMedia.url}
                         >
                           <img
+                            alt=""
                             className={this.decorateCSS("social-media-image")}
                             src={socialMedia.icon}
                           />

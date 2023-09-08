@@ -223,6 +223,7 @@ class Feature10 extends BaseFeature {
                 }}>
                 <div key={index} className={this.decorateCSS("listed")}>
                   <img
+                    alt=""
                     className={this.decorateCSS("image")}
                     src={listed.image}
                   ></img>

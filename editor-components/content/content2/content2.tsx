@@ -69,7 +69,7 @@ class Content2 extends BaseContent {
             {this.castToObject<Gallery[]>("gallery").map(
               (v: Gallery, index: number) => (
                 <div key={index}>
-                  <img src={v.value}></img>
+                  <img src={v.value} alt=""></img>
                 </div>
               )
             )}

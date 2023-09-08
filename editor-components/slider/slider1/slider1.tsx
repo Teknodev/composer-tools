@@ -103,6 +103,7 @@ class Slider1 extends BaseSlider {
               {this.getPropValue("slider").map(
                 (item: any, indexSlider: number) => (
                   <img
+                    alt=""
                     src={item.value}
                     className={this.decorateCSS("img")}
                     key={indexSlider}

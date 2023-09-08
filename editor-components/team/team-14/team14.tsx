@@ -118,7 +118,7 @@ class Team14 extends Team {
               }}>
 
               <div key={indexPortfolio} className={this.decorateCSS("portfolio")}>
-                <img className={this.decorateCSS("image")} src={portfolio.image}></img>
+                <img className={this.decorateCSS("image")} src={portfolio.image} alt=""></img>
                 <div className={this.decorateCSS("little-container")}>
                   <h3 className={this.decorateCSS("title")}>{portfolio.title}</h3>
                   <p className={this.decorateCSS("description")}>

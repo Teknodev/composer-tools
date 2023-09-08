@@ -64,7 +64,6 @@ import TeamComponent11 from "./team/team-11/team11";
 import TeamComponent12 from "./team/team-12/team12";
 import TeamComponent13 from "./team/team-13/team13";
 import TeamComponent14 from "./team/team-14/team14";
-import TeamComponent15 from "./team/team-15/team15";
 import HeaderComponent1 from "./header/header1/header1";
 import HeaderComponent2 from "./header/header2/header2";
 import HeaderComponent3 from "./header/header3/header3";
@@ -77,17 +76,23 @@ import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
 import HeaderComponent11 from "./header/header11/header11";
 import HeaderComponent12 from "./header/header12/header12";
-import HeaderComponent13 from "./header/header13/header13";
+import HeaderComponent14 from "./header/header14/header14";
+import HeaderComponent22 from "./header/header22/header22";
+import HeaderComponent33 from "./header/header33/header33";
+import HeaderComponent21 from "./header/header21/header21";
 import HeaderComponent15 from "./header/header15/header15";
 import HeaderComponent23 from "./header/header23/header23";
+import HeaderComponent13 from "./header/header13/header13";
 import HeaderComponent16 from "./header/header16/header16";
 import HeaderComponent18 from "./header/header18/header18";
 import HeaderComponent19 from "./header/header19/header19";
 import HeaderComponent17 from "./header/header17/header17";
 import HeaderComponent20 from "./header/header20/header20";
+import HeaderComponent28 from "./header/header28/header28";
 import HeaderComponent24 from "./header/header24/header24";
 import HeaderComponent25 from "./header/header25/header25";
 import HeaderComponent29 from "./header/header29/header29";
+import HeaderComponent30 from "./header/header30/header30";
 import HeaderComponent31 from "./header/header31/header31";
 import HeaderComponent32 from "./header/header32/header32";
 import FeatureComponent1 from "./feature/feature1/feature1";
@@ -235,19 +240,25 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent10(),
     new HeaderComponent11(),
     new HeaderComponent12(),
+    new HeaderComponent14(),
+    new HeaderComponent22(),
+    new HeaderComponent13(),
+    new HeaderComponent21(),
     new HeaderComponent15(),
     new HeaderComponent16(),
     new HeaderComponent18(),
     new HeaderComponent19(),
     new HeaderComponent17(),
     new HeaderComponent20(),
-    new HeaderComponent13(),
     new HeaderComponent24(), 
     new HeaderComponent23(),
+    new HeaderComponent28(),
     new HeaderComponent25(),
     new HeaderComponent29(),
+    new HeaderComponent30(),
     new HeaderComponent31(),
     new HeaderComponent32(),
+    new HeaderComponent33(),
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),     

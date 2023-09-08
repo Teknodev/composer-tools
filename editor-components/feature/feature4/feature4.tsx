@@ -160,7 +160,7 @@ class Feature4 extends BaseFeature {
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
                 <div className={this.decorateCSS("vertical")} key={index}>
-                  <img className={this.decorateCSS("image")} src={vertical.image}></img>
+                  <img className={this.decorateCSS("image")} src={vertical.image} alt=""></img>
                   <h3 className={this.decorateCSS("title")}>{vertical.title}</h3>
                   <p className={this.decorateCSS("long-text")}>{vertical.description}</p>
 

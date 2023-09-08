@@ -246,20 +246,20 @@ class Team2 extends Team {
                 width: 90 / this.getPropValue("itemCount") + "%",
               }}>
               <div className={`${this.decorateCSS("team")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`} key={index}>
-                <img className={this.decorateCSS("image")} src={team.image}></img>
+                <img className={this.decorateCSS("image")} src={team.image} alt=""></img>
                 <h3 className={this.decorateCSS("title")}>{team.name}</h3>
                 <p className={this.decorateCSS("long-text")}>
                   {team.description}
                 </p>
                 <div className={this.decorateCSS("social")}>
                   <ComposerLink path={team.iconLinkLeft}>
-                    <img src={team.iconLeft}></img>
+                    <img src={team.iconLeft} alt=""></img>
                   </ComposerLink>
                   <ComposerLink path={team.iconLinkCenter}>
-                    <img src={team.iconCenter}></img>
+                    <img src={team.iconCenter} alt=""></img>
                   </ComposerLink>
                   <ComposerLink path={team.iconLinkRight}>
-                    <img src={team.iconRight}></img>
+                    <img src={team.iconRight} alt=""></img>
                   </ComposerLink>
                 </div>
               </div>

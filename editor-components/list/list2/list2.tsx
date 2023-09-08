@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BaseList } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list2.module.scss";
 
 interface List2Props {
@@ -346,7 +345,7 @@ class List2 extends BaseList {
                   minWidth : "200px",
                 }}>
                   <div className={this.decorateCSS("content")}>
-                    <img src={title.listEmoji}/>
+                    <img src={title.listEmoji} alt=""/>
                     <div className={this.decorateCSS("title")}>{title.listTitle}</div>
                     <div className={this.decorateCSS("text")}>{title.listDesc}</div>
                   </div>

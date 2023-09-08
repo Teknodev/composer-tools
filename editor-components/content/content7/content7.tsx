@@ -64,6 +64,7 @@ class Content7 extends BaseContent {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("child")}>
             <img
+              alt=""
               className={this.decorateCSS("logo")}
               src={this.getPropValue("image")}
             />
@@ -72,6 +73,7 @@ class Content7 extends BaseContent {
             </span>
             <div className={this.decorateCSS("desc-box")}>
             <img
+                alt=""
                 className={this.decorateCSS("wide-image")}
                 src={this.getPropValue("wideImage")}
               />
