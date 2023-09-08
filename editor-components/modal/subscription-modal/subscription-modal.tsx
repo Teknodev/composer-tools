@@ -74,6 +74,7 @@ class SubscriptionModal extends BaseModal {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <img
+              alt=""
               className={this.decorateCSS("image")}
               src={this.getPropValue("image")}
             ></img>

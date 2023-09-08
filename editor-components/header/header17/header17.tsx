@@ -33,7 +33,7 @@ class Header17 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/06/w-event-slider-img-2-opt.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7db?alt=media&timestamp=1693305822758",
             },
             {
               type: "string",
@@ -77,7 +77,7 @@ class Header17 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/06/w-event-slider-img-1-opt.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7dc?alt=media&timestamp=1693305822758",
             },
             {
               type: "string",
@@ -121,7 +121,7 @@ class Header17 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2021/06/w-event-slider-img-3-opt.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7dd?alt=media&timestamp=1693305822758",
             },
             {
               type: "string",

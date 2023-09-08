@@ -6,7 +6,7 @@ class ComponentsRegistery {
 
     constructor() {
         Object.values(CATEGORIES).forEach((item) => {
-            this.availableComponents[item] = new Array();
+            this.availableComponents[item] = [];
         })
     }
 

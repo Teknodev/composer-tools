@@ -12,75 +12,116 @@
       box-shadow: var(--composer-box-shadow);
       border-radius: 6px;
       padding: 20px;
-
+      
+      .subtitle{
+        text-align: center;
+        font-size: 1.5rem;
+        margin: 10px 0 20px 0;
+      }
       .title {
         color: var(--composer-primary-color);
         text-align: center;
-        font-size: 3rem;
+        font-size: 4rem;
+        margin: 0 0 20px 0;
+      }
+      .description{
+        text-align: center;
+        font-size: 1.5rem;
         margin: 0 0 40px 0;
       }
       .item-div {
         display: flex;
-        flex-direction: row;
-        display: flex;
         justify-content: center;
         flex-wrap: wrap;
         gap: 20px;
-
-        .item {
-          width: 100%;
+        .item-card{
           display: flex;
           flex-direction: column;
-          align-items: center;
-          border-top: 3px solid var(--composer-primary-color);
-          box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
-          border-radius: 10px;
-          height: max-content;
-          padding: 20px;
-          flex: 1 1;
-          min-width: 250px;
-          
-          &:last-child {
-            margin-right: 0;
-          }
-          .image {
-            text-align: center;
-            display: block;
-            margin: 0 auto 0 auto;
-          }
-          .price-text {
-            text-align: center;
-            display: block;
-            margin: 0 0 16px 0;
-            font-weight: bold;
-            font-size: 2em;
-          }
-          .duration-text {
-            text-align: center;
-            display: block;
-            font-weight: 450;
-            font-size: 1.2em;
-            color: rgb(100, 100, 100);
-          }
-          .button {
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            transition: 0.3s;
-            display: block;
-            color: white;
+          .card-upper{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 250px;
+            width: 400px;
+            padding: 10px 0px 50px 40px;
+            border-radius: 25px;
             background-color: var(--composer-primary-color);
-            padding: 10px 10px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            width: 150px;
-            &:hover {
-              color: var(--composer-primary-color);
-              background-color: transparent;
-              border: 1px solid var(--composer-primary-color);
+            color: var(--composer-white-color);
+            color: white;
+            z-index: 1;
+            .card-title{
+              font-size: 2rem;
+              margin: 0 0 10px 0;
+              letter-spacing: 0.8px;
+            }
+            .card-price{
+              font-size: 3rem;
+              margin: 0 0 10px 0;
+              .price{
+                font-size: 3.5rem;
+                font-weight: 600;
+                letter-spacing: 1px;
+              }
+              .duration{
+                font-size: 1.5rem;
+                margin-left: 8px;
+              }
+            }
+            
+          }
+          .card-bottom{
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            width: 85%;
+            z-index: 40;
+            box-shadow: var(--composer-box-shadow);
+            padding: 30px 30px;
+            margin-top: -50px;
+            background-color: white;
+            border-radius: 25px;
+            .card-img{
+              padding: 30px;
+              background: white;
+              border-radius: 25px;
+              box-shadow: var(--composer-box-shadow);
+              width: max-content;
+              margin-top: -60px;
+              img{
+                width: 40px;
+              }
+            }
+            .card-list{
+              padding-inline-start: 0;
+              .card-list-item{
+                list-style: none;
+                padding: 18px 0;
+                font-size: 1.5rem;
+                opacity: 0.75;
+                .list-item{
+                  
+                }
+              }
+            }
+            .card-button{
+                width: 70%;
+                padding: 15px 0;
+                border-radius: 25px;
+                background-color: transparent;
+                color: var(--composer-primary-color);
+                font-size: 1.5rem;
+                font-weight: 600;
+                border: 2px solid var(--composer-primary-color);
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                &:hover{
+                  background-color: var(--composer-primary-color);
+                  color: white;
+                }
             }
           }
         }
+        
       }
     }
   }

@@ -26,6 +26,12 @@ class CallToAction7Page extends BaseCallToAction {
         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Globe_icon-white.svg/1200px-Globe_icon-white.svg.png",
     });
     this.addProp({
+      type: "color",
+      key: "cardBackgroundColor",
+      displayer: "Card Background Color",
+      value: "#e0e0e0",
+    })
+    this.addProp({
       type: "string",
       key: "leftTitle",
       displayer: "Left Title",
@@ -46,7 +52,7 @@ class CallToAction7Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "leftButtonPage",
-      displayer: "Left Button Page",
+      displayer: "Left Button Link",
       value: "",
     });
     this.addProp({
@@ -84,7 +90,7 @@ class CallToAction7Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "rightButtonPage",
-      displayer: "Right Button Page",
+      displayer: "Right Button Link",
       value: "",
     });
     this.addProp({
@@ -101,6 +107,9 @@ class CallToAction7Page extends BaseCallToAction {
   }
 
   render() {
+    const styling = {
+      backgroundColor: this.getPropValue("cardBackgroundColor"),
+    }
     return (
       <div
         className={this.decorateCSS("container")}
@@ -112,14 +121,15 @@ class CallToAction7Page extends BaseCallToAction {
               <h1>{this.getPropValue("title")}</h1>
               <h3>{this.getPropValue("description")}</h3>
             </div>
-            <div className={this.decorateCSS("card-child")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("leftIcon")} width={35} height={35} />
+            <div className={this.decorateCSS("card-child")} style={styling}>
+              <img className={this.decorateCSS("image")} src={this.getPropValue("leftIcon")} width={35} height={35} alt=""/>
               <h1>{this.getPropValue("leftTitle")}</h1>
               <h3>{this.getPropValue("leftDescription")}</h3>
               <ComposerLink path={this.getPropValue("leftButtonPage")}>
                 <span>
                   {this.getPropValue("leftButtonText")}
                   <img
+                    alt=""
                     src={this.getPropValue("leftButtonIcon")}
                     width={15}
                     height={15}
@@ -127,14 +137,15 @@ class CallToAction7Page extends BaseCallToAction {
                 </span>
               </ComposerLink>
             </div>
-            <div className={this.decorateCSS("card-child")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("rightIcon")} width={35} height={35} />
+            <div className={this.decorateCSS("card-child")} style={styling}>
+              <img className={this.decorateCSS("image")} src={this.getPropValue("rightIcon")} width={35} height={35} alt=""/>
               <h1>{this.getPropValue("rightTitle")}</h1>
               <h3>{this.getPropValue("rightDescription")}</h3>
               <ComposerLink path={this.getPropValue("rightButtonPage")}>
                 <span>
                   {this.getPropValue("rightButtonText")}
                   <img
+                    alt=""
                     src={this.getPropValue("rightButtonIcon")}
                     width={15}
                     height={15}

@@ -2,15 +2,14 @@ import * as React from "react";
 import styles from "./content12.module.scss";
 import { BaseContent } from "../../EditorComponent";
 
-interface Card {
+type Card = {
   image: string;
-  cardRowTitle: CardRow[];
+  cardRowTitles: cardRowItems[];
 }
-interface CardRow {
+type cardRowItems = {
   titleRow: string;
   titleValue: string;
 }
-
 class Content12 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -38,14 +37,14 @@ class Content12 extends BaseContent {
     this.addProp({
       type: "number",
       key: "reverse",
-      displayer: "Reverse Item Count",
+      displayer: "Item Count in a Row",
       value: 3,
     });
 
     this.addProp({
       type: "array",
       key: "team-members",
-      displayer: "Team Members",
+      displayer: "Card Titles",
       value: [
         {
           type: "object",
@@ -60,22 +59,67 @@ class Content12 extends BaseContent {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f68c7fba070002b74fd39?alt=media&timestamp=1685086634609",
             },
             {
-              type: "object",
-              key: "cardRowTitle",
+              type: "array",
+              key: "cardRowTitles",
               displayer: "Card Row",
               value: [
                 {
-                  type: "string",
-                  key: "titleRow",
-                  displayer: "Card Row Title",
-                  value: "Impressions",
-                },
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
                 {
-                  type: "string",
-                  key: "titleValue",
-                  displayer: "Card Row Value",
-                  value: "13K",
-                },
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
+                {
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
               ],
             },
           ],
@@ -93,22 +137,67 @@ class Content12 extends BaseContent {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f67eafba070002b74fcb6?alt=media&timestamp=1685086634609",
             },
             {
-              type: "object",
-              key: "cardRowTitle",
+              type: "array",
+              key: "cardRowTitles",
               displayer: "Card Row",
               value: [
                 {
-                  type: "string",
-                  key: "titleRow",
-                  displayer: "Card Row Title",
-                  value: "Clicks",
-                },
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
                 {
-                  type: "string",
-                  key: "titleValue",
-                  displayer: "Card Row Value",
-                  value: "456",
-                },
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
+                {
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
               ],
             },
           ],
@@ -126,22 +215,67 @@ class Content12 extends BaseContent {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f67eafba070002b74fcb5?alt=media&timestamp=1685086634609",
             },
             {
-              type: "object",
-              key: "cardRowTitle",
+              type: "array",
+              key: "cardRowTitles",
               displayer: "Card Row",
               value: [
                 {
-                  type: "string",
-                  key: "titleRow",
-                  displayer: "Card Row Title",
-                  value: "CTR",
-                },
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
                 {
-                  type: "string",
-                  key: "titleValue",
-                  displayer: "Card Row Value",
-                  value: "4,5%",
-                },
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
+                {
+                type: "object",
+                key: "cardRowItems",
+                displayer: "Card Row İtems",
+                value: [
+                  {
+                    type: "string",
+                    key: "titleRow",
+                    displayer: "Card Row Title",
+                    value: "Impressions",
+                  },
+                  {
+                    type: "string",
+                    key: "titleValue",
+                    displayer: "Card Row Value",
+                    value: "13K",
+                  },
+                ]
+              },
               ],
             },
           ],
@@ -180,8 +314,8 @@ class Content12 extends BaseContent {
                           alt="person"
                         />
 
-                        {this.getPropValue("team-members").map(
-                          (itemData: any, indexItemData: number) => {
+                        {item.cardRowTitles.map(
+                          (itemData: cardRowItems, indexItemData: number) => {
                             return (
                               <div
                                 key={indexItemData}
@@ -196,7 +330,7 @@ class Content12 extends BaseContent {
                                     )}
                                   >
                                     <p className={this.decorateCSS("p-title")}>
-                                      {itemData.value[1].value[0].value}
+                                      {itemData.titleRow}
                                     </p>
                                   </div>
                                   <div
@@ -205,7 +339,7 @@ class Content12 extends BaseContent {
                                     )}
                                   >
                                     <p className={this.decorateCSS("p-value")}>
-                                      {itemData.value[1].value[1].value}
+                                      {itemData.titleValue}
                                     </p>
                                   </div>
                                 </div>

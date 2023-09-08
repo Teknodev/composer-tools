@@ -19,7 +19,7 @@ import ContentComponent2 from "./content/content2/content2";
 import ContentComponent3 from "./content/content3/content3";
 import ContentComponent4 from "./content/content4/content4";
 import ContentComponent5 from "./content/content5/content5";
-// import ContentComponent6 from "./content/content5/content6";
+import ContentComponent6 from "./content/content6/content6";
 import ContentComponent7 from "./content/content7/content7";
 import ContentComponent8 from "./content/content8/content8";
 import ContentComponent9 from "./content/content9/content9";
@@ -64,7 +64,6 @@ import TeamComponent11 from "./team/team-11/team11";
 import TeamComponent12 from "./team/team-12/team12";
 import TeamComponent13 from "./team/team-13/team13";
 import TeamComponent14 from "./team/team-14/team14";
-import TeamComponent15 from "./team/team-15/team15";
 import HeaderComponent1 from "./header/header1/header1";
 import HeaderComponent2 from "./header/header2/header2";
 import HeaderComponent3 from "./header/header3/header3";
@@ -77,14 +76,19 @@ import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
 import HeaderComponent11 from "./header/header11/header11";
 import HeaderComponent12 from "./header/header12/header12";
-import HeaderComponent13 from "./header/header13/header13";
+import HeaderComponent14 from "./header/header14/header14";
+import HeaderComponent22 from "./header/header22/header22";
+import HeaderComponent33 from "./header/header33/header33";
+import HeaderComponent21 from "./header/header21/header21";
 import HeaderComponent15 from "./header/header15/header15";
 import HeaderComponent23 from "./header/header23/header23";
+import HeaderComponent13 from "./header/header13/header13";
 import HeaderComponent16 from "./header/header16/header16";
 import HeaderComponent18 from "./header/header18/header18";
 import HeaderComponent19 from "./header/header19/header19";
 import HeaderComponent17 from "./header/header17/header17";
 import HeaderComponent20 from "./header/header20/header20";
+import HeaderComponent28 from "./header/header28/header28";
 import HeaderComponent24 from "./header/header24/header24";
 import HeaderComponent25 from "./header/header25/header25";
 import HeaderComponent29 from "./header/header29/header29";
@@ -133,12 +137,14 @@ import StatsComponent4 from "./stats/stats4/stats4";
 import StatsComponent5 from "./stats/stats5/stats5";
 import StatsComponent6 from "./stats/stats6/stats6";
 import StatsComponent7 from "./stats/stats7/stats7";
+import StatsComponent8 from "./stats/stats8/stats8";
 import ContactsComponent1 from "./contacts/contacts1/contacts1";
 import ContactsComponent2 from "./contacts/contacts2/contacts2";
 import ContactsComponent3 from "./contacts/contacts3/contacts3";
 import ContactsComponent4 from "./contacts/contacts4/contacts4";
 import ContactsComponent5 from "./contacts/contacts5/contacts5";
 import ContactsComponent6 from "./contacts/contacts6/contacts6";
+import ContactsComponent8 from "./contacts/contacts8/contacts8";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -176,7 +182,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent3(),
     new ContentComponent4(),
     new ContentComponent5(),
-    // new ContentComponent6(),
+    new ContentComponent6(),
     new ContentComponent7(),
     new ContentComponent8(),
     new ContentComponent9(),
@@ -233,9 +239,27 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent10(),
     new HeaderComponent11(),
     new HeaderComponent12(),
+    new HeaderComponent14(),
+    new HeaderComponent22(),
+    new HeaderComponent13(),
+    new HeaderComponent21(),
+    new HeaderComponent15(),
+    new HeaderComponent16(),
+    new HeaderComponent18(),
+    new HeaderComponent19(),
+    new HeaderComponent17(),
+    new HeaderComponent20(),
+    new HeaderComponent24(), 
+    new HeaderComponent23(),
+    new HeaderComponent28(),
+    new HeaderComponent25(),
+    new HeaderComponent29(),
+    new HeaderComponent31(),
+    new HeaderComponent32(),
+    new HeaderComponent33(),
     new NavbarComponent1(),
     new NavbarComponent2(),
-    new NavbarComponent3(),
+    new NavbarComponent3(),     
     new FeatureComponent1(),
     new FeatureComponent2(),
     new FeatureComponent3(),
@@ -279,12 +303,14 @@ function Registerables(composer: ComponentsRegistery) {
     new StatsComponent5(),
     new StatsComponent6(),
     new StatsComponent7(),
+    new StatsComponent8(),
     new ContactsComponent1(),
     new ContactsComponent2(),
     new ContactsComponent3(),
     new ContactsComponent4(),
     new ContactsComponent5(),
     new ContactsComponent6(),
+    new ContactsComponent8(),
     new FooterComponent1(),
     new FooterComponent2(),
     new FooterComponent3(),

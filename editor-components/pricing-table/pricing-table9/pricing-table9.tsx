@@ -351,7 +351,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -382,7 +382,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -413,7 +413,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -428,8 +428,6 @@ class PricingTable9 extends BasePricingTable {
 
   render() {
     const pricingData = this.castToObject<Pricing[]>("price");
-
-    const pricingTitles = pricingData.map((pricing: Pricing) => pricing.title);
 
     return (
       <div className={this.decorateCSS("container")}>

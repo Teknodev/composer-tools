@@ -24,7 +24,7 @@ class Content7 extends BaseContent {
       key: "description",
       displayer: "Description",
       value:
-        "Web design is a crucial aspect of building a successful online presence. Your website is often the first point of contact between you and your audience, and its design can significantly impact how your brand is perceived.",
+        "Web design is a crucial aspect of building a successful online presence. Your website is often the first point of contact between you and your audience, and its design can significantly impact how your brand is perceived.Web design is a crucial aspect of building a successful online presence. Your website is often the first point of contact between you and your audience.",
     });
     this.addProp({
       type: "object",
@@ -50,7 +50,7 @@ class Content7 extends BaseContent {
       key: "wideImage",
       displayer: "Wide Image",
       value:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5c852057bdf002c29b9cf?alt=media&timestamp=1692780605742",
     });
   }
 
@@ -64,19 +64,24 @@ class Content7 extends BaseContent {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("child")}>
             <img
+              alt=""
               className={this.decorateCSS("logo")}
               src={this.getPropValue("image")}
             />
             <span className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
             </span>
-            <span className={this.decorateCSS("description")}>
-              {this.getPropValue("description")}
-            </span>
+            <div className={this.decorateCSS("desc-box")}>
             <img
-              className={this.decorateCSS("wide-image")}
-              src={this.getPropValue("wideImage")}
-            />
+                alt=""
+                className={this.decorateCSS("wide-image")}
+                src={this.getPropValue("wideImage")}
+              />
+              <span className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </span>
+              
+            </div>
             <ComposerLink path={this.getPropValue("button")[1].value}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("button")[0].value}

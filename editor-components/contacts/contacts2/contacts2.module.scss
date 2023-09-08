@@ -30,15 +30,15 @@
         align-items: center;
         gap: 20px;
         .img-child {
-          border: 1px solid var(--composer-secondary-color);
+          box-shadow: var(--composer-box-shadow);
           border-radius: 100%;
-          width: 50px;
-          height: 50px;
+          width: 80px;
+          height: 80px;
           display: flex;
           align-items: center;
           justify-content: center;
           .image {
-            padding: 10px;
+            padding: 5px;
           }
         }
         .card {
@@ -49,6 +49,18 @@
           align-items: center;
           justify-content: center;
           gap: 20px;
+          box-shadow: var(--composer-box-shadow);
+          padding: 30px 0;
+          border-radius: 10px;
+          &.border-bottom{
+            border-bottom: 1px solid var(--composer-primary-color);
+          }
+          &.border-top{
+            border-top: 1px solid var(--composer-primary-color);
+          }
+          &.border-all{
+            border: 1px solid var(--composer-primary-color);
+          }
           .card-box {
             display: flex;
             flex-direction: column;

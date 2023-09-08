@@ -1,12 +1,7 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials8.module.scss";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import "swiper/css";
-import "swiper/css/effect-flip";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { EffectFlip,Pagination, Navigation} from "swiper";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Item = {
   image: string;
@@ -156,6 +151,15 @@ class Testimonials8Page extends Testimonials {
   }
 
   render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
     return (
 
       <div className={this.decorateCSS("container")}>
@@ -164,16 +168,9 @@ class Testimonials8Page extends Testimonials {
             <div>
               <h1>{this.getPropValue("title")}</h1>
             </div>
-            <Swiper
-              effect={"flip"}
-              grabCursor={true}
-              pagination={true}
-              navigation={true}
-              modules={[EffectFlip, Pagination, Navigation]}
-              className="mySwiper"
-            >
+            <ComposerSlider {...settings}>
               {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
-                <SwiperSlide key={`tsm-8-${index}`}>
+                <div key={`tsm-8-${index}`}>
                   <section>
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("profile")}>
@@ -187,9 +184,9 @@ class Testimonials8Page extends Testimonials {
                       <h5>{item.time}</h5>
                     </div>
                   </section>
-                </SwiperSlide>
+                </div>
               ))}
-            </Swiper>
+            </ComposerSlider>
           </div>
         </div>
 

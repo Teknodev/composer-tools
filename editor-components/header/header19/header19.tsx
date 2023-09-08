@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "./header19.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import { object } from "yup";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Header19 extends BaseHeader {
@@ -9,7 +8,7 @@ class Header19 extends BaseHeader {
     super(props, styles);
 
     this.addProp({
-      type: "array",
+      type: "object",
       key: "left-side",
       displayer: "Left Side",
       value: [
@@ -61,7 +60,7 @@ class Header19 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -72,7 +71,7 @@ class Header19 extends BaseHeader {
               key: "left-image",
               displayer: "Background",
               value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2017/01/fashion-split-1-left.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcae1057bdf002c2ad7a3?alt=media&timestamp=1693305546889",
             },
           ],
         },
@@ -80,7 +79,7 @@ class Header19 extends BaseHeader {
     });
 
     this.addProp({
-      type: "array",
+      type: "object",
       key: "right-side",
       displayer: "Right Side",
       value: [
@@ -100,7 +99,7 @@ class Header19 extends BaseHeader {
               key: "left-image",
               displayer: "Background",
               value:
-                "https://cdn.fashiola.co.uk/L356474659/men-tops-zara-flowers-top-available-in-more-colours.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcae1057bdf002c2ad7a4?alt=media&timestamp=1693305546889",
             },
           ],
         },

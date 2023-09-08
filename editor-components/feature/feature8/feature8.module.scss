@@ -62,7 +62,6 @@
       }
       .button {
         width: 100%;
-        a {
           cursor: pointer;
           text-decoration: none;
           text-align: center;
@@ -82,7 +81,6 @@
             background-color: transparent;
             border: 1px solid var(--composer-primary-color);
           }
-        }
       }
     }
   }
