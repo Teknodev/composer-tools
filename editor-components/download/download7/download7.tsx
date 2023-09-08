@@ -16,7 +16,7 @@ class Download7 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Background Image",
-            value: "https://p5crires.cri.cn/photoworkspace/cri/contentimg/2023/01/04/2023010415453365247.jpg",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af5c68c3c2002cd2fa52?alt=media&timestamp=1692795543393",
         });
 
         this.addProp({
@@ -54,7 +54,7 @@ class Download7 extends BaseDownload {
                 {
                     type: "page",
                     key: "url",
-                    displayer: "Button Url",
+                    displayer: "Button Link",
                     value: "",
                 },
             ],

@@ -21,6 +21,16 @@ class Navbar1 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "select",
+      key: "select",
+      displayer: "Location of Items",
+      value: "Center",
+      additionalParams: {
+        selectItems: ["Left", "Right" , "Center"],
+      }
+    })
+
+    this.addProp({
       type: "array",
       key: "itemList",
       displayer: "Item List",
@@ -130,28 +140,24 @@ class Navbar1 extends BaseNavigator {
         },
       ],
     });
-
-    this.state["componentProps"]["navActive"] = false;
+    this.state["componentProps"]["navActive"] = true;
   }
 
   getName(): string {
     return "Navbar 1";
   }
-
   navClick() {
     let value: boolean = this.state.componentProps["navActive"];
     this.state.componentProps["navActive"] = !value;
-    console.log("test", this.state.componentProps["navActive"]);
   }
-
   render() {
+    const selectValue = this.getPropValue("select");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <nav className={this.decorateCSS("navigator")}>
-            <img src={this.getPropValue("image")} width={200} />
-            <div className={this.decorateCSS("items")}>
-              {this.castToObject<[]>("itemList").map(
+        <nav>
+            <img src={this.getPropValue("image")} width={200} alt=""/>
+            <div className={`${this.decorateCSS("items")} ${selectValue === "Left" ? this.decorateCSS("left") : selectValue === "Right" ? this.decorateCSS("right") : selectValue === "Center" && ""}`}>              {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
                   return (
                     <ComposerLink
@@ -163,6 +169,8 @@ class Navbar1 extends BaseNavigator {
                   );
                 }
               )}
+            </div>
+            <div className={this.decorateCSS("button-child")}>
               {this.castToObject<[]>("buttonList").map(
                 (data: any, indexButtonList: number) => {
                   return (
@@ -179,8 +187,9 @@ class Navbar1 extends BaseNavigator {
           </nav>
           <nav className={this.decorateCSS("navigator-mobile")}>
             <div className={this.decorateCSS("navbar")}>
-              <img src={this.getPropValue("image")} width={200} />
+              <img src={this.getPropValue("image")} width={200} alt=""/>
               <img
+                alt=""
                 className={this.decorateCSS("img-hamburger")}
                 src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
                 onClick={() => {
@@ -188,9 +197,22 @@ class Navbar1 extends BaseNavigator {
                 }}
               />
             </div>
-            {this.state.componentProps["navActive"] == true && (
-              <div className={this.decorateCSS("navbar-child")}></div>
-            )}
+            {this.state.componentProps["navActive"] && (
+            <div className={this.decorateCSS("navbar-child")}>
+              {this.castToObject<[]>("itemList").map(
+                (data: any, indexItemList: number) => {
+                  return (
+                    <ComposerLink
+                      key={indexItemList}
+                      path={data.value[1].value}
+                    >
+                      <h3 key={indexItemList}>{data.value[0].value}</h3>
+                    </ComposerLink>
+                  );
+                }
+              )}
+            </div>
+          )}
           </nav>
         </div>
       </div>

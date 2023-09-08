@@ -52,7 +52,7 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -90,7 +90,7 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -128,7 +128,7 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -152,6 +152,7 @@ class Feature14 extends BaseFeature {
                   <div className={this.decorateCSS("image-background")}></div>
                   <div className={this.decorateCSS("child")}>
                     <img
+                      alt=""
                       className={this.decorateCSS("image")}
                       src={top_image.image}
                     ></img>

@@ -5,21 +5,22 @@
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-
-    .wrapper {
-      width: 100%;
+    .content{
       display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    .wrapper {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       gap: 20px;
       &.wrapper-reverse {
         flex-flow: row-reverse;
       }
 
       .image-background {
-        flex: 1;
         .image {
-          width: 100%;
           max-height: 450px;
         }
       }
@@ -69,6 +70,7 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
+          margin-top: 10px;
           .button {
             cursor: pointer;
             text-align: center;
@@ -95,6 +97,7 @@
         }
       }
     }
+  }
   }
 }
 

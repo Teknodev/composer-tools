@@ -10,8 +10,6 @@ class Content5 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
 
-    let customize = require("./customize.png");
-
     this.addProp({
       type: "string",
       key: "title",
@@ -30,7 +28,7 @@ class Content5 extends BaseContent {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: customize,
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc2f6057bdf002c2ad50c?alt=media&timestamp=1693303518223",
     });
 
     this.addProp({
@@ -128,7 +126,9 @@ class Content5 extends BaseContent {
                 (data: any, index: number) => (
                   <div key={index} className={this.decorateCSS("items")}>
                     <div className={this.decorateCSS("logo-icon")}>
-                      <img src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646dc6fbfba070002b74c38e?alt=media&timestamp=1684915965833" />
+                      <img 
+                      alt=""
+                      src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646dc6fbfba070002b74c38e?alt=media&timestamp=1684915965833" />
                     </div>
                     <span>{data.itemText}</span>
                   </div>

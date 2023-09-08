@@ -117,7 +117,7 @@ class PricingTable3 extends BasePricingTable {
         {
           type: "page",
           key: "url",
-          displayer: "URL",
+          displayer: "Button Link",
           value: "",
         },
         {
@@ -168,7 +168,7 @@ class PricingTable3 extends BasePricingTable {
                       return (
                         <li className={this.decorateCSS("list-item")} key={indexText}>
                           <div className={this.decorateCSS("circle-icon")}>
-                            <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
+                            <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
                           </div>
                           {price.value}
                         </li>
@@ -196,7 +196,7 @@ class PricingTable3 extends BasePricingTable {
                           <ComposerLink key={indexButtons} path={item.url}>
                             <button
                               className={`${this.decorateCSS("button")} ${
-                                item.isPrimary && this.decorateCSS("primary")
+                                item.isPrimary ? this.decorateCSS("primary") : ""
                               }`}
                             >
                               {item.buttonText}

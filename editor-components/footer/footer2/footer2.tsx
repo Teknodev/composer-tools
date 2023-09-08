@@ -413,13 +413,13 @@ class Footer2Page extends BaseFooter {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("subscribe")}>
-              <img src={this.getPropValue("logo")} width={200} height={100} />
+              <img src={this.getPropValue("logo")} width={200} height={100} alt=""/>
               <p>{this.getPropValue("description")}</p>
               <div className={this.decorateCSS("social")}>
                 {this.castToObject<any[]>("social").map(
                   (item: IconsValues, indexSocial: number) => (
                     <ComposerLink key={indexSocial} path={item.socialLink}>
-                      <img src={item.socialIcon} width={20} height={20} />
+                      <img src={item.socialIcon} width={20} height={20} alt=""/>
                     </ComposerLink>
                   )
                 )}
