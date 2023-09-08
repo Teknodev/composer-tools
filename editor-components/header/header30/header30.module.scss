@@ -3,12 +3,17 @@ $animationDuration: 1s;
   width: 100%;
 
   .slider-parent {
-    width: 100%;
+    width: var(--composer-content-width);
+    display: flex;
+    justify-content: center;
     margin: auto;
     height: 100%;
 
     .carousel {
       height: 100%;
+      width: var(--composer-content-width);
+      display: flex;
+      justify-content: center;
 
       div[aria-hidden="false"] {
         .wrapper {

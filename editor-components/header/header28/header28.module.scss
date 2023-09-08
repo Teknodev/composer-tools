@@ -1,8 +1,14 @@
 .container {
   width: 100%;
-
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
   .wrapper {
     height: 100vh;
+    
 
     .carousel > button:first-child {
       &:before {
@@ -20,6 +26,10 @@
 
     .carousel {
       height: 100%;
+      max-width: var(--composer-content-width);
+    margin: auto;
+    display: flex;
+    justify-content: center;
 
       > button {
         z-index: 10;
@@ -38,11 +48,12 @@
 
       .items {
         position: relative;
+        width: var(--composer-content-width);
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        .max-content {
-          max-width: var(--composer-content-width);
-          margin: auto;
-        }
+        
 
         .background {
           object-fit: cover;
@@ -56,10 +67,7 @@
 
         .item-box {
           padding: 50px;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
+          
           padding-top: 50px;
           gap: 150px;
           height: 100vh;
@@ -137,8 +145,7 @@
 
           height: 100%;
           width: 100%;
-          .max-content {
-          }
+          
 
           .background {
             height: 100vh;
