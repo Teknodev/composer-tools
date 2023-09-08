@@ -342,6 +342,12 @@ class PricingTable2 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 4,
+    });
   }
 
   getName(): string {
@@ -363,6 +369,9 @@ class PricingTable2 extends BasePricingTable {
                return '';
             } )
             return (
+              <div className={this.decorateCSS("card-item-count")} style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+              }}>
               <div key={index} className={this.decorateCSS("item-card")}>
                 <div className={this.decorateCSS("card-upper")}>
                   <h3 className={this.decorateCSS("card-title")}>{table.cardTitle}</h3>
@@ -387,6 +396,7 @@ class PricingTable2 extends BasePricingTable {
                   <ComposerLink path={table.cardButtonLink}>
                     <button className={this.decorateCSS("card-button")}>{table.cardButtonText}</button>
                   </ComposerLink>
+                </div>
                 </div>
               </div>
             );

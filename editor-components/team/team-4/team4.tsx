@@ -193,6 +193,12 @@ class Team4 extends Team {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -213,6 +219,9 @@ class Team4 extends Team {
           <div className={this.decorateCSS("team-members")}>
             {this.castToObject<TeamMember[]>("teamMembers").map(
               (teamMember: TeamMember, indexTeamMembers: number) => (
+                <div className={this.decorateCSS("card-item-count")} style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
                 <div
                   key={indexTeamMembers}
                   className={this.decorateCSS("team-member")}
@@ -242,6 +251,7 @@ class Team4 extends Team {
                         </ComposerLink>
                       )
                     )}
+                  </div>
                   </div>
                 </div>
               )

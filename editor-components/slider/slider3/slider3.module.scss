@@ -64,17 +64,29 @@
   .container {
     width: 100%;
     padding: 50px 20px;
-
-    .wrapper {
-      flex-direction: column !important;
-
-      .slider-parent,
-      .header-page {
+    .max-content{
+      
+      .wrapper {
+        align-items: center;
+        flex-direction: column !important;
         width: 100% !important;
-      }
-
-      h1 {
-        font-size: 3rem !important;
+        .slider-parent{
+          width: 100%;
+          .carousel{
+            width: 100%;
+            .img{
+              height: auto;
+            }
+          }
+        }
+        .slider-parent,
+        .header-page {
+          width: 100% !important;
+        }
+  
+        h1 {
+          font-size: 3rem !important;
+        }
       }
     }
   }

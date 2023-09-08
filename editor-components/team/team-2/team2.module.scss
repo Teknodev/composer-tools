@@ -6,7 +6,7 @@
     max-width: var(--composer-content-width);
     display: flex;
     flex-wrap: wrap;
-    margin: auto;
+    justify-content: space-around;
     gap: 20px;
 
     .team {
@@ -66,5 +66,12 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      align-items: center;
+      flex-direction: column;
+      .card-item-count{
+        min-width: 100%;
+      }
+    }
   }
 }

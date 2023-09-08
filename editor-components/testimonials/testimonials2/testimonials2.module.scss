@@ -3,24 +3,19 @@
   padding: 50px 0;
 
   .max-content {
-    display: flex;
-    justify-content: center;
     max-width: var(--composer-content-width);
     margin: auto;
     
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin: 0 0 40px 0;
+    }
     .testimonials2 {
-      display: block;
-      
-      h1 {
-        text-align: center;
-        font-size: 3rem;
-        margin: 0 0 40px 0;
-      }
-      section {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
         
         .card {
           padding: 20px;
@@ -63,7 +58,7 @@
             font-size: 1.1rem;
           }
         }
-      }
+      
     }
   }
 }

@@ -75,6 +75,12 @@ class Feature11 extends BaseFeature {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -88,11 +94,15 @@ class Feature11 extends BaseFeature {
           <div className={this.decorateCSS("content")}>
             {this.castToObject<IMessages[]>("message-bar-card").map(
               (message: any, index: number) => (
+                <div className={this.decorateCSS("card-item-count")} style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
                 <div className={this.decorateCSS("message")} key={index}>
                   <div className={this.decorateCSS("title")}>
                     <h3>{message.title}</h3>
                   </div>
                   <p className={this.decorateCSS("long-text")}>{message.description}</p>
+                </div>
                 </div>
               )
             )}

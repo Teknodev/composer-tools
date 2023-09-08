@@ -300,7 +300,6 @@ class Team1 extends Team {
   getName(): string {
     return "Team Meet-4";
   }
-
   render() {
     return (
       <div className={this.decorateCSS("container")}>

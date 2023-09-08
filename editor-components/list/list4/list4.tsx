@@ -35,7 +35,7 @@ class List4 extends BaseList {
                       type: "string",
                       key: "list-item",
                       displayer: "List Item",
-                      value: "Looking for some great summer reading? Check out our list of the top 10 books to read this season, featuring a mix of bestsellers, new releases, and classics.",
+                      value: "Looking for some great summer reading? Check out our list of the top 10 books to read this season.",
                     },
                   ],
                 },
@@ -210,6 +210,12 @@ class List4 extends BaseList {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 7,
+    });
   }
 
   getName(): string {
@@ -222,20 +228,25 @@ class List4 extends BaseList {
         <div className={this.decorateCSS("max-content")}>
           {this.getPropValue("features-main").map((title: any, index: number) => {
             return (
-              <div key={index} className={this.decorateCSS("feature-list")}>
-                <div>
-                  <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
-                  <hr />
+              <div style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+                minWidth: "200px",
+              }}>
+                <div  key={index} className={this.decorateCSS("feature-list")}>
+                  <div>
+                    <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
+                    <hr />
+                  </div>
+                  <ul className={this.decorateCSS("list-group")}>
+                    {title.value[1].value.map((table: any) => {
+                      return table.value.map((tableData: any, index: number) => (
+                        <li className={this.decorateCSS("list-item")} key={index}>
+                          {tableData.value}
+                        </li>
+                      ));
+                    })}
+                  </ul>
                 </div>
-                <ul className={this.decorateCSS("list-group")}>
-                  {title.value[1].value.map((table: any) => {
-                    return table.value.map((tableData: any, index: number) => (
-                      <li className={this.decorateCSS("list-item")} key={index}>
-                        {tableData.value}
-                      </li>
-                    ));
-                  })}
-                </ul>
               </div>
             );
           })}

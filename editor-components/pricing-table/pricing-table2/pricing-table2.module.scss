@@ -9,7 +9,6 @@
     .table {
       display: flex;
       flex-direction: column;
-      box-shadow: var(--composer-box-shadow);
       border-radius: 6px;
       padding: 20px;
       
@@ -42,7 +41,6 @@
             flex-direction: column;
             justify-content: center;
             height: 250px;
-            width: 400px;
             padding: 10px 0px 50px 40px;
             border-radius: 25px;
             background-color: var(--composer-primary-color);
@@ -130,5 +128,13 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      flex-direction: column;
+      align-items: center;
+      .card-item-count{
+        min-width: 100%;
+      }
+
+    }
   }
 }
