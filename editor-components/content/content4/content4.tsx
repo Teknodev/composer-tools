@@ -405,7 +405,7 @@ class Content4 extends BaseContent {
 
             {this.castToObject<Horizontals[]>("horizontal").map(
               (horizontals: any, index: number) => (
-                <div style={{
+                <div className={this.decorateCSS("card-item-count")} style={{
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
                 <div className={this.decorateCSS("horizontal")} key={index}>

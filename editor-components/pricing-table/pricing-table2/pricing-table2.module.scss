@@ -128,5 +128,13 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      flex-direction: column;
+      align-items: center;
+      .card-item-count{
+        min-width: 100%;
+      }
+
+    }
   }
 }

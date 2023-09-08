@@ -369,7 +369,7 @@ class PricingTable2 extends BasePricingTable {
                return '';
             } )
             return (
-              <div style={{
+              <div className={this.decorateCSS("card-item-count")} style={{
                 width: 90 / this.getPropValue("itemCount") + "%",
               }}>
               <div key={index} className={this.decorateCSS("item-card")}>

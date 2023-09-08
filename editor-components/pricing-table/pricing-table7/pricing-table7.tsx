@@ -447,7 +447,7 @@ class PricingTable7 extends BasePricingTable {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<Pricing[]>("price").map((pricing: any, index: number) => (
-            <div style={{
+            <div className={this.decorateCSS("card-item-count")} style={{
               width: 90 / this.getPropValue("itemCount") + "%",
             }}>
             <div key={`price7-${index}`} className={this.decorateCSS("price")}>

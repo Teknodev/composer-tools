@@ -117,15 +117,19 @@ class Feature1 extends BaseFeature {
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<ICircleBoxes[]>("circle-boxes-content").map(
             (circlebox: any, index: number) => (
-              <div className={this.decorateCSS("card-item-count")} style={{
-                width: 90 / this.getPropValue("itemCount") + "%",
-              }}>  
-                <div className={this.decorateCSS("circle-boxes")} key={index}>
+              <div
+                className={this.decorateCSS("card-item-count")}
+                style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}
+                key={index}
+              >
+                <div className={this.decorateCSS("circle-boxes")}>
                   <div className={this.decorateCSS("image-background")}>
                     <img
                       className={this.decorateCSS("image")}
                       src={circlebox.image}
-                      />
+                    />
                   </div>
                   <h3 className={this.decorateCSS("title")}>{circlebox.title}</h3>
                   <p className={this.decorateCSS("long-text")}>
@@ -139,6 +143,7 @@ class Feature1 extends BaseFeature {
       </div>
     );
   }
+  
 }
 
 export default Feature1;

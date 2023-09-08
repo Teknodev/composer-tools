@@ -242,7 +242,7 @@ class Team2 extends Team {
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<TeamCardMember[]>("team-card").map(
             (team: any, index: number) => (
-              <div style={{
+              <div className={this.decorateCSS("card-item-count")} style={{
                 width: 90 / this.getPropValue("itemCount") + "%",
               }}>
               <div className={`${this.decorateCSS("team")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`} key={index}>

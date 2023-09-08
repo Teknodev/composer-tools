@@ -165,7 +165,7 @@ class Content4 extends BaseContent {
             {this.castToObject<Card[]>("content-card").map(
               
               (card: Card, index: number) => (
-                <div style={{
+                <div className={this.decorateCSS("card-item-count")} style={{
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
                   <div key={`cnt-4-card-${index}`} className={this.decorateCSS("card")}>

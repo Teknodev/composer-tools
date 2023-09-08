@@ -348,7 +348,7 @@ class PricingTable8 extends BasePricingTable {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => (
-            <div style={{
+            <div className={this.decorateCSS("card-item-count")} style={{
               width: 90 / this.getPropValue("itemCount") + "%",
             }}>
             <div className={this.decorateCSS("pricing")} key={index}>

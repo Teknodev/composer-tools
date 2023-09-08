@@ -56,7 +56,7 @@
         text-align: left;
         font-size: 1.5rem;
         font-weight: 0;
-        width: 20%;
+        width: 400px;
         min-height: 100%;
         padding: 20px;
         background: linear-gradient(
@@ -90,6 +90,13 @@
 @media only screen and (max-width: 768px) {
   .container {
     .max-content {
+      .desc-box{
+        align-items: center;
+        flex-direction: column;
+      .description{
+        width: 100%;
+      }
+      }
       .child {
         padding: 0 20px;
       }

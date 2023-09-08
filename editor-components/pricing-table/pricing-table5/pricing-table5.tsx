@@ -201,7 +201,7 @@ class PricingTable5 extends BasePricingTable {
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<PriceList[]>("price-list").map(
             (pricing: any, index: number) => (
-              <div style={{
+              <div className={this.decorateCSS("card-item-count")} style={{
                 width: 90 / this.getPropValue("itemCount") + "%",
               }}>
               <div key={index} className={`${this.decorateCSS("price")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
@@ -216,11 +216,8 @@ class PricingTable5 extends BasePricingTable {
                   <div className={this.decorateCSS("stars")}>
                     {[...Array(Number(pricing.stars))].map(
                       (item: any, indexStars: number) => (
-                        <img key={`stars-${indexStars}`} 
-                        alt=""
-                        src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
-                      )
-                    )}
+                        <img key={`stars-${indexStars}`} alt="" src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
+                    ))}
                   </div>
                 </h2>
                 <h1 className={this.decorateCSS("price-text")}>

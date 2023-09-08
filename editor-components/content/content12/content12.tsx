@@ -302,7 +302,7 @@ class Content12 extends BaseContent {
               {this.castToObject<Card[]>("team-members").map(
                 (item: Card, indexTeamMembers: number) => {
                   return (
-                    <div style={{
+                    <div className={this.decorateCSS("card-item-count")} style={{
                       width: 90 / this.getPropValue("reverse") + "%",
                       display: "flex",
                       justifyContent: "space-around",

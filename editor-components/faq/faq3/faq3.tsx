@@ -153,7 +153,7 @@ class FaqContainerTwo extends BaseFAQ {
             <div className={this.decorateCSS("card-page")}>
               {this.castToObject<Card[]>("card").map((item: Card, indexCard: number) => {
                 return (
-                  <div key={indexCard} style={style()}>
+                  <div key={indexCard} style={style()} className={this.decorateCSS("card-item-count")}>
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("icon")}>
                         <div>?</div>
