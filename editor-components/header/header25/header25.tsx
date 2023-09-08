@@ -280,6 +280,8 @@ class HeaderComponent25 extends BaseHeader {
 
     return (
       <div className={this.decorateCSS("container")}>
+          <div className={this.decorateCSS("max-content")}>
+
         <div className={this.decorateCSS("wrapper")}>
           <ComposerSlider
             {...settings}
@@ -291,7 +293,7 @@ class HeaderComponent25 extends BaseHeader {
                   <div className={this.decorateCSS("background-image")}>
                     <img src={item.background_image} alt={item.title} />
                   </div>
-                  <div className={this.decorateCSS("max-content")}>
+                  <div className={this.decorateCSS("max-contentt")}>
                     <div className={this.decorateCSS("left")}>
                       <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("flower")}>
@@ -332,6 +334,7 @@ class HeaderComponent25 extends BaseHeader {
             )}
           </ComposerSlider>
         </div>
+      </div>
       </div>
     );
   }

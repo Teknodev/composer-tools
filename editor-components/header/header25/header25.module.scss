@@ -1,7 +1,12 @@
 .container {
   width: 100%;
+  .max-content{
+    max-width: 100%;
+   justify-content: center;
+   display: flex;
+   
   .wrapper {
-    width: 100%;
+    width: var(--composer-content-width);
     height: 100%;
     .carousel {
       width: 100%;
@@ -59,8 +64,7 @@
           position: absolute;
           object-fit: cover;
         }
-        .max-content {
-          max-width: var(--composer-content-width);
+        .max-contentt {
           margin: auto;
           display: flex;
           height: 100%;
@@ -249,4 +253,6 @@
       }
     }
   }
+  }
+
 }

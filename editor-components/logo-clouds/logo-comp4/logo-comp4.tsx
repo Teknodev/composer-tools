@@ -90,9 +90,9 @@ class LogoComp4Page extends LogoClouds {
     return (
       <div
         className={this.decorateCSS("container")}
-        style={styling}
+        
       >
-        <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")} style={styling}>
           <div className={this.decorateCSS("logo-comp4-page")}>
             <h1>{this.getPropValue("title")}</h1>
             <h3>{this.getPropValue("description")}</h3>

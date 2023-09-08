@@ -157,13 +157,14 @@ class Header18 extends BaseHeader {
 
     return (
       <div className={this.decorateCSS("container")}>
+         <div className={this.decorateCSS("max-content")}>
         <div className={this.decorateCSS("wrapper")}>
           <ComposerSlider
             {...settings}
             className={this.decorateCSS("carousel")}
           >
             {this.getPropValue("slider").map((item: any, index: number) => (
-              <div className={this.decorateCSS("max-content")}>
+             
                 <div className={this.decorateCSS("items")} key={`key${index}`}>
                   <div className={this.decorateCSS("background-img")}>
                     <img src={item.value[2].value} alt={item.value[2].value} />
@@ -198,9 +199,10 @@ class Header18 extends BaseHeader {
                     </div>
                   </div>
                 </div>
-              </div>
+              
             ))}
           </ComposerSlider>
+          </div>
         </div>
       </div>
     );

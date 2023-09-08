@@ -7,7 +7,7 @@ interface Cards {
   map(arg0: (card: Card, index: number) => React.JSX.Element): React.ReactNode;
   card: Card[];
 }
-interface Card {
+type Card= {
   backgroundImage: string;
   logo: string;
   title: string;
@@ -25,7 +25,7 @@ class Download2 extends BaseDownload {
       displayer: "Cards",
       value: [
         {
-          type: "array",
+          type: "object",
           key: "card",
           displayer: "Card",
           value: [
@@ -68,7 +68,7 @@ class Download2 extends BaseDownload {
           ]
         },
         {
-          type: "array",
+          type: "object",
           key: "card",
           displayer: "Card",
           value: [
@@ -111,7 +111,7 @@ class Download2 extends BaseDownload {
           ]
         },
         {
-          type: "array",
+          type: "object",
           key: "card",
           displayer: "Card",
           value: [
@@ -173,8 +173,7 @@ class Download2 extends BaseDownload {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("cards-container")}>
             <div className={this.decorateCSS("cards")}>
-              {this.castToObject<Cards>("cards").map((card: Card, index: number) => {
-                return (
+              {this.castToObject<Card[]>("cards").map((card: Card, index: number) => (
                   <div className={this.decorateCSS("card-item-count")} style={{
                     width: 90 / this.getPropValue("itemCount") + "%",
                   }}>
@@ -188,7 +187,7 @@ class Download2 extends BaseDownload {
                       <div className={this.decorateCSS("card-title")}>
                         <h2>{card.title}</h2>
                       </div>
-                      <div className={this.decorateCSS("card-button")}>
+                     <div className={this.decorateCSS("card-button")}>
                         <ComposerLink path={card.buttonLink}>
                           <button>{card.buttonText}</button>
                         </ComposerLink>
@@ -198,8 +197,8 @@ class Download2 extends BaseDownload {
                       </div>
                     </div>
                   </div>
-                );
-              })}
+                
+              ))}
             </div>
           </div>
         </div>

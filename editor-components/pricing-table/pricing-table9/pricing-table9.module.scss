@@ -1,11 +1,14 @@
 .container {
   width: 100%;
   overflow-x: auto;
-}
+  display: flex;
+  justify-content: center;
+
 .max-content {
   max-width: var(--composer-content-width);
   margin: auto;
 .table {
+  width: 100%;
   border-collapse: collapse;
   width: 100%;
 
@@ -42,7 +45,6 @@
   background-color: white;
   color: var(--composer-primary-color);
 }
-}
 @media only screen and (max-width: 768px) {
   .container{
     .max-content{
@@ -68,4 +70,6 @@
       }
     }
   }
+}
+}
 }

@@ -2,6 +2,12 @@ $gap:30px;
 $width-of-items: 600px;
 .container {
   width: 100%;
+  .max-content {
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
   
 
 
@@ -27,7 +33,7 @@ $width-of-items: 600px;
     margin: 20px;
     margin-top: 0px;
     display: flex;
-    width: 100%;
+    width: var(--composer-content-width);
 
     .carousel > button:first-child {
       margin-left: 40px;
@@ -62,12 +68,7 @@ $width-of-items: 600px;
         }
       }
 
-      .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        overflow: hidden;
-    
-      }
+      
 
       .items {
         width: 100%;
@@ -182,7 +183,7 @@ $width-of-items: 600px;
             }
         
             
-        
+          }
         
           }
         }
