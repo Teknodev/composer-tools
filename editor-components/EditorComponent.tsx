@@ -2,7 +2,7 @@ import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 
-type TypeCSSProp = { [key: string]: {id:string, class: string}[] };
+type TypeCSSProp = { [key: string]: { id: string, class: string }[] };
 export type iComponent = {
   render(): any;
   getName(): string;
@@ -12,7 +12,7 @@ export type iComponent = {
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
-  setCSSClasses(key: string, value: {id: string, class: string}[]): void;
+  setCSSClasses(key: string, value: { id: string, class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
 };
@@ -37,8 +37,8 @@ export type TypeUsableComponentProps = {
   displayer: string;
   additionalParams?: { selectItems?: string[] };
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string) => any;
-  };
+  getPropValue?: (propName: string) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -115,13 +115,15 @@ export abstract class Component
       .map((prop: any) => prop.key)
       .indexOf(key);
 
+
       this.state.componentProps.props[i].value = value;
       this.state.componentProps.props[i] = this.attachValueGetter(
         this.state.componentProps.props[i]
       );
       this.state = ({ componentProps: { ...this.state.componentProps } });
+
   }
-  setCSSClasses(key: string, value: {id: string, class: string}[]) {
+  setCSSClasses(key: string, value: { id: string, class: string }[]) {
     this.state.componentProps.cssClasses[key] = value;
     this.state = ({ componentProps: { ...this.state.componentProps } });
   }
@@ -228,7 +230,7 @@ export abstract class BaseFooter extends Component {
   constructor(props: any, styles: any) {
     super(props, styles);
   }
-  
+
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
     let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
@@ -282,6 +284,11 @@ export abstract class BaseModal extends Component {
   protected category = CATEGORIES.MODAL;
   constructor(props: any, styles: any) {
     super(props, styles);
+  }
+  insertForm(name: string, data: Object) {
+    const project = getProjectHook()._id;
+    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
+    return axios.request(config).then((r: any) => r.data);
   }
 }
 
