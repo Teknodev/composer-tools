@@ -5,12 +5,10 @@
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-
     .page {
       width: 100%;
       display: flex;
       flex-direction: column;
-
       .title-card {
         width: 100%;
 
@@ -37,12 +35,13 @@
       .all-cards {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        gap: 20px;
+        justify-content: space-around;
         flex-wrap: wrap;
         .basic-card {
           display: flex;
           justify-content: center;
-          min-width: 250px;
+          width: 100%;
           .card {
             width: 100%;
             display: flex;
@@ -109,24 +108,32 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
-    .all-cards {
-      display: flex;
+    .max-content{
+      align-items: center;
       flex-direction: column;
-    }
-    .page {
-      .title-card {
-        h1 {
-          font-size: 3rem !important;
+      .card-item-count{
+        min-width: 100%;
+      }
+      .all-cards {
+        display: flex;
+        flex-direction: column;
+      }
+      .page {
+        .title-card {
+          h1 {
+            font-size: 3rem !important;
+          }
+        }
+      }
+  
+      .all-cards {
+        gap: 60px !important;
+        .basic-card {
+          width: unset !important;
+          flex: 1 1;
         }
       }
     }
-
-    .all-cards {
-      gap: 60px !important;
-      .basic-card {
-        width: unset !important;
-        flex: 1 1;
-      }
-    }
+   
   }
 }

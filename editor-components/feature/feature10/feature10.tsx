@@ -199,6 +199,12 @@ class Feature10 extends BaseFeature {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -212,6 +218,9 @@ class Feature10 extends BaseFeature {
           <div className={this.decorateCSS("content")}>
             {this.castToObject<Listed[]>("listed-card").map(
               (listed: any, index: number) => (
+                <div className={this.decorateCSS("card-item-count")} style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
                 <div key={index} className={this.decorateCSS("listed")}>
                   <img
                     alt=""
@@ -242,6 +251,7 @@ class Feature10 extends BaseFeature {
                       }
                     )}
                   </ul>
+                </div>
                 </div>
               )
             )}

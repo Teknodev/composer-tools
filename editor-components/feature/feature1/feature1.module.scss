@@ -8,49 +8,52 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: space-around;
+.card-item-count{
+  .circle-boxes {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 6px;
+    height: max-content;
+    min-width: 250px;
+    flex: 1 1;
 
-    .circle-boxes {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      border-radius: 6px;
-      height: max-content;
-      min-width: 250px;
-      flex: 1 1;
-
-      &:hover {
-        .image-background {
-          transform: rotate(360deg);
-          box-shadow: var(--composer-primary-color) 0px 0px 25px;
-          padding: 1px;
-        }
-      }
+    &:hover {
       .image-background {
-        transition: all 0.4s;
-        display: flex;
-        margin: auto;
-        background-color: var(--composer-primary-color);
+        transform: rotate(360deg);
+        box-shadow: var(--composer-primary-color) 0px 0px 25px;
         padding: 1px;
-        border-radius: 100%;
-        .image {
-          transition: all 0.4s;
-          width: 50px;
-          padding: 10px;
-          margin: 0;
-        }
-      }
-      .title {
-        display: block;
-        margin: 12px auto;
-        font-weight: bold;
-        color: var(--composer-primary-color);
-      }
-      .long-text {
-        display: block;
-        color: rgb(200, 200, 200);
-        margin-bottom: 0;
       }
     }
+    .image-background {
+      transition: all 0.4s;
+      display: flex;
+      margin: auto;
+      background-color: var(--composer-primary-color);
+      padding: 1px;
+      border-radius: 100%;
+      .image {
+        transition: all 0.4s;
+        width: 50px;
+        padding: 10px;
+        margin: 0;
+      }
+    }
+    .title {
+      display: block;
+      margin: 12px auto;
+      font-weight: bold;
+      color: var(--composer-primary-color);
+    }
+    .long-text {
+      display: block;
+      color: rgb(200, 200, 200);
+      margin-bottom: 0;
+    }
+  }
+}
+    
   }
 }
 
@@ -60,6 +63,9 @@
 
     .max-content {
       gap: 60px !important;
+      .card-item-count{
+        min-width: 100%;
+      }
     }
   }
 }

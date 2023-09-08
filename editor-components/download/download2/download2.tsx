@@ -155,7 +155,12 @@ class Download2 extends BaseDownload {
         }
       ]
     });
-
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -170,23 +175,27 @@ class Download2 extends BaseDownload {
             <div className={this.decorateCSS("cards")}>
               {this.castToObject<Cards>("cards").map((card: Card, index: number) => {
                 return (
-                  <div className={this.decorateCSS("card")} key={index}>
-                    <div className={this.decorateCSS("card-background")}>
-                      <img src={card.backgroundImage} alt="" />
-                    </div>
-                    <div className={this.decorateCSS("card-logo")}>
-                      <img src={card.logo} alt="" />
-                    </div>
-                    <div className={this.decorateCSS("card-title")}>
-                      <h2>{card.title}</h2>
-                    </div>
-                    <div className={this.decorateCSS("card-button")}>
-                      <ComposerLink path={card.buttonLink}>
-                        <button>{card.buttonText}</button>
-                      </ComposerLink>
-                    </div>
-                    <div className={this.decorateCSS("card-information")}>
-                      <p>{card.information}</p>
+                  <div className={this.decorateCSS("card-item-count")} style={{
+                    width: 90 / this.getPropValue("itemCount") + "%",
+                  }}>
+                    <div className={this.decorateCSS("card")} key={index}>
+                      <div className={this.decorateCSS("card-background")}>
+                        <img src={card.backgroundImage} alt="" />
+                      </div>
+                      <div className={this.decorateCSS("card-logo")}>
+                        <img src={card.logo} alt="" />
+                      </div>
+                      <div className={this.decorateCSS("card-title")}>
+                        <h2>{card.title}</h2>
+                      </div>
+                      <div className={this.decorateCSS("card-button")}>
+                        <ComposerLink path={card.buttonLink}>
+                          <button>{card.buttonText}</button>
+                        </ComposerLink>
+                      </div>
+                      <div className={this.decorateCSS("card-information")}>
+                        <p>{card.information}</p>
+                      </div>
                     </div>
                   </div>
                 );

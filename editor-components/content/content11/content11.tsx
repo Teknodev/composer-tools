@@ -181,6 +181,12 @@ class Content11 extends BaseContent {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 4,
+    });
   }
 
   getName(): string {
@@ -201,16 +207,20 @@ class Content11 extends BaseContent {
           <div className={this.decorateCSS("card-child")}>
             {this.castToObject<Card[]>("content-card").map(
               (card: Card, index: number) => (
-                <div
-                  key={`cnt-4-card-${index}`}
-                  className={this.decorateCSS("card")}
-                >
-                  <i>
-                    <img alt="server" src={card.image} />
-                  </i>
-                  <h5>{card.title}</h5>
-                  <p>{card.description}</p>
-                  <p className={this.decorateCSS("size-p")}>{card.size}</p>
+                <div style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
+                  <div
+                    key={`cnt-4-card-${index}`}
+                    className={this.decorateCSS("card")}
+                    >
+                    <i>
+                      <img alt="server" src={card.image} />
+                    </i>
+                    <h5>{card.title}</h5>
+                    <p>{card.description}</p>
+                    <p className={this.decorateCSS("size-p")}>{card.size}</p>
+                  </div>
                 </div>
               )
             )}

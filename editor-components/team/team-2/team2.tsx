@@ -222,7 +222,13 @@ class Team2 extends Team {
       additionalParams: {
         selectItems: ["None", "Top" , "Bottom" , "All Around"],
       }
-    })
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -236,6 +242,9 @@ class Team2 extends Team {
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<TeamCardMember[]>("team-card").map(
             (team: any, index: number) => (
+              <div className={this.decorateCSS("card-item-count")} style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+              }}>
               <div className={`${this.decorateCSS("team")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`} key={index}>
                 <img className={this.decorateCSS("image")} src={team.image} alt=""></img>
                 <h3 className={this.decorateCSS("title")}>{team.name}</h3>
@@ -253,6 +262,7 @@ class Team2 extends Team {
                     <img src={team.iconRight} alt=""></img>
                   </ComposerLink>
                 </div>
+              </div>
               </div>
             )
           )}

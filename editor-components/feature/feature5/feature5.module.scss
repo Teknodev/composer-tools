@@ -8,10 +8,9 @@
     
     .content {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
-
       .basic {
         display: flex;
         flex-direction: column;
@@ -20,7 +19,7 @@
         min-height: 200px;
         padding: 20px;
         flex: 1 1;
-        max-width: 300px;
+        align-items: center;
         img{
           width: 60%;
           height: 60%;
@@ -46,5 +45,10 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      .card-item-count{
+        min-width: 100%;
+      }
+    }
   }
 }

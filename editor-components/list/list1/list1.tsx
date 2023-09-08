@@ -166,6 +166,12 @@ class List1 extends BaseList {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -178,6 +184,10 @@ class List1 extends BaseList {
         <div className={this.decorateCSS("max-content")}>
           {this.getPropValue("link-main").map((title: any, indexLinkMain: number) => {
             return (
+              <div style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+                minWidth: "300px",
+              }}>
               <div className={this.decorateCSS("badge-list")} key={indexLinkMain}>
                 <h3 className={this.decorateCSS("title")}>
                   {title.value[0].value}
@@ -198,6 +208,7 @@ class List1 extends BaseList {
                     </ComposerLink>
                   ))}
                 </ul>
+              </div>
               </div>
             );
           })}

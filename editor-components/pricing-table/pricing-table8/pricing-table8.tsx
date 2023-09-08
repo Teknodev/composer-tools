@@ -330,6 +330,12 @@ class PricingTable8 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -342,6 +348,9 @@ class PricingTable8 extends BasePricingTable {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => (
+            <div className={this.decorateCSS("card-item-count")} style={{
+              width: 90 / this.getPropValue("itemCount") + "%",
+            }}>
             <div className={this.decorateCSS("pricing")} key={index}>
               <div className={this.decorateCSS("image-background")}>
                 <img
@@ -359,7 +368,7 @@ class PricingTable8 extends BasePricingTable {
                 <ul className={this.decorateCSS("list-group")}>
                   {card.list.map((item: any, itemIndex: number) => (
                     <li className={this.decorateCSS("li")} key={itemIndex}><span>✓</span>{item.value}</li>
-                  ))}
+                    ))}
                 </ul>
               </div>
   
@@ -373,6 +382,7 @@ class PricingTable8 extends BasePricingTable {
                 </ComposerLink>
               ))}
             </div>
+          </div>
           ))}
         </div>
       </div>
