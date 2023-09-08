@@ -31,6 +31,7 @@ $animationDuration: 1s;
 
         .background-left {
           position: absolute;
+          height: 100%;
           left: 0px;
 
           width: 75%;
@@ -199,6 +200,74 @@ $animationDuration: 1s;
                 flex: 1;
                 height: 100%;
                 margin-top: 100%;
+                margin-right: 20px;
+                img {
+                  height: 60%;
+                  margin: auto;
+                }
+              }
+            }
+          }
+        }
+        > button {
+          z-index: 10;
+          margin-left: 25px;
+          margin-right: 45px;
+          &:before {
+            content: "";
+            position: absolute;
+            transform: rotateZ(135deg);
+            font-size: 100px;
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    .slider-parent {
+      .carousel {
+        .wrapper {
+          .background-left {
+            height: 100%;
+            width: 200%;
+          }
+          .background-right {
+            width: 600px;
+            height: 600px;
+            margin-top: 90px;
+            padding: 0px;
+          }
+          .content {
+            .max-content {
+              .left {
+                padding-left: 10%;
+                .title {
+                  font-size: 3rem;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  max-width: 150px;
+                }
+                .description {
+                  font-size: 1.5rem;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  max-width: 150px;
+                }
+
+                .buttonWrapper {
+                  .button {
+                    font-size: 15px;
+                  }
+                }
+              }
+              .right {
+                flex: 1;
+                height: 100%;
+                margin-top: 30rem;
                 margin-right: 20px;
                 img {
                   height: 60%;
