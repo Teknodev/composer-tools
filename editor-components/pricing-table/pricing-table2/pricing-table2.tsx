@@ -11,13 +11,8 @@ type PricingItems = {
   cardList: string[],
   cardButtonText: string,
   cardButtonLink: string
-  map(arg0: (table: PricingItems, index: number) => React.JSX.Element): React.ReactNode;
 };
 
-type PricingProps = {
-  items: PricingItems[]
-  map(arg0: (table: PricingItems, index: number) => React.JSX.Element): React.ReactNode;
-};
 class PricingTable2 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
@@ -363,7 +358,7 @@ class PricingTable2 extends BasePricingTable {
       <h1 className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</h1>
       <p className={this.decorateCSS("description")}>{this.getPropValue("pricing-table-description")}</p>
       <div className={this.decorateCSS("item-div")}>
-        {this.castToObject<PricingProps>("pricingTableItem").map(
+        {this.castToObject<PricingItems[]>("pricingTableItem").map(
           (table: PricingItems, index: number) => {
             table.cardList.map((listItem: string, index: number) => {
                return '';

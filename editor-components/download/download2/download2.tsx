@@ -3,10 +3,6 @@ import styles from "./download2.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-interface Cards {
-  map(arg0: (card: Card, index: number) => React.JSX.Element): React.ReactNode;
-  card: Card[];
-}
 type Card= {
   backgroundImage: string;
   logo: string;

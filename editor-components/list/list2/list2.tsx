@@ -2,10 +2,6 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list2.module.scss";
 
-interface List2Props {
-  map(arg0: (title: any, indexLinkMain: number) => React.JSX.Element): React.ReactNode;
-  List2Items: List2Items;
-}
 interface List2Items {
   listEmoji: string;
   listTitle: string;
@@ -335,7 +331,7 @@ class List2 extends BaseList {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
               <ol className={this.decorateCSS("olcards")}>
-          {this.castToObject<List2Props>("link-main").map((title: List2Items, indexLinkMain: number) => {
+          {this.castToObject<List2Items[]>("link-main").map((title: List2Items, indexLinkMain: number) => {
             return (
                 <li style={{
                   width: 90 / this.getPropValue("itemCount") + "%",

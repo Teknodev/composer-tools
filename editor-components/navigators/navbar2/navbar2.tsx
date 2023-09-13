@@ -114,8 +114,7 @@ class Navbar2 extends BaseNavigator {
     return "Navbar 2";
   }
   navClick() {
-    let value: boolean = this.state.componentProps["navActive"];
-    this.state.componentProps["navActive"] = !value;
+    this.setComponentState("navActive", !this.getComponentState("navActive"));
   }
   render() {
     return (
@@ -150,7 +149,7 @@ class Navbar2 extends BaseNavigator {
                 }}
               />
             </div>
-            {this.state.componentProps["navActive"] && (
+            {this.getComponentState("navActive") && (
             <div className={this.decorateCSS("navbar-child")}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {

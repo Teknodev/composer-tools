@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
+import { EventEmitter } from "../EventEmitter";
 
 type TypeCSSProp = { [key: string]: { id: string, class: string }[] };
 export type iComponent = {
@@ -62,7 +63,7 @@ export enum CATEGORIES {
 }
 
 export abstract class Component
-  extends React.Component<{}, { componentProps: any }>
+  extends React.Component<{}, { states: any, componentProps: any }>
   implements iComponent {
   private styles: any;
   private _props: any;
@@ -78,6 +79,7 @@ export abstract class Component
       sectionsKeyValue[key] = (props && props[key]) || [];
     });
     this.state = {
+      states: {},
       componentProps: {
         props: [],
         cssClasses: sectionsKeyValue,
@@ -122,10 +124,15 @@ export abstract class Component
       );
       this.setState({ componentProps: { ...this.state.componentProps } });
   }
-  // setCSSClasses(key: string, value: { id: string, class: string }[]) {
-  //   this.state.componentProps.cssClasses[key] = value;
-  //   this.state = ({ componentProps: { ...this.state.componentProps } });
-  // }
+  
+  setComponentState(key: string, value: any): void {
+    this.state.states[key] = value;
+    EventEmitter.emit("forceReload");
+  }
+
+  getComponentState(key: string): any {
+    return this.state.states[key];
+  }
   
   setCSSClasses(key: string, value: { id: string, class: string }[]) {
     const componentPropsCopy = { ...this.state.componentProps };
@@ -203,9 +210,7 @@ export abstract class BaseNavigator extends Component {
 }
 
 export abstract class Testimonials extends Component {
-  protected category = CATEGORIES.TESTIMONIALS;
-
-  
+  protected category = CATEGORIES.TESTIMONIALS;  
 }
 
 export abstract class BaseList extends Component {
