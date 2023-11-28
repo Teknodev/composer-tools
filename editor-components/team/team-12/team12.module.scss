@@ -1,93 +1,79 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .page {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-
-      .title-card {
-        width: 100%;
-
-        h1 {
-          color: rgb(5, 5, 10);
-          text-align: center;
-          font-size: 4rem;
-          margin: 0 0 40px;
-        }
-      }
-
-      .all-cards {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 20px;
-
-        .basic-card {
-          display: flex;
-          justify-content: center;
-          min-width: 250px;
-
-          .card {
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .page {
             width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-
-            .image {
-              width: 100%;
-              min-width: 250px;
-              height: 300px;
-              border-radius: 6px;
-              object-fit: cover;
+            .title-card {
+                width: 100%;
+                h1 {
+                    color: rgb(5, 5, 10);
+                    text-align: center;
+                    font-size: 4rem;
+                    margin: 0 0 40px;
+                }
             }
-
-            .text-group {
-              width: 100%;
-              min-width: 250px;
-
-              .person-name {
-                font-size: 1.5rem;
-                letter-spacing: 1px;
-              }
-
-              .position {
-                font-size: 1.4rem;
-                opacity: 0.7;
-                margin: 0;
-              }
+            .all-cards {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 20px;
+                .basic-card {
+                    display: flex;
+                    justify-content: center;
+                    min-width: 250px;
+                    .card {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .image {
+                            width: 100%;
+                            min-width: 250px;
+                            height: 300px;
+                            border-radius: 6px;
+                        }
+                        .text-group {
+                            width: 100%;
+                            min-width: 250px;
+                            .person-name {
+                                font-size: 1.5rem;
+                                letter-spacing: 1px;
+                            }
+                            .position {
+                                font-size: 1.4rem;
+                                opacity: 0.7;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .page {
-      .title-card {
-        h1 {
-          font-size: 3rem !important;
+    .container {
+        padding: 50px 20px;
+        .page {
+            .title-card {
+                h1 {
+                    font-size: 3rem !important;
+                }
+            }
         }
-      }
+        .all-cards {
+            gap: 60px !important;
+            .basic-card {
+                width: unset !important;
+                flex: 1 1;
+            }
+        }
     }
-
-    .all-cards {
-      gap: 60px !important;
-      .basic-card {
-        width: unset !important;
-        flex: 1 1;
-      }
-    }
-  }
 }

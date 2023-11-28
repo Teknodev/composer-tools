@@ -1,0 +1,88 @@
+.container {
+    width: 100%;
+    padding: 50px 50px;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .content {
+            display: block;
+            .top-content {
+                text-align: center;
+                margin-bottom: 60px;
+                h6 {
+                    font-size: 22px;
+                    display: block;
+                    width: 100%;
+                    letter-spacing: 2px;
+                    font-weight: 800;
+                    margin-bottom: 20px;
+                }
+                h2 {
+                    font-size: 48px;
+                    margin: 10px 0 0 0;
+                    font-weight: 400;
+                    color: #2c3947;
+                    width: 100%;
+                    display: block;
+                }
+            }
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                .card {
+                    display: flex;
+                    flex-direction: column;
+                    .count {
+                        position: relative;
+                        line-height: 1;
+                        left: 90px;
+                        font-size: 52px;
+                        font-weight: 700;
+                        color: #eae7dd;
+                    }
+                    img {
+                        width: 80px;
+                    }
+                    h5 {
+                        padding-top: 20px;
+                        width: 100%;
+                        display: block;
+                        font-size: 25px;
+                        margin-top: 10px;
+                        margin-bottom: .5rem;
+                        font-weight: 500;
+                        line-height: 1.2;
+                        text-align: left;
+                    }
+                    p {
+                        font-size: 15px;
+                        margin-top: 5px;
+                        margin-bottom: 15px;
+                        opacity: 0.7;
+                        display: block;
+                        width: 100%;
+                        font-weight: 400;
+                        line-height: 1.5;
+                        text-align: left;
+                    }
+                }
+            }
+            @media screen and (max-width: 860px) {
+                .card-container {
+                    .card {
+                        width: 40% !important;
+                    }
+                }
+            }
+            @media screen and (max-width: 400px) {
+                .card-container {
+                    .card {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+    }
+}
