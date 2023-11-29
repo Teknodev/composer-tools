@@ -18,7 +18,7 @@
             .item-content {
                 display: flex;
                 flex-wrap: wrap;
-                width: 70%;
+                width: 100%;
                 margin: auto;
                 .top-content {
                     width: 100%;
@@ -76,9 +76,10 @@
                     }
                 }
             }
-            @media screen and (max-width: 1200px) {
+            @media screen and (max-width: 1210px) {
                 .item-content {
                     display: block;
+                    margin-right: 30px;
                     .top-content {
                         width: 100% !important;
                     }
@@ -87,6 +88,7 @@
             @media screen and (max-width: 760px) {
                 .item-content {
                     display: block;
+                    margin-right: 0;
                     .top-content {
                         width: 100% !important;
                         margin-left: auto;
