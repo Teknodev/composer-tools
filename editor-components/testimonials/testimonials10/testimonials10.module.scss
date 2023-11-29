@@ -1,0 +1,101 @@
+.container {
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .headered {
+            margin-bottom: 40px;
+            font-size: 3rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.23;
+        }
+        .testimonials10 {
+            width: 100%;
+            position: relative;
+            display: flex;
+            .item-content {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                margin: auto;
+                .top-content {
+                    width: 100%;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    display: block;
+                    position: relative;
+                    .description-box {
+                        margin-top: 20px;
+                        background-color: lightgray;
+                        padding: 30px 35px;
+                        padding-bottom: 0;
+                        border-radius: 20px;
+                        .description {
+                            font-size: 18px;
+                            line-height: 1.55;
+                            font-weight: 300;
+                        }
+                    }
+                    .description-box::after {
+                        content: "";
+                        position: relative;
+                        display: inline-block;
+                        bottom: -26px;
+                        left: 0%;
+                        transform: translateX(-50%);
+                        border-width: 13px;
+                        border-style: solid;
+                        border-color: lightgray transparent transparent lightgray;
+                    }
+                    .image-box {
+                        margin: 25px 0 0 0;
+                        display: flex;
+                        .image {
+                            border-radius: 50%;
+                            height: 50px;
+                            width: 50px;
+                        }
+                        .namejob-box {
+                            margin-left: 20px;
+                            margin-top: 5px;
+                            display: block;
+                            .name {
+                                font-size: 16px;
+                                line-height: 1.35;
+                                font-weight: 600;
+                            }
+                            .job {
+                                font-size: 14px;
+                                color: #666666;
+                                line-height: 1.55;
+                                font-weight: 300;
+                            }
+                        }
+                    }
+                }
+            }
+            @media screen and (max-width: 1210px) {
+                .item-content {
+                    display: block;
+                    margin-right: 30px;
+                    .top-content {
+                        width: 100% !important;
+                    }
+                }
+            }
+            @media screen and (max-width: 760px) {
+                .item-content {
+                    display: block;
+                    margin-right: 0;
+                    .top-content {
+                        width: 100% !important;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                }
+            }
+        }
+    }
+}

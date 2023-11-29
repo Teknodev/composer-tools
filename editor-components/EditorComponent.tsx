@@ -38,6 +38,7 @@ export type TypeUsableComponentProps = {
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
+  max?: number; 
 } & AvailablePropTypes & {
   getPropValue?: (propName: string) => any;
 };

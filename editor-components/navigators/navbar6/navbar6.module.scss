@@ -1,0 +1,81 @@
+.container {
+    width: 100%;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .content {
+            width: 60%;
+            margin: 0 auto;
+            height: 66px;
+            padding: 50px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            img {
+                width: 100%;
+                height: auto;
+            }
+            .content-left {
+                display: flex;
+                width: 33%;
+                gap: 20px;
+                font-size: 12px;
+                color: #9d9d9d;
+                a {
+                    text-decoration: none;
+                    color: #9d9d9d;
+                }
+                span {
+                    cursor: pointer;
+                }
+            }
+            .middle {
+                width: 33%;
+            }
+            .content-right {
+                display: flex;
+                justify-content: end;
+                align-items: flex-end;
+                font-size: 12px;
+                color: #9d9d9d;
+                width: 33%;
+                gap: 30px;
+                a {
+                    text-decoration: none;
+                    color: #9d9d9d;
+                }
+                span {
+                    cursor: pointer;
+                }
+            }
+        }
+        @media (max-width: 620px) {
+            .content {
+                padding: 10px 10px;
+                .content-left {
+                    text-align: center;
+                    gap: 10px;
+                    margin-top: 10%;
+                    width: 20%;
+                    font-size: 8px;
+                }
+                .content-right {
+                    text-align: center;
+                    gap: 10px;
+                    margin-top: 10%;
+                    width: 20%;
+                    font-size: 8px;
+                }
+                .middle {
+                    text-align: center;
+                    margin-top: 10%;
+                }
+            }
+        }
+        @media screen and (max-width:1100px) {
+            .content {
+                width: 100%;
+            }
+        }
+    }
+}

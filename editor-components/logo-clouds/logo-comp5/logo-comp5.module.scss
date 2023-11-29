@@ -1,0 +1,65 @@
+.container {
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .logo-comp5-page {
+            display: flex;
+            width: 100%;
+            .content-left {
+                display: block;
+                width: 30%;
+                margin-left: 17%;
+                padding: 30px;
+                margin-right: 3%;
+                h1 {
+                    margin: 0;
+                    text-align: right;
+                    font-size: 2.5rem;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    line-height: 1.1;
+                }
+                p {
+                    width: 100%;
+                    margin: 40px 0;
+                    font-size: 1.4rem;
+                    line-height: 1.6;
+                    text-align: right;
+                    text-transform: none;
+                }
+            }
+            .image-child {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 20px;
+                img {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        @media screen and (max-width: 780px) {
+            .logo-comp5-page {
+                display: flex;
+                .content-left {
+                    width: 47%;
+                    padding: 30px;
+                    margin-right: 3%;
+                }
+            }
+        }
+        @media screen and (max-width: 380px) {
+            .logo-comp5-page {
+                display: flex;
+                flex-direction: column;
+                .content-left {
+                    width: 85%;
+                }
+            }
+        }
+    }
+}

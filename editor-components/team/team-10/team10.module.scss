@@ -1,130 +1,115 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    .page {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-
-      .basic-card {
-        flex: 1 1;
-        height: 450px;
-        min-width: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        background-color: var(--composer-primary-color);
-        padding: 20px;
-        gap: 25px;
-        border-radius: 6px;
-
-        h1 {
-          margin: unset;
-          font-size: 2.5rem;
-          color: #fff;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .page {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            .basic-card {
+                flex: 1 1;
+                height: 450px;
+                min-width: 250px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                background-color: var(--composer-primary-color);
+                padding: 20px;
+                gap: 25px;
+                border-radius: 6px;
+                h1 {
+                    margin: unset;
+                    font-size: 2.5rem;
+                    color: #fff;
+                }
+                p {
+                    margin: unset;
+                    font-size: 1.3rem;
+                    color: #fff;
+                    line-height: 23px;
+                }
+                .button-group {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    .button {
+                        display: inline-block;
+                        padding: 18px 30px;
+                        font-size: 1.3rem;
+                        font-weight: 900;
+                        background: #fff;
+                        border: 1px solid #fff;
+                        border-radius: 6px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .other-card {
+                flex: 1 1;
+                height: 450px;
+                min-width: 250px;
+                position: relative;
+                border-radius: 6px;
+                &:hover {
+                    .opacity {
+                        height: 0%;
+                    }
+                    .person-info {
+                        opacity: 0;
+                    }
+                }
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 6px;
+                }
+                .opacity {
+                    width: 100%;
+                    height: 40%;
+                    transition: height 1s;
+                    position: absolute;
+                    bottom: 0;
+                    filter: brightness(150%);
+                    background-color: #fff;
+                    opacity: 1;
+                    background: linear-gradient(to top, rgb(255, 255, 255), transparent 100%);
+                }
+                .person-info {
+                    width: 100%;
+                    height: 40%;
+                    position: absolute;
+                    bottom: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    padding: 20px;
+                    transition: opacity 1s;
+                    h2 {
+                        font-size: 2rem;
+                        margin: unset;
+                    }
+                    p {
+                        font-size: 1.3rem;
+                        color: rgb(32, 32, 54);
+                    }
+                }
+            }
         }
-
-        p {
-          margin: unset;
-          font-size: 1.3rem;
-          color: #fff;
-          line-height: 23px;
-        }
-
-        .button-group {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-
-          .button {
-            display: inline-block;
-            padding: 18px 30px;
-            font-size: 1.3rem;
-            font-weight: 900;
-            background: #fff;
-            border: 1px solid #fff;
-            border-radius: 6px;
-            cursor: pointer;
-          }
-        }
-      }
-
-      .other-card {
-        flex: 1 1;
-        height: 450px;
-        min-width: 250px;
-        position: relative;
-        border-radius: 6px;
-
-        &:hover {
-          .opacity {
-            height: 0%;
-          }
-          .person-info {
-            opacity: 0;
-          }
-        }
-
-        .image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 6px;
-        }
-
-        .opacity {
-          width: 100%;
-          height: 40%;
-          transition: height 1s;
-          position: absolute;
-          bottom: 0;
-          filter: brightness(150%);
-          background-color: #fff;
-          opacity: 1;
-          background: linear-gradient(to top, rgb(255, 255, 255), transparent 100%);
-        }
-
-        .person-info {
-          width: 100%;
-          height: 40%;
-          position: absolute;
-          bottom: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          padding: 20px;
-          transition: opacity 1s;
-
-          h2 {
-            font-size: 2rem;
-            margin: unset;
-          }
-
-          p {
-            font-size: 1.3rem;
-            color: rgb(32, 32, 54);
-          }
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .page {
-      .basic-card {
-        flex: unset !important;
-        width: 100% !important;
-      }
+    .container {
+        padding: 50px 20px;
+        .page {
+            .basic-card {
+                flex: unset !important;
+                width: 100% !important;
+            }
+        }
     }
-  }
 }
