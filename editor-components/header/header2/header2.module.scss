@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
 
   .max-content {
     display: flex;
@@ -9,7 +9,6 @@
 
     .wide-text-container {
       border-radius: 6px;
-      box-shadow: var(--composer-box-shadow);
       width: 100%;
       display: flex;
       padding: 20px;
@@ -59,7 +58,7 @@
       }
       .image {
         min-width: 250px;
-        width: 100%;
+        width: 90%;
         border-radius: 6px;
         object-fit: cover;
       }

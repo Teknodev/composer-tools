@@ -17,6 +17,9 @@
         flex: 1;
         display: flex;
         flex-direction: column;
+        position: relative;
+        left: 50px;
+        top: 15px;
 
         .badge {
           color: var(--composer-primary-color);
@@ -113,6 +116,82 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      .page{
+        .left-page{
+          left: 50px;
+          
+          .badge{
+            width: 8%;
+          }
+
+          h1{
+            font-size: 25px;
+          }
+      
+          p{
+            font-size: 1.5rem;
+            padding: 0 50px 0 0;
+          }
+        }
+        .right-page{
+          width: 100%;
+          .card{
+          .little-container{
+            .icon{
+              width: 7%;
+             }
+
+             .title{
+              font-size: 15px;
+             }
+           }
+          }
+        }
+      }
+    }
+
+    .page{
+      flex-direction: column;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .container {
+    padding: 50px 20px;
+    .max-content{
+      .page{
+        .left-page{
+          left: 0;
+          .badge{
+            width: 15%;
+          }
+
+          h1{
+            font-size: 25px;
+          }
+      
+          p{
+            font-size: 1.5rem;
+          }
+        }
+        .right-page{
+          width: 100%;
+          .card{
+          .little-container{
+            .icon{
+              width: 30%;
+             }
+
+             .title{
+              font-size: 15px;
+             }
+           }
+          }
+        }
+      }
+    }
 
     .page{
       flex-direction: column;

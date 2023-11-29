@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -8,7 +8,6 @@
 
     .header-page {
       border-radius: 6px;
-      box-shadow: var(--composer-box-shadow);
       display: flex;
       flex-direction: column;
       justify-content: center;

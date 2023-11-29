@@ -193,6 +193,17 @@ class Feature13 extends BaseFeature {
               </div>
             )}
 
+{this.getPropValue("component-position")[0].value === false && (
+              <div className={this.decorateCSS("message")}>
+                <h1>{this.getPropValue("text")[0].value}</h1>
+                <p>{this.getPropValue("text")[1].value}</p>
+
+                <span className={this.decorateCSS("button")}>
+                  {this.getPropValue("text")[2].value}
+                </span>
+              </div>
+            )}
+
             <div className={this.decorateCSS("cards")}>
               {this.castToObject<CardMultiple[]>("multiple-card").map(
                 (multiple: any, index: number) => (
@@ -207,16 +218,8 @@ class Feature13 extends BaseFeature {
               )}
             </div>
 
-            {this.getPropValue("component-position")[0].value === false && (
-              <div className={this.decorateCSS("message")}>
-                <h1>{this.getPropValue("text")[0].value}</h1>
-                <p>{this.getPropValue("text")[1].value}</p>
 
-                <span className={this.decorateCSS("button")}>
-                  {this.getPropValue("text")[2].value}
-                </span>
-              </div>
-            )}
+            
           </div>
         </div>
 

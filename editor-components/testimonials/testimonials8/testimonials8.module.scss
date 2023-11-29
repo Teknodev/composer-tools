@@ -25,7 +25,7 @@
           padding: 20px;
           min-width: 250px;
           border-radius: 6px;
-          box-shadow: var(--composer-box-shadow);
+          border: 1px solid rgb(215, 215, 215);
 
           h5 {
             opacity: 0.8;
@@ -34,6 +34,7 @@
             margin-bottom: 0;
             margin-left: 0;
             margin-right: 0;
+
           }
           .profile {
             display: flex;
@@ -54,11 +55,13 @@
               p {
                 margin: 5px 0 !important;
                 text-transform: uppercase;
+                font-size: 14px;
+
               }
             }
           }
           span{
-            font-size: 1.1rem;
+            font-size: 1.4rem;
           }
         }
       }

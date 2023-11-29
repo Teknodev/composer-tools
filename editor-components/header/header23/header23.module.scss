@@ -5,6 +5,7 @@
     margin: auto;
     display: flex;
     justify-content: center;
+    
   
   .wrapper {
     display: flex;
@@ -15,8 +16,9 @@
       align-items: center;
       position: relative;
       .image {
-        width: 80%;
-        position: absolute;
+        height: 100%;
+        width: 100%;
+        position: relative;
         top: 50px;
         
         
@@ -28,10 +30,10 @@
       flex-direction: column;
       position: relative;
       .content {
-        position: absolute;
-        top: 50%;
-        width: 50%;
+        position: relative;
+        width: 100%;
         text-overflow: ellipsis;
+        top: 35%;
         .divider {
           background-color: black;
           width: 85px;
@@ -69,49 +71,51 @@
   }
 }
 
+
+}
 @media only screen and (max-width: 768px) {
   .container {
-    .max-content{}
-    .wrapper{
-      height: max-content;
-      
-      .right{
-        display: none;
-      }
-      .middle{
-        .content{
-          top: 25%;
-          width: 70%;
-          .title{
-            font-size: 3rem;
-            line-height: 50px;
-          }
-          .button{
-            font-size: 1rem;
-          }
-          .divider-underline {
-           margin-left: 4px;
-          }
+    .max-content{
+      .wrapper{
+        height: max-content;
+        .middle{
+          .content{
+            top: 25%;
+            width: 70%;
+            .title{
+              font-size: 3rem;
+              line-height: 30px;
+              margin-top: 8px;
+              margin-bottom: 8px;
+            }
+            .button{
+              font-size: 1rem;
+            }
+            .divider-underline {
+            margin-left: 4px;
+            }
 
-        }
+          }
+        } 
       }
-    }}
+    }
   }
 }
 @media only screen and (max-width: 400px) {
   .container {
-    .max-content{}
+    .max-content{
     .wrapper{
+      padding: 0 0 20vh 0;
       height: max-content;
       .middle{
         .content{
           top: 25%;
           width: 80%;
           .title{
-            font-size: 1.8rem;
-            line-height: 30px;
-            margin-top: 8px !important;
-            margin-bottom: 8px !important;
+            font-size: 1.8rem ;
+            line-height: 30px ;
+            margin-top: 8px ;
+            margin-bottom: 8px ;
           }
           .button{
             font-size: 0.8rem;
@@ -129,9 +133,9 @@
             width: 72px;
             height: 1px;
           }
-
         }
       }
     }
+  }
   }
 }

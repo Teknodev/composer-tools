@@ -118,6 +118,10 @@
     }
     .card-child {
       flex-direction: column;
+      .card{
+        width: 200px !important;
+        right: 7.8vh;
+      }
     }
   }
 }

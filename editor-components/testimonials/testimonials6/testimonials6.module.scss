@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -32,7 +32,7 @@
             min-width: 250px;
             border-radius: 6px;
             background-color: white;
-            box-shadow: var(--composer-box-shadow);
+            border: 1px solid rgb(215, 215, 215);
             padding: 20px;
             display: flex;
             flex-direction: column;

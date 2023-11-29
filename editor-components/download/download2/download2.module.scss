@@ -17,7 +17,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            box-shadow: var(--composer-box-shadow);
+            border: 1px solid rgb(224, 224, 224);
             margin: 20px 40px;
             .card-background{
               width: 100%;

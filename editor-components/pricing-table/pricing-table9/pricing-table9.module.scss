@@ -3,6 +3,8 @@
   overflow-x: auto;
   display: flex;
   justify-content: center;
+  position: relative;
+  bottom: 10px;
 
 .max-content {
   max-width: var(--composer-content-width);

@@ -27,6 +27,9 @@ import ContentComponent10 from "./content/content10/content10";
 import ContentComponent11 from "./content/content11/content11";
 import ContentComponent12 from "./content/content12/content12";
 import ContentComponent13 from "./content/content13/content13";
+import ContentComponent18 from "./content/content18/content18";
+import ContentComponent19 from "./content/content19/content19";
+import ContentComponent20 from "./content/content20/content20";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -191,6 +194,9 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent11(),
     new ContentComponent12(),
     new ContentComponent13(),
+    new ContentComponent18(),
+    new ContentComponent19(),
+    new ContentComponent20(),
     new SliderComponent1(),
     new SliderComponent2(),
     new SliderComponent3(),
@@ -261,7 +267,7 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent33(),
     new NavbarComponent1(),
     new NavbarComponent2(),
-    new NavbarComponent3(),     
+    new NavbarComponent3(),  
     new FeatureComponent1(),
     new FeatureComponent2(),
     new FeatureComponent3(),

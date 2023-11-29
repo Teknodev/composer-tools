@@ -1,5 +1,6 @@
 .container {
   width: 100%;
+  height: auto;
   padding: 50px 0;
 
   .max-content {
@@ -8,23 +9,27 @@
     
     .content {
       display: flex;
+      flex-direction: row;
       justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
 
       .message {
-        flex: 1;
         display: flex;
+        align-items: center;
         flex-direction: column;
         justify-content: center;
+
         
         h1 {
+          max-width: 600px;
+          text-align: center;
           font-size: 2.3em;
           margin: 0;
         }
         p {
           font-size: 1.2em;
-          margin: 20px 0;
+          max-width: 900px;
         }
         .button {
           cursor: pointer;
@@ -38,6 +43,7 @@
           padding: 15px 30px;
           border-radius: 6px;
           border: 1px solid transparent;
+
           &:hover {
             color: var(--composer-primary-color);
             background-color: transparent;
@@ -49,8 +55,8 @@
       .cards {
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
         gap: 20px;
+        padding: 10px 50px;
         flex: 1;
 
         .multiple {
@@ -58,11 +64,12 @@
           flex-direction: column;
           text-align: center;
           height: max-content;
+          justify-content: center;
           flex: 1 1;
           padding: 20px;
           min-width: 250px;
           min-height: 350px;
-          box-shadow: var(--composer-box-shadow);
+          border: 1px solid var(--composer-primary-color);
           border-radius: 6px;
           
           .image {
@@ -80,7 +87,7 @@
 
           .long-text {
             margin: 0;
-            color: rgb(200, 200, 200);
+            color: rgb(169, 169, 169);
           }
         }
       }
@@ -89,15 +96,50 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
+  .container{
+    .max-content{
+      .content{
+        .message{
+          p{
+            padding: 0 6.9vh;
+          }
+        }
+        .cards{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          .multiple{
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+}
 
-    .content {
-      flex-direction: column;
-      gap: 50px !important;
-      .message{
-        align-items: center;
-        text-align: center;
+@media only screen and (max-width: 550px) {
+  .container{
+    .max-content{
+      .content{
+        .message{
+          h1{
+            font-size: 20px;
+            padding: 0 6.9vh;
+
+          }
+        }
+        .cards{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          .multiple{
+            width: 50%;
+          }
+        }
       }
     }
   }

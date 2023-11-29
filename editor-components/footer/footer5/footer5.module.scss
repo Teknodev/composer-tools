@@ -78,6 +78,8 @@
         margin-left: 5%;
         .footer-form{
           padding: 20px 0;
+          position: relative;
+          bottom: 60px;
           h2{
             font-size: 1.5rem;
             margin-bottom: 10px;
@@ -92,8 +94,8 @@
               border: 2px solid var(--composer-primary-color);
             }
             button{
-              position: absolute;
-              
+              position: relative;
+              top: 5px;
               border-radius: 18px;
               padding: 10px 30px;
               font-size: 1.3rem;
@@ -105,12 +107,12 @@
           }
         }
         .footer-text-area{
+          position: relative;
+          top: 55px;
           h2{
+            text-transform: uppercase;
             font-size: 1.2rem;
             padding-top: 10px;
-          }
-          p{
-
           }
         }
       }

@@ -150,7 +150,7 @@ class List3 extends BaseList {
               <div style={{
                 width: 90 / this.getPropValue("itemCount") + "%",
                 minWidth: "200px",
-              }}>
+              }} className={this.decorateCSS("card")}>
                 <div className={this.decorateCSS("icon-list")} key={indexIconMain}>
                   <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
                   <hr />

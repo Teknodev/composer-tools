@@ -20,8 +20,8 @@
         flex-direction: row;
         align-items: center;
         border-radius: 20px;
-        box-shadow: var(--composer-box-shadow);
         background: white;
+        height: 100%;
         min-height: 550px;
         max-height: 600px;
         margin: 0 550px;
@@ -91,6 +91,7 @@
         .card {
           max-height: max-content;
           flex-direction: column;
+          margin-bottom: 30px;
           .left {
             padding: 20px 50px;
             text-align: center;
@@ -102,6 +103,10 @@
         .background-image {
           padding: 0 5px;
           bottom: 30px;
+          img {
+            max-height: 900px;
+            height: 660px;
+          }
         }
       }
     }

@@ -2,6 +2,8 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table9.module.scss";
+import { HiX, HiOutlineCheck} from "react-icons/hi";
+
 
 type Pricing = {
   title: string;
@@ -271,9 +273,9 @@ class PricingTable9 extends BasePricingTable {
               return (
                 <tr key={index}>
                   <td>{feature.featureTitle}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title1").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title2").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title3").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title1").toLowerCase()) ? <span><HiOutlineCheck /></span> : <span><HiX /></span>}</td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title2").toLowerCase()) ? <span><HiOutlineCheck /></span> : <span><HiX /></span>}</td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title3").toLowerCase()) ? <span><HiOutlineCheck /></span> : <span><HiX /></span>}</td>
                 </tr>
               );
             }

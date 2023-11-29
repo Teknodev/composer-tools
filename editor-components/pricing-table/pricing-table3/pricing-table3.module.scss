@@ -43,7 +43,7 @@
         width: 100%;
         max-width: 400px;
         margin: 20px 100px;
-        box-shadow: var(--composer-box-shadow);
+        border: 1px solid rgb(215, 215, 215);
         border-radius: 6px;
         display: flex;
         flex-direction: column;
@@ -56,6 +56,7 @@
         h4{
           font-size: 2rem;
           margin-bottom: 35px;
+          margin-left: 40px;
         }
         ul li {
           margin-bottom: 5%;
@@ -95,7 +96,9 @@
           display: flex;
           justify-content: center;
           align-items: center;
-
+          position: relative;
+          right: 50px;
+          
           .little {
             width: 20%;
             display: flex;
@@ -128,6 +131,7 @@
               font-size: 1.4rem;
               cursor: pointer;
               padding: 20px 30px;
+              position: relative;
               &:hover {
                 color: var(--composer-primary-color);
                 background: transparent;
@@ -160,6 +164,24 @@
       align-items: center;
       flex-direction: column;
       .page {
+        .texts{
+          position: relative;
+          left: 10px;
+
+          h1{
+            font-size: 23px;
+          }
+
+          .title2{
+            font-size: 15px;
+            padding: 10px 70px 0 0;
+          }
+
+          p{
+            font-size: 13px;
+            padding: 10px 70px 0 0;
+          }
+        }
         flex-direction: column;
         .right-down{
           .right-down-up{
@@ -167,7 +189,19 @@
           }
         }
         .child-page{
-          width: 100%;
+          width: 55vh;
+          position: relative;
+          right: 60px;
+
+          .right-up {
+          position: relative;
+          right: 13px;
+          }
+
+          .little {
+            position: relative;
+            left: 90px;
+          }
           .child-page-right{
             max-width: unset !important;
           }

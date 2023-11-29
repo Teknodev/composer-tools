@@ -1,7 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
-
+  padding: 50px 45px;
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -18,10 +17,11 @@
       flex-wrap: wrap;
         
         .card {
-          padding: 20px;
+          padding: 30px;
+          margin: 10px;
           min-width: 250px;
           border-radius: 6px;
-          box-shadow: var(--composer-box-shadow);
+          border: 1px solid rgb(215, 215, 215);
           flex: 1 1;
 
           h5 {
