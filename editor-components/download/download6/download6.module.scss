@@ -38,7 +38,7 @@
         overflow: hidden;
         transition: all 0.5s;
         border: 1px solid #fff;
-        h1 {
+        .title {
           margin: unset;
           font-size: 1rem;
           opacity: 0.9;
@@ -46,7 +46,7 @@
           color: #fff;
         }
 
-        p {
+        .description {
           font-size: 0.5rem;
           margin: unset;
           margin-bottom: 2rem;
@@ -96,7 +96,7 @@
           bottom: 0;
           transition: all 0.5s;
 
-          h1 {
+          .title {
             transition: font-size 0.5s;
             margin: unset;
             font-size: 3rem;
@@ -104,7 +104,7 @@
             font-weight: 300;
           }
 
-          p {
+          .description {
             display: block;
             margin: unset;
             font-size: 1.8rem;
@@ -136,12 +136,12 @@
         }
         .text-container {
           padding: 0 2rem;
-          h1 {
+          .title {
             margin: unset;
             font-weight: 300;
           }
 
-          p {
+          .description {
             margin: unset;
             margin-bottom: 2rem;
             display: none;
@@ -162,11 +162,11 @@
             height: 100%;
             bottom: 0;
 
-            h1 {
+            .title {
               font-size: 1.5rem;
             }
 
-            p {
+            .description {
               font-size: 1rem;
               margin-bottom: 10px;
             }

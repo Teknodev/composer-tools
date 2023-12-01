@@ -20,19 +20,19 @@
         flex-direction: column;
         justify-content: center;
 
-        h3 {
+        .wide-text1 {
           line-height: 1.4;
           color: var(--composer-primary-color);
           width: 100%;
           font-size: 1.5em;
         }
-        h1 {
+        .wide-text2 {
           line-height: 1.4;
           font-size: 4em;
           width: 100%;
           margin: 0;
         }
-        p {
+        .wide-text3 {
           color: rgb(80, 80, 80);
           font-size: 1.1em;
           margin: 18px 0;
@@ -78,10 +78,10 @@
         text-align: center;
         align-items: center;
 
-        h3 {
+        .wide-text1 {
           margin-top: 0;
         }
-        h1 {
+       .wide-text2 {
           font-size: 2rem !important;
         }
       }

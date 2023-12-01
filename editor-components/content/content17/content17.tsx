@@ -150,8 +150,8 @@ class Content17 extends BaseContent {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("top-content")}>
-              <h6>{this.getPropValue("title")}</h6>
-              <h2>{this.getPropValue("description")}</h2>
+              <h6 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h6>
+              <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
             </div>
             <div className={this.decorateCSS("card-container")}>
               {this.getPropValue("items").map((item: any, index: number) => (
@@ -163,8 +163,8 @@ class Content17 extends BaseContent {
                 >
                   <span className={this.decorateCSS("count")}>{index + 1}</span>
                   <img src={item.value[0].value} alt="" />
-                  <h5>{item.value[1].value}</h5>
-                  <p>{item.value[2].value}</p>
+                  <h5 className={this.decorateCSS("item-value1")}>{item.value[1].value}</h5>
+                  <p className={this.decorateCSS("item-value2")}>{item.value[2].value}</p>
                 </div>
               ))}
             </div>

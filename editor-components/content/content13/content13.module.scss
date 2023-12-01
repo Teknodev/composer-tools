@@ -16,14 +16,14 @@
       flex-direction: column;
       gap: 20px;
       text-align: center;
-      span {
+      .subtitle {
         margin: 0;
         font-weight: 800;
         font-size: 2rem;
         color: var(--composer-primary-color);
         text-transform: uppercase;
       }
-      h2 {
+      .title {
         font-size: 4rem;
         margin:0;
       }
@@ -56,14 +56,14 @@
             height: 65px;
           }
         }
-        h5 {
+        .card-title {
           font-size: 1.5rem;
           margin: 20px 0;
           color: #000000;
           border-bottom: 2px solid #00000046;
           padding-bottom: 10px;
         }
-        p {
+        .card-description {
           font-size: 1.3rem;
           color: #000000de;
           margin: 0;

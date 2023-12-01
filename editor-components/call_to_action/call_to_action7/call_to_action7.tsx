@@ -118,15 +118,15 @@ class CallToAction7Page extends BaseCallToAction {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action7-page")}>
             <div className={this.decorateCSS("left-child")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <h3>{this.getPropValue("description")}</h3>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
             </div>
             <div className={this.decorateCSS("card-child")} style={styling}>
               <img className={this.decorateCSS("image")} src={this.getPropValue("leftIcon")} width={35} height={35} alt=""/>
-              <h1>{this.getPropValue("leftTitle")}</h1>
-              <h3>{this.getPropValue("leftDescription")}</h3>
+              <h1 className={this.decorateCSS("title-2")}>{this.getPropValue("leftTitle")}</h1>
+              <h3 className={this.decorateCSS("leftDescription")}>{this.getPropValue("leftDescription")}</h3>
               <ComposerLink path={this.getPropValue("leftButtonPage")}>
-                <span>
+                <span className={this.decorateCSS("left-button-text")}>
                   {this.getPropValue("leftButtonText")}
                   <img
                     alt=""
@@ -139,10 +139,10 @@ class CallToAction7Page extends BaseCallToAction {
             </div>
             <div className={this.decorateCSS("card-child")} style={styling}>
               <img className={this.decorateCSS("image")} src={this.getPropValue("rightIcon")} width={35} height={35} alt=""/>
-              <h1>{this.getPropValue("rightTitle")}</h1>
-              <h3>{this.getPropValue("rightDescription")}</h3>
+              <h1 className={this.decorateCSS("title-3")}>{this.getPropValue("rightTitle")}</h1>
+              <h3 className={this.decorateCSS("rightDescription")}>{this.getPropValue("rightDescription")}</h3>
               <ComposerLink path={this.getPropValue("rightButtonPage")}>
-                <span>
+                <span className={this.decorateCSS("right-button-text")}>
                   {this.getPropValue("rightButtonText")}
                   <img
                     alt=""

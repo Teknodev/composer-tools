@@ -119,15 +119,15 @@ class Stats1Page extends BaseStats {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats1-page")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h3>{this.getPropValue("description")}</h3>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
             <div className={this.decorateCSS("bottom-child")}>
               {this.castToObject<ICard[]>("card-content").map(
                 (cardData: any, indexCard: number) => (
                   <div key={indexCard} className={this.decorateCSS("card")}>
-                    <h5>{cardData.subtitle}</h5>
-                    <h4>{cardData.title}</h4>
-                    <p>{cardData.description}</p>
+                    <h5 className={this.decorateCSS("card-data-subtitle")}>{cardData.subtitle}</h5>
+                    <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
+                    <p className={this.decorateCSS("card-data-description")}>{cardData.description}</p>
                   </div>
                 )
               )}

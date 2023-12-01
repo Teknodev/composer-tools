@@ -10,12 +10,12 @@
     .stats1-page {
       display: block;
       width: 100%;
-      h1 {
+      .title {
         text-align: center;
         width: 100%;
         margin: 0;
       }
-      h3 {
+      .description {
         text-align: center;
         width: calc(100% - 50px);
         margin: 40px auto;
@@ -29,18 +29,18 @@
         border-radius: 6px;
         padding: 40px 0;
         .card {
-          h4 {
+          .card-data-title {
             text-align: center;
             font-size: 3rem;
             margin: 0;
           }
-          h5 {
+          .card-data-subtitle {
             text-align: center;
             font-size: 1.5rem;
             color: var(--composer-primary-color);
             margin: 20px 0;
           }
-          p {
+          .card-data-description {
             text-align: center;
             font-size: 1.5rem;
           }

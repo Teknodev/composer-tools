@@ -93,10 +93,10 @@ class HeaderComponent29 extends BaseHeader {
             </div>
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("title")}>
-                <h1>{items[0].title}</h1>
+                <h1 className={this.decorateCSS("items")}>{items[0].title}</h1>
               </div>
               <div className={this.decorateCSS("description")}>
-                <h3>{items[0].description}</h3>
+                <h3 className={this.decorateCSS("items-description")}>{items[0].description}</h3>
               </div>
 
               {this.getPropValue("buttonprop").map(

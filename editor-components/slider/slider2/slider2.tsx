@@ -110,8 +110,8 @@ class Slider2 extends BaseSlider {
               )}
             </ComposerSlider>
             <div className={this.decorateCSS("box")}>
-              <h2>{this.getPropValue("header")}</h2>
-              <h1>{this.getPropValue("subtitle")}</h1>
+              <h2 className={this.decorateCSS("header")}>{this.getPropValue("header")}</h2>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
               <div className={this.decorateCSS("button-group")}>
                 {this.castToObject<Button[]>("buttons").map(
                   (item: Button, indexButtons: number) => {

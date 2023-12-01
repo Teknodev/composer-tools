@@ -9,16 +9,17 @@
     .call-to-action1-page {
       display: block;
       width: 100%;
-      h3 {
+      .description {
         text-align: center;
         font-weight: 200;
         font-size: 1.5rem;
         margin: 20px 0;
       }
-      h1 {
+      .title {
         text-align: center;
         font-size: 3rem;
         margin: 0;
+        color: var(--composer-secondary-color);
       }
       .button {
         margin: 0 auto;

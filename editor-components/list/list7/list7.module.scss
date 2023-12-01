@@ -20,7 +20,7 @@
                 border-radius: 10px;
                 margin-bottom: 50px;
                 padding: 10px;
-                h3 {
+                .index {
                     margin-top: 0;
                     margin-right: auto;
                     margin-bottom: 20px;
@@ -29,14 +29,14 @@
                     font-size: 4rem;
                     color: var(--composer-primary-color);
                 }
-                h4 {
+                .item-value1 {
                     margin-top: 0;
                     margin-right: auto;
                     margin-bottom: 20px;
                     margin-left: 20px;
                     font-size: 3rem;
                 }
-                p {
+                .list-item-p {
                     text-align: left;
                     font-size: 1.4rem;
                     line-height: 2;

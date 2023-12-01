@@ -12,7 +12,7 @@
             .top-content {
                 width: 50%;
                 margin-bottom: 55px;
-                span {
+                .title {
                     font-size: 20px;
                     font-weight: 500;
                     line-height: 30px;
@@ -20,7 +20,7 @@
                     margin: 0 0 10px;
                     display: block;
                 }
-                h2 {
+                .description {
                     font-size: 50px;
                     font-weight: 600;
                     line-height: 60px;
@@ -32,12 +32,12 @@
                 width: 100%;
                 .card {
                     max-width: 460px;
-                    .span {
+                    .span-image {
                         .image {
                             width: 37px;
                         }
                     }
-                    p {
+                    .card-value {
                         font-size: 20px;
                         line-height: 34px;
                         color: #3e3e3e;

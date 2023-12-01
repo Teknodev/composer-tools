@@ -9,13 +9,13 @@
       flex-direction: column;
       gap: 20px;
       width: 100%;
-      h3 {
+      .heading {
         text-align: center;
         font-size: 1.2rem;
         font-weight: 100;
         margin: 0;
       }
-      h1 {
+      .heading-h1 {
         text-align: center;
         margin: 0;
         font-size: 2rem;
@@ -67,7 +67,7 @@
     padding: 50px 20px;
     .max-content {
       .heading-page {
-        h3 {
+        .heading {
           min-width: auto !important;
         }
         .button-wrapper {

@@ -158,8 +158,8 @@ class Content4 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            <span>{this.getPropValue("subtitle")}</span>
-            <h2>{this.getPropValue("title")}</h2>
+            <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>
+            <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
           </div>
           <div className={this.decorateCSS("card-child")}>
             {this.castToObject<Card[]>("content-card").map(
@@ -172,8 +172,8 @@ class Content4 extends BaseContent {
                     <i>
                       <img alt="server" src={card.image} />
                     </i>
-                    <h5>{card.title}</h5>
-                    <p>{card.description}</p>
+                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
+                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
                   </div>
               </div>
               )

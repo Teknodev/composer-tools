@@ -48,7 +48,15 @@
                     box-shadow: var(--composer-box-shadow);
                     border-radius: 6px;
                     padding: 20px;
-                    h3 {
+                    .name {
+                        color: #fff;
+                        text-shadow: 1px 1px black;
+                    }
+                    .email {
+                        color: #fff;
+                        text-shadow: 1px 1px black;   
+                    }
+                    .message{
                         color: #fff;
                         text-shadow: 1px 1px black;
                     }

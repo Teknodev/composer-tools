@@ -294,9 +294,9 @@ class Content12 extends BaseContent {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("title-card")}>
-              <h2>{this.getPropValue("title")}</h2>
-              <h1>{this.getPropValue("title2")}</h1>
-              <h3>{this.getPropValue("description")}</h3>
+              <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
+              <h1 className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</h1>
+              <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
             </div>
             <div className={this.decorateCSS("all-cards")}>
               {this.castToObject<Card[]>("team-members").map(

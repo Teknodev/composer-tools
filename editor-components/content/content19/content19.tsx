@@ -45,15 +45,15 @@ class Content19 extends BaseContent {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("header-page")}>
-              <h1>{this.getPropValue("description")}</h1>
+              <h1 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h1>
             </div>
             <div className={this.decorateCSS("youtube")}>
             <iframe title="YouTube Video" 
             src={this.getPropValue("video-link")}
             className={this.decorateCSS("iframe")}
              allowFullScreen></iframe>
-              <h3>{this.getPropValue("below-title")}</h3>
-              <h2>{this.getPropValue("below-text")}</h2>
+              <h3 className={this.decorateCSS("below-title")}>{this.getPropValue("below-title")}</h3>
+              <h2 className={this.decorateCSS("below-text")}>{this.getPropValue("below-text")}</h2>
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@
     align-items: left;
     flex-direction: column;
     box-sizing: content-box;
-    h1 {
+    .list-item-value-h1 {
         text-align: left;
         font-weight: 600;
         font-size: 26px;
@@ -29,7 +29,7 @@
         height: 270px;
         object-fit: cover;
     }
-    p {
+    .list-item-value {
         text-align: left;
         font-size: 15px;
         line-height: 1.55;
@@ -50,7 +50,7 @@
         flex-direction: column;
         box-sizing: content-box;
         width: 340px;
-        h1 {
+        .list-item-value-h1 {
             text-align: left;
             font-weight: 600;
             font-size: 26px;
@@ -60,7 +60,7 @@
             object-fit: cover;
             width: 300px !important;
         }
-        p {
+        .list-item-value-p {
             text-align: left;
             font-size: 15px;
             line-height: 1.55;

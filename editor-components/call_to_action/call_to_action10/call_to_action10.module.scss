@@ -16,17 +16,17 @@
         justify-content: center;
         gap: 20px;
         margin-right: 20px;
-        h2 {
+        .subtitle {
           font-weight: 200;
           font-size: 1.7rem;
           color: var(--composer-primary-color);
           margin: 0;
         }
-        h1 {
+        .title {
           margin: 0;
           font-size: 4rem;
         }
-        h3 {
+        .description {
           font-weight: 200;
           font-size: 1.8rem;
           margin: 0;

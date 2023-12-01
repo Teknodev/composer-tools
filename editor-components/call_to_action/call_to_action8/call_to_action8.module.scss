@@ -12,7 +12,7 @@
       padding: 0 100px;
       .top-child {
         border-bottom: 1px solid rgb(211, 211, 211);
-        h1 {
+        .title {
           font-size: 4rem;
           margin: 0 0 60px 0;
         }
@@ -47,12 +47,30 @@
               border: 1px solid var(--composer-primary-color);
             }
           }
-          h3 {
+          .leftCardTitle {
             font-size: 2.5rem;
             margin: 10px 0;
 
           }
-          p {
+          .centerCardTitle{
+            font-size: 2.5rem;
+            margin: 10px 0;
+          }
+          .rightCardTitle{
+            font-size: 2.5rem;
+            margin: 10px 0;
+          }
+          .left-card-description {
+            font-size: 1.3rem;
+            margin: 10px 0;
+            margin-bottom: auto;
+          }
+          .center-card-description{
+            font-size: 1.3rem;
+            margin: 10px 0;
+            margin-bottom: auto; 
+          }
+          .right-card-description{
             font-size: 1.3rem;
             margin: 10px 0;
             margin-bottom: auto;

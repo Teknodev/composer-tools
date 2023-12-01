@@ -112,8 +112,8 @@ class Stats6Page extends BaseStats {
               (data: any, index: number) => (
                 <div key={index} className={this.decorateCSS("card")}>
                   <img src={data.CardImage} width={100} height={100} alt="" />
-                  <h4>{data.CardTitle}</h4>
-                  <p>{data.CardDescription}</p>
+                  <h4 className={this.decorateCSS("data-card-title")}>{data.CardTitle}</h4>
+                  <p className={this.decorateCSS("data-card-description")}>{data.CardDescription}</p>
                 </div>
               )
             )}

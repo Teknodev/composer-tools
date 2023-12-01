@@ -89,9 +89,9 @@ class Header7 extends BaseHeader {
                 className={this.decorateCSS("header-page")}
                 
               >
-                <h1>{this.getPropValue("title")}</h1>
-                <h3>{this.getPropValue("subtitle")}</h3>
-                <p>{this.getPropValue("content")}</p>
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                <h3 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h3>
+                <p className={this.decorateCSS("content")}>{this.getPropValue("content")}</p>
                 <div
                   className={this.decorateCSS("button-wrapper")}
                   

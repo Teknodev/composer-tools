@@ -54,12 +54,12 @@
         }
       }
 
-      h1 {
+      .title {
         font-size: 5rem;
         color: #fff;
         margin: unset;
       }
-      p {
+      .description {
         color: #fff;
         font-size: 1.6rem;
         text-align: center;
@@ -76,10 +76,10 @@
           padding: 0 20px;
           width: 100% !important;
         }
-        h1 {
+        .title {
           font-size: 3rem;
         }
-        p {
+        .description {
           font-size: 1.4rem;
         }
       }

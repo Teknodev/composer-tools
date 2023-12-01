@@ -96,7 +96,7 @@ class SurveyModal extends BaseModal {
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
-                    <p>{this.getPropValue("question1")}</p>
+                    <p className={this.decorateCSS("question1")}>{this.getPropValue("question1")}</p>
                     <input
                       type="text"
                       name="name"
@@ -105,7 +105,7 @@ class SurveyModal extends BaseModal {
                       className={this.decorateCSS("input")}
                     />
                     
-                    <p>{this.getPropValue("question3")}</p>
+                    <p className={this.decorateCSS("question3")}>{this.getPropValue("question3")}</p>
                     <input
                       type="text"
                       name="message"

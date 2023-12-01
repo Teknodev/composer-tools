@@ -280,10 +280,10 @@ class Slider4 extends BaseSlider {
                   className={this.decorateCSS("img")}
                   key={`slider4-${index}`}
                   />  
-                  <h1>{item.title}</h1>
-                  <p>{item.description}</p>
+                  <h1 className={this.decorateCSS("item-title")}>{item.title}</h1>
+                  <p className={this.decorateCSS("item-description")}>{item.description}</p>
                   <ComposerLink path={item.buttonLink}>
-                    <span>{item.buttonText}</span>
+                    <span className={this.decorateCSS("item-button-text")}>{item.buttonText}</span>
                   </ComposerLink>
                 </div>
               ))}

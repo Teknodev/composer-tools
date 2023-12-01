@@ -171,7 +171,7 @@ class Navbar4 extends BaseNavigator {
             </div>
 
             <div className={this.decorateCSS("middle")}>
-            <h1>{this.getPropValue("center-text")}</h1>
+            <h1 className={this.decorateCSS("center-text")}>{this.getPropValue("center-text")}</h1>
             </div>
 
             <div className={this.decorateCSS("content-right")}>

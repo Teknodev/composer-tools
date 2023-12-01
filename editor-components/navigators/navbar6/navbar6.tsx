@@ -173,7 +173,7 @@ class Navbar6 extends BaseNavigator {
               {this.getPropValue("right-items").map((rightItem: any) => {
                 return (
                   <ComposerLink path={rightItem.value[1].value}>
-                    <span>{rightItem.value[0].value}</span>
+                    <span className={this.decorateCSS("right-item-value")}>{rightItem.value[0].value}</span>
                   </ComposerLink>
                 );
               })}

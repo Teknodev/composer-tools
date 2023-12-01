@@ -265,9 +265,9 @@ class Contacts8Page extends BaseContacts {
                             alt=""
                           />
                         </div>
-                        <h2>{item.value[1].value}</h2>
-                        <h4>{item.value[2].value}</h4>
-                        <h4>{item.value[3].value}</h4>
+                        <h2 className={this.decorateCSS("item-value1")}>{item.value[1].value}</h2>
+                        <h4 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h4>
+                        <h4 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h4>
                       </div>
                     ))}
                   </div>
@@ -275,7 +275,7 @@ class Contacts8Page extends BaseContacts {
               )}
             </div>
             <div className={this.decorateCSS("right")}>
-              <p>{this.getPropValue("subtitle")}</p>
+              <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
 
               <div className={this.decorateCSS("contact-right")}>
                 <Formik
@@ -288,7 +288,8 @@ class Contacts8Page extends BaseContacts {
                 >
                   {({ handleChange, values }) => (
                     <Form className={this.decorateCSS("form")} style={styling}>
-                      <h3 style={{ marginTop: "50px" }}>
+                      <h3 className={this.decorateCSS("name")} 
+                      style={{ marginTop: "50px" }}>
                         {this.getPropValue("name")}
                       </h3>
                       <input
@@ -304,7 +305,7 @@ class Contacts8Page extends BaseContacts {
                         name="name"
                         component={"span"}
                       />
-                      <h3>{this.getPropValue("email")}</h3>
+                      <h3 className={this.decorateCSS("email")}>{this.getPropValue("email")}</h3>
                       <input
                         placeholder={this.getPropValue("email")}
                         type="text"
@@ -318,7 +319,7 @@ class Contacts8Page extends BaseContacts {
                         name="email"
                         component={"span"}
                       />
-                      <h3>{this.getPropValue("message")}</h3>
+                      <h3 className={this.decorateCSS("message")}>{this.getPropValue("message")}</h3>
                       <textarea
                         placeholder={this.getPropValue("message")}
                         id="text"

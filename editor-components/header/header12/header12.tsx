@@ -181,8 +181,8 @@ class Header12 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("boxes-title")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <p>{this.getPropValue("description")}</p>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
             <div className={this.decorateCSS("box-child")}>
               <div className={this.decorateCSS("box")}>
@@ -190,7 +190,7 @@ class Header12 extends BaseHeader {
                   (message: any, index: number) => (
                     <div className={this.decorateCSS("message")} key={`hdr-card-12-${index}`}>
                       <div className={this.decorateCSS("title")}>
-                        <h3>{message.title}</h3>
+                        <h3 className={this.decorateCSS("message-title")}>{message.title}</h3>
                       </div>
                       <p className={this.decorateCSS("long-text")}>{message.description}</p>
                     </div>
@@ -207,7 +207,7 @@ class Header12 extends BaseHeader {
                   (message: any, index: number) => (
                     <div className={`${this.decorateCSS("message")} ${this.decorateCSS("right-message")}`} key={`hdr-card2-12-${index}`}>
                       <div className={this.decorateCSS("title")}>
-                        <h3>{message.title}</h3>
+                        <h3 className={this.decorateCSS("message-title")}>{message.title}</h3>
                       </div>
                       <p className={this.decorateCSS("long-text")}>{message.description}</p>
                     </div>

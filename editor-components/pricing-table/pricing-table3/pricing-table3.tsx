@@ -152,17 +152,17 @@ class PricingTable3 extends BasePricingTable {
               )}`}
             >
               <div className={this.decorateCSS("texts")}>
-                <h1>{this.getPropValue("title1")}</h1>
+                <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
                 <p className={this.decorateCSS("title2")}>
                   {this.getPropValue("title2")}
                 </p>
-                <p>{this.getPropValue("title3")}</p>
+                <p className={this.decorateCSS("title3")}>{this.getPropValue("title3")}</p>
               </div>
             </div>
             <div className={this.decorateCSS("child-page")}>
               <div className={this.decorateCSS("child-page-right")}>
                 <div className={this.decorateCSS("right-up")}>
-                  <h4>{this.getPropValue("title4")}</h4>
+                  <h4 className={this.decorateCSS("title4")}>{this.getPropValue("title4")}</h4>
                   <ul className={this.decorateCSS("list-group")}>
                     {this.getPropValue("text2").map((price: any, indexText: number) => {
                       return (
@@ -179,14 +179,14 @@ class PricingTable3 extends BasePricingTable {
                 <div className={this.decorateCSS("right-down")}>
                   <div className={this.decorateCSS("right-down-up")}>
                     <div className={this.decorateCSS("little")}>
-                      <p>{this.getPropValue("title5")}</p>
-                      <p>{this.getPropValue("title6")}</p>
+                      <p className={this.decorateCSS("title5")}>{this.getPropValue("title5")}</p>
+                      <p className={this.decorateCSS("title6")}>{this.getPropValue("title6")}</p>
                     </div>
                     <div
                       className={this.decorateCSS("little") + this.decorateCSS("other")}
                     >
-                      <h2>{this.getPropValue("title7")}</h2>
-                      <h2>{this.getPropValue("text1")}</h2>
+                      <h2 className={this.decorateCSS("title7")}>{this.getPropValue("title7")}</h2>
+                      <h2 className={this.decorateCSS("text1")}>{this.getPropValue("text1")}</h2>
                     </div>
                   </div>
                   <div className={this.decorateCSS("button-group")}>

@@ -114,7 +114,7 @@ class HeaderComponent33 extends BaseHeader {
                             alt={`Player Button ${index + 1}`}
                             key={index}
                           />
-                          <h4>{items[0].buttonDescription}</h4>
+                          <h4 className={this.decorateCSS("button-description")}>{items[0].buttonDescription}</h4>
                         </div>
                       </ComposerLink>
                     )

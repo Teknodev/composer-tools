@@ -198,10 +198,10 @@ class Content11 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            <h2>{this.getPropValue("subtitle")}</h2>
-            <span>{this.getPropValue("title")}</span>
-            <h3>{this.getPropValue("subtitle2")}</h3>
-            <span>{this.getPropValue("subtitle2-description")}</span>
+            <h2 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h2>
+            <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
+            <h3 className={this.decorateCSS("subtitle2")}>{this.getPropValue("subtitle2")}</h3>
+            <span className={this.decorateCSS("subtitle2-description")}>{this.getPropValue("subtitle2-description")}</span>
           </div>
 
           <div className={this.decorateCSS("card-child")}>
@@ -217,8 +217,8 @@ class Content11 extends BaseContent {
                     <i>
                       <img alt="server" src={card.image} />
                     </i>
-                    <h5>{card.title}</h5>
-                    <p>{card.description}</p>
+                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
+                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
                     <p className={this.decorateCSS("size-p")}>{card.size}</p>
                   </div>
                 </div>

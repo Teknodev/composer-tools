@@ -62,7 +62,7 @@ class Team11 extends Team {
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("basic-card")}>
               <p className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</p>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               <p className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
               </p>

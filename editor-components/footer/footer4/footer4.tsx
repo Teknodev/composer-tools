@@ -342,7 +342,7 @@ class Footer4Page extends BaseFooter {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("subscribe")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               <ComposerLink path={this.getPropValue("buttonLink")}>
                 <button>{this.getPropValue("buttonText")}</button>
               </ComposerLink>
@@ -352,7 +352,7 @@ class Footer4Page extends BaseFooter {
                 (item: FooterValues, indexFooter: number) => (
                   <ul key={indexFooter} className={this.decorateCSS("list-group")}>
                     <li className={this.decorateCSS("title")}>
-                      <h2>{item.footerTitle}</h2>
+                      <h2 className={this.decorateCSS("item-footerTitle")}>{item.footerTitle}</h2>
                     </li>
                     {item.footerText.map(
                       (v: FooterTextValues, indexFooterText: number) => (

@@ -62,8 +62,8 @@ class CallToAction2Page extends BaseCallToAction {
       <div className={this.decorateCSS("container")} >
         <div className={this.decorateCSS("max-content")} style={styling}>
           <div className={this.decorateCSS("call-to-action2-page")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h2>{this.getPropValue("description")}</h2>
+            <h1 className={this.decorateCSS("h-1")}>{this.getPropValue("title")}</h1>
+            <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
           </div>
           <div className={this.decorateCSS("call-to-action2-page-buttons")}>
             <ComposerLink path={this.getPropValue("firstButtonLink")}>

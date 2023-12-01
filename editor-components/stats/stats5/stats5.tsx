@@ -88,8 +88,8 @@ class Stats5Page extends BaseStats {
             {this.castToObject<ICard[]>("card-content").map(
               (cardData: any, indexCard: number) => (
                 <div key={indexCard} className={this.decorateCSS("card")}>
-                  <h4>{cardData.title}</h4>
-                  <p>{cardData.description}</p>
+                  <h4 className={this.decorateCSS("dard-data-title")}>{cardData.title}</h4>
+                  <p className={this.decorateCSS("card-data-description")}>{cardData.description}</p>
                 </div>
               )
             )}

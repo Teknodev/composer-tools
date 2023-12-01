@@ -159,8 +159,8 @@ class Footer9Page extends BaseFooter {
             />
           </div>
           <div className={this.decorateCSS("content")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h4>{this.getPropValue("description")}</h4>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h4 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h4>
             <div className={this.decorateCSS("social-links")}>
             {this.getPropValue("icons").map((icon: any) => {
                 return (
@@ -171,7 +171,7 @@ class Footer9Page extends BaseFooter {
               })}
               </div>
               <div className={this.decorateCSS("subtext")}>
-                <p>{this.getPropValue("under-text")}</p>
+                <p className={this.decorateCSS("under-text")}>{this.getPropValue("under-text")}</p>
               </div>
           </div>
         </div>

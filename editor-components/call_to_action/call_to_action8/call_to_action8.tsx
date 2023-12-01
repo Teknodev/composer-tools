@@ -120,26 +120,26 @@ class CallToAction8Page extends BaseCallToAction {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action8-page")}>
             <div className={this.decorateCSS("top-child")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             </div>
             <div className={this.decorateCSS("bottom-child")}>
                 <div className={this.decorateCSS("card")}>
-                  <h3>{this.getPropValue("leftCardTitle")}</h3>
-                  <p>{this.getPropValue("leftCardDescription")}</p>
+                  <h3 className={this.decorateCSS("leftCardTitle")}>{this.getPropValue("leftCardTitle")}</h3>
+                  <p className={this.decorateCSS("left-card-description")}>{this.getPropValue("leftCardDescription")}</p>
                   <ComposerLink path={this.getPropValue("leftCardLink")[1].value}>
                     <span className={this.decorateCSS("button")}>{this.getPropValue("leftCardLink")[0].value}</span>
                   </ComposerLink>
                 </div>
                 <div className={this.decorateCSS("card")}>
-                  <h3>{this.getPropValue("centerCardTitle")}</h3>
-                  <p>{this.getPropValue("centerCardDescription")}</p>
+                  <h3 className={this.decorateCSS("centerCardTitle")}>{this.getPropValue("centerCardTitle")}</h3>
+                  <p className={this.decorateCSS("center-card-description")}>{this.getPropValue("centerCardDescription")}</p>
                   <ComposerLink path={this.getPropValue("centerCardLink")[1].value}>
                     <span className={this.decorateCSS("button")}>{this.getPropValue("centerCardLink")[0].value}</span>
                   </ComposerLink>
                 </div>
                 <div className={this.decorateCSS("card")}>
-                  <h3>{this.getPropValue("rightCardTitle")}</h3>
-                  <p>{this.getPropValue("rightCardDescription")}</p>
+                  <h3 className={this.decorateCSS("rightCardTitle")}>{this.getPropValue("rightCardTitle")}</h3>
+                  <p className={this.decorateCSS("right-card-description")}>{this.getPropValue("rightCardDescription")}</p>
                   <ComposerLink path={this.getPropValue("rightCardLink")[1].value}>
                     <span className={this.decorateCSS("button")}>{this.getPropValue("rightCardLink")[0].value}</span>
                   </ComposerLink>

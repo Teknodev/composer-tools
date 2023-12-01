@@ -152,7 +152,7 @@ class Header4 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header-page")}>
             <div className={this.decorateCSS("subtitle-container")}>
-              <h3>{this.getPropValue("subtitle")}</h3>
+              <h3 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h3>
             </div>
             <div className={this.decorateCSS("section")}>
               <div
@@ -161,18 +161,18 @@ class Header4 extends BaseHeader {
                 <div
                   className={`${this.decorateCSS("box")} ${this.decorateCSS("box-left")}`}
                 >
-                  <h1>{card1[0].value}</h1>
-                  <p>{card1[1].value}</p>
+                  <h1 className={this.decorateCSS("card-left")}>{card1[0].value}</h1>
+                  <p className={this.decorateCSS("card1-value")}>{card1[1].value}</p>
                 </div>
                 <div className={`${this.decorateCSS("box")}`}>
-                  <h1>{card2[0].value}</h1>
-                  <p>{card2[1].value}</p>
+                  <h1 className={this.decorateCSS("card-left")}>{card2[0].value}</h1>
+                  <p className={this.decorateCSS("card2-value")}>{card2[1].value}</p>
                 </div>
                 <div
                   className={`${this.decorateCSS("box")} ${this.decorateCSS("box-left")}`}
                 >
-                  <h1>{card3[0].value}</h1>
-                  <p>{card3[1].value}</p>
+                  <h1 className={this.decorateCSS("card-left")}>{card3[0].value}</h1>
+                  <p className={this.decorateCSS("card3-value")}>{card3[1].value}</p>
                 </div>
               </div>
               <div className={this.decorateCSS("image-container")}>
@@ -192,20 +192,20 @@ class Header4 extends BaseHeader {
                     "box-right"
                   )}`}
                 >
-                  <h1>{card4[0].value}</h1>
-                  <p>{card4[1].value}</p>
+                  <h1 className={this.decorateCSS("card-right")}>{card4[0].value}</h1>
+                  <p className={this.decorateCSS("card4-value")}>{card4[1].value}</p>
                 </div>
                 <div className={`${this.decorateCSS("box")}`}>
-                  <h1>{card5[0].value}</h1>
-                  <p>{card5[1].value}</p>
+                  <h1 className={this.decorateCSS("card-right")}>{card5[0].value}</h1>
+                  <p className={this.decorateCSS("card5-value")}>{card5[1].value}</p>
                 </div>
                 <div
                   className={`${this.decorateCSS("box")} ${this.decorateCSS(
                     "box-right"
                   )}`}
                 >
-                  <h1>{card6[0].value}</h1>
-                  <p>{card6[1].value}</p>
+                  <h1 className={this.decorateCSS("card-right")}>{card6[0].value}</h1>
+                  <p className={this.decorateCSS("card6-value")}>{card6[1].value}</p>
                 </div>
               </div>
             </div>

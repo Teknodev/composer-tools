@@ -41,7 +41,7 @@
         justify-content: flex-start;
         align-items: flex-start;
 
-        h1 {
+        .first-header {
           text-transform: capitalize;
           font-weight: revert;
           margin-top: 0;
@@ -50,7 +50,7 @@
           line-height: 1;
           margin-bottom: 20px;
         }
-        p {
+        .content {
           font-weight: 500;
           color: black;
           font-size: 1.2rem;
@@ -84,7 +84,7 @@
           width: 100% !important;
         }
   
-        h1 {
+        .first-header {
           font-size: 3rem !important;
         }
       }

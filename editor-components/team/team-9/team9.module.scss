@@ -25,7 +25,7 @@
                     border: 1px solid var(--composer-primary-color);
                     font-size: 13px;
                     font-weight: 900;
-                    span {
+                    .number {
                         font-size: 15px;
                     }
                     &:hover {
@@ -41,12 +41,12 @@
                 flex-direction: column;
                 justify-content: center;
                 margin-bottom: 40px;
-                h1 {
+                .title {
                     font-size: 3rem;
                     color: rgb(25, 26, 31);
                     margin: unset;
                 }
-                p {
+                .description {
                     margin-bottom: 0;
                     font-size: 1.5rem;
                     color: rgb(63, 63, 63);
@@ -77,12 +77,12 @@
                         left: 10%;
                         gap: 10px;
                         opacity: 0;
-                        h2 {
+                        .item-name {
                             font-size: 2.5rem;
                             color: #fff;
                             margin: unset;
                         }
-                        p {
+                        .item-position {
                             font-size: 2rem;
                             color: #fff;
                             opacity: 0.8;

@@ -99,7 +99,7 @@
             width: 200px;
             text-overflow: ellipsis;
             white-space: nowrap;
-            h1 {
+            .left-bottom-top {
               font-weight: 400;
               font-size: 4rem;
               color: #1a3d97;
@@ -108,7 +108,7 @@
               text-overflow: ellipsis;
               white-space: nowrap;
             }
-            h3 {
+            .left-bottom-bottom {
               color: #1a3d97e1;
               font-weight: 400;
               font-size: 1.5rem;
@@ -121,13 +121,13 @@
           .middle-bottom {
             margin: 0px 16px;
             width: 200px;
-            h1 {
+            .middle-bottom-top {
               font-weight: 400;
               font-size: 4rem;
               color: #1a3d97;
               margin-bottom: 18px !important;
             }
-            h3 {
+            .middle-bottom-bottom {
               color: #1a3d97e1;
               font-weight: 400;
               font-size: 1.5rem;
@@ -137,13 +137,13 @@
           .right-bottom {
             margin: 0px 16px;
             width: 200px;
-            h1 {
+            .right-bottom-top {
               font-weight: 400;
               font-size: 4rem;
               color: #1a3d97;
               margin-bottom: 18px !important;
             }
-            h3 {
+            .right-bottom-bottom {
               color: #1a3d97e1;
               font-weight: 400;
               font-size: 1.5rem;

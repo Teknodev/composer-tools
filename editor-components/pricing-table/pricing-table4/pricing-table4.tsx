@@ -353,8 +353,8 @@ class PricingMultiple extends BasePricingTable {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("page-up")}>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("title")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("title")}>{this.getPropValue("title")}</p>
             </div>
             <div className={this.decorateCSS("page-down")}>
               {this.castToObject<Pricing[]>("cards").map(
@@ -370,12 +370,12 @@ class PricingMultiple extends BasePricingTable {
                       <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("card-up")}>
                           <div className={this.decorateCSS("tag")}>
-                            <h4>{this.getPropValue("tag")}</h4>
+                            <h4 className={this.decorateCSS("tag-h4")}>{this.getPropValue("tag")}</h4>
                           </div>
                           <div className={this.decorateCSS("card-up-texts")}>
-                            <p>{price.title2}</p>
-                            <h1>{price.title1}</h1>
-                            <h2>{price.title3}</h2>
+                            <p className={this.decorateCSS("price-title2")}>{price.title2}</p>
+                            <h1 className={this.decorateCSS("price-title1")}>{price.title1}</h1>
+                            <h2 className={this.decorateCSS("price-title3")}>{price.title3}</h2>
                           </div>
                         </div>
                         <div className={this.decorateCSS("card-middle")}>

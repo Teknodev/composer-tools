@@ -166,7 +166,7 @@ class Testimonials8Page extends Testimonials {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials2")}>
             <div>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             </div>
             <ComposerSlider {...settings}>
               {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
@@ -176,12 +176,12 @@ class Testimonials8Page extends Testimonials {
                       <div className={this.decorateCSS("profile")}>
                         <img width={50} height={50} src={item.image} alt={item.name} />
                         <div className={this.decorateCSS("profile-text")}>
-                          <h2>{item.name}</h2>
-                          <p>{item.nameId}</p>
+                          <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
+                          <p className={this.decorateCSS("item-name-id")}>{item.nameId}</p>
                         </div>
                       </div>
-                      <span>{item.description}</span>
-                      <h5>{item.time}</h5>
+                      <span className={this.decorateCSS("item-description")}>{item.description}</span>
+                      <h5 className={this.decorateCSS("item-time")}>{item.time}</h5>
                     </div>
                   </section>
                 </div>

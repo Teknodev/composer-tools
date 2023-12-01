@@ -263,8 +263,8 @@ class FaqContainer extends BaseFAQ {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("title")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("title-p")}>{this.getPropValue("title")}</p>
             </div>
             <div className={this.decorateCSS("card-page")}>
               {this.castToObject<Card[]>("card").map((item: Card, indexCard: number) => {
@@ -275,10 +275,10 @@ class FaqContainer extends BaseFAQ {
                         <div>?</div>
                       </div>
                       <div className={this.decorateCSS("title")}>
-                        <h2>{item.cardTitle}</h2>
+                        <h2 className={this.decorateCSS("item-cardTitle")}>{item.cardTitle}</h2>
                       </div>
                       <div className={this.decorateCSS("description")}>
-                        <p>{item.description}</p>
+                        <p className={this.decorateCSS("item-description")}>{item.description}</p>
                       </div>
                     </div>
                   </div>
@@ -289,8 +289,8 @@ class FaqContainer extends BaseFAQ {
         </div>
         <div className={this.decorateCSS("down-container")}>
               <div className={this.decorateCSS("child-container")}>
-                <h1>{this.getPropValue("title2")}</h1>
-                <p>{this.getPropValue("description")}</p>
+                <h1 className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</h1>
+                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
                 <div className={this.decorateCSS("button-group")}>
                   {this.castToObject<Button[]>("buttons").map(
                     (button: Button, indexButtons: number) => {

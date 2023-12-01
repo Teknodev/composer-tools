@@ -101,7 +101,7 @@ class Contacts9Page extends BaseContacts {
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
-                    <h3>{this.getPropValue("name")}</h3>
+                    <h3 className={this.decorateCSS("name")}>{this.getPropValue("name")}</h3>
                     <input
                       placeholder={this.getPropValue("name")}
                       type="text"
@@ -115,7 +115,7 @@ class Contacts9Page extends BaseContacts {
                       name="name"
                       component={"span"}
                     />
-                    <h3>{this.getPropValue("email")}</h3>
+                    <h3 className={this.decorateCSS("email")} >{this.getPropValue("email")}</h3>
                     <input
                       placeholder={this.getPropValue("email")}
                       type="text"
@@ -129,7 +129,7 @@ class Contacts9Page extends BaseContacts {
                       name="email"
                       component={"span"}
                     />
-                    <h3>{this.getPropValue("message")}</h3>
+                    <h3 className={this.decorateCSS("message")}>{this.getPropValue("message")}</h3>
                     <textarea
                       placeholder={this.getPropValue("message")}
                       id="text"

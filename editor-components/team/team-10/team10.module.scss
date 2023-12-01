@@ -21,12 +21,12 @@
                 padding: 20px;
                 gap: 25px;
                 border-radius: 6px;
-                h1 {
+                .title {
                     margin: unset;
                     font-size: 2.5rem;
                     color: #fff;
                 }
-                p {
+                .description {
                     margin: unset;
                     font-size: 1.3rem;
                     color: #fff;
@@ -88,11 +88,11 @@
                     justify-content: flex-end;
                     padding: 20px;
                     transition: opacity 1s;
-                    h2 {
+                    .item-name {
                         font-size: 2rem;
                         margin: unset;
                     }
-                    p {
+                    .item-position {
                         font-size: 1.3rem;
                         color: rgb(32, 32, 54);
                     }

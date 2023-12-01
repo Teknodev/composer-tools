@@ -28,7 +28,7 @@
             font-size: 1.2rem;
             padding: 10px 0;
             opacity: 0.8;
-            p{
+            .info-value{
 
             }
           }
@@ -52,11 +52,11 @@
         .footer-links{
           width: 150px;
           margin-top: 20px;
-          h2{
+          .footerLinks{
             font-weight: 200;
             margin-bottom: 10px;
           }
-          p{
+          .link-value1{
             padding: 25px 0 10px 0;
             border-bottom: 1px solid rgba(128, 128, 128, 0.253);
             font-weight: bold;
@@ -80,7 +80,7 @@
           padding: 20px 0;
           position: relative;
           bottom: 60px;
-          h2{
+          .footerForm{
             font-size: 1.5rem;
             margin-bottom: 10px;
           }
@@ -109,7 +109,7 @@
         .footer-text-area{
           position: relative;
           top: 55px;
-          h2{
+          .footerAboutUs{
             text-transform: uppercase;
             font-size: 1.2rem;
             padding-top: 10px;
@@ -123,7 +123,7 @@
       padding: 10px 0;
       display: flex;
       justify-content: center;
-      p{
+      .footer-bottom-text{
         width: 60%;
         margin: 0 auto;
         text-align: center;
@@ -154,7 +154,7 @@
               font-size: 1.2rem;
               padding: 10px 0;
               opacity: 0.8;
-              p{
+              .info-value{
   
               }
             }
@@ -174,7 +174,7 @@
           .footer-links{
             width: 220px;
             margin-top: 20px;
-            p{
+            .link-value1{
               padding: 25px 0 10px 0;
               border-bottom: 1px solid rgba(128, 128, 128, 0.253);
               font-weight: bold;

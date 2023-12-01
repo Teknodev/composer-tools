@@ -69,17 +69,17 @@ class Stats4Page extends BaseStats {
           <div className={this.decorateCSS("stats4-page")}>
             <div className={this.decorateCSS("bottom-child")}>
               <div className={this.decorateCSS("title")}>
-                <h1>{this.getPropValue("title")}</h1>
-                <h3>{this.getPropValue("description")}</h3>
+                <h1 className={this.decorateCSS("title-h1")}>{this.getPropValue("title")}</h1>
+                <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
               </div>
               <div className={this.decorateCSS("card")} style={styling}>
                 <div className={this.decorateCSS("text-child")}>
-                  <h4>{this.getPropValue("topCardTitle")}</h4>
-                  <p>{this.getPropValue("topCardDescription")}</p>
+                  <h4 className={this.decorateCSS("top-card-title")}>{this.getPropValue("topCardTitle")}</h4>
+                  <p className={this.decorateCSS("top-card-description")}>{this.getPropValue("topCardDescription")}</p>
                 </div>
                 <div className={this.decorateCSS("text-child-blur")}>
-                  <h4>{this.getPropValue("bottomCardTitle")}</h4>
-                  <p>{this.getPropValue("bottomCardDescription")}</p>
+                  <h4 className={this.decorateCSS("bottom-card-title")}>{this.getPropValue("bottomCardTitle")}</h4>
+                  <p className={this.decorateCSS("bottom-card-description")}>{this.getPropValue("bottomCardDescription")}</p>
                 </div>
               </div>
             </div>

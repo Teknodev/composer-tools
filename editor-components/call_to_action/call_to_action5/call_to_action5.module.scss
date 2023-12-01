@@ -15,7 +15,7 @@
         flex-direction: column;
         justify-content: center;
         gap: 20px;
-        h1 {
+        .title {
           margin: 0;
           font-size: 3em;
         }
@@ -35,7 +35,7 @@
             font-size: 1.3rem;
           }
         }
-        p {
+        .image-p {
           font-size: 1.3rem;
           color: rgba(0, 0, 0, 0.6);
           img {

@@ -28,7 +28,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     .left {
                         display: flex;
                         flex-direction: column;
-                        h1 {
+                        .title {
                             margin: 0;
                             font-size: 3rem;
                         }

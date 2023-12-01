@@ -34,19 +34,19 @@
             object-fit: cover;
             border-radius: var(--composer-border-radius);
           }
-          h1{
+          .item-title{
             font-size: 20px;
             font-weight: 600;
             margin: 20px 0 0 0;
           }
-          p{
+          .item-description{
             font-size: 14px;
             font-weight: 400;
             margin: 14px 0;
             width: 50%;
             text-align: center;
           }
-          span{
+          .item-button-text{
             display: flex;
             justify-content: center;
             align-items: center;

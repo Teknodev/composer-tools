@@ -20,7 +20,7 @@
         width: 100%;
         z-index: 5;
         padding-top: 7%;
-        h1 {
+        .items {
           font-family: cursive;
           color: #19407ae6;
           font-size: 60px;
@@ -32,7 +32,7 @@
       }
       .description {
         width: 100%;
-        h3 {
+        .items-description {
           overflow: hidden;
           text-overflow: ellipsis;
           max-width: 800px;
@@ -99,7 +99,7 @@
         flex: 1;
         margin-top: -10%;
         .title {
-          h1 {
+          .items {
             font-size: 40px;
           }
         }
@@ -129,12 +129,12 @@
     .wrapper {
       .left {
         .title {
-          h1 {
+          .items {
             font-size: 30px;
           }
         }
         .description {
-          h3 {
+          .items-description {
             font-size: 15px;
           }
         }

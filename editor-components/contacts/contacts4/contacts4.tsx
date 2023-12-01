@@ -124,8 +124,8 @@ class Contacts4Page extends BaseContacts {
           <div className={this.decorateCSS("contacts")}>
               
               <div className={this.decorateCSS("contact-left-left")}>
-                <h1>{this.getPropValue("title")}</h1>
-                <p>{this.getPropValue("description")}</p>
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
                 <div className={this.decorateCSS("contact-left")}>
                 <img
                   alt=""
@@ -139,9 +139,9 @@ class Contacts4Page extends BaseContacts {
                   {this.castToObject<Item[]>("info-items").map(
                     (data: any, index: number) => (
                       <div key={index}>
-                        <h3>{data.title}</h3>
-                        <h2>{data.Text1th}</h2>
-                        <h2 className={this.decorateCSS("margin-bottom")}>
+                        <h3 className={this.decorateCSS("data-title")}>{data.title}</h3>
+                        <h2 className={this.decorateCSS("data-text1")}>{data.Text1th}</h2>
+                        <h2 className={this.decorateCSS("data-text2")}>
                           {data.Text2th}
                         </h2>
                       </div>

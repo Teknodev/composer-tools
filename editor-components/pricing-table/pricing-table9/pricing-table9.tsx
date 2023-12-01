@@ -272,9 +272,9 @@ class PricingTable9 extends BasePricingTable {
               return (
                 <tr key={index}>
                   <td>{feature.featureTitle}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title1").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title2").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title3").toLowerCase()) ? <span>✔️</span> : <span>❌</span>}</td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title1").toLowerCase()) ? <span className={this.decorateCSS("span1")}>✔️</span> : <span className={this.decorateCSS("span4")}>❌</span>}</td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title2").toLowerCase()) ? <span className={this.decorateCSS("span2")}>✔️</span> : <span className={this.decorateCSS("span5")}>❌</span>}</td>
+                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title3").toLowerCase()) ? <span className={this.decorateCSS("span3")}>✔️</span> : <span className={this.decorateCSS("span6")}>❌</span>}</td>
                 </tr>
               );
             }
@@ -284,7 +284,7 @@ class PricingTable9 extends BasePricingTable {
               <td></td>
                 <td>
                   <span className={this.decorateCSS("price-info")}>
-                    <span>per</span> {
+                    <span className={this.decorateCSS("per")}>per</span> {
                       pricingData[0].price
                     }
                     <br></br>
@@ -304,7 +304,7 @@ class PricingTable9 extends BasePricingTable {
                 </td>
                 <td>
                   <span className={this.decorateCSS("price-info")}>
-                    <span>per</span> {
+                    <span className={this.decorateCSS("per1")}>per</span> {
                       pricingData[1].price
                     }
                     <br></br>
@@ -324,7 +324,7 @@ class PricingTable9 extends BasePricingTable {
                 </td>
                 <td>
                   <span className={this.decorateCSS("price-info")}>
-                    <span>per</span> {
+                    <span className={this.decorateCSS("per2")}>per</span> {
                       pricingData[2].price
                     }
                     <br></br>

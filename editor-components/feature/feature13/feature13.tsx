@@ -182,8 +182,8 @@ class Feature13 extends BaseFeature {
           <div className={this.decorateCSS("content")}>
             {this.getPropValue("component-position")[0].value === true && (
               <div className={this.decorateCSS("message")}>
-                <h1>{this.getPropValue("text")[0].value}</h1>
-                <p>{this.getPropValue("text")[1].value}</p>
+                <h1 className={this.decorateCSS("text")}>{this.getPropValue("text")[0].value}</h1>
+                <p className={this.decorateCSS("text-p")}>{this.getPropValue("text")[1].value}</p>
 
                 <ComposerLink path={this.getPropValue("text")[3].value}>
                   <span className={this.decorateCSS("button")}>
@@ -195,8 +195,8 @@ class Feature13 extends BaseFeature {
 
 {this.getPropValue("component-position")[0].value === false && (
               <div className={this.decorateCSS("message")}>
-                <h1>{this.getPropValue("text")[0].value}</h1>
-                <p>{this.getPropValue("text")[1].value}</p>
+                <h1 className={this.decorateCSS("text2")}>{this.getPropValue("text")[0].value}</h1>
+                <p className={this.decorateCSS("text-p2")}>{this.getPropValue("text")[1].value}</p>
 
                 <span className={this.decorateCSS("button")}>
                   {this.getPropValue("text")[2].value}

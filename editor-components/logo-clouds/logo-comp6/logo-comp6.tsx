@@ -129,7 +129,7 @@ class LogoComp6Page extends LogoClouds {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("logo-comp6-page")}>
             <div className={this.decorateCSS("title-content")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             </div>
             <div className={this.decorateCSS("items-layout")}>
               {this.getPropValue("list-items").map(
@@ -143,7 +143,7 @@ class LogoComp6Page extends LogoClouds {
                   >
                     <div className={this.decorateCSS("items-content")}>
                       <img src={listItem.value[0].value} alt="itemPhoto" />
-                      <p>{listItem.value[1].value}</p>
+                      <p className={this.decorateCSS("list-item-p")}>{listItem.value[1].value}</p>
                     </div>
                   </div>
                 )

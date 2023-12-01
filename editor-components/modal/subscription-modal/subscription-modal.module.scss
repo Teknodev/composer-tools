@@ -30,10 +30,10 @@
         max-width: 300px;
         overflow: hidden;
       text-overflow: ellipsis;
-      h2{
+      .first-header{
         text-align: center;
       }
-        span {
+        .subscription {
           font-family: var(--composer-font-family);
           text-align: center;
           max-height: 600px;

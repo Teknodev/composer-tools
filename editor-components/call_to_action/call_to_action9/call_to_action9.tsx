@@ -83,13 +83,13 @@ class CallToAction9Page extends BaseCallToAction {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action9-page")}>
-            <h1>{this.getPropValue("title")}</h1>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <ComposerLink path={this.getPropValue("link")}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("buttonText")}
               </span>
             </ComposerLink>
-            <h3>{this.getPropValue("description")}</h3>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
 
             <div className={this.decorateCSS("sponsor-container")}>
               <div className={this.decorateCSS("sponsor")} >

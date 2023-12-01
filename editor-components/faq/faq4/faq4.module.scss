@@ -25,14 +25,14 @@
         word-break: break-all;
         text-overflow: ellipsis;
 
-        h1 {
+        .subtitle {
           font-size: 3.5rem;
           color: rgb(24, 23, 23);
           opacity: 0.8;
           margin: unset;
         }
 
-        p {
+        .text-p {
           font-size: 2rem;
           color: rgb(24, 23, 23);
           opacity: 0.8;
@@ -84,7 +84,7 @@
             text-overflow: ellipsis;
             line-height: 20px;
 
-            h3 {
+            .card-title-h3 {
               font-size: 1.5rem;
               color: rgb(24, 23, 23);
               opacity: 0.8;
@@ -139,7 +139,7 @@
         font-size: 3rem !important;
       }
 
-      p {
+      .text-p {
         font-size: 1.5rem !important;
       }
 

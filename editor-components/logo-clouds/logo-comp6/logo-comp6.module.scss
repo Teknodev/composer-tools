@@ -7,7 +7,7 @@
         .logo-comp6-page {
             width: 100%;
             .title-content {
-                h1 {
+                .title {
                     font-size: 3rem;
                     text-align: center;
                     margin-bottom: 40px;
@@ -32,7 +32,7 @@
                             height: 160px;
                             margin-left: 2%;
                         }
-                        p {
+                        .list-item-p {
                             font-size: 18px;
                             font-weight: 300;
                             line-height: 1.55;
@@ -58,7 +58,7 @@
                             img {
                                 margin-left: 20%;
                             }
-                            p {
+                            .list-item-p {
                                 width: 275px;
                             }
                         }

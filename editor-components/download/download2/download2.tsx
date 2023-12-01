@@ -181,7 +181,7 @@ class Download2 extends BaseDownload {
                         <img src={card.logo} alt="" />
                       </div>
                       <div className={this.decorateCSS("card-title")}>
-                        <h2>{card.title}</h2>
+                        <h2 className={this.decorateCSS("card-title1")}>{card.title}</h2>
                       </div>
                      <div className={this.decorateCSS("card-button")}>
                         <ComposerLink path={card.buttonLink}>
@@ -189,7 +189,7 @@ class Download2 extends BaseDownload {
                         </ComposerLink>
                       </div>
                       <div className={this.decorateCSS("card-information")}>
-                        <p>{card.information}</p>
+                        <p className={this.decorateCSS("card-information-p")}>{card.information}</p>
                       </div>
                     </div>
                   </div>

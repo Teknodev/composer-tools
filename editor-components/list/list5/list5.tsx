@@ -115,9 +115,9 @@ class List5 extends BaseList {
               (listItem: any, index: number) => {
                 return(
                 <div key={index} className={this.decorateCSS("item-container")} style={{ "flex": `0 0 ${100 / this.getPropValue('itemCount') - 2}%`}}>
-                  <h1>{listItem.value[0].value}</h1>
+                  <h1 className={this.decorateCSS("list-item-value-h1")}>{listItem.value[0].value}</h1>
                   <img src={listItem.value[1].value} alt="itemPhoto" />
-                  <p>{listItem.value[2].value}</p>
+                  <p className={this.decorateCSS("list-item-value-p")}>{listItem.value[2].value}</p>
                 </div>
                 )
               }
