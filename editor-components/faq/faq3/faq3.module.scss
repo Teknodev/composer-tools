@@ -21,14 +21,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 text-overflow: ellipsis;
                 white-space: pre-line;
                 word-break: break-all;
-                h1 {
+                .subtitle {
                     font-size: 3.5rem;
                     letter-spacing: 0.02em;
                     margin: unset;
                     color: rgb(42, 51, 66);
                     opacity: 0.9;
                 }
-                p {
+                .title {
                     font-size: 1.6rem;
                     color: rgb(42, 51, 66);
                     opacity: 0.9;

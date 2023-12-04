@@ -88,8 +88,8 @@ class HeaderComponent16 extends BaseHeader {
             }`}>
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("content")}>
-                <h1>{this.getPropValue("title")}</h1>
-                <p>{this.getPropValue("description")}</p>
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
 
                 <div className={this.decorateCSS("form")}>
                   <input

@@ -21,13 +21,13 @@
         justify-content: center;
 
         
-        h1 {
+        .text {
           max-width: 600px;
           text-align: center;
           font-size: 2.3em;
           margin: 0;
         }
-        p {
+        .text-p {
           font-size: 1.2em;
           max-width: 900px;
         }
@@ -100,7 +100,7 @@
     .max-content{
       .content{
         .message{
-          p{
+          .text-p{
             padding: 0 6.9vh;
           }
         }
@@ -124,7 +124,7 @@
     .max-content{
       .content{
         .message{
-          h1{
+          .text{
             font-size: 20px;
             padding: 0 6.9vh;
 

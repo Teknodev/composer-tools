@@ -114,7 +114,7 @@ class Contacts5Page extends BaseContacts {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("contact-container")}>
             <div className={this.decorateCSS("contacts5-left")}>
-              <h1>{this.getPropValue("subtitle")}</h1>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
               <div className={this.decorateCSS("contacts5")}>
             <div className={this.decorateCSS("contact-form")}>
               <Formik
@@ -181,31 +181,31 @@ class Contacts5Page extends BaseContacts {
             </div> 
           
           <div className={this.decorateCSS("contacts5-right")}>
-            <h1>{this.getPropValue("title")}</h1>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <div className={this.decorateCSS("infos")}>
                 <div className={this.decorateCSS("info-row")}>
                   <div className={this.decorateCSS("img-div")}>
                     <img src={this.getPropValue("adressImage")} alt="" />
                   </div>
-                    <p><strong>Adress: </strong>{this.getPropValue("adress")}</p>
+                    <p className={this.decorateCSS("adress")}><strong>Adress: </strong>{this.getPropValue("adress")}</p>
                 </div>
                 <div className={this.decorateCSS("info-row")}>
                   <div className={this.decorateCSS("img-div")}>
                     <img src={this.getPropValue("phoneImage")} alt="" />
                   </div>
-                    <p><strong>Phone: </strong>{this.getPropValue("phone")}</p>
+                    <p className={this.decorateCSS("phone")}><strong>Phone: </strong>{this.getPropValue("phone")}</p>
                 </div>
                 <div className={this.decorateCSS("info-row")}>
                   <div className={this.decorateCSS("img-div")}>
                     <img src={this.getPropValue("emailImage")} alt="" />
                   </div>
-                    <p><strong>Email: </strong>{this.getPropValue("email")}</p>
+                    <p className={this.decorateCSS("email")}><strong>Email: </strong>{this.getPropValue("email")}</p>
                 </div>
                 <div className={this.decorateCSS("info-row")}>
                   <div className={this.decorateCSS("img-div")}>
                     <img src={this.getPropValue("websiteImage")} alt="" />
                   </div>
-                    <p><strong>Website: </strong>{this.getPropValue("website")}</p>
+                    <p className={this.decorateCSS("website")}><strong>Website: </strong>{this.getPropValue("website")}</p>
                 </div>
             </div>
           </div>

@@ -37,7 +37,7 @@
                 cursor: pointer;
                 padding: 0 20px;
 
-                h1 {
+                .unContentTitle {
                     font-size: 2.2rem;
                     color: #fff;
                     opacity: 0;
@@ -83,13 +83,13 @@
                 overflow: hidden;
                 padding: 0 20px;
 
-                h1 {
+                .downContentTitle {
                     color: #fff;
                     font-size: 2rem;
                     opacity: 1;
                     transition: opacity 0.5s;
                 }
-                p {
+                .description {
                     color: #fff;
                     font-size: 1.5rem;
                     opacity: 0.8;
@@ -101,10 +101,10 @@
                 .down-content {
                     height: 0;
 
-                    h1 {
+                    .downContentTitle {
                         opacity: 0;
                     }
-                    p {
+                    .description {
                         opacity: 0;
                     }
                 }
@@ -112,7 +112,7 @@
                 .up-content {
                     height: 100%;
 
-                    h1 {
+                    .downContentTitle {
                         opacity: 1;
                     }
                     .button-group {

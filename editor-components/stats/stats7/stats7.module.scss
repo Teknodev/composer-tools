@@ -19,14 +19,14 @@
         align-items: center;
         padding: 20px;
 
-        h1 {
+        .title {
           text-align: center;
           width: 40%;
           margin: 0;
           font-size: 4rem;
           color: var(--composer-primary-color);
         }
-        h3 {
+        .description {
           text-align: center;
           width: 40%;
           margin: 0;
@@ -43,19 +43,19 @@
         border-radius: 6px;
         padding: 60px 0;
         .card {
-          h4 {
+          .card-data-title {
             text-align: center;
             font-size: 4rem;
             margin: 0;
             color: white;
           }
-          h5 {
+          .card-data-subtitle {
             text-align: center;
             font-size: 1.8rem;
             color: white;
             margin: 20px 0;
           }
-          p {
+          .card-data-description {
             text-align: center;
             font-size: 1.5rem;
             color: white;
@@ -76,10 +76,10 @@
           gap: 20px;
           flex-direction: column;
 
-          h1 {
+          .title {
             width: 100%;
           }
-          h3 {
+          .description {
             width: 100%;
           }
         }

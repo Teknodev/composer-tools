@@ -20,7 +20,7 @@
         gap: 20px;
         justify-content: center;
         align-items: end;
-        h1 {
+        .title {
           margin: 0;
           font-size: 2.6rem;
           text-transform: uppercase;
@@ -28,7 +28,7 @@
         hr{
           width: 50%;
         }
-        p {
+        .subtitle {
           margin: 0;
           font-size: 1.4rem;
           color: var(--composer-secondary-color);
@@ -38,12 +38,17 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
-          h3 {
+          .data-title {
             font-size: 1.6rem;
             font-weight: 100;
             opacity: 0.7;
           }
-          h2 {
+          .data-text1 {
+            margin: 5px 0;
+            font-size: 1.6rem;
+            font-weight: 500;
+          }
+          .data-text2 {
             margin: 5px 0;
             font-size: 1.6rem;
             font-weight: 500;

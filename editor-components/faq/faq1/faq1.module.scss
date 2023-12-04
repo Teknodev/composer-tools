@@ -23,7 +23,7 @@
                 flex-direction: column;
                 justify-content: center;
                 &:hover {
-                    p {
+                    .card-text {
                         display: block;
                     }
                     .img-1 {
@@ -33,7 +33,7 @@
                 .img-1 {
                     display: block;
                 }
-                p {
+                .card-text {
                     display: none;
                     padding: 0 15px 0 15px;
                     overflow: hidden;
@@ -45,7 +45,7 @@
                     color: rgb(42, 51, 66);
                     opacity: 0.9;
                 }
-                h2 {
+                .cardsubtitle {
                     width: 90%;
                     overflow: hidden;
                     white-space: pre-line;
@@ -75,10 +75,10 @@
 @media only screen and (max-width: 768px) {
     .container {
         padding: 50px 20px;
-        h2 {
+        .cardsubtitle {
             font-size: 1.4rem !important;
         }
-        p {
+        .card-text {
             font-size: 1.1rem !important;
         }
     }

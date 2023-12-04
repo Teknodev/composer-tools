@@ -36,14 +36,14 @@
         margin-bottom: 50px;
         vertical-align: top;
     }
-    h1 {
+    .list-item-h1 {
         text-align: left;
         margin-left: 10px;
         font-weight: bold;
         font-size: 22px;
         line-height: 1.35;
     }
-    p {
+    .list-item-p {
         text-align: left;
         width: 100%;
         font-size: 16px;
@@ -67,7 +67,7 @@
         display: flex;
         align-items: flex-start;
         box-sizing: border-box;
-        h1 {
+        .list-item-h1 {
             text-align: left;
             margin-left: 10px;
             font-weight: bold;
@@ -80,7 +80,7 @@
             margin-bottom: 8px;
             height: 40px;
         }
-        p {
+        .list-item-p {
             width: 250px;
             text-align: left;
             font-size: 16px;
@@ -98,7 +98,7 @@
         display: flex;
         align-items: left;
         box-sizing: content-box;
-        h1 {
+        .list-item-h1 {
             text-align: left;
             margin-left: 10px;
             font-weight: bold;
@@ -111,7 +111,7 @@
             margin-bottom: 50px;
             height: 40px;
         }
-        p {
+        .list-item-p {
             width: 100%;
             text-align: left;
             font-size: 16px;

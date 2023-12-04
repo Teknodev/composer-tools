@@ -43,9 +43,9 @@ class Testimonials4Page extends Testimonials {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials4")}>
             <div className={this.decorateCSS("card")}>
-              <h1>{this.getPropValue("longtext")}</h1>
-              <h3>{this.getPropValue("name")}</h3>
-              <h4>{this.getPropValue("rank")}</h4>
+              <h1 className={this.decorateCSS("longtext")}>{this.getPropValue("longtext")}</h1>
+              <h3 className={this.decorateCSS("name")}>{this.getPropValue("name")}</h3>
+              <h4 className={this.decorateCSS("rank")}>{this.getPropValue("rank")}</h4>
             </div>
           </div>
         </div>

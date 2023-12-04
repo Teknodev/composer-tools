@@ -64,8 +64,8 @@ class Header10 extends BaseHeader {
                   {this.getPropValue("badge")}
                 </span>
                 <div className={this.decorateCSS("text-child")}>
-                  <h1>{this.getPropValue("cardTitle")}</h1>
-                  <p>{this.getPropValue("cardDescription")}</p>
+                  <h1 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</h1>
+                  <p className={this.decorateCSS("description")}>{this.getPropValue("cardDescription")}</p>
                 </div>
               </div>
               <div className={this.decorateCSS("right-content")}>

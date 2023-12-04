@@ -18,19 +18,16 @@
       .heading-colored {
         color: var(--composer-primary-color);
         text-align: center;
-      }
-      h1 {
-        text-align: center;
         margin-block-start: 0;
         margin-block-end: 0;
       }
-      h2 {
+      .heading-h2 {
         text-align: center;
         font-size: 3.5rem;
         margin-block-start: 20px;
         margin-block-end: 10px;
       }
-      h3 {
+      .heading-h3 {
         text-align: center;
         color: rgb(180, 180, 180);
         font-size: 1.3rem

@@ -107,7 +107,7 @@ class CallToAction5Page extends BaseCallToAction {
               <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt=""></img>
             </div>
             <div className={this.decorateCSS("call-to-action5")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
 
               <ul className={this.decorateCSS("list")}>
                 {this.castToObject<listedListItem[]>("listedListItem").map(
@@ -141,7 +141,7 @@ class CallToAction5Page extends BaseCallToAction {
                 </ComposerLink>
               </div>
                   
-              <p>
+              <p className={this.decorateCSS("image-p")}>
                 <img
                   alt=""
                   width={13}

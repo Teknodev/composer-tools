@@ -17,14 +17,14 @@
           text-align: center;
           justify-content: center;
           margin-bottom: 60px;
-        h1 {
+        .title {
           text-align: center;
           font-size: 3.5rem;
           font-weight: 900;
           margin: 0 0 10px 0;
         }
   
-        h3 {
+        .description {
           text-align: center;
           font-weight: 100;
           font-size: 1.2rem;
@@ -53,7 +53,7 @@
             .content {
               padding: 0 20px;
               margin-bottom: 15px;
-              span {
+              .item-value1 {
                 font-weight: 800;
                 font-size: 2rem;
                 margin-top: 10px;
@@ -61,7 +61,7 @@
                 margin-left: 0;
                 margin-right: 0;
               }
-              h5 {
+              .item-value2 {
                 opacity: 0.8;
                 font-weight: 100;
                 font-size: 1.2rem;
@@ -70,7 +70,7 @@
                 margin-left: 0;
                 margin-right: 0;
               }
-              h4{
+              .item-value3{
                 opacity: 0.8;
                 font-weight: 100;
                 font-size: 1rem;

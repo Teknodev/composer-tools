@@ -39,13 +39,13 @@
         padding: 25px;
         text-align: center;
 
-        h1 {
+        .leftContentTitle {
           color: #fff;
           font-size: 3rem;
           opacity: 1;
           transition: opacity 0.5s;
         }
-        p {
+        .description {
           color: #fff;
           font-size: 2rem;
           opacity: 0.8;
@@ -77,7 +77,7 @@
             padding: 20px;
             overflow: hidden;
 
-            h2{
+            .cardTitle{
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -154,10 +154,10 @@
         .left-content {
           height: 0;
 
-          h1 {
+          .leftContentTitle {
             opacity: 0;
           }
-          p {
+          .description {
             opacity: 0;
           }
         }

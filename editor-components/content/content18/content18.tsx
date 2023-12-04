@@ -158,8 +158,8 @@ class Content18 extends BaseContent {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials9")}>
             <div className={this.decorateCSS("title-card")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h3>{this.getPropValue("description")}</h3>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
             </div>
             <section>
               {this.castToObject<ISection[]>("card-items").map(
@@ -176,9 +176,9 @@ class Content18 extends BaseContent {
                       
                         <img width={200} height={140} src={item.value[0].value} alt=""/>
                         <div className={this.decorateCSS("content")}>
-                          <span>{item.value[1].value}</span>
-                          <h5>{item.value[2].value}</h5>
-                          <h4>{item.value[3].value}</h4>
+                          <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
+                          <h5 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h5>
+                          <h4 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h4>
                         </div>
                       </div>
                     ))}

@@ -24,7 +24,7 @@
 
       .header-page {
         text-align: left;
-        h1 {
+        .description {
           padding: 20px;
           font-size: 1.7rem;
           font-weight: 100;
@@ -39,14 +39,14 @@
           object-fit: cover;
         }
         
-        h3{
+        .below-title{
             text-align: left;
             font-size: 1.5rem;
             margin-bottom: -10px;
             margin-top: 10px;
         }
 
-        h2{
+        .below-text{
             text-align: left;
             font-size: 1rem;
             font-weight: 100;

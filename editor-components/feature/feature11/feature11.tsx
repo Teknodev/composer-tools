@@ -99,7 +99,7 @@ class Feature11 extends BaseFeature {
                 }}>
                 <div className={this.decorateCSS("message")} key={index}>
                   <div className={this.decorateCSS("title")}>
-                    <h3>{message.title}</h3>
+                    <h3 className={this.decorateCSS("message-title")}>{message.title}</h3>
                   </div>
                   <p className={this.decorateCSS("long-text")}>{message.description}</p>
                 </div>

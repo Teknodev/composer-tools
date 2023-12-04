@@ -41,7 +41,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           justify-content: center;
           align-items: center;
 
-          p {
+          .title2 {
             font-size: 1.4rem;
             margin: 40px 0 20px;
             text-align: center;
@@ -120,7 +120,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 border-radius: 50%;
                 object-fit: cover;
               }
-              h2{
+              .card-name{
                 margin: 18px 0 12px;
               }
               .position {
@@ -130,7 +130,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
             }
 
-            p {
+            .card-description {
               text-align: center;
             }
 
@@ -148,7 +148,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           }
         }
       }
-      h1 {
+      .title1 {
         margin: 0;
         font-size: 3rem;
       }

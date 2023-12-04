@@ -19,13 +19,13 @@
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 2rem;
-                h1 {
+                .subtitle {
                     font-size: 3.5rem;
                     color: rgb(24, 23, 23);
                     opacity: 0.8;
                     margin: 10px 0;
                 }
-                p {
+                .title1 {
                     font-size: 2rem;
                     color: rgb(24, 23, 23);
                     opacity: 0.8;
@@ -55,7 +55,7 @@
                 background: rgb(244, 244, 244);
                 padding: 20px;
                 border-radius: 6px;
-                h1 {
+                .card-title {
                     font-size: 1.5rem;
                     letter-spacing: 0.02em;
                     margin: unset;
@@ -63,7 +63,7 @@
                     opacity: 0.9;
                     margin-bottom: 1rem;
                 }
-                p {
+                .card-description {
                     font-size: 1.3rem;
                     color: rgb(42, 51, 66);
                     opacity: 0.9;
@@ -91,7 +91,7 @@
     .container {
         padding: 50px 20px;
         .up-page {
-            p {
+            .title1 {
                 text-align: center;
             }
         }

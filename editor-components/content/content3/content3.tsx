@@ -104,7 +104,7 @@ class Content3 extends BaseContent {
               <h3 className={`${this.decorateCSS("third-header")}`}>
                 {this.getPropValue("secondTitle")}
               </h3>
-              <p>{this.getPropValue("content")}</p>
+              <p className={this.decorateCSS("content")}>{this.getPropValue("content")}</p>
               <div className={this.decorateCSS("button-wrapper")}>
                 {this.getPropValue("buttonprop").map(
                   (button: any, index: number) => (

@@ -10,7 +10,7 @@
     .testimonials5 {
       display: block;
       width: 100%;
-      h1 {
+      .title {
         text-align: center;
         font-size: 3rem;
         margin: 0 0 40px 0;
@@ -40,11 +40,15 @@
             margin-bottom: 20px;
           }
 
-          span {
+          .item-value1 {
             font-weight: 800;
             font-size: 1.2rem;
           }
-          h5 {
+          .item-value3{
+            font-weight: 800;
+            font-size: 1.2rem;
+          }
+          .item-value2 {
             opacity: 0.8;
             font-weight: 500;
             font-size: 1.5rem;

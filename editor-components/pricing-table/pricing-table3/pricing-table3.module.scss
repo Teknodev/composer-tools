@@ -27,7 +27,7 @@
         justify-content: center;
         gap: 20px;
         
-        h1 {
+        .title1 {
           font-size: 3.5rem;
           color: rgb(18, 22, 43);
           opacity: 0.8;
@@ -53,7 +53,7 @@
       .right-up {
         width: 100%;
         padding: 5% 5% 0 5%;
-        h4{
+        .title4{
           font-size: 2rem;
           margin-bottom: 35px;
           margin-left: 40px;
@@ -168,7 +168,7 @@
           position: relative;
           left: 10px;
 
-          h1{
+          .title1{
             font-size: 23px;
           }
 
@@ -177,7 +177,7 @@
             padding: 10px 70px 0 0;
           }
 
-          p{
+          .text3{
             font-size: 13px;
             padding: 10px 70px 0 0;
           }

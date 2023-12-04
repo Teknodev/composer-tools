@@ -10,7 +10,7 @@
     .testimonials6 {
       display: block;
       width: 100%;
-      h1 {
+      .title {
         text-align: center;
         font-size: 3rem;
         margin: 0 0 40px 0;
@@ -57,19 +57,19 @@
                 flex-direction: column;
                 justify-content: center;
 
-                h2 {
+                .item-value3 {
                   margin: 0;
                   font-weight: 600;
                   font-size: 1.5rem;
                 }
-                p {
+                .item-value4 {
                   margin: 0;
                   font-size: 1.2rem;
                   text-transform: uppercase;
                 }
               }
             }
-            span {
+            .item-value1 {
               font-size: 1.2rem;
               margin: 20px 0;
             }

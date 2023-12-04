@@ -206,8 +206,8 @@ class List6 extends BaseList {
                 <li key={index} className={this.decorateCSS("item-container")}>
                   <img src={listItem.value[1].value} alt="itemPhoto" />
                   <div>
-                    <h1>{listItem.value[0].value}</h1>
-                    <p>{listItem.value[2].value}</p>
+                    <h1 className={this.decorateCSS("list-item-h1")}>{listItem.value[0].value}</h1>
+                    <p className={this.decorateCSS("list-item-p")}>{listItem.value[2].value}</p>
                   </div>
                 </li>
                 </div>

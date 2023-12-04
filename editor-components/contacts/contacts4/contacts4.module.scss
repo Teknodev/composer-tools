@@ -23,12 +23,12 @@
         width: 500px;
         box-shadow: var(--composer-box-shadow);
         padding: 30px;
-        h1 {
+        .title {
           text-align: left;
           font-size: 2rem;
           margin: 0;
         }
-        p {
+        .description {
           text-align: left;
           font-weight: 200;
           font-size: 1.3rem;
@@ -59,12 +59,17 @@
             flex-direction: column;
             gap: 20px;
             color: white;
-            h3 {
+            .data-title {
               font-size: 1.5rem;
               font-weight: 600;
               margin-bottom: 10px;
             }
-            h2 {
+            .data-text1 {
+              font-size: 1.5rem;
+              font-weight: 500;
+              margin: 0;
+            }
+            .data-text2 {
               font-size: 1.5rem;
               font-weight: 500;
               margin: 0;
@@ -85,7 +90,7 @@
         width: 350px;
         .contact-left-left{
           width: 300px;
-          h1{
+          .title{
             font-size: 1.3rem;
           }
           p{
@@ -102,10 +107,13 @@
           padding: 20px;
           .contact-info{
             width: 100px;
-            h3{
+            .data-title{
               font-size: .9rem;
             }
-            h2{
+            .data-text1{
+              font-size: .8rem;
+            }
+            .data-text2{
               font-size: .8rem;
             }
           }

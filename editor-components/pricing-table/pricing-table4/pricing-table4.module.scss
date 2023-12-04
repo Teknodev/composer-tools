@@ -92,10 +92,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 justify-content: center;
                 align-items: center;
 
-                h1 {
+                .subtitle {
                   font-size: 3rem;
                 }
-                p {
+                .title {
                   font-size: 1.5rem;
                   color: var(--composer-primary-color);
                 }
@@ -177,7 +177,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         }
       }
 
-      h1 {
+      .price-title1 {
         font-size: 4rem;
         font-weight: lighter;
         color: #000;
@@ -187,12 +187,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         font-size: 2rem;
         font-weight: 100;
       }
-      h2 {
+      .price-title3 {
         opacity: 0.5;
         color: #000;
       }
     }
-    p {
+    .title {
       font-size: 1.3rem;
       color: #000;
     }
@@ -204,10 +204,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     padding: 50px 20px;
 
     .max-content {
-      h1 {
+      .price-title1 {
         font-size: 2.5rem !important;
       }
-      p {
+      .title {
         font-size: 1.2rem !important;
       }
       .page {

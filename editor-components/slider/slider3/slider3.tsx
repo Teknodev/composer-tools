@@ -86,7 +86,7 @@ class Slider3 extends BaseSlider {
               <h1 className={this.decorateCSS("first-header")}>
                 {this.getPropValue("title")}
               </h1>
-              <p>{this.getPropValue("content")}</p>
+              <p className={this.decorateCSS("content")}>{this.getPropValue("content")}</p>
             </div>
             <div className={this.decorateCSS("slider-parent")}>
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>

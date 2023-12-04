@@ -37,7 +37,7 @@
         gap: 40px;
         justify-content: center;
         align-items: center;
-        h1 {
+        .title {
           text-align: center;
           font-size: 3.5rem;
           margin: 0;
@@ -67,12 +67,12 @@
           flex-direction: column;
           gap: 20px;
           max-width: 600px;
-          h3 {
+          .comment {
             font-size: 1.6rem;
             font-weight: 200;
             margin: 0;
           }
-          h5 {
+          .comment-author {
             margin: 0;
             font-size: 1.5rem;
           }

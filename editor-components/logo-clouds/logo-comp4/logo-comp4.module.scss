@@ -12,14 +12,14 @@
       display: block;
       width: 100%;
       color: white;
-      h1 {
+      .title {
         margin: 50px 0;
         padding-top: 20px;
         text-align: center;
         font-size: 3rem;
         text-transform: uppercase;
       }
-      h3 {
+      .description {
         width: 100%;
         margin: 0;
         text-align: center;
@@ -27,8 +27,8 @@
         margin-bottom: 200px;
         text-transform: uppercase;
       }
-      h4 {
-        @extend h3;
+      .subtitle {
+        @extend .description;
         margin-bottom: 20px;
         font-size: 1.5rem;
       }

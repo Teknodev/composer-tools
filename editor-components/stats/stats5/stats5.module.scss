@@ -18,12 +18,12 @@
         min-width: 250px;
         flex: 1 1;
         padding: 30px 0;
-        h4 {
+        .card-data-title {
           font-size: 3rem;
           color: var(--composer-primary-color);
           margin: 20px 0;
         }
-        p {
+        .card-data-description {
           font-size: 1.5rem;
         }
       }

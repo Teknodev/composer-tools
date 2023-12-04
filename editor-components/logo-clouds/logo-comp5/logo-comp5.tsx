@@ -129,8 +129,8 @@ class LogoComp5Page extends LogoClouds {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("logo-comp5-page")}>
             <div className={this.decorateCSS("content-left")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <p>{this.getPropValue("description")}</p>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
             <section>
               <center>

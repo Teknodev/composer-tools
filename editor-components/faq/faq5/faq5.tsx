@@ -138,8 +138,8 @@ class FaqMiddle extends BaseFAQ {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("title")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("title-p")}>{this.getPropValue("title")}</p>
             </div>
             <div className={this.decorateCSS("right-page")}>
               {this.castToObject<Card[]>("card").map(
@@ -148,7 +148,7 @@ class FaqMiddle extends BaseFAQ {
                     <div key={indexCard} className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("little-container")}>
                         <div className={this.decorateCSS("title")}>
-                          <h3>{card.cardTitle}</h3>
+                          <h3 className={this.decorateCSS("card-title")}>{card.cardTitle}</h3>
                         </div>
                         <div className={this.decorateCSS("icon")}>
                           <img

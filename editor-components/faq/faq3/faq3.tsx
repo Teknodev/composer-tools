@@ -147,8 +147,8 @@ class FaqContainerTwo extends BaseFAQ {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("title")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("title")}>{this.getPropValue("title")}</p>
             </div>
             <div className={this.decorateCSS("card-page")}>
               {this.castToObject<Card[]>("card").map((item: Card, indexCard: number) => {
@@ -159,10 +159,10 @@ class FaqContainerTwo extends BaseFAQ {
                         <div>?</div>
                       </div>
                       <div className={this.decorateCSS("title")}>
-                        <h2>{item.cardTitle}</h2>
+                        <h2 className={this.decorateCSS("item-cardTitle")}>{item.cardTitle}</h2>
                       </div>
                       <div className={this.decorateCSS("description")}>
-                        <p>{item.description}</p>
+                        <p className={this.decorateCSS("item-description")}>{item.description}</p>
                       </div>
                     </div>
                   </div>

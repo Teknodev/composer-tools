@@ -67,7 +67,7 @@ class CallToAction6Page extends BaseCallToAction {
             </div>
 
             <div className={this.decorateCSS("call-to-action6-child")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               <ComposerLink path={this.getPropValue("link")}>
                 <span
                   className={this.decorateCSS("button")}
@@ -77,8 +77,8 @@ class CallToAction6Page extends BaseCallToAction {
                 </span>
               </ComposerLink>
               <div className={this.decorateCSS("comment")}>
-                <h3>{this.getPropValue("comment")}</h3>
-                <h5>{this.getPropValue("commentAuthor")}</h5>
+                <h3 className={this.decorateCSS("comment")}>{this.getPropValue("comment")}</h3>
+                <h5 className={this.decorateCSS("comment-author")}>{this.getPropValue("commentAuthor")}</h5>
               </div>
             </div>
 

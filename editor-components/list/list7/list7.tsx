@@ -102,9 +102,9 @@ class List7 extends BaseList {
                 }}
               >
               <div className={this.decorateCSS("item-content")}>
-                <h3>{index < 9 ? `0${index + 1}` : index + 1}</h3>
-                <h4>{listItem.value[1].value}</h4>
-                <p>{listItem.value[0].value}</p>
+                <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
+                <h4 className={this.decorateCSS("item-value1")}>{listItem.value[1].value}</h4>
+                <p className={this.decorateCSS("list-item-p")}>{listItem.value[0].value}</p>
               </div>
               </div>
             )

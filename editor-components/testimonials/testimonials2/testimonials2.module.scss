@@ -5,7 +5,7 @@
     max-width: var(--composer-content-width);
     margin: auto;
     
-    h1 {
+    .title {
       text-align: center;
       font-size: 3rem;
       margin: 0 0 40px 0;
@@ -24,7 +24,7 @@
           border: 1px solid rgb(215, 215, 215);
           flex: 1 1;
 
-          h5 {
+          .item-time {
             opacity: 0.8;
             font-weight: 200;
             font-size: 1rem;
@@ -45,16 +45,16 @@
               flex-direction: column;
               justify-content: center;
 
-              h2 {
+              .item-name {
                 margin: 0;
               }
-              p {
+              .item-name-id {
                 margin: 5px 0 !important;
                 text-transform: uppercase;
               }
             }
           }
-          span{
+          .item-description{
             font-size: 1.1rem;
           }
         }

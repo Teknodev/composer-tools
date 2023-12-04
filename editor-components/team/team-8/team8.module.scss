@@ -46,11 +46,11 @@
           }
           .content {
             display: block;
-            span {
+            .team-member-value {
               font-weight: 700;
               font-size: 1.4rem;
             }
-            p {
+            .team-member-value-p {
               font-size: 1.1rem;
               color: var(--composer-primary-color);
             }

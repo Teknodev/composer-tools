@@ -82,7 +82,7 @@ class SubscriptionModal extends BaseModal {
               <h2 className={this.decorateCSS("first-header")}>
                 {this.getPropValue("subscription-title")}
               </h2>
-              <span>{this.getPropValue("subscription-content")}</span>
+              <span className={this.decorateCSS("subscription-content")}>{this.getPropValue("subscription-content")}</span>
             </div>
             <ComposerModalClose>
               <div className={this.decorateCSS("button-group")}>

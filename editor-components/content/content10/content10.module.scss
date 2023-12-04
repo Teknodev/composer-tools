@@ -14,12 +14,12 @@
       align-items: center;
       gap: 20px;
 
-      h2 {
+      .title {
         font-size: 4rem;
         margin: 0;
         color: var(--composer-primary-color);
       }
-      p {
+      .card-description {
         font-size: 1.2rem;
         margin: 0;
       }
@@ -58,12 +58,12 @@
             width: 40px;
             height: 40px;
           }
-          h5 {
+          .card-title {
             font-size: 2.4rem;
             margin: 0;
             color: rgb(0, 0, 0);
           }
-          p {
+          .description {
             font-size: 1.2rem;
             margin: 0;
             color: rgb(0, 0, 0);

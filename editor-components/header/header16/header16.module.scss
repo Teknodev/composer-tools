@@ -19,14 +19,14 @@
           width: 600px;
           overflow: hidden;
           text-overflow: ellipsis;
-          h1 {
+          .title {
             font-size: 5rem;
             color: #2f1c64;
             font-weight: bold;
             line-height: 1.2;
          
           }
-          p {
+          .description {
             font-size: 1.5rem;
             line-height: 1.2;
             color: #777777;
@@ -87,11 +87,11 @@
           .content {
             padding: 16px;
             width: 80%;
-            h1 {
+            .title {
               font-size: 4rem;
               text-align: center;
             }
-            p {
+            .description {
               text-align: center;
             }
             .form {
@@ -150,12 +150,12 @@
                 .content{
                     max-width: 75%;
                     
-                    h1{
+                    .title{
                         font-size: 5rem;
                         color: #2F1C64;
                         font-weight: bold;
                     }
-                    p{
+                    .description{
                         font-size: 1.5rem;
                     }
                 }

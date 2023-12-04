@@ -17,11 +17,11 @@
         padding: 40px;
         .title {
           display: block;
-          h1 {
+          .title-h1 {
             font-size: 3.5rem;
             margin: 0 20px 10px 0;
           }
-          h3 {
+          .description {
             width: 70%;
             font-weight: 100;
             font-size: 1.8rem;
@@ -48,11 +48,11 @@
             padding: 5px 20px;
             border-radius: 10px;
             margin-top: 350px;
-            h4 {
+            .top-card-title {
               font-size: 2rem;
               margin: 0;
             }
-            p {
+            .top-card-description {
               width: 40%;
               font-size: 1.5rem;
             }
@@ -72,11 +72,11 @@
               rgba(255, 255, 255, 0.2) 100%
             );
             backdrop-filter: blur(10px);
-            h4 {
+            .bottom-card-title {
               font-size: 2rem;
               margin: 0;
             }
-            p {
+            .bottom-card-description {
               width: 40%;
               font-size: 1.5rem;
             }
@@ -102,11 +102,11 @@
           padding: 20px;
           .title {
             width: 100%;
-            h1 {
+            .title-h1 {
               width: 100%;
               margin: 20px 0;
             }
-            h3 {
+            .description {
               width: 100%;
             }
           }

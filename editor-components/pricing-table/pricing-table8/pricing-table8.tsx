@@ -367,7 +367,7 @@ class PricingTable8 extends BasePricingTable {
               <div>
                 <ul className={this.decorateCSS("list-group")}>
                   {card.list.map((item: any, itemIndex: number) => (
-                    <li className={this.decorateCSS("li")} key={itemIndex}><span>✓</span>{item.value}</li>
+                    <li className={this.decorateCSS("li")} key={itemIndex}><span className={this.decorateCSS("item-value")}>✓</span>{item.value}</li>
                     ))}
                 </ul>
               </div>

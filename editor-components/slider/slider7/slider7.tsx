@@ -277,10 +277,10 @@ class Slider7 extends BaseSlider {
               (item: Card, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("card")}>
                   <img src={item.image} className={this.decorateCSS("img")} alt=""/>
-                  <h1>{item.title}</h1>
+                  <h1 className={this.decorateCSS("item-title")}>{item.title}</h1>
                   <div className={this.decorateCSS("button")}>
                     <ComposerLink path={item.url}>{item.button}</ComposerLink>
-                    <h2>{item.price}</h2>
+                    <h2 className={this.decorateCSS("item-price")}>{item.price}</h2>
                   </div>
                 </div>
               )

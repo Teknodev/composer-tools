@@ -13,7 +13,7 @@
     );        
     .stats3-page {
       width: 100%;
-      h1 {
+      .title {
         text-align: center;
         font-size: 3rem;
         margin: 0 0 40px 0;
@@ -28,11 +28,11 @@
           text-align: center;
           flex: 1 1;
 
-          h4 {
+          .card-data-title {
             font-size: 2.5rem;
             margin: 20px 0;
           }
-          p {
+          .card-data-description {
             font-size: 1.5rem;
             margin: 0;
           }

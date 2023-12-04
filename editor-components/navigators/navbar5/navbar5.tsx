@@ -268,7 +268,7 @@ class Navbar5 extends BaseNavigator {
             (data: any, indexItemList: number) => {
               return (
                 <ComposerLink key={indexItemList} path={data.value[1].value}>
-                  <span>{data.value[0].value}</span>
+                  <span className={this.decorateCSS("data-value")}>{data.value[0].value}</span>
                 </ComposerLink>
               );
             }

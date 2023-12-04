@@ -52,7 +52,7 @@
                 justify-content: center;
                 align-items: center;
 
-                h1 {
+                .first-header {
                   text-transform: capitalize;
                   font-weight: revert;
                   font-size: 3.5rem;
@@ -60,7 +60,7 @@
                   margin: 3px;
                 }
 
-                p {
+                .item-description {
                   font-weight: 500;
                   color: black;
                   font-size: 1.2rem;
@@ -91,7 +91,7 @@
             .deneme {
               padding-top: 25px;
               .header-page {
-                h1 {
+                .first-header {
                   margin: 10px !important ;
                 }
               }
@@ -104,7 +104,7 @@
         width: 100% !important;
       }
 
-      h1 {
+       .first-header {
         font-size: 3rem !important;
       }
     }

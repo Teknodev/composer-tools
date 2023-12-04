@@ -93,13 +93,13 @@ class Stats8Page extends BaseStats {
           <div className={this.decorateCSS("stats2-page")}>
             <div className={this.decorateCSS("bottom-child")}>
               <div className={this.decorateCSS("card-title")}>
-                <h1>{this.getPropValue("title")}</h1>
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               </div>
               {this.castToObject<ICard[]>("card-content").map(
                 (cardData: any, indexCard: number) => (
                   <div key={indexCard} className={this.decorateCSS("card")}>
-                    <h4>{cardData.title}</h4>
-                    <p>{cardData.description}</p>
+                    <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
+                    <p className={this.decorateCSS("card-data-description")}>{cardData.description}</p>
                   </div>
                 )
               )}

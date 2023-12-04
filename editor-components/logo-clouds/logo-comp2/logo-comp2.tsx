@@ -128,8 +128,8 @@ class LogoComp2Page extends LogoClouds {
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("logo-comp2-page")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h3>{this.getPropValue("description")}</h3>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
             <section>
               <center>
                 {this.castToObject<ISection[]>("image-items").map(

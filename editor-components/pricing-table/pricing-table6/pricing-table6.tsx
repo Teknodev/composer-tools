@@ -329,8 +329,8 @@ class PricingMultipleTwo extends BasePricingTable {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("description")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
 
             <div className={this.decorateCSS("down-page")}>
@@ -342,7 +342,7 @@ class PricingMultipleTwo extends BasePricingTable {
                         <div className={this.decorateCSS("card")}>
                           <div className={this.decorateCSS("card-up")}>
                             <div className={this.decorateCSS("up-elements")}>
-                              <p>{item.cardTitle1}</p>
+                              <p className={this.decorateCSS("item-card-title1")}>{item.cardTitle1}</p>
                               {item.active && (
                                 <div className={this.decorateCSS("tag")}>
                                   {item.activeTag}
@@ -351,15 +351,15 @@ class PricingMultipleTwo extends BasePricingTable {
                             </div>
                             <div className={this.decorateCSS("pricing")}>
                               <div className={this.decorateCSS("price")}>
-                                <h1>
+                                <h1 className={this.decorateCSS("item-price")}>
                                   {item.price}
-                                  <span>{item.per}</span>
+                                  <span className={this.decorateCSS("item-per")}>{item.per}</span>
                                 </h1>
                                 <div className={this.decorateCSS("currency")}>
-                                  <span>{item.currency}</span>
+                                  <span className={this.decorateCSS("item-currency")}>{item.currency}</span>
                                 </div>
                               </div>
-                              <p>{item.description}</p>
+                              <p className={this.decorateCSS("item-description-p")}>{item.description}</p>
                             </div>
                             <div className={this.decorateCSS("button-group")}>
                               {item.buttons.map((b: any, indexButtonGroup: number) => {

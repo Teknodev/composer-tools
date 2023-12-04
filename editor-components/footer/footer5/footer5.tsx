@@ -322,7 +322,7 @@ class Footer5Page extends BaseFooter {
               <div className={this.decorateCSS("footer-infos")}>
               {this.castToObject<[]>("footerInfos").map((info: any, index: number) => (
                   <div className={this.decorateCSS("footer-info-row")} key={index}>
-                    <p>{info.value}</p>
+                    <p className={this.decorateCSS("info.value")}>{info.value}</p>
                   </div>
                 ))}
               </div>
@@ -338,11 +338,11 @@ class Footer5Page extends BaseFooter {
             </div>
             <div className={this.decorateCSS("footer-center")}>
               <div className={this.decorateCSS("footer-links")}>
-                <h2>{this.getPropValue("footerLinks")[0].value}</h2>
+                <h2 className={this.decorateCSS("footerLinks")}>{this.getPropValue("footerLinks")[0].value}</h2>
                 {this.getPropValue("footerLinks")[1].value.map((link: any, index: number) => (
                   <div className={this.decorateCSS("footer-link-row")} key={index}>
                     <ComposerLink path={link.value[0].value}>
-                      <p>{link.value[1].value}</p>
+                      <p className={this.decorateCSS("link.value1")}>{link.value[1].value}</p>
                     </ComposerLink>
                   </div>
                 ))}
@@ -350,7 +350,7 @@ class Footer5Page extends BaseFooter {
             </div>
             <div className={this.decorateCSS("footer-right")}>
               <div className={this.decorateCSS("footer-form")}>
-                <h2> 
+                <h2 className={this.decorateCSS("footerForm")}> 
                   {this.getPropValue("footerForm")[0].value}
                 </h2>
                 <div className={this.decorateCSS("input-box")}>
@@ -363,17 +363,17 @@ class Footer5Page extends BaseFooter {
                 </div>
               </div>
               <div className={this.decorateCSS("footer-text-area")}>
-                <h2>
+                <h2 className={this.decorateCSS("footerAboutUs")}>
                   {this.getPropValue("footerAboutUs")[0].value}
                 </h2>
-                <p>
+                <p className={this.decorateCSS("footer-aboutus")}>
                   {this.getPropValue("footerAboutUs")[1].value}
                 </p>
               </div>
             </div>
           </div>
           <div className={this.decorateCSS("bottom")}>
-            <p>{this.getPropValue("footer-bottom-text")}</p>
+            <p className={this.decorateCSS("footer-bottom-text")}>{this.getPropValue("footer-bottom-text")}</p>
           </div>
         </div>
       </div>

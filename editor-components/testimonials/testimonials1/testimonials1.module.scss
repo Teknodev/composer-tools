@@ -10,12 +10,12 @@
     .testimonials1 {
       display: block;
       width: 100%;
-      h1 {
+      .title {
         text-align: center;
         font-size: 3rem;
         margin: 40px 0;
       }
-      h3 {
+      .subtitle {
         text-align: center;
         margin: 0;
       }
@@ -40,7 +40,7 @@
             }
             .profile-text {
               margin-left: 20px;
-              h2 {
+              .item-value1 {
                 font-weight: 600;
                 font-size: 1.1rem;
                 margin-top: 3px;
@@ -48,7 +48,7 @@
                 margin-left: 0;
                 margin-right: 0;
               }
-              p {
+              .item-value2 {
                 margin-top: 3px;
                 margin-bottom: 0;
                 margin-left: 0;
@@ -58,7 +58,7 @@
               }
             }
           }
-          h5 {
+          .item-value3 {
             font-size: 1.2rem;
             text-align: center;
           }

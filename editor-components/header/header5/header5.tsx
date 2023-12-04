@@ -57,8 +57,8 @@ class Header5 extends BaseHeader {
             <h1 className={this.decorateCSS("heading-colored")}>
               {this.getPropValue("heading")[0].value}
             </h1>
-            <h2>{this.getPropValue("heading")[1].value}</h2>
-            <h3>{this.getPropValue("heading")[2].value}</h3>
+            <h2 className={this.decorateCSS("heading-h2")}>{this.getPropValue("heading")[1].value}</h2>
+            <h3 className={this.decorateCSS("heading-h3")}>{this.getPropValue("heading")[2].value}</h3>
             <ComposerLink path={this.getPropValue("heading")[4].value}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("heading")[3].value}

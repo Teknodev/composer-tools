@@ -181,8 +181,8 @@ class Testimonials12Page extends Testimonials {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials12")}>
             <div className={this.decorateCSS("top-content")}>
-              <span>{this.getPropValue("title")}</span>
-              <h2>{this.getPropValue("description")}</h2>
+              <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
+              <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
             </div>
             <ComposerSlider
               {...settings}
@@ -190,14 +190,14 @@ class Testimonials12Page extends Testimonials {
             >
               {this.getPropValue("cards").map((card: any, index: number) => (
                 <div className={this.decorateCSS("card")}>
-                  <span className={this.decorateCSS("span")}>
+                  <span className={this.decorateCSS("span-image")}>
                     <img
                       src="https://rstheme.com/products/html/swipy/assets/images/testimonial/style1/quote.png"
                       alt=""
                       className={this.decorateCSS("image")}
                     />
                   </span>
-                  <p>{card.value[0].value}</p>
+                  <p className={this.decorateCSS("card-value")}>{card.value[0].value}</p>
                   <div className={this.decorateCSS("below-content")}>
                     <img
                       src={card.value[1].value}
