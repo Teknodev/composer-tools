@@ -21,13 +21,13 @@
                 margin-bottom: 2rem;
                 .subtitle {
                     font-size: 3.5rem;
-                    color: rgb(24, 23, 23);
+                    color: var(--composer-primary-color);
                     opacity: 0.8;
                     margin: 10px 0;
                 }
                 .title1 {
                     font-size: 2rem;
-                    color: rgb(24, 23, 23);
+                    color: var(--composer-font-color-primary);
                     opacity: 0.8;
                     margin: unset;
                 }

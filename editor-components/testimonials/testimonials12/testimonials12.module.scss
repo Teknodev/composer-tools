@@ -30,6 +30,25 @@
             }
             .slider-style {
                 width: 100%;
+                button {
+                    display: none !important;
+                }
+                // button {
+                //     position: absolute;
+                //     color: red;
+                //     background: red;
+                //     left: 80%;
+                //     top: 0;
+                //     width: 50px;
+                // }
+                // button :nth-child(2n) {
+                //     position: absolute;
+                //     top: 0;
+                //     right: 10%;
+                //     width: 50px;
+                //     color: red;
+                //     background: red;
+                // }
                 .card {
                     max-width: 460px;
                     .span-image {

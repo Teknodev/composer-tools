@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider7.module.scss";
@@ -272,15 +271,28 @@ class Slider7 extends BaseSlider {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+          <ComposerSlider
+            {...settings}
+            className={this.decorateCSS("carousel")}
+          >
             {this.castToObject<Card[]>("slider").map(
               (item: Card, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("card")}>
-                  <img src={item.image} className={this.decorateCSS("img")} alt=""/>
-                  <h1 className={this.decorateCSS("item-title")}>{item.title}</h1>
+                  <img
+                    src={item.image}
+                    className={this.decorateCSS("img")}
+                    alt=""
+                  />
+                  <h1 className={this.decorateCSS("item-title")}>
+                    {item.title}
+                  </h1>
                   <div className={this.decorateCSS("button")}>
-                    <ComposerLink path={item.url}>{item.button}</ComposerLink>
-                    <h2 className={this.decorateCSS("item-price")}>{item.price}</h2>
+                    <div className={this.decorateCSS("button-text")}>
+                      <ComposerLink path={item.url}>{item.button}</ComposerLink>
+                    </div>
+                    <h2 className={this.decorateCSS("item-price")}>
+                      {item.price}
+                    </h2>
                   </div>
                 </div>
               )

@@ -59,6 +59,7 @@ class Slider9 extends BaseSlider {
   }
   render() {
     const settings = {
+      arrows: false,
       dots: true,
       infinite: true,
       speed: 500,

@@ -1,99 +1,95 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  .max-content {
-    display: flex;
-    justify-content: space-around;
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .stats1-page {
-      display: block;
-      width: 100%;
-      .title-child {
+    width: 100%;
+    padding: 50px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .max-content {
         display: flex;
         justify-content: space-around;
-        align-items: center;
-        padding: 20px;
-
-        .title {
-          text-align: center;
-          width: 40%;
-          margin: 0;
-          font-size: 4rem;
-          color: var(--composer-primary-color);
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .stats1-page {
+            display: block;
+            width: 100%;
+            .title-child {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 20px;
+                .title {
+                    text-align: center;
+                    width: 40%;
+                    margin: 0;
+                    font-size: 4rem;
+                    color: var(--composer-primary-color);
+                }
+                .description {
+                    text-align: center;
+                    width: 40%;
+                    margin: 0;
+                    font-size: 1.5rem;
+                    color: var(--composer-font-color-primary);
+                }
+            }
+            .bottom-child {
+                display: flex;
+                justify-content: space-around;
+                box-shadow: var(--composer-box-shadow);
+                width: 100%;
+                margin: 0 auto;
+                border-radius: 6px;
+                padding: 60px 0;
+                .card {
+                    .card-data-title {
+                        text-align: center;
+                        font-size: 4rem;
+                        margin: 0;
+                        color: var(--composer-font-color-primary);
+                    }
+                    .card-data-subtitle {
+                        text-align: center;
+                        font-size: 1.8rem;
+                        color: var(--composer-primary-color);
+                        margin: 20px 0;
+                    }
+                    .card-data-description {
+                        text-align: center;
+                        font-size: 1.5rem;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
         }
-        .description {
-          text-align: center;
-          width: 40%;
-          margin: 0;
-          font-size: 1.5rem;
-          color: white;
-        }
-      }
-      .bottom-child {
-        display: flex;
-        justify-content: space-around;
-        box-shadow: var(--composer-box-shadow);
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 6px;
-        padding: 60px 0;
-        .card {
-          .card-data-title {
-            text-align: center;
-            font-size: 4rem;
-            margin: 0;
-            color: white;
-          }
-          .card-data-subtitle {
-            text-align: center;
-            font-size: 1.8rem;
-            color: white;
-            margin: 20px 0;
-          }
-          .card-data-description {
-            text-align: center;
-            font-size: 1.5rem;
-            color: white;
-          }
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    .max-content {
-      padding: 0 20px;
-      justify-content: center;
-      .stats1-page {
-        .title-child {
-          gap: 20px;
-          flex-direction: column;
-
-          .title {
-            width: 100%;
-          }
-          .description {
-            width: 100%;
-          }
+    .container {
+        .max-content {
+            padding: 0 20px;
+            justify-content: center;
+            .stats1-page {
+                .title-child {
+                    gap: 20px;
+                    flex-direction: column;
+                    .title {
+                        width: 100%;
+                    }
+                    .description {
+                        width: 100%;
+                    }
+                }
+                .bottom-child {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 20px;
+                    gap: 20px;
+                    .card {
+                        width: 100%;
+                    }
+                }
+            }
         }
-        .bottom-child {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          padding: 20px;
-          gap: 20px;
-          .card {
-            width: 100%;
-          }
-        }
-      }
     }
-  }
 }

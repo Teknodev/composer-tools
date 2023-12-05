@@ -17,17 +17,17 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 5rem;
-                .title {
+                .subtitle {
                     font-size: 3.5rem;
                     letter-spacing: 0.02em;
                     margin: 10px 0;
-                    color: rgb(42, 51, 66);
+                    color: var(--composer-primary-color);
                     opacity: 0.9;
                 }
                 .title-p {
                     margin: unset;
                     font-size: 1.6rem;
-                    color: rgb(42, 51, 66);
+                    color: var(--composer-font-color-primary);
                     opacity: 0.9;
                 }
                 .badge {
@@ -60,13 +60,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                         font-size: 1.5rem;
                         letter-spacing: 0.02em;
                         margin: unset;
-                        color: rgb(42, 51, 66);
+                        color: var(--composer-primary-color);
                         opacity: 0.9;
                         font-weight: bold;
                     }
                     .description {
                         font-size: 1.6rem;
-                        color: rgb(42, 51, 66);
+                        color: var(--composer-font-color-primary);
                         opacity: 0.9;
                         margin: unset;
                     }
@@ -92,7 +92,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         width: 100%;
         height: 300px;
         margin-top: 200px;
-        background-color: var(--composer-primary-color);
+        background-color: var(--composer-secondary-color);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -102,7 +102,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             height: fit-content;
             width: 90%;
             max-width: var(--composer-content-width);
-            background-color: var(--composer-secondary-color);
+            background-color: var(--composer-primary-color);
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -114,12 +114,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 font-size: 2rem;
                 letter-spacing: 0.02em;
                 margin: unset;
-                color: #fff;
+                color: var(--composer-font-color-primary);
                 opacity: 0.9;
             }
             .description {
                 font-size: 1.5rem;
-                color: #797979;
+                color: var(--composer-font-color-primary);
             }
             .button-group {
                 display: flex;
@@ -141,7 +141,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     }
                 }
                 .primary {
-                    background-color: var(--composer-primary-color);
+                    background-color: var(--composer-secondary-color);
                 }
                 .secondary {
                     border: 1px solid rgb(200, 200, 200);

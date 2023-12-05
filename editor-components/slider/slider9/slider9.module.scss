@@ -26,6 +26,7 @@
                     line-height: 1.35;
                     font-weight: 600;
                     padding-top: 20px;
+                    color: var(--composer-primary-color);
                 }
                 .undertitle {
                     font-size: 14px;
@@ -40,12 +41,14 @@
                     font-weight: 600;
                     margin-top: 0;
                     margin-bottom: 0;
+                    color: var(--composer-font-color-primary);
                 }
                 .description {
                     font-size: 14px;
                     line-height: 1.55;
                     font-weight: 300;
                     margin-top: 20px;
+                    color: var(--composer-font-color-primary);
                 }
             }
         }

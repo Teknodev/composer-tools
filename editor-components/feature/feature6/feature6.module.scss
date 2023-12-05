@@ -1,70 +1,71 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    .content {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      .card-item-count{
-        .basic-badge {
-          display: flex;
-          flex-direction: column;
-          box-shadow: var(--composer-box-shadow);
-          border-radius: 6px;
-          min-height: 200px;
-          padding: 20px;
-          flex: 1 1;
-          align-items: center;
-          .title {
-            display: block;
-            font-weight: bold;
-            font-size: large;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            .badge {
-              margin-top: 1px;
-              float: right;
-              height: 24px;
-              min-width: 20px;
-              max-width: 100px;
-              padding: 3px 6px;
-              line-height: 1.2;
-              white-space: nowrap;
-              vertical-align: middle;
-              font-size: 1.2rem;
-              font-weight: 100;
-              color: #fff;
-              background: var(--composer-primary-color);
-              text-align: center;
-              border-radius: 3px;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            .card-item-count {
+                .basic-badge {
+                    display: flex;
+                    flex-direction: column;
+                    box-shadow: var(--composer-box-shadow);
+                    border-radius: 6px;
+                    min-height: 200px;
+                    padding: 20px;
+                    flex: 1 1;
+                    align-items: center;
+                    .title {
+                        display: block;
+                        font-weight: bold;
+                        font-size: large;
+                        width: 100%;
+                        margin: 0;
+                        padding: 0;
+                        color: var(--composer-primary-color);
+                        .badge {
+                            margin-top: 1px;
+                            float: right;
+                            height: 24px;
+                            min-width: 20px;
+                            max-width: 100px;
+                            padding: 3px 6px;
+                            line-height: 1.2;
+                            white-space: nowrap;
+                            vertical-align: middle;
+                            font-size: 1.2rem;
+                            font-weight: 100;
+                            color: #fff;
+                            background: var(--composer-secondary-color);
+                            text-align: center;
+                            border-radius: 3px;
+                        }
+                    }
+                    .long-text {
+                        display: block;
+                        margin: 0;
+                        margin-top: 20px;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
             }
-          }
-          .long-text {
-            display: block;
-            margin: 0;
-            margin-top: 20px;
-          }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    .max-content{
-      .card-item-count{
-        min-width: 100%;
-      }
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .card-item-count {
+                min-width: 100%;
+            }
+        }
     }
-  }
 }

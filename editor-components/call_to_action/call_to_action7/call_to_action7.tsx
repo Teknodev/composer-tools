@@ -30,76 +30,94 @@ class CallToAction7Page extends BaseCallToAction {
       key: "cardBackgroundColor",
       displayer: "Card Background Color",
       value: "#e0e0e0",
+    });
+
+    this.addProp({
+      type:"array",
+      key: "item-list",
+      displayer: "Card List",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "leftTitle",
+              displayer: "Left Title",
+              value: "About Life",
+            },
+            {
+              type: "string",
+              key: "leftDescription",
+              displayer: "Left Description",
+              value: "Life is a journey full of ups and downs, joys and sorrows, victories and defeats. It's a precious gift that should be cherished and lived to the fullest. Life is unpredictable and can change in an instant, so it's important to appreciate the present moment and make the most of every opportunity. ",
+            },
+            {
+              type: "string",
+              key: "leftButtonText",
+              displayer: "Left Button Text",
+              value: "Reading",
+            },
+            {
+              type: "page",
+              key: "leftButtonPage",
+              displayer: "Left Button Link",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "leftButtonIcon",
+              displayer: "Left Button Icon",
+              value:
+                "https://freepngimg.com/thumb/web_design/24713-2-right-arrow-transparent-background.png",
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "leftTitle",
+              displayer: "Left Title",
+              value: "About Life",
+            },
+            {
+              type: "string",
+              key: "leftDescription",
+              displayer: "Left Description",
+              value: "Life is a journey full of ups and downs, joys and sorrows, victories and defeats. It's a precious gift that should be cherished and lived to the fullest. Life is unpredictable and can change in an instant, so it's important to appreciate the present moment and make the most of every opportunity. ",
+            },
+            {
+              type: "string",
+              key: "leftButtonText",
+              displayer: "Left Button Text",
+              value: "Reading",
+            },
+            {
+              type: "page",
+              key: "leftButtonPage",
+              displayer: "Left Button Link",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "leftButtonIcon",
+              displayer: "Left Button Icon",
+              value:
+                "https://freepngimg.com/thumb/web_design/24713-2-right-arrow-transparent-background.png",
+            },
+          ]
+        },
+      ]
     })
-    this.addProp({
-      type: "string",
-      key: "leftTitle",
-      displayer: "Left Title",
-      value: "About Life",
-    });
-    this.addProp({
-      type: "string",
-      key: "leftDescription",
-      displayer: "Left Description",
-      value: "Life is a journey full of ups and downs, joys and sorrows, victories and defeats. It's a precious gift that should be cherished and lived to the fullest. Life is unpredictable and can change in an instant, so it's important to appreciate the present moment and make the most of every opportunity. ",
-    });
-    this.addProp({
-      type: "string",
-      key: "leftButtonText",
-      displayer: "Left Button Text",
-      value: "Reading",
-    });
-    this.addProp({
-      type: "page",
-      key: "leftButtonPage",
-      displayer: "Left Button Link",
-      value: "",
-    });
-    this.addProp({
-      type: "image",
-      key: "leftButtonIcon",
-      displayer: "Left Button Icon",
-      value:
-        "https://freepngimg.com/thumb/web_design/24713-2-right-arrow-transparent-background.png",
-    });
-    this.addProp({
-      type: "image",
-      key: "rightIcon",
-      displayer: "Right Icon",
-      value:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Globe_icon-white.svg/1200px-Globe_icon-white.svg.png",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightTitle",
-      displayer: "Right Title",
-      value: "First Healty",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightDescription",
-      displayer: "Right Description",
-      value: "The first step towards a healthy lifestyle is taking care of our body and mind. This includes eating a balanced diet, staying active, getting enough sleep, and managing stress. Making small changes to our daily habits can have a big impact on our overall well-being. It's important to prioritize self-care and listen to our body's needs.",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightButtonText",
-      displayer: "Right Button Text",
-      value: "Reading",
-    });
-    this.addProp({
-      type: "page",
-      key: "rightButtonPage",
-      displayer: "Right Button Link",
-      value: "",
-    });
-    this.addProp({
-      type: "image",
-      key: "rightButtonIcon",
-      displayer: "Right Button Icon",
-      value:
-        "https://freepngimg.com/thumb/web_design/24713-2-right-arrow-transparent-background.png",
-    });
+
+    
+    
   }
 
   getName(): string {
@@ -131,22 +149,6 @@ class CallToAction7Page extends BaseCallToAction {
                   <img
                     alt=""
                     src={this.getPropValue("leftButtonIcon")}
-                    width={15}
-                    height={15}
-                  />
-                </span>
-              </ComposerLink>
-            </div>
-            <div className={this.decorateCSS("card-child")} style={styling}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("rightIcon")} width={35} height={35} alt=""/>
-              <h1 className={this.decorateCSS("title-3")}>{this.getPropValue("rightTitle")}</h1>
-              <h3 className={this.decorateCSS("rightDescription")}>{this.getPropValue("rightDescription")}</h3>
-              <ComposerLink path={this.getPropValue("rightButtonPage")}>
-                <span className={this.decorateCSS("right-button-text")}>
-                  {this.getPropValue("rightButtonText")}
-                  <img
-                    alt=""
-                    src={this.getPropValue("rightButtonIcon")}
                     width={15}
                     height={15}
                   />
