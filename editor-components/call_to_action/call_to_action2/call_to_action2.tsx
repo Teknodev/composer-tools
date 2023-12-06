@@ -42,12 +42,6 @@ class CallToAction2Page extends BaseCallToAction {
       displayer: "Second Button Link",
       value: "",
     });
-    this.addProp({
-      type: "color",
-      key: "backgroundColor",
-      displayer: "Background Color",
-      value: "#d6d2d2f4",
-    })
   }
 
   getName(): string {

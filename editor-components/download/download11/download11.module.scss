@@ -1,95 +1,97 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width:var(--composer-content-width);
-    margin: auto;
-
-    .wrapper {
-      display: flex;
-      gap: 20px;
-      flex-direction: column;
-      text-align: center;
-      .boxes-title {
-        display: flex;
-        justify-content: center;
-        .title {
-          font-size: 2.5rem;
-          margin: 0;
-          color: var(--composer-primary-color);
-        }
-      }
-      .boxes-description {
-        display: flex;
-        justify-content: center;
-        .description {
-          font-size: 1.3rem;
-          margin: 0;
-        }
-      }
-      .box-child {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-
-        .box {
-          display: flex;
-
-          .button-group {
-            .button {
-              padding: 20px 20px;
-              background-color: var(--composer-primary-color);
-              border: none;
-              border-radius: 6px;
-              display: flex;
-              align-items: center;
-              font-size: 1.3rem;
-              cursor: pointer;
-              min-width: 250px;
-              color: #fff;
-              gap: 7px;
-
-              .button-icon {
-                width: 30px;
-                height: 30px;
-              }
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .wrapper {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            text-align: center;
+            .boxes-title {
+                display: flex;
+                justify-content: center;
+                .title {
+                    font-size: 2.5rem;
+                    margin: 0;
+                    color: var(--composer-primary-color);
+                }
             }
-          }
+            .boxes-description {
+                display: flex;
+                justify-content: center;
+                .description {
+                    font-size: 1.3rem;
+                    margin: 0;
+                    color: var(--composer-font-color-primary);
+                }
+            }
+            .box-child {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                .box {
+                    display: flex;
+                    .button-group {
+                        .button {
+                            padding: 20px 20px;
+                            background-color: var(--composer-secondary-color);
+                            border: none;
+                            border-radius: 6px;
+                            border: 1px solid transparent;
+                            display: flex;
+                            align-items: center;
+                            font-size: 1.3rem;
+                            cursor: pointer;
+                            min-width: 250px;
+                            color: #fff;
+                            gap: 7px;
+                            &:hover {
+                                color: var(--composer-secondary-color);
+                                background-color: transparent;
+                                border: 1px solid var(--composer-secondary-color);
+                            }
+                            .button-icon {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+                .logoimage {
+                    width: 200px;
+                    height: 100px;
+                }
+                .img-right {
+                    transform: rotate(180deg);
+                }
+            }
         }
-        .logoimage {
-          width: 200px;
-          height: 100px;
-        }
-        .img-right {
-          transform: rotate(180deg);
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    .max-content {
-      .wrapper {
-        .box-child {
-          display: flex;
-          flex-direction: column;
-
-          .box{
-            display: flex;
-            flex-direction: row;
-          }
-          .img-left{
-            display: none;
-          }
-          .img-right{
-            display: none;
-          }
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .wrapper {
+                .box-child {
+                    display: flex;
+                    flex-direction: column;
+                    .box {
+                        display: flex;
+                        flex-direction: row;
+                    }
+                    .img-left {
+                        display: none;
+                    }
+                    .img-right {
+                        display: none;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }

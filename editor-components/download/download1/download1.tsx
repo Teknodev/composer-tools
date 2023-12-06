@@ -115,7 +115,7 @@ class DownloadCard1 extends BaseDownload {
                   {this.getPropValue("text2")}
                 </p>
                 <p className={this.decorateCSS("text3")}>
-                  <span className={this.decorateCSS("title2")}>✔</span>
+                  <span className={this.decorateCSS("title1")}>✔</span>
                   {this.getPropValue("text3")}
                 </p>
               </div>

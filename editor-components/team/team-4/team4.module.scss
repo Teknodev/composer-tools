@@ -14,9 +14,11 @@
         .title {
             word-break: break-word;
             font-size: 3rem;
+            color: var(--composer-primary-color);
         }
         .description {
             margin: 20px 0;
+            color: var(--composer-font-color-primary);
         }
         .team-members {
             display: flex;
@@ -32,7 +34,8 @@
                 flex-direction: column;
                 border-radius: 6px;
                 overflow: hidden;
-                background: #f6f6f6;
+                background: var(--composer-html-background);
+                border: 1px solid var(--composer-tertiary-color);
                 box-shadow: var(--composer-box-shadow);
                 border-radius: 6px;
                 .member-image {
@@ -44,13 +47,14 @@
                     text-align: center;
                     font-weight: 500;
                     padding: 5px;
-                    color: black;
                      :first-child {
                         font-size: 1.2rem;
                         font-weight: 700;
+                        color: var(--composer-font-color-primary);
                     }
                     .team-member-position {
                         margin: 5px 0 0 0;
+                        color: var(--composer-primary-color);
                     }
                 }
                 .social-media-list {

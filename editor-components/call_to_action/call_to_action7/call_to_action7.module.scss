@@ -5,7 +5,7 @@
         max-width: var(--composer-content-width);
         margin: auto;
         .call-to-action7-page {
-            display: flex;
+            display: block;
             gap: 20px;
             justify-content: center;
             width: 100%;
@@ -34,33 +34,42 @@
                 border-radius: 6px;
                 padding: 40px 30px;
                 width: 100%;
-                min-height: 300px;
+                margin-top: 20px;
                 margin-right: 20px;
+                background-color: var(--composer-secondary-color);
                 box-shadow: var(--composer-box-shadow);
+                .image {
+                    margin-bottom: 10px;
+                }
                 .title-2 {
                     margin: 0;
+                    margin-bottom: 10px;
                     color: var(--composer-primary-color);
                 }
                 .leftDescription {
                     font-weight: 300;
                     opacity: 0.8;
                     margin: 0;
+                    margin-bottom: 10px;
                     color: var(--composer-font-color-primary);
                 }
-                .left-button-text {
+                a {
+                    color: var(--composer-font-color-secondary);
                     text-decoration: none;
-                    transition: all 0.5s;
-                    display: flex;
-                    font-size: 1.5rem;
-                    margin: 0;
-                    img {
+                    .left-button-text {
                         transition: all 0.5s;
-                        padding: 0;
-                        margin: 5px 0 0 5px;
-                    }
-                    &:hover {
+                        display: flex;
+                        font-size: 1.5rem;
+                        margin: 0;
                         img {
-                            margin-left: 10px;
+                            transition: all 0.5s;
+                            padding: 0;
+                            margin: 5px 0 0 5px;
+                        }
+                        &:hover {
+                            img {
+                                margin-left: 10px;
+                            }
                         }
                     }
                 }

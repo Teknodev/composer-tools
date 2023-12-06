@@ -26,12 +26,14 @@
                     font-size: 4.5rem;
                     margin: unset;
                     width: 80%;
+                    color: var(--composer-primary-color);
                 }
                 .description {
                     font-size: 1.8rem;
                     opacity: 0.6;
                     line-height: 30px;
                     margin: unset;
+                    color: var(--composer-font-color-primary);
                 }
             }
             .team-members {

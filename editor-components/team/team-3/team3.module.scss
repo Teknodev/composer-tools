@@ -1,103 +1,93 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    display: flex;
-    justify-content: center;
-    margin: auto;
-
-    .page {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      .text-group {
-        width: 100%;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        align-items: center;
-
-        .subtitle {
-          font-size: 3.5rem;
-          margin: 0 0 12px;
-          text-align: center;
-        }
-        .description {
-          font-size: 1.5rem;
-          margin: 0 0 40px;
-          text-align: center;
-        }
-      }
-
-      .down-page {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-
-        .all-card {
-          min-width: 250px;
-          .card {
+        margin: auto;
+        .page {
             width: 100%;
-            min-width: 250px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-
-            .item-name{
-             margin-bottom: 0; 
+            .text-group {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .subtitle {
+                    font-size: 3.5rem;
+                    margin: 0 0 12px;
+                    color: var(--composer-primary-color);
+                    text-align: center;
+                }
+                .description {
+                    font-size: 1.5rem;
+                    margin: 0 0 40px;
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
+                }
             }
-
-            .item-position {
-              color: var(--composer-primary-color);
-              font-size: 1.2rem;
-              margin: 10px 0 20px;
+            .down-page {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                .all-card {
+                    min-width: 250px;
+                    .card {
+                        width: 100%;
+                        min-width: 250px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .item-name {
+                            margin-bottom: 0;
+                            color: var(--composer-font-color-primary);
+                        }
+                        .item-position {
+                            color: var(--composer-primary-color);
+                            font-size: 1.2rem;
+                            margin: 10px 0 20px;
+                        }
+                        .profile-image {
+                            width: 100px;
+                            height: 100px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                        }
+                        .icon-group {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 10px;
+                            img {
+                                object-fit: cover;
+                                width: 20px;
+                                height: 20px;
+                                margin: 0.5rem;
+                            }
+                        }
+                    }
+                }
             }
-
-            .profile-image {
-              width: 100px;
-              height: 100px;
-              object-fit: cover;
-              border-radius: 50%;
-            }
-
-            .icon-group {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-
-              img {
-                object-fit: cover;
-                width: 20px;
-                height: 20px;
-                margin: 0.5rem;
-              }
-            }
-          }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .down-page {
-      gap: 60px !important;
-      .all-card {
-        width: unset !important;
-        flex: 1 1 !important;
-      }
+    .container {
+        padding: 50px 20px;
+        .down-page {
+            gap: 60px !important;
+            .all-card {
+                width: unset !important;
+                flex: 1 1 !important;
+            }
+        }
     }
-  }
 }
-

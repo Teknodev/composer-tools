@@ -16,12 +16,13 @@
                     letter-spacing: 2px;
                     font-weight: 800;
                     margin-bottom: 20px;
+                    color: var(--composer-primary-color);
                 }
                 .description {
                     font-size: 48px;
                     margin: 10px 0 0 0;
                     font-weight: 400;
-                    color: #2c3947;
+                    color: var(--composer-primary-color);
                     width: 100%;
                     display: block;
                 }
@@ -34,13 +35,15 @@
                 .card {
                     display: flex;
                     flex-direction: column;
+                    padding: 10px;
+                    border: 1px solid var(--composer-tertiary-color);
                     .count {
                         position: relative;
                         line-height: 1;
                         left: 90px;
                         font-size: 52px;
                         font-weight: 700;
-                        color: #eae7dd;
+                        color: var(--composer-font-color-primary);
                     }
                     img {
                         width: 80px;
@@ -50,6 +53,7 @@
                         width: 100%;
                         display: block;
                         font-size: 25px;
+                        color: var(--composer-primary-color);
                         margin-top: 10px;
                         margin-bottom: .5rem;
                         font-weight: 500;
@@ -60,6 +64,7 @@
                         font-size: 15px;
                         margin-top: 5px;
                         margin-bottom: 15px;
+                        color: var(--composer-font-color-primary);
                         opacity: 0.7;
                         display: block;
                         width: 100%;
