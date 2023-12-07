@@ -167,7 +167,7 @@ class Contacts1Page extends BaseContacts {
                         </div>
                         <h2 className={this.decorateCSS("item-value")}>{item.value[1].value}</h2>
                         <h4 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h4>
-                        <h4 className={this.decorateCSS("item-valur3")}>{item.value[3].value}</h4>
+                        <h4 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h4>
                       </div>
                     ))}
                   </div>

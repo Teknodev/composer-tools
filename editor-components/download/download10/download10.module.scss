@@ -80,14 +80,13 @@
                 .stats {
                     display: flex;
                     flex-direction: column;
-                    background-color: white;
                     justify-content: center;
-                    width: 30%;
                     padding: 6px;
                     border-radius: 6px;
                     .subtitle {
                         font-size: 1.2rem;
                         font-weight: bold;
+                        color: var(--composer-font-color-primary);
                         margin: unset;
                     }
                     .down-description {
@@ -96,6 +95,7 @@
                         gap: 5px;
                         .stars {
                             display: flex;
+                            color: var(--composer-secondary-color);
                             gap: 3px;
                             img {
                                 width: 20px;
@@ -107,11 +107,13 @@
                         }
                         .number {
                             font-size: 1.5rem;
+                            color: var(--composer-font-color-primary);
                         }
                         .info {
                             font-size: 1.2rem;
                             opacity: 0.8;
                             font-weight: 900;
+                            color: var(--composer-font-color-primary);
                         }
                     }
                 }
