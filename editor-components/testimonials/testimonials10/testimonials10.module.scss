@@ -38,7 +38,7 @@
                             font-size: 18px;
                             line-height: 1.55;
                             font-weight: 300;
-                            color: var(--composer-primary-color);
+                            color: var(--composer-font-color-primary);
                         }
                     }
                     .description-box::after {
@@ -73,10 +73,9 @@
                             }
                             .job {
                                 font-size: 14px;
-                                color: #666666;
                                 line-height: 1.55;
                                 font-weight: 300;
-                                color: var(--composer-primary-color);
+                                color: var(--composer-font-color-primary);
                             }
                         }
                     }
@@ -96,7 +95,7 @@
                     display: block;
                     margin-right: 0;
                     .top-content {
-                        width: 100% !important;
+                        width: 90% !important;
                         margin-left: auto;
                         margin-right: auto;
                     }
