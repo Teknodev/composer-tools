@@ -29,21 +29,27 @@
         
         .title1 {
           font-size: 3.5rem;
-          color: rgb(18, 22, 43);
+          color: var(--composer-primary-color);
           opacity: 0.8;
           margin: unset;
         }
         .title2 {
           font-size: 1.5rem;
           line-height: 25px;
+          color: var(--composer-font-color-primary);
+        }
+
+        .title3{
+          color: var(--composer-font-color-primary);
+
         }
       }
 
       .child-page-right {
-        width: 100%;
+        width: 35%;
         max-width: 400px;
         margin: 20px 100px;
-        border: 1px solid rgb(215, 215, 215);
+        border: 1px solid var(--composer-tertiary-color);
         border-radius: 6px;
         display: flex;
         flex-direction: column;
@@ -57,6 +63,7 @@
           font-size: 2rem;
           margin-bottom: 35px;
           margin-left: 40px;
+          color: var(--composer-font-color-primary);
         }
         ul li {
           margin-bottom: 5%;
@@ -67,6 +74,8 @@
           display: flex;
           align-items: center;
           gap: 10px;
+          color: var(--composer-font-color-primary);
+
 
           .circle-icon {
             display: flex;
@@ -75,7 +84,7 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background-color: var(--composer-primary-color);
+            background-color: var(--composer-tertiary-color);
             color: #fff;
             img {
               width: 15px;
@@ -96,9 +105,9 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          position: relative;
-          right: 50px;
-          
+          color: var(--composer-font-color-primary);
+        
+
           .little {
             width: 20%;
             display: flex;
@@ -133,13 +142,13 @@
               padding: 20px 30px;
               position: relative;
               &:hover {
-                color: var(--composer-primary-color);
+                color: var(--composer-secondary-color);
                 background: transparent;
-                border: 1px solid var(--composer-primary-color);
+                border: 1px solid var(--composer-secondary-color);
               }
 
               &.primary {
-                border: 1px solid var(--composer-primary-color);
+                border: 1px solid var(--composer-tertiary-color);
                 background-color: var(--composer-primary-color);
                 color: white;
 
@@ -156,7 +165,55 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 1100px){
+  .container{
+    .max-content{
+      .page{
+
+        .right-down{
+          .right-down-up{
+            gap: 15px;
+          }
+        }
+        .child-page{
+          .child-page-right{
+            width: 100%;
+
+            .right-up{
+              margin: 10px 100px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px){
+  .container{
+    .max-content{
+      .page{
+
+        .right-down{
+          .right-down-up{
+            gap: 15px;
+          }
+        }
+        .child-page{
+          .child-page-right{
+            width: 100%;
+
+            .right-up{
+              margin: 10px 100px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*@media only screen and (max-width: 767px) {
   .container {
     padding: 50px 20px;
 
@@ -170,16 +227,17 @@
 
           .title1{
             font-size: 23px;
+            padding: 10px 88px 0 0;
           }
 
           .title2{
             font-size: 15px;
-            padding: 10px 70px 0 0;
+            padding: 10px 101px 0 0;
           }
 
-          .text3{
+          .title3{
             font-size: 13px;
-            padding: 10px 70px 0 0;
+            padding: 10px 103px 0 0;
           }
         }
         flex-direction: column;
@@ -207,7 +265,6 @@
           }
         }
       }
-      
     }
   }
-}
+}*/

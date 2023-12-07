@@ -44,7 +44,7 @@
       &:hover {
         .image-background {
           padding: 1px;
-          box-shadow: var(--composer-primary-color) 0px 0px 10px;
+          box-shadow: var(--composer-background-color) 0px 0px 10px;
           transform: scale(1.05);
         }
       }
@@ -122,9 +122,9 @@
         cursor: pointer;
         &:hover {
           letter-spacing: 0.1px;
-          background-color: var(--composer-primary-color);
+          background-color: var(--composer-secondary-color);
           color: hsl(0, 0%, 100%);
-          box-shadow: var(--composer-primary-color) 0px 0px 6px 0px;
+          box-shadow: var(--composer-secondary-color) 0px 0px 6px 0px;
           transition: all 0.2s ease;
         }
       }

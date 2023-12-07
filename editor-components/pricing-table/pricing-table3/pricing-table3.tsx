@@ -153,9 +153,7 @@ class PricingTable3 extends BasePricingTable {
             >
               <div className={this.decorateCSS("texts")}>
                 <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
-                <p className={this.decorateCSS("title2")}>
-                  {this.getPropValue("title2")}
-                </p>
+                <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
                 <p className={this.decorateCSS("title3")}>{this.getPropValue("title3")}</p>
               </div>
             </div>

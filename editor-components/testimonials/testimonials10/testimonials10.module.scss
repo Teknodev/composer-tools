@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     padding: 50px 0;
+    background-color: var(--composer-html-background);
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -10,6 +11,7 @@
             font-weight: 600;
             text-align: center;
             line-height: 1.23;
+            color: var(--composer-primary-color);
         }
         .testimonials10 {
             width: 100%;
@@ -28,7 +30,7 @@
                     position: relative;
                     .description-box {
                         margin-top: 20px;
-                        background-color: lightgray;
+                        background-color: var(--composer-tertiary-color);
                         padding: 30px 35px;
                         padding-bottom: 0;
                         border-radius: 20px;
@@ -36,6 +38,7 @@
                             font-size: 18px;
                             line-height: 1.55;
                             font-weight: 300;
+                            color: var(--composer-primary-color);
                         }
                     }
                     .description-box::after {
@@ -47,7 +50,7 @@
                         transform: translateX(-50%);
                         border-width: 13px;
                         border-style: solid;
-                        border-color: lightgray transparent transparent lightgray;
+                        border-color: var(--composer-tertiary-color) transparent transparent var(--composer-tertiary-color);
                     }
                     .image-box {
                         margin: 25px 0 0 0;
@@ -61,16 +64,19 @@
                             margin-left: 20px;
                             margin-top: 5px;
                             display: block;
+                            color: var(--composer-primary-color);
                             .name {
                                 font-size: 16px;
                                 line-height: 1.35;
                                 font-weight: 600;
+                                color: var(--composer-primary-color);
                             }
                             .job {
                                 font-size: 14px;
                                 color: #666666;
                                 line-height: 1.55;
                                 font-weight: 300;
+                                color: var(--composer-primary-color);
                             }
                         }
                     }

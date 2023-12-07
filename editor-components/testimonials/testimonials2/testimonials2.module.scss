@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 45px;
+  background-color: var(--composer-html-background);
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -9,6 +10,7 @@
       text-align: center;
       font-size: 3rem;
       margin: 0 0 40px 0;
+      color: var(--composer-primary-color);
     }
     .testimonials2 {
       display: flex;
@@ -21,8 +23,9 @@
           margin: 10px;
           min-width: 250px;
           border-radius: 6px;
-          border: 1px solid rgb(215, 215, 215);
+          border: 1px;
           flex: 1 1;
+          border: var(--composer-tertiary-color);
 
           .item-time {
             opacity: 0.8;
@@ -31,6 +34,7 @@
             margin-bottom: 0;
             margin-left: 0;
             margin-right: 0;
+            color: var(--composer-primary-color);
           }
           .profile {
             display: flex;
@@ -47,15 +51,18 @@
 
               .item-name {
                 margin: 0;
+                color: var(--composer-primary-color);
               }
               .item-name-id {
                 margin: 5px 0 !important;
                 text-transform: uppercase;
+                color: var(--composer-primary-color);
               }
             }
           }
           .item-description{
             font-size: 1.1rem;
+            color: var(--composer-primary-color);
           }
         }
       
@@ -66,5 +73,6 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    background-color: var(--composer-html-background);
   }
 }

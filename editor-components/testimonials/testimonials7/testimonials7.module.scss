@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     display: flex;
@@ -15,6 +16,7 @@
         text-align: center;
         font-size: 3rem;
         margin: 0 0 40px 0;
+        color: var(--composer-primary-color);
       }
 
       .description {
@@ -22,6 +24,7 @@
         font-weight: 200;
         font-size: 1.2rem;
         margin: 0 0 40px 0;
+        color: var(--composer-primary-color);
       }
       .card-child {
         display: flex;
@@ -34,6 +37,7 @@
           min-width: 250px;
           display: flex;
           border-radius: 6px;
+          border: var(--composer-testiary-color);
 
           img {
             border-radius: 6px;
@@ -47,6 +51,7 @@
               margin-bottom: 10px;
               margin-left: 0;
               margin-right: 0;
+              color: var(--composer-primary-color);
             }
             .item-value3 {
               font-weight: 800;
@@ -55,6 +60,7 @@
               margin-bottom: 10px;
               margin-left: 0;
               margin-right: 0;
+              color: var(--composer-primary-color);
             }
             .item-value2 {
               opacity: 0.8;
@@ -64,6 +70,7 @@
               margin-bottom: 10px;
               margin-left: 0;
               margin-right: 0;
+              color: var(--composer-primary-color);
             }
           }
         }
@@ -75,6 +82,7 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    background-color: var(--composer-html-background);
 
     .max-content {
       .testimonials7 {
@@ -84,6 +92,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            border: var(--composer-testiary-color);
 
             .content{
               margin-top: 20px;
