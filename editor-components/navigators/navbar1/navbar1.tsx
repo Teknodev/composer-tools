@@ -193,6 +193,9 @@ class Navbar1 extends BaseNavigator {
                 className={this.decorateCSS("img-hamburger")}
                 src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
                 onClick={() => {
+                  console.log("NAV CLICK")
+                  console.log(this.state["componentProps"]["navActive"])
+
                   this.navClick();
                 }}
               />

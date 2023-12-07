@@ -161,6 +161,7 @@ class Slider8 extends BaseSlider {
   }
   render() {
     const settings = {
+      arrows: false,
       dots: true,
       infinite: true,
       speed: 700,
@@ -195,8 +196,8 @@ class Slider8 extends BaseSlider {
                           <h1 className={this.decorateCSS("first-header")}>
                             {item.imagesubtitle}
                           </h1>
-                          <h3 className={this.decorateCSS("image-title")}>{item.imagetitle}</h3>
-                          <p className={this.decorateCSS("image-description")}>{item.imagedescription}</p>
+                          <h3 className={this.decorateCSS("item-title")}>{item.imagetitle}</h3>
+                          <p className={this.decorateCSS("item-description")}>{item.imagedescription}</p>
                         </div>
                       </div>
                     </div>

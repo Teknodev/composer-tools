@@ -59,6 +59,15 @@
                         height: 100%;
                         width: 100%;
                         margin-right: 150px;
+                        .name {
+                            color: var(--composer-primary-color);
+                        }
+                        .email {
+                            color: var(--composer-primary-color);
+                        }
+                        .message {
+                            color: var(--composer-primary-color);
+                        }
                         .input {
                             padding: 16px 10px;
                             border-radius: 10px;
@@ -94,11 +103,11 @@
                 min-width: 20px;
                 padding: 20px;
                 height: max-content;
-                border: 1px solid rgba(149, 157, 165, 0.2);
+                border: 1px solid var(--composer-tertiary-color);
                 border-radius: 6px;
                 width: 100%;
                 .img-child {
-                    border: 1px solid rgba(0, 0, 0, 0.274);
+                    border: 1px solid var(--composer-tertiary-color);
                     border-radius: 100%;
                     width: 80px;
                     height: 80px;
@@ -107,6 +116,15 @@
                     .image {
                         padding: 20px;
                     }
+                }
+                .item-value1 {
+                    color: var(--composer-primary-color);
+                }
+                .item-value2 {
+                    color: var(--composer-font-color-primary);
+                }
+                .item-value3 {
+                    color: var(--composer-font-color-primary);
                 }
             }
             .error-message {
@@ -117,10 +135,9 @@
             .submit-button {
                 width: max-content;
                 height: 50px;
-                background-color: var(--composer-primary-color);
                 border-radius: 6px;
-                border: none;
-                background-color: #455A64;
+                border: 1px solid var(--composer-secondary-color);
+                background-color: var(--composer-secondary-color);
                 align-items: center;
                 color: white;
                 justify-content: center;
@@ -137,6 +154,11 @@
                 &:active {
                     background: var(--composer-secondary-color);
                     color: var(--composer-tertiary-color);
+                }
+                &:hover {
+                    background-color: transparent;
+                    color: var(--composer-secondary-color);
+                    border: 1px solid var(--composer-secondary-color);
                 }
             }
         }

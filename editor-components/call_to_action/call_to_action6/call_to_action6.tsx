@@ -22,7 +22,7 @@ class CallToAction6Page extends BaseCallToAction {
       type: "page",
       key: "link",
       displayer: "Button Link",
-      value: "",
+      value: "https://www.google.com/",
     });
     this.addProp({
       type: "string",

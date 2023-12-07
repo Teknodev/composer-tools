@@ -1,153 +1,140 @@
 .container {
-  width: 100%;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .page {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .image-container {
-        width: 100%;
-        height: 500px;
-        .image {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
-      }
-
-      .group-container {
-        width: 100%;
-        height: 50%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-        padding: 50px 0;
-
-        .title {
-          font-size: 4.5rem;
-          word-break: break-word;
-          width: 20%;
-          text-align: center;
-          margin: 0;
-        }
-
-        .description {
-          font-size: 2rem;
-          opacity: 0.7;
-          word-break: break-word;
-          width: 60%;
-          line-height: 30px;
-          margin: 0;
-          padding: 0 45px;
-        }
-
-        .button-group {
-          width: 20%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          gap: 20px;
-          padding: 0 20px 0 0;
-          .button {
+    width: 100%;
+    padding: 50px 50px;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .page {
+            width: 100%;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            padding: 10px 20px;
-            background-color: var(--composer-primary-color);
-            border: 1px solid var(--composer-primary-color);
-            border-radius: 6px;
-            cursor: pointer;
-            gap: 5px;
-
-            .button-logo {
-              width: 30px;
-              height: 30px;
+            .image-container {
+                width: 100%;
+                height: 500px;
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
             }
-
-            .up-text {
-              font-size: 0.8rem;
-              color: #fff;
-              opacity: 0.8;
-              margin: unset;
-              margin-bottom: 5px;
+            .group-container {
+                width: 100%;
+                height: 50%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+                padding: 50px 0;
+                .title {
+                    font-size: 4.5rem;
+                    word-break: break-word;
+                    width: 20%;
+                    text-align: center;
+                    margin: 0;
+                    color: var(--composer-primary-color);
+                }
+                .description {
+                    font-size: 2rem;
+                    opacity: 0.7;
+                    word-break: break-word;
+                    width: 60%;
+                    line-height: 30px;
+                    margin: 0;
+                    padding: 0 45px;
+                    color: var(--composer-font-color-primary);
+                }
+                .button-group {
+                    width: 20%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 20px;
+                    padding: 0 20px 0 0;
+                    .button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 10px 20px;
+                        background-color: var(--composer-secondary-color);
+                        border: 1px solid var(--composer-secondary-color);
+                        border-radius: 6px;
+                        cursor: pointer;
+                        gap: 5px;
+                        .button-logo {
+                            width: 30px;
+                            height: 30px;
+                        }
+                        .up-text {
+                            font-size: 0.8rem;
+                            color: #fff;
+                            opacity: 0.8;
+                            margin: unset;
+                            margin-bottom: 5px;
+                        }
+                        .down-text {
+                            font-size: 1.7rem;
+                            color: #fff;
+                            letter-spacing: 1px;
+                            margin: unset;
+                        }
+                    }
+                }
             }
-
-            .down-text {
-              font-size: 1.7rem;
-              color: #fff;
-              letter-spacing: 1px;
-              margin: unset;
-            }
-          }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 1100px) {
-  .container {
-    .max-content {
-      .page {
-        .image-container {
-          height: max-content;
-          .image {
-            padding: 20px 0;
-          }
-        }
-
-        .group-container {
-          padding: 50px 20px;
-          flex-direction: column;
-          justify-content: unset;
-          align-items: center;
-
-          .title {
-            font-size: 3rem;
-            width: 100%;
-          }
-
-          .description {
-            font-size: 1.7rem;
-            opacity: 0.7;
-            width: 100%;
-            text-align: center;
-            margin: 20px 0;
-          }
-
-          .button-group {
-            width: 100%;
-            align-items: center;
-            gap: 20px;
-            .button {
-              width: 160px;
-              padding: 8px 5px;
-
-              .button-logo {
-                width: 25px;
-                height: 25px;
-              }
-
-              .up-text {
-                font-size: 0.7rem;
-                margin: unset;
-                margin-bottom: 3px;
-              }
-
-              .down-text {
-                font-size: 1.1rem;
-                margin: unset;
-              }
+    .container {
+        .max-content {
+            .page {
+                .image-container {
+                    height: max-content;
+                    .image {
+                        padding: 20px 0;
+                    }
+                }
+                .group-container {
+                    padding: 50px 20px;
+                    flex-direction: column;
+                    justify-content: unset;
+                    align-items: center;
+                    .title {
+                        font-size: 3rem;
+                        width: 100%;
+                    }
+                    .description {
+                        font-size: 1.7rem;
+                        opacity: 0.7;
+                        width: 100%;
+                        text-align: center;
+                        margin: 20px 0;
+                    }
+                    .button-group {
+                        width: 100%;
+                        align-items: center;
+                        gap: 20px;
+                        .button {
+                            width: 160px;
+                            padding: 8px 5px;
+                            .button-logo {
+                                width: 25px;
+                                height: 25px;
+                            }
+                            .up-text {
+                                font-size: 0.7rem;
+                                margin: unset;
+                                margin-bottom: 3px;
+                            }
+                            .down-text {
+                                font-size: 1.1rem;
+                                margin: unset;
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }

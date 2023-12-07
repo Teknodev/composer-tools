@@ -97,7 +97,7 @@ class Faq extends BaseFAQ {
                     className={this.decorateCSS("img-1")}
                   />
                 </div>
-                <p className={this.decorateCSS("card.text")}>{card.text}</p>
+                <p className={this.decorateCSS("card-text")}>{card.text}</p>
               </div>
             ))}
           </div>

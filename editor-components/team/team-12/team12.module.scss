@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 50px 0;
+    padding: 50px 50px;
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -11,7 +11,7 @@
             .title-card {
                 width: 100%;
                 .title {
-                    color: rgb(5, 5, 10);
+                    color: var(--composer-primary-color);
                     text-align: center;
                     font-size: 4rem;
                     margin: 0 0 40px;
@@ -44,11 +44,13 @@
                             .person-name {
                                 font-size: 1.5rem;
                                 letter-spacing: 1px;
+                                color: var(--composer-font-color-primary);
                             }
                             .position {
                                 font-size: 1.4rem;
                                 opacity: 0.7;
                                 margin: 0;
+                                color: var(--composer-primary-color);
                             }
                         }
                     }

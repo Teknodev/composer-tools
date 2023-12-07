@@ -1,50 +1,41 @@
 .container {
-  width: 100%;
- 
-  
-.max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    color: white;
-    background-image: linear-gradient(
-      62deg,
-      var(--composer-primary-color) 0%,
-      var(--composer-secondary-color) 100%
-    );        
-    .stats3-page {
-      width: 100%;
-      .title {
-        text-align: center;
-        font-size: 3rem;
-        margin: 0 0 40px 0;
-      }
-      .bottom-child {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-
-        .card {
-          min-width: 250px;
-          text-align: center;
-          flex: 1 1;
-
-          .card-data-title {
-            font-size: 2.5rem;
-            margin: 20px 0;
-          }
-          .card-data-description {
-            font-size: 1.5rem;
-            margin: 0;
-          }
+    width: 100%;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        color: white;
+        background-image: linear-gradient( 62deg, var(--composer-primary-color) 0%, var(--composer-secondary-color) 100%);
+        .stats3-page {
+            width: 100%;
+            .title {
+                text-align: center;
+                font-size: 3rem;
+                margin: 0 0 40px 0;
+            }
+            .bottom-child {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                .card {
+                    min-width: 250px;
+                    text-align: center;
+                    flex: 1 1;
+                    .card-data-title {
+                        font-size: 2.5rem;
+                        margin: 20px 0;
+                    }
+                    .card-data-description {
+                        font-size: 1.5rem;
+                        margin: 0;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-  }
+    .container {
+        padding: 50px 20px;
+    }
 }
-

@@ -30,6 +30,25 @@
             }
             .slider-style {
                 width: 100%;
+                button {
+                    display: none !important;
+                }
+                // button {
+                //     position: absolute;
+                //     color: red;
+                //     background: red;
+                //     left: 80%;
+                //     top: 0;
+                //     width: 50px;
+                // }
+                // button :nth-child(2n) {
+                //     position: absolute;
+                //     top: 0;
+                //     right: 10%;
+                //     width: 50px;
+                //     color: red;
+                //     background: red;
+                // }
                 .card {
                     max-width: 460px;
                     .span-image {
@@ -81,36 +100,38 @@
                         max-width: 320px;
                     }
                 }
-                // @media screen and (max-width: 800px) {
-                //     .card {
-                //         max-width: 100%;
-                //     }
-                // }
                 @media screen and (max-width: 800px) {
                     .card {
-                        max-width: 260px;
+                        max-width: 100%;
+                        margin: 20px 10px 20px 0px;
+                        padding: 30px 30px 30px 30px;
                     }
                 }
-                @media screen and (max-width: 680px) {
-                    .card {
-                        max-width: 200px;
-                    }
-                }
-                @media screen and (max-width: 525px) {
-                    .card {
-                        max-width: 150px;
-                    }
-                }
-                @media screen and (max-width: 450px) {
-                    .card {
-                        max-width: 110px;
-                        .below-content {
-                            .below-right-content {
-                                padding: 0 0 0 5px;
-                            }
-                        }
-                    }
-                }
+                // @media screen and (max-width: 800px) {
+                //     .card {
+                //         max-width: 260px;
+                //     }
+                // }
+                // @media screen and (max-width: 680px) {
+                //     .card {
+                //         max-width: 200px;
+                //     }
+                // }
+                // @media screen and (max-width: 525px) {
+                //     .card {
+                //         max-width: 150px;
+                //     }
+                // }
+                // @media screen and (max-width: 450px) {
+                //     .card {
+                //         max-width: 110px;
+                //         .below-content {
+                //             .below-right-content {
+                //                 padding: 0 0 0 5px;
+                //             }
+                //         }
+                //     }
+                // }
             }
         }
     }

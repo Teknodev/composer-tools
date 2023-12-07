@@ -342,7 +342,7 @@ class Footer5Page extends BaseFooter {
                 {this.getPropValue("footerLinks")[1].value.map((link: any, index: number) => (
                   <div className={this.decorateCSS("footer-link-row")} key={index}>
                     <ComposerLink path={link.value[0].value}>
-                      <p className={this.decorateCSS("link.value1")}>{link.value[1].value}</p>
+                      <p className={this.decorateCSS("link-value1")}>{link.value[1].value}</p>
                     </ComposerLink>
                   </div>
                 ))}

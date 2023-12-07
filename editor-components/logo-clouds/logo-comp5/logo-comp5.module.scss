@@ -20,6 +20,7 @@
                     text-transform: uppercase;
                     font-weight: 700;
                     line-height: 1.1;
+                    color: var(--composer-primary-color);
                 }
                 .description {
                     width: 100%;
@@ -28,6 +29,7 @@
                     line-height: 1.6;
                     text-align: right;
                     text-transform: none;
+                    color: var(--composer-font-color-primary);
                 }
             }
             .image-child {

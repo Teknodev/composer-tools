@@ -22,10 +22,12 @@
                 .title1 {
                     font-size: 3.5rem;
                     margin: 0 0 12px;
+                    color: var(--composer-primary-color)
                 }
-                .card-description {
-                    font-size: 1.5rem;
-                    margin: 0 0 40px;
+                .title2 {
+                    margin: 16px 0;
+                    font-size: 1.1rem;
+                    color: var(--composer-font-color-primary);
                 }
             }
         }
@@ -58,6 +60,7 @@
                         }
                         .card-name {
                             margin: 10px 0;
+                            color: var(--composer-primary-color);
                         }
                         .image {
                             width: 80px;
@@ -66,9 +69,11 @@
                             object-fit: cover;
                         }
                     }
-                    .title2 {
-                        margin: 16px 0;
-                        font-size: 1.1rem;
+                    .card-description {
+                        font-size: 1.2rem;
+                        margin: 0 0 40px;
+                        margin-top: 10px;
+                        color: var(--composer-font-color-primary);
                     }
                     .icon-group {
                         display: flex;

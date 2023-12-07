@@ -66,6 +66,7 @@ class Slider3 extends BaseSlider {
   }
   render() {
     const settings = {
+      arrows: false,
       dots: false,
       infinite: true,
       speed: 700,

@@ -1,57 +1,54 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .footer-page {
-      padding: 20px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 20px;
-
-      .list-group {
-        flex: 1 1;
-        min-width: 250px;
-        gap: 10px;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-
-        .title {
-          color: black;
-          .item-footer-title{
-            font-size: 1.4rem;
-            margin-top: 0;
-          }
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .footer-page {
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            .list-group {
+                flex: 1 1;
+                min-width: 250px;
+                gap: 10px;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .title {
+                    color: var(--composer-primary-color);
+                    .item-footer-title {
+                        font-size: 1.4rem;
+                        margin-top: 0;
+                    }
+                }
+                .text {
+                    text-decoration: none;
+                    color: var(--composer-font-color-primary);
+                    font-size: 1.2rem;
+                    font-weight: 100;
+                    &:hover {
+                        border-bottom: 1px solid var(--composer-tertiary-color);
+                    }
+                }
+            }
         }
-        .text {
-          text-decoration: none;
-          color: black;
-          font-size: 1.2rem;
-          font-weight: 100;
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .footer-page {
-      gap: 40px !important;
+    .container {
+        padding: 50px 20px;
+        .footer-page {
+            gap: 40px !important;
+        }
     }
-  }
 }

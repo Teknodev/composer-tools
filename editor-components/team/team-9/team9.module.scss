@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 50px 0;
+    padding: 50px 50px;
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -20,18 +20,18 @@
                     padding: 5px 10px;
                     border-radius: 4px;
                     cursor: pointer;
-                    color: var(--composer-primary-color);
-                    background-color: transparent;
-                    border: 1px solid var(--composer-primary-color);
+                    color: white;
+                    background-color: var(--composer-secondary-color);
+                    border: 1px solid var(--composer-secondary-color);
                     font-size: 13px;
                     font-weight: 900;
                     .number {
                         font-size: 15px;
                     }
                     &:hover {
-                        color: white;
-                        background-color: var(--composer-primary-color);
-                        border: 1px solid var(--composer-primary-color);
+                        color: var(--composer-secondary-color);
+                        background-color: transparent;
+                        border: 1px solid var(--composer-secondary-color);
                     }
                 }
             }
@@ -43,13 +43,13 @@
                 margin-bottom: 40px;
                 .title {
                     font-size: 3rem;
-                    color: rgb(25, 26, 31);
+                    color: var(--composer-primary-color);
                     margin: unset;
                 }
                 .description {
                     margin-bottom: 0;
                     font-size: 1.5rem;
-                    color: rgb(63, 63, 63);
+                    color: var(--composer-font-color-primary);
                 }
             }
             .image-container {

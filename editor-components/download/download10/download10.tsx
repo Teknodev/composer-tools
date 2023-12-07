@@ -91,7 +91,7 @@ class Download10 extends BaseDownload {
     this.addProp({
       type: "number",
       key: "stars",
-      value:5,
+      value: 5,
       displayer: "Stars",
     });
   }
@@ -156,9 +156,19 @@ class Download10 extends BaseDownload {
                   <div className={this.decorateCSS("stars")}>
                     {[...Array(Number(this.getPropValue("stars")))].map(
                       (item: any, index: number) => (
-                        <img 
-                        alt=""
-                        src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
+                        <svg
+                          key={index}
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M8 0L9.3 5.8H15.5L10.7 9.2L12 15L8 11.8L4 15L5.3 9.2L0.5 5.8H6.7L8 0Z" />
+                        </svg>
+                        // <img
+                        // alt=""
+                        // src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
                       )
                     )}
                   </div>

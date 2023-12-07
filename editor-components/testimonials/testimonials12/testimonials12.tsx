@@ -172,8 +172,8 @@ class Testimonials12Page extends Testimonials {
       speed: 700,
       autoplay: true,
       autoplaySpeed: 4000,
-      // slidesToShow: window.innerWidth < 800 ? 1 : 2,
-      slidesToShow: 2,
+      slidesToShow: window.innerWidth < 800 ? 1 : 2,
+      // slidesToShow: 2,
       slidesToScroll: 1,
     };
     return (

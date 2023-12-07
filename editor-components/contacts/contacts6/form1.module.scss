@@ -1,89 +1,80 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: auto;
-
-    .image-container {
-      background-size: cover;
-
-      .image {
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-      }
-    }
-
-    .form-container {
-      transition: 1s;
-      display: flex;
-      flex-direction: column;
-      width: 40%;
-      height: fit-content;
-      gap: 20px;
-
-      .title {
-        color: var(--composer-primary-color);
-        margin: 0;
-      }
-
-      .form {
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         gap: 20px;
-
-        .input {
-          padding: 16px 10px;
-          border-radius: var(--radius-medium);
-          border: 1px solid #f6f6f6;
-          background: #fafafa;
-
-          &:focus {
-            outline-color: var(--composer-primary-color);
-          }
+        margin: auto;
+        .image-container {
+            background-size: cover;
+            .image {
+                width: 300px;
+                height: 300px;
+                object-fit: cover;
+            }
         }
-        .error-message {
-          color: red;
-          font-size: 0.6rem;
-          margin-top: 3px;
+        .form-container {
+            transition: 1s;
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            height: fit-content;
+            gap: 20px;
+            .title {
+                color: var(--composer-primary-color);
+                margin: 0;
+            }
+            .form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                .input {
+                    padding: 16px 10px;
+                    border-radius: var(--radius-medium);
+                    border: 1px solid #f6f6f6;
+                    background: #fafafa;
+                    &:focus {
+                        outline-color: var(--composer-primary-color);
+                    }
+                }
+                .error-message {
+                    color: red;
+                    font-size: 0.6rem;
+                    margin-top: 3px;
+                }
+                .submit-button {
+                    height: 50px;
+                    background-color: var(--composer-secondary-color);
+                    border-radius: 10px;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                    transition: 0.1s;
+                    width: 100%;
+                    border: 1px solid var(--composer-secondary-color);
+                    &:active {
+                        background: var(--composer-secondary-color);
+                        color: var(--composer-tertiary-color);
+                    }
+                    &:hover {
+                        background-color: transparent;
+                        color: var(--composer-secondary-color);
+                        border: 1px solid var(--composer-secondary-color);
+                    }
+                }
+            }
         }
-
-        .submit-button {
-          height: 50px;
-          background-color: var(--composer-primary-color);
-          border-radius: 10px;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-          transition: 0.1s;
-          width: 100%;
-
-          &:active {
-            background: var(--composer-secondary-color);
-            color: var(--composer-tertiary-color);
-          }
-          &:hover {
-            background-color: transparent;
-            color: var(--composer-primary-color);
-            border: 1px solid var(--composer-primary-color);
-          }
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .image-container {
-    display: none;
-  }
-
-  .form-container {
-    padding: 0 20px;
-    width: 100% !important;
-  }
+    .image-container {
+        display: none;
+    }
+    .form-container {
+        padding: 0 20px;
+        width: 100% !important;
+    }
 }

@@ -15,6 +15,7 @@
             flex-direction: column;
             text-align: center;
             box-shadow: var(--composer-box-shadow);
+            border: 1px solid var(--composer-tertiary-color);
             border-radius: 6px;
             height: max-content;
             padding: 20px;
@@ -33,13 +34,14 @@
                 display: block;
                 margin: 20px auto 20px auto;
                 font-weight: bold;
+                color: var(--composer-primary-color);
             }
             .long-text {
                 margin-top: 0;
                 display: block;
-                color: rgb(160, 160, 160);
+                color: var(--composer-font-color-primary);
                 padding-bottom: 20px;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.238);
+                border-bottom: 1px solid var(--composer-tertiary-color);
             }
             .social {
                 display: flex;
