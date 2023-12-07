@@ -127,11 +127,23 @@ class Testimonials3Page extends Testimonials {
                       className={this.decorateCSS("card")}
                     >
                       <div className={styles["stars"]}>
-                        {[...Array(Number(item.value[0].value))].map((item: any, index: number) => (
-                          <img key={`star-testimonials3${index}`} 
-                          alt=""
-                          src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
-                        ))}
+                        {[...Array(Number(item.value[0].value))].map(
+                        (item: any, index: number) => (
+                          <svg
+                          key={`star-testimonials3${index}`}
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M8 0L9.3 5.8H15.5L10.7 9.2L12 15L8 11.8L4 15L5.3 9.2L0.5 5.8H6.7L8 0Z" />
+                        </svg>
+                         // <img key={`star-testimonials3${index}`} 
+                         // alt=""
+                         // src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
+                        )
+                        )}
                       </div>
                       <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
                       <h5 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h5>

@@ -28,9 +28,13 @@
           .stars {
             display: flex;
             gap: 5px;
+            color: var(--composer-secondary-color);
             img {
               width: 15px;
               height: 15px;
+            }
+            .star{
+              color: var(--composer-primary-color);
             }
           }
 
@@ -38,13 +42,13 @@
             font-weight: 500;
             font-size: 2rem;
             margin: 20px 0;
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
           }
           .item-value2 {
             font-weight: 200;
             font-size: 1rem;
             margin: 0;
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
           }
         }
       }

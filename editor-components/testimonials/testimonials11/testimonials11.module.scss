@@ -1,5 +1,6 @@
 .container {
     width: 100%;
+    background-color: var(--composer-html-background);
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -14,7 +15,7 @@
             background-blend-mode: color;
             background-attachment: scroll;
             .title {
-                color: #fff;
+                color: var(--composer-font-color-primary);
                 padding-top: 5%;
                 font-size: 48px;
                 line-height: 1.23;
@@ -29,7 +30,7 @@
                 overflow: auto;
                 .cards {
                     display: block;
-                    background-color: #fff;
+                    background-color: var(--composer-html-background);
                     margin-right: 25px;
                     margin-bottom: 30px;
                     border-radius: 4px;
@@ -48,10 +49,11 @@
                                 font-size: 16px;
                                 line-height: 1.35;
                                 font-weight: 600;
+                                color: var(--composer-font-color-primary);
                             }
                             .card-subtitle {
                                 font-size: 14px;
-                                color: #757575;
+                                color: var(--composer-font-color-primary);
                                 line-height: 1.55;
                                 font-weight: 300;
                             }
@@ -63,10 +65,11 @@
                         font-size: 14px;
                         line-height: 1.55;
                         font-weight: 300;
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }
-            @media screen and (max-width: 760px) {
+            @media screen and (max-width: 880px) {
                 .testimonials11 {
                     display: flex;
                     flex-direction: column;

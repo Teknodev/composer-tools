@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     padding: 50px 50px;
+    background-color: var(--composer-html-background);
     .max-content {
         max-width: var(--composer-content-widt);
         margin: auto;
@@ -16,7 +17,7 @@
                     font-size: 20px;
                     font-weight: 500;
                     line-height: 30px;
-                    color: #ff7425;
+                    color: var(--composer-font-color-primary);
                     margin: 0 0 10px;
                     display: block;
                 }
@@ -24,7 +25,7 @@
                     font-size: 50px;
                     font-weight: 600;
                     line-height: 60px;
-                    color: #19082d;
+                    color: var(--composer-font-color-primary);
                     margin: 0;
                 }
             }
@@ -59,8 +60,9 @@
                     .card-value {
                         font-size: 20px;
                         line-height: 34px;
-                        color: #3e3e3e;
+                        color: var(--composer-font-color-primary);
                         margin: 34px 0 25px 0;
+                        color: var(--composer-font-color-primary);
                     }
                     .below-content {
                         display: flex;
@@ -78,13 +80,13 @@
                                 font-size: 18px;
                                 font-weight: 500;
                                 line-height: 34px;
-                                color: #372748;
+                                color: var(--composer-font-primary);
                             }
                             .below-subtitle {
                                 font-size: 14px;
                                 font-weight: 300;
                                 line-height: 22px;
-                                color: #3E3E3EB5;
+                                color: var(--composer-font-color-primary);
                                 padding-bottom: 10px;
                             }
                         }

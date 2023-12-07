@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     padding: 50px 0;
+    background-color: var(--composer-html-backgrounds);
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -12,6 +13,7 @@
                 line-height: 1.23;
                 margin-bottom: 40px;
                 font-weight: 600;
+                color: var(--composer-primary-color);
             }
             .item-content {
                 position: relative;
@@ -32,7 +34,7 @@
                 .right-content {
                     margin-left: 28px;
                     padding: 30px 40px;
-                    background-color: lightgray;
+                    background-color: var(--composer-tertiary-color);
                     border-radius: 20px;
                     padding-left: 40px;
                     .header {
@@ -40,19 +42,21 @@
                         text-align: left;
                         line-height: 1.35;
                         font-weight: 600;
+                        color: var(--composer-primary-color);
                     }
                     .subtitle {
                         font-size: 14px;
                         line-height: 1.55;
                         margin-bottom: 10px;
                         margin-top: 2px;
-                        color: #666;
+                        color: var(--composer-primary-color);
                         font-weight: 300;
                     }
                     .description {
                         font-size: 15px;
                         line-height: 1.55;
                         font-weight: 300;
+                        color: var(--composer-primary-color);
                     }
                 }
                 .right-content::before {
@@ -63,7 +67,7 @@
                     left: 108px;
                     border-width: 15px;
                     border-style: solid;
-                    border-color: lightgray lightgray transparent transparent;
+                    border-color: var(--composer-tertiary-color) var(--composer-tertiary-color) transparent transparent;
                 }
                 &.item-content-reverse {
                     flex-direction: row-reverse;
@@ -82,7 +86,7 @@
                         right: 108px;
                         border-width: 15px;
                         border-style: solid;
-                        border-color: lightgray transparent transparent lightgray;
+                        border-color: var(--composer-tertiary-color) transparent transparent var(--composer-tertiary-color);
                     }
                 }
             }
