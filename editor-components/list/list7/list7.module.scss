@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     margin: auto;
+    background-color: var(--composer-html-background);
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -16,7 +17,7 @@
                 margin: 10px;
                 box-sizing: border-box;
                 border: 3px solid;
-                border-color: var(--composer-primary-color);
+                border-color: var(--composer-tertiary-color);
                 border-radius: 10px;
                 margin-bottom: 50px;
                 padding: 10px;
@@ -35,6 +36,7 @@
                     margin-bottom: 20px;
                     margin-left: 20px;
                     font-size: 3rem;
+                    color: var(--composer-font-color-primary);
                 }
                 .list-item-p {
                     text-align: left;
@@ -46,6 +48,7 @@
                     margin-bottom: 0;
                     padding-bottom: 40px;
                     margin-left: 20px;
+                    color: var(--composer-font-color-primary);
                 }
             }
         }

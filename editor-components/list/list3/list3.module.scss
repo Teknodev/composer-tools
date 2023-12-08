@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -13,7 +14,7 @@
     .icon-list {
       display: flex;
       flex-direction: column;
-      border: 1px solid rgb(215, 215, 215);
+      border: 1px solid var(--composer-tertiary-color);
       border-top: 5px solid var(--composer-primary-color);
       border-radius: 6px;
       min-width: 250px;
@@ -26,6 +27,7 @@
         font-weight: bold;
         padding: 0;
         margin: 0 0 5px 0;
+        color: var(--composer-primary-color);
       }
       hr {
         display: block;

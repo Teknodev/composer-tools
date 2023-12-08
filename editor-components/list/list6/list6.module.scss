@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     overflow: auto;
+    background-color: var(--composer-html-background);
 }
 
 .max-content {
@@ -42,6 +43,7 @@
         font-weight: bold;
         font-size: 22px;
         line-height: 1.35;
+        color: var(--composer-primary-color);
     }
     .list-item-p {
         text-align: left;
@@ -49,6 +51,7 @@
         font-size: 16px;
         line-height: 1.55;
         margin-left: 10px;
+        color: var(--composer-font-color-primary);
     }
 }
 

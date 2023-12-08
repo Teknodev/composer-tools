@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -20,13 +21,16 @@
         font-size: 5rem;
         text-align: center;
         margin: unset;
+        color: var(--composer-primary-color);
       }
       p {
         text-align: center;
         margin: 50px 0;
+        
       }
       .long-text {
         font-size: 1.8rem;
+        color: var(--composer-font-color-primary);
       }
 
       .button-group {
@@ -43,7 +47,7 @@
           transition: 0.3s;
           display: block;
           color: white;
-          background-color: var(--composer-primary-color);
+          background-color: var(--composer-secondary-color);
           padding: 15px 30px;
           border-radius: 6px;
           border: 1px solid transparent;

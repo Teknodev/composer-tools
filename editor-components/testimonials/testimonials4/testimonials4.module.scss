@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
   background-color: var(--composer-html-background);
 
   .max-content {
@@ -20,20 +20,20 @@
 
         .longtext {
           font-size: 2rem;
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
         }
         .name {
           opacity: 0.9;
           font-size: 1.5rem;
           margin: 20px 0 5px 0;
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
         }
         .rank {
           opacity: 0.6;
           font-weight: 100;
           font-size: 1rem;
           margin: 0;
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
         }
       }
     }

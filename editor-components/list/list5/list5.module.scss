@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     margin: auto;
+    background-color: var(--composer-html-background);
 }
 
 .max-content {
@@ -24,16 +25,18 @@
         text-align: left;
         font-weight: 600;
         font-size: 26px;
+        color: var(--composer-primary-color);
     }
     img {
         height: 270px;
         object-fit: cover;
     }
-    .list-item-value {
+    .list-item-value-p {
         text-align: left;
         font-size: 15px;
         line-height: 1.55;
         font-weight: 300;
+        color: var(--composer-font-color-primary);
     }
 }
 
