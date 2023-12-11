@@ -154,7 +154,7 @@ class Download10 extends BaseDownload {
                 </h1>
                 <div className={this.decorateCSS("down-description")}>
                   <div className={this.decorateCSS("stars")}>
-                    {[...Array(Number(this.getPropValue("stars")))].map(
+                    {[...Array(parseInt(this.getPropValue("stars")))].map(
                       (item: any, index: number) => (
                         <img 
                         alt=""
