@@ -128,7 +128,7 @@ $width-of-items: 600px;
               height: auto;
               .year {
       
-              color: #bbb ;
+              color: var(--composer-secondary-color);
               font-size: 4rem;
               font-weight: 700;
               padding: 10px;
@@ -138,7 +138,7 @@ $width-of-items: 600px;
               }
         
               .title {
-                
+                color: var(--composer-primary-color);
                 padding: 10px;
                 font-size: 3rem;
                 font-weight: 700;

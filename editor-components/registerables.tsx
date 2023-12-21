@@ -37,6 +37,7 @@ import ContentComponent14 from "./content/content14/content14";
 import ContentComponent15 from "./content/content15/content15";
 import ContentComponent16 from "./content/content16/content16";
 import ContentComponent17 from "./content/content17/content17";
+import ContentComponent21 from "./content/content21/content21";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -61,6 +62,7 @@ import FaqComponent3 from "./faq/faq3/faq3";
 import FaqComponent4 from "./faq/faq4/faq4";
 import FaqComponent5 from "./faq/faq5/faq5";
 import FaqComponent6 from "./faq/faq6/faq6";
+import FaqComponent7 from "./faq/faq7/faq7";
 import TeamComponent1 from "./team/team-1/team1";
 import TeamComponent2 from "./team/team-2/team2";
 import TeamComponent3 from "./team/team-3/team3";
@@ -75,6 +77,7 @@ import TeamComponent11 from "./team/team-11/team11";
 import TeamComponent12 from "./team/team-12/team12";
 import TeamComponent13 from "./team/team-13/team13";
 import TeamComponent14 from "./team/team-14/team14";
+import TeamComponent15 from "./team/team-15/team15";
 import HeaderComponent1 from "./header/header1/header1";
 import HeaderComponent2 from "./header/header2/header2";
 import HeaderComponent3 from "./header/header3/header3";
@@ -107,6 +110,7 @@ import HeaderComponent31 from "./header/header31/header31";
 import HeaderComponent32 from "./header/header32/header32";
 import HeaderComponent33 from "./header/header33/header33";
 import HeaderComponent34 from "./header/header34/header34";
+import HeaderComponent35 from "./header/header35/header35";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -166,6 +170,7 @@ import ContactsComponent6 from "./contacts/contacts6/contacts6";
 import ContactsComponent8 from "./contacts/contacts8/contacts8";
 import ContactsComponent9 from "./contacts/contacts9/contacts9";
 import ContactsComponent10 from "./contacts/contacts10/contacts10";
+import ContactsComponent11 from "./contacts/contacts11/form11";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -182,6 +187,7 @@ import NavbarComponent3 from "./navigators/navbar3/navbar3";
 import NavbarComponent4 from "./navigators/navbar4/navbar4";
 import NavbarComponent5 from "./navigators/navbar5/navbar5";
 import NavbarComponent6 from "./navigators/navbar6/navbar6";
+import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
@@ -226,6 +232,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent18(),
     new ContentComponent19(),
     new ContentComponent20(),
+    new ContentComponent21(),
     new SliderComponent1(),
     new SliderComponent2(),
     new SliderComponent3(),
@@ -250,6 +257,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FaqComponent4(),
     new FaqComponent5(),
     new FaqComponent6(),
+    new FaqComponent7(),
     new TeamComponent1(),
     new TeamComponent2(),
     new TeamComponent3(),
@@ -264,6 +272,7 @@ function Registerables(composer: ComponentsRegistery) {
     new TeamComponent12(),
     new TeamComponent13(),
     new TeamComponent14(),
+    new TeamComponent15(),
     new HeaderComponent1(),
     new HeaderComponent2(),
     new HeaderComponent3(),
@@ -296,12 +305,14 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent32(),
     new HeaderComponent33(),
     new HeaderComponent34(),
+    new HeaderComponent35(),
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),
     new NavbarComponent4(),  
     new NavbarComponent5(),
     new NavbarComponent6(),
+    new NavbarComponent7(),
     new FeatureComponent1(),
     new FeatureComponent2(),
     new FeatureComponent3(),
@@ -361,6 +372,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContactsComponent8(),
     new ContactsComponent9(),
     new ContactsComponent10(),
+    new ContactsComponent11(),
     new FooterComponent1(),
     new FooterComponent2(),
     new FooterComponent3(),

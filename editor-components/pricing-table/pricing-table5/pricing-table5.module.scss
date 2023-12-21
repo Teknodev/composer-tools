@@ -16,7 +16,7 @@
       align-items: center;
       justify-content: center;
       height: max-content;
-      border: 1px solid rgb(225, 225, 225);
+      border: 1px solid var(--composer-tertiary-color);
       padding: 35px 20px;
       flex: 1 1;
       min-width: 250px;
@@ -34,7 +34,7 @@
       .image {
         border-radius: 45px;
         margin-bottom: 15px;
-        border: 1px solid rgb(225, 225, 225);
+        border: 1px solid var(--composer-tertiary-color);
         align-self: center;
         object-fit: contain;
         max-width: 250px;
@@ -63,7 +63,7 @@
           margin: 7px auto 10px 5px;
           font-weight: 450;
           font-size: 0.75em;
-          color: rgb(200, 200, 200);
+          color: var(--composer-font-color-primary);
         }
       }
       .button-child {
@@ -77,12 +77,12 @@
           display: block;
           width: max-content;
           color: white;
-          background-color: var(--composer-primary-color);
+          background-color: var(--composer-secondary-color);
           padding: 10px 30px;
           border-radius: 6px;
           border: 1px solid transparent;
           &:hover {
-            color: var(--composer-tertiary-color);
+            color: var(--composer-secondary-color);
             background-color: transparent;
             border: 1px solid var(--composer-tertiary-color);
           }
@@ -111,6 +111,22 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .container {
+    .max-content{
+      flex-direction: column;
+      align-items: center;
+      .card-item-count{
+        min-width: 70%;
+        .image{
+          width: 60%;
+        }
+      }
+
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
   .container {
     .max-content{
       flex-direction: column;

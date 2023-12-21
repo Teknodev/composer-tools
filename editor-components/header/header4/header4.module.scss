@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 50px;
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -14,11 +15,13 @@
       flex-wrap: wrap;
       align-items: center;
       padding: 40px;
+      
 
       .subtitle {
         font-size: 3.5rem;
         text-align: center;
         margin: 0 0 40px 0;
+        color: var(--composer-font-color-primary);
       }
 
       .section {
@@ -46,43 +49,62 @@
             justify-content: center;
             width: calc(100% - 80px);
             padding: 20px;
-
-            box-shadow: var(--composer-box-shadow);
+            border: 1px solid var(--composer-tertiary-color);
             border-radius: 6px;
             overflow: hidden;
             white-space: pre-line;
             text-overflow: ellipsis;
             word-break: break-all;
 
+            .card-left{
+              width: 100%;
+              font-size: 1.2rem;
+             &:hover {
+              color: var(--composer-font-color-primary);
+             }
+            }
             &:hover {
               background-color: var(--composer-primary-color);
-              .card-left {
-                color: white;
-              }
+              
               .card-value {
-                color: white;
+                background-color: var(--composer-primary-color);
               }
             }
 
             &.box-left {
               margin-left: 80px;
+              
+              &:hover {
+                color: var(--composer-font-color-primary);
+                background-color: var(--composer-primary-color);
+              }
             }
 
             &.box-right {
               margin-right: 80px;
+              
+              &:hover{
+                color: var(--composer-font-color-primary);
+                background-color: var(--composer-primary-color);
+              }
             }
+
           }
         }
 
         .card-right {
           width: 100%;
           font-size: 1.2rem;
+         &:hover{
+          color: var(--composer-font-color-primary);
+         }
         }
         .card-value2 {
           overflow: hidden;
           white-space: pre-line;
           text-overflow: ellipsis;
           word-break: break-all;
+          background-color: var(--composer-primary-color);
         }
       }
 

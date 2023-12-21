@@ -171,7 +171,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .primary {
-                background-color: var(--composer-primary-color);
+                background-color: var(--composer-secondary-color);
               }
               .secondary {
                 border: 1px solid rgb(200, 200, 200);
@@ -201,6 +201,35 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       font-size: 1.3rem;
       color: var(--composer-font-color-primary);
       }
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .container {
+    padding: 50px 20px;
+
+    .max-content {
+      .price-title1 {
+        font-size: 2.5rem !important;
+      }
+      .page {
+        .page-down {
+          gap: 20px;
+
+          .title {
+            font-size: 1rem !important;
+          }
+
+          .subtitle{
+            font-size: 1.2rem !important;
+          }
+
+          .all-card {
+            width: 100% !important;
+          }
+        }
+      }
+    }
   }
 }
 

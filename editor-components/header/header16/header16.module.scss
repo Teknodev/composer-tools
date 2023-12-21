@@ -21,7 +21,7 @@
           text-overflow: ellipsis;
           .title {
             font-size: 5rem;
-            color: #2f1c64;
+            color: var(--composer-primary-color);
             font-weight: bold;
             line-height: 1.2;
          
@@ -50,7 +50,7 @@
               margin-left: 8px;
               padding: 12px 32px;
               border-radius: 5px;
-              background: var(--composer-primary-color);
+              background: var(--composer-secondary-color);
               border: 0px;
               color: white;
               width: 150px;

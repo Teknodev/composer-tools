@@ -18,7 +18,7 @@
       border-radius: 6px;
       height: max-content;
       flex: 1 1;
-      box-shadow: #9e9e9e 0px 0px 10px;
+      border: 1px solid var(--composer-tertiary-color);
       padding: 20px 10px 10px 10px;
       margin: 0 30px;
       .list-group {
@@ -35,6 +35,7 @@
           font-size: 1.4rem;
           width: 50%;
           text-align: left;
+          color: var(--composer-font-color-primary);
           .item-value {
             margin-right: 16px;
           }
@@ -142,7 +143,8 @@
       }
       .pricing {
         max-width: 40% !important;
-        margin: 0 250px;
+        margin: 0 220px;
+
         .list-group{
           width: 80% !important;
           height: 250px !important;
