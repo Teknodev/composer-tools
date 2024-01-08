@@ -33,7 +33,6 @@ import ContentComponent12 from "./content/content12/content12";
 import ContentComponent13 from "./content/content13/content13";
 import ContentComponent18 from "./content/content18/content18";
 import ContentComponent19 from "./content/content19/content19";
-import ContentComponent20 from "./content/content20/content20";
 import ContentComponent14 from "./content/content14/content14";
 import ContentComponent15 from "./content/content15/content15";
 import ContentComponent16 from "./content/content16/content16";
