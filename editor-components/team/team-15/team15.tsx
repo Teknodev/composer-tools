@@ -113,6 +113,7 @@ class Team15 extends Team {
                 <img className={this.decorateCSS("image")} src={card.image}></img>
                 <div className={this.decorateCSS("little-container")}>
                   <p className={this.decorateCSS("title")}>{card.title}</p>
+          
                   <p className={this.decorateCSS("title-description")}>
                     {card.description}
                   </p>

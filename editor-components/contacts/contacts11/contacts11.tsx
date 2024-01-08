@@ -2,7 +2,7 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./form11.module.scss";
+import styles from "./contacts11.module.scss";
 
 class Form11 extends BaseContacts {
   constructor(props?: any) {

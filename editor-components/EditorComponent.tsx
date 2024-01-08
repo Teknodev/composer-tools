@@ -60,7 +60,9 @@ export enum CATEGORIES {
   MODAL = "modal",
   LOGOCLOUDS = "logoClouds",
   STATS = "stats",
-  FEATURE = "feature"
+  FEATURE = "feature",
+  IMAGEGALLERY = "imageGallery",
+  LOCATION = "Location"
 }
 
 export abstract class Component
@@ -119,6 +121,8 @@ export abstract class Component
       .map((prop: any) => prop.key)
       .indexOf(key);
 
+      if(i == -1) return;
+
       this.state.componentProps.props[i].value = value;
       this.state.componentProps.props[i] = this.attachValueGetter(
         this.state.componentProps.props[i]
@@ -144,7 +148,7 @@ export abstract class Component
   }
 
   decorateCSS(cssValue: string) {
-    let cssClass = [this.styles[cssValue]];
+    let cssClass = [this.styles[cssValue]]; 
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
@@ -269,6 +273,11 @@ export abstract class BaseFAQ extends Component {
 
 }
 
+export abstract class BaseImageGallery extends Component {
+  protected category = CATEGORIES.IMAGEGALLERY;
+
+}
+
 export abstract class BaseModal extends Component {
   protected category = CATEGORIES.MODAL;
  
@@ -281,6 +290,11 @@ export abstract class BaseModal extends Component {
 
 export abstract class LogoClouds extends Component {
   protected category = CATEGORIES.LOGOCLOUDS;
+
+}
+
+export abstract class Location extends Component {
+  protected category = CATEGORIES.LOCATION;
 
 }
 

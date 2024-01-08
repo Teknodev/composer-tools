@@ -1,0 +1,506 @@
+.container {
+    width: 100%;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .contact-container {
+            display: flex;
+
+            .contacts5-left {
+                margin-top: 300px;
+                .title-text{
+                    margin-top: -30px;
+                    margin-bottom: 50px;
+                .subtitle {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 1.2rem;
+                    text-transform: uppercase;
+                    color: rgb(0, 0, 0);
+                    font-weight: 900;
+                    margin-left: -130px;
+                }
+                .title{
+                    width: 60%;
+                    text-align: start;
+                    font-size: 1.1rem;
+                    text-transform: uppercase;
+                    color: rgb(0, 0, 0);
+                    font-weight: 100;
+                    margin-left: 140px;
+                }
+            }
+                .contacts5 {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    height: 100%;
+                    .contact-form {
+                        padding: 20px;
+                        display: flex;
+                        align-content: center;
+                        flex-wrap: wrap;
+                        transition: 1s;
+                        flex-direction: column;
+                        width: 100%;
+                        height: fit-content;
+                        padding: 20px 0 20px 0;
+                        margin-top: -400px;
+                        .form {
+                            display: flex;
+                            flex-direction: column;
+                            text-align: center;
+                            gap: 20px;
+                            background: rgba(255, 255, 255, 0.6);
+                            border-top-right-radius: 0;
+                            border-bottom-right-radius: 0;
+                            padding: 20px;
+                            width: 450px;
+                            .input {
+                                padding: 16px 10px;
+                                background: rgba(250, 250, 250, 0.7);
+                                border: 1px solid #8e8e8e91;
+                                resize: none;
+                                &:focus {
+                                    outline-color: var(--composer-primary-color);
+                                }
+                            }
+                            .error-message {
+                                color: red;
+                                font-size: 0.6rem;
+                                margin-top: 3px;
+                            }
+                            .submit-button {
+                                height: 50px;
+                                background-color: var(--composer-secondary-color);
+                                border: none;
+                                cursor: pointer;
+                                transition: 0.1s;
+                                font-size: 1rem;
+                                font-weight: 900;
+                                color: white;
+                                padding: 10px 50px;
+                                width: 100%;
+                                &:active {
+                                    background: var(--composer-secondary-color);
+                                    color: var(--composer-tertiary-color);
+                                }
+                                &:hover {
+                                    background-color: transparent;
+                                    color: var(--composer-secondary-color);
+                                    border: 1px solid var(--composer-secondary-color);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .contacts5-right {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            background-color: var(--composer-primary-color);
+            margin-top: 55px;
+
+            .all-card {
+                width: 70%;
+                height: 40%;
+                margin-bottom: -30px;
+                .item-content {
+                    display: flex;
+                    margin-left: 200px;
+                    box-sizing: border-box;
+                    background-color: rgb(0, 0, 0);
+                    margin-bottom: 50px;
+
+                    
+                    .index {
+                        margin-top: 0;
+                        margin-right: auto;
+                        margin-bottom: 20px;
+                        margin-left: 20px;
+                        padding-top: 20px;
+                        font-size: 4rem;
+                        color: var(--composer-primary-color);
+                    }
+                    .svg-container{
+                        width: 5%;
+                     margin-top: 30px;
+                     margin-left: 30px;
+                    }
+                    .item-value1 {
+                        width: 100%;
+                        margin-top: 35px;
+                        margin-bottom: 30px;
+                        margin-left: 25px;
+                        font-size: 2rem;
+                        color: white;
+                    }
+                    .list-item-p {
+                        text-align: left;
+                        font-size: 1.4rem;
+                        line-height: 2;
+                        width: 80%;
+                        margin-top: 30px;
+                        padding-bottom: 30px;
+                        margin-left: 20px;
+                        color: white;
+                    }
+                }
+            }
+            .all-card-2 {
+                width: 70%;
+                height: 40%;
+                margin-bottom: -30px;
+                .item-content-2 {
+                    display: flex;
+                    margin-left: 200px;
+                    box-sizing: border-box;
+                    background-color: rgb(59, 179, 0);
+                    margin-bottom: 50px;
+                    
+                    .index-2 {
+                        margin-top: 0;
+                        margin-right: auto;
+                        margin-bottom: 20px;
+                        margin-left: 20px;
+                        padding-top: 20px;
+                        font-size: 4rem;
+                        color: var(--composer-primary-color);
+                    }
+                    .svg-container{
+                        width: 5%;
+                     margin-top: 30px;
+                     margin-left: 30px;
+                    }
+                    .item-value-text{
+                        margin-left: 5px;
+                    .item-value1-2 {
+                        width: 100%;
+                        margin-top: 40px;
+                        margin-right: auto;
+                        margin-bottom: 20px;
+                        margin-left: 15px;
+                        font-size: 2rem;
+                        color: white;
+                    }
+                    .list-item-p-2 {
+                        width: 100%;
+                        font-weight: 900;
+                        font-size: 1.4rem;
+                        line-height: 2;
+                        margin-top: 15px;
+                        margin-left: 20px;
+                        color: white;
+                    }
+                    .list-item-p2-2 {
+                        font-weight: 900;
+                        width: 100%;
+                        font-size: 1.4rem;
+                        line-height: 2;
+                        margin-top: 0px;
+                        padding-bottom: 10px;
+                        margin-left: 20px;
+                        color: white;
+                    }
+                }
+                }
+            }
+            .all-card-3 {
+                width: 70%;
+                height: 40%;
+                margin-bottom: -30px;
+                .item-content-3 {
+                    display: flex;
+                    margin-left: 200px;
+                    box-sizing: border-box;
+                    background-color: rgb(98, 98, 98);
+                    margin-bottom: 50px;
+                    
+                    .index-3 {
+                        margin-top: 0;
+                        margin-right: auto;
+                        margin-bottom: 20px;
+                        margin-left: 20px;
+                        padding-top: 20px;
+                        font-size: 4rem;
+                        color: var(--composer-primary-color);
+                    }
+                    .svg-container{
+                        width: 5%;
+                     margin-top: 30px;
+                     margin-left: 25px;
+                    }
+                    .item-value-text{
+                        margin-left: 10px;
+                    .item-value1-3 {
+                        width: 100%;
+                        margin-top: 35px;
+                        margin-right: auto;
+                        margin-bottom: 20px;
+                        margin-left: 15px;
+                        font-size: 2rem;
+                        color: white;
+                    }
+                    .list-item-p-3 {
+                        width: 100%;
+                        font-size: 1.4rem;
+                        line-height: 2;
+                        width: 85%;
+                        margin-top: 15px;
+                        padding-bottom: 30px;
+                        margin-left: 10px;
+                        color: white;
+                    }
+                }
+                }
+            }
+            .all-card-4 {
+                width: 70%;
+                height: 40%;
+                margin-bottom: -30px;
+                .item-content-4 {
+                    display: flex;
+                    margin-left: 200px;
+                    box-sizing: border-box;
+                    background-color: rgb(141, 0, 0);
+                    margin-bottom: 50px;
+                    
+                    .index-4 {
+                        margin-top: 0;
+                        margin-right: auto;
+                        margin-bottom: 20px;
+                        margin-left: 20px;
+                        padding-top: 20px;
+                        font-size: 4rem;
+                        color: var(--composer-primary-color);
+                    }
+                    .svg-container{
+                        width: 5%;
+                     margin-top: 30px;
+                     margin-left: 30px;
+                    }
+                    .item-value-text{
+                        display: block;
+                    .item-value1-4 {
+                        width: 100%;
+                        margin-top: 35px;
+                        margin-bottom: 20px;
+                        margin-left: 35px;
+                        font-size: 2rem;
+                        color: white;
+                    }
+                    .list-item-p-4 {
+                        width: 20%;
+                        font-size: 1.4rem;
+                        line-height: 2;
+                        width: 100%;
+                        margin-top: 15px;
+                        padding-bottom: 30px;
+                        margin-left: 20px;
+                        color: white;
+                        font-weight: 900;
+                    }
+                }
+                }
+            }
+            .all-card-5 {
+                width: 70%;
+                height: 40%;
+                margin-top: 0px;
+                .item-content-5 {
+                    display: flex;
+                    margin-left: 200px; 
+                    background-color: rgb(252, 0, 143);
+                    margin-bottom: 50px;
+                    
+                    .index-5 {
+                        margin-top: 0;
+                        margin-bottom: 20px;
+                        margin-left: 20px;
+                        padding-top: 20px;
+                        font-size: 4rem;
+                        color: var(--composer-primary-color);
+                    }
+                    .svg-container2{
+                    height: 10%;
+                     margin-top: 40px;
+                     margin-left: 35px;
+                    }
+                    .svg-container3{
+                        display: flex;
+                        margin-top: 90px;
+                        margin-left: -150px;
+                        gap: 15px;
+                        margin-bottom: 15px;
+                    }
+                    .item-value1-5 {
+                        width: 100%;
+                        margin-top: 45px;
+                        margin-bottom: 20px;
+                        font-size: 2rem;
+                        color: white;
+                        margin-left: 10px;
+                    }
+                    .list-item-p-5 {
+                        width: 100%;
+                        width: 20%;
+                        font-size: 1.4rem;
+                        line-height: 2;
+                        width: 85%;
+                        margin-top: 15px;
+                        padding-bottom: 0px;
+                        margin-left: 20px;
+                        color: white;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        .max-content {
+            .contact-container {
+                flex-direction: column;
+                .contacts5-left {
+                    .contacts5 {
+                        text-align: center;
+                        margin: 0;
+                        .contact-form {
+                            .form {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+                .contacts5-right {
+                    border-radius: var(--composer-border-radius);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        .max-content {
+            .contact-container {
+                flex-direction: column;
+                .contacts5-left {
+                    .title-text{
+                    .subtitle {
+                        width: 100%;
+                        text-align: center;
+                        font-size: 1.2rem;
+                        color: rgb(0, 0, 0);
+                        font-weight: 900;
+                        margin-left: -60px;
+                        margin-bottom: 0px;
+                        margin-top: -250px;
+                    }
+                    .title{
+                        width: 60%;
+                        text-align: start;
+                        font-size: 1.1rem;
+                        color: rgb(0, 0, 0);
+                        font-weight: 100;
+                        margin-left: 20px;
+                        margin-bottom: 190px;
+                        
+                    }
+                }
+                    .contacts5 {
+                        text-align: center;
+                        margin: 0;
+                        .contact-form {
+                            .form {
+                                width: 100%;
+                                margin-top: 200px;
+                            }
+                        }
+                    }
+                }
+                .contacts5-right {
+                    border-radius: var(--composer-border-radius);
+                    .all-card {
+                        width: 480px;
+                        text-align: center;
+                        margin-left: -193px;
+                    }
+                    .all-card-2 {
+                        width: 480px;
+                        text-align: center;
+                        margin-left: -193px;
+                    }
+                    .all-card-3 {
+                        width: 480px;
+                        text-align: center;
+                        margin-left: -193px;
+                        .item-content-3 {
+                            display: flex;
+                            margin-left: 200px;
+                            box-sizing: border-box;
+                            background-color: rgb(98, 98, 98);
+                            margin-bottom: 50px;
+                            
+                            .index-3 {
+                                margin-top: 0;
+                                margin-right: auto;
+                                margin-bottom: 20px;
+                                margin-left: 20px;
+                                padding-top: 20px;
+                                font-size: 4rem;
+                                color: var(--composer-primary-color);
+                            }
+                            .svg-container{
+                                width: 5%;
+                             margin-top: 30px;
+                             margin-left: 25px;
+                            }
+                            .item-value-text{
+                                margin-left: 10px;
+                            .item-value1-3 {
+                                width: 100%;
+                                margin-top: 35px;
+                                margin-right: auto;
+                                margin-bottom: 20px;
+                                margin-left: -15px;
+                                font-size: 2rem;
+                                color: white;
+                            }
+                            .list-item-p-3 {
+                                width: 100%;
+                                font-size: 1.2rem;
+                                line-height: 2;
+                                width: 85%;
+                                margin-top: 15px;
+                                padding-bottom: 30px;
+                                margin-left: -20px;
+                                color: white;
+                            }
+                        }
+                        }
+                    }
+                    .all-card-4 {
+                        width: 480px;
+                        text-align: center;
+                        margin-left: -193px;
+                    }
+                    .all-card-5 {
+                        width: 480px;
+                        text-align: center;
+                        margin-left: -193px;
+                    }
+                }
+            }
+        }
+    }
+}

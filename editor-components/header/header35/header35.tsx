@@ -68,7 +68,6 @@ class Header35 extends BaseHeader {
             },
           ]
         },
-        
       ],
     }) 
   }

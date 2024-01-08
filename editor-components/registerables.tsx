@@ -17,6 +17,7 @@ import ListComponent4 from "./list/list4/list4";
 import ListComponent5 from "./list/list5/list5";
 import ListComponent6 from "./list/list6/list6";
 import ListComponent7 from "./list/list7/list7";
+import LocationComponent1 from "./location/location1/location1";
 import ContentComponent1 from "./content/content1/content1";
 import ContentComponent2 from "./content/content2/content2";
 import ContentComponent3 from "./content/content3/content3";
@@ -78,6 +79,7 @@ import TeamComponent12 from "./team/team-12/team12";
 import TeamComponent13 from "./team/team-13/team13";
 import TeamComponent14 from "./team/team-14/team14";
 import TeamComponent15 from "./team/team-15/team15";
+import TeamComponent16 from "./team/team-16/team16";
 import HeaderComponent1 from "./header/header1/header1";
 import HeaderComponent2 from "./header/header2/header2";
 import HeaderComponent3 from "./header/header3/header3";
@@ -111,6 +113,7 @@ import HeaderComponent32 from "./header/header32/header32";
 import HeaderComponent33 from "./header/header33/header33";
 import HeaderComponent34 from "./header/header34/header34";
 import HeaderComponent35 from "./header/header35/header35";
+import HeaderComponent36 from "./header/header36/header36";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -170,7 +173,8 @@ import ContactsComponent6 from "./contacts/contacts6/contacts6";
 import ContactsComponent8 from "./contacts/contacts8/contacts8";
 import ContactsComponent9 from "./contacts/contacts9/contacts9";
 import ContactsComponent10 from "./contacts/contacts10/contacts10";
-import ContactsComponent11 from "./contacts/contacts11/form11";
+import ContactsComponent11 from "./contacts/contacts11/contacts11";
+import ContactsComponent12 from "./contacts/contacts12/contacts12";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -188,6 +192,7 @@ import NavbarComponent4 from "./navigators/navbar4/navbar4";
 import NavbarComponent5 from "./navigators/navbar5/navbar5";
 import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
+import ImageGalleryCompanent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
@@ -212,6 +217,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ListComponent5(),
     new ListComponent6(),
     new ListComponent7(),
+    new LocationComponent1(),
     new ContentComponent1(),
     new ContentComponent2(),
     new ContentComponent3(),
@@ -273,6 +279,7 @@ function Registerables(composer: ComponentsRegistery) {
     new TeamComponent13(),
     new TeamComponent14(),
     new TeamComponent15(),
+    new TeamComponent16(),
     new HeaderComponent1(),
     new HeaderComponent2(),
     new HeaderComponent3(),
@@ -306,6 +313,7 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent33(),
     new HeaderComponent34(),
     new HeaderComponent35(),
+    new HeaderComponent36(),
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),
@@ -313,6 +321,7 @@ function Registerables(composer: ComponentsRegistery) {
     new NavbarComponent5(),
     new NavbarComponent6(),
     new NavbarComponent7(),
+    new ImageGalleryCompanent1(),
     new FeatureComponent1(),
     new FeatureComponent2(),
     new FeatureComponent3(),
@@ -373,6 +382,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContactsComponent9(),
     new ContactsComponent10(),
     new ContactsComponent11(),
+    new ContactsComponent12(),
     new FooterComponent1(),
     new FooterComponent2(),
     new FooterComponent3(),
@@ -387,6 +397,7 @@ function Registerables(composer: ComponentsRegistery) {
     new SurveyModal(),
     new NoticeModal(),
     new SubscriptionModal(),
+    new LocationComponent1()
   ]);
 }
 
