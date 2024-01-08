@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 0 50px;
+  background-color: var(--composer-html-background);
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -30,7 +31,7 @@
             font-size: x-large;
             font-weight: 100;
             line-height: 1;
-            color: var(--composer-secondary-color);
+            color: var(--composer-font-color-primary);
             width: 50px;
             margin-bottom: 5px;
             text-transform: uppercase;
@@ -49,6 +50,7 @@
             font-weight: 100;
             min-width: 250px;
             max-width: 400px;
+            color: var(--composer-font-color-primary);
           }
           .button-wrapper {
             display: flex;
@@ -62,16 +64,16 @@
               text-align: center;
               transition: 0.3s;
               display: block;
-              color: var(--composer-primary-color);
-              background-color: transparent;
+              color: var(--composer-font-color-secondary);
+              background-color: var(--composer-secondary-color);
               padding: 10px 10px;
               border-radius: 6px;
               border: 1px solid var(--composer-primary-color);
               width: 150px;
               margin-top: 10px;
               &:hover {
-                color: white;
-                border: 1px solid transparent;
+                color: var(--composer-font-color-primary);
+                border: 1px solid var(--composer-tertiary-color);
                 background-color: var(--composer-primary-color);
               }
             }
@@ -80,17 +82,17 @@
               text-align: center;
               transition: 0.3s;
               display: block;
-              color: white;
-              background-color: var(--composer-primary-color);
+              color: var(--composer-font-color-secondary);
+              background-color: var(--composer-secondary-color);
               padding: 10px 10px;
               border-radius: 6px;
-              border: 1px solid transparent;
+              border: 1px solid var(--composer-tertiary-color);
               width: 150px;
               margin-top: 10px;
               &:hover {
                 color: var(--composer-primary-color);
-                background-color: transparent;
-                border: 1px solid var(--composer-primary-color);
+                background-color: var(--composer-secondary-color);
+                border: 1px solid var(--composer-tertiary-color);
               }
             }
           }

@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 20px;
+  background-color: var(--composer-html-background);
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -51,14 +52,13 @@
             cursor: pointer;
             border-radius: 5px;
             padding: 10px 10px;
-            background-color: var(--composer-primary-color);
-            border: 0px;
-            color: white;
+            background-color: var(--composer-secondary-color);
+            color: var(--composer-font-color-secondary);
             font-size: 15px;
-            border: 1px solid var(--composer-primary-color);
+            border: 1px solid var(--composer-tertiary-color);
             &:hover {
               background-color: transparent;
-              color: var(--composer-primary-color);
+              color: var(--composer-font-color-secondary);
             }
           }
         }

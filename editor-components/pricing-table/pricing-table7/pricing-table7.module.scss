@@ -15,6 +15,7 @@
       display: flex;
       flex-direction: column;
       box-shadow: var(--composer-box-shadow);
+      border: 1px solid var(--composer-tertiary-color);
       border-radius: 6px;
       height: max-content;
       padding: 20px;
@@ -28,6 +29,7 @@
       .title {
         margin-top: 0;
         padding: 0 40px;
+        color: var(--composer-font-color-primary);
         h3 {
           margin-bottom: 0;
           font-size: 1.8rem;
@@ -40,10 +42,11 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        border-top: 2px dashed #f4f5fe;
-        border-bottom: 2px dashed #f4f5fe;
+        border-top: 2px solid  var(--composer-tertiary-color);
+        border-bottom: 2px solid  var(--composer-tertiary-color);
         font-weight: 600;
         font-size: 2.5rem;
+        color: var(--composer-font-color-primary);
 
         .duration-text {
           margin: 0;
@@ -65,6 +68,7 @@
           display: flex;
           align-items: center;
           gap: 5px;
+          color: var(--composer-font-color-primary);
           img {
             width: 15px;
             height: 15px;
@@ -75,8 +79,8 @@
         border: none;
         overflow: hidden;
         z-index: 1;
-        color: #fff;
-        background-color: var(--composer-primary-color);
+        color: var(--composer-font-color-secondary);
+        background-color: var(--composer-secondary-color);
         transition: 0.5s;
         border-radius: 5px;
         font-weight: 500;
@@ -94,8 +98,9 @@
           height: 15px;
         }
         &:hover {
-          color: #fff;
-          background-color: var(--composer-secondary-color);
+          color: var(--composer-font-color-primary);
+          border: 1px solid var(--composer-secondary-color);
+          background-color: transparent;
         }
       }
     }
@@ -110,9 +115,27 @@
       justify-content: center;
       .card-item-count{
         min-width: 100%;
-        
+        .price{
+          margin: 0 80px;
+        }
       }  
+    }
+  }
+}
 
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content{
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      .card-item-count{
+        min-width: 100%;
+        .price{
+          margin: 0 30px;
+
+        }
+      }  
     }
   }
 }

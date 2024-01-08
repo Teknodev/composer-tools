@@ -30,13 +30,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           font-size: 4.5rem;
           letter-spacing: 0.02em;
           margin: unset;
-          color: rgb(19, 34, 63);
+          color: var(--composer-font-color-primary);
           opacity: 0.9;
         }
 
         .description {
           font-size: 1.8rem;
-          color: rgb(57, 61, 70);
+          color: var(--composer-font-color-primary);
           opacity: 0.9;
         }
 
@@ -177,7 +177,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
 
                 .primary {
-                  background-color: var(--composer-primary-color);
+                  background-color: var(--composer-secondary-color);
                 }
                 .secondary {
                   border: 1px solid rgb(200, 200, 200);
@@ -208,12 +208,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   color: rgb(42, 51, 66);
 
                   .circle-icon {
-                    width: 20px;
-                    height: 20px;
+                    width: 25px;
+                    height: 25px;
                     color: #fff;
-                    border: 1px solid var(--composer-primary-color);
+                    border: 1px solid var(--composer-tertiary-color);
                     border-radius: 50%;
-                    background-color: var(--composer-primary-color);
+                    background-color: var(--composer-tertiary-color);
                     display: flex;
                     justify-content: center;
                     align-items: center;

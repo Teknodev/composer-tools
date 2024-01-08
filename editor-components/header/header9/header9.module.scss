@@ -25,12 +25,14 @@
         font-size: 3em;
         margin-top: 0;
         width: 60%;
+        color: var(--composer-primary-color);
       }
       .wide-text-p {
         color: rgb(80, 80, 80);
         width: 400px;
         margin-bottom: 30px;
         font-size: 1.1em;
+        color: var(--composer-font-color-primary);
       }
       .button {
         cursor: pointer;
@@ -38,16 +40,16 @@
         text-align: center;
         transition: 0.3s;
         display: block;
-        color: white;
-        background-color: var(--composer-primary-color);
+        color: var(--composer-font-color-secondary);
+        background-color: var(--composer-secondary-color);
         padding: 15px 30px;
         border-radius: 6px;
         border: 1px solid transparent;
         width: 200px;
         &:hover {
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
           background-color: transparent;
-          border: 1px solid var(--composer-primary-color);
+          border: 1px solid var(--composer-secondary-color);
         }
       }
     }
