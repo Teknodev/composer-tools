@@ -1,147 +1,135 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-
-    .all-page {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      .up-page {
-        width: 100%;
+    width: 100%;
+    padding: 50px 50px;
+    .max-content {
+        max-width: var(--composer-content-width);
         display: flex;
-        flex-direction: column;
-
-        .description {
-          font-size: 1.2rem;
-        }
-        .title {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 30px;
-          .left {
-            display: flex;
-            flex-direction: column;
-
-            h1 {
-              margin: 0;
-              font-size: 3rem;
-            }
-          }
-
-          .right {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 1rem;
-            .button {
-              border: 0px solid;
-              border-radius: 6px;
-              color: #fff;
-              cursor: pointer;
-              padding: 10px;
-              background: transparent;
-              transition: $transition;
-              opacity: 0.9;
-              &:hover {
-                opacity: 1;
-              }
-            }
-
-            .primary {
-              background-color: var(--composer-primary-color);
-            }
-            .secondary {
-              border: 1px solid rgb(200, 200, 200);
-              color: black;
-            }
-          }
-        }
-      }
-
-      .down-page {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 20px;
-
-        .all-card {
-          display: flex;
-          justify-content: center;
-          .card {
+        margin: auto;
+        .all-page {
             width: 100%;
-            height: 100%;
-            min-width: 250px;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-
-            .name {
-              font-size: 2rem;
-              margin: 20px 0rem 8px;
-              opacity: 0.7;
-              transition: $transition;
-            }
-            .position {
-              color: var(--composer-primary-color);
-              opacity: 0.7;
-              transition: $transition;
-              margin: 0;
-            }
-
-            .image-wrapper {
-              width: 100%;
-              height: 250px;
-              overflow: hidden;
-              .image {
+            justify-content: center;
+            align-items: center;
+            .up-page {
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: $transition;
-              }
+                display: flex;
+                flex-direction: column;
+                .description {
+                    font-size: 1.2rem;
+                    color: var(--composer-font-color-primary);
+                }
+                .title {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    .left {
+                        display: flex;
+                        flex-direction: column;
+                        .title {
+                            margin: 0;
+                            font-size: 3rem;
+                            color: var(--composer-primary-color);
+                        }
+                    }
+                    .right {
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        gap: 1rem;
+                        .button {
+                            border: 0px solid;
+                            border-radius: 6px;
+                            color: #fff;
+                            cursor: pointer;
+                            padding: 10px;
+                            background: transparent;
+                            transition: $transition;
+                            opacity: 0.9;
+                            &:hover {
+                                opacity: 1;
+                            }
+                        }
+                        .primary {
+                            background-color: var(--composer-secondary-color);
+                        }
+                        .secondary {
+                            background-color: var(--composer-primary-color);
+                        }
+                    }
+                }
             }
-
-            &:hover {
-              .name {
-                opacity: 1;
-              }
-              .position {
-                opacity: 1;
-              }
-              img {
-                transform: scale(1.1);
-              }
+            .down-page {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                .all-card {
+                    display: flex;
+                    justify-content: center;
+                    .card {
+                        width: 100%;
+                        height: 100%;
+                        min-width: 250px;
+                        display: flex;
+                        flex-direction: column;
+                        overflow: hidden;
+                        .name {
+                            font-size: 2rem;
+                            margin: 20px 0rem 8px;
+                            opacity: 0.7;
+                            color: var(--composer-font-color-primary);
+                            transition: $transition;
+                        }
+                        .position {
+                            color: var(--composer-primary-color);
+                            opacity: 0.7;
+                            transition: $transition;
+                            margin: 0;
+                        }
+                        .image-wrapper {
+                            width: 100%;
+                            height: 400px;
+                            overflow: hidden;
+                            .image {
+                                width: 100%;
+                                height: 100%;
+                                transition: $transition;
+                            }
+                        }
+                        &:hover {
+                            .name {
+                                opacity: 1;
+                            }
+                            .position {
+                                opacity: 1;
+                            }
+                            img {
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .down-page {
-      justify-content: unset !important;
-      .all-card {
-        width: unset !important;
-        flex: 1 1;
-        min-width: 250px !important;
-      }
+    .container {
+        padding: 50px 20px;
+        .down-page {
+            justify-content: unset !important;
+            .all-card {
+                width: unset !important;
+                flex: 1 1;
+                min-width: 250px !important;
+            }
+        }
     }
-  }
 }

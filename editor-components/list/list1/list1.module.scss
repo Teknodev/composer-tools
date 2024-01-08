@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -19,10 +20,11 @@
       flex: 1 1;
       border-radius: 6px;
       overflow: hidden;
+      border: 1px solid var(--composer-tertiary-color);
 
 
       .title {
-        color: white;
+        color: var(--composer-font-color-primary);
         display: block;
         background-color: var(--composer-primary-color);
         font-weight: bold;
@@ -38,9 +40,9 @@
           line-height: 1.2;
           white-space: nowrap;
           vertical-align: middle;
-          font-size: 1rem;
-          color: black;
-          background: white;
+          font-size: 1.2rem;
+          color: var(--composer-font-color-primary);
+          background-color: var(--composer-html-background);
           text-align: center;
           border-radius: 100%;
         }
@@ -53,12 +55,14 @@
         .list-item {
           padding: 20px;
           cursor: pointer;
-          color: black;
-          background-color: white;
+          color: var(--composer-font-color-primary);
+          background-color: var(--composer-html-background);
           transition: all 0.5s;
-          border-bottom: 1px solid rgb(245, 245, 245);
+          font-size: 17px;
+          border-bottom: 1px;
+          border: var(--composer-tertiary-color);
           &:hover {
-            background-color: rgb(252, 252, 252);
+            background-color: var(--composer-tertiary-color);
           }
           .badge {
             float: right;
@@ -70,8 +74,8 @@
             white-space: nowrap;
             vertical-align: middle;
             font-size: 1rem;
-            color: #fff;
-            background: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
+            background: var(--composer-secondary-color);
             text-align: center;
             border-radius: 3px;
             margin-top: 10px;

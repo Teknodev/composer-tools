@@ -154,8 +154,8 @@ class Contacts1Page extends BaseContacts {
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("contacts1")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <p>{this.getPropValue("description")}</p>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             <section>
               {this.castToObject<ISection[]>("card-items").map(
                 (section: any, index: number) => (
@@ -165,9 +165,9 @@ class Contacts1Page extends BaseContacts {
                         <div className={this.decorateCSS("img-child")}>
                           <img className={this.decorateCSS("image")} width={80} height={80} src={item.value[0].value} alt=""/>
                         </div>
-                        <h2>{item.value[1].value}</h2>
-                        <h4>{item.value[2].value}</h4>
-                        <h4>{item.value[3].value}</h4>
+                        <h2 className={this.decorateCSS("item-value")}>{item.value[1].value}</h2>
+                        <h4 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h4>
+                        <h4 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h4>
                       </div>
                     ))}
                   </div>

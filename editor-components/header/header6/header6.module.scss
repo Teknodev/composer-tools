@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
 
   .max-content {
     width: 100%;
@@ -14,11 +14,11 @@
 
       .left-content {
         flex: 1;
-        h2 {
+        .title {
           font-size: 5rem;
           font-weight: 600;
         }
-        p {
+        .description {
           margin-bottom: 30px;
           font-size: 1.2rem;
         }

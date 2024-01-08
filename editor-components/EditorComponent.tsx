@@ -38,6 +38,7 @@ export type TypeUsableComponentProps = {
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
+  max?: number; 
 } & AvailablePropTypes & {
   getPropValue?: (propName: string) => any;
 };
@@ -139,7 +140,7 @@ export abstract class Component
     const cssClassesCopy = { ...componentPropsCopy.cssClasses };
     cssClassesCopy[key] = value;
     this.state.componentProps.cssClasses[key] = value;
-    this.setState({ componentProps: componentPropsCopy});
+    this.setState({ componentProps: this.state.componentProps});
   }
 
   decorateCSS(cssValue: string) {

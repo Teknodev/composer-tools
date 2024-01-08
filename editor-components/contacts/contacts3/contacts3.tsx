@@ -92,13 +92,13 @@ class Contacts3Page extends BaseContacts {
             {
               type: "string",
               key: "Text1th",
-              value: "111 345 45 99",
+              value: "+111 345 45 99",
               displayer: "1th Text",
             },
             {
               type: "string",
               key: "Text2th",
-              value: "111 346 45 99",
+              value: "+111 346 45 99",
               displayer: "2th Text",
             },
           ],
@@ -123,15 +123,15 @@ class Contacts3Page extends BaseContacts {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("contacts3")}>
             <div className={this.decorateCSS("contact-left")}>
-              <p>{this.getPropValue("subtitle")}</p>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
               <div className={this.decorateCSS("contact-info")}>
                 {this.castToObject<Item[]>("info-items").map(
                   (data: any, index: number) => (
                     <div key={index}>
-                      <h3>{data.title}</h3>
-                      <h2>{data.Text1th}</h2>
-                      <h2>{data.Text2th}</h2>
+                      <h3 className={this.decorateCSS("data-title")}> {data.title}</h3>
+                      <h2 className={this.decorateCSS("data-text1")}>{data.Text1th}</h2>
+                      <h2 className={this.decorateCSS("data-text2")}>{data.Text2th}</h2>
                     </div>
                   )
                 )}
@@ -148,7 +148,7 @@ class Contacts3Page extends BaseContacts {
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
-                    <h3>{this.getPropValue("name")}</h3>
+                    <h3 className={this.decorateCSS("name")}>{this.getPropValue("name")}</h3>
                     <input
                       placeholder={this.getPropValue("name")}
                       type="text"
@@ -162,7 +162,7 @@ class Contacts3Page extends BaseContacts {
                       name="name"
                       component={"span"}
                     />
-                    <h3>{this.getPropValue("email")}</h3>
+                    <h3 className={this.decorateCSS("email")}>{this.getPropValue("email")}</h3>
                     <input
                       placeholder={this.getPropValue("email")}
                       type="text"
@@ -176,7 +176,7 @@ class Contacts3Page extends BaseContacts {
                       name="email"
                       component={"span"}
                     />
-                    <h3>{this.getPropValue("message")}</h3>
+                    <h3 className={this.decorateCSS("message")}>{this.getPropValue("message")}</h3>
                     <textarea
                       placeholder={this.getPropValue("message")}
                       id="text"

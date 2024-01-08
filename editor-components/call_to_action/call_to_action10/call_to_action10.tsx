@@ -111,9 +111,9 @@ class CallToAction10Page extends BaseCallToAction {
               ></img>
             </div>
             <div className={this.decorateCSS("call-to-action10")}>
-              <h2>{this.getPropValue("subtitle")}</h2>
-              <h1>{this.getPropValue("title")}</h1>
-              <h3>{this.getPropValue("description")}</h3>
+              <h2 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h2>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
 
               <ul>
                 {this.castToObject<listedListItem[]>("listedListItem").map(

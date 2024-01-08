@@ -117,13 +117,13 @@ class Download8 extends BaseDownload {
                             <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="background" />
                         </div>
                         <div className={this.decorateCSS("left-content")}>
-                            <h1>{this.getPropValue("leftContentTitle")}</h1>
-                            <p>{this.getPropValue("description")}</p>
+                            <h1 className={this.decorateCSS("leftContentTitle")}>{this.getPropValue("leftContentTitle")}</h1>
+                            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
                         </div>
                         <div className={this.decorateCSS("right-content")}>
                             <div className={this.decorateCSS("card")}>
                                 <div className={this.decorateCSS("card-up")}>
-                                    <h2>{this.getPropValue("cardTitle")}</h2>
+                                    <h2 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</h2>
                                     <ul className={this.decorateCSS("list-group")}>
                                         {this.castToObject<ListItem[]>("list").map((item: ListItem, index:number) => {
                                             return (

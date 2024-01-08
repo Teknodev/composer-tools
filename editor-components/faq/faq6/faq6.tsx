@@ -267,8 +267,8 @@ class FaqPost extends BaseFAQ {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("title1")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</p>
             </div>
             <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("card").map((card: Card, indexCard: any) => {
@@ -281,8 +281,8 @@ class FaqPost extends BaseFAQ {
                     <div className={this.decorateCSS("icon")}>
                       <div>?</div>
                     </div>
-                    <h1>{card.title}</h1>
-                    <p>{card.description}</p>
+                    <h1 className={this.decorateCSS("card-title")}>{card.title}</h1>
+                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
                   </div>
                 );
               })}

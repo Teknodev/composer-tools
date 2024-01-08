@@ -164,8 +164,8 @@ class Header11 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")} style={styling}>
             <div className={this.decorateCSS("header-page")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <h2>{this.getPropValue("description")}</h2>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
               {this.castToObject<[]>("button").map((item: any, indexButton: number) => {
                 return (
                   <ComposerLink key={`hdr-11-${indexButton}`} path={item.link}>
@@ -183,8 +183,8 @@ class Header11 extends BaseHeader {
                     <div className={this.decorateCSS("img-child")}>
                       <img src={card.image} alt=""/>
                     </div>
-                    <h5>{card.title}</h5>
-                    <p>{card.description}</p>
+                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
+                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
                   </div>
                 )
               )}

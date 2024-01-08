@@ -128,8 +128,8 @@ class Team8 extends Team {
                       alt={teamMember.value[1].value}
                       />
                     <div className={this.decorateCSS("content")}>
-                      <span>{teamMember.value[1].value}</span>
-                      <p>{teamMember.value[2].value}</p>
+                      <span className={this.decorateCSS("team-member-value")}>{teamMember.value[1].value}</span>
+                      <p className={this.decorateCSS("team-member-value-p")}>{teamMember.value[2].value}</p>
                     </div>
                   </div>
                 </div>

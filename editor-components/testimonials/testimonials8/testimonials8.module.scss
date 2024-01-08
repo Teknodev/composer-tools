@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     display: flex;
@@ -10,10 +11,11 @@
     
     .testimonials2 {
       width: 100%;
-      h1 {
+      .title {
         text-align: center;
         font-size: 3rem;
         margin: 0 0 40px 0;
+        color: var(--composer-primary-color);
       }
       section {
         display: flex;
@@ -25,15 +27,18 @@
           padding: 20px;
           min-width: 250px;
           border-radius: 6px;
-          box-shadow: var(--composer-box-shadow);
+          border: 1px;
+          border: var(--composer-testiary-color);
 
-          h5 {
+          .item-time {
             opacity: 0.8;
             font-weight: 200;
             font-size: 1rem;
             margin-bottom: 0;
             margin-left: 0;
             margin-right: 0;
+            color: var(--composer-primary-color);
+
           }
           .profile {
             display: flex;
@@ -48,17 +53,22 @@
               flex-direction: column;
               justify-content: center;
 
-              h2 {
+              .item-name {
                 margin: 0;
+                color: var(--composer-primary-color);
               }
-              p {
+              .item-name-id {
                 margin: 5px 0 !important;
                 text-transform: uppercase;
+                font-size: 14px;
+                color: var(--composer-primary-color);
+
               }
             }
           }
-          span{
-            font-size: 1.1rem;
+          .item-description{
+            font-size: 1.4rem;
+            color: var(--composer-primary-color);
           }
         }
       }
@@ -69,5 +79,6 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    background-color: var(--composer-html-background);
   }
 }

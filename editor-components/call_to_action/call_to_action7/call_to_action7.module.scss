@@ -1,90 +1,101 @@
 .container {
-  width: 100%;
-  padding: 50px;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    .call-to-action7-page {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      width: 100%;
-      .left-child {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
-        margin-right: 100px;
-        h3 {
-          font-weight: 200;
-          font-size: 1.5rem;
-          margin: 0;
-        }
-        h1 {
-          margin: 0;
-          font-size: 1.8rem;
-        }
-      }
-      .card-child {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        border-radius: 6px;
-        padding: 40px 30px;
-        width: 100%;
-        min-height: 300px;
-        margin-right: 20px;
-        box-shadow: var(--composer-box-shadow);
-        h1 {
-          margin: 0;
-        }
-        h3 {
-          font-weight: 300;
-          opacity: 0.8;
-          margin: 0;
-        }
-        span {
-          text-decoration: none;
-          transition: all 0.5s;
-          display: flex;
-          font-size: 1.5rem;
-          margin: 0;
-          img {
-            transition: all 0.5s;
-            padding: 0;
-            margin: 5px 0 0 5px;
-          }
-          &:hover {
-            img {
-              margin-left: 10px;
+    width: 100%;
+    padding: 50px;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .call-to-action7-page {
+            display: block;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+            .left-child {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                margin-right: 100px;
+                .description {
+                    font-weight: 200;
+                    font-size: 1.5rem;
+                    margin: 0;
+                    color: var(--composer-font-color-primary);
+                }
+                .title {
+                    margin: 0;
+                    font-size: 1.8rem;
+                    color: var(--composer-primary-color);
+                }
             }
-          }
+            .card-child {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                border-radius: 6px;
+                padding: 40px 30px;
+                width: 100%;
+                margin-top: 20px;
+                margin-right: 20px;
+                background-color: var(--composer-secondary-color);
+                box-shadow: var(--composer-box-shadow);
+                .image {
+                    margin-bottom: 10px;
+                }
+                .title-2 {
+                    margin: 0;
+                    margin-bottom: 10px;
+                    color: var(--composer-primary-color);
+                }
+                .leftDescription {
+                    font-weight: 300;
+                    opacity: 0.8;
+                    margin: 0;
+                    margin-bottom: 10px;
+                    color: var(--composer-font-color-primary);
+                }
+                a {
+                    color: var(--composer-font-color-secondary);
+                    text-decoration: none;
+                    .left-button-text {
+                        transition: all 0.5s;
+                        display: flex;
+                        font-size: 1.5rem;
+                        margin: 0;
+                        img {
+                            transition: all 0.5s;
+                            padding: 0;
+                            margin: 5px 0 0 5px;
+                        }
+                        &:hover {
+                            img {
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 1300px) {
-  .container {
-    gap: 20px;
-    padding: 50px 20px;
-
-    .max-content {
-      .call-to-action7-page {
-        display: flex;
+    .container {
         gap: 20px;
-        flex-direction: column;
-        text-align: center;
-        margin: 0;
-
-        .card-child {
-          justify-content: center;
-          align-items: center;
-          height: auto;
-          margin: 0 auto 0 auto;
+        padding: 50px 20px;
+        .max-content {
+            .call-to-action7-page {
+                display: flex;
+                gap: 20px;
+                flex-direction: column;
+                text-align: center;
+                margin: 0;
+                .card-child {
+                    justify-content: center;
+                    align-items: center;
+                    height: auto;
+                    margin: 0 auto 0 auto;
+                }
+            }
         }
-      }
     }
-  }
 }

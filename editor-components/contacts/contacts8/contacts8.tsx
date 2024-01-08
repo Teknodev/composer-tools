@@ -9,7 +9,6 @@ type Item = {
 };
 type ISection = {
   section: Item[];
-  
 };
 class Contacts8Page extends BaseContacts {
   constructor(props?: any) {
@@ -24,14 +23,15 @@ class Contacts8Page extends BaseContacts {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form.",
+      value:
+        "You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form.",
     });
     this.addProp({
       type: "color",
       key: "backgroundColor",
       displayer: "Background Color of Form",
       value: "#e0e2e2",
-    })
+    });
     this.addProp({
       type: "string",
       key: "name",
@@ -113,7 +113,7 @@ class Contacts8Page extends BaseContacts {
         },
       ],
     });
-  
+
     this.addProp({
       type: "array",
       key: "card-items",
@@ -169,7 +169,8 @@ class Contacts8Page extends BaseContacts {
                     {
                       type: "image",
                       key: "image",
-                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb37dfba070002b74a624?alt=media&timestamp=1684845438304",
+                      value:
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb37dfba070002b74a624?alt=media&timestamp=1684845438304",
                       displayer: "Image",
                     },
                     {
@@ -243,109 +244,108 @@ class Contacts8Page extends BaseContacts {
 
   render() {
     const styling = {
-      backgroundColor: this.getPropValue("backgroundColor")
-    }
+      backgroundColor: this.getPropValue("backgroundColor"),
+    };
     return (
-      <div
-        className={this.decorateCSS("container")}
-
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-        
           <section>
-           
-              <div className={this.decorateCSS("right")} >
-              <p>{this.getPropValue("subtitle")}</p>
-              
-              <div className={this.decorateCSS("contact-right")}>
-              <Formik
-                initialValues={{ name: "", email: "", message: "" }}
-                validationSchema={this.validationSchema}
-                onSubmit={(data, { resetForm }) => {
-                  this.insertForm("Contact Us", data);
-                  resetForm();
-                }}
-              >
-                {({ handleChange, values }) => (
-                  <Form className={this.decorateCSS("form")} style={styling}>
-                    <h3 style={{marginTop:"50px"}}>{this.getPropValue("name")}</h3>
-                    <input
-                      placeholder={this.getPropValue("name")}
-                      type="text"
-                      name="name"
-                      value={values.name}
-                      onChange={handleChange}
-                      className={this.decorateCSS("input")}
-                    />
-                    <ErrorMessage
-                      className={this.decorateCSS("error-message")}
-                      name="name"
-                      component={"span"}
-                    />
-                    <h3>{this.getPropValue("email")}</h3>
-                    <input
-                      placeholder={this.getPropValue("email")}
-                      type="text"
-                      name="email"
-                      value={values.email}
-                      onChange={handleChange}
-                      className={this.decorateCSS("input")}
-                    />
-                    <ErrorMessage
-                      className={this.decorateCSS("error-message")}
-                      name="email"
-                      component={"span"}
-                    />
-                    <h3>{this.getPropValue("message")}</h3>
-                    <textarea
-                      placeholder={this.getPropValue("message")}
-                      id="text"
-                      name="message"
-                      value={values.message}
-                      onChange={handleChange}
-                      className={this.decorateCSS("input")}
-                      rows={5}
-                    />
-                    <ErrorMessage
-                      className={this.decorateCSS("error-message")}
-                      name="message"
-                      component={"span"}
-                    />
-                    <button
-                      className={this.decorateCSS("submit-button")}
-                      type="submit"
-                    >
-                      {this.getPropValue("button_text")}
-                    </button>
-                  </Form>
-                )}
-              </Formik>
-            </div>
-            </div>
-
-             <div className={this.decorateCSS("left")}>
-              
-                {this.castToObject<ISection[]>("card-items").map(
+            <div className={this.decorateCSS("left")}>
+              {this.castToObject<ISection[]>("card-items").map(
                 (section: any, index: number) => (
                   <div key={index} className={this.decorateCSS("card-child")}>
                     {section.items.map((item: any, index: number) => (
                       <div key={index} className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("img-child")}>
-                          <img className={this.decorateCSS("image")} width={80} height={80} src={item.value[0].value} alt=""/>
+                          <img
+                            className={this.decorateCSS("image")}
+                            width={80}
+                            height={80}
+                            src={item.value[0].value}
+                            alt=""
+                          />
                         </div>
-                        <h2>{item.value[1].value}</h2>
-                        <h4>{item.value[2].value}</h4>
-                        <h4>{item.value[3].value}</h4>
+                        <h2 className={this.decorateCSS("item-value1")}>{item.value[1].value}</h2>
+                        <h4 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h4>
+                        <h4 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h4>
                       </div>
                     ))}
                   </div>
                 )
               )}
-            
+            </div>
+            <div className={this.decorateCSS("right")}>
+              <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
+
+              <div className={this.decorateCSS("contact-right")}>
+                <Formik
+                  initialValues={{ name: "", email: "", message: "" }}
+                  validationSchema={this.validationSchema}
+                  onSubmit={(data, { resetForm }) => {
+                    this.insertForm("Contact Us", data);
+                    resetForm();
+                  }}
+                >
+                  {({ handleChange, values }) => (
+                    <Form className={this.decorateCSS("form")} style={styling}>
+                      <h3 className={this.decorateCSS("name")} 
+                      style={{ marginTop: "50px" }}>
+                        {this.getPropValue("name")}
+                      </h3>
+                      <input
+                        placeholder={this.getPropValue("name")}
+                        type="text"
+                        name="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        className={this.decorateCSS("input")}
+                      />
+                      <ErrorMessage
+                        className={this.decorateCSS("error-message")}
+                        name="name"
+                        component={"span"}
+                      />
+                      <h3 className={this.decorateCSS("email")}>{this.getPropValue("email")}</h3>
+                      <input
+                        placeholder={this.getPropValue("email")}
+                        type="text"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        className={this.decorateCSS("input")}
+                      />
+                      <ErrorMessage
+                        className={this.decorateCSS("error-message")}
+                        name="email"
+                        component={"span"}
+                      />
+                      <h3 className={this.decorateCSS("message")}>{this.getPropValue("message")}</h3>
+                      <textarea
+                        placeholder={this.getPropValue("message")}
+                        id="text"
+                        name="message"
+                        value={values.message}
+                        onChange={handleChange}
+                        className={this.decorateCSS("input")}
+                        rows={5}
+                      />
+                      <ErrorMessage
+                        className={this.decorateCSS("error-message")}
+                        name="message"
+                        component={"span"}
+                      />
+                      <button
+                        className={this.decorateCSS("submit-button")}
+                        type="submit"
+                      >
+                        {this.getPropValue("button_text")}
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
               </div>
-            </section>
-          
-         
+            </div>
+          </section>
         </div>
       </div>
     );

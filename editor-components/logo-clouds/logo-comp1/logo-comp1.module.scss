@@ -1,35 +1,34 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    .logo-comp1-page {
-      display: block;
-      width: 100%;
-      h1 {
-        text-align: center;
-        font-size: 2rem;
-        margin: 0 0 50px 0;
-        text-transform: uppercase;
-      }
-      .image-child {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        .image {
-          padding: 20px;
-          background-color: white;
-          box-shadow: var(--composer-box-shadow);
-          margin-bottom: 20px;
-          border-radius: 6px;
-          object-fit: contain;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .logo-comp1-page {
+            display: block;
+            width: 100%;
+            .title {
+                text-align: center;
+                font-size: 2rem;
+                margin: 0 0 50px 0;
+                text-transform: uppercase;
+                color: var(--composer-primary-color);
+            }
+            .image-child {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                .image {
+                    padding: 20px;
+                    background-color: white;
+                    box-shadow: var(--composer-box-shadow);
+                    margin-bottom: 20px;
+                    border-radius: 6px;
+                    object-fit: contain;
+                }
+            }
         }
-      }
     }
-  }
 }
-

@@ -1,20 +1,18 @@
 .container {
     width: 100%;
     padding: 50px 0;
-
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
-
         .page {
             position: relative;
             width: 100%;
             display: flex;
             flex-direction: column;
             position: relative;
-
             .image-child {
                 overflow: hidden;
+                filter: brightness(0.5);
                 .background-image {
                     filter: blur(2px);
                     width: 100%;
@@ -36,14 +34,12 @@
                 overflow: hidden;
                 cursor: pointer;
                 padding: 0 20px;
-
-                h1 {
+                .unContentTitle {
                     font-size: 2.2rem;
                     color: #fff;
                     opacity: 0;
                     transition: opacity 0.5s;
                 }
-
                 .button-group {
                     width: 100%;
                     display: flex;
@@ -52,24 +48,23 @@
                     gap: 10px;
                     opacity: 0;
                     transition: opacity 0.5s;
-
                     .button {
                         display: inline-block;
                         padding: 10px 10px;
                         color: #fff;
                         font-size: 1.5rem;
-                        background-color: var(--composer-primary-color);
-                        border: 1px solid var(--composer-primary-color);
+                        background-color: var(--composer-secondary-color);
+                        border: 1px solid transparent;
                         border-radius: 6px;
                         cursor: pointer;
                         &:hover {
                             background: transparent;
-                            color: var(--composer-primary-color);
+                            border: 1px solid var(--composer-secondary-color);
+                            color: var(--composer-secondary-color);
                         }
                     }
                 }
             }
-
             .down-content {
                 width: 100%;
                 height: 100%;
@@ -82,37 +77,32 @@
                 transition: height 0.75s;
                 overflow: hidden;
                 padding: 0 20px;
-
-                h1 {
+                .downContentTitle {
                     color: #fff;
                     font-size: 2rem;
                     opacity: 1;
                     transition: opacity 0.5s;
                 }
-                p {
+                .description {
                     color: #fff;
                     font-size: 1.5rem;
                     opacity: 0.8;
                     transition: opacity 0.5s;
                 }
             }
-
             &:hover {
                 .down-content {
                     height: 0;
-
-                    h1 {
+                    .downContentTitle {
                         opacity: 0;
                     }
-                    p {
+                    .description {
                         opacity: 0;
                     }
                 }
-
                 .up-content {
                     height: 100%;
-
-                    h1 {
+                    .downContentTitle {
                         opacity: 1;
                     }
                     .button-group {
@@ -125,7 +115,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .container {  
+    .container {
         .max-content {
             .page {
                 .up-content {
@@ -135,7 +125,6 @@
                         text-align: center;
                     }
                 }
-    
                 .down-content {
                     p {
                         word-break: break-all;

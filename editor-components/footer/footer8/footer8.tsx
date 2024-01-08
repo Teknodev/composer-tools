@@ -240,7 +240,7 @@ class Footer8Page extends BaseFooter {
               {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => (
                 <ul key={indexFooter} className={this.decorateCSS("list-group")}>
                   <li className={this.decorateCSS("title")}>
-                    <h2>{item.footerTitle}</h2>
+                    <h2 className={this.decorateCSS("item-footerTitle")}>{item.footerTitle}</h2>
                   </li>
                   {item.footerText.map((v: FooterTextValues, indexFooterText: number) => (
                     <ComposerLink key={indexFooterText} path={v.path}>

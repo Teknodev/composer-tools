@@ -90,14 +90,14 @@ class Faq extends BaseFAQ {
             {this.castToObject<FAQ[]>("card").map((card: FAQ, indexCard: number) => (
               <div key={indexCard} className={this.decorateCSS("card")}>
                 <div className={this.decorateCSS("in-box")}>
-                  <h2>{card.subtitle}</h2>
+                  <h2 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</h2>
                   <img
                     alt=""
                     src={"https://www.svgrepo.com/show/80156/down-arrow.svg"}
                     className={this.decorateCSS("img-1")}
                   />
                 </div>
-                <p>{card.text}</p>
+                <p className={this.decorateCSS("card-text")}>{card.text}</p>
               </div>
             ))}
           </div>

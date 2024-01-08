@@ -50,7 +50,7 @@ class Notice extends BaseModal {
             <h2 className={this.decorateCSS("first-header")} >
               {this.getPropValue("notice-title")}
             </h2>
-            <span>{this.getPropValue("notice-content")}</span>
+            <span className={this.decorateCSS("notice-content")}>{this.getPropValue("notice-content")}</span>
             <ComposerModalClose>
               <button className={this.decorateCSS("button")} >
                 {this.getPropValue("button-text")}

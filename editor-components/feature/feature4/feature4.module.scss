@@ -1,72 +1,70 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    .content {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-
-      .vertical {
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
         display: flex;
-        flex-direction: column;
-        text-align: center;
-        box-shadow: var(--composer-box-shadow);
-        border-radius: 6px;
-        min-height: 350px;
-        padding: 20px;
-        flex: 1 1;
-        min-width: 250px;
-
-        .image {
-          margin: auto;
-          max-width: 200px;
-          min-width: 100px;
-          border-radius: 6px;
-          object-fit: cover;
+        justify-content: space-around;
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            .vertical {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                box-shadow: var(--composer-box-shadow);
+                border-radius: 6px;
+                min-height: 350px;
+                padding: 20px;
+                flex: 1 1;
+                min-width: 250px;
+                .image {
+                    margin: auto;
+                    max-width: 200px;
+                    min-width: 100px;
+                    border-radius: 6px;
+                    object-fit: cover;
+                }
+                .title {
+                    font-weight: bold;
+                    color: var(--composer-primary-color);
+                }
+                .long-text {
+                    color: var(--composer-font-color-primary);
+                }
+                .button {
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                    transition: 0.3s;
+                    display: block;
+                    color: white;
+                    background-color: var(--composer-secondary-color);
+                    padding: 15px 30px;
+                    border-radius: 6px;
+                    border: 1px solid transparent;
+                    margin-top: 20px;
+                    &:hover {
+                        color: var(--composer-primary-color);
+                        background-color: transparent;
+                        border: 1px solid var(--composer-primary-color);
+                    }
+                }
+            }
         }
-        .title {
-          font-weight: bold;
-        }
-        .long-text {
-          color: rgb(200, 200, 200);
-        }
-        .button {
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          color: white;
-          background-color: var(--composer-primary-color);
-          padding: 15px 30px;
-          border-radius: 6px;
-          border: 1px solid transparent;
-          margin-top: 20px;
-          &:hover {
-            color: var(--composer-primary-color);
-            background-color: transparent;
-            border: 1px solid var(--composer-primary-color);
-          }
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    .max-content{
-      .card-item-count{
-        min-width: 100%;
-      }
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .card-item-count {
+                min-width: 100%;
+            }
+        }
     }
-  }
 }

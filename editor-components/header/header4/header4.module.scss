@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -8,7 +8,6 @@
 
     .header-page {
       border-radius: 6px;
-      box-shadow: var(--composer-box-shadow);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -16,7 +15,7 @@
       align-items: center;
       padding: 40px;
 
-      h3 {
+      .subtitle {
         font-size: 3.5rem;
         text-align: center;
         margin: 0 0 40px 0;
@@ -57,10 +56,10 @@
 
             &:hover {
               background-color: var(--composer-primary-color);
-              h1 {
+              .card-left {
                 color: white;
               }
-              p {
+              .card-value {
                 color: white;
               }
             }
@@ -75,11 +74,11 @@
           }
         }
 
-        h1 {
+        .card-right {
           width: 100%;
           font-size: 1.2rem;
         }
-        p {
+        .card-value2 {
           overflow: hidden;
           white-space: pre-line;
           text-overflow: ellipsis;

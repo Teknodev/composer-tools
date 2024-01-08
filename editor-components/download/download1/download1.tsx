@@ -111,11 +111,11 @@ class DownloadCard1 extends BaseDownload {
               </div>
               <div className={this.decorateCSS("box")}>
                 <p className={this.decorateCSS("text2")}>
-                  <span>✔</span>
+                  <span className={this.decorateCSS("title1")}>✔</span>
                   {this.getPropValue("text2")}
                 </p>
                 <p className={this.decorateCSS("text3")}>
-                  <span>✔</span>
+                  <span className={this.decorateCSS("title1")}>✔</span>
                   {this.getPropValue("text3")}
                 </p>
               </div>

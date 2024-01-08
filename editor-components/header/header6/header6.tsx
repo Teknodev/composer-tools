@@ -159,8 +159,8 @@ class Header6 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <section className={this.decorateCSS("child-container")}>
             <div className={this.decorateCSS("left-content")}>
-              <h2>{this.getPropValue("title")}</h2>
-              <p>{this.getPropValue("description")}</p>
+              <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
               <div className={this.decorateCSS("row")}>
                 {this.getPropValue("item-list").map(
                   (itemData: any, indexItemData: number) => {

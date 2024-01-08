@@ -1,47 +1,48 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .logo-comp4-page {
-      display: block;
-      width: 100%;
-      color: white;
-      h1 {
-        margin: 50px 0;
-        padding-top: 20px;
-        text-align: center;
-        font-size: 3rem;
-        text-transform: uppercase;
-      }
-      h3 {
-        width: 100%;
-        margin: 0;
-        text-align: center;
-        font-weight: 400;
-        margin-bottom: 200px;
-        text-transform: uppercase;
-      }
-      h4 {
-        @extend h3;
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-      }
-      .image-child {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        flex-wrap: wrap;
-        gap: 20px;
-        .image {
-          margin-bottom: 50px;
+    width: 100%;
+    padding: 50px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .logo-comp4-page {
+            display: block;
+            width: 100%;
+            color: white;
+            .title {
+                margin: 50px 0;
+                padding-top: 20px;
+                text-align: center;
+                font-size: 3rem;
+                text-transform: uppercase;
+                color: var(--composer-primary-color);
+            }
+            .description {
+                width: 100%;
+                margin: 0;
+                text-align: center;
+                font-weight: 400;
+                margin-bottom: 200px;
+                text-transform: uppercase;
+                color: var(--composer-font-color-primary);
+            }
+            .subtitle {
+                @extend .description;
+                margin-bottom: 20px;
+                font-size: 1.5rem;
+                color: var(--composer-font-color-primary);
+            }
+            .image-child {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 20px;
+                .image {
+                    margin-bottom: 50px;
+                }
+            }
         }
-      }
     }
-  }
 }

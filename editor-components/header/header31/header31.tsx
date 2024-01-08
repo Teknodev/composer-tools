@@ -144,16 +144,16 @@ class HeaderComponent31 extends BaseHeader {
                 </div>
                 <div className={this.decorateCSS("bottom-content")}>
                   <div className={this.decorateCSS("left-bottom")}>
-                    <h1>{this.getPropValue("left-bottom-top")}</h1>
-                    <h3>{this.getPropValue("left-bottom-bottom")}</h3>
+                    <h1 className={this.decorateCSS("left-bottom-top")}>{this.getPropValue("left-bottom-top")}</h1>
+                    <h3 className={this.decorateCSS("left-bottom-bottom")}>{this.getPropValue("left-bottom-bottom")}</h3>
                   </div>
                   <div className={this.decorateCSS("middle-bottom")}>
-                    <h1>{this.getPropValue("middle-bottom-top")}</h1>
-                    <h3>{this.getPropValue("middle-bottom-bottom")}</h3>
+                    <h1 className={this.decorateCSS("middle-bottom-top")}>{this.getPropValue("middle-bottom-top")}</h1>
+                    <h3 className={this.decorateCSS("middle-bottom-bottom")}>{this.getPropValue("middle-bottom-bottom")}</h3>
                   </div>
                   <div className={this.decorateCSS("right-bottom")}>
-                    <h1>{this.getPropValue("right-bottom-top")}</h1>
-                    <h3>{this.getPropValue("right-bottom-bottom")}</h3>
+                    <h1 className={this.decorateCSS("right-bottom-top")}>{this.getPropValue("right-bottom-top")}</h1>
+                    <h3 className={this.decorateCSS("right-bottom-bottom")}>{this.getPropValue("right-bottom-bottom")}</h3>
                   </div>
                 </div>
               </div>

@@ -13,19 +13,18 @@
       width: 60%;
       font-weight: 200;
       line-height: 1.4;
-    }
-    h2 {
       font-size: 2rem;
       padding: 20px 0;
     }
-    h3 {
+
+    .heading-h3 {
       margin: 0 auto 20px auto;
       text-align: center;
       color: rgb(180, 180, 180);
       width: 400px;
       padding: 20px 0;
     }
-    h1 {
+    .heading-h1 {
       margin: 0 auto 10px auto;
       text-align: center;
       width: 60%;
@@ -62,10 +61,10 @@
     .heading-page {
       text-align: center;
       margin: 0;
-      h3 {
+      .heading-h3 {
         width: 100%;
       }
-      h1 {
+      .heading-h1 {
         width: 100%;
       }
     }

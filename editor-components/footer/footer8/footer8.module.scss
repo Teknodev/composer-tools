@@ -1,72 +1,65 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .logo {
-      flex: 1;
-    }
-    .footer-page {
-      flex: 3;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      padding: 20px;
-
-      .items {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-
-        .list-group {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: flex-start;
-          flex: 1 1;
-          min-width: 250px;
-
-          .title {
-            color: black;
-            h2 {
-              font-weight: 200;
-              font-size: 1.8rem;
-            }
-          }
-          .text {
-            text-decoration: none;
-            color: black;
-            font-size: 1.2rem;
-            font-weight: 100;
-            font-family: system-ui;
-          }
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .logo {
+            flex: 1;
         }
-      }
+        .footer-page {
+            flex: 3;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 20px;
+            .items {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                .list-group {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex: 1 1;
+                    min-width: 250px;
+                    .title {
+                        color: var(--composer-primary-color);
+                        .item-footerTitle {
+                            font-weight: 200;
+                            font-size: 1.8rem;
+                        }
+                    }
+                    .text {
+                        text-decoration: none;
+                        color: var(--composer-font-color-primary);
+                        font-size: 1.2rem;
+                        font-weight: 100;
+                        font-family: system-ui;
+                    }
+                }
+            }
+        }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .logo {
-      display: flex;
-      justify-content: center;
+    .container {
+        padding: 50px 20px;
+        .logo {
+            display: flex;
+            justify-content: center;
+        }
+        .items {
+            .list-group {
+                align-items: center !important;
+            }
+        }
     }
-
-    .items {
-      .list-group {
-        align-items: center !important;
-      }
-    }
-  }
 }

@@ -1,117 +1,120 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  
-  .max-content {
-    padding: 20px;
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    .contacts{
-      display: flex;
-      .contact-left-left{
-        border-radius: var(--composer-border-radius);
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        padding: 20px;
+        max-width: var(--composer-content-width);
+        margin: auto;
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        width: 500px;
-        box-shadow: var(--composer-box-shadow);
-        padding: 30px;
-        h1 {
-          text-align: left;
-          font-size: 2rem;
-          margin: 0;
-        }
-        p {
-          text-align: left;
-          font-weight: 200;
-          font-size: 1.3rem;
-          margin: 0;
-        }
-        .contact-left {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          .image {
-            width: 250px;
-            height: 100%;
-          }
-        }
-      }
-      
-   
-        
-        .contact-right {
-          display: block;
-          background-color: var(--composer-primary-color);
-          padding: 40px;
-          border-radius: var(--composer-border-radius);
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          .contact-info {
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        .contacts {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-            color: white;
-            h3 {
-              font-size: 1.5rem;
-              font-weight: 600;
-              margin-bottom: 10px;
+            .contact-left-left {
+                border-radius: var(--composer-border-radius);
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 500px;
+                box-shadow: var(--composer-box-shadow);
+                padding: 30px;
+                .title {
+                    text-align: left;
+                    font-size: 2rem;
+                    color: var(--composer-primary-color);
+                    margin: 0;
+                }
+                .description {
+                    text-align: left;
+                    font-weight: 200;
+                    font-size: 1.3rem;
+                    color: var(--composer-font-color-primary);
+                    margin: 0;
+                }
+                .contact-left {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .image {
+                        width: 250px;
+                        height: 100%;
+                    }
+                }
             }
-            h2 {
-              font-size: 1.5rem;
-              font-weight: 500;
-              margin: 0;
+            .contact-right {
+                display: block;
+                background-color: var(--composer-primary-color);
+                padding: 40px;
+                border-radius: var(--composer-border-radius);
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                .contact-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    color: white;
+                    .data-title {
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                    }
+                    .data-text1 {
+                        font-size: 1.5rem;
+                        font-weight: 500;
+                        margin: 0;
+                    }
+                    .data-text2 {
+                        font-size: 1.5rem;
+                        font-weight: 500;
+                        margin: 0;
+                    }
+                }
             }
-          }
         }
-      }
     }
-    
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    .max-content {
-      .contacts {
-        margin: 0;
-        width: 350px;
-        .contact-left-left{
-          width: 300px;
-          h1{
-            font-size: 1.3rem;
-          }
-          p{
-            font-size: 0.9rem;
-          }
-          .contact-left{
-            .image{
-              width: 130px;
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .contacts {
+                margin: 0;
+                width: 350px;
+                .contact-left-left {
+                    width: 300px;
+                    .title {
+                        font-size: 1.3rem;
+                    }
+                    p {
+                        font-size: 0.9rem;
+                    }
+                    .contact-left {
+                        .image {
+                            width: 130px;
+                        }
+                    }
+                }
+                .contact-right {
+                    padding: 20px;
+                    .contact-info {
+                        width: 100px;
+                        .data-title {
+                            font-size: .9rem;
+                        }
+                        .data-text1 {
+                            font-size: .8rem;
+                        }
+                        .data-text2 {
+                            font-size: .8rem;
+                        }
+                    }
+                }
             }
-          }
-
         }
-        .contact-right{
-          padding: 20px;
-          .contact-info{
-            width: 100px;
-            h3{
-              font-size: .9rem;
-            }
-            h2{
-              font-size: .8rem;
-            }
-          }
-          
-        }
-      }
     }
-  }
 }

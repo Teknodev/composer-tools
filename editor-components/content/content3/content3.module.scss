@@ -1,125 +1,125 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    .content{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    .wrapper {
-      width: 90%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      &.wrapper-reverse {
-        flex-flow: row-reverse;
-      }
-
-      .image-background {
-        .image {
-          max-height: 450px;
-        }
-      }
-      .header-page {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        h3 {
-          font-size: 2rem;
-          font-weight: 100;
-          text-transform: uppercase;
-          margin: 0;
-        }
-        .first-header {
-          font-size: 1.2rem;
-          margin: 0;
-        }
-        .second-header {
-          font-size: 4rem;
-          font-weight: revert;
-          margin: 0;
-        }
-        .third-header {
-          margin: 0;
-          font-size: 2.4rem;
-          font-weight: 100;
-          margin: 0;
-        }
-        .fourht-header {
-          margin: 0;
-          font-size: 3.5rem;
-        }
-        h1 {
-          text-transform: uppercase;
-          font-weight: revert;
-          font-size: 4rem;
-          margin: 0;
-        }
-        p {
-          margin: 0;
-          font-size: 1.6rem;
-          font-weight: 100;
-          text-align: justify;
-        }
-        .button-wrapper {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          margin-top: 10px;
-          .button {
-            cursor: pointer;
-            text-align: center;
-            transition: 0.3s;
-            color: white;
-            background-color: var(--composer-primary-color);
-            padding: 11px 30px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            width: 150px;
-            &:hover {
-              color: var(--composer-primary-color);
-              background-color: transparent;
-              border: 1px solid var(--composer-primary-color);
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .wrapper {
+                width: 90%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                &.wrapper-reverse {
+                    flex-flow: row-reverse;
+                }
+                .image-background {
+                    .image {
+                        max-height: 450px;
+                    }
+                }
+                .header-page {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    h3 {
+                        font-size: 2rem;
+                        font-weight: 100;
+                        text-transform: uppercase;
+                        margin: 0;
+                    }
+                    .first-header {
+                        font-size: 1.2rem;
+                        margin: 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .second-header {
+                        font-size: 4rem;
+                        font-weight: revert;
+                        margin: 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .third-header {
+                        margin: 0;
+                        font-size: 2.4rem;
+                        font-weight: 100;
+                        margin: 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .fourht-header {
+                        margin: 0;
+                        font-size: 3.5rem;
+                    }
+                    h1 {
+                        text-transform: uppercase;
+                        font-weight: revert;
+                        font-size: 4rem;
+                        margin: 0;
+                    }
+                    .content {
+                        margin: 0;
+                        font-size: 1.6rem;
+                        font-weight: 100;
+                        text-align: justify;
+                        color: var(--composer-font-color-primary);
+                    }
+                    .button-wrapper {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        margin-top: 10px;
+                        .button {
+                            cursor: pointer;
+                            text-align: center;
+                            transition: 0.3s;
+                            color: white;
+                            background-color: var(--composer-secondary-color);
+                            padding: 11px 30px;
+                            border-radius: 6px;
+                            border: 1px solid transparent;
+                            width: 150px;
+                            &:hover {
+                                color: var(--composer-secondary-color);
+                                background-color: transparent;
+                                border: 1px solid var(--composer-secondary-color);
+                            }
+                        }
+                    }
+                    .image-background {
+                        min-width: 400px;
+                        width: 50%;
+                        .image {
+                            width: 100%;
+                        }
+                    }
+                }
             }
-          }
         }
-        .image-background {
-          min-width: 400px;
-          width: 50%;
-          .image {
-            width: 100%;
-          }
-        }
-      }
     }
-  }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .wrapper {
-      flex-direction: column-reverse !important;
-      gap: 60px !important;
-
-      .header-page {
-        p {
-          font-size: 1.2rem !important;
+    .container {
+        padding: 50px 20px;
+        .wrapper {
+            flex-direction: column-reverse !important;
+            gap: 60px !important;
+            .header-page {
+                .content {
+                    font-size: 1.2rem !important;
+                }
+                .second-header {
+                    font-size: 2.5rem !important;
+                }
+                .third-header {
+                    font-size: 2rem !important;
+                }
+            }
         }
-        .second-header {
-          font-size: 2.5rem !important;
-        }
-        .third-header {
-          font-size: 2rem !important;
-        }
-      }
     }
-  }
 }

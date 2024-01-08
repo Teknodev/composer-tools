@@ -1,104 +1,136 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    
-    .content {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-
-      .message {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        
-        h1 {
-          font-size: 2.3em;
-          margin: 0;
+    width: 100%;
+    height: auto;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .content {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            .message {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                .text {
+                    max-width: 600px;
+                    text-align: center;
+                    font-size: 2.3em;
+                    margin: 0;
+                    color: var(--composer-primary-color);
+                }
+                .text-p {
+                    font-size: 1.2em;
+                    max-width: 900px;
+                    color: var(--composer-font-color-primary);
+                }
+                .button {
+                    cursor: pointer;
+                    text-decoration: none;
+                    width: 200px;
+                    text-align: center;
+                    transition: 0.3s;
+                    display: block;
+                    color: white;
+                    background-color: var(--composer-secondary-color);
+                    padding: 15px 30px;
+                    border-radius: 6px;
+                    border: 1px solid transparent;
+                    &:hover {
+                        color: var(--composer-primary-color);
+                        background-color: transparent;
+                        border: 1px solid var(--composer-primary-color);
+                    }
+                }
+            }
+            .cards {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                padding: 10px 50px;
+                flex: 1;
+                .multiple {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    height: max-content;
+                    justify-content: center;
+                    flex: 1 1;
+                    padding: 20px;
+                    min-width: 250px;
+                    min-height: 350px;
+                    border: 1px solid var(--composer-tertiary-color);
+                    border-radius: 6px;
+                    .image {
+                        margin: auto;
+                        max-width: 200px;
+                        min-width: 100px;
+                        border-radius: 6px;
+                        object-fit: cover;
+                    }
+                    .title {
+                        font-weight: bold;
+                        color: var(--composer-primary-color);
+                    }
+                    .long-text {
+                        margin: 0;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
         }
-        p {
-          font-size: 1.2em;
-          margin: 20px 0;
-        }
-        .button {
-          cursor: pointer;
-          text-decoration: none;
-          width: 200px;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          color: white;
-          background-color: var(--composer-primary-color);
-          padding: 15px 30px;
-          border-radius: 6px;
-          border: 1px solid transparent;
-          &:hover {
-            color: var(--composer-primary-color);
-            background-color: transparent;
-            border: 1px solid var(--composer-primary-color);
-          }
-        }
-      }
-
-      .cards {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        flex: 1;
-
-        .multiple {
-          display: flex;
-          flex-direction: column;
-          text-align: center;
-          height: max-content;
-          flex: 1 1;
-          padding: 20px;
-          min-width: 250px;
-          min-height: 350px;
-          box-shadow: var(--composer-box-shadow);
-          border-radius: 6px;
-          
-          .image {
-            margin: auto;
-            max-width: 200px;
-            min-width: 100px;
-            border-radius: 6px;
-            object-fit: cover;
-          }
-          
-          .title {
-            font-weight: bold;
-            color: var(--composer-primary-color);
-          }
-
-          .long-text {
-            margin: 0;
-            color: rgb(200, 200, 200);
-          }
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .content {
-      flex-direction: column;
-      gap: 50px !important;
-      .message{
-        align-items: center;
-        text-align: center;
-      }
+    .container {
+        .max-content {
+            .content {
+                .message {
+                    .text-p {
+                        padding: 0 6.9vh;
+                    }
+                }
+                .cards {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    .multiple {
+                        width: 50%;
+                    }
+                }
+            }
+        }
     }
-  }
+}
+
+@media only screen and (max-width: 550px) {
+    .container {
+        .max-content {
+            .content {
+                .message {
+                    .text {
+                        font-size: 20px;
+                        padding: 0 6.9vh;
+                    }
+                }
+                .cards {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    .multiple {
+                        width: 50%;
+                    }
+                }
+            }
+        }
+    }
 }

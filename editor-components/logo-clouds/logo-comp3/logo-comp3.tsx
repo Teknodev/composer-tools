@@ -113,8 +113,8 @@ class LogoComp3Page extends LogoClouds {
                 )}
               </center>
             </section>
-            <h1>{this.getPropValue("title")}</h1>
-            <h3>{this.getPropValue("description")}</h3>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
           </div>
         </div>
       </div>

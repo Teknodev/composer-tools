@@ -281,7 +281,7 @@ class HeaderComponent21 extends BaseHeader {
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("top")}>
                 <div className={this.decorateCSS("title")}>
-                  <h1>{items[0].title}</h1>
+                  <h1 className={this.decorateCSS("items")}>{items[0].title}</h1>
                 </div>
                 <div className={this.decorateCSS("button-and-input")}>
                   <input

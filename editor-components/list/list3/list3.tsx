@@ -150,7 +150,7 @@ class List3 extends BaseList {
               <div style={{
                 width: 90 / this.getPropValue("itemCount") + "%",
                 minWidth: "200px",
-              }}>
+              }} className={this.decorateCSS("card")}>
                 <div className={this.decorateCSS("icon-list")} key={indexIconMain}>
                   <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
                   <hr />
@@ -159,7 +159,7 @@ class List3 extends BaseList {
                       return (
                         <li key={indexListGroup} className={this.decorateCSS("list-item")}>
                           <img src={icon.value[1].value} alt="icon" />
-                          <h4>{icon.value[0].value}</h4>
+                          <h4 className={this.decorateCSS("item-value")}>{icon.value[0].value}</h4>
                         </li>
                       );
                     })}

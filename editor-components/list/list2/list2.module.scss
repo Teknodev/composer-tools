@@ -8,6 +8,7 @@ $cardColor: #1e1e1e;
   padding: 50px 0;
   display: flex;
   justify-content: space-around;
+  background-color: var(--composer-color-background);
   
   .max-content {
     max-width: var(--composer-content-width);
@@ -26,12 +27,12 @@ $cardColor: #1e1e1e;
 
     li {
       display: flex;
-      color: white;
+      color: var(--composer-font-color-secondary);
       margin-top: 1rem;
       counter-increment: cardCount;
       &::before {
         content: counter(cardCount, decimal-leading-zero);
-        background: rgb(158, 149, 149);
+        background: var(--composer-tertiary-color);
         font-size: 2em;
         font-weight: 700;
         transform: translateY(-1rem);
@@ -85,10 +86,12 @@ $cardColor: #1e1e1e;
         .title {
           grid-area: title;
           font-size: 1.25em;
+          color: var(--composer-font-color-secondary);
         }
 
         .text {
           grid-area: text;
+          color: var(--composer-font-color-secondary);
         }
       }
     }

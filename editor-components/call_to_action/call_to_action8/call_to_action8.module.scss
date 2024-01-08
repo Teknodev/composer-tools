@@ -1,76 +1,100 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    .call-to-action8-page {
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-      width: 100%;
-      padding: 0 100px;
-      .top-child {
-        border-bottom: 1px solid rgb(211, 211, 211);
-        h1 {
-          font-size: 4rem;
-          margin: 0 0 60px 0;
-        }
-      }
-      .bottom-child {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 40px;
-        .card {
-          display: flex;
-          padding: 15px 20px;
-          flex: 1 1;
-          flex-direction: column;
-          .button {
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            transition: 0.3s;
-            display: inline-block;
-            color: white;
-            background-color: var(--composer-primary-color);
-            padding: 15px 30px;
-            font-size: 1.5rem;
-            font-weight: 400;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            width: 250px;
-            margin-top: 15px;
-            &:hover {
-              background-color: transparent;
-              color: var(--composer-primary-color);
-              border: 1px solid var(--composer-primary-color);
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .call-to-action8-page {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            width: 100%;
+            padding: 0 100px;
+            .top-child {
+                border-bottom: 1px solid var(--composer-tertiary-color);
+                .title {
+                    font-size: 4rem;
+                    margin: 0 0 60px 0;
+                    color: var(--composer-primary-color);
+                }
             }
-          }
-          h3 {
-            font-size: 2.5rem;
-            margin: 10px 0;
-
-          }
-          p {
-            font-size: 1.3rem;
-            margin: 10px 0;
-            margin-bottom: auto;
-          }
+            .bottom-child {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 40px;
+                .card {
+                    display: flex;
+                    padding: 15px 20px;
+                    flex: 1 1;
+                    flex-direction: column;
+                    .button {
+                        cursor: pointer;
+                        text-decoration: none;
+                        text-align: center;
+                        transition: 0.3s;
+                        display: inline-block;
+                        color: white;
+                        background-color: var(--composer-secondary-color);
+                        padding: 15px 30px;
+                        font-size: 1.5rem;
+                        font-weight: 400;
+                        border-radius: 6px;
+                        border: 1px solid transparent;
+                        width: 250px;
+                        margin-top: 15px;
+                        &:hover {
+                            background-color: transparent;
+                            color: var(--composer-secondary-color);
+                            border: 1px solid var(--composer-secondary-color);
+                        }
+                    }
+                    .leftCardTitle {
+                        font-size: 2.5rem;
+                        margin: 10px 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .centerCardTitle {
+                        font-size: 2.5rem;
+                        margin: 10px 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .rightCardTitle {
+                        font-size: 2.5rem;
+                        margin: 10px 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .left-card-description {
+                        font-size: 1.3rem;
+                        margin: 10px 0;
+                        margin-bottom: auto;
+                        color: var(--composer-font-color-primary);
+                    }
+                    .center-card-description {
+                        font-size: 1.3rem;
+                        margin: 10px 0;
+                        margin-bottom: auto;
+                        color: var(--composer-font-color-primary);
+                    }
+                    .right-card-description {
+                        font-size: 1.3rem;
+                        margin: 10px 0;
+                        margin-bottom: auto;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    .max-content {
-      .call-to-action8-page {
-        padding: 0 20px;
-        text-align: center;
-        margin: 0;
-      }
+    .container {
+        .max-content {
+            .call-to-action8-page {
+                padding: 0 20px;
+                text-align: center;
+                margin: 0;
+            }
+        }
     }
-  }
 }

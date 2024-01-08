@@ -81,7 +81,7 @@ class Download7 extends BaseDownload {
                             <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="" />
                         </div>
                         <div className={this.decorateCSS("up-content")}>
-                            <h1>{this.getPropValue("upContentTitle")}</h1>
+                            <h1 className={this.decorateCSS("unContentTitle")}>{this.getPropValue("upContentTitle")}</h1>
                             <div className={this.decorateCSS("button-group")}>
                                 {this.castToObject<Button[]>("buttons").map((button: Button , index: number) => {
                                     return (
@@ -93,8 +93,8 @@ class Download7 extends BaseDownload {
                             </div>
                         </div>
                         <div className={this.decorateCSS("down-content")}>
-                            <h1>{this.getPropValue("downContentTitle")}</h1>
-                            <p>{this.getPropValue("description")}</p>
+                            <h1 className={this.decorateCSS("downContentTitle")}>{this.getPropValue("downContentTitle")}</h1>
+                            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
                         </div>
                     </div>
                 </div>

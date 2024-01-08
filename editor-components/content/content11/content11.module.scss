@@ -1,123 +1,127 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  @mixin flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    .header {
-      text-align: initial;
-      display: flex;
-      text-align: center;
-      flex-direction: column;
-      gap: 15px;
-      font-size: 1.6rem;
-      padding: 0 20px;
-
-      span {
-        font-weight: 800;
-        color: #333333;
-      }
-      h2 {
-        color: var(--composer-primary-color);
-        font-size: 4.2rem;
-        margin: 0 0 20px 0;
-      }
-      h3 {
-        color: var(--composer-primary-color);
-        font-size: 2.3rem;
-        margin: 35px 0 5px 0;
-      }
+    width: 100%;
+    padding: 50px 0;
+    @mixin flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .card-child {
-      @include flex-center;
-      gap: 20px;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      .card {
-        background-color: transparent;
-        position: relative;
-        border-radius: 6px;
-        padding: 30px;
-        width: 100%;
-        min-height: 400px;
-        height: 100%;
-        flex: 1 1;
-        @include flex-center;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        display: flex;
         flex-direction: column;
-        box-shadow: var(--composer-box-shadow);
-        &:hover {
-          border:1px solid var(--composer-secondary-color);
-
+        gap: 20px;
+        .header {
+            text-align: initial;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 1.6rem;
+            padding: 0 20px;
+            .title {
+                font-weight: 800;
+                color: var(--composer-font-color-primary);
+            }
+            .subtitle {
+                color: var(--composer-primary-color);
+                font-size: 4.2rem;
+                margin: 0 0 20px 0;
+            }
+            .subtitle2 {
+                color: var(--composer-primary-color);
+                font-size: 2.3rem;
+                margin: 35px 0 5px 0;
+            }
+            .subtitle2-description {
+                color: var(--composer-font-color-primary)
+            }
         }
-        i {
-          width: 100px;
-          height: 100px;
-          @include flex-center;
-          background-color: transparent;
-          box-shadow: var(--composer-box-shadow);
-          border-radius: 50%;
-          
-          img {
-            width: 50px;
-            height: 50px;
-          }
+        .card-child {
+            @include flex-center;
+            gap: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            .card {
+                background-color: transparent;
+                position: relative;
+                border: 1px solid var(--composer-tertiary-color);
+                border-radius: 6px;
+                padding: 30px;
+                width: 100%;
+                min-height: 400px;
+                height: 100%;
+                flex: 1 1;
+                @include flex-center;
+                flex-direction: column;
+                box-shadow: var(--composer-box-shadow);
+                &:hover {
+                    border: 1px solid var(--composer-secondary-color);
+                }
+                i {
+                    width: 100px;
+                    height: 100px;
+                    @include flex-center;
+                    background-color: white;
+                    box-shadow: var(--composer-box-shadow);
+                    border-radius: 50%;
+                    border: 1px solid var(--composer-tertiary-color);
+                    img {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+                .card-title {
+                    font-size: 2rem;
+                    margin: 20px 0;
+                    font-weight: 900;
+                    color: var(--composer-primary-color);
+                }
+                .card-description {
+                    font-size: 1.3rem;
+                    color: var(--composer-font-color-primary);
+                    margin: 0;
+                    font-weight: 400;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    white-space: normal;
+                    text-align: center;
+                }
+                .size-p {
+                    margin-top: 10px;
+                    color: var(--composer-font-color-primary);
+                }
+            }
         }
-
-        h5 {
-          font-size: 2rem;
-          margin: 20px 0;
-          font-weight: 900;
-        }
-        p {
-          font-size: 1.3rem;
-          color: #000000d8;
-          margin: 0;
-          font-weight: 400;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          white-space: normal;
-          text-align: center;
-        }
-        .size-p {
-          margin-top: 10px;
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    .max-content {
-      .header {
-        width: 100%;
-        text-align: center;
-        h2 {
-          font-size: 3rem;
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .header {
+                width: 100%;
+                text-align: center;
+                .subtitle {
+                    font-size: 3rem;
+                }
+                .subtitle {
+                    font-size: 2.2rem;
+                }
+                .title {
+                    font-size: 1.2rem;
+                }
+            }
         }
-        h3 {
-          font-size: 2.2rem;
+        .card-child {
+            flex-direction: column;
+            .card {
+                width: 200px !important;
+                right: 7.8vh;
+            }
         }
-        span {
-          font-size: 1.2rem;
-        }
-      }
     }
-    .card-child {
-      flex-direction: column;
-    }
-  }
 }

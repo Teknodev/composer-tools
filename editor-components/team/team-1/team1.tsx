@@ -306,8 +306,8 @@ class Team1 extends Team {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-page")}>
             <div className={this.decorateCSS("text-group")}>
-              <h1>{this.getPropValue("title1")}</h1>
-              <p>{this.getPropValue("title2")}</p>
+              <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
+              <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
             </div>
           </div>
           <div className={this.decorateCSS("down-page")}>
@@ -323,10 +323,10 @@ class Team1 extends Team {
                   <div className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("top")}>
                       <img className={this.decorateCSS("image")} src={card.image} alt=""/>
-                      <h2>{card.name}</h2>
+                      <h2 className={this.decorateCSS("card-name")}>{card.name}</h2>
                       <p className={this.decorateCSS("position")}>{card.position}</p>
                     </div>
-                    <p>{card.description}</p>
+                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
                     <div className={this.decorateCSS("icon-group")}>
                       {card.platforms.map((item: any, indexPlatforms: number) => {
                         return (

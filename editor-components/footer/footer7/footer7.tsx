@@ -29,7 +29,7 @@ class Footer7Page extends BaseFooter {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-            <h2>{this.getPropValue("footer")[0].value}</h2>
+            <h2 className={this.decorateCSS("footer")}>{this.getPropValue("footer")[0].value}</h2>
           </div>
         </div>
       </div>

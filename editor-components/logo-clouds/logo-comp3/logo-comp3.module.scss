@@ -1,38 +1,40 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    .logo-comp3-page {
-      display: block;
-      width: 100%;
-      h1 {
-        margin: 30px 0;
-        text-align: center;
-        font-size: 3rem;
-        text-transform: uppercase;
-      }
-      h3 {
-        width: 100%;
-        margin: 0;
-        text-align: center;
-        text-transform: uppercase;
-      }
-      .image-child {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        gap: 20px;
-        justify-content: center;
-        flex-wrap: wrap;
-        .image {
-          background-color: white;
-          box-shadow: var(--composer-box-shadow);
-          border-radius: 6px;
-          object-fit: contain;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .logo-comp3-page {
+            display: block;
+            width: 100%;
+            .title {
+                margin: 30px 0;
+                text-align: center;
+                font-size: 3rem;
+                text-transform: uppercase;
+                color: var(--composer-primary-color);
+            }
+            .description {
+                width: 100%;
+                margin: 0;
+                text-align: center;
+                text-transform: uppercase;
+                color: var(--composer-font-color-primary);
+            }
+            .image-child {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                gap: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+                .image {
+                    background-color: white;
+                    box-shadow: var(--composer-box-shadow);
+                    border-radius: 6px;
+                    object-fit: contain;
+                }
+            }
         }
-      }
     }
-  }
 }

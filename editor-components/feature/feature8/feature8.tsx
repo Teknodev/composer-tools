@@ -136,7 +136,7 @@ class Feature8 extends BaseFeature {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <h1>{this.getPropValue("card-title")}</h1>
+            <h1 className={this.decorateCSS("card-title")}>{this.getPropValue("card-title")}</h1>
 
             <div className={this.decorateCSS("card")}>
               {this.castToObject<Features[]>("features-card").map(

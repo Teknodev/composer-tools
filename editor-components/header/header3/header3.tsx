@@ -56,8 +56,8 @@ class Header3 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("header-page")}>
-              <h3>{this.getPropValue("header")[0].value}</h3>
-              <h1>{this.getPropValue("header")[1].value}</h1>
+              <h3 className={this.decorateCSS("header-h3")}>{this.getPropValue("header")[0].value}</h3>
+              <h1 className={this.decorateCSS("header-h1")}>{this.getPropValue("header")[1].value}</h1>
               <ComposerLink path={this.getPropValue("header")[4].value}>
                 <span className={this.decorateCSS("button")}>
                   {this.getPropValue("header")[2].value}

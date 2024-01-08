@@ -1,155 +1,148 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .basic-page {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-
-      &.basic-page-reverse {
-        flex-flow: row-reverse;
-
-        .image {
-          transform: scalex(-1);
-        }
-      }
-
-      .page-1 {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 20px;
-        &.page-1-border {
-          border-right: unset;
-        }
-        .box {
-          text-overflow: ellipsis;
-          display: flex;
-          gap: 30px;
-          width: 50%;
-          .button {
-            cursor: pointer;
-            transition: 0.3s;
+    width: 100%;
+    padding: 50px 0;
+    padding-left: 50px;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .basic-page {
+            width: 100%;
             display: flex;
-            align-items: center;
-            text-align: center;
-            background-color: var(--composer-primary-color);
-            padding: 10px 10px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            min-width: 200px;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            text-align: center;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            color: #fff;
-            gap: 7px;
-            .button-logo {
-              width: 27px;
-              height: 27px;
+            justify-content: center;
+            gap: 20px;
+            &.basic-page-reverse {
+                flex-flow: row-reverse;
+                .image {
+                    transform: scalex(-1);
+                }
             }
-            &.button-color {
-              background-color: var(--composer-secondary-color);
-              border: 1px solid var(--composer-secondary-color);
+            .page-1 {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                &.page-1-border {
+                    border-right: unset;
+                }
+                .box {
+                    text-overflow: ellipsis;
+                    display: flex;
+                    gap: 30px;
+                    width: 50%;
+                    .button {
+                        cursor: pointer;
+                        transition: 0.3s;
+                        display: flex;
+                        align-items: center;
+                        text-align: center;
+                        background-color: var(--composer-secondary-color);
+                        padding: 10px 10px;
+                        border-radius: 6px;
+                        border: 1px solid transparent;
+                        min-width: 200px;
+                        margin-bottom: 20px;
+                        font-size: 1.3rem;
+                        text-align: center;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        color: #fff;
+                        gap: 7px;
+                        .button-logo {
+                            width: 27px;
+                            height: 27px;
+                        }
+                        &.button-color {
+                            background-color: var(--composer-secondary-color);
+                            border: 1px solid var(--composer-secondary-color);
+                        }
+                    }
+                }
             }
-          }
+            .page-2 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .image {
+                    width: 100%;
+                    border-radius: 6px;
+                    object-fit: contain;
+                }
+            }
+            .text1 {
+                font-size: 1.5rem;
+                margin: unset;
+                color: var(--composer-font-color-primary);
+            }
+            .title1 {
+                font-size: 5rem;
+                margin: unset;
+                color: var(--composer-primary-color);
+            }
         }
-      }
-      .page-2 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .image {
-          width: 100%;
-          border-radius: 6px;
-          object-fit: contain;
-        }
-      }
-      p {
-        font-size: 1.5rem;
-        margin: unset;
-      }
-      h1 {
-        font-size: 5rem;
-        margin: unset;
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    .max-content {
-      .basic-page {
-        flex-direction: column !important;
-        padding: 0;
-
-        &.basic-page-reverse {
-          flex-flow: unset;
-        }
-
-        .page-1 {
-          width: 100%;
-          border-right: unset;
-          border-bottom: unset;
-          flex-direction: column;
-          margin: 0;
-          padding: 0;
-          .box {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin: 0;
-            margin-left: unset;
-            gap: 20px;
-            .button {
-              padding: 5px 10px;
-              min-width: 150px;
-              margin-bottom: unset;
-              font-size: 0.9rem;
-              gap: 5px;
-
-              .button-logo{
-                width: 20px;
-                height: 20px;
-              }
+    .container {
+        .max-content {
+            .basic-page {
+                flex-direction: column !important;
+                padding: 0;
+                &.basic-page-reverse {
+                    flex-flow: unset;
+                }
+                .page-1 {
+                    width: 100%;
+                    border-right: unset;
+                    border-bottom: unset;
+                    flex-direction: column;
+                    margin: 0;
+                    padding: 0;
+                    .box {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        margin: 0;
+                        margin-left: unset;
+                        gap: 20px;
+                        .button {
+                            padding: 5px 10px;
+                            min-width: 150px;
+                            margin-bottom: unset;
+                            font-size: 0.9rem;
+                            gap: 5px;
+                            .button-logo {
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+                .page-2 {
+                    width: 100%;
+                    max-width: unset;
+                    min-width: unset;
+                    display: flex;
+                    justify-content: center;
+                    .image {
+                        width: 50%;
+                        background-size: cover;
+                    }
+                }
+                .text1 {
+                    font-size: 1.5rem;
+                    padding: 20px;
+                }
+                .title1 {
+                    font-size: 2rem;
+                    padding: 20px;
+                }
             }
-          }
         }
-        .page-2 {
-          width: 100%;
-          max-width: unset;
-          min-width: unset;
-          display: flex;
-          justify-content: center;
-          .image {
-            width: 50%;
-            background-size: cover;
-          }
-        }
-
-        p {
-          font-size: 1.5rem;
-          padding: 20px;
-        }
-
-        h1 {
-          font-size: 2rem;
-          padding: 20px;
-        }
-      }
     }
-  }
 }

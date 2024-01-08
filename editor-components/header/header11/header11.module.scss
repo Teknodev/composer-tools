@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -21,12 +21,12 @@
         width: 30%;
         gap: 20px;
 
-        h2 {
+        .description {
           margin: 30px 0 10px 0;
           font-size: 1.6rem;
           opacity: 0.7;
         }
-        h1 {
+        .title {
           color: var(--composer-primary-color);
           margin: 0;
           font-size: 4rem;
@@ -72,11 +72,11 @@
             width: 40px;
             height: 40px;
           }
-          h5 {
+          .card-title {
             font-size: 2rem;
             margin: 0;
           }
-          p {
+          .card-description {
             font-size: 1.2rem;
             margin: 0;
           }

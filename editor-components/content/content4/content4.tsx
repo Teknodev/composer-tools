@@ -399,8 +399,8 @@ class Content4 extends BaseContent {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("h-group")}>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <h2>{this.getPropValue("subtitleSmall")}</h2>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <h2 className={this.decorateCSS("subtitleSmall")}>{this.getPropValue("subtitleSmall")}</h2>
             </div>
 
             {this.castToObject<Horizontals[]>("horizontal").map(

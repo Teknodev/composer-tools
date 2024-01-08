@@ -232,8 +232,8 @@ class Team4 extends Team {
                     alt={teamMember.name}
                   />
                   <div className={this.decorateCSS("name-and-position")}>
-                    <span>{teamMember.name}</span>
-                    <p>{teamMember.position}</p>
+                    <span className={this.decorateCSS("team-member-name")}>{teamMember.name}</span>
+                    <p className={this.decorateCSS("team-member-position")}>{teamMember.position}</p>
                   </div>
 
                   <div className={this.decorateCSS("social-media-list")}>

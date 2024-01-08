@@ -45,8 +45,8 @@ class Header8 extends BaseHeader {
           <h2 className={this.decorateCSS("heading-colored")}>
             {this.getPropValue("heading")[0].value}
           </h2>
-          <h1>{this.getPropValue("heading")[1].value}</h1>
-          <h3>{this.getPropValue("heading")[2].value}</h3>
+          <h1 className={this.decorateCSS("heading-h1")}>{this.getPropValue("heading")[1].value}</h1>
+          <h3 className={this.decorateCSS("heading-h3")}>{this.getPropValue("heading")[2].value}</h3>
         </div>
       </div>
     );

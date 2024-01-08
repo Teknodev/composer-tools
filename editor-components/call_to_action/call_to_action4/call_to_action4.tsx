@@ -60,8 +60,8 @@ class CallToAction4Page extends BaseCallToAction {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action4-page")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h2>{this.getPropValue("description")}</h2>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
             <div className={this.decorateCSS("buttons")}>
               <ComposerLink path={this.getPropValue("firstButtonLink")}>
                 <span

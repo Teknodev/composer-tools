@@ -25,6 +25,7 @@
         padding: 10px;
         justify-content: center;
         gap: 40px;
+        margin-left: 50px;
         .up {
           display: flex;
           flex-direction: column;
@@ -33,6 +34,11 @@
           .title {
             font-weight: bold;
             font-size: 7em;
+          }
+          @media screen and (max-width: 1100px){
+            .title{
+              font-size: 5em;
+            }
           }
           .description {
             font-size: 1.5em;
@@ -114,6 +120,7 @@
       .wrapper{
         .first {
           width: 55%;
+          
           .up {
             gap: 40px;
             .title {
@@ -164,7 +171,7 @@
         }
         .image {
           height: 470px;
-          width: 100%;
+          width: 90%;
           margin-left: 7% ;
         }
       }
@@ -192,6 +199,7 @@
         .first {
           width: 100%;
           padding: 18px;
+          margin-left: 0;
           .up {
             gap: 15px;
             .title {

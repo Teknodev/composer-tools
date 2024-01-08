@@ -124,8 +124,8 @@ class Content10 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            <h2>{this.getPropValue("title")}</h2>
-            <p>{this.getPropValue("description")}</p>
+            <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
+            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             <ComposerLink path={this.getPropValue("buttonprop")[1].value}>
               <button>{this.getPropValue("buttonprop")[0].value}</button>
             </ComposerLink>
@@ -142,8 +142,8 @@ class Content10 extends BaseContent {
                     <i>
                       <img src={card.image} alt=""/>
                     </i>
-                    <h5>{card.title}</h5>
-                    <p>{card.description}</p>
+                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
+                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
                   </div>
                 )
               )}

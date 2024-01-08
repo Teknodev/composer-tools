@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     padding: 20px;
@@ -27,21 +28,27 @@
           .stars {
             display: flex;
             gap: 5px;
+            color: var(--composer-secondary-color);
             img {
               width: 15px;
               height: 15px;
             }
+            .star{
+              color: var(--composer-primary-color);
+            }
           }
 
-          span {
+          .item-value1 {
             font-weight: 500;
             font-size: 2rem;
             margin: 20px 0;
+            color: var(--composer-font-color-primary);
           }
-          h5 {
+          .item-value2 {
             font-weight: 200;
             font-size: 1rem;
             margin: 0;
+            color: var(--composer-font-color-primary);
           }
         }
       }
@@ -52,6 +59,7 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    background-color: var(--composer-html-background);
     .max-content {
       .testimonials3 {
         .card-child {

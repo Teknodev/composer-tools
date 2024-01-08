@@ -94,9 +94,9 @@ class LogoComp4Page extends LogoClouds {
       >
         <div className={this.decorateCSS("max-content")} style={styling}>
           <div className={this.decorateCSS("logo-comp4-page")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h3>{this.getPropValue("description")}</h3>
-            <h4>{this.getPropValue("subtitle")}</h4>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
+            <h4 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h4>
             <section>
               <center>
                 {this.castToObject<ISection[]>("image-items").map(

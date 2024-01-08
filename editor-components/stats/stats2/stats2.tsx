@@ -189,7 +189,7 @@ class Stats2Page extends BaseStats {
                       <img src={cardData.image} alt="" />
                     </div>
                     <div className={this.decorateCSS("stats-texts")}>
-                      <h4>{cardData.title}</h4>
+                      <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
                       <div className={this.decorateCSS("counts")}>
                         <p className={this.decorateCSS("count")}>{cardData.description}</p>
                         <p className={`${cardData.isIncrease ? this.decorateCSS("increase") : this.decorateCSS("decrease")} ${this.decorateCSS("percent")}`}>{cardData.isIncrease ? "↑" : "↓"} {cardData.increaseValue}</p>
@@ -198,7 +198,7 @@ class Stats2Page extends BaseStats {
                   </div>
                   <div className={this.decorateCSS("bottoms")}>
                     <ComposerLink path={cardData.buttonLink}>
-                      <p>{cardData.buttonText}</p>
+                      <p className={this.decorateCSS("card-button-text")}>{cardData.buttonText}</p>
                     </ComposerLink>
                   </div>
                 </div>
