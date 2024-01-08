@@ -117,18 +117,20 @@ class Slider6 extends BaseSlider {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-            {this.castToObject<Card[]>("slider").map(
-              (item: Card, index: number) => (
-                <img
-                  alt=""
-                  src={item.image}
-                  className={this.decorateCSS("img")}
-                  key={index}
-                />
-              )
-            )}
-          </ComposerSlider>
+          <div className={this.decorateCSS("slider-parent")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+              {this.castToObject<Card[]>("slider").map(
+                (item: Card, index: number) => (
+                  <img
+                    alt=""
+                    src={item.image}
+                    className={this.decorateCSS("img")}
+                    key={index}
+                  />
+                )
+              )}
+            </ComposerSlider>
+          </div>
         </div>
       </div>
     );
