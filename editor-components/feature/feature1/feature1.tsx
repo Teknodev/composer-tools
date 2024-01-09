@@ -105,6 +105,15 @@ class Feature1 extends BaseFeature {
       displayer: "Item count in a row",
       value: 3,
     });
+    this.addProp({
+      type: "select",
+      key: "iconShape",
+      displayer: "selectedShape",
+      value: "Circle",
+      additionalParams: {
+        selectItems: ["Circle","Square"],
+      } 
+    });
   }
 
   getName(): string {
@@ -112,6 +121,8 @@ class Feature1 extends BaseFeature {
   }
 
   render() {
+    const iconShape = this.getPropValue("iconShape");
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -124,18 +135,18 @@ class Feature1 extends BaseFeature {
                 }}
                 key={index}
               >
-                <div className={this.decorateCSS("circle-boxes")}>
-                  <div className={this.decorateCSS("image-background")}>
-                    <img
-                      className={this.decorateCSS("image")}
-                      src={circlebox.image}
-                    />
+                  <div className={this.decorateCSS(iconShape.toLowerCase())}>
+                    <div className={this.decorateCSS("image-background")}>
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={circlebox.image}
+                      />
+                    </div>
+                    <h3 className={this.decorateCSS("title")}>{circlebox.title}</h3>
+                    <p className={this.decorateCSS("long-text")}>
+                      {circlebox.description}
+                    </p>
                   </div>
-                  <h3 className={this.decorateCSS("title")}>{circlebox.title}</h3>
-                  <p className={this.decorateCSS("long-text")}>
-                    {circlebox.description}
-                  </p>
-                </div>
               </div>
             )
           )}
@@ -143,7 +154,7 @@ class Feature1 extends BaseFeature {
       </div>
     );
   }
-  
+
 }
 
 export default Feature1;
