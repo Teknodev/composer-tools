@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { EventEmitter } from "../../../EventEmitter";
 
 class Navbar1 extends BaseNavigator {
   constructor(props?: any) {
@@ -146,14 +147,16 @@ class Navbar1 extends BaseNavigator {
   getName(): string {
     return "Navbar 1";
   }
+
   navClick() {
-    let value: boolean = this.state.componentProps["navActive"];
-    this.state.componentProps["navActive"] = !value;
+    let value: boolean = this.getComponentState("navActive");
+    this.setComponentState("navActive", !value);
   }
+
   render() {
     const selectValue = this.getPropValue("select");
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
         <nav>
             <img src={this.getPropValue("image")} width={200} alt=""/>
@@ -193,14 +196,11 @@ class Navbar1 extends BaseNavigator {
                 className={this.decorateCSS("img-hamburger")}
                 src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
                 onClick={() => {
-                  console.log("NAV CLICK")
-                  console.log(this.state["componentProps"]["navActive"])
-
                   this.navClick();
                 }}
               />
             </div>
-            {this.state.componentProps["navActive"] && (
+            {this.getComponentState("navActive") && (
             <div className={this.decorateCSS("navbar-child")}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
