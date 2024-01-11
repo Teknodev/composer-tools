@@ -1,50 +1,68 @@
 .container {
     width: 100%;
+
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
+
         nav {
             display: flex;
             height: 66px;
             align-items: center;
             width: 100%;
             justify-content: space-between;
-            padding: 50px 50px;
+            padding: 50px 20px;
+            //background-color: var(--composer-html-backgrounds);
+
+            .icon {
+                height: 30px;
+                margin-left: 20px;
+            }
+
             .title {
                 font-size: 35px;
                 font-weight: bold;
+                color: var(--composer-primary-color);
             }
+
             .items {
                 display: flex;
                 gap: 40px;
+
                 &.middle {
                     width: 100%;
                     justify-content: center;
                     margin-right: 150px;
+
                     h3 {
                         font-size: 20px;
                         font-weight: 200;
                         width: 100px;
                     }
                 }
+
                 &.right {
                     width: 70%;
                     justify-content: flex-end;
                 }
+
                 h3 {
                     cursor: pointer;
                     transition: all 0.5s;
                     font-weight: 200;
                     font-size: 16px;
+
                     &:hover {
                         opacity: 0.6;
                     }
                 }
             }
+
             .button-child {
                 display: flex;
                 align-items: center;
                 gap: 15px;
+
                 button {
                     cursor: pointer;
                     transition: all 0.5s;
@@ -58,6 +76,7 @@
                     margin-top: 8px;
                     padding: 0 20px;
                     min-height: 40px;
+
                     &:hover {
                         background: transparent;
                         color: var(--composer-primary-color);
@@ -65,21 +84,25 @@
                 }
             }
         }
+
         .navigator-mobile {
             display: none;
             visibility: hidden;
         }
+
         .topnav {
             overflow: hidden;
             background-color: white;
         }
+
         .bottom-line {
             border-bottom: 1px solid #5c5d5fd7;
         }
+
         .topnav button {
             float: left;
             display: block;
-            color: black;
+            color: var(--composer-font-color-primary);
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
@@ -87,57 +110,111 @@
             border: none;
             background-color: transparent;
             cursor: pointer;
+
         }
+
         .topnav button:hover {
-            border-bottom: 3px solid var(--composer-primary-color);
+            border-bottom: 3px solid var(--composer-tertiary-color);
         }
+
         .topnav button.active {
             border-bottom: 3px solid var(--composer-primary-color);
         }
     }
+
     .container-sticky {
         @extend .container;
         position: fixed;
         top: 0;
         z-index: 10;
     }
-    @media only screen and (max-width: 1400px) {
-        .max-content {
-            max-width: 100%;
-            nav {
-                padding: 50px 20px;
-            }
-        }
-    }
-    @media only screen and (max-width: 1100px) {
-        .max-content {
-            max-width: 100%;
-            nav {
-                display: flex;
-                text-align: center;
-                .items {
-                    width: max-content;
-                    margin: 0 auto;
-                    flex-direction: column;
-                }
-            }
-        }
-    }
+
+    // @media only screen and (max-width: 1100px) {
+    //     .max-content {
+    //         max-width: 100%;
+
+    //         nav {
+    //             display: flex;
+    //             text-align: center;
+
+    //             .items {
+    //                 width: max-content;
+    //                 margin: 0 auto;
+    //                 flex-direction: column;
+    //             }
+    //         }
+    //     }
+    // }
+
     @media only screen and (max-width: 870px) {
         .max-content {
+
             .disable {
                 display: none;
                 visibility: hidden;
             }
+
             .navigator-mobile {
                 display: block;
                 visibility: visible;
+
                 .navbar {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     height: 100%;
                     padding: 0 20px 0 5px;
+
+                    .icon {
+                        height: 30px;
+                        margin-left: 20px;
+                    }
+
+                    .title {
+                        color: var(--composer-primary-color);
+                        font-size: 30px;
+                        font-weight: bold;
+                    }
+
+                    .img-hamburger {
+                        pointer-events: all;
+                        cursor: pointer;
+                        transition: 0.4s;
+                        font-weight: 100;
+                        font-size: 30px;
+                        width: 25px;
+                        height: 25px;
+                        margin-left: 20px;
+                        transform: rotate(0);
+
+                        &.rotate{
+                            transform: rotate(90deg);
+                        }
+                    }
+                  
+                }
+
+                .navbar-hidden {
+                    display: block;
+                    visibility: visible;
+                }
+
+                .navbar-child {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.5s;
+                    height: 200px;
+                    width: 100%;
+                    margin-top: 40px;
+                    background-color: var(--composer-secondary-color);
+                    color: var(--composer-font-color-secondary);
+                    position: absolute;
+                    z-index: 200;
+                    position: absolute;
+                    top: 60px;
+                    left: 0;
                 }
             }
         }
