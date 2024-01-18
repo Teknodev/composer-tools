@@ -14,6 +14,7 @@ type Card = {
 //CLASS
 class Testimonials13Page extends Testimonials {
 
+
     //constructor
     constructor(props?: any) {
         super(props, styles);
@@ -248,7 +249,10 @@ class Testimonials13Page extends Testimonials {
             slidesToScroll: 1,
         };
 
-        // const {containerBottomCount} = this.getPropValue("rightBottomBox").length;
+        // const rightBottomBox = this.getPropValue("rightBottomBox");
+        // if (rightBottomBox && Array.isArray(rightBottomBox)) {
+        //      var containerBottomCount = rightBottomBox.length;
+        // }
 
         //RETURN
         return (
@@ -296,20 +300,21 @@ class Testimonials13Page extends Testimonials {
                                 />
                             </div>
                             <div
+                                id="flex_Item3"
                                 className={this.decorateCSS("flexItem3")}
-                                // style={{height : `calc(${containerBottomCount*200}px)`}}
+                                // style={{height:`${containerBottomCount % 2 !== 0 || containerBottomCount!==2 ?  + "auto!important" : ""}`}}
                             >
                                 <div className={this.decorateCSS("item_title_text")}>{this.getPropValue("boxHeader")}</div>
 
                                 <div className={this.decorateCSS("container4")}>
                                     {/* Map for box elements */}
                                     {this.getPropValue("rightBottomBox").map((item: any, index: number) => (
+
                                         <div
                                             key={index}
                                             className={this.decorateCSS("containerBottom")}
-                                            style={{flexBasis: 90 / this.getPropValue("itemCount") + "%"}}
                                         >
-                                            {/* {if({index} > 3 )} */}
+
                                             <div className={this.decorateCSS("topWriting")}>{item.value[0].value}</div>
                                             <div className={this.decorateCSS("MiddleWriting")}>{item.value[1].value}</div>
                                             <div className={this.decorateCSS("bottomWriting")}>{item.value[2].value}</div>
