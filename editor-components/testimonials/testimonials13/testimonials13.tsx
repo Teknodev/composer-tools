@@ -152,58 +152,81 @@ class Testimonials13Page extends Testimonials {
         });
         //Carousel Prop End
 
+        this.addProp({
+            type: "string",
+            key: "boxHeader",
+            displayer: "BoxTitle",
+            value: "We Provide the best service for Clients",
+        })
+
         // RightBottomBox Prop Start
         this.addProp({
             type: "array",
             key: "rightBottomBox",
-            displayer: "Set Box :",
+            displayer: "Box :",
             value: [
                 {
-                    type: "string",
-                    key: "boxHeader",
-                    displayer: "Box Title",
-                    value: "We Provide the best service for Clients",
+                    type: "object",
+                    key: "object",
+                    displayer: "Object Box",
+                    value: [
+                        {
+                            type: "string",
+                            key: "leftTop",
+                            displayer: "Top Writing",
+                            value: "People",
+                        },
+                        {
+                            type: "string",
+                            key: "leftMiddle",
+                            displayer: "Middle Writing",
+                            value: "100+",
+                        },
+                        {
+                            type: "string",
+                            key: "leftBottom",
+                            displayer: "Bottom Writing",
+                            value: "Adipiscing elit, sed do.",
+                        },
+                    ]
                 },
                 {
-                    type: "string",
-                    key: "leftTop",
-                    displayer: "Left Top Writing",
-                    value: "People",
-                },
-                {
-                    type: "string",
-                    key: "leftMiddle",
-                    displayer: "Left Middle Writing",
-                    value: "100+",
-                },
-                {
-                    type: "string",
-                    key: "leftBottom",
-                    displayer: "Left Bottom Writing",
-                    value: "Adipiscing elit, sed do.",
-                },
-                {
-                    type: "string",
-                    key: "rightTop",
-                    displayer: "Right Top Writing",
-                    value: "Offices",
-                },
-                {
-                    type: "string",
-                    key: "rightMiddle",
-                    displayer: "Right Middle Writing",
-                    value: "12",
-                },
-                {
-                    type: "string",
-                    key: "rightBottom",
-                    displayer: "Right Bottom Writing",
-                    value: "Sed do eiusmod tempor.",
+                    type: "object",
+                    key: "object",
+                    displayer: "Object Box",
+                    value: [
+                        {
+                            type: "string",
+                            key: "rightTop",
+                            displayer: "Top Writing",
+                            value: "Offices",
+                        },
+                        {
+                            type: "string",
+                            key: "rightMiddle",
+                            displayer: "Middle Writing",
+                            value: "12",
+                        },
+                        {
+                            type: "string",
+                            key: "rightBottom",
+                            displayer: "Bottom Writing",
+                            value: "Sed do eiusmod tempor.",
+                        },
+                    ]
+
                 },
             ],
-
-        })
+        });
         // RightBottomBox Prop End
+
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row For Right Bottom Box :",
+            value: 2,
+            max: 3,
+        });
 
     }//constructor end
 
@@ -224,6 +247,8 @@ class Testimonials13Page extends Testimonials {
             slidesToShow: 1,
             slidesToScroll: 1,
         };
+
+        // const {containerBottomCount} = this.getPropValue("rightBottomBox").length;
 
         //RETURN
         return (
@@ -272,16 +297,24 @@ class Testimonials13Page extends Testimonials {
                             </div>
                             <div
                                 className={this.decorateCSS("flexItem3")}
+                                // style={{height : `calc(${containerBottomCount*200}px)`}}
                             >
-                                <div className={this.decorateCSS("item_title_text")}>{this.getPropValue("rightBottomBox")[0].value}</div>
+                                <div className={this.decorateCSS("item_title_text")}>{this.getPropValue("boxHeader")}</div>
 
                                 <div className={this.decorateCSS("container4")}>
-                                    <div className={this.decorateCSS("item_title_people")}>{this.getPropValue("rightBottomBox")[1].value}</div>
-                                    <div className={this.decorateCSS("item_title_offices")}>{this.getPropValue("rightBottomBox")[4].value}</div>
-                                    <div className={this.decorateCSS("item_title_total")}>{this.getPropValue("rightBottomBox")[2].value}</div>
-                                    <div className={this.decorateCSS("item_title_number")}>{this.getPropValue("rightBottomBox")[5].value}</div>
-                                    <div className={this.decorateCSS("box-in-text-left")}>{this.getPropValue("rightBottomBox")[3].value}</div>
-                                    <div className={this.decorateCSS("box-in-text-right")}>{this.getPropValue("rightBottomBox")[6].value}</div>
+                                    {/* Map for box elements */}
+                                    {this.getPropValue("rightBottomBox").map((item: any, index: number) => (
+                                        <div
+                                            key={index}
+                                            className={this.decorateCSS("containerBottom")}
+                                            style={{flexBasis: 90 / this.getPropValue("itemCount") + "%"}}
+                                        >
+                                            {/* {if({index} > 3 )} */}
+                                            <div className={this.decorateCSS("topWriting")}>{item.value[0].value}</div>
+                                            <div className={this.decorateCSS("MiddleWriting")}>{item.value[1].value}</div>
+                                            <div className={this.decorateCSS("bottomWriting")}>{item.value[2].value}</div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>

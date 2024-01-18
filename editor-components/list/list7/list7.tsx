@@ -28,12 +28,12 @@ class List7 extends BaseList {
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
             {
-                type: "string",
-                key: "item-title",
-                displayer: "Item Title",
-                value:
-                  "Contagious Energy",
-              },
+              type: "string",
+              key: "item-title",
+              displayer: "Item Title",
+              value:
+                "Contagious Energy",
+            },
           ],
         },
         {
@@ -49,12 +49,12 @@ class List7 extends BaseList {
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
             {
-                type: "string",
-                key: "item-title",
-                displayer: "Item Title",
-                value:
-                  "Contagious Energy",
-              },
+              type: "string",
+              key: "item-title",
+              displayer: "Item Title",
+              value:
+                "Contagious Energy",
+            },
           ],
         },
         {
@@ -101,11 +101,11 @@ class List7 extends BaseList {
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}
               >
-              <div className={this.decorateCSS("item-content")}>
-                <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
-                <h4 className={this.decorateCSS("item-value1")}>{listItem.value[1].value}</h4>
-                <p className={this.decorateCSS("list-item-p")}>{listItem.value[0].value}</p>
-              </div>
+                <div className={this.decorateCSS("item-content")}>
+                  <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
+                  <h4 className={this.decorateCSS("item-value1")}>{listItem.value[1].value}</h4>
+                  <p className={this.decorateCSS("list-item-p")}>{listItem.value[0].value}</p>
+                </div>
               </div>
             )
           )}
