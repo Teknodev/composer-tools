@@ -160,7 +160,7 @@ class Navbar1 extends BaseNavigator {
         <div className={this.decorateCSS("max-content")}>
         <nav>
             <img src={this.getPropValue("image")} width={200} alt=""/>
-            <div className={`${this.decorateCSS("items")} ${selectValue === "Left" ? this.decorateCSS("left") : selectValue === "Right" ? this.decorateCSS("right") : selectValue === "Center" && ""}`}>              {this.castToObject<[]>("itemList").map(
+            <div className={`${this.decorateCSS("items")} ${selectValue === "Left" ? this.decorateCSS("left") : selectValue === "Right" ? this.decorateCSS("right") : selectValue === "Center" && ""}`}>{this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
                   return (
                     <ComposerLink
