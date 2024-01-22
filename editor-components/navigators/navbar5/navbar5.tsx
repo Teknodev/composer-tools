@@ -286,7 +286,7 @@ class Navbar5 extends BaseNavigator {
             }
           )}
           <img
-            className={this.decorateCSS("img-hamburger")}
+            className={`${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive") ? this.decorateCSS("rotate") : ""}`}
             src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
             alt=""
             onClick={() => {

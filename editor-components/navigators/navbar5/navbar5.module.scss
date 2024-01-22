@@ -148,7 +148,6 @@
                         height: 150px;
                     }
                 }
-
             }
 
             .containerRight {
@@ -214,6 +213,10 @@
                 width: 25px;
                 height: 25px;
                 margin-right: 159px;
+
+                &.rotate {
+                    transform: rotate(90deg);
+                }
             }
 
             .navbar-child {
