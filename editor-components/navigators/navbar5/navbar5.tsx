@@ -53,7 +53,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
@@ -73,7 +73,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
@@ -93,7 +93,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
@@ -117,7 +117,7 @@ class Navbar5 extends BaseNavigator {
           type: "page",
           key: "url",
           displayer: "Button Link",
-          value: "https://www.google.com/",
+          value: "",
         },
         {
           type: "boolean",
@@ -155,7 +155,7 @@ class Navbar5 extends BaseNavigator {
               type: "page",
               key: "url",
               displayer: "Url",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -174,7 +174,7 @@ class Navbar5 extends BaseNavigator {
               type: "page",
               key: "url",
               displayer: "Url",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -193,7 +193,7 @@ class Navbar5 extends BaseNavigator {
               type: "page",
               key: "url",
               displayer: "Url",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -212,12 +212,19 @@ class Navbar5 extends BaseNavigator {
               type: "page",
               key: "url",
               displayer: "Url",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
       ],
     });
+
+    this.state["componentProps"]["navActive"] = true;
+  } // constructor end
+
+  navClick() {
+    let value: boolean = this.getComponentState("navActive");
+    this.setComponentState("navActive", !value);
   }
 
   render(): ReactNode {
@@ -244,14 +251,18 @@ class Navbar5 extends BaseNavigator {
               />
             </div>
 
+
+          </div>
+
+
+          <div className={this.decorateCSS("containerRight")}>
             {this.castToObject<Button[]>("buttons").map(
               (item: Button, indexButtons: number) => {
                 return (
                   <ComposerLink key={indexButtons} path={item.url}>
                     <button
-                      className={`${this.decorateCSS("button")} ${
-                        item.isPrimary ? this.decorateCSS("primary") : ""
-                      }`}
+                      className={`${this.decorateCSS("button")} ${item.isPrimary ? this.decorateCSS("primary") : ""
+                        }`}
                     >
                       {item.buttonText}
                     </button>
@@ -260,21 +271,44 @@ class Navbar5 extends BaseNavigator {
               }
             )}
           </div>
-          
-          <div className={this.decorateCSS("bottom-line")}></div>
 
-          <div className={this.decorateCSS("secondline-content")}>
+        </div>
+
+        <div className={this.decorateCSS("secondline-content")}>
           {this.castToObject<[]>("itemList").map(
             (data: any, indexItemList: number) => {
               return (
                 <ComposerLink key={indexItemList} path={data.value[1].value}>
+                  
                   <span className={this.decorateCSS("data-value")}>{data.value[0].value}</span>
                 </ComposerLink>
               );
             }
           )}
-          </div>
+          <img
+            className={this.decorateCSS("img-hamburger")}
+            src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
+            alt=""
+            onClick={() => {
+              this.navClick();
+            }}
+          />
+          {this.getComponentState("navActive") && (
+            <div className={this.decorateCSS("navbar-child")}>
+              {this.castToObject<[]>("itemList").map((item: any, index: number) => {
+                return (
+                  <ComposerLink
+                    key={index}
+                    path={item.value[1].value}
+                    >
+                      <h3 key={index}>{item.value[0].value}</h3>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
         </div>
+
       </div>
     );
   }

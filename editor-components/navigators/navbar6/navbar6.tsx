@@ -29,7 +29,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
@@ -48,7 +48,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
@@ -67,7 +67,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
@@ -101,7 +101,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
@@ -120,7 +120,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
@@ -139,16 +139,29 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "link",
-              value: "https://www.google.com/",
+              value: "",
               displayer: "Navigate To",
             },
           ],
         },
       ],
     });
+    this.state["componentProps"]["navActive"] = true;
+  }//constructor end
+
+  navClick() {
+    let value: boolean = this.getComponentState("navActive");
+    this.setComponentState("navActive", !value);
   }
 
   render() {
+
+    const leftItems = this.getPropValue("left-items");
+    const rightItems = this.getPropValue("right-items");
+
+    //Combining left and right items (arrays)
+    const combinedItems = [...leftItems, ...rightItems]
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -178,6 +191,26 @@ class Navbar6 extends BaseNavigator {
                 );
               })}
             </div>
+            <img
+              className={`${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive") ? this.decorateCSS("rotate") : ""}`}
+              src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
+              alt=""
+              onClick={() => {
+                this.navClick();
+              }}
+            />
+            {this.getComponentState("navActive") && (
+              <div className={this.decorateCSS("navbar-child")}>
+                {combinedItems.map((item: any, index: number) => (
+                  <ComposerLink
+                    key={index}
+                    path={item.value[1].value}
+                  >
+                    <h3 key={index}>{item.value[0].value}</h3>
+                  </ComposerLink>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
