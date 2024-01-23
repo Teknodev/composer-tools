@@ -1,126 +1,273 @@
 .container {
     width: 100%;
-    min-height: 136px;
+    min-height: 110px;
     position: relative;
+
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
+
         .content {
             width: 100%;
-            padding: 30px 0;
+            padding: 25px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
 
             .content-left {
                 display: flex;
-                width: 18%;
+                width: 65%;
                 gap: 30px;
                 font-size: 18px;
-                margin-left: 300px;
-                
+                margin-left: 200px;
+                margin-right: 25px;
+                color: var(--composer-font-color-primary);
+
+                div:hover {
+                    opacity: 0.7;
+                }
+
                 a {
                     text-decoration: none;
-                    color: #666;
+                    color: var(--composer-font-color-primary);
                 }
+
                 span {
                     cursor: pointer;
-                    color: var(--composer-primary-color-secondary);
                     font-weight: 900;
                 }
             }
 
+            .img-hamburger {
+                display: none;
+                visibility: hidden;
+                pointer-events: all;
+                cursor: pointer;
+                transition: 0.4s;
+                font-weight: 100;
+                font-size: 30px;
+                width: 25px;
+                height: 25px;
+            }
+
+            .navbar-child {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s;
+                // height: 200px;       // => dropdown içeriğinin css özellikleri
+                width: 100%;
+                margin-top: 40px;
+                position: absolute;
+                z-index: 200;
+                display: none;
+                visibility: hidden;
+                top: 26px;
+            }
+
             .middle {
                 text-align: center;
-                width: 10%;
+                width: 15%;
                 font-size: 18px;
                 margin-left: 50px;
+
                 .image {
-                    width: 35%;
-                    height: 35%;
-                    color: var(--composer-font-color-primary)
+                    width: 100%;
+                    color: var(--composer-font-color-primary);
                 }
             }
-            .middle-3{
+
+            .middle-3 {
                 font-weight: 100;
                 display: flex;
                 align-items: center;
-                width: 15%;
+                width: 22%;
                 font-size: 9px;
-                color: #666;
+                color: var(--composer-font-color-primary);
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.7;
+                }
             }
 
-            .svg-container{
+            .svg-container {
                 margin-right: 10px;
             }
-                   
-            .middle-2{
+
+            .middle-2 {
                 display: flex;
                 align-items: center;
-                width: 33%;
+                width: 20%;
                 font-size: 9px;
-                color: #666;
+                color: var(--composer-font-color-primary);
+                justify-content: center;
+
+                .center-text {
+                    font-size: 20px;
+                }
             }
 
-            .svg-container{
+            .svg-container {
                 margin-right: 10px;
             }
 
             .content-right {
                 display: flex;
                 align-items: flex-end;
-                width: 33%; /* Genişlik 100% olarak değiştirildi */
+                width: 33%;
+                /* Genişlik 100% olarak değiştirildi */
                 gap: 30px;
                 margin-left: 100px;
-              
-                .svg-container {
-                  display: flex;
-                  gap: 5px;
-                  color: var(--composer-secondary-color);              
-                  /* Eklenen satır: SVG'leri yatayda hizalamak için flex özelliği */
-                  justify-content: flex-start;
-                  svg {
-                    color: var(--composer-tertiary-color);
-                    margin-left: 15px;
-                    transition: 0.4s;
-                
-                    &:hover {
-                      color: var(--composer-font-color-primary);
-                    }
-                    .second-svg {
-                        color: var(--your-color); /* Renk örneği */
-                        margin-left: 10px;
-                        margin-bottom: 15px; /* Margin örneği */
-                      }
-                    
-                      .second-svg:hover {
-                        color: var(--your-hover-color); /* Hover renk örneği */
-                      }
-                  }
-                }
-              
 
-              
-                /* İkinci SVG'ye özgü stil kuralları buraya eklenir (örneğin, sınıf adı .second-svg) */
-                
-              }
-              
-    }
-        @media screen and (max-width: 800px) {
-            .content {
-                .content-left {
-                    font-size: 15px;
+                .svg-container2 {
+                    display: flex;
+                    gap: 5px;
+                    color: var(--composer-secondary-color);
+                    /* Eklenen satır: SVG'leri yatayda hizalamak için flex özelliği */
+                    justify-content: flex-start;
+                    width: 90%;
+
+                    svg {
+                        margin-left: 15px;
+                        transition: 0.4s;
+                        color: var(--composer-secondary-color);
+                        cursor: pointer;
+
+                        &:hover {
+                            color: var(--composer-font-color-primary);
+                        }
+
+                        .second-svg {
+                            color: var(--your-color);
+                            /* Renk örneği */
+                            margin-left: 10px;
+                            margin-bottom: 15px;
+                            /* Margin örneği */
+                        }
+
+                        .second-svg:hover {
+                            color: var(--your-hover-color);
+                            /* Hover renk örneği */
+                        }
+                    }
                 }
+
+                /* İkinci SVG'ye özgü stil kuralları buraya eklenir (örneğin, sınıf adı .second-svg) */
+
+            }
+        }
+    }
+}
+
+// For Ipad 
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+        min-height: 110px;
+        position: relative;
+
+        .max-content {
+            max-width: var(--composer-content-width);
+            margin: auto;
+
+            .content {
+
+                .content-left {
+                    font-size: 17.5px;
+                    margin-left: 0;
+                    display: none;
+                    visibility: hidden;
+                }
+
+                .img-hamburger {
+                    display: block;
+                    visibility: visible;
+                    pointer-events: all;
+                    cursor: pointer;
+                    transition: 0.4s;
+                    font-weight: 100;
+                    font-size: 30px;
+                    width: 25px;
+                    height: 25px;
+                    order: 10;
+                    margin-right: 15px;
+
+                    &.rotate {
+                        transform: rotate(90deg);
+                    }
+                }
+
+                .middle-3 {
+                    display: none;
+                    visibility: hidden;
+                }
+
+                .middle-2 {
+                    width: 25%;
+                    margin-right: 92px;
+                    display: none;
+                    visibility: hidden;
+
+                    .center-text {
+                        font-size: 19px;
+                    }
+                }
+
+                .content-right {
+                    display: none;
+                    visibility: hidden;
+                }
+
+                .navbar-child {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.5s;
+                    // height: 200px;       // => dropdown içeriğinin css özellikleri
+                    width: 100%;
+                    margin-top: 40px;
+                    z-index: 200;
+                    visibility: visible;
+                    top: 70px;
+                    background-color: var(--composer-secondary-color);
+                    color: var(--composer-font-color-secondary);
+
+                    .svgDropdownContainer {
+                        display: flex;
+                        gap: 0 10px;
+                        align-items: center;
+                    }
+                }
+
                 .middle {
                     font-size: 12px;
                 }
             }
         }
-        @media (max-width: 620px) {
+    }
+} // For Ipad end
+
+// For Mobile
+@media only screen and (max-width: 400px) {
+
+    .container {
+        width: 100%;
+        // min-height: 136px;
+        position: relative;
+
+        .max-content {
+            max-width: var(--composer-content-width);
+            margin: auto;
+
             .content {
                 padding: 10px 10px;
                 margin: 0 auto;
+                flex-wrap: wrap;
+                height: 120px;
+
                 .content-left {
                     text-align: center;
                     font-size: 12px;
@@ -128,23 +275,54 @@
                     width: 33%;
                     margin-top: 10%;
                 }
+
+                .navbar-child {
+                    left: 0;
+                    top: 80px;
+                }
+
+                .middle-2 {
+                    width: 50%;
+                    margin-right: 0;
+
+                    .center-text {
+                        font-size: 15px;
+                    }
+
+                    .svg-container {
+                        width: 10%;
+                    }
+                }
+
                 .content-right {
                     text-align: center;
                     gap: 10px;
-                    margin-top: 10%;
-                    width: 20%;
+                    width: 40%;
                     font-size: 12px;
+                    margin-left: 0;
+                    
                 }
+
                 .middle {
                     font-size: 8px;
                     text-align: center;
-                    margin-top: 10%;
+                    margin-left: 0;
+                    order: -1;
+                    width: 20%;
+
+                    img {
+                        width: 18px;
+                        height: auto;
+                    }
+    
                 }
-                img {
-                    width: 18px;
-                    height: 18px;
+
+                .svg-container2 {
+                    width: 350px !important;
+                    margin-left: 40px;
                 }
             }
         }
     }
-}
+} // For Mobile end
+
