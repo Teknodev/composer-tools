@@ -1,7 +1,11 @@
 $gap: 20px;
 .container {
   width: 100%;
-  padding: 20px 0;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;

@@ -4,6 +4,9 @@
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         .page {
             width: 100%;
             display: flex;
