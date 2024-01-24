@@ -1,5 +1,13 @@
 .container {
     width: 100%;
+    background-color: var(--composer-html-background);
+
+    &.sticky {
+        position: sticky;
+        top: 0px;
+        z-index: 100;
+        box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
+    }
 
     .max-content {
         max-width: var(--composer-content-width);
@@ -67,9 +75,9 @@
                 width: 33%;
                 font-size: 18px;
 
-               .center-text {
-                color: var(--composer-primary-color);
-               }
+                .center-text {
+                    color: var(--composer-primary-color);
+                }
             }
 
             .content-right {

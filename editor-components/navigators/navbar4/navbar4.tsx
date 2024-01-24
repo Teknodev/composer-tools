@@ -15,6 +15,13 @@ class Navbar4 extends BaseNavigator {
     super(props, styles);
 
     this.addProp({
+      type : "boolean",
+      key : "sticky",
+      displayer : "Is sticky",
+      value : false,
+    })
+
+    this.addProp({
       type: "array",
       key: "left-items",
       displayer: "Left Items",
@@ -165,7 +172,7 @@ class Navbar4 extends BaseNavigator {
 
     //RETURN
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("content-left")}>
