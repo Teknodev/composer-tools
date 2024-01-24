@@ -38,6 +38,7 @@ import ContentComponent15 from "./content/content15/content15";
 import ContentComponent16 from "./content/content16/content16";
 import ContentComponent17 from "./content/content17/content17";
 import ContentComponent21 from "./content/content21/content21";
+import ContentComponent22 from "./content/content22/content22";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -90,7 +91,6 @@ import HeaderComponent8 from "./header/header8/header8";
 import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
 import HeaderComponent11 from "./header/header11/header11";
-import HeaderComponent12 from "./header/header12/header12";
 import HeaderComponent14 from "./header/header14/header14";
 import HeaderComponent22 from "./header/header22/header22";
 import HeaderComponent21 from "./header/header21/header21";
@@ -238,6 +238,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent18(),
     new ContentComponent19(),
     new ContentComponent21(),
+    new ContentComponent22(),
     new SliderComponent1(),
     new SliderComponent2(),
     new SliderComponent3(),
@@ -290,7 +291,6 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent9(),
     new HeaderComponent10(),
     new HeaderComponent11(),
-    new HeaderComponent12(),
     new HeaderComponent14(),
     new HeaderComponent22(),
     new HeaderComponent13(),

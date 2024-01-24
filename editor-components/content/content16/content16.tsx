@@ -54,7 +54,7 @@ class Content16 extends BaseContent {
                 type: "string",
                 key: "buttonText",
                 displayer: "Button Text",
-                value: "ABOUT US",
+                value: "About Us",
               },
   
               {
@@ -62,12 +62,6 @@ class Content16 extends BaseContent {
                 key: "url",
                 displayer: "Button Link",
                 value: "https://www.google.com/",
-              },
-              {
-                type: "boolean",
-                key: "isPrimary",
-                displayer: "Is Primary",
-                value: false,
               },
             ],
           },
@@ -119,11 +113,7 @@ class Content16 extends BaseContent {
                         path={item.value[1].value}
                       >
                         <button
-                          className={`${this.decorateCSS("button")} ${
-                            item.value[2].value
-                              ? this.decorateCSS("primary")
-                              : ""
-                          }`}
+                          className={`${this.decorateCSS("button")}`}
                         >
                           {item.value[0].value}
                         </button>

@@ -1,6 +1,6 @@
 import * as React from "react";
-import styles from "./header12.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import styles from "./content22.module.scss";
+import { BaseContent } from "../../EditorComponent";
 
 // type Button = {
 //   buttonText: string;
@@ -13,7 +13,7 @@ type IMessages = {
   title: string;
   description: string;
 };
-class Header12 extends BaseHeader {
+class ContentComponent22 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
 
@@ -172,7 +172,7 @@ class Header12 extends BaseHeader {
   }
 
   getName(): string {
-    return "Header-12";
+    return "Content-12";
   }
 
   render() {
@@ -224,4 +224,4 @@ class Header12 extends BaseHeader {
   }
 }
 
-export default Header12;
+export default ContentComponent22;

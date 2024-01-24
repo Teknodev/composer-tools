@@ -1,7 +1,10 @@
 .container {
   width: 100%;
-  padding: 50px 50px;
+  min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -21,7 +24,7 @@
         font-size: 3.5rem;
         text-align: center;
         margin: 0 0 40px 0;
-        color: var(--composer-font-color-primary);
+        color: var(--composer-primary-color);
       }
 
       .section {
@@ -56,49 +59,24 @@
             text-overflow: ellipsis;
             word-break: break-all;
 
-            .card-left{
+            .card-title {
               width: 100%;
               font-size: 1.2rem;
-             &:hover {
-              color: var(--composer-font-color-primary);
-             }
+              color: var(--composer-primary-color);
             }
-            &:hover {
-              background-color: var(--composer-primary-color);
-              
-              .card-value {
-                background-color: var(--composer-primary-color);
-              }
-            }
+            
 
             &.box-left {
               margin-left: 80px;
-              
-              &:hover {
-                color: var(--composer-font-color-primary);
-                background-color: var(--composer-primary-color);
-              }
             }
 
             &.box-right {
               margin-right: 80px;
-              
-              &:hover{
-                color: var(--composer-font-color-primary);
-                background-color: var(--composer-primary-color);
-              }
             }
 
           }
         }
 
-        .card-right {
-          width: 100%;
-          font-size: 1.2rem;
-         &:hover{
-          color: var(--composer-font-color-primary);
-         }
-        }
         .card-value2 {
           overflow: hidden;
           white-space: pre-line;
@@ -107,7 +85,6 @@
           background-color: var(--composer-primary-color);
         }
       }
-
       .image-container {
         flex: 1;
         display: flex;
