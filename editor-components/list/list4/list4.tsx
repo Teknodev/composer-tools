@@ -22,11 +22,6 @@ class list4 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
 
-    let contentimg1 = require("./content21v1.png");
-    let contentimg2 = require("./content21v2.png");
-    let contentimg3 = require("./content21v3.png");
-    let contentimg4 = require("./content21v4.png");
-
     this.addProp({
       type: "string",
       key: "title",
@@ -74,7 +69,7 @@ class list4 extends BaseList {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: contentimg1,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental1.png",
             },
           ],
         },
@@ -106,7 +101,7 @@ class list4 extends BaseList {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: contentimg2,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental2.png",
             },
           ],
         },
@@ -138,7 +133,7 @@ class list4 extends BaseList {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: contentimg3,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental3.png",
             },
           ],
         },      
@@ -177,7 +172,7 @@ class list4 extends BaseList {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: contentimg4,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental4.png",
             },
           ],
         },
@@ -208,7 +203,7 @@ class list4 extends BaseList {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: contentimg4,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental4.png",
             },
           ],
         },
@@ -239,7 +234,7 @@ class list4 extends BaseList {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: contentimg4,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental4.png",
             },
           ],
         },
