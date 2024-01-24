@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -18,13 +18,7 @@
       }
       .title {
         text-align: center;
-        -webkit-text-fill-color: transparent;
-        background-image: linear-gradient(
-          90deg,
-          var(--composer-primary-color),
-          var(--composer-secondary-color)
-        );
-        -webkit-background-clip: text;
+        color: var(--composer-primary-color);
         font-size: 4.5rem;
         font-weight: bold;
         letter-spacing: 1px;
@@ -34,54 +28,44 @@
         transition: all 0.3s;
         cursor: pointer;
         width: max-content;
-        background: linear-gradient(
-          90deg,
-          var(--composer-primary-color),
-          var(--composer-secondary-color)
-        );
-        border: 1px solid var(--composer-primary-color);
-        border-radius: 10px;
+        background: var(--composer-secondary-color);
+        border: 1px solid var(--composer-secondary-color);
+        border-radius: var(--composer-border-radius);
         padding: 10px 20px;
         color: white;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         &:hover {
-          color: var(--composer-primary-color);
+          color: var(--composer-secondary-color);
           background: transparent;
         }
       }
       .desc-box{
         display: flex;
         justify-content: center;
-      .description {
-        text-align: left;
-        font-size: 1.5rem;
-        font-weight: 0;
-        width: 400px;
-        min-height: 100%;
-        padding: 20px;
-        background: linear-gradient(
-          90deg,
-          var(--composer-primary-color),
-          var(--composer-secondary-color)
-        );
-        border-radius: 10px;
-        color: white;
-        margin-left: 10px;
-      }
-      .wide-image {
-        width: 50%;
-        max-width: 600px;
-        border-radius: 20px;
-        background: linear-gradient(
-          90deg,
-          var(--composer-primary-color),
-          var(--composer-secondary-color)
-        );
-        padding: 5px;
-        img {
-          width: 100%;
+        width: 100%;
+        padding: 50px 0px 10px;
+        .description {
+          width: 50%;
+          text-align: left;
+          font-size: 2rem;
+          line-height: 4rem;
+          min-height: 100%;
+          padding: 20px;
+          background: var(--composer-secondary-color);
+          border-radius: 10px;
+          color: var(--composer-font-color-secondary);
+          margin-left: 10px;
+          font-weight: 400;
+          letter-spacing: 1px;
         }
-      }
+        .wide-image {
+          flex: 1;
+          border-radius: 20px;
+          border: 2px solid var(--composer-secondary-color);
+          width: 50%;
+          max-height: 400px;
+          object-fit: cover;
+        }
       }
     }
   }

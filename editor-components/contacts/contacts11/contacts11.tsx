@@ -15,29 +15,29 @@ class Form11 extends BaseContacts {
       key: "title",
     });
     this.addProp({
-        type: "string",
-        displayer: "text1",
-        value: "Your Name",
-        key: "text1",
-      });
-      this.addProp({
-        type: "string",
-        displayer: "text2",
-        value: "Your Email",
-        key: "text2",
-      });
-      this.addProp({
-        type: "string",
-        displayer: "text3",
-        value: "Your Phone",
-        key: "text3",
-      });
-      this.addProp({
-        type: "string",
-        displayer: "text4",
-        value: "Select Treatment",
-        key: "text4",
-      });
+      type: "string",
+      displayer: "text1",
+      value: "Your Name",
+      key: "text1",
+    });
+    this.addProp({
+      type: "string",
+      displayer: "text2",
+      value: "Your Email",
+      key: "text2",
+    });
+    this.addProp({
+      type: "string",
+      displayer: "text3",
+      value: "Your Phone",
+      key: "text3",
+    });
+    this.addProp({
+      type: "string",
+      displayer: "text4",
+      value: "Select Treatment",
+      key: "text4",
+    });
 
     this.addProp({
       type: "string",
@@ -61,17 +61,17 @@ class Form11 extends BaseContacts {
     });
 
     this.addProp({
-        type: "string",
-        key: "treatment",
-        displayer: "Treatment",
-        value: "-",
-      });
+      type: "string",
+      key: "treatment",
+      displayer: "Treatment",
+      value: "-",
+    });
 
     this.addProp({
       type: "string",
       key: "button_text",
       displayer: "Button Text",
-      value: "SEND REQUEST",
+      value: "Send Request",
     });
   }
 
@@ -87,35 +87,27 @@ class Form11 extends BaseContacts {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-         
-            <h1 className={this.decorateCSS("title")} >
-              {this.getPropValue("title")}
-            </h1>
+          <h1 className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </h1>
 
-            <div className={this.decorateCSS("text-box")}>
-            <h2 className={this.decorateCSS("text1")}>
-             {this.getPropValue("text1")}
+          <div className={this.decorateCSS("text-box")}>
+            <h2 className={this.decorateCSS("text")}>
+              {this.getPropValue("text1")}
             </h2>
-            <h2 className={this.decorateCSS("text2")}>
-             {this.getPropValue("text2")}
+            <h2 className={this.decorateCSS("text")}>
+              {this.getPropValue("text2")}
             </h2>
-            <h2 className={this.decorateCSS("text3")}>
-             {this.getPropValue("text3")}
+            <h2 className={this.decorateCSS("text")}>
+              {this.getPropValue("text3")}
             </h2>
-            <h2 className={this.decorateCSS("text4")}>
-             {this.getPropValue("text4")}
+            <h2 className={this.decorateCSS("text")}>
+              {this.getPropValue("text4")}
             </h2>
-            </div>
-            <div
-            className={this.decorateCSS("form-container")}
-            
-          >
-
+          </div>
+          <div className={this.decorateCSS("form-container")}>
             <Formik
               initialValues={{ name: "", email: "", message: "" }}
               validationSchema={this.validationSchema}
@@ -133,7 +125,6 @@ class Form11 extends BaseContacts {
                     value={values.name}
                     onChange={handleChange}
                     className={this.decorateCSS("input")}
-                    
                   />
                   <ErrorMessage
                     className={this.decorateCSS("error-message")}
@@ -147,7 +138,6 @@ class Form11 extends BaseContacts {
                     value={values.email}
                     onChange={handleChange}
                     className={this.decorateCSS("input")}
-                    
                   />
                   <ErrorMessage
                     className={this.decorateCSS("error-message")}
@@ -161,33 +151,26 @@ class Form11 extends BaseContacts {
                     value={values.message}
                     onChange={handleChange}
                     className={this.decorateCSS("input")}
-                    
                   />
-                   <input
+                  <input
                     placeholder={this.getPropValue("treatment")}
                     type="text"
                     name="treatment"
                     value={values.message}
                     onChange={handleChange}
                     className={this.decorateCSS("input")}
-                    
                   />
                   <ErrorMessage
                     className={this.decorateCSS("error-message")}
                     name="message"
                     component={"span"}
                   />
-                 
                 </Form>
               )}
             </Formik>
-            <button
-                    className={this.decorateCSS("submit-button")}
-                    
-                    type="submit"
-                  >
-                    {this.getPropValue("button_text")}
-                  </button>
+            <button className={this.decorateCSS("submit-button")} type="submit">
+              {this.getPropValue("button_text")}
+            </button>
           </div>
         </div>
       </div>

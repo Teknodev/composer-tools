@@ -27,7 +27,8 @@ class Header4 extends BaseHeader {
           type: "string",
           key: "text",
           displayer: "Description",
-          value: "Get fit and stay healthy with our personalized fitness plans, designed to help you achieve your unique goals and get the results you want.",
+          value:
+            "Get fit and stay healthy with our personalized fitness plans, designed to help you achieve your unique goals and get the results you want.",
         },
       ],
     });
@@ -46,7 +47,8 @@ class Header4 extends BaseHeader {
           type: "string",
           key: "text",
           displayer: "Description",
-          value: "Let our experienced trainers guide you on your fitness journey with customized workout plans tailored to your fitness level and goals.",
+          value:
+            "Let our experienced trainers guide you on your fitness journey with customized workout plans tailored to your fitness level and goals.",
         },
       ],
     });
@@ -65,7 +67,8 @@ class Header4 extends BaseHeader {
           type: "string",
           key: "text",
           displayer: "Description",
-          value: "Whether you're looking to lose weight, gain muscle, or improve your overall health, our personalized fitness plans will help you reach your goals and transform your body.",
+          value:
+            "Whether you're looking to lose weight, gain muscle, or improve your overall health, our personalized fitness plans will help you reach your goals and transform your body.",
         },
       ],
     });
@@ -84,7 +87,8 @@ class Header4 extends BaseHeader {
           type: "string",
           key: "text",
           displayer: "Description",
-          value: "At our fitness center, we believe that everyone's fitness journey is unique. That's why we offer personalized fitness plans that are tailored to your individual needs and preferences.",
+          value:
+            "At our fitness center, we believe that everyone's fitness journey is unique. That's why we offer personalized fitness plans that are tailored to your individual needs and preferences.",
         },
       ],
     });
@@ -103,7 +107,8 @@ class Header4 extends BaseHeader {
           type: "string",
           key: "text",
           displayer: "Description",
-          value: "Whether you're a beginner or a seasoned athlete, our custom fitness plans will help you reach your full potential and take your fitness to the next level.",
+          value:
+            "Whether you're a beginner or a seasoned athlete, our custom fitness plans will help you reach your full potential and take your fitness to the next level.",
         },
       ],
     });
@@ -122,7 +127,8 @@ class Header4 extends BaseHeader {
           type: "string",
           key: "text",
           displayer: "Description",
-          value: "Get the support and guidance you need to achieve lasting results with our personalized fitness plans, designed to help you make meaningful progress towards your fitness goals.",
+          value:
+            "Get the support and guidance you need to achieve lasting results with our personalized fitness plans, designed to help you make meaningful progress towards your fitness goals.",
         },
       ],
     });
@@ -152,27 +158,47 @@ class Header4 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header-page")}>
             <div className={this.decorateCSS("subtitle-container")}>
-              <h3 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h3>
+              <h3 className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </h3>
             </div>
             <div className={this.decorateCSS("section")}>
               <div
-                className={`${this.decorateCSS("boxs")} ${this.decorateCSS("boxs-left")}`}
+                className={`${this.decorateCSS("boxs")} ${this.decorateCSS(
+                  "boxs-left"
+                )}`}
               >
                 <div
-                  className={`${this.decorateCSS("box")} ${this.decorateCSS("box-left")}`}
+                  className={`${this.decorateCSS("box")} ${this.decorateCSS(
+                    "box-left"
+                  )}`}
                 >
-                  <h1 className={this.decorateCSS("card-left")}>{card1[0].value}</h1>
-                  <p className={this.decorateCSS("card1-value")}>{card1[1].value}</p>
+                  <h1 className={this.decorateCSS("card-title")}>
+                    {card1[0].value}
+                  </h1>
+                  <p className={this.decorateCSS("card1-value")}>
+                    {card1[1].value}
+                  </p>
                 </div>
                 <div className={`${this.decorateCSS("box")}`}>
-                  <h1 className={this.decorateCSS("card-left")}>{card2[0].value}</h1>
-                  <p className={this.decorateCSS("card2-value")}>{card2[1].value}</p>
+                  <h1 className={this.decorateCSS("card-title")}>
+                    {card2[0].value}
+                  </h1>
+                  <p className={this.decorateCSS("card2-value")}>
+                    {card2[1].value}
+                  </p>
                 </div>
                 <div
-                  className={`${this.decorateCSS("box")} ${this.decorateCSS("box-left")}`}
+                  className={`${this.decorateCSS("box")} ${this.decorateCSS(
+                    "box-left"
+                  )}`}
                 >
-                  <h1 className={this.decorateCSS("card-left")}>{card3[0].value}</h1>
-                  <p className={this.decorateCSS("card3-value")}>{card3[1].value}</p>
+                  <h1 className={this.decorateCSS("card-title")}>
+                    {card3[0].value}
+                  </h1>
+                  <p className={this.decorateCSS("card3-value")}>
+                    {card3[1].value}
+                  </p>
                 </div>
               </div>
               <div className={this.decorateCSS("image-container")}>
@@ -192,20 +218,32 @@ class Header4 extends BaseHeader {
                     "box-right"
                   )}`}
                 >
-                  <h1 className={this.decorateCSS("card-right")}>{card4[0].value}</h1>
-                  <p className={this.decorateCSS("card4-value")}>{card4[1].value}</p>
+                  <h1 className={this.decorateCSS("card-title")}>
+                    {card4[0].value}
+                  </h1>
+                  <p className={this.decorateCSS("card4-value")}>
+                    {card4[1].value}
+                  </p>
                 </div>
                 <div className={`${this.decorateCSS("box")}`}>
-                  <h1 className={this.decorateCSS("card-right")}>{card5[0].value}</h1>
-                  <p className={this.decorateCSS("card5-value")}>{card5[1].value}</p>
+                  <h1 className={this.decorateCSS("card-title")}>
+                    {card5[0].value}
+                  </h1>
+                  <p className={this.decorateCSS("card5-value")}>
+                    {card5[1].value}
+                  </p>
                 </div>
                 <div
                   className={`${this.decorateCSS("box")} ${this.decorateCSS(
                     "box-right"
                   )}`}
                 >
-                  <h1 className={this.decorateCSS("card-right")}>{card6[0].value}</h1>
-                  <p className={this.decorateCSS("card6-value")}>{card6[1].value}</p>
+                  <h1 className={this.decorateCSS("card-title")}>
+                    {card6[0].value}
+                  </h1>
+                  <p className={this.decorateCSS("card6-value")}>
+                    {card6[1].value}
+                  </p>
                 </div>
               </div>
             </div>

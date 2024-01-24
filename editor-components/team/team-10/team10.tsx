@@ -122,7 +122,7 @@ class Team10 extends Team {
   }
 
   getName(): string {
-    return "Team-10";
+    return "Team 10";
   }
 
   render() {
