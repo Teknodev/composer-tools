@@ -1,9 +1,11 @@
 $gap: 20px;
 .container {
   width: 100%;
-  padding: 20px;
-  padding-bottom: 20px;
+  min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -135,8 +137,9 @@ $gap: 20px;
         .button {
           padding: 10px;
           border-radius: 5px;
-          background: var(--composer-secondary-color);
-          border: 0px;
+          background: transparent;
+          border: 1px solid var(--composer-tertiary-color);
+          color: var(--composer-tertiary-color);
         }
       }
     }

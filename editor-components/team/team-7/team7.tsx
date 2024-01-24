@@ -258,7 +258,7 @@ class Team7 extends Team {
 
 
     getName(): string {
-        return "Team-7";
+        return "Team 7";
     }
 
 

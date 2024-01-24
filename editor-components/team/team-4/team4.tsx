@@ -202,7 +202,7 @@ class Team4 extends Team {
   }
 
   getName(): string {
-    return "Classic Team List";
+    return "Team 4";
   }
 
   render() {

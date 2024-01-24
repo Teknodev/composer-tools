@@ -103,7 +103,7 @@ class Team8 extends Team {
   }
 
   getName(): string {
-    return "Team Page";
+    return "Team 8";
   }
 
   render() {

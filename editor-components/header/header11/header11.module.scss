@@ -1,11 +1,14 @@
 .container {
   width: 100%;
-  padding: 50px 50px;
+  min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
-
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
+  
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
+    width: 100%;
+    background-size: cover;
 
     .content {
       display: flex;
@@ -13,6 +16,9 @@
       align-items: center;
       gap: 20px;
       background-size: cover;
+      padding: 150px 0px;
+      max-width: var(--composer-content-width);
+      margin: auto;
 
       .header-page {
         text-align: center;
