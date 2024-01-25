@@ -2,24 +2,41 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./form1.module.scss";
+import styles from "./form10.module.scss";
 
-class Contacts6Page extends BaseContacts {
+class Form10Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
       displayer: "Title",
-      value: "Contact Us",
+      value: "FREE CONSULTATION REQUEST",
       key: "title",
     });
-
     this.addProp({
-      type: "image",
-      displayer: "Image",
-      value:
-        "https://img.freepik.com/free-vector/organic-flat-man-customer-support_23-2148893295.jpg?w=1380&t=st=1676887003~exp=1676887603~hmac=abdac364434d1a9dd93276315c3c25c0ac0383484d75a4686e899022d1de8312",
-      key: "image",
+      type: "string",
+      displayer: "text1",
+      value: "Your Name",
+      key: "text1",
+    });
+    this.addProp({
+      type: "string",
+      displayer: "text2",
+      value: "Your Email",
+      key: "text2",
+    });
+    this.addProp({
+      type: "string",
+      displayer: "text3",
+      value: "Your Phone",
+      key: "text3",
+    });
+    this.addProp({
+      type: "string",
+      displayer: "text4",
+      value: "Select Treatment",
+      key: "text4",
     });
 
     this.addProp({
@@ -38,16 +55,23 @@ class Contacts6Page extends BaseContacts {
 
     this.addProp({
       type: "string",
-      key: "message",
-      displayer: "3th Placeholder",
-      value: "Message",
+      key: "phone",
+      displayer: "Phone",
+      value: "Phone-number",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "treatment",
+      displayer: "Treatment",
+      value: "-",
     });
 
     this.addProp({
       type: "string",
       key: "button_text",
       displayer: "Button Text",
-      value: "Submit",
+      value: "Send Request",
     });
   }
 
@@ -58,24 +82,32 @@ class Contacts6Page extends BaseContacts {
   });
 
   getName(): string {
-    return "Contacts 6";
+    return "Form 10";
   }
 
   render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("image-container")}>
-            <img
-              className={this.decorateCSS("image")}
-              src={this.getPropValue("image")}
-              alt="contact"
-            />
+          <h1 className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </h1>
+
+          <div className={this.decorateCSS("text-box")}>
+            <h2 className={this.decorateCSS("text")}>
+              {this.getPropValue("text1")}
+            </h2>
+            <h2 className={this.decorateCSS("text")}>
+              {this.getPropValue("text2")}
+            </h2>
+            <h2 className={this.decorateCSS("text")}>
+              {this.getPropValue("text3")}
+            </h2>
+            <h2 className={this.decorateCSS("text")}>
+              {this.getPropValue("text4")}
+            </h2>
           </div>
           <div className={this.decorateCSS("form-container")}>
-            <h1 className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </h1>
             <Formik
               initialValues={{ name: "", email: "", message: "" }}
               validationSchema={this.validationSchema}
@@ -113,9 +145,17 @@ class Contacts6Page extends BaseContacts {
                     component={"span"}
                   />
                   <input
-                    placeholder={this.getPropValue("message")}
+                    placeholder={this.getPropValue("phone")}
                     type="text"
-                    name="message"
+                    name="phone"
+                    value={values.message}
+                    onChange={handleChange}
+                    className={this.decorateCSS("input")}
+                  />
+                  <input
+                    placeholder={this.getPropValue("treatment")}
+                    type="text"
+                    name="treatment"
                     value={values.message}
                     onChange={handleChange}
                     className={this.decorateCSS("input")}
@@ -125,15 +165,12 @@ class Contacts6Page extends BaseContacts {
                     name="message"
                     component={"span"}
                   />
-                  <button
-                    className={this.decorateCSS("submit-button")}
-                    type="submit"
-                  >
-                    {this.getPropValue("button_text")}
-                  </button>
                 </Form>
               )}
             </Formik>
+            <button className={this.decorateCSS("submit-button")} type="submit">
+              {this.getPropValue("button_text")}
+            </button>
           </div>
         </div>
       </div>
@@ -141,4 +178,4 @@ class Contacts6Page extends BaseContacts {
   }
 }
 
-export default Contacts6Page;
+export default Form10Page;

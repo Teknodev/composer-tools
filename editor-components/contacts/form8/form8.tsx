@@ -1,28 +1,36 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./contacts3.module.scss";
+import styles from "./form8.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 
 type Item = {
   title: string;
-  Text1th: string;
-  Text2th: string;
+  Text1st: string;
+  Text2nd: string;
 };
-class Contacts3Page extends BaseContacts {
+
+class Form8Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Please sent message",
-    });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Contact Us",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Subtitle",
+      value: "Meet the group, explore the school, and get a free consultation",
+    });
+    this.addProp({
+      type: "image",
+      key: "background-img",
+      displayer: "Background Image",
+      value:
+        "https://static.tildacdn.com/tild6534-3036-4165-a632-363563666466/photo1432821596592e2c18b78144f",
     });
     this.addProp({
       type: "string",
@@ -49,61 +57,10 @@ class Contacts3Page extends BaseContacts {
       value: "Send Message",
     });
     this.addProp({
-      type: "array",
-      key: "info-items",
-      displayer: "Info Items",
-      value: [
-        {
-          type: "object",
-          key: "info",
-          displayer: "Info",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "EMAIL",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "Text1th",
-              value: "business@info.com",
-              displayer: "1th Text",
-            },
-            {
-              type: "string",
-              key: "Text2th",
-              value: "support@info.com",
-              displayer: "2th Text",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "info",
-          displayer: "Info",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "PHONE",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "Text1th",
-              value: "+111 345 45 99",
-              displayer: "1th Text",
-            },
-            {
-              type: "string",
-              key: "Text2th",
-              value: "+111 346 45 99",
-              displayer: "2th Text",
-            },
-          ],
-        },
-      ],
+      type: "string",
+      key: "below_text",
+      displayer: "Text Below",
+      value: "Thank you for your feedback!",
     });
   }
 
@@ -114,30 +71,26 @@ class Contacts3Page extends BaseContacts {
   });
 
   getName(): string {
-    return "Contacts 3";
+    return "Form 8";
   }
 
   render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("contacts3")}>
-            <div className={this.decorateCSS("contact-left")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
-              <div className={this.decorateCSS("contact-info")}>
-                {this.castToObject<Item[]>("info-items").map(
-                  (data: any, index: number) => (
-                    <div key={index}>
-                      <h3 className={this.decorateCSS("data-title")}> {data.title}</h3>
-                      <h2 className={this.decorateCSS("data-text1")}>{data.Text1th}</h2>
-                      <h2 className={this.decorateCSS("data-text2")}>{data.Text2th}</h2>
-                    </div>
-                  )
-                )}
-              </div>
+        <div className={this.decorateCSS("background-image")}>
+            <img
+              src={this.getPropValue("background-img")}
+              alt="backgroundPhoto"
+              className={this.decorateCSS("img")}
+            />
+          </div>
+          <div className={this.decorateCSS("contacts9")}>
+            <div className={this.decorateCSS("contacts-top")}>
+              <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+              <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
             </div>
-            <div className={this.decorateCSS("contact-right")}>
+            <div className={this.decorateCSS("contacts-form")}>
               <Formik
                 initialValues={{ name: "", email: "", message: "" }}
                 validationSchema={this.validationSchema}
@@ -162,7 +115,7 @@ class Contacts3Page extends BaseContacts {
                       name="name"
                       component={"span"}
                     />
-                    <h3 className={this.decorateCSS("email")}>{this.getPropValue("email")}</h3>
+                    <h3 className={this.decorateCSS("email")} >{this.getPropValue("email")}</h3>
                     <input
                       placeholder={this.getPropValue("email")}
                       type="text"
@@ -201,6 +154,7 @@ class Contacts3Page extends BaseContacts {
                 )}
               </Formik>
             </div>
+            <div className={this.decorateCSS("below-text")}>{this.getPropValue("below_text")}</div>
           </div>
         </div>
       </div>
@@ -208,4 +162,4 @@ class Contacts3Page extends BaseContacts {
   }
 }
 
-export default Contacts3Page;
+export default Form8Page;

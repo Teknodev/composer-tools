@@ -39,6 +39,8 @@ import ContentComponent16 from "./content/content16/content16";
 import ContentComponent17 from "./content/content17/content17";
 import ContentComponent21 from "./content/content21/content21";
 import ContentComponent22 from "./content/content22/content22";
+import ContentComponent23 from "./content/content23/content23";
+import ContentComponent24 from "./content/content24/content24";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -163,17 +165,17 @@ import StatsComponent5 from "./stats/stats5/stats5";
 import StatsComponent6 from "./stats/stats6/stats6";
 import StatsComponent7 from "./stats/stats7/stats7";
 import StatsComponent8 from "./stats/stats8/stats8";
-import ContactsComponent1 from "./contacts/contacts1/contacts1";
-import ContactsComponent2 from "./contacts/contacts2/contacts2";
-import ContactsComponent3 from "./contacts/contacts3/contacts3";
-import ContactsComponent4 from "./contacts/contacts4/contacts4";
-import ContactsComponent5 from "./contacts/contacts5/contacts5";
-import ContactsComponent6 from "./contacts/contacts6/contacts6";
-import ContactsComponent8 from "./contacts/contacts8/contacts8";
-import ContactsComponent9 from "./contacts/contacts9/contacts9";
-import ContactsComponent10 from "./contacts/contacts10/contacts10";
-import ContactsComponent11 from "./contacts/contacts11/contacts11";
-import ContactsComponent12 from "./contacts/contacts12/contacts12";
+import ContactsComponent1 from "./contacts/form1/form1";
+import ContactsComponent2 from "./contacts/form2/form2";
+import ContactsComponent3 from "./contacts/form3/form3";
+import ContactsComponent4 from "./contacts/form4/form4";
+import ContactsComponent5 from "./contacts/form5/form5";
+import ContactsComponent6 from "./contacts/form6/form6";
+import ContactsComponent8 from "./contacts/form7/form7";
+import ContactsComponent9 from "./contacts/form8/form8";
+import ContactsComponent10 from "./contacts/form9/form9";
+import ContactsComponent11 from "./contacts/form10/form10";
+import ContactsComponent12 from "./contacts/form11/form11";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -238,6 +240,8 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent19(),
     new ContentComponent21(),
     new ContentComponent22(),
+    new ContentComponent23(),
+    new ContentComponent24(),
     new SliderComponent1(),
     new SliderComponent2(),
     new SliderComponent3(),

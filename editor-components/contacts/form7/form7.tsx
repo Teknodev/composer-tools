@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./contacts8.module.scss";
+import styles from "./form7.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 
@@ -10,7 +10,7 @@ type Item = {
 type ISection = {
   section: Item[];
 };
-class Contacts8Page extends BaseContacts {
+class Form7Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -234,7 +234,7 @@ class Contacts8Page extends BaseContacts {
   }
 
   getName(): string {
-    return "Contacts 8";
+    return "Form 7";
   }
   validationSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
@@ -352,4 +352,4 @@ class Contacts8Page extends BaseContacts {
   }
 }
 
-export default Contacts8Page;
+export default Form7Page;

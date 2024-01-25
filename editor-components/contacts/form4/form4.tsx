@@ -1,13 +1,13 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./contacts4.module.scss";
+import styles from "./form4.module.scss";
 
 type Item = {
   title: string;
   Text1th: string;
   Text2th: string;
 };
-class Contacts4Page extends BaseContacts {
+class Form4Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -114,7 +114,7 @@ class Contacts4Page extends BaseContacts {
   }
 
   getName(): string {
-    return "Contacts 4";
+    return "Form 4";
   }
 
   render() {
@@ -157,4 +157,4 @@ class Contacts4Page extends BaseContacts {
   }
 }
 
-export default Contacts4Page;
+export default Form4Page;

@@ -1,11 +1,11 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./contacts12.module.scss";
+import styles from "./form11.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { ThreeSixty } from "@mui/icons-material";
 
-class Contacts12Page extends BaseContacts {
+class Form11Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -282,7 +282,7 @@ class Contacts12Page extends BaseContacts {
   });
 
   getName(): string {
-    return "Contacts 12";
+    return "Form 11";
   }
   render() {
     return (
@@ -588,4 +588,4 @@ class Contacts12Page extends BaseContacts {
   }
 }
 
-export default Contacts12Page;
+export default Form11Page;

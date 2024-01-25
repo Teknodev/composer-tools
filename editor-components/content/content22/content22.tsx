@@ -2,12 +2,7 @@ import * as React from "react";
 import styles from "./content22.module.scss";
 import { BaseContent } from "../../EditorComponent";
 
-// type Button = {
-//   buttonText: string;
-//   url: string;
-//   isPrimary: boolean;
-//   buttonImage: string;
-// };
+
 
 type IMessages = {
   title: string;

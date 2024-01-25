@@ -2,9 +2,9 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./form1.module.scss";
+import styles from "./form6.module.scss";
 
-class Form1 extends BaseContacts {
+class Form6 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
@@ -57,7 +57,7 @@ class Form1 extends BaseContacts {
   });
 
   getName(): string {
-    return "Form1";
+    return "Form6";
   }
 
   render() {
@@ -154,4 +154,4 @@ class Form1 extends BaseContacts {
   }
 }
 
-export default Form1;
+export default Form6;

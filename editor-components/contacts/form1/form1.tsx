@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./contacts1.module.scss";
+import styles from "./form1.module.scss";
 
 type Item = {
   image: string;
@@ -9,7 +9,7 @@ type ISection = {
   section: Item[];
   
 };
-class Contacts1Page extends BaseContacts {
+class Form1Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -143,7 +143,7 @@ class Contacts1Page extends BaseContacts {
   }
 
   getName(): string {
-    return "Contacts 1";
+    return "Form 1";
   }
 
   render() {
@@ -181,4 +181,4 @@ class Contacts1Page extends BaseContacts {
   }
 }
 
-export default Contacts1Page;
+export default Form1Page;

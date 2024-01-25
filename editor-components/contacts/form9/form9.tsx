@@ -1,10 +1,10 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
-import styles from "./contacts10.module.scss";
+import styles from "./form9.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 
-class Contacts10Page extends BaseContacts {
+class Form9Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -59,7 +59,7 @@ class Contacts10Page extends BaseContacts {
   });
 
   getName(): string {
-    return "Contacts 10";
+    return "Form 9";
   }
 
   render() {
@@ -149,4 +149,4 @@ class Contacts10Page extends BaseContacts {
   }
 }
 
-export default Contacts10Page;
+export default Form9Page;
