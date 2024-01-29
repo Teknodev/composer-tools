@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
-import styles from "./content13.module.scss";
+import styles from "./content20.module.scss";
 
 type Card = {
   title: string;
@@ -8,26 +8,22 @@ type Card = {
   image: string;
 };
 
-class Content4 extends BaseContent {
+class Content20 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
-
-    let serverimg1 = require("./server-1.png");
-    let serverimg2 = require("./server-2.png");
-    let serverimg3 = require("./server-3.png");
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Create a Landing Page In a Minute Not Weeks",
+      value: "4 steps to get your teeth done in Turkey",
     });
 
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Key Featured For Landing Page",
+      value: "HOW WE WORK?",
     });
 
     this.addProp({
@@ -41,23 +37,29 @@ class Content4 extends BaseContent {
           displayer: "Card",
           value: [
             {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "1",
+              },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Web Hosting",
+              value: "Get Free Quotation",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Web hosting refers to the service of providing space on a server to host a website or web application on the internet. Web hosting providers offer various hosting plans and packages to suit different website requirements, including shared hosting, dedicated hosting.",
+                "If you can send us a recent panoramic x-ray and dental photos, our specialist doctor will evaluate your case. Our experienced consulting team will provide you treatment plan with estimated costs.",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: serverimg1,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental1.png",
             },
           ],
         },
@@ -67,23 +69,29 @@ class Content4 extends BaseContent {
           displayer: "Card",
           value: [
             {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "2",
+              },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Innovative Idea",
+              value: "Travel & Accommodation",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Innovative ideas often stem from identifying gaps in existing solutions or finding new ways to leverage technology or resources. They require a willingness to think outside the box, take risks, and challenge conventional thinking.",
+                "If you are satisfied with the treatment plan that was sent to you, you can make your travel arrangement. It is finally time for your journey to Antalya. We will offer a comfortable accommodation close to the clinic during the treatment process..",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: serverimg2,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental2.png",
             },
           ],
         },
@@ -93,23 +101,29 @@ class Content4 extends BaseContent {
           displayer: "Card",
           value: [
             {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "3",
+              },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Dedicated Server",
+              value: "Starting to Treatment",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "A dedicated server refers to a type of web hosting service where a single server is allocated exclusively to a single client or website. In other words, the entire physical server is dedicated to serving the needs of that client or website alone.",
+                "We plan all details about treatment with using smile design application, photographs and x-rays at the first appointment. And we start your treatment within the same day.",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: serverimg3,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental3.png",
             },
           ],
         },
@@ -117,25 +131,30 @@ class Content4 extends BaseContent {
           type: "object",
           key: "card",
           displayer: "Card",
-          value: [
+          value: [ {
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "4",
+          },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Dedicated Server",
+              value: "Enjoy your holiday",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "A dedicated server refers to a type of web hosting service where a single server is allocated exclusively to a single client or website. In other words, the entire physical server is dedicated to serving the needs of that client or website alone.",
+                "You can enjoy your vacation in this paradise while you are treated with specialist doctors. Beautiful beaches, luxurious hotel resorts, delicious foods and more.",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: serverimg3,
+              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental4.png",
             },
           ],
         },
@@ -150,7 +169,7 @@ class Content4 extends BaseContent {
   }
 
   getName(): string {
-    return "Content 13";
+    return "Content 20";
   }
 
   render() {
@@ -185,4 +204,4 @@ class Content4 extends BaseContent {
   }
 }
 
-export default Content4;
+export default Content20;

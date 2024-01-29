@@ -390,7 +390,7 @@ class Content4 extends BaseContent {
   }
 
   getName(): string {
-    return "Content 13";
+    return "Content 4";
   }
 
   render() {
