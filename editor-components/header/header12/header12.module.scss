@@ -1,0 +1,72 @@
+.container {
+    width: 100%;
+    background-color: var(--composer-html-background);
+
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+
+        .sliderContainer {
+            display: flex;
+            
+            .left-container {
+                width: 50%;
+                position: relative;
+              
+
+                img {
+                    width: 100%;
+                }
+
+                .imageArrows {}
+
+                .title {
+                    color: #2d2b2b;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50px;
+                    color: var(--composer-font-color-secondary);
+                }
+            }
+
+            .right-container {
+                width: 50%;
+                position: relative;
+                
+
+                img {
+                    width: 100%;
+                }
+
+                .imageArrows {}
+
+                .title {
+                    color: #2d2b2b;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50px;
+                    color: var(--composer-font-color-secondary);
+                }
+            }
+        }
+    }
+}
+
+// For Ipad
+@media only screen and (max-width:800px) {
+
+    .container {}
+
+}
+
+// For Ipad end
+
+
+// For Mobile
+@media only screen and (max-width:400px) {
+
+    .container {}
+
+}
+
+// For Mobile end
