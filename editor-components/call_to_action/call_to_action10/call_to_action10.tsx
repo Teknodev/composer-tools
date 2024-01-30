@@ -2,7 +2,6 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type listedListItem = {
   listedItem: string;
@@ -136,7 +135,7 @@ class CallToAction10Page extends BaseCallToAction {
 
               <ComposerLink path={this.getPropValue("link")}>
                 <span className={this.decorateCSS("button")}>
-                  {this.getPropValue("buttonText")} <ComposerIcon name="AiOutlineHome" />
+                  {this.getPropValue("buttonText")}
                 </span>
               </ComposerLink>
             </div>
