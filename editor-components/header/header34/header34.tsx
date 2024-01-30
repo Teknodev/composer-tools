@@ -43,7 +43,7 @@ class HeaderComponent34 extends BaseHeader {
               type: "page",
               key: "button_link",
               displayer: "Button Navigate",
-              value: null
+              value: ""
             },
           ]
         },
@@ -75,7 +75,7 @@ class HeaderComponent34 extends BaseHeader {
               type: "page",
               key: "button_link",
               displayer: "Button Navigate",
-              value: null
+              value: ""
             },
           ]
         },
@@ -107,7 +107,7 @@ class HeaderComponent34 extends BaseHeader {
               type: "page",
               key: "button_link",
               displayer: "Button Navigate",
-              value: null
+              value: ""
             },
           ]
         }
