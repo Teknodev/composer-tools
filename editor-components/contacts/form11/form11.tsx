@@ -3,7 +3,6 @@ import { BaseContacts } from "../../EditorComponent";
 import styles from "./form11.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
-import { ThreeSixty } from "@mui/icons-material";
 
 class Form11Page extends BaseContacts {
   constructor(props?: any) {
