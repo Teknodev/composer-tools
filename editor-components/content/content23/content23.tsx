@@ -41,7 +41,7 @@ class Content23 extends BaseContent {
         {
           type: "page",
           displayer: "Navigate",
-          value: null,
+          value: "",
           key: "navigate"
         }
       ]
