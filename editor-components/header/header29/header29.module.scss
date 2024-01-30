@@ -1,4 +1,4 @@
-.container {
+ .container {
   width: 100%;
   min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
@@ -9,142 +9,261 @@
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-  }
-
-  .wrapper {
-    display: flex;
-    justify-content: center;
-    .left {
-      flex: 1;
-      position: relative;
+  
+    .wrapper{
+      width: 100%;
+      height: 800px;
       display: flex;
-      flex-direction: column;
-      max-width: 100%;
       justify-content: center;
-      padding-left: 5%;
-      .title {
-        width: 100%;
-        z-index: 5;
-        padding-top: 7%;
-        .items {
-          font-family: cursive;
-          color: #19407ae6;
-          font-size: 60px;
-          font-weight: 800;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 1000px;
-        }
-      }
-      .description {
-        width: 100%;
-        .items-description {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 800px;
-          font-size: 25px;
-          color: #849aaa;
-          font-weight: lighter;
-        }
-      }
-      .button-wrapper {
+      align-items: center;
+      background-color: #fff;
+      overflow-wrap: break-word;
+      &.wrapper-reverse {
+        flex-flow: row-reverse;
+      }   
+      .first {
         display: flex;
-        justify-content: flex-start !important;
-        cursor: auto;
-        .button {
-          cursor: pointer;
-          padding: 15px 28px;
-          border-radius: 5px;
-          min-height: 48px;
-          font-size: 13px;
-          text-align: center;
-          display: inline-block;
-          background-color: #0099ff;
-          border: 0px;
-          color: white;
-          text-decoration: none !important;
-          &:hover {
-            background-color: #0068ad;
-          }
-        }
-      }
-    }
-
-    .right {
-      position: relative;
-      flex: 1;
-      width: var(--composer-content-width);
-      overflow: hidden;
-      justify-content: center;
-      img {
-        width: 100%;
-        height: 90%;
-        margin: 5%;
-        border-radius: 20px;
-      }
-    }
-    .background-image {
-      max-width: max-content;
-      max-height: max-content;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      img {
+        flex-direction: column;
         height: 100%;
+        width: 40%;
+        padding: 10px;
+        justify-content: center;
+        gap: 40px;
+        margin-left: 50px;
+        .up {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          
+          .title {
+            font-weight: bold;
+            font-size: 7em;
+          }
+          @media screen and (max-width: 1100px){
+            .title{
+              font-size: 5em;
+            }
+          }
+          .description {
+            font-size: 1.5em;
+            color: #535252;
+          }
+          .button-and-input {
+            display: flex;
+            gap: 20px;
+            .input {
+              border-radius: 5%;
+              height: 45px;
+              width: 45%;
+              border: #acacac solid 2px;
+            }
+            .button {
+              padding: auto;
+              background-color:blue ;
+              width: 100%;
+              height: 45px;
+              border-radius: 7%;
+              margin-left: 1%;
+              color: white;
+              border: transparent;
+              font-weight: bold;
+              font-size: 0.8em;
+            }
+          }
+        }
+        .down {
+          display: flex;
+          flex-direction: row;
+          .card1 {
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            .title1 {
+              font-weight: bold;
+              font-size: 1.5em;
+            }
+            .description1 {
+              font-size: 1.4em;
+              color: #535252;
+            }
+          }
+          .card2 {
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            .title2 {
+              font-weight: bold;
+              font-size: 1.5em;
+            }
+            .description2 {
+              font-size: 1.4em;
+              color: #535252;
+            }
+          }
+          .card1,.card2 {
+            width: 40%;
+          }
+        }
+      }
+      .image {
+        height: 700px;
         width: 100%;
       }
     }
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 768px) {
   .container {
-    .wrapper {
-      flex-direction: column-reverse;
-      .left {
-        flex: 1;
-        margin-top: -10%;
-        .title {
-          .items {
-            font-size: 40px;
+  
+    .max-content {
+      max-width: var(--composer-content-width);
+      margin: auto;
+      
+    
+      .wrapper{
+        .first {
+          width: 55%;
+          
+          .up {
+            gap: 40px;
+            .title {
+              font-size: 4em;
+            }
+            .description {
+              font-size: 1.3em;
+            }
+            .button-and-input {
+              gap: 15px;
+              .input {
+                height: 35px;
+                width: 72%;
+              }
+              .button {
+                width: 100%;
+                height: 35px;
+                font-size: 0.7em;
+                font-weight: bold;
+              }
+            }
+          }
+          .down {
+            flex-direction: column;
+            gap: 10px;
+            .card1 {
+              gap: 10px;
+              .title1 {
+                font-size: 1.2em;
+              }
+              .description1 {
+                font-size: 1em;
+              }
+            }
+            .card2 {
+              gap: 10px;
+              .title2 {
+                font-size: 1.2em;
+              }
+              .description2 {
+                font-size: 1em;
+              }
+            }
+            .card1,.card2 {
+              width: 100%;
+            }
           }
         }
-      }
-
-      .right {
-        flex: 2;
-
-        img {
-          width: 100%;
-          height: 100%;
-          margin: 0;
-          margin-left: 0px;
-        }
-      }
-      .background-image {
-        img {
-          display: none;
+        .image {
+          height: 470px;
+          width: 90%;
+          margin-left: 7% ;
         }
       }
     }
   }
 }
-
 @media only screen and (max-width: 400px) {
   .container {
-    .wrapper {
-      .left {
-        .title {
-          .items {
-            font-size: 30px;
+  
+    .max-content {
+      max-width: var(--composer-content-width);
+      margin: auto;
+      
+    
+      .wrapper{
+        flex-direction: column;
+        height: max-content;
+        justify-content: start;
+        align-items: flex-start;
+        padding: 0;
+
+        &.wrapper-reverse {
+          flex-flow: column-reverse;
+        }
+        .first {
+          width: 100%;
+          padding: 18px;
+          margin-left: 0;
+          .up {
+            gap: 15px;
+            .title {
+              font-size: 4em;
+              justify-content: flex-start;
+            }
+            .description {
+              width: 100%;
+              font-size: 1.2em;
+            }
+            .button-and-input {
+              gap: 15px;
+              flex-direction: column;
+              .input {
+                height: 37px;
+                width: 100%;
+                font-size: 1em;
+                border: #acacacb2 solid 2.7px;
+                border-radius: 6%;
+              }
+              .button {
+                width: 35%;
+                height: 37px;
+                font-size: 0.8em;
+                margin: 0;
+              }
+            }
+          }
+          .down {
+            flex-direction: column;
+            gap: 15px;
+            .card1 {
+              gap: 6px;
+              .title1 {
+                font-size: 1.4em;
+              }
+              .description1 {
+                font-size: 1.2em;
+              }
+            }
+            .card2 {
+              gap: 6px;
+              .title2 {
+                font-size: 1.4em;
+              }
+              .description2 {
+                font-size: 1.2em;
+              }
+            }
+            .card1,.card2 {
+              width: 100%;
+            }
           }
         }
-        .description {
-          .items-description {
-            font-size: 15px;
-          }
+        .image {
+          height: 350px;
         }
       }
     }
   }
 }
+
+
