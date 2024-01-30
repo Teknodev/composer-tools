@@ -1,11 +1,8 @@
 .container {
     width: 100%;
-    padding: 50px 0;
-    background-repeat: no-repeat;
-    background-size: cover;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
+        display: inline-block;
+        width: 100%;
         .logo-comp4-page {
             display: block;
             width: 100%;
@@ -40,6 +37,7 @@
                 flex-wrap: wrap;
                 gap: 20px;
                 .image {
+                    height: calc(100% +100px);
                     margin-bottom: 50px;
                 }
             }
