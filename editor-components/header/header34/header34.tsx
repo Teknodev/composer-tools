@@ -9,7 +9,18 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 class HeaderComponent34 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
+    this.addProp({
+      type: "icon",
+      key: "prev_icon",
+      displayer: "Prev icon",
+      value: "GrFormPrevious",
+    });
+    this.addProp({
+      type: "icon",
+      key: "next_icon",
+      displayer: "Next icon",
+      value: "GrFormNext",
+    });
     this.addProp({
       type: "array",
       key: "slider",
@@ -31,21 +42,21 @@ class HeaderComponent34 extends BaseHeader {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Premium Quality Design"
+              value: "Premium Quality Design",
             },
             {
               type: "string",
               key: "button_text",
               displayer: "Button Text",
-              value: "PURCHASE INTACT"
+              value: "PURCHASE INTACT",
             },
             {
               type: "page",
               key: "button_link",
               displayer: "Button Navigate",
-              value: ""
+              value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -63,21 +74,21 @@ class HeaderComponent34 extends BaseHeader {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Premium Quality Jobs"
+              value: "Premium Quality Jobs",
             },
             {
               type: "string",
               key: "button_text",
               displayer: "Button Text",
-              value: "CONTACT US"
+              value: "CONTACT US",
             },
             {
               type: "page",
               key: "button_link",
               displayer: "Button Navigate",
-              value: ""
+              value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -95,22 +106,22 @@ class HeaderComponent34 extends BaseHeader {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Premium Quality Clothes"
+              value: "Premium Quality Clothes",
             },
             {
               type: "string",
               key: "button_text",
               displayer: "Button Text",
-              value: "BUY"
+              value: "BUY",
             },
             {
               type: "page",
               key: "button_link",
               displayer: "Button Navigate",
-              value: ""
+              value: "",
             },
-          ]
-        }
+          ],
+        },
       ],
     });
 
@@ -118,16 +129,10 @@ class HeaderComponent34 extends BaseHeader {
     this.setComponentState("active-index", 0);
     this.setComponentState("display-none", true);
     this.setComponentState("slider-ref", React.createRef());
-
-
-
   }
   getName(): string {
-    return "Header 37";
+    return "Header 34";
   }
-
-
-
 
   render() {
     const settings = {
@@ -142,10 +147,8 @@ class HeaderComponent34 extends BaseHeader {
       draggable: false,
       dotsClass: this.decorateCSS("dots"),
       afterChange: (index: number) => {
-
         this.setComponentState("animation-active", false);
         this.setComponentState("display-none", true);
-
       },
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
@@ -156,51 +159,81 @@ class HeaderComponent34 extends BaseHeader {
         setTimeout(() => {
           this.setComponentState("animation-active", true);
           this.setComponentState("active-index", newIndex);
-        }, 100)
-      }
+        }, 100);
+      },
     };
     return (
       <div className={this.decorateCSS("container")}>
-
         <ComposerSlider
           {...settings}
           ref={this.getComponentState("slider-ref")}
           className={this.decorateCSS("carousel")}
         >
-          {this.getPropValue("slider").map(
-            (item: any, indexSlider: number) => (
-
-              <div className={this.decorateCSS("content")} key={indexSlider}>
-                <img src={item.getPropValue("image")} />
-                <div className={this.decorateCSS("overlay")}></div>
-                <div className={`${this.decorateCSS("text-and-button")} ${this.getComponentState("animation-active") && this.decorateCSS("un-visible")}`}>
-                  <h1>{item.getPropValue("title")}</h1>
-                  <ComposerLink path={item.getPropValue("button_link")}>
-                    <button>{item.getPropValue("button_text")}</button>
-                  </ComposerLink>
-                </div>
-                <ComposerIcon name="GrFormNext" propsIcon={{
-                  className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") && this.decorateCSS("un-visible")}`, size: 40, onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext()
-                  }
-                }} />
-                <ComposerIcon name="GrFormPrevious" propsIcon={{
-                  className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") && this.decorateCSS("un-visible")}`, size: 40, onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev()
-                  }
-                }} />
+          {this.getPropValue("slider").map((item: any, indexSlider: number) => (
+            <div className={this.decorateCSS("content")} key={indexSlider}>
+              <img src={item.getPropValue("image")} />
+              <div className={this.decorateCSS("overlay")}></div>
+              <div
+                className={`${this.decorateCSS("text-and-button")} ${
+                  this.getComponentState("animation-active") &&
+                  this.decorateCSS("un-visible")
+                }`}
+              >
+                <h1>{item.getPropValue("title")}</h1>
+                <ComposerLink path={item.getPropValue("button_link")}>
+                  <button>{item.getPropValue("button_text")}</button>
+                </ComposerLink>
               </div>
-
-            )
-          )}
-
+              <ComposerIcon
+                name={this.getPropValue("next_icon")}
+                propsIcon={{
+                  className: `${this.decorateCSS(
+                    "next-icon"
+                  )} ${this.decorateCSS("arrow")} ${
+                    !this.getComponentState("display-none") &&
+                    this.decorateCSS("un-visible")
+                  }`,
+                  size: 40,
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickNext();
+                  },
+                }}
+              />
+              <ComposerIcon
+                name={this.getPropValue("prev_icon")}
+                propsIcon={{
+                  className: `${this.decorateCSS(
+                    "prev-icon"
+                  )} ${this.decorateCSS("arrow")} ${
+                    !this.getComponentState("display-none") &&
+                    this.decorateCSS("un-visible")
+                  }`,
+                  size: 40,
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickPrev();
+                  },
+                }}
+              />
+            </div>
+          ))}
         </ComposerSlider>
-        <div className={`${this.decorateCSS("overlay-animation-box")} ${this.getComponentState("animation-active") && this.decorateCSS("visible")} ${this.getComponentState("display-none") && this.decorateCSS("display-none")} ${this.decorateCSS(this.getComponentState("from"))}`} >
-          <img src={this.getPropValue("slider")[this.getComponentState("active-index")].value} />
+        <div
+          className={`${this.decorateCSS("overlay-animation-box")} ${
+            this.getComponentState("animation-active") &&
+            this.decorateCSS("visible")
+          } ${
+            this.getComponentState("display-none") &&
+            this.decorateCSS("display-none")
+          } ${this.decorateCSS(this.getComponentState("from"))}`}
+        >
+          <img
+            src={
+              this.getPropValue("slider")[
+                this.getComponentState("active-index")
+              ].value
+            }
+          />
         </div>
-
-
-
       </div>
     );
   }
