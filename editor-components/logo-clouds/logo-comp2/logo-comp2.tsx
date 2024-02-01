@@ -23,6 +23,14 @@ class LogoComp2Page extends LogoClouds {
       displayer: "description",
       value: "Sponsors can range from small local businesses to multinational corporations and can sponsor everything from sports teams to music festivals to non-profit organizations.",
     });
+
+    this.addProp({
+      type : "boolean",
+      key : "isRow",
+      displayer : "isRow",
+      value : false,
+    })
+
     this.addProp({
       type: "array",
       key: "image-items",
@@ -123,14 +131,16 @@ class LogoComp2Page extends LogoClouds {
   render() {
     return (
       <div
-        className={this.decorateCSS("container")}
+        className={`${this.decorateCSS("container")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}
         
       >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("logo-comp2-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
-            <section>
+        <div className={`${this.decorateCSS("max-content")} ${this.getPropValue("isRow") ==true ? this.decorateCSS("row") : ""}`}>
+          <div className={`${this.decorateCSS("logo-comp2-page")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
+            <div className={`${this.decorateCSS("container-title-description")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
+            <h1 className={`${this.decorateCSS("title")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>{this.getPropValue("title")}</h1>
+            <h3 className={`${this.decorateCSS("description")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>{this.getPropValue("description")}</h3>
+            </div>
+            <section className={`${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
               <center>
                 {this.castToObject<ISection[]>("image-items").map(
                   (section: any, index: number) => (
