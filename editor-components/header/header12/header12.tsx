@@ -3,7 +3,6 @@ import { BaseHeader } from "../../EditorComponent";
 import styles from "./header12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-
 //Left Slider
 type LeftSlider = {
     imageLeft: string;
@@ -21,9 +20,19 @@ type RightSlider = {
 //CLASS
 class Header12 extends BaseHeader {
 
+    firstSlider: any;
+    secondSlider: any;
+    
     //constructor
     constructor(props?: any) {
         super(props, styles);
+
+        this.addProp({
+            type : "image",
+            key : "image",
+            displayer :"Image",
+            value : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
+        })
 
         // SLIDER LEFT
         this.addProp({
@@ -41,12 +50,6 @@ class Header12 extends BaseHeader {
                             key: "imageLeft",
                             displayer: "image Left",
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry15-1.jpg",
-                        },
-                        {
-                            type: "image",
-                            key: "iconLeft",
-                            displayer: "icon Left",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
                         },
                         {
                             type: "string",
@@ -68,12 +71,6 @@ class Header12 extends BaseHeader {
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry18.jpg",
                         },
                         {
-                            type: "image",
-                            key: "iconLeft",
-                            displayer: "icon Left",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
-                        },
-                        {
                             type: "string",
                             key: "textLeft",
                             displayer: "Text Left",
@@ -91,12 +88,6 @@ class Header12 extends BaseHeader {
                             key: "imageLeft",
                             displayer: "image Left",
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/book_on_leaves.jpg",
-                        },
-                        {
-                            type: "image",
-                            key: "iconLeft",
-                            displayer: "icon Left",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
                         },
                         {
                             type: "string",
@@ -118,12 +109,6 @@ class Header12 extends BaseHeader {
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry05.jpg",
                         },
                         {
-                            type: "image",
-                            key: "iconLeft",
-                            displayer: "icon Left",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
-                        },
-                        {
                             type: "string",
                             key: "textLeft",
                             displayer: "Text Left",
@@ -141,12 +126,6 @@ class Header12 extends BaseHeader {
                             key: "imageLeft",
                             displayer: "image Left",
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry13.jpg",
-                        },
-                        {
-                            type: "image",
-                            key: "iconLeft",
-                            displayer: "icon Left",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
                         },
                         {
                             type: "string",
@@ -177,12 +156,6 @@ class Header12 extends BaseHeader {
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/food_drink04.jpg",
                         },
                         {
-                            type: "image",
-                            key: "iconRight",
-                            displayer: "icon Right",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
-                        },
-                        {
                             type: "string",
                             key: "textRight",
                             displayer: "Text Right",
@@ -200,12 +173,6 @@ class Header12 extends BaseHeader {
                             key: "imageRight",
                             displayer: "image Right",
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/coffee.jpg",
-                        },
-                        {
-                            type: "image",
-                            key: "iconRight",
-                            displayer: "icon Right",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
                         },
                         {
                             type: "string",
@@ -227,12 +194,6 @@ class Header12 extends BaseHeader {
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/book_and_leaf.jpg",
                         },
                         {
-                            type: "image",
-                            key: "iconRight",
-                            displayer: "icon Right",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
-                        },
-                        {
                             type: "string",
                             key: "textRight",
                             displayer: "Text Right",
@@ -252,12 +213,6 @@ class Header12 extends BaseHeader {
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry11.jpg",
                         },
                         {
-                            type: "image",
-                            key: "iconRight",
-                            displayer: "icon Right",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
-                        },
-                        {
                             type: "string",
                             key: "textRight",
                             displayer: "Text Right",
@@ -275,12 +230,6 @@ class Header12 extends BaseHeader {
                             key: "imageRight",
                             displayer: "image Right",
                             value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/photo-1476283721796-dd935b062838.jpg",
-                        },
-                        {
-                            type: "image",
-                            key: "iconRight",
-                            displayer: "icon Right",
-                            value: "https://cdn-icons-png.flaticon.com/512/656/656979.png",
                         },
                         {
                             type: "string",
@@ -313,15 +262,45 @@ class Header12 extends BaseHeader {
             verticalSwiping: true,
         };
 
+        const settingFirst = {
+            ...settings,
+            beforeChange: (current: number, next: number) => {
+                console.log(next, current);
+                const currentIndex = parseInt(this.getComponentState("secondSliderIndex"));
+                if(
+                    (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection1").length))
+                || (current + 1 == this.castToObject<LeftSlider[]>("carouselCollection1").length && next == 0)){
+                    this.secondSlider.slickPrev()
+                }
+                else{
+                    this.secondSlider.slickNext()
+                }
+            }
+        }
+
+        const settingSecond = {
+            ...settings,
+            beforeChange: (current: number, next: number) => {
+                console.log(next, current);
+                const currentIndex = parseInt(this.getComponentState("firstSliderIndex"));
+                if(
+                    (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection2").length))
+                || (current + 1 == this.castToObject<LeftSlider[]>("carouselCollection2").length && next == 0)){
+                    this.firstSlider.slickPrev()
+                }
+                else{
+                    this.firstSlider.slickNext()
+                }
+            }
+        }
         //RETURN
         return (
             <div className={this.decorateCSS("container")}>
                 <div className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("sliderContainer")}>
-                        <ComposerSlider {...settings}>
+                        <ComposerSlider className={this.decorateCSS("slider")} refObject={(slider: any) => (this.firstSlider = slider)} {...settingFirst}>
                             {this.castToObject<LeftSlider[]>("carouselCollection1").map((item: LeftSlider, index: number) => (
                                 <div
-                                    className={this.decorateCSS("left-container")}
                                     key={index}
                                 >
                                     <img
@@ -329,18 +308,17 @@ class Header12 extends BaseHeader {
                                         alt=""
                                         key={index}
                                     />
-                                    <div className={this.decorateCSS("imageArrows")}>{item.iconLeft}</div>
                                     <h1 className={this.decorateCSS("title")}>{item.textLeft}</h1>
                                 </div>
 
                             ))}
                         </ComposerSlider>
 
-                        <ComposerSlider {...settings}>
+                        <ComposerSlider className={this.decorateCSS("slider")} refObject={(slider: any) => (this.secondSlider = slider)} {...settingSecond}>
                             {this.castToObject<RightSlider[]>("carouselCollection2").map((item: RightSlider, index: number) => (
 
                                 <div
-                                    className={this.decorateCSS("right-container")}
+                                    
                                     key={index}
                                 >
                                     <img
@@ -348,7 +326,6 @@ class Header12 extends BaseHeader {
                                         alt=""
                                         key={index}
                                     />
-                                    <div className={this.decorateCSS("imageArrows")}>{item.iconRight}</div>
                                     <h1 className={this.decorateCSS("title")}>{item.textRight}</h1>
                                 </div>
                             ))}

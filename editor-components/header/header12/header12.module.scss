@@ -1,44 +1,32 @@
 .container {
     width: 100%;
     background-color: var(--composer-html-background);
+    height: calc(100vh - 60px);
 
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
+        height: 100%;
 
         .sliderContainer {
             display: flex;
+            height: 100%;
             
-            .left-container {
+            .slider {
+                height: 100%;
                 width: 50%;
                 position: relative;
+                overflow: hidden;
               
+                >div{
+                    height: 100% !important;
+                }
 
                 img {
                     width: 100%;
+                    height: calc(100vh - 60px) !important;
+                    object-fit: cover;
                 }
-
-                .imageArrows {}
-
-                .title {
-                    color: #2d2b2b;
-                    position: absolute;
-                    bottom: 0;
-                    left: 50px;
-                    color: var(--composer-font-color-secondary);
-                }
-            }
-
-            .right-container {
-                width: 50%;
-                position: relative;
-                
-
-                img {
-                    width: 100%;
-                }
-
-                .imageArrows {}
 
                 .title {
                     color: #2d2b2b;
@@ -57,9 +45,9 @@
 
     .container {}
 
-}
+} // For Ipad end
 
-// For Ipad end
+
 
 
 // For Mobile
@@ -67,6 +55,5 @@
 
     .container {}
 
-}
+} // For Mobile end
 
-// For Mobile end
