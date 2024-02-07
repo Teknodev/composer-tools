@@ -132,54 +132,60 @@ class List5 extends BaseList {
   }
   render(): ReactNode {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("list-item")}>
-            {this.getPropValue("list-items").map(
-              (listItem: any, index: number) => {
-                return (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("item-container")}
-                    style={{
-                      flex: `0 0 ${100 / this.getPropValue("itemCount") - 2}%`,
-                    }}
-                  >
-                    <div className={this.decorateCSS("header-line")}>
-                      <div className={this.decorateCSS("icon")}>
-                        <ComposerIcon
-                          name={listItem.value[1].value}
-                          propsIcon={{
-                            className: `${styles["_icon"]}`,
-                            size: 60,
-                            onClick: () => {
-                              console.log("test");
-                            },
-                          }}
-                        />
+      <>
+        <div className={this.decorateCSS("header")}>
+          <h1>Bringing Your Vision to Life - AI Image Generation Service</h1>
+        </div>
+        <div className={this.decorateCSS("container")}>
+          <div className={this.decorateCSS("max-content")}>
+            <div className={this.decorateCSS("list-item")}>
+              {this.getPropValue("list-items").map(
+                (listItem: any, index: number) => {
+                  return (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("item-container")}
+                      style={{
+                        flex: `0 0 ${
+                          100 / this.getPropValue("itemCount") - 2
+                        }%`,
+                      }}
+                    >
+                      <div className={this.decorateCSS("header-line")}>
+                        <div className={this.decorateCSS("icon")}>
+                          <ComposerIcon
+                            name={listItem.value[1].value}
+                            propsIcon={{
+                              className: `${styles["_icon"]}`,
+                              size: 60,
+                              onClick: () => {
+                                console.log("test");
+                              },
+                            }}
+                          />
+                        </div>
+                        <div className={this.decorateCSS("item-index")}>
+                          {(index + 1).toLocaleString("en-US", {
+                            minimumIntegerDigits: 2,
+                            useGrouping: false,
+                          })}
+                        </div>
                       </div>
-                      <div className={this.decorateCSS("item-index")}>
-                        {(index + 1).toLocaleString("en-US", {
-                          minimumIntegerDigits: 2,
-                          useGrouping: false,
-                        })}
-                      </div>
+                      <h1 className={this.decorateCSS("list-item-value-h1")}>
+                        {listItem.value[0].value}
+                      </h1>
+                      <p className={this.decorateCSS("list-item-value-p")}>
+                        {listItem.value[2].value}
+                      </p>
                     </div>
-                    <h1 className={this.decorateCSS("list-item-value-h1")}>
-                      {listItem.value[0].value}
-                    </h1>
-                    <p className={this.decorateCSS("list-item-value-p")}>
-                      {listItem.value[2].value}
-                    </p>
-                  </div>
-                );
-              }
-            )}
+                  );
+                }
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
-
 export default List5;
