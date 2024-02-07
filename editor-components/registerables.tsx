@@ -37,8 +37,10 @@ import ContentComponent14 from "./content/content14/content14";
 import ContentComponent15 from "./content/content15/content15";
 import ContentComponent16 from "./content/content16/content16";
 import ContentComponent17 from "./content/content17/content17";
+import ContentComponent20 from "./content/content20/content20";
 import ContentComponent21 from "./content/content21/content21";
-import ContentComponent22 from "./content/content22/content22";
+import ContentComponent23 from "./content/content23/content23";
+import ContentComponent24 from "./content/content24/content24";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -92,28 +94,28 @@ import HeaderComponent9 from "./header/header9/header9";
 import HeaderComponent10 from "./header/header10/header10";
 import HeaderComponent11 from "./header/header11/header11";
 import HeaderComponent12 from "./header/header12/header12";
-import HeaderComponent14 from "./header/header14/header14";
-import HeaderComponent22 from "./header/header22/header22";
-import HeaderComponent21 from "./header/header21/header21";
-import HeaderComponent15 from "./header/header15/header15";
-import HeaderComponent23 from "./header/header23/header23";
 import HeaderComponent13 from "./header/header13/header13";
+import HeaderComponent14 from "./header/header14/header14";
+import HeaderComponent15 from "./header/header15/header15";
 import HeaderComponent16 from "./header/header16/header16";
+import HeaderComponent17 from "./header/header17/header17";
 import HeaderComponent18 from "./header/header18/header18";
 import HeaderComponent19 from "./header/header19/header19";
-import HeaderComponent17 from "./header/header17/header17";
 import HeaderComponent20 from "./header/header20/header20";
-import HeaderComponent28 from "./header/header28/header28";
+import HeaderComponent21 from "./header/header21/header21";
+import HeaderComponent22 from "./header/header22/header22";
+import HeaderComponent23 from "./header/header23/header23";
 import HeaderComponent24 from "./header/header24/header24";
 import HeaderComponent25 from "./header/header25/header25";
+import HeaderComponent26 from "./header/header26/header26";
+import HeaderComponent27 from "./header/header27/header27";
+import HeaderComponent28 from "./header/header28/header28";
 import HeaderComponent29 from "./header/header29/header29";
 import HeaderComponent30 from "./header/header30/header30";
 import HeaderComponent31 from "./header/header31/header31";
 import HeaderComponent32 from "./header/header32/header32";
 import HeaderComponent33 from "./header/header33/header33";
 import HeaderComponent34 from "./header/header34/header34";
-import HeaderComponent35 from "./header/header35/header35";
-import HeaderComponent36 from "./header/header36/header36";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -164,17 +166,17 @@ import StatsComponent5 from "./stats/stats5/stats5";
 import StatsComponent6 from "./stats/stats6/stats6";
 import StatsComponent7 from "./stats/stats7/stats7";
 import StatsComponent8 from "./stats/stats8/stats8";
-import ContactsComponent1 from "./contacts/contacts1/contacts1";
-import ContactsComponent2 from "./contacts/contacts2/contacts2";
-import ContactsComponent3 from "./contacts/contacts3/contacts3";
-import ContactsComponent4 from "./contacts/contacts4/contacts4";
-import ContactsComponent5 from "./contacts/contacts5/contacts5";
-import ContactsComponent6 from "./contacts/contacts6/contacts6";
-import ContactsComponent8 from "./contacts/contacts8/contacts8";
-import ContactsComponent9 from "./contacts/contacts9/contacts9";
-import ContactsComponent10 from "./contacts/contacts10/contacts10";
-import ContactsComponent11 from "./contacts/contacts11/contacts11";
-import ContactsComponent12 from "./contacts/contacts12/contacts12";
+import ContactsComponent1 from "./contacts/form1/form1";
+import ContactsComponent2 from "./contacts/form2/form2";
+import ContactsComponent3 from "./contacts/form3/form3";
+import ContactsComponent4 from "./contacts/form4/form4";
+import ContactsComponent5 from "./contacts/form5/form5";
+import ContactsComponent6 from "./contacts/form6/form6";
+import ContactsComponent8 from "./contacts/form7/form7";
+import ContactsComponent9 from "./contacts/form8/form8";
+import ContactsComponent10 from "./contacts/form9/form9";
+import ContactsComponent11 from "./contacts/form10/form10";
+import ContactsComponent12 from "./contacts/form11/form11";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -237,8 +239,10 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent17(),
     new ContentComponent18(),
     new ContentComponent19(),
+    new ContentComponent20(),
     new ContentComponent21(),
-    new ContentComponent22(),
+    new ContentComponent23(),
+    new ContentComponent24(),
     new SliderComponent1(),
     new SliderComponent2(),
     new SliderComponent3(),
@@ -292,28 +296,28 @@ function Registerables(composer: ComponentsRegistery) {
     new HeaderComponent10(),
     new HeaderComponent11(),
     new HeaderComponent12(),
-    new HeaderComponent14(),
-    new HeaderComponent22(),
     new HeaderComponent13(),
-    new HeaderComponent21(),
+    new HeaderComponent14(),
     new HeaderComponent15(),
     new HeaderComponent16(),
+    new HeaderComponent17(),
     new HeaderComponent18(),
     new HeaderComponent19(),
-    new HeaderComponent17(),
     new HeaderComponent20(),
-    new HeaderComponent24(), 
-    new HeaderComponent23(),
-    new HeaderComponent28(),
+    new HeaderComponent21(),
+    new HeaderComponent22(),
+    new HeaderComponent23(), 
+    new HeaderComponent24(),
     new HeaderComponent25(),
+    new HeaderComponent26(),
+    new HeaderComponent27(),
+    new HeaderComponent28(),
     new HeaderComponent29(),
     new HeaderComponent30(),
     new HeaderComponent31(),
     new HeaderComponent32(),
     new HeaderComponent33(),
     new HeaderComponent34(),
-    new HeaderComponent35(),
-    new HeaderComponent36(),
     new NavbarComponent1(),
     new NavbarComponent2(),
     new NavbarComponent3(),

@@ -1,0 +1,160 @@
+import * as React from "react";
+import { BaseContacts } from "../../EditorComponent";
+import styles from "./form4.module.scss";
+
+type Item = {
+  title: string;
+  Text1th: string;
+  Text2th: string;
+};
+class Form4Page extends BaseContacts {
+  constructor(props?: any) {
+    super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "We contact us",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:"You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form. ",
+    });
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edf62b057bdf002c2adec0?alt=media&timestamp=1693316630697",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "info-items",
+      displayer: "Info Items",
+      value: [
+        {
+          type: "object",
+          key: "info",
+          displayer: "Info",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "EMAIL",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "Text1th",
+              value: "business@info.com",
+              displayer: "1th Text",
+            },
+            {
+              type: "string",
+              key: "Text2th",
+              value: "support@info.com",
+              displayer: "2th Text",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "info",
+          displayer: "Info",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "PHONE",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "Text1th",
+              value: "111 345 45 99",
+              displayer: "1th Text",
+            },
+            {
+              type: "string",
+              key: "Text2th",
+              value: "111 346 45 99",
+              displayer: "2th Text",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "info",
+          displayer: "Info",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "ADDRESS",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "Text1th",
+              value: "27 13 Lowe Haven",
+              displayer: "1th Text",
+            },
+            {
+              type: "string",
+              key: "Text2th",
+              value: "28 14 Lowe Haven",
+              displayer: "2th Text",
+            },
+          ],
+        },
+      ],
+    });
+  }
+
+  getName(): string {
+    return "Form 4";
+  }
+
+  render() {
+    return (
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("contacts")}>
+              
+              <div className={this.decorateCSS("contact-left-left")}>
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+                <div className={this.decorateCSS("contact-left")}>
+                <img
+                  alt=""
+                  src={this.getPropValue("image")}
+                  className={this.decorateCSS("image")}
+                />
+              </div>
+            </div>
+              <div className={this.decorateCSS("contact-right")}>
+                <div className={this.decorateCSS("contact-info")}>
+                  {this.castToObject<Item[]>("info-items").map(
+                    (data: any, index: number) => (
+                      <div key={index}>
+                        <h3 className={this.decorateCSS("data-title")}>{data.title}</h3>
+                        <h2 className={this.decorateCSS("data-text1")}>{data.Text1th}</h2>
+                        <h2 className={this.decorateCSS("data-text2")}>
+                          {data.Text2th}
+                        </h2>
+                      </div>
+                    )
+                  )}
+                </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Form4Page;

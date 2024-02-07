@@ -91,9 +91,30 @@
         }
         .call-to-action2-page-buttons {
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
+            .button2{
+                margin: 20px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .container {
+        padding: 50px 20px;
+        .call-to-action2-page {
+            text-align: center;
+            width: 100%;
+            h1,
+            h2 {
+                width: 100% !important;
+            }
+        }
+        .call-to-action2-page-buttons {
+            flex-direction: column;
+            
+            .button2{
+                margin: 20px;
+            }
         }
     }
 }

@@ -3,11 +3,13 @@ import styles from "./header20.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-
-class Header20 extends BaseHeader {
+type icons = {
+  url: string;
+  image: string;
+};
+class HeaderComponent20 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
 
     this.addProp({
       type: "object",
@@ -16,27 +18,22 @@ class Header20 extends BaseHeader {
       value: [
         {
           type: "object",
-          displayer: "Item Left",
-          key: "item-left",
+          displayer: "Item Left Top",
+          key: "left-top-item",
           value: [
             {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "MATTIS LAOREET SAPIEN",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Porta\nConsectetur\nImperdiet\nFrigilla",
+              value:
+                "I Create User-friendly Mobile Applications and Web Experiences ❤️",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad87b?alt=media&timestamp=1693306471422",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5e27c057bdf002c2c29ff?alt=media&timestamp=1693835875557",
             },
             {
               type: "object",
@@ -47,11 +44,11 @@ class Header20 extends BaseHeader {
                   type: "string",
                   displayer: "Button Text",
                   key: "button-text",
-                  value: "READ MORE",
+                  value: "Sign Up",
                 },
                 {
                   type: "page",
-                  displayer: "Button Link",
+                  displayer: "Button URL",
                   key: "button-url",
                   value: "",
                 },
@@ -59,91 +56,102 @@ class Header20 extends BaseHeader {
             },
           ],
         },
+
         {
           type: "object",
-          displayer: "Item Right",
-          key: "item-right",
+          displayer: "Directions",
+          key: "directions",
           value: [
             {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "SEMPER",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Feugiat\nScelerisque\nImperdiet",
-            },
-
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad87a?alt=media&timestamp=1693306471422",
-            },
-            {
               type: "object",
-              displayer: "Button",
-              key: "button",
+              displayer: "Direction-1",
+              key: "direction1",
               value: [
                 {
                   type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "READ MORE",
+                  displayer: "Direction-1",
+                  key: "direction1",
+                  value: "Product Design",
                 },
                 {
                   type: "page",
-                  displayer: "Button Link",
+                  displayer: "Button URL",
                   key: "button-url",
                   value: "",
                 },
               ],
             },
-          ],
-        },
-        {
-          type: "object",
-          displayer: "Item Right Bottom Left",
-          key: "item-right-bottom-left",
-          value: [
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "SEMPER",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Adipiscing\nSodales",
-            },
-
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad878?alt=media&timestamp=1693306471422",
-            },
             {
               type: "object",
-              displayer: "Button",
-              key: "button",
+              displayer: "Direction-2",
+              key: "direction2",
               value: [
                 {
                   type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "READ MORE",
+                  displayer: "Direction-1",
+                  key: "direction1",
+                  value: "UX Research",
                 },
                 {
                   type: "page",
-                  displayer: "Button Link",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              displayer: "Direction-3",
+              key: "direction3",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Direction-1",
+                  key: "direction1",
+                  value: "Prototyping",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              displayer: "Direction-4",
+              key: "direction4",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Direction-1",
+                  key: "direction1",
+                  value: "Prototyping",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              displayer: "Direction-5",
+              key: "direction5",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Direction-1",
+                  key: "direction1",
+                  value: "Front-End Development",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
                   key: "button-url",
                   value: "",
                 },
@@ -153,20 +161,108 @@ class Header20 extends BaseHeader {
         },
       ],
     });
-
-      this.addProp({
-       type: "object",
-        displayer: "Item Right Bottom Right",
-        key: "item-right-bottom-right",
-        value: [
-          {
-            type: "image",
-            displayer: "Item Right Bottom Right",
-            key: "item-right-bottom-right-photo",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad879?alt=media&timestamp=1693306471422",
-          }
-        ]
-      });
+    this.addProp({
+      type: "array",
+      key: "socialMedias",
+      displayer: "Social Medias",
+      value: [
+        {
+          type: "object",
+          key: "box",
+          displayer: "Twitter",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "box",
+          displayer: "Facebook",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "box",
+          displayer: "Pinterest",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value: "https://cdn-icons-png.flaticon.com/512/145/145808.png",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "box",
+          displayer: "Linkedin",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value: "https://cdn-icons-png.flaticon.com/512/145/145807.png",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "box",
+          displayer: "Telegram",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              value: "https://cdn-icons-png.flaticon.com/512/2111/2111646.png",
+              displayer: "Image",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
   }
 
   getName(): string {
@@ -179,77 +275,62 @@ class Header20 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("item")}>
-                <div className={this.decorateCSS("background-image")}>
-                  <img src={items[0].image} alt={items[0].title} />
-                </div>
-                <div className={this.decorateCSS("content")}>
-                  <div className={this.decorateCSS("title")}>
-                    {items[0].title}
-                  </div>
-                  <div className={this.decorateCSS("description")}>
-                    {items[0].description}
-                  </div>
-                  <div>
-                    <ComposerLink path={items[0].button[1].value}>
-                    <button className={this.decorateCSS("button")}>
-                      {items[0].button[0].value}
-                    </button>
-                    </ComposerLink>
-                  </div>
-                </div>
-              </div>
+            <div className={this.decorateCSS("background-image")}>
+              <img src={items[0].image} alt={items[0].title} />
             </div>
-            <div className={this.decorateCSS("right")}>
+            <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("top")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={items[1].image} alt={items[1].title} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {items[1].title}
+                <div className={this.decorateCSS("title")}>
+                  <h1 className={this.decorateCSS("items")}>{items[0].title}</h1>
+                </div>
+                <div className={this.decorateCSS("button-and-input")}>
+                  <input
+                    placeholder="Your email address"
+                    className={this.decorateCSS("input")}
+                    type="text"
+                  />
+                  <ComposerLink path={items[0].button[1].value}>
+                    <div className={this.decorateCSS("button")}>
+                      <button>{items[0].button[0].value}</button>
                     </div>
-                    <div className={this.decorateCSS("description")}>
-                      {items[1].description}
-                    </div>
-                    <div>
-                      <ComposerLink path={items[1].button[1].value}>
-                      <button className={this.decorateCSS("button")}>
-                        {items[1].button[0].value}
-                      </button>
-                      </ComposerLink>
-                    </div>
-                  </div>
+                  </ComposerLink>
+                </div>
+                <div className={this.decorateCSS("icons")}>
+                  <li>
+                    {this.castToObject<icons[]>("socialMedias").map(
+                      (icons: any, index: number) => (
+                        <ComposerLink key={index} path={icons.url}>
+                          <div className={this.decorateCSS("icon-div")}>
+                            <img
+                              src={icons.image}
+                              alt={`Small Image ${index + 1}`}
+                              key={index}
+                            />
+                          </div>
+                        </ComposerLink>
+                      )
+                    )}
+                  </li>
                 </div>
               </div>
               <div className={this.decorateCSS("bottom")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={items[2].image} alt={items[2].title} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {items[2].title}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {items[2].description}
-                    </div>
-                    <div>
-                        <ComposerLink path={items[2].button[1].value}>
-                      <button className={this.decorateCSS("button")}>
-                        {items[2].button[0].value}
-                      </button>
-                      </ComposerLink>
-                    </div>
-                  </div>
-                </div>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={this.getPropValue('item-right-bottom-right')[0].value} alt=""/>
-                  </div>  
-                </div>
+                <li>
+                  <a href={items[1].direction1[1].value}>
+                    {items[1].direction1[0].value}
+                  </a>
+                  <a href={items[1].direction2[1].value}>
+                    {items[1].direction2[0].value}
+                  </a>
+                  <a href={items[1].direction3[1].value}>
+                    {items[1].direction3[0].value}
+                  </a>
+                  <a href={items[1].direction4[1].value}>
+                    {items[1].direction4[0].value}
+                  </a>
+                  <a href={items[1].direction5[1].value}>
+                    {items[1].direction5[0].value}
+                  </a>
+                </li>
               </div>
             </div>
           </div>
@@ -259,4 +340,4 @@ class Header20 extends BaseHeader {
   }
 }
 
-export default Header20;
+export default HeaderComponent20;

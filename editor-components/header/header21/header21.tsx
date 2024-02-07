@@ -1,337 +1,205 @@
 import * as React from "react";
-import styles from "./header21.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import styles from "./header21.module.scss";
+import Slider from "react-slick";
 
-type icons = {
-  url: string;
+type ISliderData = {
+  title: string;
   image: string;
+  backgroundDescription: string;
+  background: string;
+  foreground: string;
+  des: string;
+  button: IButton[];
 };
-class HeaderComponent21 extends BaseHeader {
+
+type IButton = {
+  value: string;
+};
+
+class Header21 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
-      type: "object",
-      displayer: "Items",
-      key: "items",
+      type: "array",
+      displayer: "Slider Carousel",
+      key: "slider",
       value: [
         {
           type: "object",
-          displayer: "Item Left Top",
-          key: "left-top-item",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
+              displayer: "Description",
+              key: "des",
+              value: "FASTER, STRONGER FIGHT TO THE END",
+            },
+            {
+              type: "string",
+              displayer: "Background Description",
+              key: "backgroundDescription",
+              value: "BE STRONG NEVER GIVE UP",
+            },
+            {
+              type: "image",
+              displayer: "Background Effect",
+              key: "background",
               value:
-                "I Create User-friendly Mobile Applications and Web Experiences ❤️",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9ba0a057bdf002c2ce997?alt=media&timestamp=1694088048798",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5e27c057bdf002c2c29ff?alt=media&timestamp=1693835875557",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9a6e3057bdf002c2ce55b?alt=media&timestamp=1694082801038",
             },
             {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "Sign Up",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
+              type: "image",
+              displayer: "Foreground Effect",
+              key: "foreground",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9c09e057bdf002c2ceba3?alt=media&timestamp=1694089389435",
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Description",
+              key: "des",
+              value: "CREATE YOUR OUR NEW BODY",
+            },
+            {
+              type: "string",
+              displayer: "Background Description",
+              key: "backgroundDescription",
+              value: "BE STRONG NEVER GIVE UP",
+            },
+            {
+              type: "image",
+              displayer: "Background Effect",
+              key: "background",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9ba0a057bdf002c2ce997?alt=media&timestamp=1694089201049",
+            },
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9a78c057bdf002c2ce56d?alt=media&timestamp=1694082969788",
+            },
+            {
+              type: "image",
+              displayer: "Foreground Effect",
+              key: "foreground",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9c09e057bdf002c2ceba3?alt=media&timestamp=1694089389435g",
             },
           ],
         },
 
         {
           type: "object",
-          displayer: "Directions",
-          key: "directions",
+          displayer: "Item",
+          key: "item",
           value: [
             {
-              type: "object",
-              displayer: "Direction-1",
-              key: "direction1",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Direction-1",
-                  key: "direction1",
-                  value: "Product Design",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
+              type: "string",
+              displayer: "Description",
+              key: "des",
+              value: "ALL POWER INSIDE YOU",
             },
             {
-              type: "object",
-              displayer: "Direction-2",
-              key: "direction2",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Direction-1",
-                  key: "direction1",
-                  value: "UX Research",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
+              type: "string",
+              displayer: "Background Description",
+              key: "backgroundDescription",
+              value: "BE STRONG NEVER GIVE UP",
             },
-            {
-              type: "object",
-              displayer: "Direction-3",
-              key: "direction3",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Direction-1",
-                  key: "direction1",
-                  value: "Prototyping",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Direction-4",
-              key: "direction4",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Direction-1",
-                  key: "direction1",
-                  value: "Prototyping",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Direction-5",
-              key: "direction5",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Direction-1",
-                  key: "direction1",
-                  value: "Front-End Development",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-    this.addProp({
-      type: "array",
-      key: "socialMedias",
-      displayer: "Social Medias",
-      value: [
-        {
-          type: "object",
-          key: "box",
-          displayer: "Twitter",
-          value: [
             {
               type: "image",
-              key: "image",
-              value: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png",
-              displayer: "Image",
+              displayer: "Background Effect",
+              key: "background",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9ba0a057bdf002c2ce997?alt=media&timestamp=1694089201049",
             },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "box",
-          displayer: "Facebook",
-          value: [
             {
               type: "image",
-              key: "image",
-              value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
               displayer: "Image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9a7f5057bdf002c2ce589?alt=media&timestamp=1694083075008",
             },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "box",
-          displayer: "Pinterest",
-          value: [
             {
               type: "image",
-              key: "image",
-              value: "https://cdn-icons-png.flaticon.com/512/145/145808.png",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "box",
-          displayer: "Linkedin",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value: "https://cdn-icons-png.flaticon.com/512/145/145807.png",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "box",
-          displayer: "Telegram",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value: "https://cdn-icons-png.flaticon.com/512/2111/2111646.png",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
+              displayer: "Foreground Effect",
+              key: "foreground",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9c09e057bdf002c2ceba3?alt=media&timestamp=1694089389435",
             },
           ],
         },
       ],
     });
   }
-
   getName(): string {
-    return "Header-21";
+    return "Header 21";
   }
-
   render() {
-    let items: any = this.castToObject("items");
+    const settings = {
+      dots: true,
+      arrow: true,
+      infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
+
+    // let items: any = this.castToObject("items");
+    this.getPropValue("slider").map((item: ISliderData, index: number) =>
+      console.log(item.background)
+    );
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("background-image")}>
-              <img src={items[0].image} alt={items[0].title} />
-            </div>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("top")}>
-                <div className={this.decorateCSS("title")}>
-                  <h1 className={this.decorateCSS("items")}>{items[0].title}</h1>
-                </div>
-                <div className={this.decorateCSS("button-and-input")}>
-                  <input
-                    placeholder="Your email address"
-                    className={this.decorateCSS("input")}
-                    type="text"
-                  />
-                  <ComposerLink path={items[0].button[1].value}>
-                    <div className={this.decorateCSS("button")}>
-                      <button>{items[0].button[0].value}</button>
+            <div className={this.decorateCSS("slider-parent")}>
+              <Slider {...settings} className={this.decorateCSS("carousel")}>
+                {this.castToObject<ISliderData[]>("slider").map(
+                  (item: ISliderData, index: number) => (
+                    <div key={index} className={this.decorateCSS("content")}>
+                      <div className={this.decorateCSS("description")}>
+                        {item.des}
+                      </div>
+                      <div className={this.decorateCSS("background-image")}>
+                        <div
+                          className={this.decorateCSS("background-description")}
+                        >
+                          <h1>{item.backgroundDescription}</h1>
+                        </div>
+                        <div className={this.decorateCSS("img1")}>
+                          <img src={item.background} alt={item.title} />
+                        </div>
+                        <div className={this.decorateCSS("img2")}>
+                          <img src={item.image} alt={item.title} />
+                        </div>
+                        <div className={this.decorateCSS("img3")}>
+                          <img src={item.foreground} alt={item.title} />
+                        </div>
+                      </div>
                     </div>
-                  </ComposerLink>
-                </div>
-                <div className={this.decorateCSS("icons")}>
-                  <li>
-                    {this.castToObject<icons[]>("socialMedias").map(
-                      (icons: any, index: number) => (
-                        <ComposerLink key={index} path={icons.url}>
-                          <div className={this.decorateCSS("icon-div")}>
-                            <img
-                              src={icons.image}
-                              alt={`Small Image ${index + 1}`}
-                              key={index}
-                            />
-                          </div>
-                        </ComposerLink>
-                      )
-                    )}
-                  </li>
-                </div>
-              </div>
-              <div className={this.decorateCSS("bottom")}>
-                <li>
-                  <a href={items[1].direction1[1].value}>
-                    {items[1].direction1[0].value}
-                  </a>
-                  <a href={items[1].direction2[1].value}>
-                    {items[1].direction2[0].value}
-                  </a>
-                  <a href={items[1].direction3[1].value}>
-                    {items[1].direction3[0].value}
-                  </a>
-                  <a href={items[1].direction4[1].value}>
-                    {items[1].direction4[0].value}
-                  </a>
-                  <a href={items[1].direction5[1].value}>
-                    {items[1].direction5[0].value}
-                  </a>
-                </li>
-              </div>
+                  )
+                )}
+              </Slider>
             </div>
           </div>
         </div>
@@ -340,4 +208,4 @@ class HeaderComponent21 extends BaseHeader {
   }
 }
 
-export default HeaderComponent21;
+export default Header21;

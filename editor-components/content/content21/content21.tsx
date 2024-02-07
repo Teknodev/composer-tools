@@ -1,207 +1,217 @@
 import * as React from "react";
-import { BaseContent } from "../../EditorComponent";
 import styles from "./content21.module.scss";
+import { BaseContent } from "../../EditorComponent";
 
-type Card = {
+
+
+type IMessages = {
   title: string;
   description: string;
-  image: string;
 };
-
-class Content21 extends BaseContent {
+class ContentComponent21 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
 
-    let contentimg1 = require("./content21v1.png");
-    let contentimg2 = require("./content21v2.png");
-    let contentimg3 = require("./content21v3.png");
-    let contentimg4 = require("./content21v4.png");
 
     this.addProp({
       type: "string",
       key: "title",
+      value: "Find winning creatives fast",
       displayer: "Title",
-      value: "4 steps to get your teeth done in Turkey",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "HOW WE WORK?",
+      key: "description",
+      value:
+        "Test different messages, background and designs. Find winning ad creatives that can bring your startup to the next level. Let Composer be the unfair advantage against your competitors.",
+      displayer: "Description",
+    });
+    
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf154?alt=media&timestamp=1685102167066",
     });
 
     this.addProp({
       type: "array",
-      key: "content-card",
-      displayer: "Content Card",
+      key: "message-bar-card",
+      displayer: "Message Bar Card Right",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "message",
+          displayer: "Message",
           value: [
-            {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value: "1",
-              },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Get Free Quotation",
+              value: "The Advantages of Remote Work",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "If you can send us a recent panoramic x-ray and dental photos, our specialist doctor will evaluate your case. Our experienced consulting team will provide you treatment plan with estimated costs.",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: contentimg1,
+              value: "Remote work allows for greater flexibility, better work-life balance, and increased productivity. It also eliminates the need for lengthy commutes and reduces environmental impact. "
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "message",
+          displayer: "Message",
           value: [
-            {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value: "2",
-              },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Travel & Accommodation",
+              value: "The Importance of Diversity in the Workplace",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "If you are satisfied with the treatment plan that was sent to you, you can make your travel arrangement. It is finally time for your journey to Antalya. We will offer a comfortable accommodation close to the clinic during the treatment process..",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: contentimg2,
+              value: "A diverse workplace not only fosters a culture of inclusivity and acceptance, but also enhances creativity and innovation.",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "message",
+          displayer: "Message",
           value: [
             {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value: "3",
-              },
-            {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Starting to Treatment",
+              value: "The Benefits of Learning a Second Language",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "We plan all details about treatment with using smile design application, photographs and x-rays at the first appointment. And we start your treatment within the same day.",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: contentimg3,
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [ {
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "4",
-          },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Enjoy your holiday",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "You can enjoy your vacation in this paradise while you are treated with specialist doctors. Beautiful beaches, luxurious hotel resorts, delicious foods and more.",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: contentimg4,
+              value: "Learning a second language can improve cognitive function, enhance communication skills, and open up new opportunities for personal and professional growth.",
             },
           ],
         },
       ],
     });
+
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 4,
+      type: "array",
+      key: "message-bar-card2",
+      displayer: "Message Bar Card Left",
+      value: [
+        {
+          type: "object",
+          key: "message2",
+          displayer: "Message2",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "The Advantages of Remote Work",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Remote work allows for greater flexibility, better work-life balance, and increased productivity. It also eliminates the need for lengthy commutes and reduces environmental impact. "
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "message2",
+          displayer: "Message2",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "The Importance of Diversity in the Workplace",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "A diverse workplace not only fosters a culture of inclusivity and acceptance, but also enhances creativity and innovation.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "message2",
+          displayer: "Message2",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "The Benefits of Learning a Second Language",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Learning a second language can improve cognitive function, enhance communication skills, and open up new opportunities for personal and professional growth.",
+            },
+          ],
+        },
+      ],
     });
   }
 
   getName(): string {
-    return "Content 21";
+    return "Content-21";
   }
 
   render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header")}>
-            <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>
-            <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
-          </div>
-          <div className={this.decorateCSS("card-child")}>
-            {this.castToObject<Card[]>("content-card").map(
-              
-              (card: Card, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                  <div key={`cnt-4-card-${index}`} className={this.decorateCSS("card")}>
-                    <i>
-                      <img alt="server" src={card.image} />
-                    </i>
-                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
-                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
-                  </div>
+          <div className={this.decorateCSS("wrapper")}>
+            <div className={this.decorateCSS("boxes-title")}>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+            </div>
+            <div className={this.decorateCSS("box-child")}>
+              <div className={this.decorateCSS("box")}>
+                {this.castToObject<IMessages[]>("message-bar-card").map(
+                  (message: any, index: number) => (
+                    <div className={this.decorateCSS("message")} key={`hdr-card-12-${index}`}>
+                      <div className={this.decorateCSS("title")}>
+                        <h3 className={this.decorateCSS("message-title")}>{message.title}</h3>
+                      </div>
+                      <p className={this.decorateCSS("long-text")}>{message.description}</p>
+                    </div>
+                  )
+                )}
               </div>
-              )
-            )}
+
+              <div className={this.decorateCSS("boxes-logo")}>
+                <img className={this.decorateCSS("logoimage")} src={this.getPropValue("image")} alt=""/>
+              </div>
+
+              <div className={this.decorateCSS("box")}>
+                {this.castToObject<IMessages[]>("message-bar-card2").map(
+                  (message: any, index: number) => (
+                    <div className={`${this.decorateCSS("message")} ${this.decorateCSS("right-message")}`} key={`hdr-card2-12-${index}`}>
+                      <div className={this.decorateCSS("title")}>
+                        <h3 className={this.decorateCSS("message-title")}>{message.title}</h3>
+                      </div>
+                      <p className={this.decorateCSS("long-text")}>{message.description}</p>
+                    </div>
+                  )
+                )}
+
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -209,4 +219,4 @@ class Content21 extends BaseContent {
   }
 }
 
-export default Content21;
+export default ContentComponent21;

@@ -41,7 +41,7 @@ class List2 extends BaseList {
         {
           type: "page",
           displayer: "Navigate",
-          value: null,
+          value: "",
           key: "navigate"
         }
       ]
@@ -61,7 +61,7 @@ class List2 extends BaseList {
               type: "page",
               key: "page",
               displayer: "Navigate",
-              value: null
+              value: ""
             },
             {
               type: "image",
@@ -98,7 +98,7 @@ class List2 extends BaseList {
               type: "page",
               key: "page",
               displayer: "Navigate",
-              value: null
+              value: ""
             },
             {
               type: "image",
@@ -135,7 +135,7 @@ class List2 extends BaseList {
               type: "page",
               key: "page",
               displayer: "Navigate",
-              value: null
+              value: ""
             },
             {
               type: "image",
@@ -172,7 +172,7 @@ class List2 extends BaseList {
               type: "page",
               key: "page",
               displayer: "Navigate",
-              value: null
+              value: ""
             },
             {
               type: "image",
@@ -209,7 +209,7 @@ class List2 extends BaseList {
               type: "page",
               key: "page",
               displayer: "Navigate",
-              value: null
+              value: ""
             },
             {
               type: "image",
@@ -246,7 +246,7 @@ class List2 extends BaseList {
               type: "page",
               key: "page",
               displayer: "Navigate",
-              value: null
+              value: ""
             },
             {
               type: "image",
