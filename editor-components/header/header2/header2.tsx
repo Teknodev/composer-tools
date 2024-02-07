@@ -1,55 +1,201 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import style from "./header2.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import styles from "./header2.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
+type ISliderData = {
+  title: string;
+  image: string;
+  description: string;
+  title2: string;
+  time: string;
+  button: IButton[];
+};
+
+type IButton = {
+  value: string;
+};
 
 class Header2 extends BaseHeader {
   constructor(props?: any) {
-    super(props, styles);
+    super(props, style);
+
     this.addProp({
-      type: "object",
-      key: "wide-text",
-      displayer: "Wide Text",
+      type: "array",
+      displayer: "Slider Carousel",
+      key: "slider",
       value: [
         {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Discover Online Shopping",
+          type: "object",
+          displayer: "Item 1",
+          key: "item1",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value: "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/IMG_1185-1-1170x530.jpg",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "We're getting married!",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "title2",
+              value: "CULTURE",
+              displayer: "Type",
+            },
+            {
+              type: "string",
+              key: "time",
+              value: "06.02.2024",
+              displayer: "Time",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+              displayer: "Description",
+            },
+            {
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Read More →",
+                },
+                {
+                  type: "page",
+                  key: "buttonClick",
+                  displayer: "Button Click",
+                  value: ""
+                },
+              ]
+            },
+          ]
         },
         {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Discover a New World of Online Shopping with Our Marketplace",
+          type: "object",
+          displayer: "Item 2",
+          key: "item2",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value: "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/IMG_3649-1-1170x530.jpg",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "Your special day",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "title2",
+              value: "CULTURE",
+              displayer: "Type",
+            },
+            {
+              type: "string",
+              key: "time",
+              value: "06.02.2024",
+              displayer: "Time",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+              displayer: "Description",
+            },
+            {
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Read More →",
+                },
+                {
+                  type: "page",
+                  key: "buttonClick",
+                  displayer: "Button Click",
+                  value: ""
+                },
+              ]
+            },
+          ]
         },
         {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "Discover a new world of online shopping with our marketplace – where you'll find everything you need, from the latest trends in fashion and beauty to high-quality electronics and home goods, all at competitive prices.",
-        },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Go There",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b1b168c3c2002cd2fab1?alt=media&timestamp=1693233941848",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
+          type: "object",
+          displayer: "Item 3",
+          key: "item3",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value: "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/DeathtoStock_Holiday2-1-1170x530.jpg",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "Television’s Carlton Cuse on what ...",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "title2",
+              value: "CULTURE",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "time",
+              value: "06.02.2024",
+              displayer: "Time",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+              displayer: "Description",
+            },
+            {
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "button-text",
+                  displayer: "Button Text",
+                  value: "Read More →",
+                },
+                {
+                  type: "page",
+                  key: "buttonClick",
+                  displayer: "Button Click",
+                  value: ""
+                },
+              ]
+            },
+          ]
         },
       ],
-    });
+    }) 
   }
 
   getName(): string {
@@ -57,26 +203,63 @@ class Header2 extends BaseHeader {
   }
 
   render() {
+
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <section className={this.decorateCSS("wide-text-container")}>
-            <img
-              alt=""
-              className={this.decorateCSS("image")}
-              src={this.getPropValue("wide-text")[4].value}
-            ></img>
-            <div className={this.decorateCSS("wide-text")}>
-              <h3 className={this.decorateCSS("wide-text1")}>{this.getPropValue("wide-text")[0].value}</h3>
-              <h1 className={this.decorateCSS("wide-text2")}>{this.getPropValue("wide-text")[1].value}</h1>
-              <p className={this.decorateCSS("wide-text3")}>{this.getPropValue("wide-text")[2].value}</p>
-              <ComposerLink path={this.getPropValue("wide-text")[5].value}>
-                <span className={this.decorateCSS("button")}>
-                  {this.getPropValue("wide-text")[3].value}
-                </span>
-              </ComposerLink>
-            </div>
-          </section>
+          <div className={this.decorateCSS("wrapper")}>
+            <ComposerSlider
+                {...settings}
+                className={this.decorateCSS("carousel")}
+              >
+                {this.castToObject<ISliderData[]>("slider").map(
+                  (item: ISliderData, index: number) => (
+                    <div className={this.decorateCSS("item")} key={`key${index}`}>
+                      <div className={this.decorateCSS("image")}>
+                        <img src={item.image} alt={item.title} />
+                      </div>
+                      <div className={this.decorateCSS("content")}>
+                        <div className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("card-title")}>
+                          <div className={this.decorateCSS("title2")}>
+                          {item.title2}
+                          </div>
+                        </div>
+                          <div className={this.decorateCSS("title")}>
+                          {item.title}
+                          </div>
+                          <div className={this.decorateCSS("time")}>
+                          {item.time}
+                          </div>
+                          <div className={this.decorateCSS("description")}>
+                          {item.description}
+                          </div>
+                          <div>
+                        <ComposerLink href={item.button[1].value}>
+                        <button className={this.decorateCSS("button") }>
+                          {item.button[0].value}
+                        </button>
+                        </ComposerLink>
+                      </div>
+                        </div>
+                      <div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              )}
+            </ComposerSlider>
+          </div>
         </div>
       </div>
     );
