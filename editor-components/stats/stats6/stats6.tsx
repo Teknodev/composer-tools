@@ -1,17 +1,29 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats6.module.scss";
-import { useState } from "react";
 type CardData = {
-  CardImage: string;
-  CardTitle: string;
+  CardTitle: number;
   CardDescription: string;
 };
-const [number, setNumber] = useState(0);
 
 class Stats6Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "header",
+      displayer: "Header Content",
+      value: "Our Achievements",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Header Description",
+      value:
+        "Far far away.behind the word mountains, far from the countries Vokalia and Consanantia, there live the blind texts. Seperated they live in",
+    });
 
     this.addProp({
       type: "array",
@@ -24,10 +36,10 @@ class Stats6Page extends BaseStats {
           displayer: "Pricing List",
           value: [
             {
-              type: "string",
+              type: "number",
               key: "CardTitle",
               displayer: "Card Title",
-              value: "400",
+              value: 400,
             },
             {
               type: "string",
@@ -43,10 +55,10 @@ class Stats6Page extends BaseStats {
           displayer: "Pricing List",
           value: [
             {
-              type: "string",
+              type: "number",
               key: "CardTitle",
               displayer: "Card Title",
-              value: "1000",
+              value: 1000,
             },
             {
               type: "string",
@@ -62,10 +74,10 @@ class Stats6Page extends BaseStats {
           displayer: "Pricing List",
           value: [
             {
-              type: "string",
+              type: "number",
               key: "CardTitle",
               displayer: "Card Title",
-              value: "8,000",
+              value: 8000,
             },
             {
               type: "string",
@@ -77,6 +89,37 @@ class Stats6Page extends BaseStats {
         },
       ],
     });
+
+    this.addProp({
+      type: "number",
+      key: "animation-duration",
+      displayer: "Number Animation Duration (ms)",
+      value: 1000,
+    });
+
+    this.castToObject<CardData[]>("card-list").map((statsData, index) =>
+      this.setComponentState(`number-${index}`, 0)
+    );
+
+    setInterval(() => {
+      this.castToObject<CardData[]>("card-list").map(
+        (statsData: CardData, index: number) => {
+          let statNumber = this.getComponentState(`number-${index}`);
+          if (statNumber < statsData.CardTitle) {
+            this.setComponentState(
+              `number-${index}`,
+              statNumber +
+                Math.round(
+                  statsData.CardTitle /
+                    Math.round(this.getPropValue("animation-duration") / 30)
+                )
+            );
+          } else {
+            this.setComponentState(`number-${index}`, statsData.CardTitle);
+          }
+        }
+      );
+    }, 30);
   }
 
   getName(): string {
@@ -84,35 +127,20 @@ class Stats6Page extends BaseStats {
   }
 
   render() {
-    let num = 0;
-
     return (
       <>
-        <div className={this.decorateCSS("banner")}>
-          <h1>Our achievements</h1>
-          <p>
-            Far far away.behind the word mountains, far from the countries
-            Vokalia and Consanantia, there live the blind texts. Seperated they
-            live in
-          </p>
-        </div>
         <div className={this.decorateCSS("container")}>
           <div className={this.decorateCSS("max-content")}>
+            <div className={this.decorateCSS("banner")}>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("header")}</h1>
+              <p>{this.getPropValue("description")}</p>
+            </div>
             <div className={this.decorateCSS("stats6-page")}>
               {this.castToObject<CardData[]>("card-list").map(
                 (data: any, index: number) => (
                   <div key={index} className={this.decorateCSS("card")}>
-                    {/* <img src={data.CardImage} width={100} height={100} alt="" /> */}
                     <h4 className={this.decorateCSS("data-card-title")}>
-                      {/* {data.CardTitle} */}
-                      {window.addEventListener("DOMContentLoaded", () => {
-                        setInterval(() => {
-                          for (let i = 0; i < data.CardTitle; i++) {
-                            num += 1;
-                          }
-                          setNumber(num);
-                        }, 100);
-                      })}
+                      {this.getComponentState(`number-${index}`)}
                     </h4>
                     <p className={this.decorateCSS("data-card-description")}>
                       {data.CardDescription}
