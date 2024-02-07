@@ -146,7 +146,9 @@ class Content3 extends BaseContent {
               }}>
 
               <div key={indexCard} className={this.decorateCSS("card")}>
-                <img className={this.decorateCSS("image")} src={card.image} alt=""></img>
+                <div className={this.decorateCSS("image-container")}>
+                  <img className={this.decorateCSS("image")} src={card.image} alt=""></img>
+                </div>
                 <div className={this.decorateCSS("little-container")}>
                   <h3 className={this.decorateCSS("title")}>{card.title}</h3>
                   <p className={this.decorateCSS("description")}>
