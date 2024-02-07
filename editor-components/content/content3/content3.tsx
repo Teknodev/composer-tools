@@ -135,6 +135,14 @@ class Content3 extends BaseContent {
   getName(): string {
     return "Content 3";
   }
+
+  setDescriptionHeight(elementIndex: number): void {
+
+    let descriptionElement = document.querySelector(`#description-${elementIndex}`);
+    if(descriptionElement)
+      this.setComponentState(`hoveredElementHeight-${elementIndex}`, -1 * descriptionElement.clientHeight);
+  }
+
   render() {
     return (
       <div className={this.decorateCSS("container")}>
@@ -145,13 +153,13 @@ class Content3 extends BaseContent {
                 width: 100 / this.getPropValue("itemCount") + "%",
               }}>
 
-              <div key={indexCard} className={this.decorateCSS("card")}>
+              <div key={indexCard} className={this.decorateCSS("card")} onMouseLeave={(e) => this.setComponentState(`hoveredElementHeight-${indexCard}`, 0)}>
                 <div className={this.decorateCSS("image-container")}>
                   <img className={this.decorateCSS("image")} src={card.image} alt=""></img>
                 </div>
-                <div className={this.decorateCSS("little-container")}>
-                  <h3 className={this.decorateCSS("title")}>{card.title}</h3>
-                  <p className={this.decorateCSS("description")}>
+                <div className={this.decorateCSS("little-container")} onMouseEnter={() => this.setDescriptionHeight(indexCard)} >
+                  <h3 className={this.decorateCSS("title")} style={{transform: `translateY(${this.getComponentState(`hoveredElementHeight-${indexCard}`)}px)`}}>{card.title}</h3>
+                  <p id={`description-${indexCard}`} className={this.decorateCSS("description")}>
                     {card.description}
                   </p>
                 </div>
