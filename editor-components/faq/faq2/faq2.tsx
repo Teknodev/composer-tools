@@ -14,6 +14,12 @@ type Button = {
   isPrimary: boolean;
 };
 
+type containerMiddle = {
+  title2 : string;
+  description : string;
+  button : object;
+}
+
 class FaqContainer extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
@@ -197,6 +203,58 @@ class FaqContainer extends BaseFAQ {
 
     this.addProp({
       type: "array",
+      key: "downContainer",
+      displayer: "Container",
+      value: [
+        {
+          type: "object",
+          key: "childContainer",
+          displayer: "ChildContainer",
+          value: [
+            {
+              type: "string",
+              key: "title2",
+              displayer: "title",
+              value: "Shipping and Delivery",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "This section of the website provides information on shipping options, delivery times, and tracking your order.",
+            },
+            {
+              type: "array",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Text",
+                  value: "Open Positions",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+                {
+                  type: "boolean",
+                  key: "isPrimary",
+                  displayer: "Is primary",
+                  value: true,
+                },
+              ],
+            },
+          ]
+        }
+      ]
+    })
+
+    this.addProp({
+      type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
@@ -287,33 +345,36 @@ class FaqContainer extends BaseFAQ {
             </div>
           </div>
         </div>
+
+        {/* {this.castToObject<containerMiddle[]>("downContainer").map(()=>{})} */}
+
         <div className={this.decorateCSS("down-container")}>
-              <div className={this.decorateCSS("child-container")}>
-                <h1 className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</h1>
-                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-                <div className={this.decorateCSS("button-group")}>
-                  {this.castToObject<Button[]>("buttons").map(
-                    (button: Button, indexButtons: number) => {
-                      return (
-                        <ComposerLink key={indexButtons} path={button.link}>
-                          <button
-                            className={
-                              this.decorateCSS("button") +
-                              " " +
-                              (button.isPrimary
-                                ? this.decorateCSS("primary")
-                                : this.decorateCSS("secondary"))
-                            }
-                          >
-                            {button.text}
-                          </button>
-                        </ComposerLink>
-                      );
-                    }
-                  )}
-                </div>
-              </div>
+          <div className={this.decorateCSS("child-container")}>
+            <h1 className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</h1>
+            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+            <div className={this.decorateCSS("button-group")}>
+              {this.castToObject<Button[]>("buttons").map(
+                (button: Button, indexButtons: number) => {
+                  return (
+                    <ComposerLink key={indexButtons} path={button.link}>
+                      <button
+                        className={
+                          this.decorateCSS("button") +
+                          " " +
+                          (button.isPrimary
+                            ? this.decorateCSS("primary")
+                            : this.decorateCSS("secondary"))
+                        }
+                      >
+                        {button.text}
+                      </button>
+                    </ComposerLink>
+                  );
+                }
+              )}
             </div>
+          </div>
+        </div>
       </div>
     );
   }
