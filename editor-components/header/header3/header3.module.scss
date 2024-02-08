@@ -1,45 +1,165 @@
+$animationDuration: 2s;
+$animationEasing: cubic-bezier(0.25, 1, 0.5, 1);
 .container {
-  background: red;
-  margin: 0;
-  padding: 0;
-}
-
-.background-image {
-  background: black;
-  width: 48%;
-}
-.content {
-  background: white;
-  width: 49%;
-
-  .button {
-    font-size: 28px;
-    font-weight: 500;
-    height: 93px;
-    text-transform: uppercase;
-    color: #fff;
-    background: #000;
-    cursor: pointer;
-    padding: 18px 35px;
-    transition: background-color 0.7s ease;
+  height: calc(100vh - 80px);
+  width: 100%;
+  .pagination{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .page-number{
+      font-size: bold;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    z-index: 15;
   }
-  .button:hover {
-    color: #000;
-    background: #fff;
+  .wrapper{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    .item{
+      top: 0px;
+      left: 0px;
+      position: absolute;
+      overflow: hidden;
+      height: calc(100vh - 80px);
+      width: 100%;
+      display: none;
+
+      &.setup-primary{
+
+        border-radius: 5px;
+        align-items: center;
+        justify-content: center;
+        &.prepare{
+          display: flex;
+          .background-image{
+            left: 100vw;
+          }
+          .content-background{
+            left: -100vw;
+          }
+          .title,
+          .description,
+          .subtitle,
+          .button{
+            opacity: 0;
+          }
+          .subtitle,
+          .title{
+            transform: translateY(-600px);
+          }
+          .description,
+          .button{
+            transform: translateY(600px);
+          }
+        }
+        &.active{
+          display: flex;
+          .background-image{
+            left: 40%;
+            transition: all $animationDuration $animationEasing;
+          }
+
+          .content-background{
+            left: 0px;
+            transition: all $animationDuration $animationEasing;
+          }
+          .title,
+          .description,
+          .subtitle,
+          .button{
+            transform: translateY(0px);
+            opacity: 1;
+            transition: all $animationDuration $animationEasing;
+          }
+          .button,
+          .subtitle{
+            transition-delay: 100ms;
+          }
+        }
+        .max-content{
+
+          .content-background{
+            background: white;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+          }
+        }
+        .background-image{
+          z-index: 1;
+          width: 70%;
+          height: 100%;
+          position: absolute;
+          left: 40%;
+          top: -100px;
+          .image{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .max-content{
+        position: relative;
+        margin: 350px auto 150px;
+        width: var(--composer-content-width);
+
+        .content{
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          z-index: 5;
+          position: relative;
+          padding: 100px;
+          .title{
+            text-align: left;
+          }
+        }
+      }
+    }
+    
+    .content {
+      .button {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #fff;
+        background: #000;
+        cursor: pointer;
+        padding: 18px 35px;
+        transition: all 0.7s ease;
+        &:hover {
+          color: #000;
+          background: #fff;
+        }
+
+      }
+
+      .title {
+        color: rgb(103, 109, 69);
+        line-height: 1.2;
+        font-weight: bold;
+        font-size: 4rem;
+        margin: 30px 0px;
+      }
+
+      .subtitle{
+        font-size: 2rem;
+        line-height: 1.5;
+        margin: 30px 0px;
+      }
+
+      .description{
+        font-size: 1.5rem;
+        line-height: 1.5;
+        margin: 30px 0px;
+      }
+    }
   }
-}
-.title {
-  text-transform: uppercase;
-  height: auto;
-  color: rgb(103, 109, 69);
-  text-decoration: none;
-  width: 465px;
-  // min-height: 0px;
-  // min-width: 0px;
-  // max-height: none;
-  // max-width: none;
-  text-align: center;
-  line-height: 19px;
-  font-weight: 500;
-  font-size: 12px;
 }

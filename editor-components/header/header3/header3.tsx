@@ -180,6 +180,16 @@ class Header3 extends BaseHeader {
         },
       ],
     });
+    this.setComponentState("activeSlide", 0);
+  }
+
+  changeSlide(slideIndex: number): void {
+    this.setComponentState("prepareSlide", slideIndex);
+    this.setComponentState("activeSlide", null);
+    setTimeout(() => {
+      this.setComponentState("activeSlide", slideIndex);
+      this.setComponentState("prepareSlide", null);
+    }, 20);
   }
 
   getName(): string {
@@ -187,51 +197,59 @@ class Header3 extends BaseHeader {
   }
 
   render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      autoplay: false,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
+
     console.log();
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("carousel")}
-            >
-              {this.castToObject<ISliderData[]>("slider").map(
-                (item: ISliderData, index: number) => (
-                  <div className={this.decorateCSS("item")} key={`key${index}`}>
-                    <div className={this.decorateCSS("background-image")}>
-                      <img src={item.image} alt={item.title} />
-                    </div>
-                    <div className={this.decorateCSS("content")}>
-                      <div className={this.decorateCSS("title")}>
-                        {item.title}
-                      </div>
+        <div className={this.decorateCSS("pagination")}>
+          {
+            this.castToObject<ISliderData[]>("slider").map((slider: ISliderData, index) => (
+              <div className={this.decorateCSS("page-number")} onClick={() => this.changeSlide(index)}>
+                {index + 1}
+              </div>
+            ))
+          }
+        </div>
+        <div className={this.decorateCSS("wrapper")}>
+          {this.castToObject<ISliderData[]>("slider").map(
+            (item: ISliderData, index: number) => (
+              <div
+                className={`${this.decorateCSS("item")} ${this.decorateCSS("setup-primary")} ${(this.getComponentState("prepareSlide") == index ? this.decorateCSS("prepare") : "")} ${(this.getComponentState("activeSlide") == index ? this.decorateCSS("active") : "")}`}
+                key={`key${index}`}
+              >
+                <div className={this.decorateCSS("max-content")}>
+                  <div className={this.decorateCSS("content-background")}></div>
+                  <div className={this.decorateCSS("background-image")}>
+                    <img
+                      className={this.decorateCSS("image")}
+                      src={item.image}
+                      alt={item.title}
+                    />
+                  </div>
+                  <div className={this.decorateCSS("content")}>
+                    {item.subtitle != "" && (
                       <div className={this.decorateCSS("subtitle")}>
                         {item.subtitle}
                       </div>
+                    )}
+                    <div className={this.decorateCSS("title")}>
+                      {item.title}
+                    </div>
+                    {item.description != "" && (
                       <div className={this.decorateCSS("description")}>
                         {item.description}
                       </div>
-                      <div>
-                        <button className={this.decorateCSS("button")}>
-                          {item.button[0].value}
-                        </button>
-                      </div>
+                    )}
+                    <div>
+                      <button className={this.decorateCSS("button")}>
+                        {item.button[0].value}
+                      </button>
                     </div>
                   </div>
-                )
-              )}
-            </ComposerSlider>
-          </div>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </div>
     );
