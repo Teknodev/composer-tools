@@ -191,7 +191,7 @@ class Form4Page extends BaseContacts {
             <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             <section className={this.decorateCSS("cards")}>
               {this.getPropValue("card-items").map((cardItem: any, index: number) => (
-              <div key={index} className={this.decorateCSS("card-child")}>
+              <div key={index} className={this.decorateCSS("card-child")}  style={{ "flex": `0 0 ${100 / this.getPropValue('itemCount') - 2}%`}}>
               <div
                 key={index} className={`${this.decorateCSS("card")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
               <div className={this.decorateCSS("img-child")}>

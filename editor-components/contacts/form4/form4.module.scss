@@ -1,12 +1,11 @@
-
 .container {
     width: 100%;
     padding: 50px 50px;
-    .subtitle{
+    .subtitle {
         text-align: center;
         font-size: 2rem;
         margin: 9px;
-        color:var(--composer-font-color-primary);
+        color: var(--composer-font-color-primary);
     }
     .max-content {
         max-width: var(--composer-content-width);
@@ -32,15 +31,16 @@
                 color: black;
                 margin: 30px;
             }
-            .cards{
+            .cards {
                 display: flex;
                 flex-wrap: wrap;
+                gap: 15px;
 
                 .card-child {
                     display: flex;
                     justify-content: center;
                     flex-wrap: wrap;
-                    margin: 15px;
+                    // margin: 15px;
                     flex-direction: row;
                     align-items: center;
                     gap: 50px;
@@ -53,7 +53,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        background-color:rgba(0,0,0,0.3);
+                        background-color: rgba(0, 0, 0, 0.3);
                         .image {
                             padding: 5px;
                         }
@@ -71,10 +71,10 @@
                         box-shadow: var(--composer-box-shadow);
                         padding: 20px 0;
                         border-radius: 6px;
-                        background: linear-gradient(135deg, #9ACD32,var(--composer-primary-color),);
-                        
+                        background: linear-gradient(135deg, #9acd32, var(--composer-primary-color));
+
                         @media screen and (max-width: 860px) {
-                          width:295px;
+                            width: 320px;
                         }
 
                         &.border-bottom {
@@ -113,9 +113,3 @@
         }
     }
 }
-
-
-
-
-
-
