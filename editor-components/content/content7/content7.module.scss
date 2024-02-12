@@ -1,89 +1,108 @@
 .container {
   width: 100%;
-  padding: 50px 50px;
+  padding: 100px 150px;
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-    .child {
+
+    .container-common {
+      width: 100%;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      .logo {
-        max-width: 200px;
-        width: 200px;
-        img {
-          width: 100%;
-        }
-      }
-      .title {
-        text-align: center;
-        color: var(--composer-primary-color);
-        font-size: 4.5rem;
-        font-weight: bold;
-        letter-spacing: 1px;
-      }
-      
-      .button {
-        transition: all 0.3s;
-        cursor: pointer;
-        width: max-content;
-        background: var(--composer-secondary-color);
-        border: 1px solid var(--composer-secondary-color);
-        border-radius: var(--composer-border-radius);
-        padding: 10px 20px;
-        color: white;
-        font-size: 1.5rem;
-        &:hover {
-          color: var(--composer-secondary-color);
-          background: transparent;
-        }
-      }
-      .desc-box{
+
+      .img-container {
+        width: 35%;
         display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 50px 0px 10px;
-        .description {
-          width: 50%;
-          text-align: left;
-          font-size: 2rem;
-          line-height: 4rem;
-          min-height: 100%;
-          padding: 20px;
-          background: var(--composer-secondary-color);
-          border-radius: 10px;
-          color: var(--composer-font-color-secondary);
-          margin-left: 10px;
-          font-weight: 400;
-          letter-spacing: 1px;
-        }
-        .wide-image {
-          flex: 1;
-          border-radius: 20px;
-          border: 2px solid var(--composer-secondary-color);
-          width: 50%;
-          max-height: 400px;
+        justify-content: flex-end;
+
+        img {
+          height: 40%;
           object-fit: cover;
+          background-size: cover;
+          background-attachment: fixed;
+        }
+      }
+
+      .container-right {
+        width: 65%;
+        padding-left: 50px;
+        display: flex;
+        flex-direction: column;
+
+        .right-top-inner {
+          position: relative;
+          width: 50%;
+
+          .back-title {
+            // color: var(--composer-primary-color);
+            font-size: 7em;
+
+            opacity: 0.3;
+          }
+
+          .Title {
+            color: var(--composer-primary-color);
+            font-size: 2.5em;
+            position: absolute;
+            top: -10px;
+            left: 90px;
+            z-index: 5;
+          }
+
+          .description {
+            color: var(--composer-primary-color);
+            font-size: 4em;
+            position: absolute;
+            top: 25px;
+            left: 0;
+
+          }
+
+        }
+
+        .right-bottom-inner {
+          width: 80%;
+          display: flex;
+          flex-direction: column;
+          row-gap: 50px;
+
+          .list-container {
+            display: flex;
+            width: 100%;
+            gap: 0 30px;
+
+            .circle {
+              width: 42px;
+              height: 42px;
+              border-radius: 50%;
+              background-color: var(--composer-secondary-color);
+              color: var(--composer-font-color-secondary);
+              text-align: center;
+              padding-top: 12px;
+              box-sizing: border-box;
+            }
+
+            .content-container {
+              width: 90%;
+
+              .content-title {
+                color: var(--composer-primary-color);
+                font-size: 2em;
+                margin-top: 5px;
+              }
+
+              .content-description {
+                color: var(--composer-font-color-primary);
+                font-size: 1.5em;
+              }
+            }
+          }
         }
       }
     }
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    .max-content {
-      .desc-box{
-        align-items: center;
-        flex-direction: column;
-      .description{
-        width: 100%;
-      }
-      }
-      .child {
-        padding: 0 20px;
-      }
-    }
-  }
-}
+@media only screen and (max-width: 800px) {}
+
+@media only screen and (max-width: 400px) {}

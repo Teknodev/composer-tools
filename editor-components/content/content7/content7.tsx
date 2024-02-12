@@ -3,55 +3,127 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type List = {
+  number : number;
+  listHeader : string;
+  listDescription : string;
+}
+
 class Content7 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1683297760717",
-    });
+      value: "https://eremia-react.vercel.app/img/plan-project.jpg",
+    })
+
+    this.addProp({
+      type: "string",
+      key: "backTitle",
+      displayer: "Back Title",
+      value: "EREMIA",
+    })
+
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "The Art of Web Design",
-    });
+      value: "Our Purpose",
+    })
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Web design is a crucial aspect of building a successful online presence. Your website is often the first point of contact between you and your audience, and its design can significantly impact how your brand is perceived.Web design is a crucial aspect of building a successful online presence. Your website is often the first point of contact between you and your audience.",
-    });
+      value: "WE PLAN YOUR PROJECT",
+    })
+
     this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "Button",
+      type: "array",
+      key: "list",
+      displayer: "List",
       value: [
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "More Info",
+          type: "object",
+          key: "object",
+          displayer: "Object",
+          value: [
+            {
+              type: "number",
+              key: "number",
+              displayer: "List Number",
+              value: 1,
+            },
+            {
+              type: "string",
+              key: "listHeader",
+              displayer: "List Header",
+              value: "Extensive Employment",
+            },
+            {
+              type: "string",
+              key: "listDescription",
+              displayer: "List Description",
+              value: "Quisque placerat vitae lacus ut sceleris queusce luctus odio ac nibh luctus, in porttitor.",
+            }
+          ]
         },
         {
-          type: "page",
-          key: "url",
-          displayer: "Button Link",
-          value: "",
+          type: "object",
+          key: "object",
+          displayer: "Object",
+          value: [
+            {
+              type: "number",
+              key: "number",
+              displayer: "List Number",
+              value: 2,
+            },
+            {
+              type: "string",
+              key: "listHeader",
+              displayer: "List Header",
+              value: "Dedicated Staff",
+            },
+            {
+              type: "string",
+              key: "listDescription",
+              displayer: "List Description",
+              value: "Quisque placerat vitae lacus ut sceleris queusce luctus odio ac nibh luctus, in porttitor.",
+            }
+          ]
         },
-      ],
-    });
-    this.addProp({
-      type: "image",
-      key: "wideImage",
-      displayer: "Wide Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5c852057bdf002c29b9cf?alt=media&timestamp=1692780605742",
-    });
+        {
+          type: "object",
+          key: "object",
+          displayer: "Object",
+          value: [
+            {
+              type: "number",
+              key: "number",
+              displayer: "List Number",
+              value: 3,
+            },
+            {
+              type: "string",
+              key: "listHeader",
+              displayer: "List Header",
+              value: "User Experience",
+            },
+            {
+              type: "string",
+              key: "listDescription",
+              displayer: "List Description",
+              value: "Quisque placerat vitae lacus ut sceleris queusce luctus odio ac nibh luctus, in porttitor.",
+            }
+          ]
+        },
+      ]
+    })
   }
 
   getName(): string {
@@ -62,29 +134,29 @@ class Content7 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("child")}>
-            <img
-              alt=""
-              className={this.decorateCSS("logo")}
-              src={this.getPropValue("image")}
-            />
-            <span className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </span>
-            <div className={this.decorateCSS("desc-box")}>
-              <img
-                alt=""
-                className={this.decorateCSS("wide-image")}
-                src={this.getPropValue("wideImage")}
-              />
-              <div className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </div>
+          <div className={this.decorateCSS("container-common")}>
+            <div className={this.decorateCSS("img-container")}>
+              <img src={this.getPropValue("image")} alt="" />
             </div>
-            <div className={this.decorateCSS("button")}>
-              <ComposerLink path={this.getPropValue("button")[1].value}>
-                {this.getPropValue("button")[0].value}
-              </ComposerLink>
+
+            <div className={this.decorateCSS("container-right")}>
+              <div className={this.decorateCSS("right-top-inner")}>
+                <h1 className={this.decorateCSS("back-title")}>{this.getPropValue("backTitle")}</h1>
+                <h3 className={this.decorateCSS("Title")}>{this.getPropValue("title")}</h3>
+                <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
+              </div>
+
+              <div className={this.decorateCSS("right-bottom-inner")}>
+                {this.castToObject<List[]>("list").map((item:List,index:number)=> (
+                  <div key={index} className={this.decorateCSS("list-container")}>
+                    <div className={this.decorateCSS("circle")}>{item.number}</div>
+                    <div className={this.decorateCSS("content-container")}>
+                      <h4 className={this.decorateCSS("content-title")}>{item.listHeader}</h4>
+                      <p className={this.decorateCSS("content-description")}>{item.listDescription}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
