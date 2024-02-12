@@ -84,13 +84,13 @@ class Header3 extends BaseHeader {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "SPRING-SUMMER COLLECTION",
+              value: "We are Fashion Revolution",
             },
             {
               type: "string",
               displayer: "Subtitle",
               key: "subtitle",
-              value: "We are Fashion Revolution",
+              value: "SPRING-SUMMER COLLECTION",
             },
             {
               type: "string",
@@ -135,13 +135,13 @@ class Header3 extends BaseHeader {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "HOT SUMMER COLLECTION 2017",
+              value: "Your Fashion Summer",
             },
             {
               type: "string",
               displayer: "Subtitle",
               key: "subtitle",
-              value: "Your Fashion Summer",
+              value: "HOT SUMMER COLLECTION 2017",
             },
             {
               type: "string",
@@ -191,30 +191,43 @@ class Header3 extends BaseHeader {
       this.setComponentState("prepareSlide", null);
     }, 20);
   }
-
   getName(): string {
     return "Header 3";
   }
-
   render() {
-
-    console.log();
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("pagination")}>
-          {
-            this.castToObject<ISliderData[]>("slider").map((slider: ISliderData, index) => (
-              <div className={this.decorateCSS("page-number")} onClick={() => this.changeSlide(index)}>
+          {this.castToObject<ISliderData[]>("slider").map(
+            (slider: ISliderData, index) => (
+              <div
+                className={this.decorateCSS("page-number")}
+                onClick={() => this.changeSlide(index)}
+              >
                 {index + 1}
               </div>
-            ))
-          }
+            )
+          )}
         </div>
         <div className={this.decorateCSS("wrapper")}>
           {this.castToObject<ISliderData[]>("slider").map(
             (item: ISliderData, index: number) => (
               <div
-                className={`${this.decorateCSS("item")} ${this.decorateCSS("setup-primary")} ${(this.getComponentState("prepareSlide") == index ? this.decorateCSS("prepare") : "")} ${(this.getComponentState("activeSlide") == index ? this.decorateCSS("active") : "")}`}
+                className={`${this.decorateCSS("item")} ${this.decorateCSS(
+                  index === 0
+                    ? "setup-primary"
+                    : index === 1
+                    ? "setup-secondary"
+                    : "setup-third"
+                )} ${
+                  this.getComponentState("prepareSlide") == index
+                    ? this.decorateCSS("prepare")
+                    : ""
+                } ${
+                  this.getComponentState("activeSlide") == index
+                    ? this.decorateCSS("active")
+                    : ""
+                }`}
                 key={`key${index}`}
               >
                 <div className={this.decorateCSS("max-content")}>
