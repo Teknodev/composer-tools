@@ -72,14 +72,15 @@
             gap: 0 30px;
 
             .circle {
+              display: flex;
+              justify-content: center;
+              align-items: center;
               width: 42px;
               height: 42px;
               border-radius: 50%;
               background-color: var(--composer-secondary-color);
               color: var(--composer-font-color-secondary);
-              text-align: center;
-              padding-top: 12px;
-              box-sizing: border-box;
+              font-weight: 700;
             }
 
             .content-container {
@@ -130,6 +131,17 @@
   }
 }
 
-@media only screen and (max-width: 800px) {}
+@media only screen and (max-width: 800px) {
+  .container {
+    width: 100%;
+    
+
+    .max-content {
+      max-width: var(--composer-content-width);
+      
+    }
+  }
+
+}
 
 @media only screen and (max-width: 400px) {}
