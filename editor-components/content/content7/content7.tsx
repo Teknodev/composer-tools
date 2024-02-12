@@ -4,9 +4,9 @@ import styles from "./content7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type List = {
-  number : number;
-  listHeader : string;
-  listDescription : string;
+  number: number;
+  listHeader: string;
+  listDescription: string;
 }
 
 class Content7 extends BaseContent {
@@ -124,11 +124,19 @@ class Content7 extends BaseContent {
         },
       ]
     })
+
+    this.state["componentProps"]["activeIndex"] = -1;
+
   }
 
   getName(): string {
     return "Content 7";
   }
+
+ click(index:number) {
+  let value = this.getComponentState("activeIndex") == index ? -1 : index;
+  this.setComponentState("activeIndex", value);
+ }
 
   render() {
     return (
@@ -147,12 +155,22 @@ class Content7 extends BaseContent {
               </div>
 
               <div className={this.decorateCSS("right-bottom-inner")}>
-                {this.castToObject<List[]>("list").map((item:List,index:number)=> (
+                {this.castToObject<List[]>("list").map((item: List, index: number) => (
                   <div key={index} className={this.decorateCSS("list-container")}>
                     <div className={this.decorateCSS("circle")}>{item.number}</div>
                     <div className={this.decorateCSS("content-container")}>
-                      <h4 className={this.decorateCSS("content-title")}>{item.listHeader}</h4>
-                      <p className={this.decorateCSS("content-description")}>{item.listDescription}</p>
+                      <h4 className={this.decorateCSS("content-title")}>
+                        {item.listHeader}
+                        <img
+                          src="https://cdn-icons-png.flaticon.com/512/656/656979.png"
+                          alt=""
+                          className={`${this.decorateCSS("arrowImage")} ${this.getComponentState("activeIndex") == index ? this.decorateCSS("rotate") : this.decorateCSS("not-rotate")}`}
+                          onClick={()=>{
+                            this.click(index)
+                          }}
+                        />
+                      </h4>
+                      <p className={`${this.decorateCSS("content-description")} ${this.getComponentState("activeIndex") == index ? this.decorateCSS("active") : ""}`}>{item.listDescription}</p>
                     </div>
                   </div>
                 ))}

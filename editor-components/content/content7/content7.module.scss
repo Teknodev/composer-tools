@@ -89,11 +89,38 @@
                 color: var(--composer-primary-color);
                 font-size: 2em;
                 margin-top: 5px;
+                position: relative;
+
+                .arrowImage {
+                  width: 23px;
+                  height: 23px;
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  cursor: pointer;
+
+                  &.rotate {
+                    transform: rotate(180deg);
+                    transition: transform 500ms;
+                  }
+
+                  &.not-rotate {
+                    transition: transform 500ms;
+                  }
+                }
+
               }
 
               .content-description {
                 color: var(--composer-font-color-primary);
                 font-size: 1.5em;
+                display: none;
+                visibility: hidden;
+
+                &.active {
+                  display: block;
+                  visibility: visible;
+                }
               }
             }
           }
