@@ -80,13 +80,13 @@ class List7 extends BaseList {
         },
       ],
     });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 4,
-    });
+    // this.addProp({
+    //   type: "number",
+    //   key: "itemCount",
+    //   displayer: "Item Count in a Row",
+    //   value: 3,
+    //   max: 4,
+    // });
   }
   render(): ReactNode {
     return (
