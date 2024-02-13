@@ -162,6 +162,7 @@ class Content7 extends BaseContent {
                         />
                       </h4>
                       <p className={`${this.decorateCSS("content-description")} ${this.getComponentState("activeIndex") == index ? this.decorateCSS("active") : ""}`}>{item.listDescription}</p>
+                      <hr />
                     </div>
                   </div>
                 ))}
