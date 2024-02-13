@@ -22,14 +22,6 @@ class Content7 extends BaseContent {
 
     this.addProp({
       type: "string",
-      key: "backTitle",
-      displayer: "Back Title",
-      value: "EREMIA",
-    })
-
-
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
       value: "Our Purpose",
@@ -149,7 +141,6 @@ class Content7 extends BaseContent {
 
             <div className={this.decorateCSS("container-right")}>
               <div className={this.decorateCSS("right-top-inner")}>
-                <h1 className={this.decorateCSS("back-title")}>{this.getPropValue("backTitle")}</h1>
                 <h3 className={this.decorateCSS("Title")}>{this.getPropValue("title")}</h3>
                 <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
               </div>

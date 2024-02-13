@@ -28,17 +28,11 @@
         padding-left: 50px;
         display: flex;
         flex-direction: column;
+        gap : 14% 0 ;
 
         .right-top-inner {
           position: relative;
           width: 50%;
-
-          .back-title {
-            // color: var(--composer-primary-color);
-            font-size: 7em;
-
-            opacity: 0.3;
-          }
 
           .Title {
             color: var(--composer-primary-color);
@@ -134,11 +128,23 @@
 @media only screen and (max-width: 800px) {
   .container {
     width: 100%;
-    
+    padding: 0;
 
     .max-content {
       max-width: var(--composer-content-width);
-      
+
+      .container-common {
+
+        .container-right {
+
+          .right-top-inner {
+
+            .Title {
+              top: -20px;
+            }
+          }
+        }
+      }
     }
   }
 
