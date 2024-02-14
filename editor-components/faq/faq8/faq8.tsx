@@ -27,129 +27,45 @@ class FaqButton extends BaseFAQ {
 
     this.addProp({
       type: "array",
-      key: "card",
-      displayer: "Card",
+      key: "categories",
+      displayer: "Categories",
       value: [
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "questions",
+          displayer: "Questions",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Theme License",
+              key: "categoryName",
+              displayer: "Category Name",
+              value: "lorem ipsum",
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "How do I repair an item on envato market?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "My page is broken. How to solve it?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "What is required to use Classified Listing Pro?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Is it possible to customise the reservation form?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "How to get notifications?",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Pricing & Support",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's ",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: " Purchasing Online",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: " Support Ticketse",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: " Technical Support",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+              type: "array",
+              key: "questions",
+              displayer: "Questions",
+              value: [
+                {
+                  type: "object",
+                  key: "question",
+                  displayer: "Question",
+                  value: [
+                    {
+                      type: "string",
+                      key: "qq",
+                      displayer: "Question",
+                      value: "Question 1?",
+                    },
+                    {
+                      type: "string",
+                      key: "answer",
+                      displayer: "Answer",
+                      value: "Answer 1",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -170,7 +86,7 @@ class FaqButton extends BaseFAQ {
 
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+        {/* <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("up-page")}>
               <div className={this.decorateCSS("badge")}>
@@ -212,7 +128,6 @@ class FaqButton extends BaseFAQ {
                 }
               )}
             </div>
-            {/* questions below  */}
             <div>
               {this.castToObject<Card[]>("card").map(
                 (card: Card, indexCard: any) => {
@@ -233,7 +148,7 @@ class FaqButton extends BaseFAQ {
               )}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
