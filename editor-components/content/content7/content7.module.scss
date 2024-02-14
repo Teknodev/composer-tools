@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 150px 150px 250px 250px;
+  padding: 150px 150px 250px 150px;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -24,10 +24,11 @@
 
       .container-right {
         width: 60%;
-        padding-left: 50px;
+        // padding-left: 50px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: 50% 0;
 
         .right-top-inner {
