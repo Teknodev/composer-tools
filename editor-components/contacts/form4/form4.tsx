@@ -2,9 +2,6 @@ import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./form4.module.scss";
 
-// type ISection = {
-//   section: Item[];
-// };
 
 type Item = {
   image: string;
@@ -37,16 +34,6 @@ class Form4Page extends BaseContacts {
       displayer: "Card Items",
       value: [
         {
-          // type: "object",
-          // key: "section",
-          // displayer: "Section",
-          // value: [
-          //   {
-              // type: "array",
-              // key: "items",
-              // displayer: "Items",
-              // value: [
-              //   {
                   type: "object",
                   key: "card",
                   displayer: "Card",
@@ -149,11 +136,7 @@ class Form4Page extends BaseContacts {
                       displayer: "1th Text",
                     },
                   ],
-              //   },
-              // ],
             },
-          // ],
-        // },
       ],
     });
     this.addProp({
