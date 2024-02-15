@@ -235,7 +235,7 @@ class FaqPost extends BaseFAQ {
     });
   }
   getName(): string {
-    return "FAQ POST";
+    return "FAQ-6";
   }
 
   render() {
