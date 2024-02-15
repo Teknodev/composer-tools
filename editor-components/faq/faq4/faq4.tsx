@@ -10,8 +10,7 @@ type Card = {
 class FaqButton extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
-
-
+    
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -119,10 +118,12 @@ class FaqButton extends BaseFAQ {
         }
       ],
     });
+
+    
   }
 
   getName(): string {
-    return "FAQ-2";
+    return "FAQ-4";
   }
 
   activeIndex: number = -1;
@@ -152,7 +153,9 @@ class FaqButton extends BaseFAQ {
                         <div className={this.decorateCSS("card-title")}>
                           <h3 className={this.decorateCSS("card-title-h3")}>{card.title}</h3>
                         </div>
-                        <div className={this.decorateCSS("icon")}>
+                        <div className={this.decorateCSS("icon")}
+                        onClick={() => handleButton(indexCard)}
+                        >
                           <img
                             alt=""
                             src={
@@ -160,14 +163,14 @@ class FaqButton extends BaseFAQ {
                                 ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
                                 : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
                             }
-                            onClick={() => handleButton(indexCard)}
+                            
                           />
                         </div>
                       </div>
                       <p
                         className={`${
                           this.activeIndex === indexCard
-                            ? this.decorateCSS("text")
+                            ? this.decorateCSS("text") 
                             : this.decorateCSS("hide")
                         }`}
                       >
