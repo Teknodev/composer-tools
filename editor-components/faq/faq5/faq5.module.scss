@@ -26,7 +26,7 @@
                     background: rgb(244, 244, 244);
                     padding: 4px 6px;
                     display: inline-block;
-                    margin-bottom: 2rem;
+                    margin-bottom: 0.5rem;
                     width: 70px;
                     text-align: center;
                 }
@@ -40,6 +40,7 @@
                     font-size: 2rem;
                     color: var(--composer-font-color-primary);
                     opacity: 0.8;
+                    text-align: justify;
                 }
             }
             .right-page {
@@ -102,13 +103,15 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
     .container {
-        padding: 50px 20px;
+        padding: 45px 20px;
         .max-content {
             .page {
                 .left-page {
-                    left: 50px;
+                    left: auto;
+                    align-items: center;
+
                     .badge {
                         width: 8%;
                     }
@@ -117,7 +120,7 @@
                     }
                     .title-p {
                         font-size: 1.5rem;
-                        padding: 0 50px 0 0;
+                        // padding: 0 50px 0 0;
                     }
                 }
                 .right-page {
@@ -143,7 +146,7 @@
 
 @media only screen and (max-width: 400px) {
     .container {
-        padding: 50px 20px;
+        padding: 45px 20px;
         .max-content {
             .page {
                 .left-page {
