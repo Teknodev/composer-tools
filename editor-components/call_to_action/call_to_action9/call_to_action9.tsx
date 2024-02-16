@@ -28,7 +28,7 @@ class CallToAction9Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
     this.addProp({
@@ -83,24 +83,24 @@ class CallToAction9Page extends BaseCallToAction {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action9-page")}>
-            <h1>{this.getPropValue("title")}</h1>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <ComposerLink path={this.getPropValue("link")}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("buttonText")}
               </span>
             </ComposerLink>
-            <h3>{this.getPropValue("description")}</h3>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
 
             <div className={this.decorateCSS("sponsor-container")}>
-              <div className={this.decorateCSS("sponsor")}>
-                <img src={this.getPropValue("top-left")} />
-                <img src={this.getPropValue("top-center")} />
-                <img src={this.getPropValue("top-right")} />
+              <div className={this.decorateCSS("sponsor")} >
+                <img src={this.getPropValue("top-left")} alt=""/>
+                <img src={this.getPropValue("top-center")} alt=""/>
+                <img src={this.getPropValue("top-right")} alt=""/>
               </div>
               <div className={this.decorateCSS("sponsor")}>
-                <img src={this.getPropValue("bottom-left")} />
-                <img src={this.getPropValue("bottom-center")} />
-                <img src={this.getPropValue("bottom-right")} />
+                <img src={this.getPropValue("bottom-left")} alt=""/>
+                <img src={this.getPropValue("bottom-center")} alt=""/>
+                <img src={this.getPropValue("bottom-right")} alt=""/>
               </div>
             </div>
           </div>

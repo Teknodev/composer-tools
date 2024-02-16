@@ -1,70 +1,155 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 20px;
+  display: flex;
+  background-color: var(--composer-color-background);
 
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
+    width: var(--composer-content-width);
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
 
-    .feature-list {
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--composer-box-shadow);
-      border-top: 5px solid var(--composer-primary-color);
-      border-radius: 6px;
-      height: max-content;
-      min-width: 250px;
-      flex: 1 1;
-      padding: 20px;
+    .title {
+      color: var(--composer-primary-color);
+      font-size: 28px;
+    }
 
-      .title {
-        display: block;
-        font-weight: bold;
-        padding: 0;
-        margin: 0 0 5px 0;
+    .description {
+      max-width: 640px;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--composer-font-color-primary);
+    }
+
+    .cards-box {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+      align-items: center;
+      @media only screen and (max-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
       }
-      hr {
-        display: block;
-        width: 100%;
-        max-width: 180px;
-        margin: 0 0 12px 0;
-        border: 1px solid var(--composer-primary-color);
-        padding: 0;
+      @media only screen and (max-width: 700px) {
+        grid-template-columns: repeat(1, 1fr);
       }
-      .list-group {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
 
-        .list-item {
-          cursor: pointer;
-          color: black;
-          background-color: white;
-          transition: all 0.5s;
-          padding: 10px;
-          border-radius: 6px;
-          border: 1.5px solid var(--composer-primary-color);
-          box-shadow: rgba(208, 212, 218, 0.3) 0px 8px 24px;
-          &:hover {
-            background-color: var(--composer-primary-color);
-            border: 1.5px solid white;
-            color: white;
+      .card {
+        border-radius: 6px;
+        overflow: hidden;
+        height: 350px;
+        position: relative;
+        cursor: pointer;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: 1s;
+        }
+
+        &:hover {
+          img {
+            transform: scale(1.2);
+          }
+
+          .overlay {
+            opacity: 0;
+          }
+          .overlay2 {
+            opacity: 1;
+          }
+          .card-content .labels .second {
+            background: var(--composer-tertiary-color);
+          }
+        }
+
+        .overlay,
+        .overlay2 {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          transition: 0.9s;
+        }
+
+        .overlay {
+          background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+          z-index: 1;
+          opacity: 1;
+        }
+
+        .overlay2 {
+          background: linear-gradient(
+            rgba(var(--composer-primary-color-rgb), 0.7),
+            rgba(var(--composer-font-color-primary-rgb), 0.7)
+          );
+          z-index: 2;
+          opacity: 0;
+        }
+
+        .card-content {
+          position: absolute;
+          left: 20px;
+          bottom: 20px;
+          display: flex;
+          color: white;
+          z-index: 4;
+
+          .stick {
+            width: 4px;
+            background: var(--composer-tertiary-color);
+            margin-right: 20px;
+            border-radius: 3px;
+          }
+
+          .labels {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+            .first {
+              font-size: 24px;
+              font-weight: 600;
+            }
+
+            .second {
+              margin: 4px 0 5px 0;
+              background: rgba(var(--composer-tertiary-color-rgb), 0.7);
+              padding: 2px 6px;
+              border-radius: 6px;
+              transition: 0.3s;
+              color: var(--composer-font-color-secondary);
+            }
           }
         }
       }
     }
-  }
-}
 
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
+    .button {
+      display: grid;
+      place-items: center;
+      padding: 0 25px;
+      height: 55px;
+      background: var(--composer-secondary-color);
+      margin: 40px 0 20px 0;
+      color: var(--composer-font-color-secondary);
+      font-weight: 600;
+      border-radius: 6px;
+      transition: 0.4s;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        background: var(--composer-color-background);
+        outline: 1px solid var(--composer-secondary-color);
+        color: var(--composer-secondary-color);
+      }
+    }
   }
 }

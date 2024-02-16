@@ -255,7 +255,7 @@ class Team6 extends Team {
   }
 
   getName(): string {
-    return "Team Meet Three";
+    return "Team 6";
   }
 
   render() {
@@ -266,8 +266,8 @@ class Team6 extends Team {
             <div></div>
             <div className={this.decorateCSS("up-page")}>
               <div className={this.decorateCSS("text-group")}>
-                <h1>{this.getPropValue("title1")}</h1>
-                <p>{this.getPropValue("title2")}</p>
+                <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
+                <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
               </div>
               <div className={this.decorateCSS("button-group")}>
                 {this.castToObject<Button[]>("buttons").map(
@@ -305,18 +305,19 @@ class Team6 extends Team {
                       <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("top")}>
                           <img
+                            alt=""
                             className={this.decorateCSS("image")}
                             src={card.image}
                           />
-                          <h2>{card.name}</h2>
+                          <h2 className={this.decorateCSS("card-name")}>{card.name}</h2>
                           <p className={this.decorateCSS("position")}>{card.position}</p>
                         </div>
-                        <p>{card.description}</p>
+                        <p className={this.decorateCSS("card-description")}>{card.description}</p>
                         <div className={this.decorateCSS("icon-group")}>
                           {card.platforms.map((item: any, indexPlatforms: number) => {
                             return (
                               <ComposerLink key={indexPlatforms} path={item.url}>
-                                <img src={item.icon} />
+                                <img src={item.icon} alt=""/>
                               </ComposerLink>
                             );
                           })}

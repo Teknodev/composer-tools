@@ -33,7 +33,7 @@ class LogoComp4Page extends LogoClouds {
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg",
+      value: "https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     });
     this.addProp({
       type: "array",
@@ -90,20 +90,20 @@ class LogoComp4Page extends LogoClouds {
     return (
       <div
         className={this.decorateCSS("container")}
-        style={styling}
+        
       >
-        <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")} style={styling}>
           <div className={this.decorateCSS("logo-comp4-page")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h3>{this.getPropValue("description")}</h3>
-            <h4>{this.getPropValue("subtitle")}</h4>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
+            <h4 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h4>
             <section>
               <center>
                 {this.castToObject<ISection[]>("image-items").map(
                   (section: any, index: number) => (
                     <div key={index} className={this.decorateCSS("image-child")}>
                       {section.items.map((item: any, index: number) => (
-                        <img className={this.decorateCSS("image")} key={index} width={180} height={90} src={item.value} />
+                        <img className={this.decorateCSS("image")} key={index} width={180} height={90} src={item.value} alt=""/>
                       ))}
                     </div>
                   )

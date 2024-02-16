@@ -1,54 +1,54 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    .simple-boxes {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      border-radius: 6px;
-      height: max-content;
-      min-width: 250px;
-      flex: 1 1;
-
-      .image {
-        display: block;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
         margin: auto;
-        width: 120px;
-        height: 180;
-        object-fit: cover;
-        padding: 0;
-        border-radius: 6px;
-      }
-      .title {
-        display: block;
-        margin: 12px auto;
-        font-weight: bold;
-        color: var(--composer-primary-color);
-      }
-      .long-text {
-        display: block;
-        color: rgb(200, 200, 200);
-        margin-bottom: 0;
-      }
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-around;
+        .simple-boxes {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            border-radius: 6px;
+            height: max-content;
+            min-width: 250px;
+            flex: 1 1;
+            .image {
+                display: block;
+                margin: auto;
+                width: 120px;
+                height: 180;
+                object-fit: cover;
+                padding: 0;
+                border-radius: 6px;
+            }
+            .title {
+                display: block;
+                margin: 12px auto;
+                font-weight: bold;
+                color: var(--composer-primary-color);
+            }
+            .long-text {
+                display: block;
+                color: var(--composer-font-color-primary);
+                margin-bottom: 0;
+            }
+        }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .max-content {
-      gap: 60px !important;
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            gap: 60px !important;
+            .card-item-count {
+                min-width: 100%;
+            }
+        }
     }
-  }
 }

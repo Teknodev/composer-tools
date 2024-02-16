@@ -1,0 +1,127 @@
+.container {
+    width: 100%;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .content {
+            height: 66px;
+            padding: 50px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            .content-left {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+            }
+            a {
+                text-decoration: none;
+            }
+            .button {
+                width: 80%;
+                height: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--composer-secondary-color);
+                border: 1px solid var(--composer-secondary-color);
+                color: white;
+                border-radius: 6px;
+                font-size: 1.4rem;
+                cursor: pointer;
+                padding: 20px 30px;
+                &:hover {
+                    color: var(--composer-primary-color);
+                    background: transparent;
+                    border: 1px solid var(--composer-primary-color);
+                }
+                &.primary {
+                    border: 1px solid var(--composer-primary-color);
+                    background-color: var(--composer-primary-color);
+                    color: white;
+                    &:hover {
+                        color: var(--composer-secondary-color);
+                        background: transparent;
+                        border: 1px solid var(--composer-secondary-color);
+                    }
+                }
+            }
+            @media screen and (max-width: 380px) {
+                .content-left {
+                    text-align: center;
+                    font-size: 12px;
+                    gap: 10px;
+                    width: 20%;
+                    margin-left: 0;
+                    margin-top: 5%;
+                }
+                .logo-image {
+                    margin-left: 7%;
+                    margin-right: 3%;
+                    img {
+                        width: 140px;
+                        height: 170px;
+                    }
+                }
+                .button {
+                    width: 25%;
+                    height: 25px;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: var(--composer-secondary-color);
+                    border: 1px solid var(--composer-secondary-color);
+                    color: white;
+                    border-radius: 6px;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    padding: 20px 30px;
+                    &:hover {
+                        color: var(--composer-primary-color);
+                        background: transparent;
+                        border: 1px solid var(--composer-primary-color);
+                    }
+                    &.primary {
+                        border: 1px solid var(--composer-primary-color);
+                        background-color: var(--composer-primary-color);
+                        color: white;
+                        &:hover {
+                            color: var(--composer-secondary-color);
+                            background: transparent;
+                            border: 1px solid var(--composer-secondary-color);
+                        }
+                    }
+                }
+            }
+        }
+        .bottom-line {
+            border-bottom: 1px solid #a5a7aad7;
+            width: 95%;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+        }
+        .secondline-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            height: 66px;
+            padding: 30px 30px;
+            a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+        @media screen and (max-width: 380px) {
+            .secondline-content {
+                gap: 20px;
+                font-size: 12px;
+            }
+        }
+    }
+}

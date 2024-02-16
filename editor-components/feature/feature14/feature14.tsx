@@ -52,7 +52,7 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -90,7 +90,7 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -128,12 +128,18 @@ class Feature14 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
         },
       ],
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
     });
   }
 
@@ -148,10 +154,14 @@ class Feature14 extends BaseFeature {
           <div className={this.decorateCSS("content")}>
             {this.castToObject<TopImages[]>("top-image-card").map(
               (top_image: any, index: number) => (
+                <div className={this.decorateCSS("card-item-count")} style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
                 <div className={this.decorateCSS("top-image")} key={index}>
                   <div className={this.decorateCSS("image-background")}></div>
                   <div className={this.decorateCSS("child")}>
                     <img
+                      alt=""
                       className={this.decorateCSS("image")}
                       src={top_image.image}
                     ></img>
@@ -160,9 +170,12 @@ class Feature14 extends BaseFeature {
                       {top_image.description}
                     </p>
                     <ComposerLink path={top_image.link}>
-                      {top_image.buttonText}
+                      <a>
+                        {top_image.buttonText}
+                      </a>
                     </ComposerLink>
                   </div>
+                </div>
                 </div>
               )
             )}

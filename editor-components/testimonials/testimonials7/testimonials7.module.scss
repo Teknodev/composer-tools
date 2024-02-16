@@ -1,28 +1,30 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 150px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     display: flex;
     max-width: var(--composer-content-width);
-    box-shadow: var(--composer-box-shadow);
     margin: auto;
 
     .testimonials7 {
       display: block;
       width: 100%;
       padding: 20px;
-      h1 {
+      .title {
         text-align: center;
         font-size: 3rem;
-        margin: 0 0 40px 0;
+        margin: 0 0 80px 0;
+        color: var(--composer-primary-color);
       }
 
-      h3 {
+      .description {
         text-align: center;
         font-weight: 200;
         font-size: 1.2rem;
         margin: 0 0 40px 0;
+        color: var(--composer-primary-color);
       }
       .card-child {
         display: flex;
@@ -35,21 +37,32 @@
           min-width: 250px;
           display: flex;
           border-radius: 6px;
+          border: var(--composer-testiary-color);
 
           img {
             border-radius: 6px;
           }
           .content {
             padding: 0 20px;
-            span {
+            .item-value1 {
               font-weight: 800;
               font-size: 1.2rem;
               margin-top: 10px;
               margin-bottom: 10px;
               margin-left: 0;
               margin-right: 0;
+              color: var(--composer-primary-color);
             }
-            h5 {
+            .item-value3 {
+              font-weight: 800;
+              font-size: 1.2rem;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              margin-left: 0;
+              margin-right: 0;
+              color: var(--composer-primary-color);
+            }
+            .item-value2 {
               opacity: 0.8;
               font-weight: 500;
               font-size: 1.5rem;
@@ -57,6 +70,7 @@
               margin-bottom: 10px;
               margin-left: 0;
               margin-right: 0;
+              color: var(--composer-primary-color);
             }
           }
         }
@@ -68,6 +82,7 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    background-color: var(--composer-html-background);
 
     .max-content {
       .testimonials7 {
@@ -77,6 +92,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            border: var(--composer-testiary-color);
 
             .content{
               margin-top: 20px;

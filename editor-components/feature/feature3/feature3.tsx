@@ -94,6 +94,12 @@ class Feature3 extends BaseFeature {
         
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -109,12 +115,16 @@ class Feature3 extends BaseFeature {
         <div className={this.decorateCSS("max-content")}>
         {this.castToObject<ISimpleBoxes[]>("simple-boxes-content").map(
           (simplebox: any, index: number) => (
+            <div className={this.decorateCSS("card-item-count")} style={{
+              width: 90 / this.getPropValue("itemCount") + "%",
+            }}>
             <div
               className={this.decorateCSS("simple-boxes")}
               
               key={index}
             >
               <img
+                alt=""
                 className={this.decorateCSS("image")}
                 
                 src={simplebox.image}
@@ -128,6 +138,7 @@ class Feature3 extends BaseFeature {
               >
                 {simplebox.description}
               </p>
+            </div>
             </div>
           )
         )}

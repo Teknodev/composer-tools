@@ -136,8 +136,8 @@ class Testimonials1Page extends Testimonials {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials1")}>
             <section>
-              <h3>{this.getPropValue("subtitle")}</h3>
-              <h1>{this.getPropValue("title")}</h1>
+              <h3 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h3>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               {this.castToObject<ISection[]>("card-items").map(
                 (section: any, indexCard: number) => (
                   <div
@@ -150,15 +150,15 @@ class Testimonials1Page extends Testimonials {
                         className={this.decorateCSS("card")}
                       >
                         <div className={this.decorateCSS("profile")}>
-                          <img width={50} height={50} src={item.value[0].value} />
+                          <img width={50} height={50} src={item.value[0].value} alt=""/>
                           <div className={this.decorateCSS("profile-text")}>
-                            <h2>{item.value[1].value}</h2>
-                            <p>{item.value[2].value}</p>
+                            <h2 className={this.decorateCSS("item-value1")}>{item.value[1].value}</h2>
+                            <p className={this.decorateCSS("item-value2")}>{item.value[2].value}</p>
                           </div>
                         </div>
-                        <h5>{item.value[3].value}</h5>
+                        <h5 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h5>
                         <center>
-                          <img width={180} height={90} src={item.value[4].value} />
+                          <img width={180} height={90} src={item.value[4].value} alt=""/>
                         </center>
                       </div>
                     ))}

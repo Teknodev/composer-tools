@@ -26,17 +26,17 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         text-overflow: ellipsis;
         word-break: break-all;
 
-        h1 {
+        .title {
           font-size: 4.5rem;
           letter-spacing: 0.02em;
           margin: unset;
-          color: rgb(19, 34, 63);
+          color: var(--composer-primary-color);
           opacity: 0.9;
         }
 
-        p {
+        .description {
           font-size: 1.8rem;
-          color: rgb(57, 61, 70);
+          color: var(--composer-font-color-primary);
           opacity: 0.9;
         }
 
@@ -81,7 +81,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 justify-content: space-between;
                 align-items: center;
 
-                p {
+                .item-card-title1 {
                   margin-top: 0;
                   font-size: 1.5rem;
                   color: rgb(19, 34, 63);
@@ -112,20 +112,20 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   gap: 4%;
                   position: relative;
 
-                  h1 {
+                  .item-price {
                     font-size: 6.5rem;
                     color: rgb(19, 23, 29);
                     opacity: 0.9;
                     letter-spacing: 0.02em;
                     margin: 15px 0;
 
-                    span {
+                    .item-per {
                       font-size: 1.3rem;
                     }
                   }
                   .currency {
                     position: relative;
-                    span {
+                    .item-currency {
                       font-size: 1.8rem;
                       font-weight: bold;
                       color: rgb(42, 51, 66);
@@ -136,7 +136,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   }
                 }
 
-                p {
+                .item-description-p {
                   font-size: 1.3rem;
                   color: rgb(42, 51, 66);
                   opacity: 0.9;
@@ -177,7 +177,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
 
                 .primary {
-                  background-color: var(--composer-primary-color);
+                  background-color: var(--composer-secondary-color);
                 }
                 .secondary {
                   border: 1px solid rgb(200, 200, 200);
@@ -208,12 +208,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   color: rgb(42, 51, 66);
 
                   .circle-icon {
-                    width: 20px;
-                    height: 20px;
+                    width: 25px;
+                    height: 25px;
                     color: #fff;
-                    border: 1px solid var(--composer-primary-color);
+                    border: 1px solid var(--composer-tertiary-color);
                     border-radius: 50%;
-                    background-color: var(--composer-primary-color);
+                    background-color: var(--composer-tertiary-color);
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -235,28 +235,32 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
-
-    .page {
-      .up-page {
-        h1 {
-          font-size: 2.5rem !important;
-        }
-        p {
-          font-size: 1.5rem !important;
-        }
+      .max-content{
+        align-items: center;
+        flex-direction: column;
+        .page {
+          .up-page {
+            .subtitle {
+              font-size: 2.5rem !important;
+            }
+            .description {
+              font-size: 1.5rem !important;
+            }
+          }
+    
+          .pricing {
+            .item-price {
+              font-size: 4rem !important;
+            }
+          }
+    
+          .button-group {
+            .button {
+              font-size: 1.2rem !important;
+            }
+          }
       }
-
-      .pricing {
-        h1 {
-          font-size: 4rem !important;
-        }
-      }
-
-      .button-group {
-        .button {
-          font-size: 1.2rem !important;
-        }
-      }
+    
     }
   }
 }

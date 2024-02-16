@@ -1,0 +1,121 @@
+.container {
+    width: 100%;
+    margin: auto;
+    background-color: var(--composer-html-background);
+}
+
+.max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+}
+
+.list-item {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    gap: 20px;
+}
+
+.item-container {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    box-sizing: content-box;
+    .list-item-value-h1 {
+        text-align: left;
+        font-weight: 600;
+        font-size: 26px;
+        color: var(--composer-primary-color);
+        margin-top: 50px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid var(--composer-primary-color);
+    }
+    img {
+        height: 270px;
+        object-fit: cover;
+    }
+    .list-item-value-p {
+        margin-top: 40px;
+        margin-bottom: 50px;
+        text-align: left;
+        font-size: 1.5rem;
+        line-height: 1.55;
+        font-weight: 300;
+        color: var(--composer-font-color-primary);
+    }
+}
+
+@media screen and (max-width: 930px) {
+.container{
+    .max-content{
+    .list-item {
+        display: block;
+        max-width: 100%;
+    }
+    .item-container {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        box-sizing: content-box;
+        width: 340px;
+        .list-item-value-h1 {
+            text-align: left;
+            font-weight: 600;
+            font-size: 26px;
+            width: 725px;
+        }
+        img {
+            min-width: 725px;
+            height: 400px;
+            object-fit: cover;
+            width: 300px !important;
+        }
+        .list-item-value-p {
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.55;
+            font-weight: 300;
+            width: 725px !important;
+        }
+    }
+}
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .container{
+    .max-content{
+    .list-item {
+        display: block;
+        max-width: 100%;
+    }
+    .item-container {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        box-sizing: content-box;
+        width: 340px;
+        .list-item-value-h1 {
+            text-align: left;
+            font-weight: 600;
+            font-size: 26px;
+            width: 320px;
+        }
+        img {
+            min-width: 320px;
+            height: 200px;
+            object-fit: cover;
+            width: 300px !important;
+        }
+        .list-item-value-p {
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.55;
+            font-weight: 300;
+            width: 320px !important;
+        }
+    }
+}
+    }
+}
+

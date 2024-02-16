@@ -1,100 +1,172 @@
 import * as React from "react";
 import styles from "./header19.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import { object } from "yup";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 
 class Header19 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
+
     this.addProp({
-      type: "array",
-      key: "left-side",
-      displayer: "Left Side",
+      type: "object",
+      displayer: "Items",
+      key: "items",
       value: [
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          displayer: "Item Left",
+          key: "item-left",
           value: [
             {
               type: "string",
-              key: "title-top",
-              displayer: "Title Top",
-              value: "Hot &",
+              displayer: "Title",
+              key: "title",
+              value: "MATTIS LAOREET SAPIEN",
             },
             {
               type: "string",
-              key: "title-mid",
-              displayer: "Title Middle",
-              value: "Stylish",
-            },
-            {
-              type: "string",
-              key: "title-bottom",
-              displayer: "Title Bottom",
-              value: "Tshirt",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Content",
-              value: "Some Italian writings",
-            },
-            {
-              type: "string",
-              key: "side-text",
-              displayer: "Side Text",
-              value: "SUMMER COLLECTION 2022",
-            },
-            {
-              type: "string",
-              key: "button-text",
-              displayer: "Button Text",
-              value: "SHOP COLLECTION",
+              displayer: "Description",
+              key: "description",
+              value: "Porta\nConsectetur\nImperdiet\nFrigilla",
             },
             {
               type: "image",
-              key: "left-image",
               displayer: "Image",
-              value: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2017/01/fashion-split-1-left.jpg",
-            }
-
-          ]
-        }
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "right-side",
-      displayer: "Right Side",
-      value: [
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad87b?alt=media&timestamp=1693306471422",
+            },
+            {
+              type: "object",
+              displayer: "Button",
+              key: "button",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button Link",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+          ],
+        },
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          displayer: "Item Right",
+          key: "item-right",
           value: [
             {
               type: "string",
-              key: "side-text",
-              displayer: "Side Text",
-              value: "NEW MAN SUMMER LOOK",
+              displayer: "Title",
+              key: "title",
+              value: "SEMPER",
             },
             {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Feugiat\nScelerisque\nImperdiet",
+            },
+
+            {
               type: "image",
-              key: "left-image",
               displayer: "Image",
-              value: "https://cdn.fashiola.co.uk/L356474659/men-tops-zara-flowers-top-available-in-more-colours.jpg",
-            }
-          ]
-        }
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad87a?alt=media&timestamp=1693306471422",
+            },
+            {
+              type: "object",
+              displayer: "Button",
+              key: "button",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button Link",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item Right Bottom Left",
+          key: "item-right-bottom-left",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "SEMPER",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Adipiscing\nSodales",
+            },
+
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad878?alt=media&timestamp=1693306471422",
+            },
+            {
+              type: "object",
+              displayer: "Button",
+              key: "button",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button Link",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+          ],
+        },
       ],
     });
 
-
-
-  
+      this.addProp({
+       type: "object",
+        displayer: "Item Right Bottom Right",
+        key: "item-right-bottom-right",
+        value: [
+          {
+            type: "image",
+            displayer: "Item Right Bottom Right",
+            key: "item-right-bottom-right-photo",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad879?alt=media&timestamp=1693306471422",
+          }
+        ]
+      });
   }
 
   getName(): string {
@@ -102,78 +174,86 @@ class Header19 extends BaseHeader {
   }
 
   render() {
-    let leftImg = this.getPropValue("left-side")[0].value[6].value;
-    let topTxt = this.getPropValue("left-side")[0].value[0].value;
-    let midTxt = this.getPropValue("left-side")[0].value[1].value;
-    let bottomTxt = this.getPropValue("left-side")[0].value[2].value;
-    let leftSideText = this.getPropValue("left-side")[0].value[4].value;
-    let text = this.getPropValue("left-side")[0].value[3].value;
-    let buttonText = this.getPropValue("left-side")[0].value[5].value;
-
-
-    let rightImg = this.getPropValue("right-side")[0].value[1].value;
-    let rightSideText = this.getPropValue("right-side")[0].value[0].value;
-
-
+    let items: any = this.castToObject("items");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-
-              <div className={this.decorateCSS("left")}>
-                <img src={leftImg} alt="" />
-              <div className={this.decorateCSS("text-content")}>
-              <div className={this.decorateCSS("tittle-wrapper")}>
-
+            <div className={this.decorateCSS("left")}>
+              <div className={this.decorateCSS("item")}>
+                <div className={this.decorateCSS("background-image")}>
+                  <img src={items[0].image} alt={items[0].title} />
+                </div>
+                <div className={this.decorateCSS("content")}>
+                  <div className={this.decorateCSS("title")}>
+                    {items[0].title}
+                  </div>
+                  <div className={this.decorateCSS("description")}>
+                    {items[0].description}
+                  </div>
+                  <div>
+                    <ComposerLink path={items[0].button[1].value}>
+                    <button className={this.decorateCSS("button")}>
+                      {items[0].button[0].value}
+                    </button>
+                    </ComposerLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={this.decorateCSS("right")}>
               <div className={this.decorateCSS("top")}>
-                <div> 
-                {topTxt}
+                <div className={this.decorateCSS("item")}>
+                  <div className={this.decorateCSS("background-image")}>
+                    <img src={items[1].image} alt={items[1].title} />
+                  </div>
+                  <div className={this.decorateCSS("content")}>
+                    <div className={this.decorateCSS("title")}>
+                      {items[1].title}
+                    </div>
+                    <div className={this.decorateCSS("description")}>
+                      {items[1].description}
+                    </div>
+                    <div>
+                      <ComposerLink path={items[1].button[1].value}>
+                      <button className={this.decorateCSS("button")}>
+                        {items[1].button[0].value}
+                      </button>
+                      </ComposerLink>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div className={this.decorateCSS("middle")}>
-                <div>
-                {midTxt}
-                
-                </div>
-              </div>
-
               <div className={this.decorateCSS("bottom")}>
-                <div>
-                {bottomTxt}
+                <div className={this.decorateCSS("item")}>
+                  <div className={this.decorateCSS("background-image")}>
+                    <img src={items[2].image} alt={items[2].title} />
+                  </div>
+                  <div className={this.decorateCSS("content")}>
+                    <div className={this.decorateCSS("title")}>
+                      {items[2].title}
+                    </div>
+                    <div className={this.decorateCSS("description")}>
+                      {items[2].description}
+                    </div>
+                    <div>
+                        <ComposerLink path={items[2].button[1].value}>
+                      <button className={this.decorateCSS("button")}>
+                        {items[2].button[0].value}
+                      </button>
+                      </ComposerLink>
+                    </div>
+                  </div>
+                </div>
+                <div className={this.decorateCSS("item")}>
+                  <div className={this.decorateCSS("background-image")}>
+                    <img src={this.getPropValue('item-right-bottom-right')[0].value} alt=""/>
+                  </div>  
                 </div>
               </div>
-
-              </div>
-
-              <div className={this.decorateCSS("text")}>
-                {text}
-              </div>
-
-              <button className={this.decorateCSS("action-button")}>
-                {buttonText}
-              </button>
-
-            </div>
-            <div className={this.decorateCSS("side-text")}>
-              {leftSideText}
-            </div>
-
-          </div>
-
-          <div className={this.decorateCSS("right")}>
-            <img src={rightImg} alt="" />
-
-            <div className={this.decorateCSS("side-text")}>
-              {rightSideText}
-            </div>
-
-          </div>
-
-
-
             </div>
           </div>
+        </div>
       </div>
     );
   }

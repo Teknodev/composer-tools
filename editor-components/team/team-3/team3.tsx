@@ -229,13 +229,13 @@ class Team3 extends Team {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Row",
+      displayer: "Item Count in a Row",
       value: 4,
     });
   }
 
   getName(): string {
-    return "Team Content";
+    return "Team 3";
   }
 
   render() {
@@ -244,8 +244,8 @@ class Team3 extends Team {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("text-group")}>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("description")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
             <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("card").map((item: Card, indexCard: number) => {
@@ -263,8 +263,8 @@ class Team3 extends Team {
                         src={item.profile}
                         alt=""
                       />
-                      <h2>{item.name}</h2>
-                      <p>{item.position}</p>
+                      <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
+                      <p className={this.decorateCSS("item-position")}>{item.position}</p>
                       <div className={this.decorateCSS("icon-group")}>
                         {item.platforms.map((item: any, indexIconGroup: number) => {
                           return (

@@ -1,20 +1,20 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: 20px;
 
     .price {
       display: flex;
       flex-direction: column;
       text-align: center;
-      box-shadow: var(--composer-box-shadow);
+      border: 1px solid var(--composer-tertiary-color);
       border-radius: 10px;
       height: max-content;
       padding: 20px;
@@ -25,16 +25,18 @@
         display: block;
         font-weight: 450;
         margin: 0;
+        color: var(--composer-primary-color);
       }
       .price-text {
         display: block;
         font-weight: bold;
         font-size: 3em;
+        color: var(--composer-primary-color);
       }
       .duration-text {
         display: block;
         font-size: 1.2em;
-        color: rgb(200, 200, 200);
+        color: var(--composer-font-color-primary);
         margin: 0 0 18px 0;
       }
       .button {
@@ -45,15 +47,25 @@
         transition: 0.3s;
         display: block;
         color: white;
-        background-color: var(--composer-primary-color);
+        background-color: var(--composer-secondary-color);
         padding: 15px 30px;
         border-radius: 6px;
         border: 1px solid transparent;
         &:hover {
           color: var(--composer-primary-color);
           background-color: transparent;
-          border: 1px solid var(--composer-primary-color);
+          border: 1px solid var(--composer-tertiary-color);
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    .max-content{
+      .card-item-count{
+        margin: 10px 70px 0 0;
       }
     }
   }
@@ -61,10 +73,31 @@
 
 @media only screen and (max-width: 768px) {
   .container {
-    padding: 50px 20px;
-
-    .price-text{
-      font-size: 2.4rem !important;
+    .max-content{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      display: flexbox;
+      .card-item-count{
+        min-width: 70%;
+        margin: 10px 20px 10px 0;
+      }
     }
   }
 }
+
+@media only screen and (max-width: 555px) {
+  .container {
+    .max-content{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      .card-item-count{
+        min-width: 70%;
+        margin: 10px 20px 10px 0;
+      }
+    }
+  }
+}
+

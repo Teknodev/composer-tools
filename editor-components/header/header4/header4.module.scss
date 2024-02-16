@@ -1,6 +1,10 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -8,18 +12,19 @@
 
     .header-page {
       border-radius: 6px;
-      box-shadow: var(--composer-box-shadow);
       display: flex;
       flex-direction: column;
       justify-content: center;
       flex-wrap: wrap;
       align-items: center;
       padding: 40px;
+      
 
-      h3 {
-        font-size: 2.5rem;
+      .subtitle {
+        font-size: 3.5rem;
         text-align: center;
         margin: 0 0 40px 0;
+        color: var(--composer-primary-color);
       }
 
       .section {
@@ -47,23 +52,19 @@
             justify-content: center;
             width: calc(100% - 80px);
             padding: 20px;
-
-            box-shadow: var(--composer-box-shadow);
+            border: 1px solid var(--composer-tertiary-color);
             border-radius: 6px;
             overflow: hidden;
             white-space: pre-line;
             text-overflow: ellipsis;
             word-break: break-all;
 
-            &:hover {
-              background-color: var(--composer-primary-color);
-              h1 {
-                color: white;
-              }
-              p {
-                color: white;
-              }
+            .card-title {
+              width: 100%;
+              font-size: 1.2rem;
+              color: var(--composer-primary-color);
             }
+            
 
             &.box-left {
               margin-left: 80px;
@@ -72,21 +73,18 @@
             &.box-right {
               margin-right: 80px;
             }
+
           }
         }
 
-        h1 {
-          width: 100%;
-          font-size: 1.2rem;
-        }
-        p {
+        .card-value2 {
           overflow: hidden;
           white-space: pre-line;
           text-overflow: ellipsis;
           word-break: break-all;
+          background-color: var(--composer-primary-color);
         }
       }
-
       .image-container {
         flex: 1;
         display: flex;

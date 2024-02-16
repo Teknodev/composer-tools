@@ -1,5 +1,4 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats6.module.scss";
 
@@ -112,9 +111,9 @@ class Stats6Page extends BaseStats {
             {this.castToObject<CardData[]>("card-list").map(
               (data: any, index: number) => (
                 <div key={index} className={this.decorateCSS("card")}>
-                  <img src={data.CardImage} width={100} height={100} />
-                  <h4>{data.CardTitle}</h4>
-                  <p>{data.CardDescription}</p>
+                  <img src={data.CardImage} width={100} height={100} alt="" />
+                  <h4 className={this.decorateCSS("data-card-title")}>{data.CardTitle}</h4>
+                  <p className={this.decorateCSS("data-card-description")}>{data.CardDescription}</p>
                 </div>
               )
             )}

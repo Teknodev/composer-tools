@@ -1,0 +1,72 @@
+.container {
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .logo-comp6-page {
+            width: 100%;
+            .title-content {
+                .title {
+                    font-size: 3rem;
+                    text-align: center;
+                    margin-bottom: 40px;
+                    color: var(--composer-primary-color);
+                }
+            }
+            .items-layout {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                .all-card {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .items-content {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        margin-left: 20%;
+                        img {
+                            width: 160px;
+                            height: 160px;
+                            margin-left: 2%;
+                        }
+                        .list-item-p {
+                            font-size: 18px;
+                            font-weight: 300;
+                            line-height: 1.55;
+                            margin-left: 40px;
+                            text-align: left;
+                            width: 450px;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                }
+            }
+            @media screen and (max-width: 600px) {
+                .items-layout {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    flex-direction: column;
+                    .all-card {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        .items-content {
+                            display: block;
+                            margin-left: 5%;
+                            img {
+                                margin-left: 20%;
+                            }
+                            .list-item-p {
+                                width: 275px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

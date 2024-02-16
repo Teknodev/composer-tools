@@ -1,6 +1,7 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 150px 50px;
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -17,19 +18,22 @@
         justify-content: center;
         width: 100%;
 
-        h1 {
+        .longtext {
           font-size: 2rem;
+          color: var(--composer-font-color-primary);
         }
-        h3 {
+        .name {
           opacity: 0.9;
           font-size: 1.5rem;
           margin: 20px 0 5px 0;
+          color: var(--composer-font-color-primary);
         }
-        h4 {
+        .rank {
           opacity: 0.6;
           font-weight: 100;
           font-size: 1rem;
           margin: 0;
+          color: var(--composer-font-color-primary);
         }
       }
     }
@@ -37,12 +41,13 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    .max-content {
-      .testimonials4 {
-        text-align: center;
-      }
+    .container {
+        padding: 50px 20px;
+        background-color: var(--composer-html-background);
+        .max-content {
+            .testimonials4 {
+                text-align: center;
+            }
+        }
     }
-  }
 }

@@ -31,7 +31,7 @@ class Team9 extends Team {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -54,7 +54,7 @@ class Team9 extends Team {
     this.addProp({
       type: "number",
       key: "reverse",
-      displayer: "Reverse Count",
+      displayer: "Item Count in a Row",
       value: 3,
     });
 
@@ -150,7 +150,7 @@ class Team9 extends Team {
   }
 
   getName(): string {
-    return "Team-9";
+    return "Team 9";
   }
 
   render() {
@@ -164,7 +164,7 @@ class Team9 extends Team {
                   return (
                     <ComposerLink key={indexButtons} path={item.url}>
                       <button className={this.decorateCSS("button")}>
-                        {item.buttonText} <span>&#8594;</span>
+                        {item.buttonText} <span className={this.decorateCSS("numer")}>&#8594;</span>
                       </button>
                     </ComposerLink>
                   );
@@ -172,8 +172,8 @@ class Team9 extends Team {
               )}
             </div>
             <div className={this.decorateCSS("text-group")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <p>{this.getPropValue("description")}</p>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
             <div className={this.decorateCSS("image-container")}>
               {this.castToObject<Card[]>("team-members").map(
@@ -186,8 +186,8 @@ class Team9 extends Team {
                     >
                       <img src={item.image} alt="team" />
                       <div className={this.decorateCSS("person-info")}>
-                        <h2>{item.name}</h2>
-                        <p>{item.position}</p>
+                        <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
+                        <p className={this.decorateCSS("item-position")}>{item.position}</p>
                       </div>
                     </div>
                   );

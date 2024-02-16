@@ -64,7 +64,7 @@ class Download11 extends BaseDownload {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "URL",
+                            displayer: "Button Link",
                             value: "",
                         },
                         {
@@ -102,7 +102,7 @@ class Download11 extends BaseDownload {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "URL",
+                            displayer: "Button Link",
                             value: "",
                         },
                         {
@@ -151,6 +151,7 @@ class Download11 extends BaseDownload {
                                                             }`}
                                                     >
                                                         <img
+                                                            alt=""
                                                             src={item.buttonImage}
                                                             className={this.decorateCSS("button-icon")}
                                                         />
@@ -164,13 +165,13 @@ class Download11 extends BaseDownload {
                             </div>
 
                             <div className={this.decorateCSS("boxes-img-left")}>
-                                <img className={this.decorateCSS("img-left")} src={this.getPropValue("image")} />
+                                <img className={this.decorateCSS("img-left")} src={this.getPropValue("image")} alt=""/>
                             </div>
                             <div className={this.decorateCSS("boxes-logo")}>
-                                <img className={this.decorateCSS("logoimage")} src={this.getPropValue("logoimage")} />
+                                <img className={this.decorateCSS("logoimage")} src={this.getPropValue("logoimage")} alt=""/>
                             </div>
                             <div className={this.decorateCSS("boxes-img-right")}>
-                                <img className={this.decorateCSS("img-right")} src={this.getPropValue("image")} />
+                                <img className={this.decorateCSS("img-right")} src={this.getPropValue("image")} alt=""/>
                             </div>
                             <div className={this.decorateCSS("box")}>
 
@@ -184,6 +185,7 @@ class Download11 extends BaseDownload {
                                                             }`}
                                                     >
                                                         <img
+                                                            alt=""
                                                             src={item.buttonImage}
                                                             className={this.decorateCSS("button-icon")}
                                                         />

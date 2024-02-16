@@ -73,7 +73,7 @@ class Team4 extends Team {
                       type: "image",
                       key: "icon",
                       displayer: "Icon",
-                      value: "",
+                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
                     },
                     {
                       type: "page",
@@ -125,7 +125,7 @@ class Team4 extends Team {
                       type: "image",
                       key: "icon",
                       displayer: "Icon",
-                      value: "",
+                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
                     },
                     {
                       type: "page",
@@ -177,7 +177,7 @@ class Team4 extends Team {
                       type: "image",
                       key: "icon",
                       displayer: "Icon",
-                      value: "",
+                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
                     },
                     {
                       type: "page",
@@ -193,10 +193,16 @@ class Team4 extends Team {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
-    return "Classic Team List";
+    return "Team 4";
   }
 
   render() {
@@ -213,6 +219,9 @@ class Team4 extends Team {
           <div className={this.decorateCSS("team-members")}>
             {this.castToObject<TeamMember[]>("teamMembers").map(
               (teamMember: TeamMember, indexTeamMembers: number) => (
+                <div className={this.decorateCSS("card-item-count")} style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
                 <div
                   key={indexTeamMembers}
                   className={this.decorateCSS("team-member")}
@@ -223,8 +232,8 @@ class Team4 extends Team {
                     alt={teamMember.name}
                   />
                   <div className={this.decorateCSS("name-and-position")}>
-                    <span>{teamMember.name}</span>
-                    <p>{teamMember.position}</p>
+                    <span className={this.decorateCSS("team-member-name")}>{teamMember.name}</span>
+                    <p className={this.decorateCSS("team-member-position")}>{teamMember.position}</p>
                   </div>
 
                   <div className={this.decorateCSS("social-media-list")}>
@@ -235,12 +244,14 @@ class Team4 extends Team {
                           path={socialMedia.url}
                         >
                           <img
+                            alt=""
                             className={this.decorateCSS("social-media-image")}
                             src={socialMedia.icon}
                           />
                         </ComposerLink>
                       )
                     )}
+                  </div>
                   </div>
                 </div>
               )

@@ -1,0 +1,87 @@
+.container {
+    width: 100%;
+    background-color: var(--composer-html-background);
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        position: relative;
+        .cover-image {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.4);
+            background-blend-mode: color;
+            background-attachment: scroll;
+            .title {
+                color: white;
+                padding-top: 5%;
+                font-size: 48px;
+                line-height: 1.23;
+                margin: 0 0 80px 0;
+                text-align: center;
+            }
+            .testimonials11 {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: center;
+                overflow: auto;
+                .cards {
+                    display: block;
+                    background-color: var(--composer-html-background);
+                    margin-right: 25px;
+                    margin-bottom: 30px;
+                    border-radius: 4px;
+                    padding: 40px;
+                    width: 100%;
+                    .card-top {
+                        display: flex;
+                        .card-image {
+                            border-radius: 50%;
+                            width: 50px;
+                            height: 50px;
+                            margin-right: 12px;
+                        }
+                        .card-top-right {
+                            .card-title {
+                                font-size: 16px;
+                                line-height: 1.35;
+                                font-weight: 600;
+                                color: var(--composer-font-color-primary);
+                            }
+                            .card-subtitle {
+                                font-size: 14px;
+                                color: var(--composer-font-color-primary);
+                                line-height: 1.55;
+                                font-weight: 300;
+                            }
+                        }
+                    }
+                    .card-description {
+                        margin-top: 25px;
+                        text-align: left;
+                        font-size: 14px;
+                        line-height: 1.55;
+                        font-weight: 300;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+            @media screen and (max-width: 880px) {
+                .testimonials11 {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .cards {
+                        width: 90% !important;
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,95 +1,123 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .call-to-action4-page {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      h2 {
-        font-weight: 100;
-        max-width: 550px;
-        margin: 0;
-        font-size: 1.5rem;
-        color: white;
-      }
-      h1 {
-        font-size: 3rem;
-        margin: 0;
-        color: white;
-        max-width: 550px;
-      }
-      .buttons {
+    width: 100%;
+    padding: 50px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
         display: flex;
-        flex-direction: row;
-        gap: 20px;
-        .button {
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          color: black;
-          background-color: white;
-          padding: 15px 30px;
-          font-size: 1.5rem;
-          font-weight: 400;
-          border-radius: 6px;
-          border: 1px solid transparent;
-          width: 200px;
-          &:hover {
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-          }
+        justify-content: center;
+        align-items: center;
+        .call-to-action4-page {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 10px;
+            .description {
+                font-weight: 100;
+                max-width: 550px;
+                margin: 0;
+                font-size: 1.5rem;
+                color: var(--composer-font-color-primary);
+            }
+            .title {
+                font-size: 3rem;
+                margin: 0;
+                max-width: 550px;
+                color: var(--composer-primary-color)
+            }
+            .buttons {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                .button {
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                    transition: 0.3s;
+                    display: block;
+                    color: white;
+                    background-color: var(--composer-primary-color);
+                    padding: 15px 30px;
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    border-radius: 6px;
+                    border: 1px solid transparent;
+                    width: 200px;
+                    &:hover {
+                        background-color: transparent;
+                        color: var(--composer-primary-color);
+                        border: 1px solid var(--composer-primary-color);
+                    }
+                }
+                .button2 {
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                    transition: 0.3s;
+                    display: block;
+                    color: white;
+                    background-color: var(--composer-primary-color);
+                    padding: 15px 30px;
+                    font-size: 18px;
+                    font-weight: 400;
+                    border-radius: 6px;
+                    border: 1px solid transparent;
+                    width: 200px;
+                    &:hover {
+                        background-color: transparent;
+                        color: var(--composer-primary-color);
+                        border: 1px solid var(--composer-primary-color);
+                    }
+                }
+            }
         }
-        .button2 {
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          color: white;
-          background-color: transparent;
-          padding: 15px 30px;
-          font-size: 18px;
-          font-weight: 400;
-          border-radius: 6px;
-          border: 1px solid rgba(255, 255, 255, 0.4);
-          width: 200px;
-          &:hover {
-            border: 1px solid white;
-          }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 100%;
+                max-width: 500px;
+            }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    .call-to-action4-page {
-      text-align: center;
-      margin: 0;
-      h1, h2 {
-        max-width: 100% !important;
-      }
-      .buttons {
-        width: 100%;
-        display: flex;
-        flex-direction: column !important;
-        .button,
-        .button2 {
-          width: 100% !important;
+    .container {
+        padding: 50px 20px;
+        .max-content{
+            display: flex;
+            
+            flex-direction: column-reverse;
+        .call-to-action4-page {
+            text-align: center;
+            margin: 0;
+            h1,
+            h2 {
+                max-width: 100% !important;
+            }
+            .buttons {
+                width: 100%;
+                display: flex;
+                flex-direction: column !important;
+                .button,
+                .button2 {
+                    width: 100% !important;
+                }
+            }
         }
-      }
     }
-  }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+    }
 }

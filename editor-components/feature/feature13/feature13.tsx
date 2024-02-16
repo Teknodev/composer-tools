@@ -14,20 +14,6 @@ class Feature13 extends BaseFeature {
 
     this.addProp({
       type: "object",
-      key: "component-position",
-      displayer: "Component Position",
-      value: [
-        {
-          type: "string",
-          key: "position",
-          value: "left",
-          displayer: "Position",
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "object",
       key: "text",
       displayer: "Text",
       value: [
@@ -40,7 +26,8 @@ class Feature13 extends BaseFeature {
         {
           type: "string",
           key: "description",
-          value: "Writing short and concise content can be challenging, but it's essential in today's fast-paced world where people have shorter attention spans. In this information corner, we'll provide you with tips for writing short and concise content,",
+          value:
+            "Writing short and concise content can be challenging, but it's essential in today's fast-paced world where people have shorter attention spans. In this information corner, we'll provide you with tips for writing short and concise content,",
           displayer: "Description",
         },
         {
@@ -77,7 +64,8 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "description",
-              value: "Regular exercise is essential for maintaining good health and well-being. It can improve cardiovascular health, reduce the risk of chronic diseases, boost mood and energy levels, and even help with weight management.",
+              value:
+                "Regular exercise is essential for maintaining good health and well-being. It can improve cardiovascular health, reduce the risk of chronic diseases, boost mood and energy levels, and even help with weight management.",
               displayer: "Description",
             },
             {
@@ -103,7 +91,8 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "description",
-              value: "Nutrition is a critical component of a healthy lifestyle. Understanding the basics of nutrition can help you make informed choices about what you eat and how it affects your body. In this information corner, we'll provide an overview of the key nutrients your body needs, the benefits of a balanced diet, and tips for healthy eating.",
+              value:
+                "Nutrition is a critical component of a healthy lifestyle. Understanding the basics of nutrition can help you make informed choices about what you eat and how it affects your body. In this information corner, we'll provide an overview of the key nutrients your body needs, the benefits of a balanced diet, and tips for healthy eating.",
               displayer: "Description",
             },
             {
@@ -129,7 +118,8 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "description",
-              value: "Stress and anxiety are common experiences that can have a negative impact on our mental and physical health. Learning effective coping strategies can help us to manage these feelings and improve our overall well-being.",
+              value:
+                "Stress and anxiety are common experiences that can have a negative impact on our mental and physical health. Learning effective coping strategies can help us to manage these feelings and improve our overall well-being.",
               displayer: "Description",
             },
             {
@@ -155,7 +145,8 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "description",
-              value: "Sleep is essential for our overall health and well-being. It plays a crucial role in physical and mental restoration, as well as cognitive function. In this information corner, we'll explore the benefits of a good night's sleep, the consequences of sleep deprivation, and offer tips for improving the quality and quantity of your sleep.",
+              value:
+                "Sleep is essential for our overall health and well-being. It plays a crucial role in physical and mental restoration, as well as cognitive function. In this information corner, we'll explore the benefits of a good night's sleep, the consequences of sleep deprivation, and offer tips for improving the quality and quantity of your sleep.",
               displayer: "Description",
             },
             {
@@ -180,25 +171,32 @@ class Feature13 extends BaseFeature {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {this.getPropValue("component-position")[0].value == "left" && (
-              <div className={this.decorateCSS("message")}>
-                <h1>{this.getPropValue("text")[0].value}</h1>
-                <p>{this.getPropValue("text")[1].value}</p>
+            <div className={this.decorateCSS("message")}>
+              <h1 className={this.decorateCSS("text")}>
+                {this.getPropValue("text")[0].value}
+              </h1>
+              <p className={this.decorateCSS("text-p")}>
+                {this.getPropValue("text")[1].value}
+              </p>
 
-                <ComposerLink path={this.getPropValue("text")[3].value}>
-                  <span className={this.decorateCSS("button")}>
-                    {this.getPropValue("text")[2].value}
-                  </span>
-                </ComposerLink>
-              </div>
-            )}
-
+              <ComposerLink path={this.getPropValue("text")[3].value}>
+                <span className={this.decorateCSS("button")}>
+                  {this.getPropValue("text")[2].value}
+                </span>
+              </ComposerLink>
+            </div>
             <div className={this.decorateCSS("cards")}>
               {this.castToObject<CardMultiple[]>("multiple-card").map(
                 (multiple: any, index: number) => (
                   <div className={this.decorateCSS("multiple")} key={index}>
-                    <img className={this.decorateCSS("image")} src={multiple.image}></img>
-                    <h3 className={this.decorateCSS("title")}>{multiple.title}</h3>
+                    <img
+                      className={this.decorateCSS("image")}
+                      src={multiple.image}
+                      alt=""
+                    ></img>
+                    <h3 className={this.decorateCSS("title")}>
+                      {multiple.title}
+                    </h3>
                     <p className={this.decorateCSS("long-text")}>
                       {multiple.description}
                     </p>
@@ -206,30 +204,8 @@ class Feature13 extends BaseFeature {
                 )
               )}
             </div>
-
-            {this.getPropValue("component-position")[0].value == "right" && (
-              <div className={this.decorateCSS("message")}>
-                <h1>{this.getPropValue("text")[0].value}</h1>
-                <p>{this.getPropValue("text")[1].value}</p>
-
-                <span className={this.decorateCSS("button")}>
-                  {this.getPropValue("text")[2].value}
-                </span>
-              </div>
-            )}
           </div>
         </div>
-
-        {this.getPropValue("component-position")[0].value == "right" && (
-          <div className={this.decorateCSS("content")}>
-            <h1>{this.getPropValue("text")[0].value}</h1>
-            <p>{this.getPropValue("text")[1].value}</p>
-
-            <span className={this.decorateCSS("button")}>
-              {this.getPropValue("text")[2].value}
-            </span>
-          </div>
-        )}
       </div>
     );
   }

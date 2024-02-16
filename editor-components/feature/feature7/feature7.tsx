@@ -157,6 +157,12 @@ class Feature7 extends BaseFeature {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -169,8 +175,11 @@ class Feature7 extends BaseFeature {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => (
+              <div className={this.decorateCSS("card-item-count")} style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+              }}>
               <div key={indexCards} className={this.decorateCSS("listed")}>
-                <img className={this.decorateCSS("image")} src={card.image}></img>
+                <img className={this.decorateCSS("image")} src={card.image} alt=""></img>
                 <p className={this.decorateCSS("little-text")}>{card.category}</p>
                 <p className={this.decorateCSS("title")}>{card.title}</p>
                 <p className={this.decorateCSS("title-description")}>
@@ -180,6 +189,7 @@ class Feature7 extends BaseFeature {
                   <p className={this.decorateCSS("number")}>{card.number}</p>
                   <p className={this.decorateCSS("text")}>{card.text}</p>
                 </div>
+              </div>
               </div>
             ))}
           </div>

@@ -1,6 +1,10 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -8,27 +12,29 @@
 
     .heading-page {
       border-radius: 6px;
-      box-shadow: var(--composer-box-shadow);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 50px 20px;
+      padding: 40px;
 
-      .heading-colored {
+      .heading-section-name {
         color: var(--composer-primary-color);
         text-align: center;
+        margin-block-start: 0;
+        margin-block-end: 0;
       }
-      h1 {
+      .heading-title {
         text-align: center;
-        margin: 0 0 20px 0;
+        font-size: 3.5rem;
+        margin-block-start: 20px;
+        margin-block-end: 10px;
+        color: var(--composer-primary-color);
       }
-      h2 {
+      .heading-subtitle {
         text-align: center;
-      }
-      h3 {
-        text-align: center;
-        color: rgb(180, 180, 180);
+        color: var(--composer-font-color-primary);
+        font-size: 1.3rem
       }
       .button {
         text-align: center;
@@ -38,16 +44,17 @@
         text-align: center;
         transition: 0.3s;
         display: block;
-        color: white;
-        background-color: var(--composer-primary-color);
+        color: var(--composer-font-color-secondary);
+        background-color: var(--composer-secondary-color);
         padding: 15px 30px;
         border-radius: 6px;
         border: 1px solid transparent;
-        width: 200px;
+        width: 400px;
+        font-size: 1.5rem;
         &:hover {
-          color: var(--composer-primary-color);
-          background-color: transparent;
-          border: 1px solid var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
+          background-color: var(--composer-secondary-color);
+          border: 1px solid var(--composer-tertiary-color);
         }
       }
     }

@@ -27,7 +27,7 @@ class CallToAction2Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "firstButtonLink",
-      displayer: "First Link",
+      displayer: "First Button Link",
       value: "",
     });
     this.addProp({
@@ -39,7 +39,7 @@ class CallToAction2Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "secondButtonLink",
-      displayer: "Second Link",
+      displayer: "Second Button Link",
       value: "",
     });
   }
@@ -49,14 +49,17 @@ class CallToAction2Page extends BaseCallToAction {
   }
 
   render() {
+    const styling = {
+      backgroundColor: this.getPropValue("backgroundColor"),
+    }
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <div className={this.decorateCSS("container")} >
+        <div className={this.decorateCSS("max-content")} style={styling}>
           <div className={this.decorateCSS("call-to-action2-page")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h2>{this.getPropValue("description")}</h2>
+            <h1 className={this.decorateCSS("h-1")}>{this.getPropValue("title")}</h1>
+            <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
           </div>
-          <div className={this.decorateCSS("call-to-action2-page")}>
+          <div className={this.decorateCSS("call-to-action2-page-buttons")}>
             <ComposerLink path={this.getPropValue("firstButtonLink")}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("firstButtonText")}

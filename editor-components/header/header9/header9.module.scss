@@ -1,7 +1,10 @@
 .container {
   width: 100%;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
   display: flex;
-  padding: unset;
+  align-items: center;
   .wide-text-container {
     max-width: var(--composer-content-width);
     display: flex;
@@ -10,7 +13,7 @@
     margin: auto;
     .wide-text {
       display: block;
-      h3 {
+      .wide-text-h3 {
         font-weight: 800;
         line-height: 1.4;
         color: var(--composer-primary-color);
@@ -18,18 +21,20 @@
         margin-bottom: 5px;
         font-size: 1.5em;
       }
-      h1 {
+      .wide-text-h1 {
         font-weight: 800;
         line-height: 1.4;
         font-size: 3em;
         margin-top: 0;
         width: 60%;
+        color: var(--composer-primary-color);
       }
-      p {
+      .wide-text-p {
         color: rgb(80, 80, 80);
         width: 400px;
         margin-bottom: 30px;
         font-size: 1.1em;
+        color: var(--composer-font-color-primary);
       }
       .button {
         cursor: pointer;
@@ -37,16 +42,16 @@
         text-align: center;
         transition: 0.3s;
         display: block;
-        color: white;
-        background-color: var(--composer-primary-color);
+        color: var(--composer-font-color-secondary);
+        background-color: var(--composer-secondary-color);
         padding: 15px 30px;
         border-radius: 6px;
         border: 1px solid transparent;
         width: 200px;
         &:hover {
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
           background-color: transparent;
-          border: 1px solid var(--composer-primary-color);
+          border: 1px solid var(--composer-secondary-color);
         }
       }
     }
@@ -78,7 +83,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        h3 {
+        .wide-text-h3 {
           font-weight: 800;
           line-height: 1.4;
           color: var(--composer-primary-color);
@@ -86,7 +91,7 @@
           margin-bottom: 5px;
           font-size: 1.5em;
         }
-        h1 {
+        .wide-text-h1 {
           font-weight: 800;
           line-height: 1.4;
           font-size: 3em;
@@ -94,7 +99,7 @@
           width: unset;
           text-align: center;
         }
-        p {
+        .wide-text-p {
           color: rgb(80, 80, 80);
           width: unset;
           margin-bottom: 30px;

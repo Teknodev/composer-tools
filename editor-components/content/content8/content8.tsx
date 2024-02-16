@@ -32,7 +32,7 @@ class Content8 extends BaseContent {
         {
           type: "page",
           key: "url",
-          displayer: "URL",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -49,7 +49,7 @@ class Content8 extends BaseContent {
       key: "backgroundImage",
       displayer: "Background Image",
       value:
-        "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000",
+        "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     });
   }
 
@@ -77,11 +77,11 @@ class Content8 extends BaseContent {
                 </ComposerLink>
               </div>
               <div className={this.decorateCSS("right")}>
-                <img src={this.getPropValue("image")} />
+                <img src={this.getPropValue("image")} alt=""/>
               </div>
             </div>
             <div className={this.decorateCSS("background-image")}>
-              <img src={this.getPropValue("backgroundImage")} />
+              <img src={this.getPropValue("backgroundImage")} alt=""/>
             </div>
           </div>
         </div>

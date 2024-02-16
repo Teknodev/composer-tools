@@ -26,11 +26,11 @@ class Stats7Page extends BaseStats {
         "Understanding user behavior on a website is important for improving user experience and engagement.",
     });
     this.addProp({
-      type: "image",
-      key: "backgroundImage",
-      displayer: "Background Image",
+      type: "color",
+      key: "backgroundColor",
+      displayer: "Background Color",
       value:
-        "https://resimdiyari.com/_data/i/upload/2012/10/11/20121011142538-0d933501-me.jpg",
+        "#CDC1A9",
     });
     this.addProp({
       type: "array",
@@ -108,24 +108,24 @@ class Stats7Page extends BaseStats {
 
   render() {
     const styling = {
-      backgroundImage: `url('${this.getPropValue("backgroundImage")}')`,
+      backgroundColor: this.getPropValue("backgroundColor"),
     };
 
     return (
-      <div className={this.decorateCSS("container")} style={styling}>
-        <div className={this.decorateCSS("max-content")}>
+      <div className={this.decorateCSS("container")} >
+        <div className={this.decorateCSS("max-content")} style={styling}>
           <div className={this.decorateCSS("stats1-page")}>
             <div className={this.decorateCSS("title-child")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <h3>{this.getPropValue("description")}</h3>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
             </div>
             <div className={this.decorateCSS("bottom-child")}>
               {this.castToObject<ICard[]>("card-content").map(
                 (cardData: any, indexCard: number) => (
                   <div key={`sts-7-${indexCard}`} className={this.decorateCSS("card")}>
-                    <h5>{cardData.subtitle}</h5>
-                    <h4>{cardData.title}</h4>
-                    <p>{cardData.description}</p>
+                    <h5 className={this.decorateCSS("card-data-subtitle")}>{cardData.subtitle}</h5>
+                    <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
+                    <p className={this.decorateCSS("card-data-description")}>{cardData.description}</p>
                   </div>
                 )
               )}

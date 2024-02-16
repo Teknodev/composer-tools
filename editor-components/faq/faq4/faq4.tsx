@@ -129,7 +129,7 @@ class FaqButton extends BaseFAQ {
 
   render() {
     const handleButton = (index: number) => {
-      this.activeIndex = this.activeIndex == index ? -1 : index;
+      this.activeIndex = this.activeIndex === index ? -1 : index;
     };
 
     return (
@@ -140,8 +140,8 @@ class FaqButton extends BaseFAQ {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("text")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("text-p")}>{this.getPropValue("text")}</p>
             </div>
             <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("card").map(
@@ -150,12 +150,13 @@ class FaqButton extends BaseFAQ {
                     <div className={this.decorateCSS("card")} key={indexCard}>
                       <div className={this.decorateCSS("child-container")}>
                         <div className={this.decorateCSS("card-title")}>
-                          <h3>{card.title}</h3>
+                          <h3 className={this.decorateCSS("card-title-h3")}>{card.title}</h3>
                         </div>
                         <div className={this.decorateCSS("icon")}>
                           <img
+                            alt=""
                             src={
-                              this.activeIndex == indexCard
+                              this.activeIndex === indexCard
                                 ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
                                 : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
                             }
@@ -165,7 +166,7 @@ class FaqButton extends BaseFAQ {
                       </div>
                       <p
                         className={`${
-                          this.activeIndex == indexCard
+                          this.activeIndex === indexCard
                             ? this.decorateCSS("text")
                             : this.decorateCSS("hide")
                         }`}

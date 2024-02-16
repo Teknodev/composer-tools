@@ -1,84 +1,86 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    .portfolio {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      text-align: center;
-      border-radius: 6px;
-      overflow: hidden;
-      background-size: cover;
-      position: relative;
-      flex: 1 1;
-      min-width: 250px;
-      max-height: 450px;
-
-      &:hover {
-        .little-container {
-          opacity: 0.8;
-          transition: 0.5s;
-        }
-        .image {
-          transform: scale(1.1);
-        }
-      }
-
-      .image {
-        width: 100%;
-        height: 100%;
-        transition: 0.5s all ease-in-out;
-        object-fit: cover;
-      }
-      .title {
+    width: 100%;
+    padding: 50px 50px;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
         display: flex;
-        font-weight: bold;
-        font-size: 1.8rem;
-        max-width: 70%;
-        color: #fff;
-        border-top: 1px solid #fff;
-        padding-top: 5px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .description {
-        color: #fff;
-        max-width: 90%;
-        overflow: hidden;
-        white-space: wrap;
-        text-overflow: ellipsis;
-        font-size: 1.3rem;
-      }
-      .little-container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(0, 0, 0.7);
-        position: absolute;
-        opacity: 0;
-        border-radius: 6px;
-      }
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+        .portfolio {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            border-radius: 6px;
+            overflow: hidden;
+            background-size: cover;
+            position: relative;
+            flex: 1 1;
+            min-width: 250px;
+            max-height: 450px;
+            &:hover {
+                .little-container {
+                    opacity: 0.6;
+                    transition: 0.3s all ease-in-out;
+                }
+                .image {
+                    transform: scale(1.1);
+                }
+            }
+            .image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                transition: 0.5s all ease-in-out;
+            }
+            .title {
+                display: flex;
+                font-weight: bold;
+                font-size: 1.8rem;
+                max-width: 70%;
+                color: #fff;
+                border-top: 1px solid #fff;
+                padding-top: 5px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .description {
+                color: #fff;
+                max-width: 90%;
+                overflow: hidden;
+                white-space: wrap;
+                text-overflow: ellipsis;
+                font-size: 1.3rem;
+            }
+            .little-container {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(0, 0, 0.7);
+                position: absolute;
+                opacity: 0;
+                border-radius: 6px;
+            }
+        }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-  }
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            align-items: center;
+            flex-direction: column;
+            .card-item-count {
+                min-width: 100%;
+            }
+        }
+    }
 }

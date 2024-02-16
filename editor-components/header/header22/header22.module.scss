@@ -1,0 +1,147 @@
+.container {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
+  
+  .max-content {
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    
+  
+  .wrapper {
+    display: flex;
+    width: var(--composer-content-width);
+    .right {
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      .image {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        top: 50px;
+        
+        
+      }
+    }
+    .middle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      .content {
+        position: relative;
+        width: 100%;
+        text-overflow: ellipsis;
+        top: 35%;
+        .divider {
+          background-color: black;
+          width: 85px;
+          height: 2px;
+        }
+        
+        .title {
+          font-weight: lighter;
+          font-size: 4rem;
+          
+          color: black;
+          line-height: 60px;
+         
+        }
+        .button {
+          border: 0px;
+          color: black;
+          justify-content: flex-start;
+          font-weight: bold;
+          border-bottom: 1px solid #000;
+          padding-bottom: 6px;
+          &:hover {
+            color: grey;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .left {
+      flex: 1;
+      .image {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    .max-content{
+      .wrapper{
+        height: max-content;
+        .middle{
+          .content{
+            top: 25%;
+            width: 70%;
+            .title{
+              font-size: 3rem;
+              line-height: 30px;
+              margin-top: 8px;
+              margin-bottom: 8px;
+            }
+            .button{
+              font-size: 1rem;
+            }
+            .divider-underline {
+            margin-left: 4px;
+            }
+
+          }
+        } 
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content{
+    .wrapper{
+      padding: 0 0 20vh 0;
+      height: max-content;
+      .middle{
+        .content{
+          top: 25%;
+          width: 80%;
+          .title{
+            font-size: 1.8rem ;
+            line-height: 30px ;
+            margin-top: 8px ;
+            margin-bottom: 8px ;
+          }
+          .button{
+            font-size: 0.8rem;
+            padding: 1px 0px;
+          }
+          .divider-underline {
+            margin-top: 0px;
+            margin-left: 2px;
+            background-color: black;
+            width: 52px;
+            height: 1px;
+          }
+          .divider {
+            background-color: black;
+            width: 72px;
+            height: 1px;
+          }
+        }
+      }
+    }
+  }
+  }
+}

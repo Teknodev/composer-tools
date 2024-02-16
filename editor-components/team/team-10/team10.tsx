@@ -32,7 +32,7 @@ class Team10 extends Team {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -122,7 +122,7 @@ class Team10 extends Team {
   }
 
   getName(): string {
-    return "Team-10";
+    return "Team 10";
   }
 
   render() {
@@ -131,8 +131,8 @@ class Team10 extends Team {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("basic-card")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <p>{this.getPropValue("description")}</p>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
               <div className={this.decorateCSS("button-group")}>
                 {this.castToObject<Button[]>("buttons").map(
                   (item: Button, indexButtons: number) => {
@@ -154,8 +154,8 @@ class Team10 extends Team {
                     <div className={this.decorateCSS("opacity")} />
                     <img className={this.decorateCSS("image")} src={item.image} alt="" />
                     <div className={this.decorateCSS("person-info")}>
-                      <h2>{item.name}</h2>
-                      <p>{item.position}</p>
+                      <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
+                      <p className={this.decorateCSS("item-position")}>{item.position}</p>
                     </div>
                   </div>
                 );

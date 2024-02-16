@@ -1,135 +1,281 @@
 import * as React from "react";
 import { BaseList } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list2.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+interface List2Items {
+  listEmoji: string;
+  listTitle: string;
+  listDesc: string;
+  link: string;
+}
 class List2 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Most Popular Cities/Towns"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Discover best things to do restaurants, shopping, hotels, cafes and places around the world by categories."
+    });
+
+    this.addProp({
+      type: "object",
+      key: "button",
+      displayer: "Action Button",
+      value: [
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text of Button",
+          value: "View More Categories"
+        },
+        {
+          type: "page",
+          displayer: "Navigate",
+          value: "",
+          key: "navigate"
+        }
+      ]
+    });
+
     this.addProp({
       type: "array",
-      key: "link-main",
-      displayer: "Link Main",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "string",
-              key: "link-title",
-              displayer: "Link Title",
-              value: "Top 10 Books to Read This Summer",
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
             },
             {
-              type: "array",
-              key: "link-list",
-              displayer: "Link List",
-              value: [
-                {
-                  type: "object",
-                  key: "link-list-item",
-                  displayer: "Link List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Looking for some great summer reading? Check out our list of the top 10 books to read this season, featuring a mix of bestsellers, new releases, and classics.",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             },
-          ],
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 18
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Nightlife"
+            }
+          ]
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "string",
-              key: "link-title",
-              displayer: "Link Title",
-              value: "5 Essential Tools for Remote Work Success",
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
             },
             {
-              type: "array",
-              key: "link-list",
-              displayer: "Link List",
-              value: [
-                {
-                  type: "object",
-                  key: "link-list-item",
-                  displayer: "Link List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Whether you're working from home or on the go, these 5 tools are essential for staying productive and organized. ",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1608149922321-cd55aacabe94?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             },
-          ],
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 24
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Shops"
+            }
+          ]
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "string",
-              key: "link-title",
-              displayer: "Link Title",
-              value: "7 Tips for a Healthier Lifestyle",
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
             },
             {
-              type: "array",
-              key: "link-list",
-              displayer: "Link List",
-              value: [
-                {
-                  type: "object",
-                  key: "link-list-item",
-                  displayer: "Link List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1606922183036-62e19495eaab?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             },
-          ],
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 19
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Restaurant"
+            }
+          ]
         },
-      ],
-    });
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1555141816-810dd5692b6a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 35
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Outdoor Activities"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1544376798-89aa6b82c6cd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 9
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Hotels"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1587999633485-2c16737226c6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 32
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "New York"
+            }
+          ]
+        }
+      ]
+    })
   }
 
   getName(): string {
@@ -140,23 +286,38 @@ class List2 extends BaseList {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {this.getPropValue("link-main").map((title: any, indexLinkMain: number) => {
-            return (
-              <div className={this.decorateCSS("feature-list")} key={indexLinkMain}>
-                <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
-                <hr />
-                <ul className={this.decorateCSS("list-group")}>
-                  {title.value[1].value.map((table: any, indexListGroup: number) => (
-                    <ComposerLink key={indexListGroup} path={table.value[1].value}>
-                      <li className={this.decorateCSS("list-item")}>
-                        {table.value[0].value}
-                      </li>
-                    </ComposerLink>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+          <h3 className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </h3>
+          <span className={this.decorateCSS("description")}>
+            {this.getPropValue("description")}
+          </span>
+          <div className={this.decorateCSS("cards-box")}>
+            {this.getPropValue("cards").map((card: any, index: number) =>
+              <ComposerLink key={index} path={card.getPropValue("page")}>
+                <div className={this.decorateCSS("card")}>
+                  <img src={card.getPropValue("image")} alt={card.getPropValue("card_text")} />
+                  <div className={this.decorateCSS("overlay")}></div>
+                  <div className={this.decorateCSS("overlay2")}></div>
+                  <div className={this.decorateCSS("card-content")}>
+                    <div className={this.decorateCSS("stick")}></div>
+                    <div className={this.decorateCSS("labels")}>
+                      <span className={this.decorateCSS("first")}>{card.getPropValue("card_text")}</span>
+                      <p className={this.decorateCSS("second")}>{card.getPropValue("count") + " " + card.getPropValue("count_text")}</p>
+
+                    </div>
+
+                  </div>
+                </div>
+              </ComposerLink>
+            )}
+          </div>
+
+          <ComposerLink path={this.getPropValue("button")[1].value}>
+            <div className={this.decorateCSS("button")}>
+              <span>{this.getPropValue("button")[0].value}</span>
+            </div>
+          </ComposerLink>
         </div>
       </div>
     );

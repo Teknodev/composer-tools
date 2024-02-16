@@ -336,7 +336,7 @@ class Testimonials6Page extends Testimonials {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials6")}>
-            <h1>{this.getPropValue("title")}</h1>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <section>
               {this.castToObject<ISection[]>("card-items").map(
                 (section: any, index: number) => (
@@ -350,20 +350,34 @@ class Testimonials6Page extends Testimonials {
                         className={this.decorateCSS("card")}
                       >
                       <div className={styles["stars"]}>
-                        {[...Array(Number(item.value[0].value))].map((item: any, index: number) => (
-                          <img key={`star-testimonials6${index}`} src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
-                        ))}
+                        {[...Array(Number(item.value[0].value))].map(
+                          (item: any, index: number) => (
+                            <svg
+                            key={`star-testimonials6${index}`}
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M8 0L9.3 5.8H15.5L10.7 9.2L12 15L8 11.8L4 15L5.3 9.2L0.5 5.8H6.7L8 0Z" />
+                          </svg>
+                          // <img key={`star-testimonials5${index}`} 
+                          //  alt=""
+                          //  src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
+                          ))}
                       </div>
-                        <span>{item.value[1].value}</span>
+                        <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
                         <div className={this.decorateCSS("profile")}>
                           <img
+                            alt=""
                             width={50}
                             height={50}
                             src={item.value[2].value}
                           />
                           <div className={this.decorateCSS("profile-text")}>
-                            <h2>{item.value[3].value}</h2>
-                            <p>{item.value[4].value}</p>
+                            <h2 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h2>
+                            <p className={this.decorateCSS("item-value4")}>{item.value[4].value}</p>
                           </div>
                         </div>
                       </div>

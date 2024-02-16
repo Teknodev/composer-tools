@@ -29,7 +29,7 @@ class Slider1 extends BaseSlider {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
         {
@@ -103,6 +103,7 @@ class Slider1 extends BaseSlider {
               {this.getPropValue("slider").map(
                 (item: any, indexSlider: number) => (
                   <img
+                    alt=""
                     src={item.value}
                     className={this.decorateCSS("img")}
                     key={indexSlider}
@@ -112,9 +113,9 @@ class Slider1 extends BaseSlider {
             </ComposerSlider>
             <div className={this.decorateCSS("box")}>
               <div className={this.decorateCSS("title")}>
-                <h1>{this.getPropValue("title")}</h1>
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               </div>
-              <p>{this.getPropValue("description")}</p>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
               <div className={this.decorateCSS("button-group")}>
                 {this.castToObject<Button[]>("buttons").map(
                   (item: Button, indexButtons: number) => {

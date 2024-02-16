@@ -40,7 +40,7 @@ class Header2 extends BaseHeader {
           key: "image",
           displayer: "Image",
           value:
-            "https://assets-global.website-files.com/5ad4b5ac3265e94b4f4625ea/6179a579f91da881be2c758b_morning-brew-ShVipPImS6k-unsplash_5c8728bacb20daf02414ecbdf89e0418_2000.png",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b1b168c3c2002cd2fab1?alt=media&timestamp=1693233941848",
         },
         {
           type: "page",
@@ -62,13 +62,14 @@ class Header2 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <section className={this.decorateCSS("wide-text-container")}>
             <img
+              alt=""
               className={this.decorateCSS("image")}
               src={this.getPropValue("wide-text")[4].value}
             ></img>
             <div className={this.decorateCSS("wide-text")}>
-              <h3>{this.getPropValue("wide-text")[0].value}</h3>
-              <h1>{this.getPropValue("wide-text")[1].value}</h1>
-              <p>{this.getPropValue("wide-text")[2].value}</p>
+              <h3 className={this.decorateCSS("wide-text1")}>{this.getPropValue("wide-text")[0].value}</h3>
+              <h1 className={this.decorateCSS("wide-text2")}>{this.getPropValue("wide-text")[1].value}</h1>
+              <p className={this.decorateCSS("wide-text3")}>{this.getPropValue("wide-text")[2].value}</p>
               <ComposerLink path={this.getPropValue("wide-text")[5].value}>
                 <span className={this.decorateCSS("button")}>
                   {this.getPropValue("wide-text")[3].value}

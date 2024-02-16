@@ -21,7 +21,7 @@ class CallToAction5Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae4968c3c2002cd2f9e5?alt=media&timestamp=1683017803252",
+        "https://clarity.microsoft.com/blog/wp-content/uploads/2021/07/13.png",
     });
     this.addProp({
       type: "string",
@@ -32,7 +32,7 @@ class CallToAction5Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
     this.addProp({
@@ -60,7 +60,7 @@ class CallToAction5Page extends BaseCallToAction {
             {
               type: "string",
               key: "listedItem",
-              value: "Join us now and be a part of the movement to create a better world for future generations",
+              value: "Join us now and be a part of the movement to create a better world for future generations to come.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
               displayer: "Item",
             },
           ],
@@ -73,7 +73,7 @@ class CallToAction5Page extends BaseCallToAction {
             {
               type: "string",
               key: "listedItem",
-              value: "Take the first step towards your dreams and start your journey with us",
+              value: "Take the first step towards your dreams and start your journey with us.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
               displayer: "Item",
             },
           ],
@@ -104,10 +104,10 @@ class CallToAction5Page extends BaseCallToAction {
         <div className={this.decorateCSS("max-content")}>
           <section className={this.decorateCSS("call-to-action5-container")}>
             <div className={this.decorateCSS("image-background")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("image")}></img>
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt=""></img>
             </div>
             <div className={this.decorateCSS("call-to-action5")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
 
               <ul className={this.decorateCSS("list")}>
                 {this.castToObject<listedListItem[]>("listedListItem").map(
@@ -115,6 +115,7 @@ class CallToAction5Page extends BaseCallToAction {
                     return (
                       <li key={index}>
                         <img
+                          alt=""
                           width={15}
                           height={15}
                           src={this.getPropValue("listImage")}
@@ -139,9 +140,10 @@ class CallToAction5Page extends BaseCallToAction {
                   </span>
                 </ComposerLink>
               </div>
-
-              <p>
+                  
+              <p className={this.decorateCSS("image-p")}>
                 <img
+                  alt=""
                   width={13}
                   height={13}
                   src={this.getPropValue("warningImage")}

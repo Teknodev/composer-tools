@@ -1,5 +1,11 @@
 .container {
   width: 100%;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
+  
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -25,16 +31,16 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-          h3 {
+          .subtitle {
             font-size: x-large;
             font-weight: 100;
             line-height: 1;
-            color: var(--composer-secondary-color);
+            color: var(--composer-font-color-primary);
             width: 50px;
             margin-bottom: 5px;
             text-transform: uppercase;
           }
-          h1 {
+          .title {
             text-transform: uppercase;
             color: var(--composer-primary-color);
             font-weight: bolder;
@@ -43,11 +49,12 @@
             margin-bottom: 0px;
             width: 100px;
           }
-          p {
+          .content {
             font-size: larger;
             font-weight: 100;
             min-width: 250px;
             max-width: 400px;
+            color: var(--composer-font-color-primary);
           }
           .button-wrapper {
             display: flex;
@@ -61,15 +68,16 @@
               text-align: center;
               transition: 0.3s;
               display: block;
-              color: var(--composer-primary-color);
-              background-color: transparent;
+              color: var(--composer-font-color-secondary);
+              background-color: var(--composer-secondary-color);
               padding: 10px 10px;
               border-radius: 6px;
               border: 1px solid var(--composer-primary-color);
               width: 150px;
+              margin-top: 10px;
               &:hover {
-                color: white;
-                border: 1px solid transparent;
+                color: var(--composer-font-color-primary);
+                border: 1px solid var(--composer-tertiary-color);
                 background-color: var(--composer-primary-color);
               }
             }
@@ -78,16 +86,17 @@
               text-align: center;
               transition: 0.3s;
               display: block;
-              color: white;
-              background-color: var(--composer-primary-color);
+              color: var(--composer-font-color-secondary);
+              background-color: var(--composer-secondary-color);
               padding: 10px 10px;
               border-radius: 6px;
-              border: 1px solid transparent;
+              border: 1px solid var(--composer-tertiary-color);
               width: 150px;
+              margin-top: 10px;
               &:hover {
                 color: var(--composer-primary-color);
-                background-color: transparent;
-                border: 1px solid var(--composer-primary-color);
+                background-color: var(--composer-secondary-color);
+                border: 1px solid var(--composer-tertiary-color);
               }
             }
           }
@@ -134,7 +143,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            h3 {
+            .subtitle {
               font-size: x-large;
               font-weight: 100;
               line-height: 1;
@@ -143,7 +152,7 @@
               margin-bottom: 5px;
               text-transform: uppercase;
             }
-            h1 {
+            .title {
               text-transform: uppercase;
               color: var(--composer-primary-color);
               font-weight: bolder;
@@ -152,7 +161,7 @@
               margin-bottom: 0px;
               width:unset;
             }
-            p {
+            .content {
               font-size: larger;
               font-weight: 100;
               min-width: unset;

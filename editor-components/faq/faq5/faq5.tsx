@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./faq5.module.scss";
-import { BaseFAQ, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseFAQ } from "../../EditorComponent";
 
 type Card = {
   cardTitle: string;
@@ -128,7 +128,7 @@ class FaqMiddle extends BaseFAQ {
 
   render() {
     const handleButton = (index: number) => {
-      this.activeIndex = this.activeIndex == index ? -1 : index;
+      this.activeIndex = this.activeIndex === index ? -1 : index;
     };
     return (
       <div className={this.decorateCSS("container")}>
@@ -138,8 +138,8 @@ class FaqMiddle extends BaseFAQ {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("title")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <p className={this.decorateCSS("title-p")}>{this.getPropValue("title")}</p>
             </div>
             <div className={this.decorateCSS("right-page")}>
               {this.castToObject<Card[]>("card").map(
@@ -148,12 +148,13 @@ class FaqMiddle extends BaseFAQ {
                     <div key={indexCard} className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("little-container")}>
                         <div className={this.decorateCSS("title")}>
-                          <h3>{card.cardTitle}</h3>
+                          <h3 className={this.decorateCSS("card-title")}>{card.cardTitle}</h3>
                         </div>
                         <div className={this.decorateCSS("icon")}>
                           <img
+                            alt=""
                             src={
-                              this.activeIndex == indexCard
+                              this.activeIndex === indexCard
                                 ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
                                 : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
                             }
@@ -162,7 +163,7 @@ class FaqMiddle extends BaseFAQ {
                         </div>
                       </div>
                       <p
-                        className={`${this.activeIndex == indexCard
+                        className={`${this.activeIndex === indexCard
                             ? this.decorateCSS("text")
                             : this.decorateCSS("hide")
                           }`}

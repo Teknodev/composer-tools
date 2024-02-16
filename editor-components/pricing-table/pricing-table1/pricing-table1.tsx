@@ -50,7 +50,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -87,7 +87,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -124,12 +124,18 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
         }
       ],
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
     });
   }
 
@@ -142,13 +148,17 @@ class PricingTable1 extends BasePricingTable {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<Pricing[]>("price").map((pricing: any, index: number) => (
-            <div key={index} className={this.decorateCSS("price")}>
-              <h2 className={this.decorateCSS("title")}>{pricing.title}</h2>
-              <h1 className={this.decorateCSS("price-text")}>{pricing.price}</h1>
-              <p className={this.decorateCSS("duration-text")}>{pricing.duration}</p>
-              <ComposerLink path={pricing.link}>
-                <span className={this.decorateCSS("button")}>{pricing.buttonText}</span>
-              </ComposerLink>
+            <div className={this.decorateCSS("card-item-count")} style={{
+                    width: 90 / this.getPropValue("itemCount") + "%",
+                  }}>
+              <div key={index} className={this.decorateCSS("price")}>
+                <h2 className={this.decorateCSS("title")}>{pricing.title}</h2>
+                <h1 className={this.decorateCSS("price-text")}>{pricing.price}</h1>
+                <p className={this.decorateCSS("duration-text")}>{pricing.duration}</p>
+                <ComposerLink path={pricing.link}>
+                  <span className={this.decorateCSS("button")}>{pricing.buttonText}</span>
+                </ComposerLink>
+              </div>
             </div>
           ))}
         </div>

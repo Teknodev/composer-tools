@@ -21,7 +21,7 @@ class Content1 extends BaseContent {
           type: "string",
           key: "title",
           displayer: "Title",
-          value:  "business",
+          value: "business",
         },
         {
           type: "string",
@@ -44,7 +44,7 @@ class Content1 extends BaseContent {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -63,7 +63,7 @@ class Content1 extends BaseContent {
             {
               type: "page",
               key: "link2",
-              displayer: "Link",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -79,25 +79,27 @@ class Content1 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("heading-page")}>
-            <h1 className={this.decorateCSS("heading-colored")}>
+            <h1 className={this.decorateCSS("heading-h1")}>
               {this.getPropValue("heading")[0].value}
             </h1>
-            <h3>{this.getPropValue("heading")[2].value}</h3>
+            <h3 className={this.decorateCSS("heading")}>
+              {this.getPropValue("heading")[2].value}
+            </h3>
             <div className={this.decorateCSS("button-wrapper")}>
-              <ComposerLink
-                path={this.getPropValue("heading")[3].value[1].value}
-              >
-                <span className={this.decorateCSS("button")}>
+              <div className={this.decorateCSS("button")}>
+                <ComposerLink
+                  path={this.getPropValue("heading")[3].value[1].value}
+                >
                   {this.getPropValue("heading")[3].value[0].value}
-                </span>
-              </ComposerLink>
-              <ComposerLink
-                path={this.getPropValue("heading")[4].value[1].value}
-              >
-                <span className={this.decorateCSS("button-reverse")}>
+                </ComposerLink>
+              </div>
+              <div className={this.decorateCSS("button")}>
+                <ComposerLink
+                  path={this.getPropValue("heading")[4].value[1].value}
+                >
                   {this.getPropValue("heading")[4].value[0].value}
-                </span>
-              </ComposerLink>
+                </ComposerLink>
+              </div>
             </div>
           </div>
         </div>

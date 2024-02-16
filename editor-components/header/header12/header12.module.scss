@@ -1,97 +1,58 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
+    width: 100%;
+    background-color: var(--composer-html-background);
+    height: calc(100vh - 60px);
 
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      gap: 20px;
-
-      .boxes-title {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        gap: 20px;
-        h1 {
-          color: var(--composer-primary-color);
-          margin: 0;
-          font-size: 3rem;
-        }
-        p {
-          margin: 0;
-          font-size: 1.5rem;
-        }
-      }
-
-      .box-child {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-
-        .box {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          width: 100%;
-
-          .message {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 200px;
-            border-left: 5px solid var(--composer-primary-color);
-            background-color: var(--composer-secondary-color);
-            border-radius: 6px;
-            padding: 20px;
-            flex: 1 1;
-            min-width: 250px;
-            text-align: center;
-
-            .title {
-              color: var(--composer-primary-color);
-              font-size: 1.5rem;
-            }
-
-            .long-text {
-              font-size: 1.2rem;
-            }
-
-            &.right-message {
-              border-left: none;
-              border-right: 5px solid var(--composer-primary-color) !important;
-            }
-          }
-        }
-
-        .boxes-logo {
-          display: flex;
-          align-items: center;
-
-          .logoimage {
-            max-width: 300px;
-            min-height: 100px;
-            object-fit: contain;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
     .max-content {
-      .wrapper {
-        .box-child {
-          flex-direction: column;
+        max-width: var(--composer-content-width);
+        margin: auto;
+        height: 100%;
+
+        .sliderContainer {
+            display: flex;
+            height: 100%;
+            
+            .slider {
+                height: 100%;
+                width: 50%;
+                position: relative;
+                overflow: hidden;
+              
+                >div{
+                    height: 100% !important;
+                }
+
+                img {
+                    width: 100%;
+                    height: calc(100vh - 60px) !important;
+                    object-fit: cover;
+                }
+
+                .title {
+                    color: #2d2b2b;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50px;
+                    color: var(--composer-font-color-secondary);
+                }
+            }
         }
-      }
     }
-  }
 }
+
+// For Ipad
+@media only screen and (max-width:800px) {
+
+    .container {}
+
+} // For Ipad end
+
+
+
+
+// For Mobile
+@media only screen and (max-width:400px) {
+
+    .container {}
+
+} // For Mobile end

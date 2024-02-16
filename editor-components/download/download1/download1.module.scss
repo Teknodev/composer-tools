@@ -1,91 +1,105 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
+    width: 100%;
+    padding: 50px 0;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: auto;
-
-    .basic-page {
-      width: 100%;
-      height: 100%;
-      background-color: rgb(254, 255, 255);
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-
-      &.basic-page-reverse {
-        flex-flow: row-reverse;
-      }
-
-      .page-1,
-      .page-2 {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-      }
-
-      .page-1 {
-        flex-direction: column;
-
-        .box {
-          .button {
-            margin-top: 16px;
-            cursor: pointer;
-            text-align: center;
-            transition: 0.3s;
-            display: block;
-            background-color: var(--composer-primary-color);
-            padding: 5px 20px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            width: 200px;
-            font-size: 1.5rem;
-            color: #fff;
-            &:hover {
-              background-color: transparent;
-              border: 1px solid var(--composer-primary-color);
-              transition: 0.3s;
-              color: var(--composer-primary-color);
+    .max-content {
+        max-width: var(--composer-content-width);
+        .basic-page {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            &.basic-page-reverse {
+                flex-flow: row-reverse;
             }
-            &.button-color {
-              background-color: var(--composer-secondary-color);
-              border: 1px solid var(--composer-secondary-color);
-
-              &:hover {
-                background-color: transparent;
-                color: var(--composer-secondary-color);
-              }
+            .page-1,
+            .page-2 {
+                flex: 1;
+                display: flex;
+                justify-content: center;
             }
-          }
+            .page-1 {
+                flex-direction: column;
+                .box {
+                    .title1 {
+                        font-size: 3rem;
+                        font-weight: 600;
+                        margin: 0;
+                        margin: 20px 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .text2 {
+                        font-size: 1.5rem;
+                        font-weight: 400;
+                        color: var(--composer-font-color-primary);
+                    }
+                    .text3 {
+                        font-size: 1.5rem;
+                        font-weight: 400;
+                        margin: 0;
+                        color: var(--composer-font-color-primary);
+                    }
+                    .button {
+                        margin-top: 15px;
+                        cursor: pointer;
+                        text-align: center;
+                        transition: 0.3s;
+                        display: block;
+                        background-color: var(--composer-secondary-color);
+                        padding: 10px 20px;
+                        border-radius: 6px;
+                        border: 1px solid transparent;
+                        width: 200px;
+                        font-size: 1.7rem;
+                        color: #fff;
+                        &:hover {
+                            background-color: transparent;
+                            border: 1px solid var(--composer-secondary-color);
+                            transition: 0.3s;
+                            color: var(--composer-secondary-color);
+                        }
+                        &.button-color {
+                            background-color: var(--composer-secondary-color);
+                            border: 1px solid var(--composer-secondary-color);
+                            &:hover {
+                                background-color: transparent;
+                                color: var(--composer-secondary-color);
+                            }
+                        }
+                    }
+                }
+            }
+            .page-2 {
+                display: flex;
+                justify-content: flex-end;
+                .image {
+                    max-height: 450px;
+                    object-fit: cover;
+                    margin: 0 !important;
+                }
+            }
+            p {
+                font-size: 1rem;
+            }
         }
-      }
-      .page-2 {
-        align-items: center;
-
-        .image {
-          width: 100%;
-          max-height: 450px;
-          object-fit: cover;
-        }
-      }
-      p {
-        font-size: 1rem;
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .basic-page {
-      flex-direction: column;
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            flex-direction: column;
+            align-items: center;
+            .basic-page {
+                flex-direction: column;
+                .page-2 {
+                    justify-content: center;
+                }
+                .image {
+                    width: 100%;
+                }
+            }
+        }
     }
-  }
 }

@@ -95,6 +95,12 @@ class Feature2 extends BaseFeature {
         }
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -109,23 +115,27 @@ class Feature2 extends BaseFeature {
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<IIconBoxes[]>("icon-boxes-content").map(
             (iconbox: any, index: number) => (
+              <div className={this.decorateCSS("card-item-count")} style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+              }}>
               <div
                 className={this.decorateCSS("icon-boxes")}
                 key={index}
-              >
+                >
                 <div
                   className={this.decorateCSS("image-background")}
                 >
-                  <img className={this.decorateCSS("image")} src={iconbox.image}></img>
+                  <img className={this.decorateCSS("image")} src={iconbox.image} alt=""></img>
                 </div>
                 <h3 className={this.decorateCSS("title")}>
                   {iconbox.title}
                 </h3>
                 <p
                   className={this.decorateCSS("long-text")}
-                >
+                  >
                   {iconbox.description}
                 </p>
+              </div>
               </div>
             )
           )}

@@ -1,189 +1,178 @@
 .container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .page {
-      width: 100%;
-      display: flex;
-      align-items: center;
-
-      .image-child {
-        width: 100%;
-        overflow: hidden;
-        filter: brightness(0.5);
-        .background-image {
-          width: 100%;
-          height: 500px;
-          object-fit: cover;
-          filter: blur(2px);
-        }
-      }
-      .left-content {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        bottom: 0;
-        transition: height 1s;
-        white-space: pre-line;
-        word-break: break-all;
-        overflow: hidden;
-        padding: 25px;
-        text-align: center;
-
-        h1 {
-          color: #fff;
-          font-size: 3rem;
-          opacity: 1;
-          transition: opacity 1s;
-        }
-        p {
-          color: #fff;
-          font-size: 2rem;
-          opacity: 0.8;
-          transition: opacity 1s;
-        }
-      }
-      .right-content {
-        width: 100%;
-        opacity: 0;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        right: calc(-100vw - 100px);
-        transition: all 1s;
-
-        .card {
-          width: 50%;
-          height: 80%;
-          display: flex;
-          flex-direction: column;
-          border-radius: 6px;
-          background-color: #fff;
-          overflow: hidden;
-
-          .card-up {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .page {
             width: 100%;
-            height: 80%;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            overflow: hidden;
-
-            h2{
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .list-group {
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              gap: 15px;
-
-              .list-item {
-                width: 100%;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 10px;
-                font-size: 1.5rem;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-
-                .li-icon {
-                  width: 18px;
-                  height: 18px;
-                  object-fit: cover;
-                }
-              }
-            }
-          }
-
-          .card-down {
-            width: 100%;
-            height: 20%;
             display: flex;
             align-items: center;
-            border-top: 1px solid rgb(172, 172, 172);
-
-            .button-group {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-              opacity: 0;
-              transition: opacity 1s;
-
-              .button {
-                margin: 20px 0;
-                display: inline-block;
-                padding: 10px 10px;
-                color: #fff;
-                font-size: 1.5rem;
-                background-color: var(--composer-primary-color);
-                border: 1px solid var(--composer-primary-color);
-                border-radius: 6px;
-                cursor: pointer;
-
-                &:hover {
-                  background: transparent;
-                  color: var(--composer-primary-color);
+            .image-child {
+                width: 100%;
+                overflow: hidden;
+                filter: brightness(0.5);
+                .background-image {
+                    width: 100%;
+                    height: 500px;
+                    object-fit: cover;
+                    filter: blur(2px);
                 }
-              }
             }
-          }
-        }
-      }
-
-      &:hover {
-        .left-content {
-          height: 0;
-
-          h1 {
-            opacity: 0;
-          }
-          p {
-            opacity: 0;
-          }
-        }
-        .right-content {
-          right: calc(-50% + 100px);
-          opacity: 1;
-          .card-down {
-            .button-group {
-              opacity: 1;
+            .left-content {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                bottom: 0;
+                transition: height 0.5s;
+                white-space: pre-line;
+                word-break: break-all;
+                overflow: hidden;
+                padding: 25px;
+                text-align: center;
+                .leftContentTitle {
+                    color: #fff;
+                    font-size: 3rem;
+                    opacity: 1;
+                    transition: opacity 0.5s;
+                }
+                .description {
+                    color: #fff;
+                    font-size: 2rem;
+                    opacity: 0.8;
+                    transition: opacity 0.5s;
+                }
             }
-          }
+            .right-content {
+                width: 100%;
+                opacity: 0;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                right: calc(-100vw - 100px);
+                transition: all 0.5s;
+                .card {
+                    width: 50%;
+                    height: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    border-radius: 6px;
+                    background-color: #ffffffef;
+                    overflow: hidden;
+                    .card-up {
+                        width: 100%;
+                        height: 90%;
+                        display: flex;
+                        flex-direction: column;
+                        padding: 20px;
+                        overflow: hidden;
+                        .cardTitle {
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            border-bottom: 1px solid rgb(172, 172, 172);
+                            padding: 5px 0;
+                            margin-bottom: 5px;
+                        }
+                        .list-group {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 15px;
+                            margin-top: 10px;
+                            .list-item {
+                                width: 100%;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                gap: 10px;
+                                font-size: 1.5rem;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                .li-icon {
+                                    width: 18px;
+                                    height: 18px;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+                    }
+                    .card-down {
+                        width: 100%;
+                        height: 20%;
+                        display: flex;
+                        align-items: center;
+                        border-top: 1px solid rgb(172, 172, 172);
+                        .button-group {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 10px;
+                            opacity: 0;
+                            transition: opacity 0.5s;
+                            .button {
+                                margin: 20px 0;
+                                display: inline-block;
+                                padding: 10px 10px;
+                                color: #fff;
+                                font-size: 1.5rem;
+                                background-color: var(--composer-secondary-color);
+                                border: 1px solid transparent;
+                                border-radius: 6px;
+                                cursor: pointer;
+                                &:hover {
+                                    background: transparent;
+                                    border: 1px solid var(--composer-secondary-color);
+                                    color: var(--composer-secondary-color);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &:hover {
+                .left-content {
+                    height: 0;
+                    .leftContentTitle {
+                        opacity: 0;
+                    }
+                    .description {
+                        opacity: 0;
+                    }
+                }
+                .right-content {
+                    right: calc(-50% + 100px);
+                    opacity: 1;
+                    .card-down {
+                        .button-group {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
     .container {
         padding: 20px 0;
-      
-        .max-content {      
-          .page {
-            .right-content {      
-              .card {
-                width: 80%;    
-              }
+        .max-content {
+            .page {
+                .right-content {
+                    .card {
+                        width: 80%;
+                    }
+                }
             }
-          }
         }
-      }
+    }
 }

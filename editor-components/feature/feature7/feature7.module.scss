@@ -1,92 +1,98 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    
-    .content {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-
-      .listed {
-        position: relative;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
         display: flex;
-        flex-direction: column;
-        height: max-content;
-        padding: 0;
-        flex: 1 1;
-        min-width: 250px;
-
-        .image {
-          display: block;
-          width: auto;
-          padding: 0;
-          border-radius: 6px;
-          object-fit: cover;
+        justify-content: space-around;
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 60px;
+            width: 100%;
+            .card-item-count {
+                .listed {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    height: max-content;
+                    padding: 0;
+                    flex: 1 1;
+                    .image {
+                        display: block;
+                        width: 60%;
+                        padding: 0;
+                        border-radius: 6px;
+                        object-fit: cover;
+                        text-align: center;
+                    }
+                    .little-text {
+                        color: var(--composer-font-color-primary);
+                        font-size: 1rem;
+                    }
+                    .title {
+                        display: block;
+                        font-weight: bold;
+                        max-width: 100%;
+                        font-size: 1.6rem;
+                        margin: 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .title-description {
+                        display: block;
+                        color: var(--composer-font-color-primary);
+                        max-width: 100%;
+                        font-size: 1.1rem;
+                    }
+                    .little-box {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 70px;
+                        height: 70px;
+                        background-color: #fff;
+                        position: absolute;
+                        top: -30px;
+                        padding: 10px;
+                        margin: 10px 0px 0px 10px;
+                        text-align: center;
+                    }
+                    .text {
+                        font-size: 1rem;
+                        position: absolute;
+                        top: 25px;
+                        text-align: center;
+                    }
+                    .number {
+                        font-size: 3rem;
+                        position: absolute;
+                        top: -35px;
+                    }
+                    p {
+                        width: 100%;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
         }
-        .little-text {
-          color: rgb(90, 88, 88);
-          font-size: 1rem;
-        }
-        .title {
-          display: block;
-          font-weight: bold;
-          max-width: 100%;
-          font-size: 1.6rem;
-          margin: 0;
-        }
-        .title-description {
-          display: block;
-          color: rgb(90, 88, 88);
-          max-width: 100%;
-          font-size: 1.1rem;
-        }
-        .little-box {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 70px;
-          height: 70px;
-          background-color: #fff;
-          position: absolute;
-          top: -30px;
-          padding: 10px;
-          margin: 10px 0px 0px 10px;
-          text-align: center;
-        }
-        .text {
-          font-size: 1rem;
-          position: absolute;
-          top: 25px;
-          text-align: center;
-        }
-        .number {
-          font-size: 3rem;
-          position: absolute;
-          top: -35px;
-        }
-        p {
-          width: 100%;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-
-    .content {
-      gap: 40px !important;
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .content {
+                gap: 80px !important;
+                .card-item-count {
+                    min-width: 100%;
+                }
+            }
+        }
     }
-  }
 }

@@ -11,6 +11,7 @@ type Pricing = {
   list: TypeUsableComponentProps[];
   title2: string;
   title3: string;
+  buttons: Array<Button>;
 };
 
 type Button = {
@@ -30,12 +31,6 @@ class PricingMultiple extends BasePricingTable {
       value: "pricing",
     });
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Pricing Strategies",
-    });
 
     this.addProp({
       type: "string",
@@ -46,38 +41,12 @@ class PricingMultiple extends BasePricingTable {
     });
 
     this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "GET",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: true,
-            },
-          ],
-        },
-      ],
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Pricing Strategies",
     });
-
+    
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -138,7 +107,6 @@ class PricingMultiple extends BasePricingTable {
                 },
               ],
             },
-
             {
               type: "string",
               key: "title2",
@@ -151,6 +119,38 @@ class PricingMultiple extends BasePricingTable {
               displayer: "Title-3",
               value: "/monthly",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "GET",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      key: "isPrimary",
+                      displayer: "Is primary",
+                      value: true,
+                    },
+                  ]
+                }
+                ],
+              },
           ],
         },
         {
@@ -214,6 +214,38 @@ class PricingMultiple extends BasePricingTable {
               displayer: "Title-3",
               value: "/monthly",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "GET",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      key: "isPrimary",
+                      displayer: "Is primary",
+                      value: true,
+                    },
+                  ]
+                }
+                ],
+              },
           ],
         },
         {
@@ -277,29 +309,54 @@ class PricingMultiple extends BasePricingTable {
               displayer: "Title-3",
               value: "/monthly",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "GET",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      key: "isPrimary",
+                      displayer: "Is primary",
+                      value: true,
+                    },
+                  ]
+                }
+                ],
+              },
           ],
         },
       ],
     });
   }
   getName(): string {
-    return "Multiple Pricing Card";
+    return "Pricing 4";
   }
   render() {
-    const littleScreen = {
-      width: "100%",
-      display: "flex",
-      flex: "wrap",
-      justifyContent: "center",
-    };
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("page-up")}>
-              <h1>{this.getPropValue("subtitle")}</h1>
-              <p>{this.getPropValue("title")}</p>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
             <div className={this.decorateCSS("page-down")}>
               {this.castToObject<Pricing[]>("cards").map(
@@ -315,12 +372,12 @@ class PricingMultiple extends BasePricingTable {
                       <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("card-up")}>
                           <div className={this.decorateCSS("tag")}>
-                            <h4>{this.getPropValue("tag")}</h4>
+                            <h4 className={this.decorateCSS("tag-h4")}>{this.getPropValue("tag")}</h4>
                           </div>
                           <div className={this.decorateCSS("card-up-texts")}>
-                            <p>{price.title2}</p>
-                            <h1>{price.title1}</h1>
-                            <h2>{price.title3}</h2>
+                            <p className={this.decorateCSS("price-title2")}>{price.title2}</p>
+                            <h1 className={this.decorateCSS("price-title1")}>{price.title1}</h1>
+                            <h2 className={this.decorateCSS("price-title3")}>{price.title3}</h2>
                           </div>
                         </div>
                         <div className={this.decorateCSS("card-middle")}>
@@ -337,7 +394,7 @@ class PricingMultiple extends BasePricingTable {
                                         "circle-icon"
                                       )}
                                     >
-                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" />
+                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
                                     </div>
                                     {item.value}
                                   </li>
@@ -347,28 +404,28 @@ class PricingMultiple extends BasePricingTable {
                           </ul>
                         </div>
                         <div className={this.decorateCSS("card-down")}>
-                          {this.castToObject<Button[]>("buttons").map(
-                            (item: Button, indexButtons: number) => {
-                              return (
-                                <ComposerLink
-                                  key={indexButtons}
-                                  path={item.url}
-                                >
-                                  <button
-                                    className={
-                                      this.decorateCSS("button") +
-                                      " " +
-                                      (item.isPrimary
-                                        ? this.decorateCSS("primary")
-                                        : this.decorateCSS("secondary"))
-                                    }
-                                  >
-                                    {item.buttonText}
-                                  </button>
-                                </ComposerLink>
-                              );
-                            }
-                          )}
+                                {price.buttons.map(
+                                  (item: Button, indexButtons: number) => {
+                                    return (
+                                      <ComposerLink
+                                        key={indexButtons}
+                                        path={item.url}
+                                      >
+                                        <button
+                                          className={
+                                            this.decorateCSS("button") +
+                                            " " +
+                                            (item.isPrimary
+                                              ? this.decorateCSS("primary")
+                                              : this.decorateCSS("secondary"))
+                                          }
+                                        >
+                                          {item.buttonText}
+                                        </button>
+                                      </ComposerLink>
+                                    );
+                                  }
+                                )}
                         </div>
                       </div>
                     </div>

@@ -413,13 +413,13 @@ class Footer2Page extends BaseFooter {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("subscribe")}>
-              <img src={this.getPropValue("logo")} width={200} height={100} />
-              <p>{this.getPropValue("description")}</p>
+              <img src={this.getPropValue("logo")} width={200} height={100} alt=""/>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
               <div className={this.decorateCSS("social")}>
                 {this.castToObject<any[]>("social").map(
                   (item: IconsValues, indexSocial: number) => (
                     <ComposerLink key={indexSocial} path={item.socialLink}>
-                      <img src={item.socialIcon} width={20} height={20} />
+                      <img src={item.socialIcon} width={20} height={20} alt=""/>
                     </ComposerLink>
                   )
                 )}
@@ -430,7 +430,7 @@ class Footer2Page extends BaseFooter {
                 (item: FooterValues, indexFooter: number) => (
                   <ul key={indexFooter} className={this.decorateCSS("list")}>
                     <li className={this.decorateCSS("title")}>
-                      <h2>{item.footerTitle}</h2>
+                      <h2 className={this.decorateCSS("item-footerTitle")}>{item.footerTitle}</h2>
                     </li>
                     {item.footerText.map(
                       (v: FooterTextValues, indexFooterText: number) => (
@@ -447,7 +447,7 @@ class Footer2Page extends BaseFooter {
             </div>
           </div>
           <div className={this.decorateCSS("footer-bottom")}>
-            <h2>{this.getPropValue("footerDescription")}</h2>
+            <h2 className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</h2>
           </div>
         </div>
       </div>

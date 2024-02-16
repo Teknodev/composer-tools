@@ -7,19 +7,24 @@ class Navbar2 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
-    });
-
-    this.addProp({
       type: "boolean",
       key: "sticky",
       displayer: "Is sticky",
       value: false,
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "middle",
+      displayer: "Item List Middle",
+      value: false,
+    });
+    this.addProp({
+        type: "string",
+        key: "title",
+        displayer: "Title",
+        value: "Title",
+    });
     this.addProp({
       type: "array",
       key: "itemList",
@@ -103,51 +108,21 @@ class Navbar2 extends BaseNavigator {
         },
       ],
     });
-
-    this.addProp({
-      type: "array",
-      key: "buttonList",
-      displayer: "Button",
-      value: [
-        {
-          type: "object",
-          key: "buttonItems",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              value: "Learn More",
-              displayer: "Text",
-            },
-            {
-              type: "page",
-              key: "link",
-              value: "",
-              displayer: "Link",
-            },
-          ],
-        },
-      ],
-    });
-    this.state["componentProps"]["navActive"] = false;
+    this.state["componentProps"]["navActive"] = true;
   }
-
   getName(): string {
     return "Navbar 2";
   }
   navClick() {
-    let value: boolean = this.state.componentProps["navActive"];
-    this.state.componentProps["navActive"] = !value;
-    console.log("test", this.state.componentProps["navActive"]);
+    this.setComponentState("navActive", !this.getComponentState("navActive"));
   }
   render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <nav>
-            <img src={this.getPropValue("image")} width={200} />
-            <div className={this.decorateCSS("items")}>
+        <nav>
+            <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
+            <div className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""}`}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
                   return (
@@ -161,35 +136,35 @@ class Navbar2 extends BaseNavigator {
                 }
               )}
             </div>
-            <div className={this.decorateCSS("button-child")}>
-              {this.castToObject<[]>("buttonList").map(
-                (data: any, indexButtonList: number) => {
+          </nav>
+          <nav className={this.decorateCSS("navigator-mobile")}>
+            <div className={this.decorateCSS("navbar")}>
+              <img src={this.getPropValue("image")} width={200} alt=""/>
+              <img
+                alt=""
+                className={this.decorateCSS("img-hamburger")}
+                src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
+                onClick={() => {
+                    this.navClick();
+                }}
+              />
+            </div>
+            {this.getComponentState("navActive") && (
+            <div className={this.decorateCSS("navbar-child")}>
+              {this.castToObject<[]>("itemList").map(
+                (data: any, indexItemList: number) => {
                   return (
                     <ComposerLink
-                      key={indexButtonList}
+                      key={indexItemList}
                       path={data.value[1].value}
                     >
-                      <button>{data.value[0].value}</button>
+                      <h3 key={indexItemList}>{data.value[0].value}</h3>
                     </ComposerLink>
                   );
                 }
               )}
             </div>
-          </nav>
-          <nav className={this.decorateCSS("navigator-mobile")}>
-            <div className={this.decorateCSS("navbar")}>
-              <img src={this.getPropValue("image")} width={200} />
-              <img
-                className={this.decorateCSS("img-hamburger")}
-                src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
-                onClick={() => {
-                  this.navClick();
-                }}
-              />
-            </div>
-            {this.state.componentProps["navActive"] == true && (
-              <div className={this.decorateCSS("navbar-child")}></div>
-            )}
+          )}
           </nav>
         </div>
       </div>

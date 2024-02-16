@@ -106,15 +106,15 @@ class LogoComp3Page extends LogoClouds {
                   (section: any, index: number) => (
                     <div key={index} className={this.decorateCSS("image-child")}>
                       {section.items.map((item: any, index: number) => (
-                        <img className={this.decorateCSS("image")} key={index} width={50} height={50} src={item.value} />
+                        <img className={this.decorateCSS("image")} key={index} width={50} height={50} src={item.value} alt=""/>
                       ))}
                     </div>
                   )
                 )}
               </center>
             </section>
-            <h1>{this.getPropValue("title")}</h1>
-            <h3>{this.getPropValue("description")}</h3>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
           </div>
         </div>
       </div>

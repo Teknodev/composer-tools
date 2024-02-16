@@ -1,53 +1,62 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    
-    .call-to-action1-page {
-      display: block;
-      width: 100%;
-      h3 {
-        text-align: center;
-        font-weight: 200;
-        font-size: 1.5rem;
-        margin: 20px 0;
-      }
-      h1 {
-        text-align: center;
-        font-size: 3rem;
-        margin: 0;
-      }
-      .button {
-        margin: 0 auto;
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-        transition: 0.3s;
-        display: block;
-        color: white;
-        background-color: var(--composer-primary-color);
-        box-shadow: var(--composer-box-shadow);
-        padding: 18px 20px;
-        border-radius: 6px;
-        border: 1px solid transparent;
-        width: 200px;
-        font-size: 1.3rem;
-        font-weight: 550;
-        &:hover {
-          color: var(--composer-primary-color);
-          background-color: transparent;
-          border: 1px solid var(--composer-primary-color);
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .call-to-action1-page {
+            display: block;
+            width: 100%;
+            margin: 150px 50px;
+            .description {
+                text-align: center;
+                font-weight: 200;
+                font-size: 1.5rem;
+                margin: 20px 0;
+                color: var(--composer-font-color-primary);
+            }
+            .title {
+                text-align: center;
+                font-size: 3rem;
+                margin: 0;
+                color: var(--composer-primary-color);
+            }
+            .button {
+                margin: 0 auto;
+                text-align: center;
+                text-decoration: none;
+                cursor: pointer;
+                transition: 0.3s;
+                display: block;
+                color: white;
+                background-color: var(--composer-secondary-color);
+                box-shadow: var(--composer-box-shadow);
+                padding: 18px 20px;
+                border-radius: 6px;
+                border: 1px solid transparent;
+                width: 200px;
+                font-size: 1.3rem;
+                font-weight: 550;
+                &:hover {
+                    color: var(--composer-primary-color);
+                    background-color: transparent;
+                    border: 1px solid var(--composer-primary-color);
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-  }
+    .container {
+        padding: 50px 30px;
+        .max-content {
+            max-width: var(--composer-content-width);
+            margin-left: -50px;
+            .call-to-action1-page {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
 }

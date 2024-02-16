@@ -1,75 +1,80 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    
-    .content {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-
-      .horizontal {
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
         display: flex;
-        text-align: center;
-        box-shadow: var(--composer-box-shadow);
-        border-radius: 6px;
-        min-height: 350px;
-        padding: 20px;
-        flex: 1 1;
-        min-width: 250px;
-
-        .image {
-          display: block;
-          margin: auto;
-          max-width: 150px;
-          min-width: 100px;
-          padding: 0;
-        }
-        .block {
-          display: flex;
-          flex-direction: column;
-          text-align: center;
-          justify-content: center;
-          padding: 0 20px;
-          
-          .title {
-            display: block;
-            margin: 0;
-            font-weight: bold;
-          }
-          .title-description {
-            display: block;
-            color: rgb(200, 200, 200);
-          }
-          .button {
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            transition: 0.3s;
-            display: block;
-            color: white;
-            background-color: var(--composer-primary-color);
-            padding: 15px 30px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            &:hover {
-              color: var(--composer-primary-color);
-              background-color: transparent;
-              border: 1px solid var(--composer-primary-color);
+        justify-content: space-around;
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            .horizontal {
+                display: flex;
+                text-align: center;
+                box-shadow: var(--composer-box-shadow);
+                border-radius: 6px;
+                min-height: 350px;
+                padding: 20px;
+                flex: 1 1;
+                min-width: 250px;
+                .image {
+                    display: block;
+                    margin: auto;
+                    max-width: 150px;
+                    min-width: 100px;
+                    padding: 0;
+                }
+                .block {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    justify-content: center;
+                    padding: 0 20px;
+                    .title {
+                        display: block;
+                        margin: 0;
+                        font-weight: bold;
+                        color: var(--composer-primary-color);
+                    }
+                    .title-description {
+                        display: block;
+                        color: var(--composer-font-color-primary);
+                    }
+                    .button {
+                        cursor: pointer;
+                        text-decoration: none;
+                        text-align: center;
+                        transition: 0.3s;
+                        display: block;
+                        color: white;
+                        background-color: var(--composer-secondary-color);
+                        padding: 15px 30px;
+                        border-radius: 6px;
+                        border: 1px solid transparent;
+                        &:hover {
+                            color: var(--composer-primary-color);
+                            background-color: transparent;
+                            border: 1px solid var(--composer-primary-color);
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-  }
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .content {
+                .card-item-count {
+                    min-width: 100%;
+                }
+            }
+        }
+    }
 }

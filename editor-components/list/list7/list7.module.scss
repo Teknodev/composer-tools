@@ -1,0 +1,81 @@
+.container {
+    width: 100%;
+    margin: auto;
+    background-color: var(--composer-html-background);
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .all-card {
+            width: 90%;
+            .item-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 10px;
+                box-sizing: border-box;
+                border: 3px solid;
+                border-color: var(--composer-tertiary-color);
+                border-radius: 10px;
+                margin-bottom: 50px;
+                padding: 10px;
+                .index {
+                    margin-top: 0;
+                    margin-right: auto;
+                    margin-bottom: 20px;
+                    margin-left: 20px;
+                    padding-top: 20px;
+                    font-size: 4rem;
+                    color: var(--composer-tertiary-color);
+                }
+                .title {
+                    margin-top: 0;
+                    margin-right: auto;
+                    margin-bottom: 20px;
+                    margin-left: 20px;
+                    font-size: 3rem;
+                    color: var(--composer-primary-color);
+                }
+                .list-item-p {
+                    text-align: left;
+                    font-size: 1.4rem;
+                    line-height: 2;
+                    width: 85%;
+                    margin-top: 0;
+                    margin-right: auto;
+                    margin-bottom: 0;
+                    padding-bottom: 40px;
+                    margin-left: 20px;
+                    color: var(--composer-font-color-primary);
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 1080px) {
+        .max-content {
+            display: flex;
+            overflow-x: auto;
+            align-items: flex-start;
+            box-sizing: content-box;
+            .all-card {
+                width: 50% !important;
+                .item-content {}
+            }
+        }
+    }
+    @media screen and (max-width: 520px) {
+        .max-content {
+            display: flex;
+            overflow-x: auto;
+            align-items: flex-start;
+            box-sizing: content-box;
+            .all-card {
+                width: 100% !important;
+                .item-content {}
+            }
+        }
+    }
+}

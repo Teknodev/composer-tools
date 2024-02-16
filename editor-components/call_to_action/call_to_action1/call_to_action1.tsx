@@ -28,7 +28,7 @@ class CallToAction1Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
   }
@@ -42,8 +42,8 @@ class CallToAction1Page extends BaseCallToAction {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action1-page")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <h3>{this.getPropValue("description")}</h3>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
             <ComposerLink path={this.getPropValue("link")}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("buttonText")}

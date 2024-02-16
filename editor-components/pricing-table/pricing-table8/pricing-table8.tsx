@@ -10,6 +10,7 @@ type IIconBoxes = {
   image: string;
   price: string;
   link: string;
+  buttons: Buttons[];
 };
 type Buttons = {
   buttonText: string;
@@ -19,34 +20,6 @@ type Buttons = {
 class PricingTable8 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Get Started",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Link",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-
     this.addProp({
       type: "array",
       key: "cards",
@@ -76,7 +49,7 @@ class PricingTable8 extends BasePricingTable {
               value: "$50",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -125,6 +98,32 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Get Started",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            }
           ],
         },
         {
@@ -151,7 +150,7 @@ class PricingTable8 extends BasePricingTable {
               value: "$100",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -200,6 +199,32 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Get Started",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            }
           ],
         },
         {
@@ -226,7 +251,7 @@ class PricingTable8 extends BasePricingTable {
               value: "$150",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -275,9 +300,41 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Get Started",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            }
           ],
         },
       ],
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
     });
   }
 
@@ -286,12 +343,14 @@ class PricingTable8 extends BasePricingTable {
   }
 
   render() {
-    const buttons: Buttons[] = this.castToObject<Buttons[]>("buttons");
   
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => (
+            <div className={this.decorateCSS("card-item-count")} style={{
+              width: 90 / this.getPropValue("itemCount") + "%",
+            }}>
             <div className={this.decorateCSS("pricing")} key={index}>
               <div className={this.decorateCSS("image-background")}>
                 <img
@@ -308,14 +367,14 @@ class PricingTable8 extends BasePricingTable {
               <div>
                 <ul className={this.decorateCSS("list-group")}>
                   {card.list.map((item: any, itemIndex: number) => (
-                    <li className={this.decorateCSS("li")} key={itemIndex}><span>✓</span>{item.value}</li>
-                  ))}
+                    <li className={this.decorateCSS("li")} key={itemIndex}><span className={this.decorateCSS("item-value")}>✓</span>{item.value}</li>
+                    ))}
                 </ul>
               </div>
   
               <p className={this.decorateCSS("price")}>{card.price}</p>
   
-              {buttons.map((button: Buttons, buttonIndex: number) => (
+              {card.buttons.map((button: Buttons, buttonIndex: number) => (
                 <ComposerLink path={button.url} key={buttonIndex}>
                   <button className={this.decorateCSS("get-started-button")}>
                     {button.buttonText}
@@ -323,6 +382,7 @@ class PricingTable8 extends BasePricingTable {
                 </ComposerLink>
               ))}
             </div>
+          </div>
           ))}
         </div>
       </div>

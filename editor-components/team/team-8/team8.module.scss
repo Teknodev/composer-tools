@@ -1,68 +1,73 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: grid;
-    place-items: center;
-    .title {
-      word-break: break-word;
-      font-size: 3rem;
-      margin: 0 0 40px;
-    }
-
-    .team-members {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-      gap: 20px;
-
-      .team-member {
-        flex: 1 1;
-        padding: 20px;
-        min-width: 250px;
-        display: flex;
-        flex-direction: column;
-        border-radius: 6px;
-        overflow: hidden;
-        box-shadow: var(--composer-box-shadow);
-        border-radius: 6px;
-
-        .name-and-position {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          font-weight: 500;
-          color: black;
-
-          .member-image {
-            object-fit: cover;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-          }
-          .content {
-            display: block;
-            span {
-              font-weight: 700;
-              font-size: 1.4rem;
-            }
-            p {
-              font-size: 1.1rem;
-              color: var(--composer-primary-color);
-            }
-          }
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        display: grid;
+        place-items: center;
+        .title {
+            word-break: break-word;
+            font-size: 3rem;
+            margin: 0 0 40px;
+            color: var(--composer-primary-color);
         }
-      }
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 100%;
+            gap: 20px;
+            .team-member {
+                flex: 1 1;
+                padding: 20px;
+                min-width: 250px;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid var(--composer-tertiary-color);
+                border-radius: 6px;
+                overflow: hidden;
+                box-shadow: var(--composer-box-shadow);
+                border-radius: 6px;
+                .name-and-position {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    font-weight: 500;
+                    color: black;
+                    .member-image {
+                        object-fit: cover;
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                    }
+                    .content {
+                        display: block;
+                        .team-member-value {
+                            font-weight: 700;
+                            font-size: 1.4rem;
+                            color: var(--composer-font-color-primary);
+                        }
+                        .team-member-value-p {
+                            font-size: 1.1rem;
+                            color: var(--composer-primary-color);
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-  }
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            align-items: center;
+            flex-direction: column;
+            .card-item-count {
+                min-width: 100%;
+            }
+        }
+    }
 }

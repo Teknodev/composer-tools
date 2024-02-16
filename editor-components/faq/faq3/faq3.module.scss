@@ -1,185 +1,114 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    .page {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      .up-page {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 5rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: pre-line;
-        word-break: break-all;
-
-        h1 {
-          font-size: 3.5rem;
-          letter-spacing: 0.02em;
-          margin: unset;
-          color: rgb(42, 51, 66);
-          opacity: 0.9;
-        }
-
-        p {
-          font-size: 1.6rem;
-          color: rgb(42, 51, 66);
-          opacity: 0.9;
-        }
-
-        .badge {
-          color: var(--composer-primary-color);
-          border-radius: 10px;
-          font-size: 1rem;
-          background: rgb(244, 244, 244);
-          padding: 5px 7px;
-          display: inline-block;
-          width: max-content;
-          margin-bottom: 1rem;
-        }
-      }
-
-      .card-page {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin-bottom: 3rem;
-        gap: 1rem;
-
-        .card {
-          min-width: 250px;
-          min-height: 250px;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          white-space: pre-line;
-          text-overflow: ellipsis;
-          margin-bottom: 5rem;
-          overflow: hidden;
-
-          .title {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: pre-line;
-            word-break: break-all;
-            font-size: 1.5rem;
-            letter-spacing: 0.02em;
-            margin: unset;
-            color: rgb(42, 51, 66);
-            opacity: 0.9;
-            font-weight: bold;
-          }
-
-          .description {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: pre-line;
-            word-break: break-all;
-            font-size: 1.6rem;
-            color: rgb(42, 51, 66);
-            opacity: 0.9;
-          }
-
-          .icon {
-            display: flex;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--composer-primary-color);
-            position: relative;
-            align-items: center;
-
-            div {
-              color: #fff;
-              font-size: 2rem;
-            }
-          }
-        }
-      }
-      .down-container {
-        width: 100%;
-        min-height: 300px;
+    width: 100%;
+    padding: 50px 100px;
+    .max-content {
+        max-width: var(--composer-content-width);
         display: flex;
         justify-content: center;
-        align-items: center;
-        
-        .child-container {
-          width: 100%;
-          min-height: 300px;
-          background-color: var(--composer-secondary-color);
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-          align-items: center;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: pre-line;
-          word-break: break-all;
-          padding: 20px;
-          text-align: center;
-
-          h1 {
-            font-size: 2rem;
-            letter-spacing: 0.02em;
-            margin: unset;
-            color: #fff;
-            opacity: 0.9;
-          }
-
-          p {
-            font-size: 1.5rem;
-            color: #797979;
-          }
-
-          .button-group {
+        margin: auto;
+        .page {
+            width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin-top: 2rem;
-
-            .button {
-              border: 0px solid;
-              border-radius: 6px;
-              color: #fff;
-              cursor: pointer;
-              padding: 10px;
-              background: transparent;
-              transition: $transition;
-              opacity: 0.9;
-              &:hover {
-                opacity: 1;
-              }
+            .up-page {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 5rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: pre-line;
+                word-break: break-all;
+                .subtitle {
+                    font-size: 3.5rem;
+                    letter-spacing: 0.02em;
+                    margin: unset;
+                    color: var(--composer-primary-color);
+                    opacity: 0.9;
+                }
+                .title {
+                    font-size: 1.6rem;
+                    color: var(--composer-font-color-primary);
+                    opacity: 0.9;
+                }
+                .badge {
+                    color: var(--composer-primary-color);
+                    border-radius: 10px;
+                    font-size: 1rem;
+                    background: rgb(244, 244, 244);
+                    padding: 5px 7px;
+                    display: inline-block;
+                    width: max-content;
+                    margin-bottom: 1rem;
+                }
             }
-            .primary {
-              background-color: var(--composer-primary-color);
+            .card-page {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                margin-bottom: 3rem;
+                gap: 1rem;
+                .card {
+                    min-width: 250px;
+                    min-height: 250px;
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                    white-space: pre-line;
+                    text-overflow: ellipsis;
+                    margin-bottom: 5rem;
+                    overflow: hidden;
+                    .title {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: pre-line;
+                        word-break: break-all;
+                        font-size: 1.5rem;
+                        letter-spacing: 0.02em;
+                        margin: unset;
+                        color: var(--composer-primary-color);
+                        opacity: 0.9;
+                        font-weight: bold;
+                    }
+                    .description {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: pre-line;
+                        word-break: break-all;
+                        font-size: 1.6rem;
+                        color: var(--composer-font-color-primary);
+                        opacity: 0.9;
+                    }
+                    .icon {
+                        display: flex;
+                        justify-content: center;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        background: var(--composer-primary-color);
+                        position: relative;
+                        align-items: center;
+                        div {
+                            color: #fff;
+                            font-size: 2rem;
+                        }
+                    }
+                }
             }
-            .secondary {
-              border: 1px solid rgb(200, 200, 200);
-              color: black;
-            }
-          }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-  }
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .card-item-count {
+                min-width: 100%;
+            }
+        }
+    }
 }

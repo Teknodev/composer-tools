@@ -1,86 +1,101 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    .header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-
-      h2 {
-        font-size: 4rem;
-        margin: 0;
-        color: var(--composer-primary-color);
-      }
-      p {
-        font-size: 1.2rem;
-        margin: 0;
-      }
-      button {
-        background-color: var(--composer-primary-color);
-        color: white;
-        border-radius: 6px;
-        &:hover {
-          color: var(--composer-primary-color);
-          background: transparent;
-          border: 1px solid var(--composer-primary-color);
-          padding: 10px 20px;
-        }
-      }
-    }
-    .card-child {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      gap: 20px;
-
-      .card {
-        width: 100%;
-        background-color: var(--composer-primary-color);
-        border-radius: 10px;
-        padding: 20px 20px 0 20px;
-        min-height: 250px;
+    width: 100%;
+    padding: 50px 50px;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
         display: flex;
         flex-direction: column;
         gap: 20px;
-
-        img {
-          width: 40px;
-          height: 40px;
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            .title {
+                font-size: 4rem;
+                margin: 0;
+                color: var(--composer-primary-color);
+            }
+            .description {
+                font-size: 1.2rem;
+                margin: 0;
+                color: var(--composer-font-color-primary);
+            }
+            button {
+                background-color: var(--composer-secondary-color);
+                color: white;
+                border-radius: 6px;
+                padding: 10px 20px;
+                border: 1px solid var(--composer-secondary-color);
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                &:hover {
+                    color: var(--composer-secondary-color);
+                    border: 1px solid var(--composer-secondary-color);
+                    background: transparent;
+                }
+            }
         }
-        h5 {
-          font-size: 2rem;
-          margin: 0;
-          color: white;
+        .card-left {
+            display: flex;
+            .card-child {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                width: 50%;
+                gap: 20px;
+                .card {
+                    width: 100%;
+                    border-radius: 10px;
+                    padding: 20px 20px 0 20px;
+                    min-height: 250px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    box-shadow: var(--composer-box-shadow);
+                    img {
+                        width: 40px;
+                        height: 40px;
+                    }
+                    .card-title {
+                        font-size: 2.4rem;
+                        margin: 0;
+                        color: var(--composer-primary-color)
+                    }
+                    .card-description {
+                        font-size: 1.2rem;
+                        margin: 0;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+            .image {
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    width: 80%;
+                    height: 80%;
+                    object-fit: contain;
+                }
+            }
         }
-        p {
-          font-size: 1.2rem;
-          margin: 0;
-          color: white;
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    .max-content {
-      padding: 0 20px;
-      .header {
-        text-align: center;
-      }
-      .card-child {
-        flex-direction: column;
-        align-items: center;
-      }
+    .container {
+        .max-content {
+            padding: 0 20px;
+            .header {
+                text-align: center;
+            }
+            .card-child {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     }
-  }
 }

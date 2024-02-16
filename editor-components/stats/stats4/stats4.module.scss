@@ -1,123 +1,122 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    display: flex;
-    margin: auto;
-    .stats4-page {
-      display: block;
-      width: 100%;
-      padding: 0 100px;
-      .bottom-child {
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
         display: flex;
-        margin-top: 50px;
         margin: auto;
-        border-radius: 6px;
-        padding: 40px;
-        .title {
-          display: block;
-          h1 {
-            font-size: 3rem;
-          }
-          h3 {
-            width: 50%;
-            font-weight: 100;
-            font-size: 1.5rem;
-          }
+        .stats4-page {
+            display: block;
+            width: 100%;
+            padding: 0 100px;
+            .bottom-child {
+                display: flex;
+                margin-top: 50px;
+                margin: auto;
+                border-radius: 6px;
+                padding: 40px;
+                .title {
+                    display: block;
+                    .title-h1 {
+                        font-size: 3.5rem;
+                        margin: 0 20px 10px 0;
+                        color: var(--composer-primary-color);
+                    }
+                    .description {
+                        width: 70%;
+                        font-weight: 100;
+                        font-size: 1.8rem;
+                        opacity: 0.8;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+                .card {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    height: 600px;
+                    border-radius: 6px;
+                    padding: 40px;
+                    width: 70%;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    .text-child {
+                        display: flex;
+                        align-items: center;
+                        text-align: center;
+                        justify-content: space-between;
+                        background-color: var(--composer-primary-color);
+                        color: white;
+                        padding: 5px 20px;
+                        border-radius: 10px;
+                        margin-top: 350px;
+                        .top-card-title {
+                            font-size: 2rem;
+                            margin: 0;
+                        }
+                        .top-card-description {
+                            width: 40%;
+                            font-size: 1.5rem;
+                        }
+                    }
+                    .text-child-blur {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        text-align: center;
+                        color: white;
+                        padding: 5px 20px;
+                        border-radius: 10px;
+                        background-size: cover;
+                        background: linear-gradient( 180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
+                        backdrop-filter: blur(10px);
+                        .bottom-card-title {
+                            font-size: 2rem;
+                            margin: 0;
+                        }
+                        .bottom-card-description {
+                            width: 40%;
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
         }
-        .card {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          min-width: 500px;
-          max-width: 500px;
-          height: 600px;
-          border-radius: 6px;
-          padding: 40px;
-         background-size: cover;
-         background-repeat: no-repeat;
-          .text-child {
-            display: flex;
-            align-items:center; 
-            text-align: center;
-            justify-content: space-between;
-            background-color: var(--composer-primary-color);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 10px;
-            margin-top: 350px;
-            h4 {
-              font-size: 2rem;
-              margin: 0;
-            }
-            p {
-              width: 40%;
-              font-size: 1.5rem;
-            }
-          }
-          .text-child-blur {
-            display: flex;
-            justify-content: space-between;
-            align-items:center; 
-            text-align: center;
-            color: white;
-            padding: 5px 20px;
-            border-radius: 10px;
-            background-size: cover;
-            background: linear-gradient(
-              180deg,
-              rgba(255, 255, 255, 0.2) 0%,
-              rgba(255, 255, 255, 0.2) 100%
-            );
-            backdrop-filter: blur(10px);
-            h4 {
-              font-size: 2rem;
-              margin: 0;
-            }
-            p {
-              width: 40%;
-              font-size: 1.5rem;
-            }
-          }
-        }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 1300px) {
-  .container {
-    gap: 60px;
-    .max-content {
-      flex-direction: column;
-      .stats4-page {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        .bottom-child {
-          display: block;
-          margin: 0 auto;
-          padding: 20px;
-          .title {
-            width: 100%;
-            h1 {
-              width: 100%;
-              margin: 20px 0;
+    .container {
+        gap: 60px;
+        .max-content {
+            flex-direction: column;
+            .stats4-page {
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                .bottom-child {
+                    display: block;
+                    margin: 0 auto;
+                    padding: 20px;
+                    .title {
+                        width: 100%;
+                        .title-h1 {
+                            width: 100%;
+                            margin: 20px 0;
+                        }
+                        .description {
+                            width: 100%;
+                        }
+                    }
+                    .card {
+                        min-width: 100%;
+                        max-width: 100%;
+                        .text-child {
+                            margin-top: 300px;
+                        }
+                    }
+                }
             }
-            h3 {
-              width: 100%;
-            }
-          }
-          .card {
-            min-width: 100%;
-            max-width: 100%;
-            .text-child {
-              margin-top: 300px;
-            }
-          }
         }
-      }
     }
-  }
 }

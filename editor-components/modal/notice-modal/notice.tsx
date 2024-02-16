@@ -43,13 +43,14 @@ class Notice extends BaseModal {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")} >
             <img
+              alt=""
               className={this.decorateCSS("image")}
               src={this.getPropValue("image")}
             ></img>
             <h2 className={this.decorateCSS("first-header")} >
               {this.getPropValue("notice-title")}
             </h2>
-            <span>{this.getPropValue("notice-content")}</span>
+            <span className={this.decorateCSS("notice-content")}>{this.getPropValue("notice-content")}</span>
             <ComposerModalClose>
               <button className={this.decorateCSS("button")} >
                 {this.getPropValue("button-text")}

@@ -258,7 +258,7 @@ class Team7 extends Team {
 
 
     getName(): string {
-        return "Team-7";
+        return "Team 7";
     }
 
 
@@ -270,18 +270,18 @@ class Team7 extends Team {
                 <div className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("basic-page")}>
                         <div className={this.decorateCSS("up-page")}>
-                            <h1>{this.getPropValue("title")}</h1>
-                            <p>{this.getPropValue("description")}</p>
+                            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
                         </div>
                         <div className={this.decorateCSS("down-page")}>
                             {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
                                 return (
                                     <div key={indexCard} style={{ width: 90 / this.getPropValue("reverse") + "%" }} className={this.decorateCSS("card")}>
-                                        <img className={this.decorateCSS("person-image")} src={item.image} alt="image" />
+                                        <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
                                         <div className={this.decorateCSS("person-info")}>
                                             <div className={this.decorateCSS("text-group")}>
-                                                <h1>{item.name}</h1>
-                                                <p>{item.position}</p>
+                                                <h1 className={this.decorateCSS("item-name")}>{item.name}</h1>
+                                                <p className={this.decorateCSS("item-position")}>{item.position}</p>
                                             </div>
                                             <div className={this.decorateCSS("icons-bar")}>
                                                  {item.icons.map((el: any, indexIcon: number) => {

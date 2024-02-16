@@ -122,14 +122,14 @@ class LogoComp1Page extends LogoClouds {
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("logo-comp1-page")}>
-            <h1>{this.getPropValue("title")}</h1>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <section>
               <center>
                 {this.castToObject<ISection[]>("image-items").map(
                   (section: any, index: number) => (
                     <div key={index} className={this.decorateCSS("image-child")}>
                       {section.items.map((item: any, index: number) => (
-                        <img className={this.decorateCSS("image")} key={index} width={180} height={90} src={item.value} />
+                        <img className={this.decorateCSS("image")} key={index} width={180} height={90} src={item.value} alt=""/>
                       ))}
                     </div>
                   )

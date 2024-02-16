@@ -6,9 +6,9 @@
     max-width: var(--composer-content-width);
     margin: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 20px;
 
     .pricing {
       display: flex;
@@ -17,9 +17,8 @@
       justify-content: space-between;
       border-radius: 6px;
       height: max-content;
-      max-width: 500px;
       flex: 1 1;
-      box-shadow: #9e9e9e 0px 0px 10px;
+      border: 1px solid var(--composer-tertiary-color);
       padding: 20px 10px 10px 10px;
       margin: 0 30px;
       .list-group {
@@ -36,7 +35,8 @@
           font-size: 1.4rem;
           width: 50%;
           text-align: left;
-          span {
+          color: var(--composer-font-color-primary);
+          .item-value {
             margin-right: 16px;
           }
           
@@ -45,7 +45,7 @@
       &:hover {
         .image-background {
           padding: 1px;
-          box-shadow: var(--composer-primary-color) 0px 0px 10px;
+          box-shadow: var(--composer-background-color) 0px 0px 10px;
           transform: scale(1.05);
         }
       }
@@ -80,6 +80,7 @@
         display: block;
         color: rgb(200, 200, 200);
         font-size: 1.1rem;
+        margin-bottom: 12px;
       }
 
       .feature-box {
@@ -106,7 +107,7 @@
         display: block;
         font-size: 2rem;
         font-weight: bold;
-        margin-bottom: 12px;
+        margin: 17px 0 6px 0;
       }
 
       .get-started-button {
@@ -122,9 +123,9 @@
         cursor: pointer;
         &:hover {
           letter-spacing: 0.1px;
-          background-color: var(--composer-primary-color);
+          background-color: var(--composer-secondary-color);
           color: hsl(0, 0%, 100%);
-          box-shadow: var(--composer-primary-color) 0px 0px 6px 0px;
+          box-shadow: var(--composer-secondary-color) 0px 0px 6px 0px;
           transition: all 0.2s ease;
         }
       }
@@ -132,12 +133,18 @@
   }
 
   @media only screen and (max-width: 768px) {
-    padding: 50px 20px;
 
     .max-content {
       gap: 20px !important;
+      align-items: center;
+      flex-direction: column;
+      .card-item-count{
+        min-width: 100%;
+      }
       .pricing {
         max-width: 40% !important;
+        margin: 0 220px;
+
         .list-group{
           width: 80% !important;
           height: 250px !important;
@@ -179,7 +186,13 @@
 
     .max-content {
       gap: 20px !important;
+      align-items: center;
+      flex-direction: column;
+      .card-item-count{
+        min-width: 100%;
+      }
       .pricing {
+        margin: 0%;
         max-width: 100% !important;
         .list-group{
           width: 80% !important;

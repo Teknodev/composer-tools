@@ -1,6 +1,10 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -22,12 +26,15 @@
 
       .header-page {
         text-align: center;
-        h3 {
+        .header-h3 {
           color: var(--composer-primary-color);
           margin: 0;
+          font-size: 2rem;
         }
-        h1 {
-          padding: 20px 0;
+        .header-h1 {
+          padding: 20px;
+          font-size: 4rem;
+          color: var(--composer-font-color-primary);
         }
         .button {
           cursor: pointer;
@@ -35,16 +42,16 @@
           text-align: center;
           transition: 0.3s;
           display: block;
-          color: white;
-          background-color: var(--composer-primary-color);
+          color: var(--composer-font-color-secondary);
+          background-color: var(--composer-secondary-color);
           padding: 15px 30px;
           border-radius: 6px;
           border: 1px solid transparent;
           width: 200px;
           &:hover {
-            color: var(--composer-primary-color);
+            color: var(--composer-secondary-color);
             background-color: transparent;
-            border: 1px solid var(--composer-primary-color);
+            border: 1px solid var(--composer-secondary-color);
           }
         }
       }
@@ -63,10 +70,40 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      .content {
+        flex-direction: column;
+        gap: 50px !important;
+        .image-background{
+          .image{
+            padding: 0 110px;
+          }
+        }
+      }
+    }
+  }
+}
 
-    .content {
-      flex-direction: column;
-      gap: 50px !important;
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content{
+      .content {
+        flex-direction: column;
+        gap: 50px !important;
+        .header-page{
+          .header-h1{
+            font-size: 2rem;
+          }
+          .header-h3{
+            font-size: 2rem;
+          }
+        }
+        .image-background{
+          .image{
+            padding: 63px 10px;
+          }
+        }
+      }
     }
   }
 }

@@ -10,8 +10,6 @@ class Content5 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
 
-    let customize = require("./customize.png");
-
     this.addProp({
       type: "string",
       key: "title",
@@ -30,7 +28,7 @@ class Content5 extends BaseContent {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: customize,
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc2f6057bdf002c2ad50c?alt=media&timestamp=1693303518223",
     });
 
     this.addProp({
@@ -111,8 +109,8 @@ class Content5 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            <span>{this.getPropValue("subtitle")}</span>
-            <h2>{this.getPropValue("title")}</h2>
+            <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>
+            <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
           </div>
           <div className={this.decorateCSS("card-child")}>
             <div className={this.decorateCSS("child-left")}>
@@ -123,14 +121,16 @@ class Content5 extends BaseContent {
               />
             </div>
             <div className={this.decorateCSS("child-right")}>
-              <p>{this.getPropValue("description")}</p>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
               {this.castToObject<Contentcard[]>("item").map(
                 (data: any, index: number) => (
                   <div key={index} className={this.decorateCSS("items")}>
                     <div className={this.decorateCSS("logo-icon")}>
-                      <img src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646dc6fbfba070002b74c38e?alt=media&timestamp=1684915965833" />
+                      <img 
+                      alt=""
+                      src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646dc6fbfba070002b74c38e?alt=media&timestamp=1684915965833" />
                     </div>
-                    <span>{data.itemText}</span>
+                    <span className={this.decorateCSS("data-item-text")}>{data.itemText}</span>
                   </div>
                 )
               )}

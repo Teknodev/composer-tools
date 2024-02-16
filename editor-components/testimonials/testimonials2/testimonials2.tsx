@@ -20,6 +20,12 @@ class Testimonials2Page extends Testimonials {
       value: "Testimonials",
     });
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
+    this.addProp({
       type: "array",
       key: "card-items",
       displayer: "Card Items",
@@ -153,25 +159,31 @@ class Testimonials2Page extends Testimonials {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
           <div className={this.decorateCSS("testimonials2")}>
-            <h1>{this.getPropValue("title")}</h1>
-            <section>
               {this.castToObject<Item[]>("card-items").map(
                 (item: Item, index: number) => (
-                  <div key={index} className={this.decorateCSS("card")}>
+                  <div style={{
+                          width: 100 / this.getPropValue("itemCount") + "%",
+                          display: "flex",
+                          justifyContent:"center",
+                          flexWrap: "wrap",
+                          minWidth: "250px",
+                        }}>
+                  <div key={index} className={this.decorateCSS("card")} >
                     <div className={this.decorateCSS("profile")}>
-                      <img width={50} height={50} src={item.image} />
+                      <img width={50} height={50} src={item.image} alt=""/>
                       <div className={this.decorateCSS("profile-text")}>
-                        <h2>{item.name}</h2>
-                        <p>{item.nameId}</p>
+                        <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
+                        <p className={this.decorateCSS("item-name-id")}>{item.nameId}</p>
                       </div>
                     </div>
-                    <span>{item.description}</span>
-                    <h5>{item.time}</h5>
+                    <span className={this.decorateCSS("item-description")}>{item.description}</span>
+                    <h5 className={this.decorateCSS("item-time")}>{item.time}</h5>
                   </div>
+            </div>
                 )
               )}
-            </section>
           </div>
         </div>
       </div>

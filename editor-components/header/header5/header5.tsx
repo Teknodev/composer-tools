@@ -38,7 +38,7 @@ class Header5 extends BaseHeader {
         {
           type: "page",
           key: "link",
-          displayer: "Link",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -54,11 +54,11 @@ class Header5 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("heading-page")}>
-            <h1 className={this.decorateCSS("heading-colored")}>
+            <h1 className={this.decorateCSS("heading-section-name")}>
               {this.getPropValue("heading")[0].value}
             </h1>
-            <h2>{this.getPropValue("heading")[1].value}</h2>
-            <h3>{this.getPropValue("heading")[2].value}</h3>
+            <h2 className={this.decorateCSS("heading-title")}>{this.getPropValue("heading")[1].value}</h2>
+            <h3 className={this.decorateCSS("heading-subtitle")}>{this.getPropValue("heading")[2].value}</h3>
             <ComposerLink path={this.getPropValue("heading")[4].value}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("heading")[3].value}

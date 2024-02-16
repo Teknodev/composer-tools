@@ -167,7 +167,7 @@ class Team5 extends Team {
   }
 
   getName(): string {
-    return "Team Meet";
+    return "Team 5";
   }
 
   render() {
@@ -178,7 +178,7 @@ class Team5 extends Team {
             <div className={this.decorateCSS("up-page")}>
               <div className={this.decorateCSS("title")}>
                 <div className={this.decorateCSS("left")}>
-                  <h1>{this.getPropValue("title")}</h1>
+                  <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
                 </div>
                 <div className={this.decorateCSS("right")}>
                   {this.castToObject<Button[]>("buttons").map(

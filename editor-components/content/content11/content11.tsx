@@ -181,6 +181,12 @@ class Content11 extends BaseContent {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 4,
+    });
   }
 
   getName(): string {
@@ -192,25 +198,29 @@ class Content11 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            <h2>{this.getPropValue("subtitle")}</h2>
-            <span>{this.getPropValue("title")}</span>
-            <h3>{this.getPropValue("subtitle2")}</h3>
-            <span>{this.getPropValue("subtitle2-description")}</span>
+            <h2 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h2>
+            <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
+            <h3 className={this.decorateCSS("subtitle2")}>{this.getPropValue("subtitle2")}</h3>
+            <span className={this.decorateCSS("subtitle2-description")}>{this.getPropValue("subtitle2-description")}</span>
           </div>
 
           <div className={this.decorateCSS("card-child")}>
             {this.castToObject<Card[]>("content-card").map(
               (card: Card, index: number) => (
-                <div
-                  key={`cnt-4-card-${index}`}
-                  className={this.decorateCSS("card")}
-                >
-                  <i>
-                    <img alt="server" src={card.image} />
-                  </i>
-                  <h5>{card.title}</h5>
-                  <p>{card.description}</p>
-                  <p className={this.decorateCSS("size-p")}>{card.size}</p>
+                <div style={{
+                  width: 90 / this.getPropValue("itemCount") + "%",
+                }}>
+                  <div
+                    key={`cnt-4-card-${index}`}
+                    className={this.decorateCSS("card")}
+                    >
+                    <i>
+                      <img alt="server" src={card.image} />
+                    </i>
+                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
+                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
+                    <p className={this.decorateCSS("size-p")}>{card.size}</p>
+                  </div>
                 </div>
               )
             )}

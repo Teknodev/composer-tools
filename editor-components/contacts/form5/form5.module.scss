@@ -1,0 +1,165 @@
+.container {
+    width: 100%;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .contact-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .contacts5-left {
+                .subtitle {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 1.8rem;
+                    text-transform: uppercase;
+                    color: var(--composer-primary-color);
+                    font-weight: 600;
+                }
+                .contacts5 {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    height: 100%;
+                    .contact-form {
+                        padding: 20px;
+                        display: flex;
+                        align-content: center;
+                        flex-wrap: wrap;
+                        transition: 1s;
+                        flex-direction: column;
+                        width: 100%;
+                        height: fit-content;
+                        padding: 20px 0 20px 0;
+                        .form {
+                            display: flex;
+                            flex-direction: column;
+                            text-align: center;
+                            gap: 20px;
+                            background: rgba(250, 250, 250, 0.6);
+                            box-shadow: var(--composer-box-shadow);
+                            border-radius: var(--composer-border-radius);
+                            border-top-right-radius: 0;
+                            border-bottom-right-radius: 0;
+                            padding: 20px;
+                            width: 450px;
+                            .input {
+                                padding: 16px 10px;
+                                border-radius: 6px;
+                                background: rgba(250, 250, 250, 0.7);
+                                border: 1px solid #8e8e8e91;
+                                resize: none;
+                                &:focus {
+                                    outline-color: var(--composer-primary-color);
+                                }
+                            }
+                            .error-message {
+                                color: red;
+                                font-size: 0.6rem;
+                                margin-top: 3px;
+                            }
+                            .submit-button {
+                                height: 50px;
+                                background-color: var(--composer-secondary-color);
+                                border-radius: 6px;
+                                border: none;
+                                cursor: pointer;
+                                transition: 0.1s;
+                                box-shadow: var(--composer-box-shadow);
+                                font-size: 1.5rem;
+                                color: white;
+                                padding: 10px 50px;
+                                width: 100%;
+                                &:active {
+                                    background: var(--composer-secondary-color);
+                                    color: var(--composer-tertiary-color);
+                                }
+                                &:hover {
+                                    background-color: transparent;
+                                    color: var(--composer-secondary-color);
+                                    border: 1px solid var(--composer-secondary-color);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .contacts5-right {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            background-color: var(--composer-primary-color);
+            border-radius: var(--composer-border-radius);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            box-shadow: var(--composer-box-shadow);
+            padding: 0 40px;
+            margin-top: 55px;
+            .title {
+                margin-bottom: 0;
+                margin-top: 30px;
+                border-bottom: 1px solid white;
+            }
+            .infos {
+                .info-row {
+                    display: flex;
+                    align-items: center;
+                    margin: 20px auto;
+                    .img-div {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        background-color: var(--composer-secondary-color);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-right: 20px;
+                        img {
+                            width: 50%;
+                            height: 50%;
+                            filter: invert(1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        .max-content {
+            .contact-container {
+                flex-direction: column;
+                .contacts5-left {
+                    .contacts5 {
+                        text-align: center;
+                        margin: 0;
+                        .contact-form {
+                            .form {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+                .contacts5-right {
+                    border-radius: var(--composer-border-radius);
+                    .infos {
+                        .info-row {
+                            flex-direction: column;
+                            align-items: flex-start;
+                            .img-div {
+                                margin: 0;
+                                margin-bottom: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

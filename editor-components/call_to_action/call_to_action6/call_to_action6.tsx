@@ -21,8 +21,8 @@ class CallToAction6Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
-      value: "",
+      displayer: "Button Link",
+      value: "https://www.google.com/",
     });
     this.addProp({
       type: "string",
@@ -34,7 +34,7 @@ class CallToAction6Page extends BaseCallToAction {
       type: "string",
       key: "commentAuthor",
       displayer: "Comment Author",
-      value: "- " + "John Doe",
+      value: "- John Doe",
     });
     this.addProp({
       type: "image",
@@ -63,11 +63,11 @@ class CallToAction6Page extends BaseCallToAction {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action6-page")}>
             <div className={this.decorateCSS("left-image")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("leftImage")} />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("leftImage")} alt=""/>
             </div>
 
             <div className={this.decorateCSS("call-to-action6-child")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               <ComposerLink path={this.getPropValue("link")}>
                 <span
                   className={this.decorateCSS("button")}
@@ -77,13 +77,13 @@ class CallToAction6Page extends BaseCallToAction {
                 </span>
               </ComposerLink>
               <div className={this.decorateCSS("comment")}>
-                <h3>{this.getPropValue("comment")}</h3>
-                <h5>{this.getPropValue("commentAuthor")}</h5>
+                <h3 className={this.decorateCSS("comment")}>{this.getPropValue("comment")}</h3>
+                <h5 className={this.decorateCSS("comment-author")}>{this.getPropValue("commentAuthor")}</h5>
               </div>
             </div>
 
             <div className={this.decorateCSS("right-image")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("rightImage")} />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("rightImage")} alt=""/>
             </div>
           </div>
         </div>

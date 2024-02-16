@@ -21,29 +21,35 @@
       }
 
       .texts {
-        width: 100%;
+        width: 90%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 20px;
-
-        h1 {
+        
+        .title1 {
           font-size: 3.5rem;
-          color: rgb(18, 22, 43);
+          color: var(--composer-primary-color);
           opacity: 0.8;
           margin: unset;
         }
         .title2 {
           font-size: 1.5rem;
           line-height: 25px;
+          color: var(--composer-font-color-primary);
+        }
+
+        .title3{
+          color: var(--composer-font-color-primary);
+
         }
       }
 
       .child-page-right {
-        width: 100%;
+        width: 35%;
         max-width: 400px;
-
-        box-shadow: var(--composer-box-shadow);
+        margin: 20px 100px;
+        border: 1px solid var(--composer-tertiary-color);
         border-radius: 6px;
         display: flex;
         flex-direction: column;
@@ -52,8 +58,13 @@
 
       .right-up {
         width: 100%;
-        padding: 5%;
-
+        padding: 5% 5% 0 5%;
+        .title4{
+          font-size: 2rem;
+          margin-bottom: 35px;
+          margin-left: 40px;
+          color: var(--composer-font-color-primary);
+        }
         ul li {
           margin-bottom: 5%;
           overflow: hidden;
@@ -63,15 +74,17 @@
           display: flex;
           align-items: center;
           gap: 10px;
+          color: var(--composer-font-color-primary);
+
 
           .circle-icon {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 18px;
-            height: 18px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
-            background-color: var(--composer-primary-color);
+            background-color: var(--composer-tertiary-color);
             color: #fff;
             img {
               width: 15px;
@@ -83,18 +96,22 @@
 
       .right-down {
         width: 100%;
-        padding: 5%;
+        padding-bottom: 5%;
         display: flex;
         flex-direction: column;
 
         .right-down-up {
           width: 100%;
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
+          color: var(--composer-font-color-primary);
+        
 
           .little {
-            width: 50%;
+            width: 20%;
+            display: flex;
+            flex-direction: column;
           }
           .other {
             width: 50%;
@@ -109,33 +126,30 @@
           justify-content: center;
           align-items: center;
           gap: 10px;
-          a {
-            width: 100%;
-            display: flex;
-            justify-content: center;
             .button {
-              width: 75%;
+              width: 100%;
               height: 50px;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              border: 1px solid var(--composer-primary-color);
+              background-color: var(--composer-secondary-color);
+              border: 1px solid var(--composer-secondary-color);
+              color: white;
               border-radius: 6px;
               font-size: 1.4rem;
-              background-color: var(--composer-primary-color);
-              color: white;
               cursor: pointer;
-
+              padding: 20px 30px;
+              position: relative;
               &:hover {
-                color: var(--composer-primary-color);
+                color: var(--composer-secondary-color);
                 background: transparent;
-                border: 1px solid var(--composer-primary-color);
+                border: 1px solid var(--composer-secondary-color);
               }
 
               &.primary {
-                background-color: var(--composer-secondary-color);
-                border: 1px solid var(--composer-secondary-color);
+                border: 1px solid var(--composer-tertiary-color);
+                background-color: var(--composer-primary-color);
                 color: white;
 
                 &:hover {
@@ -143,7 +157,6 @@
                   background: transparent;
                   border: 1px solid var(--composer-secondary-color);
                 }
-              }
             }
           }
         }
@@ -152,19 +165,105 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
+@media screen and (max-width: 1100px){
+  .container{
+    .max-content{
+      .page{
 
-    .page {
-      flex-direction: column;
+        .right-down{
+          .right-down-up{
+            gap: 15px;
+          }
+        }
+        .child-page{
+          .child-page-right{
+            width: 100%;
 
-      .child-page{
-        width: 100%;
-        .child-page-right{
-          max-width: unset !important;
+            .right-up{
+              margin: 10px 100px 0 0;
+            }
+          }
         }
       }
     }
   }
 }
+
+@media screen and (max-width: 767px){
+  .container{
+    .max-content{
+      .page{
+        .right-down{
+          .right-down-up{
+            gap: 15px;
+          }
+        }
+        .child-page{
+          .child-page-right{
+            width: 100%;
+
+            .right-up{
+              margin: 10px 100px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*@media only screen and (max-width: 767px) {
+  .container {
+    padding: 50px 20px;
+
+    .max-content{
+      align-items: center;
+      flex-direction: column;
+      .page {
+        .texts{
+          position: relative;
+          left: 10px;
+
+          .title1{
+            font-size: 23px;
+            padding: 10px 88px 0 0;
+          }
+
+          .title2{
+            font-size: 15px;
+            padding: 10px 101px 0 0;
+          }
+
+          .title3{
+            font-size: 13px;
+            padding: 10px 103px 0 0;
+          }
+        }
+        flex-direction: column;
+        .right-down{
+          .right-down-up{
+            justify-content: space-between;
+          }
+        }
+        .child-page{
+          width: 55vh;
+          position: relative;
+          right: 60px;
+
+          .right-up {
+          position: relative;
+          right: 13px;
+          }
+
+          .little {
+            position: relative;
+            left: 90px;
+          }
+          .child-page-right{
+            max-width: unset !important;
+          }
+        }
+      }
+    }
+  }
+}*/

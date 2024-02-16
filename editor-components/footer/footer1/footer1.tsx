@@ -543,7 +543,7 @@ class Footer1Page extends BaseFooter {
               (item: FooterValues, indexFooter: number) => (
                 <ul key={indexFooter} className={this.decorateCSS("list")}>
                   <li className={this.decorateCSS("title")}>
-                    <h2>{item.footerTitle}</h2>
+                    <h2 className={this.decorateCSS("item-footerTitle")}>{item.footerTitle}</h2>
                   </li>
                   {item.footerText.map(
                     (v: FooterTextValues, indexFooterText: number) => (
@@ -558,8 +558,8 @@ class Footer1Page extends BaseFooter {
               )
             )}
             <div className={this.decorateCSS("subscribe")}>
-              <h1>{this.getPropValue("subscriptionTitle")}</h1>
-              <p>{this.getPropValue("subscriptionDescription")}</p>
+              <h1 className={this.decorateCSS("subscriptionTitle")}>{this.getPropValue("subscriptionTitle")}</h1>
+              <p className={this.decorateCSS("subscription-description")}>{this.getPropValue("subscriptionDescription")}</p>
               <div className={this.decorateCSS("input")}>
                 <Formik
                   initialValues={{ message: "" }}
@@ -593,16 +593,17 @@ class Footer1Page extends BaseFooter {
           </div>
           <div className={this.decorateCSS("footer-bottom")}>
             <img
+              alt=""
               src={this.getPropValue("footerLogo")}
               width={200}
               height={100}
             />
-            <h2>{this.getPropValue("footerDescription")}</h2>
+            <h2 className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</h2>
             <div className={this.decorateCSS("social")}>
               {this.castToObject<any[]>("social").map(
                 (item: IconsValues, indexSocial: number) => (
                   <ComposerLink key={indexSocial} path={item.socialLink}>
-                    <img src={item.socialIcon} width={20} height={20} />
+                    <img src={item.socialIcon} width={20} height={20} alt=""/>
                   </ComposerLink>
                 )
               )}

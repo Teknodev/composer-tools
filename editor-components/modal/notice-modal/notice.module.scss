@@ -27,12 +27,12 @@
         height: 100px;
         border-radius: 6px;
       }
-      h2 {
+      .first-header {
         color: var(--composer-primary-color);
         margin: 0;
       }
 
-      span {
+      .notice-content {
         font-family: var(--composer-font-family);
         text-align: center;
         max-height: 390px;

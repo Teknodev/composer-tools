@@ -18,7 +18,7 @@ class Download6 extends BaseDownload {
       key: "image",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64511b1df72de2002caab85b?alt=media&timestamp=1683036969323",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64511b1df72de2002caab85b?alt=media&timestamp=1692797752847",
     });
 
     this.addProp({
@@ -49,7 +49,7 @@ class Download6 extends BaseDownload {
         {
           type: "page",
           key: "url",
-          displayer: "Button Url",
+          displayer: "Button Link",
           value: "",
         },
         {
@@ -82,12 +82,12 @@ class Download6 extends BaseDownload {
               <img
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
-                alt="background-image"
+                alt="background"
               />
             </div>
             <div className={this.decorateCSS("text-container")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <p>{this.getPropValue("description")}</p>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
               <div className={this.decorateCSS("button-group")}>
                 {this.castToObject<Button[]>("buttons").map(
                   (item: Button, index: number) => {

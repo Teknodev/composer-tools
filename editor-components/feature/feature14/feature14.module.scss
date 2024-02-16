@@ -1,80 +1,86 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    
-    .content {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      
-      .top-image {
-        position: relative;
+    width: 100%;
+    padding: 50px 0;
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
         display: flex;
-        flex-direction: column;
-        text-align: center;
-        box-shadow: var(--composer-box-shadow);
-        border-radius: 6px;
-        min-height: 370px;
-        flex: 1 1;
-        min-width: 250px;
-
-        .image-background {
-          position: absolute;
-          height: 10px;
-          border-top-left-radius: 6px;
-          border-top-right-radius: 6px;
-          width: 100%;
-          background-color: var(--composer-primary-color);
-        }
-        .child {
-          padding: 15px 30px;
-          .image {
-            margin: auto;
-            width: 100px;
-            height: 100px;
-            padding: 0;
-            border-radius: 100%;
-            background-color: transparent;
-            border: 4px solid white;
-            object-fit: cover;
-          }
-          .title {
-            font-weight: bold;
-            color: var(--composer-primary-color);
-          }
-          .long-text {
-            color: rgb(200, 200, 200);
-          }
-          a {
-            cursor: pointer;
-            text-align: center;
-            transition: 0.3s;
-            display: block;
-            color: white;
-            background-color: var(--composer-primary-color);
-            padding: 15px 30px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            text-decoration: none;
-            &:hover {
-              color: var(--composer-primary-color);
-              background-color: transparent;
-              border: 1px solid var(--composer-primary-color);
+        justify-content: space-around;
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            .card-item-count {
+                .top-image {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    box-shadow: var(--composer-box-shadow);
+                    border-radius: 6px;
+                    flex: 1 1;
+                    .image-background {
+                        position: absolute;
+                        height: 10px;
+                        border-top-left-radius: 6px;
+                        border-top-right-radius: 6px;
+                        width: 100%;
+                        background-color: var(--composer-primary-color);
+                    }
+                    .child {
+                        padding: 15px 30px;
+                        .image {
+                            margin: auto;
+                            width: 100px;
+                            height: 100px;
+                            padding: 0;
+                            border-radius: 100%;
+                            background-color: transparent;
+                            border: 4px solid white;
+                            object-fit: cover;
+                        }
+                        .title {
+                            font-weight: bold;
+                            color: var(--composer-primary-color);
+                        }
+                        .long-text {
+                            color: var(--composer-font-color-primary);
+                        }
+                        a {
+                            cursor: pointer;
+                            text-align: center;
+                            transition: 0.3s;
+                            display: block;
+                            color: white;
+                            background-color: var(--composer-primary-color);
+                            padding: 15px 30px;
+                            border-radius: 6px;
+                            border: 1px solid transparent;
+                            text-decoration: none;
+                            margin-top: 20px;
+                            &:hover {
+                                color: var(--composer-primary-color);
+                                background-color: transparent;
+                                border: 1px solid var(--composer-primary-color);
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-  }
+    .container {
+        padding: 50px 20px;
+        .max-content {
+            .content {
+                .card-item-count {
+                    min-width: 100%;
+                }
+            }
+        }
+    }
 }

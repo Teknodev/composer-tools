@@ -1,96 +1,107 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
+    width: 100%;
+    padding: 50px 100px;
 
-  .max-content {
-    max-width: var(--composer-content-width);
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-
-    .page {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      .card {
-        width: 100%;
-        background: rgb(248, 248, 248);
-        margin-bottom: 10px;
-        border-radius: 6px;
-        transition-delay: 3s;
+    .max-content {
+        max-width: var(--composer-content-width);
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-wrap: wrap;
+        margin: auto;
 
-        &:hover {
-          p {
+        .page {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .card {
+                width: 100%;
+                background: rgb(248, 248, 248);
+                margin-bottom: 10px;
+                border-radius: 6px;
+                //transition-delay: 3s;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                
+                .img-1 {
+                    display: block;
+                     transform: rotate(0deg);
+                    transition: transform 0.4s;
+
+                    &.rotate {
+                        transform: rotate(180deg);
+                    }
+                }
+
+                .card-text {
+                    display: none;
+                    padding: 0 15px 0 15px;
+                    overflow: hidden;
+                    white-space: pre-line;
+                    word-break: break-all;
+                    text-overflow: ellipsis;
+                    line-height: 20px;
+                    font-size: 1.4rem;
+                    color: rgb(42, 51, 66);
+                    opacity: 0.9;
+                    transition: height 2s;
+                    height: 0;
+
+                     &.cardTextActive {
+                         display: block;
+                         visibility: visible;
+                         height: auto;
+                         transition: height 1s;
+                     }
+
+                }
+
+                .card-subtitle {
+                    width: 90%;
+                    overflow: hidden;
+                    white-space: pre-line;
+                    word-break: break-all;
+                    text-overflow: ellipsis;
+                    font-size: 1.6rem;
+                    letter-spacing: 0.02em;
+                    color: rgb(42, 51, 66);
+                    opacity: 0.9;
+                    
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                .in-box {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 15px 0 15px;
+                }
+            }
+        }
+
+        img {
+            width: 20px;
             display: block;
-          }
-
-          .img-1 {
-            display: none;
-          }
         }
-
-        .img-1 {
-          display: block;
-        }
-
-        p {
-          display: none;
-          padding: 0 15px 0 15px;
-          overflow: hidden;
-          white-space: pre-line;
-          word-break: break-all;
-          text-overflow: ellipsis;
-          line-height: 20px;
-          font-size: 1.4rem;
-          color: rgb(42, 51, 66);
-          opacity: 0.9;
-        }
-
-        h2 {
-          width: 90%;
-          overflow: hidden;
-          white-space: pre-line;
-          word-break: break-all;
-          text-overflow: ellipsis;
-          font-size: 1.6rem;
-          letter-spacing: 0.02em;
-          color: rgb(42, 51, 66);
-          opacity: 0.9;
-        }
-
-        .in-box {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 15px 0 15px;
-        }
-      }
     }
-
-    img {
-      width: 20px;
-      display: block;
-    }
-  }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
+    .container {
+        padding: 50px 20px;
 
-    h2 {
-      font-size: 1.4rem !important;
+        .cardsubtitle {
+            font-size: 1.4rem !important;
+        }
+
+        .card-text {
+            font-size: 1.1rem !important;
+        }
     }
-    p {
-      font-size: 1.1rem !important;
-    }
-  }
 }

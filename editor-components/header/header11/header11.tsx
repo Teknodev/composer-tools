@@ -27,6 +27,12 @@ class Header11 extends BaseHeader {
     })
 
     this.addProp({
+      type: "image",
+      key: "backgroundImage",
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3760c057bdf002c296572?alt=media&timestamp=1692628473706"
+    })
+    this.addProp({
       type: "array",
       key: "button",
       displayer: "Buttons",
@@ -45,7 +51,7 @@ class Header11 extends BaseHeader {
             {
               type: "page",
               key: "link",
-              displayer: "URL",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -150,13 +156,16 @@ class Header11 extends BaseHeader {
   }
 
   render() {
+    const styling = {
+      backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
+    }
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")} style={styling}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("header-page")}>
-              <h1>{this.getPropValue("title")}</h1>
-              <h2>{this.getPropValue("description")}</h2>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
               {this.castToObject<[]>("button").map((item: any, indexButton: number) => {
                 return (
                   <ComposerLink key={`hdr-11-${indexButton}`} path={item.link}>
@@ -172,10 +181,10 @@ class Header11 extends BaseHeader {
                 (card: Card, index: number) => (
                   <div key={`hdr-11-card-${index}`} className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("img-child")}>
-                      <img src={card.image} />
+                      <img src={card.image} alt=""/>
                     </div>
-                    <h5>{card.title}</h5>
-                    <p>{card.description}</p>
+                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
+                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
                   </div>
                 )
               )}

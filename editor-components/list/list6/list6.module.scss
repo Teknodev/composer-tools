@@ -1,0 +1,124 @@
+.container {
+    width: 100%;
+    overflow: auto;
+    background-color: var(--composer-html-background);
+}
+
+.max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+}
+
+.list-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 5%;
+}
+
+.all-card {
+    min-width: 250px;
+}
+
+.list-item>li {
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.item-container {
+    display: flex;
+    align-items: center;
+    img {
+        width: 45px;
+        height: 45px;
+        margin-right: 10px;
+        margin-bottom: 50px;
+        vertical-align: top;
+    }
+    .list-item-h1 {
+        text-align: left;
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 1.35;
+        color: var(--composer-primary-color);
+    }
+    .list-item-p {
+        text-align: left;
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.55;
+        margin-left: 10px;
+        color: var(--composer-font-color-primary);
+    }
+}
+
+
+/* Media Query for smaller screens */
+
+@media screen and (max-width: 780px) {
+    .list-item {
+        grid-template-columns: 2fr;
+        margin-left: 0;
+    }
+    .all-card {
+        width: 45% !important;
+    }
+    .item-container {
+        display: flex;
+        align-items: flex-start;
+        box-sizing: border-box;
+        .list-item-h1 {
+            text-align: left;
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 22px;
+            line-height: 0;
+            padding-bottom: 8px;
+        }
+        img {
+            width: 50px;
+            margin-bottom: 8px;
+            height: 40px;
+        }
+        .list-item-p {
+            width: 250px;
+            text-align: left;
+            font-size: 16px;
+            line-height: 1.55;
+        }
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .list-item {
+        grid-template-columns: 1fr;
+        margin-left: 0;
+    }
+    .item-container {
+        display: flex;
+        align-items: left;
+        box-sizing: content-box;
+        .list-item-h1 {
+            text-align: left;
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 22px;
+            line-height: 0;
+            padding-bottom: 8px;
+        }
+        img {
+            width: 50px;
+            margin-bottom: 50px;
+            height: 40px;
+        }
+        .list-item-p {
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            line-height: 1.55;
+        }
+    }
+}

@@ -33,7 +33,7 @@ class CallToAction10Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae4968c3c2002cd2f9e5?alt=media&timestamp=1683017803252",
+        "https://www.optikpi.com/images/call_to_action_.png",
     });
     this.addProp({
       type: "string",
@@ -44,7 +44,7 @@ class CallToAction10Page extends BaseCallToAction {
     this.addProp({
       type: "page",
       key: "link",
-      displayer: "Link",
+      displayer: "Button Link",
       value: "",
     });
     this.addProp({
@@ -105,14 +105,15 @@ class CallToAction10Page extends BaseCallToAction {
           <section className={this.decorateCSS("call-to-action10-container")}>
             <div className={this.decorateCSS("image-background")}>
               <img
+                alt=""
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
               ></img>
             </div>
             <div className={this.decorateCSS("call-to-action10")}>
-              <h2>{this.getPropValue("subtitle")}</h2>
-              <h1>{this.getPropValue("title")}</h1>
-              <h3>{this.getPropValue("description")}</h3>
+              <h2 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h2>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
 
               <ul>
                 {this.castToObject<listedListItem[]>("listedListItem").map(
@@ -120,6 +121,7 @@ class CallToAction10Page extends BaseCallToAction {
                     return (
                       <li key={index}>
                         <img
+                          alt=""
                           width={15}
                           height={15}
                           src={this.getPropValue("listImage")}

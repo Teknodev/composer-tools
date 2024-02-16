@@ -25,6 +25,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         white-space: pre-line;
         text-overflow: ellipsis;
         word-break: break-all;
+        color: var(--composer-font-color-primary);
+        padding: 10px 100px;
 
         .tag {
           width: max-content;
@@ -58,8 +60,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-shadow: var(--composer-box-shadow);
             border-radius: 6px;
+            border: 1px solid var(--composer-tertiary-color);
             overflow: hidden;
             white-space: pre-line;
             text-overflow: ellipsis;
@@ -72,6 +74,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               flex-direction: column;
               justify-content: center;
               align-items: center;
+
               .tag {
                 width: max-content;
                 height: 20px;
@@ -91,13 +94,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                color: var(--composer-font-color-primary);
 
-                h1 {
+                .title {
                   font-size: 3rem;
-                }
-                p {
-                  font-size: 1.5rem;
                   color: var(--composer-primary-color);
+                }
+                .description {
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-primary);
                 }
               }
             }
@@ -120,16 +125,17 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   display: flex;
                   align-items: center;
                   gap: 10px;
+                  color: var(--composer-font-color-primary);
 
 
                   .circle-icon {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 18px;
-                    height: 18px;
+                    width: 25px;
+                    height: 25px;
                     border-radius: 50%;
-                    background-color: var(--composer-primary-color);
+                    background-color: var(--composer-tertiary-color);
                     color: #fff;
                     img {
                       width: 15px;
@@ -166,7 +172,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .primary {
-                background-color: var(--composer-primary-color);
+                background-color: var(--composer-secondary-color);
               }
               .secondary {
                 border: 1px solid rgb(200, 200, 200);
@@ -177,24 +183,53 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         }
       }
 
-      h1 {
+      .price-title1 {
         font-size: 4rem;
         font-weight: lighter;
-        color: #000;
         margin-top: 20px;
+        color:  var(--composer-font-color-primary);
       }
       h3 {
         font-size: 2rem;
         font-weight: 100;
       }
-      h2 {
+      .price-title3 {
         opacity: 0.5;
-        color: #000;
+        color: var(--composer-font-color-primary);
       }
     }
-    p {
+    .title {
       font-size: 1.3rem;
-      color: #000;
+      color: var(--composer-font-color-primary);
+      }
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .container {
+    padding: 50px 20px;
+
+    .max-content {
+      .price-title1 {
+        font-size: 2.5rem !important;
+      }
+      .page {
+        .page-down {
+          gap: 20px;
+
+          .title {
+            font-size: 1rem !important;
+          }
+
+          .subtitle{
+            font-size: 1.2rem !important;
+          }
+
+          .all-card {
+            width: 100% !important;
+          }
+        }
+      }
     }
   }
 }
@@ -204,10 +239,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     padding: 50px 20px;
 
     .max-content {
-      h1 {
+      .price-title1 {
         font-size: 2.5rem !important;
       }
-      p {
+      .title {
         font-size: 1.2rem !important;
       }
       .page {

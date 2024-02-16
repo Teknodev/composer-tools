@@ -64,7 +64,7 @@ class Download5 extends BaseDownload {
             },
             {
               type: "page",
-              key: "url",
+              key: "Button Link",
               displayer: "URL",
               value:"",
             },
@@ -95,7 +95,7 @@ class Download5 extends BaseDownload {
             },
             {
               type: "page",
-              key: "url",
+              key: "Button Link",
               displayer: "URL",
               value: "",
             },
@@ -136,10 +136,10 @@ class Download5 extends BaseDownload {
                 }`}
             >
               <div className={this.decorateCSS("box")}>
-                <h1>{this.getPropValue("title1")}</h1>
+                <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
               </div>
               <div className={this.decorateCSS("box")}>
-                <p>{this.getPropValue("text1")}</p>
+                <p className={this.decorateCSS("text1")}>{this.getPropValue("text1")}</p>
               </div>
               <div className={this.decorateCSS("box")}>
                 {this.castToObject<Button[]>("buttons").map(
@@ -167,6 +167,7 @@ class Download5 extends BaseDownload {
             </div>
             <div className={this.decorateCSS("page-2")}>
               <img
+                alt=""
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
               />

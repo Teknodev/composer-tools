@@ -96,10 +96,16 @@ class Team14 extends Team {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
-    return "Team-14";
+    return "Team 14";
   }
   render() {
     return (
@@ -107,14 +113,19 @@ class Team14 extends Team {
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<Portfolio[]>("portfolio").map(
             (portfolio: Portfolio, indexPortfolio: number) => (
+              <div className={this.decorateCSS("card-item-count")} style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+              }}>
+
               <div key={indexPortfolio} className={this.decorateCSS("portfolio")}>
-                <img className={this.decorateCSS("image")} src={portfolio.image}></img>
+                <img className={this.decorateCSS("image")} src={portfolio.image} alt=""></img>
                 <div className={this.decorateCSS("little-container")}>
                   <h3 className={this.decorateCSS("title")}>{portfolio.title}</h3>
                   <p className={this.decorateCSS("description")}>
                     {portfolio.description}
                   </p>
                 </div>
+              </div>
               </div>
             )
           )}

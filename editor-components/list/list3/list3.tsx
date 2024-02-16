@@ -129,6 +129,12 @@ class List3 extends BaseList {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -141,19 +147,24 @@ class List3 extends BaseList {
         <div className={this.decorateCSS("max-content")}>
           {this.getPropValue("icon-main").map((title: any, indexIconMain: number) => {
             return (
-              <div className={this.decorateCSS("icon-list")} key={indexIconMain}>
-                <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
-                <hr />
-                <ul className={this.decorateCSS("list-group")}>
-                  {title.value[1].value.map((icon: any, indexListGroup: number) => {
-                    return (
-                      <li key={indexListGroup} className={this.decorateCSS("list-item")}>
-                        <img src={icon.value[1].value} alt="icon" />
-                        <h4>{icon.value[0].value}</h4>
-                      </li>
-                    );
-                  })}
-                </ul>
+              <div style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+                minWidth: "200px",
+              }} className={this.decorateCSS("card")}>
+                <div className={this.decorateCSS("icon-list")} key={indexIconMain}>
+                  <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
+                  <hr />
+                  <ul className={this.decorateCSS("list-group")}>
+                    {title.value[1].value.map((icon: any, indexListGroup: number) => {
+                      return (
+                        <li key={indexListGroup} className={this.decorateCSS("list-item")}>
+                          <img src={icon.value[1].value} alt="icon" />
+                          <h4 className={this.decorateCSS("item-value")}>{icon.value[0].value}</h4>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
               </div>
             );
           })}

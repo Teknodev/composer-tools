@@ -30,17 +30,17 @@ class Header3 extends BaseHeader {
           displayer: "Button Text",
         },
         {
+          type: "page",
+          key: "link",
+          displayer: "Button Link",
+          value: "",
+        },
+        {
           type: "image",
           key: "image",
           value:
-            "https://static01.nyt.com/images/2019/12/29/travel/29TRIPPEDUP-points/29TRIPPEDUP-points-superJumbo.jpg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b1cf68c3c2002cd2fab5?alt=media&timestamp=1693233963031",
           displayer: "Image",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
         },
       ],
     });
@@ -56,8 +56,8 @@ class Header3 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("header-page")}>
-              <h3>{this.getPropValue("header")[0].value}</h3>
-              <h1>{this.getPropValue("header")[1].value}</h1>
+              <h3 className={this.decorateCSS("header-h3")}>{this.getPropValue("header")[0].value}</h3>
+              <h1 className={this.decorateCSS("header-h1")}>{this.getPropValue("header")[1].value}</h1>
               <ComposerLink path={this.getPropValue("header")[4].value}>
                 <span className={this.decorateCSS("button")}>
                   {this.getPropValue("header")[2].value}
@@ -66,8 +66,9 @@ class Header3 extends BaseHeader {
             </div>
             <div className={this.decorateCSS("image-background")}>
               <img
+                alt=""
                 className={this.decorateCSS("image")}
-                src={this.getPropValue("header")[3].value}
+                src={this.getPropValue("header")[4].value}
               ></img>
             </div>
           </div>

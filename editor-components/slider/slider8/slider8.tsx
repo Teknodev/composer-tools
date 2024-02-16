@@ -155,18 +155,13 @@ class Slider8 extends BaseSlider {
       ],
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "true",
-      displayer: "Column",
-      value: true,
-    });
   }
   getName(): string {
     return "Slider 8";
   }
   render() {
     const settings = {
+      arrows: false,
       dots: true,
       infinite: true,
       speed: 700,
@@ -179,9 +174,7 @@ class Slider8 extends BaseSlider {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("wrapper")} ${
-              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
-            }`}
+            className={this.decorateCSS("wrapper")}
           >
             <div className={this.decorateCSS("slider-parent")}>
               <Slider {...settings} className={this.decorateCSS("carousel")}>
@@ -194,6 +187,7 @@ class Slider8 extends BaseSlider {
                       <div className={this.decorateCSS("content-div")}>
                         <div className={this.decorateCSS("img-div")}>
                           <img
+                            alt=""
                             src={item.image}
                             className={this.decorateCSS("img")}
                           />
@@ -202,8 +196,8 @@ class Slider8 extends BaseSlider {
                           <h1 className={this.decorateCSS("first-header")}>
                             {item.imagesubtitle}
                           </h1>
-                          <h3>{item.imagetitle}</h3>
-                          <p>{item.imagedescription}</p>
+                          <h3 className={this.decorateCSS("item-title")}>{item.imagetitle}</h3>
+                          <p className={this.decorateCSS("item-description")}>{item.imagedescription}</p>
                         </div>
                       </div>
                     </div>

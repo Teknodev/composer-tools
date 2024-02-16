@@ -1,19 +1,20 @@
 .container {
   width: 100%;
   padding: 50px 0;
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
 
     .icon-list {
       display: flex;
       flex-direction: column;
-      box-shadow: var(--composer-box-shadow);
+      border: 1px solid var(--composer-tertiary-color);
       border-top: 5px solid var(--composer-primary-color);
       border-radius: 6px;
       min-width: 250px;
@@ -26,6 +27,7 @@
         font-weight: bold;
         padding: 0;
         margin: 0 0 5px 0;
+        color: var(--composer-primary-color);
       }
       hr {
         display: block;
@@ -52,7 +54,6 @@
           transition: all 0.5s;
           border-radius: 6px;
           border-left: 3px solid var(--composer-primary-color);
-          box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
           min-height: 70px;
           &:hover {
             box-shadow: var(--composer-box-shadow);
@@ -62,13 +63,12 @@
           }
           img {
             transition: all 0.5s;
-            box-shadow: 4px 0 28px -4px rgba(149, 157, 165, 0.3);
             padding: 5px;
             margin-right: 15px;
             width: 70px;
             height: 70px;
           }
-          h4 {
+          .item-value {
             margin-top: 11px;
           }
         }
@@ -80,5 +80,13 @@
 @media only screen and (max-width: 768px) {
   .container {
     padding: 50px 20px;
+    .max-content{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .card{
+        width: 100% !important;
+      }
+    }
   }
 }

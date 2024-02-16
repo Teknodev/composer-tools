@@ -1,6 +1,5 @@
-
 import * as React from "react";
-import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider7.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -45,13 +44,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -83,13 +82,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -121,13 +120,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -159,13 +158,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -197,13 +196,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -235,13 +234,13 @@ class Slider7 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Button Text",
               value: "Buy Now",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Button Url",
+              displayer: "Button Link",
               value: "",
             },
             {
@@ -272,15 +271,28 @@ class Slider7 extends BaseSlider {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+          <ComposerSlider
+            {...settings}
+            className={this.decorateCSS("carousel")}
+          >
             {this.castToObject<Card[]>("slider").map(
               (item: Card, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("card")}>
-                  <img src={item.image} className={this.decorateCSS("img")} />
-                  <h1>{item.title}</h1>
+                  <img
+                    src={item.image}
+                    className={this.decorateCSS("img")}
+                    alt=""
+                  />
+                  <h1 className={this.decorateCSS("item-title")}>
+                    {item.title}
+                  </h1>
                   <div className={this.decorateCSS("button")}>
-                    <ComposerLink path={item.url}>{item.button}</ComposerLink>
-                    <h2>{item.price}</h2>
+                    <div className={this.decorateCSS("button-text")}>
+                      <ComposerLink path={item.url}>{item.button}</ComposerLink>
+                    </div>
+                    <h2 className={this.decorateCSS("item-price")}>
+                      {item.price}
+                    </h2>
                   </div>
                 </div>
               )

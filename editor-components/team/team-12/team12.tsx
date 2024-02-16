@@ -22,7 +22,7 @@ class Team12 extends Team {
     this.addProp({
       type: "number",
       key: "reverse",
-      displayer: "Reverse Item Count",
+      displayer: "Item Count in a Row",
       value: 3,
     });
 
@@ -111,7 +111,7 @@ class Team12 extends Team {
   }
 
   getName(): string {
-    return "Team-12";
+    return "Team 12";
   }
 
   render() {
@@ -120,7 +120,7 @@ class Team12 extends Team {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("title-card")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             </div>
             <div className={this.decorateCSS("all-cards")}>
               {this.castToObject<Card[]>("team-members").map(

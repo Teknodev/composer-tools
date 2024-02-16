@@ -60,9 +60,9 @@ class Header9 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <section className={this.decorateCSS("wide-text-container")}>
           <div className={this.decorateCSS("wide-text")}>
-            <h3>{this.getPropValue("wide-text")[0].value}</h3>
-            <h1>{this.getPropValue("wide-text")[1].value}</h1>
-            <p>{this.getPropValue("wide-text")[2].value}</p>
+            <h3 className={this.decorateCSS("wide-text-h3")}>{this.getPropValue("wide-text")[0].value}</h3>
+            <h1 className={this.decorateCSS("wide-text-h1")}>{this.getPropValue("wide-text")[1].value}</h1>
+            <p className={this.decorateCSS("wide-text-p")}>{this.getPropValue("wide-text")[2].value}</p>
             <ComposerLink path={this.getPropValue("wide-text")[5].value}>
               <span className={this.decorateCSS("button")}>
                 {this.getPropValue("wide-text")[3].value}
@@ -70,7 +70,7 @@ class Header9 extends BaseHeader {
             </ComposerLink>
           </div>
           <div className={this.decorateCSS("image-background")}>
-            <img className={this.decorateCSS("image")} src={this.getPropValue("wide-text")[4].value}></img>
+            <img className={this.decorateCSS("image")} src={this.getPropValue("wide-text")[4].value} alt=""></img>
           </div>
         </section>
       </div>

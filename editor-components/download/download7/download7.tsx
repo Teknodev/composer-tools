@@ -16,7 +16,7 @@ class Download7 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Background Image",
-            value: "https://p5crires.cri.cn/photoworkspace/cri/contentimg/2023/01/04/2023010415453365247.jpg",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af5c68c3c2002cd2fa52?alt=media&timestamp=1692795543393",
         });
 
         this.addProp({
@@ -54,7 +54,7 @@ class Download7 extends BaseDownload {
                 {
                     type: "page",
                     key: "url",
-                    displayer: "Button Url",
+                    displayer: "Button Link",
                     value: "",
                 },
             ],
@@ -81,7 +81,7 @@ class Download7 extends BaseDownload {
                             <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="" />
                         </div>
                         <div className={this.decorateCSS("up-content")}>
-                            <h1>{this.getPropValue("upContentTitle")}</h1>
+                            <h1 className={this.decorateCSS("unContentTitle")}>{this.getPropValue("upContentTitle")}</h1>
                             <div className={this.decorateCSS("button-group")}>
                                 {this.castToObject<Button[]>("buttons").map((button: Button , index: number) => {
                                     return (
@@ -93,8 +93,8 @@ class Download7 extends BaseDownload {
                             </div>
                         </div>
                         <div className={this.decorateCSS("down-content")}>
-                            <h1>{this.getPropValue("downContentTitle")}</h1>
-                            <p>{this.getPropValue("description")}</p>
+                            <h1 className={this.decorateCSS("downContentTitle")}>{this.getPropValue("downContentTitle")}</h1>
+                            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
                         </div>
                     </div>
                 </div>

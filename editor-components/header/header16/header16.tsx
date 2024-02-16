@@ -1,69 +1,164 @@
 import * as React from "react";
 import styles from "./header16.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import * as Yup from "yup";
-import { ErrorMessage, Formik, Form } from "formik";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-class HeaderComponent16 extends BaseHeader {
+type ISliderData = {
+  title: string;
+  image: string;
+  description: string;
+  button: IButton[];
+};
+
+type IButton = {
+  value: string;
+};
+
+class Header16 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Take your online order within minutes",
-    });
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "From local fare to restaurant favorites, our wide selection of food will definitely satisfy all your cravings.",
-    });
-    this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "Button",
+      type: "array",
+      displayer: "Slider Carousel",
+      key: "slider",
       value: [
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Make Order",
+          type: "object",
+          displayer: "Item 1",
+          key: "item1",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7db?alt=media&timestamp=1693305822758",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "We're getting married!",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "THE BEST WEDDING DAY",
+              displayer: "Description",
+            },
+            {
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Discuss The Wedding",
+                },
+                {
+                  type: "page",
+                  key: "buttonClick",
+                  displayer: "Button Click",
+                  value: ""
+                },
+              ]
+            },
+          ]
         },
         {
-          type: "page",
-          key: "buttonPath",
-          displayer: "Button Path",
-          value: "",
+          type: "object",
+          displayer: "Item 2",
+          key: "item2",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7dc?alt=media&timestamp=1693305822758",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "Your special day",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "TRUST US TO ORGANİZE",
+              displayer: "Description",
+            },
+            {
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Online Request",
+                },
+                {
+                  type: "page",
+                  key: "buttonClick",
+                  displayer: "Button Click",
+                  value: ""
+                },
+              ]
+            },
+          ]
+        },
+        {
+          type: "object",
+          displayer: "Item 3",
+          key: "item3",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7dd?alt=media&timestamp=1693305822758",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "See you at the wedding",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "FLOWER ARRANGEMENTS",
+              displayer: "Description",
+            },
+            {
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "button-text",
+                  displayer: "Button Text",
+                  value: "View Details",
+                },
+                {
+                  type: "page",
+                  key: "buttonClick",
+                  displayer: "Button Click",
+                  value: ""
+                },
+              ]
+            },
+          ]
         },
       ],
-    });
-    this.addProp({
-      type: "string",
-      key: "email",
-      displayer: "1th Placeholder",
-      value: "E-mail",
-    });
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-delivery-girl-1.png.webp",
-    });
-    this.addProp({
-      type: "image",
-      key: "background-image",
-      displayer: "Background Image",
-      value:
-        "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2023/03/w-delivery-top-bg-1.jpg?id=55173",
-    });
+    }) 
   }
-  validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-  });
 
   getName(): string {
     return "Header-16";
@@ -71,30 +166,49 @@ class HeaderComponent16 extends BaseHeader {
 
   render() {
 
-    const button = this.getPropValue("button");
-
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
+    
     return (
-      <div  style={{backgroundImage: `url(${this.getPropValue("background-image")})` }} className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("content")}>
-                <h1>{this.getPropValue("title")}</h1>
-                <p>{this.getPropValue("description")}</p>
-              </div>
-              <div>
-                <button className={this.decorateCSS("button")}>
-                  {button[0].value}
-                </button>
-              </div>
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <img
-                className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-                alt=""
-              />
-            </div>
+            <ComposerSlider
+                {...settings}
+                className={this.decorateCSS("carousel")}
+              >
+                {this.castToObject<ISliderData[]>("slider").map(
+                  (item: ISliderData, index: number) => (
+                    <div className={this.decorateCSS("item")} key={`key${index}`}>
+                      <div className={this.decorateCSS("image")}>
+                        <img src={item.image} alt={item.title} />
+                      </div>
+                      <div className={this.decorateCSS("content")}>
+                      <div className={this.decorateCSS("description")}>
+                        {item.description}
+                      </div>
+                      <div className={this.decorateCSS("title")}>
+                        {item.title}
+                      </div>
+                      <div>
+                        <ComposerLink href={item.button[1].value}>
+                        <button className={this.decorateCSS("button") }>
+                          {item.button[0].value}
+                        </button>
+                        </ComposerLink>
+                      </div>
+                    </div>
+                  </div>
+                )
+              )}
+            </ComposerSlider>
           </div>
         </div>
       </div>
@@ -102,4 +216,4 @@ class HeaderComponent16 extends BaseHeader {
   }
 }
 
-export default HeaderComponent16;
+export default Header16;

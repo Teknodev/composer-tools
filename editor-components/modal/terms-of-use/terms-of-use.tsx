@@ -43,6 +43,7 @@ class TermsOfUseModal extends BaseModal {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")} >
             <img
+              alt=""
               className={this.decorateCSS("image")}
               
               src={this.getPropValue("image")}
@@ -50,7 +51,7 @@ class TermsOfUseModal extends BaseModal {
             <h2 className={this.decorateCSS("first-header")} >
               {this.getPropValue("terms-of-use-title")}
             </h2>
-            <span>{this.getPropValue("term-of-use-content")}</span>
+            <span className={this.decorateCSS("term-of-use-content")}>{this.getPropValue("term-of-use-content")}</span>
             <ComposerModalClose>
               <button className={this.decorateCSS("button")} >
                 {this.getPropValue("button-text")}

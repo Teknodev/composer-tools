@@ -21,14 +21,14 @@ class Slider2 extends BaseSlider {
       type: "string",
       key: "header",
       displayer: "Header",
-      value: "MY WORLD IS GAME",
+      value: "Slider",
     });
 
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Description",
-      value: "GAME WORLD FOR EVERYONE",
+      value: "You can add new photos to the slider from the settings.",
     });
 
     this.addProp({
@@ -40,13 +40,13 @@ class Slider2 extends BaseSlider {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://img.freepik.com/free-vector/games-time-neon-text-with-gamepad_1262-15457.jpg?w=1380&t=st=1680873095~exp=1680873695~hmac=68fd63985fe8fa217d304a45258b5742e42e7aa7d20dc10857050d9c9571cfa4",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e61ca4057bdf002c29cc68?alt=media&timestamp=1692802194403",
         },
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://img.freepik.com/free-vector/video-game-controls-frame-neon-style-brick-wall_24908-58914.jpg?w=826&t=st=1680873122~exp=1680873722~hmac=30be9e015b094897d66645042ac78426bba2b8a26da11ffd9506c4eefa25af88",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e61ca4057bdf002c29cc69?alt=media&timestamp=1692802194403",
         },
       ],
     });
@@ -65,7 +65,7 @@ class Slider2 extends BaseSlider {
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Button Link",
           value: "",
         },
       ],
@@ -101,6 +101,7 @@ class Slider2 extends BaseSlider {
               {this.getPropValue("slider").map(
                 (item: any, indexSlider: number) => (
                   <img
+                    alt=""
                     src={item.value}
                     className={this.decorateCSS("img")}
                     key={indexSlider}
@@ -109,8 +110,8 @@ class Slider2 extends BaseSlider {
               )}
             </ComposerSlider>
             <div className={this.decorateCSS("box")}>
-              <h2>{this.getPropValue("header")}</h2>
-              <h1>{this.getPropValue("subtitle")}</h1>
+              <h2 className={this.decorateCSS("header")}>{this.getPropValue("header")}</h2>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
               <div className={this.decorateCSS("button-group")}>
                 {this.castToObject<Button[]>("buttons").map(
                   (item: Button, indexButtons: number) => {

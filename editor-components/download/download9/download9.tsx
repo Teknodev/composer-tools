@@ -16,23 +16,8 @@ class Download9 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645b4bcdf72de2002cab20d0?alt=media&timestamp=1683704791616",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e604f0057bdf002c29c806?alt=media&timestamp=1692796124621",
         });
-
-        this.addProp({
-            type: "image",
-            key: "leftImage",
-            displayer: "Left Container Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645b4b9ef72de2002cab20c6?alt=media&timestamp=1683704746048",
-        });
-
-        this.addProp({
-            type: "image",
-            key: "rightImage",
-            displayer: "Right Container Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645b4b9ef72de2002cab20c5?alt=media&timestamp=1683704746048",
-        });
-
        
 
         this.addProp({
@@ -77,7 +62,7 @@ class Download9 extends BaseDownload {
                 {
                     type: "page",
                     key: "url",
-                    displayer: "Button Url",
+                    displayer: "Button Link",
                     value: "",
                 },
             ],
@@ -100,16 +85,10 @@ class Download9 extends BaseDownload {
             <div className={this.decorateCSS("container")}>
                 <div className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("page")}>
-                        <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="background-image" />
-                        <div className={this.decorateCSS("left-container")}>
-                            <img className={this.decorateCSS("left-image")} src={this.getPropValue("leftImage")} alt="left-image" />
-                        </div>
+                        <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="background" />
                         <div className={this.decorateCSS("middle-container")}>
                             <h1 className={this.decorateCSS("middle-title")}>{this.getPropValue("middleTitle")}</h1>
                             <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-                        </div>
-                        <div className={this.decorateCSS("right-container")}>
-                            <img className={this.decorateCSS("right-image")} src={this.getPropValue("rightImage")} alt="right-image" />
                         </div>
                         <div className={this.decorateCSS("hover-container")}>
                             <h1 className={this.decorateCSS("card-title")}>{this.getPropValue("cardTitle")}</h1>

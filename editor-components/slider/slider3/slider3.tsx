@@ -32,19 +32,19 @@ class Slider3 extends BaseSlider {
           displayer: "Slider",
           value: [
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/pvD1l2BmfrE/maxresdefault.jpg",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/RFdtXi4Jr7o/maxresdefault.jpg",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value: "https://i.ytimg.com/vi/25zB8JIr71Y/maxresdefault.jpg",
@@ -66,6 +66,7 @@ class Slider3 extends BaseSlider {
   }
   render() {
     const settings = {
+      arrows: false,
       dots: false,
       infinite: true,
       speed: 700,
@@ -86,13 +87,14 @@ class Slider3 extends BaseSlider {
               <h1 className={this.decorateCSS("first-header")}>
                 {this.getPropValue("title")}
               </h1>
-              <p>{this.getPropValue("content")}</p>
+              <p className={this.decorateCSS("content")}>{this.getPropValue("content")}</p>
             </div>
             <div className={this.decorateCSS("slider-parent")}>
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {this.getPropValue("header")[0].value.map(
                   (item: any, index: number) => (
                     <img
+                      alt=""
                       src={item.value}
                       className={this.decorateCSS("img")}
                       key={index}

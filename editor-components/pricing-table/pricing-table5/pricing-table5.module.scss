@@ -6,28 +6,40 @@
     max-width: var(--composer-content-width);
     margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
 
     .price {
       display: flex;
       flex-direction: column;
-      box-shadow: var(--composer-box-shadow);
-      border-radius: 6px;
+      align-items: center;
+      justify-content: center;
       height: max-content;
-      padding: 20px;
+      border: 1px solid var(--composer-tertiary-color);
+      padding: 35px 20px;
       flex: 1 1;
       min-width: 250px;
-
+      border-radius: 20px;
+      margin: 0 10px;
+      &.border-top{
+        border-top: 3px solid var(--composer-tertiary-color);
+      }
+      &.border-bottom {
+        border-bottom: 3px solid var(--composer-tertiary-color);
+      }
+      &.border-all {
+        border: 3px solid var(--composer-tertiary-color);
+      }
       .image {
-        border-radius: 6px;
-        box-shadow: var(--composer-box-shadow);
+        border-radius: 45px;
         margin-bottom: 15px;
+        border: 1px solid var(--composer-tertiary-color);
         align-self: center;
         object-fit: contain;
-        max-width: 300px;
+        max-width: 250px;
         max-height: 180px;
+        padding: 5px;
       }
       .title {
         display: flex;
@@ -51,7 +63,7 @@
           margin: 7px auto 10px 5px;
           font-weight: 450;
           font-size: 0.75em;
-          color: rgb(200, 200, 200);
+          color: var(--composer-font-color-primary);
         }
       }
       .button-child {
@@ -65,14 +77,14 @@
           display: block;
           width: max-content;
           color: white;
-          background-color: var(--composer-primary-color);
+          background-color: var(--composer-secondary-color);
           padding: 10px 30px;
           border-radius: 6px;
           border: 1px solid transparent;
           &:hover {
-            color: var(--composer-primary-color);
+            color: var(--composer-secondary-color);
             background-color: transparent;
-            border: 1px solid var(--composer-primary-color);
+            border: 1px solid var(--composer-tertiary-color);
           }
         }
       }
@@ -100,6 +112,32 @@
 
 @media only screen and (max-width: 768px) {
   .container {
-    padding: 50px 20px;
+    .max-content{
+      flex-direction: column;
+      align-items: center;
+      .card-item-count{
+        min-width: 70%;
+        .image{
+          width: 60%;
+        }
+      }
+
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content{
+      flex-direction: column;
+      align-items: center;
+      .card-item-count{
+        min-width: 70%;
+        .image{
+          width: 60%;
+        }
+      }
+
+    }
   }
 }
