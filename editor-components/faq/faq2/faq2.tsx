@@ -8,22 +8,16 @@ type Card = {
   description: string;
 };
 
-type Button = {
-  link: string;
-  text: string;
-  isPrimary: boolean;
-};
-
-type containerMiddle = {
-  title2 : string;
-  description : string;
-  button : object;
-}
-
 class FaqContainer extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp({
+      type: "string",
+      key: "badge",
+      displayer: "Badge",
+      value: "FAQ",
+    });
 
     this.addProp({
       type: "string",
@@ -37,34 +31,6 @@ class FaqContainer extends BaseFAQ {
       key: "title",
       displayer: "Title Description",
       value: "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title2",
-      displayer: "Container Title",
-      value: "Shipping and Delivery",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Container Description",
-      value: "This section of the website provides information on shipping options, delivery times, and tracking your order.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "FAQ",
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Row",
-      value: 3,
     });
 
     this.addProp({
@@ -202,6 +168,13 @@ class FaqContainer extends BaseFAQ {
     });
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Row",
+      value: 3,
+    });
+
+    this.addProp({
       type: "array",
       key: "downContainer",
       displayer: "Container",
@@ -209,12 +182,12 @@ class FaqContainer extends BaseFAQ {
         {
           type: "object",
           key: "childContainer",
-          displayer: "ChildContainer",
+          displayer: "Child Container",
           value: [
             {
               type: "string",
               key: "title2",
-              displayer: "title",
+              displayer: "Title",
               value: "Shipping and Delivery",
             },
             {
@@ -229,66 +202,40 @@ class FaqContainer extends BaseFAQ {
               displayer: "Button",
               value: [
                 {
-                  type: "string",
-                  key: "text",
-                  displayer: "Text",
-                  value: "Open Positions",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Open Positions",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      key: "isPrimary",
+                      displayer: "Is primary",
+                      value: true,
+                    },
+                  ],
                 },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-                {
-                  type: "boolean",
-                  key: "isPrimary",
-                  displayer: "Is primary",
-                  value: true,
-                },
-              ],
-            },
+              ]
+            }
           ]
-        }
+        },
       ]
     })
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Open Positions",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: true,
-            },
-          ],
-        },
-      ],
-    });
   }
 
   getName(): string {
-    return "FAQ MIDDLE";
+    return "FAQ-2";
   }
 
   render() {
@@ -345,36 +292,33 @@ class FaqContainer extends BaseFAQ {
             </div>
           </div>
         </div>
-
-        {/* {this.castToObject<containerMiddle[]>("downContainer").map(()=>{})} */}
-
-        <div className={this.decorateCSS("down-container")}>
-          <div className={this.decorateCSS("child-container")}>
-            <h1 className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</h1>
-            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-            <div className={this.decorateCSS("button-group")}>
-              {this.castToObject<Button[]>("buttons").map(
-                (button: Button, indexButtons: number) => {
+        {this.castToObject<[]>("downContainer").map((item: any, index: number) => (
+          <div className={this.decorateCSS("down-container")}>
+            <div
+              key={index}
+              className={this.decorateCSS("child-container")}
+            >
+              <h1 className={this.decorateCSS("title2")}>{item.value[0].value}</h1>
+              <p className={this.decorateCSS("description")}>{item.value[1].value}</p>
+              <div className={this.decorateCSS("button-group")}>
+                {item.value[2].value.map((button: any, buttonIndex: number) => {
                   return (
-                    <ComposerLink key={indexButtons} path={button.link}>
-                      <button
-                        className={
-                          this.decorateCSS("button") +
-                          " " +
-                          (button.isPrimary
-                            ? this.decorateCSS("primary")
-                            : this.decorateCSS("secondary"))
-                        }
+                    <ComposerLink key={buttonIndex} path="">
+                      <button className={this.decorateCSS("button") +
+                        " " +
+                        (button.value[2].value
+                          ? this.decorateCSS("primary")
+                          : this.decorateCSS("secondary"))}
                       >
-                        {button.text}
+                        {button.value[0].value}
                       </button>
                     </ComposerLink>
-                  );
-                }
-              )}
+                  )
+                })}
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
     );
   }
