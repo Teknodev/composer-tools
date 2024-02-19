@@ -94,6 +94,7 @@ class Stats6Page extends BaseStats {
     return "Stats 6";
   }
   activeIndex: number = -1;
+
   render() {
     return (
       <div className={this.decorateCSS("container")}>
