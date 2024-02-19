@@ -10,7 +10,7 @@ type Card = {
 class FaqButton extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
-    
+
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -22,7 +22,8 @@ class FaqButton extends BaseFAQ {
       type: "string",
       key: "text",
       displayer: "Page Title Description",
-      value: "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
+      value:
+        "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
     });
 
     this.addProp({
@@ -46,14 +47,14 @@ class FaqButton extends BaseFAQ {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "What are the shipping options available?",
+              value: "What are the shipping options available?",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+              value:
+                "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
             },
           ],
         },
@@ -66,14 +67,14 @@ class FaqButton extends BaseFAQ {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "How can I track my order?",
+              value: "How can I track my order?",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's ",
+              value:
+                "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's ",
             },
           ],
         },
@@ -86,17 +87,18 @@ class FaqButton extends BaseFAQ {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                " What is your return policy?",
+              value: " What is your return policy?",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+              value:
+                " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
             },
           ],
-        },{
+        },
+        {
           type: "object",
           key: "items",
           displayer: "Items",
@@ -105,21 +107,19 @@ class FaqButton extends BaseFAQ {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                " How can I contact customer support?",
+              value: " How can I contact customer support?",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+              value:
+                "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
             },
           ],
-        }
+        },
       ],
     });
-
-    
   }
 
   getName(): string {
@@ -141,8 +141,12 @@ class FaqButton extends BaseFAQ {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <p className={this.decorateCSS("text-p")}>{this.getPropValue("text")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </h1>
+              <p className={this.decorateCSS("text-p")}>
+                {this.getPropValue("text")}
+              </p>
             </div>
             <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("card").map(
@@ -151,11 +155,11 @@ class FaqButton extends BaseFAQ {
                     <div className={this.decorateCSS("card")} key={indexCard}>
                       <div className={this.decorateCSS("child-container")}>
                         <div className={this.decorateCSS("card-title")}>
-                          <h3 className={this.decorateCSS("card-title-h3")}>{card.title}</h3>
+                          <h3 className={this.decorateCSS("card-title-h3")}>
+                            {card.title}
+                          </h3>
                         </div>
-                        <div className={this.decorateCSS("icon")}
-                        onClick={() => handleButton(indexCard)}
-                        >
+                        <div className={this.decorateCSS("icon")}>
                           <img
                             alt=""
                             src={
@@ -163,14 +167,14 @@ class FaqButton extends BaseFAQ {
                                 ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
                                 : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
                             }
-                            
+                            onClick={() => handleButton(indexCard)}
                           />
                         </div>
                       </div>
                       <p
                         className={`${
                           this.activeIndex === indexCard
-                            ? this.decorateCSS("text") 
+                            ? this.decorateCSS("text")
                             : this.decorateCSS("hide")
                         }`}
                       >
