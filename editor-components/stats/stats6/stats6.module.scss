@@ -1,44 +1,55 @@
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .stats6-page {
+  width: 100%;
+  padding: 50px 0;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    .sections-container {
+      .stats6-up {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5rem;
+        .header {
+          font-size: 40px;
+          font-weight: 700;
+          margin-bottom: -0.5rem;
+        }
+        .header-description {
+          font-size: 16px;
+          width: 30%;
+          text-align: center;
+        }
+      }
+      //
+      //
+      // down page
+      //
+      //
+      .stats6-page {
+        display: flex;
+        justify-content: center;
+        .card {
+          display: flex;
+          align-content: center;
+          .single-card {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            .card {
-                text-align: center;
-                min-width: 250px;
-                flex: 1 1;
-                box-shadow: var(--composer-box-shadow);
-                border-radius: var(--composer-border-radius);
-                padding: 30px 0;
-                img {
-                    border-radius: 20px;
-                    box-shadow: var(--composer-box-shadow);
-                }
-                .data-card-title {
-                    font-size: 3rem;
-                    margin: 20px 0;
-                    color: var(--composer-primary-color);
-                }
-                .-data-card-description {
-                    font-size: 1.5rem;
-                    margin: 0;
-                    color: var(--composer-font-color-primary);
-                }
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .card-title {
+              width: 75%;
+              text-align: center;
             }
+            .card-description {
+              width: 75%;
+              text-align: center;
+              margin-top: -0.5rem;
+            }
+          }
         }
+      }
     }
-}
-
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .stats6-page {
-            gap: 50px !important;
-        }
-    }
+  }
 }
