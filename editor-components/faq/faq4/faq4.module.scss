@@ -1,426 +1,427 @@
 .container {
+  width: 100%;
+  padding: 50px 50px;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    display: flex;
+    justify-content: center;
+    margin: auto;
+
+    .page {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .up-page {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        white-space: pre-line;
+        word-break: break-all;
+        text-overflow: ellipsis;
+
+        .subtitle {
+          font-size: 3.5rem;
+          color: var(--composer-primary-color);
+          opacity: 0.8;
+          margin: unset;
+        }
+
+        .text-p {
+          font-size: 2rem;
+          color: var(--composer-font-color-primary);
+          opacity: 0.8;
+          word-break: break-word;
+          text-align: justify;
+        }
+
+        .badge {
+          color: var(--composer-primary-color);
+          border-radius: 10px;
+          font-size: 1rem;
+          background: rgb(244, 244, 244);
+          padding: 5px 7px;
+          display: inline-block;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .down-page {
+        width: 75%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .card {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: rgb(244, 244, 244);
+        margin-bottom: 1rem;
+        border-radius: 6px;
+
+        .child-container {
+          width: 100%;
+          padding: 2rem 5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .card-title {
+            font-size: 2.2rem;
+            color: rgb(24, 23, 23);
+            opacity: 0.9;
+            width: 80%;
+            overflow: hidden;
+            white-space: pre-line;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            line-height: 20px;
+
+            .card-title-h3 {
+              font-size: 1.5rem;
+              color: rgb(24, 23, 23);
+              opacity: 0.8;
+              font-weight: bold;
+            }
+          }
+
+          .icon {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--composer-primary-color);
+            background-color: var(--composer-primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+
+            img {
+              filter: brightness(0) invert(1);
+              width: 15px;
+            }
+          }
+        }
+
+        .text {
+          display: block;
+          font-size: 1.5rem;
+          color: rgb(24, 23, 23);
+          opacity: 0.8;
+          overflow: hidden;
+          white-space: pre-line;
+          word-break: break-all;
+          text-overflow: ellipsis;
+          padding: 0 5rem;
+          line-height: 2rem;
+          margin-top: -1rem;
+
+          &:active {
+            transition: 2ms ease-in;
+          }
+        }
+
+        .hide {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
     width: 100%;
     padding: 50px 50px;
 
     .max-content {
-        max-width: var(--composer-content-width);
-        display: flex;
-        justify-content: center;
-        margin: auto;
+      max-width: var(--composer-content-width);
+      display: flex;
+      justify-content: center;
+      margin: auto;
 
-        .page {
+      .page {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .up-page {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          white-space: pre-line;
+          word-break: break-all;
+          text-overflow: ellipsis;
+
+          .subtitle {
+            font-size: 3.5rem;
+            color: var(--composer-primary-color);
+            opacity: 0.8;
+            margin: unset;
+          }
+
+          .text-p {
+            font-size: 2rem;
+            color: var(--composer-font-color-primary);
+            opacity: 0.8;
+            word-break: break-word;
+            text-align: justify;
+          }
+
+          .badge {
+            color: var(--composer-primary-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgb(244, 244, 244);
+            padding: 5px 7px;
+            display: inline-block;
+            margin-bottom: 1rem;
+          }
+        }
+
+        .down-page {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          align-items: center;
+        }
+
+        .card {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          // align-items: center;
+          justify-content: center;
+          background: rgb(244, 244, 244);
+          margin-bottom: 1rem;
+          border-radius: 6px;
+
+          .child-container {
             width: 100%;
+            padding: 2rem 2rem;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
 
-            .up-page {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
-                white-space: pre-line;
-                word-break: break-all;
-                text-overflow: ellipsis;
+            .card-title {
+              font-size: 2.2rem;
+              color: rgb(24, 23, 23);
+              opacity: 0.9;
+              width: 80%;
+              overflow: hidden;
+              white-space: pre-line;
+              word-break: break-all;
+              text-overflow: ellipsis;
+              line-height: 20px;
 
-                .subtitle {
-                    font-size: 3.5rem;
-                    color: var(--composer-primary-color);
-                    opacity: 0.8;
-                    margin: unset;
-                }
-
-                .text-p {
-                    font-size: 2rem;
-                    color: var(--composer-font-color-primary);
-                    opacity: 0.8;
-                    word-break: break-word;
-                    text-align: justify;
-                }
-
-                .badge {
-                    color: var(--composer-primary-color);
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    background: rgb(244, 244, 244);
-                    padding: 5px 7px;
-                    display: inline-block;
-                    margin-bottom: 1rem;
-                }
+              .card-title-h3 {
+                font-size: 1.5rem;
+                color: rgb(24, 23, 23);
+                opacity: 0.8;
+                font-weight: bold;
+              }
             }
 
-            .down-page {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
-                align-items: center;
+            .icon {
+              width: 25px;
+              height: 25px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: 1px solid var(--composer-primary-color);
+              background-color: var(--composer-primary-color);
+              border-radius: 50%;
+              cursor: pointer;
+
+              img {
+                filter: brightness(0) invert(1);
+                width: 15px;
+              }
             }
+          }
 
-            .card {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                // align-items: center;
-                justify-content: center;
-                background: rgb(244, 244, 244);
-                margin-bottom: 1rem;
-                border-radius: 6px;
+          .text {
+            display: block;
+            font-size: 1.5rem;
+            color: rgb(24, 23, 23);
+            opacity: 0.8;
+            overflow: hidden;
+            white-space: pre-line;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            padding: 0 5rem;
+            line-height: 2rem;
 
-                .child-container {
-                    width: 100%;
-                    padding: 2rem 5rem;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .card-title {
-                        font-size: 2.2rem;
-                        color: rgb(24, 23, 23);
-                        opacity: 0.9;
-                        width: 80%;
-                        overflow: hidden;
-                        white-space: pre-line;
-                        word-break: break-all;
-                        text-overflow: ellipsis;
-                        line-height: 20px;
-
-                        .card-title-h3 {
-                            font-size: 1.5rem;
-                            color: rgb(24, 23, 23);
-                            opacity: 0.8;
-                            font-weight: bold;
-                        }
-                    }
-
-                    .icon {
-                        width: 25px;
-                        height: 25px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border: 1px solid var(--composer-primary-color);
-                        background-color: var(--composer-primary-color);
-                        border-radius: 50%;
-                        cursor: pointer;
-
-                        img {
-                            filter: brightness(0) invert(1);
-                            width: 15px;
-                        }
-                    }
-                }
-
-                .text {
-                    display: block;
-                    font-size: 1.5rem;
-                    color: rgb(24, 23, 23);
-                    opacity: 0.8;
-                    overflow: hidden;
-                    white-space: pre-line;
-                    word-break: break-all;
-                    text-overflow: ellipsis;
-                    padding: 0 5rem;
-                    line-height: 2rem;
-
-                    &:active {
-                        transition: 2ms ease-in;
-                    }
-                }
-
-                .hide {
-                    display: none;
-                }
+            &:active {
+              transition: 2ms ease-in;
             }
+          }
+
+          .hide {
+            display: none;
+          }
         }
-
+      }
     }
+  }
 }
 
-@media only screen and (max-width: 800px) {
-    .container {
+@media only screen and (max-width: 400px) {
+  .container {
+    width: 100%;
+    padding: 50px 50px;
+
+    .max-content {
+      max-width: var(--composer-content-width);
+      display: flex;
+      justify-content: center;
+      margin: auto;
+
+      .page {
         width: 100%;
-        padding: 50px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        .max-content {
-            max-width: var(--composer-content-width);
-            display: flex;
-            justify-content: center;
-            margin: auto;
+        .up-page {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          white-space: pre-line;
+          word-break: break-all;
+          text-overflow: ellipsis;
 
-            .page {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+          .subtitle {
+            font-size: 3.5rem;
+            color: var(--composer-primary-color);
+            opacity: 0.8;
+            margin: unset;
+          }
 
-                .up-page {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden;
-                    white-space: pre-line;
-                    word-break: break-all;
-                    text-overflow: ellipsis;
+          .text-p {
+            font-size: 1.6rem;
+            color: var(--composer-font-color-primary);
+            opacity: 0.8;
+            word-break: break-word;
+            text-align: center;
+          }
 
-                    .subtitle {
-                        font-size: 3.5rem;
-                        color: var(--composer-primary-color);
-                        opacity: 0.8;
-                        margin: unset;
-                    }
-
-                    .text-p {
-                        font-size: 2rem;
-                        color: var(--composer-font-color-primary);
-                        opacity: 0.8;
-                        word-break: break-word;
-                        text-align: justify;
-                    }
-
-                    .badge {
-                        color: var(--composer-primary-color);
-                        border-radius: 10px;
-                        font-size: 1rem;
-                        background: rgb(244, 244, 244);
-                        padding: 5px 7px;
-                        display: inline-block;
-                        margin-bottom: 1rem;
-                    }
-                }
-
-                .down-page {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-around;
-                    align-items: center;
-                }
-
-                .card {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    // align-items: center;
-                    justify-content: center;
-                    background: rgb(244, 244, 244);
-                    margin-bottom: 1rem;
-                    border-radius: 6px;
-
-                    .child-container {
-                        width: 100%;
-                        padding: 2rem 5rem;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-
-                        .card-title {
-                            font-size: 2.2rem;
-                            color: rgb(24, 23, 23);
-                            opacity: 0.9;
-                            width: 80%;
-                            overflow: hidden;
-                            white-space: pre-line;
-                            word-break: break-all;
-                            text-overflow: ellipsis;
-                            line-height: 20px;
-
-                            .card-title-h3 {
-                                font-size: 1.5rem;
-                                color: rgb(24, 23, 23);
-                                opacity: 0.8;
-                                font-weight: bold;
-                            }
-                        }
-
-                        .icon {
-                            width: 25px;
-                            height: 25px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            border: 1px solid var(--composer-primary-color);
-                            background-color: var(--composer-primary-color);
-                            border-radius: 50%;
-                            cursor: pointer;
-
-                            img {
-                                filter: brightness(0) invert(1);
-                                width: 15px;
-                            }
-                        }
-                    }
-
-                    .text {
-                        display: block;
-                        font-size: 1.5rem;
-                        color: rgb(24, 23, 23);
-                        opacity: 0.8;
-                        overflow: hidden;
-                        white-space: pre-line;
-                        word-break: break-all;
-                        text-overflow: ellipsis;
-                        padding: 0 5rem;
-                        line-height: 2rem;
-
-                        &:active {
-                            transition: 2ms ease-in;
-                        }
-                    }
-
-                    .hide {
-                        display: none;
-                    }
-                }
-            }
+          .badge {
+            color: var(--composer-primary-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgb(244, 244, 244);
+            padding: 5px 7px;
+            display: inline-block;
+            margin-bottom: 1rem;
+          }
         }
-    }
-}
 
-@media only screen and (max-width:400px) {
-    .container {
-        width: 100%;
-        padding: 50px 50px;
+        .down-page {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          align-items: center;
+        }
 
-        .max-content {
-            max-width: var(--composer-content-width);
+        .card {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          // align-items: center;
+          justify-content: center;
+          background: rgb(244, 244, 244);
+          margin-bottom: 1rem;
+          border-radius: 6px;
+
+          .child-container {
+            width: 100%;
+            padding: 0 !important;
             display: flex;
-            justify-content: center;
-            margin: auto;
+            justify-content: space-between;
+            align-items: center;
 
-            .page {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+            .card-title {
+              font-size: 2.2rem;
+              color: rgb(24, 23, 23);
+              opacity: 0.9;
+              width: 80%;
+              overflow: hidden;
+              white-space: pre-line;
+              word-break: break-all;
+              text-overflow: ellipsis;
+              line-height: 20px;
+              padding: 0 1rem;
 
-                .up-page {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden;
-                    white-space: pre-line;
-                    word-break: break-all;
-                    text-overflow: ellipsis;
-
-                    .subtitle {
-                        font-size: 3.5rem;
-                        color: var(--composer-primary-color);
-                        opacity: 0.8;
-                        margin: unset;
-                    }
-
-                    .text-p {
-                        font-size: 1.6rem;
-                        color: var(--composer-font-color-primary);
-                        opacity: 0.8;
-                        word-break: break-word;
-                        text-align: center;
-                    }
-
-                    .badge {
-                        color: var(--composer-primary-color);
-                        border-radius: 10px;
-                        font-size: 1rem;
-                        background: rgb(244, 244, 244);
-                        padding: 5px 7px;
-                        display: inline-block;
-                        margin-bottom: 1rem;
-                    }
-                }
-
-                .down-page {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-around;
-                    align-items: center;
-                }
-
-                .card {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    // align-items: center;
-                    justify-content: center;
-                    background: rgb(244, 244, 244);
-                    margin-bottom: 1rem;
-                    border-radius: 6px;
-
-                    .child-container {
-                        width: 100%;
-                        padding: 0 !important;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-
-                        .card-title {
-                            font-size: 2.2rem;
-                            color: rgb(24, 23, 23);
-                            opacity: 0.9;
-                            width: 80%;
-                            overflow: hidden;
-                            white-space: pre-line;
-                            word-break: break-all;
-                            text-overflow: ellipsis;
-                            line-height: 20px;
-
-                            .card-title-h3 {
-                                font-size: 1.5rem;
-                                color: rgb(24, 23, 23);
-                                opacity: 0.8;
-                                font-weight: bold;
-                                word-break: break-word;
-                            }
-                        }
-
-                        .icon {
-                            width: 25px;
-                            height: 25px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            border: 1px solid var(--composer-primary-color);
-                            background-color: var(--composer-primary-color);
-                            border-radius: 50%;
-                            cursor: pointer;
-
-                            img {
-                                filter: brightness(0) invert(1);
-                                width: 15px;
-                            }
-                        }
-                    }
-
-                    .text {
-                        display: block;
-                        font-size: 1.5rem;
-                        color: rgb(24, 23, 23);
-                        opacity: 0.8;
-                        overflow: hidden;
-                        white-space: pre-line;
-                        word-break: break-all;
-                        text-overflow: ellipsis;
-                        padding: 0 5rem;
-                        line-height: 2rem;
-
-                        &:active {
-                            transition: 2ms ease-in;
-                        }
-                    }
-
-                    .hide {
-                        display: none;
-                    }
-                }
+              .card-title-h3 {
+                font-size: 1.5rem;
+                color: rgb(24, 23, 23);
+                opacity: 0.8;
+                font-weight: bold;
+                word-break: break-word;
+              }
             }
 
+            .icon {
+              width: 25px;
+              height: 25px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: 1px solid var(--composer-primary-color);
+              background-color: var(--composer-primary-color);
+              border-radius: 50%;
+              cursor: pointer;
+
+              img {
+                filter: brightness(0) invert(1);
+                width: 15px;
+              }
+            }
+          }
+
+          .text {
+            display: block;
+            font-size: 1.5rem;
+            color: rgb(24, 23, 23);
+            opacity: 0.8;
+            overflow: hidden;
+            white-space: pre-line;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            padding: 0 5rem;
+            line-height: 2rem;
+
+            &:active {
+              transition: 2ms ease-in;
+            }
+          }
+
+          .hide {
+            display: none;
+          }
         }
+      }
     }
+  }
 }
