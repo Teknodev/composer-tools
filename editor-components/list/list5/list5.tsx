@@ -10,7 +10,12 @@ class List5 extends BaseList {
   }
   constructor(props?: any) {
     super(props, styles);
-
+    this.addProp({
+      type: "string",
+      key: "header",
+      displayer: "Header",
+      value: "Bringing Your Vision to Life - AI Image Generation Service",
+    });
     this.addProp({
       type: "array",
       key: "list-items",
@@ -134,7 +139,7 @@ class List5 extends BaseList {
     return (
       <>
         <div className={this.decorateCSS("header")}>
-          <h1>Bringing Your Vision to Life - AI Image Generation Service</h1>
+          <h1>{this.getPropValue("header")}</h1>
         </div>
         <div className={this.decorateCSS("container")}>
           <div className={this.decorateCSS("max-content")}>
@@ -156,11 +161,8 @@ class List5 extends BaseList {
                           <ComposerIcon
                             name={listItem.value[1].value}
                             propsIcon={{
-                              className: `${styles["_icon"]}`,
+                              className: this.decorateCSS("icon"),
                               size: 60,
-                              onClick: () => {
-                                console.log("test");
-                              },
                             }}
                           />
                         </div>
