@@ -6,7 +6,7 @@ type Faq = {
   number: number;
   title: string;
   description: string;
-}
+};
 
 class FaqContainerTwo extends BaseFAQ {
   constructor(props?: any) {
@@ -17,14 +17,15 @@ class FaqContainerTwo extends BaseFAQ {
       key: "mainTitle",
       displayer: "Title",
       value: "Got Questions? We’ve Got Answers!",
-    })
+    });
 
     this.addProp({
       type: "string",
       key: "mainSubtitle",
       displayer: "Subtitle",
-      value: "Below is a list of frequently asked questions to help you understand how this works.",
-    })
+      value:
+        "Below is a list of frequently asked questions to help you understand how this works.",
+    });
 
     this.addProp({
       type: "array",
@@ -52,9 +53,10 @@ class FaqContainerTwo extends BaseFAQ {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+              value:
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -77,9 +79,10 @@ class FaqContainerTwo extends BaseFAQ {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+              value:
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -102,9 +105,10 @@ class FaqContainerTwo extends BaseFAQ {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+              value:
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -127,9 +131,10 @@ class FaqContainerTwo extends BaseFAQ {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+              value:
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -152,12 +157,13 @@ class FaqContainerTwo extends BaseFAQ {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+              value:
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
-          ]
+          ],
         },
-      ]
-    })
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -179,7 +185,8 @@ class FaqContainerTwo extends BaseFAQ {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Blandit justo vestibulum tincidunt, ipsum id non, volutpat neque pede eget donec.",
+              value:
+                "Blandit justo vestibulum tincidunt, ipsum id non, volutpat neque pede eget donec.",
             },
             {
               type: "string",
@@ -187,7 +194,7 @@ class FaqContainerTwo extends BaseFAQ {
               displayer: "Button Writing",
               value: "CONTACT US",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -204,7 +211,8 @@ class FaqContainerTwo extends BaseFAQ {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Etiam nisl cras, arcu dui, wisi aenean non sit quisque nulla, eget aut molestie. Rhoncus sociis, nulla luctus diam montes cubilia.",
+              value:
+                "Etiam nisl cras, arcu dui, wisi aenean non sit quisque nulla, eget aut molestie. Rhoncus sociis, nulla luctus diam montes cubilia.",
             },
             {
               type: "string",
@@ -212,13 +220,18 @@ class FaqContainerTwo extends BaseFAQ {
               displayer: "Button Writing",
               value: "LEARN MORE",
             },
-          ]
+          ],
         },
-      ]
-    })
+      ],
+    });
+    this.addProp({
+      type: "string",
+      key: "image",
+      displayer: "Image",
+      value: "https://www.svgrepo.com/show/80156/down-arrow.svg",
+    });
 
     this.state["componentProps"]["selectCardIndex"] = null;
-
   }
 
   getName(): string {
@@ -228,57 +241,77 @@ class FaqContainerTwo extends BaseFAQ {
   lineClicked(index: number) {
     if (this.getComponentState("selectCardIndex") === index) {
       this.setComponentState("selectCardIndex", null);
-    }
-    else {
+    } else {
       this.setComponentState("selectCardIndex", index);
     }
   }
 
   render() {
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("containerTop")}>
             <div className={this.decorateCSS("header")}>
-              <div className={this.decorateCSS("caption")}>{this.getPropValue("mainTitle")}</div>
-              <p className={this.decorateCSS("subtitle")}>{this.getPropValue("mainSubtitle")}</p>
+              <div className={this.decorateCSS("caption")}>
+                {this.getPropValue("mainTitle")}
+              </div>
+              <p className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("mainSubtitle")}
+              </p>
             </div>
             <div className={this.decorateCSS("contentContainer")}>
               <div className={this.decorateCSS("content-left")}>
-                {this.castToObject<Faq[]>("faqList").map((item: Faq, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("faq-items")}
-                    onClick={() => {
-                      this.lineClicked(index);
-                    }}
-                  >
-                    <h3
-                      className={this.decorateCSS("title-item")}
+                {this.castToObject<Faq[]>("faqList").map(
+                  (item: Faq, index: number) => (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("faq-items")}
+                      onClick={() => {
+                        this.lineClicked(index);
+                      }}
                     >
-                      {item.number}.
-                      {item.title}
-                      
-                    </h3>
-                    <img
-                        src="https://www.svgrepo.com/show/80156/down-arrow.svg"
+                      <h3 className={this.decorateCSS("title-item")}>
+                        {item.number}.{item.title}
+                      </h3>
+                      <img
+                        src={this.getPropValue("image")}
                         alt=""
-                        className={`${this.getComponentState("selectCardIndex") ===index ? this.decorateCSS("rotate") : ""}`}
+                        className={`${
+                          this.getComponentState("selectCardIndex") === index
+                            ? this.decorateCSS("rotate")
+                            : ""
+                        }`}
                       />
-                    <div className={`${this.decorateCSS("description-item")} ${this.getComponentState("selectCardIndex") === index ? this.decorateCSS("active") : ""}`}>{item.description}</div>
-                    <hr />
-                  </div>
-                ))}
+                      <div
+                        className={`${this.decorateCSS("description-item")} ${
+                          this.getComponentState("selectCardIndex") === index
+                            ? this.decorateCSS("active")
+                            : ""
+                        }`}
+                      >
+                        {item.description}
+                      </div>
+                      <hr />
+                    </div>
+                  )
+                )}
               </div>
               <div className={this.decorateCSS("content-right")}>
-                {this.getPropValue("infoArray").map((item: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("info-items")}>
-                    <h3 className={this.decorateCSS("title-info")}>{item.value[0].value}</h3>
-                    <div className={this.decorateCSS("description-info")}>{item.value[1].value}</div>
-                    <button className={this.decorateCSS("button-info")}>{item.value[2].value}</button>
-                  </div>
-                ))}
+                {this.getPropValue("infoArray").map(
+                  (item: any, index: number) => (
+                    <div key={index} className={this.decorateCSS("info-items")}>
+                      <h3 className={this.decorateCSS("title-info")}>
+                        {item.value[0].value}
+                      </h3>
+                      <div className={this.decorateCSS("description-info")}>
+                        {item.value[1].value}
+                      </div>
+                      <button className={this.decorateCSS("button-info")}>
+                        {item.value[2].value}
+                      </button>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
