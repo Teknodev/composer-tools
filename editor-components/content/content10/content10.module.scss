@@ -1,13 +1,11 @@
 .container {
     width: 100%;
-    position: fixed;
 
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
         display: flex;
         gap: 30px;
-        position: fixed;
         @media screen and (max-width: 992px) {
             flex-direction: column;
             gap: 0;
