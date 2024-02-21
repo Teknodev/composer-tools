@@ -16,13 +16,15 @@
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      .title{
+      .title {
         font-size: 3rem;
       }
       .card {
         text-align: center;
-        min-width: 250px;
-        flex: 1 1;
+        margin-left: 1.5rem;
+        // min-width: 250px;
+        // flex: 1 1;
+        width: 30%;
         box-shadow: var(--composer-box-shadow);
         border-radius: var(--composer-border-radius);
         padding: 30px 0;

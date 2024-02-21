@@ -105,18 +105,18 @@ class Stats6Page extends BaseStats {
       this.castToObject<CardData[]>("card-list").map(
         (statsData: CardData, index: number) => {
           let statNumber = this.getComponentState(`number-${index}`);
-          if (statNumber < statsData.CardTitle) {
+          if (statNumber != statsData.CardTitle) {
             this.setComponentState(
               `number-${index}`,
-              statNumber +
-                Math.round(
-                  statsData.CardTitle /
-                    Math.round(this.getPropValue("animation-duration") / 30)
-                )
+              Math.min(
+                statsData.CardTitle,
+                statNumber +
+                  Math.ceil(
+                    statsData.CardTitle /
+                      Math.round(this.getPropValue("animation-duration") / 30)
+                  )
+              ) || 0
             );
-          } else {
-            this.setComponentState(`number-${index}`, statsData.CardTitle);
-            clearInterval(x);
           }
         }
       );
