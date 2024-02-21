@@ -48,8 +48,8 @@
                         box-shadow: var(--composer-box-shadow);
                         border-radius: 100%;
                         border: 1px;
-                        width: 100px;
-                        height: 100px;
+                        min-width: 100px;
+                        min-height: 100px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -59,17 +59,17 @@
                         }
                     }
                     .card {
-                        height: 350px;
+                        height: 100%;
                         width: 250px;
                         line-height: 1.8;
                         box-sizing: border-box;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        justify-content: center;
+                        //justify-content: center;
                         gap: 30px;
                         box-shadow: var(--composer-box-shadow);
-                        padding: 20px 0;
+                        padding: 30px;
                         border-radius: 6px;
                         background: var(--composer-primary-color);
                         
@@ -87,20 +87,25 @@
                             border: 1px solid var(--composer-primary-color);
                         }
                         .card-box {
-                            width: 150px;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            gap: 20px;
+                            //gap: 20px;
                             width: 200px;
                             border-radius: 6px;
                             margin: 20px;
+                            max-width: max-content;
+                            
                             .item-value {
+                                
+                                text-align: center;
                                 margin: 0;
                                 font-size: 1.7rem;
                                 color: white;
                             }
                             .item-value2 {
+                                
+                                text-align: center;
                                 font-weight: 500;
                                 font-size: 1.5rem;
                                 color: white;
