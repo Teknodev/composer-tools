@@ -94,14 +94,14 @@ class Stats6Page extends BaseStats {
       type: "number",
       key: "animation-duration",
       displayer: "Number Animation Duration (ms)",
-      value: 1000,
+      value: 500,
     });
 
     this.castToObject<CardData[]>("card-list").map((statsData, index) =>
       this.setComponentState(`number-${index}`, 0)
     );
 
-    setInterval(() => {
+    let x = setInterval(() => {
       this.castToObject<CardData[]>("card-list").map(
         (statsData: CardData, index: number) => {
           let statNumber = this.getComponentState(`number-${index}`);
@@ -116,6 +116,7 @@ class Stats6Page extends BaseStats {
             );
           } else {
             this.setComponentState(`number-${index}`, statsData.CardTitle);
+            clearInterval(x);
           }
         }
       );
@@ -132,7 +133,9 @@ class Stats6Page extends BaseStats {
         <div className={this.decorateCSS("container")}>
           <div className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("banner")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("header")}</h1>
+              <h1 className={this.decorateCSS("title")}>
+                {this.getPropValue("header")}
+              </h1>
               <p>{this.getPropValue("description")}</p>
             </div>
             <div className={this.decorateCSS("stats6-page")}>
