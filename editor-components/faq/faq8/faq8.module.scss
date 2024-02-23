@@ -96,6 +96,7 @@
   width: 66.6666% !important;
 
   padding: 0 30px;
+  margin-right: -3rem;
 }
 .category-flex {
   width: 33.333333% !important;
@@ -164,6 +165,7 @@
   .questions {
     width: 100% !important;
     padding: 0 0;
+    margin-right: 0;
   }
   .category-name {
     text-align: left;
@@ -200,5 +202,8 @@
   }
   .active-category .arrow-right {
     width: 3%;
+  }
+  .questions {
+    margin-right: 0;
   }
 }
