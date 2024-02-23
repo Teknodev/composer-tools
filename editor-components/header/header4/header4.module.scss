@@ -6,152 +6,135 @@
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-
-    .header-page {
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex-wrap: wrap;
-      align-items: center;
-      padding: 40px;
-      
-
-      .subtitle {
-        font-size: 3.5rem;
-        text-align: center;
-        margin: 0 0 40px 0;
-        color: var(--composer-font-color-primary);
-      }
-
-      .section {
+    .image-container {
+      height: 90vh;
+      position: relative;
+      overflow: hidden;
+      .image::before {
+        content: "";
+        position: absolute;
+        background: #000;
         width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-
-        .boxs {
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .image {
+        position: relative;
+        height: 130%;
+        width: 100%;
+        inset: 0px;
+        color: transparent;
+        // translate: none;
+        // rotate: none;
+        // scale: none;
+        transform: translate(0%, -15.2757%) translate3d(0px, 0px, 0px);
+        scale: 1.2;
+      }
+      .image::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-color);
+        transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+    }
+    .card {
+      position: absolute;
+      bottom: 0;
+      background: black;
+      color: white;
+      transform: translate3d(0px, -48.0737px, 0px);
+      right: 80px;
+      .box {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        padding-left: 3rem;
+        .heading {
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          flex: 1 1;
-          gap: 40px;
-
-          &.boxs-right {
-            align-items: flex-end !important;
+          align-items: flex-start;
+          margin-bottom: 30px;
+          .sub-title {
+            letter-spacing: 3px;
+            font-size: 16px;
+            line-height: 1.6;
+            padding-left: 7rem;
           }
-
-          .box {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: calc(100% - 80px);
-            padding: 20px;
-            border: 1px solid var(--composer-tertiary-color);
-            border-radius: 6px;
-            overflow: hidden;
-            white-space: pre-line;
-            text-overflow: ellipsis;
-            word-break: break-all;
-
-            .card-left{
-              width: 100%;
-              font-size: 1.2rem;
-             &:hover {
-              color: var(--composer-font-color-primary);
-             }
-            }
-            &:hover {
-              background-color: var(--composer-primary-color);
-              
-              .card-value {
-                background-color: var(--composer-primary-color);
-              }
-            }
-
-            &.box-left {
-              margin-left: 80px;
-              
-              &:hover {
-                color: var(--composer-font-color-primary);
-                background-color: var(--composer-primary-color);
-              }
-            }
-
-            &.box-right {
-              margin-right: 80px;
-              
-              &:hover{
-                color: var(--composer-font-color-primary);
-                background-color: var(--composer-primary-color);
-              }
-            }
-
+          .title {
+            margin-top: 10px;
+            font-size: 40px;
+            letter-spacing: 2px;
           }
         }
-
-        .card-right {
-          width: 100%;
-          font-size: 1.2rem;
-         &:hover{
-          color: var(--composer-font-color-primary);
-         }
+        .desc1,
+        .desc2 {
+          margin-bottom: 10px;
+          line-height: 1.6;
+          display: block;
+          margin-block-start: 1em;
+          margin-block-end: 1em;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
+          font-size: 14px;
+          width: 80%;
         }
-        .card-value2 {
-          overflow: hidden;
-          white-space: pre-line;
-          text-overflow: ellipsis;
-          word-break: break-all;
-          background-color: var(--composer-primary-color);
+        .btn {
+          position: relative;
+          padding: 20px 30px;
+          font-size: 13px;
+          line-height: 16px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          color: #fff;
+          background: #000;
+          border: 1.5px white solid;
+          transition: transform 0.3s ease-in-out;
+          cursor: pointer;
+          &:hover {
+            transform: scale(1.05);
+          }
         }
-      }
-
-      .image-container {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-size: cover;
-        .image {
-          max-width: 350px;
-          width: calc(100% - 40px);
-          object-fit: cover;
-          border-radius: 6px;
+        .note {
+          margin-top: 15px;
+          font-size: 14px;
+          letter-spacing: 1.5px;
+          color: #14bfb5;
         }
       }
     }
   }
 }
-
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
   .container {
-    padding: 50px 20px;
-
-    .header-page {
-      padding: 20px !important;
-
-      .section {
-        flex-direction: column !important;
-        gap: 20px !important;
-
-        .boxs {
-          gap: 20px !important;
-
-          .box {
-            width: 100% !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-          }
-        }
-      }
-
-      .image-container {
-        .image {
-          width: 100% !important;
-        }
-      }
+    padding: 0 0 !important;
+  }
+  .card {
+    position: relative !important;
+    transform: none !important;
+    right: 0px !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    .sub-title {
+      padding-left: 0 !important;
+    }
+  }
+  .image-container {
+    height: 50vh !important;
+    .image {
+      scale: 0;
+      height: auto;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .image-container {
+    .image {
+      height: 130%;
     }
   }
 }
