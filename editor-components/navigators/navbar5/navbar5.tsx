@@ -18,13 +18,19 @@ class Navbar5 extends BaseNavigator {
 
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
-      type : "boolean",
-      key : "sticky",
-      displayer : "Is sticky",
-      value : false,
-    })
+      type: "string",
+      key: "img-ham",
+      displayer: "Icon",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "sticky",
+      displayer: "Is sticky",
+      value: false,
+    });
 
     this.addProp({
       type: "image",
@@ -236,14 +242,23 @@ class Navbar5 extends BaseNavigator {
 
   render(): ReactNode {
     return (
-      <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
+      <div
+        className={`${this.decorateCSS("container")} ${
+          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+        }`}
+      >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("content-left")}>
               {this.getPropValue("left-items").map((leftItem: any) => {
                 return (
                   <ComposerLink path={leftItem.value[1].value}>
-                    <img src={leftItem.value[0].value} width={20} height={20} alt="" />
+                    <img
+                      src={leftItem.value[0].value}
+                      width={20}
+                      height={20}
+                      alt=""
+                    />
                   </ComposerLink>
                 );
               })}
@@ -257,10 +272,7 @@ class Navbar5 extends BaseNavigator {
                 alt=""
               />
             </div>
-
-
           </div>
-
 
           <div className={this.decorateCSS("containerRight")}>
             {this.castToObject<Button[]>("buttons").map(
@@ -268,8 +280,9 @@ class Navbar5 extends BaseNavigator {
                 return (
                   <ComposerLink key={indexButtons} path={item.url}>
                     <button
-                      className={`${this.decorateCSS("button")} ${item.isPrimary ? this.decorateCSS("primary") : ""
-                        }`}
+                      className={`${this.decorateCSS("button")} ${
+                        item.isPrimary ? this.decorateCSS("primary") : ""
+                      }`}
                     >
                       {item.buttonText}
                     </button>
@@ -278,7 +291,6 @@ class Navbar5 extends BaseNavigator {
               }
             )}
           </div>
-
         </div>
 
         <div className={this.decorateCSS("secondline-content")}>
@@ -286,15 +298,20 @@ class Navbar5 extends BaseNavigator {
             (data: any, indexItemList: number) => {
               return (
                 <ComposerLink key={indexItemList} path={data.value[1].value}>
-                  
-                  <span className={this.decorateCSS("data-value")}>{data.value[0].value}</span>
+                  <span className={this.decorateCSS("data-value")}>
+                    {data.value[0].value}
+                  </span>
                 </ComposerLink>
               );
             }
           )}
           <img
-            className={`${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive") ? this.decorateCSS("rotate") : ""}`}
-            src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
+            className={`${this.decorateCSS("img-hamburger")} ${
+              this.getComponentState("navActive")
+                ? this.decorateCSS("rotate")
+                : ""
+            }`}
+            src={this.getPropValue("img-ham")}
             alt=""
             onClick={() => {
               this.navClick();
@@ -302,20 +319,18 @@ class Navbar5 extends BaseNavigator {
           />
           {this.getComponentState("navActive") && (
             <div className={this.decorateCSS("navbar-child")}>
-              {this.castToObject<[]>("itemList").map((item: any, index: number) => {
-                return (
-                  <ComposerLink
-                    key={index}
-                    path={item.value[1].value}
-                    >
+              {this.castToObject<[]>("itemList").map(
+                (item: any, index: number) => {
+                  return (
+                    <ComposerLink key={index} path={item.value[1].value}>
                       <h3 key={index}>{item.value[0].value}</h3>
-                  </ComposerLink>
-                );
-              })}
+                    </ComposerLink>
+                  );
+                }
+              )}
             </div>
           )}
         </div>
-
       </div>
     );
   }
