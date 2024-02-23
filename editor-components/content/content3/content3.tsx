@@ -2,8 +2,10 @@ import * as React from "react";
 import { BaseContent, Team } from "../../EditorComponent";
 import styles from "./content3.module.scss";
 import { Content } from "../../../../components/section-card/section-card";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
+  icon:string;
   image: string;
   title: string;
   description: string;
@@ -23,6 +25,12 @@ class Content3 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type:"icon",
+              key:"icon",
+              displayer:"Icon",
+              value:"LiaBicycleSolid",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -39,7 +47,7 @@ class Content3 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/photographer600.jpg",
             },
           ],
         },
@@ -49,10 +57,16 @@ class Content3 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type:"icon",
+              key:"icon",
+              displayer:"Icon",
+              value:"LiaBicycleSolid",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "CREATE AMAZING DESING WITH MINT THEME",
+              value: "WE CRAFT BEAUTIFUL & AWESOME THEMES",
             },
             {
               type: "string",
@@ -65,7 +79,7 @@ class Content3 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/oldcity600.jpg",
             },
           ],
         },
@@ -75,10 +89,16 @@ class Content3 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type:"icon",
+              key:"icon",
+              displayer:"Icon",
+              value:"LiaBicycleSolid",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "CREATE AMAZING DESING WITH MINT THEME",
+              value: "READY TO START YOUR NEXT WEB PROJECT NOW?",
             },
             {
               type: "string",
@@ -91,7 +111,7 @@ class Content3 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/magazine.jpg",
             },
           ],
         },
@@ -101,10 +121,16 @@ class Content3 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type:"icon",
+              key:"icon",
+              displayer:"Icon",
+              value:"LiaBicycleSolid",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "CREATE AMAZING DESING WITH MINT THEME",
+              value: "WE BELIEVE IN THE POWER OF GREAT DESIGN",
             },
             {
               type: "string",
@@ -117,7 +143,7 @@ class Content3 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/team04-1.jpg",
             },
           ],
         },
@@ -144,29 +170,36 @@ class Content3 extends BaseContent {
   }
 
   render() {
+    console.log(this.castToObject<Card[]>("cards"));
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<Card[]>("cards").map(
-            (card: Card, indexCard: number) => (
-              <div className={this.decorateCSS("card-item-count")} style={{
-                width: 100 / this.getPropValue("itemCount") + "%",
-              }}>
+  (card: Card, indexCard: number) => (
+    <div key={indexCard} className={this.decorateCSS("card-item-count")} style={{
+      width: 100 / this.getPropValue("itemCount") + "%",
+    }}>
+      <div className={this.decorateCSS("card")} onMouseLeave={(e) => this.setComponentState(`hoveredElementHeight-${indexCard}`, 0)}>
+        <div className={this.decorateCSS("image-container")}>
+          <img className={this.decorateCSS("image")} src={card.image} alt=""/>
+        </div>
+        <div className={this.decorateCSS("little-container")} onMouseEnter={() => this.setDescriptionHeight(indexCard)}>
+          <div className={this.decorateCSS("icon-title-container")}>
+            <ComposerIcon name={card.icon} propsIcon={{className:this.decorateCSS("icon")}}/>  
+            <h3 className={this.decorateCSS("title")} style={{transform: `translateY(${this.getComponentState(`hoveredElementHeight-${indexCard}`)}px)`}}>
+              {card.title}
+            </h3>
+          </div>
+          <p id={`description-${indexCard}`} className={this.decorateCSS("description")}>
+            {card.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+)}
 
-              <div key={indexCard} className={this.decorateCSS("card")} onMouseLeave={(e) => this.setComponentState(`hoveredElementHeight-${indexCard}`, 0)}>
-                <div className={this.decorateCSS("image-container")}>
-                  <img className={this.decorateCSS("image")} src={card.image} alt=""></img>
-                </div>
-                <div className={this.decorateCSS("little-container")} onMouseEnter={() => this.setDescriptionHeight(indexCard)} >
-                  <h3 className={this.decorateCSS("title")} style={{transform: `translateY(${this.getComponentState(`hoveredElementHeight-${indexCard}`)}px)`}}>{card.title}</h3>
-                  <p id={`description-${indexCard}`} className={this.decorateCSS("description")}>
-                    {card.description}
-                  </p>
-                </div>
-              </div>
-              </div>
-            )
-          )}
         </div>
       </div>
     );
