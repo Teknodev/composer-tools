@@ -141,7 +141,7 @@ class Content7 extends BaseContent {
 
             <div className={this.decorateCSS("container-right")}>
               <div className={this.decorateCSS("right-top-inner")}>
-                <h3 className={this.decorateCSS("Title")}>{this.getPropValue("title")}</h3>
+                <h3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h3>
                 <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
               </div>
 
