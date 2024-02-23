@@ -1,6 +1,6 @@
 import React from "react";
 import { IconBaseProps, IconType } from "react-icons/lib";
-// import loadable from "@loadable/component";
+import loadable from "@loadable/component";
 
 interface typesPropsIcon {
   name: string;

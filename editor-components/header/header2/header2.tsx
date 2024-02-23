@@ -35,7 +35,8 @@ class Header2 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/IMG_1185-1-1170x530.jpg",
+              value:
+                "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/IMG_1185-1-1170x530.jpg",
             },
             {
               type: "string",
@@ -58,7 +59,8 @@ class Header2 extends BaseHeader {
             {
               type: "string",
               key: "description",
-              value: "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+              value:
+                "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
               displayer: "Description",
             },
             {
@@ -76,11 +78,11 @@ class Header2 extends BaseHeader {
                   type: "page",
                   key: "buttonClick",
                   displayer: "Button Click",
-                  value: ""
+                  value: "",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -91,7 +93,8 @@ class Header2 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/IMG_3649-1-1170x530.jpg",
+              value:
+                "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/IMG_3649-1-1170x530.jpg",
             },
             {
               type: "string",
@@ -114,7 +117,8 @@ class Header2 extends BaseHeader {
             {
               type: "string",
               key: "description",
-              value: "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+              value:
+                "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
               displayer: "Description",
             },
             {
@@ -132,11 +136,11 @@ class Header2 extends BaseHeader {
                   type: "page",
                   key: "buttonClick",
                   displayer: "Button Click",
-                  value: ""
+                  value: "",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -147,7 +151,8 @@ class Header2 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/DeathtoStock_Holiday2-1-1170x530.jpg",
+              value:
+                "https://2035themes.com/artmagdeneme/wp-content/uploads/2015/12/DeathtoStock_Holiday2-1-1170x530.jpg",
             },
             {
               type: "string",
@@ -170,7 +175,8 @@ class Header2 extends BaseHeader {
             {
               type: "string",
               key: "description",
-              value: "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+              value:
+                "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
               displayer: "Description",
             },
             {
@@ -188,14 +194,14 @@ class Header2 extends BaseHeader {
                   type: "page",
                   key: "buttonClick",
                   displayer: "Button Click",
-                  value: ""
+                  value: "",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
       ],
-    }) 
+    });
   }
 
   getName(): string {
@@ -203,7 +209,6 @@ class Header2 extends BaseHeader {
   }
 
   render() {
-
     const settings = {
       dots: true,
       infinite: true,
@@ -213,47 +218,46 @@ class Header2 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-    
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <ComposerSlider
-                {...settings}
-                className={this.decorateCSS("carousel")}
-              >
-                {this.castToObject<ISliderData[]>("slider").map(
-                  (item: ISliderData, index: number) => (
-                    <div className={this.decorateCSS("item")} key={`key${index}`}>
-                      <div className={this.decorateCSS("image")}>
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <div className={this.decorateCSS("content")}>
-                        <div className={this.decorateCSS("card")}>
+              {...settings}
+              className={this.decorateCSS("carousel")}
+            >
+              {this.castToObject<ISliderData[]>("slider").map(
+                (item: ISliderData, index: number) => (
+                  <div className={this.decorateCSS("item")} key={`key${index}`}>
+                    <div className={this.decorateCSS("image")}>
+                      <img src={item.image} alt={item.title} />
+                    </div>
+                    <div className={this.decorateCSS("content")}>
+                      <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("card-title")}>
                           <div className={this.decorateCSS("title2")}>
-                          {item.title2}
+                            {item.title2}
                           </div>
                         </div>
-                          <div className={this.decorateCSS("title")}>
+                        <div className={this.decorateCSS("title")}>
                           {item.title}
-                          </div>
-                          <div className={this.decorateCSS("time")}>
-                          {item.time}
-                          </div>
-                          <div className={this.decorateCSS("description")}>
-                          {item.description}
-                          </div>
-                          <div>
-                        <ComposerLink href={item.button[1].value}>
-                        <button className={this.decorateCSS("button") }>
-                          {item.button[0].value}
-                        </button>
-                        </ComposerLink>
-                      </div>
                         </div>
-                      <div>
+                        <div className={this.decorateCSS("time")}>
+                          {item.time}
+                        </div>
+                        <div className={this.decorateCSS("description")}>
+                          {item.description}
+                        </div>
+                        <div>
+                          <ComposerLink href={item.button[1].value}>
+                            <button className={this.decorateCSS("button")}>
+                              {item.button[0].value}
+                            </button>
+                          </ComposerLink>
+                        </div>
                       </div>
+                      <div></div>
                     </div>
                   </div>
                 )

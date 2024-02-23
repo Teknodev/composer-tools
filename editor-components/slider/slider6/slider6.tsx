@@ -21,17 +21,17 @@ class Slider6 extends BaseSlider {
     super(props, styles);
 
     this.addProp({
-    type: "string",
-    key: "title",
-    displayer: "Title",
-    value: "Lasts post"
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Lasts post",
     });
 
     this.addProp({
-     type: "string",
-     key: "subtitle",
-     displayer: "Subtitle",
-     value: "Latest And Greatest Post"
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Latest And Greatest Post",
     });
 
     this.addProp({
@@ -73,8 +73,7 @@ class Slider6 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://images5.alphacoders.com/133/1338186.png",
+              value: "https://images5.alphacoders.com/133/1338186.png",
             },
             {
               type: "string",
@@ -222,9 +221,12 @@ class Slider6 extends BaseSlider {
       ],
     });
 
-    this.setComponentState("prevSlide", this.castToObject<Card[]>("header").length - 1)
-    this.setComponentState("activeSlide",0);
-    this.setComponentState("nextSlide",1)
+    this.setComponentState(
+      "prevSlide",
+      this.castToObject<Card[]>("header").length - 1
+    );
+    this.setComponentState("activeSlide", 0);
+    this.setComponentState("nextSlide", 1);
   }
   getName(): string {
     return "Slider 6";
@@ -240,29 +242,53 @@ class Slider6 extends BaseSlider {
       slidesToShow: 2,
       slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
-        console.log(current, next, this.castToObject<Card[]>("header").length)
-        this.setComponentState("prevSlide", next - 1 < 0 ? (this.castToObject<Card[]>("header").length - 1) : next - 1)
+        this.setComponentState(
+          "prevSlide",
+          next - 1 < 0
+            ? this.castToObject<Card[]>("header").length - 1
+            : next - 1
+        );
         this.setComponentState("activeSlide", next);
-        this.setComponentState("nextSlide", next + 1 > (this.castToObject<Card[]>("header").length - 1) ? 0 : next + 1)
-      }
+        this.setComponentState(
+          "nextSlide",
+          next + 1 > this.castToObject<Card[]>("header").length - 1
+            ? 0
+            : next + 1
+        );
+      },
     };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-        <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
-              <h4 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h4>
-            <div className={this.decorateCSS("wrapper")}>
+          <h2 className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </h2>
+          <h4 className={this.decorateCSS("subtitle")}>
+            {this.getPropValue("subtitle")}
+          </h4>
+          <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("slider-parent")}>
               <Slider {...settings} className={this.decorateCSS("carousel")}>
                 {this.castToObject<Card[]>("header").map(
                   (item: Card, index: number) => (
                     <div
-                      className={this.decorateCSS("slider-inner-div") + " " + 
-                      (this.getComponentState("prevSlide") == index ? this.decorateCSS("prevSlide") : "") + " " + 
-                      (this.getComponentState("nextSlide") == index ? this.decorateCSS("nextSlide") : "")}
-                      key={`sld-8-${index}`}>
+                      className={
+                        this.decorateCSS("slider-inner-div") +
+                        " " +
+                        (this.getComponentState("prevSlide") == index
+                          ? this.decorateCSS("prevSlide")
+                          : "") +
+                        " " +
+                        (this.getComponentState("nextSlide") == index
+                          ? this.decorateCSS("nextSlide")
+                          : "")
+                      }
+                      key={`sld-8-${index}`}
+                    >
                       <div className={this.decorateCSS("content-div")}>
-                        <h5 className={this.decorateCSS("descriptions")}>{item.description}</h5>
+                        <h5 className={this.decorateCSS("descriptions")}>
+                          {item.description}
+                        </h5>
                         <div className={this.decorateCSS("img-div")}>
                           <img
                             alt=""
@@ -274,10 +300,16 @@ class Slider6 extends BaseSlider {
                           <h1 className={this.decorateCSS("first-header")}>
                             {item.image_subtitle}
                           </h1>
-                          <h3 className={this.decorateCSS("item-title")}>{item.image_title}</h3>
-                          <p className={this.decorateCSS("item-description")}>{item.image_description}</p>
+                          <h3 className={this.decorateCSS("item-title")}>
+                            {item.image_title}
+                          </h3>
+                          <p className={this.decorateCSS("item-description")}>
+                            {item.image_description}
+                          </p>
                           <div>
-                          <span className={this.decorateCSS("submit-button")}>{item.button}</span>
+                            <span className={this.decorateCSS("submit-button")}>
+                              {item.button}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -285,10 +317,10 @@ class Slider6 extends BaseSlider {
                   )
                 )}
               </Slider>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     );
   }
 }
