@@ -175,15 +175,13 @@ class Header7 extends BaseHeader {
         },
       ],
     });
-    this.setComponentState("hover", false);
+    this.setComponentState("hover", 0);
   }
   getName(): string {
     return "Header 7";
   }
   render() {
     const handleMouseOver = (index: any) => {
-      console.log(`ON HOVER`);
-
       this.setComponentState("hover", index);
     };
 
