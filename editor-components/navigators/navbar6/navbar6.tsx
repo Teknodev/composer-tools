@@ -9,13 +9,19 @@ class Navbar6 extends BaseNavigator {
   }
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
-      type : "boolean",
-      key : "sticky",
-      displayer : "Is sticky",
-      value : false,
-    })
+      type: "string",
+      key: "img-ham",
+      displayer: "Icon",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "sticky",
+      displayer: "Is sticky",
+      value: false,
+    });
 
     this.addProp({
       type: "array",
@@ -154,7 +160,7 @@ class Navbar6 extends BaseNavigator {
       ],
     });
     this.state["componentProps"]["navActive"] = true;
-  }//constructor end
+  } //constructor end
 
   navClick() {
     let value: boolean = this.getComponentState("navActive");
@@ -162,15 +168,18 @@ class Navbar6 extends BaseNavigator {
   }
 
   render() {
-
     const leftItems = this.getPropValue("left-items");
     const rightItems = this.getPropValue("right-items");
 
     //Combining left and right items (arrays)
-    const combinedItems = [...leftItems, ...rightItems]
+    const combinedItems = [...leftItems, ...rightItems];
 
     return (
-      <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
+      <div
+        className={`${this.decorateCSS("container")} ${
+          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+        }`}
+      >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("content-left")}>
@@ -193,14 +202,20 @@ class Navbar6 extends BaseNavigator {
               {this.getPropValue("right-items").map((rightItem: any) => {
                 return (
                   <ComposerLink path={rightItem.value[1].value}>
-                    <span className={this.decorateCSS("right-item-value")}>{rightItem.value[0].value}</span>
+                    <span className={this.decorateCSS("right-item-value")}>
+                      {rightItem.value[0].value}
+                    </span>
                   </ComposerLink>
                 );
               })}
             </div>
             <img
-              className={`${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive") ? this.decorateCSS("rotate") : ""}`}
-              src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
+              className={`${this.decorateCSS("img-hamburger")} ${
+                this.getComponentState("navActive")
+                  ? this.decorateCSS("rotate")
+                  : ""
+              }`}
+              src={this.getPropValue("img-ham")}
               alt=""
               onClick={() => {
                 this.navClick();
@@ -209,10 +224,7 @@ class Navbar6 extends BaseNavigator {
             {this.getComponentState("navActive") && (
               <div className={this.decorateCSS("navbar-child")}>
                 {combinedItems.map((item: any, index: number) => (
-                  <ComposerLink
-                    key={index}
-                    path={item.value[1].value}
-                  >
+                  <ComposerLink key={index} path={item.value[1].value}>
                     <h3 key={index}>{item.value[0].value}</h3>
                   </ComposerLink>
                 ))}
