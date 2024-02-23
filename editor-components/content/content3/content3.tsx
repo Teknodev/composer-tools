@@ -5,7 +5,7 @@ import { Content } from "../../../../components/section-card/section-card";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
-  icon:string;
+  icon: string;
   image: string;
   title: string;
   description: string;
@@ -25,10 +25,10 @@ class Content3 extends BaseContent {
           displayer: "Card",
           value: [
             {
-              type:"icon",
-              key:"icon",
-              displayer:"Icon",
-              value:"LiaBicycleSolid",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LiaBicycleSolid",
             },
             {
               type: "string",
@@ -57,10 +57,10 @@ class Content3 extends BaseContent {
           displayer: "Card",
           value: [
             {
-              type:"icon",
-              key:"icon",
-              displayer:"Icon",
-              value:"LiaBicycleSolid",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LiaBicycleSolid",
             },
             {
               type: "string",
@@ -89,10 +89,10 @@ class Content3 extends BaseContent {
           displayer: "Card",
           value: [
             {
-              type:"icon",
-              key:"icon",
-              displayer:"Icon",
-              value:"LiaBicycleSolid",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LiaBicycleSolid",
             },
             {
               type: "string",
@@ -121,10 +121,10 @@ class Content3 extends BaseContent {
           displayer: "Card",
           value: [
             {
-              type:"icon",
-              key:"icon",
-              displayer:"Icon",
-              value:"LiaBicycleSolid",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LiaBicycleSolid",
             },
             {
               type: "string",
@@ -149,7 +149,7 @@ class Content3 extends BaseContent {
         },
       ],
     });
-     
+
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -162,43 +162,38 @@ class Content3 extends BaseContent {
     return "Content 3";
   }
 
-  setDescriptionHeight(elementIndex: number): void {
-
-    let descriptionElement = document.querySelector(`#description-${elementIndex}`);
-    if(descriptionElement)
-      this.setComponentState(`hoveredElementHeight-${elementIndex}`, -1 * descriptionElement.clientHeight);
-  }
-
   render() {
     console.log(this.castToObject<Card[]>("cards"));
-    
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<Card[]>("cards").map(
-  (card: Card, indexCard: number) => (
-    <div key={indexCard} className={this.decorateCSS("card-item-count")} style={{
-      width: 100 / this.getPropValue("itemCount") + "%",
-    }}>
-      <div className={this.decorateCSS("card")} onMouseLeave={(e) => this.setComponentState(`hoveredElementHeight-${indexCard}`, 0)}>
-        <div className={this.decorateCSS("image-container")}>
-          <img className={this.decorateCSS("image")} src={card.image} alt=""/>
-        </div>
-        <div className={this.decorateCSS("little-container")} onMouseEnter={() => this.setDescriptionHeight(indexCard)}>
-          <div className={this.decorateCSS("icon-title-container")}>
-            <ComposerIcon name={card.icon} propsIcon={{className:this.decorateCSS("icon")}}/>  
-            <h3 className={this.decorateCSS("title")} style={{transform: `translateY(${this.getComponentState(`hoveredElementHeight-${indexCard}`)}px)`}}>
-              {card.title}
-            </h3>
-          </div>
-          <p id={`description-${indexCard}`} className={this.decorateCSS("description")}>
-            {card.description}
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-)}
+            (card: Card, indexCard: number) => (
+              <div key={indexCard} className={this.decorateCSS("card-item-count")} style={{
+                width: 100 / this.getPropValue("itemCount") + "%",
+              }}>
+                <div className={this.decorateCSS("card")}>
+                  <div className={this.decorateCSS("image-container")}>
+                    <img className={this.decorateCSS("image")} src={card.image} alt="" />
+                  </div>
+                  <div className={this.decorateCSS("little-container")}>
+                    <div className={this.decorateCSS("icon-title-container")}>
+                      <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      <h3 className={this.decorateCSS("title")}>
+                        {card.title}
+                      </h3>
+                    </div>
+                    <div className={this.decorateCSS("description-box")}>
+                      <p className={this.decorateCSS("description")}>
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          )}
 
         </div>
       </div>
