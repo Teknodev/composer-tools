@@ -1,156 +1,143 @@
-$gap: 20px;
 .container {
   width: 100%;
-  padding: 20px 0;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-  }
+    display: flex;
+    justify-content: center;
 
   .wrapper {
     display: flex;
-    width: 64%;
-    gap: $gap;
-    height: 580px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    height: 700px;
+    position: relative;
     .left {
-      flex: 1;
-      .item {
-        align-items: flex-start;
-        padding: 50px;
-        .content{
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          
-          .title{
-            font-size: 1.2rem;
-            color: #669b6b;
-            max-width: 200px;
-            overflow: hidden;
-          }
-          .description{
-            font-size: 3.5rem; 
-            max-width: 550px;
-            overflow: hidden;
-            white-space: pre-wrap;
-          }
-          .button {
-            height: 75%;
-            max-width: 100px;
-            overflow: hidden;
-          }
-        }
-      }
-    }
-    .right {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: $gap;
+      gap: 50px;
       height: 100%;
+
+      margin-left: 10%;
+
       .top {
-        flex: 2 ;
-        .item{
-          .content{
+        flex: 5;
+
+        flex-direction: column;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+        .title {
+          .items {
+            font-size: 42px;
+            color: white;
+            overflow: hidden;
             text-overflow: ellipsis;
-            white-space:nowrap;
-            max-width: 100px;
-            .title{
-              font-size: 1.2rem;
-              color: #669b6b;;
-              max-width: 200px;
-              overflow: hidden;
+            max-width: 1000px;
+          }
+        }
+        .button-and-input {
+          display: flex;
+          gap: 20px;
+          .input {
+            border-radius: 5px;
+            padding: 5px 20px;
+            border: none;
+          }
+          button {
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 10px 10px;
+            background-color: var(--composer-secondary-color);
+            color: var(--composer-font-color-secondary);
+            font-size: 15px;
+            border: 1px solid var(--composer-tertiary-color);
+            &:hover {
+              background-color: transparent;
+              color: var(--composer-font-color-secondary);
             }
-            .description{
-              font-size: 2.5rem;
-              width: 1200px;
-              overflow: hidden;
-              white-space: pre-wrap;
+          }
+        }
+        .icons {
+          z-index: 5;
+          margin-top: 20px;
+          display: flex;
+          align-items: center;
+          li {
+            display: flex;
+            width: 100%;
+            .icon-div {
+              margin: 0 10px;
+              cursor: pointer;
+              img {
+                margin: 5px 0;
+                width: 30px;
+                height: 30px;
+              }
             }
           }
         }
       }
+
       .bottom {
-        display: flex;
-        gap: $gap;
-        flex: 2;
-        .button {
-          color: black !important;
-          background: transparent !important;
-          height: 75%;
-          max-width: 100px;
-          overflow: hidden;
-        }
-        .item {
-          flex: 1;
+        z-index: 5;
+        width: 100%;
+        flex: 1;
+        justify-content: center;
+        li {
+          display: flex;
+          border: 0;
+          a {
+            text-decoration: none;
+            cursor: pointer;
+            padding: 3px;
+            border-right: 2px solid white;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 400px;
+            &:last-child {
+              border-right: none;
+            }
+          }
         }
       }
     }
-    .item {
-      padding: 25px;
+
+    .right {
+      flex: 1;
+      .image {
+        align-items: flex-start;
+
+        position: relative;
+        height: 300px;
+        width: 300px;
+      }
+    }
+    .background-image {
+      z-index: 0;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
+      justify-content: center;
       display: flex;
-      justify-content: flex-start;
-      position: relative;
-      height: 100%;
-      &:hover {
-        .background-image {
-          img {
-            transform: scale(1.1);
-          }
-        }
-      }
-      .background-image {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
+      filter: brightness(80%); 
+
+      img {
+        transform: scale(1);
         height: 100%;
-        overflow: hidden;
-        img {
-          transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-          transform: scale(1);
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-        }
-      }
-      .content {
-        width:auto;
-        z-index: 5;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        color: black;
-        text-overflow: ellipsis;
-        white-space:nowrap;
-        max-width: 625px;
-        
-        .title {
-          font-size: 1.2rem;
-          font-weight: bold;
-          color: #669b6b;
-          max-width: 100px;
-          overflow: hidden;
-        }
-        .description {
-          font-size: 2.5rem;
-          max-width: 200px;
-          overflow: hidden;
-          white-space: pre-wrap;
-        }
-        .button {
-          padding: 10px;
-          background: var(--composer-primary-color);
-          border: 0px;
-          color: black;
-          font-size: 1em;
-          background: transparent !important;
-          border-bottom: #459647 solid 2px;
-          height: 75%;
-          max-width: 100px;
-          overflow: hidden;
-        }
+        width: 100%;
+        object-fit: cover;
       }
     }
   }
@@ -158,169 +145,78 @@ $gap: 20px;
 
 @media only screen and (max-width: 768px) {
   .container {
-    padding: 20px 0;
-    .max-content {
-    }
-  
     .wrapper {
-      flex-direction: column;
-      width: 64%;
-      height: 700px;
-      margin-right: 30%;
-      
       .left {
-        flex:0;
-        .item {
-          
-          width: fit-content;
-          align-items: flex-start;
-          padding: 50px;
-          width: 17.7cm;
-          height: 10cm;
-          .content{
-            .title{
-              font-size: 1.2rem;
-              max-width: 200px;
-              overflow: hidden;
+        .top {
+          .title {
+            font-size: 30px;
+          }
+          .button-and-input {
+            .input {
+              padding: 5px 20px;
             }
-            .description{
-              font-size: 3.5rem;
+            button {
+              padding: 10px 10px;
+              font-size: 15px;
             }
-            .button {
+          }
+          .icons {
+            li {
+              .icon-div {
+                img {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
             }
           }
         }
       }
       .right {
-        flex: 1;
-        flex-direction: row;
-        height: 7cm;
-        width: 17.7cm;
-        .top {
-          height: 100%;
-          flex: 4;
-          width: auto;
-          .item{
-            .content{
-              .title{
-                font-size: 1.2rem;
-              }
-              .description{
-                font-size: 2.5rem;
-              }
-            }
-          }
-        }
-        .bottom {
-          flex-direction: column;
-          width: 20%;
-          .button {
-            height: 75%;
-          }
-          .item {
-            flex: 1;
-          }
-        }
+        display: none;
       }
-      .item {
-        padding: 25px;
-        justify-content: flex-start;
-        .background-image {
-        }
-        .content {
-          .title {
-            font-size: 1.2rem;
-          }
-          .description {
-            font-size: 2.5rem;
-            max-width: 170px;
-          }
-          .button {
-            font-size: 1em;
-            height: 75%;
-          }
+      .background-image{
+        img{
+          width: 300%;
         }
       }
     }
   }
 }
-@media only screen and (max-width: 400px) {
+}
+@media only screen and (max-width: 360px) {
   .container {
-    padding: 30px 0;
-    .max-content {
-    }
-  
-    .wrapper {  
-      flex-direction: column;
-      width: 40%;
-      height: 780px;
-      margin-right: 100%;
-      
+    .wrapper {
+      height: 400px;
       .left {
-        width: max-content;
-        .item {
-          width: fit-content;
-          padding: 30px;
-          .content{
-            .title{
-              font-size: 1.2rem;
+        width: 100%;
+        margin-left: 0;
+        .top {
+          .title {
+            h1 {
+              font-size: 30px;
             }
-            .description{
-              font-size: 1.8rem;
+          }
+          .button-and-input {
+            .input {
+              padding: 5px 20px;
             }
-            .button {
+            button {
+              padding: 10px 10px;
+              font-size: 15px;
+            }
+          }
+        }
+        .bottom {
+          li {
+            a {
+              font-size: 70%;
             }
           }
         }
       }
       .right {
-        flex: 1;
-        flex-direction: column;
-        height: 100%;
-        .top {
-          flex: 1;
-          width: auto;
-          .item{
-            .content{
-              .title{
-                font-size: 1.2rem;
-              }
-              .description{
-                font-size: 2rem;
-              }
-            }
-          }
-        }
-        .bottom {
-          flex-direction: row;
-
-          .button {
-          }
-          .item {
-          }
-        }
-      }
-      .item {
-        width: 360px;
-        padding: 25px;
-        .background-image {
-          img {
-          }
-        }
-        .content {
-          flex-direction: column;
-          
-          .title {
-            font-size: 1.2rem;
-          }
-          .description {
-            font-size: 2rem;
-          }
-          .button {
-            font-size: 0.9em;
-            border-bottom: #459647 solid 2px;
-          }
-        }
+        display: none;
       }
     }
   }

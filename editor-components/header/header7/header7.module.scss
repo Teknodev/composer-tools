@@ -1,8 +1,10 @@
 .container {
   width: 100%;
+
   background-color: transparent;
   overflow: hidden;
   position: relative;
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;

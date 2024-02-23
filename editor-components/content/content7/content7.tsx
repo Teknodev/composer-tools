@@ -72,21 +72,20 @@ class Content7 extends BaseContent {
               {this.getPropValue("title")}
             </span>
             <div className={this.decorateCSS("desc-box")}>
-            <img
+              <img
                 alt=""
                 className={this.decorateCSS("wide-image")}
                 src={this.getPropValue("wideImage")}
               />
-              <span className={this.decorateCSS("description")}>
+              <div className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
-              </span>
-              
+              </div>
             </div>
-            <ComposerLink path={this.getPropValue("button")[1].value}>
-              <span className={this.decorateCSS("button")}>
+            <div className={this.decorateCSS("button")}>
+              <ComposerLink path={this.getPropValue("button")[1].value}>
                 {this.getPropValue("button")[0].value}
-              </span>
-            </ComposerLink>
+              </ComposerLink>
+            </div>
           </div>
         </div>
       </div>

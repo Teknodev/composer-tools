@@ -255,7 +255,7 @@ class Team6 extends Team {
   }
 
   getName(): string {
-    return "Team Meet Three";
+    return "Team 6";
   }
 
   render() {

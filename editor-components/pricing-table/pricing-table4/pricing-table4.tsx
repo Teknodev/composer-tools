@@ -31,12 +31,6 @@ class PricingMultiple extends BasePricingTable {
       value: "pricing",
     });
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Pricing Strategies",
-    });
 
     this.addProp({
       type: "string",
@@ -45,6 +39,14 @@ class PricingMultiple extends BasePricingTable {
       value:
         "Pricing is a crucial element of any business strategy, and small businesses need to adopt effective pricing strategies to stay competitive.",
     });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Pricing Strategies",
+    });
+    
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -345,7 +347,7 @@ class PricingMultiple extends BasePricingTable {
     });
   }
   getName(): string {
-    return "Multiple Pricing Card";
+    return "Pricing 4";
   }
   render() {
     return (
@@ -353,8 +355,8 @@ class PricingMultiple extends BasePricingTable {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("page-up")}>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <p className={this.decorateCSS("title")}>{this.getPropValue("title")}</p>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
             <div className={this.decorateCSS("page-down")}>
               {this.castToObject<Pricing[]>("cards").map(

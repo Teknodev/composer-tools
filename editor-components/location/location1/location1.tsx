@@ -55,7 +55,7 @@ class LocationComponent1 extends Location {
             <h1 className={this.decorateCSS('title')}>{this.getPropValue('title')}</h1>
             <section>
               <center>
-                <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+                <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? ""}>
                 <GoogleMap
                   mapContainerStyle={{
                     width: "300px",
