@@ -154,10 +154,8 @@
         .card-item-count {
             width: 100% !important;
             .card{
-                &:hover{
-                    transform: scale(1.0);
-                }
-
+                margin-bottom: 20px;
+                transform: scale(1.0) !important;
             }
         }
     }
