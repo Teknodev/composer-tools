@@ -2,12 +2,21 @@ import * as React from "react";
 import styles from "./team1.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type Platform={
+  icon: string;
+  url: string;
+}
+
 type Card = {
   image: string;
   name: string;
   position: string;
   description: string;
+  
   platforms: { icon: string; url: string }[];
+  //icon: string;
 };
 
 class Team1 extends Team {
@@ -19,10 +28,10 @@ class Team1 extends Team {
       displayer: "Twitter",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png",
+          value: "FaTwitterSquare",
         },
         {
           type: "page",
@@ -39,10 +48,10 @@ class Team1 extends Team {
       displayer: "Platform",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
+          value: "FaFacebookSquare",
         },
         {
           type: "page",
@@ -59,10 +68,10 @@ class Team1 extends Team {
       displayer: "Platform",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/3670/3670125.png",
+          value: "FiInstagram",
         },
         {
           type: "page",
@@ -79,10 +88,10 @@ class Team1 extends Team {
       displayer: "Platform",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/145/145807.png",
+          value: "FaLinkedin",
         },
         {
           type: "page",
@@ -146,10 +155,10 @@ class Team1 extends Team {
               key: "platforms",
               displayer: "Sosial Medias",
               value: [
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(instagram)),
-                JSON.parse(JSON.stringify(linkedin)),
+                facebook,
+                twitter,
+                instagram,
+                linkedin,
               ],
             },
           ],
@@ -190,10 +199,10 @@ class Team1 extends Team {
               key: "platforms",
               displayer: "Sosial Medias",
               value: [
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(instagram)),
-                JSON.parse(JSON.stringify(linkedin)),
+                facebook,
+                twitter,
+                instagram,
+                linkedin,
               ],
             },
           ],
@@ -234,10 +243,10 @@ class Team1 extends Team {
               key: "platforms",
               displayer: "Sosial Medias",
               value: [
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(instagram)),
-                JSON.parse(JSON.stringify(linkedin)),
+                facebook,
+                twitter,
+                instagram,
+                linkedin,
               ],
             },
           ],
@@ -278,10 +287,10 @@ class Team1 extends Team {
               key: "platforms",
               displayer: "Sosial Medias",
               value: [
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(instagram)),
-                JSON.parse(JSON.stringify(linkedin)),
+                facebook,
+                twitter,
+                instagram,
+                linkedin,
               ],
             },
           ],
@@ -328,10 +337,14 @@ class Team1 extends Team {
                     </div>
                     <p className={this.decorateCSS("card-description")}>{card.description}</p>
                     <div className={this.decorateCSS("icon-group")}>
-                      {card.platforms.map((item: any, indexPlatforms: number) => {
+                      {card.platforms.map((item: Platform, indexPlatforms: number) => {
                         return (
+                          
                           <ComposerLink key={indexPlatforms} path={item.url}>
-                            <img src={item.icon} alt="" />
+                            <ComposerIcon name={item.icon} propsIcon={{
+                              className:this.decorateCSS("icon")
+                            }}/>
+                            {/* <img src={item.icon} alt="" /> */}
                           </ComposerLink>
                         );
                       })}
