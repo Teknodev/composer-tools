@@ -101,10 +101,8 @@
                 max-height: 480px;
 
                 .icon-title-container {
-                    //position: absolute;
                     flex-direction: column;
                     left: 30px;
-                    //bottom: 50px;
                     transition: 0.4s all ease-in-out;
                     z-index: 5;
                     opacity: 1;
@@ -114,13 +112,13 @@
                         font-weight: bold;
                         font-size: 2.2rem;
                         width: 100%;
-                        color: #fff;
+                        color: white;         
                         line-height: 1.2;
                         margin: 0;
                     }
 
                     .icon {
-                        color: #fff;
+                        color: white;
                         left: 0;
                         width: 40px;
                         height: 40px;
@@ -133,7 +131,7 @@
 
                     .description {
                         width: 100%;
-                        color: #fff;
+                        color: white; 
                         white-space: normal;
                         text-overflow: ellipsis;
                         font-size: 1.2rem;
