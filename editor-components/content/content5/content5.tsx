@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { string } from "yup";
 
 type ITabs = {
   tabText: string;
@@ -10,7 +12,7 @@ type ITabs = {
   buttonText: string;
   buttonUrl: string;
   text: string;
-  image:string;
+  icon:string;
 };
 
 class Content5 extends BaseContent {
@@ -26,14 +28,7 @@ class Content5 extends BaseContent {
           type: "object",
           key: "tab",
           displayer: "Button text",
-          value: [   
-            // {
-            //   type: "image",
-            //   key: "img",
-            //   displayer: "Image",
-            //   value:
-            //     "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            // },          
+          value: [
             {
               type: "string",
               key: "tabText",
@@ -41,12 +36,11 @@ class Content5 extends BaseContent {
               value: "Business Strategy",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            }, 
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaBox",
+            },
             {
               type: "string",
               key: "title",
@@ -94,12 +88,11 @@ class Content5 extends BaseContent {
               value: "Search",
             }, 
             {
-              type: "image",
-              key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },  
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "HiGlobeAlt",
+            },
             {
               type: "string",
               key: "title",
@@ -145,14 +138,13 @@ class Content5 extends BaseContent {
               key: "tabText",
               displayer: "Button",
               value: "Data Analysis",
-            }, 
+            },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },    
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GrAnalytics",
+            },   
             {
               type: "string",
               key: "title",
@@ -197,14 +189,13 @@ class Content5 extends BaseContent {
               type: "string",
               key: "tabText",
               displayer: "Button",
-              value: "UI Design",
+              value: "SiMaterialdesign",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "HiGlobeAlt",
             },
             {
               type: "string",
@@ -245,14 +236,7 @@ class Content5 extends BaseContent {
           type: "object",
           key: "tab",
           displayer: "Button text",
-          value: [   
-            // {
-            //   type: "image",
-            //   key: "img",
-            //   displayer: "Image",
-            //   value:
-            //     "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            // },          
+          value: [
             {
               type: "string",
               key: "tabText",
@@ -260,11 +244,10 @@ class Content5 extends BaseContent {
               value: "Ux Design",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "SiAltiumdesigner",
             }, 
             {
               type: "string",
@@ -305,14 +288,7 @@ class Content5 extends BaseContent {
           type: "object",
           key: "tab",
           displayer: "Button text",
-          value: [   
-            // {
-            //   type: "image",
-            //   key: "img",
-            //   displayer: "Image",
-            //   value:
-            //     "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            // },          
+          value: [        
             {
               type: "string",
               key: "tabText",
@@ -320,12 +296,11 @@ class Content5 extends BaseContent {
               value: "Technology",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            }, 
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "SlBulb",
+            },
             {
               type: "string",
               key: "title",
@@ -365,14 +340,7 @@ class Content5 extends BaseContent {
           type: "object",
           key: "tab",
           displayer: "Button text",
-          value: [   
-            // {
-            //   type: "image",
-            //   key: "img",
-            //   displayer: "Image",
-            //   value:
-            //     "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            // },          
+          value: [                  
             {
               type: "string",
               key: "tabText",
@@ -380,11 +348,10 @@ class Content5 extends BaseContent {
               value: "Creative",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FiAperture",
             }, 
             {
               type: "string",
@@ -449,11 +416,9 @@ class Content5 extends BaseContent {
                       ((this.getComponentState("activeTab") == index) &&
                         this.decorateCSS("active"))}
                     onClick={() => this.setActiveTab(index)}>
-                      <img 
-                          className={this.decorateCSS("button-image")}
-                          src={tab.image}
-                          alt={tab.tabText}
-                          />
+                      <ComposerIcon name={tab.icon} propsIcon={{
+                      className:this.decorateCSS("icon"),
+                    }}/>
                           <div className={this.decorateCSS("kare")}></div>
                           {tab.tabText}
                   </div>
@@ -470,10 +435,9 @@ class Content5 extends BaseContent {
                       styles["start"])}>
                   <div className={this.decorateCSS("content")}>
                   <div className={this.decorateCSS("image-container")}>
-                    <img
-                      className={this.decorateCSS("image")}
-                      src={tab.image}
-                    />
+                    <ComposerIcon name={tab.icon} propsIcon={{
+                      className:this.decorateCSS("icon")
+                    }}/>
                   </div>
                     <div className={this.decorateCSS("title")}>{tab.title}</div>
                     <div className={this.decorateCSS("description")}>

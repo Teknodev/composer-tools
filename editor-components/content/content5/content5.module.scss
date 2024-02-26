@@ -16,8 +16,6 @@
             display: flex;
             left: 200px;
             margin-top: 0px;
-            //padding-left: 0px;
-            //padding-right: 20px;
             .tab-1 {
                 width: 20%;
                 margin-bottom: -100px;
@@ -29,12 +27,10 @@
                     height: auto;
                     display: flex;
                     flex-direction: column;
-                    //align-items: center;
                     .tab-button {
                         align-items: center;
                         cursor: pointer;
                         color: var(--composer-font-color-secondary);
-                        //font-weight: bold;
                         padding: 0.5rem 1rem;
                         font-size: 1.4rem;
                         position: relative;
@@ -42,16 +38,6 @@
                         line-height: 1.7;
                         display: flex;
                         padding-left: 30px;
-
-                        .button-image-container {
-                            margin-right: 8px;
-                        }
-
-                        .button-image {
-                            width: 20px;
-                            height: 20px;
-                            margin-right: 8px;
-                        }
 
                         .kare {
                             width: 15px;
@@ -118,20 +104,13 @@
                     padding-top: 30px;
                     padding-bottom: 20px;
 
-                    .image-container {
-                        width: 15%;
-                        margin-bottom: 20px;
-
-                        .image {
-                            width: 100%;
-                            border-radius: var(--composer-border-radius);
-                        }
+                    .icon{
+                        width: 50px;
+                        height: 50px;
+                        color: var(--composer-tertiary-color);
+                        
                     }
 
-                    // .icon{
-                    //     font-size: 50px;
-                    //     margin-left: 20px;
-                    // }
                     .title {
                         padding-top: 10px;
                         font-weight: bold;
@@ -159,13 +138,13 @@
                     .button {
                         border-radius: var(--composer-border-radius);
                         background-color: var(--composer-secondary-color);
-                        color: white;
-                        //color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-secondary);
                         border: none;
                         padding: 15px;
                         font-size: 1.2rem;
                         display: inline-block;
                         margin-top: 20px;
+
                     }
                 }
             }
@@ -191,8 +170,6 @@
         padding: 50px 20px;
 
         .max-content {
-            //align-items: center;
-
             .tabs {
                 flex-direction: column;
                 align-items: center;
@@ -202,11 +179,8 @@
                 left: 5px;
 
                 .tab-1 {
-                    //align-items: center;
-                    //min-width: auto !important;
                     width: 100% !important;
                     
-
                     .tab-buttons {
                         margin-bottom: 20px;
                         margin-top: 30px;
