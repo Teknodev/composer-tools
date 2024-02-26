@@ -76,11 +76,7 @@
                     .icon-group {
                         display: flex;
                         gap: 10px;
-                        img {
-                            width: 20px;
-                            height: 20px;
-                            object-fit: cover;
-                        }
+                       
 
                         @media only screen and (max-width: 768px) {
                             justify-content: center;
