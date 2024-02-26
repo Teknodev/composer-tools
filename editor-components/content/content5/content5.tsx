@@ -85,20 +85,20 @@ class Content5 extends BaseContent {
               type: "string",
               key: "tabText",
               displayer: "Button",
-              value: "Search",
+              value: "Research",
             }, 
             {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "HiGlobeAlt",
+              value: "HiBeaker",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
               value:
-                "Search",
+                "Research",
             },
             {
               type: "string",
@@ -189,7 +189,7 @@ class Content5 extends BaseContent {
               type: "string",
               key: "tabText",
               displayer: "Button",
-              value: "SiMaterialdesign",
+              value: "UI Design",
             },
             {
               type: "icon",
