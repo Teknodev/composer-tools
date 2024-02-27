@@ -344,7 +344,6 @@ class Team1 extends Team {
                             <ComposerIcon name={item.icon} propsIcon={{
                               className:this.decorateCSS("icon")
                             }}/>
-                            {/* <img src={item.icon} alt="" /> */}
                           </ComposerLink>
                         );
                       })}
