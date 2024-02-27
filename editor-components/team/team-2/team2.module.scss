@@ -59,14 +59,11 @@
                 padding-bottom: 20px;
                 border-bottom: 1px solid var(--composer-tertiary-color);
             }
-            .social {
+            .icon-group{
                 display: flex;
-                margin: 20px auto 0 auto;
-                img {
-                    width: 20px;
-                    height: 20px;
-                    margin-right: 10px;
-                }
+                flex-direction: row;
+                justify-content: center;
+                gap: 10px;
             }
         }
     }
