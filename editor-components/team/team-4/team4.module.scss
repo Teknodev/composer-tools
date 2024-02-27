@@ -58,20 +58,13 @@
                         color: var(--composer-primary-color);
                     }
                 }
-                .social-media-list {
+                .icon-group{
                     display: flex;
                     justify-content: center;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    .social-media-image {
-                        width: 30px;
-                        height: 30px;
-                        object-fit: cover;
-                        outline: 1px solid lightgray;
-                        padding: 3px;
-                        border-radius: 100%;
-                        margin: 5px;
-                    }
+                    flex-direction: row;
+                    text-align: center;
+                    font-size: 3rem;
+                    gap: 5px;
                 }
             }
         }
