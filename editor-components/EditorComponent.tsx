@@ -42,8 +42,6 @@ export type TypeUsableComponentProps = {
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (propName: string) => any;
-  getPropValueAsElement?: (propName: string) => React.JSX.Element
-  valuesAsElement?: React.JSX.Element
 };
 
 export enum CATEGORIES {
@@ -109,10 +107,10 @@ export abstract class Component
 
   getPropValue(propName: string): any {
     let prop = this.getProp(propName);
-    return prop?.value;
+    return prop?.type == "string" ? this._getPropValueAsElement(prop) : prop?.value;
   }
 
-  getPropValueAsElement(prop:TypeUsableComponentProps) {    
+  _getPropValueAsElement(prop:TypeUsableComponentProps) {    
     //@ts-ignore
     return <blinkpage prop-type={prop?.type}>{prop?.value}</blinkpage>;
   }
@@ -187,19 +185,12 @@ export abstract class Component
                 (prop: TypeUsableComponentProps) => prop.key === propName
               )[0].value;
             };
-            propValueItem["getPropValueAsElement"] = (propName: string) => {
-              return (propValueItem.value as TypeUsableComponentProps[]).filter(
-                (prop: TypeUsableComponentProps) => prop.key === propName
-              )[0].valuesAsElement;
-            };
           }
 
-          propValueItem.valuesAsElement = this.getPropValueAsElement(propValueItem)
           return propValueItem;
         }
       );
     }
-    propValue.valuesAsElement = this.getPropValueAsElement(propValue)
     return propValue;
   }
 
