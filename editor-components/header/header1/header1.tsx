@@ -7,56 +7,185 @@ class Header1 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      type: "image",
+      key: "background-layout",
+      displayer: "Background Layout",
       value:
-        "In this blog post, we'll explore some practical tips and techniques for managing your time more effectively. ",
+        "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-bg-03.jpg",
     });
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "In this blog post, we'll explore some practical tips and techniques for managing your time more effectively, so you can be more productive, reduce stress, and achieve your goals.",
+      type: "image",
+      key: "sun",
+      displayer: "Sun",
+      value:
+        "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-bg-01.png",
     });
     this.addProp({
       type: "array",
-      key: "button",
-      displayer: "Buttons",
+      key: "sliders",
+      displayer: "Sliders",
       value: [
         {
           type: "object",
-          key: "buttonObject",
-          displayer: "Button",
+          key: "slider",
+          displayer: "Slider - 1",
           value: [
             {
               type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Go There",
+              key: "title",
+              displayer: "Title",
+              value: "FORWARD",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "URL",
-              value: "",
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "BRANDING AND IDENTITY",
+            },
+            {
+              type: "number",
+              key: "slider-number",
+              displayer: "Slider Number",
+              value: 0o1,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-1",
+              value:
+                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-01.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider - 2",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "PIXFLOW",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "WEB AND APPLICATION",
+            },
+            {
+              type: "number",
+              key: "slider-number",
+              displayer: "Slider Number",
+              value: 0o2,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-2",
+              value:
+                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-02.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider - 3",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "HARDDOT",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "GRAPHICS AND IDENTITY",
+            },
+            {
+              type: "number",
+              key: "slider-number",
+              displayer: "Slider Number",
+              value: 0o3,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-3",
+              value:
+                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-03.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider - 4",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "TRAVELIO",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "PACKAGING AND WEB",
+            },
+            {
+              type: "number",
+              key: "slider-number",
+              displayer: "Slider Number",
+              value: 0o4,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-4",
+              value:
+                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-04.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider - 5",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "CROPOES",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "DESIGN AND IDENTITY",
+            },
+            {
+              type: "number",
+              key: "slider-number",
+              displayer: "Slider Number",
+              value: 0o5,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-5",
+              value:
+                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-05.jpg",
             },
           ],
         },
       ],
-    });
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b18868c3c2002cd2faad?alt=media&timestamp=1693233916133",
-    });
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "URL",
-      value: "",
     });
   }
 
@@ -67,27 +196,17 @@ class Header1 extends BaseHeader {
   render() {
     return (
       <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("image-container-1")}>
+          <img src={this.getPropValue("background-layout")} alt="" />
+        </div>
+        <div className={this.decorateCSS("image-container-2")}>
+          <img src={this.getPropValue("sun")} alt="" />
+        </div>
+        <div className={this.decorateCSS("image-container-3")}>
+          <img src={this.getPropValue("sun")} alt="" />
+        </div>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header-page")}>
-            <h3 className={this.decorateCSS("title")}>{this.getPropValue("subtitle")}</h3>
-            <p className={this.decorateCSS("long-text")}>{this.getPropValue("title")}</p>
-            <div className={this.decorateCSS("button-group")}>
-              {this.castToObject<[]>("button").map((item: any, indexItem: number) => {
-                return (
-                  <ComposerLink key={indexItem} path={item.link}>
-                    <button className={this.decorateCSS("button")}>
-                      {item.buttonText}
-                    </button>
-                  </ComposerLink>
-                );
-              })}
-            </div>
-            <img
-              alt=""
-              className={this.decorateCSS("image")}
-              src={this.getPropValue("image")}
-            ></img>
-          </div>
+          <div className={this.decorateCSS("content")}>HEllo</div>
         </div>
       </div>
     );
