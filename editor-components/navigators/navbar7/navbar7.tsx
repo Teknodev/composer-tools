@@ -18,12 +18,25 @@ class Navbar7 extends BaseNavigator {
       value:
         "http://lark.mondotheme.com/wp-content/uploads/2016/01/logo-light.png",
     });
+    this.addProp({
+      type: "image",
+      key: "image2",
+      displayer: "Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "sticky",
+      displayer: "Is sticky",
+      value: false,
+    });
 
     this.addProp({
       type: "icon",
-      key: "search",
-      displayer: "Search Bar",
-      value: "CiSearch",
+      key: "hamburger",
+      displayer: "Nav Bar",
+      value: "GiHamburgerMenu",
     });
     this.addProp({
       type: "array",
@@ -230,7 +243,7 @@ class Navbar7 extends BaseNavigator {
       ],
     });
 
-    this.state["componentProps"]["navActive"] = true;
+    this.setComponentState("navActive", false);
   }
 
   navClick() {
@@ -254,17 +267,23 @@ class Navbar7 extends BaseNavigator {
                 alt=""
               />
             </div>
-            <div className={this.decorateCSS("list-items")}>
+            <div
+              className={`${this.decorateCSS("list-items")} ${
+                this.getComponentState("navActive") &&
+                this.decorateCSS("active")
+              }`}
+            >
               {this.castToObject<[]>("main-navigator").map(
                 (data: any, index: number) => {
                   return (
                     <ul key={index}>
-                      <li>{data.item}</li>
+                      <li className={this.decorateCSS("list-item")}>
+                        {data.item}
+                      </li>
                     </ul>
                   );
                 }
               )}
-              <ComposerIcon name={this.getPropValue("search")} />
             </div>
             <div className={this.decorateCSS("icon-items")}>
               {this.castToObject<[]>("icons").map(
@@ -272,14 +291,25 @@ class Navbar7 extends BaseNavigator {
                   console.log(data);
 
                   return (
-                    <ul key={index}>
-                      <li>
+                    <ul className={this.decorateCSS("icon-ul")} key={index}>
+                      <li className={this.decorateCSS("icon-item")}>
                         <ComposerIcon name={data.icon} />
                       </li>
                     </ul>
                   );
                 }
               )}
+            </div>
+            <div className={this.decorateCSS("navbar")}>
+              <ComposerIcon
+                name={this.getPropValue("hamburger")}
+                propsIcon={{
+                  className: `${this.decorateCSS("img-hamburger")}  `,
+                  onClick: () => {
+                    this.navClick();
+                  },
+                }}
+              />
             </div>
           </div>
         </div>
