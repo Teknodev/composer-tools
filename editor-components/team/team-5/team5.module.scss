@@ -1,106 +1,124 @@
 .container {
     width: 100%;
-    padding: 50px 50px;
+    padding: 50px;
+    height: 100vh;
     
     .max-content {
         max-width: var(--composer-content-width);
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: auto;
         width: 100%;
-       
-        .container-content {
+        row-gap: 110px;
+
+        .container-top {
             width: 100%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
+            column-gap: 100px;
+            margin-top: 50px;
 
-            .container-top {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            .title-container {
+                width: 30%;
+                text-align: center;
+                color: var(--composer-primary-color);
+                font-size: 2rem;
 
-                .title {
-                    color: var(--composer-primary-color);
-                    font-size: 4rem;
-                    width: 25%;
-                    margin-right: 60px;
+                .title{
+                    margin: 0;
+                    padding-right: 50px;
                     
                 }
+                
 
-                .description {
-                    color: var(--composer-font-color-primary);
-                    font-size: 18px;
-                    width: 20%;
-                    line-height: 1.7em;
-                    margin-left: 60px;
-                    padding-top: 32px;
-                    box-sizing: border-box;
-                }
             }
 
-            .container-bottom {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
+            .description-container {
+                width: 30%;
+                color: var(--composer-font-color-primary);
 
-                .box {
-                    width: 20%;
+                .description-inner {
+                    width: calc(100% - 150px);
+                    text-align: justify;
+                    font-size: 18px;
+                }
+                
+                
+                
+            }
+        }
 
-                    .image-box {
-                        width: 100%;
-                        position: relative;
+        .container-bottom {
+            width: 100%;
+            display: flex;
+            justify-content: center;
 
-                        .background-image {
-                            width: 65%;
-                            object-fit: cover;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                        }
+            .egg-item {
+                width: 20%;
+                
 
-                        .picture-image {
-                            width: 75%;
-                            object-fit: cover;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                        }
-                        
+                .image-container {
+                    width: 100%;
+                    position: relative;
+
+                    :first-of-type {
+                        width: calc(100% - 130px);
+                        position: absolute;
+
                     }
 
-                    .icon-container {
-                        width: 100%;
-
-                        .icon-facebook {
-                            
-                        }
-
-                        .icon-instagram {
-
-                        }
-
-                        .icon-twitter {
-
-                        }
-                   
-                    }
-
-                    .name {
-                        color: var(--composer-primary-color);
-                    
-                    }
-
-                    .occupation {
-                        color: var(--composer-font-color-primary);
-                    
+                    :last-of-type {
+                        width: calc(100% - 70px);
+                        position: absolute;
+                        top: -53px;
+                        left: -25px;
                     }
                 }
 
+                .icon-container {
+                    display: flex;
+                    justify-content: center;
+                    position: relative;
+                    column-gap: 12px;
+                    top: 270px;
+                    left: -61px;
+                    color: var(--composer-secondary-color);
+                    font-size: 2em;
+
+                }
+
+                .members-container {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    position: relative;
+                    top: 270px;
+                    left: -61px;
+                    
+
+                    .name {
+                        width: max-content;
+                        color: var(--composer-primary-color);
+                        font-size: 2em;
+                        margin: 0;
+                        margin-top: 10px;
+                       
+                    }
+    
+                    .occupation {
+                        width: max-content;
+                        color: var(--composer-font-color-primary);
+                        font-size: 1.7em;
+                        margin: 0;
+                        margin-top: 10px;
+                    }
+
+                }
+
+               
             }
         }
 

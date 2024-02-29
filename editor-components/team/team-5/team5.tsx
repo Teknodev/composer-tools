@@ -5,13 +5,13 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type eggs = {
-  background : string;
-  picture : string;
-  facebook : string;
-  instagram : string;
-  twitter : string;
-  name : string;
-  occupation : string;
+  background: string;
+  picture: string;
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  name: string;
+  occupation: string;
 };
 
 
@@ -69,7 +69,7 @@ class Team5 extends Team {
               type: "icon",
               key: "twitter",
               displayer: "Twitter Icon",
-              value: "AiFillTwitterCircle",
+              value: "AiOutlineTwitter",
             },
             {
               type: "string",
@@ -118,7 +118,7 @@ class Team5 extends Team {
               type: "icon",
               key: "twitter",
               displayer: "Twitter Icon",
-              value: "AiFillTwitterCircle",
+              value: "AiOutlineTwitter",
             },
             {
               type: "string",
@@ -167,7 +167,7 @@ class Team5 extends Team {
               type: "icon",
               key: "twitter",
               displayer: "Twitter Icon",
-              value: "AiFillTwitterCircle",
+              value: "AiOutlineTwitter",
             },
             {
               type: "string",
@@ -216,7 +216,7 @@ class Team5 extends Team {
               type: "icon",
               key: "twitter",
               displayer: "Twitter Icon",
-              value: "AiFillTwitterCircle",
+              value: "AiOutlineTwitter",
             },
             {
               type: "string",
@@ -240,9 +240,6 @@ class Team5 extends Team {
       displayer: "Item count in a row",
       value: 3,
     })
-
-
-
   }
 
   getName(): string {
@@ -253,40 +250,33 @@ class Team5 extends Team {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("container-content")}>
-            <div className={this.decorateCSS("container-top")}>
+          <div className={this.decorateCSS("container-top")}>
+            <div className={this.decorateCSS("title-container")}>
               <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
-            <div className={this.decorateCSS("container-bottom")}>
-              {this.castToObject<eggs[]>("teamList").map((item : eggs,index: number)=>(
-                <div key={index} className={this.decorateCSS("box")}>
-                  <div className={this.decorateCSS("image-box")}>
-                    <img src={item.background} alt="" className={this.decorateCSS("background-image")} />
-                    <img src={item.picture} alt="" className={this.decorateCSS("picture-image")} />
-                  </div>
-                  <div className={this.decorateCSS("icon-container")}>
-                    <ComposerIcon
-                    name={item.facebook}
-                    propsIcon={{
-                      className : this.decorateCSS("icon-facebook")}}
-                    />
-                    <ComposerIcon
-                    name={item.instagram}
-                    propsIcon={{className : this.decorateCSS("icon-instagram")}}
-                    />
-
-                    <ComposerIcon
-                    name={item.twitter}
-                    propsIcon={{className : this.decorateCSS("icon-twitter")}}
-                    />
-                  </div>
-
-                  <p className={this.decorateCSS("name")}>{item.name}</p>
-                  <p className={this.decorateCSS("occupation")}>{item.occupation}</p>
+            <div className={this.decorateCSS("description-container")}>
+              <div className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</div>
+            </div>
+          </div>
+          <div className={this.decorateCSS("container-bottom")}>
+            {this.castToObject<eggs[]>("teamList").map((item: eggs, index: number) => (
+              <div key={index} className={this.decorateCSS("egg-item")}>
+                <div className={this.decorateCSS("image-container")}>
+                  <img src={item.background} alt=""/>
+                  <img src={item.picture} alt="" />
                 </div>
-              ))}
-            </div>
+                <div className={this.decorateCSS("icon-container")}>
+                  <ComposerIcon name={item.facebook} />
+                  <ComposerIcon name={item.instagram} />
+                  <ComposerIcon name={item.twitter} />
+
+                </div>
+                <div className={this.decorateCSS("members-container")}>
+                <h4 className={this.decorateCSS("name")}>{item.name}</h4>
+                <span className={this.decorateCSS("occupation")}>{item.occupation}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
