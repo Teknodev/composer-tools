@@ -2,7 +2,12 @@ import * as React from "react";
 import styles from "./team13.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
+type Icons={
+  icon: string;
+  url: string;
+}
 interface Card {
   image: string;
   name: string;
@@ -26,7 +31,7 @@ class Team13 extends Team {
           type: "image",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/733/733635.png",
+          value: "BsTwitterX",
         },
         {
           type: "page",
@@ -46,7 +51,7 @@ class Team13 extends Team {
           type: "image",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/20/20837.png",
+          value: "IoLogoFacebook",
         },
         {
           type: "page",
@@ -66,7 +71,7 @@ class Team13 extends Team {
           type: "image",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/1384/1384031.png",
+          value: "BsInstagram",
         },
         {
           type: "page",
@@ -85,6 +90,13 @@ class Team13 extends Team {
     });
 
     this.addProp({
+        type: "string",
+        key: "badge",
+        displayer: "Badge",
+        value: "MEET NEW TEAM",
+    })
+
+    this.addProp({
       type: "array",
       key: "team-members",
       displayer: "Team Members",
@@ -101,12 +113,7 @@ class Team13 extends Team {
               value:
                 "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
             },
-            {
-              type: "string",
-              key: "badge",
-              displayer: "Badge",
-              value: "MEET NEW TEAM",
-            },
+           
             {
               type: "string",
               key: "name",
@@ -136,9 +143,9 @@ class Team13 extends Team {
               key: "icons",
               displayer: "Icons",
               value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(instagram)),
+                twitter,
+                facebook,
+                instagram,
               ],
             },
           ],
@@ -155,6 +162,12 @@ class Team13 extends Team {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
+        <h2 className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </h2>
+          <h4 className={this.decorateCSS("badge")}>
+            {this.getPropValue("badge")}
+          </h4>
           {this.castToObject<Card[]>("team-members").map(
             (item: Card, indexTeam: number) => {
               return (
@@ -170,11 +183,15 @@ class Team13 extends Team {
                         {item.icons.map((icon: any, indexIcons: number) => {
                           return (
                             <ComposerLink path={icon.url} key={indexIcons}>
-                              <img
+
+                              <ComposerIcon name={icon.icon} propsIcon={{
+                                className:this.decorateCSS("icon")
+                              }} />
+                              {/* <img
                                 className={this.decorateCSS("icon")}
                                 src={icon.icon}
                                 alt="social media icons"
-                              />
+                              /> */}
                             </ComposerLink>
                           );
                         })}
@@ -183,7 +200,7 @@ class Team13 extends Team {
                   </div>
                   <div className={this.decorateCSS("right-container")}>
                     <div className={this.decorateCSS("text-group")}>
-                      <p className={this.decorateCSS("badge")}>{item.badge}</p>
+                      {/* <p className={this.decorateCSS("badge")}>{item.badge}</p> */}
                       <h1 className={this.decorateCSS("name")}>{item.name}</h1>
                       <h1 className={this.decorateCSS("surname")}>
                         {item.surname}
