@@ -2,7 +2,7 @@
     width: 100%;
     padding: 50px;
     height: 100vh;
-    
+
     .max-content {
         max-width: var(--composer-content-width);
         display: flex;
@@ -16,37 +16,34 @@
         .container-top {
             width: 100%;
             display: flex;
-            justify-content: center;
-            column-gap: 100px;
+            justify-content: space-evenly;
+            // column-gap: 100px;
             margin-top: 50px;
 
             .title-container {
                 width: 30%;
                 text-align: center;
                 color: var(--composer-primary-color);
-                font-size: 2rem;
+                font-size: 2.3em;
 
-                .title{
+                .title {
                     margin: 0;
                     padding-right: 50px;
-                    
+                    text-align: left;
                 }
-                
-
             }
 
             .description-container {
                 width: 30%;
+                padding-top: 15px;
                 color: var(--composer-font-color-primary);
 
                 .description-inner {
                     width: calc(100% - 150px);
                     text-align: justify;
                     font-size: 18px;
+                    line-height: 1.7em;
                 }
-                
-                
-                
             }
         }
 
@@ -57,22 +54,21 @@
 
             .egg-item {
                 width: 20%;
-                
 
                 .image-container {
                     width: 100%;
                     position: relative;
 
-                    :first-of-type {
-                        width: calc(100% - 130px);
+                    img:first-of-type {
+                        width: calc(100% - 140px);
                         position: absolute;
 
                     }
 
-                    :last-of-type {
-                        width: calc(100% - 70px);
+                    img:last-of-type {
+                        width: calc(100% - 80px);
                         position: absolute;
-                        top: -53px;
+                        top: -54px;
                         left: -25px;
                     }
                 }
@@ -86,7 +82,6 @@
                     left: -61px;
                     color: var(--composer-secondary-color);
                     font-size: 2em;
-
                 }
 
                 .members-container {
@@ -97,7 +92,6 @@
                     position: relative;
                     top: 270px;
                     left: -61px;
-                    
 
                     .name {
                         width: max-content;
@@ -105,9 +99,8 @@
                         font-size: 2em;
                         margin: 0;
                         margin-top: 10px;
-                       
                     }
-    
+
                     .occupation {
                         width: max-content;
                         color: var(--composer-font-color-primary);
@@ -115,21 +108,163 @@
                         margin: 0;
                         margin-top: 10px;
                     }
-
                 }
-
-               
             }
         }
-
     }
 }
 
-
-
-
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
     .container {
         padding: 50px 20px;
+
+        .max-content {
+            max-width: var(--composer-content-width);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            width: 100%;
+
+            .container-top {
+
+                .title-container {
+                    width: 50%;
+
+                    .title {
+                        padding: 0;
+                        font-size: 1.8em;
+                    }
+                }
+
+                .description-container {
+                    width: 50%;
+                    padding-top: 10px;
+
+                    .description-inner {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .container-bottom {
+                justify-content: center;
+                column-gap: 60px;
+
+                .egg-item {
+
+                    .image-container {
+                        position: relative;
+
+                        img:first-of-type {
+                            width: calc(100% + 10px);
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                        }
+
+                        img:last-of-type {
+                            width: calc(100% + 50px);
+                            top: -36px;
+                            left: -18px;
+                        }
+                    }
+
+                    .icon-container {
+                        position: relative;
+                        top: 170px;
+                        left: 0;
+                        font-size: 20px;
+                    }
+
+                    .members-container {
+                        position: relative;
+                        top: 170px;
+                        left: 0;
+
+                        .name {
+                            font-size: 22px;
+                        }
+
+                        .occupation {
+                            font-size: 17px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width : 400px) {
+    .container {
+        padding: 50px 20px;
+        height: calc(100vh + 2000px);
+
+        .max-content {
+            max-width: var(--composer-content-width);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            width: 100%;
+            row-gap: 50px;
+
+            .container-top {
+                flex-direction: column;
+                align-items: center;
+                row-gap: 55px;
+
+                .title-container {
+                    width: 100%;
+                }
+
+                .description-container {
+                    width: 100%;
+                }
+            }
+
+            .container-bottom {
+                flex-direction: column;
+                align-items: center;
+                row-gap: 400px;
+
+                .egg-item {
+                    width: 100%;
+
+                    .image-container {
+                        width: 100%;
+
+
+                        img:first-of-type {
+                            width: calc(100% - 50px);
+                            top: 50px;
+                            left: 25px;
+                        }
+
+                        img:last-of-type {
+                            width: 100%;
+                            top: 7px;
+                            left: 0;
+                        }
+                    }
+
+
+                    .icon-container {
+                        position: relative;
+                        top: 350px;
+                        left: 0;
+                    }
+
+                    .members-container {
+                        position: relative;
+                        top: 350px;
+                        left: 0;
+                    }
+                }
+            }
+        }
     }
 }

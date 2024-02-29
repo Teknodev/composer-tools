@@ -238,7 +238,7 @@ class Team5 extends Team {
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 3,
+      value: 4,
     })
   }
 
