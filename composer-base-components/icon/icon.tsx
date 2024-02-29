@@ -9,6 +9,8 @@ interface typesPropsIcon {
 
 export function ComposerIcon({ name, propsIcon }: typesPropsIcon): JSX.Element {
   if (!name.length) return <></>;
+  console.log(name);
+  
   const lib = name
     .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
     .split(" ")[0]
