@@ -220,7 +220,8 @@ class Header1 extends BaseHeader {
                 <h1 className={this.decorateCSS("title")}>{item.title}</h1>
                 <p className={this.decorateCSS("subtitle")}>{item.subtitle}</p>
                 <p className={this.decorateCSS("sliderNumber")}>
-                  {item.sliderNumber}
+                  <span className={this.decorateCSS("overlay")}></span>
+                  <span>{item.sliderNumber}</span>
                 </p>
               </div>
             );
