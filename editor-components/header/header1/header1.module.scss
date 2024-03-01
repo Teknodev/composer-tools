@@ -3,9 +3,6 @@
   min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
   overflow: hidden;
-  // padding: 50px 0px;
-  // display: flex;
-  // align-items: center;
   position: relative;
   .image-container-2 {
     position: absolute;
@@ -22,5 +19,10 @@
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
   }
 }

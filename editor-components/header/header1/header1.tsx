@@ -44,9 +44,9 @@ class Header1 extends BaseHeader {
             },
             {
               type: "number",
-              key: "slider-number",
+              key: "sliderNumber",
               displayer: "Slider Number",
-              value: 0o1,
+              value: 1,
             },
             {
               type: "image",
@@ -76,9 +76,9 @@ class Header1 extends BaseHeader {
             },
             {
               type: "number",
-              key: "slider-number",
+              key: "sliderNumber",
               displayer: "Slider Number",
-              value: 0o2,
+              value: 2,
             },
             {
               type: "image",
@@ -108,9 +108,9 @@ class Header1 extends BaseHeader {
             },
             {
               type: "number",
-              key: "slider-number",
+              key: "sliderNumber",
               displayer: "Slider Number",
-              value: 0o3,
+              value: 3,
             },
             {
               type: "image",
@@ -140,9 +140,9 @@ class Header1 extends BaseHeader {
             },
             {
               type: "number",
-              key: "slider-number",
+              key: "sliderNumber",
               displayer: "Slider Number",
-              value: 0o4,
+              value: 4,
             },
             {
               type: "image",
@@ -172,9 +172,9 @@ class Header1 extends BaseHeader {
             },
             {
               type: "number",
-              key: "slider-number",
+              key: "sliderNumber",
               displayer: "Slider Number",
-              value: 0o5,
+              value: 5,
             },
             {
               type: "image",
@@ -206,7 +206,25 @@ class Header1 extends BaseHeader {
           <img src={this.getPropValue("sun")} alt="" />
         </div>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>HEllo</div>
+          {this.castToObject<[]>("sliders").map((item: any, index: number) => {
+            return (
+              <div
+                className={this.decorateCSS("content-container")}
+                key={index}
+              >
+                <img
+                  className={this.decorateCSS("image")}
+                  src={item.image}
+                  alt=""
+                />
+                <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+                <p className={this.decorateCSS("subtitle")}>{item.subtitle}</p>
+                <p className={this.decorateCSS("sliderNumber")}>
+                  {item.sliderNumber}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     );
