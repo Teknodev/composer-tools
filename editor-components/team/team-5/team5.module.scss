@@ -51,6 +51,8 @@
             width: 100%;
             display: flex;
             justify-content: center;
+            margin-left: 100px;
+            flex-wrap: wrap;
 
             .egg-item {
                 width: 20%;
@@ -79,7 +81,7 @@
                     position: relative;
                     column-gap: 12px;
                     top: 270px;
-                    left: -61px;
+                    left: -70px;
                     color: var(--composer-secondary-color);
                     font-size: 2em;
                 }
@@ -91,7 +93,7 @@
                     align-items: center;
                     position: relative;
                     top: 270px;
-                    left: -61px;
+                    left: -70px;
 
                     .name {
                         width: max-content;
@@ -150,7 +152,9 @@
 
             .container-bottom {
                 justify-content: center;
-                column-gap: 60px;
+                column-gap: 40px;
+                margin-right: 11px;
+                margin-left: 0;
 
                 .egg-item {
 
@@ -173,15 +177,15 @@
 
                     .icon-container {
                         position: relative;
-                        top: 170px;
-                        left: 0;
+                        top: 180px;
+                        left: 5px;
                         font-size: 20px;
                     }
 
                     .members-container {
                         position: relative;
-                        top: 170px;
-                        left: 0;
+                        top: 180px;
+                        left: 5px;
 
                         .name {
                             font-size: 22px;
@@ -230,6 +234,7 @@
                 flex-direction: column;
                 align-items: center;
                 row-gap: 400px;
+                margin-right: 0;
 
                 .egg-item {
                     width: 100%;
@@ -250,7 +255,6 @@
                             left: 0;
                         }
                     }
-
 
                     .icon-container {
                         position: relative;
