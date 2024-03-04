@@ -205,24 +205,35 @@ class Header1 extends BaseHeader {
         <div className={this.decorateCSS("image-container-3")}>
           <img src={this.getPropValue("sun")} alt="" />
         </div>
+        {/* <div className={this.decorateCSS("background-text")}>
+          {this.castToObject<[]>("slider").map((item: any, index: number) => {
+            return() {item.title});
+          })}
+        </div> */}
         <div className={this.decorateCSS("max-content")}>
           {this.castToObject<[]>("sliders").map((item: any, index: number) => {
             return (
-              <div
-                className={this.decorateCSS("content-container")}
-                key={index}
-              >
-                <img
-                  className={this.decorateCSS("image")}
-                  src={item.image}
-                  alt=""
-                />
-                <h1 className={this.decorateCSS("title")}>{item.title}</h1>
-                <p className={this.decorateCSS("subtitle")}>{item.subtitle}</p>
-                <p className={this.decorateCSS("sliderNumber")}>
-                  <span className={this.decorateCSS("overlay")}></span>
-                  <span>{item.sliderNumber}</span>
-                </p>
+              <div key={index}>
+                <div className={this.decorateCSS("background-text")}>
+                  {item.title}
+                </div>
+                <div className={this.decorateCSS("content-container")}>
+                  <img
+                    className={this.decorateCSS("image")}
+                    src={item.image}
+                    alt=""
+                  />
+                  <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+                  <p className={this.decorateCSS("subtitle")}>
+                    {item.subtitle}
+                  </p>
+                  <p className={this.decorateCSS("sliderNumber")}>
+                    <span className={this.decorateCSS("overlay")}></span>
+                    <span className={this.decorateCSS("slider-number")}>
+                      {item.sliderNumber}
+                    </span>
+                  </p>
+                </div>
               </div>
             );
           })}

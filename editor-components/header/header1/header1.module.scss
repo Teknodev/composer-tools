@@ -25,6 +25,17 @@
     transform: translate(-50%, -50%);
     z-index: 10;
 
+    .background-text {
+      position: absolute;
+      z-index: 0;
+      height: 60rem;
+      font-size: 40rem;
+      // font-size: 80rem;
+      padding-bottom: 20rem;
+      // top: 100rem;
+      animation: moveText 20s linear infinite;
+    }
+
     .content-container {
       position: relative;
       .title {
@@ -68,5 +79,14 @@
         }
       }
     }
+  }
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
