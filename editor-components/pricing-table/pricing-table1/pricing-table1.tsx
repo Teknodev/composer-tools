@@ -5,9 +5,9 @@ import styles from "./pricing-table1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Pricing = {
-  title1: string;
-  title: string;
-  price: string;
+  //title1: string;
+  //title: string;
+  //price: string;
   buttonIcon: string;
   buttonText: string;
   link: string;
@@ -23,6 +23,7 @@ type Pricing = {
   buttonColor: string;
   isActive: boolean;
   popular_settings: any;
+  text3: string;
 };
 class PricingTable1 extends BasePricingTable {
 
@@ -41,23 +42,66 @@ class PricingTable1 extends BasePricingTable {
       value: "Tailored pricing plans ",
     });
     this.addProp({
-      type: "string",
-      key: "pricing-table-title2",
-      displayer: "title2",
-      value: "Get 30 day free trial",
-    });
-    this.addProp({
-      type: "string",
-      key: "pricing-table-title3",
-      displayer: "title3",
-      value: "No any hidden fees pay",
-    });
-    this.addProp({
-      type: "string",
-      key: "pricing-table-title4",
-      displayer: "title4",
-      value: "You can cancel anytime",
-    });
+      type: "array",
+      key: "titles",
+      displayer: "titles",
+      value: [
+        {
+          type: "object",
+          key: "title",
+          displayer: "title",
+          value: [{
+            type: "string",
+            key: "text",
+            displayer: "text",
+            value: "Get 30 day free trial",
+          },
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "icon",
+            value: "LuCalendarCheck"
+          }
+          ]
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "title",
+          value: [{
+            type: "string",
+            key: "text",
+            displayer: "text",
+            value: "No any hidden fees pay",
+          },
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "icon",
+            value: "BsWallet2"
+          }
+          ]
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "title",
+          value: [{
+            type: "string",
+            key: "text",
+            displayer: "text",
+            value: "You can cancel anytime",
+          },
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "icon",
+            value: "FaRegClock"
+          }
+          ]
+        }
+      ]
+    })
     this.addProp({
       type: "string",
       key: "pricing-table-title1",
@@ -253,7 +297,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "string",
               key: "pricingTableTitle",
-              displayer: "Title",
+              displayer: "pricingTitle",
               value: "Cancel anytime",
             },
             {
@@ -262,12 +306,6 @@ class PricingTable1 extends BasePricingTable {
               displayer: "ıs active",
               value: false,
             },
-            {
-              type: "string",
-              key: "pricingTableTitle",
-              displayer: "Title",
-              value: "Cancel anytime",
-            }
           ],
         },
         {
@@ -446,7 +484,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "string",
               key: "pricingTableTitle",
-              displayer: "Title",
+              displayer: "pricingTitle",
               value: "Cancel anytime",
             },
             {
@@ -455,12 +493,6 @@ class PricingTable1 extends BasePricingTable {
               displayer: "ıs active",
               value: true,
             },
-            {
-              type: "string",
-              key: "pricingTableTitle",
-              displayer: "Title",
-              value: "Cancel anytime",
-            }
           ],
         },
         {
@@ -645,7 +677,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "string",
               key: "pricingTableTitle",
-              displayer: "Title",
+              displayer: "pricingTitle",
               value: "Cancel anytime",
             },
             {
@@ -659,7 +691,6 @@ class PricingTable1 extends BasePricingTable {
       ],
     });
   }
-
   getName(): string {
     return "Pricing Table 1";
   }
@@ -671,7 +702,6 @@ class PricingTable1 extends BasePricingTable {
             <h3 className={this.decorateCSS("subtitle")}>{this.getPropValue("pricing-table-subtitle")}</h3>
             <h1 className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</h1>
             <h2 className={this.decorateCSS("title1")}>{this.getPropValue("pricing-table-title1")}</h2>
-
             <div className={this.decorateCSS("item-div")}>
               {this.castToObject<Pricing[]>("pricingTableItem").map(
                 (table: Pricing, index: number) => {
@@ -680,17 +710,14 @@ class PricingTable1 extends BasePricingTable {
                       width: 100 / this.getPropValue("itemCount") + "%",
                     }}>
                       <div key={index} className={this.decorateCSS("item-card")}>
-
                         <div
                           className={`${this.decorateCSS("popular-box")} ${table.popular_settings[1].value && this.decorateCSS("active")}`}>
                           <h1 className={this.decorateCSS("popular-text")}>{table.popular_settings[0].value}</h1>
                         </div>
-
                         <div className={this.decorateCSS("card-upper")}>
                           <h3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</h3>
                           <h3 className={this.decorateCSS("card-title")}>{table.cardTitle}</h3>
                           <ul className={this.decorateCSS("card-list")}>
-
                             {table.cardList.map((listItem: any, index: number) => {
                               return (
                                 <li key={index} className={this.decorateCSS("card-list-item")}>
@@ -706,9 +733,10 @@ class PricingTable1 extends BasePricingTable {
                           </ul>
                           <div className={`${this.decorateCSS("card-price")}  ${table.isActive && this.decorateCSS("active")}`}>
                             <span className={this.decorateCSS("price")}>{table.cardPrice}</span>
-                            <span className={this.decorateCSS("Duration")}>{table.cardDuration}</span>
-                            <span className={this.decorateCSS("Duration1")}>{table.cardDuration1}</span>
-
+                            <div className={this.decorateCSS("card-duration")} >
+                              <span className={this.decorateCSS("Duration")}>{table.cardDuration}</span>
+                              <span className={this.decorateCSS("Duration1")}>{table.cardDuration1}</span>
+                            </div>
                           </div>
 
                         </div>
@@ -716,7 +744,7 @@ class PricingTable1 extends BasePricingTable {
                           <ComposerLink path={table.cardButtonLink}>
                             <button className={this.decorateCSS("card-button")}>{table.cardButtonText}</button>
                           </ComposerLink>
-                          <h2 className={this.decorateCSS("Title")}>{table.pricingTableTitle}</h2>
+                          <h2 className={this.decorateCSS("pricingTitle")}>{table.pricingTableTitle}</h2>
                         </div>
                       </div>
                     </div>
@@ -724,16 +752,21 @@ class PricingTable1 extends BasePricingTable {
                 }
               )}
             </div>
-            <h2 className={this.decorateCSS("title2")}>{this.getPropValue("pricing-table-title2")}</h2>
-            <h2 className={this.decorateCSS("title3")}>{this.getPropValue("pricing-table-title3")}</h2>
-            <h2 className={this.decorateCSS("title4")}>{this.getPropValue("pricing-table-title4")}</h2>
+            <div className={this.decorateCSS("titles")}>
+              {this.getPropValue("titles").map((title: any) =>
+                <div className={this.decorateCSS("title-bottom")}>
+                  <ComposerIcon name={title.getPropValue("icon")}></ComposerIcon>
+                  <h2>
+                    {title.getPropValue("text")}
+                  </h2>
+                </div>)
+
+
+              }
+            </div>
           </div>
-
-
         </div>
       </div>
-
-
     );
   }
 }
