@@ -15,6 +15,9 @@
       flex-direction: column;
       border-radius: 6px;
       padding: 20px;
+      box-shadow: 25px ;
+      box-shadow: var(--composer-box-shadow);
+      
 
       .subtitle {
         display: flex;
@@ -66,6 +69,8 @@
           display: flex;
           flex-direction: column;
           width: 500px;
+          box-shadow: 25px ;
+      box-shadow: var(--composer-box-shadow);
           .popular-box {
             text-align: center;
             color: var(--composer-primary-color);
@@ -192,7 +197,7 @@
               font-size: 20px;
               margin-left: 140px;
               font-weight: 80;
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
             }
             .card-button {
               width: 100%;
@@ -246,6 +251,9 @@
           margin-left: 30px;
         }
         .item-div {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
           .card-item-count {
             width: 130% !important;
             margin-left: 100px;
@@ -268,16 +276,47 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 0;
+        .titles{
+          gap:5px;
+          padding: 10px;
+          flex-wrap: wrap;
+          display: flex;
+          align-items: center !important;
+          justify-content: center !important;
+        }
         .subtitle {
           display: flex;
           margin: 0;
         }
+        .title{
+          font-size: 2.813rem;
+          margin-left: 10px;
+        }
+        .title1{
+          font-size: 2.813rem;
+          margin-left: 15px;
+          margin-bottom: 10px;
+        }
         .item-div {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
           .card-item-count {
+            margin-top: 10px;
             width: 100% !important;
-            margin: 0;
+            margin: 0;           
             .item-card{
               width: 100%;
+              .card-bottom{
+                .pricingTitle{
+                  margin-left: 55px;
+                }
+              }
+              .card-list{
+                padding: 0px;
+              }
+              
             }
           }
         }
