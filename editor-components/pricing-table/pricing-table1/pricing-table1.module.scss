@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   padding: 50px 0;
-  background-color:var(--composer-html-background);
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -15,11 +15,11 @@
       flex-direction: column;
       border-radius: 6px;
       padding: 20px;
-      
+
       .subtitle {
         display: flex;
         flex-direction: column;
-        background-color:var(--composer-tertiary-color);
+        background-color: var(--composer-tertiary-color);
         text-align: center;
         box-shadow: var(--composer-box-shadow);
         width: max-content;
@@ -27,9 +27,6 @@
         color: var(--composer-font-color-secondary);
         border-radius: 25px;
         margin-left: 650px;
-
-       
-        
       }
 
       .title {
@@ -37,8 +34,6 @@
         text-align: center;
         font-size: 50px;
         margin: 10px;
-
-          
       }
       .title1 {
         color: var(--composer-primary-color);
@@ -47,21 +42,20 @@
         margin-bottom: 20px;
         margin-top: 0px;
       }
-      .titles{
-       display: flex;
-       justify-content: space-between;
-       padding: 50px;
-       margin-left: 100px;
-       margin-right: 100px;
-       .title-bottom{
+      .titles {
         display: flex;
-        gap: 10px;
-        align-items: center;
-        font-size:15px;  
-        font-weight: lighter;
-        color: var(--composer-font-color-primary);
-
-       }        
+        justify-content: space-between;
+        padding: 50px;
+        margin-left: 100px;
+        margin-right: 100px;
+        .title-bottom {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          font-size: 15px;
+          font-weight: lighter;
+          color: var(--composer-font-color-primary);
+        }
       }
       .item-div {
         display: flex;
@@ -71,14 +65,14 @@
         .item-card {
           display: flex;
           flex-direction: column;
-          width:500px;         
+          width: 500px;
           .popular-box {
             text-align: center;
             color: var(--composer-primary-color);
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
             color: white;
-            font-size:8px;
+            font-size: 8px;
             &.active {
               background-image: linear-gradient(
                 to right,
@@ -97,55 +91,54 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background-color:transparent;
-              
-            color:var(--composer-font-color-primary);         
-            width:100%;
-            gap: 10px;         
-            z-index: 10;   
-         
+            background-color: transparent;
+
+            color: var(--composer-font-color-primary);
+            width: 100%;
+            gap: 10px;
+            z-index: 10;
+
             .card-price {
-              margin-top:35px; 
+              margin-top: 35px;
               display: flex;
               align-items: center;
               gap: 20px;
               justify-content: center;
               margin-bottom: 0px;
 
-              .card-duration{
+              .card-duration {
                 display: flex;
                 flex-direction: column;
               }
               &.active {
                 background: var(--composer-secondary-color);
-                color:var(--composer-font-color-secondary);  
+                color: var(--composer-font-color-secondary);
               }
               .price {
                 font-size: 3.5rem;
                 font-weight: 600;
-                letter-spacing: 1px;    
-                margin-top: 15px;                                    
+                letter-spacing: 1px;
+                margin-top: 15px;
               }
               .Duration {
-                font-size: 20px;     
-                margin-top: 10px;          
+                font-size: 20px;
+                margin-top: 10px;
               }
               .Duration1 {
                 font-size: 20px;
-                display: flex;    
-                margin-top: 5px;          
+                display: flex;
+                margin-top: 5px;
               }
             }
-            .cardsubtitle {             
-              color:var(--composer-font-color-secondary);
+            .cardsubtitle {
+              color: var(--composer-font-color-secondary);
               box-shadow: var(--composer-box-shadow);
               margin: 30px 30px 15px 30px;
-              letter-spacing: 0.8px;   
-              background-color:var(--composer-tertiary-color);
+              letter-spacing: 0.8px;
+              background-color: var(--composer-tertiary-color);
               text-align: center;
               border-radius: 25px;
               padding: 15px;
-                  
             }
             .cardsubtitle1 {
               font-size: 20px;
@@ -163,7 +156,7 @@
             .card-list {
               font-size: 8px;
               padding: 10px;
-             
+
               .card-list-item {
                 list-style: none;
                 font-size: 20px;
@@ -171,34 +164,31 @@
                 padding: 0 30px;
                 display: flex;
                 gap: 15px;
-                padding-bottom: 15px!important;
-                padding-top: 15px!important;
+                padding-bottom: 15px !important;
+                padding-top: 15px !important;
                 color: var(--composer-font-color-primary);
-
               }
-              
             }
-          
           }
           .card-bottom {
             display: flex;
-            flex-direction: column;          
-            width: 100%;              
-            
+            flex-direction: column;
+            width: 100%;
+
             padding: 40px;
-            color:var(--composer-font-color-secondary);
+            color: var(--composer-font-color-secondary);
             font-size: 10px;
             cursor: pointer;
             &.active {
               background: var(--composer-secondary-color);
-              color:var(--composer-font-color-secondary);
+              color: var(--composer-font-color-secondary);
               .card-button {
                 background: var(--composer-tertiary-color);
                 border: 1px solid var(--composer-tertiary-color);
                 color: var(--composer-font-color-secondary);
               }
-            }         
-             .pricingTitle{
+            }
+            .pricingTitle {
               font-size: 20px;
               margin-left: 140px;
               font-weight: 80;
@@ -209,10 +199,10 @@
               height: 80px;
               padding: 15px;
               background: var(--composer-secondary-color);
-              color:var(--composer-font-color-secondary);
+              color: var(--composer-font-color-secondary);
               font-size: 1.5rem;
               font-weight: 600;
-              border:var(--composer-tertiary-color);
+              border: var(--composer-tertiary-color);
               cursor: pointer;
               &:hover {
                 color: white;
@@ -224,59 +214,71 @@
     }
   }
 }
-/*
+
 @media only screen and (max-width: 800px) {
   .container {
-    padding: 50px 20px;   
-    .max-content{
+    padding: 50px 20px;
+    .max-content {
       display: flex;
       flex-direction: column;
-      align-items: center;   
-      .table{      
-         .titles{
-      margin-left: 0px;
-      margin-right: 0px;
-      padding: 30px;
-      flex-wrap: wrap;
-      display: flex;
-      align-items: center!important;
-      justify-content: center!important;
-      gap: 100px;
-      padding-left: 50px;
-      padding-right: 0;
-    }   
-        .subtitle{
+      align-items: center;
+      .table {
+        .titles {
+          margin-left: 0px;
+          margin-right: 0px;
+          padding: 30px;
+          flex-wrap: wrap;
+          display: flex;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 100px;
+          padding-left: 50px;
+          padding-right: 0;
+        }
+        .subtitle {
           display: flex;
           margin-left: 260px;
-        }    
-        .title{
-          margin-left: 30px;
-          
         }
-        .title1{
+        .title {
           margin-left: 30px;
         }
-        .item-div{
-          .card-item-count{
+        .title1 {
+          margin-left: 30px;
+        }
+        .item-div {
+          .card-item-count {
             width: 130% !important;
-            margin-left: 100px;          
+            margin-left: 100px;
           }
         }
       }
     }
   }
-}*/
+}
 
 @media only screen and (max-width: 412px) {
   .container {
-    .max-content{
-     //flex-direction: column;
-     //align-items: center;
-     //display: flex;
-      .table{
-        .item-div{
-          .card-item-count{
-            width: 80%;
+    padding: 50px 20px;
+    .max-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .table {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .subtitle {
+          display: flex;
+          margin: 0;
+        }
+        .item-div {
+          .card-item-count {
+            width: 100% !important;
+            margin: 0;
+            .item-card{
+              width: 100%;
+            }
           }
         }
       }
