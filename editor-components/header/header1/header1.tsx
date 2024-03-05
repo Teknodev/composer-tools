@@ -2,7 +2,8 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
+// import ComposerSlider from "../../../composer-base-components/slider/slider";
+import Slider from "react-slick";
 class Header1 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -194,10 +195,25 @@ class Header1 extends BaseHeader {
   }
 
   render() {
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true,
+    };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("image-container-1")}>
-          <img src={this.getPropValue("background-layout")} alt="" />
+          <img
+            className={this.decorateCSS("background-layout")}
+            src={this.getPropValue("background-layout")}
+            alt=""
+          />
         </div>
         <div className={this.decorateCSS("image-container-2")}>
           <img src={this.getPropValue("sun")} alt="" />
@@ -205,38 +221,39 @@ class Header1 extends BaseHeader {
         <div className={this.decorateCSS("image-container-3")}>
           <img src={this.getPropValue("sun")} alt="" />
         </div>
-        {/* <div className={this.decorateCSS("background-text")}>
-          {this.castToObject<[]>("slider").map((item: any, index: number) => {
-            return() {item.title});
-          })}
-        </div> */}
         <div className={this.decorateCSS("max-content")}>
-          {this.castToObject<[]>("sliders").map((item: any, index: number) => {
-            return (
-              <div key={index}>
-                <div className={this.decorateCSS("background-text")}>
-                  {item.title}
-                </div>
-                <div className={this.decorateCSS("content-container")}>
-                  <img
-                    className={this.decorateCSS("image")}
-                    src={item.image}
-                    alt=""
-                  />
-                  <h1 className={this.decorateCSS("title")}>{item.title}</h1>
-                  <p className={this.decorateCSS("subtitle")}>
-                    {item.subtitle}
-                  </p>
-                  <p className={this.decorateCSS("sliderNumber")}>
-                    <span className={this.decorateCSS("overlay")}></span>
-                    <span className={this.decorateCSS("slider-number")}>
-                      {item.sliderNumber}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+          <Slider {...settings}>
+            {this.castToObject<[]>("sliders").map(
+              (item: any, index: number) => {
+                return (
+                  <div key={index}>
+                    <div className={this.decorateCSS("background-text")}>
+                      {item.title}
+                    </div>
+                    <div className={this.decorateCSS("content-container")}>
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={item.image}
+                        alt=""
+                      />
+                      <h1 className={this.decorateCSS("title")}>
+                        {item.title}
+                      </h1>
+                      <p className={this.decorateCSS("subtitle")}>
+                        {item.subtitle}
+                      </p>
+                      <p className={this.decorateCSS("sliderNumber")}>
+                        <span className={this.decorateCSS("overlay")}></span>
+                        <span className={this.decorateCSS("slider-number")}>
+                          {item.sliderNumber}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                );
+              }
+            )}
+          </Slider>
         </div>
       </div>
     );
