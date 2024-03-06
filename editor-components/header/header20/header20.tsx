@@ -417,31 +417,37 @@ class HeaderComponent20 extends BaseHeader {
           <div className={this.decorateCSS("items-container")}>
             <ComposerSlider {...settings}>
               {this.castToObject<[]>("items").map(
-                (item: any, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("item-container")}
-                  >
-                    <div className={this.decorateCSS("img-container")}>
-                      <img src={item.image} alt="" />
-                    </div>
-                    <div className={this.decorateCSS("outer")}>
-                      <div className={this.decorateCSS("inner")}>
-                        <h1 className={this.decorateCSS("title")}>
-                          {item.title}
-                        </h1>
-                        <span className={this.decorateCSS("slide-number")}>
-                          {item.slideNumber}
-                        </span>
+                (item: any, index: number) => {
+                  return (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("item-container")}
+                    >
+                      <div className={this.decorateCSS("img-container")}>
+                        <img
+                          className={this.decorateCSS("image")}
+                          src={item.image}
+                          alt=""
+                        />
+                      </div>
+                      <div className={this.decorateCSS("outer")}>
+                        <div className={this.decorateCSS("inner")}>
+                          <h1 className={this.decorateCSS("title")}>
+                            {item.title}
+                            <span className={this.decorateCSS("slide-number")}>
+                              {item.slideNumber}
+                            </span>
+                          </h1>
+                        </div>
+                      </div>
+                      <div className={this.decorateCSS("subtitle-container")}>
+                        <h2 className={this.decorateCSS("subtitle")}>
+                          {item.subtitle}
+                        </h2>
                       </div>
                     </div>
-                    <div className={this.decorateCSS("subtitle-container")}>
-                      <h2 className={this.decorateCSS("subtitle")}>
-                        {item.subtitle}
-                      </h2>
-                    </div>
-                  </div>
-                )
+                  );
+                }
               )}
             </ComposerSlider>
           </div>
