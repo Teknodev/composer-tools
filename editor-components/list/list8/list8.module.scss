@@ -92,22 +92,27 @@
                   }
                 }
               }
-  
-              .button {
-                margin: 4rem;
-                max-width: 20%;
-                align-self: center;
-                background-color: transparent;
-                color: var(--composer-primary-color);
-  
-                border-color: var(--composer-secondary-color);
-                width: 17rem;
-                height: 50px;
-                font-size: 1.5rem;
-                border-radius: 15px;
-                border: 2px solid var(--composer-tertiary-color);
-                transition: 0.4s;
+
+              .button-box{
+                display: flex;
+                justify-content: center;
+                .button {
+                    margin: 4rem;
+                    width: 100%;
+                    align-self: center;
+                    background-color: transparent;
+                    color: var(--composer-primary-color);
+      
+                    border-color: var(--composer-secondary-color);
+                    height: 50px;
+                    font-size: 1.5rem;
+                    border-radius: 15px;
+                    border: 2px solid var(--composer-tertiary-color);
+                    transition: 0.4s;
+                  }
               }
+  
+             
   
               .button:hover {
                 background-color: var(--composer-secondary-color);

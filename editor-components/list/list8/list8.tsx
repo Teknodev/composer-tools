@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list8.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 //CLASS
 class List8 extends BaseList {
@@ -119,11 +120,23 @@ class List8 extends BaseList {
       value:
         " Lorem, ipsum dolor sit amet consectetur adipisicing elit.Saepe, quis.",
     });
+    this.addProp({
+        type: "string",
+        key: "button_text",
+        displayer: "Button Text",
+        value:
+          "List your space",
+      });
+      this.addProp({
+        type: "page",
+        key: "button_url",
+        displayer: "Button Url",
+        value: ""
+      });
   }
   //end constructor
 
   render(): ReactNode {
-    //console.log(this.getPropValue("list-items"))
 
     //RETURN
     return (
@@ -178,9 +191,13 @@ class List8 extends BaseList {
                   {/* Boxes end */}
 
                   {/* Button */}
-                  <button className={this.decorateCSS("button")}>
-                    List Your Space
-                  </button>
+                 <div className={this.decorateCSS("button-box")}>
+                    <ComposerLink path={this.getPropValue("button_url")}>
+                        <button className={this.decorateCSS("button")}>
+                            {this.getPropValue("button_text")}
+                        </button>
+                    </ComposerLink>
+                 </div>
                 </section>
               </div>
             </main>
