@@ -2,18 +2,22 @@ import * as React from "react";
 import styles from "./header20.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-type icons = {
-  url: string;
+type Card = {
   image: string;
+  title: string;
+  subtitle: string;
+  url: string;
+  slideNumber: number;
 };
 class HeaderComponent20 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "object",
+      type: "array",
       displayer: "items",
       key: "items",
       value: [
@@ -48,6 +52,12 @@ class HeaderComponent20 extends BaseHeader {
               key: "slideNumber",
               value: 1,
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
             ,
           ],
         },
@@ -74,13 +84,19 @@ class HeaderComponent20 extends BaseHeader {
               type: "string",
               displayer: "Subtitle",
               key: "subtitle",
-              value: "Desing",
+              value: "Design",
             },
             {
               type: "number",
               displayer: "Slide",
               key: "slideNumber",
               value: 2,
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
             },
             ,
           ],
@@ -116,6 +132,12 @@ class HeaderComponent20 extends BaseHeader {
               key: "slideNumber",
               value: 3,
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
             ,
           ],
         },
@@ -150,7 +172,12 @@ class HeaderComponent20 extends BaseHeader {
               key: "slideNumber",
               value: 4,
             },
-            ,
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
           ],
         },
         {
@@ -183,6 +210,12 @@ class HeaderComponent20 extends BaseHeader {
               displayer: "Slide",
               key: "slideNumber",
               value: 5,
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
             },
             ,
           ],
@@ -218,6 +251,12 @@ class HeaderComponent20 extends BaseHeader {
               key: "slideNumber",
               value: 6,
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
             ,
           ],
         },
@@ -251,6 +290,12 @@ class HeaderComponent20 extends BaseHeader {
               displayer: "Slide",
               key: "slideNumber",
               value: 7,
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
             },
             ,
           ],
@@ -286,6 +331,12 @@ class HeaderComponent20 extends BaseHeader {
               key: "slideNumber",
               value: 8,
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
             ,
           ],
         },
@@ -319,6 +370,12 @@ class HeaderComponent20 extends BaseHeader {
               displayer: "Slide",
               key: "slideNumber",
               value: 9,
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
             },
             ,
           ],
@@ -354,6 +411,12 @@ class HeaderComponent20 extends BaseHeader {
               key: "slideNumber",
               value: 10,
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
             ,
           ],
         },
@@ -388,6 +451,12 @@ class HeaderComponent20 extends BaseHeader {
               key: "slideNumber",
               value: 11,
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
             ,
           ],
         },
@@ -416,8 +485,8 @@ class HeaderComponent20 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("items-container")}>
             <ComposerSlider {...settings}>
-              {this.castToObject<[]>("items").map(
-                (item: any, index: number) => {
+              {this.castToObject<Card[]>("items").map(
+                (item: Card, index: number) => {
                   return (
                     <div
                       key={index}
@@ -432,12 +501,16 @@ class HeaderComponent20 extends BaseHeader {
                       </div>
                       <div className={this.decorateCSS("outer")}>
                         <div className={this.decorateCSS("inner")}>
-                          <h1 className={this.decorateCSS("title")}>
-                            {item.title}
-                            <span className={this.decorateCSS("slide-number")}>
-                              {item.slideNumber}
-                            </span>
-                          </h1>
+                          <ComposerLink path={item.url}>
+                            <h1 className={this.decorateCSS("title")}>
+                              {item.title}
+                              <span
+                                className={this.decorateCSS("slide-number")}
+                              >
+                                {item.slideNumber}
+                              </span>
+                            </h1>
+                          </ComposerLink>
                         </div>
                       </div>
                       <div className={this.decorateCSS("subtitle-container")}>
