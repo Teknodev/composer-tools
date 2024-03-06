@@ -176,6 +176,7 @@ export abstract class Component
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
+      propValue.value = propValue.value.filter(value => value != null);
       propValue.value = propValue.value.map(
         (propValueItem: TypeUsableComponentProps) => {
           if (Array.isArray(propValueItem.value)) {
