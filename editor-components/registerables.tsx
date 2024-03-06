@@ -17,6 +17,7 @@ import ListComponent4 from "./list/list4/list4";
 import ListComponent5 from "./list/list5/list5";
 import ListComponent6 from "./list/list6/list6";
 import ListComponent7 from "./list/list7/list7";
+import ListComponent8 from "./list/list8/list8";
 import LocationComponent1 from "./location/location1/location1";
 import ContentComponent1 from "./content/content1/content1";
 import ContentComponent2 from "./content/content2/content2";
@@ -219,6 +220,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ListComponent5(),
     new ListComponent6(),
     new ListComponent7(),
+    new ListComponent8(),
     new LocationComponent1(),
     new ContentComponent1(),
     new ContentComponent2(),
