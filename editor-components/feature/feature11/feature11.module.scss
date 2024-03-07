@@ -11,19 +11,27 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
+
             .card-item-count {
+
                 .message {
                     display: flex;
                     flex-direction: column;
                     min-height: 100px;
-                    border-left: 5px solid var(--composer-tertiary-color);
-                    border-top: 2px solid var(--composer-tertiary-color);
-                    border-bottom: 2px solid var(--composer-tertiary-color);
-                    border-right: 2px solid var(--composer-tertiary-color);
+                    border: 2px solid var(--composer-tertiary-color);
+                    // border-left: 5px solid var(--composer-tertiary-color);
+                    // border-top: 2px solid var(--composer-tertiary-color);
+                    // border-bottom: 2px solid var(--composer-tertiary-color);
+                    // border-right: 2px solid var(--composer-tertiary-color);
                     box-shadow: var(--composer-box-shadow);
                     border-radius: 6px;
                     padding: 20px;
                     flex: 1 1;
+
+                    &.setBorderThickness {
+                        border-left : 5px solid var(--composer-tertiary-color);
+                    }
+
                     .title {
                         margin: 0;
                         width: 100%;
