@@ -1,143 +1,138 @@
 .container {
   width: 100%;
-  padding: 50px 0;
-
+  padding: 50px 50px;
   .max-content {
     max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    .price {
+    //display: flex;
+    //justify-content: center;
+    //margin: auto;
+    .page {
+      //width: 100%;
       display: flex;
-      flex-direction: column;
+      gap: 4rem;
       align-items: center;
       justify-content: center;
-      height: max-content;
-      border: 1px solid var(--composer-tertiary-color);
-      padding: 35px 20px;
-      flex: 1 1;
-      min-width: 250px;
-      border-radius: 20px;
-      margin: 0 10px;
-      &.border-top{
-        border-top: 3px solid var(--composer-tertiary-color);
-      }
-      &.border-bottom {
-        border-bottom: 3px solid var(--composer-tertiary-color);
-      }
-      &.border-all {
-        border: 3px solid var(--composer-tertiary-color);
-      }
-      .image {
-        border-radius: 45px;
-        margin-bottom: 15px;
-        border: 1px solid var(--composer-tertiary-color);
-        align-self: center;
-        object-fit: contain;
-        max-width: 250px;
-        max-height: 180px;
-        padding: 5px;
-      }
-      .title {
+      .text-center {
         display: flex;
-        font-weight: 450;
-        align-items: center;
-        gap: 10px;
-        .stars {
-          img {
-            width: 15px;
-            height: 15px;
-          }
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 2rem;
+
+        .badge{
+          border: 1px solid #ccc;
+          border-radius: 35px;
+          background-color: #b8d0dd;
+          color: rgb(50, 53, 230);
+          font-size: 10px;
+          padding: 10px 20px;
         }
-      }
-      .price-text {
-        display: flex;
-        font-weight: bold;
-        font-size: 1.9em;
-        color: var(--composer-primary-color);
-        .duration-text {
-          text-align: center;
-          margin: 7px auto 10px 5px;
-          font-weight: 450;
-          font-size: 0.75em;
+        .title {
+          font-weight: bold;
+          font-size: 4rem;
+          //margin-bottom: 1rem;
           color: var(--composer-font-color-primary);
         }
-      }
-      .button-child {
-        border-top: 1px solid rgb(200, 200, 200);
-        .button {
-          margin-top: 15px;
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          width: max-content;
+        .subtitle {
+          font-size: 1.5rem;
+          //color: var(--composer-primary-color);
+          opacity: 0.8;
+        }
+        .pageButton{
+          border: 1px solid #ccc;
+          border-radius: 35px;
+          background-color: #0073b7;
           color: white;
-          background-color: var(--composer-secondary-color);
-          padding: 10px 30px;
-          border-radius: 6px;
-          border: 1px solid transparent;
-          &:hover {
-            color: var(--composer-secondary-color);
-            background-color: transparent;
-            border: 1px solid var(--composer-tertiary-color);
-          }
+          font-size: 16px;
+          padding: 10px 20px;
+          //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          cursor: pointer;
         }
       }
-      ul {
-        border-radius: 5px;
-        border-top: 3px solid var(--composer-primary-color);
-        display: block;
-        margin: 15px 0 0 0;
-        list-style-type: circle;
-        padding: 0 100px 0 30px;
-        li {
-          transition: all 0.5s;
-          text-align: left;
-          width: 200px;
-          margin-top: 10px;
-          &:hover {
-            padding-left: 5px;
-            color: var(--composer-primary-color);
+      .accordions-table{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .box{
+          width: 50%;
+          border: 2px solid #eeebee;
+          margin: 5px;
+          padding: 15px 35px;
+          border-radius: 10px;
+          &:active {
+            background-color: #0073b7; 
+            .text {
+              background-color: transparent;
+              transition: all 0.8s ease-in-out;
+            }
           }
+          .accordion-header{
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            flex-direction: row;
+            .header{
+              font-size: 2rem;
+              text-align: left;
+            }
+            .icon-container {
+              text-align: right;
+              margin-left: 10px; 
+              .icon {
+                font-size: 3rem;
+                margin-right: 10px;
+              }
+            }          
+          }
+          .text{
+           display: flex;
+           flex-direction: column;
+           align-items: flex-start;
+           justify-content: center;
+           gap: 2rem;
+           margin: 15px;
+           transition: all 0.8s ease-in-out;
+
+            .description{
+              font-size: 1.5rem;
+            }
+            .c-h{
+              display: flex;
+              flex-direction: row;
+              gap: 5rem;
+              .contents{
+                font-size: 2rem;
+              }
+              .headerButton{
+                border: 1px solid #ccc;
+                border-radius: 35px;
+                background-color: #b8d0dd;
+                color: rgb(50, 53, 230);
+                font-size: 10px;
+                padding: 10px 20px;
+              }  
+            }
+            
+          }        
         }
       }
     }
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    .max-content{
-      flex-direction: column;
-      align-items: center;
-      .card-item-count{
-        min-width: 70%;
-        .image{
-          width: 60%;
-        }
-      }
-
+@media screen and (max-width: 620px) {
+ .container{
+  width: 620px;
+  .max-content{
+    display: flex;
+    flex-direction: column !important;
+    .page{
+      display: flex;
+    flex-direction: column !important;
     }
   }
-}
-
-@media only screen and (max-width: 400px) {
-  .container {
-    .max-content{
-      flex-direction: column;
-      align-items: center;
-      .card-item-count{
-        min-width: 70%;
-        .image{
-          width: 60%;
-        }
-      }
-
-    }
-  }
+ }
 }
