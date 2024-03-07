@@ -5,134 +5,63 @@
   padding: 50px 0px;
   display: flex;
   align-items: center;
-  .wide-text-container {
-    max-width: var(--composer-content-width);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: auto;
-    .wide-text {
-      display: block;
-      .wide-text-h3 {
-        font-weight: 800;
-        line-height: 1.4;
-        color: var(--composer-primary-color);
-        width: 60%;
-        margin-bottom: 5px;
-        font-size: 1.5em;
-      }
-      .wide-text-h1 {
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 3em;
-        margin-top: 0;
-        width: 60%;
-        color: var(--composer-primary-color);
-      }
-      .wide-text-p {
-        color: rgb(80, 80, 80);
-        width: 400px;
-        margin-bottom: 30px;
-        font-size: 1.1em;
-        color: var(--composer-font-color-primary);
-      }
-      .button {
-        cursor: pointer;
-        text-decoration: none;
-        text-align: center;
-        transition: 0.3s;
-        display: block;
-        color: var(--composer-font-color-secondary);
-        background-color: var(--composer-secondary-color);
-        padding: 15px 30px;
-        border-radius: 6px;
-        border: 1px solid transparent;
-        width: 200px;
-        &:hover {
-          color: var(--composer-font-color-primary);
-          background-color: transparent;
-          border: 1px solid var(--composer-secondary-color);
-        }
-      }
-    }
-    .image-background {
-      display: block;
-      margin: auto 0 auto 0;
-      .image {
-        width: 400px;
-        border-radius: 10px;
-        object-fit: cover;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 1100px) {
-  .container {
+  
+  .tabs{
+    position: relative;
     width: 100%;
     display: flex;
-    padding: unset;
-    .wide-text-container {
-      display: flex;
-      flex-direction: column;
-      justify-content:center;
-      align-items: center;
-      margin: auto;
-      .wide-text {
+    flex-direction: row;
+    .tab-buttons{
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        .wide-text-h3 {
-          font-weight: 800;
-          line-height: 1.4;
-          color: var(--composer-primary-color);
-          width: unset;
-          margin-bottom: 5px;
-          font-size: 1.5em;
+        justify-content: flex-start;
+        gap: 40px;
+        margin-bottom: 40px;
+        left:50px;
+        .tabText{
+            color: var(--composer-font-color-primary);
+            font-weight: bold;
+            padding: 10px 0px;
+            font-size: 1.75rem;
+            font-weight: bold;
+            &.active{
+                //border-bottom: 2px solid var(--composer-secondary-color);
+                color: var(--composer-secondary-color);
+            }
         }
-        .wide-text-h1 {
-          font-weight: 800;
-          line-height: 1.4;
-          font-size: 3em;
-          margin-top: 0;
-          width: unset;
-          text-align: center;
+    }
+    .tab{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transition: all 0.5s ease-out;
+        display: none;
+        &.active{
+            display: flex;
         }
-        .wide-text-p {
-          color: rgb(80, 80, 80);
-          width: unset;
-          margin-bottom: 30px;
-          font-size: 1.5rem;
-          text-align: center;
+        &.start{
+            opacity: 1;
         }
-        .button {
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          color: white;
-          background-color: var(--composer-primary-color);
-          padding: 15px 30px;
-          border-radius: 6px;
-          border: 1px solid transparent;
-          width: 200px;
-          margin-bottom: 20px;
-          &:hover {
-            color: var(--composer-primary-color);
-            background-color: transparent;
-            border: 1px solid var(--composer-primary-color);
+        .content{
+            padding: 0px 60px 0px 0px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            .image-container{
+              width: 50%;
+              .image{
+                  width: 100%;
+                  border-radius: var(--composer-border-radius);
+              }
           }
         }
-      }
-      .image {
-        display: block;
-        margin: unset;
-        img {
-          width: 100%;
-        }
-      }
+        
     }
-  }
 }
+}
+
+
