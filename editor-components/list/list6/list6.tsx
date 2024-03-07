@@ -9,7 +9,12 @@ class List6 extends BaseList {
   }
   constructor(props?: any) {
     super(props, styles);
-
+    this.addProp({
+        type: "string",
+        key: "description",
+        displayer: "Description",
+        value: "It's so challenging to find a good team to do great things. But we can provide you the best one.",
+    })
     this.addProp({
       type: "array",
       key: "list-items",
@@ -24,7 +29,7 @@ class List6 extends BaseList {
               type: "string",
               key: "item title",
               displayer: "Item Title",
-              value: "Quality",
+              value: "Design",
             },
             {
               type: "image",
@@ -38,7 +43,7 @@ class List6 extends BaseList {
               key: "item-text",
               displayer: "Item Text",
               value:
-                "We are a leading firm in providing quality and value to our customers.",
+                "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
           ],
         },
@@ -51,7 +56,7 @@ class List6 extends BaseList {
               type: "string",
               key: "item title",
               displayer: "Item Title",
-              value: "Experience",
+              value: "Development",
             },
             {
               type: "image",
@@ -65,7 +70,7 @@ class List6 extends BaseList {
               key: "item-text",
               displayer: "Item Text",
               value:
-                "Each member of our team has at least 5 years of legal experience.",
+                "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
           ],
         },
@@ -78,7 +83,7 @@ class List6 extends BaseList {
               type: "string",
               key: "item title",
               displayer: "Item Title",
-              value: "Support",
+              value: "Marketing",
             },
             {
               type: "image",
@@ -92,7 +97,7 @@ class List6 extends BaseList {
               key: "item-text",
               displayer: "Item Text",
               value:
-                "Our managers are always ready to answer your questions. You can call us during the weekends and at night.",
+                "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
           ],
         },
@@ -105,7 +110,7 @@ class List6 extends BaseList {
               type: "string",
               key: "item title",
               displayer: "Item Title",
-              value: "Presents",
+              value: "Content writing",
             },
             {
               type: "image",
@@ -119,61 +124,7 @@ class List6 extends BaseList {
               key: "item-text",
               displayer: "Item Text",
               value:
-                "We like to make people happy. We ask our clients about their birthday and prepare cool presents.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "list-item",
-          displayer: "List Item",
-          value: [
-            {
-              type: "string",
-              key: "item title",
-              displayer: "Item Title",
-              value: "Flexibility",
-            },
-            {
-              type: "image",
-              key: "item-image",
-              displayer: "Item Image",
-              value:
-                "https://static.tildacdn.com/tild3666-3036-4630-a563-336337303461/11.svg",
-            },
-            {
-              type: "string",
-              key: "item-text",
-              displayer: "Item Text",
-              value:
-                "This method allows us to achieve success in problems of all levels.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "list-item",
-          displayer: "List Item",
-          value: [
-            {
-              type: "string",
-              key: "item title",
-              displayer: "Item Title",
-              value: "Efficiency",
-            },
-            {
-              type: "image",
-              key: "item-image",
-              displayer: "Item Image",
-              value:
-                "https://static.tildacdn.com/tild3030-6664-4366-a335-373265363863/5.svg",
-            },
-            {
-              type: "string",
-              key: "item-text",
-              displayer: "Item Text",
-              value:
-                "We care about our clients’ time. Just give us a call — and we will help you with all the questions.",
+                "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
           ],
         },
@@ -184,8 +135,8 @@ class List6 extends BaseList {
         type: "number",
         key: "itemCount",
         displayer: "Item Count in a Row",
-        value: 3,
-        max: 3
+        value: 1,
+        max: 1,
       });
 
   }
@@ -194,6 +145,7 @@ class List6 extends BaseList {
     return (
         <div className={this.decorateCSS("container")}>
           <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
             <ul className={this.decorateCSS("list-item")}>
               {this.getPropValue("list-items").map((listItem: any, index: number) => (
                 <div
@@ -203,9 +155,12 @@ class List6 extends BaseList {
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}
               >
+
                 <li key={index} className={this.decorateCSS("item-container")}>
-                  <img src={listItem.value[1].value} alt="itemPhoto" />
-                  <div>
+                <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
+
+                  <div className={this.decorateCSS("cards")}>
+                    <img src={listItem.value[1].value} alt="itemPhoto" />
                     <h1 className={this.decorateCSS("list-item-h1")}>{listItem.value[0].value}</h1>
                     <p className={this.decorateCSS("list-item-p")}>{listItem.value[2].value}</p>
                   </div>
