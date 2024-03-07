@@ -1,20 +1,24 @@
 .container {
     width: 100%;
-    padding: 150px 0;
+    padding: 50px 0;
     background-color: var(--composer-html-backgrounds);
+
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
+
         .testimonials9 {
             width: 100%;
+
             .headered {
                 text-align: center;
                 font-size: 3rem;
                 line-height: 1.23;
-                margin: 0 0 80px 0;
+                margin-bottom: 40px;
                 font-weight: 600;
                 color: var(--composer-primary-color);
             }
+
             .item-content {
                 position: relative;
                 display: flex;
@@ -23,6 +27,7 @@
                 margin-bottom: 50px;
                 padding-left: 8px;
                 padding-right: 8px;
+
                 .left-content {
                     .image {
                         margin-top: 20px;
@@ -31,34 +36,39 @@
                         border-radius: 50%;
                     }
                 }
+
                 .right-content {
                     margin-left: 28px;
                     padding: 30px 40px;
-                    background-color: var(--composer-tertiary-color);
+                    background-color: var(--composer-secondary-color);
                     border-radius: 20px;
                     padding-left: 40px;
+
                     .header {
                         font-size: 16px;
                         text-align: left;
                         line-height: 1.35;
                         font-weight: 600;
-                        color: var(--composer-primary-color);
+                        color: var(--composer-font-color-secondary);
                     }
+
                     .subtitle {
                         font-size: 14px;
                         line-height: 1.55;
                         margin-bottom: 10px;
                         margin-top: 2px;
-                        color: var(--composer-primary-color);
+                        color: var(--composer-font-color-secondary);
                         font-weight: 300;
                     }
+
                     .description {
                         font-size: 15px;
                         line-height: 1.55;
                         font-weight: 300;
-                        color: var(--composer-primary-color);
+                        color: var(--composer-font-color-secondary);
                     }
                 }
+
                 .right-content::before {
                     content: "";
                     position: absolute;
@@ -67,17 +77,21 @@
                     left: 108px;
                     border-width: 15px;
                     border-style: solid;
-                    border-color: var(--composer-tertiary-color) var(--composer-tertiary-color) transparent transparent;
+                    border-color: var(--composer-secondary-color) var(--composer-secondary-color) transparent transparent;
                 }
+
                 &.item-content-reverse {
                     flex-direction: row-reverse;
+
                     .right-content {
                         margin-left: 0;
                         margin-right: 28px;
                     }
+
                     .right-content::before {
                         border-width: 0;
                     }
+
                     .right-content::after {
                         content: "";
                         position: absolute;
@@ -86,10 +100,238 @@
                         right: 108px;
                         border-width: 15px;
                         border-style: solid;
-                        border-color: var(--composer-tertiary-color) transparent transparent var(--composer-tertiary-color);
+                        border-color: var(--composer-secondary-color) transparent transparent var(--composer-secondary-color);
                     }
                 }
             }
         }
     }
 }
+
+//For Ipad
+@media only screen and (max-width:800px) {
+    .container {
+        width: 100%;
+        padding: 50px 0;
+        background-color: var(--composer-html-backgrounds);
+
+        .max-content {
+            max-width: var(--composer-content-width);
+            margin: auto;
+
+            .testimonials9 {
+                width: 100%;
+
+                .headered {
+                    text-align: center;
+                    font-size: 3rem;
+                    line-height: 1.23;
+                    margin-bottom: 40px;
+                    font-weight: 600;
+                    color: var(--composer-primary-color);
+                }
+
+                .item-content {
+                    position: relative;
+                    display: flex;
+                    max-width: 760px;
+                    margin: auto;
+                    margin-bottom: 50px;
+                    padding-left: 8px;
+                    padding-right: 8px;
+
+                    .left-content {
+                        .image {
+                            margin-top: 20px;
+                            width: 100px;
+                            height: 100px;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .right-content {
+                        margin-left: 28px;
+                        padding: 30px 40px;
+                        background-color: var(--composer-secondary-color);
+                        border-radius: 20px;
+                        padding-left: 40px;
+
+                        .header {
+                            font-size: 16px;
+                            text-align: left;
+                            line-height: 1.35;
+                            font-weight: 600;
+                            color: var(--composer-font-color-secondary);
+                        }
+
+                        .subtitle {
+                            font-size: 14px;
+                            line-height: 1.55;
+                            margin-bottom: 10px;
+                            margin-top: 2px;
+                            color: var(--composer-font-color-secondary);
+                            font-weight: 300;
+                        }
+
+                        .description {
+                            font-size: 15px;
+                            line-height: 1.55;
+                            font-weight: 300;
+                            color: var(--composer-font-color-secondary);
+                        }
+                    }
+
+                    .right-content::before {
+                        content: "";
+                        position: absolute;
+                        display: inline-block;
+                        top: 70px;
+                        left: 108px;
+                        border-width: 15px;
+                        border-style: solid;
+                        border-color: var(--composer-secondary-color) var(--composer-secondary-color) transparent transparent;
+                    }
+
+                    &.item-content-reverse {
+                        flex-direction: row-reverse;
+
+                        .right-content {
+                            margin-left: 0;
+                            margin-right: 28px;
+                        }
+
+                        .right-content::before {
+                            border-width: 0;
+                        }
+
+                        .right-content::after {
+                            content: "";
+                            position: absolute;
+                            display: inline-block;
+                            top: 70px;
+                            right: 108px;
+                            border-width: 15px;
+                            border-style: solid;
+                            border-color: var(--composer-secondary-color) transparent transparent var(--composer-secondary-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+//Ipad end
+
+//For Mobile
+@media only screen and (max-width:400px) {
+    .container {
+        width: 100%;
+        padding: 50px 0;
+        background-color: var(--composer-html-backgrounds);
+
+        .max-content {
+            max-width: var(--composer-content-width);
+            margin: auto;
+
+            .testimonials9 {
+                width: 100%;
+
+                .headered {
+                    text-align: center;
+                    font-size: 3rem;
+                    line-height: 1.23;
+                    margin-bottom: 40px;
+                    font-weight: 600;
+                    color: var(--composer-primary-color);
+                }
+
+                .item-content {
+                    position: relative;
+                    display: flex;
+                    max-width: 760px;
+                    margin: auto;
+                    margin-bottom: 50px;
+                    padding-left: 8px;
+                    padding-right: 8px;
+
+                    .left-content {
+                        .image {
+                            margin-top: 20px;
+                            width: 100px;
+                            height: 100px;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .right-content {
+                        margin-left: 28px;
+                        padding: 30px 40px;
+                        background-color: var(--composer-secondary-color);
+                        border-radius: 20px;
+                        padding-left: 40px;
+
+                        .header {
+                            font-size: 16px;
+                            text-align: left;
+                            line-height: 1.35;
+                            font-weight: 600;
+                            color: var(--composer-font-color-secondary);
+                        }
+
+                        .subtitle {
+                            font-size: 14px;
+                            line-height: 1.55;
+                            margin-bottom: 10px;
+                            margin-top: 2px;
+                            color: var(--composer-font-color-secondary);
+                            font-weight: 300;
+                        }
+
+                        .description {
+                            font-size: 13px;
+                            line-height: 1.55;
+                            font-weight: 300;
+                            color: var(--composer-font-color-secondary);
+                        }
+                    }
+
+                    .right-content::before {
+                        content: "";
+                        position: absolute;
+                        display: inline-block;
+                        top: 70px;
+                        left: 108px;
+                        border-width: 15px;
+                        border-style: solid;
+                        border-color: var(--composer-secondary-color) var(--composer-secondary-color) transparent transparent;
+                    }
+
+                    &.item-content-reverse {
+                        flex-direction: row-reverse;
+
+                        .right-content {
+                            margin-left: 0;
+                            margin-right: 28px;
+                        }
+
+                        .right-content::before {
+                            border-width: 0;
+                        }
+
+                        .right-content::after {
+                            content: "";
+                            position: absolute;
+                            display: inline-block;
+                            top: 70px;
+                            right: 108px;
+                            border-width: 15px;
+                            border-style: solid;
+                            border-color: var(--composer-secondary-color) transparent transparent var(--composer-secondary-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+//Mobile end

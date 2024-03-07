@@ -1,26 +1,75 @@
 .container {
     width: 100%;
     padding: 50px 0;
+
+    &.row {
+        
+    }
+
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
+
+        &.row {
+            width: 100%;
+        }
+
         .logo-comp2-page {
             display: block;
             width: 100%;
-            .title {
-                margin: 0;
-                text-align: center;
-                font-size: 2.5rem;
-                text-transform: uppercase;
-                color: var(--composer-primary-color);
-            }
-            .description {
+
+            &.row {
+                display: flex;
                 width: 100%;
-                margin: 40px 0;
-                text-align: center;
-                text-transform: uppercase;
-                color: var(--composer-font-color-primary);
+                justify-content: center;
+                align-items: center;
+                padding: 0 20px;
             }
+
+            .container-title-description {
+                width: 40%;
+                // display: contents;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0 auto;
+
+                .title {
+                    margin: 0;
+                    text-align: center;
+                    font-size: 2.5rem;
+                    text-transform: uppercase;
+                    color: var(--composer-primary-color);
+
+                    &.row {
+                        width: 30%;
+                    }
+                }
+
+                .description {
+                    width: 100%;
+                    margin: 40px 0;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: var(--composer-font-color-primary);
+
+                    &.row {
+                        width: 70%;
+                    }
+                }
+
+            }
+
+            section {
+
+                &.row {
+                    width: 50%;
+                    display: flex;
+                    flex-wrap: nowrap;
+                }
+            }
+
             .image-child {
                 display: flex;
                 width: 100%;
@@ -28,8 +77,156 @@
                 flex-wrap: wrap;
                 align-items: center;
                 gap: 20px;
+
                 img {
                     margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+// For Ipad
+@media only screen and (max-width:800px) {
+    .container {
+
+        .max-content {
+
+
+            &.row {}
+
+            .logo-comp2-page {
+
+
+                &.row {
+                    flex-direction: column;
+                }
+
+                .container-title-description {
+                    width: 80%;
+
+                    .title {
+
+
+                        &.row {
+                            width: 70%;
+                            left: 50px;
+                            top: -50px;
+                            position: absolute;
+                            
+                        }
+                    }
+
+                    .description {
+
+
+                        &.row {
+                            width: 80%;
+                        }
+                    }
+                }
+
+                section {
+
+                    &.row {
+                        width: 60%;
+                    }
+
+                    .image-child {
+
+                        img {
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// For Mobile
+@media only screen and (max-width:400px) {
+
+    .container {
+        width: 100%;
+        padding: 50px 0;
+
+        .max-content {
+            max-width: var(--composer-content-width);
+            margin: auto;
+
+            &.row {
+                width: 100%;
+            }
+
+            .logo-comp2-page {
+                display: block;
+                width: 100%;
+
+                &.row {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .container-title-description {
+                    margin-top: 20px;
+
+                    &.row {
+                        margin-top: 50px;
+                    }
+
+                    .title {
+                        margin: 0;
+                        text-align: center;
+                        font-size: 2.5rem;
+                        text-transform: uppercase;
+                        color: var(--composer-primary-color);
+
+                        &.row {
+                            width: 80%;
+                            position: absolute;
+                             left: 15px;
+                            // top: 20px;
+                        }
+                    }
+
+                    .description {
+                        width: 100%;
+                        margin: 40px 0;
+                        text-align: center;
+                        text-transform: uppercase;
+                        color: var(--composer-font-color-primary);
+
+                        &.row {
+                            width: 100%;
+                            margin-top: 60px;
+                        }
+                    }
+                }
+
+                section {
+
+                    &.row {
+                        width: 50%;
+                        display: flex;
+                        flex-wrap: nowrap;
+                    }
+                }
+
+                .image-child {
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 20px;
+
+                    img {
+                        margin-bottom: 20px;
+                    }
                 }
             }
         }
