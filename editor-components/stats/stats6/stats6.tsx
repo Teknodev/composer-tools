@@ -136,7 +136,7 @@ class Stats6Page extends BaseStats {
               <h1 className={this.decorateCSS("title")}>
                 {this.getPropValue("header")}
               </h1>
-              <p>{this.getPropValue("description")}</p>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
             <div className={this.decorateCSS("stats6-page")}>
               {this.castToObject<CardData[]>("card-list").map(

@@ -143,18 +143,16 @@ class List5 extends BaseList {
         </div>
         <div className={this.decorateCSS("container")}>
           <div className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("list-item")}>
+            <div className={this.decorateCSS("list-item")} style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)`
+            }}>
               {this.getPropValue("list-items").map(
                 (listItem: any, index: number) => {
                   return (
                     <div
                       key={index}
                       className={this.decorateCSS("item-container")}
-                      style={{
-                        flex: `0 0 ${
-                          100 / this.getPropValue("itemCount") - 2
-                        }%`,
-                      }}
                     >
                       <div className={this.decorateCSS("header-line")}>
                         <div className={this.decorateCSS("icon")}>
