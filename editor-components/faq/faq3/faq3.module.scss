@@ -35,6 +35,7 @@
         display: flex;
         width: 100%;
         justify-content: center;
+        gap: 40px;
 
         .content-left {
           width: 50%;
@@ -85,7 +86,6 @@
 
         .content-right {
           width: 40%;
-          margin-left: 4rem;
 
           .info-items {
             width: 100%;
@@ -103,7 +103,6 @@
               color: var(--composer-font-color-primary);
               margin-bottom: 35px;
               font-size: 15px;
-              padding-right: 120px;
             }
 
             .button-info {
@@ -170,7 +169,7 @@
   .container {
     .max-content {
       max-width: var(--composer-content-width);
-      padding: 100px 0;
+      padding: 20px 0;
 
       .containerTop {
         .contentContainer {
