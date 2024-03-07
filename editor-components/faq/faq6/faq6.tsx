@@ -1,292 +1,170 @@
 import * as React from "react";
 import styles from "./faq6.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-
-type Card = {
-  title: string;
-  description: string;
-};
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class FaqPost extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "FAQ",
-    });
-
+      type: "icon",
+      displayer: "Inactive Icon",
+      key: "inactive_icon",
+      value: "FaMinus"
+    })
     this.addProp({
-      type: "string",
-      key: "title1",
-      displayer: "Title",
-      value: "FAQ stands for Frequently Asked Questions. It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
-    });
+      type: "icon",
+      displayer: "Active Icon",
+      key: "active_icon",
+      value: "FaPlus"
+    })
 
     this.addProp({
       type: "image",
-      key: "icon",
-      displayer: "Icon",
-      value: "https://cdn-icons-png.flaticon.com/512/4700/4700822.png",
-    });
+      displayer: "Image",
+      key: "image",
+      value: "https://template-kit.evonicmedia.com/layout49/wp-content/uploads/2023/10/faq-2-1.jpg"
+    })
 
     this.addProp({
       type: "string",
-      key: "badge",
-      displayer: "Badge",
+      displayer: "Title",
       value: "FAQ",
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Row",
-      value: 3,
-    });
+      key: "title"
+    })
 
     this.addProp({
       type: "array",
-      key: "card",
-      displayer: "Card",
+      displayer: "List Items",
+      key: "list_items",
       value: [
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value:
-                "What are the shipping options available?",
+              displayer: "Title of Item",
+              value: "Ut Neque Augue Interdum Ad Integer Tempus Convallis?"
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
-              value: "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
-            },
-          ],
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
+              displayer: "Description of Item"
+            }
+          ]
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value:
-                " How can I track my order?",
+              displayer: "Title of Item",
+              value: "Dictum Feugiat Tincidunt Nam Commodo?"
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
-              value: "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
-            },
-          ],
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
+              displayer: "Description of Item"
+            }
+          ]
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value:
-                "What is your return policy?",
+              displayer: "Title of Item",
+              value: "Scelerisque Metus Sem Nostra Pulvinar Sagittis?"
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
-              value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
-            },
-          ],
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
+              displayer: "Description of Item"
+            }
+          ]
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value:
-                "How can I contact customer support?",
+              displayer: "Title of Item",
+              value: "Consectetur Scelerisque Lacus Gravida Proin Dolor Sem?"
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
-              value: " You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value:
-                "Do you offer any discounts or promotions?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Yes, we offer discounts and promotions from time to time. You can sign up for our newsletter to receive updates on our latest promotions.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value:
-                "What payment methods do you accept?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "We accept credit/debit cards, PayPal, and other digital payment methods. You can select your preferred payment method during checkout.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value:
-                "Shipping and Delivery",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "This section of the website provides information on shipping options, delivery times, and tracking your order.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value:
-                "Returns and Refunds",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "This section of the website explains the return policy, including the time frame for returns, the process for returning items, and how refunds are processed.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value:
-                " Payment Methods",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "This section of the website provides information on the payment methods accepted, including credit/debit cards, PayPal, and other digital payment options. It may also include information on security measures in place to protect payment information.",
-            },
-          ],
-        },
-      ],
-    });
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
+              displayer: "Description of Item"
+            }
+          ]
+        }
+      ]
+    })
+
+    this.setComponentState("active_index", 0);
+
+
   }
   getName(): string {
-    return "FAQ POST";
+    return "FAQ-6";
+  }
+
+  onItemClick(index: number) {
+    const active_index = this.getComponentState("active_index");
+
+    if (active_index == index) {
+      this.setComponentState("active_index", -1);
+    } else {
+      this.setComponentState("active_index", index)
+    }
   }
 
   render() {
-    const littleScreen = {
-      width: "100%",
-      display: "flex",
-      flex: "wrap",
-      justifyContent: "center",
-    };
 
-    const wideScreen = {
-      width: 90 / this.getPropValue("itemCount") + "%",
-      display: "flex",
-      justifyContent: "center",
-    };
-
-    let style = function () {
-      if (window.innerWidth < 800) {
-        return littleScreen;
-      } else {
-        return wideScreen;
-      }
-    };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
+          <div className={this.decorateCSS("items")}>
+            {this.getPropValue("list_items").map((item: any, index: number) => {
+
+              const is_active = this.getComponentState("active_index") == index;
+
+              return <div key={index} className={this.decorateCSS("item")} onClick={() => this.onItemClick(index)}>
+                <div className={this.decorateCSS("title-box")}>
+                  <span className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</span>
+                  <ComposerIcon
+                    propsIcon={{
+                      className: this.decorateCSS("icon")
+                    }}
+                    name={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
+                  />
+                </div>
+                <div className={`${this.decorateCSS("description-box")} ${is_active && this.decorateCSS("active")}`}>
+                  <p className={this.decorateCSS("description-text")}>{item.getPropValue("description")}</p>
+                </div>
               </div>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <p className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</p>
-            </div>
-            <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("card").map((card: Card, indexCard: any) => {
-                return (
-                  <div
-                    key={indexCard}
-                    style={style()}
-                    className={this.decorateCSS("card")}
-                  >
-                    <div className={this.decorateCSS("icon")}>
-                      <div>?</div>
-                    </div>
-                    <h1 className={this.decorateCSS("card-title")}>{card.title}</h1>
-                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
-                  </div>
-                );
-              })}
-            </div>
+            })}
+          </div>
+          <div className={this.decorateCSS("image-box")}>
+            <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="faq image" />
+            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
           </div>
         </div>
       </div>
