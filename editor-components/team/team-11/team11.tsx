@@ -1,84 +1,219 @@
 import * as React from "react";
 import styles from "./team11.module.scss";
-import { Team } from "../../EditorComponent";
+import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 
 class Team11 extends Team {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "MEET THE TEAM",
-    });
+    let twitter: TypeUsableComponentProps = {
+      type: "object",
+      key: "twitter",
+      displayer: "Twitter",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
 
+    let facebook: TypeUsableComponentProps = {
+      type: "object",
+      key: "facebook",
+      displayer: "Platform",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+    let instagram: TypeUsableComponentProps = {
+      type: "object",
+      key: "instagram",
+      displayer: "Platform",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "https://cdn-icons-png.flaticon.com/512/3670/3670125.png",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "WHO IS ON THE TEAM",
+      value: "Our Team",
     });
 
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "In any team, there are several key players who work together to achieve common goals. These individuals bring their unique skills, experiences, and perspectives to the table, and work collaboratively to ensure the success of the team.",
-    });
-
-    this.addProp({
-      type: "array",
-      key: "team-members",
-      displayer: "Team Members",
+    let card1: TypeUsableComponentProps = {
+      type: "object",
+      key: "card",
+      displayer: "Card",
       value: [
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          value: "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         },
+        {
+          type: "array",
+          key: "icons",
+          displayer: "Social Media Platforms",
+          value: [
+            JSON.parse(JSON.stringify(twitter)),
+            JSON.parse(JSON.stringify(facebook)),
+            JSON.parse(JSON.stringify(instagram)),
+          ]
+        },
+        {
+          type: "string",
+          key: "name",
+          displayer: "Person Name",
+          value: "Willie Perry",
+        },
+        {
+          type: "string",
+          key: "position",
+          displayer: "Position",
+          value: "CEO",
+        },
+      ]
+    };
+    let card2: TypeUsableComponentProps = {
+      type: "object",
+      key: "card",
+      displayer: "Card",
+      value: [
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://images.pexels.com/photos/7034632/pexels-photo-7034632.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          value: "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        },
+        {
+          type: "array",
+          key: "icons",
+          displayer: "Social Media Platforms",
+          value: [
+            JSON.parse(JSON.stringify(twitter)),
+            JSON.parse(JSON.stringify(facebook)),
+            JSON.parse(JSON.stringify(instagram)),
+          ]
+        },
+        {
+          type: "string",
+          key: "name",
+          displayer: "Person Name",
+          value: "Paul Hicks",
+        },
+        {
+          type: "string",
+          key: "position",
+          displayer: "Position",
+          value: "UI/UX Designer",
+        },
+      ]
+    };
+    let card3: TypeUsableComponentProps = {
+      type: "object",
+      key: "card",
+      displayer: "Card",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value: "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        },
+        {
+          type: "array",
+          key: "icons",
+          displayer: "Social Media Platforms",
+          value: [
+            JSON.parse(JSON.stringify(twitter)),
+            JSON.parse(JSON.stringify(facebook)),
+            JSON.parse(JSON.stringify(instagram)),
+          ]
+        },
+        {
+          type: "string",
+          key: "name",
+          displayer: "Person Name",
+          value: "Sarah Brown",
+        },
+        {
+          type: "string",
+          key: "position",
+          displayer: "Position",
+          value: "CEO",
+        },
+      ]
+    };
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "Button",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Explore",
+            },
+
+            {
+              type: "page",
+              key: "url",
+              displayer: "Second Team",
+              value: "https://www.google.com/",
+            },
+          ],
         },
       ],
     });
+
+
+
   }
 
   getName(): string {
     return "Team 11";
   }
 
-  render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("basic-card")}>
-              <p className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</p>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-            </div>
-            <div className={this.decorateCSS("team-members")}>
-              {this.getPropValue("team-members").map(
-                (item: any, indexTeamMembers: number) => (
-                  <img key={indexTeamMembers} src={item.value} alt=""/>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+
 }
 
 export default Team11;
