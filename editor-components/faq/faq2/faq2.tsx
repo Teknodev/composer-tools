@@ -232,7 +232,7 @@ class FaqContainer extends BaseFAQ {
   }
 
   getName(): string {
-    return "FAQ-2";
+    return "FAQ-02";
   }
 
   render() {
