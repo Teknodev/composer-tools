@@ -1,7 +1,6 @@
 import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
-import { Subtitles } from "@mui/icons-material";
 
 type Card = {
   title: string;

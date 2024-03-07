@@ -102,7 +102,7 @@
 
           .color-box{
             padding: 20px;
-            background-color: aqua;
+            background-color:  rgba(var(--composer-secondary-color-rgb), 0.2);
 
             img {
                 height: 65px;
@@ -146,8 +146,6 @@
   
   @media only screen and (max-width: 768px) {
     .container {
-        padding: 50px 20px;
-
         .max-content {
             align-items: center;
             flex-direction: column;
@@ -156,206 +154,77 @@
                 text-align: center;
             }
             .card-child {
-                display: block;
-                justify-content: center;
-                margin-left: 205px;
-                margin-top: -200px;
-                .card-item-count{
-                    height: 1%;
-                .line-box{
-                margin-left: -280px;
-                }
-                .card {
-                    height: 30%;
-                    width: 100%;
-                    position: relative;
-                    min-width: 400px;
-                    min-height: 200px;
-                    flex: 1 1;
-
-                    margin-left: -5px;
-                    margin-top: -450px;
-                    .color-box{
-                        min-width: 340px;
-                        width: 100%;
-                        height: 100%;
-                        min-height: 310px;
-                    }
-            }
-        }
-        }
-        .card-child2 {
-            display: block;
-            justify-content: center;
-            margin-left: 205px;
-            margin-top: -550px;
-
-            .line-box4{
-                height: 50%;
-            margin-left: -75px;
-            }
-            .card2 {
-                height: 50%;
-                width: 100%;
+              display: flex;
+              justify-content: center;
+              height: 100%;
+              gap: 120px;
+              margin-left: -80px;
+              flex-wrap: wrap;
+              .card-item-count{
                 position: relative;
-                min-width: 400px;
-                min-height: 200px;
-                flex: 1 1;
-                padding: 50px;
-                margin-left: 205px;
-                margin-top: -400px;
-                .color-box2{
-                    min-width: 340px;
+                padding: 40px;
+              .line-box{
+                position: absolute;
+                width: calc(100% + 20px);
+                height: calc(100% - 90px);
+                
+              }
+              .card {
+                position: relative;
+                margin-bottom: 20px;     
+                .color-box{
+                  width: calc(100% + 100px);
+                  padding: 20px;
+                  background-color: rgba(var(--composer-composer-secondary-color-rgb), 02);
+                }
+              }
+              &:nth-child(3n +2){
+                transform: translateY(0px);
+              }  
+              &:nth-child(2n){
+                transform: translateY(40px);
+              }    
+            }
+          }
+          }
+        }
+      }
+
+
+      @media only screen and (max-width: 400px) {
+        .container {
+            .max-content {
+                align-items: center;
+                flex-direction: column;
+                .header {
                     width: 100%;
-                    height: 100%;
-                    min-height: 310px;
+                    text-align: center;
                 }
-        }
-    }
-    }
-}
-  }
-
-
-
-  @media only screen and (max-width: 360px) {
-    .container {
-        padding: 50px 20px;
-
-        .max-content {
-            align-items: center;
-            flex-direction: column;
-            .header {
-                width: 100%;
-                text-align: center;
-            }
-            .card-child {
-                display: block;
-                justify-content: center;
-                margin-left: 205px;
-                margin-top: -200px;
-                .card-item-count{
-                .line-box{
-                    width: 20%;
-                margin-left: -420px;
-                    
-              .line-1{
-                height: 470px;
-                width: 1px;
-                background-color: var(--composer-tertiary-color);
-                margin-top: 50px;
-                margin-bottom: -465px;
-                margin-left: 290px;
-                opacity: 0.2;
-              }
-        
-              .line-2{
-                height: 1px;
-                width: 400px;
-                background-color: var(--composer-tertiary-color);
-                margin-left: 250px;
-                opacity: 0.2;
-              }
-              .line-3{
-                height: 470px;
-                width: 1px;
-                background-color: var(--composer-tertiary-color);
-                margin-top: -62px;
-                margin-bottom: -280px;
-                margin-left: 580px;
-                opacity: 0.2;
-              }
-              .line-4{
-                height: 1px;
-                width: 400px;
-                background-color: var(--composer-tertiary-color);
-                margin-top: 220px;
-                margin-left: 250px;
-                margin-bottom: 50px;
-                opacity: 0.2;
-                
-              }
-                }
-                .card {
-                    height: 30%;
-                    width: 50%;
+                .card-child {
+                  display: block;
+                  justify-content: center;
+                  height: 100%;
+                  margin-left: 50px;
+                  flex-wrap: wrap;
+                  .card-item-count{
                     position: relative;
-                    min-width: 100px;
-                    min-height: 200px;
-                    flex: 1 1;
-                    margin-left: -125px;
-                    margin-top: -450px;
+                  .line-box{
+                    position: absolute;
+                    width: calc(100% + 120px);
+                    left: 75px;
+                  }
+                  .card {
+                    width: calc(100% + 120px);
+                    position: relative;
+                    margin-bottom: 20px;     
+                    left: 25px;
                     .color-box{
-                        min-width: 240px;
-                        width: 50%;
-                        height: 100%;
-                        min-height: 310px;
+                      background-color: rgba(var(--composer-composer-secondary-color-rgb), 02);
                     }
+                  }
+                }
+              }
+              }
             }
-        }
-        }
-        .card-child2 {
-            display: block;
-            justify-content: center;
-            margin-left: 205px;
-            margin-top: -550px;
-            .card-item-count{
-            .line-box4{
-                width: 20%;
-            margin-left: -420px;
-                
-          .line-4-1{
-            height: 470px;
-            width: 1px;
-            background-color: var(--composer-tertiary-color);
-            margin-top: 50px;
-            margin-bottom: -465px;
-            margin-left: 290px;
-            opacity: 0.2;
           }
     
-          .line-4-2{
-            height: 1px;
-            width: 400px;
-            background-color: var(--composer-tertiary-color);
-            margin-left: 250px;
-            opacity: 0.2;
-          }
-          .line-4-3{
-            height: 470px;
-            width: 1px;
-            background-color: var(--composer-tertiary-color);
-            margin-top: -62px;
-            margin-bottom: -280px;
-            margin-left: 580px;
-            opacity: 0.2;
-          }
-          .line-4-4{
-            height: 1px;
-            width: 400px;
-            background-color: var(--composer-tertiary-color);
-            margin-top: 220px;
-            margin-left: 250px;
-            margin-bottom: 50px;
-            opacity: 0.2;
-            
-          }
-            }
-            .card2 {
-                width: 50%;
-                position: relative;
-                min-width: 100px;
-                margin-left: -125px;
-                margin-top: -450px;
-                .color-box2 {
-                    margin-left: -40px;
-                    min-width: 240px;
-                    width: 50%;
-                    height: 330px;          
-                }
-        }
-    }
-    }
-    }
-}
-  }

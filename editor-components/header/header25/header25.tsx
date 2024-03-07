@@ -4,22 +4,14 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type ISliderData = {
-  title: string;
-  description: string;
-  image: string;
-  flower_image: string;
-  background_image: string;
-  button: IButton[];
-  button2: IButton[];
-};
 type IButton = {
   value: string;
 };
 
-class HeaderComponent25 extends BaseHeader {
+class Header25 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "array",
       displayer: "Slider Carousel",
@@ -32,72 +24,52 @@ class HeaderComponent25 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Best Roses In Amazing Colour",
+              displayer: "Upper Title",
+              key: "upper-title",
+              value: "New Era in Alcohol",
             },
             {
               type: "string",
-              displayer: "Description",
-              key: "description",
+              displayer: "Lower Title",
+              key: "lower-title",
+              value: "Introducing Ambleside Distillers",
+            },
+            {
+              type: "string",
+              displayer: "Text",
+              key: "text",
               value:
-                "When you order a bouqet of flowers ,your goal is to impress that someone special needed.",
+                "Lorem ipsum dolor sit amet, consectetur adipm ad mreprehlore eu fugiat nulla pariatur.",
             },
             {
               type: "image",
-              displayer: "Image",
-              key: "image",
+              displayer: "Background",
+              key: "background",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafb?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98797057bdf002c2cdd77?alt=media&timestamp=1694074789884",
             },
             {
               type: "image",
-              displayer: "Flower Image",
-              key: "flower_image",
+              displayer: "Item",
+              key: "img-item",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
-            },
-            {
-              type: "image",
-              displayer: "Background Image",
-              key: "background_image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafc?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98c6c057bdf002c2cde77?alt=media&timestamp=1694076027692",
             },
             {
               type: "object",
-              displayer: "Button",
               key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "TO SHOP",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
               displayer: "Button",
-              key: "button2",
               value: [
                 {
                   type: "string",
+                  key: "buttonText",
                   displayer: "Button Text",
-                  key: "button-text",
-                  value: "VIEW MORE",
+                  value: "Read More",
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
+                  key: "link",
+                  displayer: "Link",
                   value: "",
                 },
               ],
@@ -111,72 +83,52 @@ class HeaderComponent25 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Fresh Tulips The Perfect Choice.",
+              displayer: "Upper Title",
+              key: "upper-title",
+              value: "New Era in Alcohol",
             },
             {
               type: "string",
-              displayer: "Description",
-              key: "description",
+              displayer: "Lower Title",
+              key: "lower-title",
+              value: "Introducing Ambleside Distillers",
+            },
+            {
+              type: "string",
+              displayer: "Text",
+              key: "text",
               value:
-                "A symbol of simple love,charity,paradise on earth, heavenly and reminder of the passion life.",
+                "Lorem ipsum dolor sit amet, consectetur adipm ad mreprehlore eu fugiat nulla pariatur.",
             },
             {
               type: "image",
-              displayer: "Image",
-              key: "image",
+              displayer: "Background",
+              key: "background",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf7?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98797057bdf002c2cdd77?alt=media&timestamp=1694074789884",
             },
             {
               type: "image",
-              displayer: "Flower Image",
-              key: "flower_image",
+              displayer: "Item",
+              key: "img-item",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
-            },
-            {
-              type: "image",
-              displayer: "Background Image",
-              key: "background_image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf8?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98c6c057bdf002c2cde78?alt=media&timestamp=1694076027692",
             },
             {
               type: "object",
-              displayer: "Button",
               key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "TO SHOP",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
               displayer: "Button",
-              key: "button2",
               value: [
                 {
                   type: "string",
+                  key: "buttonText",
                   displayer: "Button Text",
-                  key: "button-text",
-                  value: "VIEW MORE",
+                  value: "Read More",
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
+                  key: "link",
+                  displayer: "Link",
                   value: "",
                 },
               ],
@@ -185,76 +137,57 @@ class HeaderComponent25 extends BaseHeader {
         },
         {
           type: "object",
-          displayer: "Item 3",
-          key: "item3",
+          displayer: "Item 1",
+          key: "item1",
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Lovely Flowers for Your Holiday",
+              displayer: "Upper Title",
+              key: "upper-title",
+              value: "New Era in Alcohol",
             },
             {
               type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Make your life lovely.",
+              displayer: "Lower Title",
+              key: "lower-title",
+              value: "Introducing Ambleside Distillers",
+            },
+            {
+              type: "string",
+              displayer: "Text",
+              key: "text",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipm ad mreprehlore eu fugiat nulla pariatur.",
             },
             {
               type: "image",
-              displayer: "Image",
-              key: "image",
+              displayer: "Background",
+              key: "background",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf9?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98797057bdf002c2cdd77?alt=media&timestamp=1694074789884",
             },
             {
               type: "image",
-              displayer: "Flower Image",
-              key: "flower_image",
+              displayer: "Item",
+              key: "img-item",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
-            },
-            {
-              type: "image",
-              displayer: "Background Image",
-              key: "background_image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafa?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f98c6c057bdf002c2cde76?alt=media&timestamp=1694076027692",
             },
             {
               type: "object",
-              displayer: "Button",
               key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "TO SHOP",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
               displayer: "Button",
-              key: "button2",
               value: [
                 {
                   type: "string",
+                  key: "buttonText",
                   displayer: "Button Text",
-                  key: "button-text",
-                  value: "VIEW MORE",
+                  value: "Read More",
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
+                  key: "link",
+                  displayer: "Link",
                   value: "",
                 },
               ],
@@ -264,80 +197,76 @@ class HeaderComponent25 extends BaseHeader {
       ],
     });
   }
+
   getName(): string {
     return "Header-25";
   }
+
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
-      speed: 500,
+      speed: 440,
       autoplay: false,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
     };
 
+    console.log(this.getPropValue("slider")[0].value[5].value[0].value);
+
     return (
       <div className={this.decorateCSS("container")}>
-          <div className={this.decorateCSS("max-content")}>
-
         <div className={this.decorateCSS("wrapper")}>
           <ComposerSlider
             {...settings}
             className={this.decorateCSS("carousel")}
           >
-            {this.castToObject<ISliderData[]>("slider").map(
-              (item: ISliderData, index: number) => (
-                <div className={this.decorateCSS("item")} key={`key${index}`}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={item.background_image} alt={item.title} />
-                  </div>
-                  <div className={this.decorateCSS("max-contentt")}>
-                    <div className={this.decorateCSS("left")}>
-                      <div className={this.decorateCSS("content")}>
-                        <div className={this.decorateCSS("flower")}>
-                          <img src={item.flower_image} alt={item.title} />
-                        </div>
-                        <div className={this.decorateCSS("title")}>
-                          {item.title}
-                        </div>
-                        <div className={this.decorateCSS("description")}>
-                          {item.description}
-                        </div>
-                        <div className={this.decorateCSS("buttons")}>
-                          <ComposerLink
-                            path={item.button[1].value} className={this.decorateCSS("composer-link")}
-                          >
-                            <button className={this.decorateCSS("button")}>
-                              {item.button[0].value}
-                            </button>
-                          </ComposerLink>
-                          <ComposerLink
-                            path={item.button2[1].value} className={this.decorateCSS("composer-link")}
-                          >
-                            <button className={this.decorateCSS("button")}>
-                              {item.button2[0].value}
-                            </button>
-                          </ComposerLink>
-                        </div>
+            {this.getPropValue("slider").map((item: any, index: number) => (
+              <div className={this.decorateCSS("max-content")}>
+                <div className={this.decorateCSS("items")} key={`key${index}`}>
+                  <img
+                    className={this.decorateCSS("background")}
+                    src={item.value[3].value}
+                    alt=""
+                  />
+                  <div className={this.decorateCSS("item-box")}>
+                    <div className={this.decorateCSS("text-content")}>
+                      <div className={this.decorateCSS("upper-title")}>
+                        {item.value[0].value}
                       </div>
-                    </div>
-                    <div className={this.decorateCSS("right")}>
-                      <div className={this.decorateCSS("image")}>
-                        <img src={item.image} alt={item.title} />
+
+                      <div className={this.decorateCSS("lower-title")}>
+                        {item.value[1].value}
                       </div>
+
+                      <div className={this.decorateCSS("text")}>
+                        {item.value[2].value}
+                      </div>
+
+                      <span className={this.decorateCSS("action-button")}>
+                        <ComposerLink path={item.value[5].value[1].value}>
+                          <div className={this.decorateCSS("button-content")}>
+                          {item.value[5].value[0].value}
+                          </div>
+                        </ComposerLink>
+                      </span>
                     </div>
+
+                    <img
+                      className={this.decorateCSS("image")}
+                      src={item.value[4].value}
+                      alt=""
+                    />
                   </div>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </ComposerSlider>
         </div>
-      </div>
       </div>
     );
   }
 }
 
-export default HeaderComponent25;
+export default Header25;
