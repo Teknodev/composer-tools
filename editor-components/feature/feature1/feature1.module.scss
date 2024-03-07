@@ -11,7 +11,6 @@
         justify-content: space-around;
 
         .card-item-count {
-
             //Square Shape
             .square {
                 display: flex;
@@ -23,18 +22,18 @@
                 flex: 1 1;
 
                 &:hover {
-                    .image-background {
+                    .icon-background {
                         transform: rotate(135deg);
                         padding: 1px;
                         box-shadow: var(--composer-primary-color) 0px 0px 10px;
 
-                        .image {
+                        .icon {
                             transform: rotate(-135deg);
                         }
                     }
                 }
 
-                .image-background {
+                .icon-background {
                     transition: all 0.4s;
                     display: flex;
                     margin: auto;
@@ -42,11 +41,11 @@
                     padding: 1px;
                     border-radius: 6px;
 
-                    .image {
+                    .icon {
                         transition: all 0.4s;
                         width: 60px;
-                        padding: 10px;
                         margin: 0;
+                        color: white;
                     }
                 }
 
@@ -61,9 +60,7 @@
                     display: block;
                     color: var(--composer-font-color-primary);
                     margin-bottom: 0;
-
                 }
-
             }
             //SquareShape end
 
@@ -78,26 +75,30 @@
                 flex: 1 1;
 
                 &:hover {
-                    .image-background {
+                    .icon-background {
                         transform: rotate(360deg);
                         box-shadow: var(--composer-primary-color) 0px 0px 25px;
                         padding: 1px;
                     }
                 }
 
-                .image-background {
+                .icon-background {
                     transition: all 0.4s;
                     display: flex;
                     margin: auto;
                     background-color: var(--composer-primary-color);
                     padding: 1px;
                     border-radius: 100%;
+                    width: 50px;
+                    height: 50px;
+                    justify-content: center;
+                    align-items: center;
 
-                    .image {
+                    .icon {
                         transition: all 0.4s;
-                        width: 50px;
-                        padding: 10px;
+                        color: var(--composer-secondary-color);
                         margin: 0;
+                        font-size: 1.5rem;
                     }
                 }
 
