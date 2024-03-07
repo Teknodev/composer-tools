@@ -25,10 +25,10 @@ class LogoComp2Page extends LogoClouds {
     });
 
     this.addProp({
-      type : "boolean",
-      key : "isRow",
-      displayer : "isRow",
-      value : false,
+      type: "boolean",
+      key: "isRow",
+      displayer: "isRow",
+      value: false,
     })
 
     this.addProp({
@@ -132,13 +132,13 @@ class LogoComp2Page extends LogoClouds {
     return (
       <div
         className={`${this.decorateCSS("container")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}
-        
+
       >
-        <div className={`${this.decorateCSS("max-content")} ${this.getPropValue("isRow") ==true ? this.decorateCSS("row") : ""}`}>
+        <div className={`${this.decorateCSS("max-content")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
           <div className={`${this.decorateCSS("logo-comp2-page")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
             <div className={`${this.decorateCSS("container-title-description")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
-            <h1 className={`${this.decorateCSS("title")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>{this.getPropValue("title")}</h1>
-            <h3 className={`${this.decorateCSS("description")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>{this.getPropValue("description")}</h3>
+              <h1 className={`${this.decorateCSS("title")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>{this.getPropValue("title")}</h1>
+              <h3 className={`${this.decorateCSS("description")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>{this.getPropValue("description")}</h3>
             </div>
             <section className={`${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
               <center>
@@ -146,7 +146,7 @@ class LogoComp2Page extends LogoClouds {
                   (section: any, index: number) => (
                     <div key={index} className={this.decorateCSS("image-child")}>
                       {section.items.map((item: any, index: number) => (
-                        <img key={index} width={180} height={90} src={item.value} alt=""/>
+                        <img key={index} width={180} height={90} src={item.value} alt="" />
                       ))}
                     </div>
                   )
