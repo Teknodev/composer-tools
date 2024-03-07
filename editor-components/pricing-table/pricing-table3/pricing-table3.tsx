@@ -2,138 +2,273 @@ import * as React from "react";
 import styles from "./pricing-table3.module.scss";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+
+type Card = {
+
+  title1: string;
+  list: {
+    liText: string;
+  }[];
+  title2: string;
+  popular: boolean;
+};
+
+type Pricing = {
+  title1: string;
+  list: TypeUsableComponentProps[];
+  title2: string;
+  buttons: Array<Button>;
+  card?: Card;
+  popular_settings: {
+    value: string;
+    is_popular: boolean;
+  }[];
+  icon: string;
+};
+
 
 type Button = {
   buttonText: string;
   url: string;
-  isPrimary: string;
 };
 
 class PricingTable3 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
-      key: "title1",
+      key: "subtitle",
       displayer: "Subtitle",
-      value: "Pricing Strategies for Small Businesses",
+      value: "Conference packages",
     });
+
     this.addProp({
       type: "string",
-      key: "title2",
+      key: "title",
       displayer: "Title",
       value:
-        "Pricing is a crucial element of any business strategy, and small businesses need to adopt effective pricing strategies to stay competitive.",
-    });
-    this.addProp({
-      type: "string",
-      key: "title3",
-      displayer: "Description",
-      value:
-        "One important pricing strategy for small businesses is value-based pricing, which involves setting prices based on the perceived value of a product or service to the customer.",
-    });
-    this.addProp({
-      type: "string",
-      key: "title4",
-      displayer: "Card Title",
-      value: "Product",
-    });
-    this.addProp({
-      type: "string",
-      key: "title5",
-      displayer: "Text-1",
-      value: "Price",
-    });
-    this.addProp({
-      type: "string",
-      key: "title6",
-      displayer: "Text-2",
-      value: "Duration",
-    });
-    this.addProp({
-      type: "string",
-      key: "title7",
-      displayer: "Text-3",
-      value: "$250",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
     });
 
     this.addProp({
-      type: "string",
-      key: "text1",
-      displayer: "Text-4",
-      value: "Monthly",
-    });
-
-    this.addProp({
-      type: "array",
-      key: "text2",
-      displayer: "List Items",
-      value: [
-        {
-          type: "string",
-          key: "liText",
-          displayer: "List Text",
-          value: "100 Websites",
-        },
-        {
-          type: "string",
-          key: "liText",
-          displayer: "List Text",
-          value: "100 GB Disk Space",
-        },
-        {
-          type: "string",
-          key: "liText",
-          displayer: "List Text",
-          value: "Unlimited Bandwidth",
-        },
-        {
-          type: "string",
-          key: "liText",
-          displayer: "List Text",
-          value: "100 Email Accounts",
-        },
-        {
-          type: "string",
-          key: "liText",
-          displayer: "List Text",
-          value: "24/7/365 Support",
-        },
-      ],
-    });
-
-    let button: TypeUsableComponentProps = {
       type: "object",
       key: "button",
-      displayer: "Button",
+      displayer: "button",
       value: [
         {
           type: "string",
-          key: "buttonText",
+          key: "button-text",
           displayer: "Button Text",
-          value: "GET STARTED",
+          value: "PRICING PLANS",
         },
-
         {
           type: "page",
           key: "url",
           displayer: "Button Link",
           value: "",
-        },
-        {
-          type: "boolean",
-          key: "isPrimary",
-          displayer: "Is Primary",
-          value: false,
-        },
-      ],
-    };
+        }
+      ]
+    });
+
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 2,
+    });
 
     this.addProp({
       type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [JSON.parse(JSON.stringify(button))],
+      key: "cards",
+      displayer: "Cards",
+      value: [
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "title1",
+              displayer: "Title-1",
+              value: "$250",
+            },
+            {
+              type: "array",
+              key: "list",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Regular seats",
+                },
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Snacks and brunch",
+                },
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Event certificate",
+                }
+              ],
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdPersonOutline",
+            },
+            {
+              type: "string",
+              key: "title2",
+              displayer: "Title-2",
+              value: "PERSONAL",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "card-button",
+                  displayer: "Card-Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "CHOOSE PACKAGE ",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    }
+                  ]
+                }
+              ],
+            },
+            {
+              type: "boolean",
+              key: "popular",
+              displayer: "Popular",
+              value: false,
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Text",
+                  value: "POPULAR"
+                },
+                {
+                  type: "boolean",
+                  key: "is_popular",
+                  displayer: "Is Popular?",
+                  value: true
+                }
+              ]
+            },
+            {
+              type: "string",
+              key: "title1",
+              displayer: "Title-1",
+              value: "$450",
+            },
+            {
+              type: "array",
+              key: "list",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Regular seats",
+                },
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Snacks and brunch",
+                },
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Photos allowed",
+                },
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Event certificate",
+                }
+              ],
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineGroup",
+            },
+            {
+              type: "string",
+              key: "title2",
+              displayer: "Title-2",
+              value: "BUSİNESS",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "card-button",
+                  displayer: "Card-Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "CHOOSE PACKAGE",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    }
+                  ]
+                }
+              ],
+            },
+          ],
+        },
+      ]
     });
   }
 
@@ -146,66 +281,74 @@ class PricingTable3 extends BasePricingTable {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div
-              className={`${this.decorateCSS("child-page")} ${this.decorateCSS(
-                "child-page-left"
-              )}`}
-            >
+            <div className={`${this.decorateCSS("child-page")} ${this.decorateCSS("child-page-left")}`}>
               <div className={this.decorateCSS("texts")}>
-                <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
-                <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
-                <p className={this.decorateCSS("title3")}>{this.getPropValue("title3")}</p>
+                <h1 className={this.decorateCSS("subtitle")}>
+
+                  {this.getPropValue("subtitle")}
+                </h1>
+                <p className={this.decorateCSS("title")}>{this.getPropValue("title")}</p>
+                <ComposerLink path={this.getPropValue("button")[0].value}>
+                  <button className={this.decorateCSS("button")} onClick={(event) => { event.preventDefault(); }}>
+                    {this.getPropValue("button")[0].value}
+                  </button>
+                </ComposerLink>
               </div>
             </div>
-            <div className={this.decorateCSS("child-page")}>
-              <div className={this.decorateCSS("child-page-right")}>
-                <div className={this.decorateCSS("right-up")}>
-                  <h4 className={this.decorateCSS("title4")}>{this.getPropValue("title4")}</h4>
-                  <ul className={this.decorateCSS("list-group")}>
-                    {this.getPropValue("text2").map((price: any, indexText: number) => {
-                      return (
-                        <li className={this.decorateCSS("list-item")} key={indexText}>
-                          <div className={this.decorateCSS("circle-icon")}>
-                            <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
-                          </div>
-                          {price.value}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-                <div className={this.decorateCSS("right-down")}>
-                  <div className={this.decorateCSS("right-down-up")}>
-                    <div className={this.decorateCSS("little")}>
-                      <p className={this.decorateCSS("title5")}>{this.getPropValue("title5")}</p>
-                      <p className={this.decorateCSS("title6")}>{this.getPropValue("title6")}</p>
-                    </div>
+            <div className={this.decorateCSS("page-down")}>
+              {this.castToObject<Pricing[]>("cards").map(
+                (price: Pricing, indexCards: number) => {
+                  const isPopular = price?.popular_settings && price?.popular_settings[1]?.value;
+                  console.log(price);
+
+                  return (
                     <div
-                      className={this.decorateCSS("little") + this.decorateCSS("other")}
+                      key={indexCards}
+                      className={`${this.decorateCSS("all-card")} ${isPopular && this.decorateCSS("popular-card")}`}
+                      style={{
+                        width: `calc(100% / ${this.getPropValue("itemCount")})`,
+                      }}
                     >
-                      <h2 className={this.decorateCSS("title7")}>{this.getPropValue("title7")}</h2>
-                      <h2 className={this.decorateCSS("text1")}>{this.getPropValue("text1")}</h2>
+                      <div className={this.decorateCSS("card")}>
+                        {isPopular && (
+                          <div className={`${this.decorateCSS("popular-box")} ${this.decorateCSS("active")}`}>
+                            <h1 className={this.decorateCSS("popular-text")}>{price.popular_settings[0].value}</h1>
+                          </div>
+                        )}
+
+                        <div className={this.decorateCSS("card-up")}>
+                          <ComposerIcon name={price.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <div className={this.decorateCSS("card-up-texts")}>
+
+                            <p className={this.decorateCSS("price-title2")}>{price.title2}</p>
+                            <h1 className={this.decorateCSS("price-title1")}>{price.title1}</h1>
+                          </div>
+                        </div>
+                        <div className={this.decorateCSS("card-middle")}>
+                          {price.list.map((item: any, indexListGroup: number) => {
+                            return (
+                              <div key={indexListGroup} className={this.decorateCSS("list-item")}>
+                                <p>{item.value}</p>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <div className={this.decorateCSS("card-down")}>
+                          {price.buttons.map((item: Button, indexButtons: number) => {
+                            return (
+                              <ComposerLink key={indexButtons} path={item.url}>
+                                <button className={this.decorateCSS("button")}>
+                                  {item.buttonText}
+                                </button>
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className={this.decorateCSS("button-group")}>
-                    {this.castToObject<Button[]>("buttons").map(
-                      (item: Button, indexButtons: number) => {
-                        return (
-                          <ComposerLink key={indexButtons} path={item.url}>
-                            <button
-                              className={`${this.decorateCSS("button")} ${
-                                item.isPrimary ? this.decorateCSS("primary") : ""
-                              }`}
-                            >
-                              {item.buttonText}
-                            </button>
-                          </ComposerLink>
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-              </div>
+                  );
+                }
+              )}
             </div>
           </div>
         </div>
