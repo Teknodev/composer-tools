@@ -12,6 +12,8 @@
     gap: 20px;
 
     .badge-list {
+margin-top: 50px;
+      margin-bottom: 50px;
       display: flex;
       flex-direction: column;
       box-shadow: var(--composer-box-shadow);
@@ -20,31 +22,36 @@
       flex: 1 1;
       border-radius: 6px;
       overflow: hidden;
-      border: 1px solid var(--composer-tertiary-color);
+      border: 1px solid var(--composer-secondary-color);
+transition: transform 0.3s ease; /* Transition stilini ekle */
 
+&:hover {
+        transform: scale(1.05); /* Hover olduğunda zoom animasyonu */
+      }
 
       .title {
-        color: var(--composer-font-color-primary);
+        font-size: 2rem;
+        line-height: 2.5;
+        color: var(--composer-font-color-secondary);
         display: block;
-        background-color: var(--composer-primary-color);
+        background-color: var(--composer-secondary-color);
         font-weight: bold;
         max-width: 100%;
+height: 80px;
         margin: 0;
         padding: 10px 20px;
         .badge {
+margin-top: 13px;
           float: right;
-          height: 17px;
-          min-width: 15px;
+          height: 32px;
+          min-width: 30px;
           max-width: 100px;
-          padding: 3px 6px;
-          line-height: 1.2;
-          white-space: nowrap;
-          vertical-align: middle;
-          font-size: 1.2rem;
+          padding: 8px 12px;
+          line-height: 0.9;
+          font-size: 1.4rem;
           color: var(--composer-font-color-primary);
           background-color: var(--composer-html-background);
-          text-align: center;
-          border-radius: 100%;
+                    border-radius: 100%;
         }
       }
       .list-group {
@@ -61,24 +68,22 @@
           font-size: 17px;
           border-bottom: 1px;
           border: var(--composer-tertiary-color);
-          &:hover {
-            background-color: var(--composer-tertiary-color);
-          }
+          
           .badge {
             float: right;
-            height: 19px;
-            min-width: 30px;
+            height: 35px;
+            min-width: 75px;
             max-width: 100px;
-            padding: 3px 6px;
+            padding: 6px 9px;
             line-height: 1.2;
-            white-space: nowrap;
-            vertical-align: middle;
-            font-size: 1rem;
-            color: var(--composer-font-color-primary);
-            background: var(--composer-secondary-color);
+            font-size: 1.5rem;
+            color: var(--composer-font-color-secondary);
+            background-color: var(--composer-secondary-color);
+border: 1px solid var(--composer-secondary-color);
             text-align: center;
-            border-radius: 3px;
-            margin-top: 10px;
+            border-radius: 5px;
+            margin-top: 50px;
+            margin-bottom: 20px;
             text-align: center;
           }
         }

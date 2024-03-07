@@ -28,8 +28,8 @@ class PricingMultipleTwo extends BasePricingTable {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "title",
+      displayer: "Title",
       value: "Pricing Strategies",
     });
 
@@ -296,7 +296,7 @@ class PricingMultipleTwo extends BasePricingTable {
   }
 
   getName(): string {
-    return "Multiple Pricing Card 2";
+    return "Pricing 6";
   }
 
   render() {
@@ -329,7 +329,7 @@ class PricingMultipleTwo extends BasePricingTable {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
 

@@ -1,8 +1,10 @@
 .container {
   width: 100%;
+  min-height: calc(100vh - 80px);
+  background-color: var(--composer-html-background);
+  padding: 50px 0px;
   display: flex;
-  padding: unset;
-  padding-bottom: 20px;
+  align-items: center;
   .wide-text-container {
     max-width: var(--composer-content-width);
     display: flex;

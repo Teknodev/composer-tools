@@ -161,8 +161,8 @@ class Header11 extends BaseHeader {
     }
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")} style={styling}>
+        <div className={this.decorateCSS("max-content")} style={styling}>
+          <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("header-page")}>
               <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>

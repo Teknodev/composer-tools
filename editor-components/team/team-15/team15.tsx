@@ -32,14 +32,14 @@ class Team15 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Futboller",
+              value: "footballer",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+                "https://images.pexels.com/photos/1800456/pexels-photo-1800456.jpeg?auto=compress&cs=tinysrgb&w=1600",
             },
           ],
         },
@@ -65,7 +65,7 @@ class Team15 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a26f2f72de2002caa9eb1?alt=media&timestamp=1682581243942",
+                "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=1600",
             },
           ],
         },
@@ -91,7 +91,7 @@ class Team15 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a27d5f72de2002caa9eb5?alt=media&timestamp=1682581471591",
+                "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
             },
           ],
         },
@@ -100,7 +100,7 @@ class Team15 extends Team {
   }
 
   getName(): string {
-    return "Team-15";
+    return "Team 15";
   }
 
   render() {

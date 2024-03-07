@@ -96,10 +96,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 align-items: center;
                 color: var(--composer-font-color-primary);
 
-                .subtitle {
-                  font-size: 3rem;
-                }
                 .title {
+                  font-size: 3rem;
+                  color: var(--composer-primary-color);
+                }
+                .description {
                   font-size: 1.5rem;
                   color: var(--composer-font-color-primary);
                 }

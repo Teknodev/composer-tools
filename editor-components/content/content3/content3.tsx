@@ -74,7 +74,7 @@ class Content3 extends BaseContent {
   }
 
   getName(): string {
-    return "Image Content Page";
+    return "Content 3";
   }
 
   render() {

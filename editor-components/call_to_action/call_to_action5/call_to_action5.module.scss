@@ -117,3 +117,15 @@
         }
     }
 }
+
+@media only screen and (max-width: 400px) {
+    .container {
+        padding: 50px 20px;
+        .image-background {
+            .image {
+                width: 350px !important;
+                margin-left: 40px;
+            }
+        }
+    }
+}
