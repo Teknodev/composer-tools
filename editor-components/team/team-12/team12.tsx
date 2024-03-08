@@ -1,30 +1,30 @@
 import * as React from "react";
 import styles from "./team12.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-
-interface Card {
+type Platform = { url: string; icon: string };
+interface TeamMember {
   image: string;
-  title: string;
+  name: string;
+  profession: string;
   description: string;
-  platforms: { url: string; icon: string }[];
+  platforms: Platform[];
 }
 
 class Team12 extends Team {
   constructor(props?: any) {
-    //super(props, styles);
-    //super(props, styles);
-
     let twitter: TypeUsableComponentProps = {
       type: "object",
       key: "twitter",
       displayer: "Twitter",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png",
+          value: "FaGooglePlus",
         },
         {
           type: "page",
@@ -41,10 +41,10 @@ class Team12 extends Team {
       displayer: "Facebook",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
+          value: "FaGooglePlus",
         },
         {
           type: "page",
@@ -54,14 +54,14 @@ class Team12 extends Team {
         },
       ],
     };
-    
+
     let google: TypeUsableComponentProps = {
       type: "object",
       key: "google",
       displayer: "Google",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
           value: "FaGooglePlus",
@@ -77,33 +77,34 @@ class Team12 extends Team {
     super(props, styles);
     this.addProp({
       type: "array",
-      key: "portfolio",
-      displayer: "Portfolio Card",
+      key: "team",
+      displayer: "Team",
       value: [
         {
           type: "object",
-          key: "portfolio",
-          displayer: "Portfolio Card",
+          key: "member",
+          displayer: "Team Card",
           value: [
             {
               type: "string",
-              key: "subtitle",
-              displayer: "subTitle",
+              key: "name",
+              displayer: "Name",
               value: "Alex John",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "profession",
+              displayer: "Profession",
               value: "FRENCH CUISINE ",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
+              value:
+                "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
-               {
+            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -123,29 +124,30 @@ class Team12 extends Team {
           ],
         },
         {
-        type: "object",
-          key: "portfolio",
-          displayer: "Portfolio Card",
+          type: "object",
+          key: "member",
+          displayer: "Team Card",
           value: [
             {
               type: "string",
-              key: "subtitle",
-              displayer: "subTitle",
+              key: "name",
+              displayer: "Name",
               value: "Danial Frankie",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
+              key: "profession",
+              displayer: "Profession",
               value: "CHINESE CUISINE ",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
+              value:
+                "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
-             {
+            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -165,101 +167,139 @@ class Team12 extends Team {
           ],
         },
         {
-        type: "object",
-        key: "portfolio",
-        displayer: "Portfolio Card",
-        value: [
-          {
-            type: "string",
-            key: "subtitle",
-            displayer: "subTitle",
-            value: "Michal Smart ",
-          },
-          {
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Cook ",
-          },
-          {
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
-          },
+          type: "object",
+          key: "member",
+          displayer: "Team Card",
+          value: [
             {
-            type: "image",
-            key: "image",
-            displayer: "Image",
-            value:
-              "https://restika.peacefulqode.com/wp-content/uploads/2023/03/3-4.jpg",
-          },
-          {
-            type: "array",
-            key: "platforms",
-            displayer: "Social Medias",
-            value: [
-              JSON.parse(JSON.stringify(twitter)),
-              JSON.parse(JSON.stringify(facebook)),
-              JSON.parse(JSON.stringify(google)),
-            ],
-          }, 
-        ],
-      },
-      {
-        type: "object",
-        key: "portfolio",
-        displayer: "Portfolio Card",
-        value: [
-          {
-            type: "string",
-            key: "subtitle",
-            displayer: "subTitle",
-            value: "Alex John",
-          },
-          {
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Cook ",
-          },
-          {
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
-          },
-          {
-            type: "image",
-            key: "image",
-            displayer: "Image",
-            value:
-              "https://restika.peacefulqode.com/wp-content/uploads/2023/03/4-4.jpg",
-          },
-          {
-            type: "array",
-            key: "platforms",
-            displayer: "Social Medias",
-            value: [
-              JSON.parse(JSON.stringify(twitter)),
-              JSON.parse(JSON.stringify(facebook)),
-              JSON.parse(JSON.stringify(google)),
-            ],
-          },  
-        ],
-      },
-    ],
-  });
-  
-  
-}
-getName(): string {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Michal Smart ",
+            },
+            {
+              type: "string",
+              key: "profession",
+              displayer: "Profession",
+              value: "Cook ",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "There are many variations of passages of ıpsum available, but the majority sued alteration",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://restika.peacefulqode.com/wp-content/uploads/2023/03/3-4.jpg",
+            },
+            {
+              type: "array",
+              key: "platforms",
+              displayer: "Social Medias",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+                JSON.parse(JSON.stringify(google)),
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "member",
+          displayer: "Team Card",
+          value: [
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Alex John",
+            },
+            {
+              type: "string",
+              key: "profession",
+              displayer: "Profession",
+              value: "Cook ",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "There are many variations of passages of ıpsum available, but the majority sued alteration",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://restika.peacefulqode.com/wp-content/uploads/2023/03/4-4.jpg",
+            },
+            {
+              type: "array",
+              key: "platforms",
+              displayer: "Social Medias",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+                JSON.parse(JSON.stringify(google)),
+              ],
+            },
+          ],
+        },
+      ],
+    });
+  }
+  getName(): string {
     return "Team 12";
   }
-render() {
-    return <>melmelmel</>
+  render() {
+    return (
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          {this.castToObject<TeamMember[]>("team").map(
+            (teamMember: any, index: number) => (
+              <div className={this.decorateCSS("member")}>
+                <img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />
+                <div className={this.decorateCSS("info")}>
+                  <div className={this.decorateCSS("name")}>
+                    {teamMember.getPropValue("name")}
+                  </div>
+                  <div className={this.decorateCSS("profession")}>
+                    {teamMember.getPropValue("profession")}
+                  </div>
+                  <div className={this.decorateCSS("description")}>
+                    {teamMember.getPropValue("description")}
+                  </div>
+                  <div className={this.decorateCSS("platforms")}>
+                    {teamMember.platforms.map(
+                      (platform: any, index: number) => (
+                        <div className={this.decorateCSS("platform")}>
+                          <ComposerLink path={platform.getPropValue("url")}>
+                            <ComposerIcon
+                              name={platform.getPropValue("icon")}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            ></ComposerIcon>
+                          </ComposerLink>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    );
   }
-
 }
 
 export default Team12;
