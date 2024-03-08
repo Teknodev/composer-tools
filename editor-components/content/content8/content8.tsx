@@ -7,87 +7,165 @@ class Content8 extends BaseContent {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Design in Modern Technology",
+      key: "badge",
+      displayer: "Badge",
+      value: "Discover AI-Enhanced Visual Stories",
     });
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "UI refers to the graphical layout of an application, website, or any other digital platform that a user interacts with.",
+      key: "title",
+      displayer: "Title",
+      value: "The Latest Updates News & Blog",
     });
     this.addProp({
-      type: "object",
-      key: "buttonprop",
-      displayer: "Button",
-      value: [
+      type:"array",
+      key:"cards",
+      displayer:"Cards",
+      value:[
         {
-          type: "string",
-          key: "button",
-          displayer: "Button",
-          value: "More Info",
+          type:"object",
+          key:"card",
+          displayer:"",
+          value:[
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://img.freepik.com/free-vector/corporate-website-abstract-concept-illustration_335657-1831.jpg",
+            },
+            {
+              type:"string",
+              key:"header",
+              displayer:"Header",
+              value:"All News",
+            },
+            {
+              type:"string",
+              key:"imgDescription",
+              displayer:"Img Description",
+              value:"Antenna Promises New era For Satellite Communication",
+            },
+            {
+              type:"string",
+              key:"time",
+              displayer:"Time",
+              value:"March 18,2022",
+            },
+            {
+              type:"string",
+              key:"comments",
+              displayer:"Comments",
+              value:"Comments",
+            },
+          ]
         },
         {
-          type: "page",
-          key: "url",
-          displayer: "Button Link",
-          value: "",
+          type:"object",
+          key:"card",
+          displayer:"",
+          value:[
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://img.freepik.com/free-vector/corporate-website-abstract-concept-illustration_335657-1831.jpg",
+            },
+            {
+              type:"string",
+              key:"header",
+              displayer:"Header",
+              value:"All News",
+            },
+            {
+              type:"string",
+              key:"imgDescription",
+              displayer:"Img Description",
+              value:"Antenna Promises New era For Satellite Communication",
+            },
+            {
+              type:"string",
+              key:"time",
+              displayer:"Time",
+              value:"March 18,2022",
+            },
+            {
+              type:"string",
+              key:"comments",
+              displayer:"Comments",
+              value:"Comments",
+            },
+          ]
         },
-      ],
-    });
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://img.freepik.com/free-vector/corporate-website-abstract-concept-illustration_335657-1831.jpg",
-    });
-    this.addProp({
-      type: "image",
-      key: "backgroundImage",
-      displayer: "Background Image",
-      value:
-        "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    });
+        {
+          type:"object",
+          key:"card",
+          displayer:"",
+          value:[
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://img.freepik.com/free-vector/corporate-website-abstract-concept-illustration_335657-1831.jpg",
+            },
+            {
+              type:"string",
+              key:"header",
+              displayer:"Header",
+              value:"All News",
+            },
+            {
+              type:"string",
+              key:"imgDescription",
+              displayer:"Img Description",
+              value:"Antenna Promises New era For Satellite Communication",
+            },
+            {
+              type:"string",
+              key:"time",
+              displayer:"Time",
+              value:"March 18,2022",
+            },
+            {
+              type:"string",
+              key:"comments",
+              displayer:"Comments",
+              value:"Comments",
+            },
+          ]
+        }
+      ]
+    })    
   }
 
   getName(): string {
     return "Content 8";
   }
 
-  render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("child")}>
-            <div className={this.decorateCSS("card")}>
-              <div className={this.decorateCSS("left")}>
-                <span className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </span>
-                <span className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </span>
-                <ComposerLink path={this.getPropValue("buttonprop")[1].value}>
-                  <button className={this.decorateCSS("button")}>
-                    {this.getPropValue("buttonprop")[0].value}
-                  </button>
-                </ComposerLink>
-              </div>
-              <div className={this.decorateCSS("right")}>
-                <img src={this.getPropValue("image")} alt=""/>
-              </div>
-            </div>
-            <div className={this.decorateCSS("background-image")}>
-              <img src={this.getPropValue("backgroundImage")} alt=""/>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // render() {
+  //   return (
+  //     <div className={this.decorateCSS("container")}>
+  //       <div className={this.decorateCSS("max-content")}>
+  //         <div className={this.decorateCSS("child")}>
+  //           <div className={this.decorateCSS("card")}>
+  //             <div className={this.decorateCSS("left")}>
+  //               <span className={this.decorateCSS("badge")}>
+  //                 {this.getPropValue("badge")}
+  //               </span>
+  //               <span className={this.decorateCSS("title")}>
+  //                 {this.getPropValue("title")}
+  //               </span>
+              
+  //             </div>
+  //             {/* <div className={this.decorateCSS("right")}>
+  //               <img src={this.getPropValue("image")} alt=""/>
+  //             </div> */}
+  //           </div>
+           
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 }
 
 export default Content8;
