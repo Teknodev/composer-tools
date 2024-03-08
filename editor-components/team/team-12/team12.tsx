@@ -1,157 +1,265 @@
 import * as React from "react";
 import styles from "./team12.module.scss";
-import { Team } from "../../EditorComponent";
+import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+
 
 interface Card {
   image: string;
-  name: string;
-  position: string;
+  title: string;
+  description: string;
+  platforms: { url: string; icon: string }[];
 }
 
 class Team12 extends Team {
   constructor(props?: any) {
+    //super(props, styles);
+    //super(props, styles);
+
+    let twitter: TypeUsableComponentProps = {
+      type: "object",
+      key: "twitter",
+      displayer: "Twitter",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+
+    let facebook: TypeUsableComponentProps = {
+      type: "object",
+      key: "facebook",
+      displayer: "Facebook",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+    
+    let google: TypeUsableComponentProps = {
+      type: "object",
+      key: "google",
+      displayer: "Google",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FaGooglePlus",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
     super(props, styles);
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Who is on the team",
-    });
-
-    this.addProp({
-      type: "number",
-      key: "reverse",
-      displayer: "Item Count in a Row",
-      value: 3,
-    });
-
     this.addProp({
       type: "array",
-      key: "team-members",
-      displayer: "Team Members",
+      key: "portfolio",
+      displayer: "Portfolio Card",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "portfolio",
+          displayer: "Portfolio Card",
           value: [
             {
+              type: "string",
+              key: "subtitle",
+              displayer: "subTitle",
+              value: "Alex John",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "FRENCH CUISINE ",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
+            },
+               {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              value:
+                "https://restika.peacefulqode.com/wp-content/uploads/2023/03/1-5.jpg",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: "John Smith",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Co-Founder",
+              type: "array",
+              key: "platforms",
+              displayer: "Social Medias",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+                JSON.parse(JSON.stringify(google)),
+              ],
             },
           ],
         },
         {
-          type: "object",
-          key: "card",
-          displayer: "Card",
+        type: "object",
+          key: "portfolio",
+          displayer: "Portfolio Card",
           value: [
             {
+              type: "string",
+              key: "subtitle",
+              displayer: "subTitle",
+              value: "Danial Frankie",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "CHINESE CUISINE ",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
+            },
+             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://images.pexels.com/photos/7647920/pexels-photo-7647920.jpeg?auto=compress&cs=tinysrgb&w=1600",
+              value:
+                " https://restika.peacefulqode.com/wp-content/uploads/2023/03/7-2.jpg",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: "Vaughn Edison",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Web Developer",
+              type: "array",
+              key: "platforms",
+              displayer: "Social Medias",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+                JSON.parse(JSON.stringify(google)),
+              ],
             },
           ],
         },
         {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
+        type: "object",
+        key: "portfolio",
+        displayer: "Portfolio Card",
+        value: [
+          {
+            type: "string",
+            key: "subtitle",
+            displayer: "subTitle",
+            value: "Michal Smart ",
+          },
+          {
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "Cook ",
+          },
+          {
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
+          },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg?auto=compress&cs=tinysrgb&w=1600",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Person Name",
-              value: "Shantel Kiera",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "UI/UX Developer",
-            },
-          ],
-        },
-      ],
-    });
-  }
-
-  getName(): string {
+            type: "image",
+            key: "image",
+            displayer: "Image",
+            value:
+              "https://restika.peacefulqode.com/wp-content/uploads/2023/03/3-4.jpg",
+          },
+          {
+            type: "array",
+            key: "platforms",
+            displayer: "Social Medias",
+            value: [
+              JSON.parse(JSON.stringify(twitter)),
+              JSON.parse(JSON.stringify(facebook)),
+              JSON.parse(JSON.stringify(google)),
+            ],
+          }, 
+        ],
+      },
+      {
+        type: "object",
+        key: "portfolio",
+        displayer: "Portfolio Card",
+        value: [
+          {
+            type: "string",
+            key: "subtitle",
+            displayer: "subTitle",
+            value: "Alex John",
+          },
+          {
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "Cook ",
+          },
+          {
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
+          },
+          {
+            type: "image",
+            key: "image",
+            displayer: "Image",
+            value:
+              "https://restika.peacefulqode.com/wp-content/uploads/2023/03/4-4.jpg",
+          },
+          {
+            type: "array",
+            key: "platforms",
+            displayer: "Social Medias",
+            value: [
+              JSON.parse(JSON.stringify(twitter)),
+              JSON.parse(JSON.stringify(facebook)),
+              JSON.parse(JSON.stringify(google)),
+            ],
+          },  
+        ],
+      },
+    ],
+  });
+  
+  
+}
+getName(): string {
     return "Team 12";
   }
-
-  render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("title-card")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            </div>
-            <div className={this.decorateCSS("all-cards")}>
-              {this.castToObject<Card[]>("team-members").map(
-                (item: Card, indexTeamMembers: number) => {
-                  return (
-                    <div
-                      key={indexTeamMembers}
-                      style={{ width: 90 / this.getPropValue("reverse") + "%" }}
-                      className={this.decorateCSS("basic-card")}
-                    >
-                      <div className={this.decorateCSS("card")}>
-                        <img className={this.decorateCSS("image")} src={item.image} alt="person" />
-                        <div className={this.decorateCSS("text-group")}>
-                          <h1 className={this.decorateCSS("person-name")}>
-                            {item.name}
-                          </h1>
-                          <p className={this.decorateCSS("position")}>
-                            {item.position}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+render() {
+    return <>melmelmel</>
   }
+
 }
 
 export default Team12;
