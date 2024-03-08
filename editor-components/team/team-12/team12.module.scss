@@ -5,11 +5,12 @@
         max-width: var(--composer-content-width);
         margin: auto;
         display: flex;
+        flex-wrap: wrap;
         .member{
-            width: 100%;
+            width: 25%;
             position: relative;
             overflow: hidden;
-            
+
             .image{
                 width: 100%;
                 height: 100%;
@@ -68,7 +69,8 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+
+@media only screen and (max-width: 900px) {
     .container {
         padding: 50px 20px;
         .max-content{
@@ -80,13 +82,12 @@
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) {
     .container {
         padding: 50px 20px;
         .max-content{
-            flex-wrap: wrap;
             .member{
-                width: 100%;
+               width: 100%;   
             }
         }
     }

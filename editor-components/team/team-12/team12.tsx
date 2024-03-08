@@ -15,6 +15,7 @@ interface TeamMember {
 
 class Team12 extends Team {
   constructor(props?: any) {
+    super(props, styles);
     let twitter: TypeUsableComponentProps = {
       type: "object",
       key: "twitter",
@@ -24,7 +25,7 @@ class Team12 extends Team {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaGooglePlus",
+          value: "FaTwitter",
         },
         {
           type: "page",
@@ -44,7 +45,7 @@ class Team12 extends Team {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaGooglePlus",
+          value: "FaFacebookF",
         },
         {
           type: "page",
@@ -74,7 +75,7 @@ class Team12 extends Team {
         },
       ],
     };
-    super(props, styles);
+    
     this.addProp({
       type: "array",
       key: "team",
@@ -254,6 +255,7 @@ class Team12 extends Team {
         },
       ],
     });
+
   }
   getName(): string {
     return "Team 12";
