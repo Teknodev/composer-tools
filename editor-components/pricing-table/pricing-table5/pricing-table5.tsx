@@ -35,6 +35,25 @@ class PricingTable5 extends BasePricingTable {
       displayer: "Title",
       value: "Tailored pricing plans for everyone.",
     });
+    this.addProp({
+      type:"object",
+      key:"pageButton",
+      displayer:"Page Button",
+      value:[
+        {
+          type:"string",
+          key:"pageButtonText",
+          displayer:"Page Button Text",
+          value:"VIEW ALL PLANS",
+        },
+        {
+          type:"string",
+          key:"url",
+          displayer:"Url",
+          value:" ",
+        },
+      ],
+    });
   
     this.addProp({
       type: "array",
@@ -49,11 +68,11 @@ class PricingTable5 extends BasePricingTable {
             {
               type: "string",
               key: "header",
-              displayer: "Question",
+              displayer: "Header",
               value: "Basic Plan",
             },
             {
-              type:"string",
+              type:"icon",
               key:"icon",
               displayer:"Icon",
               value:"IoIosArrowDropdownCircle"
@@ -92,11 +111,11 @@ class PricingTable5 extends BasePricingTable {
             {
               type: "string",
               key: "header",
-              displayer: "Question",
+              displayer: "Header",
               value: "Standard Plan",
             },
             {
-              type:"string",
+              type:"icon",
               key:"icon",
               displayer:"Icon",
               value:"IoIosArrowDropdownCircle"
@@ -135,11 +154,11 @@ class PricingTable5 extends BasePricingTable {
             {
               type: "string",
               key: "header",
-              displayer: "Question",
+              displayer: "Header",
               value: "Premium Plan",
             },
             {
-              type:"string",
+              type:"icon",
               key:"icon",
               displayer:"Icon",
               value:"IoIosArrowDropdownCircle"
@@ -201,12 +220,21 @@ class PricingTable5 extends BasePricingTable {
           <div className={this.decorateCSS("subtitle")}>
             {this.getPropValue("subtitle")}
           </div>
+          <button
+  className={this.decorateCSS("pageButton")}
+  onClick={() => {
+    const url = this.getPropValue("pageButton")[1].value;
+    window.location.href = url;
+  }}
+>
+  {this.getPropValue("pageButton")[0].value}
+</button>
           </div>
           <div className={this.decorateCSS("accordions-table")}>
             {this.castToObject<Accordions[]>("accordions").map
             ((accordion:any,index:number)=>(
               <div key={index} className={this.decorateCSS("accordions")}>
-              <div className={this.decorateCSS("box")}
+              <div className={`${this.decorateCSS("box")} ${this.getComponentState("activeIndex") === index && this.decorateCSS("active")}`}
               onClick={() => this.handleBoxClick(index)}>
 
               <div className={this.decorateCSS("accordion-header")}>
