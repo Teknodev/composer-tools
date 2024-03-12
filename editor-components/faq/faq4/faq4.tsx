@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./faq4.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   title: string;
@@ -159,24 +160,23 @@ class FaqButton extends BaseFAQ {
                             {card.title}
                           </h3>
                         </div>
-                        <div className={this.decorateCSS("icon")}>
-                          <img
-                            alt=""
-                            src={
+                        <div className={this.decorateCSS("icon")} onClick={() => handleButton(indexCard)}
+                        >
+                          <ComposerIcon
+                            propsIcon={{className: this.decorateCSS("icon-svg")}}
+                            name={
                               this.activeIndex === indexCard
-                                ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
-                                : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
+                                ? "FaAngleUp"
+                                : "FaAngleDown"
                             }
-                            onClick={() => handleButton(indexCard)}
                           />
                         </div>
                       </div>
                       <p
-                        className={`${
-                          this.activeIndex === indexCard
-                            ? this.decorateCSS("text")
-                            : this.decorateCSS("hide")
-                        }`}
+                        className={`${this.activeIndex === indexCard
+                          ? this.decorateCSS("text")
+                          : this.decorateCSS("hide")
+                          }`}
                       >
                         {card.description}
                       </p>

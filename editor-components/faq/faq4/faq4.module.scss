@@ -45,7 +45,7 @@
           color: var(--composer-primary-color);
           border-radius: 10px;
           font-size: 1rem;
-          background: rgb(244, 244, 244);
+          background: #f4f4f4;
           padding: 5px 7px;
           display: inline-block;
           margin-bottom: 1rem;
@@ -65,7 +65,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: rgb(244, 244, 244);
+        background: #f4f4f4;
         margin-bottom: 1rem;
         border-radius: 6px;
 
@@ -106,9 +106,8 @@
             border-radius: 50%;
             cursor: pointer;
 
-            img {
-              filter: brightness(0) invert(1);
-              width: 15px;
+            .icon-svg{
+              color: var(--composer-font-color-secondary);
             }
           }
         }
@@ -187,7 +186,7 @@
             color: var(--composer-primary-color);
             border-radius: 10px;
             font-size: 1rem;
-            background: rgb(244, 244, 244);
+            background: #f4f4f4;
             padding: 5px 7px;
             display: inline-block;
             margin-bottom: 1rem;
@@ -207,7 +206,7 @@
           flex-direction: column;
           // align-items: center;
           justify-content: center;
-          background: rgb(244, 244, 244);
+          background: #f4f4f4;
           margin-bottom: 1rem;
           border-radius: 6px;
 
@@ -329,7 +328,7 @@
             color: var(--composer-primary-color);
             border-radius: 10px;
             font-size: 1rem;
-            background: rgb(244, 244, 244);
+            background: #f4f4f4;
             padding: 5px 7px;
             display: inline-block;
             margin-bottom: 1rem;
@@ -350,7 +349,7 @@
           flex-direction: column;
           // align-items: center;
           justify-content: center;
-          background: rgb(244, 244, 244);
+          background: #f4f4f4;
           margin-bottom: 1rem;
           border-radius: 6px;
 
