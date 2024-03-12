@@ -125,7 +125,7 @@ class Navbar2 extends BaseNavigator {
   }
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <nav>
             <h2 className={this.decorateCSS("title")}>

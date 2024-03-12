@@ -18,21 +18,6 @@ class Download9 extends BaseDownload {
             displayer: "Background Image",
             value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e604f0057bdf002c29c806?alt=media&timestamp=1692796124621",
         });
-
-        this.addProp({
-            type: "image",
-            key: "leftImage",
-            displayer: "Left Container Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e607da057bdf002c29c8e9?alt=media&timestamp=1692797031449",
-        });
-
-        this.addProp({
-            type: "image",
-            key: "rightImage",
-            displayer: "Right Container Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e607da057bdf002c29c8e9?alt=media&timestamp=1692797031449",
-        });
-
        
 
         this.addProp({
@@ -101,15 +86,9 @@ class Download9 extends BaseDownload {
                 <div className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("page")}>
                         <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="background" />
-                        <div className={this.decorateCSS("left-container")}>
-                            <img className={this.decorateCSS("left-image")} src={this.getPropValue("leftImage")} alt="left" />
-                        </div>
                         <div className={this.decorateCSS("middle-container")}>
                             <h1 className={this.decorateCSS("middle-title")}>{this.getPropValue("middleTitle")}</h1>
                             <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-                        </div>
-                        <div className={this.decorateCSS("right-container")}>
-                            <img className={this.decorateCSS("right-image")} src={this.getPropValue("rightImage")} alt="right" />
                         </div>
                         <div className={this.decorateCSS("hover-container")}>
                             <h1 className={this.decorateCSS("card-title")}>{this.getPropValue("cardTitle")}</h1>

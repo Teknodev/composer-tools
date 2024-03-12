@@ -167,7 +167,7 @@ class Navbar3 extends BaseNavigator {
       backgroundColor: `${this.getPropValue("color")}`,
     };
     return (
-      <div className={this.decorateCSS("container")} >
+      <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : "" }`} >
         <div className={this.decorateCSS("max-content")} >
         
         <div className={this.decorateCSS("disable")}>

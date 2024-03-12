@@ -5,47 +5,50 @@
   justify-content: center;
   position: relative;
   bottom: 10px;
+  padding: 150px 50px;
 
 .max-content {
   max-width: var(--composer-content-width);
   margin: auto;
+  width: 100%;
 .table {
   width: 100%;
   border-collapse: collapse;
-  width: 100%;
-
+  font-size: 1.5rem;
+  color: var(--composer-font-color-primary);
   th,
   td {
-    padding: 10px;
+    padding: 20px;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid var(--composer-tertiary-color);
+    color: var(--composer-font-color-primary);
     .price-info{
       font-size: 12px;
-      color: gray;
+      color: var(--composer-font-color-primary);
     }
   }
 
   th {
-    background-color: #f2f2f2;
+    background-color: var(--composer-html-background);
   }
 }
 
 .button {
   display: inline-block;
   padding: 8px 16px;
-  background-color: var(--composer-primary-color);
-  color: #fff;
+  background-color: var(--composer-secondary-color);
+  color: var(--composer-font-color-secondary);
   border-radius: 4px;
   cursor: pointer;
-  border: 1px solid var(--composer-primary-color);
+  border: 1px solid var(--composer-secondary-color);
   margin-top: 6px;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
 
 .button:hover {
-  background-color: white;
-  color: var(--composer-primary-color);
+  background-color: transparent;
+  color: var(--composer-font-color-primary);
 }
 @media only screen and (max-width: 768px) {
   .container{
