@@ -174,12 +174,16 @@ class Navbar2 extends BaseNavigator {
                 {this.castToObject<[]>("itemList").map(
                   (data: any, indexItemList: number) => {
                     return (
-                      <ComposerLink
-                        key={indexItemList}
-                        path={data.value[1].value}
-                      >
-                        <h3 key={indexItemList}>{data.value[0].value}</h3>
-                      </ComposerLink>
+                      <div className={this.decorateCSS("mobile-item")}>
+                        <ComposerLink
+                          key={indexItemList}
+                          path={data.value[1].value}
+
+                        >
+                          <h3 key={indexItemList}>{data.value[0].value}</h3>
+                        </ComposerLink>
+                      </div>
+
                     );
                   }
                 )}
