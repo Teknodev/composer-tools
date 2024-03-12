@@ -8,6 +8,7 @@ interface typesPropsIcon {
 }
 
 export function ComposerIcon({ name, propsIcon }: typesPropsIcon): JSX.Element {
+
   if (!name.length) return <></>;
   let ElementIcon;
   for (const iconLibrary of iconLibraries) {
