@@ -2,16 +2,17 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Navbar2 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
+      type: "icon",
       key: "icon",
       displayer: "Icon",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
+        "GiHamburgerMenu",
     });
     this.addProp({
       type: "boolean",
@@ -132,9 +133,8 @@ class Navbar2 extends BaseNavigator {
               {this.getPropValue("title")}
             </h2>
             <div
-              className={`${this.decorateCSS("items")} ${
-                this.getPropValue("middle") ? this.decorateCSS("middle") : ""
-              }`}
+              className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""
+                }`}
             >
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
@@ -155,17 +155,18 @@ class Navbar2 extends BaseNavigator {
               <h2 className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
               </h2>
-              <img
-                alt=""
-                className={`${this.decorateCSS("img-hamburger")} ${
-                  this.getComponentState("navActive")
+              <ComposerIcon
+
+                propsIcon={{
+                  className: `${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
                     ? this.decorateCSS("rotate")
                     : ""
-                }`}
-                src={this.getPropValue("icon")}
-                onClick={() => {
-                  this.navClick();
+                    }`,
+                  onClick: () => {
+                    this.navClick();
+                  }
                 }}
+                name={this.getPropValue("icon")}
               />
             </div>
             {this.getComponentState("navActive") && (
