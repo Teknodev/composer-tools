@@ -1,105 +1,115 @@
 .container {
   width: 100%;
-  padding: 150px 0;
   background-color: var(--composer-html-background);
-
   .max-content {
     display: flex;
     max-width: var(--composer-content-width);
     margin: auto;
-
     .testimonials7 {
+      flex-direction: column;
       display: block;
       width: 100%;
-      padding: 20px;
-      .title {
-        text-align: center;
-        font-size: 3rem;
-        margin: 0 0 80px 0;
-        color: var(--composer-primary-color);
+      .slider-style {
+        width: 100%;
+        button {
+            display: none !important;
+        }
       }
-
-      .description {
-        text-align: center;
-        font-weight: 200;
-        font-size: 1.2rem;
-        margin: 0 0 40px 0;
-        color: var(--composer-primary-color);
+    }  
+      .cover-image {
+        width: 100vw; 
+        height: 80vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: var(--composer-html-background);
+        background-attachment: scroll;
       }
-      .card-child {
+      .card{
+        color: var(--composer-primary-color);
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-
-        .card {
-          flex: 1 1;
-          min-width: 250px;
-          display: flex;
-          border-radius: 6px;
-          border: var(--composer-testiary-color);
-
-          img {
-            border-radius: 6px;
-          }
-          .content {
-            padding: 0 20px;
-            .item-value1 {
-              font-weight: 800;
-              font-size: 1.2rem;
-              margin-top: 10px;
-              margin-bottom: 10px;
-              margin-left: 0;
-              margin-right: 0;
-              color: var(--composer-primary-color);
+        flex-direction: column;
+        gap: 60px;
+        font-size: 20px;
+        background-color: var(--composer-html-background);
+        margin-left: 100px;
+        margin-top: 175px;
+        padding: 100px;
+        width: 50%;
+         .profile{
+          display: flex; 
+          flex-direction: row-reverse;
+          justify-content: flex-end;
+          gap: 30px;
+          .profile-text{ 
+            flex-direction: column;
+            margin-top: -25px;
+            .item-name-id{
+             padding-bottom: 40px;
+              letter-spacing: 10px;
             }
-            .item-value3 {
-              font-weight: 800;
-              font-size: 1.2rem;
-              margin-top: 10px;
-              margin-bottom: 10px;
-              margin-left: 0;
-              margin-right: 0;
-              color: var(--composer-primary-color);
-            }
-            .item-value2 {
-              opacity: 0.8;
-              font-weight: 500;
-              font-size: 1.5rem;
-              margin-top: 10px;
-              margin-bottom: 10px;
-              margin-left: 0;
-              margin-right: 0;
-              color: var(--composer-primary-color);
-            }
-          }
+          }     
+        }
+        img {    
+          width:100px;
+          height:100px;
+          } 
         }
       }
     }
-  }
-}
+  
 
-@media only screen and (max-width: 768px) {
+
+@media only screen and (max-width: 800px) {
   .container {
-    padding: 50px 20px;
     background-color: var(--composer-html-background);
-
     .max-content {
       .testimonials7 {
-        .card-child {
-          gap: 60px;
           .card {
+            display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             border: var(--composer-testiary-color);
-
-            .content{
-              margin-top: 20px;
-            }
-          }
+            width: 80%;
+            margin-top:310px;
+            padding: 20px;
+            
         }
       }
     }
   }
 }
+
+
+@media only screen and (max-width: 400px) {
+  .container {
+    height: 550px;
+    background-color: var(--composer-html-background);
+    .max-content {
+      .testimonials7 {
+        .cover-image{
+         height: 200px;
+         background-size: 550px;
+          .card {
+           //display: flex;
+            //flex-direction: column;
+            //align-items: center;
+            //text-align: center; 
+            border: var(--composer-testiary-color);
+            margin-left:0px;
+           margin-top: 200px;
+           width: 350px;
+          .profile{
+            font-size: 10px;
+            .profile-text{
+             margin-top: 5px;
+            }     
+          }
+        }  
+      }
+        
+      }
+    }
+  }
+}
+
