@@ -1,11 +1,7 @@
 import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./form4.module.scss";
-
-
-type Item = {
-  image: string;
-};
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Form4Page extends BaseContacts {
   constructor(props?: any) {
@@ -39,11 +35,11 @@ class Form4Page extends BaseContacts {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
+                      type: "icon",
+                      key: "icon",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb8c5fba070002b74a852?alt=media&timestamp=1684846790397",
-                      displayer: "Image",
+                        "FaLocationDot",
+                      displayer: "Icon",
                     },
                     {
                       type: "string",
@@ -65,11 +61,11 @@ class Form4Page extends BaseContacts {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
+                      type: "icon",
+                      key: "icon",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb37dfba070002b74a624?alt=media&timestamp=1684845438304",
-                      displayer: "Image",
+                        "IoCall",
+                      displayer: "Icon",
                     },
                     {
                       type: "string",
@@ -91,11 +87,11 @@ class Form4Page extends BaseContacts {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
+                      type: "icon",
+                      key: "icon",
                       value:
-                        "https://cdn-icons-png.flaticon.com/512/725/725680.png",
-                      displayer: "Image",
+                        "IoIosSend",
+                      displayer: "Icon",
                     },
                     {
                       type: "string",
@@ -117,11 +113,11 @@ class Form4Page extends BaseContacts {
                   displayer: "Card",
                   value: [
                     {
-                      type: "image",
-                      key: "image",
+                      type: "icon",
+                      key: "icon",
                       value:
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Globe_icon.svg/1200px-Globe_icon.svg.png",
-                      displayer: "Image",
+                        "FaGlobeAmericas",
+                      displayer: "Icon",
                     },
                     {
                       type: "string",
@@ -177,8 +173,8 @@ class Form4Page extends BaseContacts {
               <div key={index} className={this.decorateCSS("card-child")}  style={{ "flex": `0 0 ${100 / this.getPropValue('itemCount') - 2}%`}}>
               <div
                 key={index} className={`${this.decorateCSS("card")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
-              <div className={this.decorateCSS("img-child")}>
-              <img className={this.decorateCSS("image")} width={50} height={50} src={cardItem.value[0].value} alt="" />
+              <div className={this.decorateCSS("icon-child")}>
+              <ComposerIcon propsIcon={{className: this.decorateCSS("icon")}} name={cardItem.value[0].value} />
               </div>
                 <div className={this.decorateCSS("card-box")}>
                 <h2 className={this.decorateCSS("item-value")}>{cardItem.value[1].value}</h2>

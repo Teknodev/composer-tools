@@ -81,6 +81,13 @@
                     }
                 }
             }
+            @media screen and (max-width: 580px) {
+                .card-container {
+                    .card {
+                        width: 100% !important;
+                    }
+                }
+            }
         }
     }
 }

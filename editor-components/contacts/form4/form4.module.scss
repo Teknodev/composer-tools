@@ -36,6 +36,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 15px;
+                justify-content: center;
 
                 .card-child {
                     display: flex;
@@ -44,7 +45,7 @@
                     flex-direction: row;
                     align-items: center;
                     gap: 50px;
-                    .img-child {
+                    .icon-child {
                         box-shadow: var(--composer-box-shadow);
                         border-radius: 100%;
                         border: 1px;
@@ -53,14 +54,16 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        background-color:rgba(0,0,0,0.3);
-                        .image {
-                            padding: 5px;
+                        background: color-mix(in srgb, var(--composer-secondary-color), #fff 50%);
+                        .icon {
+                            font-size: 3rem;
+                            color: var(--composer-font-color-secondary);
                         }
                     }
                     .card {
                         height: 100%;
-                        width: 250px;
+                        width: 100%;
+                        min-width: 300px;
                         line-height: 1.8;
                         box-sizing: border-box;
                         display: flex;
@@ -71,20 +74,20 @@
                         box-shadow: var(--composer-box-shadow);
                         padding: 30px;
                         border-radius: 6px;
-                        background: var(--composer-primary-color);
+                        background: var(--composer-secondary-color);
                         
                         @media screen and (max-width: 860px) {
                           width:320px;
                         }
 
                         &.border-bottom {
-                            border-bottom: 1px solid var(--composer-primary-color);
+                            border-bottom: 1px solid color-mix(in srgb, var(--composer-secondary-color), #000 15%);
                         }
                         &.border-top {
-                            border-top: 1px solid var(--composer-primary-color);
+                            border-top: 1px solid color-mix(in srgb, var(--composer-secondary-color), #000 15%);
                         }
                         &.border-all {
-                            border: 1px solid var(--composer-primary-color);
+                            border: 1px solid color-mix(in srgb, var(--composer-secondary-color), #000 15%);
                         }
                         .card-box {
                             display: flex;
@@ -101,14 +104,15 @@
                                 text-align: center;
                                 margin: 0;
                                 font-size: 1.7rem;
-                                color: white;
+                                color: var(--composer-font-color-secondary);
+                                word-break: break-word;
                             }
                             .item-value2 {
                                 
                                 text-align: center;
                                 font-weight: 500;
                                 font-size: 1.5rem;
-                                color: white;
+                                color: var(--composer-font-color-secondary);
                                 margin: 0;
                             }
                         }
