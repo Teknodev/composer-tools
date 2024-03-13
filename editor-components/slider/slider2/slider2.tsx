@@ -1,16 +1,17 @@
 import * as React from "react";
-import {
-  BaseSlider,
-  TypeUsableComponentProps,
-} from "../../EditorComponent";
+import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider2.module.scss";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-type Button = {
-  buttonText: string;
+type Card = {
+  image: string;
+  title: string;
+  button: string;
   url: string;
+  number: string;
 };
 
 class Slider2 extends BaseSlider {
@@ -18,115 +19,164 @@ class Slider2 extends BaseSlider {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      key: "header",
-      displayer: "Header",
-      value: "Slider",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Description",
-      value: "You can add new photos to the slider from the settings.",
-    });
-
-    this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
       value: [
         {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e61ca4057bdf002c29cc68?alt=media&timestamp=1692802194403",
+          type: "object",
+          key: "items1",
+          displayer: "Items 0",
+          value: [
+            {
+              type: "string",
+              key: "button",
+              displayer: "Button",
+              value: "Shoes",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "01",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://i.ytimg.com/vi/pvD1l2BmfrE/maxresdefault.jpg",
+            },
+          ],
         },
         {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e61ca4057bdf002c29cc69?alt=media&timestamp=1692802194403",
+          type: "object",
+          key: "items1",
+          displayer: "Items 1",
+          value: [
+            {
+              type: "string",
+              key: "button",
+              displayer: "Button",
+              value: "biker",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "02",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "http://clapat.ro/themes/grenada-wordpress/wp-content/uploads/2018/10/07hero.jpg",
+            },
+          ],
         },
+        {
+            type: "object",
+            key: "items1",
+            displayer: "Items 2",
+            value: [
+              {
+                type: "string",
+                key: "button",
+                displayer: "Button",
+                value: "gold man",
+              },
+              {
+                type: "string",
+                key: "number",
+                displayer: "Number",
+                value: "03",
+              },
+              {
+                type: "image",
+                key: "image",
+                displayer: "Image",
+                value: ";http://clapat.ro/themes/grenada-wordpress/wp-content/uploads/2018/10/04hero.jpg",
+              },
+            ],
+          },
+          {
+            type: "object",
+            key: "items1",
+            displayer: "Items 3",
+            value: [
+              {
+                type: "string",
+                key: "button",
+                displayer: "Button",
+                value: "baseball",
+              },
+              {
+                type: "string",
+                key: "number",
+                displayer: "Number",
+                value: "04",
+              },
+              {
+                type: "image",
+                key: "image",
+                displayer: "Image",
+                value: "http://clapat.ro/themes/grenada-wordpress/wp-content/uploads/2018/10/04hero.jpg",
+              },
+            ],
+          },
       ],
     });
-
-    let button: TypeUsableComponentProps = {
-      type: "object",
-      key: "button",
-      displayer: "Button",
-      value: [
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Get Now",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
-    };
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [JSON.parse(JSON.stringify(button))],
-    });
+    this.setActiveTab(0);
+    this.setComponentState("image", this.castToObject<Card[]>("slider")[0].image)
   }
 
+
+  setActiveTab(activeTabIndex: number) {
+    this.setComponentState("activeTab", activeTabIndex);
+    setTimeout(() => {
+      this.setComponentState("startedIndex", activeTabIndex);
+    },20)
+  }
+
+  
   getName(): string {
     return "Slider 2";
   }
 
+  
+
   render() {
+
     const settings = {
-      dots: false,
+      dots: true,
       infinite: true,
-      speed: 500,
-      autoplay: true,
+      speed: 1000,
+      autoplay: false,
       autoplaySpeed: 3000,
-      slidesToShow: 1,
+      slidesToShow: window.innerWidth < 769 ? 1 : 3,
       slidesToScroll: 1,
+      focusOnSelect: true,
     };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-              {this.getPropValue("slider").map(
-                (item: any, indexSlider: number) => (
-                  <img
-                    alt=""
-                    src={item.value}
-                    className={this.decorateCSS("img")}
-                    key={indexSlider}
-                  />
-                )
-              )}
-            </ComposerSlider>
-            <div className={this.decorateCSS("box")}>
-              <h2 className={this.decorateCSS("header")}>{this.getPropValue("header")}</h2>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <div className={this.decorateCSS("button-group")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (item: Button, indexButtons: number) => {
-                    return (
-                      <ComposerLink key={indexButtons} path={item.url}>
-                        <button className={this.decorateCSS("button")}>
-                          {item.buttonText}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
+          <ComposerSlider
+            {...settings}
+            className={this.decorateCSS("carousel")}>
+            {this.castToObject<Card[]>("slider").map(
+              (item: Card, indexSlider: number) => (
+                <div key={indexSlider} className={this.decorateCSS("card")}>
+                  <button className={this.decorateCSS("button")} onMouseOver={()=>{
+                    this.setComponentState("image", item.image)}}>
+                      <p className={this.decorateCSS("number")}>{item.number}</p>
+                    {item.button}
+                  </button>
+                </div>
+              )
+            )}
+          </ComposerSlider>
+          <div className={this.decorateCSS("image-box")}>
+            <img src={this.getComponentState("image")} alt="" />
             </div>
-          </div>
         </div>
       </div>
     );
