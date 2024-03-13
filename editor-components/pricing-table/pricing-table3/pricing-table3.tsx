@@ -12,7 +12,7 @@ type Card = {
     liText: string;
   }[];
   title2: string;
-  popular: boolean;
+
 };
 
 type Pricing = {
@@ -47,8 +47,8 @@ class PricingTable3 extends BasePricingTable {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
+      key: "description",
+      displayer: "Description",
       value:
         "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
     });
@@ -77,11 +77,11 @@ class PricingTable3 extends BasePricingTable {
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 2,
+      value: 3,
     });
 
     this.addProp({
-      type: "array",
+      type: "object",
       key: "cards",
       displayer: "Cards",
       value: [
@@ -90,6 +90,25 @@ class PricingTable3 extends BasePricingTable {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Text",
+                  value: "POPULAR"
+                },
+                {
+                  type: "boolean",
+                  key: "is_popular",
+                  displayer: "Is Popular?",
+                  value: false,
+                }
+              ]
+            },
             {
               type: "string",
               key: "title1",
@@ -159,12 +178,7 @@ class PricingTable3 extends BasePricingTable {
                 }
               ],
             },
-            {
-              type: "boolean",
-              key: "popular",
-              displayer: "Popular",
-              value: false,
-            },
+
           ],
         },
         {
@@ -268,6 +282,102 @@ class PricingTable3 extends BasePricingTable {
             },
           ],
         },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Text",
+                  value: "POPULAR"
+                },
+                {
+                  type: "boolean",
+                  key: "is_popular",
+                  displayer: "Is Popular?",
+                  value: false,
+                }
+              ]
+            },
+            {
+              type: "string",
+              key: "title1",
+              displayer: "Title-1",
+              value: "$250",
+            },
+            {
+              type: "array",
+              key: "list",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Regular seats",
+                },
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Snacks and brunch",
+                },
+                {
+                  type: "string",
+                  key: "liText",
+                  displayer: "List Item",
+                  value: "Event certificate",
+                }
+              ],
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdPersonOutline",
+            },
+            {
+              type: "string",
+              key: "title2",
+              displayer: "Title-2",
+              value: "PERSONAL",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "card-button",
+                  displayer: "Card-Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "CHOOSE PACKAGE ",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Button Link",
+                      value: "",
+                    }
+                  ]
+                }
+              ],
+            },
+
+          ],
+        },
       ]
     });
   }
@@ -287,7 +397,7 @@ class PricingTable3 extends BasePricingTable {
 
                   {this.getPropValue("subtitle")}
                 </h1>
-                <p className={this.decorateCSS("title")}>{this.getPropValue("title")}</p>
+                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
                 <ComposerLink path={this.getPropValue("button")[0].value}>
                   <button className={this.decorateCSS("button")} onClick={(event) => { event.preventDefault(); }}>
                     {this.getPropValue("button")[0].value}

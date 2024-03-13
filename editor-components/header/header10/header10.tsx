@@ -1,48 +1,160 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeader, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./header10.module.scss";
 
 class Header10 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
+    type SliderObject = {
+      title: string;
+      description: string;
+      text: string;
+      image: string;
+      subtitle: string;
+      description1: string;
+      icons: { icon: string, url: string }[],
+    }
+    let twitter: TypeUsableComponentProps = {
+      type: "object",
+      key: "twitter",
+      displayer: "Twitter",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "https://cdn-icons-png.flaticon.com/512/123/123728.png?w=826&t=st=1680695413~exp=1680696013~hmac=53c1e21ad33373dd862cdea82c2df246d0675f62cf171d9a1044da2cbb6cf6ac"
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: ""
+        }
+      ]
+    };
+
+    let facebook: TypeUsableComponentProps = {
+      type: "object",
+      key: "facebook",
+      displayer: "Platform",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "https://i.pinimg.com/originals/1f/28/95/1f28956fb27c5ef5f44cbafd250cb84b.png"
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: ""
+        }
+      ]
+    };
+
+    let instagram: TypeUsableComponentProps = {
+      type: "object",
+      key: "instagram",
+      displayer: "Platform",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "https://cdn-icons-png.flaticon.com/512/121/121520.png"
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: ""
+        }
+      ]
+    };
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Effective Advertising",
+      type: "icon",
+      key: "prev_icon",
+      displayer: "Prev icon",
+      value: "GrCaretPrevious",
     });
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "How to Create Effective Ads",
+      type: "icon",
+      key: "next_icon",
+      displayer: "Next icon",
+      value: "GrCaretNext",
     });
     this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "Advertising",
+      type: "number",
+      key: "currentPage",
+      displayer: "Current Page",
+      value: 1,
     });
+
+
     this.addProp({
-      type: "string",
-      key: "cardTitle",
-      displayer: "Card Title",
-      value: "The Power of Advertising",
+      type: "array",
+      key: "slider",
+      displayer: "Slider",
+      value: [
+        {
+          type: "object",
+          key: "sliderObject",
+          displayer: "Slider Object",
+          value: [
+
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Manificent Structures",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Browse our wide selection of products and find exactly what you're looking for. From fashion to electronics, we have everything you need to stay ahead of the curve",
+            },
+            {
+              type: "string",
+              key: "image",
+              displayer: " Image",
+              value: "https://i.pinimg.com/236x/de/1f/e0/de1fe0040c9f7699cc249c58006e22d7.jpg",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "text",
+              value: "Get a quote",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Stay Tuned",
+            },
+            {
+              type: "string",
+              key: "description1",
+              displayer: "Description 1",
+              value: "We are 24/7 available through our social media.Follow us to stay up to date",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Social Media Platforms",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+                JSON.parse(JSON.stringify(instagram)),
+              ]
+            }
+          ],
+        }]
     });
-    this.addProp({
-      type: "string",
-      key: "cardDescription",
-      displayer: "Card Description",
-      value:
-        "Effective advertising is crucial to the success of any business. By understanding your audience and crafting a compelling message, you can create ads that capture attention and drive action. Whether you're running ads on social media, television, or radio, it's important to remember that the goal is not just to create awareness but to ultimately generate sales.",
-    });
-    this.addProp({
-      type: "image",
-      key: "cardImage",
-      displayer: "Card Image",
-      value:
-        "https://assets.website-files.com/62d901050b694cd462d2879c/62ed19dbdf1bb80122008552_620bea4ea84d32768b6235c6_1aa.jpeg",
-    });
+
   }
 
   getName(): string {
@@ -50,30 +162,10 @@ class Header10 extends BaseHeader {
   }
 
   render() {
+
     return (
       <div className={this.decorateCSS("container")}>
-        <section className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("child")}>
-            <span className={this.decorateCSS("subtitle")}>
-              {this.getPropValue("subtitle")}
-            </span>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <div className={this.decorateCSS("card")}>
-              <div className={this.decorateCSS("left-content")}>
-                <span className={this.decorateCSS("badge")}>
-                  {this.getPropValue("badge")}
-                </span>
-                <div className={this.decorateCSS("text-child")}>
-                  <h1 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</h1>
-                  <p className={this.decorateCSS("description")}>{this.getPropValue("cardDescription")}</p>
-                </div>
-              </div>
-              <div className={this.decorateCSS("right-content")}>
-                <img src={this.getPropValue("cardImage")} alt=""/>
-              </div>
-            </div>
-          </div>
-        </section>
+
       </div>
     );
   }
