@@ -62,7 +62,7 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Feature Options",
               value: "Basic",
             },
-            
+
           ],
         },
         {
@@ -256,32 +256,28 @@ class PricingTable9 extends BasePricingTable {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-        <table className={this.decorateCSS("table")}>
-          <thead>
-            <tr>
-              <th></th>
-              <th>{this.getPropValue("title1")}</th>
-              <th>{this.getPropValue("title2")}</th>
-              <th>{this.getPropValue("title3")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.castToObject<Feature[]>("pricefeatures").map(
-            (feature: any, index: number) => {
-              const lowerFeatureOptions = (feature.featureOptions).toLowerCase();
-              return (
-                <tr key={index}>
-                  <td>{feature.featureTitle}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title1").toLowerCase()) ? <span className={this.decorateCSS("span1")}>✔️</span> : <span className={this.decorateCSS("span4")}>❌</span>}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title2").toLowerCase()) ? <span className={this.decorateCSS("span2")}>✔️</span> : <span className={this.decorateCSS("span5")}>❌</span>}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title3").toLowerCase()) ? <>✔️</> : <span className={this.decorateCSS("span6")}>❌</span>}</td>
-                </tr>
-              );
-            }
-  )}
+          <table className={this.decorateCSS("table")}>
+            <thead>
+              <tr>
+                <th></th>
+                <th>{this.getPropValue("title1")}</th>
+                <th>{this.getPropValue("title2")}</th>
+                <th>{this.getPropValue("title3")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.castToObject<Feature[]>("pricefeatures").map(
+                (feature: any, index: number) => {
+                  return (
+                    <tr key={index}>
 
-            <tr>
-              <td></td>
+                    </tr>
+                  );
+                }
+              )}
+
+              <tr>
+                <td></td>
                 <td>
                   <span className={this.decorateCSS("price-info")}>
                     <span className={this.decorateCSS("per")}>per</span> {
@@ -342,10 +338,10 @@ class PricingTable9 extends BasePricingTable {
                     </span>
                   </ComposerLink>
                 </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
