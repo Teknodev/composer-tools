@@ -9,6 +9,7 @@
         flex-wrap: wrap;
         justify-content: center;
         .all-card {
+            width: 90%;
             .item-content {
                 display: flex;
                 flex-direction: column;
@@ -28,15 +29,15 @@
                     margin-left: 20px;
                     padding-top: 20px;
                     font-size: 4rem;
-                    color: var(--composer-primary-color);
+                    color: var(--composer-tertiary-color);
                 }
-                .item-value1 {
+                .title {
                     margin-top: 0;
                     margin-right: auto;
                     margin-bottom: 20px;
                     margin-left: 20px;
                     font-size: 3rem;
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-primary-color);
                 }
                 .list-item-p {
                     text-align: left;

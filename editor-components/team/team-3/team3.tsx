@@ -235,7 +235,7 @@ class Team3 extends Team {
   }
 
   getName(): string {
-    return "Team Content";
+    return "Team 3";
   }
 
   render() {

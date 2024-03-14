@@ -84,20 +84,13 @@ class Content14 extends BaseContent {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("background-image")}>
-              <img
-                src={this.getPropValue("image")}
-                alt="blockPhoto"
-                className={this.decorateCSS("img")}
-              />
-            </div>
             <div className={this.decorateCSS("header")}>
-              <div className={this.decorateCSS("title")}>
+              <h2 className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
-              </div>
-              <div className={this.decorateCSS("description")}>
+              </h2>
+              <h3 className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
-              </div>
+              </h3>
             </div>
 
             <div className={this.decorateCSS("item-block")}>
@@ -110,11 +103,20 @@ class Content14 extends BaseContent {
                       height={20}
                       alt=""
                     />
-                    <div className={this.decorateCSS("texts-inside")}>{listItem.value[0].value}</div>
+                    <div className={this.decorateCSS("texts-inside")}>
+                      {listItem.value[0].value}
+                    </div>
                   </div>
                 )
               )}
             </div>
+          </div>
+          <div className={this.decorateCSS("background-image")}>
+            <img
+              src={this.getPropValue("image")}
+              alt="blockPhoto"
+              className={this.decorateCSS("img")}
+            />
           </div>
         </div>
       </div>

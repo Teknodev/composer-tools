@@ -1,50 +1,164 @@
 import * as React from "react";
 import styles from "./header13.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type ISliderData = {
-  title: string;
-  image: string;
-  description: string;
-  button: IButton[];
-};
-
-type IButton = {
-  value: string;
-};
-class HeaderComponent13 extends BaseHeader {
+class Header13 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp(
+      {
+        type: "array",
+        key: "buttonprop",
+        displayer: "Button Prop",
+        value: [
+          {
+            type: "array",
+            key: "buttonLeft",
+            displayer: "Button Left",
+            value: [
+              {
+                type: "string",
+                key: "button-text",
+                displayer: "Button Text",
+                value: "EXPERT ADVICE",
+              },
+              {
+                type: "page",
+                key: "button-url",
+                displayer: "Button URL",
+                value: "",
+              },
+            ],
+          },
+          {
+            type: "array",
+            displayer: "Button Right",
+            key: "buttonRight",
+            value: [
+              {
+                type: "string",
+                displayer: "Button Text",
+                key: "button-text",
+                value: "VIEW MORE",
+              },
+              {
+                type: "page",
+                displayer: "Button URL",
+                key: "button-url",
+                value: "",
+              },
+            ],
+          },
+        ],
+
+      },
+    )
+
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
-      key: "slider",
+      displayer: "Items",
+      key: "items",
       value: [
         {
           type: "object",
-          displayer: "Item 1",
-          key: "item1",
+          displayer: "Item Left",
+          key: "item-left",
           value: [
             {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "The New Google Pixel 7",
+              value: "Check Out Our Expert Advice",
             },
             {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "Shop gret deals on MacBook, iPad, iPhone and more.",
+              value: "From the best designers",
+            },
+            {
+              type: "object",
+              displayer: "Button",
+              key: "button",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "EXPERT ADVICE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button URL",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
               value:
-                "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2022/10/apple-shopping-event.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
+            },
+
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item Right Top",
+          key: "item-right-top",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Our Services",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Discover all the ways to get your product",
+            },
+
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
+            },
+
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item Right Bottom",
+          key: "item-right-bottom",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Free Shipping!",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Free shipping on orders of $100 or more.",
+            },
+
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
             },
             {
               type: "object",
@@ -59,7 +173,7 @@ class HeaderComponent13 extends BaseHeader {
                 },
                 {
                   type: "page",
-                  displayer: "Button Link",
+                  displayer: "Button URL",
                   key: "button-url",
                   value: "",
                 },
@@ -67,191 +181,7 @@ class HeaderComponent13 extends BaseHeader {
             },
           ],
         },
-        {
-          type: "object",
-          displayer: "Item 2",
-          key: "item2",
-          value: [
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "The New Google Pixel 7",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Shop gret deals on MacBook, iPad, iPhone and more.",
-            },
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2022/10/apple-shopping-event.jpg",
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "Pre-Order Now",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Item Right",
-      key: "item-right",
-      value: [
-        {
-          type: "string",
-          displayer: "Title",
-          key: "title",
-          value: "Aurora Headset",
-        },
-        {
-          type: "string",
-          displayer: "Description",
-          key: "description",
-          value: "Shop gret deals on MacBook, iPad, iPhone and more.",
-        },
 
-        {
-          type: "image",
-          displayer: "Image",
-          key: "image",
-          value:
-            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
-        },
-        {
-          type: "object",
-          displayer: "Button",
-          key: "button",
-          value: [
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Pre-Order Now",
-            },
-            {
-              type: "page",
-              displayer: "Button Link",
-              key: "button-url",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "object",
-      displayer: "Item Right Bottom Left",
-      key: "item-right-bottom-left",
-      value: [
-        {
-          type: "string",
-          displayer: "Title",
-          key: "title",
-          value: "New Dual Sense",
-        },
-        {
-          type: "string",
-          displayer: "Description",
-          key: "description",
-          value: "For playstation 5",
-        },
-
-        {
-          type: "image",
-          displayer: "Image",
-          key: "image",
-          value:
-            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
-        },
-        {
-          type: "object",
-          displayer: "Button",
-          key: "button",
-          value: [
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Pre-Order Now",
-            },
-            {
-              type: "page",
-              displayer: "Button Link",
-              key: "button-url",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "object",
-      displayer: "Item Right Bottom Right",
-      key: "item-right-bottom-right",
-      value: [
-        {
-          type: "string",
-          displayer: "Title",
-          key: "title",
-          value: "Instant Cameras",
-        },
-        {
-          type: "string",
-          displayer: "Description",
-          key: "description",
-          value: "Get photo paper as a gift",
-        },
-
-        {
-          type: "image",
-          displayer: "Image",
-          key: "image",
-          value:
-            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
-        },
-        {
-          type: "object",
-          displayer: "Button",
-          key: "button",
-          value: [
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Pre-Order Now",
-            },
-            {
-              type: "page",
-              displayer: "Button URL",
-              key: "button-url",
-              value: "",
-            },
-          ],
-        },
       ],
     });
   }
@@ -261,108 +191,69 @@ class HeaderComponent13 extends BaseHeader {
   }
 
   render() {
-    let itemsRight: any = this.getPropValue("item-right");
-    let itemsRightBottomLeft: any = this.getPropValue("item-right-bottom-left");
-    let itemsRightBottomRight: any = this.getPropValue("item-right-bottom-right");
-
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      autoplay: false,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
-    
+    let items: any = this.castToObject("items");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("left")}>
-              <ComposerSlider
-                {...settings}
-                className={this.decorateCSS("carousel")}
-              >
-                {this.castToObject<ISliderData[]>("slider").map(
-                  (item: ISliderData, index: number) => (
-                    <div className={this.decorateCSS("item")} key={`key${index}`}>
-                      <div className={this.decorateCSS("background-image")}>
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <div className={this.decorateCSS("content")}>
-                        <div className={this.decorateCSS("title")}>
-                          {item.title}
-                        </div>
-                        <div className={this.decorateCSS("description")}>
-                          {item.description}
-                        </div>
-                        <div>
-                          <button className={this.decorateCSS("button")}>
-                            {item.button[0].value}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-              </ComposerSlider>
+              <div className={this.decorateCSS("item")}>
+                <div className={this.decorateCSS("bg-content")}>
+                  <div className={this.decorateCSS("description")}>
+                    {items[0].description}
+                  </div>
+                  <div className={this.decorateCSS("title")}>
+                    {items[0].title}
+                  </div >
+                  <div  className={this.decorateCSS("button-wrapper")}>
+                  <ComposerLink path={this.getPropValue("buttonprop")[0].value[1].value}>
+                          <span  className={this.decorateCSS("button")}>
+                          {this.getPropValue("buttonprop")[0].value[0].value }
+                          </span >
+                        </ComposerLink>
+                  </div>
+                  
+                </div>
+                <div className={this.decorateCSS("background-image-content")}>
+                  <img src={items[0].image} alt={items[0].title} />
+                </div>
+              </div>
             </div>
             <div className={this.decorateCSS("right")}>
               <div className={this.decorateCSS("top")}>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={itemsRight[2].value} alt={itemsRight[0].value} />
+                    <img src={items[1].image} alt={items[1].title} />
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("title")}>
-                      {itemsRight[0].value}
+                      {items[1].title}
                     </div>
                     <div className={this.decorateCSS("description")}>
-                      {itemsRight[1].value}
+                      {items[1].description}
                     </div>
-                    <div>
-                      <button className={this.decorateCSS("button")}>
-                        {itemsRight[3].value[0].value}
-                      </button>
+                    <div className={this.decorateCSS("button-wrapper")}>
+                        <ComposerLink path={this.getPropValue("buttonprop")[1].value[1].value}>
+                          <span className={this.decorateCSS("button")}>
+                          {this.getPropValue("buttonprop")[1].value[0].value }
+                          </span>
+                        </ComposerLink>
                     </div>
+                    
                   </div>
                 </div>
               </div>
               <div className={this.decorateCSS("bottom")}>
                 <div className={this.decorateCSS("item")}>
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={itemsRightBottomLeft[2].value} alt={itemsRightBottomLeft[0].value} />
+                    <img src={items[2].image} alt={items[2].title} />
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("title")}>
-                      {itemsRightBottomLeft[0].value}
+                      {items[2].title}
                     </div>
                     <div className={this.decorateCSS("description")}>
-                      {itemsRightBottomLeft[1].value}
-                    </div>
-                    <div>
-                      <button className={this.decorateCSS("button")}>
-                        {itemsRightBottomLeft[3].value[0].value}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={itemsRightBottomRight[2].value} alt={itemsRightBottomRight[0].value} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {itemsRightBottomRight[0].value}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {itemsRightBottomRight[1].value}
-                    </div>
-                    <div>
-                      <button className={this.decorateCSS("button")}>
-                        {itemsRightBottomRight[3].value[0].value}
-                      </button>
+                      {items[2].description}
                     </div>
                   </div>
                 </div>
@@ -375,4 +266,4 @@ class HeaderComponent13 extends BaseHeader {
   }
 }
 
-export default HeaderComponent13;
+export default Header13;
