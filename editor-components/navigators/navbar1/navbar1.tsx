@@ -13,6 +13,13 @@ class Navbar1 extends BaseNavigator {
       displayer: "Image",
       value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
+    this.addProp({
+      type: "image",
+      key: "image2",
+      displayer: "Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
+    });
 
     this.addProp({
       type: "boolean",
@@ -27,9 +34,9 @@ class Navbar1 extends BaseNavigator {
       displayer: "Location of Items",
       value: "Center",
       additionalParams: {
-        selectItems: ["Left", "Right" , "Center"],
-      }
-    })
+        selectItems: ["Left", "Right", "Center"],
+      },
+    });
 
     this.addProp({
       type: "array",
@@ -156,11 +163,24 @@ class Navbar1 extends BaseNavigator {
   render() {
     const selectValue = this.getPropValue("select");
     return (
-      <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
+      <div
+        className={`${this.decorateCSS("container")} ${
+          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+        }`}
+      >
         <div className={this.decorateCSS("max-content")}>
-        <nav>
-            <img src={this.getPropValue("image")} width={200} alt=""/>
-            <div className={`${this.decorateCSS("items")} ${selectValue === "Left" ? this.decorateCSS("left") : selectValue === "Right" ? this.decorateCSS("right") : selectValue === "Center" && ""}`}>              {this.castToObject<[]>("itemList").map(
+          <nav>
+            <img src={this.getPropValue("image")} width={200} alt="" />
+            <div
+              className={`${this.decorateCSS("items")} ${
+                selectValue === "Left"
+                  ? this.decorateCSS("left")
+                  : selectValue === "Right"
+                  ? this.decorateCSS("right")
+                  : selectValue === "Center" && ""
+              }`}
+            >
+              {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
                   return (
                     <ComposerLink
@@ -190,32 +210,36 @@ class Navbar1 extends BaseNavigator {
           </nav>
           <nav className={this.decorateCSS("navigator-mobile")}>
             <div className={this.decorateCSS("navbar")}>
-              <img src={this.getPropValue("image")} width={200} alt=""/>
+              <img src={this.getPropValue("image")} width={200} alt="" />
               <img
                 alt=""
-                className={this.decorateCSS("img-hamburger")}
-                src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187"
+                className={`${this.decorateCSS("img-hamburger")} ${
+                  this.getComponentState("navActive")
+                    ? this.decorateCSS("rotate")
+                    : ""
+                }`}
+                src={this.getPropValue("image2")}
                 onClick={() => {
                   this.navClick();
                 }}
               />
             </div>
             {this.getComponentState("navActive") && (
-            <div className={this.decorateCSS("navbar-child")}>
-              {this.castToObject<[]>("itemList").map(
-                (data: any, indexItemList: number) => {
-                  return (
-                    <ComposerLink
-                      key={indexItemList}
-                      path={data.value[1].value}
-                    >
-                      <h3 key={indexItemList}>{data.value[0].value}</h3>
-                    </ComposerLink>
-                  );
-                }
-              )}
-            </div>
-          )}
+              <div className={this.decorateCSS("navbar-child")}>
+                {this.castToObject<[]>("itemList").map(
+                  (data: any, indexItemList: number) => {
+                    return (
+                      <ComposerLink
+                        key={indexItemList}
+                        path={data.value[1].value}
+                      >
+                        <h3 key={indexItemList}>{data.value[0].value}</h3>
+                      </ComposerLink>
+                    );
+                  }
+                )}
+              </div>
+            )}
           </nav>
         </div>
       </div>
