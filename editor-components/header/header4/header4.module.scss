@@ -2,13 +2,12 @@
   width: 100%;
   min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
   display: flex;
   align-items: center;
 
   .max-content {
     max-width: var(--composer-content-width);
-    margin: auto;
+    width: 100%;
     .image-container {
       height: 90vh;
       position: relative;
@@ -29,11 +28,9 @@
         width: 100%;
         inset: 0px;
         color: transparent;
-        // translate: none;
-        // rotate: none;
-        // scale: none;
         transform: translate(0%, -15.2757%) translate3d(0px, 0px, 0px);
         scale: 1.2;
+        object-fit: cover;
       }
       .image::after {
         content: "";
