@@ -1,9 +1,7 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-// import ComposerSlider from "../../../composer-base-components/slider/slider";
-import Slider from "react-slick";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 class Header1 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -222,7 +220,7 @@ class Header1 extends BaseHeader {
           <img src={this.getPropValue("sun")} alt="" />
         </div>
         <div className={this.decorateCSS("max-content")}>
-          <Slider {...settings}>
+          <ComposerSlider {...settings}>
             {this.castToObject<[]>("sliders").map(
               (item: any, index: number) => {
                 return (
@@ -256,7 +254,7 @@ class Header1 extends BaseHeader {
                 );
               }
             )}
-          </Slider>
+          </ComposerSlider>
         </div>
       </div>
     );
