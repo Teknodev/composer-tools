@@ -11,6 +11,7 @@ type IMessages = {
 class Feature11 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "array",
       key: "message-bar-card",
@@ -75,6 +76,14 @@ class Feature11 extends BaseFeature {
         },
       ],
     });
+
+    this.addProp({
+      type : "boolean",
+      key : "borderThickness",
+      displayer : "Border Thickness",
+      value : false,
+    })
+
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -97,7 +106,9 @@ class Feature11 extends BaseFeature {
                 <div className={this.decorateCSS("card-item-count")} style={{
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
-                <div className={this.decorateCSS("message")} key={index}>
+                <div
+                className={`${this.decorateCSS("message")} ${this.getPropValue("borderThickness") == true ? this.decorateCSS("setBorderThickness") : ""}`}
+                key={index}>
                   <div className={this.decorateCSS("title")}>
                     <h3 className={this.decorateCSS("message-title")}>{message.title}</h3>
                   </div>
