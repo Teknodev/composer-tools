@@ -226,7 +226,10 @@ class Header1 extends BaseHeader {
             {this.castToObject<[]>("sliders").map(
               (item: any, index: number) => {
                 return (
-                  <div key={index}>
+                  <div
+                    className={this.decorateCSS("return-container")}
+                    key={index}
+                  >
                     <div className={this.decorateCSS("background-text")}>
                       {item.title}
                     </div>
@@ -239,15 +242,15 @@ class Header1 extends BaseHeader {
                       <h1 className={this.decorateCSS("title")}>
                         {item.title}
                       </h1>
-                      <p className={this.decorateCSS("subtitle")}>
+                      <h1 className={this.decorateCSS("subtitle")}>
                         {item.subtitle}
-                      </p>
-                      <p className={this.decorateCSS("sliderNumber")}>
+                      </h1>
+                      <h1 className={this.decorateCSS("sliderNumber")}>
                         <span className={this.decorateCSS("overlay")}></span>
                         <span className={this.decorateCSS("slider-number")}>
                           {item.sliderNumber}
                         </span>
-                      </p>
+                      </h1>
                     </div>
                   </div>
                 );
