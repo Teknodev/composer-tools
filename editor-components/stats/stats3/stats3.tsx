@@ -3,6 +3,14 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats3.module.scss";
 import { SubTitle } from "chart.js";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+
+type cards = {
+
+  url: string,
+  icon: string,
+};
 
 class Stats3Page extends BaseStats {
   constructor(props?: any) {
@@ -69,9 +77,9 @@ class Stats3Page extends BaseStats {
       displayer: "Card Background Image",
       value:
         "https://c.files.bbci.co.uk/6422/production/_97143652_b864328e-3368-4f03-bb44-996ddfd7e7f2.jpg",
-    }); 
+    });
     this.addProp({
-      type: "array",
+      type: "object",
       key: "card-content",
       displayer: "Card Content",
       value: [
@@ -88,8 +96,8 @@ class Stats3Page extends BaseStats {
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "text",
+              displayer: "Text",
               value: "12 th",
             },
             {
@@ -101,61 +109,62 @@ class Stats3Page extends BaseStats {
           ],
         },
         {
-        type: "object",
-        key: "cards",
-        displayer: "Cards",
-        value: [
-          {
-            type: "icon",
-            key: "icon",
-            displayer: "icon",
-            value: "GoPeople",
-          },
-          {
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "800 +",
-          },
-          {
-            type: "string",
-            key: "buttonText",
-            displayer: "Button Text",
-            value: "Happy Clients",
-          }
-        ],
-      },
-      {
-        type: "object",
-        key: "cards",
-        displayer: "Cards",
-        value: [
-          {
-            type: "icon",
-            key: "icon",
-            displayer: "icon",
-            value: "TbHeartPlus",
-          },
-          {
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "100 +",
-          },
-          {
-            type: "string",
-            key: "buttonText",
-            displayer: "Button Text",
-            value: "Psycologist",
-          }
-        ],
-      }
-      
+          type: "object",
+          key: "cards",
+          displayer: "Cards",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "GoPeople",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "800 +",
+            },
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Happy Clients",
+            }
+          ],
+        },
+        {
+          type: "object",
+          key: "cards",
+          displayer: "Cards",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "TbHeartPlus",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "100 +",
+            },
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Psycologist",
+            }
+
+          ],
+        }
+
       ]
-    
-      });
+
+    });
   }
-  
+
 
   getName(): string {
     return "Stats 3";
@@ -167,9 +176,7 @@ class Stats3Page extends BaseStats {
     };
     return (
       <div
-        className={this.decorateCSS("container")}
-        
-      >
+        className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats3-page")}>
             <div className={this.decorateCSS("bottom-child")}>
@@ -179,8 +186,6 @@ class Stats3Page extends BaseStats {
                 <h1 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h1>
                 <h3 className={this.decorateCSS("descriptionMore")}>{this.getPropValue("descriptionMore")}</h3>
               </div>
-
-              
               <div className={this.decorateCSS("box")}>
                 {this.castToObject<any>("buttons").map(
                   (item: any, index: number) => {
@@ -191,45 +196,45 @@ class Stats3Page extends BaseStats {
                             }`}
                         >
                           {item.buttonText}
-                          
-                         
                         </button>
                       </ComposerLink>
                     );
                   }
                 )}
               </div>
-              
-              <div className={this.decorateCSS("card")} style={styling}>  
+              <div className={this.decorateCSS("card")} >
+                <img src={this.getPropValue("backgroundImage")} alt="image" className={this.decorateCSS("image")} />
 
-              
+                <div className={this.decorateCSS("boxs")}>
+                  {this.castToObject<any>("card-content").map(
+                    (item: any, index: number) => {
+                      return (
+                        <ComposerLink key={`stats-${index}`} path={item.url}>
+                          <button
+                            className={`${this.decorateCSS("cards")} ${item.isPrimary && this.decorateCSS("card-color")}`} >
+                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+
+
+                            <div className={this.decorateCSS("text")}> 
+                            <span className={this.decorateCSS("button-text")}>
+                             {item.text}
+                             </span>
+                             <span className={this.decorateCSS("button-text")}>
+                             {item.buttonText}
+                             </span>
+                            </div>
+
+
+                             
+
+                          </button>
+                        </ComposerLink>
+                      );
+                    }
+                  )}
+
+                </div>
               </div>
-              
-              <div className={this.decorateCSS("boxs")}>
-              
-                {this.castToObject<any>("card-content").map(
-                  (item: any, index: number) => {
-                    return (
-                      <ComposerLink key={`stats-${index}`} path={item.url}>
-                        <button
-                          className={`${this.decorateCSS("cards")} ${item.isPrimary
-                             && this.decorateCSS("card-color")
-                            }`} 
-                        >
-                        <img src={item.icon} alt="icon" className={this.decorateCSS("icon-logo")} />
-                        
-                          {item.buttonText}
-                          {item.description}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
-
-
-
-              
 
             </div>
           </div>
@@ -237,6 +242,6 @@ class Stats3Page extends BaseStats {
       </div>
     )
   }
-  }
-      
+}
+
 export default Stats3Page;

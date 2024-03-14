@@ -1,31 +1,40 @@
 .container {
+    height: 550px;
     width: 100%;
-    padding: 50px 0;
+
     .max-content {
         max-width: var(--composer-content-width);
         display: flex;
         margin: auto;
+
         .stats3-page {
             display: block;
             width: 100%;
             padding: 0 100px;
+
             .bottom-child {
                 display: flex;
                 margin-top: 50px;
                 margin: auto;
                 border-radius: 6px;
                 padding: 40px;
+                align-items: center;
+
                 .title {
                     display: block;
-                    .subTitle{
+
+                    .subTitle {
                         color: var(--composer-primary-color);
+                       
                     }
+
                     .title {
                         font-size: 3.5rem;
                         margin: 0 20px 10px 0;
                         color: var(--composer-primary-color);
                         margin-right: 350px;
                     }
+
                     .description {
                         width: 70%;
                         font-weight: 100;
@@ -33,56 +42,103 @@
                         opacity: 0.8;
                         color: var(--composer-font-color-primary);
                     }
-                    .descriptionMore{
+
+                    .descriptionMore {
                         width: 70%;
                         font-weight: 100;
                         font-size: 1.8rem;
                         opacity: 0.8;
                         color: var(--composer-font-color-primary);
                     }
-                   
-                    
+
+
                 }
-                 .box{
+
+                .box {
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
                     position: fixed;
-                    margin-top: 480px;
-                    .button{
+                    top:450px;                  
+                   .button {
                         display: flex;
-                        font-size: 20px;               
+                        font-size: 20px;
                         justify-content: center;
                         align-items: center;
-                        border:var(--composer-tertiary-color);
+                        border: var(--composer-secondary-color);
                         border-radius: 6px;
                         cursor: pointer;
                         border: 2px solid;
                         padding: 15px 30px;
+                        bottom: 60px;
+                        background-color: transparent;
+                        color: var(--composer-font-color-primary);
+                        margin:10px;
+                        
+                      &:hover {
+                        background-color: var(--composer-secondary-color);
+                        color: var(--composer-font-color-secondary);
+                        border: 2px solid var(--composer-secondary-color);
+                        transform: scale(1.05);
+                        }
                     }
                 }
+
                 .card {
                     display: flex;
                     flex-direction: column;
                     gap: 40px;
                     height: 400px;
-                    border-radius: 15px;
-                    //padding: 40px;
-                    width: 70%;
-                    background-size: cover;
-                 
-                }
-                   background-repeat: no-repeat; 
-                    .boxs{
-                    .cards{
-                        display: flex;
-                        font-size: 30px;
-                        gap:20px;
-                        padding: 50px;
-
+                    position: relative;   
+                    
+                    .image{
+                        height:300px;
+                        border-radius: 10px;
                     }
-                }   
-                
+                    .boxs {
+                        flex-wrap: nowrap;
+                        display: flex;
+                        position: absolute;
+                        bottom: 40px;
+                        left: -90px;
+                        background-color: var(--composer-tertiary-color);     
+                        border-radius: 10px;
+                        overflow: hidden;
+                        padding: 20px;
+                        right:30px;
+                        outline: 10px solid var(--composer-html-background);
+                        .button-text{
+                            flex-direction: column;
+                        }
+                       :last-child{                       
+                            .cards{                                
+                              border: none;
+                            }
+                        }     
+                        .cards {
+                            display: flex;
+                            gap: 10px;
+                            padding: 20px;
+                            border: none;
+                            border-right: 4px solid var(--composer-primary-color);
+                            background-color: var(--composer-tertiary-color);
+                            color: var(--composer-primary-color);
+                            justify-content: center;
+                            align-items: center;
+                            .text{
+                                display: flex;
+                                flex-direction: column;
+                                gap: 10px;
+                            }
+                          
+                            .icon {
+                                
+                                width: 50px;
+                                height: 50px;
+                            }                          
+                        }
+                    }
+                }
             }
         }
     }
@@ -90,10 +146,11 @@
 
 @media only screen and (max-width: 1300px) {
     .container {
-        gap: 60px;
+        height: 300%;
+        gap: 90px;
         .max-content {
             flex-direction: column;
-            .stats4-page {
+            .stats3-page {
                 text-align: center;
                 margin: 0;
                 padding: 0;
@@ -103,31 +160,92 @@
                     padding: 20px;
                     .title {
                         width: 100%;
-                        .title-h1 {
-                            width: 100%;
-                            margin: 20px 0;
-                        }
                         .description {
                             width: 100%;
                         }
-                    }
-                    .card {
-                        min-width: 100%;
-                        max-width: 100%;
-                        .text-child {
-                            margin-top: 300px;
+                        .descriptionMore{
+                            width: 100%;
                         }
+
                     }
+                   .box{
+                   position: relative;
+                   justify-content: center;
+                   top: auto;
+                   }
+
+
+                    .card{
+                        width: 80%;
+                        top:50px;
+                        left: 100px;
+                    }
+                    
+                    
                 }
             }
         }
     }
 }
 
+@media only screen and (max-width:400px) {
+    .container {
+       height: 1300px;
+        .max-content {
+            flex-direction: column;
+            .stats3-page {
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                .bottom-child {  
+                    display: block;
+                    margin: 0 auto;
+                    padding: 20px;
+                    .title {
+                        width: 100%;
+                        .description {
+                            width: 100%;
+                        }
+                        .descriptionMore{
+                            width: 100%;
+                        }
 
+                    }
+                   .box{
+                  position: relative;
+                   justify-content: center;
+                   top: auto;
+                   }
 
+                   .card{
+                    left: 10px;
+                    .image{
+                        height: 50%;
+                        width: 120%;
+                       
+                    }
+                    
+                    
+                    .boxs{
+                    width: 100%;  
+                    flex-direction: column-reverse;
+                    left: 25px !important;             
+                    bottom: -90px !important;
+                 
+                      .cards{
+                    border: none;
+                     
+                  }  
+                   
+                  }     
+                }
 
-
-
-
-
+                
+                 
+                      
+                                         
+                }
+            }
+        }
+    }
+}
