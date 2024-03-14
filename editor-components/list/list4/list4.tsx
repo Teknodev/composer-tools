@@ -2,258 +2,211 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
 
-class List4 extends BaseList {
+type Card = {
+  title: string;
+  description: string;
+  image: string;
+  subtitle: string;
+};
+
+type Card2 = {
+  title2: string;
+  description2: string;
+  subtitle2: string;
+  image: string;
+};
+
+class list4 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "We are delivering beautiful digital products for you.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Services",
+    });
+
     this.addProp({
       type: "array",
-      key: "features-main",
-      displayer: "Features Main",
+      key: "content-card",
+      displayer: "Content Card",
       value: [
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "list-title",
-              displayer: "List Title",
-              value: "Top 10 Books to Read This Summer",
+              key: "title",
+              displayer: "Title",
+              value: "1",
             },
             {
-              type: "array",
-              key: "features-list",
-              displayer: "Features List",
-              value: [
-                {
-                  type: "object",
-                  key: "feature-list-item",
-                  displayer: "Feature List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Looking for some great summer reading? Check out our list of the top 10 books to read this season.",
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Creative Idea",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Web design encompasses many different skills and disciplines in the production of all web.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental1.png",
             },
           ],
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "list-title",
-              displayer: "List Title",
-              value: " 5 Essential Tools for Remote Work Success",
+              key: "title",
+              displayer: "Title",
+              value: "2",
             },
             {
-              type: "array",
-              key: "features-list",
-              displayer: "Features List",
-              value: [
-                {
-                  type: "object",
-                  key: "feature-list-item",
-                  displayer: "Feature List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Whether you're working from home or on the go, these 5 tools are essential for staying productive and organized.",
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "High Creative Minds",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Web design encompasses many different skills and disciplines in the production of all web.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental2.png",
             },
           ],
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "list-title",
-              displayer: "List Title",
-              value: "7 Tips for a Healthier Lifestyle",
+              key: "title",
+              displayer: "Title",
+              value: "3",
             },
-            {
-              type: "array",
-              key: "features-list",
-              displayer: "Features List",
-              value: [
-                {
-                  type: "object",
-                  key: "feature-list-item",
-                  displayer: "Feature List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "title",
-          displayer: "Title",
-          value: [
             {
               type: "string",
-              key: "list-title",
-              displayer: "List Title",
-              value: "7 Tips for a Healthier Lifestyle",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Business Planning",
             },
-            {
-              type: "array",
-              key: "features-list",
-              displayer: "Features List",
-              value: [
-                {
-                  type: "object",
-                  key: "feature-list-item",
-                  displayer: "Feature List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "title",
-          displayer: "Title",
-          value: [
             {
               type: "string",
-              key: "list-title",
-              displayer: "List Title",
-              value: "7 Tips for a Healthier Lifestyle",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "array",
-              key: "features-list",
-              displayer: "Features List",
-              value: [
-                {
-                  type: "object",
-                  key: "feature-list-item",
-                  displayer: "Feature List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "title",
-          displayer: "Title",
-          value: [
-            {
-              type: "string",
-              key: "list-title",
-              displayer: "List Title",
-              value: "7 Tips for a Healthier Lifestyle",
-            },
-            {
-              type: "array",
-              key: "features-list",
-              displayer: "Features List",
-              value: [
-                {
-                  type: "object",
-                  key: "feature-list-item",
-                  displayer: "Feature List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: "Want to improve your health and well-being? Check out our list of 7 tips for a healthier lifestyle, including recommendations for exercise, nutrition, and self-care.",
-                    },
-                  ],
-                },
-              ],
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental3.png",
             },
           ],
         },
       ],
     });
+
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 7,
+      value: 3,
+      max: 3,
     });
   }
 
   getName(): string {
-    return "List 4";
+    return "list 4";
   }
 
   render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {this.getPropValue("features-main").map((title: any, index: number) => {
-            return (
-              <div style={{
-                width: 90 / this.getPropValue("itemCount") + "%",
-                minWidth: "200px",
-              }}>
-                <div  key={index} className={this.decorateCSS("feature-list")}>
-                  <div>
-                    <h3 className={this.decorateCSS("title")}>{title.value[0].value}</h3>
-                    <hr />
+          <div className={this.decorateCSS("header")}>
+            <span className={this.decorateCSS("subtitle")}>
+              {this.getPropValue("subtitle")}
+            </span>
+            <h2 className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </h2>
+          </div>
+          <div className={this.decorateCSS("card-child")}>
+            {this.castToObject<Card[]>("content-card").map(
+              (card: any, index: number) => (
+                <div
+                  key={index}
+                  className={this.decorateCSS("card-item-count")}
+                  style={{
+                    width: 90 / this.getPropValue("itemCount") + "%",
+                  }}
+                >
+                  <div className={this.decorateCSS("line-box")}>
+                    <div className={this.decorateCSS("line-1")}></div>
+                    <div className={this.decorateCSS("line-2")}></div>
+                    <div className={this.decorateCSS("line-3")}></div>
+                    <div className={this.decorateCSS("line-4")}></div>
                   </div>
-                  <ul className={this.decorateCSS("list-group")}>
-                    {title.value[1].value.map((table: any) => {
-                      return table.value.map((tableData: any, index: number) => (
-                        <li className={this.decorateCSS("list-item")} key={index}>
-                          {tableData.value}
-                        </li>
-                      ));
-                    })}
-                  </ul>
+                  <h5 className={this.decorateCSS("card-title")}>
+                    {card.title}
+                  </h5>
+                  <div
+                    key={`cnt-4-card-${index}`}
+                    className={this.decorateCSS("card")}
+                  >
+                    <div className={this.decorateCSS("color-box")}>
+                      <img alt="server" src={card.image} />
+                      <h4 className={this.decorateCSS("card-subtitle")}>
+                        {card.subtitle}
+                      </h4>
+                      <p className={this.decorateCSS("card-description")}>
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              )
+            )}
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default List4;
+export default list4;

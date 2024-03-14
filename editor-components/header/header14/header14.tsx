@@ -1,179 +1,90 @@
 import * as React from "react";
 import styles from "./header14.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-class Header14 extends BaseHeader {
+type Slide = {
+  image: string;
+  title: string;
+  description: string;
+  firstButton: {
+    value: string;
+  }[];
+  secondButton: {
+    value: string;
+  }[];
+};
+
+class HeaderComponent14 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(
-      {
-        type: "array",
-        key: "buttonprop",
-        displayer: "Button Prop",
-        value: [
-          {
-            type: "array",
-            key: "buttonLeft",
-            displayer: "Button Left",
-            value: [
-              {
-                type: "string",
-                key: "button-text",
-                displayer: "Button Text",
-                value: "EXPERT ADVICE",
-              },
-              {
-                type: "page",
-                key: "button-url",
-                displayer: "Button URL",
-                value: "",
-              },
-            ],
-          },
-          {
-            type: "array",
-            displayer: "Button Right",
-            key: "buttonRight",
-            value: [
-              {
-                type: "string",
-                displayer: "Button Text",
-                key: "button-text",
-                value: "VIEW MORE",
-              },
-              {
-                type: "page",
-                displayer: "Button URL",
-                key: "button-url",
-                value: "",
-              },
-            ],
-          },
-        ],
-
-      },
-    )
-
     this.addProp({
       type: "array",
-      displayer: "Items",
-      key: "items",
+      displayer: "Slides",
+      key: "slides",
       value: [
         {
           type: "object",
-          displayer: "Item Left",
-          key: "item-left",
+          displayer: "First Slide",
+          key: "first-slide",
           value: [
             {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "Check Out Our Expert Advice",
+              value: "Charge Your Phone Safely!",
             },
             {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "From the best designers",
+              value:
+                "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.",
             },
             {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e4?alt=media&timestamp=1693304455863",
+            },
+
+            {
               type: "object",
-              displayer: "Button",
-              key: "button",
+              displayer: "First Button",
+              key: "firstButton",
               value: [
                 {
                   type: "string",
                   displayer: "Button Text",
                   key: "button-text",
-                  value: "EXPERT ADVICE",
+                  value: "TO SHOP",
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
               ],
             },
             {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
-            },
-
-          ],
-        },
-        {
-          type: "object",
-          displayer: "Item Right Top",
-          key: "item-right-top",
-          value: [
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Our Services",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Discover all the ways to get your product",
-            },
-
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
-            },
-
-          ],
-        },
-        {
-          type: "object",
-          displayer: "Item Right Bottom",
-          key: "item-right-bottom",
-          value: [
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Free Shipping!",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Free shipping on orders of $100 or more.",
-            },
-
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
-            },
-            {
               type: "object",
-              displayer: "Button",
-              key: "button",
+              displayer: "Second Button",
+              key: "secondButton",
               value: [
                 {
                   type: "string",
                   displayer: "Button Text",
                   key: "button-text",
-                  value: "Pre-Order Now",
+                  value: "READ MORE",
                 },
                 {
                   type: "page",
-                  displayer: "Button URL",
+                  displayer: "Button Link",
                   key: "button-url",
                   value: "",
                 },
@@ -181,7 +92,136 @@ class Header14 extends BaseHeader {
             },
           ],
         },
-
+        {
+          type: "object",
+          displayer: "Second Slide",
+          key: "second-slide",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "For Everything and Everyone",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Even if your less into design and more into content strategy you may find some redeeming value with, wait for it, dummy copy.",
+            },
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e3?alt=media&timestamp=1693304455863",
+            },
+            {
+              type: "object",
+              displayer: "First Button",
+              key: "firstButton",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "TO SHOP",
+                },
+                {
+                  type: "page",
+                  displayer: "Button Link",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              displayer: "Second Button",
+              key: "secondButton",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button Link",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "First Slide",
+          key: "third-slide",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Featured Accessories",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "A client that's unhappy for a reason is a problem, a client that's unhappy though required he or her can't quite put a finger.",
+            },
+            {
+              type: "image",
+              displayer: "Image",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e2?alt=media&timestamp=1693304455863",
+            },
+            {
+              type: "object",
+              displayer: "First Button",
+              key: "firstButton",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "TO SHOP",
+                },
+                {
+                  type: "page",
+                  displayer: "Button Link",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              displayer: "Second Button",
+              key: "secondButton",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Button Text",
+                  key: "button-text",
+                  value: "READ MORE",
+                },
+                {
+                  type: "page",
+                  displayer: "Button Link",
+                  key: "button-url",
+                  value: "",
+                },
+              ],
+            },
+          ],
+        },
       ],
     });
   }
@@ -191,74 +231,50 @@ class Header14 extends BaseHeader {
   }
 
   render() {
-    let items: any = this.castToObject("items");
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 700,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("item")}>
-                <div className={this.decorateCSS("bg-content")}>
-                  <div className={this.decorateCSS("description")}>
-                    {items[0].description}
-                  </div>
-                  <div className={this.decorateCSS("title")}>
-                    {items[0].title}
-                  </div >
-                  <div  className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={this.getPropValue("buttonprop")[0].value[1].value}>
-                          <span  className={this.decorateCSS("button")}>
-                          {this.getPropValue("buttonprop")[0].value[0].value }
-                          </span >
-                        </ComposerLink>
-                  </div>
-                  
-                </div>
-                <div className={this.decorateCSS("background-image-content")}>
-                  <img src={items[0].image} alt={items[0].title} />
-                </div>
-              </div>
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <div className={this.decorateCSS("top")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={items[1].image} alt={items[1].title} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {items[1].title}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {items[1].description}
-                    </div>
-                    <div className={this.decorateCSS("button-wrapper")}>
-                        <ComposerLink path={this.getPropValue("buttonprop")[1].value[1].value}>
-                          <span className={this.decorateCSS("button")}>
-                          {this.getPropValue("buttonprop")[1].value[0].value }
-                          </span>
-                        </ComposerLink>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              <div className={this.decorateCSS("bottom")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={items[2].image} alt={items[2].title} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {items[2].title}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {items[2].description}
+          <div
+            className={this.decorateCSS("wrapper")}>
+            <Slider {...settings} className={this.decorateCSS("carousel")}>
+              {this.castToObject<Slide[]>("slides").map(
+                (item: Slide, index: number) => (
+                  <div
+                    className={this.decorateCSS("slider-inner-div")}
+                    key={`sld-8-${index}`}
+                  >
+                    <div className={this.decorateCSS("item")}>
+                      <div className={this.decorateCSS("background-image")}>
+                        <img src={item.image} alt={item.title} />
+                      </div>
+                      <div className={this.decorateCSS("content")}>
+                        <h1 className={this.decorateCSS("title")}>
+                          {item.title}
+                        </h1>
+                        <h3 className={this.decorateCSS("description")}>
+                          {item.description}
+                        </h3>
+                        <div className={this.decorateCSS("buttons")}>
+                          <button className={this.decorateCSS("firstButton")}>
+                            {item.firstButton[0].value}
+                          </button>
+                          <button className={this.decorateCSS("secondButton")}>
+                            {item.secondButton[0].value}
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                )
+              )}
+            </Slider>
           </div>
         </div>
       </div>
@@ -266,4 +282,4 @@ class Header14 extends BaseHeader {
   }
 }
 
-export default Header14;
+export default HeaderComponent14;

@@ -7,6 +7,7 @@
         .call-to-action1-page {
             display: block;
             width: 100%;
+            margin: 150px 50px;
             .description {
                 text-align: center;
                 font-weight: 200;
@@ -48,6 +49,14 @@
 
 @media only screen and (max-width: 768px) {
     .container {
-        padding: 50px 20px;
+        padding: 50px 30px;
+        .max-content {
+            max-width: var(--composer-content-width);
+            margin-left: -50px;
+            .call-to-action1-page {
+                display: block;
+                width: 100%;
+            }
+        }
     }
 }

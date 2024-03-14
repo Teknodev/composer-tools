@@ -88,6 +88,10 @@
 @media only screen and (max-width: 768px) {
     .container {
         padding: 50px 20px;
+        .max-content{
+            display: flex;
+            
+            flex-direction: column-reverse;
         .call-to-action4-page {
             text-align: center;
             margin: 0;
@@ -103,6 +107,16 @@
                 .button2 {
                     width: 100% !important;
                 }
+            }
+        }
+    }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 100%;
+                max-width: 500px;
             }
         }
     }

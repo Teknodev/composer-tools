@@ -26,11 +26,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         text-overflow: ellipsis;
         word-break: break-all;
 
-        .subtitle {
+        .title {
           font-size: 4.5rem;
           letter-spacing: 0.02em;
           margin: unset;
-          color: var(--composer-font-color-primary);
+          color: var(--composer-primary-color);
           opacity: 0.9;
         }
 

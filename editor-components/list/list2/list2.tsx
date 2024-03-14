@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list2.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface List2Items {
   listEmoji: string;
@@ -11,315 +12,270 @@ interface List2Items {
 class List2 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Most Popular Cities/Towns"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Discover best things to do restaurants, shopping, hotels, cafes and places around the world by categories."
+    });
+
+    this.addProp({
+      type: "object",
+      key: "button",
+      displayer: "Action Button",
+      value: [
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text of Button",
+          value: "View More Categories"
+        },
+        {
+          type: "page",
+          displayer: "Navigate",
+          value: "",
+          key: "navigate"
+        }
+      ]
+    });
+
     this.addProp({
       type: "array",
-      key: "link-main",
-      displayer: "Link Main",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
-                    {
-                      type: "string",
-                      key: "listNumber",
-                      displayer: "List Number",
-                      value: "1",
-                    },
-                    {
-                      type: "image",
-                      key: "listEmoji",
-                      displayer: "List Emoji",
-                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
-                    },
-                    {
-                      type: "string",
-                      key: "listTitle",
-                      displayer: "List Title",
-                      value: "Lorem Ipsum",
-                    },
-                    {
-                      type: "string",
-                      key: "listDesc",
-                      displayer: "List Description",
-                      value: "Want to improve your health and well-being?",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "title",
-          displayer: "Title",
-          value: [
-                    {
-                      type: "string",
-                      key: "listNumber",
-                      displayer: "List Number",
-                      value: "2",
-                    },
-                    {
-                      type: "image",
-                      key: "listEmoji",
-                      displayer: "List Emoji",
-                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
-                    },
-                    {
-                      type: "string",
-                      key: "listTitle",
-                      displayer: "List Title",
-                      value: "Lorem Ipsum",
-                    },
-                    {
-                      type: "string",
-                      key: "listDesc",
-                      displayer: "List Description",
-                      value: "Want to improve your health and well-being?",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1606944331229-f755b64d76ee?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             },
-          ],
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 18
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Nightlife"
+            }
+          ]
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
-                    {
-                      type: "string",
-                      key: "listNumber",
-                      displayer: "List Number",
-                      value: "3",
-                    },
-                    {
-                      type: "image",
-                      key: "listEmoji",
-                      displayer: "List Emoji",
-                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
-                    },
-                    {
-                      type: "string",
-                      key: "listTitle",
-                      displayer: "List Title",
-                      value: "Lorem Ipsum",
-                    },
-                    {
-                      type: "string",
-                      key: "listDesc",
-                      displayer: "List Description",
-                      value: "Want to improve your health and well-being?",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1608149922321-cd55aacabe94?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 24
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Shops"
+            }
+          ]
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
-                    {
-                      type: "string",
-                      key: "listNumber",
-                      displayer: "List Number",
-                      value: "3",
-                    },
-                    {
-                      type: "image",
-                      key: "listEmoji",
-                      displayer: "List Emoji",
-                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
-                    },
-                    {
-                      type: "string",
-                      key: "listTitle",
-                      displayer: "List Title",
-                      value: "Lorem Ipsum",
-                    },
-                    {
-                      type: "string",
-                      key: "listDesc",
-                      displayer: "List Description",
-                      value: "Want to improve your health and well-being?",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1606922183036-62e19495eaab?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 19
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Restaurant"
+            }
+          ]
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
-                    {
-                      type: "string",
-                      key: "listNumber",
-                      displayer: "List Number",
-                      value: "3",
-                    },
-                    {
-                      type: "image",
-                      key: "listEmoji",
-                      displayer: "List Emoji",
-                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
-                    },
-                    {
-                      type: "string",
-                      key: "listTitle",
-                      displayer: "List Title",
-                      value: "Lorem Ipsum",
-                    },
-                    {
-                      type: "string",
-                      key: "listDesc",
-                      displayer: "List Description",
-                      value: "Want to improve your health and well-being?",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1555141816-810dd5692b6a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 35
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Outdoor Activities"
+            }
+          ]
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
-                    {
-                      type: "string",
-                      key: "listNumber",
-                      displayer: "List Number",
-                      value: "3",
-                    },
-                    {
-                      type: "image",
-                      key: "listEmoji",
-                      displayer: "List Emoji",
-                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
-                    },
-                    {
-                      type: "string",
-                      key: "listTitle",
-                      displayer: "List Title",
-                      value: "Lorem Ipsum",
-                    },
-                    {
-                      type: "string",
-                      key: "listDesc",
-                      displayer: "List Description",
-                      value: "Want to improve your health and well-being?",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1544376798-89aa6b82c6cd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 9
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "Hotels"
+            }
+          ]
         },
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
-                    {
-                      type: "string",
-                      key: "listNumber",
-                      displayer: "List Number",
-                      value: "3",
-                    },
-                    {
-                      type: "image",
-                      key: "listEmoji",
-                      displayer: "List Emoji",
-                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
-                    },
-                    {
-                      type: "string",
-                      key: "listTitle",
-                      displayer: "List Title",
-                      value: "Lorem Ipsum",
-                    },
-                    {
-                      type: "string",
-                      key: "listDesc",
-                      displayer: "List Description",
-                      value: "Want to improve your health and well-being?",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-        },
-        {
-          type: "object",
-          key: "title",
-          displayer: "Title",
-          value: [
-                    {
-                      type: "string",
-                      key: "listNumber",
-                      displayer: "List Number",
-                      value: "3",
-                    },
-                    {
-                      type: "image",
-                      key: "listEmoji",
-                      displayer: "List Emoji",
-                      value: "https://cdn-icons-png.flaticon.com/512/1828/1828108.png",
-                    },
-                    {
-                      type: "string",
-                      key: "listTitle",
-                      displayer: "List Title",
-                      value: "Lorem Ipsum",
-                    },
-                    {
-                      type: "string",
-                      key: "listDesc",
-                      displayer: "List Description",
-                      value: "Want to improve your health and well-being?",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-        },
-      ],
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 4,
-    });
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value: "https://images.unsplash.com/photo-1587999633485-2c16737226c6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              type: "number",
+              key: "count",
+              displayer: "Count",
+              value: 32
+            },
+            {
+              type: "string",
+              key: "count_text",
+              displayer: "Count Text",
+              value: "Listings"
+            },
+            {
+              type: "string",
+              key: "card_text",
+              displayer: "Card Text",
+              value: "New York"
+            }
+          ]
+        }
+      ]
+    })
   }
 
   getName(): string {
@@ -330,25 +286,38 @@ class List2 extends BaseList {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-              <ol className={this.decorateCSS("olcards")}>
-          {this.castToObject<List2Items[]>("link-main").map((title: List2Items, indexLinkMain: number) => {
-            return (
-                <li style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  minWidth : "200px",
-                }}>
-                  <div className={this.decorateCSS("content")}>
-                    <img src={title.listEmoji} alt=""/>
-                    <div className={this.decorateCSS("title")}>{title.listTitle}</div>
-                    <div className={this.decorateCSS("text")}>{title.listDesc}</div>
+          <h3 className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </h3>
+          <span className={this.decorateCSS("description")}>
+            {this.getPropValue("description")}
+          </span>
+          <div className={this.decorateCSS("cards-box")}>
+            {this.getPropValue("cards").map((card: any, index: number) =>
+              <ComposerLink key={index} path={card.getPropValue("page")}>
+                <div className={this.decorateCSS("card")}>
+                  <img src={card.getPropValue("image")} alt={card.getPropValue("card_text")} />
+                  <div className={this.decorateCSS("overlay")}></div>
+                  <div className={this.decorateCSS("overlay2")}></div>
+                  <div className={this.decorateCSS("card-content")}>
+                    <div className={this.decorateCSS("stick")}></div>
+                    <div className={this.decorateCSS("labels")}>
+                      <span className={this.decorateCSS("first")}>{card.getPropValue("card_text")}</span>
+                      <p className={this.decorateCSS("second")}>{card.getPropValue("count") + " " + card.getPropValue("count_text")}</p>
+
+                    </div>
+
                   </div>
-                </li>
-                );
-              })}
-              </ol>            
+                </div>
+              </ComposerLink>
+            )}
+          </div>
+
+          <ComposerLink path={this.getPropValue("button")[1].value}>
+            <div className={this.decorateCSS("button")}>
+              <span>{this.getPropValue("button")[0].value}</span>
+            </div>
+          </ComposerLink>
         </div>
       </div>
     );

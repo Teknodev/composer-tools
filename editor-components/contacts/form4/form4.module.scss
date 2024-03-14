@@ -1,0 +1,130 @@
+
+.container {
+    width: 100%;
+    padding: 50px 50px;
+    .subtitle{
+        text-align: center;
+        font-size: 2rem;
+        margin: 9px;
+        color:var(--composer-font-color-primary);
+    }
+    .max-content {
+        max-width: var(--composer-content-width);
+        margin: auto;
+        .contacts2 {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            .title {
+                text-align: center;
+                font-size: 4rem;
+                margin: 0;
+                color: var(--composer-primary-color);
+            }
+            .description {
+                text-align: center;
+                font-weight: 50;
+                font-size: 2rem;
+                color: var(--composer-font-color-primary);
+                margin: 30px;
+            }
+            .cards{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+
+                .card-child {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 50px;
+                    .icon-child {
+                        box-shadow: var(--composer-box-shadow);
+                        border-radius: 100%;
+                        border: 1px;
+                        min-width: 100px;
+                        min-height: 100px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: color-mix(in srgb, var(--composer-secondary-color), #fff 50%);
+                        .icon {
+                            font-size: 3rem;
+                            color: var(--composer-font-color-secondary);
+                        }
+                    }
+                    .card {
+                        height: 100%;
+                        width: 100%;
+                        min-width: 300px;
+                        line-height: 1.8;
+                        box-sizing: border-box;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        //justify-content: center;
+                        gap: 30px;
+                        box-shadow: var(--composer-box-shadow);
+                        padding: 30px;
+                        border-radius: 6px;
+                        background: var(--composer-secondary-color);
+                        
+                        @media screen and (max-width: 860px) {
+                          width:320px;
+                        }
+
+                        &.border-bottom {
+                            border-bottom: 1px solid color-mix(in srgb, var(--composer-secondary-color), #000 15%);
+                        }
+                        &.border-top {
+                            border-top: 1px solid color-mix(in srgb, var(--composer-secondary-color), #000 15%);
+                        }
+                        &.border-all {
+                            border: 1px solid color-mix(in srgb, var(--composer-secondary-color), #000 15%);
+                        }
+                        .card-box {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            //gap: 20px;
+                            width: 200px;
+                            border-radius: 6px;
+                            margin: 20px;
+                            max-width: max-content;
+                            
+                            .item-value {
+                                
+                                text-align: center;
+                                margin: 0;
+                                font-size: 1.7rem;
+                                color: var(--composer-font-color-secondary);
+                                word-break: break-word;
+                            }
+                            .item-value2 {
+                                
+                                text-align: center;
+                                font-weight: 500;
+                                font-size: 1.5rem;
+                                color: var(--composer-font-color-secondary);
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
