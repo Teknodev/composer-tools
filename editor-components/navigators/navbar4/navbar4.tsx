@@ -3,6 +3,7 @@ import { BaseNavigator } from "../../EditorComponent";
 import React from "react";
 import styles from "./navbar4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 //CLASS
 class Navbar4 extends BaseNavigator {
@@ -14,11 +15,11 @@ class Navbar4 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
+      type: "icon",
       key: "img-ham",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
+        "IoMenu",
     });
     this.addProp({
       type: "boolean",
@@ -110,10 +111,10 @@ class Navbar4 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
-                "https://cdn3.iconfinder.com/data/icons/glypho-social-and-other-logos/64/logo-facebook-512.png",
+                "FaFacebook",
               displayer: "Icon",
             },
             {
@@ -130,10 +131,10 @@ class Navbar4 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
-                "https://cdn3.iconfinder.com/data/icons/picons-social/57/43-twitter-512.png",
+                "AiFillTwitterCircle",
               displayer: "Icon",
             },
             {
@@ -150,10 +151,10 @@ class Navbar4 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
-                "https://cdn.icon-icons.com/icons2/2428/PNG/512/linkedin_black_logo_icon_147114.png",
+                "FaLinkedin",
               displayer: "Icon",
             },
             {
@@ -178,9 +179,8 @@ class Navbar4 extends BaseNavigator {
     //RETURN
     return (
       <div
-        className={`${this.decorateCSS("container")} ${
-          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-        }`}
+        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+          }`}
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
@@ -197,17 +197,17 @@ class Navbar4 extends BaseNavigator {
             </div>
 
             <div>
-              <img
-                alt=""
-                className={`${this.decorateCSS("img-hamburger")} ${
-                  this.getComponentState("navActive")
+              <ComposerIcon
+
+                propsIcon={{
+                  onClick: () => this.navClick(),
+                  className: `${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
                     ? this.decorateCSS("rotate")
                     : ""
-                }    `}
-                src={this.getPropValue("img-ham")}
-                onClick={() => {
-                  this.navClick();
+                    }    `
                 }}
+                name={this.getPropValue("img-ham")}
+
               />
               {this.getComponentState("navActive") && (
                 <div className={this.decorateCSS("navbar-child")}>
@@ -234,9 +234,9 @@ class Navbar4 extends BaseNavigator {
               {this.getPropValue("right-items").map((leftItem: any) => {
                 return (
                   <ComposerLink path={leftItem.value[1].value}>
-                    <img
-                      className={this.decorateCSS("icons")}
-                      src={leftItem.value[0].value}
+                    <ComposerIcon
+                      propsIcon={{ className: this.decorateCSS("icons") }}
+                      name={leftItem.value[0].value}
                     />
                   </ComposerLink>
                 );
