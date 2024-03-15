@@ -462,30 +462,44 @@ class HeaderComponent20 extends BaseHeader {
         },
       ],
     });
+
+    this.setComponentState("slider_index", 0);
   }
 
   getName(): string {
     return "Header-20";
   }
 
+
   render() {
+    console.log(this.getComponentState("slider_index"));
+
     const settings = {
       dots: false,
-      infinite: true,
+      infinite: false,
       speed: 500,
       autoplay: false,
+      arrows: false,
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
+      centerMode: true,
+      centerPadding: "5px",
+      className: this.decorateCSS("text-slider"),
+      afterChange: (index: number) => this.setComponentState("slider_index", index)
     };
+
+    const array = [1, 2, 3, 4, 5, 6]
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("items-container")}>
+          <div className={this.decorateCSS("container")}>
             <ComposerSlider {...settings}>
-              {this.castToObject<Card[]>("items").map(
+
+
+              {/* {this.castToObject<Card[]>("items").map(
                 (item: Card, index: number) => {
                   return (
                     <div
@@ -521,8 +535,16 @@ class HeaderComponent20 extends BaseHeader {
                     </div>
                   );
                 }
-              )}
+              )} */}
+              <img className={this.decorateCSS("image")} src="https://images.pexels.com/photos/20319547/pexels-photo-20319547/free-photo-of-view-of-pragser-wildsee-in-prags-dolomites-in-south-tyrol-italy.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+              <img className={this.decorateCSS("image")} src="https://images.pexels.com/photos/20319547/pexels-photo-20319547/free-photo-of-view-of-pragser-wildsee-in-prags-dolomites-in-south-tyrol-italy.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+              <img className={this.decorateCSS("image")} src="https://images.pexels.com/photos/20319547/pexels-photo-20319547/free-photo-of-view-of-pragser-wildsee-in-prags-dolomites-in-south-tyrol-italy.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+
             </ComposerSlider>
+            <div>
+              {array.map((item, index) => <h1 key={index}
+                className={`${this.decorateCSS("text")} ${this.getComponentState("slider_index") == index && this.decorateCSS("active")}`}>TEXT {item}</h1>)}
+            </div>
           </div>
         </div>
       </div>
