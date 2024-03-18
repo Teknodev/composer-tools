@@ -165,9 +165,9 @@ class Header21 extends BaseHeader {
     };
 
     // let items: any = this.castToObject("items");
-    this.getPropValue("slider").map((item: ISliderData, index: number) =>
-      console.log(item.background)
-    );
+    // this.getPropValue("slider").map((item: ISliderData, index: number) =>
+    //   // console.log(item.background)
+    // );
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>

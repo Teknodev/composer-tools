@@ -1,7 +1,14 @@
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
-
+  .navbar-child {
+    background-color: var(--composer-html-background);
+    margin-top: 30px;
+    .mobile-item {
+      padding: 5px 0;
+      color: var(--composer-font-color-primary);
+    }
+  }
   &.sticky {
     position: sticky;
     top: 0px;
@@ -20,10 +27,12 @@
       width: 100%;
       justify-content: space-between;
       padding: 50px 50px;
+      background-color: var(--composer-html-backgrounds);
 
       .title {
         font-size: 35px;
         font-weight: bold;
+        color: var(--composer-primary-color);
       }
 
       .items {
@@ -52,6 +61,7 @@
           transition: all 0.5s;
           font-weight: 200;
           font-size: 16px;
+          color: var(--composer-font-color-primary);
 
           &:hover {
             opacity: 0.6;
@@ -118,6 +128,12 @@
         text-align: center;
         padding: 50px 0;
 
+        .title {
+          font-weight: bold;
+          font-size: 30px;
+          margin-left: 20px;
+        }
+
         .items {
           width: max-content;
           margin: 0 auto;
@@ -152,31 +168,34 @@
             font-size: 30px;
             width: 25px;
             height: 25px;
+            color: var(--composer-font-color-primary);
 
-            &:hover {
-              transform: rotate(90deg);
+            &.rotate {
+              &:hover {
+                transform: rotate(90deg);
+              }
             }
           }
-        }
 
-        .navbar-hidden {
-          display: block;
-          visibility: visible;
-        }
+          .navbar-hidden {
+            display: block;
+            visibility: visible;
+          }
 
-        .navbar-child {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.5s;
-          height: 200px;
-          width: 100%;
-          margin-top: 40px;
-          background-color: rgb(0, 0, 0);
-          color: white;
-          position: absolute;
-          z-index: 200;
+          .navbar-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s;
+            height: 200px;
+            width: 100%;
+            margin-top: 40px;
+            background-color: var(--composer-secondary-color);
+            color: var(--composer-font-color-secondary);
+            position: absolute;
+            z-index: 200;
+          }
         }
       }
     }

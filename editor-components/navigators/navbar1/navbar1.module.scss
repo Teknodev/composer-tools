@@ -32,6 +32,7 @@
                     justify-content: flex-end;
                 }
                 h3 {
+                    color: var(--composer-font-color-primary);
                     cursor: pointer;
                     transition: all 0.5s;
                     font-weight: 200;
@@ -48,19 +49,19 @@
                 button {
                     cursor: pointer;
                     transition: all 0.5s;
-                    background-color: var(--composer-primary-color);
-                    border: 1px solid var(--composer-primary-color);
+                    background-color: var(--composer-secondary-color);
+                    border: 1px solid var(--composer-secondary-color);
                     border-radius: 6px;
                     font-size: 15px;
                     font-weight: 700;
-                    color: white;
+                    color: var(--composer-font-color-secondary);
                     margin-left: 20px;
                     margin-top: 8px;
                     padding: 0 20px;
                     min-height: 40px;
                     &:hover {
                         background: transparent;
-                        color: var(--composer-primary-color);
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }
@@ -113,6 +114,7 @@
                     align-items: center;
                     height: 100%;
                     padding: 0 20px 0 5px;
+
                     .img-hamburger {
                         pointer-events: all;
                         cursor: pointer;
@@ -121,7 +123,8 @@
                         font-size: 30px;
                         width: 25px;
                         height: 25px;
-                        &:hover {
+
+                        &.rotate {
                             transform: rotate(90deg);
                         }
                     }
@@ -139,8 +142,8 @@
                     height: 200px;
                     width: 100%;
                     margin-top: 40px;
-                    background-color: rgb(0, 0, 0);
-                    color: white;
+                    background-color: var(--composer-secondary-color);
+                    color: var(--composer-font-color-secondary);
                     position: absolute;
                     z-index: 200;
                 }

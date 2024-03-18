@@ -213,7 +213,7 @@ class Header25 extends BaseHeader {
       slidesToScroll: 1,
     };
 
-    console.log(this.getPropValue("slider")[0].value[5].value[0].value);
+    // console.log(this.getPropValue("slider")[0].value[5].value[0].value);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -247,7 +247,7 @@ class Header25 extends BaseHeader {
                       <span className={this.decorateCSS("action-button")}>
                         <ComposerLink path={item.value[5].value[1].value}>
                           <div className={this.decorateCSS("button-content")}>
-                          {item.value[5].value[0].value}
+                            {item.value[5].value[0].value}
                           </div>
                         </ComposerLink>
                       </span>

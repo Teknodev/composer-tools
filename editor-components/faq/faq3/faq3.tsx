@@ -2,200 +2,318 @@ import * as React from "react";
 import styles from "./faq3.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 
-type Card = {
-  cardTitle: string;
+type Faq = {
+  number: number;
+  title: string;
   description: string;
 };
-
 
 class FaqContainerTwo extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
-
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Page Title",
-      value: "FAQ",
+      key: "mainTitle",
+      displayer: "Title",
+      value: "Got Questions? We’ve Got Answers!",
     });
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title Description",
-      value: "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "FAQ",
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Row",
-      value: 3,
+      key: "mainSubtitle",
+      displayer: "Subtitle",
+      value:
+        "Below is a list of frequently asked questions to help you understand how this works.",
     });
 
     this.addProp({
       type: "array",
-      key: "card",
-      displayer: "Card",
+      key: "faqList",
+      displayer: "FAQ",
       value: [
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "faq",
+          displayer: "Frequently Asked Questions",
           value: [
             {
+              type: "number",
+              key: "number",
+              displayer: "Number",
+              value: 1,
+            },
+            {
               type: "string",
-              key: "cardTitle",
-              displayer: "Question",
-              value:
-                "How can I track my order?",
+              key: "title",
+              displayer: "Title",
+              value: "When can we get started?",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Answer",
+              displayer: "Description",
               value:
-                "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
           ],
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "faq",
+          displayer: "Frequently Asked Questions",
           value: [
             {
+              type: "number",
+              key: "number",
+              displayer: "Number",
+              value: 2,
+            },
+            {
               type: "string",
-              key: "cardTitle",
-              displayer: "Question",
-              value:
-                "What are the different shipping methods available for my order?",
+              key: "title",
+              displayer: "Title",
+              value: "How do I go about conducting market research?",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Answer",
+              displayer: "Description",
               value:
-                "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number.",
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
           ],
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "faq",
+          displayer: "Frequently Asked Questions",
           value: [
             {
+              type: "number",
+              key: "number",
+              displayer: "Number",
+              value: 3,
+            },
+            {
               type: "string",
-              key: "cardTitle",
-              displayer: "Question",
-              value:
-                "What is your return policy?",
+              key: "title",
+              displayer: "Title",
+              value: "What do I need in order to start selling?",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Answer",
+              displayer: "Description",
               value:
-                "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "faq",
+          displayer: "Frequently Asked Questions",
+          value: [
+            {
+              type: "number",
+              key: "number",
+              displayer: "Number",
+              value: 4,
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "How much does it cost?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "faq",
+          displayer: "Frequently Asked Questions",
+          value: [
+            {
+              type: "number",
+              key: "number",
+              displayer: "Number",
+              value: 5,
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "What other help is available?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
           ],
         },
       ],
     });
+
+    this.addProp({
+      type: "array",
+      key: "infoArray",
+      displayer: "INFORMATION",
+      value: [
+        {
+          type: "object",
+          key: "info",
+          displayer: "Information",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Questions?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Blandit justo vestibulum tincidunt, ipsum id non, volutpat neque pede eget donec.",
+            },
+            {
+              type: "string",
+              key: "buttonItem",
+              displayer: "Button Writing",
+              value: "CONTACT US",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "info",
+          displayer: "Information",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "About Us",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Etiam nisl cras, arcu dui, wisi aenean non sit quisque nulla, eget aut molestie. Rhoncus sociis, nulla luctus diam montes cubilia.",
+            },
+            {
+              type: "string",
+              key: "buttonItem",
+              displayer: "Button Writing",
+              value: "LEARN MORE",
+            },
+          ],
+        },
+      ],
+    });
+    this.addProp({
+      type: "string",
+      key: "image",
+      displayer: "Image",
+      value: "https://www.svgrepo.com/show/80156/down-arrow.svg",
+    });
+
+    this.state["componentProps"]["selectCardIndex"] = null;
   }
 
   getName(): string {
-    return "FAQ MIDDLE 2";
+    return "FAQ-3";
+  }
+
+  lineClicked(index: number) {
+    if (this.getComponentState("selectCardIndex") === index) {
+      this.setComponentState("selectCardIndex", null);
+    } else {
+      this.setComponentState("selectCardIndex", index);
+    }
   }
 
   render() {
-    const littleScreen = {
-      width: "100%",
-      display: "flex",
-      flex: "wrap",
-      justifyContent: "center",
-    };
-
-    const wideScreen = {
-      width: 90 / this.getPropValue("itemCount") + "%",
-      display: "flex",
-      justifyContent: "center",
-    };
-
-    let style = function () {
-      if (window.innerWidth < 800) {
-        return littleScreen;
-      } else {
-        return wideScreen;
-      }
-    };
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
+          <div className={this.decorateCSS("containerTop")}>
+            <div className={this.decorateCSS("header")}>
+              <div className={this.decorateCSS("caption")}>
+                {this.getPropValue("mainTitle")}
               </div>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <p className={this.decorateCSS("title")}>{this.getPropValue("title")}</p>
+              <p className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("mainSubtitle")}
+              </p>
             </div>
-            <div className={this.decorateCSS("card-page")}>
-              {this.castToObject<Card[]>("card").map((item: Card, indexCard: number) => {
-                return (
-                  <div key={indexCard} style={style()} className={this.decorateCSS("card-item-count")}>
-                    <div className={this.decorateCSS("card")}>
-                      <div className={this.decorateCSS("icon")}>
-                        <div>?</div>
+            <div className={this.decorateCSS("contentContainer")}>
+              <div className={this.decorateCSS("content-left")}>
+                {this.castToObject<Faq[]>("faqList").map(
+                  (item: Faq, index: number) => (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("faq-items")}
+                      onClick={() => {
+                        this.lineClicked(index);
+                      }}
+                    >
+                      <h3 className={this.decorateCSS("title-item")}>
+                        {item.number}.{item.title}
+                      </h3>
+                      <img
+                        src={this.getPropValue("image")}
+                        alt=""
+                        className={`${
+                          this.getComponentState("selectCardIndex") === index
+                            ? this.decorateCSS("rotate")
+                            : ""
+                        }`}
+                      />
+                      <div
+                        className={`${this.decorateCSS("description-item")} ${
+                          this.getComponentState("selectCardIndex") === index
+                            ? this.decorateCSS("active")
+                            : ""
+                        }`}
+                      >
+                        {item.description}
                       </div>
-                      <div className={this.decorateCSS("title")}>
-                        <h2 className={this.decorateCSS("item-cardTitle")}>{item.cardTitle}</h2>
-                      </div>
-                      <div className={this.decorateCSS("description")}>
-                        <p className={this.decorateCSS("item-description")}>{item.description}</p>
-                      </div>
+                      <hr />
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-            {/* <div className={this.decorateCSS("down-container")}>
-              <div className={this.decorateCSS("child-container")}>
-                <h1>{this.getPropValue("title2")}</h1>
-                <p>{this.getPropValue("description")}</p>
-                <div className={this.decorateCSS("button-group")}>
-                  {this.castToObject<Button[]>("buttons").map(
-                    (button: Button, indexButtons: number) => {
-                      return (
-                        <ComposerLink key={indexButtons} path={button.link}>
-                          <button
-                            className={
-                              this.decorateCSS("button") +
-                              " " +
-                              (button.isPrimary
-                                ? this.decorateCSS("primary")
-                                : this.decorateCSS("secondary"))
-                            }
-                          >
-                            {button.text}
-                          </button>
-                        </ComposerLink>
-                      );
-                    }
-                  )}
-                </div>
+                  )
+                )}
               </div>
-            </div> */}
+              <div className={this.decorateCSS("content-right")}>
+                {this.getPropValue("infoArray").map(
+                  (item: any, index: number) => (
+                    <div key={index} className={this.decorateCSS("info-items")}>
+                      <h3 className={this.decorateCSS("title-info")}>
+                        {item.value[0].value}
+                      </h3>
+                      <div className={this.decorateCSS("description-info")}>
+                        {item.value[1].value}
+                      </div>
+                      <button className={this.decorateCSS("button-info")}>
+                        {item.value[2].value}
+                      </button>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
