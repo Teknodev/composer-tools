@@ -1,67 +1,187 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
   display: flex;
   align-items: center;
   
-  .tabs{
+
+  .max-content{ 
+    max-width: var(--composer-content-width);
+    margin: auto;
+    height: 112vh;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+  }
+
+ .buttons{
+    font-size: 30px;
+    transform: rotate(270deg);
+    bottom: 60px;
+    display: flex;
+    align-items: center;
     position: relative;
+    right: 30px;
+    color: var(--composer-font-color-primary);
+
+    .text{
+        margin-right: 15px;
+        font-size: 2rem;
+    }
+    .active-number{}
+    .slash{}
+    .count{}
+ }
+  
+  
+  .tabs{
     width: 100%;
     display: flex;
     flex-direction: row;
+      
     .tab-buttons{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 40px;
-        margin-bottom: 40px;
-        left:50px;
+        width: 50%;
+       left: 165px;
+       top:80px;
+       position: relative;
         .tabText{
             color: var(--composer-font-color-primary);
-            font-weight: bold;
-            padding: 10px 0px;
-            font-size: 1.75rem;
-            font-weight: bold;
-            &.active{
-                //border-bottom: 2px solid var(--composer-secondary-color);
-                color: var(--composer-secondary-color);
+            font-weight: inherit;
+            padding: 6px 0px;
+            font-size: 35px;
+            position: relative;
+            &::before{
+                content: "";
+                width: 0px;
+                height: 40%;
+                position: absolute;
+                top: 15px;
+                left: 0px;
+                background-color:var(--composer-tertiary-color );
+                transition: all 0.5s ease-out;
+                opacity:0.5;
             }
-        }
-    }
-    .tab{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        opacity: 0;
-        transition: all 0.5s ease-out;
-        display: none;
-        &.active{
-            display: flex;
-        }
-        &.start{
-            opacity: 1;
-        }
-        .content{
-            padding: 0px 60px 0px 0px;
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            .image-container{
-              width: 50%;
-              .image{
-                  width: 100%;
-                  border-radius: var(--composer-border-radius);
-              }
-          }
+            &:hover{
+                 text-decoration: underline; 
+                 color:var(--composer-primary-color);
+                 text-shadow: 2px 2px 10px var(--composer-tertiary-color);
+                 &::before{
+                    width: 20%;
+                 }
+            }      
+            
         }
         
     }
-}
-}
+
+     
+    .social{
+         font-size: 20px;
+         top: 115px;
+         right: 232px;
+         position: relative;
+         color: var(--composer-font-color-primary);
+        .footer-social{
+            display: flex;
+            .socialLink{
+                margin-right: 30px;
+                
+            }
+        }
+    }
+
+    .footerDescription{
+        font-size: 20px;
+        font-weight: unset;
+        text-decoration: underline;
+        margin-top: 60px;
+        color: var(--composer-font-color-primary);
+        &:hover{
+            color: var(--composer-primary-color);
+            
+        }
+
+    }  
+    .image{
+        width: 50%;
+        height: 90%;
+        object-fit: cover;
+    }
+    }
+
+} 
+  
+
+@media only screen and (max-width: 1212px) {
+    .container {
+        width: 150%;
+      .max-content {
+        height: 98vh;
+
+        .buttons{
+            top: -4%;
+            position: absolute;
+            right: 85%;
+        }
+        
+        .tabs{
+            width: 100%;
+            .tab-buttons{
+                left:300px;
+            }
+        }
+
+        .footer-social{
+            position: relative;
+            left: 140px;
+        }
+        .image{
+            width: 34%;
+            height: 100%;
+
+        }
+       
+      }
+    }
+  }
+
+
+  
+@media only screen and (max-width: 768px) {
+    .container {
+      
+      .max-content { 
+       height: 110vh;
+        .buttons{
+        }   
+        .tabs{
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .tab-buttons{
+                order: 2;
+                left: 80px !important;
+                top: 20px;
+                .tabText{
+                    font-size: 20px;
+                }               
+            }
+        }
+        .footer-social{
+            position: relative;
+            left: 142px;
+            bottom: 55px;
+        }
+        .image{
+            width: 67%;
+            height: 40%;
+        }      
+      }
+    }
+  }
+
+
 
 
