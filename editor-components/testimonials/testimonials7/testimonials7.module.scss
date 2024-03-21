@@ -1,6 +1,7 @@
 .container {
   width: 100%;
-  background-color: var(--composer-html-background);
+  background-size: cover;
+  background-position: center center;
   .max-content {
     display: flex;
     max-width: var(--composer-content-width);
@@ -16,16 +17,8 @@
         }
       }
     }  
-      .cover-image {
-        width: 100vw; 
-        height: 80vh;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: var(--composer-html-background);
-        background-attachment: scroll;
-      }
       .card{
-        color: var(--composer-primary-color);
+        color: var(--composer-font-color-primary);
         display: flex;
         flex-direction: column;
         gap: 60px;
@@ -33,13 +26,16 @@
         background-color: var(--composer-html-background);
         margin-left: 100px;
         margin-top: 175px;
+        margin-bottom: 50px;
         padding: 100px;
-        width: 50%;
+        width: 100%;
+        max-width: 800px;
          .profile{
           display: flex; 
           flex-direction: row-reverse;
           justify-content: flex-end;
           gap: 30px;
+          color: var(--composer-primary-color);
           .profile-text{ 
             flex-direction: column;
             margin-top: -25px;
@@ -49,9 +45,9 @@
             }
           }     
         }
-        img {    
-          width:100px;
-          height:100px;
+        .image {    
+          width: 100px;
+          height: 100px;
           } 
         }
       }
@@ -70,10 +66,8 @@
             align-items: center;
             text-align: center;
             border: var(--composer-testiary-color);
-            width: 80%;
-            margin-top:310px;
             padding: 20px;
-            
+            margin-left: 0px;
         }
       }
     }
@@ -83,22 +77,12 @@
 
 @media only screen and (max-width: 400px) {
   .container {
-    height: 550px;
     background-color: var(--composer-html-background);
     .max-content {
+      width: 100%;
       .testimonials7 {
-        .cover-image{
-         height: 200px;
-         background-size: 550px;
           .card {
-           //display: flex;
-            //flex-direction: column;
-            //align-items: center;
-            //text-align: center; 
             border: var(--composer-testiary-color);
-            margin-left:0px;
-           margin-top: 200px;
-           width: 350px;
           .profile{
             font-size: 10px;
             .profile-text{
@@ -106,7 +90,6 @@
             }     
           }
         }  
-      }
         
       }
     }
