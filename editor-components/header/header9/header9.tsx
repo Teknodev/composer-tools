@@ -2,7 +2,6 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header9.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type ITabs = {
   socialLink: string;
@@ -11,7 +10,6 @@ type ITabs = {
   buttonText: string;
   buttonUrl: string;
   image: string;
-
 };
 class Header9 extends BaseHeader {
   constructor(props?: any) {
@@ -38,7 +36,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: "https://www.behance.net/ ",
-            },  
+            },
           ],
         },
         {
@@ -57,7 +55,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: " https://www.instagram.com/",
-            },  
+            },
           ],
         },
         {
@@ -65,7 +63,6 @@ class Header9 extends BaseHeader {
           key: "footer-social",
           displayer: "Item",
           value: [
-
             {
               type: "page",
               key: "socialLink",
@@ -77,7 +74,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: " https://twitter.com/",
-            },  
+            },
           ],
         },
       ],
@@ -116,7 +113,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: "",
-            },  
+            },
           ],
         },
         {
@@ -142,7 +139,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: " ",
-            },  
+            },
           ],
         },
         {
@@ -168,7 +165,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: " ",
-            },  
+            },
           ],
         },
         {
@@ -194,7 +191,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: " ",
-            },  
+            },
           ],
         },
         {
@@ -220,7 +217,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: " ",
-            },  
+            },
           ],
         },
         {
@@ -246,7 +243,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: " ",
-            },  
+            },
           ],
         },
         {
@@ -272,7 +269,7 @@ class Header9 extends BaseHeader {
               key: "url",
               displayer: "Url",
               value: " ",
-            },  
+            },
           ],
         },
         {
@@ -290,14 +287,15 @@ class Header9 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image Title",
-              value: "https://preview.codeless.co/remake/default/wp-content/uploads/2020/03/alabaster-co-2r13qYSJEK8-unsplash-min-1.jpg",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/03/alabaster-co-2r13qYSJEK8-unsplash-min-1.jpg",
             },
             {
               type: "page",
               key: "url",
               displayer: "Url",
               value: " ",
-            },  
+            },
           ],
         },
       ],
@@ -310,19 +308,18 @@ class Header9 extends BaseHeader {
       value: "Project",
     });
 
-    const firstImage = this.getPropValue("tabs")[0].getPropValue("image")
+    const firstImage = this.getPropValue("tabs")[0].getPropValue("image");
     this.setComponentState("image", firstImage);
-    this.setComponentState("activeTab",0)
+    this.setComponentState("activeTab", 0);
   }
 
-
   handleMouseEnter(index: number, imageUrl: string) {
-    this.setComponentState("activeTab",index)
+    this.setComponentState("activeTab", index);
     this.setComponentState("image", imageUrl);
   }
 
   handleButtonClick(buttonUrl: string) {
-    window.open(buttonUrl, '_blank');
+    window.open(buttonUrl, "_blank");
   }
 
   getName(): string {
@@ -330,67 +327,69 @@ class Header9 extends BaseHeader {
   }
 
   render() {
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-
           <div className={this.decorateCSS("buttons")}>
-
             <span className={this.decorateCSS("text")}>
-              {
-                this.getPropValue("text")
-              }
+              {this.getPropValue("text")}
             </span>
 
-            <span className={this.decorateCSS("active-number")}>{this.getComponentState("activeTab") + 1}</span>
+            <span className={this.decorateCSS("active-number")}>
+              {this.getComponentState("activeTab") + 1}
+            </span>
             <span className={this.decorateCSS("slash")}>/</span>
-            <span className={this.decorateCSS("count")}>{this.getPropValue("tabs").length}</span>
+            <span className={this.decorateCSS("count")}>
+              {this.getPropValue("tabs").length}
+            </span>
           </div>
 
           <div className={this.decorateCSS("tabs")}>
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
                 (tab: any, index: number) => (
-                  <div className={this.decorateCSS("tabText") + " " + ((this.getComponentState("activeTab") == index)
-                   && this.decorateCSS("active"))}
-                    onMouseEnter={() => this.handleMouseEnter(index, tab.image)}
-                    onClick={() => this.handleButtonClick(tab.buttonUrl)}
-                  >
-                    <ComposerLink path={tab.url}>
-                          {tab.tabText}
-                    </ComposerLink>
-                   
-                  </div>
+                  <ComposerLink path={tab.url}>
+                    <div
+                      className={
+                        this.decorateCSS("tabText") +
+                        " " +
+                        (this.getComponentState("activeTab") == index &&
+                          this.decorateCSS("active"))
+                      }
+                      onMouseEnter={() =>
+                        this.handleMouseEnter(index, tab.image)
+                      }
+                      onClick={() => this.handleButtonClick(tab.buttonUrl)}
+                    >
+                      {tab.tabText}
+                    </div>
+                  </ComposerLink>
                 )
               )}
               <div className={this.decorateCSS("footer-bottom")}>
-                <h2 className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</h2>
+                <h2 className={this.decorateCSS("footer-description")}>
+                  {this.getPropValue("footer-description")}
+                </h2>
               </div>
-             
-                         
-                       
-
               <div className={this.decorateCSS("social")}>
                 <div className={this.decorateCSS("footer-social")}>
                   {this.castToObject<ITabs[]>("social").map(
                     (tab: any, index: number) => (
-                      <div className={this.decorateCSS("socialLink") + " " + ((this.getComponentState("activeSocial") == index)
-                        && this.decorateCSS("active"))}
-                      > 
-                        <ComposerLink path={tab.url}>
+                      <ComposerLink path={tab.url}>
+                        <div className={this.decorateCSS("social-link")}>
                           {tab.socialLink}
-                        </ComposerLink>
-                      </div>
-                      
+                        </div>
+                      </ComposerLink>
                     )
                   )}
-                 
                 </div>
               </div>
             </div>
-            <img src={this.getComponentState("image")} alt="" className={this.decorateCSS("image")} />
-
+            <img
+              src={this.getComponentState("image")}
+              alt=""
+              className={this.decorateCSS("image")}
+            />
           </div>
         </div>
       </div>
