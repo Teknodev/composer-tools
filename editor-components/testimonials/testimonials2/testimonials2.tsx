@@ -10,7 +10,7 @@ type Item = {
   description: string;
   subtitle: string;
   icon: string;
-  star:string;
+  star: string;
 };
 
 class Testimonials2Page extends Testimonials {
@@ -54,8 +54,7 @@ class Testimonials2Page extends Testimonials {
               type: "icon",
               key: "icon",
               displayer: "Image",
-              value:
-                "RiStarSFill",
+              value: "RiStarSFill",
             },
             {
               type: "string",
@@ -93,8 +92,7 @@ class Testimonials2Page extends Testimonials {
               type: "icon",
               key: "icon",
               displayer: "Image",
-              value:
-                "RiStarSFill",
+              value: "RiStarSFill",
             },
             {
               type: "string",
@@ -132,8 +130,7 @@ class Testimonials2Page extends Testimonials {
               type: "icon",
               key: "icon",
               displayer: "Image",
-              value:
-                "RiStarSFill",
+              value: "RiStarSFill",
             },
             {
               type: "string",
@@ -171,8 +168,7 @@ class Testimonials2Page extends Testimonials {
               type: "icon",
               key: "icon",
               displayer: "Image",
-              value:
-                "RiStarSFill",
+              value: "RiStarSFill",
             },
             {
               type: "string",
@@ -210,8 +206,7 @@ class Testimonials2Page extends Testimonials {
               type: "icon",
               key: "icon",
               displayer: "Image",
-              value:
-                "RiStarSFill",
+              value: "RiStarSFill",
             },
             {
               type: "string",
@@ -243,7 +238,6 @@ class Testimonials2Page extends Testimonials {
   }
 
   render() {
-
     const settings = {
       dots: true,
       infinite: true,
@@ -254,55 +248,65 @@ class Testimonials2Page extends Testimonials {
       slidesToScroll: 1,
     };
 
-    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials2")}>
             <div className={this.decorateCSS("top-content")}>
-              <span className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</span>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              <span className={this.decorateCSS("badge")}>
+                {this.getPropValue("badge")}
+              </span>
+              <h1 className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </h1>
             </div>
 
-            <ComposerSlider {...settings}
+            <ComposerSlider
+              {...settings}
               className={this.decorateCSS("slider-style")}
             >
-              {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
-                <div key={`tsm-2-${index}`}>
-                  <div style={{
-                    width: 100 / this.getPropValue("itemCount") + "%",
-                    display: "flex",
-                    justifyContent: "center",
-                    flexWrap: "wrap",
-                    minWidth: "20px",
-                  }}>
-                    <div key={index} className={this.decorateCSS("card")} >
-                      
-                      <div className={this.decorateCSS("icon")}>
-                        
-                      <span className={this.decorateCSS("item-star")}>
-                        
-                      
-                        {[...Array(Number(item.star))].map((_:any, index: number) => (
-                           <ComposerIcon name={item.icon} />
-                       ))} 
-                       
-                      </span>
-                       </div> 
-                      <span className={this.decorateCSS("item-description")}>{item.description}</span>
-                      <h5 className={this.decorateCSS("item-name")}>{item.name}</h5>
-                      <h5 className={this.decorateCSS("item-subtitle")}>{item.subtitle} </h5>
+              {this.castToObject<Item[]>("card-items").map(
+                (item: Item, index: number) => (
+                  <div key={`tsm-2-${index}`}>
+                    <div
+                      style={{
+                        width: 100 / this.getPropValue("itemCount") + "%",
+                        display: "flex",
+                        justifyContent: "center",
+                        flexWrap: "wrap",
+                        minWidth: "20px",
+                      }}
+                    >
+                      <div key={index} className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("icon")}>
+                          <span className={this.decorateCSS("item-star")}>
+                            {[...Array(Number(item.star))].map(
+                              (_: any, index: number) => (
+                                // <ComposerIcon name={item.icon} />
+                                <></>
+                              )
+                            )}
+                          </span>
+                        </div>
+                        <span className={this.decorateCSS("item-description")}>
+                          {item.description}
+                        </span>
+                        <h5 className={this.decorateCSS("item-name")}>
+                          {item.name}
+                        </h5>
+                        <h5 className={this.decorateCSS("item-subtitle")}>
+                          {item.subtitle}{" "}
+                        </h5>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              )}
             </ComposerSlider>
           </div>
-
         </div>
-
       </div>
-    )
+    );
   }
 }
 

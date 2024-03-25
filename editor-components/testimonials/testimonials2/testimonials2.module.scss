@@ -28,18 +28,18 @@
                 }
 
                 .title {
-            text-align: center;
-            font-size: 3rem;
-            margin: 0 0 80px 0;
-            color: var(--composer-primary-color);
-                }  
+                    text-align: center;
+                    font-size: 3rem;
+                    margin: 0 0 80px 0;
+                    color: var(--composer-primary-color);
+                }
             }
 
             .slider-style{
-                width: 100%;               
+                width: 100%;
             }
-            
-          
+
+
             .card {
                 padding: 30px;
                 min-width: 380px;
@@ -75,46 +75,45 @@
                     color: var(--composer-tertiary-color);
                 }
             }
-        }  
+        }
     }
 }
 
-@media only screen and (max-width: 1300px) {
-    .container { 
-         width: 250%;
-      .max-content {
-        .testimonials2 {
-         .top-content{
-            .badge{
-                font-size: 15px;
+@media only screen and (max-width: 1024px) {
+    .container {
+        width: 250%;
+        .max-content {
+            .testimonials2 {
+                .top-content{
+                    .badge{
+                        font-size: 15px;
+                    }
+                }
             }
-         }
         }
-      }
     }
   }
 
-  
-@media only screen and (max-width: 768px) {
-    .container { 
-         width: 460%;
-      .max-content {
-        .testimonials2 {
-         .top-content{
-            .badge{
-                font-size: 15px;
-            }
-            .title{
-                font-size: 27px;
-            }
-        }
-                        .card{
+
+@media only screen and (max-width: 450px) {
+    .container {
+        width: 460%;
+        .max-content {
+            .testimonials2 {
+                .top-content{
+                    .badge{
+                        font-size: 15px;
+                    }
+                    .title{
+                        font-size: 27px;
+                    }
+                }
+                .card{
                     min-width: 340px;
-                    margin-right: 75px;                     
-                }    
+                    margin-right: 75px;
+                }
+            }
         }
-      }
     }
   }
 
- 
