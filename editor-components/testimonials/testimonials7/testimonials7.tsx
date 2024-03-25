@@ -1,28 +1,23 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials7.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Item = {
   image: string;
-};
-type ISection = {
-  section: Item[];
+  name: string;
+  nameId: string;
+  description: string;
 };
 class Testimonials7Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "title",
-      value: "Testimonials",
-      displayer: "Title",
-    });
-    this.addProp({
-      type: "string",
-      key: "description",
+      type: "image",
+      key: "cover-image",
+      displayer: "Background Image",
       value:
-        "Read what our satisfied customers have to say about their experience with our products/services in these testimonials.",
-      displayer: "Description",
+        "https://wgl-demo.net/zium/wp-content/uploads/2022/02/home1_image_3-1.jpg",
     });
     this.addProp({
       type: "array",
@@ -31,81 +26,100 @@ class Testimonials7Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644b8f5bf72de2002caaab58?alt=media&timestamp=1682673510171",
-                      displayer: "Image",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''DESIGN''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Joe Karsyn",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644b9105f72de2002caaab76?alt=media&timestamp=1682673935647",
-                      displayer: "Image",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''FINANCE WEBSITE''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "As a software developer, my main responsibility is to design, code, and test software programs that meet the specific needs of clients or organizations.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "description",
+              value:
+                " 'Our office is something we are pleased with.our office is something we are pleased with.our office is something we are pleased with'.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://wgl-demo.net/zium/wp-content/uploads/2021/12/testimonials-1-200x200.jpg",
+              displayer: "Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Tomas Reuss",
+              displayer: "Name",
+            },
+            {
+              type: "string",
+              key: "nameId",
+              value: "CLIENT OF CLUB",
+              displayer: "Name Id",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              value:
+                " 'Our office is something we are pleased with.our office is something we are pleased with.our office is something we are pleased with'.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://wgl-demo.net/zium/wp-content/uploads/2021/12/testimonials-2-200x200.jpg",
+              displayer: "Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Monica Reuss",
+              displayer: "Name",
+            },
+            {
+              type: "string",
+              key: "nameId",
+              value: "CLIENT OF CLUB",
+              displayer: "Name Id",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              value:
+                " 'Our office is something we are pleased with.our office is something we are pleased with.our office is something we are pleased with'.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://wgl-demo.net/zium/wp-content/uploads/2021/12/testimonials-3-200x200.jpg",
+              displayer: "Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Linda Anderson",
+              displayer: "Name",
+            },
+            {
+              type: "string",
+              key: "nameId",
+              value: "CLIENT OF CLUB",
+              displayer: "Name Id",
             },
           ],
         },
@@ -118,36 +132,57 @@ class Testimonials7Page extends Testimonials {
   }
 
   render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
     return (
-      <div className={this.decorateCSS("container")}>
+      <div
+        className={this.decorateCSS("container")}
+        style={{
+          backgroundImage: `url(${this.getPropValue("cover-image")})`,
+        }}
+      >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials7")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
-            <section>
-              {this.castToObject<ISection[]>("card-items").map(
-                (section: any, index: number) => (
-                  <div
-                    key={`testimonials7-${index}`}
-                    className={this.decorateCSS("card-child")}
-                  >
-                    {section.items.map((item: any, indexCard: number) => (
-                      <div
-                        key={`testimonials7-card-${indexCard}`}
-                        className={this.decorateCSS("card")}
-                      >
-                        <img width={280} height={180} src={item.value[0].value} alt=""/>
-                        <div className={this.decorateCSS("content")}>
-                          <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
-                          <h5 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h5>
-                          <span className={this.decorateCSS("item-value3")}>{item.value[3].value}</span>
+            <ComposerSlider
+              {...settings}
+              className={this.decorateCSS("slider-style")}
+            >
+              {this.castToObject<Item[]>("card-items").map(
+                (item: Item, index: number) => (
+                  <div key={`tsm-7-${index}`}>
+                    <div className={this.decorateCSS("card")}>
+                      <span className={this.decorateCSS("item-description")}>
+                        {item.description}
+                      </span>
+                      <div className={this.decorateCSS("profile")}>
+                        <div className={this.decorateCSS("profile-text")}>
+                          <h2 className={this.decorateCSS("item-name")}>
+                            {item.name}
+                          </h2>
+
+                          <p className={this.decorateCSS("item-name-id")}>
+                            {item.nameId}
+                          </p>
                         </div>
+
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className={this.decorateCSS("image")}
+                        />
                       </div>
-                    ))}
+                    </div>
                   </div>
                 )
               )}
-            </section>
+            </ComposerSlider>
           </div>
         </div>
       </div>
