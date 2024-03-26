@@ -2,6 +2,7 @@ import { BaseNavigator } from "../../EditorComponent";
 import React from "react";
 import styles from "./navbar6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Navbar6 extends BaseNavigator {
   getName(): string {
@@ -10,17 +11,17 @@ class Navbar6 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "img-ham",
-      displayer: "Icon",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
-    });
-    this.addProp({
       type: "boolean",
       key: "sticky",
       displayer: "Is sticky",
       value: false,
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "hamburger",
+      displayer: "Hamburger Icon",
+      value: "IoMenu",
     });
 
     this.addProp({
@@ -176,9 +177,8 @@ class Navbar6 extends BaseNavigator {
 
     return (
       <div
-        className={`${this.decorateCSS("container")} ${
-          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-        }`}
+        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+          }`}
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
@@ -202,24 +202,24 @@ class Navbar6 extends BaseNavigator {
               {this.getPropValue("right-items").map((rightItem: any) => {
                 return (
                   <ComposerLink path={rightItem.value[1].value}>
-                    <span className={this.decorateCSS("right-item-value")}>
+                    <span className={this.decorateCSS("text")}>
                       {rightItem.value[0].value}
                     </span>
                   </ComposerLink>
                 );
               })}
             </div>
-            <img
-              className={`${this.decorateCSS("img-hamburger")} ${
-                this.getComponentState("navActive")
+            <ComposerIcon
+              propsIcon={{
+                className: `${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
                   ? this.decorateCSS("rotate")
                   : ""
-              }`}
-              src={this.getPropValue("img-ham")}
-              alt=""
-              onClick={() => {
-                this.navClick();
+                  }`,
+                onClick: () => this.navClick()
               }}
+              name={this.getPropValue("hamburger")}
+
+
             />
             {this.getComponentState("navActive") && (
               <div className={this.decorateCSS("navbar-child")}>

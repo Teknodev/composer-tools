@@ -39,13 +39,8 @@
                 gap: 20px;
                 font-size: 15px;
 
-                a {
-                    text-decoration: none;
+                .text {
                     color: var(--composer-font-color-primary);
-                }
-
-                span {
-                    cursor: pointer;
                 }
             }
 
@@ -58,13 +53,8 @@
                 gap: 30px;
                 font-size: 15px;
 
-                a {
-                    text-decoration: none;
+                .text {
                     color: var(--composer-font-color-primary);
-                }
-
-                span {
-                    cursor: pointer;
                 }
             }
 
@@ -83,7 +73,6 @@
 
 //For Ipad
 @media only screen and (max-width: 800px) {
-
     .container {
         width: 100%;
 
@@ -169,8 +158,7 @@
 } // For Ipad end
 
 //For Mobile
-@media only screen and (max-width:400px) {
-
+@media only screen and (max-width: 400px) {
     .container {
         width: 100%;
 
