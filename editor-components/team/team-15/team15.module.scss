@@ -1,86 +1,202 @@
 .container {
-    width: 100%;
-    padding: 50px 0;
-  
-    .max-content {
-      max-width: var(--composer-content-width);
-      margin: auto;
-      .content {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-  
-        .listed {
-          transition: all 0.8s;
-          display: block;
-          max-height: 550px;
-          position: relative;
-          box-shadow: var(--composer-box-shadow);
-          flex: 1 1;
-          width: 100%;
-          border-radius: 6px;
-          margin: 0 20px;
-          background-color: var(--composer-primary-color);
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  background-color: var(--composer-color-background);
 
-          .image {
+  .max-content {
+    width: var(--composer-content-width);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+
+    .up-page {
+      width: 100%;
+
+      .badge {
+        color: var(--composer-primary-color);
+        font-size: 40px;
+      }
+
+      .cards-box {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 40px;
+        justify-content: center;
+        align-items: center;
+        padding: 0 150px;
+
+        @media only screen and (max-width: 768px) {
+          grid-template-columns: repeat(2, 1fr) !important;
+          padding: 0 !important;
+        }
+
+        @media only screen and (max-width: 400px) {
+          grid-template-columns: repeat(1, 1fr) !important;
+          padding: 0 !important;
+        }
+
+        .card {
+
+          border-radius: 6px;
+          overflow: hidden;
+          height: 500px;
+          position: relative;
+          cursor: pointer;
+          justify-content: center;
+          align-items: center;
+          margin: 0 auto;
+
+          img {
             width: 100%;
             height: 100%;
-            transition: all 0.2s;
-            border-radius: 6px;
-            position: relative;
             object-fit: cover;
+            transition: 1s;
           }
 
           &:hover {
-            .little-container {
+            img {
+              transform: scale(1.2);
+            }
+
+            .overlay {
+              opacity: 0;
+            }
+
+            .overlay2 {
               opacity: 1;
             }
 
+
           }
-          .img-navbar {
-            transition: all 0.2s;
+
+          .overlay,
+          .overlay2 {
+            position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 6px;
+            top: 0;
+            transition: 0.9s;
+          }
+
+          .overlay {
+            background-image: -webkit-linear-gradient(90deg, rgb(26, 20, 20) 0%, rgba(26, 20, 20, 0) 100%);
+            z-index: 1;
+            opacity: 1;
+          }
+
+          .overlay2 {
+
+            z-index: 2;
+            opacity: 0;
+          }
+
+          .card-content {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            top: 20px;
+            right: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            display: flex;
+            color: white;
+            z-index: 4;
+
+
+            .icon-list-container {
+              height: 0;
+              transition: height 0.5s, gap 0.5s;
+              -webkit-transition: all 0.5s linear;
+              transform: scaleY(0);
+              position: absolute;
+              right: 40px;
+              display: flex;
+              flex-direction: column;
+              bottom: 38px;
+              background-color: white;
+              border-radius: 5px;
+              text-align: center;
+              padding: 15px 13px 15px;
+              gap: 10px;
+              height: 90px;
+              overflow: hidden;
+              transform-origin: bottom center;
+
+              .icon {
+                width: 0;
+                height: 0;
+                color: black;
+
+              }
+            }
+
+
+          }
+
+          &:hover {
+
+            .icon-list-container {
+              transform: scaleY(1);
+
+              .icon {
+                width: 12px;
+                height: 12px;
+                object-fit: cover;
+                position: relative;
+
+              }
+            }
+          }
+
+          .title {
+            width: 100px;
+            position: absolute;
+            bottom: 60px;
+            left: 15px;
+            font-size: 22px;
+            font-weight: 600;
+            text-align: left;
+            color: white;
+          }
+
+          .labels {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 15px;
+            padding: 10px 15px 8px;
+
+            .icons {
+              display: flex;
+              gap: 20px;
+
+            }
 
           }
         }
-        .title {
-          font-size: 1.5rem;
-        }
-        .title-description {
-          opacity: 0.7;
-          font-size: 1.1rem;
-        }
-  
-        .little-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          position: absolute;
-          bottom: 10px;
-          margin-left: 12px;
-          opacity: 0;
-          border-top: 1px solid #fff;
-          transition: 0.4s;
 
-          p {
-            margin: 5px 0 0 0;
-            color: #fff;
-            width: 150px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-          }
-        }
+
+
+        // .second {
+        //   margin: 4px 0 5px 0;
+        //   background: rgba(var(--composer-tertiary-color-rgb), 0.7);
+        //   padding: 2px 6px;
+        //   border-radius: 6px;
+        //   transition: 0.3s;
+        //   color: var(--composer-font-color-secondary);
+        // }
       }
     }
   }
-  
-  @media only screen and (max-width: 768px) {
-    .container {
-      padding: 50px 20px;
-    }
-  }
+}
