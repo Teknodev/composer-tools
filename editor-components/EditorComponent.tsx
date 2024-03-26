@@ -9,7 +9,7 @@ export type iComponent = {
   getName(): string;
   getProps(): TypeUsableComponentProps[];
   getPropValue(propName: string): TypeUsableComponentProps;
-  getExportedCSSClasses(): string[];
+  getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
@@ -26,8 +26,8 @@ type AvailablePropTypes =
   | { type: "object"; value: TypeUsableComponentProps[] }
   | { type: "image"; value: string }
   | { type: "select"; value: string }
-  | { type: "color"; value: string}
-  | { type: "icon"; value: string};
+  | { type: "color"; value: string }
+  | { type: "icon"; value: string };
 
 export type TypeReactComponent = {
   type: string;
@@ -39,7 +39,7 @@ export type TypeUsableComponentProps = {
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
-  max?: number; 
+  max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (propName: string) => any;
 };
@@ -97,13 +97,24 @@ export abstract class Component
   getProps(): TypeUsableComponentProps[] {
     return this.state.componentProps.props;
   }
-  getPropValue(propName: string): any {
+  getProp(key: string) {
     let props: TypeUsableComponentProps[] = this.state.componentProps.props.filter(
-      (prop: TypeUsableComponentProps) => prop.key === propName
+      (prop: TypeUsableComponentProps) => prop.key === key
     );
     let prop = props[0] || null;
-    return prop?.value;
+    return prop;
   }
+
+  getPropValue(propName: string): any {
+    let prop = this.getProp(propName);
+    return prop?.type == "string" ? this._getPropValueAsElement(prop) : prop?.value;
+  }
+
+  _getPropValueAsElement(prop: TypeUsableComponentProps) {
+    //@ts-ignore
+    return <blinkpage prop-type={prop?.type}>{prop?.value}</blinkpage>;
+  }
+
   getExportedCSSClasses() {
     return this.styles;
   }
@@ -122,15 +133,15 @@ export abstract class Component
       .map((prop: any) => prop.key)
       .indexOf(key);
 
-      if(i == -1) return;
+    if (i == -1) return;
 
-      this.state.componentProps.props[i].value = value;
-      this.state.componentProps.props[i] = this.attachValueGetter(
-        this.state.componentProps.props[i]
-      );
-      this.setState({ componentProps: { ...this.state.componentProps } });
+    this.state.componentProps.props[i].value = value;
+    this.state.componentProps.props[i] = this.attachValueGetter(
+      this.state.componentProps.props[i]
+    );
+    this.setState({ componentProps: { ...this.state.componentProps } });
   }
-  
+
   setComponentState(key: string, value: any): void {
     this.state.states[key] = value;
     EventEmitter.emit("forceReload");
@@ -139,17 +150,17 @@ export abstract class Component
   getComponentState(key: string): any {
     return this.state.states[key];
   }
-  
+
   setCSSClasses(key: string, value: { id: string, class: string }[]) {
     const componentPropsCopy = { ...this.state.componentProps };
     const cssClassesCopy = { ...componentPropsCopy.cssClasses };
     cssClassesCopy[key] = value;
     this.state.componentProps.cssClasses[key] = value;
-    this.setState({ componentProps: this.state.componentProps});
+    this.setState({ componentProps: this.state.componentProps });
   }
 
   decorateCSS(cssValue: string) {
-    let cssClass = [this.styles[cssValue]]; 
+    let cssClass = [this.styles[cssValue]];
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
@@ -163,8 +174,9 @@ export abstract class Component
     return cssClass.join(" ");
   }
 
-  private attachValueGetter(propValue: any) {
+  private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
+      propValue.value = propValue.value.filter(value => value != null);
       propValue.value = propValue.value.map(
         (propValueItem: TypeUsableComponentProps) => {
           if (Array.isArray(propValueItem.value)) {
@@ -212,11 +224,11 @@ export abstract class Component
 
 export abstract class BaseNavigator extends Component {
   protected category = CATEGORIES.NAVIGATOR;
-  
+
 }
 
 export abstract class Testimonials extends Component {
-  protected category = CATEGORIES.TESTIMONIALS;  
+  protected category = CATEGORIES.TESTIMONIALS;
 }
 
 export abstract class BaseList extends Component {
@@ -281,7 +293,7 @@ export abstract class BaseImageGallery extends Component {
 
 export abstract class BaseModal extends Component {
   protected category = CATEGORIES.MODAL;
- 
+
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
     let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
@@ -306,7 +318,7 @@ export abstract class BaseStats extends Component {
 
 export abstract class BaseContacts extends Component {
   protected category = CATEGORIES.FORM;
- 
+
 
   insertForm(name: string, data: Object) {
     const projectSettings = JSON.parse(getProjectHook().data);
