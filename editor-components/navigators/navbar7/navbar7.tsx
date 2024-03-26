@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import React from "react";
 import styles from "./navbar7.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 class Navbar7 extends BaseNavigator {
   getName(): string {
     return "Navbar 7";
@@ -16,14 +16,7 @@ class Navbar7 extends BaseNavigator {
       key: "image",
       displayer: "Image",
       value:
-        "http://lark.mondotheme.com/wp-content/uploads/2016/01/logo-light.png",
-    });
-    this.addProp({
-      type: "image",
-      key: "image2",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
+        "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
     this.addProp({
       type: "boolean",
@@ -254,9 +247,8 @@ class Navbar7 extends BaseNavigator {
   render(): ReactNode {
     return (
       <div
-        className={`${this.decorateCSS("container")} ${
-          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-        }`}
+        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+          }`}
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
@@ -268,18 +260,19 @@ class Navbar7 extends BaseNavigator {
               />
             </div>
             <div
-              className={`${this.decorateCSS("list-items")} ${
-                this.getComponentState("navActive") &&
+              className={`${this.decorateCSS("list-items")} ${this.getComponentState("navActive") &&
                 this.decorateCSS("active")
-              }`}
+                }`}
             >
               {this.castToObject<[]>("main-navigator").map(
                 (data: any, index: number) => {
                   return (
                     <ul key={index}>
-                      <li className={this.decorateCSS("list-item")}>
-                        {data.item}
-                      </li>
+                      <ComposerLink path={data.url}>
+                        <li className={this.decorateCSS("list-item")}>
+                          {data.item}
+                        </li>
+                      </ComposerLink>
                     </ul>
                   );
                 }
@@ -288,13 +281,13 @@ class Navbar7 extends BaseNavigator {
             <div className={this.decorateCSS("icon-items")}>
               {this.castToObject<[]>("icons").map(
                 (data: any, index: number) => {
-                  console.log(data);
-
                   return (
                     <ul className={this.decorateCSS("icon-ul")} key={index}>
-                      <li className={this.decorateCSS("icon-item")}>
-                        <ComposerIcon name={data.icon} />
-                      </li>
+                      <ComposerLink path={data.url}>
+                        <li className={this.decorateCSS("icon-item")}>
+                          <ComposerIcon name={data.icon} />
+                        </li>
+                      </ComposerLink>
                     </ul>
                   );
                 }

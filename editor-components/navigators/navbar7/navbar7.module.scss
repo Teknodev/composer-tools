@@ -14,7 +14,7 @@
       font-size: 2rem;
       letter-spacing: 0.5px;
       line-height: 60px;
-      color: white;
+      color: var(--composer-font-color-primary);
       font-weight: 900;
       list-style-type: none;
       cursor: pointer;
@@ -33,12 +33,18 @@
       align-items: center;
       .img-container {
         padding-left: 4rem;
+
+        .image {
+          height: 80px;
+        }
       }
 
       .list-items {
         display: flex;
         margin-left: 4rem;
         .list-item {
+          font-size: 1.4rem;
+          color: var(--composer-font-color-primary) !important;
         }
       }
       .navbar {
@@ -51,13 +57,14 @@
           padding-left: 10px;
         }
         .icon-item {
-          border: 1px solid white;
+          border: 1px solid var(--composer-font-color-primary);
           border-radius: 50%;
-          height: 50px;
-          width: 50px;
+          height: 36px;
+          width: 36px;
           display: flex;
           align-items: center;
           justify-content: center;
+          color: var(--composer-font-color-primary);
         }
       }
     }
@@ -87,8 +94,9 @@
     display: none !important;
     &.active {
       display: flex !important;
-      position: absolute;
-      top: 93px;
+      position: absolute !important;
+      top: 100px;
+      left: 0;
       width: 100%;
       flex-direction: column;
       align-items: center;
