@@ -8,16 +8,16 @@ type Card = {
   description: string;
 };
 
-type Button = {
-  link: string;
-  text: string;
-  isPrimary: boolean;
-};
-
 class FaqContainer extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp({
+      type: "string",
+      key: "badge",
+      displayer: "Badge",
+      value: "FAQ",
+    });
 
     this.addProp({
       type: "string",
@@ -30,35 +30,8 @@ class FaqContainer extends BaseFAQ {
       type: "string",
       key: "title",
       displayer: "Title Description",
-      value: "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title2",
-      displayer: "Container Title",
-      value: "Shipping and Delivery",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Container Description",
-      value: "This section of the website provides information on shipping options, delivery times, and tracking your order.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "FAQ",
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Row",
-      value: 3,
+      value:
+        "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
     });
 
     this.addProp({
@@ -75,8 +48,7 @@ class FaqContainer extends BaseFAQ {
               type: "string",
               key: "cardTitle",
               displayer: "Question",
-              value:
-                "What are the shipping options available?",
+              value: "What are the shipping options available?",
             },
             {
               type: "string",
@@ -96,8 +68,7 @@ class FaqContainer extends BaseFAQ {
               type: "string",
               key: "cardTitle",
               displayer: "Question",
-              value:
-                "How can I track my order?",
+              value: "How can I track my order?",
             },
             {
               type: "string",
@@ -117,8 +88,7 @@ class FaqContainer extends BaseFAQ {
               type: "string",
               key: "cardTitle",
               displayer: "Question",
-              value:
-                "What is your return policy?",
+              value: "What is your return policy?",
             },
             {
               type: "string",
@@ -138,8 +108,7 @@ class FaqContainer extends BaseFAQ {
               type: "string",
               key: "cardTitle",
               displayer: "Question",
-              value:
-                "How can I contact customer support?",
+              value: "How can I contact customer support?",
             },
             {
               type: "string",
@@ -159,8 +128,7 @@ class FaqContainer extends BaseFAQ {
               type: "string",
               key: "cardTitle",
               displayer: "Question",
-              value:
-                "Do you offer any discounts or promotions?",
+              value: "Do you offer any discounts or promotions?",
             },
             {
               type: "string",
@@ -180,8 +148,7 @@ class FaqContainer extends BaseFAQ {
               type: "string",
               key: "cardTitle",
               displayer: "Question",
-              value:
-                "What payment methods do you accept?",
+              value: "What payment methods do you accept?",
             },
             {
               type: "string",
@@ -191,37 +158,72 @@ class FaqContainer extends BaseFAQ {
                 "We accept credit/debit cards, PayPal, and other digital payment methods. You can select your preferred payment method during checkout.",
             },
           ],
-        }
+        },
       ],
     });
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Row",
+      value: 3,
+      max: 3,
+    });
+
+    this.addProp({
       type: "array",
-      key: "buttons",
-      displayer: "Buttons",
+      key: "downContainer",
+      displayer: "Container",
       value: [
         {
           type: "object",
-          key: "button",
-          displayer: "Button",
+          key: "childContainer",
+          displayer: "Child Container",
           value: [
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Open Positions",
+              key: "title2",
+              displayer: "Title",
+              value: "Shipping and Delivery",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "This section of the website provides information on shipping options, delivery times, and tracking your order.",
             },
             {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: true,
+              type: "array",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Open Positions",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      key: "isPrimary",
+                      displayer: "Is primary",
+                      value: true,
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -230,7 +232,7 @@ class FaqContainer extends BaseFAQ {
   }
 
   getName(): string {
-    return "FAQ MIDDLE";
+    return "FAQ-02";
   }
 
   render() {
@@ -263,49 +265,72 @@ class FaqContainer extends BaseFAQ {
               <div className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
               </div>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <p className={this.decorateCSS("title-p")}>{this.getPropValue("title")}</p>
+              <h1 className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </h1>
+              <p className={this.decorateCSS("title-p")}>
+                {this.getPropValue("title")}
+              </p>
             </div>
             <div className={this.decorateCSS("card-page")}>
-              {this.castToObject<Card[]>("card").map((item: Card, indexCard: number) => {
-                return (
-                  <div key={indexCard} style={style()} className={this.decorateCSS("card-item-count")}>
-                    <div className={this.decorateCSS("card")}>
-                      <div className={this.decorateCSS("icon")}>
-                        <div>?</div>
-                      </div>
-                      <div className={this.decorateCSS("title")}>
-                        <h2 className={this.decorateCSS("item-cardTitle")}>{item.cardTitle}</h2>
-                      </div>
-                      <div className={this.decorateCSS("description")}>
-                        <p className={this.decorateCSS("item-description")}>{item.description}</p>
+              {this.castToObject<Card[]>("card").map(
+                (item: Card, indexCard: number) => {
+                  return (
+                    <div
+                      key={indexCard}
+                      style={style()}
+                      className={this.decorateCSS("card-item-count")}
+                    >
+                      <div className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("icon")}>
+                          <div>?</div>
+                        </div>
+                        <div className={this.decorateCSS("title")}>
+                          <h2 className={this.decorateCSS("item-cardTitle")}>
+                            {item.cardTitle}
+                          </h2>
+                        </div>
+                        <div className={this.decorateCSS("description")}>
+                          <p className={this.decorateCSS("item-description")}>
+                            {item.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                }
+              )}
             </div>
           </div>
         </div>
-        <div className={this.decorateCSS("down-container")}>
-              <div className={this.decorateCSS("child-container")}>
-                <h1 className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</h1>
-                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+        {this.castToObject<[]>("downContainer").map(
+          (item: any, index: number) => (
+            <div className={this.decorateCSS("down-container")}>
+              <div key={index} className={this.decorateCSS("child-container")}>
+                <h1 className={this.decorateCSS("title2")}>
+                  {item.value[0].value}
+                </h1>
+                <p className={this.decorateCSS("description")}>
+                  {item.value[1].value}
+                </p>
                 <div className={this.decorateCSS("button-group")}>
-                  {this.castToObject<Button[]>("buttons").map(
-                    (button: Button, indexButtons: number) => {
+                  {item.value[2].value.map(
+                    (button: any, buttonIndex: number) => {
                       return (
-                        <ComposerLink key={indexButtons} path={button.link}>
+                        <ComposerLink
+                          key={buttonIndex}
+                          path={button.value[1].value}
+                        >
                           <button
                             className={
                               this.decorateCSS("button") +
                               " " +
-                              (button.isPrimary
+                              (button.value[2].value
                                 ? this.decorateCSS("primary")
                                 : this.decorateCSS("secondary"))
                             }
                           >
-                            {button.text}
+                            {button.value[0].value}
                           </button>
                         </ComposerLink>
                       );
@@ -314,6 +339,8 @@ class FaqContainer extends BaseFAQ {
                 </div>
               </div>
             </div>
+          )
+        )}
       </div>
     );
   }

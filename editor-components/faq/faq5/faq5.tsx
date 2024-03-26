@@ -122,7 +122,7 @@ class FaqMiddle extends BaseFAQ {
   }
 
   getName(): string {
-    return "FAQ MIDDLE-3";
+    return "FAQ-5";
   }
   activeIndex: number = -1;
 

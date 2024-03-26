@@ -6,3 +6,4 @@ const ComposerSlider = React.forwardRef((props: any, ref: React.Ref<any>) => {
 });
 
 export default ComposerSlider;
+
