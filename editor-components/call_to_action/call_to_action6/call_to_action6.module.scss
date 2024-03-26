@@ -37,6 +37,11 @@
                 gap: 40px;
                 justify-content: center;
                 align-items: center;
+
+                a {
+                    text-decoration: none;
+                }
+
                 .title {
                     text-align: center;
                     font-size: 3.5rem;
@@ -58,9 +63,9 @@
                     width: 200px;
                     font-size: 1.4rem;
                     &:hover {
-                        color: var(--composer-primary-color);
+                        color: var(--composer-secondary-color);
                         background-color: transparent;
-                        border: 1px solid var(--composer-primary-color);
+                        border: 1px solid var(--composer-secondary-color);
                     }
                 }
                 .comment {
