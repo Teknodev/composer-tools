@@ -27,14 +27,14 @@ class FaqButton extends BaseFAQ {
       type: "string",
       key: "subtitle",
       displayer: "Page Title",
-      value: "Frequently Asked Question",
+      value: "Frequently Asked Questions",
     });
 
     this.addProp({
       type: "string",
       key: "badge",
       displayer: "Badge",
-      value: "FAQS",
+      value: "FAQ",
     });
 
     this.addProp({
@@ -689,41 +689,39 @@ class FaqButton extends BaseFAQ {
                         key={indexCategory}
                       >
                         <div
-                          className={`${this.decorateCSS("categories")} ${
-                            this.getComponentState("activeIndex") ==
-                              indexCategory &&
+                          className={`${this.decorateCSS("categories")} ${this.getComponentState("activeIndex") ==
+                            indexCategory &&
                             this.decorateCSS("active-category")
-                          }`}
+                            }`}
                           onClick={() => this.handleButton(indexCategory)}
                         >
                           {/* inline icon */}
-                          <p className={this.decorateCSS("category-name")}>
-                            <span>
-                              <ComposerIcon
-                                name={this.getPropValue("dot_icon")}
-                                propsIcon={{
-                                  className: `${this.decorateCSS(
-                                    "bullet-icon"
-                                  )}`,
-                                }}
-                              />
-                            </span>
+                          <div className={this.decorateCSS("category")}>
+                            <ComposerIcon
+                              name={this.getPropValue("dot_icon")}
+                              propsIcon={{
+                                className: `${this.decorateCSS(
+                                  "bullet-icon"
+                                )}`,
+                              }}
+                            />
+                            <p className={this.decorateCSS("category-name")}>
+                              {category.categoryName}
+                            </p>
+                          </div>
 
-                            {category.categoryName}
-                          </p>
-                          <span className={this.decorateCSS("arrow-right")}>
+
+                          <div className={this.decorateCSS("right")}>
                             <ComposerIcon
                               name={this.getPropValue("arrow-right")}
-                              // propsIcon={{
-                              //   className: `${this.decorateCSS(
-                              //     "bullet-icon"
-                              //   )}`,
-                              // }}
+                              propsIcon={{
+                                className: this.decorateCSS("arrow-right")
+                              }}
                             />
-                          </span>
+                          </div>
+
                         </div>
 
-                        <div className={this.decorateCSS("line")}></div>
                       </div>
                     );
                   }
@@ -737,29 +735,29 @@ class FaqButton extends BaseFAQ {
                     <div className={this.decorateCSS("categories-container")}>
                       <div
                         onClick={() => this.handleAnswer(questionIndex)}
-                        className={`${this.decorateCSS("text")}`}
+                        className={`${this.decorateCSS("text")} ${this.decorateCSS("box")}`}
                       >
-                        <div>
+                        <div className={this.decorateCSS("question")}>
                           <p
                             className={
                               this.getComponentState("activeIndex2") ===
-                                questionIndex && this.decorateCSS("active")
+                              questionIndex && this.decorateCSS("active")
                             }
                           >
                             {question.qq}
                           </p>
+                          <ComposerIcon name="FaAngleDown" propsIcon={{className: this.decorateCSS("icon")}} />
                         </div>
 
                         <div
-                          className={`${
-                            this.getComponentState("activeIndex2") ===
+                          className={`${this.decorateCSS("text")} ${this.getComponentState("activeIndex2") ===
                             questionIndex
-                              ? `${this.decorateCSS("text")} ${this.decorateCSS(
-                                  "answer-text"
-                                )}`
-                              : // this.decorateCSS("answer-text")
-                                this.decorateCSS("hide")
-                          }`}
+                            ? `${this.decorateCSS(
+                              "answer-text"
+                            )}`
+                            : // this.decorateCSS("answer-text")
+                            this.decorateCSS("hide")
+                            }`}
                         >
                           <p>{question.answer}</p>
                         </div>
