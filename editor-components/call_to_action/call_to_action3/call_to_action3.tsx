@@ -77,14 +77,13 @@ class CallToAction3Page extends BaseCallToAction {
         "https://20067062.fs1.hubspotusercontent-na1.net/hubfs/20067062/cta-bg.jpg",
     });
   }
-
   getName(): string {
     return "Call To Action 3";
   }
 
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")} style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("call-to-action3-page")}>
             <div className={this.decorateCSS("content-container")}>
