@@ -1,0 +1,146 @@
+.container {
+  position: relative;
+
+  .carousel {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
+    .content {
+      position: relative;
+      z-index: 20;
+
+      img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
+
+      .overlay {
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.6);
+        }
+      }
+
+      .text-and-button {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        gap: 10px;
+        transition: 0.4s;
+
+        h1 {
+          color: white;
+          font-size: 6rem;
+          max-width: 700px;
+          text-align: center;
+        }
+
+        button {
+          padding: 15px 40px;
+          border-radius: 20px;
+          outline: none;
+          border: 2px solid transparent;
+          font-weight: 700;
+          cursor: pointer;
+          transition: 0.3s;
+
+          &:hover {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+          }
+        }
+
+        &.un-visible {
+          opacity: 0;
+          margin-top: 30px;
+        }
+      }
+
+      .arrow {
+        position: absolute;
+        top: 0;
+        z-index: 999;
+        color: white;
+        cursor: pointer;
+        bottom: 0;
+        margin: auto 0;
+
+
+        &.prev-icon {
+          left: 0;
+        }
+        &.next-icon {
+          right: 0;
+        }
+
+        &.un-visible{
+          opacity: 0;
+        }
+      }
+    }
+
+  }
+
+  .overlay-animation-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: 1.7s;
+    display: unset;
+
+    &.left {
+      margin-left: -100vw;
+    }
+
+    &.right {
+      margin-left: 100vw;
+    }
+
+    &.visible {
+      &.left {
+        margin-left: 100vw;
+      }
+      &.right {
+        margin-left: -100vw;
+      }
+    }
+
+    &.display-none {
+      display: none !important;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.7;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
