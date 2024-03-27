@@ -3,7 +3,7 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { string } from "yup";
+
 
 type ITabs = {
   tabText: string;
@@ -432,7 +432,7 @@ class Content5 extends BaseContent {
                     ((this.getComponentState("activeTab") == index) &&
                       this.decorateCSS("active")) +
                     " " + ((this.getComponentState("startedIndex") == index) &&
-                      styles["start"])}>
+                      this.decorateCSS("start"))}>
                   <div className={this.decorateCSS("content")}>
                   <div className={this.decorateCSS("image-container")}>
                     <ComposerIcon name={tab.icon} propsIcon={{
