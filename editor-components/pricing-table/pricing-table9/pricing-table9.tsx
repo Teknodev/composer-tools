@@ -266,7 +266,7 @@ class PricingTable9 extends BasePricingTable {
             </tr>
           </thead>
           <tbody>
-            {this.castToObject<Feature[]>("pricefeatures").map(
+            {/* {this.castToObject<Feature[]>("pricefeatures").map(
             (feature: any, index: number) => {
               const lowerFeatureOptions = (feature.featureOptions).toLowerCase();
               return (
@@ -278,7 +278,7 @@ class PricingTable9 extends BasePricingTable {
                 </tr>
               );
             }
-  )}
+  )} */}
 
             <tr>
               <td></td>
