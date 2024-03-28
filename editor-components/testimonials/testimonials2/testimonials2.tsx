@@ -1,13 +1,16 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials2.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Item = {
-  image: string;
   name: string;
   nameId: string;
   description: string;
-  time: string;
+  subtitle: string;
+  icon: string;
+  star: string;
 };
 
 class Testimonials2Page extends Testimonials {
@@ -15,15 +18,21 @@ class Testimonials2Page extends Testimonials {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "badge",
+      displayer: "Badge",
+      value: "WHAT OUR CLIENTS SAY",
+    });
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
-      value: "Testimonials",
+      value: "Happy Clients' Testimonials",
     });
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 3,
+      value: 5,
     });
     this.addProp({
       type: "array",
@@ -32,118 +41,191 @@ class Testimonials2Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "card1",
+          displayer: "Card1",
           value: [
             {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644930bdf72de2002caa9944?alt=media&timestamp=1682518219540",
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Star",
+            },
+            {
+              type: "icon",
+              key: "icon",
               displayer: "Image",
-            },
-            {
-              type: "string",
-              key: "name",
-              value: "Erle Philomena",
-              displayer: "Name",
-            },
-            {
-              type: "string",
-              key: "nameId",
-              value: "@Erle_Philomena",
-              displayer: "Name Id",
+              value: "RiStarSFill",
             },
             {
               type: "string",
               key: "description",
+              displayer: "Description",
               value:
                 "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
-              displayer: "Description",
             },
             {
               type: "string",
-              key: "time",
-              value: "15 days ago",
-              displayer: "time",
+              key: "name",
+              displayer: "name",
+              value: "Mary Sheram",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Designer",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "card1",
+          displayer: "Card1",
           value: [
             {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449315ff72de2002caa998e?alt=media&timestamp=1682518379680",
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Star",
+            },
+            {
+              type: "icon",
+              key: "icon",
               displayer: "Image",
-            },
-            {
-              type: "string",
-              key: "name",
-              value: "Shonda Kadence",
-              displayer: "Name",
-            },
-            {
-              type: "string",
-              key: "nameId",
-              value: "@Shonda_Kadence",
-              displayer: "Name Id",
+              value: "RiStarSFill",
             },
             {
               type: "string",
               key: "description",
-              value:
-                "Grunge design is all about creating a rough, raw, and edgy look. It can be a great way to add personality and attitude to a design.",
               displayer: "Description",
+              value:
+                "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
               type: "string",
-              key: "time",
-              value: "5 month ago",
-              displayer: "time",
+              key: "name",
+              displayer: "name",
+              value: "Mary Sheram",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Designer",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "card1",
+          displayer: "Card1",
           value: [
             {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449315ff72de2002caa998f?alt=media&timestamp=1682518379680",
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Star",
+            },
+            {
+              type: "icon",
+              key: "icon",
               displayer: "Image",
-            },
-            {
-              type: "string",
-              key: "name",
-              value: "Laurie Darwin",
-              displayer: "Name",
-            },
-            {
-              type: "string",
-              key: "nameId",
-              value: "@Laurie_Darwin",
-              displayer: "Name Id",
+              value: "RiStarSFill",
             },
             {
               type: "string",
               key: "description",
-              value:
-                "Responsive design is a must for modern websites and interfaces. It ensures that content is displayed optimally on different screen sizes and devices.",
               displayer: "Description",
+              value:
+                "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
             },
             {
               type: "string",
-              key: "time",
-              value: "2 years ago",
-              displayer: "time",
+              key: "name",
+              displayer: "name",
+              value: "Mary Sheram",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Designer",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card1",
+          displayer: "Card1",
+          value: [
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Star",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Image",
+              value: "RiStarSFill",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "name",
+              value: "Mary Sheram",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Designer",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card1",
+          displayer: "Card1",
+          value: [
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Star",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Image",
+              value: "RiStarSFill",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "name",
+              value: "Mary Sheram",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Designer",
             },
           ],
         },
@@ -156,34 +238,71 @@ class Testimonials2Page extends Testimonials {
   }
 
   render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+    };
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
           <div className={this.decorateCSS("testimonials2")}>
+            <div className={this.decorateCSS("top-content")}>
+              <span className={this.decorateCSS("badge")}>
+                {this.getPropValue("badge")}
+              </span>
+              <h1 className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </h1>
+            </div>
+
+            <ComposerSlider
+              {...settings}
+              className={this.decorateCSS("slider-style")}
+            >
               {this.castToObject<Item[]>("card-items").map(
                 (item: Item, index: number) => (
-                  <div style={{
-                          width: 100 / this.getPropValue("itemCount") + "%",
-                          display: "flex",
-                          justifyContent:"center",
-                          flexWrap: "wrap",
-                          minWidth: "250px",
-                        }}>
-                  <div key={index} className={this.decorateCSS("card")} >
-                    <div className={this.decorateCSS("profile")}>
-                      <img width={50} height={50} src={item.image} alt=""/>
-                      <div className={this.decorateCSS("profile-text")}>
-                        <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
-                        <p className={this.decorateCSS("item-name-id")}>{item.nameId}</p>
+                  <div key={`tsm-2-${index}`}>
+                    <div
+                      style={{
+                        width: 100 / this.getPropValue("itemCount") + "%",
+                        display: "flex",
+                        justifyContent: "center",
+                        flexWrap: "wrap",
+                        minWidth: "20px",
+                      }}
+                    >
+                      <div key={index} className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("icon")}>
+                          <span className={this.decorateCSS("item-star")}>
+                            {[...Array(Number(item.star))].map(
+                              (_: any, index: number) => (
+                                // <ComposerIcon name={item.icon} />
+                                <></>
+                              )
+                            )}
+                          </span>
+                        </div>
+                        <span className={this.decorateCSS("item-description")}>
+                          {item.description}
+                        </span>
+                        <h5 className={this.decorateCSS("item-name")}>
+                          {item.name}
+                        </h5>
+                        <h5 className={this.decorateCSS("item-subtitle")}>
+                          {item.subtitle}{" "}
+                        </h5>
                       </div>
                     </div>
-                    <span className={this.decorateCSS("item-description")}>{item.description}</span>
-                    <h5 className={this.decorateCSS("item-time")}>{item.time}</h5>
                   </div>
-            </div>
                 )
               )}
+            </ComposerSlider>
           </div>
         </div>
       </div>
