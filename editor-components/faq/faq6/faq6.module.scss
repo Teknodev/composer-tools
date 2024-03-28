@@ -1,104 +1,122 @@
 .container {
     width: 100%;
-    padding: 50px 100px;
+    padding: 20px;
     .max-content {
         display: flex;
         justify-content: center;
         align-items: center;
         max-width: var(--composer-content-width);
         margin: auto;
-        .page {
-            width: 100%;
+        gap: 30px;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+        }
+
+        .items {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            .up-page {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin-bottom: 2rem;
-                .subtitle {
-                    font-size: 3.5rem;
-                    color: var(--composer-primary-color);
-                    opacity: 0.8;
-                    margin: 10px 0;
+
+            border: 1px solid var(--composer-tertiary-color);
+            border-bottom: none;
+
+            .item {
+                width: 550px;
+                cursor: pointer;
+                @media screen and (max-width: 570px) {
+                    width: 100%;
                 }
-                .title1 {
-                    font-size: 2rem;
-                    color: var(--composer-font-color-primary);
-                    opacity: 0.8;
-                    margin: unset;
-                }
-                .badge {
-                    color: var(--composer-primary-color);
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    background: rgb(244, 244, 244);
-                    padding: 5px 7px;
-                    display: inline-block;
-                }
-            }
-            .down-page {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                gap: 20px;
-            }
-            .card {
-                min-width: 250px;
-                min-height: 250px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                background: rgb(244, 244, 244);
-                padding: 20px;
-                border-radius: 6px;
-                .card-title {
-                    font-size: 1.5rem;
-                    letter-spacing: 0.02em;
-                    margin: unset;
-                    color: rgb(42, 51, 66);
-                    opacity: 0.9;
-                    margin-bottom: 1rem;
-                }
-                .card-description {
-                    font-size: 1.3rem;
-                    color: rgb(42, 51, 66);
-                    opacity: 0.9;
-                }
-                .icon {
+
+                .title-box {
                     display: flex;
-                    justify-content: center;
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 100%;
-                    background: var(--composer-primary-color);
-                    align-items: center;
-                    margin-bottom: 1rem;
-                    div {
-                        color: #fff;
-                        font-size: 1.8rem;
+                    justify-content: space-between;
+                    gap: 10px;
+                    border-bottom: 1px solid var(--composer-tertiary-color);
+                    padding: 25px 20px;
+
+                    .title-text {
+                        font-weight: 600;
+                        font-size: 1.6rem;
+                        color: var(--composer-primary-color);
+                    }
+
+                    .icon {
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }
-        }
-    }
-}
+            .description-box {
+                overflow: hidden;
+                max-height: 0px;
+                transition: max-height 0.6s;
+                .description-text {
+                    margin: 20px;
+                    font-size: 1.1rem;
+                    color: var(--composer-font-color-primary);
+                }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .up-page {
-            .title1 {
-                text-align: center;
+                &.active {
+                    border-bottom: 1px solid var(--composer-tertiary-color);
+                    max-height: 1000px;
+                }
+            }
+
+            :last-child {
+                border: none;
             }
         }
-        .down-page {
-            .card {
-                width: unset !important;
-                flex: 1 1 !important;
+
+        .image-box {
+            width: 555px;
+            min-width: 555px;
+            height: 555px;
+            position: relative;
+
+            @media screen and (max-width: 1140px) {
+                width: 400px;
+                min-width: 400px;
+                height: 400px;
+            }
+
+            @media screen and (max-width: 990px) {
+                width: 300px;
+                min-width: 300px;
+                height: 300px;
+            }
+
+            @media screen and (max-width: 900px) {
+                width: 500px;
+                min-width: 500px;
+                height: 500px;
+            }
+
+            @media screen and (max-width: 570px) {
+                width: 300px;
+                min-width: 300px;
+                height: 300px;
+            }
+
+            .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 100%;
+            }
+
+            .title {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto 0;
+                height: fit-content;
+                left: 40px;
+                font-size: 5rem;
+                color: var(--composer-font-color-primary);
+
+                @media screen and (max-width: 990px) {
+                    font-size: 3rem;
+                    top: -100px;
+                }
             }
         }
     }

@@ -23,12 +23,14 @@ class LogoComp2Page extends LogoClouds {
       displayer: "description",
       value: "Sponsors can range from small local businesses to multinational corporations and can sponsor everything from sports teams to music festivals to non-profit organizations.",
     });
+
     this.addProp({
-      type : "boolean",
-      key : "isRow",
-      displayer : "isRow",
-      value : false,
-    });
+      type: "boolean",
+      key: "isRow",
+      displayer: "isRow",
+      value: false,
+    })
+
     this.addProp({
       type: "array",
       key: "image-items",
