@@ -3,10 +3,11 @@
   padding: 150px 0;
   background-color: var(--composer-html-background);
 
+
   .max-content {
     padding: 20px;
     max-width: var(--composer-content-width);
-    margin: auto;
+
 
     .testimonials3 {
       display: block;
@@ -17,6 +18,8 @@
         flex-wrap: wrap;
         text-align: center;
         gap: 20px;
+
+
         .card {
           display: flex;
           flex-direction: column;
@@ -25,15 +28,18 @@
           align-items: center;
           height: max-content;
           flex: 1 1;
+
           .stars {
             display: flex;
             gap: 5px;
             color: var(--composer-secondary-color);
+
             img {
               width: 15px;
               height: 15px;
             }
-            .star{
+
+            .star {
               color: var(--composer-primary-color);
             }
           }
@@ -44,10 +50,11 @@
             margin: 20px 0;
             color: var(--composer-font-color-primary);
           }
+
           .item-value2 {
             font-weight: 200;
             font-size: 1rem;
-            margin: 0;
+            margin-bottom: 100px;
             color: var(--composer-font-color-primary);
           }
         }
@@ -60,6 +67,7 @@
   .container {
     padding: 50px 20px;
     background-color: var(--composer-html-background);
+
     .max-content {
       .testimonials3 {
         .card-child {

@@ -162,7 +162,11 @@ class FaqButton extends BaseFAQ {
 
   render() {
     const handleButton = (index: number) => {
-      this.activeIndex = this.activeIndex === index ? -1 : index;
+      if(this.activeIndex == index){
+        this.setComponentState("activeIndex", -1)
+      }else{
+        this.setComponentState("activeIndex", index)
+      }
     };
 
     return (
@@ -187,7 +191,7 @@ class FaqButton extends BaseFAQ {
                           <img
                             alt=""
                             src={
-                              this.activeIndex === indexCard
+                              this.getComponentState("activeIndex") === indexCard
                                 ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
                                 : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
                             }
@@ -197,7 +201,7 @@ class FaqButton extends BaseFAQ {
                       </div>
                       <p
                         className={`${
-                          this.activeIndex === indexCard
+                          this.getComponentState("activeIndex") === indexCard
                             ? this.decorateCSS("text")
                             : this.decorateCSS("hide")
                         }`}
