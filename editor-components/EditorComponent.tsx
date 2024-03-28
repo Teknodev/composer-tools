@@ -144,6 +144,7 @@ export abstract class Component
 
   setComponentState(key: string, value: any): void {
     this.state.states[key] = value;
+    EventEmitter.emit("forceReload");
   }
 
   getComponentState(key: string): any {
