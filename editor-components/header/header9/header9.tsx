@@ -3,52 +3,323 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header9.module.scss";
 
+type ITabs = {
+  socialLink: string;
+  tabText: string;
+  description: string;
+  buttonText: string;
+  buttonUrl: string;
+  image: string;
+};
 class Header9 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "object",
-      key: "wide-text",
-      displayer: "Wide Text",
+      type: "array",
+      key: "social",
+      displayer: "Social",
       value: [
         {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Online Store",
+          type: "object",
+          key: "footer-social",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "socialLink",
+              displayer: "Social Link",
+              value: "Behance",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "https://www.behance.net/ ",
+            },
+          ],
         },
         {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Welcome to Our Online Store",
+          type: "object",
+          key: "footer-social",
+          displayer: "Item",
+          value: [
+            {
+              type: "page",
+              key: "socialLink",
+              displayer: "Social Link",
+              value: "Instagram",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " https://www.instagram.com/",
+            },
+          ],
         },
         {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "Browse our wide selection of products and find exactly what you're looking for. From fashion to electronics, we have everything you need to stay ahead of the curve",
-        },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value:"Shop Now",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://theairambulanceservice.org.uk/wp-content/uploads/fly-images/202063/Screenshot-2020-06-30-at-09.18.45-e1596723111517-652x278-c.png",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
+          type: "object",
+          key: "footer-social",
+          displayer: "Item",
+          value: [
+            {
+              type: "page",
+              key: "socialLink",
+              displayer: "Social Link",
+              value: "Twitter",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " https://twitter.com/",
+            },
+          ],
         },
       ],
     });
+    this.addProp({
+      type: "string",
+      key: "footerDescription",
+      displayer: "Footer Description",
+      value: "see all works",
+    });
+    this.addProp({
+      type: "array",
+      key: "tabs",
+      displayer: "Tabs",
+      value: [
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Button text",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Image Title",
+              value: "color flow",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image Title",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/Color-flow-4.jpg",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Button text",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Image Title",
+              value: "pal",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image Title",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/Pal-2-min.jpg",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " ",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Button text",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Image Title",
+              value: "the lofe",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image Title",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/The-lofe-1-min.jpg",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " ",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Button text",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Image Title",
+              value: "kia",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image Title",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/Kla_1-min.jpg",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " ",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Button text",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Image Title",
+              value: "reykjavik",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image Title",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/vifa-reykjavik-portable-wireless-speaker-2.jpg-min.jpg",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " ",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Button text",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Image Title",
+              value: "chanel",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image Title",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/miguel-andrade-potCPE_Cw8A-unsplash-min.jpg",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " ",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Button text",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Image Title",
+              value: "cazador",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image Title",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/cazador-min.jpg",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " ",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Button text",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Image Title",
+              value: "alabster co.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image Title",
+              value:
+                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/03/alabaster-co-2r13qYSJEK8-unsplash-min-1.jpg",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: " ",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "string",
+      key: "text",
+      displayer: "Text",
+      value: "Project",
+    });
+
+    const firstImage = this.getPropValue("tabs")[0].getPropValue("image");
+    this.setComponentState("image", firstImage);
+    this.setComponentState("activeTab", 0);
+  }
+
+  handleMouseEnter(index: number, imageUrl: string) {
+    this.setComponentState("activeTab", index);
+    this.setComponentState("image", imageUrl);
+  }
+
+  handleButtonClick(buttonUrl: string) {
+    window.open(buttonUrl, "_blank");
   }
 
   getName(): string {
@@ -58,21 +329,69 @@ class Header9 extends BaseHeader {
   render() {
     return (
       <div className={this.decorateCSS("container")}>
-        <section className={this.decorateCSS("wide-text-container")}>
-          <div className={this.decorateCSS("wide-text")}>
-            <h3 className={this.decorateCSS("wide-text-h3")}>{this.getPropValue("wide-text")[0].value}</h3>
-            <h1 className={this.decorateCSS("wide-text-h1")}>{this.getPropValue("wide-text")[1].value}</h1>
-            <p className={this.decorateCSS("wide-text-p")}>{this.getPropValue("wide-text")[2].value}</p>
-            <ComposerLink path={this.getPropValue("wide-text")[5].value}>
-              <span className={this.decorateCSS("button")}>
-                {this.getPropValue("wide-text")[3].value}
-              </span>
-            </ComposerLink>
+        <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("buttons")}>
+            <span className={this.decorateCSS("text")}>
+              {this.getPropValue("text")}
+            </span>
+
+            <span className={this.decorateCSS("active-number")}>
+              {this.getComponentState("activeTab") + 1}
+            </span>
+            <span className={this.decorateCSS("slash")}>/</span>
+            <span className={this.decorateCSS("count")}>
+              {this.getPropValue("tabs").length}
+            </span>
           </div>
-          <div className={this.decorateCSS("image-background")}>
-            <img className={this.decorateCSS("image")} src={this.getPropValue("wide-text")[4].value} alt=""></img>
+
+          <div className={this.decorateCSS("tabs")}>
+            <div className={this.decorateCSS("tab-buttons")}>
+              {this.castToObject<ITabs[]>("tabs").map(
+                (tab: any, index: number) => (
+                  <ComposerLink path={tab.url}>
+                    <div
+                      className={
+                        this.decorateCSS("tabText") +
+                        " " +
+                        (this.getComponentState("activeTab") == index &&
+                          this.decorateCSS("active"))
+                      }
+                      onMouseEnter={() =>
+                        this.handleMouseEnter(index, tab.image)
+                      }
+                      onClick={() => this.handleButtonClick(tab.buttonUrl)}
+                    >
+                      {tab.tabText}
+                    </div>
+                  </ComposerLink>
+                )
+              )}
+              <div className={this.decorateCSS("footer-bottom")}>
+                <h2 className={this.decorateCSS("footer-description")}>
+                  {this.getPropValue("footer-description")}
+                </h2>
+              </div>
+              <div className={this.decorateCSS("social")}>
+                <div className={this.decorateCSS("footer-social")}>
+                  {this.castToObject<ITabs[]>("social").map(
+                    (tab: any, index: number) => (
+                      <ComposerLink path={tab.url}>
+                        <div className={this.decorateCSS("social-link")}>
+                          {tab.socialLink}
+                        </div>
+                      </ComposerLink>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+            <img
+              src={this.getComponentState("image")}
+              alt=""
+              className={this.decorateCSS("image")}
+            />
           </div>
-        </section>
+        </div>
       </div>
     );
   }

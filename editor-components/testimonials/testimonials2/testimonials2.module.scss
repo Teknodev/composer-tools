@@ -1,79 +1,119 @@
 .container {
     width: 100%;
-    padding: 150px 45px;
+    padding: 65px 45px;
     background-color: var(--composer-html-background);
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
-        .title {
-            text-align: center;
-            font-size: 3rem;
-            margin: 0 0 80px 0;
-            color: var(--composer-primary-color);
-        }
-        .testimonials2 {
+
+        .testimonials2{
             display: flex;
             justify-content: center;
             width: 100%;
             flex-wrap: wrap;
+            gap: 20px;
+
+            .top-content{
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+
+
+                .badge{
+                    font-size: 20px;
+                    color: var(--composer-primary-color);
+
+                }
+
+                .title {
+                    text-align: center;
+                    font-size: 3rem;
+                    margin: 0 0 80px 0;
+                    color: var(--composer-primary-color);
+                }
+            }
+
+            .slider-style{
+                width: 100%;
+            }
+
+
             .card {
                 padding: 30px;
-                margin: 10px;
-                min-width: 250px;
+                min-width: 380px;
                 border-radius: 6px;
                 background-color: var(--composer-html-background);
                 flex: 1 1;
                 border: 1px solid var(--composer-tertiary-color);
-                .item-time {
-                    opacity: 0.8;
-                    font-weight: 200;
-                    font-size: 1rem;
-                    margin-bottom: 0;
-                    margin-left: 0;
-                    margin-right: 0;
-                    color: var(--composer-font-color-tertiary);
+                font-size: 20px;
+                margin-right: 100px;
+                .icon{
+                    width: 36%;
+                    color: var(--composer-tertiary-color);
+                    margin-bottom: 20px
+
                 }
-                .profile {
-                    display: flex;
-                    margin-bottom: 20px;
-                    img {
-                        border-radius: 100%;
-                        object-fit: cover;
-                        border: 1px solid var(--composer-tertiary-color);
-                    }
-                    .profile-text {
-                        margin-left: 20px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        .item-name {
-                            margin: 0;
-                            color: var(--composer-primary-color);
-                        }
-                        .item-name-id {
-                            margin: 5px 0 !important;
-                            text-transform: uppercase;
-                            color: var(--composer-primary-color);
-                        }
-                    }
-                }
-                .item-description {
-                    font-size: 1.1rem;
+
+                .item-description{
                     color: var(--composer-font-color-primary);
+                    opacity: 2px;
+
                 }
-            }
-        }
-        @media screen and (max-width: 910px) {
-            .testimonials2 {
-                gap: 20px;
+
+                .item-name{
+                    color: var(--composer-primary-color);
+                    font-size: 20px;
+
+
+                }
+
+                .item-subtitle{
+                    font-size: 20px;
+                    font-weight: inherit;
+                    color: var(--composer-tertiary-color);
+                }
             }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
     .container {
-        padding: 50px 20px;
-        background-color: var(--composer-html-background);
+        width: 250%;
+        .max-content {
+            .testimonials2 {
+                .top-content{
+                    .badge{
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
     }
-}
+  }
+
+
+@media only screen and (max-width: 450px) {
+    .container {
+        width: 460%;
+        .max-content {
+            .testimonials2 {
+                .top-content{
+                    .badge{
+                        font-size: 15px;
+                    }
+                    .title{
+                        font-size: 27px;
+                    }
+                }
+                .card{
+                    min-width: 340px;
+                    margin-right: 75px;
+                }
+            }
+        }
+    }
+  }
+
