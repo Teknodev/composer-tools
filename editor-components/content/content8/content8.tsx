@@ -2,57 +2,174 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ThirtyFpsRounded } from "@mui/icons-material";
+type Card = {
+  image: string;
+  header: string;
+  imgdescription: string;
+  comments: string;
+  time: string;
+  commentsUrl: URL;
+};
 class Content8 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Design in Modern Technology",
+      key: "badge",
+      displayer: "Badge",
+      value: "Discover AI-Enhanced Visual Stories",
     });
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "UI refers to the graphical layout of an application, website, or any other digital platform that a user interacts with.",
+      key: "title",
+      displayer: "Title",
+      value: "The Latest Updates News & Blog",
     });
     this.addProp({
-      type: "object",
-      key: "buttonprop",
-      displayer: "Button",
+      type: "array",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
-          type: "string",
-          key: "button",
-          displayer: "Button",
-          value: "More Info",
+          type: "object",
+          key: "card",
+          displayer: "",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://writebot-html.themetags.net/assets/img/blog-img-1.jpg",
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "All News",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Antenna Promises New era For Satellite Communication",
+            },
+            {
+              type: "string",
+              key: "date",
+              displayer: "Date",
+              value: "March 18,2022",
+            },
+            {
+              type: "string",
+              key: "details",
+              displayer: "Details",
+              value: "Comments",
+            },
+            {
+              type: "page",
+              key: "detailsUrl",
+              displayer: "Details Url",
+              value: ""
+            },
+          ]
         },
         {
-          type: "page",
-          key: "url",
-          displayer: "Button Link",
-          value: "",
+          type: "object",
+          key: "card",
+          displayer: "",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://writebot-html.themetags.net/assets/img/blog-img-2.jpg",
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "All News",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Antenna Promises New era For Satellite Communication",
+            },
+            {
+              type: "string",
+              key: "date",
+              displayer: " Date",
+              value: "March 18,2022",
+            },
+            {
+              type: "string",
+              key: "details",
+              displayer: "Details",
+              value: "Comments",
+            },
+            {
+              type: "page",
+              key: "detailsUrl",
+              displayer: "Details Url",
+              value: ""
+            },
+          ]
         },
-      ],
-    });
+        {
+          type: "object",
+          key: "card",
+          displayer: "",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://writebot-html.themetags.net/assets/img/blog-img-3.jpg",
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "All News",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Antenna Promises New era For Satellite Communication",
+            },
+            {
+              type: "string",
+              key: "date",
+              displayer: "Date",
+              value: "March 18,2022",
+            },
+            {
+              type: "string",
+              key: "details",
+              displayer: "Details",
+              value: "Comments",
+            },
+            {
+              type: "page",
+              key: "detailsUrl",
+              displayer: "Details Url",
+              value: ""
+            },
+          ]
+        }
+      ]
+    })
     this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://img.freepik.com/free-vector/corporate-website-abstract-concept-illustration_335657-1831.jpg",
-    });
-    this.addProp({
-      type: "image",
-      key: "backgroundImage",
-      displayer: "Background Image",
-      value:
-        "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+      max: 3,
     });
   }
-
   getName(): string {
     return "Content 8";
   }
@@ -61,33 +178,38 @@ class Content8 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("child")}>
-            <div className={this.decorateCSS("card")}>
-              <div className={this.decorateCSS("left")}>
-                <span className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </span>
-                <span className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </span>
-                <ComposerLink path={this.getPropValue("buttonprop")[1].value}>
-                  <button className={this.decorateCSS("button")}>
-                    {this.getPropValue("buttonprop")[0].value}
-                  </button>
-                </ComposerLink>
+          <div className={this.decorateCSS("up-page")}>
+            <div className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</div>
+            <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+          </div>
+          <div className={this.decorateCSS("cards-box")} >
+
+            {this.castToObject<Card[]>("cards").map((card: any, index: number) =>
+              <div className={this.decorateCSS("card")} style={{
+                width: 90 / this.getPropValue("itemCount") + "%",
+              }}>
+                <div className={this.decorateCSS("card-div")}>
+                  <div className={this.decorateCSS("badge")}>{card.getPropValue("badge")}</div>
+                  <div className={this.decorateCSS("image-div")}>
+                    <img src={card.getPropValue("image")} alt={card.getPropValue("image")}
+                      className={this.decorateCSS("image")} />
+                  </div>
+                  <div className={this.decorateCSS("card-body")}>
+                    <div className={this.decorateCSS("description")}>{card.getPropValue("description")}</div>
+                    <div className={this.decorateCSS("time-comments")}>
+                      <h4 className={this.decorateCSS("date")}>{card.getPropValue("date")}</h4>
+                      <ComposerLink path={card.getPropValue("detailsUrl")}>
+                        <h4 className={this.decorateCSS("details")}>{card.getPropValue("details")}</h4>
+                      </ComposerLink>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className={this.decorateCSS("right")}>
-                <img src={this.getPropValue("image")} alt=""/>
-              </div>
-            </div>
-            <div className={this.decorateCSS("background-image")}>
-              <img src={this.getPropValue("backgroundImage")} alt=""/>
-            </div>
+            )}
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
-
 export default Content8;
