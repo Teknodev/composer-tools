@@ -46,8 +46,6 @@
 
                     &.row {
                         width: 30%;
-                        top: 50px;
-                        left: 350px;
 
                         @media screen and (max-width: 768px) {
                             display: flex;
@@ -93,6 +91,7 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 20px;
+                padding: 0 20px;
 
 
                 .all-images {
@@ -105,7 +104,7 @@
 
                     .image-child {
                         display: flex;
-                        width: 70%;
+                        width: 100%;
                         justify-content: center;
                         flex-wrap: wrap;
                         align-items: center;
@@ -117,7 +116,7 @@
 
                         img {
                             // margin-bottom: 20px;
-                            width: 75%;
+                            width: 100%;
                             height: 100%;
 
                         }
@@ -127,32 +126,32 @@
 
             }
 
-            @media screen and (max-width: 600px) {
-                .items-layout {
-                    display: flex;
-                    flex-wrap: nowrap;
-                    flex-direction: column;
-                    align-items: center;
+            // @media screen and (max-width: 600px) {
+            //     .items-layout {
+            //         display: flex;
+            //         flex-wrap: nowrap;
+            //         flex-direction: column;
+            //         align-items: center;
 
-                    .all-images {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        .image-child {
-                            display: block;
-                            align-items: center;
-                            min-width: 170%;
-                            .img{
-                                width: 180%;
-                                height: 100%;
-                            }
-                            .list-item-p {
-                                width: 275px;
-                            }
-                        }
-                    }
-                }
-            }
+            //         .all-images {
+            //             display: flex;
+            //             align-items: center;
+            //             justify-content: center;
+            //             .image-child {
+            //                 display: block;
+            //                 align-items: center;
+            //                 min-width: 170%;
+            //                 .img{
+            //                     width: 180%;
+            //                     height: 100%;
+            //                 }
+            //                 .list-item-p {
+            //                     width: 275px;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
 
     }
@@ -165,7 +164,6 @@
         .max-content {
 
 
-            &.row {}
 
             .logo-comp2-page {
 
@@ -175,15 +173,13 @@
                 }
 
                 .container-title-description {
-                    width: 80%;
+                    width: 100%;
 
                     .title {
 
 
                         &.row {
                             width: 70%;
-                            left: 50px;
-                            top: -50px;
                             position: absolute;
                             
                         }
@@ -193,7 +189,7 @@
 
 
                         &.row {
-                            width: 80%;
+                            width: 100%;
                         }
                     }
                 }
@@ -217,7 +213,7 @@
 }
 
 // For Mobile
-@media only screen and (max-width:400px) {
+@media only screen and (max-width:600px) {
 
     .container {
         width: 100%;
@@ -258,7 +254,7 @@
                         color: var(--composer-primary-color);
 
                         &.row {
-                            width: 80%;
+                            width: 100%;
                             position: absolute;
                              left: 15px;
                             // top: 20px;
@@ -282,9 +278,23 @@
                 section {
 
                     &.row {
-                        width: 50%;
+                        width: 100%;
                         display: flex;
                         flex-wrap: nowrap;
+                    }
+                }
+
+                .items-layout{
+                    flex-wrap: wrap;
+                    flex-direction: unset;
+                    .all-images{
+                        width: 47% !important;
+                        .image-child{
+                            min-width: unset !important;
+                            img{
+                                margin: unset;
+                            }
+                        }
                     }
                 }
 
