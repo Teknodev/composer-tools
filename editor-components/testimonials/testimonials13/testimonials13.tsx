@@ -238,26 +238,6 @@ class Testimonials13Page extends Testimonials {
       this.setComponentState(`number-${index}`, 0)
     );
 
-    setInterval(() => {
-      this.castToObject<CardData[]>("rightBottomBox").map(
-        (statsData: CardData, index: number) => {
-          let statNumber = this.getComponentState(`number-${index}`);
-
-          if (statNumber < statsData.leftMiddle) {
-            this.setComponentState(
-              `number-${index}`,
-              statNumber +
-                Math.round(
-                  statsData.leftMiddle /
-                    Math.round(this.getPropValue("animation-duration") / 30)
-                )
-            );
-          } else {
-            this.setComponentState(`number-${index}`, statsData.leftMiddle);
-          }
-        }
-      );
-    }, 30);
   } //constructor end
 
   getName(): string {
@@ -357,7 +337,7 @@ class Testimonials13Page extends Testimonials {
                           {item.value[0].value}
                         </div>
                         <div className={this.decorateCSS("MiddleWriting")}>
-                          {this.getComponentState(`number-${index}`)}
+                          {item.value[1].value}
                         </div>
                         <div className={this.decorateCSS("bottomWriting")}>
                           {item.value[2].value}
