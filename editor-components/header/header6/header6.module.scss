@@ -2,7 +2,7 @@
   width: 100%;
   min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
+  padding: 50px 20px;
   display: flex;
   align-items: center;
 
@@ -21,12 +21,11 @@
 
         .title {
           animation: fade-in 1s ease-in-out 0.5s forwards;
-          font-size: 70px;
+          font-size: 6rem;
           margin-bottom: 25px;
           color: var(--composer-primary-color);
           line-height: 1.2;
-          width: 40px;
-          height: 40px;
+          margin: 0;
           font-weight: bold;
           opacity: 0;
           transform: translateY(-20px);
@@ -45,20 +44,21 @@
         .title2 {
           animation: fade-in 1s ease-in-out 0.7s forwards;
           margin-bottom: 1rem;
-          font-size: 108px;
+          font-size: 8rem;
         }
 
         .description {
           animation: fade-in 1s ease-in-out 1s forwards;
-          text-align: center;
           font-size: 18px;
+          margin-left: 5px;
         }
 
         .buttondiv {
           margin-top: 20px;
           display: flex;
           flex-direction: row;
-          gap: 20px;
+          gap: 15px;
+          flex-wrap: wrap;
 
           .button {
             animation: fade-in 1s ease-in-out 1.2s forwards;
@@ -67,9 +67,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: var(--composer-primary-color);
+            background-color: var(--composer-secondary-color);
             color: var(--composer-font-color-secondary);
             font-size: 1.5rem;
+            border: none;
             cursor: pointer;
             padding: 20px 40px;
             opacity: 0;
@@ -78,7 +79,7 @@
             &:hover {
               color: var(--composer-secondary-color);
               background: transparent;
-              border: 1px solid var(--composer-secondary-color);
+              outline: 1px solid var(--composer-secondary-color);
             }
           }
         }
@@ -124,7 +125,7 @@
   }
 }
 
-@media only screen and (min-width: 451px) and (max-width: 768px){ //tablet
+@media only screen and (min-width: 451px) and (max-width: 1125px){ //tablet
   .container {
     gap: 20px;
   } .child-container {
@@ -144,6 +145,10 @@
       flex-direction: column;
       display: flex;
       flex-direction: column;
+      text-align: center;
+      .buttondiv{
+        justify-content: center;
+      }
       .right-content{
         width: 80%;
       }
