@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 150px 50px;
+    padding: 50px 50px;
     .max-content {
         max-width: var(--composer-content-width);
         display: flex;
@@ -76,6 +76,10 @@
                     .icon-group {
                         display: flex;
                         gap: 10px;
+
+                        .icon{
+                            color: var(--composer-font-color-primary);
+                        }
                        
 
                         @media only screen and (max-width: 768px) {
