@@ -187,32 +187,32 @@ class Team4 extends Team {
                 <div className={this.decorateCSS("card-item-count")} style={{
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
-                <div
-                  key={indexTeamMembers}
-                  className={this.decorateCSS("team-member")}
-                >
-                  <img
-                    className={this.decorateCSS("member-image")}
-                    src={teamMember.image}
-                    alt={teamMember.name}
-                  />
-                  <div className={this.decorateCSS("name-and-position")}>
-                    <span className={this.decorateCSS("team-member-name")}>{teamMember.name}</span>
-                    <p className={this.decorateCSS("team-member-position")}>{teamMember.position}</p>
-                  </div>
+                  <div
+                    key={indexTeamMembers}
+                    className={this.decorateCSS("team-member")}
+                  >
+                    <img
+                      className={this.decorateCSS("member-image")}
+                      src={teamMember.image}
+                      alt={teamMember.name}
+                    />
+                    <div className={this.decorateCSS("name-and-position")}>
+                      <span className={this.decorateCSS("team-member-name")}>{teamMember.name}</span>
+                      <p className={this.decorateCSS("team-member-position")}>{teamMember.position}</p>
+                    </div>
 
-                  <div className={this.decorateCSS("icon-group")}>
-                    {teamMember.platforms.map(
-                      (socialMedia: platform, indexPlatforms: number) => (
-                        <ComposerLink
-                          key={indexPlatforms}
-                          path={socialMedia.url}
-                        >
-                          <ComposerIcon name={socialMedia.icon} />
-                        </ComposerLink>
-                      )
-                    )}
-                  </div>
+                    <div className={this.decorateCSS("icon-group")}>
+                      {teamMember.platforms.map(
+                        (socialMedia: platform, indexPlatforms: number) => (
+                          <ComposerLink
+                            key={indexPlatforms}
+                            path={socialMedia.url}
+                          >
+                            <ComposerIcon name={socialMedia.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          </ComposerLink>
+                        )
+                      )}
+                    </div>
                   </div>
                 </div>
               )
