@@ -4,108 +4,67 @@
     display: flex;
     justify-content: center;
     .max-content {
-
         text-align: center;
         font-weight: bold;
         width: 100%;
-       
     }
-        .title1 {
-            @media screen and(max-width:360px) {
-                font-size: 14px;
-              }
-            margin-top: 80px;
-            margin-bottom:10px;
-            font-size: 1.5rem;
-            color: var(--composer-primary-color);
-            font-family:Monospace
-     
+    .title1 {
+        @media screen and(max-width:360px) {
+            font-size: 14px;
         }
-        
-       
-        .title2{
-            font-size: 50px;
-            margin: 0;
-            @media screen and(max-width:360px) {
-               font-size: 35px;
-             }
-            
-        }
-        .description{
-            font-size: 1.6rem;
-            font-weight: 240;
-            @media screen and(max-width:360px) {
-               padding: 10px;
-            }
-        }
-       
-        .box{
-           
-            display: flex;
-            margin: 40px;
-            padding-left: 190px;
-          
-            @media screen and(max-width:360px) {
-                flex-direction: column;
-                margin-left: 20px;
-                padding-left: 40px;
-                margin-bottom: 100px;
-                margin-top: 10px;
-                
-             }
-              @media screen and(max-width:800px) {
-                margin: 25px;
-                padding-left: 5px;
-                margin-bottom: -100px;
-               
-             }
-             
-            .button { 
-                @media screen and(max-width:800px) {
-                width: 225px;
-                padding: 30px;
-                padding-left: 30px;
-                padding-bottom: 20px;
-                margin: 5px;
-                margin-bottom: 250px;
-                margin-top: 5px;
-               
-               
-             }
-                @media screen and(max-width:360px) {
-                margin-bottom: 10px;
-                height:50px;
-                width: 280px;
-                margin-left: 3px;
-                padding: 30px;
-                padding-left: 30px;
-                padding-bottom: 40px;
-                
-             }
-             
-                display: flex;
-                padding: 30px;
-                width: 300px;
-                height: 90px;
-                background-color:white;
-                gap: 10px;
-                justify-content: center;
-               cursor: pointer;
-               color: rgb(44, 43, 43);
-               border: 3px solid #b8b4b4; 
-               margin-right: 30px;
-               font-size: 15px;
-               font-weight:bold;
-               margin-left: 60px;
-               font-family:'Lucida Sans';
-            }
+        margin-top: 80px;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        color: var(--composer-primary-color);
+    }
 
-            .button:hover{
-                background-color: rgb(48, 47, 47);
-                color: white;
-            .icon{
+    .title2 {
+        font-size: 50px;
+        margin: 0;
+        color: var(--composer-primary-color);
+        @media screen and(max-width:360px) {
+            font-size: 35px;
+        }
+    }
+    .description {
+        font-size: 1.6rem;
+        font-weight: 240;
+        color: var(--composer-font-color-primary);
+        @media screen and(max-width:360px) {
+            padding: 10px;
+        }
+    }
+
+    .box {
+        display: flex;
+        margin: 40px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .button {
+            display: flex;
+            padding: 30px;
+            width: 300px;
+            background-color: transparent;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: var(--composer-font-color-primary);
+            border: 2px solid var(--composer-secondary-color);
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: var(--composer-border-radius);
+        }
+
+        .button:hover {
+            background-color: var(--composer-secondary-color);
+            color: var(--composer-font-color-secondary);
+            .icon {
                 @media screen and(max-width:360px) {
-                  transform: scale(1);
+                    transform: scale(1);
                 }
                 @media screen and(max-width:800px) {
                 }
@@ -113,11 +72,3 @@
         }
     }
 }
-
-
-        
-    
-
-
-
-    

@@ -9,7 +9,6 @@ type Button = {
   url: string;
   isPrimary: boolean;
   buttonIcon: string;
-  buttonColor: string
 
 };
 class DownloadCard1 extends BaseDownload {
@@ -66,13 +65,7 @@ class DownloadCard1 extends BaseDownload {
               key: "buttonIcon",
               displayer: "In Button Icon",
               value: "ImAndroid",
-            },
-            {
-             type: "color",
-            key: "buttonColor",
-            displayer: "Button Color",
-            value: "LightGreen",
-          }
+            }
           ],
         },
         {
@@ -97,12 +90,7 @@ class DownloadCard1 extends BaseDownload {
               key: "buttonIcon",
               displayer: "In Button Icon",
               value: "GrApple",
-            },
-            { type: "color",
-            key: "buttonColor",
-            displayer: "Button Color",
-            value: "grey",
-          }
+            }
           ],
         },
         {
@@ -127,12 +115,6 @@ class DownloadCard1 extends BaseDownload {
               key: "buttonIcon",
               displayer: "In Button Icon",
               value: "FaWindows",
-            },
-            {
-              type: "color",
-              key: "buttonColor",
-              displayer: "Button Color",
-              value: "blue",
             }
           ],
         },
@@ -166,10 +148,9 @@ class DownloadCard1 extends BaseDownload {
                         }`}
                     >
                       <ComposerIcon name={item.buttonIcon} propsIcon={{
-                        className: this.decorateCSS("icon"),
-                        color: item.buttonColor,
+                        className: this.decorateCSS("icon")
                       }} />
-                      
+
 
                       {item.buttonText}
                     </button>
