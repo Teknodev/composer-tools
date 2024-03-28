@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 150px 50px;
+    padding: 50px 50px;
     justify-content: center;
     display: flex;
     .max-content {
@@ -11,7 +11,7 @@
             width: 100%;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center;
             gap: 20px;
         }
         .title{
@@ -64,6 +64,10 @@
                 flex-direction: row;
                 justify-content: center;
                 gap: 10px;
+
+                .icon{
+                    color: var(--composer-font-color-primary);
+                }
             }
         }
     }
