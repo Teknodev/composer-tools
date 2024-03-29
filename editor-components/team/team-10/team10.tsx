@@ -2,124 +2,359 @@ import * as React from "react";
 import styles from "./team10.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-interface Button {
-  buttonText: string;
-  url: string;
-}
-
-interface Card {
+interface TTeam {
   image: string;
-  name: string;
-  position: string;
+  subtitle: string;
+  title: string;
+  description: string;
+  value1title: string;
+  value2title: string;
+  value3title: string;
+  value1description: string;
+  value2description: string;
+  value3description: string;
+
+  icons: { icon: string; url: string }[];
 }
 
 class Team10 extends Team {
   constructor(props?: any) {
     super(props, styles);
 
-    let button: TypeUsableComponentProps = {
+
+
+    let twitter: TypeUsableComponentProps = {
       type: "object",
-      key: "button",
-      displayer: "Button",
+      key: "twitter",
+      displayer: "Twitter",
       value: [
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Learn more",
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FaTwitter",
         },
         {
           type: "page",
           key: "url",
-          displayer: "Button Link",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+
+    let facebook: TypeUsableComponentProps = {
+      type: "object",
+      key: "facebook",
+      displayer: "Platform",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FaFacebook",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+
+    let instagram: TypeUsableComponentProps = {
+      type: "object",
+      key: "instagram",
+      displayer: "Platform",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FaInstagram",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
           value: "",
         },
       ],
     };
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 8,
+    });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "NECROMANCERS",
+    });
+
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Who Are We",
+      value: "MANAGEMENT&STAFF",
     });
-
     this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "At our company, we are dedicated to helping businesses and individuals improve their online presence through expert web design.",
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [JSON.parse(JSON.stringify(button))],
-    });
+      type: "image",
+      key: "background-image",
+      displayer: "Background Image",
+      value: "https://necromancers.dan-fisher.dev/assets/img/page-heading-img-02.jpg"
+    })
 
     this.addProp({
       type: "array",
-      key: "team-members",
-      displayer: "Team Members",
+      key: "team",
+      displayer: "Team",
       value: [
         {
           type: "object",
-          key: "team-member",
+          key: "member",
           displayer: "Team Member",
           value: [
             {
               type: "image",
               key: "image",
               displayer: "Image",
+              value: "https://necromancers.dan-fisher.dev/assets/img/samples/staff-member-img-02.jpg",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "TEAM MANAGER",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "MARINA GONZALES",
+            },
+            {
+              type: "string",
+              key: "value1-title",
+              displayer: "Value 1 Title",
+              value: "AGE",
+            },
+            {
+              type: "string",
+              key: "value2-title",
+              displayer: "Value 2 Title",
+              value: "JOINED",
+            },
+            {
+              type: "string",
+              key: "value3-title",
+              displayer: "Value 3 Title",
+              value: "COUNTRY",
+            },
+            {
+              type: "string",
+              key: "value1-description",
+              displayer: "Value 1 Description",
+              value: "22 YEARS",
+            },
+            {
+              type: "string",
+              key: "value2-description",
+              displayer: "Value 2 Description",
+              value: "2016",
+            },
+            {
+              type: "string",
+              key: "value3-description",
+              displayer: "Value 3 Description",
+              value: "COSTA RİCA",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
               value:
-                "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Jason Covereye",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Co-Founder, CEO",
-            },
+              type: "array",
+              key: "icons",
+              displayer: "Icons",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+                JSON.parse(JSON.stringify(instagram)),
+              ],
+            }
           ],
         },
         {
           type: "object",
-          key: "team-member",
+          key: "member",
           displayer: "Team Member",
           value: [
             {
               type: "image",
               key: "image",
               displayer: "Image",
+              value: "https://necromancers.dan-fisher.dev/assets/img/samples/staff-member-img-02.jpg",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle ",
+              value: "TEAM MANAGER",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title ",
+              value: "MARINA GONZALES",
+            },
+            {
+              type: "string",
+              key: "value1-title",
+              displayer: "Value 1 Title",
+              value: "AGE",
+            },
+            {
+              type: "string",
+              key: "value2-title",
+              displayer: "Value 2 Title",
+              value: "JOINED",
+            },
+            {
+              type: "string",
+              key: "value3-title",
+              displayer: "Value 3 Title",
+              value: "COUNTRY",
+            },
+            {
+              type: "string",
+              key: "value1-description",
+              displayer: "Value 1 Description",
+              value: "22 YEARS",
+            },
+            {
+              type: "string",
+              key: "value2-description",
+              displayer: "Value 2 Description",
+              value: "2016",
+            },
+            {
+              type: "string",
+              key: "value3-description",
+              displayer: "Value 2 Description",
+              value: "COSTA RİCA",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
               value:
-                "https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Shantel Kiera",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "UI/UX Developer",
-            },
+              type: "array",
+              key: "icons",
+              displayer: "Icons",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+                JSON.parse(JSON.stringify(instagram)),
+              ],
+            }
           ],
         },
+        {
+          type: "object",
+          key: "member",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://necromancers.dan-fisher.dev/assets/img/samples/staff-member-img-02.jpg",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle ",
+              value: "TEAM MANAGER",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "MARINA GONZALES",
+            },
+            {
+              type: "string",
+              key: "value1-title",
+              displayer: "Value 1 Title",
+              value: "AGE",
+            },
+            {
+              type: "string",
+              key: "value2-title",
+              displayer: "Value 2 Title",
+              value: "JOINED",
+            },
+            {
+              type: "string",
+              key: "value3-title",
+              displayer: "Value 3 Title",
+              value: "COUNTRY",
+            },
+            {
+              type: "string",
+              key: "value1-description",
+              displayer: "Value 1 Description",
+              value: "22 YEARS",
+            },
+            {
+              type: "string",
+              key: "value2-description",
+              displayer: "Value 2 Description",
+              value: "2016",
+            },
+            {
+              type: "string",
+              key: "value3-description",
+              displayer: "Value 3 Description",
+              value: "COSTA RİCA",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Icons",
+              value: [
+                JSON.parse(JSON.stringify(twitter)),
+                JSON.parse(JSON.stringify(facebook)),
+                JSON.parse(JSON.stringify(instagram)),
+              ],
+            }
+          ],
+        }
       ],
     });
   }
+
+
 
   getName(): string {
     return "Team 10";
@@ -129,37 +364,78 @@ class Team10 extends Team {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("basic-card")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-              <div className={this.decorateCSS("button-group")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (item: Button, indexButtons: number) => {
-                    return (
-                      <ComposerLink key={indexButtons} path={item.url}>
-                        <button className={this.decorateCSS("button")}>
-                          {item.buttonText}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-            {this.castToObject<Card[]>("team-members").map(
-              (item: Card, indexTeamMembers: number) => {
-                return (
-                  <div key={indexTeamMembers} className={this.decorateCSS("other-card")}>
-                    <div className={this.decorateCSS("opacity")} />
-                    <img className={this.decorateCSS("image")} src={item.image} alt="" />
-                    <div className={this.decorateCSS("person-info")}>
-                      <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
-                      <p className={this.decorateCSS("item-position")}>{item.position}</p>
+          <div className={this.decorateCSS("left")}>
+            <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>
+            <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+            <img
+              className={this.decorateCSS("background-image")}
+              src={this.getPropValue("background-image")}
+            />
+          </div>
+          <div className={this.decorateCSS("right")}>
+            {this.castToObject<TTeam[]>("team").map(
+              (teamMember: any, index: number) => (
+                <div className={this.decorateCSS("team-member")}>
+                  <div className={this.decorateCSS("info")}>
+                    <div className={this.decorateCSS("icon-group")}>
+                      <div className={this.decorateCSS("icon-list-container")}>
+                        {teamMember.icons.map((icon: any, indexIcons: number) => {
+                          return (
+                            <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                              <ComposerLink path={icon.url}>
+
+                                <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                              </ComposerLink>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className={this.decorateCSS("subtitle")}>
+                      {teamMember.getPropValue("subtitle")}
+                    </div>
+                    <div className={this.decorateCSS("title")}>
+                      {teamMember.getPropValue("title")}
+                    </div>
+                    <div className={this.decorateCSS("meta-info")}>
+                      <div className={this.decorateCSS("meta")}>
+                        <div className={this.decorateCSS("label")}>
+                          {teamMember.getPropValue("value1-title")}
+                          <div className={this.decorateCSS("value")}>
+                            {teamMember.getPropValue("value1-description")}
+                          </div>
+                        </div>
+
+                      </div>
+                      <div className={this.decorateCSS("meta")}>
+                        <div className={this.decorateCSS("label")}>
+                          {teamMember.getPropValue("value2-title")}
+                          <div className={this.decorateCSS("value")}>
+                            {teamMember.getPropValue("value2-description")}
+                          </div>
+                        </div>
+
+                      </div>
+                      <div className={this.decorateCSS("meta")}>
+                        <div className={this.decorateCSS("label")}>
+                          {teamMember.getPropValue("value3-title")}
+                          <div className={this.decorateCSS("value")}>
+                            {teamMember.getPropValue("value3-description")}
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div className={this.decorateCSS("description")}>
+                      {teamMember.getPropValue("description")}
                     </div>
                   </div>
-                );
-              }
+                  <img
+                    className={this.decorateCSS("image")}
+                    src={teamMember.getPropValue("image")}
+                  />
+                </div>
+              )
             )}
           </div>
         </div>

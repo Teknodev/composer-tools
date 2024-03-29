@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 150px 50px;
+    padding: 50px 50px;
     .max-content {
         max-width: var(--composer-content-width);
         display: flex;
@@ -13,6 +13,10 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                @media only screen and (max-width: 768px) {
+                    text-align: center;
+                }
+
                 .title1 {
                     font-size: 4rem;
                     margin: 0px;
@@ -72,10 +76,14 @@
                     .icon-group {
                         display: flex;
                         gap: 10px;
-                        img {
-                            width: 20px;
-                            height: 20px;
-                            object-fit: cover;
+
+                        .icon{
+                            color: var(--composer-font-color-primary);
+                        }
+                       
+
+                        @media only screen and (max-width: 768px) {
+                            justify-content: center;
                         }
                     }
                 }
@@ -102,6 +110,8 @@
             .all-card {
                 width: unset !important;
                 flex: 1 1 !important;
+                text-align: center;
+                justify-content: center;
             }
         }
     }
