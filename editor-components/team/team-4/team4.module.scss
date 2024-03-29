@@ -38,6 +38,7 @@
                 border: 1px solid var(--composer-tertiary-color);
                 box-shadow: var(--composer-box-shadow);
                 border-radius: 6px;
+                gap: 10px;
                 .member-image {
                     max-height: 500px;
                     height: 100%;
@@ -54,23 +55,20 @@
                         color: var(--composer-font-color-primary);
                     }
                     .team-member-position {
-                        margin: 5px 0 0 0;
+                        margin: 10px 0 0 0;
                         color: var(--composer-primary-color);
                     }
                 }
-                .social-media-list {
+                .icon-group{
                     display: flex;
                     justify-content: center;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    .social-media-image {
-                        width: 30px;
-                        height: 30px;
-                        object-fit: cover;
-                        outline: 1px solid lightgray;
-                        padding: 3px;
-                        border-radius: 100%;
-                        margin: 5px;
+                    flex-direction: row;
+                    text-align: center;
+                    font-size: 2rem;
+                    gap: 5px;
+
+                    .icon{
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }
