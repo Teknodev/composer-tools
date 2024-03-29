@@ -3,13 +3,7 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials4.module.scss";
 
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-type Item = {
-  image: string;
-  title: string;
-  subtitle: string;
-  longtext: string;
 
-};
 
 class Testimonials4Page extends Testimonials {
   constructor(props?: any) {
@@ -191,6 +185,7 @@ class Testimonials4Page extends Testimonials {
     const settings = {
       dots: false,
       infinite: true,
+      arrows:false,
       speed: 700,
       autoplay: false,
       autoplaySpeed: 3000,
@@ -200,8 +195,6 @@ class Testimonials4Page extends Testimonials {
       }
 
     };
-
-
 
     return (
       <div className={this.decorateCSS("container")}>
