@@ -9,7 +9,7 @@ export type iComponent = {
   getName(): string;
   getProps(): TypeUsableComponentProps[];
   getPropValue(propName: string): TypeUsableComponentProps;
-  getExportedCSSClasses(): string[];
+  getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
@@ -110,11 +110,11 @@ export abstract class Component
     return prop?.type == "string" ? this._getPropValueAsElement(prop) : prop?.value;
   }
 
-  _getPropValueAsElement(prop:TypeUsableComponentProps) {    
+  _getPropValueAsElement(prop: TypeUsableComponentProps) {
     //@ts-ignore
     return <blinkpage prop-type={prop?.type}>{prop?.value}</blinkpage>;
   }
-  
+
   getExportedCSSClasses() {
     return this.styles;
   }
@@ -176,6 +176,7 @@ export abstract class Component
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
+      propValue.value = propValue.value.filter(value => value != null);
       propValue.value = propValue.value.map(
         (propValueItem: TypeUsableComponentProps) => {
           if (Array.isArray(propValueItem.value)) {
