@@ -1,7 +1,6 @@
 .container {
     width: 100%;
     padding: 50px;
-    height: 100vh;
 
     .max-content {
         max-width: var(--composer-content-width);
@@ -17,18 +16,18 @@
             width: 100%;
             display: flex;
             justify-content: space-evenly;
-            // column-gap: 100px;
             margin-top: 50px;
+            gap: 10px;
+            padding: 0 20px;
 
             .title-container {
-                width: 30%;
+                width: 40%;
                 text-align: center;
                 color: var(--composer-primary-color);
-                font-size: 2.3em;
+                font-size: 2.1em;
 
                 .title {
                     margin: 0;
-                    padding-right: 50px;
                     text-align: left;
                 }
             }
@@ -39,7 +38,6 @@
                 color: var(--composer-font-color-primary);
 
                 .description-inner {
-                    width: calc(100% - 150px);
                     text-align: justify;
                     font-size: 18px;
                     line-height: 1.7em;
@@ -51,27 +49,39 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-left: 100px;
             flex-wrap: wrap;
 
             .egg-item {
-                width: 20%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
 
                 .image-container {
                     width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     position: relative;
+                    max-width: 400px;
 
-                    img:first-of-type {
-                        width: calc(100% - 140px);
-                        position: absolute;
-
+                    .background-image,
+                    .member-image {
+                        width: 80%;
+                        aspect-ratio: 1;
+                    }
+                    .background-image{
+                        width: 70%;
                     }
 
-                    img:last-of-type {
-                        width: calc(100% - 80px);
+                    .member-image {
                         position: absolute;
-                        top: -54px;
-                        left: -25px;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                        top: -14.5%;
+                        z-index: 2;
                     }
                 }
 
@@ -80,10 +90,9 @@
                     justify-content: center;
                     position: relative;
                     column-gap: 12px;
-                    top: 270px;
-                    left: -70px;
                     color: var(--composer-secondary-color);
                     font-size: 2em;
+                    margin-top: 20px;
                 }
 
                 .members-container {
@@ -92,23 +101,19 @@
                     flex-direction: column;
                     align-items: center;
                     position: relative;
-                    top: 270px;
-                    left: -70px;
 
                     .name {
                         width: max-content;
                         color: var(--composer-primary-color);
-                        font-size: 2em;
+                        font-size: 1.8em;
                         margin: 0;
-                        margin-top: 10px;
                     }
 
                     .occupation {
                         width: max-content;
                         color: var(--composer-font-color-primary);
-                        font-size: 1.7em;
+                        font-size: 1.2em;
                         margin: 0;
-                        margin-top: 10px;
                     }
                 }
             }
@@ -130,7 +135,6 @@
             width: 100%;
 
             .container-top {
-
                 .title-container {
                     width: 50%;
 
@@ -150,125 +154,25 @@
                 }
             }
 
-            .container-bottom {
-                justify-content: center;
-                column-gap: 40px;
-                margin-right: 11px;
-                margin-left: 0;
-
-                .egg-item {
-
-                    .image-container {
-                        position: relative;
-
-                        img:first-of-type {
-                            width: calc(100% + 10px);
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                        }
-
-                        img:last-of-type {
-                            width: calc(100% + 50px);
-                            top: -36px;
-                            left: -18px;
-                        }
-                    }
-
-                    .icon-container {
-                        position: relative;
-                        top: 180px;
-                        left: 5px;
-                        font-size: 20px;
-                    }
-
-                    .members-container {
-                        position: relative;
-                        top: 180px;
-                        left: 5px;
-
-                        .name {
-                            font-size: 22px;
-                        }
-
-                        .occupation {
-                            font-size: 17px;
-                        }
-                    }
-                }
-            }
+           
         }
     }
 }
 
-@media only screen and (max-width : 400px) {
-    .container {
-        padding: 50px 20px;
-        height: calc(100vh + 2000px);
-
-        .max-content {
-            max-width: var(--composer-content-width);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-            width: 100%;
-            row-gap: 50px;
-
-            .container-top {
-                flex-direction: column;
-                align-items: center;
-                row-gap: 55px;
-
-                .title-container {
-                    width: 100%;
-                }
-
-                .description-container {
-                    width: 100%;
-                }
-            }
-
-            .container-bottom {
-                flex-direction: column;
-                align-items: center;
-                row-gap: 400px;
-                margin-right: 0;
-
-                .egg-item {
-                    width: 100%;
-
-                    .image-container {
-                        width: 100%;
-
-
-                        img:first-of-type {
-                            width: calc(100% - 50px);
-                            top: 50px;
-                            left: 25px;
-                        }
-
-                        img:last-of-type {
-                            width: 100%;
-                            top: 7px;
-                            left: 0;
-                        }
-                    }
-
-                    .icon-container {
-                        position: relative;
-                        top: 350px;
-                        left: 0;
-                    }
-
-                    .members-container {
-                        position: relative;
-                        top: 350px;
-                        left: 0;
-                    }
-                }
-            }
+@media only screen and (max-width: 700px) {
+    .container-top{
+        flex-direction: column;
+        .title-container,.description-container{
+            width: 100% !important;
         }
+    }
+    .egg-item{
+        width: 50% !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .egg-item{
+        width: 100% !important;
     }
 }

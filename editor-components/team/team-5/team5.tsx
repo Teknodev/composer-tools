@@ -7,9 +7,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 type eggs = {
   background: string;
   picture: string;
-  facebook: string;
-  instagram: string;
-  twitter: string;
+  socials: Array<{ icon: string, url: string }>;
   name: string;
   occupation: string;
 };
@@ -54,22 +52,69 @@ class Team5 extends Team {
               value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/team_6.png",
             },
             {
-              type: "icon",
-              key: "facebook",
-              displayer: "Facebook Icon",
-              value: "BiLogoFacebook",
-            },
-            {
-              type: "icon",
-              key: "instagram",
-              displayer: "Instagram Icon",
-              value: "BiLogoInstagram",
-            },
-            {
-              type: "icon",
-              key: "twitter",
-              displayer: "Twitter Icon",
-              value: "AiOutlineTwitter",
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoFacebook",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoInstagram",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "AiOutlineTwitter",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                }
+              ]
+
             },
             {
               type: "string",
@@ -103,22 +148,69 @@ class Team5 extends Team {
               value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/team_11.png",
             },
             {
-              type: "icon",
-              key: "facebook",
-              displayer: "Facebook Icon",
-              value: "BiLogoFacebook",
-            },
-            {
-              type: "icon",
-              key: "instagram",
-              displayer: "Instagram Icon",
-              value: "BiLogoInstagram",
-            },
-            {
-              type: "icon",
-              key: "twitter",
-              displayer: "Twitter Icon",
-              value: "AiOutlineTwitter",
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoFacebook",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoInstagram",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "AiOutlineTwitter",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                }
+              ]
+
             },
             {
               type: "string",
@@ -152,22 +244,69 @@ class Team5 extends Team {
               value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/team_8.png",
             },
             {
-              type: "icon",
-              key: "facebook",
-              displayer: "Facebook Icon",
-              value: "BiLogoFacebook",
-            },
-            {
-              type: "icon",
-              key: "instagram",
-              displayer: "Instagram Icon",
-              value: "BiLogoInstagram",
-            },
-            {
-              type: "icon",
-              key: "twitter",
-              displayer: "Twitter Icon",
-              value: "AiOutlineTwitter",
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoFacebook",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoInstagram",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "AiOutlineTwitter",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                }
+              ]
+
             },
             {
               type: "string",
@@ -201,22 +340,69 @@ class Team5 extends Team {
               value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/team_4.png",
             },
             {
-              type: "icon",
-              key: "facebook",
-              displayer: "Facebook Icon",
-              value: "BiLogoFacebook",
-            },
-            {
-              type: "icon",
-              key: "instagram",
-              displayer: "Instagram Icon",
-              value: "BiLogoInstagram",
-            },
-            {
-              type: "icon",
-              key: "twitter",
-              displayer: "Twitter Icon",
-              value: "AiOutlineTwitter",
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoFacebook",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoInstagram",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "AiOutlineTwitter",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ]
+                }
+              ]
+
             },
             {
               type: "string",
@@ -239,6 +425,7 @@ class Team5 extends Team {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
+      max: 4
     })
   }
 
@@ -260,20 +447,21 @@ class Team5 extends Team {
           </div>
           <div className={this.decorateCSS("container-bottom")}>
             {this.castToObject<eggs[]>("teamList").map((item: eggs, index: number) => (
-              <div key={index} className={this.decorateCSS("egg-item")}>
+              <div key={index} className={this.decorateCSS("egg-item")} style={{
+                width: 100 / this.getPropValue("itemCount") + "%",
+              }}>
                 <div className={this.decorateCSS("image-container")}>
-                  <img src={item.background} alt=""/>
-                  <img src={item.picture} alt="" />
+                  <img className={this.decorateCSS("background-image")} src={item.background} alt="" />
+                  <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />
                 </div>
                 <div className={this.decorateCSS("icon-container")}>
-                  <ComposerIcon name={item.facebook} />
-                  <ComposerIcon name={item.instagram} />
-                  <ComposerIcon name={item.twitter} />
-
+                  {item.socials.map((value, index) => <ComposerLink key={index} path={value.url}>
+                    <ComposerIcon name={value.icon} />
+                  </ComposerLink>)}
                 </div>
                 <div className={this.decorateCSS("members-container")}>
-                <h4 className={this.decorateCSS("name")}>{item.name}</h4>
-                <span className={this.decorateCSS("occupation")}>{item.occupation}</span>
+                  <h4 className={this.decorateCSS("name")}>{item.name}</h4>
+                  <span className={this.decorateCSS("occupation")}>{item.occupation}</span>
                 </div>
               </div>
             ))}
