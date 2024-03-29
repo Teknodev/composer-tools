@@ -39,7 +39,7 @@ class PricingTable1 extends BasePricingTable {
       type: "string",
       key: "pricing-table-title",
       displayer: "title",
-      value: "Tailored pricing plans ",
+      value: "Tailored pricing plans for everyone",
     });
     this.addProp({
       type: "array",
@@ -102,19 +102,7 @@ class PricingTable1 extends BasePricingTable {
         }
       ]
     })
-    this.addProp({
-      type: "string",
-      key: "pricing-table-title1",
-      displayer: "title1",
-      value: " for everyone",
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
-      max: 4
-    });
+
     this.addProp({
       type: "array",
       key: "pricingTableItem",
@@ -699,55 +687,59 @@ class PricingTable1 extends BasePricingTable {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("table")}>
-            <h3 className={this.decorateCSS("subtitle")}>{this.getPropValue("pricing-table-subtitle")}</h3>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</h1>
-            <h2 className={this.decorateCSS("title1")}>{this.getPropValue("pricing-table-title1")}</h2>
-            <div className={this.decorateCSS("item-div")}>
+            <div className={this.decorateCSS("top-titles")}>
+              <span className={this.decorateCSS("subtitle")}>{this.getPropValue("pricing-table-subtitle")}</span>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</h1>
+            </div>
+            <div className={this.decorateCSS("items")}>
               {this.castToObject<Pricing[]>("pricingTableItem").map(
                 (table: Pricing, index: number) => {
                   return (
-                    <div className={this.decorateCSS("card-item-count")} style={{
-                      width: 100 / this.getPropValue("itemCount") + "%",
-                    }}>
-                      <div key={index} className={this.decorateCSS("item-card")}>
-                        <div
-                          className={`${this.decorateCSS("popular-box")} ${table.popular_settings[1].value && this.decorateCSS("active")}`}>
-                          <h1 className={this.decorateCSS("popular-text")}>{table.popular_settings[0].value}</h1>
-                        </div>
-                        <div className={this.decorateCSS("card-upper")}>
-                          <h3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</h3>
-                          <h3 className={this.decorateCSS("card-title")}>{table.cardTitle}</h3>
-                          <ul className={this.decorateCSS("card-list")}>
-                            {table.cardList.map((listItem: any, index: number) => {
-                              return (
-                                <li key={index} className={this.decorateCSS("card-list-item")}>
-                                  <ComposerIcon name={listItem.buttonIcon} propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                    color: listItem.buttonColor
-                                  }} />
-                                  <span className={this.decorateCSS("list-item")}>
-                                    {listItem.cardListItem}</span>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                          <div className={`${this.decorateCSS("card-price")}  ${table.isActive && this.decorateCSS("active")}`}>
-                            <span className={this.decorateCSS("price")}>{table.cardPrice}</span>
-                            <div className={this.decorateCSS("card-duration")} >
-                              <span className={this.decorateCSS("Duration")}>{table.cardDuration}</span>
-                              <span className={this.decorateCSS("Duration1")}>{table.cardDuration1}</span>
+
+                    <div key={index} className={`${this.decorateCSS("item-card")} ${table.isActive && this.decorateCSS("active")}`}>
+                      <div
+                        className={`${this.decorateCSS("popular-box")} ${table.popular_settings[1].value && this.decorateCSS("active")}`}>
+                        <span className={this.decorateCSS("popular-text")}>{table.popular_settings[0].value}</span>
+                      </div>
+                      <h3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</h3>
+                      <h3 className={this.decorateCSS("card-title")}>{table.cardTitle}</h3>
+                      <div className={this.decorateCSS("card-list")}>
+                        {table.cardList.map((listItem: any, index: number) => {
+                          return (
+                            <div key={index} className={this.decorateCSS("card-list-item")}>
+                              <ComposerIcon name={listItem.buttonIcon} propsIcon={{
+                                className: this.decorateCSS("icon"),
+                                color: listItem.buttonColor
+                              }} />
+                              <span className={this.decorateCSS("list-item")}>
+                                {listItem.cardListItem}</span>
                             </div>
+                          );
+                        })}
+
+
+                      </div>
+
+                      <div className={`${this.decorateCSS("card-bottom")}  ${table.isActive && this.decorateCSS("active")}`}>
+                        <div className={`${this.decorateCSS("card-price")}  ${table.isActive && this.decorateCSS("active")}`}>
+                          <span className={this.decorateCSS("price")}>{table.cardPrice}</span>
+                          <div className={this.decorateCSS("card-duration")} >
+                            <span className={this.decorateCSS("Duration")}>{table.cardDuration}</span>
+                            <span className={this.decorateCSS("Duration1")}>{table.cardDuration1}</span>
                           </div>
 
                         </div>
-                        <div className={`${this.decorateCSS("card-bottom")}  ${table.isActive && this.decorateCSS("active")}`}>
+
+                        <button className={this.decorateCSS("card-button")}>
                           <ComposerLink path={table.cardButtonLink}>
-                            <button className={this.decorateCSS("card-button")}>{table.cardButtonText}</button>
+                            {table.cardButtonText}
                           </ComposerLink>
-                          <h2 className={this.decorateCSS("pricingTitle")}>{table.pricingTableTitle}</h2>
-                        </div>
+                        </button>
+
+                        <span className={this.decorateCSS("pricingTitle")}>{table.pricingTableTitle}</span>
                       </div>
                     </div>
+
                   );
                 }
               )}
@@ -756,9 +748,9 @@ class PricingTable1 extends BasePricingTable {
               {this.getPropValue("titles").map((title: any) =>
                 <div className={this.decorateCSS("title-bottom")}>
                   <ComposerIcon name={title.getPropValue("icon")}></ComposerIcon>
-                  <h2>
+                  <span className={this.decorateCSS("text")}>
                     {title.getPropValue("text")}
-                  </h2>
+                  </span>
                 </div>)
 
 

@@ -9,316 +9,186 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 100%;
 
     .table {
       display: flex;
       flex-direction: column;
       border-radius: 6px;
       padding: 20px;
-      box-shadow: 25px ;
-      box-shadow: var(--composer-box-shadow);
-      
-
-      .subtitle {
-        display: flex;
-        flex-direction: column;
-        background-color: var(--composer-tertiary-color);
-        text-align: center;
-        box-shadow: var(--composer-box-shadow);
-        width: max-content;
-        padding: 15px;
-        color: var(--composer-font-color-secondary);
-        border-radius: 25px;
-        margin-left: 650px;
+      width: 70%;
+      @media only screen and (max-width: 1000px) {
+        width: 90%;
+      }
+      @media only screen and (max-width: 1200px) {
+        width: 80%;
       }
 
-      .title {
-        color: var(--composer-primary-color);
-        text-align: center;
-        font-size: 50px;
-        margin: 10px;
-      }
-      .title1 {
-        color: var(--composer-primary-color);
-        text-align: center;
-        font-size: 50px;
-        margin-bottom: 20px;
-        margin-top: 0px;
-      }
-      .titles {
-        display: flex;
-        justify-content: space-between;
-        padding: 50px;
-        margin-left: 100px;
-        margin-right: 100px;
-        .title-bottom {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-          font-size: 15px;
-          font-weight: lighter;
-          color: var(--composer-font-color-primary);
+      @media only screen and (max-width: 800px) {
+        .items{
+          .item-card{
+            width: 100% !important;
+            flex: unset !important;
+            border: 1px solid var(--composer-primary-color);
+            border-radius: var(--composer-border-radius);
+            overflow: hidden;
+          }
         }
       }
-      .item-div {
+
+      .top-titles {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
+        text-align: center;
+        margin-bottom: 20px;
+
+        .title {
+          font-size: 3rem;
+          max-width: 450px;
+        }
+        .subtitle {
+          padding: 6px 20px;
+          border-radius: 25px;
+          background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
+          color: var(--composer-primary-color);
+          font-size: 1.2rem;
+        }
+      }
+
+      .items {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
+        width: 100%;
+
+
         .item-card {
           display: flex;
           flex-direction: column;
-          width: 500px;
-          box-shadow: 25px ;
-      box-shadow: var(--composer-box-shadow);
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+          flex: 1;
+
+          &.active {
+            box-shadow: var(--composer-box-shadow);
+          }
+
           .popular-box {
+            opacity: 0;
+            width: 100%;
             text-align: center;
-            color: var(--composer-primary-color);
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            color: white;
-            font-size: 8px;
+            background-image: linear-gradient(
+              to right,
+              var(--composer-font-color-primary),
+              var(--composer-secondary-color)
+            );
+
+            padding: 10px 0;
+
             &.active {
-              background-image: linear-gradient(
-                to right,
-                var(--composer-font-color-primary),
-                var(--composer-secondary-color)
-              );
-              .popular-text {
-                opacity: 1;
-              }
+              opacity: 1;
             }
             .popular-text {
-              opacity: 0;
+              color: var(--composer-font-color-secondary);
             }
           }
-          .card-upper {
+
+          .cardsubtitle {
+            background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
+            color: var(--composer-primary-color);
+            padding: 4px 15px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.75rem;
+          }
+
+          .card-title {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+          }
+
+          .card-list {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            background-color: transparent;
-
-            color: var(--composer-font-color-primary);
             width: 100%;
-            gap: 10px;
-            z-index: 10;
 
-            .card-price {
-              margin-top: 35px;
+            .card-list-item {
               display: flex;
               align-items: center;
-              gap: 20px;
-              justify-content: center;
-              margin-bottom: 0px;
+              gap: 6px;
+              padding: 15px 30px;
+              border-top: 1px solid var(--composer-tertiary-color);
 
-              .card-duration {
-                display: flex;
-                flex-direction: column;
-              }
-              &.active {
-                background: var(--composer-secondary-color);
-                color: var(--composer-font-color-secondary);
-              }
-              .price {
-                font-size: 3.5rem;
-                font-weight: 600;
-                letter-spacing: 1px;
-                margin-top: 15px;
-              }
-              .Duration {
-                font-size: 20px;
-                margin-top: 10px;
-              }
-              .Duration1 {
-                font-size: 20px;
-                display: flex;
-                margin-top: 5px;
-              }
-            }
-            .cardsubtitle {
-              color: var(--composer-font-color-secondary);
-              box-shadow: var(--composer-box-shadow);
-              margin: 30px 30px 15px 30px;
-              letter-spacing: 0.8px;
-              background-color: var(--composer-tertiary-color);
-              text-align: center;
-              border-radius: 25px;
-              padding: 15px;
-            }
-            .cardsubtitle1 {
-              font-size: 20px;
-              text-align: center;
-              margin-bottom: 0px;
-              color: var(--composer-primary-color);
-            }
-            .card-title {
-              font-size: 2.4rem;
-              letter-spacing: 0.8px;
-              text-align: center;
-              margin: 0;
-              color: var(--composer-primary-color);
-            }
-            .card-list {
-              font-size: 8px;
-              padding: 10px;
-
-              .card-list-item {
-                list-style: none;
-                font-size: 20px;
-                margin: 10px;
-                padding: 0 30px;
-                display: flex;
-                gap: 15px;
-                padding-bottom: 15px !important;
-                padding-top: 15px !important;
-                color: var(--composer-font-color-primary);
+              .icon {
+                min-width: 12px;
               }
             }
           }
+
           .card-bottom {
+            padding: 15px 30px;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-
-            padding: 40px;
-            color: var(--composer-font-color-secondary);
-            font-size: 10px;
-            cursor: pointer;
+            color: var(--composer-font-color-primary);
             &.active {
-              background: var(--composer-secondary-color);
+              background: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
               .card-button {
-                background: var(--composer-tertiary-color);
-                border: 1px solid var(--composer-tertiary-color);
-                color: var(--composer-font-color-secondary);
+                background: var(--composer-font-color-secondary);
+                color: var(--composer-primary-color);
               }
             }
-            .pricingTitle {
-              font-size: 20px;
-              margin-left: 140px;
-              font-weight: 80;
-              color: var(--composer-font-color-primary);
+
+            .card-price {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 6px;
+              .price {
+                font-size: 2.5rem;
+                font-weight: 600;
+              }
+              .card-duration {
+                font-size: 0.8rem;
+              }
             }
+
             .card-button {
+              padding: 15px 0;
               width: 100%;
-              height: 80px;
-              padding: 15px;
-              background: var(--composer-secondary-color);
+              border-radius: var(--composer-border-radius);
+              background: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
-              font-size: 1.5rem;
-              font-weight: 600;
-              border: var(--composer-tertiary-color);
-              cursor: pointer;
-              &:hover {
-                color: white;
-              }
+              border: none;
+            }
+
+            .pricingTitle {
+              margin-top: 15px;
+              font-size: 0.8rem;
             }
           }
         }
       }
-    }
-  }
-}
 
-@media only screen and (max-width: 800px) {
-  .container {
-    padding: 50px 20px;
-    .max-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .table {
-        .titles {
-          margin-left: 0px;
-          margin-right: 0px;
-          padding: 30px;
-          flex-wrap: wrap;
-          display: flex;
-          align-items: center !important;
-          justify-content: center !important;
-          gap: 100px;
-          padding-left: 50px;
-          padding-right: 0;
-        }
-        .subtitle {
-          display: flex;
-          margin-left: 260px;
-        }
-        .title {
-          margin-left: 30px;
-        }
-        .title1 {
-          margin-left: 30px;
-        }
-        .item-div {
-          display: flex;
-          flex-direction: column;
-          gap: 40px;
-          .card-item-count {
-            width: 130% !important;
-            margin-left: 100px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 412px) {
-  .container {
-    padding: 50px 20px;
-    .max-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .table {
+      .titles {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
-        padding: 0;
-        .titles{
-          gap:5px;
-          padding: 10px;
-          flex-wrap: wrap;
+        margin: 30px 0;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .title-bottom {
           display: flex;
-          align-items: center !important;
-          justify-content: center !important;
-        }
-        .subtitle {
-          display: flex;
-          margin: 0;
-        }
-        .title{
-          font-size: 2.813rem;
-          margin-left: 10px;
-        }
-        .title1{
-          font-size: 2.813rem;
-          margin-left: 15px;
-          margin-bottom: 10px;
-        }
-        .item-div {
-          display: flex;
-          flex-direction: column;
-          gap: 40px;
-          .card-item-count {
-            margin-top: 10px;
-            width: 100% !important;
-            margin: 0;           
-            .item-card{
-              width: 100%;
-              .card-bottom{
-                .pricingTitle{
-                  margin-left: 55px;
-                }
-              }
-              .card-list{
-                padding: 0px;
-              }
-              
-            }
-          }
+          align-items: center;
+          gap: 5px;
         }
       }
     }
