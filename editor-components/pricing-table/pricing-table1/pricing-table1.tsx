@@ -5,9 +5,6 @@ import styles from "./pricing-table1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Pricing = {
-  //title1: string;
-  //title: string;
-  //price: string;
   buttonIcon: string;
   buttonText: string;
   link: string;
