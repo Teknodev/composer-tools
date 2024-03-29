@@ -253,7 +253,8 @@ class Team7 extends Team {
             type: "number",
             key: "reverse",
             displayer: "Reverse Item Count",
-            value: 4
+            value: 4,
+            max: 5
         });
     }
 

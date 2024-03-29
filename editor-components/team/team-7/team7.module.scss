@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 50px 0;
+    padding: 50px 20px;
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -34,7 +34,7 @@
                 width: 100%;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                justify-content: center;
                 gap: 20px;
                 .card {
                     display: flex;
