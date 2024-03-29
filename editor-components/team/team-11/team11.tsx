@@ -1,11 +1,19 @@
 import * as React from "react";
 import styles from "./team11.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
+interface Card {
+  image: string,
+  name: string,
+  position: string
+  icons: { icon: string, url: string }[],
+  
+}
 class Team11 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
     let twitter: TypeUsableComponentProps = {
       type: "object",
       key: "twitter",
@@ -15,7 +23,7 @@ class Team11 extends Team {
           type: "image",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png",
+          value: "FaTwitter",
         },
         {
           type: "page",
@@ -25,17 +33,16 @@ class Team11 extends Team {
         },
       ],
     };
-
     let facebook: TypeUsableComponentProps = {
       type: "object",
       key: "facebook",
-      displayer: "Platform",
+      displayer: "Facebook",
       value: [
         {
           type: "image",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
+          value: "FaFacebook",
         },
         {
           type: "page",
@@ -48,13 +55,32 @@ class Team11 extends Team {
     let instagram: TypeUsableComponentProps = {
       type: "object",
       key: "instagram",
-      displayer: "Platform",
+      displayer: "Instagram",
       value: [
         {
           type: "image",
           key: "icon",
           displayer: "Platform Icon",
-          value: "https://cdn-icons-png.flaticon.com/512/3670/3670125.png",
+          value: "FaInstagram",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+    let youtube: TypeUsableComponentProps = {
+      type: "object",
+      key: "youtube",
+      displayer: "Youtube",
+      value: [
+        {
+          type: "image",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "TfiYoutube",
         },
         {
           type: "page",
@@ -70,7 +96,6 @@ class Team11 extends Team {
       displayer: "Title",
       value: "Our Team",
     });
-
     let card1: TypeUsableComponentProps = {
       type: "object",
       key: "card",
@@ -90,6 +115,7 @@ class Team11 extends Team {
             JSON.parse(JSON.stringify(twitter)),
             JSON.parse(JSON.stringify(facebook)),
             JSON.parse(JSON.stringify(instagram)),
+            JSON.parse(JSON.stringify(youtube)),
           ]
         },
         {
@@ -101,9 +127,10 @@ class Team11 extends Team {
         {
           type: "string",
           key: "position",
-          displayer: "Position",
-          value: "CEO",
+          displayer: "position",
+          value: "Defender",
         },
+
       ]
     };
     let card2: TypeUsableComponentProps = {
@@ -125,6 +152,7 @@ class Team11 extends Team {
             JSON.parse(JSON.stringify(twitter)),
             JSON.parse(JSON.stringify(facebook)),
             JSON.parse(JSON.stringify(instagram)),
+            JSON.parse(JSON.stringify(youtube)),
           ]
         },
         {
@@ -136,8 +164,8 @@ class Team11 extends Team {
         {
           type: "string",
           key: "position",
-          displayer: "Position",
-          value: "UI/UX Designer",
+          displayer: "position",
+          value: "Defender",
         },
       ]
     };
@@ -160,6 +188,7 @@ class Team11 extends Team {
             JSON.parse(JSON.stringify(twitter)),
             JSON.parse(JSON.stringify(facebook)),
             JSON.parse(JSON.stringify(instagram)),
+            JSON.parse(JSON.stringify(youtube)),
           ]
         },
         {
@@ -171,49 +200,74 @@ class Team11 extends Team {
         {
           type: "string",
           key: "position",
-          displayer: "Position",
-          value: "CEO",
+          displayer: "position",
+          value: "Defender",
         },
       ]
     };
-
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+      max:3
+    });
     this.addProp({
       type: "array",
-      key: "buttons",
-      displayer: "Buttons",
+      key: "team-members",
+      displayer: "Team Members",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Explore",
-            },
-
-            {
-              type: "page",
-              key: "url",
-              displayer: "Second Team",
-              value: "https://www.google.com/",
-            },
-          ],
-        },
+        JSON.parse(JSON.stringify(card1)),
+        JSON.parse(JSON.stringify(card2)),
+        JSON.parse(JSON.stringify(card3)),
       ],
     });
-
-
-
   }
-
   getName(): string {
     return "Team 11";
   }
-
-
+  render() {
+    return (
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("basic-page")}>
+            <div className={this.decorateCSS("up-page")}>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            </div>   
+            <div className={this.decorateCSS("down-page")}>
+              {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
+                return (
+                <div className={this.decorateCSS("item")} style={{ width: 90 / this.getPropValue("itemCount") + "%",}}>                                 
+                  <div key={indexCard} style={{ width: 100 / this.getPropValue("reverse") + "%" }} className={this.decorateCSS("card")}>                 
+                    <div className={this.decorateCSS("hover")}>
+                      <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
+                      <div className={this.decorateCSS("icons-bar")}>
+                        {item.icons.map((el: any, indexIcon: number) => {
+                          return (
+                            <ComposerLink path={el.url} key={indexIcon}>
+                              <ComposerIcon name={el.icon} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                            </ComposerLink>
+                          )
+                        })}
+                      </div>
+                    </div>
+                    <div className={this.decorateCSS("person-info")}>
+                      <div className={this.decorateCSS("text-group")}>
+                        <h1 className={this.decorateCSS("item-name")}>{item.name}</h1>
+                        <h2 className={this.decorateCSS("item-position")}>{item.position}</h2>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                )
+              })}
+     
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Team11;
