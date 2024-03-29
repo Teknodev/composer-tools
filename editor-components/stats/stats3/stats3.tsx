@@ -7,11 +7,9 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 
 type cards = {
-
   url: string,
   icon: string,
 };
-
 class Stats3Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
@@ -66,6 +64,7 @@ class Stats3Page extends BaseStats {
               key: "isPrimary",
               displayer: "Is primary",
               value: false,
+              max:3
             },
           ],
         },
@@ -156,20 +155,14 @@ class Stats3Page extends BaseStats {
               displayer: "Button Text",
               value: "Psycologist",
             }
-
           ],
         }
-
       ]
-
     });
   }
-
-
   getName(): string {
     return "Stats 3";
   }
-
   render() {
     const styling = {
       backgroundImage: `url('${this.getPropValue("backgroundImage")}')`,
@@ -180,7 +173,7 @@ class Stats3Page extends BaseStats {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats3-page")}>
             <div className={this.decorateCSS("bottom-child")}>
-              <div className={this.decorateCSS("title")}>
+              <div className={this.decorateCSS("text")}>
                 <h1 className={this.decorateCSS("subTitle")}>{this.getPropValue("subTitle")}</h1>
                 <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
                 <h1 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h1>
@@ -204,7 +197,6 @@ class Stats3Page extends BaseStats {
               </div>
               <div className={this.decorateCSS("card")} >
                 <img src={this.getPropValue("backgroundImage")} alt="image" className={this.decorateCSS("image")} />
-
                 <div className={this.decorateCSS("boxs")}>
                   {this.castToObject<any>("card-content").map(
                     (item: any, index: number) => {
@@ -213,8 +205,6 @@ class Stats3Page extends BaseStats {
                           <button
                             className={`${this.decorateCSS("cards")} ${item.isPrimary && this.decorateCSS("card-color")}`} >
                             <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-
-
                             <div className={this.decorateCSS("text")}> 
                             <span className={this.decorateCSS("button-text")}>
                              {item.text}
@@ -222,20 +212,14 @@ class Stats3Page extends BaseStats {
                              <span className={this.decorateCSS("button-text")}>
                              {item.buttonText}
                              </span>
-                            </div>
-
-
-                             
-
+                            </div>                         
                           </button>
                         </ComposerLink>
                       );
                     }
                   )}
-
                 </div>
               </div>
-
             </div>
           </div>
         </div>
