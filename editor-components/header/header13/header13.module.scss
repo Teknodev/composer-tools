@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    background: var(--composer-html-backgorund);
+    background: var(--composer-html-background);
 
     .max-content {
         max-width: var(--composer-content-width);
@@ -44,9 +44,10 @@
                     color: white;
                     font-size: 15px;
                     display: flex;
-                    gap: 30px;
                     letter-spacing: 2px;
-                 
+                    flex-wrap: wrap;
+                    row-gap: 15px;
+                    column-gap: 30px;
                 }
             }
         }
@@ -62,12 +63,9 @@
                     flex-direction: column-reverse;
                     align-items: center;
                     gap: 40px;
-                    .content-right {
-                        // position: absolute;
-                    }
                     .content-left{
                         font-size: 15px;
-                        // position: absolute;
+                        justify-content: center;
                     }
                 }
             }
