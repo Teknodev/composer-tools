@@ -246,6 +246,7 @@ class Header13 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      arrows:false,
     };
     return (
       <div className={this.decorateCSS("container")}>
