@@ -1,7 +1,12 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 .container {
+    display:flex;
     width: 100%;
     padding: 50px 50px;
+    background-color: #132628;
+    padding: 120px 0px 200px 0px;
+   
+    
     .max-content {
         max-width: var(--composer-content-width);
         display: flex;
@@ -14,13 +19,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             flex-direction: column;
             justify-content: center;
             align-items: center;
+           
             .up-page {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 40px;
+                margin-bottom: 40px;S
+                
                 .badge {
                     color: var(--composer-primary-color);
                     border-radius: 6px;
@@ -30,22 +37,34 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     display: inline-block;
                 }
                 .text-group {
+                    position: relative;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    align-items: center;
+                    align-items:start;
+
                     .title1 {
                         margin: 0;
-                        font-size: 3rem;
-                        color: var(--composer-primary-color);
+                        font-size: 1.5rem;
+                        color: white;
                     }
                     .title2 {
-                        font-size: 1.4rem;
-                        margin: 40px 0 20px;
-                        text-align: center;
-                        color: var(--composer-font-color-primary);
+                        font-size: 2.4rem;
+                        font-weight: 700;
+                        margin: 0 0 20px;
+                        color: #F2BCBA;
+                        max-width: 500px;
                     }
+                    .title3{
+                        position: absolute;
+                        z-index: 0;
+                        font-size: 15rem;
+                        //width: fit-content;
+                        color: #ffffff22;
+                        font-weight: 700;
+                        
+                    }   
                 }
                 .button-group {
                     width: 100%;
@@ -92,47 +111,41 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .down-page {
                 width: 100%;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
                 flex-wrap: wrap;
                 align-items: center;
                 gap: 20px;
-                .all-card {
-                    display: flex;
-                    justify-content: center;
-                    .card {
-                        width: 100%;
-                        height: max-content;
-                        min-width: 250px;
-                        min-height: 350px;
-                        display: flex;
-                        justify-content: space-between;
-                        flex-direction: column;
-                        align-items: center;
-                        box-shadow: var(--composer-box-shadow);
-                        border-radius: 6px;
-                        border: 2px solid var(--composer-tertiary-color);
-                        background: var(--composer-html-background);
-                        gap: 0.5rem;
-                        padding: 20px;
+                padding-top: 40px;
+                .all-card {    
+                    height: 350px;
                         .top {
-                            display: flex;
-                            flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            .image {
-                                width: 80px;
-                                height: 80px;
-                                border-radius: 50%;
+                            .image-wrapper {
+                                width: 100%;
+                                height: 350px;
                                 object-fit: cover;
+                               .image {
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                    transition-duration: .3s;
+                                    transition-property: transform;
+                               } 
+                            }
+                            &:hover {
+                                img {
+                                    transform: scale(1.1);
+                                }
                             }
                             .card-name {
-                                margin: 18px 0 12px;
-                                color: var(--composer-font-color-primary);
+                                margin: 0;
+                                color: white;
                             }
                             .position {
                                 margin: 0;
                                 color: var(--composer-primary-color);
-                                font-size: 1.3rem;
+                               
                             }
                         }
                         .card-description {
@@ -149,12 +162,25 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                                 height: 20px;
                             }
                         }
-                    }
+                    
                 }
             }
+            .separator{
+                border-top: 1px solid white;
+                margin: 5px auto;
+                width: 80%;
+            }
+            h5{
+                font-size: 1.9rem;
+                color: white;
+                margin-bottom: 10px;
+                text-align: center;
+            }
             h2 {
-                font-size: 1.8rem;
+                font-size: 1.2rem;
                 font-weight: bolder;
+                color: white;
+                text-align: center;
             }
             p {
                 font-size: 1.1rem;
@@ -165,8 +191,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 @media only screen and (max-width: 768px) {
     .container {
-        padding: 50px 20px;
+        padding: 120px 0px 200px 0px;
         .down-page {
+            flex-direction: column;
             justify-content: unset !important;
             .all-card {
                 width: unset !important;

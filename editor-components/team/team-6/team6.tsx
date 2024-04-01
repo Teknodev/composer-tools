@@ -263,32 +263,11 @@ class Team6 extends Team {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div></div>
-            <div className={this.decorateCSS("up-page")}>
+            <div className={this.decorateCSS("up-page")}> 
               <div className={this.decorateCSS("text-group")}>
+                <h1 className={this.decorateCSS("title3")}>{this.getPropValue("title1")}</h1>
                 <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
                 <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
-              </div>
-              <div className={this.decorateCSS("button-group")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (button: Button, indexButtons: number) => {
-                    return (
-                      <ComposerLink key={indexButtons} path={button.link}>
-                        <button
-                          className={
-                            this.decorateCSS("button") +
-                            " " +
-                            (button.isPrimary
-                              ? this.decorateCSS("primary")
-                              : this.decorateCSS("secondary"))
-                          }
-                        >
-                          {button.text}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
               </div>
             </div>
             <div className={this.decorateCSS("down-page")}>
@@ -302,31 +281,23 @@ class Team6 extends Team {
                         width: 90 / this.getPropValue("itemCount") + "%",
                       }}
                     >
-                      <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("top")}>
+                        <div className={this.decorateCSS("image-wrapper")}>
                           <img
-                            alt=""
                             className={this.decorateCSS("image")}
                             src={card.image}
+                            alt={card.name}
                           />
-                          <h2 className={this.decorateCSS("card-name")}>{card.name}</h2>
-                          <p className={this.decorateCSS("position")}>{card.position}</p>
+                          </div>
                         </div>
-                        <p className={this.decorateCSS("card-description")}>{card.description}</p>
-                        <div className={this.decorateCSS("icon-group")}>
-                          {card.platforms.map((item: any, indexPlatforms: number) => {
-                            return (
-                              <ComposerLink key={indexPlatforms} path={item.url}>
-                                <img src={item.icon} alt=""/>
-                              </ComposerLink>
-                            );
-                          })}
-                        </div>
-                      </div>
+                        <h5 className={this.decorateCSS("card-name")}>{card.name}</h5>
+                        <div className={this.decorateCSS("separator")}></div>
+                        <h2 className={this.decorateCSS("position")}>{card.position}</h2>
                     </div>
                   );
                 }
               )}
+              <div></div>
             </div>
           </div>
         </div>
