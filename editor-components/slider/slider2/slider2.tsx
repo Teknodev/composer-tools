@@ -1,8 +1,7 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider2.module.scss";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
@@ -155,6 +154,7 @@ class Slider2 extends BaseSlider {
     this.setComponentState("text_visibility", true)
   }
 
+  
   getName(): string {
     return "Slider 2";
   }
@@ -163,8 +163,9 @@ class Slider2 extends BaseSlider {
 
   render() {
 
+
     const settings = {
-      dots: false,
+      dots: true,
       infinite: true,
       speed: 1000,
       slidesToShow: window.innerWidth < 400 ? 1.2 : 3,
