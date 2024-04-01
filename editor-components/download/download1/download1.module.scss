@@ -9,7 +9,7 @@
         width: 100%;
     }
     .title1 {
-        @media screen and(max-width:360px) {
+        @media screen and (max-width: 360px) {
             font-size: 14px;
         }
         margin-top: 80px;
@@ -22,7 +22,7 @@
         font-size: 50px;
         margin: 0;
         color: var(--composer-primary-color);
-        @media screen and(max-width:360px) {
+        @media screen and (max-width: 360px) {
             font-size: 35px;
         }
     }
@@ -30,7 +30,7 @@
         font-size: 1.6rem;
         font-weight: 240;
         color: var(--composer-font-color-primary);
-        @media screen and(max-width:360px) {
+        @media screen and (max-width:360px) {
             padding: 10px;
         }
     }
@@ -63,10 +63,10 @@
             background-color: var(--composer-secondary-color);
             color: var(--composer-font-color-secondary);
             .icon {
-                @media screen and(max-width:360px) {
+                @media screen and (max-width:360px) {
                     transform: scale(1);
                 }
-                @media screen and(max-width:800px) {
+                @media screen and (max-width:800px) {
                 }
             }
         }

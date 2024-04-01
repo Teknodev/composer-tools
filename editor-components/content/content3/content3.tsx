@@ -1,7 +1,6 @@
 import * as React from "react";
-import { BaseContent, Team } from "../../EditorComponent";
+import { BaseContent } from "../../EditorComponent";
 import styles from "./content3.module.scss";
-import { Content } from "../../../../components/section-card/section-card";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
