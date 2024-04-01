@@ -59,6 +59,28 @@ class Team6 extends Team {
       ],
     };
     super(props, styles);
+   
+    this.addProp({
+      type: "string",
+      key: "title1",
+      displayer: "Title-1",
+      value: "Our Team",
+    });
+
+    this.addProp({
+      type:  "string",
+      key: "title2",
+      displayer: "Title-2",
+      value: "Our Team"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "We work in collaboration, harmony, and trust to achieve our goals.",
+    });
+
     this.addProp({
       type: "array",
       key: "items",
@@ -192,60 +214,7 @@ class Team6 extends Team {
         },
       ],
     });
-
-    this.addProp({
-      type: "string",
-      key: "title1",
-      displayer: "Title-1",
-      value: "Our Team",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title2",
-      displayer: "Title-3",
-      value: "We work in collaboration, harmony, and trust to achieve our goals.",
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Open Positions",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: true,
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "Team",
-    });
+    
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -265,9 +234,9 @@ class Team6 extends Team {
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("up-page")}> 
               <div className={this.decorateCSS("text-group")}>
-                <h1 className={this.decorateCSS("title3")}>{this.getPropValue("title1")}</h1>
+                <h1 className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</h1>
                 <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
-                <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
+                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>  
               </div>
             </div>
             <div className={this.decorateCSS("down-page")}>
@@ -278,7 +247,7 @@ class Team6 extends Team {
                       key={indexItems}
                       className={this.decorateCSS("all-card")}
                       style={{
-                        width: 90 / this.getPropValue("itemCount") + "%",
+                        width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`,
                       }}
                     >
                         <div className={this.decorateCSS("top")}>
@@ -297,7 +266,6 @@ class Team6 extends Team {
                   );
                 }
               )}
-              <div></div>
             </div>
           </div>
         </div>

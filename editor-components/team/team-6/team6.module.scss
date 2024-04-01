@@ -2,10 +2,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 .container {
     display:flex;
     width: 100%;
-    padding: 50px 50px;
-    background-color: #132628;
-    padding: 120px 0px 200px 0px;
-   
+    padding: 50px;
+    background-color: var(--composer-html-background);
     
     .max-content {
         max-width: var(--composer-content-width);
@@ -13,6 +11,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         justify-content: center;
         align-items: center;
         margin: auto;
+        width: 100%;
         .page {
             width: 100%;
             display: flex;
@@ -26,16 +25,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 40px;S
+                margin-bottom: 40px;
                 
-                .badge {
-                    color: var(--composer-primary-color);
-                    border-radius: 6px;
-                    font-size: 0.8rem;
-                    background: rgb(244, 244, 244);
-                    padding: 3px 5px;
-                    display: inline-block;
-                }
                 .text-group {
                     position: relative;
                     width: 100%;
@@ -47,77 +38,35 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     .title1 {
                         margin: 0;
                         font-size: 1.5rem;
-                        color: white;
+                        color: var(--composer-primary-color);
+                        z-index: 1;
                     }
-                    .title2 {
-                        font-size: 2.4rem;
-                        font-weight: 700;
-                        margin: 0 0 20px;
-                        color: #F2BCBA;
-                        max-width: 500px;
-                    }
-                    .title3{
+                    .title2{
                         position: absolute;
                         z-index: 0;
                         font-size: 15rem;
-                        //width: fit-content;
-                        color: #ffffff22;
+                        color:color-mix(in srgb, var(--composer-primary-color), #fff 80%);
+                        font-weight: 700;   
+                    }  
+                    .description {
+                        font-size: 2.4rem;
                         font-weight: 700;
-                        
-                    }   
-                }
-                .button-group {
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    gap: 1rem;
-                    .button {
-                        border: 0px solid;
-                        border-radius: 6px;
-                        color: #fff;
-                        cursor: pointer;
-                        padding: 10px;
-                        background: transparent;
-                        transition: $transition;
-                        opacity: 0.9;
-                        &:hover {
-                            opacity: 1;
-                        }
-                    }
-                    .primary {
-                        background-color: var(--composer-secondary-color);
-                        border: 1px solid transparent;
-                        &:hover {
-                            background-color: transparent;
-                            color: var(--composer-secondary-color);
-                            border: 1px solid var(--composer-secondary-color);
-                        }
-                    }
-                    .secondary {
-                        background-color: var(--composer-primary-color);
-                        border: 1px solid transparent;
-                        &:hover {
-                            background-color: transparent;
-                            color: var(--composer-primary-color);
-                            border: 1px solid var(--composer-primary-color);
-                        }
+                        margin: 0 0 20px;
+                        color: var(--composer-primary-color);
+                        max-width: 500px;
+                        z-index: 1;
                     }
                 }
             }
             .down-page {
                 width: 100%;
                 display: flex;
-                justify-content: flex-start;
+                justify-content: center;
                 flex-wrap: wrap;
                 align-items: center;
                 gap: 20px;
                 padding-top: 40px;
                 .all-card {    
-                    height: 350px;
                         .top {
                             justify-content: center;
                             align-items: center;
@@ -131,6 +80,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                                     object-fit: cover;
                                     transition-duration: .3s;
                                     transition-property: transform;
+                                    height: 350px;
                                } 
                             }
                             &:hover {
@@ -140,11 +90,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                             }
                             .card-name {
                                 margin: 0;
-                                color: white;
+                                color: var(--composer-font-color-primary);
                             }
                             .position {
                                 margin: 0;
-                                color: var(--composer-primary-color);
+                                color: var(--composer-font-color-primary);
                                
                             }
                         }
@@ -162,24 +112,23 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                                 height: 20px;
                             }
                         }
-                    
                 }
             }
             .separator{
-                border-top: 1px solid white;
+                border-top: 1px solid var(--composer-font-color-primary);
                 margin: 5px auto;
                 width: 80%;
             }
             h5{
                 font-size: 1.9rem;
-                color: white;
+                color:  var(--composer-font-color-primary);
                 margin-bottom: 10px;
                 text-align: center;
             }
             h2 {
                 font-size: 1.2rem;
                 font-weight: bolder;
-                color: white;
+                color:  var(--composer-font-color-primary);
                 text-align: center;
             }
             p {
@@ -189,16 +138,71 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 884px) {
+    .container{
+            .up-page {
+                .text-group {
+                    .title1, .description {
+                        margin-left: 10px !important;
+                    }
+                    .title2 {
+                        font-size: 12rem !important; 
+                    }  
+                }
+            }
+            .down-page{
+                width: 100%;
+                display: flex;
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+                align-items: center;
+                padding-top: 20px;
+                align-items: center;
+
+                .all-card{
+                    width: 40% !important;
+                }
+            }
+        }  
+}
+
+@media only screen and (max-width: 585px) {
     .container {
-        padding: 120px 0px 200px 0px;
+        padding: 120px 0px 200px 0px !important;
+        .up-page {
+            .text-group {
+                .title1 {
+                    margin-left: 10px !important;
+                    font-size: 1.5rem !important;
+                }
+                .title2 {
+                    margin-left: 10px !important;
+                    font-size: 9rem !important; 
+                }
+                .description{
+                    font-size: 2rem !important;
+                    margin: 0 0 20px 10px !important;        
+                }   
+            }
+        }
         .down-page {
-            flex-direction: column;
-            justify-content: unset !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 20px !important;
             .all-card {
                 width: unset !important;
                 flex: 1 1;
                 min-width: 250px !important;
+                .top {
+                    justify-content: center;
+                    align-items: center;
+                    .image-wrapper {
+                        width: 250px !important;
+                        height: 350px;
+                        object-fit: cover;
+                    }
+                }
             }
         }
     }
