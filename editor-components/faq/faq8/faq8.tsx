@@ -741,7 +741,7 @@ class FaqButton extends BaseFAQ {
                           <p
                             className={
                               this.getComponentState("activeIndex2") ===
-                              questionIndex && this.decorateCSS("active")
+                              questionIndex ? this.decorateCSS("active") : ""
                             }
                           >
                             {question.qq}
