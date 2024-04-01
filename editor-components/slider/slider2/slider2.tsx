@@ -165,7 +165,7 @@ class Slider2 extends BaseSlider {
 
 
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 1000,
       slidesToShow: window.innerWidth < 400 ? 1.2 : 3,
