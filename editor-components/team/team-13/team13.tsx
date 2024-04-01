@@ -4,10 +4,6 @@ import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Icons={
-  icon: string;
-  url: string;
-}
 interface Card {
   image: string;
   name: string;
@@ -28,7 +24,7 @@ class Team13 extends Team {
       displayer: "Twitter",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
           value: "BsTwitterX",
@@ -48,7 +44,7 @@ class Team13 extends Team {
       displayer: "Platform",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
           value: "IoLogoFacebook",
@@ -68,7 +64,7 @@ class Team13 extends Team {
       displayer: "Platform",
       value: [
         {
-          type: "image",
+          type: "icon",
           key: "icon",
           displayer: "Platform Icon",
           value: "BsInstagram",
@@ -187,11 +183,6 @@ class Team13 extends Team {
                               <ComposerIcon name={icon.icon} propsIcon={{
                                 className:this.decorateCSS("icon")
                               }} />
-                              {/* <img
-                                className={this.decorateCSS("icon")}
-                                src={icon.icon}
-                                alt="social media icons"
-                              /> */}
                             </ComposerLink>
                           );
                         })}
@@ -200,7 +191,6 @@ class Team13 extends Team {
                   </div>
                   <div className={this.decorateCSS("right-container")}>
                     <div className={this.decorateCSS("text-group")}>
-                      {/* <p className={this.decorateCSS("badge")}>{item.badge}</p> */}
                       <h1 className={this.decorateCSS("name")}>{item.name}</h1>
                       <h1 className={this.decorateCSS("surname")}>
                         {item.surname}
