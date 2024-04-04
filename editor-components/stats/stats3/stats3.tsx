@@ -104,7 +104,7 @@ class Stats3Page extends BaseStats {
               key: "buttonText",
               displayer: "Button Text",
               value: "Years Experience",
-            }
+            },         
           ],
         },
         {
@@ -129,7 +129,7 @@ class Stats3Page extends BaseStats {
               key: "buttonText",
               displayer: "Button Text",
               value: "Happy Clients",
-            }
+            }, 
           ],
         },
         {
@@ -154,19 +154,24 @@ class Stats3Page extends BaseStats {
               key: "buttonText",
               displayer: "Button Text",
               value: "Psycologist",
-            }
+            },       
           ],
         }
       ]
+    });
+    this.addProp({
+      type: "boolean",
+      key: "is_box_visible",
+      displayer: "is box visible",
+      value: true,
+        
     });
   }
   getName(): string {
     return "Stats 3";
   }
   render() {
-    const styling = {
-      backgroundImage: `url('${this.getPropValue("backgroundImage")}')`,
-    };
+   
     return (
       <div
         className={this.decorateCSS("container")}>
@@ -196,14 +201,14 @@ class Stats3Page extends BaseStats {
                 )}
               </div>
               <div className={this.decorateCSS("card")} >
-                <img src={this.getPropValue("backgroundImage")} alt="image" className={this.decorateCSS("image")} />
-                <div className={this.decorateCSS("boxs")}>
+                <img src={this.getPropValue("backgroundImage")} alt="image" className={this.decorateCSS("image")} />              
+                {this.getPropValue("is_box_visible") && <div className={this.decorateCSS("boxs")}> 
                   {this.castToObject<any>("card-content").map(
                     (item: any, index: number) => {
                       return (
                         <ComposerLink key={`stats-${index}`} path={item.url}>
                           <button
-                            className={`${this.decorateCSS("cards")} ${item.isPrimary && this.decorateCSS("card-color")}`} >
+                            >
                             <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                             <div className={this.decorateCSS("text")}> 
                             <span className={this.decorateCSS("button-text")}>
@@ -212,13 +217,15 @@ class Stats3Page extends BaseStats {
                              <span className={this.decorateCSS("button-text")}>
                              {item.buttonText}
                              </span>
-                            </div>                         
+                            </div>                                                    
                           </button>
                         </ComposerLink>
+                        
                       );
                     }
                   )}
-                </div>
+                  
+                </div>}
               </div>
             </div>
           </div>
