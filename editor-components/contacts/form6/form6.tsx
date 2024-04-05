@@ -9,44 +9,118 @@ class Form6 extends BaseContacts {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      displayer: "Title",
-      value: "Contact Us",
-      key: "title",
-    });
-    this.addProp({
       type: "image",
-      displayer: "Image",
-      value:"https://img.freepik.com/free-vector/organic-flat-man-customer-support_23-2148893295.jpg?w=1380&t=st=1676887003~exp=1676887603~hmac=abdac364434d1a9dd93276315c3c25c0ac0383484d75a4686e899022d1de8312",
       key: "image",
+      displayer: "Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec6a8c057bdf002c2aa09a?alt=media&timestamp=1693215349696",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "CONTACT ME"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Feel free to get in touch with me via the form below or by emailing me directly at hello@test.com"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "location",
+      displayer: "Location Title",
+      value: "CURRENTLY"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "locationDetails",
+      displayer: "Location Details",
+      value: "Dubai, UNITED ARAB EMIRATES. \n Able to travel for commissions and projects"
     });
 
     this.addProp({
       type: "string",
       key: "name",
-      displayer: "1th Placeholder",
-      value: "Name",
+      displayer: "name-text",
+      value: "Name"
     });
 
     this.addProp({
       type: "string",
-      key: "email",
-      displayer: "2th Placeholder",
-      value: "E-mail",
+      key: "firstName",
+      displayer: "1st Placeholder",
+      value: "First Name"
     });
 
+    this.addProp({
+      type: "string",
+      key: "lastName",
+      displayer: "2nd Placeholder",
+      value: "Last Name"
+    });
+
+    this.addProp({
+      type:"array",
+      key:"items",
+      displayer:"Items",
+      value:[
+        {
+          type:"object",
+          key:"item",
+          displayer:"Item",
+          value:[    
+            {
+              type: "string",
+              key: "text",
+              displayer: "text",
+              value: "E-mail"
+            },
+            {
+              type: "string",
+              key: "text_info",
+              displayer: "Placeholder",
+              value: "e-mail"
+            },
+            
+          ]},
+          {
+            type:"object",
+            key:"item",
+            displayer:"Item",
+            value:[    
+              {
+                type: "string",
+                key: "text",
+                displayer: "text",
+                value: "Subject"
+              },
+              {
+                type: "string",
+                key: "text_info",
+                displayer: "Placeholder",
+                value: "e-mail"
+              },
+              
+            ]}
+        ]
+    });
     this.addProp({
       type: "string",
       key: "message",
-      displayer: "3th Placeholder",
-      value: "Message",
+      displayer: "message-text",
+      value: "Message"
     });
 
     this.addProp({
       type: "string",
       key: "button_text",
       displayer: "Button Text",
-      value: "Submit",
+      value: "Send Email",
     });
   }
 
@@ -62,75 +136,88 @@ class Form6 extends BaseContacts {
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("image-container")}
-            
-          >
-            <img
-              className={this.decorateCSS("image")}
-              src={this.getPropValue("image")}
-              
-              alt="contact image"
-            />
+          <div className={this.decorateCSS("top-container")} >
+            <div className={this.decorateCSS("contact")} > 
+              <h1 className={this.decorateCSS("title")}> {this.getPropValue("title")} </h1>
+              <h2 className={this.decorateCSS("description")}> {this.getPropValue("description")} </h2>
+            </div>
+            <div className={this.decorateCSS("address")}> 
+              <h1 className={this.decorateCSS("title")}> {this.getPropValue("location")} </h1>
+              <h3 className={this.decorateCSS("description")}> {this.getPropValue("locationDetails")} </h3>
+            </div>  
           </div>
-          <div
-            className={this.decorateCSS("form-container")}
-            
-          >
-            <h1 className={this.decorateCSS("title")} >
-              {this.getPropValue("title")}
-            </h1>
-            <Formik
-              initialValues={{ name: "", email: "", message: "" }}
+          <div className={this.decorateCSS("lower-container")} >
+          <div className={this.decorateCSS("form-container")} >
+            <Formik 
+              initialValues={{ name: "", firstName: "", lastName: "", text:"", message: "" }}
               validationSchema={this.validationSchema}
               onSubmit={(data, { resetForm }) => {
-                this.insertForm("Contact Us", data);
+                this.insertForm("Contact Me", data);
                 resetForm();
               }}
             >
               {({ handleChange, values }) => (
                 <Form className={this.decorateCSS("form")}>
+                  <h3 className={this.decorateCSS("name")}>{this.getPropValue("name")}</h3>
+                  <div className={this.decorateCSS("div")}>
                   <input
-                    placeholder={this.getPropValue("name")}
-                    type="text"
-                    name="name"
-                    value={values.name}
-                    onChange={handleChange}
-                    className={this.decorateCSS("input")}
-                    
+                      placeholder={this.getPropValue("firstName")}
+                      type="text"
+                      name="firstName"
+                      value={values.firstName}
+                      onChange={handleChange}
+                      className={this.decorateCSS("input")}
                   />
                   <ErrorMessage
-                    className={this.decorateCSS("error-message")}
-                    name="name"
-                    component={"span"}
+                      className={this.decorateCSS("error-message")}
+                      name="firstName"
+                      component={"span"}
                   />
                   <input
-                    placeholder={this.getPropValue("email")}
-                    type="text"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    className={this.decorateCSS("input")}
-                    
+                      placeholder={this.getPropValue("lastName")}
+                      type="text"
+                      name="lastName"
+                      value={values.lastName}
+                      onChange={handleChange}
+                      className={this.decorateCSS("input")}
                   />
                   <ErrorMessage
-                    className={this.decorateCSS("error-message")}
-                    name="email"
-                    component={"span"}
+                      className={this.decorateCSS("error-message")}
+                      name="lastName"
+                      component={"span"}
                   />
-                  <input
-                    placeholder={this.getPropValue("message")}
-                    type="text"
-                    name="message"
-                    value={values.message}
-                    onChange={handleChange}
-                    className={this.decorateCSS("input")}
-                    
+                  </div>    
+                  <div className={this.decorateCSS("items-box")}>
+                    {this.getPropValue("items").map((item: any, index: number) =>
+                    <div className={this.decorateCSS("item")}>
+                    <h3 className={this.decorateCSS("name")}>{item.getPropValue("text")}</h3>
+                    <input
+                      placeholder={this.getPropValue("text_info")}
+                      type="text"
+                      name="text_info"
+                      value={values.text}
+                      onChange={handleChange}
+                      className={this.decorateCSS("input")} 
+                    />
+                    <ErrorMessage
+                      className={this.decorateCSS("error-message")}
+                      name="email-info"
+                      component={"span"}
+                    />
+                    </div>
+                    )}
+                  </div>
+                  <h3 className={this.decorateCSS("name")}>{this.getPropValue("message")}</h3>
+                  <textarea
+                        placeholder={this.getPropValue("message")}
+                        id="text"
+                        name="message"
+                        value={values.message}
+                        onChange={handleChange}
+                        className={this.decorateCSS("input")}
+                        rows={9}
                   />
                   <ErrorMessage
                     className={this.decorateCSS("error-message")}
@@ -147,6 +234,15 @@ class Form6 extends BaseContacts {
                 </Form>
               )}
             </Formik>
+       
+            </div>
+            <div className={this.decorateCSS("image-container")}>
+              <img
+                  className={this.decorateCSS("image")}
+                  src={this.getPropValue("image")} 
+                  alt="contact image"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -1,80 +1,169 @@
 .container {
+    background-color: var(--composer-html-background);
     width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
+    padding: 60px 0;
+}
+
+.max-content {
+    margin: auto;
+    max-width: var(--composer-content-width);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.top-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 86%;
+    height: fit-content;
+    gap: 50px;
+    .contact{
+        width: 63%;
+    }
+    .address{
         display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: auto;
-        .image-container {
-            background-size: cover;
-            .image {
-                width: 300px;
-                height: 300px;
-                object-fit: cover;
-            }
-        }
-        .form-container {
-            transition: 1s;
-            display: flex;
-            flex-direction: column;
-            width: 40%;
-            height: fit-content;
-            gap: 20px;
-            .title {
-                color: var(--composer-primary-color);
-                margin: 0;
-            }
-            .form {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                .input {
-                    padding: 16px 10px;
-                    border-radius: var(--radius-medium);
-                    border: 1px solid #f6f6f6;
-                    background: #fafafa;
-                    &:focus {
-                        outline-color: var(--composer-primary-color);
-                    }
-                }
-                .error-message {
-                    color: red;
-                    font-size: 0.6rem;
-                    margin-top: 3px;
-                }
-                .submit-button {
-                    height: 50px;
-                    background-color: var(--composer-secondary-color);
-                    border-radius: 10px;
-                    color: #fff;
-                    border: none;
-                    cursor: pointer;
-                    transition: 0.1s;
-                    width: 100%;
-                    border: 1px solid var(--composer-secondary-color);
-                    &:active {
-                        background: var(--composer-secondary-color);
-                        color: var(--composer-tertiary-color);
-                    }
-                    &:hover {
-                        background-color: transparent;
-                        color: var(--composer-secondary-color);
-                        border: 1px solid var(--composer-secondary-color);
-                    }
-                }
-            }
+        align-items: flex-end;
+        flex-direction: column;
+        width: 33%;
+        text-align: end;
+    }
+}
+
+.lower-container {
+    margin-top: 50px;
+    transition: 1s;
+    display: flex;
+    flex-direction: row;
+    width: 86%;
+    height: fit-content;
+    gap: 50px;
+    .form-container{
+        margin-top: -50px;
+        width: 65%;
+    }
+    .image-container {
+        background-size: cover;
+        width: 35%;
+        .image {
+            object-fit: cover;
+            width: 100%;
+            height: 557px;
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .image-container {
-        display: none;
+.title {
+    margin: 0;
+    color: var(--composer-primary-color);
+    word-wrap: break-word;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.description{
+    color: var(--composer-font-color-primary);
+    size: 1.5rem;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.name {
+    color: var(--composer-font-color-primary);
+}
+
+.input {
+
+    padding: 16px 10px;
+    border: 1px solid var(--composer-tertiary-color);
+    background: color-mix(in srgb, var(--composer-html-background), #fff 80%);
+    width: 100%;
+}
+
+.input:focus {
+    outline-color: var(--composer-primary-color);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.6rem;
+    margin-top: 3px;
+}
+
+.submit-button {
+    margin-top: 20px;
+    height: 50px;
+    background-color: var(--composer-secondary-color);
+    border-radius: 0;
+    color: var(--composer-font-color-secondary);
+    border: none;
+    cursor: pointer;
+    transition: 0.1s;
+    width: 100%;
+    border: 1px solid var(--composer-secondary-color);
+}
+
+.submit-button:hover {
+    background-color: transparent;
+    color: var(--composer-font-color-primary);
+    border: 1px solid var(--composer-secondary-color);
+}
+
+.div {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.h2{
+    font-size: 2rem;
+}
+
+@media only screen and (max-width: 900px) {
+    .contact{
+        width: 60% !important;
     }
-    .form-container {
-        padding: 0 20px;
+}
+
+@media only screen and (max-width: 550px) {
+    .title{
+        font-size: 1.5rem;
+    }
+    .contact{
+        width: 50% !important;
+    }
+    .lower-container{
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        margin-top: 25px !important
+    }
+    .image-container{
         width: 100% !important;
+    }
+    .image{
+        object-fit: cover;
+        width: 100% !important;
+        height: 557px;
+    }
+    .div{
+        display: flex;
+        flex-direction: column !important;
+    }
+    .input{
+        width: 155% !important;
+    }
+    .submit-button {
+        width: 155%;
+    }
+    .form{
+        margin-top: 15px;
     }
 }
