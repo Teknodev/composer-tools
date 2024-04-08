@@ -81,7 +81,7 @@
 }
 
 .input {
-
+    resize: vertical;
     padding: 16px 10px;
     border: 1px solid var(--composer-tertiary-color);
     background: color-mix(in srgb, var(--composer-html-background), #fff 80%);
