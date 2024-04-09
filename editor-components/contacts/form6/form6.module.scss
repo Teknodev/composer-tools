@@ -88,6 +88,13 @@
         .label {
             color: var(--composer-font-color-primary);
             margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            .require-star {
+                color: var(--composer-tertiary-color);
+            }
         }
         .inputs {
             display: flex;

@@ -443,6 +443,10 @@ class Form6 extends BaseContacts {
       return newObj;
     }
 
+    function isRequiredInput(inputItem: TypeUsableComponentProps): boolean {
+      return inputItem.getPropValue("inputs").some((input: TypeUsableComponentProps) => input.getPropValue("is_required"))
+    }
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -475,7 +479,7 @@ class Form6 extends BaseContacts {
                   <Form className={this.decorateCSS("form")}>
                     {inputItems.map((inputItem: TypeUsableComponentProps, inputItemIndex: number) =>
                       <div className={this.decorateCSS("input-container")}>
-                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label")}</span>
+                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label")} <p className={this.decorateCSS("require-star")}>{isRequiredInput(inputItem) && "*"}</p></span>
                         <div className={this.decorateCSS("inputs")}>
                           {inputItem.getPropValue("inputs").map((inputObj: TypeUsableComponentProps, inputIndex: number) =>
                             <div className={this.decorateCSS("input-box")}>
