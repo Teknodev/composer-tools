@@ -1,7 +1,7 @@
 import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
-import { BaseContacts } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form6.module.scss";
 
 class Form6 extends BaseContacts {
@@ -91,9 +91,9 @@ class Form6 extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "String",
+                      value: "Text",
                       additionalParams: {
-                        selectItems: ["String", "E-mail", "Number", "Text Area"]
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
                       }
                     },
                     {
@@ -113,7 +113,7 @@ class Form6 extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "First name"
+                      value: "Last name"
                     },
                     {
                       type: "boolean",
@@ -131,9 +131,9 @@ class Form6 extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "Text Area",
+                      value: "Text",
                       additionalParams: {
-                        selectItems: ["String", "E-mail", "Number", "Text Area"]
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
                       }
                     },
                     {
@@ -191,9 +191,9 @@ class Form6 extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "String",
+                      value: "Text",
                       additionalParams: {
-                        selectItems: ["String", "E-mail", "Number", "Text Area"]
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
                       }
                     },
                     {
@@ -251,9 +251,9 @@ class Form6 extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "String",
+                      value: "Text",
                       additionalParams: {
-                        selectItems: ["String", "E-mail", "Number", "Text Area"]
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
                       }
                     },
                     {
@@ -277,7 +277,7 @@ class Form6 extends BaseContacts {
               type: "string",
               displayer: "Label",
               key: "label",
-              value: "Subject",
+              value: "Message",
             },
             {
               type: "array",
@@ -293,27 +293,27 @@ class Form6 extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "ex: Suggestion"
+                      value: "Write your message..."
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: false
+                      value: true
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: ""
+                      value: "Required"
                     },
                     {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "String",
+                      value: "Text Area",
                       additionalParams: {
-                        selectItems: ["String", "E-mail", "Number", "Text Area"]
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
                       }
                     },
                     {
@@ -339,27 +339,109 @@ class Form6 extends BaseContacts {
     });
   }
 
-  validationSchema = Yup.object().shape({
-    name: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    message: Yup.string().min(5, "Min 5 character!").required("Required"),
-  });
+
 
   getName(): string {
     return "Form6";
   }
 
   render() {
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
+    const title = this.getPropValue("title", { as_string: true });
+    const description = this.getPropValue("description", { as_string: true });
     const isContactVisible = title || description;
 
-    const location = this.getPropValue("location");
-    const locationDetails = this.getPropValue("locationDetails");
+    const location = this.getPropValue("location", { as_string: true });
+    const locationDetails = this.getPropValue("locationDetails", { as_string: true });
     const isAddressVisible = location || locationDetails;
 
     const inputItems = this.getPropValue("input_items")
+    const image = this.getPropValue("image");
 
+    function toObjectKey(str: string) {
+      if (/^\d/.test(str)) {
+        str = "_" + str;
+      }
+      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
+      return str;
+    }
+
+    function getInputType(type: string): string {
+      switch (type) {
+        case "Text Area":
+          return "textarea";
+        case "E-mail":
+          return "email";
+        case "Tel":
+          return "tel";
+        case "Number":
+          return "number"
+        default:
+          return "text"
+      }
+    }
+
+    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
+      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`)
+      return toObjectKey(name);
+    }
+
+    function getInitialValue() {
+      let value: any = {};
+      inputItems.map((inputItem: TypeUsableComponentProps, indexOfItem: number) => {
+        inputItem.getPropValue("inputs").map((_: TypeUsableComponentProps, indexOfInput: number) => {
+          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          value[key] = "";
+        })
+      })
+      return value;
+    }
+
+    function getSchema() {
+      let schema = Yup.object().shape({});
+
+      inputItems.map((inputItem: TypeUsableComponentProps, indexOfItem: number) => {
+        inputItem.getPropValue("inputs").map((input: TypeUsableComponentProps, indexOfInput: number) => {
+          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+
+          const isRequired = input.getPropValue("is_required");
+          const isEmail = getInputType(input.getPropValue("type")) == "email";
+
+          let fieldSchema = Yup.string();
+
+          if (isRequired) {
+            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"))
+          } else {
+            fieldSchema = fieldSchema.nullable();
+          }
+
+          if (isEmail) {
+            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"))
+          }
+
+          schema = schema.shape({
+            [key]: fieldSchema,
+          });
+        })
+      })
+
+      return schema;
+    };
+
+    function getFormDataWithConvertedKeys(obj: any) {
+      const newObj: any = {};
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          let adjustedKey = key.startsWith('_') ? key.slice(1) : key;
+          const parts = adjustedKey.split('_');
+          let newKey = '';
+          for (let i = 1; i < parts.length - 1; i++) {
+            newKey += (i > 1 ? '_' : '') + parts[i];
+          }
+          newObj[newKey] = obj[key];
+        }
+      }
+      return newObj;
+    }
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -367,117 +449,77 @@ class Form6 extends BaseContacts {
           <div className={this.decorateCSS("top-container")} >
             {isContactVisible &&
               <div className={this.decorateCSS("contact")} >
-                {title && <h1 className={this.decorateCSS("title")}> {title} </h1>}
-                {description && <h3 className={this.decorateCSS("description")}> {description} </h3>}
+                {title && <h1 className={this.decorateCSS("title")}> {this.getPropValue("title")} </h1>}
+                {description && <h3 className={this.decorateCSS("description")}> {this.getPropValue("description")} </h3>}
               </div>
             }
             {isAddressVisible &&
               <div className={this.decorateCSS("address")}>
-                {location && <h1 className={this.decorateCSS("title")}> {location} </h1>}
-                {locationDetails && <h3 className={this.decorateCSS("description")}> {locationDetails} </h3>}
+                {location && <h1 className={this.decorateCSS("title")}> {this.getPropValue("location")} </h1>}
+                {locationDetails && <h3 className={this.decorateCSS("description")}> {this.getPropValue("locationDetails")} </h3>}
               </div>
             }
           </div>
           <div className={this.decorateCSS("lower-container")} >
             <div className={this.decorateCSS("form-container")} >
               <Formik
-                initialValues={{ name: "", firstName: "", lastName: "", text: "", message: "" }}
-                validationSchema={this.validationSchema}
+                initialValues={getInitialValue()}
+                validationSchema={getSchema()}
                 onSubmit={(data, { resetForm }) => {
-                  this.insertForm("Contact Me", data);
+                  const formData = getFormDataWithConvertedKeys(data)
+                  this.insertForm("Contact Me", formData);
                   resetForm();
                 }}
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
-                    {inputItems.map((inputItem: any) =>
-                      <div className={this.decorateCSS("input-box")}>
-                        
+                    {inputItems.map((inputItem: TypeUsableComponentProps, inputItemIndex: number) =>
+                      <div className={this.decorateCSS("input-container")}>
+                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label")}</span>
+                        <div className={this.decorateCSS("inputs")}>
+                          {inputItem.getPropValue("inputs").map((inputObj: TypeUsableComponentProps, inputIndex: number) =>
+                            <div className={this.decorateCSS("input-box")}>
+                              {inputObj.getPropValue("type") == "Text Area" ?
+                                <textarea
+                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder")} rows={12} onChange={handleChange}
+                                  name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}></textarea> :
+                                <input
+                                  placeholder={inputObj.getPropValue("placeholder")}
+                                  type={getInputType(inputObj.getPropValue("type"))}
+                                  onChange={handleChange}
+                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                                  name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                  className={this.decorateCSS("input")}
+                                />}
+                              <ErrorMessage
+                                className={this.decorateCSS("error-message")}
+                                name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                component={"span"}
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
                     )}
-                    {/* <h3 className={this.decorateCSS("name")}>{this.getPropValue("name")}</h3>
-                    <div className={this.decorateCSS("div")}>
-                      <input
-                        placeholder={this.getPropValue("firstName")}
-                        type="text"
-                        name="firstName"
-                        value={values.firstName}
-                        onChange={handleChange}
-                        className={this.decorateCSS("input")}
-                      />
-                      <ErrorMessage
-                        className={this.decorateCSS("error-message")}
-                        name="firstName"
-                        component={"span"}
-                      />
-                      <input
-                        placeholder={this.getPropValue("lastName")}
-                        type="text"
-                        name="lastName"
-                        value={values.lastName}
-                        onChange={handleChange}
-                        className={this.decorateCSS("input")}
-                      />
-                      <ErrorMessage
-                        className={this.decorateCSS("error-message")}
-                        name="lastName"
-                        component={"span"}
-                      />
-                    </div>
-                    <div className={this.decorateCSS("items-box")}>
-                      {this.getPropValue("items").map((item: any, index: number) =>
-                        <div className={this.decorateCSS("item")}>
-                          <h3 className={this.decorateCSS("name")}>{item.getPropValue("text")}</h3>
-                          <input
-                            placeholder={this.getPropValue("text_info")}
-                            type="text"
-                            name="text_info"
-                            value={values.text}
-                            onChange={handleChange}
-                            className={this.decorateCSS("input")}
-                          />
-                          <ErrorMessage
-                            className={this.decorateCSS("error-message")}
-                            name="email-info"
-                            component={"span"}
-                          />
-                        </div>
-                      )}
-                    </div>
-                    <h3 className={this.decorateCSS("name")}>{this.getPropValue("message")}</h3>
-                    <textarea
-                      placeholder={this.getPropValue("message")}
-                      id="text"
-                      name="message"
-                      value={values.message}
-                      onChange={handleChange}
-                      className={this.decorateCSS("input")}
-                      rows={9}
-                    />
-                    <ErrorMessage
-                      className={this.decorateCSS("error-message")}
-                      name="message"
-                      component={"span"}
-                    />
                     <button
                       className={this.decorateCSS("submit-button")}
-
                       type="submit"
                     >
                       {this.getPropValue("button_text")}
-                    </button> */}
+                    </button>
                   </Form>
                 )}
               </Formik>
 
             </div>
-            <div className={this.decorateCSS("image-container")}>
+            {image && <div className={this.decorateCSS("image-container")}>
               <img
                 className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
+                src={image}
                 alt="contact image"
               />
-            </div>
+            </div>}
           </div>
         </div>
       </div >

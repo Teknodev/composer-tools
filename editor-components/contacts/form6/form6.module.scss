@@ -1,7 +1,7 @@
 .container {
     background-color: var(--composer-html-background);
     width: 100%;
-    padding: 60px 0;
+    padding: 60px;
 }
 
 .max-content {
@@ -10,19 +10,21 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
 }
 
-.top-container{
+.top-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 86%;
+    width: 100%;
+
     height: fit-content;
-    gap: 50px;
-    .contact{
+
+    .contact {
         width: 63%;
     }
-    .address{
+    .address {
         display: flex;
         align-items: flex-end;
         flex-direction: column;
@@ -32,24 +34,28 @@
 }
 
 .lower-container {
-    margin-top: 50px;
     transition: 1s;
     display: flex;
     flex-direction: row;
-    width: 86%;
+
     height: fit-content;
+
+    margin-top: 25px;
+    width: 100%;
     gap: 50px;
-    .form-container{
-        margin-top: -50px;
-        width: 65%;
+    .form-container {
+        width: 100%;
     }
     .image-container {
         background-size: cover;
-        width: 35%;
+        width: 40%;
+        position: relative;
         .image {
             object-fit: cover;
             width: 100%;
-            height: 557px;
+            height: calc(100% - 22px);
+            position: absolute;
+            bottom: 0;
         }
     }
 }
@@ -63,7 +69,7 @@
     font-weight: 900;
 }
 
-.description{
+.description {
     color: var(--composer-font-color-primary);
     size: 1.5rem;
     word-wrap: break-word;
@@ -74,6 +80,23 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    .input-container {
+        width: 100%;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        .label {
+            color: var(--composer-font-color-primary);
+            margin-bottom: 8px;
+        }
+        .inputs {
+            display: flex;
+            gap: 20px;
+            .input-box {
+                width: 100%;
+            }
+        }
+    }
 }
 
 .name {
@@ -86,6 +109,7 @@
     border: 1px solid var(--composer-tertiary-color);
     background: color-mix(in srgb, var(--composer-html-background), #fff 80%);
     width: 100%;
+    font-family: inherit;
 }
 
 .input:focus {
@@ -99,7 +123,6 @@
 }
 
 .submit-button {
-    margin-top: 20px;
     height: 50px;
     background-color: var(--composer-secondary-color);
     border-radius: 0;
@@ -122,48 +145,50 @@
     flex-direction: row;
     gap: 15px;
 }
-.h2{
+.h2 {
     font-size: 2rem;
 }
 
 @media only screen and (max-width: 900px) {
-    .contact{
-        width: 60% !important;
+    .container {
+        padding: 40px 20px;
     }
-}
+    .title {
+        font-size: 1.3rem;
+    }
 
-@media only screen and (max-width: 550px) {
-    .title{
-        font-size: 1.5rem;
+    .description {
+        font-size: 1rem;
     }
-    .contact{
-        width: 50% !important;
+
+    .top-container {
+        flex-direction: column;
+        gap: 20px;
+
+        .contact,
+        .address {
+            width: 100%;
+            text-align: left;
+        }
     }
-    .lower-container{
+    .lower-container {
         display: flex;
         flex-direction: column-reverse;
         flex-wrap: wrap;
-        margin-top: 25px !important
+        margin-top: 0;
+        gap: 0;
     }
-    .image-container{
+    .image-container {
         width: 100% !important;
+        height: 400px;
     }
-    .image{
-        object-fit: cover;
-        width: 100% !important;
-        height: 557px;
-    }
-    .div{
+
+    .div {
         display: flex;
         flex-direction: column !important;
     }
-    .input{
-        width: 155% !important;
-    }
-    .submit-button {
-        width: 155%;
-    }
-    .form{
+
+    .form {
         margin-top: 15px;
     }
 }
