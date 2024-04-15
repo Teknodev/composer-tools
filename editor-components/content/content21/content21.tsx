@@ -1,12 +1,13 @@
 import * as React from "react";
 import styles from "./content21.module.scss";
 import { BaseContent } from "../../EditorComponent";
-
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
 interface Card {
   image: string;
   title: string;
+  url: string;
 }
 class ContentComponent21 extends BaseContent {
   constructor(props?: any) {
@@ -22,6 +23,12 @@ class ContentComponent21 extends BaseContent {
           key: "card",
           displayer: "card",
           value: [
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -42,6 +49,12 @@ class ContentComponent21 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -60,6 +73,12 @@ class ContentComponent21 extends BaseContent {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -80,6 +99,12 @@ class ContentComponent21 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -98,6 +123,12 @@ class ContentComponent21 extends BaseContent {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -118,6 +149,12 @@ class ContentComponent21 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -136,6 +173,12 @@ class ContentComponent21 extends BaseContent {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -156,6 +199,12 @@ class ContentComponent21 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -175,6 +224,12 @@ class ContentComponent21 extends BaseContent {
           displayer: "Card",
           value: [
             {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -193,6 +248,12 @@ class ContentComponent21 extends BaseContent {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -236,15 +297,19 @@ class ContentComponent21 extends BaseContent {
                     className={this.decorateCSS("card")}
                     style={{ width: 90 / this.getPropValue("reverse") + "%" }}
                   >
-                    <img
-                      src={item.image}
-                      alt="category"
-                      className={this.decorateCSS("image")}
-                    />
-                    <div className={this.decorateCSS("category")}>
-                      <h2 className={this.decorateCSS("title")}>{item.title}</h2>
+                    <ComposerLink path={item.url} isFullWidth={true}>
 
-                    </div>
+                      <img
+                        src={item.image}
+                        alt="category"
+                        className={this.decorateCSS("image")}
+                      />
+                      <div className={this.decorateCSS("category")}>
+                        <h2 className={this.decorateCSS("title")}>{item.title}</h2>
+
+                      </div>
+                    </ComposerLink>
+
                   </div>
                 );
               }
