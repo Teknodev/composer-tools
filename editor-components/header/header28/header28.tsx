@@ -213,7 +213,7 @@ class HeaderComponent28 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       draggable: false,
-      dotsClass: `slick-dots ${this.decorateCSS("myCustomDots")}`,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
       fade: true,
       afterChange: (index: number) => {
         this.setComponentState("animation-active", false);
@@ -242,6 +242,7 @@ class HeaderComponent28 extends BaseHeader {
           {this.getPropValue("slider").map((item: any, indexSlider: number) => (
             <div className={this.decorateCSS("content")} key={indexSlider}>
               <img src={item.getPropValue("image")} />
+
               <div
                 className={`${this.decorateCSS("video-player-container")} ${
                   this.getComponentState("play-video") && this.decorateCSS("video-player")
