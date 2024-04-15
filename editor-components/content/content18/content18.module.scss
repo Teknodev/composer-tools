@@ -20,7 +20,7 @@
                     .image1 {
                         width: 80%;
                         height: 400px;
-                        border-radius: 6px;
+                        border-top-right-radius:16px;
                         object-fit: cover;
                     }
                 }
@@ -29,13 +29,13 @@
                     height: 270px;
                     border-radius: 6px;
                     position: absolute;
-                    top: 240px;
-                    left: 270px;
+                    top: 267px;
+                    left: 397px;
 
                     .image2 {
                         width: 80%;
                         height: 100%;
-                        border-radius: 6px;
+                        border-radius: 16px;
                         border: 10px solid var(--composer-html-background);
                         object-fit: cover;
 
@@ -47,7 +47,6 @@
             .right-page {
                 padding-right: 100px;
                 width: 50%;
-
                 .badge {
                     font-size: 14px;
                     opacity: 0.8;
@@ -55,29 +54,28 @@
                     color: var(--composer-font-color-primary);
                     padding-bottom: 5px;
                 }
-
                 .title {
                     font-size: 50px;
                     font-weight: 700;
                     color: var(--composer-primary-color);
                 }
-
                 .description {
                     font-size: 13px;
                     font-weight: bold;
                     opacity: 0.6;
                     color: var(--composer-font-color-primary);
                 }
-
                 .progress-container {
                     .item {
                         padding-bottom: 20px;
                         transition: 0.3s;
-
-                        .progress-title {
+                        .progress-title-icon {
+                            display: flex;
+                            gap: 10px;
                             font-size: 16px;
                             font-weight: bold;
                             color: var(--composer-primary-color);
+                            align-items: center;
                         }
 
                         .progress-percent {
@@ -85,16 +83,16 @@
                             font-weight: bold;
                             margin-bottom: 5px;
                             color: var(--composer-font-color-primary);
+                            position: relative;
+                            right: 10px;
                         }
                     }
 
                     .progress-active {
                         width: 100%;
                         background-color: white;
-                        border: 1px solid var(--composer-secondary-color);
                         border-radius: 11px;
                         overflow: hidden;
-
                         .progress-passive {
                             animation: fillProgress 2s ease-in-out forwards;
                             height: 8px;
@@ -119,24 +117,41 @@
 
 
 
-@media screen and (max-width: 768px) {
-    .container {
-        .max-content {
-            .page {
-                flex-direction: column;
 
+@media screen and (max-width: 1000px) {
+    .container {      
+        .max-content {          
+            .page {  
+                   flex-direction: column !important;       
                 .left-page {
-                    width: 100%;
-                    padding: 0px 10px 90px 30px;
-
-                    .down-image {
-                        left: 320px;
+                    width: 91%;             
+                    .down-image {   
+                        position: static;         
+                        .image2{
+                            width: 75% ;
+                             border-radius: 22px !important;
+                             position: relative;
+                             bottom: 138px;
+                             left: 53px;                         
+                        }
+                      position: static;  
+                      display: flex;
+                      flex-direction: row-reverse;         
+                    }
+                    .up-image{
+                        padding: 0 0 0 20px;
+                        .image1{
+                        width: 83% !important;
+                        height: 346px;
+                         border-radius: 16px;
+                        }                    
                     }
                 }
-
                 .right-page {
                     padding: 0px 30px;
                     width: 100%;
+                    position: relative;
+                    bottom: 115px;
                 }
             }
         }
@@ -145,50 +160,37 @@
 
 @media screen and (max-width: 400px) {
     .container {
+        height: 100%;
         .max-content {
             .page {
                 flex-direction: column;
                 width: 100%;
-
                 .left-page {
-                    padding: 0px 10px;
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
-                    padding-bottom: 20px;
-
-
+                    gap: 118px;
                     .up-image {
-                        width: 330px;
-                        height: 250px;
-
+                        width: 336px;
                         .image1 {
-                            width: 330px;
-                            height: 250px;
-
+                            height: 212px;
+                            position: relative;
+                            left: 33px;
                         }
                     }
-
                     .down-image {
-                        top: 0;
-                        left: 0;
-                        position: relative;
-                        border: none;
-                        width: 330px;
-                        height: 250px;
-
+                        top: 0 !important;
+                        left: -11px !important;
+                        position: relative;  
+                        width: 89% !important;                   
+                        align-items: center;
                         .image2 {
-                            width: 330px;
-                            height: 250px;
-                            border: none;
+                            height: 221px;
+                            width: 100%;
                         }
-
                     }
                 }
-
                 .right-page {
                     padding: 0px 20px;
-
                     .title {
                         font-size: 30px;
                     }

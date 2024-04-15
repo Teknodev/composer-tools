@@ -1,7 +1,9 @@
 import * as React from "react";
-import { BaseContent } from "../../EditorComponent";
+import { BaseContent, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./content18.module.scss";
 import { ThirtyFpsSelect, Widgets } from "@mui/icons-material";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 
 class Content18 extends BaseContent {
@@ -12,6 +14,7 @@ class Content18 extends BaseContent {
       progress: number;
       progressText: string;
     }
+    ;
 
     this.addProp({
       type: "image",
@@ -71,6 +74,12 @@ class Content18 extends BaseContent {
               displayer: "Progress Text",
               value: "90%"
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "CgPlayButtonO",
+            }
           ]
         },
         {
@@ -88,13 +97,20 @@ class Content18 extends BaseContent {
               type: "number",
               key: "progress",
               displayer: "Progress",
-              value: 95
+              value: 95,
             },
+           
             {
               type: "string",
               key: "progress-text",
               displayer: "Progress Text",
               value: "95%"
+            },
+             {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "CgPlayButtonO",
             },
           ]
         },
@@ -113,13 +129,20 @@ class Content18 extends BaseContent {
               type: "number",
               key: "progress",
               displayer: "Progress",
-              value: 98
+              value: 98,
             },
+           
             {
               type: "string",
               key: "progress-text",
               displayer: "Progress Text",
               value: "98%"
+            },
+             {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "CgPlayButtonO",
             },
           ]
         },
@@ -138,24 +161,35 @@ class Content18 extends BaseContent {
               type: "number",
               key: "progress",
               displayer: "Progress",
-              value: 85
+              value: 85,
             },
+           
             {
               type: "string",
               key: "progress-text",
               displayer: "Progress Text",
               value: "85%"
             },
+             {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "CgPlayButtonO",
+            },
           ],
         },
       ]
     });
-
+    this.addProp({
+      type: "boolean",
+      key: "progress-text-is-primary",
+      displayer: "progress-text-is-primary",
+      value: true,
+    });
 
 
 
   }
-
   getName(): string {
     return "Content 18";
   }
@@ -180,17 +214,24 @@ class Content18 extends BaseContent {
               <div className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</div>
               <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
               <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+
               <div className={this.decorateCSS("progress-container")}>
                 {this.getPropValue("items").map((item: any, index: number) =>
                   <div className={this.decorateCSS("item")} key={index}>
 
+                     <div className={this.decorateCSS("progress-title-icon")}>
+                      <ComposerIcon name={item.value[3].value} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>                  
                     <div className={this.decorateCSS("progress-title")}>{item.value[0].value}</div>
-                    <div className={this.decorateCSS("progress-percent")}>
-                      <div className={this.decorateCSS("progress-text")} style={{ marginLeft: `${item.value[1].value}%` }}>{item.value[2].value}</div>
-                    </div>
-                    <div className={this.decorateCSS("progress-active")}>
-                      <div className={this.decorateCSS("progress-passive")} style={{ width: `${item.value[1].value}%` }}></div>
-                    </div>
+                     </div> 
+
+                    {this.getPropValue("progress-text-is-primary") && <div className={this.decorateCSS("progress-text-is-primary")}  >
+                      <div className={this.decorateCSS("progress-percent")}>
+                        <div className={this.decorateCSS("progress-text")} style={{ marginLeft: `${item.value[1].value}%` }}>{item.value[2].value}</div>
+                      </div>
+                      <div className={this.decorateCSS("progress-active")}>
+                        <div className={this.decorateCSS("progress-passive")} style={{ width: `${item.value[1].value}%` }}></div>
+                      </div>
+                    </div>}
                   </div>
                 )}
               </div>
