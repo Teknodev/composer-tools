@@ -14,21 +14,28 @@
         .boxs-text-left {
             display: flex;
             flex-direction: column;
+            margin-bottom: 20px;
+            width: fit-content;
+            
 
             .box-up {
-                margin: 0px 0 35px 0;
+                margin: 0;
+                width: fit-content;
 
                 .box {
                     font-size: 27px;
                     color: var(--composer-primary-color);
+                    margin: 0;
+                    width: fit-content;
                 }
             }
 
             .text-left {
                 font-size: 60px;
                 color: var(--composer-tertiary-color);
-                position: absolute;
-                margin: 45px 0 0 11px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -85,7 +92,7 @@
 
 @media screen and (max-width: 1250px) {
     .max-content {
-        align-items: center;
+
 
         .content {
             flex-direction: column;
