@@ -3,12 +3,15 @@ import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
 
+type GetPropValueOptions = {
+  as_string?: boolean
+};
 type TypeCSSProp = { [key: string]: { id: string, class: string }[] };
 export type iComponent = {
   render(): any;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
-  getPropValue(propName: string): TypeUsableComponentProps;
+  getPropValue(propName: string, options?: GetPropValueOptions): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
@@ -105,12 +108,12 @@ export abstract class Component
     return prop;
   }
 
-  getPropValue(propName: string): any {
+  getPropValue(propName: string, options?: GetPropValueOptions): any {
     let prop = this.getProp(propName);
-    return prop?.type == "string" ? this._getPropValueAsElement(prop) : prop?.value;
+    return prop?.type == "string" && !options?.as_string ? this._getPropValueAsElement(prop) : prop?.value;
   }
 
-  _getPropValueAsElement(prop: TypeUsableComponentProps) {
+  private _getPropValueAsElement(prop: TypeUsableComponentProps) {
     //@ts-ignore
     return <blinkpage prop-type={prop?.type}>{prop?.value}</blinkpage>;
   }

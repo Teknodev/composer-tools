@@ -1,28 +1,32 @@
 import React from "react";
 import { IconBaseProps } from "react-icons/lib";
-import { iconLibraries } from "../../../components/icon-list/icon-list";
+import { iconLibraries } from "./list";
 
-interface typesPropsIcon {
+interface TypesPropsIcon {
   name: string;
   propsIcon?: IconBaseProps;
 }
 
-export function ComposerIcon({ name, propsIcon }: typesPropsIcon): JSX.Element {
+export function ComposerIcon({ name, propsIcon }: TypesPropsIcon): JSX.Element {
+  if (!name) return <></>;
 
-  if (!name.length) return <></>;
-  let ElementIcon;
+  let ElementIcon: any = null;
+
   for (const iconLibrary of iconLibraries) {
-    if (ElementIcon) {
-      break;
-    }
+    if (ElementIcon) break;
 
-    Object.keys(iconLibrary).forEach((iconName) => {
+    for (const [iconName, Icon] of Object.entries(iconLibrary)) {
       if (iconName === name) {
-        ElementIcon = iconLibrary[iconName];
-        return;
+        ElementIcon = Icon;
+        break;
       }
-    });
+    }
   }
 
-  return <ElementIcon {...propsIcon} />
+  if (!ElementIcon) {
+    console.warn(`Icon "${name}" not found.`);
+    return <></>;
+  }
+
+  return <ElementIcon {...propsIcon} />;
 }
