@@ -42,7 +42,7 @@
 
 
             .image-box {
-                width: 50%;
+                flex: 1 1;
                 position: relative;
                 
                 .image {
@@ -61,36 +61,16 @@
                 flex-direction: column;
                 gap: 25px;
                 align-items: stretch;
-                width: 50%;
+                flex: 1 1;
 
-                .subtitle {
+                .title {
                     font-size: 25px;
                     color: var(--composer-primary-color);
                 }
 
-                .title {
+                .description {
                     color: var(--composer-font-color-primary);
                     font-size: 15px;
-                }
-
-                .texts-education {
-                    font-size: 15px;
-                    color: var(--composer-font-color-primary);
-                }
-
-                .education-box {
-                    font-size: 15px;
-                    color: var(--composer-primary-color);
-                }
-
-                .texts-workshop {
-                    font-size: 15px;
-                    color: var(--composer-font-color-primary);
-                }
-
-                .workshop-box {
-                    font-size: 15px;
-                    color: var(--composer-primary-color);
                 }
             }
         }
