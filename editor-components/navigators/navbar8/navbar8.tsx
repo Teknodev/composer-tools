@@ -27,7 +27,7 @@ class Navbar8 extends BaseNavigator {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "YELİZ SARIOGLU",
+      value: "LOREM IPSUM",
     });
     this.addProp({
       type: "string",
@@ -58,7 +58,7 @@ class Navbar8 extends BaseNavigator {
       type: "string",
       key: "title1",
       displayer: "Title 1",
-      value: "Yeliz Sarioglu",
+      value: "Lorem Ipsum",
     });
     this.addProp({
       type: "string",

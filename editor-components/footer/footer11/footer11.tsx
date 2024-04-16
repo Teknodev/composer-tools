@@ -17,7 +17,7 @@ class Footer11Page extends BaseFooter {
       type: "string",
       key: "ref-text",
       displayer: "Referral Text",
-      value: "YELİZ SARIOGLU"
+      value: "LOREM IPSUM"
     });
 
     this.addProp({
