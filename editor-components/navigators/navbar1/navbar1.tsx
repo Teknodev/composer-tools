@@ -93,90 +93,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Main Home"
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: ""
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Second Home"
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: ""
-                    },
-                  ]
-                },
-              ]
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "About"
-            },
-            {
-              type: "page",
-              key: "navigate_to",
-              displayer: "Navigate to",
-              value: ""
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Blog"
-            },
-            {
-              type: "page",
-              key: "navigate_to",
-              displayer: "Navigate to",
-              value: ""
-            },
-            {
-              type: "array",
-              key: "sub_items",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Grid Style"
+                      value: "Section 1"
                     },
                     {
                       type: "page",
@@ -240,7 +157,7 @@ class Navbar1 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Blog Sidebar"
+                      value: "Section 2"
                     },
                     {
                       type: "page",
@@ -262,7 +179,7 @@ class Navbar1 extends BaseNavigator {
                               type: "string",
                               key: "title",
                               displayer: "Title",
-                              value: "Left Sidebar"
+                              value: "Value 1"
                             },
                             {
                               type: "page",
@@ -281,7 +198,314 @@ class Navbar1 extends BaseNavigator {
                               type: "string",
                               key: "title",
                               displayer: "Title",
-                              value: "Right Sidebar"
+                              value: "Value 2"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                      ]
+                    }
+                  ]
+                },
+              ]
+            }
+          ]
+        }, {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Blog"
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: ""
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Section 1"
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: ""
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "1 Column Blog"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "2 Column Blog"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                      ]
+                    }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Section 2"
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: ""
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Value 1"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Value 2"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                      ]
+                    }
+                  ]
+                },
+              ]
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Blog"
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: ""
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Section 1"
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: ""
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "1 Column Blog"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "2 Column Blog"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                      ]
+                    }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Section 2"
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: ""
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Value 1"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Value 2"
                             },
                             {
                               type: "page",
@@ -371,13 +595,11 @@ class Navbar1 extends BaseNavigator {
                           {item.sub_items?.length > 0 && item.sub_items.map(subItem =>
                             <div className={this.decorateCSS("sub-item")}>
                               <span>{subItem.title} {subItem.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
-                              {subItem.sub_items?.length > 0 && subItem.sub_items.map(subItem2 =>
-                                <div className={this.decorateCSS("sub-item")}>
-                                  <span>{subItem2.title}</span>
-                                </div>
-                              )
-
-                              }
+                              <div className={this.decorateCSS("list")}>
+                                {subItem.sub_items?.length > 0 && subItem.sub_items.map(subItem2 =>
+                                  <span className={this.decorateCSS("list-item")}>{subItem2.title}</span>)
+                                }
+                              </div>
                             </div>
                           )
 

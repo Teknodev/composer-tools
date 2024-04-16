@@ -30,24 +30,55 @@
                         display: flex;
                         align-items: center;
                         gap: 4px;
-                        font-size: 1.4rem;
+                        font-size: 1.5rem;
                     }
 
                     .sub-items {
                         display: none;
                         position: absolute;
-                        top: 30px;
+                        top: 0;
+                        padding-top: 30px;
                         flex-direction: column;
-                        .sub-item{
-                            padding: 8px 15px;
-                            background: red;
+                        font-size: 1.2rem;
+
+                        .sub-item {
+                            padding: 12px 30px;
                             white-space: nowrap;
+                            display: flex;
+                            position: relative;
+
+                            .list {
+                                display: none;
+                                flex-direction: column;
+                                position: absolute;
+                                left: 100%;
+                                top: 0;
+                                background: var(--composer-html-background);
+
+                                .list-item {
+                                    padding: 12px 30px 11px 30px;
+                                    background: color-mix(in srgb, var(--composer-secondary-color), #fff 70%); 
+                                    &:hover{
+                                        background: var(--composer-secondary-color) !important;
+                                    }
+                                }
+                            }
+
+                            &:hover {
+                                background: var(--composer-secondary-color) !important;
+                                .list {
+                                    display: flex;
+                                   
+                                }
+                            }
                         }
                     }
 
                     &:hover {
                         .sub-items {
                             display: flex;
+                            .sub-item{
+                                background: color-mix(in srgb, var(--composer-secondary-color), #fff 70%);                            }
                         }
                     }
                 }
