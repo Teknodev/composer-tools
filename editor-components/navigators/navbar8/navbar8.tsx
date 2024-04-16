@@ -23,6 +23,13 @@ class Navbar8 extends BaseNavigator {
       displayer: "Image",
       value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
+
+    this.addProp({
+      type: "page",
+      key: "logo_navigate",
+      displayer: "Logo Navigation",
+      value: ""
+    })
     this.addProp({
       type: "string",
       key: "title",
@@ -243,7 +250,9 @@ class Navbar8 extends BaseNavigator {
         <div className={this.decorateCSS("max-content")}>
           <nav className={this.decorateCSS("bar")}>
             <div className={this.decorateCSS("image-box")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} width={200} alt="" />
+              <ComposerLink path={this.getPropValue("logo_navigate")}>
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} width={200} alt="" />
+              </ComposerLink>
             </div>
             <div className={this.decorateCSS("middle")}>
               <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
