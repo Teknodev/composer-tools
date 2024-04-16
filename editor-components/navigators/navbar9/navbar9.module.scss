@@ -20,8 +20,20 @@
     }
     &.active {
         background-color: black !important;
-        .max-content > .bar{
-            color: white;
+        .max-content {
+            .bar {
+                .middle {
+                    .title,
+                    .subtitle {
+                        color: white;
+                    }
+                }
+            }
+            .navbar {
+                .hamburger-icon {
+                    color: white;
+                }
+            }
         }
     }
 
@@ -46,19 +58,19 @@
                 .title {
                     font-size: 3.5rem;
                     letter-spacing: 15px;
-                    color: white;
+                    color: black;
                     white-space: nowrap;
                 }
 
                 .subtitle {
                     font-size: 20px;
                     letter-spacing: 5px;
-                    color: white;
+                    color: black;
                 }
             }
 
             .navbar {
-                color: white;
+                color: black;
                 display: flex;
                 justify-content: end;
                 align-items: flex-end;
