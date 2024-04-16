@@ -1,16 +1,22 @@
 import * as React from "react";
-import { BaseNavigator, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { EventEmitter } from "../../../EventEmitter";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { TiThSmall } from "react-icons/ti";
 
 class Navbar8 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-
+    this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Sticky", "Absolute"]
+      }
+    })
     this.addProp({
       type: "image",
       key: "image",
@@ -232,12 +238,13 @@ class Navbar8 extends BaseNavigator {
     const navActive = this.getComponentState("navActive");
     return (
       <div
-        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-          }`}
+        className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))} ${navActive && this.decorateCSS("active")}`}
       >
         <div className={this.decorateCSS("max-content")}>
           <nav className={this.decorateCSS("bar")}>
-            <img src={this.getPropValue("image")} width={200} alt="" />
+            <div className={this.decorateCSS("image-box")}>
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} width={200} alt="" />
+            </div>
             <div className={this.decorateCSS("middle")}>
               <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
 
@@ -264,18 +271,20 @@ class Navbar8 extends BaseNavigator {
               </div>
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("itemList")}>
-                  {this.castToObject<[]>("itemList").map(
-                    (data: any, indexItemList: number) => {
-                      return (
-                        <ComposerLink
-                          key={indexItemList}
-                          path={data.value[1].value}
-                        >
-                          <h3 key={indexItemList}>{data.value[0].value}</h3>
-                        </ComposerLink>
-                      );
-                    }
-                  )}
+                  <div className={this.decorateCSS("items")}>
+                    {this.castToObject<[]>("itemList").map(
+                      (data: any, indexItemList: number) => {
+                        return (
+                          <ComposerLink
+                            key={indexItemList}
+                            path={data.value[1].value}
+                          >
+                            <h3 className={this.decorateCSS("item-title")} key={indexItemList}>{data.value[0].value}</h3>
+                          </ComposerLink>
+                        );
+                      }
+                    )}
+                  </div>
                 </div>
                 <div className={this.decorateCSS("social-media-box")}>
                   <h4 className={this.decorateCSS("icon-text")}>{this.getPropValue("icon-text")}</h4>

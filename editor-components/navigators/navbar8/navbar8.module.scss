@@ -2,22 +2,40 @@
     width: 100%;
     position: relative;
     background-color: var(--composer-html-background);
-    padding: 30px 40px;
+    padding: 20px 40px;
 
-    &.sticky {
+    &.Sticky {
         position: sticky;
         top: 0px;
         z-index: 100;
         box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
     }
 
+    &.Absolute {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background: transparent;
+    }
+    &.active {
+        background-color: var(--composer-html-background);
+    }
+
     .max-content {
         width: 100%;
-
 
         .bar {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            .image-box {
+                .image {
+                    width: unset;
+                    height: 60px !important;
+                    object-fit: contain;
+                }
+            }
 
             .middle {
                 text-align: center;
@@ -28,18 +46,28 @@
                     color: var(--composer-primary-color);
                 }
 
-
-
                 .subtitle {
                     font-size: 20px;
-                    letter-spacing: 10px;
+                    letter-spacing: 5px;
                     color: var(--composer-font-color-primary);
                 }
             }
 
             .navbar {
-                font-size: 40px;
                 color: var(--composer-font-color-primary);
+                display: flex;
+                justify-content: end;
+                align-items: flex-end;
+                height: fit-content;
+
+                .hamburger-icon {
+                    font-size: 40px;
+                }
+            }
+            .image-box,
+            .middle,
+            .navbar {
+                flex: 1 1;
             }
         }
 
@@ -71,14 +99,13 @@
                     font-size: 25px;
                     letter-spacing: 5px;
                     padding-bottom: 50px;
-                    color: var(--composer-primary-color)
+                    color: var(--composer-primary-color);
                 }
 
                 .stick {
                     border: 1px solid var(--composer-tertiary-color);
                     width: 85px;
                     margin-bottom: 80px;
-
                 }
 
                 .description {
@@ -89,15 +116,14 @@
                     color: var(--composer-font-color-primary);
                     word-spacing: 2px;
                 }
-
-
             }
 
             .right-page {
                 width: 50%;
 
                 .itemList {
-                    text-align: center;
+                    display: flex;
+                    justify-content: center;
                     font-size: 25px;
                     color: var(--composer-font-color-primary);
                 }
@@ -119,8 +145,6 @@
                         font-size: 35px;
                         gap: 10px;
                         color: var(--composer-font-color-primary);
-
-
                     }
                 }
             }
@@ -132,6 +156,83 @@
         position: fixed;
         top: 0;
         z-index: 10;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 14px 10px;
+
+        .max-content {
+            .bar {
+                place-items: center;
+
+                .image-box {
+                    .image {
+                        width: unset;
+                        height: 30px !important;
+                        object-fit: contain;
+                    }
+                }
+
+                .middle {
+                    .title {
+                        font-size: 1.5rem;
+                        letter-spacing: 8px;
+                    }
+
+                    .subtitle {
+                        font-size: 0.7rem !important;
+                    }
+                }
+
+                .navbar {
+                    .hamburger-icon {
+                        font-size: 25px;
+                    }
+                }
+            }
+
+            .down-page {
+                .left-page {
+                    width: 100%;
+                    place-content: center;
+
+                    .stick {
+                        margin-bottom: 40px;
+                    }
+                    .title1 {
+                        padding-bottom: 30px;
+                    }
+
+                    .description {
+                        width: 100%;
+                        font-size: 1rem;
+                        padding: 0 20px;
+                    }
+                }
+
+                .right-page {
+                    width: 100%;
+
+                    .itemList {
+                        .item-title {
+                            font-size: 1.3rem;
+                        }
+                    }
+
+                    .social-media-box {
+                        .icon-text {
+                            font-size: 11px;
+                        }
+
+                        .icon-group {
+                            font-size: 26px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -173,71 +274,5 @@
                 }
             }
         }
-
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 30px 10px;
-
-        .max-content {
-            .bar {
-                place-items: center;
-
-                .middle {
-
-                    .title {
-                        font-size: 1.5rem;
-                        letter-spacing: 8px;
-                    }
-
-                    .subtitle {
-                        font-size: 1.5rem;
-                        letter-spacing: 8px;
-                    }
-
-                    .navbar {
-                        font-size: 25px;
-                    }
-                }
-            }
-
-            .down-page {
-                .left-page {
-                    width: 100%;
-                    place-content: center;
-
-                    .title1 {
-                        padding-bottom: 30px;
-                    }
-
-                    .description {
-                        width: 100%;
-                        text-align: center;
-                    }
-                }
-
-                .right-page {
-                    width: 100%;
-
-                    .itemList {
-                        font-size: 20px;
-                    }
-
-                    .social-media-box {
-                        .icon-text {
-                            font-size: 11px;
-                        }
-
-                        .icon-group {
-                            font-size: 26px;
-
-                        }
-                    }
-                }
-            }
-        }
-
     }
 }
