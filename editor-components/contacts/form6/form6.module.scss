@@ -1,80 +1,201 @@
 .container {
+    background-color: var(--composer-html-background);
     width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
+    padding: 60px;
+}
+
+.max-content {
+    margin: auto;
+    max-width: var(--composer-content-width);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.top-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    height: fit-content;
+
+    .contact {
+        width: 63%;
+    }
+    .address {
         display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: auto;
-        .image-container {
-            background-size: cover;
-            .image {
-                width: 300px;
-                height: 300px;
-                object-fit: cover;
+        align-items: flex-end;
+        flex-direction: column;
+        width: 33%;
+        text-align: end;
+    }
+}
+
+.lower-container {
+    transition: 1s;
+    display: flex;
+    flex-direction: row;
+
+    height: fit-content;
+
+    margin-top: 25px;
+    width: 100%;
+    gap: 50px;
+    .form-container {
+        width: 100%;
+    }
+    .image-container {
+        background-size: cover;
+        width: 40%;
+        position: relative;
+        .image {
+            object-fit: cover;
+            width: 100%;
+            height: calc(100% - 22px);
+            position: absolute;
+            bottom: 0;
+        }
+    }
+}
+
+.title {
+    margin: 0;
+    color: var(--composer-primary-color);
+    word-wrap: break-word;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.description {
+    color: var(--composer-font-color-primary);
+    size: 1.5rem;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .input-container {
+        width: 100%;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        .label {
+            color: var(--composer-font-color-primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            .require-star {
+                color: var(--composer-tertiary-color);
             }
         }
-        .form-container {
-            transition: 1s;
+        .inputs {
             display: flex;
-            flex-direction: column;
-            width: 40%;
-            height: fit-content;
             gap: 20px;
-            .title {
-                color: var(--composer-primary-color);
-                margin: 0;
-            }
-            .form {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                .input {
-                    padding: 16px 10px;
-                    border-radius: var(--radius-medium);
-                    border: 1px solid #f6f6f6;
-                    background: #fafafa;
-                    &:focus {
-                        outline-color: var(--composer-primary-color);
-                    }
-                }
-                .error-message {
-                    color: red;
-                    font-size: 0.6rem;
-                    margin-top: 3px;
-                }
-                .submit-button {
-                    height: 50px;
-                    background-color: var(--composer-secondary-color);
-                    border-radius: 10px;
-                    color: #fff;
-                    border: none;
-                    cursor: pointer;
-                    transition: 0.1s;
-                    width: 100%;
-                    border: 1px solid var(--composer-secondary-color);
-                    &:active {
-                        background: var(--composer-secondary-color);
-                        color: var(--composer-tertiary-color);
-                    }
-                    &:hover {
-                        background-color: transparent;
-                        color: var(--composer-secondary-color);
-                        border: 1px solid var(--composer-secondary-color);
-                    }
-                }
+            .input-box {
+                width: 100%;
             }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .image-container {
-        display: none;
+.name {
+    color: var(--composer-font-color-primary);
+}
+
+.input {
+    resize: vertical;
+    padding: 16px 10px;
+    border: 1px solid var(--composer-tertiary-color);
+    background: color-mix(in srgb, var(--composer-html-background), #fff 80%);
+    width: 100%;
+    font-family: inherit;
+}
+
+.input:focus {
+    outline-color: var(--composer-primary-color);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.6rem;
+    margin-top: 3px;
+}
+
+.submit-button {
+    height: 50px;
+    background-color: var(--composer-secondary-color);
+    border-radius: 0;
+    color: var(--composer-font-color-secondary);
+    border: none;
+    cursor: pointer;
+    transition: 0.1s;
+    width: 100%;
+    border: 1px solid var(--composer-secondary-color);
+}
+
+.submit-button:hover {
+    background-color: transparent;
+    color: var(--composer-font-color-primary);
+    border: 1px solid var(--composer-secondary-color);
+}
+
+.div {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.h2 {
+    font-size: 2rem;
+}
+
+@media only screen and (max-width: 900px) {
+    .container {
+        padding: 40px 20px;
     }
-    .form-container {
-        padding: 0 20px;
+    .title {
+        font-size: 1.3rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .top-container {
+        flex-direction: column;
+        gap: 20px;
+
+        .contact,
+        .address {
+            width: 100%;
+            text-align: left;
+        }
+    }
+    .lower-container {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        margin-top: 0;
+        gap: 0;
+    }
+    .image-container {
         width: 100% !important;
+        height: 400px;
+    }
+
+    .div {
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .form {
+        margin-top: 15px;
     }
 }

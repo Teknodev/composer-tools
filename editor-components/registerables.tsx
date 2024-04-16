@@ -40,6 +40,7 @@ import ContentComponent16 from "./content/content16/content16";
 import ContentComponent17 from "./content/content17/content17";
 import ContentComponent20 from "./content/content20/content20";
 import ContentComponent21 from "./content/content21/content21";
+import ContentComponent22 from "./content/content22/content22";
 import ContentComponent23 from "./content/content23/content23";
 import ContentComponent24 from "./content/content24/content24";
 import SliderComponent1 from "./slider/slider1/slider1";
@@ -198,6 +199,7 @@ import NavbarComponent4 from "./navigators/navbar4/navbar4";
 import NavbarComponent5 from "./navigators/navbar5/navbar5";
 import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
+import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import ImageGalleryCompanent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
@@ -246,6 +248,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ContentComponent19(),
     new ContentComponent20(),
     new ContentComponent21(),
+    new ContentComponent22(),
     new ContentComponent23(),
     new ContentComponent24(),
     new SliderComponent1(),
@@ -331,6 +334,7 @@ function Registerables(composer: ComponentsRegistery) {
     new NavbarComponent5(),
     new NavbarComponent6(),
     new NavbarComponent7(),
+    new NavbarComponent8(),
     new ImageGalleryCompanent1(),
     new FeatureComponent1(),
     new FeatureComponent2(),
