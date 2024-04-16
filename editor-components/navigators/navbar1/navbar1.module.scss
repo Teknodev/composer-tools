@@ -2,7 +2,7 @@
     width: 100%;
     position: relative;
     background-color: var(--composer-html-background);
-    
+
     &.sticky {
         position: sticky;
         top: 0px;
@@ -22,23 +22,33 @@
             padding: 50px 20px;
             .items {
                 display: flex;
-                gap: 15px;
-                &.left {
-                    width: 70%;
-                    justify-content: flex-start;
-                }
-                &.right {
-                    width: 70%;
-                    justify-content: flex-end;
-                }
-                h3 {
-                    color: var(--composer-font-color-primary);
-                    cursor: pointer;
-                    transition: all 0.5s;
-                    font-weight: 200;
-                    font-size: 16px;
+                gap: 20px;
+
+                .item {
+                    position: relative;
+                    .title {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                        font-size: 1.4rem;
+                    }
+
+                    .sub-items {
+                        display: none;
+                        position: absolute;
+                        top: 30px;
+                        flex-direction: column;
+                        .sub-item{
+                            padding: 8px 15px;
+                            background: red;
+                            white-space: nowrap;
+                        }
+                    }
+
                     &:hover {
-                        opacity: 0.6;
+                        .sub-items {
+                            display: flex;
+                        }
                     }
                 }
             }

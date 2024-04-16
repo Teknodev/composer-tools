@@ -2,8 +2,13 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { EventEmitter } from "../../../EventEmitter";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
+interface Item {
+  title: string,
+  navigate_to: string,
+  sub_items: Array<Item>;
+}
 class Navbar1 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
@@ -29,6 +34,20 @@ class Navbar1 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "icon",
+      displayer: "Down Icon",
+      key: "down_icon",
+      value: "FaChevronDown"
+    })
+
+    this.addProp({
+      type: "icon",
+      displayer: "Right Icon",
+      key: "right_icon",
+      value: "FaChevronRight"
+    })
+
+    this.addProp({
       type: "select",
       key: "select",
       displayer: "Location of Items",
@@ -40,161 +59,248 @@ class Navbar1 extends BaseNavigator {
 
     this.addProp({
       type: "array",
-      key: "itemList",
-      displayer: "Item List",
+      key: "items",
+      displayer: "Items",
       value: [
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "item",
-              value: "Features",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
+              value: "Home"
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: ""
             },
             {
               type: "array",
-              key: "subItems",
+              key: "sub_items",
               displayer: "Sub Items",
               value: [
                 {
                   type: "object",
-                  key: "subItem",
-                  displayer: "Sub Item",
+                  key: "item",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "item",
-                      value: "Asansör Fobisi",
-                      displayer: "Item",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Main Home"
                     },
-                    // {
-                    //   type:"array",
-                    //   key:"fobiItems",
-                    //   displayer:"fobi Items",
-                    //   value:[
-                    //     {
-                    //       type: "object",
-                    //       key: "fobi Items",
-                    //       displayer: "fobi Items",
-                    //       value: [
-                    //         {
-                    //           type: "string",
-                    //           key: "item",
-                    //           value: "Asansör Fobisi Değerlendirme Anketi",
-                    //           displayer: "Item",
-                    //         },
-                    //   ]
-                    // }
-                  ],                
-                },               
-              ],
-            },
-          ],
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: ""
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Second Home"
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: ""
+                    },
+                  ]
+                },
+              ]
+            }
+          ]
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "item",
-              value: "Solutions",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
+              value: "About"
             },
             {
-              type: "array",
-              key: "subItems",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "subItem",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "item",
-                      value: "Kapali Alan Fobisi",
-                      displayer: "Item",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: ""
+            }
+          ]
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "item",
-              value: "Resources",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
+              value: "Blog"
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: ""
             },
             {
               type: "array",
-              key: "subItems",
+              key: "sub_items",
               displayer: "Sub Items",
               value: [
                 {
                   type: "object",
-                  key: "subItem",
-                  displayer: "Sub Item",
+                  key: "item",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "item",
-                      value: "Metro Fobisi",
-                      displayer: "Item",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Grid Style"
                     },
-                  ],
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: ""
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "1 Column Blog"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "2 Column Blog"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                      ]
+                    }
+                  ]
                 },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "item",
-              value: "Pricing",
-              displayer: "Item",
-            },
-            {
-              type: "array",
-              key: "subItems",
-              displayer: "Sub Items",
-              value: [
                 {
                   type: "object",
-                  key: "subItem",
-                  displayer: "Sub Item",
+                  key: "item",
+                  displayer: "Item",
                   value: [
                     {
                       type: "string",
-                      key: "item",
-                      value: "Köprü Fobisi",
-                      displayer: "Item",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Blog Sidebar"
                     },
-                  ],
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: ""
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Left Sidebar"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Right Sidebar"
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: ""
+                            },
+                          ]
+                        },
+                      ]
+                    }
+                  ]
                 },
-              ],
-            },
-          ],
+              ]
+            }
+          ]
         },
-      ],
-    });
+      ]
+    })
 
     this.addProp({
       type: "array",
@@ -246,25 +352,39 @@ class Navbar1 extends BaseNavigator {
             <img src={this.getPropValue("image")} width={200} alt="" />
             <div
               className={`${this.decorateCSS("items")} ${selectValue === "Left"
-                  ? this.decorateCSS("left")
-                  : selectValue === "Right"
-                    ? this.decorateCSS("right")
-                    : selectValue === "Center" && ""
+                ? this.decorateCSS("left")
+                : selectValue === "Right"
+                  ? this.decorateCSS("right")
+                  : selectValue === "Center" && ""
                 }`}
             >
-              {this.castToObject<[]>("itemList").map(
-                (data: any, indexItemList: number) => {
+              {this.castToObject<[]>("items").map(
+                (item: Item, indexItemList: number) => {
                   return (
                     <ComposerLink
                       key={indexItemList}
-                      path={data.value[1].value}
+                      path={item.navigate_to}
                     >
-                      <h3 key={indexItemList}>{data.value[0].value}</h3>
-                      {Array.isArray(data.value[1].value) &&
-                        data.value[1].value.map((subItem: any, subIndex: number) => (
-                          <h4 key={subIndex}>{subItem.value[0].value}</h4>
-                        )
-                        )}
+                      <div className={this.decorateCSS("item")}>
+                        <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("down_icon")} />}</span>
+                        <div className={this.decorateCSS("sub-items")}>
+                          {item.sub_items?.length > 0 && item.sub_items.map(subItem =>
+                            <div className={this.decorateCSS("sub-item")}>
+                              <span>{subItem.title} {subItem.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
+                              {subItem.sub_items?.length > 0 && subItem.sub_items.map(subItem2 =>
+                                <div className={this.decorateCSS("sub-item")}>
+                                  <span>{subItem2.title}</span>
+                                </div>
+                              )
+
+                              }
+                            </div>
+                          )
+
+                          }
+                        </div>
+                      </div>
+
                     </ComposerLink>
                   );
                 }
@@ -291,8 +411,8 @@ class Navbar1 extends BaseNavigator {
               <img
                 alt=""
                 className={`${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
-                    ? this.decorateCSS("rotate")
-                    : ""
+                  ? this.decorateCSS("rotate")
+                  : ""
                   }`}
                 src={this.getPropValue("image2")}
                 onClick={() => {
