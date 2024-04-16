@@ -55,10 +55,42 @@ class Navbar1 extends BaseNavigator {
               displayer: "Item",
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
+              type: "array",
+              key: "subItems",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "subItem",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      value: "Asansör Fobisi",
+                      displayer: "Item",
+                    },
+                    // {
+                    //   type:"array",
+                    //   key:"fobiItems",
+                    //   displayer:"fobi Items",
+                    //   value:[
+                    //     {
+                    //       type: "object",
+                    //       key: "fobi Items",
+                    //       displayer: "fobi Items",
+                    //       value: [
+                    //         {
+                    //           type: "string",
+                    //           key: "item",
+                    //           value: "Asansör Fobisi Değerlendirme Anketi",
+                    //           displayer: "Item",
+                    //         },
+                    //   ]
+                    // }
+                  ],                
+                },               
+              ],
             },
           ],
         },
@@ -74,10 +106,24 @@ class Navbar1 extends BaseNavigator {
               displayer: "Item",
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
+              type: "array",
+              key: "subItems",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "subItem",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      value: "Kapali Alan Fobisi",
+                      displayer: "Item",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -93,10 +139,24 @@ class Navbar1 extends BaseNavigator {
               displayer: "Item",
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
+              type: "array",
+              key: "subItems",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "subItem",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      value: "Metro Fobisi",
+                      displayer: "Item",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -112,10 +172,24 @@ class Navbar1 extends BaseNavigator {
               displayer: "Item",
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
+              type: "array",
+              key: "subItems",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "subItem",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      value: "Köprü Fobisi",
+                      displayer: "Item",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -164,21 +238,19 @@ class Navbar1 extends BaseNavigator {
     const selectValue = this.getPropValue("select");
     return (
       <div
-        className={`${this.decorateCSS("container")} ${
-          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-        }`}
+        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+          }`}
       >
         <div className={this.decorateCSS("max-content")}>
           <nav>
             <img src={this.getPropValue("image")} width={200} alt="" />
             <div
-              className={`${this.decorateCSS("items")} ${
-                selectValue === "Left"
+              className={`${this.decorateCSS("items")} ${selectValue === "Left"
                   ? this.decorateCSS("left")
                   : selectValue === "Right"
-                  ? this.decorateCSS("right")
-                  : selectValue === "Center" && ""
-              }`}
+                    ? this.decorateCSS("right")
+                    : selectValue === "Center" && ""
+                }`}
             >
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
@@ -188,6 +260,11 @@ class Navbar1 extends BaseNavigator {
                       path={data.value[1].value}
                     >
                       <h3 key={indexItemList}>{data.value[0].value}</h3>
+                      {Array.isArray(data.value[1].value) &&
+                        data.value[1].value.map((subItem: any, subIndex: number) => (
+                          <h4 key={subIndex}>{subItem.value[0].value}</h4>
+                        )
+                        )}
                     </ComposerLink>
                   );
                 }
@@ -213,11 +290,10 @@ class Navbar1 extends BaseNavigator {
               <img src={this.getPropValue("image")} width={200} alt="" />
               <img
                 alt=""
-                className={`${this.decorateCSS("img-hamburger")} ${
-                  this.getComponentState("navActive")
+                className={`${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
                     ? this.decorateCSS("rotate")
                     : ""
-                }`}
+                  }`}
                 src={this.getPropValue("image2")}
                 onClick={() => {
                   this.navClick();
