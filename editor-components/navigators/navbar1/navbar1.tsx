@@ -71,7 +71,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Home"
+              value: "Hakkımızda"
             },
             {
               type: "page",
@@ -224,7 +224,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Blog"
+              value: "Ürünler"
             },
             {
               type: "page",
@@ -378,7 +378,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Blog"
+              value: "Materyaller"
             },
             {
               type: "page",
@@ -524,7 +524,14 @@ class Navbar1 extends BaseNavigator {
           ]
         },
       ]
-    })
+    });
+    this.addProp({
+      type: "boolean",
+      key: "is_box_visible",
+      displayer: "is box visible",
+      value: true,
+       
+    });
 
     this.addProp({
       type: "array",
@@ -563,7 +570,11 @@ class Navbar1 extends BaseNavigator {
     let value: boolean = this.getComponentState("navActive");
     this.setComponentState("navActive", !value);
   }
-
+ 
+   handleItemClick = () => {
+     let value: boolean = this.getComponentState("navActive");
+     this.setComponentState("navActive", !value); 
+   }
   render() {
     const selectValue = this.getPropValue("select");
     return (
@@ -590,23 +601,24 @@ class Navbar1 extends BaseNavigator {
                       path={item.navigate_to}
                     >
                       <div className={this.decorateCSS("item")}>
-                        <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("down_icon")} />}</span>
-                        <div className={this.decorateCSS("sub-items")}>
-                          {item.sub_items?.length > 0 && item.sub_items.map(subItem =>
+                        <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length >
+                         0 && <ComposerIcon name={this.getPropValue("down_icon")} />}</span>
+                         <div className={this.decorateCSS("sub-items")}>
+                          {item.sub_items?.length > 0 && item.sub_items.map(subItem =>                                           
                             <div className={this.decorateCSS("sub-item")}>
-                              <span>{subItem.title} {subItem.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
+                                
+              <span>{subItem.title} {subItem.sub_items?.length > 0 && this.getPropValue("is_box_visible") 
+                && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
                               <div className={this.decorateCSS("list")}>
                                 {subItem.sub_items?.length > 0 && subItem.sub_items.map(subItem2 =>
                                   <span className={this.decorateCSS("list-item")}>{subItem2.title}</span>)
                                 }
                               </div>
-                            </div>
+                            </div>                         
                           )
-
-                          }
-                        </div>
+                          }                       
                       </div>
-
+                      </div>                      
                     </ComposerLink>
                   );
                 }
@@ -643,16 +655,37 @@ class Navbar1 extends BaseNavigator {
               />
             </div>
             {this.getComponentState("navActive") && (
-              <div className={this.decorateCSS("navbar-child")}>
-                {this.castToObject<[]>("itemList").map(
-                  (data: any, indexItemList: number) => {
+              <div className={this.decorateCSS("navbar-child")}>               
+              {this.castToObject<[]>("items").map(
+                (item: Item, indexItemList: number) => {
                     return (
-                      <ComposerLink
-                        key={indexItemList}
-                        path={data.value[1].value}
-                      >
-                        <h3 key={indexItemList}>{data.value[0].value}</h3>
-                      </ComposerLink>
+                    <ComposerLink
+                      key={indexItemList}
+                      path={item.navigate_to}
+                    >
+
+                      <div className={this.decorateCSS("item")}                    
+                    >                        
+                        <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("down_icon")} />}</span>
+                         <div className={this.decorateCSS("sub-items")}>
+                          {item.sub_items?.length > 0 && item.sub_items.map(subItem =>                                           
+                            <div className={this.decorateCSS("sub-item")}>
+                                
+              <span>{subItem.title} {subItem.sub_items?.length > 0 && this.getPropValue("is_box_visible") 
+                && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
+                              <div className={this.decorateCSS("list")}>
+                                {subItem.sub_items?.length > 0 && subItem.sub_items.map(subItem2 =>
+                                  <span className={this.decorateCSS("list-item")}>{subItem2.title}</span>)
+                                }
+                              </div>
+                            </div>                         
+                          )
+                          }                       
+                      </div>
+                      </div>
+                      
+
+                    </ComposerLink>
                     );
                   }
                 )}
