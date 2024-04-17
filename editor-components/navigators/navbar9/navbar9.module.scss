@@ -19,7 +19,22 @@
         background: transparent !important;
     }
     &.active {
-        background-color: var(--composer-html-background) !important;
+        background-color: black !important;
+        .max-content {
+            .bar {
+                .middle {
+                    .title,
+                    .subtitle {
+                        color: white;
+                    }
+                }
+            }
+            .navbar {
+                .hamburger-icon {
+                    color: white;
+                }
+            }
+        }
     }
 
     .max-content {
@@ -43,19 +58,19 @@
                 .title {
                     font-size: 3.5rem;
                     letter-spacing: 15px;
-                    color: var(--composer-primary-color);
+                    color: black;
                     white-space: nowrap;
                 }
 
                 .subtitle {
                     font-size: 20px;
                     letter-spacing: 5px;
-                    color: var(--composer-font-color-primary);
+                    color: black;
                 }
             }
 
             .navbar {
-                color: var(--composer-font-color-primary);
+                color: black;
                 display: flex;
                 justify-content: end;
                 align-items: flex-end;
@@ -93,18 +108,18 @@
             .left-page {
                 width: 50%;
                 text-align: -webkit-center;
-                border-right: 2px solid var(--composer-tertiary-color);
+                border-right: 2px solid white;
 
                 .title1 {
                     text-align: center;
                     font-size: 25px;
                     letter-spacing: 5px;
                     padding-bottom: 50px;
-                    color: var(--composer-primary-color);
+                    color: white;
                 }
 
                 .stick {
-                    border: 1px solid var(--composer-tertiary-color);
+                    border: 1px solid white;
                     width: 85px;
                     margin-bottom: 80px;
                 }
@@ -114,7 +129,7 @@
                     text-align: left;
                     width: 57%;
                     font-size: 16px;
-                    color: var(--composer-font-color-primary);
+                    color: white;
                     word-spacing: 2px;
                 }
             }
@@ -126,7 +141,7 @@
                     display: flex;
                     justify-content: center;
                     font-size: 25px;
-                    color: var(--composer-font-color-primary);
+                    color: white;
                 }
 
                 .social-media-box {
@@ -138,14 +153,14 @@
                     .icon-text {
                         font-size: 16px;
                         letter-spacing: 4px;
-                        color: var(--composer-font-color-primary);
+                        color: white;
                     }
 
                     .icon-group {
                         display: flex;
                         font-size: 35px;
                         gap: 10px;
-                        color: var(--composer-font-color-primary);
+                        color: white;
                     }
                 }
             }

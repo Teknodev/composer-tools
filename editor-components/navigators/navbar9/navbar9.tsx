@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
-import styles from "./navbar8.module.scss";
+import styles from "./navbar9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
@@ -233,7 +233,7 @@ class Navbar8 extends BaseNavigator {
   }
 
   getName(): string {
-    return "Navbar 8";
+    return "Navbar 9";
   }
 
   navClick() {
@@ -288,7 +288,7 @@ class Navbar8 extends BaseNavigator {
                             key={indexItemList}
                             path={data.value[1].value}
                           >
-                            <h3 className={this.decorateCSS("item-title")} onClick={() => this.setComponentState("navActive",false)} key={indexItemList}>{data.value[0].value}</h3>
+                            <h3 className={this.decorateCSS("item-title")} key={indexItemList} onClick={() => this.setComponentState("navActive",false)}>{data.value[0].value}</h3>
                           </ComposerLink>
                         );
                       }

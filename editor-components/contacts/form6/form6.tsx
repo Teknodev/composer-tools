@@ -354,7 +354,7 @@ class Form6 extends BaseContacts {
     const locationDetails = this.getPropValue("locationDetails", { as_string: true });
     const isAddressVisible = location || locationDetails;
 
-    const inputItems = this.getPropValue("input_items")
+    const inputItems = this.getPropValue("input_items")!
     const image = this.getPropValue("image");
 
     function toObjectKey(str: string) {
@@ -387,8 +387,8 @@ class Form6 extends BaseContacts {
 
     function getInitialValue() {
       let value: any = {};
-      inputItems.map((inputItem: TypeUsableComponentProps, indexOfItem: number) => {
-        inputItem.getPropValue("inputs").map((_: TypeUsableComponentProps, indexOfInput: number) => {
+      inputItems.map((inputItem: any, indexOfItem: number) => {
+        inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
           value[key] = "";
         })
@@ -399,14 +399,14 @@ class Form6 extends BaseContacts {
     function getSchema() {
       let schema = Yup.object().shape({});
 
-      inputItems.map((inputItem: TypeUsableComponentProps, indexOfItem: number) => {
-        inputItem.getPropValue("inputs").map((input: TypeUsableComponentProps, indexOfInput: number) => {
+      inputItems.map((inputItem: any, indexOfItem: number) => {
+        inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
 
           const isRequired = input.getPropValue("is_required");
           const isEmail = getInputType(input.getPropValue("type")) == "email";
 
-          let fieldSchema = Yup.string();
+          let fieldSchema = Yup.string() as any;
 
           if (isRequired) {
             fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"))
@@ -443,8 +443,8 @@ class Form6 extends BaseContacts {
       return newObj;
     }
 
-    function isRequiredInput(inputItem: TypeUsableComponentProps): boolean {
-      return inputItem.getPropValue("inputs").some((input: TypeUsableComponentProps) => input.getPropValue("is_required"))
+    function isRequiredInput(inputItem: any): boolean {
+      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
     }
 
     return (
@@ -477,11 +477,11 @@ class Form6 extends BaseContacts {
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
-                    {inputItems.map((inputItem: TypeUsableComponentProps, inputItemIndex: number) =>
+                    {inputItems.map((inputItem: any, inputItemIndex: number) =>
                       <div className={this.decorateCSS("input-container")}>
                         <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label")} <p className={this.decorateCSS("require-star")}>{isRequiredInput(inputItem) && "*"}</p></span>
                         <div className={this.decorateCSS("inputs")}>
-                          {inputItem.getPropValue("inputs").map((inputObj: TypeUsableComponentProps, inputIndex: number) =>
+                          {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
                             <div className={this.decorateCSS("input-box")}>
                               {inputObj.getPropValue("type") == "Text Area" ?
                                 <textarea

@@ -200,6 +200,7 @@ import NavbarComponent5 from "./navigators/navbar5/navbar5";
 import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
+import NavbarComponent9 from "./navigators/navbar9/navbar9";
 import ImageGalleryCompanent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
@@ -335,6 +336,7 @@ function Registerables(composer: ComponentsRegistery) {
     new NavbarComponent6(),
     new NavbarComponent7(),
     new NavbarComponent8(),
+    new NavbarComponent9(),
     new ImageGalleryCompanent1(),
     new FeatureComponent1(),
     new FeatureComponent2(),
