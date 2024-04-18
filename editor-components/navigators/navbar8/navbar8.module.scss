@@ -19,22 +19,7 @@
         background: transparent !important;
     }
     &.active {
-        background-color: black !important;
-        .max-content {
-            .bar {
-                .middle {
-                    .title,
-                    .subtitle {
-                        color: white;
-                    }
-                }
-            }
-            .navbar {
-                .hamburger-icon {
-                    color: white;
-                }
-            }
-        }
+        background-color: var(--composer-html-background) !important;
     }
 
     .max-content {
