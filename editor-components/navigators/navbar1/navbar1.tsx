@@ -530,7 +530,7 @@ class Navbar1 extends BaseNavigator {
       key: "is_box_visible",
       displayer: "is box visible",
       value: true,
-       
+
     });
 
     this.addProp({
@@ -570,11 +570,11 @@ class Navbar1 extends BaseNavigator {
     let value: boolean = this.getComponentState("navActive");
     this.setComponentState("navActive", !value);
   }
- 
-   handleItemClick = () => {
-     let value: boolean = this.getComponentState("navActive");
-     this.setComponentState("navActive", !value); 
-   }
+
+  handleItemClick = () => {
+    let value: boolean = this.getComponentState("navActive");
+    this.setComponentState("navActive", !value);
+  }
   render() {
     const selectValue = this.getPropValue("select");
     return (
@@ -602,23 +602,23 @@ class Navbar1 extends BaseNavigator {
                     >
                       <div className={this.decorateCSS("item")}>
                         <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length >
-                         0 && <ComposerIcon name={this.getPropValue("down_icon")} />}</span>
-                         <div className={this.decorateCSS("sub-items")}>
-                          {item.sub_items?.length > 0 && item.sub_items.map(subItem =>                                           
+                          0 && <ComposerIcon name={this.getPropValue("down_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />}</span>
+                        <div className={this.decorateCSS("sub-items")}>
+                          {item.sub_items?.length > 0 && item.sub_items.map(subItem =>
                             <div className={this.decorateCSS("sub-item")}>
-                                
-              <span>{subItem.title} {subItem.sub_items?.length > 0 && this.getPropValue("is_box_visible") 
-                && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
+
+                              <span>{subItem.title} {subItem.sub_items?.length > 0 && this.getPropValue("is_box_visible")
+                                && <ComposerIcon name={this.getPropValue("right_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />}</span>
                               <div className={this.decorateCSS("list")}>
                                 {subItem.sub_items?.length > 0 && subItem.sub_items.map(subItem2 =>
                                   <span className={this.decorateCSS("list-item")}>{subItem2.title}</span>)
                                 }
                               </div>
-                            </div>                         
+                            </div>
                           )
-                          }                       
+                          }
+                        </div>
                       </div>
-                      </div>                      
                     </ComposerLink>
                   );
                 }
@@ -655,37 +655,37 @@ class Navbar1 extends BaseNavigator {
               />
             </div>
             {this.getComponentState("navActive") && (
-              <div className={this.decorateCSS("navbar-child")}>               
-              {this.castToObject<[]>("items").map(
-                (item: Item, indexItemList: number) => {
+              <div className={this.decorateCSS("navbar-child")}>
+                {this.castToObject<[]>("items").map(
+                  (item: Item, indexItemList: number) => {
                     return (
-                    <ComposerLink
-                      key={indexItemList}
-                      path={item.navigate_to}
-                    >
+                      <ComposerLink
+                        key={indexItemList}
+                        path={item.navigate_to}
+                      >
 
-                      <div className={this.decorateCSS("item")}                    
-                    >                        
-                        <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("down_icon")} />}</span>
-                         <div className={this.decorateCSS("sub-items")}>
-                          {item.sub_items?.length > 0 && item.sub_items.map(subItem =>                                           
-                            <div className={this.decorateCSS("sub-item")}>
-                                
-              <span>{subItem.title} {subItem.sub_items?.length > 0 && this.getPropValue("is_box_visible") 
-                && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
-                              <div className={this.decorateCSS("list")}>
-                                {subItem.sub_items?.length > 0 && subItem.sub_items.map(subItem2 =>
-                                  <span className={this.decorateCSS("list-item")}>{subItem2.title}</span>)
-                                }
+                        <div className={this.decorateCSS("item")}
+                        >
+                          <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("down_icon")} />}</span>
+                          <div className={this.decorateCSS("sub-items")}>
+                            {item.sub_items?.length > 0 && item.sub_items.map(subItem =>
+                              <div className={this.decorateCSS("sub-item")}>
+
+                                <span>{subItem.title} {subItem.sub_items?.length > 0 && this.getPropValue("is_box_visible")
+                                  && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
+                                <div className={this.decorateCSS("list")}>
+                                  {subItem.sub_items?.length > 0 && subItem.sub_items.map(subItem2 =>
+                                    <span className={this.decorateCSS("list-item")}>{subItem2.title}</span>)
+                                  }
+                                </div>
                               </div>
-                            </div>                         
-                          )
-                          }                       
-                      </div>
-                      </div>
-                      
+                            )
+                            }
+                          </div>
+                        </div>
 
-                    </ComposerLink>
+
+                      </ComposerLink>
                     );
                   }
                 )}
