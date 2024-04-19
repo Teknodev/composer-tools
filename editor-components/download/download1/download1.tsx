@@ -124,43 +124,42 @@ class DownloadCard1 extends BaseDownload {
   }
 
   getName(): string {
-    return "Download-1";
-  }
+      return "Download-1";
+    }
 
   render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      return(
+      <div className = { this.decorateCSS("container") } >
+          <div className={this.decorateCSS("max-content")}>
+            <p className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</p>
+            <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
+                    
+            <div className={this.decorateCSS("line")}></div>
+            <p className={this.decorateCSS("description")}>{this.getPropValue("description")} </p>
+
+            <div className={this.decorateCSS("box")}>
+              {this.castToObject<Button[]>("buttons").map(
+                (item: Button, index: number) => {
+                  return (
+                    <ComposerLink key={`dw-1-btn-${index}`} path={item.url} >
+                      <button
+                        className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")
+                          }`}
+                      >
+                        <ComposerIcon name={item.buttonIcon} propsIcon={{
+                          className: this.decorateCSS("icon")
+                        }} />
 
 
-          <p className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</p>
-          <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
-          <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+                        {item.buttonText}
+                      </button>
+                    </ComposerLink>
+                  );
+                }
+              )}
+            </div>
 
-
-          <div className={this.decorateCSS("box")}>
-            {this.castToObject<Button[]>("buttons").map(
-              (item: Button, index: number) => {
-                return (
-                  <ComposerLink key={`dw-1-btn-${index}`} path={item.url} >
-                    <button
-                      className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")
-                        }`}
-                    >
-                      <ComposerIcon name={item.buttonIcon} propsIcon={{
-                        className: this.decorateCSS("icon")
-                      }} />
-
-
-                      {item.buttonText}
-                    </button>
-                  </ComposerLink>
-                );
-              }
-            )}
           </div>
-
-        </div>
 
 
       </div>

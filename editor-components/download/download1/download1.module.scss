@@ -3,15 +3,18 @@
     padding: 50px 0;
     display: flex;
     justify-content: center;
+
     .max-content {
         text-align: center;
         font-weight: bold;
         width: 100%;
     }
+
     .title1 {
         @media screen and (max-width: 360px) {
             font-size: 14px;
         }
+
         margin-top: 80px;
         margin-bottom: 10px;
         font-size: 1.5rem;
@@ -22,30 +25,41 @@
         font-size: 50px;
         margin: 0;
         color: var(--composer-primary-color);
+
         @media screen and (max-width: 360px) {
             font-size: 35px;
         }
     }
+
     .description {
         font-size: 1.6rem;
         font-weight: 240;
         color: var(--composer-font-color-primary);
+
         @media screen and (max-width:360px) {
             padding: 10px;
         }
+
+    }
+
+    .line {
+        height: 7px;
+        width: 90px;
+        margin: auto;
+        margin-top: 20px;
+        background: blue;
     }
 
     .box {
         display: flex;
-        margin: 40px;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
-        gap: 20px;
-
+        padding-top: 5rem;
+        row-gap: 50px;
         .button {
             display: flex;
-            padding: 30px;
+            padding: 39px;
             width: 300px;
             background-color: transparent;
             gap: 10px;
@@ -62,13 +76,39 @@
         .button:hover {
             background-color: var(--composer-secondary-color);
             color: var(--composer-font-color-secondary);
+
             .icon {
                 @media screen and (max-width:360px) {
                     transform: scale(1);
                 }
-                @media screen and (max-width:800px) {
-                }
+
+                @media screen and (max-width:800px) {}
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+    
+
+        .max-content {}
+
+        .title1 {}
+
+        .title2 {}
+
+        .description {}
+
+        .line {}
+
+        .box {
+            gap:3.125rem;
+            padding-top: 1.875rem;
+
+            .button {}
+
+            .button:hover {}
         }
     }
 }
