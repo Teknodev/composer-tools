@@ -560,6 +560,8 @@ class Navbar1 extends BaseNavigator {
       ],
     });
     this.state["componentProps"]["navActive"] = true;
+    this.state["componentProps"]["subNavActive"] = true;
+
   }
 
   getName(): string {
@@ -567,14 +569,17 @@ class Navbar1 extends BaseNavigator {
   }
 
   navClick() {
+    console.log("active")
     let value: boolean = this.getComponentState("navActive");
     this.setComponentState("navActive", !value);
   }
 
-  handleItemClick = () => {
-    let value: boolean = this.getComponentState("navActive");
-    this.setComponentState("navActive", !value);
+  subNavCLick(){
+      let value: boolean = this.getComponentState("subNavActive");
+      this.setComponentState("subNavActive", !value);
   }
+
+  
   render() {
     const selectValue = this.getPropValue("select");
     return (
@@ -583,8 +588,10 @@ class Navbar1 extends BaseNavigator {
           }`}
       >
         <div className={this.decorateCSS("max-content")}>
-          <nav>
-            <img src={this.getPropValue("image")} width={200} alt="" />
+        <img src={this.getPropValue("image")} width={200} alt="" />
+
+      
+      <nav className={this.decorateCSS("pc-navigator")}>
             <div
               className={`${this.decorateCSS("items")} ${selectValue === "Left"
                 ? this.decorateCSS("left")
@@ -596,11 +603,14 @@ class Navbar1 extends BaseNavigator {
               {this.castToObject<[]>("items").map(
                 (item: Item, indexItemList: number) => {
                   return (
-                    <ComposerLink
+                    <div className={this.decorateCSS("menu-item")}>
+                         <ComposerLink
                       key={indexItemList}
                       path={item.navigate_to}
+                     
                     >
                       <div className={this.decorateCSS("item")}>
+                        
                         <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length >
                           0 && <ComposerIcon name={this.getPropValue("down_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />}</span>
                         <div className={this.decorateCSS("sub-items")}>
@@ -620,11 +630,15 @@ class Navbar1 extends BaseNavigator {
                         </div>
                       </div>
                     </ComposerLink>
+                    </div>
+                 
                   );
                 }
               )}
             </div>
-            <div className={this.decorateCSS("button-child")}>
+           
+          </nav>
+          <div className={this.decorateCSS("button-child")}>
               {this.castToObject<[]>("buttonList").map(
                 (data: any, indexButtonList: number) => {
                   return (
@@ -638,10 +652,11 @@ class Navbar1 extends BaseNavigator {
                 }
               )}
             </div>
-          </nav>
-          <nav className={this.decorateCSS("navigator-mobile")}>
-            <div className={this.decorateCSS("navbar")}>
-              <img src={this.getPropValue("image")} width={200} alt="" />
+    
+
+
+
+            <div className={this.decorateCSS("hamburger-navbar")}>
               <img
                 alt=""
                 className={`${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
@@ -654,7 +669,9 @@ class Navbar1 extends BaseNavigator {
                 }}
               />
             </div>
-            {this.getComponentState("navActive") && (
+
+          <nav className={this.decorateCSS("navigator-mobile")}>
+          {this.getComponentState("navActive") && (
               <div className={this.decorateCSS("navbar-child")}>
                 {this.castToObject<[]>("items").map(
                   (item: Item, indexItemList: number) => {
@@ -665,11 +682,18 @@ class Navbar1 extends BaseNavigator {
                       >
 
                         <div className={this.decorateCSS("item")}
+                           onClick={() => {
+                            this.subNavCLick();
+                          }}
                         >
                           <span className={this.decorateCSS("title")} key={indexItemList}>{item.title} {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("down_icon")} />}</span>
-                          <div className={this.decorateCSS("sub-items")}>
+                          {this.getComponentState("subNavActive") &&        <div className={this.decorateCSS("sub-items")}>
                             {item.sub_items?.length > 0 && item.sub_items.map(subItem =>
-                              <div className={this.decorateCSS("sub-item")}>
+                             
+                             
+                             <div className={this.decorateCSS("sub-item")}
+                           
+                              >
 
                                 <span>{subItem.title} {subItem.sub_items?.length > 0 && this.getPropValue("is_box_visible")
                                   && <ComposerIcon name={this.getPropValue("right_icon")} />}</span>
@@ -681,7 +705,7 @@ class Navbar1 extends BaseNavigator {
                               </div>
                             )
                             }
-                          </div>
+                          </div>}
                         </div>
 
 
@@ -692,6 +716,7 @@ class Navbar1 extends BaseNavigator {
               </div>
             )}
           </nav>
+       
         </div>
       </div>
     );
