@@ -343,14 +343,21 @@ class Team3 extends Team {
   }
 
   render() {
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("text-group")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
-            </div>
+            {title && <div className={this.decorateCSS("text-group")}> 
+              <div className={this.decorateCSS("title-up")}>
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              </div>
+              {subtitle && <div className={this.decorateCSS("subtitle-up")}>
+                <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
+              </div>}
+            </div>}
             <div className={this.decorateCSS("down-page")} style={{gridTemplateColumns:`repeat(${this.getPropValue("itemCount")}, 1fr)`}}>
               {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => (
                   <div

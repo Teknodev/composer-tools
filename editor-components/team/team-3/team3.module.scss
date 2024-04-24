@@ -10,22 +10,27 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            margin-bottom: 50px;
             .text-group {
-                width: 80%;
                 margin: 40px 0;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: 70%;
+                .title-up{
+                    margin: 0;
+                    
                 .title {
-                    width: 70%;
                     text-align: center;
                     letter-spacing: 3px;
                     font-size: 16px;
                     color: var(--composer-primary-color);
                     word-wrap: break-word;
                 }
+            }
+            .subtitle-up{
+                margin: 0;
+               
                 .subtitle {
                     margin-top: 10px;
                     font-size: 40px;
@@ -33,8 +38,8 @@
                     text-align: center;
                     color: var(--composer-primary-color);
                     word-wrap: break-word;
-                    width: 70%;
                 }
+            }
             }
             .down-page {
                 width: 100%;
@@ -44,7 +49,6 @@
                 grid-row-gap: 30px;
                 .all-card {
                     //width: 100%;
-                    //min-width: 270px;
                     .card {
                         height: 100%;
                         max-width: 500px;
