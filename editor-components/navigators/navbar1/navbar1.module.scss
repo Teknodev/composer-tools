@@ -1,282 +1,260 @@
 .container {
-    width: 100%;
+  width: 100%;
+  position: relative;
+  background-color: var(--composer-html-background);
+
+  &.sticky {
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+    box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
+  }
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
     position: relative;
-    background-color: var(--composer-html-background);
+    nav {
+      display: flex;
 
-    &.sticky {
-        position: sticky;
-        top: 0px;
-        z-index: 100;
-        box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
-    }
+      align-items: center;
+      padding: 0 20px;
 
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
+      .items {
         display: flex;
-        justify-content: space-between;
-        padding: 0 20px;
-        position: relative;
-        nav {
-            display: flex;
-            
-            align-items: center;
-            padding: 0 20px;
+        height: 100%;
 
-            .items {
+        .menu-item {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          padding: 0 20px;
+
+          &:hover {
+            .item {
+              .sub-items {
                 display: flex;
-                gap: 56px;
-                height: 100%;
-                
-            .menu-item{
-               height: 100%; 
-               display: flex;
-               align-items: center;
-               
-                &:hover {
-                    .item{
-                        .sub-items {
-                            display: flex;
-    
-                            .sub-item {
-                                background: color-mix(in srgb, var(--composer-secondary-color), #fff 70%);
-                            }
-                        }
-                    }
-                   
+
+                .sub-item {
+                  background: color-mix(
+                    in srgb,
+                    var(--composer-secondary-color),
+                    #fff 70%
+                  );
                 }
-
-                .item {
-                    position: relative;
-
-                    .title {
-                        display: flex;
-                        align-items: center;
-                        gap: 4px;
-                        font-size: 1.5rem;
-                    }
-
-                    .icon{
-                        margin-left: 10px;
-                    }
-
-                    .sub-items {
-                        display: none;
-                        position: absolute;
-                        top: 0;
-                        padding-top: 63px;
-                        flex-direction: column;
-                        font-size: 1.2rem;
-
-                        .sub-item {
-                            padding: 12px 30px;
-                            white-space: nowrap;
-                            display: flex;
-                            position: relative;
-
-                            .list {
-                                display: none;
-                                flex-direction: column;
-                                position: absolute;
-                                left: 100%;
-                                top: 0;
-                                background: var(--composer-html-background);
-
-                                .list-item {
-                                    padding: 12px 30px 11px 30px;
-                                    background: color-mix(in srgb, var(--composer-secondary-color), #fff 70%);
-
-                                    &:hover {
-                                        background: var(--composer-secondary-color) !important;
-                                    }
-                                }
-                            }
-
-                            &:hover {
-                                 background: var(--composer-secondary-color) !important;
-                                 .list{
-                                    display: flex;
-                                 }
-                           
-                                }
-                        }
-                    }
-
-                }
+              }
             }
+          }
+
+          .item {
+            position: relative;
+
+            .title {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              font-size: 1.5rem;
             }
 
+            .icon {
+              margin-left: 10px;
+            }
 
-          
-        }
-        .button-child {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            .sub-items {
+              display: none;
+              position: absolute;
+              top: 58px;
+              flex-direction: column;
+              font-size: 1.2rem;
 
-            button {
-                cursor: pointer;
-                transition: all 0.5s;
-                background-color: var(--composer-secondary-color);
-                border: 1px solid var(--composer-secondary-color);
-                border-radius: 6px;
-                font-size: 15px;
-                font-weight: 700;
-                color: var(--composer-font-color-secondary);
-                padding: 0 20px;
-                min-height: 40px;
+              .sub-item {
+                padding: 12px 30px;
+                white-space: nowrap;
+                display: flex;
+                position: relative;
+
+                .list {
+                  display: none;
+                  flex-direction: column;
+                  position: absolute;
+                  left: 100%;
+                  top: 0;
+                  background: var(--composer-html-background);
+
+                  .list-item {
+                    padding: 12px 30px 11px 30px;
+                    background: color-mix(
+                      in srgb,
+                      var(--composer-secondary-color),
+                      #fff 70%
+                    );
+
+                    &:hover {
+                      background: var(--composer-secondary-color) !important;
+                    }
+                  }
+                }
 
                 &:hover {
-                    background: transparent;
-                    color: var(--composer-font-color-primary);
+                  background: var(--composer-secondary-color) !important;
+                  .list {
+                    display: flex;
+                  }
                 }
+              }
             }
+          }
         }
-        .hamburger-navbar{
-            display: none;
-        }
+      }
+    }
+    .button-child {
+      display: flex;
+      align-items: center;
+      gap: 15px;
 
-        .navigator-mobile {
-            display: none;
-            visibility: hidden;
+      button {
+        cursor: pointer;
+        transition: all 0.5s;
+        background-color: var(--composer-secondary-color);
+        border: 1px solid var(--composer-secondary-color);
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--composer-font-color-secondary);
+        padding: 0 20px;
+        min-height: 40px;
+
+        &:hover {
+          background: transparent;
+          color: var(--composer-font-color-primary);
         }
+      }
     }
-   
-    .container-sticky {
-        @extend .container;
-        position: fixed;
-        top: 0;
-        z-index: 10;
+    .hamburger-navbar {
+      display: none;
     }
+
+    .navigator-mobile {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  .container-sticky {
+    @extend .container;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
 }
 
-
 @media only screen and (max-width: 870px) {
-    .container{
-        .max-content {
-            padding: 0 !important;
-        .pc-navigator{
-            display: none;
-        }
-        .button-child{
-            display: none;
-        }
-        .hamburger-navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-            padding: 0 20px 0 5px;
+  .container {
+    .max-content {
+      padding: 0 !important;
+      align-items: center;
+      .pc-navigator {
+        display: none;
+      }
+      .button-child {
+        display: none;
+      }
+      .hamburger-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 20px 0 5px;
 
-            .img-hamburger {
-                pointer-events: all;
-                cursor: pointer;
-                transition: 0.4s;
-                font-weight: 100;
-                font-size: 30px;
-                width: 25px;
-                height: 25px;
+        .img-hamburger {
+          pointer-events: all;
+          cursor: pointer;
+          transition: 0.4s;
+          font-weight: 100;
+          font-size: 30px;
+          width: 25px;
+          height: 25px;
 
-                &.rotate {
-                    transform: rotate(90deg);
-                }
-            }
+          &.rotate {
+            transform: rotate(90deg);
+          }
         }
-            .navigator-mobile {
-                display: block !important;
-                visibility: visible !important;
-    
-                position: absolute;
-                width: 100%;
-                height: unset;
-                bottom: 0;
-                .navbar-hidden {
-                    display: block;
-                    visibility: visible;
-                }
-    
-                .navbar-child {
-                    display: flex;
-                    flex-direction: column;
-                    transition: all 0.5s;
-                    height: auto;
-                    width: 100%;
-                    left: 0;
-                    background-color: var(--composer-secondary-color);
-                    //color: var(--composer-font-color-secondary);
-                    position: absolute;
-                    z-index: 200;
-                    gap: 30px;
-                    padding: 25px 0 16px 10px;               
-                    
-                        .item {
-                            display: flex;
-                            position: relative;
-                            flex-direction: column;
-    
-                            .title {
-                                display: flex;
-                                align-items: center;
-                                gap: 4px;
-                                font-size: 1.5rem;
-                            }
-    
-                            .sub-items {
-                                display: none;
-                                flex-direction: column !important;
-                                font-size: 1.2rem;
-                                top: 0 !important;
-                                padding-top: 30px;
-    
-                                .sub-item {
-                                    display: flex;
-                                    position: relative;
-                                    white-space: nowrape !important;
-                                    padding: 12px 30px;
-                                    flex-direction: column !important;
-    
-                                    .list {
-                                        display: none;
-                                        flex-direction: column !important;
-                                        background: var(--composer-html-background);
-                                    
-                                        .list-item {
-                                            padding: 12px 30px 11px 30px;
-                                            background: color-mix(in srgb, var(--composer-secondary-color), #fff 70%);
-    
-                                            &:hover {
-                                                background: var(--composer-secondary-color) !important;
-                                            }
-                                        }
-                                    }
-    
-                                    &:hover{
-                                        background: var(--composer-secondary-color) !important;
-    
-                                        // .list {
-                                        //     display: flex;
-    
-                                        // }
-                                    }
-                                }
-                            }
-    
-                            &:hover{
-                                .sub-items {
-                                    display: flex;
-    
-                                    .sub-item {
-                                        background: color-mix(in srgb, var(--composer-secondary-color), #fff 70%);
-                                    }
-                                }
-                            }
-    
-    
-    
-                        }
-                    }
-                }
+      }
+      .navigator-mobile {
+        display: block !important;
+        visibility: visible !important;
+
+        position: absolute;
+        width: 100%;
+        height: unset;
+        bottom: 0;
+
+        .navbar-child {
+          display: flex;
+          flex-direction: column;
+          transition: all 0.5s;
+          height: auto;
+          width: 100%;
+          left: 0;
+          background-color: var(--composer-secondary-color);
+          //color: var(--composer-font-color-secondary);
+          position: absolute;
+          z-index: 200;
+          gap: 30px;
+          padding: 20px 15px;
+
+          .menu-item {
+            .item {
+              display: flex;
+              position: relative;
+              flex-direction: column;
+
+              .title {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 1.5rem;
+              }
             }
+            .sub-items {
+              flex-direction: column !important;
+              font-size: 1.2rem;
+              top: 0 !important;
+              display: flex;
+
+              .sub-item {
+                display: flex;
+                position: relative;
+                white-space: nowrap !important;
+                padding: 12px 20px;
+                flex-direction: column !important;
+
+                .sub-item-title {
+                  display: flex;
+                  align-items: center;
+                }
+              }
+              .list {
+                display: flex;
+                flex-direction: column !important;
+                background: var(--composer-html-background);
+
+                .list-item {
+                  padding: 12px 30px;
+                  background: color-mix(
+                    in srgb,
+                    var(--composer-secondary-color),
+                    #fff 70%
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
     }
-   
-    }
+  }
+}
