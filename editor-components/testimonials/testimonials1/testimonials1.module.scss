@@ -1,78 +1,104 @@
 .container {
   width: 100%;
-  padding: 150px 0;
-  background-color: var(composer-html-background);
+  background: var(composer-html-background);
+  padding: 100px 0 100px 0;
 
   .max-content {
-    padding: 20px;
-    max-width: var(--composer-content-width);
-    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .testimonials1 {
-      display: block;
-      width: 100%;
-      .title {
-        text-align: center;
-        font-size: 3rem;
-        margin: 40px 0px 80px 0;
-        color: var(--composer-primary-color);
-      }
-      .subtitle {
-        text-align: center;
-        margin: 0;
-        font-size: 1.5rem;
-        color: var(--composer-primary-color);
-        margin-top: 50px;
-      }
-      .card-child {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+      width: 50%;
 
-        .card {
-          display: block;
-          min-width: 250px;
-          height: max-content;
-          border-radius: 6px;
-          flex: 1 1;
-          border: var(--composer-tertiary-color);
-          .profile {
-            display: flex;
-            margin: 0 auto 0 auto;
-            width: max-content;
-            img {
-              border-radius: 100%;
-              object-fit: cover;
-              margin-bottom: 30px;
-            }
-            .profile-text {
-              margin-left: 20px;
-              .item-value1 {
-                font-weight: 600;
-                font-size: 1.5rem;
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-                color: var(--composer-font-color-primary);
-              }
-              .item-value2 {
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 1.2rem;
-                text-transform: uppercase;
-                color: var(--composer-font-color-primary);
-              }
-            }
+     
+      .items {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+
+        
+          .icons {
+            font-size: 50px;
+            color: var(--composer-font-color-secondry);
+            border-radius: 50%; 
+            background-color: var(--composer-tertiary-color); 
+            display: inline-block; 
+            padding: 10px; 
+          }     
+        
+
+        .longtext {
+          font-size: 20px;
+          text-align: center;
+          color: var(--dark-gray);
+          text-transform: uppercase;
+        }
+
+        .name {
+          font-size: 19px;
+          color: var(--composer-tertiary-color);
+          text-align: center;
+        }
+      }
+
+      .images {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin: 0 auto;
+        width: fit-content;
+ 
+        .image {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          border-radius: 100%;
+          transition: 0.3s;
+
+          &.active {
+            transform: scale(1.1);
+          
           }
-          .item-value3 {
-            width: 90%;
-            font-weight: 500;
-            font-size: 1.5rem;
-            text-align: center;
-            color: var(--composer-font-color-primary);
+         
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .container {
+
+    .max-content {
+      display: flex;
+      justify-content: center;
+      flex-direction: row-reverse;
+      padding-top: 24px;
+
+      .left {
+        display: none;
+      }
+
+      .right {
+        display: none;
+      }
+
+      .testimonials1 {
+        text-align: center;
+
+        .images {
+          position: relative;
+
+          .image {
+            width: 80px;
+            height: 80px;
+
+            &.active {
+            
+              transform: scale(1.2);
+            }
           }
         }
       }
@@ -80,18 +106,66 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 400px) {
   .container {
-    padding: 50px 20px;
     background-color: var(--composer-html-background);
+
     .max-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .left {
+        top: 0 !important;
+      }
+
       .testimonials1 {
-        text-align: center;
-        margin: 0;
-        .card-child {
-          gap: 60px;
+        width: 100% !important;
+
+        .right {
+          position: relative;
+          top: 60px;
+        }
+
+        .images {
+          
+          .image {
+            width: 77px !important;
+            height: 77px !important;
+
+            &.active {
+              transform: scale(1.2);
+            }
+            
+          }
+        }
+
+        .items {
+          padding: 0px 20px 0px 20px;
+
+          .longtext {
+            font-size: 16px;
+
+          }
+        }
+
+        .images {
+
+          .image {
+
+            width: 80px;
+            height: 80px;
+
+            &.active {
+            
+            }
+          }
+
         }
       }
     }
   }
+
+
+
 }
