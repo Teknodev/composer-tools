@@ -187,7 +187,7 @@ class Header16 extends BaseHeader {
               (item: ISliderData, index: number) => (
                 <div className={this.decorateCSS("item")} key={`key${index}`}>
                   <div className={this.decorateCSS("image")}>
-                    <img src={item.image} alt={item.title} />
+                    {item.image && <img src={item.image} alt={item.title} />}
                   </div>
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("description")}>
