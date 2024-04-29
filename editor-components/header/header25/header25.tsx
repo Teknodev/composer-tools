@@ -328,7 +328,11 @@ class Header25 extends BaseHeader {
           {this.getPropValue("slider").map((item: any, indexSlider: number) => (
             <div className={this.decorateCSS("slider-images")} key={indexSlider}>
               {item.getPropValue("image") && (
-                <img src={item.getPropValue("image")} alt="" />
+                <img
+                  className={this.decorateCSS("slider-image")}
+                  src={item.getPropValue("image")}
+                  alt=""
+                />
               )}
             </div>
           ))}
@@ -353,7 +357,7 @@ class Header25 extends BaseHeader {
             </div>
             <div className={this.decorateCSS("bottom-figure")}>
               <div className={this.decorateCSS("side-text")}>
-                <span className="side-text-content">
+                <span className={this.decorateCSS("side-text-content")}>
                   {this.getPropValue("side-text")}
                 </span>
               </div>
@@ -479,7 +483,7 @@ class Header25 extends BaseHeader {
                         });
                       }}
                     >
-                      <span>
+                      <span className={this.decorateCSS("button-text")}>
                         {
                           this.getPropValue("slider")[
                             this.getComponentState("active-index")
@@ -501,7 +505,9 @@ class Header25 extends BaseHeader {
           </div>
         </div>
         <div className={this.decorateCSS("low-op-text")}>
-          <h1>{this.getPropValue("background-text")}</h1>
+          <h1 className={this.decorateCSS("background-op-text")}>
+            {this.getPropValue("background-text")}
+          </h1>
         </div>
       </div>
     );
