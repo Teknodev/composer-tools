@@ -45,7 +45,7 @@ class Header25 extends BaseHeader {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "CONCERT HALL IN NEWYORT",
+              value: "CONCERT HALL IN NEWYORK",
             },
             {
               type: "string",
@@ -259,6 +259,20 @@ class Header25 extends BaseHeader {
       value: "ARCHITECTURE BURO",
     });
 
+    this.addProp({
+      type: "string",
+      key: "next-arrow-text",
+      displayer: "Next Arrow Text",
+      value: "NEXT",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "prev-arrow-text",
+      displayer: "Prev Arrow Text",
+      value: "PREV",
+    });
+
     this.setComponentState("active-index", 0);
     this.setComponentState("titleAnimationClass", "animate__fadeInRight");
     this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
@@ -303,11 +317,7 @@ class Header25 extends BaseHeader {
     };
 
     const sliderCount = this.castToObject<[]>("slider").length;
-    console.log(
-      this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue(
-        "button"
-      )[0].value
-    );
+
     return (
       <div className={this.decorateCSS("container")}>
         <ComposerSlider
@@ -327,19 +337,25 @@ class Header25 extends BaseHeader {
           <div className={this.decorateCSS("left-figure-container")}>
             <div className={this.decorateCSS("top-figure")}>
               <div className={this.decorateCSS("pagination")}>
-                <span>
-                  {this.getComponentState("active-index") + 1 >= 10 ? "" : "0"}
-                  {this.getComponentState("active-index") + 1}
-                </span>{" "}
-                <sup>
-                  <span>/ </span>
-                  <span>{sliderCount > 10 ? sliderCount : `0${sliderCount}`}</span>
+                <span className={this.decorateCSS("active-slide")}>
+                  {(this.getComponentState("active-index") + 1)
+                    .toString()
+                    .padStart(2, "0")}
+                </span>
+                <sup className={this.decorateCSS("slide-count-power")}>
+                  <span className={this.decorateCSS("divider")}>/ </span>
+                  <span className={this.decorateCSS("slide-count")}>
+                    {/* {sliderCount > 10 ? sliderCount : `0${sliderCount}`} */}
+                    {sliderCount.toString().padStart(2, "0")}
+                  </span>
                 </sup>
               </div>
             </div>
             <div className={this.decorateCSS("bottom-figure")}>
               <div className={this.decorateCSS("side-text")}>
-                <span>ARCHITECTURE BURO</span>
+                <span className="side-text-content">
+                  {this.getPropValue("side-text")}
+                </span>
               </div>
 
               <div className={this.decorateCSS("line")}></div>
@@ -375,7 +391,9 @@ class Header25 extends BaseHeader {
                       size: 20,
                     }}
                   />
-                  <span className={this.decorateCSS("arrow-text")}>PREV</span>
+                  <span className={this.decorateCSS("arrow-text")}>
+                    {this.getPropValue("prev-arrow-text")}
+                  </span>
                 </div>
 
                 <div
@@ -384,7 +402,9 @@ class Header25 extends BaseHeader {
                     this.getComponentState("slider-ref").current.slickNext();
                   }}
                 >
-                  <span className={this.decorateCSS("arrow-text")}>NEXT</span>
+                  <span className={this.decorateCSS("arrow-text")}>
+                    {this.getPropValue("next-arrow-text")}
+                  </span>
                   <ComposerIcon
                     name={this.getPropValue("next_icon")}
                     propsIcon={{

@@ -35,16 +35,16 @@
           color: white;
           font-size: 20px;
 
-          span {
+          .active-slide {
             color: white;
             font-size: 6rem;
           }
-          sup {
-            span {
-              font-size: 1.5rem;
-            }
+          .slide-count-power {
             color: greenyellow;
             vertical-align: top;
+            .slide-count {
+              font-size: 1.5rem;
+            }
           }
         }
       }
