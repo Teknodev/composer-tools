@@ -2,37 +2,192 @@ import * as React from "react";
 import styles from "./team9.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-interface Button {
-  buttonText: string;
+type Icons = {
   url: string;
-}
+  icon: string;
+};
 
 interface Card {
   image: string;
   name: string;
   position: string;
+  icons: { icon: string; url: string }[];
 }
+
 class Team9 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    let button: TypeUsableComponentProps = {
+    let twitter: TypeUsableComponentProps = {
       type: "object",
-      key: "button",
-      displayer: "Button",
+      key: "twitter",
+      displayer: "Platform",
       value: [
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "We are hiring. View open roles",
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "IoLogoTwitter",
         },
         {
           type: "page",
           key: "url",
-          displayer: "Button Link",
+          displayer: "Url",
           value: "",
+        },
+      ],
+    };
+
+    let facebook: TypeUsableComponentProps = {
+      type: "object",
+      key: "facebook",
+      displayer: "Platform",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "IoLogoFacebook",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+
+    let instagram: TypeUsableComponentProps = {
+      type: "object",
+      key: "instagram",
+      displayer: "Platform",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FaInstagram",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+
+    let card1: TypeUsableComponentProps = {
+      type: "object",
+      key: "card",
+      displayer: "Card",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://dt-dots.myshopify.com/cdn/shop/files/t1.png?v=1684321024&width=1500",
+        },
+        {
+          type: "string",
+          key: "name",
+          displayer: "Person Name",
+          value: "JENNY",
+        },
+
+        {
+          type: "array",
+          key: "icons",
+          displayer: "Social Media Platforms",
+          value: [twitter, facebook, instagram],
+        },
+      ],
+    };
+
+    let card2: TypeUsableComponentProps = {
+      type: "object",
+      key: "card",
+      displayer: "Card",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://dt-dots.myshopify.com/cdn/shop/files/AdobeStock_313594493.jpg?v=1684321703&width=1500",
+        },
+        {
+          type: "string",
+          key: "name",
+          displayer: "Person Name",
+          value: "DAVID",
+        },
+
+        {
+          type: "array",
+          key: "icons",
+          displayer: "Social Media Platforms",
+          value: [twitter, facebook, instagram],
+        },
+      ],
+    };
+
+    let card3: TypeUsableComponentProps = {
+      type: "object",
+      key: "card",
+      displayer: "Card",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://dt-dots.myshopify.com/cdn/shop/files/t3.png?v=1684321143&width=1500",
+        },
+        {
+          type: "string",
+          key: "name",
+          displayer: "Person Name",
+          value: "JENIFER",
+        },
+
+        {
+          type: "array",
+          key: "icons",
+          displayer: "Social Media Platforms",
+          value: [twitter, facebook, instagram],
+        },
+      ],
+    };
+
+    let card4: TypeUsableComponentProps = {
+      type: "object",
+      key: "card",
+      displayer: "Card",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://dt-dots.myshopify.com/cdn/shop/files/t4.png?v=1684321162&width=1500",
+        },
+        {
+          type: "string",
+          key: "name",
+          displayer: "Person Name",
+          value: "MATHEW",
+        },
+
+        {
+          type: "array",
+          key: "icons",
+          displayer: "Social Media Platforms",
+          value: [twitter, facebook, instagram],
         },
       ],
     };
@@ -41,111 +196,22 @@ class Team9 extends Team {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "The team of the company",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Subtitle",
-      value: "The team of a company is a group of individuals who work together to achieve a common goal. In the business world, a team can be composed of employees from different departments, with different roles and responsibilities.",
-    });
-
-    this.addProp({
-      type: "number",
-      key: "reverse",
-      displayer: "Item Count in a Row",
-      value: 3,
+      value: "OUR TEAM",
     });
 
     this.addProp({
       type: "array",
       key: "team-members",
       displayer: "Team Members",
-      value: [
-        {
-          type: "object",
-          key: "team-member",
-          displayer: "Team Member",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=1600",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Jason Covereye",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Ceo",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "team-member",
-          displayer: "Team Member",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:"https://images.pexels.com/photos/7647920/pexels-photo-7647920.jpeg?auto=compress&cs=tinysrgb&w=1600",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Vaughn Edison",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Web Developer",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "team-member",
-          displayer: "Team Member",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg?auto=compress&cs=tinysrgb&w=1600",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Shantel Kiera",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "UI/UX Developer",
-            },
-          ],
-        },
-      ],
+      value: [card1, card2, card3, card4],
     });
 
     this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [JSON.parse(JSON.stringify(button))],
+      type: "number",
+      key: "reverse",
+      displayer: "Reverse Item Count",
+      value: 4,
+      max: 4,
     });
   }
 
@@ -154,51 +220,111 @@ class Team9 extends Team {
   }
 
   render() {
+    const image = this.getPropValue("person-image");
+    const title = this.getPropValue("up-page");
+    const settings = {
+      dots: false,
+      infinite: true,
+      arrows:false,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      slidesToShow: window.innerWidth > 500 ? 2 : 1,
+    };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("button-group")}>
-              {this.castToObject<Button[]>("buttons").map(
-                (item: Button, indexButtons: number) => {
-                  return (
-                    <ComposerLink key={indexButtons} path={item.url}>
-                      <button className={this.decorateCSS("button")}>
-                        {item.buttonText} <span className={this.decorateCSS("numer")}>&#8594;</span>
-                      </button>
-                    </ComposerLink>
-                  );
-                }
-              )}
+          <div className={this.decorateCSS("basic-page")}>
+            <div className={this.decorateCSS("up-page")}>
+              <h1 className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </h1>
             </div>
-            <div className={this.decorateCSS("text-group")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-            </div>
-            <div className={this.decorateCSS("image-container")}>
+            <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("team-members").map(
-                (item: Card, indexTeamMembers: number) => {
+                (item: Card, indexCard: number) => {
                   return (
                     <div
-                      key={indexTeamMembers}
-                      className={this.decorateCSS("card")}
+                      key={indexCard}
                       style={{ width: 90 / this.getPropValue("reverse") + "%" }}
+                      className={this.decorateCSS("card")}
                     >
-                      <img src={item.image} alt="team" />
+                      <img
+                        className={this.decorateCSS("person-image")}
+                        src={item.image}
+                        alt=""
+                      />
                       <div className={this.decorateCSS("person-info")}>
-                        <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
-                        <p className={this.decorateCSS("item-position")}>{item.position}</p>
+                        <div className={this.decorateCSS("text-group")}>
+                          <h1 className={this.decorateCSS("item-name")}>
+                            {item.name}
+                          </h1>
+                        </div>
+                        <div className={this.decorateCSS("icons-bar")}>
+                          {item.icons &&
+                            item.icons.map(
+                              (card: Icons, indexIcons: number) => (
+                                <ComposerLink key={indexIcons} path={card.url}>
+                                  <ComposerIcon
+                                    name={card.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon"),
+                                    }}
+                                  />
+                                </ComposerLink>
+                              )
+                            )}
+                        </div>
                       </div>
                     </div>
                   );
                 }
               )}
             </div>
+            <ComposerSlider
+              {...settings}
+              className={this.decorateCSS("slider")}
+            >
+              {this.castToObject<Card[]>("team-members").map(
+                (item: Card, indexCard: number) => {
+                  return (
+                    <div key={indexCard} className={this.decorateCSS("card")}>
+                      <img
+                        className={this.decorateCSS("person-image")}
+                        src={item.image}
+                        alt=""
+                      />
+                      <div className={this.decorateCSS("person-info")}>
+                        <div className={this.decorateCSS("text-group")}>
+                          <h1 className={this.decorateCSS("item-name")}>
+                            {item.name}
+                          </h1>
+                        </div>
+                        <div className={this.decorateCSS("icons-bar")}>
+                          {item.icons &&
+                            item.icons.map(
+                              (card: Icons, indexIcons: number) => (
+                                <ComposerLink key={indexIcons} path={card.url}>
+                                  <ComposerIcon
+                                    name={card.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon"),
+                                    }}
+                                  />
+                                </ComposerLink>
+                              )
+                            )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </ComposerSlider>
           </div>
         </div>
       </div>
     );
   }
 }
-
 export default Team9;
