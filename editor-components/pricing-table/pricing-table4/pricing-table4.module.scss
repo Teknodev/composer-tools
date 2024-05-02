@@ -1,4 +1,5 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+
 .container {
   width: 100%;
   padding: 50px 0;
@@ -15,42 +16,53 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
 
       .page-up {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         overflow: hidden;
         white-space: pre-line;
         text-overflow: ellipsis;
         word-break: break-all;
         color: var(--composer-font-color-primary);
-        padding: 10px 100px;
+        padding: 0 0 18px 0;
 
-        .tag {
+        .subtitle {
           width: max-content;
-          height: 25px;
-          background-color: #f1f1f1;
           color: var(--composer-primary-color);
-          font-size: 9px;
-          border-radius: 6px;
+          font-size: 30px;
           display: flex;
-          justify-content: center;
           align-items: center;
-          padding: 1rem;
+          letter-spacing: 5px;
+        }
+
+        .heading {
+          background: var(--composer-secondary-color);
+          height: 4px;
+          width: 5%;
+        }
+
+        .description {
+          font-size: 17px;
+          color: var(--composer-font-color-primary);
+          letter-spacing: 1px;
         }
       }
 
       .page-down {
-        width: 100%;
         display: flex;
         flex-wrap: wrap;
-        padding: 20px 0;
+        justify-content: center;
+        align-items: center;
 
         .all-card {
           display: flex;
           justify-content: center;
+
           .card {
             width: 350px;
             height: max-content;
@@ -61,12 +73,16 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             justify-content: center;
             align-items: center;
             border-radius: 6px;
-            border: 1px solid var(--composer-tertiary-color);
+            box-shadow: var(--composer-box-shadow);
             overflow: hidden;
             white-space: pre-line;
             text-overflow: ellipsis;
             word-break: break-all;
-            padding-top: 10px;
+
+            &.focused {
+              height: 600px;
+              background: color-mix(in srgb, var(--composer-html-background), #fff 70%);
+            }
 
             .card-up {
               width: 100%;
@@ -75,17 +91,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               justify-content: center;
               align-items: center;
 
-              .tag {
+              .subtitle {
                 width: max-content;
-                height: 20px;
-                background-color: #f1f1f1;
                 color: var(--composer-primary-color);
-                font-size: 9px;
-                border-radius: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 1rem;
+                font-size: 20px;
               }
 
               .card-up-texts {
@@ -94,32 +103,28 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                color: var(--composer-font-color-primary);
-
-                .title {
-                  font-size: 3rem;
-                  color: var(--composer-primary-color);
-                }
-                .description {
-                  font-size: 1.5rem;
-                  color: var(--composer-font-color-primary);
-                }
+               // color: var(--composer-font-color-primary);
+                font-size: 20px;
               }
+
             }
 
             .card-middle {
-              width: 100%;
+              width: 65%;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
               margin-bottom: 2rem;
+              color: var(--composer-font-color-primary);
 
               .list-group {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
+
+
                 li {
                   list-style-type: none;
                   display: flex;
@@ -134,13 +139,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     align-items: center;
                     width: 25px;
                     height: 25px;
-                    border-radius: 50%;
-                    background-color: var(--composer-tertiary-color);
-                    color: #fff;
-                    img {
-                      width: 15px;
-                      height: 15px;
-                    }
+                    color: var(--composer-font-color-primary);
+                     .icons{
+                      width: 100px;
+                     }
+
+                
                   }
                 }
               }
@@ -159,21 +163,26 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 width: 250px;
                 min-width: 100px;
                 border: 0px solid;
-                border-radius: 6px;
+                border-radius: 24px;
                 color: #fff;
                 cursor: pointer;
                 padding: 15px;
                 background: transparent;
                 transition: $transition;
                 opacity: 0.9;
+                border: 1px solid var(--composer-secondary-color);
+
+
                 &:hover {
-                  opacity: 1;
+                  background-color: transparent;
+                  color: var(--composer-font-color-primary);
                 }
               }
 
               .primary {
                 background-color: var(--composer-secondary-color);
               }
+
               .secondary {
                 border: 1px solid rgb(200, 200, 200);
                 color: black;
@@ -184,24 +193,20 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       }
 
       .price-title1 {
-        font-size: 4rem;
+        font-size: 19px;
         font-weight: lighter;
         margin-top: 20px;
-        color:  var(--composer-font-color-primary);
+        color: var(--composer-primary-color);
       }
-      h3 {
-        font-size: 2rem;
-        font-weight: 100;
+
+      .price-title2 {
+        color: var(--composer-primary-color);
       }
-      .price-title3 {
-        opacity: 0.5;
-        color: var(--composer-font-color-primary);
+      .price-pricing {
+        color:var(--composer-secondary-color)
       }
     }
-    .title {
-      font-size: 1.3rem;
-      color: var(--composer-font-color-primary);
-      }
+
   }
 }
 
@@ -213,6 +218,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .price-title1 {
         font-size: 2.5rem !important;
       }
+
       .page {
         .page-down {
           gap: 20px;
@@ -221,7 +227,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             font-size: 1rem !important;
           }
 
-          .subtitle{
+          .subtitle {
             font-size: 1.2rem !important;
           }
 
@@ -242,12 +248,24 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .price-title1 {
         font-size: 2.5rem !important;
       }
+
       .title {
         font-size: 1.2rem !important;
       }
+
       .page {
+        .heading {
+          position: relative;
+        }
+
+        .title {
+          width: 82%;
+          position: relative;
+        }
+
         .page-down {
           gap: 20px;
+
           .all-card {
             width: 100% !important;
           }
