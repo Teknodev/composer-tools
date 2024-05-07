@@ -1,246 +1,281 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table5.module.scss";
+import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { states } from "../../../../prefabs/component-settings/tabs/design/pseudo-properties";
 
-type PriceList = {
-  image: string;
-  title: string;
-  stars: number;
-  price: string;
-  duration: string;
-  buttonText: string;
-  link: string;
-};
+
 class PricingTable5 extends BasePricingTable {
-  constructor(props?: any) {
-    super(props, styles);
+  
+    
+    constructor(props?: any) {
+      super(props, styles);
+      this.setComponentState("activePlan",0)
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "FLEXIBLE PRICING",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Tailored pricing plans for everyone.",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description ",
+      value: "We are excited for our work and how it positively impacts clients. With over 12 years of experience we have been constantly providing excellent solutions.",
+    });
     this.addProp({
       type: "array",
-      key: "price-list",
-      displayer: "Price List",
+      key: "buttons",
+      displayer: "Buttons",
       value: [
         {
           type: "object",
-          key: "pricing-list",
-          displayer: "Pricing List",
+          key: "button",
+          displayer: "Button",
           value: [
             {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
-              displayer: "Image",
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "VIEW ALL PLANS",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "https://craftohtml.themezaa.com/demo-business-pricing.html",
+            },
+          ]
+        }
+      ]
+    })
+
+    this.addProp({
+      type: "icon",
+      key: "downIcon",
+      displayer: "Down Icons",
+      value: "FaAngleDown",
+
+    });
+
+    this.addProp({
+      type: "array",
+      key: "plans",
+      displayer: "Plans",
+      value: [
+        {
+          type: "object",
+          key: "plan",
+          displayer: "Plan",
+          value: [
+            {
+              type: "string",
+              key: "planTitle",
+              displayer: "PlanType",
+              value: "Basic Plan",
             },
             {
               type: "string",
-              key: "title",
-              value: "Enterprise",
-              displayer: "Title",
-            },
-            {
-              type: "number",
-              key: "stars",
-              value: 5,
-              displayer: "Stars",
+              key: "description",
+              displayer: "Description",
+              value: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
             },
             {
               type: "string",
               key: "price",
-              value: "$50",
               displayer: "Price",
+              value: "$19.99",
             },
             {
               type: "string",
-              key: "duration",
-              value: "/week",
-              displayer: "Duration",
+              key: "priceDescription",
+              displayer: "Price Description",
+              value: " / Monthly"
             },
             {
               type: "string",
               key: "buttonText",
-              value: "Get started",
               displayer: "Button Text",
+              value: "GET STARTED",
             },
             {
               type: "page",
               key: "link",
               displayer: "Button Link",
-              value: "",
+              value: "https://craftohtml.themezaa.com/demo-business-pricing.html",
             },
           ],
         },
         {
           type: "object",
-          key: "pricing-list",
-          displayer: "Pricing List",
+          key: "plan",
+          displayer: "Plans",
           value: [
             {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
-              displayer: "Image",
+              type: "string",
+              key: "planTitle",
+              displayer: "PlanType",
+              value: "Standard Plan",
             },
             {
               type: "string",
-              key: "title",
-              value: "Enterprise",
-              displayer: "Title",
-            },
-            {
-              type: "number",
-              key: "stars",
-              value: 5,
-              displayer: "Stars",
+              key: "description",
+              displayer: "Description",
+              value: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
             },
             {
               type: "string",
               key: "price",
-              value: "$150",
               displayer: "Price",
+              value: "$29.99",
             },
             {
               type: "string",
-              key: "duration",
-              value: "/month",
-              displayer: "Duration",
+              key: "priceDescription",
+              displayer: "Price Description",
+              value: " / Monthly"
             },
             {
               type: "string",
               key: "buttonText",
-              value: "Get started",
               displayer: "Button Text",
+              value: "GET STARTED",
             },
             {
               type: "page",
               key: "link",
               displayer: "Button Link",
-              value: "",
+              value: "https://craftohtml.themezaa.com/demo-business-pricing.html",
             },
           ],
         },
         {
           type: "object",
-          key: "pricing-list",
-          displayer: "Pricing List",
+          key: "plans",
+          displayer: "Plans",
           value: [
             {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3303f057bdf002c2955dd?alt=media&timestamp=1692610602790",
-              displayer: "Image",
+              type: "string",
+              key: "planTitle",
+              displayer: "PlanType",
+              value: "Premium Plan",
             },
             {
               type: "string",
-              key: "title",
-              value: "Enterprise",
-              displayer: "Title",
-            },
-            {
-              type: "number",
-              key: "stars",
-              value: 5,
-              displayer: "Stars",
+              key: "description",
+              displayer: "Description",
+              value: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
             },
             {
               type: "string",
               key: "price",
-              value: "$350",
               displayer: "Price",
+              value: "$39.99",
+              
             },
             {
               type: "string",
-              key: "duration",
-              value: "/years",
-              displayer: "Duration",
+              key: "priceDescription",
+              displayer: "Price Description",
+              value: " / Monthly"
             },
             {
               type: "string",
               key: "buttonText",
-              value: "Get started",
               displayer: "Button Text",
+              value: "GET STARTED",
             },
             {
               type: "page",
               key: "link",
               displayer: "Button Link",
-              value: "",
+              value: "https://craftohtml.themezaa.com/demo-business-pricing.html",
             },
           ],
         },
       ],
     });
 
-    this.addProp({
-      type: "select",
-      key: "select",
-      displayer: "Location of Border",
-      value: "None",
-      additionalParams: {
-        selectItems: ["None", "Top" , "Bottom" , "All Around"],
-      }
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
-    });
   }
 
   getName(): string {
     return "Pricing List 5";
   }
 
-  render() {
-    const selectValue = this.getPropValue("select");
+  onPlanClicked(index: number) {
+    
+    this.setComponentState("activePlan", index === this.getComponentState("activePlan") ? null : index);
+  }
+
+  render(): React.ReactNode {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {this.castToObject<PriceList[]>("price-list").map(
-            (pricing: any, index: number) => (
-              <div className={this.decorateCSS("card-item-count")} style={{
-                width: 90 / this.getPropValue("itemCount") + "%",
-              }}>
-              <div key={index} className={`${this.decorateCSS("price")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
-                <img
-                  alt=""
-                  className={this.decorateCSS("image")}
-                  src={pricing.image}
-                  width={280}
-                  />
-                <h2 className={this.decorateCSS("title")}>
-                  {pricing.title}
-                  <div className={this.decorateCSS("stars")}>
-                    {[...Array(Number(pricing.stars))].map(
-                      (item: any, indexStars: number) => (
-                        <img key={`stars-${indexStars}`} alt="" src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
-                    ))}
-                  </div>
-                </h2>
-                <h1 className={this.decorateCSS("price-text")}>
-                  {pricing.price}
-                  <p className={this.decorateCSS("duration-text")}>
-                    {pricing.duration}
-                  </p>
-                </h1>
-                <div className={this.decorateCSS("button-child")}>
-                  <ComposerLink path={pricing.link}>
-                    <span className={this.decorateCSS("button")}>
-                      {pricing.buttonText}
-                    </span>
+          <div className={this.decorateCSS("content")}>
+            <div className={this.decorateCSS("left-content")}>
+              <h6 className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </h6>
+              <h2 className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </h2>
+              <p className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </p>
+
+              <div className={this.decorateCSS("buttons")}>
+                {this.getPropValue("buttons").map((button: any) =>
+                  <ComposerLink path={button.getPropValue("url")}>
+                    <div className={this.decorateCSS("button-box")}>
+                      <span className={this.decorateCSS("button-text")}>{button.getPropValue("buttonText")}</span>
+                    </div>
                   </ComposerLink>
-                </div>
+                )}
               </div>
+
+            </div>
+
+            <div className={this.decorateCSS("right-content")}>
+              {this.getPropValue("plans").map((plan: any, index: number) =>
+                <div className={`${this.decorateCSS("plan")} ${index === this.getComponentState("activePlan") ? this.decorateCSS("active") : ""}`} onClick={() => this.onPlanClicked(index)}>
+                  <div className={this.decorateCSS("plan-upper")}>
+                    <span className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</span>
+                    <div className={this.decorateCSS("icon-box")}>
+                      <ComposerIcon name={this.getPropValue("downIcon")} />
+                    </div>
+                  </div>
+
+                  <span className={this.decorateCSS("plan-description")}>{plan.getPropValue("description")}</span>
+                  <div className={this.decorateCSS("plan-price-box")}>
+                    <div className={this.decorateCSS("labels")}>
+                      <span className={this.decorateCSS("price")}>{plan.getPropValue("price")}</span>
+                      <span className={this.decorateCSS("price-description")}>{plan.getPropValue("priceDescription")}</span>
+                    </div>
+
+                    <ComposerLink path={plan.getPropValue("link")}>
+                      <div className={this.decorateCSS("plan-button")}>
+                        <span className={this.decorateCSS("plan-button-text")}>{plan.getPropValue("buttonText")}</span>
+                      </div>
+                    </ComposerLink>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-            )
-          )}
         </div>
       </div>
-      );
-  }
+    );
 }
+}
+
 
 export default PricingTable5;
