@@ -2,17 +2,37 @@ import * as React from "react";
 import styles from "./pricing-table6.module.scss";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Badge } from "@mui/material";
+import { plan } from "../../../../classes/bucket";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Pricing = {
-  cardTitle1: string;
-  list: TypeUsableComponentProps[];
-  buttons: { buttonTitle: string; url: string; isPrimary: boolean }[];
-  price: number;
-  description: string;
-  activeTag: string;
-  active: boolean;
-  currency: string;
-  per: string;
+  title: string;
+  product: Array<{
+    cardTitle1: string;
+    list: {
+      property: string;
+      is_active: boolean;
+    }[];
+    buttons: { buttonTitle: string; url: string; isPrimary: boolean }[];
+    description: string;
+    activeTag: string;
+    active: boolean;
+    badge: string;
+    property: string;
+    title: string;
+    subtitle: string;
+    dash_icon: string;
+    product: {
+      per: string;
+      price: number;
+      currency: string;
+      plan: string;
+      tag: string;
+      check_icon: string;
+      circle_icon: string;
+    }[];
+  }>;
 };
 
 class PricingMultipleTwo extends BasePricingTable {
@@ -23,148 +43,664 @@ class PricingMultipleTwo extends BasePricingTable {
       type: "string",
       key: "badge",
       displayer: "Badge",
-      value: "PRICING",
+      value: "Ödeme Planlarımız",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Pricing Strategies",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "Pricing is a crucial element of any business strategy, and small businesses need to adopt effective pricing strategies to stay competitive.",
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 2,
+      value: "SİZİN İÇİN EN UYGUN OLANI TERCİH EDİN",
     });
 
     this.addProp({
       type: "array",
-      key: "card",
-      displayer: "Card",
+      key: "plans",
+      displayer: "Plans",
       value: [
         {
           type: "object",
-          key: "listArray",
-          displayer: "List Items",
+          key: "plan-title",
+          displayer: "Monthly Plans",
           value: [
             {
               type: "string",
-              key: "cardTitle1",
-              displayer: "Card Title-1",
-              value: "Enterprise",
-            },
-            {
-              type: "string",
-              key: "currency",
-              displayer: "Currency",
-              value: "$",
-            },
-            {
-              type: "number",
-              key: "price",
-              displayer: "Price",
-              value: 50,
-            },
-            {
-              type: "string",
-              key: "per",
-              displayer: "Per",
-              value: "per month",
-            },
-
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Basic features for up to 50 user",
-            },
-            {
-              type: "string",
-              key: "activeTag",
-              displayer: "Active Tag",
-              value: "POPULAR",
-            },
-            {
-              type: "boolean",
-              key: "active",
-              displayer: "Is Popular",
-              value: true,
+              key: "title",
+              displayer: "Title",
+              value: "Aylık",
             },
             {
               type: "array",
-              key: "list",
-              displayer: "List Items",
-              value: [
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "50 Websites",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "50 GB Disk Space",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Unlimited Bandwidth",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "50 Email Accounts",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "24/7/365 Support",
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Button",
+              key: "product",
+              displayer: "Product",
               value: [
                 {
                   type: "object",
-                  key: "button",
-                  displayer: "Button",
+                  key: "listArray",
+                  displayer: "Left Items",
                   value: [
                     {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GiCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
                       type: "string",
-                      key: "buttonTitle",
-                      displayer: "Button Title",
-                      value: "Get Started",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Ürün 1",
                     },
                     {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
+                      type: "string",
+                      key: "tag",
+                      displayer: "tag",
+                      value: "%10 kar edin",
                     },
                     {
-                      type: "boolean",
-                      key: "isPrimary",
-                      displayer: "Is primary",
-                      value: true,
+                      type: "number",
+                      key: "price",
+                      displayer: "Price",
+                      value: 3000,
+                    },
+                    {
+                      type: "string",
+                      key: "currency",
+                      displayer: "Currency",
+                      value: "TL",
+                    },
+
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Aylık",
+                    },
+                    {
+                      type: "array",
+                      key: "list",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Sınırsız teknik destek",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Ayda 3 saat süpervizyon",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "icon",
+                      key: "dash_icon",
+                      displayer: "Dash Icon",
+                      value: "GoDash",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "Ürün 1",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "title",
+                      value: "Ayda 60 saatlik paket",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [
+                        {
+                          type: "object",
+                          key: "button",
+                          displayer: "Button",
+                          value: [
+                            {
+                              type: "string",
+                              key: "buttonText",
+                              displayer: "Button Text",
+                              value: "Bu planı satın al",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "Link",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "listArray",
+                  displayer: "Left Items",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GiCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
+                      type: "string",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Ürün 2",
+                    },
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "tag",
+                      value: "%20 kar edin",
+                    },
+                    {
+                      type: "number",
+                      key: "price",
+                      displayer: "Price",
+                      value: 5000,
+                    },
+                    {
+                      type: "string",
+                      key: "currency",
+                      displayer: "Currency",
+                      value: "TL",
+                    },
+
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Aylık",
+                    },
+                    {
+                      type: "array",
+                      key: "list",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Sınırsız teknik destek",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Ayda 3 saat süpervizyon",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "icon",
+                      key: "dash_icon",
+                      displayer: "Dash Icon",
+                      value: "GoDash",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "Ürün 2",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "title",
+                      value: "Ayda 60 saatlik paket",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [
+                        {
+                          type: "object",
+                          key: "button",
+                          displayer: "Button",
+                          value: [
+                            {
+                              type: "string",
+                              key: "buttonText",
+                              displayer: "Button Text",
+                              value: "Bu planı satın al",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "Link",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "listArray",
+                  displayer: "Left Items",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GiCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
+                      type: "string",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Ürün 3",
+                    },
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "tag",
+                      value: "%30 kar edin",
+                    },
+                    {
+                      type: "number",
+                      key: "price",
+                      displayer: "Price",
+                      value: 6000,
+                    },
+                    {
+                      type: "string",
+                      key: "currency",
+                      displayer: "Currency",
+                      value: "TL",
+                    },
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Aylık",
+                    },
+                    {
+                      type: "array",
+                      key: "list",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Sınırsız teknik destek",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Ayda 3 saat süpervizyon",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "icon",
+                      key: "dash_icon",
+                      displayer: "Dash Icon",
+                      value: "GoDash",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "Ürün 3",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "title",
+                      value: "Ayda 60 saatlik paket",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [
+                        {
+                          type: "object",
+                          key: "button",
+                          displayer: "Button",
+                          value: [
+                            {
+                              type: "string",
+                              key: "buttonText",
+                              displayer: "Button Text",
+                              value: "Bu planı satın al",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "Link",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "listArray",
+                  displayer: "Left Items",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GiCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
+                      type: "string",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Ürün 4",
+                    },
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "tag",
+                      value: "%40 kar edin",
+                    },
+                    {
+                      type: "number",
+                      key: "price",
+                      displayer: "Price",
+                      value: 20000,
+                    },
+                    {
+                      type: "string",
+                      key: "currency",
+                      displayer: "Currency",
+                      value: "TL",
+                    },
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Aylık",
+                    },
+                    {
+                      type: "array",
+                      key: "list",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Sınırsız teknik destek",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Ayda 3 saat süpervizyon",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "icon",
+                      key: "dash_icon",
+                      displayer: "Dash Icon",
+                      value: "GoDash",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "Ürün 4",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "title",
+                      value: "Ayda 60 saatlik paket",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [
+                        {
+                          type: "object",
+                          key: "button",
+                          displayer: "Button",
+                          value: [
+                            {
+                              type: "string",
+                              key: "buttonText",
+                              displayer: "Button Text",
+                              value: "Bu planı satın al",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "Link",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
@@ -174,116 +710,647 @@ class PricingMultipleTwo extends BasePricingTable {
         },
         {
           type: "object",
-          key: "listArray",
-          displayer: "List Items",
+          key: "plan-title",
+          displayer: "Yearly Plans",
           value: [
             {
               type: "string",
-              key: "cardTitle1",
-              displayer: "Card Title-1",
-              value: "Business",
-            },
-            {
-              type: "string",
-              key: "currency",
-              displayer: "Currency",
-              value: "$",
-            },
-            {
-              type: "number",
-              key: "price",
-              displayer: "Price",
-              value: 100,
-            },
-            {
-              type: "string",
-              key: "per",
-              displayer: "Per",
-              value: "per month",
-            },
-
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Basic features for up to 100 user",
-            },
-            {
-              type: "string",
-              key: "activeTag",
-              displayer: "Active Tag",
-              value: "POPULAR",
-            },
-            {
-              type: "boolean",
-              key: "active",
-              displayer: "Is Popular",
-              value: true,
+              key: "title",
+              displayer: "Title",
+              value: "Yıllık",
             },
             {
               type: "array",
-              key: "list",
-              displayer: "List Items",
-              value: [
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "100 Websites",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "100 GB Disk Space",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Unlimited Bandwidth",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "100 Email Accounts",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "24/7/365 Support",
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Button",
+              key: "product",
+              displayer: "Product",
               value: [
                 {
                   type: "object",
-                  key: "button",
-                  displayer: "Button",
+                  key: "listArray",
+                  displayer: "Left Items",
                   value: [
                     {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GiCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
                       type: "string",
-                      key: "buttonTitle",
-                      displayer: "Button Title",
-                      value: "Get Started",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Ürün 1",
                     },
                     {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
+                      type: "string",
+                      key: "tag",
+                      displayer: "tag",
+                      value: "%10 kar edin",
                     },
                     {
-                      type: "boolean",
-                      key: "isPrimary",
-                      displayer: "Is primary",
-                      value: true,
+                      type: "number",
+                      key: "price",
+                      displayer: "Price",
+                      value: 30000,
+                    },
+                    {
+                      type: "string",
+                      key: "currency",
+                      displayer: "Currency",
+                      value: "TL",
+                    },
+
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Yıllık",
+                    },
+                    {
+                      type: "array",
+                      key: "list",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Sınırsız teknik destek",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Ayda 3 saat süpervizyon",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "icon",
+                      key: "dash_icon",
+                      displayer: "Dash Icon",
+                      value: "GoDash",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "Ürün 1",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "title",
+                      value: "Ayda 60 saatlik paket",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [
+                        {
+                          type: "object",
+                          key: "button",
+                          displayer: "Button",
+                          value: [
+                            {
+                              type: "string",
+                              key: "buttonText",
+                              displayer: "Button Text",
+                              value: "Bu planı satın al",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "Link",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "listArray",
+                  displayer: "Left Items",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GiCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
+                      type: "string",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Ürün 2",
+                    },
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "tag",
+                      value: "%20 kar edin",
+                    },
+                    {
+                      type: "number",
+                      key: "price",
+                      displayer: "Price",
+                      value: 50000,
+                    },
+                    {
+                      type: "string",
+                      key: "currency",
+                      displayer: "Currency",
+                      value: "TL",
+                    },
+
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Yıllık",
+                    },
+                    {
+                      type: "array",
+                      key: "list",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Sınırsız teknik destek",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Ayda 3 saat süpervizyon",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "icon",
+                      key: "dash_icon",
+                      displayer: "Dash Icon",
+                      value: "GoDash",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "Ürün 2",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "title",
+                      value: "Ayda 60 saatlik paket",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [
+                        {
+                          type: "object",
+                          key: "button",
+                          displayer: "Button",
+                          value: [
+                            {
+                              type: "string",
+                              key: "buttonText",
+                              displayer: "Button Text",
+                              value: "Bu planı satın al",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "Link",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "listArray",
+                  displayer: "Left Items",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GiCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
+                      type: "string",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Ürün 3",
+                    },
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "tag",
+                      value: "%30 kar edin",
+                    },
+                    {
+                      type: "number",
+                      key: "price",
+                      displayer: "Price",
+                      value: 60000,
+                    },
+                    {
+                      type: "string",
+                      key: "currency",
+                      displayer: "Currency",
+                      value: "TL",
+                    },
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Yıllık",
+                    },
+                    {
+                      type: "array",
+                      key: "list",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Sınırsız teknik destek",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Ayda 3 saat süpervizyon",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "icon",
+                      key: "dash_icon",
+                      displayer: "Dash Icon",
+                      value: "GoDash",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "Ürün 3",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "title",
+                      value: "Ayda 60 saatlik paket",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [
+                        {
+                          type: "object",
+                          key: "button",
+                          displayer: "Button",
+                          value: [
+                            {
+                              type: "string",
+                              key: "buttonText",
+                              displayer: "Button Text",
+                              value: "Bu planı satın al",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "Link",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "listArray",
+                  displayer: "Left Items",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GiCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
+                      type: "string",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Ürün 4",
+                    },
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "tag",
+                      value: "%40 kar edin",
+                    },
+                    {
+                      type: "number",
+                      key: "price",
+                      displayer: "Price",
+                      value: 80000,
+                    },
+                    {
+                      type: "string",
+                      key: "currency",
+                      displayer: "Currency",
+                      value: "TL",
+                    },
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Yıllık",
+                    },
+                    {
+                      type: "array",
+                      key: "list",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Sınırsız teknik destek",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: true,
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "list_item",
+                          displayer: "List Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "property",
+                              displayer: "Property",
+                              value: "Ayda 3 saat süpervizyon",
+                            },
+                            {
+                              type: "boolean",
+                              displayer: "Is Active",
+                              key: "is_active",
+                              value: false,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "icon",
+                      key: "dash_icon",
+                      displayer: "Dash Icon",
+                      value: "GoDash",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "Ürün 4",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "title",
+                      value: "Ayda 60 saatlik paket",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [
+                        {
+                          type: "object",
+                          key: "button",
+                          displayer: "Button",
+                          value: [
+                            {
+                              type: "string",
+                              key: "buttonText",
+                              displayer: "Button Text",
+                              value: "Bu planı satın al",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "Link",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
@@ -293,34 +1360,23 @@ class PricingMultipleTwo extends BasePricingTable {
         },
       ],
     });
+    this.setActiveTab(0);
+    this.setActivePlan(0);
   }
-
+  setActiveTab(activeTabIndex: number) {
+    this.setComponentState("activeTab", activeTabIndex);
+    this.setActivePlan(0);
+  }
+  setActivePlan(activeTabIndex: number) {
+    this.setComponentState("activePlan", activeTabIndex);
+  }
   getName(): string {
     return "Pricing 6";
   }
-
-  render() {
-    const littleScreen = {
-      width: "100%",
-      display: "flex",
-      flex: "wrap",
-      justifyContent: "center",
-    };
-
-    const wideScreen = {
-      width: 90 / this.getPropValue("itemCount") + "%",
-      display: "flex",
-      justifyContent: "center",
-    };
-
-    let style = function () {
-      if (window.innerWidth < 769) {
-        return littleScreen;
-      } else {
-        return wideScreen;
-      }
-    };
-
+  render(): React.ReactNode {
+    const plan =
+      this.castToObject<Pricing[]>("plans")[this.getComponentState("activeTab")].product;
+    const planIndex = this.getComponentState("activePlan");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -330,79 +1386,86 @@ class PricingMultipleTwo extends BasePricingTable {
                 {this.getPropValue("badge")}
               </div>
               <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             </div>
-
-            <div className={this.decorateCSS("down-page")}>
-              <div className={this.decorateCSS("cards")}>
-                {this.castToObject<Pricing[]>("card").map(
-                  (item: Pricing, indexCard: number) => {
-                    return (
-                      <div key={indexCard} style={style()}>
-                        <div className={this.decorateCSS("card")}>
-                          <div className={this.decorateCSS("card-up")}>
-                            <div className={this.decorateCSS("up-elements")}>
-                              <p className={this.decorateCSS("item-card-title1")}>{item.cardTitle1}</p>
-                              {item.active && (
-                                <div className={this.decorateCSS("tag")}>
-                                  {item.activeTag}
-                                </div>
-                              )}
-                            </div>
-                            <div className={this.decorateCSS("pricing")}>
-                              <div className={this.decorateCSS("price")}>
-                                <h1 className={this.decorateCSS("item-price")}>
-                                  {item.price}
-                                  <span className={this.decorateCSS("item-per")}>{item.per}</span>
-                                </h1>
-                                <div className={this.decorateCSS("currency")}>
-                                  <span className={this.decorateCSS("item-currency")}>{item.currency}</span>
-                                </div>
-                              </div>
-                              <p className={this.decorateCSS("item-description-p")}>{item.description}</p>
-                            </div>
-                            <div className={this.decorateCSS("button-group")}>
-                              {item.buttons.map((b: any, indexButtonGroup: number) => {
-                                return (
-                                  <ComposerLink key={indexButtonGroup} path={b.url}>
-                                    <button
-                                      className={
-                                        this.decorateCSS("button") +
-                                        " " +
-                                        (b.isPrimary
-                                          ? this.decorateCSS("primary")
-                                          : this.decorateCSS("secondary"))
-                                      }
-                                    >
-                                      {b.buttonTitle}
-                                    </button>
-                                  </ComposerLink>
-                                );
-                              })}
-                            </div>
-                          </div>
-                          <div className={this.decorateCSS("card-down")}>
-                            <ul className={this.decorateCSS("list-group")}>
-                              {item.list.map((el: any, indexListGroup: number) => {
-                                return (
-                                  <li
-                                    key={indexListGroup}
-                                    className={this.decorateCSS("li")}
-                                  >
-                                    <div className={this.decorateCSS("circle-icon")}>
-                                      <img src="https://cdn-icons-png.flaticon.com/512/33/33281.png" alt=""/>
-                                    </div>
-                                    {el.value}
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    );
+            <div className={this.decorateCSS("plan-items")}>
+              {this.getPropValue("plans").map((plan: any, index: number) => (
+                <div
+                  className={
+                    this.decorateCSS("plan-title") +
+                    " " +
+                    (this.getComponentState("activeTab") == index &&
+                      this.decorateCSS("activeTab"))
                   }
-                )}
+                  onClick={() => this.setActiveTab(index)}
+                >
+                  {plan.getPropValue("title")}
+                </div>
+              ))}
+            </div>
+            <div className={this.decorateCSS("down-page")}>
+              <div className={this.decorateCSS("left-page")}>
+                {plan.map((tab: any, index: number) => (
+                  <div
+                    className={
+                      this.decorateCSS("listArray") +
+                      " " +
+                      (this.getComponentState("activePlan") == index &&
+                        this.decorateCSS("active"))
+                    }
+                    onClick={() => this.setActivePlan(index)}
+                  >
+                    <div className={this.decorateCSS("plan-icons")}>
+                      <div className={this.decorateCSS("icons")}>
+                        <ComposerIcon
+                          name={
+                            this.getComponentState("activePlan") == index
+                              ? tab.check_icon
+                              : tab.circle_icon
+                          }
+                        ></ComposerIcon>
+                      </div>
+                      <div className={this.decorateCSS("plan")}> {tab.plan}</div>
+                    </div>
+                    {tab.tag !== "" && (
+                      <div className={this.decorateCSS("tag")}> {tab.tag}</div>
+                    )}
+
+                    <div className={this.decorateCSS("item-price")}>
+                      <h5 className={this.decorateCSS("price")}> {tab.price}</h5>
+                      <h5 className={this.decorateCSS("currency")}> {tab.currency}</h5>
+                    </div>
+                    <h5 className={this.decorateCSS("per")}> {tab.per}</h5>
+                  </div>
+                ))}
+              </div>
+              <div className={this.decorateCSS("right-page")}>
+                <span className={this.decorateCSS("badge")}>{plan[planIndex].badge}</span>
+                <h1 className={this.decorateCSS("title")}>{plan[planIndex].title}</h1>
+                <div className={this.decorateCSS("list-body")}>
+                  {plan[planIndex].list.map((item, itemIndex: number) => (
+                    <div className={this.decorateCSS("li")} key={itemIndex}>
+                      <ComposerIcon
+                        propsIcon={{
+                          className: this.decorateCSS("dash_icon"),
+                        }}
+                        name={plan[planIndex].dash_icon}
+                      />
+                      <div className={this.decorateCSS("property")}>{item.property}</div>
+                    </div>
+                  ))}
+                  <div className={this.decorateCSS("body-bottom")}>
+                    <div className={this.decorateCSS("buttons")}>
+                      {plan[planIndex].buttons.map((button: any, buttonIndex: number) => (
+                        <ComposerLink key={buttonIndex} url={button.url}>
+                          <button className={this.decorateCSS("button")}>
+                            {" "}
+                            {button.buttonText}{" "}
+                          </button>
+                        </ComposerLink>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
