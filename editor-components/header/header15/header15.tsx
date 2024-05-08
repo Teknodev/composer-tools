@@ -51,7 +51,7 @@ class HeaderComponent15 extends BaseHeader {
       displayer: "Placeholder",
       value: "E-mail",
     });
-    
+
     this.addProp({
       type: "object",
       key: "button",
@@ -90,47 +90,47 @@ class HeaderComponent15 extends BaseHeader {
         <div className={this.decorateCSS("max-content")} style={{
           backgroundImage: `url(${this.getPropValue("background-image")})`,
         }}>
-          <div className={`${this.decorateCSS("wrapper")} ${
-              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
+          <div className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
             }`} style={{ position: 'relative' }}>
-            
+
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("content")} >
-              <div className={this.decorateCSS("centered-content")}></div>
+                <div className={this.decorateCSS("centered-content")}></div>
                 <h2 className={this.decorateCSS("header")}>{this.getPropValue("header")}</h2>
                 <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
                 <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
 
-                <div className={this.decorateCSS("form-display")}>
-                {emailPlaceholder && (
-                <div className={this.decorateCSS("form")}>
-                  <input
-                    placeholder={emailPlaceholder}
-                    type="email"
-                    className={this.decorateCSS("name")}
-                  />
+                {emailPlaceholder && (<div className={this.decorateCSS("form-display")}>
+
+                  <div className={this.decorateCSS("form")}>
+                    <input
+                      placeholder={emailPlaceholder}
+                      type="email"
+                      className={this.decorateCSS("email")}
+                    />
                   </div>
-                )}
-                 <div className={this.decorateCSS("form")}>
-                  {button[0].value && (
-                  <ComposerLink path={button[1].value}>
-                    <button className={this.decorateCSS("button")}>
-                      {button[0].value}
-                    </button>
-                  </ComposerLink>
-                  )}
-                  </div> 
+
+                  <div className={this.decorateCSS("button-box")}>
+                    {button[0].value && (
+                      <ComposerLink path={button[1].value}>
+                        <button className={this.decorateCSS("button")}>
+                          {button[0].value}
+                        </button>
+                      </ComposerLink>
+                    )}
+                  </div>
                 </div>
+                )}
               </div>
             </div>
 
             <div className={this.decorateCSS("right")}>
               {image && <div className={this.decorateCSS("right-image")}>
-              <img
-                className={`${this.decorateCSS("image")} ${!background && this.decorateCSS("without-background")}`}
-                src={this.getPropValue("image")}
-                alt=""
-              />
+                <img
+                  className={`${this.decorateCSS("image")} ${!background && this.decorateCSS("without-background")}`}
+                  src={this.getPropValue("image")}
+                  alt=""
+                />
               </div>}
             </div>
           </div>

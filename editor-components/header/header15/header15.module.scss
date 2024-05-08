@@ -1,14 +1,15 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: 100vh;
   background-color: var(--composer-html-background);
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
+    height: 100vh;
     .wrapper {
       display: flex;
       width: 100%;
-      min-height: 776px;
+      height: 100%;
       .left {
         flex: 1;
         display: flex;
@@ -21,10 +22,11 @@
           overflow: hidden;
           text-overflow: ellipsis;
           position: absolute;
-          left: 17%;
-          top: 20%;
-          z-index: 1;
-          .header{
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+          .header {
             font-size: 1.5rem;
             color: var(--composer-primary-color);
             margin-bottom: -30px;
@@ -41,7 +43,7 @@
             color: var(--composer-font-color-primary);
             margin-bottom: 48px;
           }
-          .form-display{
+          .form-display {
             display: flex;
             justify-content: center;
           }
@@ -49,14 +51,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 50%;
 
-            input {
+            .email {
               padding: 10px;
               margin: 6px;
               width: 90%;
               border: 3px solid #e5e5e5;
+              background: rgba(255, 255, 255, 0.2);
+              box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+              backdrop-filter: blur(5px);
+              -webkit-backdrop-filter: blur(5px);
             }
-          
+          }
+          .button-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             .button {
               margin-left: 8px;
               padding: 13px 32px;
@@ -67,7 +78,7 @@
               width: 150px;
               overflow: hidden;
               text-overflow: ellipsis;
-              &:hover{
+              &:hover {
                 background: transparent;
                 color: var(--composer-font-color-primary);
                 border: 1px solid var(--composer-secondary-color);
@@ -85,13 +96,15 @@
         .right-image {
           width: 100%;
           height: 100%;
-          .image{
+          .image {
             position: relative;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            
-            &.without-background{
+            z-index: 1;
+            right: 0;
+
+            &.without-background {
               position: absolute;
               object-fit: cover;
               height: 100%;
@@ -103,7 +116,7 @@
       }
     }
   }
-  .centered-content{
+  .centered-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -112,35 +125,31 @@
   }
 }
 
-
 @media only screen and (max-width: 768px) {
   .container {
     .max-content {
       .wrapper {
         flex-direction: column;
-        height: 1150px;
         .left {
           .content {
             position: absolute;
             text-align: center;
             padding: 16px;
-            left: 0% !important;
             z-index: 1;
-            top: 7% !important;
             width: 100% !important;
-            .header{
+            .header {
               font-size: 1.3rem;
               margin-bottom: -20px !important;
             }
             .title {
-              font-size: 3rem ;
+              font-size: 3rem;
               text-align: center;
             }
             .description {
               text-align: center;
               font-size: 1.4rem !important;
             }
-            .form-display{
+            .form-display {
               display: flex;
               justify-content: center;
             }
@@ -149,8 +158,8 @@
               flex-direction: column;
               padding: 0px;
               margin: 0px;
-  
-              input {
+
+              .email {
                 padding: 10px;
                 margin: 6px;
                 width: 100%;
@@ -167,15 +176,11 @@
         }
         .right {
           flex: 1;
-      }
-      .image{
-        object-fit: cover;
-        height: 125% !important;
-        &.without-background{
-          top: 0px !important;
+        }
+        .image {
+          display: none;
         }
       }
-     }
     }
   }
 }
@@ -184,50 +189,42 @@
   .container {
     .max-content {
       .wrapper {
-        height: 900px;
         .left {
           text-align: center;
           .content {
             width: 100%;
-              .header{
-                font-size: 1.2rem !important;
-                margin-bottom: -10px !important;
-              }
-              .title {
-                font-size: 2rem !important ;
-              }
-              .description{
-                  font-size: 1.2rem !important;
-              }
-              .form-display{
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-              }
-              .form {
-                padding: 0px !important;
-                margin: 2px !important;
-                align-items: center !important;
-                input{
-                  margin: 2px;
-                }
-                .button{
-                  width: 311px !important;
-                  margin-top: 10px;
-                  margin-left: 0px !important;
-                  padding: 12px !important;
-                }
-              }
+            .header {
+              font-size: 1.2rem !important;
+              margin-bottom: -10px !important;
+            }
+            .title {
+              font-size: 2rem !important ;
+            }
+            .description {
+              font-size: 1.2rem !important;
+            }
+            .form-display {
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              align-items: center;
+            }
+            .form{
+              width: 75%;
+            }
+            .button{
+              margin-left: 0 !important;
             }
           }
         }
-        .right {
-          flex: 1;
       }
-      .image{
+      .right {
+        flex: 1;
+      }
+      .image {
         object-fit: cover !important;
         height: 100%;
-        &.without-background{
+        &.without-background {
           top: 0px;
         }
       }
