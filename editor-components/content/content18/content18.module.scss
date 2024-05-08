@@ -6,8 +6,7 @@
         display: flex;
         max-width: var(--composer-content-width);
         margin: auto;
-        padding: 50px 0px;
-
+        padding: 50px 100px;
         .page {
             display: flex;
 
@@ -66,8 +65,10 @@
                     color: var(--composer-font-color-primary);
                 }
                 .progress-container {
+                     display: flex;
+                     flex-direction: column;
+                     gap: 20px;
                     .item {
-                        padding-bottom: 20px;
                         transition: 0.3s;
                         .progress-title-icon {
                             display: flex;
