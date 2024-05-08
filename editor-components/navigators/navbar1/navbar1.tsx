@@ -25,11 +25,19 @@ class Navbar1 extends BaseNavigator {
       value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
     this.addProp({
-      type: "image",
-      key: "image2",
-      displayer: "Image",
+      type: "icon",
+      key: "hamburger_icon",
+      displayer: "Hamburger Icon",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c79affba070002b7497d2?alt=media&timestamp=1684830642187",
+        "IoMenu",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "logo_text",
+      displayer: "Logo Text",
+      value:
+        "Lorem",
     });
 
     this.addProp({
@@ -51,16 +59,6 @@ class Navbar1 extends BaseNavigator {
       displayer: "Right Icon",
       key: "right_icon",
       value: "FaChevronRight",
-    });
-
-    this.addProp({
-      type: "select",
-      key: "select",
-      displayer: "Location of Items",
-      value: "Center",
-      additionalParams: {
-        selectItems: ["Left", "Right", "Center"],
-      },
     });
 
     this.addProp({
@@ -597,13 +595,6 @@ class Navbar1 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "is_box_visible",
-      displayer: "is box visible",
-      value: true,
-    });
-
-    this.addProp({
       type: "array",
       key: "buttonList",
       displayer: "Button",
@@ -654,25 +645,29 @@ class Navbar1 extends BaseNavigator {
 
   render() {
     const selectValue = this.getPropValue("select");
+    const logoImage = this.getPropValue("image");
+    const logoText = this.getPropValue("logo_text")
 
     return (
       <div
-        className={`${this.decorateCSS("container")} ${
-          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-        }`}
+        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+          }`}
       >
         <div className={this.decorateCSS("max-content")}>
-          <img src={this.getPropValue("image")} width={200} alt="" />
+          {
+            logoImage ?
+              <img src={this.getPropValue("image")} width={200} alt="" /> :
+              <span className={this.decorateCSS("logo-text")}>{logoText}</span>
+          }
 
           <nav className={this.decorateCSS("pc-navigator")}>
             <div
-              className={`${this.decorateCSS("items")} ${
-                selectValue === "Left"
-                  ? this.decorateCSS("left")
-                  : selectValue === "Right"
+              className={`${this.decorateCSS("items")} ${selectValue === "Left"
+                ? this.decorateCSS("left")
+                : selectValue === "Right"
                   ? this.decorateCSS("right")
                   : selectValue === "Center" && ""
-              }`}
+                }`}
             >
               {this.castToObject<[]>("items").map((item: Item, indexItemList: number) => {
                 return (
@@ -694,7 +689,7 @@ class Navbar1 extends BaseNavigator {
                             {item.sub_items?.length > 0 &&
                               item.sub_items.map((subItem) => (
                                 <div className={this.decorateCSS("sub-item")}>
-                                  <span>
+                                  <span className={this.decorateCSS("sub-item-text")}>
                                     {subItem.title}{" "}
                                     {subItem.sub_items?.length > 0 &&
                                       subItem.menu_type === "Dropdown" && (
@@ -732,7 +727,7 @@ class Navbar1 extends BaseNavigator {
               (data: any, indexButtonList: number) => {
                 return (
                   <ComposerLink key={indexButtonList} path={data.value[1].value}>
-                    <button>{data.value[0].value}</button>
+                    <button className={this.decorateCSS("button")}>{data.value[0].value}</button>
                   </ComposerLink>
                 );
               }
@@ -740,16 +735,14 @@ class Navbar1 extends BaseNavigator {
           </div>
 
           <div className={this.decorateCSS("hamburger-navbar")}>
-            <img
-              alt=""
-              className={`${this.decorateCSS("img-hamburger")} ${
-                this.getComponentState("navActive") ? this.decorateCSS("rotate") : ""
-              }`}
-              src={this.getPropValue("image2")}
-              onClick={() => {
-                this.hamburgerNavClick();
-              }}
-            />
+            <ComposerIcon
+              name={this.getPropValue("hamburger_icon")}
+              propsIcon={{
+                className: this.decorateCSS("hamburger-icon"),
+                onClick: () => {
+                  this.hamburgerNavClick();
+                }
+              }} />
           </div>
 
           <nav className={this.decorateCSS("navigator-mobile")}>
@@ -767,7 +760,7 @@ class Navbar1 extends BaseNavigator {
                         >
                           <ComposerLink path={item.navigate_to}></ComposerLink>
                           <div className={this.decorateCSS("title")}>
-                            <span>{item.title} </span>
+                            <span className={this.decorateCSS("title-text")}>{item.title} </span>
                             {item.sub_items?.length > 0 &&
                               item.menu_type === "Dropdown" && (
                                 <ComposerIcon name={this.getPropValue("down_icon")} />
@@ -788,11 +781,14 @@ class Navbar1 extends BaseNavigator {
                                     }}
                                   >
                                     <div className={this.decorateCSS("sub-item-title")}>
-                                      <span>{subItem.title} </span>
+                                      <span className={this.decorateCSS("sub-item-title-text")}>{subItem.title} </span>
                                       {subItem.sub_items?.length > 0 &&
                                         subItem.menu_type === "Dropdown" && (
                                           <ComposerIcon
                                             name={this.getPropValue("down_icon")}
+                                            propsIcon={{
+                                              className: this.decorateCSS("down-icon")
+                                            }}
                                           />
                                         )}
                                     </div>

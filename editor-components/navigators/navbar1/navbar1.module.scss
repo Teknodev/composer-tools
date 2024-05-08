@@ -17,6 +17,19 @@
     justify-content: space-between;
     padding: 0 20px;
     position: relative;
+    align-items: center;
+    height: 90px;
+    .sub-item-title {
+      .down-icon{
+        margin-left: 10px;
+      }
+    }
+    .logo-text {
+      color: var(--composer-primary-color);
+      height: fit-content;
+      font-size: 2rem;
+      font-weight: 600;
+    }
     nav {
       display: flex;
 
@@ -32,6 +45,7 @@
           display: flex;
           align-items: center;
           padding: 0 20px;
+          color: var(--composer-font-color-primary);
 
           &:hover {
             .item {
@@ -39,11 +53,8 @@
                 display: flex;
 
                 .sub-item {
-                  background: color-mix(
-                    in srgb,
-                    var(--composer-secondary-color),
-                    #fff 70%
-                  );
+                  background: var(--composer-html-background);
+                  color: var(--composer-font-color-primary);
                 }
               }
             }
@@ -86,11 +97,7 @@
 
                   .list-item {
                     padding: 12px 30px 11px 30px;
-                    background: color-mix(
-                      in srgb,
-                      var(--composer-secondary-color),
-                      #fff 70%
-                    );
+                    background: var(--composer-html-background);
 
                     &:hover {
                       background: var(--composer-secondary-color) !important;
@@ -135,6 +142,10 @@
     }
     .hamburger-navbar {
       display: none;
+      .hamburger-icon {
+        font-size: 2.4rem;
+        color: var(--composer-font-color-primary);
+      }
     }
 
     .navigator-mobile {
@@ -154,7 +165,6 @@
 @media only screen and (max-width: 870px) {
   .container {
     .max-content {
-      padding: 0 !important;
       align-items: center;
       .pc-navigator {
         display: none;
@@ -167,7 +177,6 @@
         justify-content: space-between;
         align-items: center;
         height: 100%;
-        padding: 0 20px 0 5px;
 
         .img-hamburger {
           pointer-events: all;
@@ -198,9 +207,9 @@
           transition: all 0.5s;
           height: auto;
           width: 100%;
-          left: 0;
-          background-color: var(--composer-secondary-color);
-          //color: var(--composer-font-color-secondary);
+          left: -20px;
+          background-color: var(--composer-html-background);
+          color: var(--composer-font-color-primary);
           position: absolute;
           z-index: 200;
           gap: 30px;
@@ -244,11 +253,7 @@
 
                 .list-item {
                   padding: 12px 30px;
-                  background: color-mix(
-                    in srgb,
-                    var(--composer-secondary-color),
-                    #fff 70%
-                  );
+                  background: var(--composer-html-background);
                 }
               }
             }
