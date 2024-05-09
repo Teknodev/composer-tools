@@ -1,202 +1,210 @@
 .container {
-    width: 100%;
-    background-color: var(--composer-html-background);
+  width: 100%;
+  background-color: var(--composer-html-background);
 
-    .max-content {
+  .max-content {
+    display: flex;
+    max-width: var(--composer-content-width);
+    margin: auto;
+    padding: 50px 100px;
+    .page {
+      display: flex;
+
+      .left-page {
+        width: 50%;
         display: flex;
-        max-width: var(--composer-content-width);
-        margin: auto;
-        padding: 50px 100px;
-        .page {
-            display: flex;
+        flex-direction: column;
 
-            .left-page {
-                width: 50%;
-                display: flex;
-                flex-direction: column;
-
-                .up-image {
-                    .image1 {
-                        width: 80%;
-                        height: 400px;
-                        border-top-right-radius:16px;
-                        object-fit: cover;
-                    }
-                }
-
-                .down-image {
-                    height: 270px;
-                    border-radius: 6px;
-                    position: absolute;
-                    top: 267px;
-                    left: 397px;
-
-                    .image2 {
-                        width: 80%;
-                        height: 100%;
-                        border-radius: 16px;
-                        border: 10px solid var(--composer-html-background);
-                        object-fit: cover;
-
-
-                    }
-                }
-            }
-
-            .right-page {
-                padding-right: 100px;
-                width: 50%;
-                .badge {
-                    font-size: 14px;
-                    opacity: 0.8;
-                    font-weight: bold;
-                    color: var(--composer-font-color-primary);
-                    padding-bottom: 5px;
-                }
-                .title {
-                    font-size: 50px;
-                    font-weight: 700;
-                    color: var(--composer-primary-color);
-                }
-                .description {
-                    font-size: 13px;
-                    font-weight: bold;
-                    opacity: 0.6;
-                    color: var(--composer-font-color-primary);
-                }
-                .progress-container {
-                     display: flex;
-                     flex-direction: column;
-                     gap: 20px;
-                    .item {
-                        transition: 0.3s;
-                        .progress-title-icon {
-                            display: flex;
-                            gap: 10px;
-                            font-size: 16px;
-                            font-weight: bold;
-                            color: var(--composer-primary-color);
-                            align-items: center;
-                        }
-
-                        .progress-percent {
-                            display: flex;
-                            font-weight: bold;
-                            margin-bottom: 5px;
-                            color: var(--composer-font-color-primary);
-                            position: relative;
-                            right: 10px;
-                        }
-                    }
-
-                    .progress-active {
-                        width: 100%;
-                        background-color: white;
-                        border-radius: 11px;
-                        overflow: hidden;
-                        .progress-passive {
-                            animation: fillProgress 2s ease-in-out forwards;
-                            height: 8px;
-                            background-color: var(--composer-secondary-color);
-                        }
-
-                        @keyframes fillProgress {
-                            from {
-                                width: 0%;
-                            }
-
-                            to {
-                                width: progress;
-                            }
-                        }
-                    }
-                }
-            }
+        .up-image {
+          .image1 {
+            width: 80%;
+            height: 400px;
+            border-radius: 16px;
+            object-fit: cover;
+          }
         }
+
+        .down-image {
+          height: 270px;
+          border-radius: 6px;
+          position: absolute;
+          top: 267px;
+          left: 212px;
+
+          .image2 {
+            width: 92%;
+            height: 100%;
+            border-radius: 16px;
+            border: 10px solid var(--composer-html-background);
+            object-fit: cover;
+          }
+        }
+      }
+
+      .right-page {
+        width: 50%;
+        .badge {
+          font-size: 14px;
+          opacity: 0.8;
+          font-weight: bold;
+          color: var(--composer-font-color-primary);
+          padding-bottom: 5px;
+        }
+        .title {
+          font-size: 50px;
+          font-weight: 700;
+          color: var(--composer-primary-color);
+        }
+        .description {
+          font-size: 13px;
+          font-weight: bold;
+          opacity: 0.6;
+          color: var(--composer-font-color-primary);
+        }
+        .progress-container {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          .item {
+            transition: 0.3s;
+            .progress-title-container {
+              display: flex;
+              gap: 10px;
+              font-size: 16px;
+              font-weight: bold;
+              color: var(--composer-primary-color);
+
+              .progress-title-icon {
+                margin-top: 2px;
+              }
+            }
+
+            .progress-percent {
+              display: flex;
+              font-weight: bold;
+              margin-bottom: 5px;
+              color: var(--composer-font-color-primary);
+              position: relative;
+              right: 10px;
+            }
+          }
+
+          .progress-active {
+            width: 100%;
+            background-color: white;
+            border-radius: 11px;
+            overflow: hidden;
+            .progress-passive {
+              animation: fillProgress 2s ease-in-out forwards;
+              height: 8px;
+              background-color: var(--composer-secondary-color);
+            }
+
+            @keyframes fillProgress {
+              from {
+                width: 0%;
+              }
+
+              to {
+                width: progress;
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
 
-
-
-
 @media screen and (max-width: 1000px) {
-    .container {      
-        .max-content {          
-            .page {  
-                   flex-direction: column !important;       
-                .left-page {
-                    width: 91%;             
-                    .down-image {   
-                        position: static;         
-                        .image2{
-                            width: 75% ;
-                             border-radius: 22px !important;
-                             position: relative;
-                             bottom: 138px;
-                             left: 53px;                         
-                        }
-                      position: static;  
-                      display: flex;
-                      flex-direction: row-reverse;         
-                    }
-                    .up-image{
-                        padding: 0 0 0 20px;
-                        .image1{
-                        width: 83% !important;
-                        height: 346px;
-                         border-radius: 16px;
-                        }                    
-                    }
-                }
-                .right-page {
-                    padding: 0px 30px;
-                    width: 100%;
-                    position: relative;
-                    bottom: 115px;
-                }
+  .container {
+    .max-content {
+      padding: 50px 30px;
+
+      .page {
+        flex-direction: column !important;
+        .left-page {
+          width: 91%;
+          .down-image {
+            position: static;
+            .image2 {
+              width: 75%;
+              border-radius: 22px !important;
+              position: relative;
+              bottom: 138px;
+              left: 53px;
             }
+            position: static;
+            display: flex;
+            flex-direction: row-reverse;
+          }
+          .up-image {
+            padding: 0 0 0 20px;
+            .image1 {
+              width: 83% !important;
+              height: 346px;
+              border-radius: 16px;
+            }
+          }
         }
+        .right-page {
+          padding: 0px 30px;
+          width: 100%;
+          position: relative;
+          bottom: 115px;
+        }
+      }
     }
+  }
 }
 
 @media screen and (max-width: 400px) {
-    .container {
-        height: 100%;
-        .max-content {
-            .page {
-                flex-direction: column;
-                width: 100%;
-                .left-page {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 118px;
-                    .up-image {
-                        width: 336px;
-                        .image1 {
-                            height: 212px;
-                            position: relative;
-                            left: 33px;
-                        }
-                    }
-                    .down-image {
-                        top: 0 !important;
-                        left: -11px !important;
-                        position: relative;  
-                        width: 89% !important;                   
-                        align-items: center;
-                        .image2 {
-                            height: 221px;
-                            width: 100%;
-                        }
-                    }
-                }
-                .right-page {
-                    padding: 0px 20px;
-                    .title {
-                        font-size: 30px;
-                    }
-                }
+  .container {
+    height: 100%;
+    .max-content {
+      padding-left: 0;
+      padding-right: 0;
+      .page {
+        flex-direction: column;
+        width: 100%;
+        .left-page {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          gap: 0;
+          .up-image {
+            padding: 0;
+            .image1 {
+              width: 100% !important;
+              height: 212px;
+              position: relative;
+              left: 0;
             }
+          }
+          .down-image {
+            top: 0;
+            left: 0;
+            position: relative;
+            width: 89% !important;
+            align-items: center;
+            .image2 {
+              height: 221px;
+              width: 100%;
+              bottom: 0;
+              left: 0;
+              border: none;
+            }
+          }
         }
+        .right-page {
+          padding: 0px 20px;
+          bottom: 0;
+          .title {
+            font-size: 30px;
+          }
+        }
+      }
     }
+  }
 }
