@@ -1,145 +1,94 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  height: 100%;
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
+  padding: 50px 0px 0px 0px;
   display: flex;
   align-items: center;
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-    overflow: hidden;
-    .wrapper {
-      display: flex;
-      flex-direction: row;
+    min-height: calc(100vh - 80px);
 
-      width: 100%;
-      height: 100vh;
-
-
-      .left{
-        position: relative;   
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        width: 100%;
-        height: 100%;
-
-    img {
-      height: 100%;
-      width: 100%;
-    }
-
-        .text-content {
-          --b: 15px;   /* thickness of the border */
-          --c: whitesmoke;   /* color of the border */
-          --w: 200px;  /* width of border */
-          
-        
-          border: var(--b) solid #0000; /* space for the border */
-          --_g: #0000 90deg,var(--c) 0;
-          --_p: var(--w) var(--w) border-box no-repeat;
-
-          background:
-            conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p),
-            conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);
-
-          width: 70%;
-          height: 80%;
-          position: absolute;
-          margin: 40px;
-          padding: 7%;
+    .header18 {
+      .slider-style {
+        .card {
           display: flex;
           flex-direction: column;
-          gap: 10%;
-          .tittle-wrapper{
+          place-items: center;
+
+          .image {
+            width: 500px;
+            height: 500px;
+          }
+
+          .text-content {
             display: flex;
             flex-direction: column;
+            position: absolute;
+            top: 50px;
+            left: 330px;
+            gap: 35px;
 
-            .top {
-              display: flex;
-              justify-content: flex-start;
-              margin: 0;
-              color: #afa9a9 !important;
-              font-size: 5rem;
+            .subtitle {
+              font-size: 13px;
+              font-weight: bold;
             }
 
-            .middle {
-              display: flex;
-              justify-content: center;
-              margin: 0;
-              color: whitesmoke !important;
-              font-size: 10rem;
-            }
-
-            .bottom {
-              display: flex;
-              justify-content: flex-end;
-              margin: 0;
-              color:#c4a34a !important;
-              font-size: 8rem;
+            .title {
+              font-size: 5.5rem;
+              font-weight: bold;
             }
           }
-          .text {
-            font-size: 2rem;
+
+          .description-div {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: black;
             color: white;
-
+            width: 300px;
+            height: 150px;
+            padding: 30px;
+            position: absolute;
+            right: 300px;
+            bottom: 50px;
           }
-
-          .action-button {
-            border: none;
-            width: 220px;
-            font-size: 1.5rem;
-            padding: 15px;
-            background-color: whitesmoke;
-
-            &:hover{
-              background-color: #e2e0e0;
-        }
-          }
-
-        }
-
-        .side-text {
-          font-size: 2rem;
-          font-weight: bold;
-          position: relative;
-          right: 4%;
-          color: white;
-          writing-mode: vertical-rl;
-          /*text-orientation: sideways;*/
-          transform:scale(-1);
         }
       }
-
-      .right {
-        position: relative;   
-        flex:1;
-        width: 100%;
-        height: 100%;
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
     }
 
-        .side-text {
-          color: black;
-          position: relative;
-          bottom: 65%;
-          writing-mode: vertical-rl;
-          /*text-orientation: sideways;*/
-          transform:scale(-1);
-          font-size: 2rem;
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      bottom: -95px;
+    }
 
-        }
+    .arrow {
+      position: absolute;
+      cursor: pointer;
+      bottom: -110px;
+      margin: auto 0;
+
+
+      &.prev-icon {
+        left: 50px;
       }
+
+      &.next-icon {
+        right: 50px;
+      }
+
+
     }
   }
 }
+
+
 
 
 @media only screen and (max-width: 768px) {
@@ -148,153 +97,87 @@
     .max-content {
       .wrapper {
         flex-direction: column;
-  
-        .left{
 
-      img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        object-fit: fill;
-      }
-  
+        .left {
+
+          img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            object-fit: fill;
+          }
+
           .text-content {
 
 
-            --b: 5px;   /* thickness of the border */
-            --c: whitesmoke;   /* color of the border */
-            --w: 150px;  /* width of border */
-            
-          
-            border: var(--b) solid #0000; /* space for the border */
-            --_g: #0000 90deg,var(--c) 0;
+            --b: 5px;
+            /* thickness of the border */
+            --c: whitesmoke;
+            /* color of the border */
+            --w: 150px;
+            /* width of border */
+
+
+            border: var(--b) solid #0000;
+            /* space for the border */
+            --_g: #0000 90deg, var(--c) 0;
             --_p: var(--w) var(--w) border-box no-repeat;
-  
+
             background:
-              conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p),
-              conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);
+              conic-gradient(from 90deg at top var(--b) left var(--b), var(--_g)) 0 0 / var(--_p),
+              conic-gradient(from -90deg at bottom var(--b) right var(--b), var(--_g)) 100% 100% / var(--_p);
 
-              height: 75%;
-  
-            .tittle-wrapper{
+            height: 75%;
 
-  
+            .tittle-wrapper {
+
+
               .top {
                 font-size: 3rem;
               }
-  
+
               .middle {
                 font-size: 4rem;
 
               }
-  
+
               .bottom {
                 font-size: 2.5rem;
 
               }
             }
+
             .text {
               font-size: 1.5rem;
 
             }
-  
+
             .action-button {
               font-size: 1rem;
               padding: 8px;
             }
-  
+
           }
-  
+
           .side-text {
             position: absolute;
             left: 1px;
           }
         }
-  
+
         .right {
-  
-      img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        object-fit: cover;
-      }
+
+          img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            object-fit: cover;
+          }
+
           .side-text {
             top: 20%;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-@media only screen and (max-width: 480px) {
-  .container {
-
-    .max-content {
-      .wrapper {
-  
-        .left{
-
-      img {
-      }
-  
-          .text-content {
-
-
-            --b: 2px;   /* thickness of the border */
-            --c: whitesmoke;   /* color of the border */
-            --w: 100px;  /* width of border */
-            
-          
-            border: var(--b) solid #0000; /* space for the border */
-            --_g: #0000 90deg,var(--c) 0;
-            --_p: var(--w) var(--w) border-box no-repeat;
-  
-            background:
-              conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p),
-              conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);
-
-  
-            .tittle-wrapper{
-
-  
-              .top {
-              font-size: 2.5rem;
-
-              }
-  
-              .middle {
-                font-size: 3rem;
-
-              }
-  
-              .bottom {
-                font-size: 2rem;
-
-              }
-            }
-            .text {
-              font-size: 1rem;
-            }
-  
-            .action-button {
-            }
-  
-          }
-  
-          .side-text {
-          }
-        }
-  
-        .right {
-  
-      img {
-      }
-          .side-text {
           }
         }
       }
