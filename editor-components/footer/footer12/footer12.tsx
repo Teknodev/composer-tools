@@ -3,7 +3,10 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer12.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-
+interface FooterLink {
+  pageTitle: string;
+  pageUrl: string;
+}
 class Footer12Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
@@ -23,36 +26,80 @@ class Footer12Page extends BaseFooter {
       type: "string",
       key: "ref-text",
       displayer: "Referral Text",
-      value: "Privacy Policy"
+      value: "Privacy Policy",
     });
     this.addProp({
       type: "page",
       key: "ref-text-page",
       displayer: "Referral Text Url",
-      value: ""
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "ref-text1",
       displayer: "Referral Text 1",
-      value: "Terms of Service"
+      value: "Terms of Service",
     });
     this.addProp({
       type: "page",
       key: "ref-text1-page",
       displayer: "Referral Text 1 Url",
-      value: ""
+      value: "",
     });
 
+    this.addProp({
+      type: "array",
+      key: "footer-links",
+      displayer: "Footer Links",
+      value: [
+        {
+          type: "object",
+          key: "link",
+          displayer: "Link",
+          value: [
+            {
+              type: "string",
+              key: "pageTitle",
+              displayer: "Title",
+              value: "Privacy Policy",
+            },
+            {
+              type: "page",
+              key: "pageUrl",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "link",
+          displayer: "Link",
+          value: [
+            {
+              type: "string",
+              key: "pageTitle",
+              displayer: "Title",
+              value: "Terms of Service",
+            },
+            {
+              type: "page",
+              key: "pageUrl",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
   }
   getName(): string {
     return "Footer 12";
   }
   render() {
-
     return (
-      <div className={this.decorateCSS("container")} >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <img
@@ -60,13 +107,22 @@ class Footer12Page extends BaseFooter {
               src={this.getPropValue("footerLogo")}
               className={this.decorateCSS("img")}
             />
-            <div className={this.decorateCSS("right-content")}>
-              <div className={this.decorateCSS("up-text")}>
-                <span className={this.decorateCSS("ref-text")}>{this.getPropValue("ref-text")}</span>
-                <span className={this.decorateCSS("ref-text1")}>{this.getPropValue("ref-text1")}</span>
+            <div className={this.decorateCSS("footer-links")}>
+              <div className={this.decorateCSS("links")}>
+                {this.castToObject<FooterLink[]>("footer-links").map(
+                  (link: FooterLink, index: number) => {
+                    return (
+                      <ComposerLink key={index} path={link.pageUrl}>
+                        <span className={this.decorateCSS("link")}>{link.pageTitle}</span>
+                      </ComposerLink>
+                    );
+                  }
+                )}
               </div>
               <div className={this.decorateCSS("down-text")}>
-                <span className={this.decorateCSS("text")}>{this.getPropValue("text")}</span>
+                <span className={this.decorateCSS("text")}>
+                  {this.getPropValue("text")}
+                </span>
               </div>
             </div>
           </div>
