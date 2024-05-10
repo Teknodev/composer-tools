@@ -16,6 +16,13 @@
                 width: 100px;
                 height: auto;
             }
+
+            .logo-text {
+                color: var(--composer-primary-color);
+                height: fit-content;
+                font-size: 2rem;
+                font-weight: 600;
+            }
         }
 
         .right-content {
