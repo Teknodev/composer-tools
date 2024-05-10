@@ -155,6 +155,82 @@ class Header18 extends BaseHeader {
             },
           ],
         },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Painting",
+            },
+            {
+              type: "string",
+              displayer: "Subitle",
+              key: "subtitle",
+              value: "visual art forms",
+            },
+            {
+              type: "string",
+              displayer: "Description Title",
+              key: "description_title",
+              value: "Definition",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Painting is the application of pigments to a support surface that establishes an image,design or decoration.",
+            },
+            {
+              type: "image",
+              displayer: "İmage",
+              key: "image",
+              value:
+                "https://images.unsplash.com/photo-1582561424760-0321d75e81fa?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Painting",
+            },
+            {
+              type: "string",
+              displayer: "Subitle",
+              key: "subtitle",
+              value: "visual art forms",
+            },
+            {
+              type: "string",
+              displayer: "Description Title",
+              key: "description_title",
+              value: "Definition",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Painting is the application of pigments to a support surface that establishes an image,design or decoration.",
+            },
+            {
+              type: "image",
+              displayer: "İmage",
+              key: "image",
+              value:
+                "https://images.unsplash.com/photo-1582561424760-0321d75e81fa?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            },
+          ],
+        },
       ],
     });
     this.addProp({
@@ -239,7 +315,8 @@ class Header18 extends BaseHeader {
     };
 
 
-
+    const sliderCount = this.castToObject<Item[]>("slider").length;
+    const progressPercentage = ((this.getComponentState("active-index") + 1) / sliderCount) * 100;
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -262,6 +339,24 @@ class Header18 extends BaseHeader {
                       <div className={this.decorateCSS("text-content")}>
                         <span className={this.decorateCSS("subtitle")}>{item.subtitle}</span>
                         <span className={this.decorateCSS("title")}>{item.title}</span>
+                      </div>
+                      <div className={this.decorateCSS("top-figure")}>
+                        <div className={this.decorateCSS("pagination")}>
+                          <span className={this.decorateCSS("active-slide")}>
+                            {(this.getComponentState("active-index") + 1)
+                              .toString()
+                              .padStart(2, "0")}
+                          </span>
+                          <sup className={this.decorateCSS("slide-count-power")}>
+
+                            <span className={this.decorateCSS("slide-count")}>
+                              {sliderCount.toString().padStart(2, "0")}
+                            </span>
+                          </sup>
+                          <div className={this.decorateCSS("progress-bar")}>
+                            <div className={this.decorateCSS("active")} style={{ width: `${progressPercentage}%` }} />
+                          </div>
+                        </div>
                       </div>
                       <div className={this.decorateCSS("description-div")}>
                         <span className={this.decorateCSS("description_title")}>{item.description_title}</span>

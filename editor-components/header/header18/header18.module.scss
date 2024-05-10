@@ -42,6 +42,24 @@
             }
           }
 
+          .progress-bar {
+            height: 2px;
+            background-color: rgb(204, 191, 191);
+            position: relative;
+            width: 100%;
+            /* Progress çubuğunun tam genişlikte olmasını sağlar */
+          }
+
+          .active {
+            height: 100%;
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+
+
+
           .description-div {
             display: flex;
             flex-direction: column;
