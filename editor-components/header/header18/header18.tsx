@@ -367,6 +367,7 @@ class Header18 extends BaseHeader {
                       className={this.decorateCSS("cover_image")}
                       src={item.cover_image}
                       alt=""
+
                     />
                   )}
 

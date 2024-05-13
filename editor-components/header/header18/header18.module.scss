@@ -9,10 +9,16 @@
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
+    height: 100vh;
 
     .slider-style {
       .slider {
         position: relative;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: 1;
+        overflow: hidden;
 
         .cover_image {
           width: 100vw;
@@ -33,11 +39,12 @@
           justify-content: center;
           z-index: 2;
 
+
           .image {
             width: 500px;
             height: 500px;
             object-fit: cover;
-            position: absolute !important;
+
           }
 
           .content {
@@ -177,7 +184,7 @@
               width: 300px;
               height: 300px;
               position: relative;
-              top: 120px;
+              top: -75px;
 
             }
 
