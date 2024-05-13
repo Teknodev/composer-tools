@@ -11,18 +11,13 @@ type Item = {
   description: string;
   description_title: string;
   text: string;
+  cover_image: string;
 };
 
 class Header18 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-    this.addProp({
-      type: "image",
-      key: "cover-image",
-      displayer: "Background Image",
-      value:
-        "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
-    });
+
     this.addProp({
       type: "icon",
       key: "prev_icon",
@@ -76,6 +71,13 @@ class Header18 extends BaseHeader {
               value:
                 "https://images.unsplash.com/photo-1582561424760-0321d75e81fa?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value:
+                "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            }
           ],
         },
 
@@ -88,7 +90,7 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "Painting",
+              value: "Scultpure",
             },
             {
               type: "string",
@@ -106,15 +108,22 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "Painting is the application of pigments to a support surface that establishes an image,design or decoration.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed ligula eu ligula congue vestibulum.",
             },
             {
               type: "image",
               displayer: "İmage",
               key: "image",
               value:
-                "https://images.unsplash.com/photo-1582561424760-0321d75e81fa?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1604490778200-7b1de465a6f3?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value:
+                "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            }
           ],
         },
         {
@@ -126,7 +135,7 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "Painting",
+              value: "Architecture",
             },
             {
               type: "string",
@@ -144,15 +153,22 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "Painting is the application of pigments to a support surface that establishes an image,design or decoration.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu justo sed libero consectetur consequat.",
             },
             {
               type: "image",
               displayer: "İmage",
               key: "image",
               value:
-                "https://images.unsplash.com/photo-1582561424760-0321d75e81fa?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1563645774182-d14c97bd52fb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value:
+                "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            }
           ],
         },
         {
@@ -164,7 +180,7 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "Painting",
+              value: "Ceramics",
             },
             {
               type: "string",
@@ -182,15 +198,22 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "Painting is the application of pigments to a support surface that establishes an image,design or decoration.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida felis sed nisl consequat, nec ultricies velit commodo.",
             },
             {
               type: "image",
               displayer: "İmage",
               key: "image",
               value:
-                "https://images.unsplash.com/photo-1582561424760-0321d75e81fa?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1590422749897-47036da0b0ff?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value:
+                "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            }
           ],
         },
         {
@@ -202,7 +225,7 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Title",
               key: "title",
-              value: "Painting",
+              value: "Photography",
             },
             {
               type: "string",
@@ -220,15 +243,22 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "Painting is the application of pigments to a support surface that establishes an image,design or decoration.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor justo ac lorem tincidunt, at convallis tortor efficitur.",
             },
             {
               type: "image",
               displayer: "İmage",
               key: "image",
               value:
-                "https://images.unsplash.com/photo-1582561424760-0321d75e81fa?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value:
+                "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            }
           ],
         },
       ],
@@ -241,18 +271,18 @@ class Header18 extends BaseHeader {
         {
           type: "object",
           key: "icon",
-          displayer: "Icon Item",
+          displayer: "Item",
           value: [
             {
               type: "page",
-              key: "navigate_icon",
-              displayer: "Icon Link",
+              key: "navigate",
+              displayer: "Link",
               value: "",
             },
             {
               type: "string",
-              key: "icon_name",
-              displayer: "Icon",
+              key: "name",
+              displayer: "Name",
               value: "facebook",
             },
           ],
@@ -260,29 +290,29 @@ class Header18 extends BaseHeader {
         {
           type: "object",
           key: "icon",
-          displayer: "Icon Item",
+          displayer: "Item",
           value: [
             {
               type: "page",
-              key: "navigate_icon",
-              displayer: "Icon Link",
+              key: "navigate",
+              displayer: "Link",
               value: "",
             },
-            { type: "string", key: "icon_name", displayer: "Icon", value: "instagram" },
+            { type: "string", key: "name", displayer: "Name", value: "instagram" },
           ],
         },
         {
           type: "object",
           key: "icon",
-          displayer: "Icon Item",
+          displayer: "Item",
           value: [
             {
               type: "page",
-              key: "navigate_icon",
-              displayer: "Icon Link",
+              key: "navigate",
+              displayer: "Link",
               value: "",
             },
-            { type: "string", key: "icon_name", displayer: "Icon", value: "dribbble" },
+            { type: "string", key: "name", displayer: "Name", value: "dribbble" },
           ],
         },
       ],
@@ -318,61 +348,70 @@ class Header18 extends BaseHeader {
     const sliderCount = this.castToObject<Item[]>("slider").length;
     const progressPercentage = ((this.getComponentState("active-index") + 1) / sliderCount) * 100;
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <div
+        className={this.decorateCSS("container")}
+      >
+        <div className={this.decorateCSS("max-content")} >
 
-          <div className={this.decorateCSS("header18")}>
-            <ComposerSlider
-              {...settings}
-              ref={this.getComponentState("slider-ref")}
-              className={this.decorateCSS("slider-style")}
-            >
-              {this.castToObject<Item[]>("slider").map(
-                (item: Item, index: number) => (
-                  <div key={index}>
-                    <div className={this.decorateCSS("card")}>
-                      <img
-                        src={item.image}
-                        alt={""}
-                        className={this.decorateCSS("image")}
-                      />
+          <ComposerSlider
+            {...settings}
+            ref={this.getComponentState("slider-ref")}
+            className={this.decorateCSS("slider-style")}
+
+          >
+            {this.castToObject<Item[]>("slider").map(
+              (item: Item, index: number) => (
+                <div className={this.decorateCSS("slider")} key={index}>
+                  {item.cover_image && (
+                    <img
+                      className={this.decorateCSS("cover_image")}
+                      src={item.cover_image}
+                      alt=""
+                    />
+                  )}
+
+                  <div className={this.decorateCSS("card")}>
+                    <img
+                      src={item.image}
+                      alt={""}
+                      className={this.decorateCSS("image")}
+                    />
+                    <div className={this.decorateCSS("content")}>
                       <div className={this.decorateCSS("text-content")}>
                         <span className={this.decorateCSS("subtitle")}>{item.subtitle}</span>
                         <span className={this.decorateCSS("title")}>{item.title}</span>
                       </div>
-                      <div className={this.decorateCSS("top-figure")}>
-                        <div className={this.decorateCSS("pagination")}>
-                          <span className={this.decorateCSS("active-slide")}>
-                            {(this.getComponentState("active-index") + 1)
-                              .toString()
-                              .padStart(2, "0")}
-                          </span>
-                          <sup className={this.decorateCSS("slide-count-power")}>
-
-                            <span className={this.decorateCSS("slide-count")}>
-                              {sliderCount.toString().padStart(2, "0")}
-                            </span>
-                          </sup>
-                          <div className={this.decorateCSS("progress-bar")}>
-                            <div className={this.decorateCSS("active")} style={{ width: `${progressPercentage}%` }} />
-                          </div>
+                      <div className={this.decorateCSS("pagination")}>
+                        <span className={this.decorateCSS("active-slide")}>
+                          {(this.getComponentState("active-index") + 1)
+                            .toString()
+                            .padStart(2, "0")}
+                        </span>
+                        <div className={this.decorateCSS("progress-bar")}>
+                          <div className={this.decorateCSS("active")} style={{ width: `${progressPercentage}%` }} />
                         </div>
-                      </div>
-                      <div className={this.decorateCSS("description-div")}>
-                        <span className={this.decorateCSS("description_title")}>{item.description_title}</span>
-                        <span className={this.decorateCSS("item-description")}>
-                          {item.description}
+                        <span className={this.decorateCSS("slide-count")}>
+                          {sliderCount.toString().padStart(2, "0")}
                         </span>
                       </div>
+
+                    </div>
+                    <div className={this.decorateCSS("description-div")}>
+                      <span className={this.decorateCSS("description_title")}>{item.description_title}</span>
+                      <span className={this.decorateCSS("item-description")}>
+                        {item.description}
+                      </span>
                     </div>
                   </div>
-                )
-              )}
-            </ComposerSlider>
+                </div>
+              )
+            )}
+          </ComposerSlider>
+          <div className={this.decorateCSS("page-bottom")}>
             <div className={this.decorateCSS("icons")}>
               {this.getPropValue("icons").map((item: any) => (
-                <ComposerLink path={item.getPropValue("navigate_icon")}>
-                  <span className={this.decorateCSS("icon_name")}>{item.getPropValue("icon_name")}</span>
+                <ComposerLink path={item.getPropValue("navigate")}>
+                  <span className={this.decorateCSS("name")}>{item.getPropValue("name")}</span>
 
                 </ComposerLink>
               ))}
@@ -385,7 +424,7 @@ class Header18 extends BaseHeader {
                 )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
                 this.decorateCSS("un-visible")
                   }`,
-                size: 40,
+
                 onClick: () => {
                   this.getComponentState("slider-ref").current.slickPrev();
                 },
@@ -399,13 +438,12 @@ class Header18 extends BaseHeader {
                 )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
                 this.decorateCSS("un-visible")
                   }`,
-                size: 40,
+
                 onClick: () => {
                   this.getComponentState("slider-ref").current.slickNext();
                 },
               }}
             />
-
           </div>
         </div>
       </div>

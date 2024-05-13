@@ -2,52 +2,90 @@
   width: 100%;
   height: 100%;
   background-color: var(--composer-html-background);
-  padding: 50px 0px 0px 0px;
   display: flex;
   align-items: center;
+  position: relative !important;
 
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-    min-height: calc(100vh - 80px);
 
-    .header18 {
-      .slider-style {
+    .slider-style {
+      .slider {
+        position: relative;
+
+        .cover_image {
+          width: 100vw;
+          height: 100vh;
+          object-fit: cover;
+          z-index: 1;
+          position: relative;
+        }
+
         .card {
           display: flex;
           flex-direction: column;
           place-items: center;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0px;
+          justify-content: center;
+          z-index: 2;
 
           .image {
             width: 500px;
             height: 500px;
+            object-fit: cover;
+            position: absolute !important;
           }
 
-          .text-content {
+          .content {
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 50px;
-            left: 330px;
+            top: 180px;
+            left: 335px;
             gap: 35px;
 
-            .subtitle {
-              font-size: 13px;
-              font-weight: bold;
+            .text-content {
+              display: flex;
+              flex-direction: column;
+              gap: 35px;
+
+              .subtitle {
+                font-size: 13px;
+                font-weight: bold;
+
+              }
+
+              .title {
+                font-size: 5.5rem;
+                font-weight: bold;
+              }
             }
 
-            .title {
-              font-size: 5.5rem;
-              font-weight: bold;
+            .pagination {
+              display: flex;
+              place-items: center;
+              gap: 10px;
+
+              .active-slide {
+                font-weight: bold;
+              }
+
+              .slide-count {
+                font-weight: bold;
+              }
             }
           }
 
           .progress-bar {
+            max-width: 40px;
             height: 2px;
             background-color: rgb(204, 191, 191);
             position: relative;
             width: 100%;
-            /* Progress çubuğunun tam genişlikte olmasını sağlar */
           }
 
           .active {
@@ -57,8 +95,6 @@
             top: 0;
             left: 0;
           }
-
-
 
           .description-div {
             display: flex;
@@ -71,10 +107,19 @@
             padding: 30px;
             position: absolute;
             right: 300px;
-            bottom: 50px;
+            bottom: 160px;
           }
         }
       }
+    }
+
+    .page-bottom {
+      bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      place-items: center;
+      position: relative;
     }
 
     .icons {
@@ -83,121 +128,95 @@
       gap: 20px;
       font-size: 13px;
       font-weight: bold;
-      bottom: -95px;
     }
 
-    .arrow {
+    .prev-icon {
+      left: 20px;
       position: absolute;
-      cursor: pointer;
-      bottom: -110px;
-      margin: auto 0;
+      font-size: 40px;
+    }
 
-
-      &.prev-icon {
-        left: 50px;
-      }
-
-      &.next-icon {
-        right: 50px;
-      }
-
-
+    .next-icon {
+      right: 20px;
+      position: absolute;
+      font-size: 40px;
     }
   }
 }
 
-
-
-
 @media only screen and (max-width: 768px) {
   .container {
-
     .max-content {
-      .wrapper {
-        flex-direction: column;
-
-        .left {
-
-          img {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            object-fit: fill;
+      .slider-style {
+        .slider {
+          .image {
+            width: 450px;
+            height: 450px;
           }
 
-          .text-content {
-
-
-            --b: 5px;
-            /* thickness of the border */
-            --c: whitesmoke;
-            /* color of the border */
-            --w: 150px;
-            /* width of border */
-
-
-            border: var(--b) solid #0000;
-            /* space for the border */
-            --_g: #0000 90deg, var(--c) 0;
-            --_p: var(--w) var(--w) border-box no-repeat;
-
-            background:
-              conic-gradient(from 90deg at top var(--b) left var(--b), var(--_g)) 0 0 / var(--_p),
-              conic-gradient(from -90deg at bottom var(--b) right var(--b), var(--_g)) 100% 100% / var(--_p);
-
-            height: 75%;
-
-            .tittle-wrapper {
-
-
-              .top {
-                font-size: 3rem;
-              }
-
-              .middle {
-                font-size: 4rem;
-
-              }
-
-              .bottom {
-                font-size: 2.5rem;
-
-              }
-            }
-
-            .text {
-              font-size: 1.5rem;
-
-            }
-
-            .action-button {
-              font-size: 1rem;
-              padding: 8px;
-            }
-
+          .content {
+            left: 30px !important;
           }
 
-          .side-text {
-            position: absolute;
-            left: 1px;
+          .description-div {
+            right: 30px !important;
           }
         }
+      }
+    }
+  }
+}
 
-        .right {
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content {
+      .slider-style {
+        .slider {
+          .card {
+            .image {
+              width: 300px;
+              height: 300px;
+              position: relative;
+              top: 120px;
 
-          img {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            object-fit: cover;
-          }
+            }
 
-          .side-text {
-            top: 20%;
+            .content {
+              .text-content {
+                position: relative;
+                top: -140px;
+                gap: 5px;
+
+                .title {
+                  font-size: 3rem;
+                }
+              }
+
+              .pagination {
+                position: relative;
+                bottom: -325px;
+                left: 100px;
+              }
+            }
+
+            .description-div {
+              bottom: 100px;
+              left: 25px;
+
+            }
           }
         }
+      }
+    }
+
+    .page-bottom {
+
+      .prev-icon {
+        font-size: 30px;
+      }
+
+      .next-icon {
+        font-size: 30px;
       }
     }
   }
