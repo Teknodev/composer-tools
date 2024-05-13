@@ -31,7 +31,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaFacebookF",
@@ -51,7 +51,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaInstagram",
@@ -71,7 +71,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaYoutube",
@@ -91,7 +91,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "IoLogoPinterest",
