@@ -63,12 +63,14 @@
               .subtitle {
                 font-size: 13px;
                 font-weight: bold;
+                color: var(--composer-font-color-primary);
 
               }
 
               .title {
                 font-size: 5.5rem;
                 font-weight: bold;
+                color: var(--composer-primary-color);
               }
             }
 
@@ -76,6 +78,7 @@
               display: flex;
               place-items: center;
               gap: 10px;
+              color: var(--composer-font-color-primary);
 
               .active-slide {
                 font-weight: bold;
@@ -135,6 +138,7 @@
       gap: 20px;
       font-size: 13px;
       font-weight: bold;
+      color: var(--composer-font-color-primary);
     }
 
     .prev-icon {
