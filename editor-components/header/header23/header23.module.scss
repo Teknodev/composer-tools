@@ -1,74 +1,88 @@
 .container {
   width: 100%;
   min-height: calc(100vh - 80px);
-  background-color: var(--composer-html-background);
-  padding: 50px 0px;
-  display: flex;
+
   align-items: center;
-  
+
   .max-content {
     max-width: 100%;
     margin: auto;
     display: flex;
     justify-content: center;
-  
+
   }
-    .wrapper{
-      border-radius: 10px;
-      width: var(--composer-content-width);
-      .carousel > button:first-child {
-        &:before {
-          transform: rotateZ(-45deg);
+
+  .wrapper {
+    border-radius: 10px;
+    width: var(--composer-content-width);
+
+
+    .carousel>button:first-child {
+      &:before {
+        transform: rotateZ(-45deg);
       }
-        
+
+    }
+
+    .carousel> :last-child {
+      &:before {
+        transform: rotateZ(135deg);
       }
-  
-      .carousel > :last-child {
-        &:before {
-          transform: rotateZ(135deg);
-      }
-      }
-      
-      .carousel {
+    }
+
+    .carousel {
       width: 100%;
 
-      button {
+
+
+      >button {
         z-index: 10;
         margin-left: 70px;
         margin-right: 130px;
+
         &:before {
-            content: "";
-            position: absolute;
-            transform: rotateZ(135deg);
-            font-size: 100px;
-            width: 50px;
-            height: 50px;
-            border-top: 3px solid white;
-            border-left: 3px solid white;
+          content: "";
+          position: absolute;
+          transform: rotateZ(135deg);
+          font-size: 100px;
+          width: 50px;
+          height: 50px;
+          border-top: 3px solid white;
+          border-left: 3px solid white;
         }
       }
 
-      
+      >button:first-of-type {
+        &:before {
+          transform: rotateZ(-45deg);
+        }
+      }
 
-      .items{
+      >button:last-of-type {
+        &:before {
+          transform: rotateZ(135deg);
+        }
+      }
+
+      .items {
         background-color: rgba(71, 168, 233, 0.185);
 
-        .wrapper-slick{
+        .wrapper-slick {
           position: relative;
           width: 100%;
           height: 100vh;
-          display: flex; 
+          display: flex;
           justify-content: center;
           align-items: center;
 
-          .background1{
+          .background1 {
             position: absolute;
             height: 100%;
             width: 100%;
             z-index: 3;
 
           }
-    
+
           .background2 {
             position: absolute;
             top: 50%;
@@ -77,7 +91,7 @@
             z-index: 3;
 
           }
-    
+
           .background3 {
             position: absolute;
             left: 20%;
@@ -85,15 +99,15 @@
 
 
           }
-    
-          .img-background{
+
+          .img-background {
             z-index: 2;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
           }
-    
+
           .top-img {
             z-index: 3;
             position: absolute;
@@ -101,31 +115,32 @@
             left: 50%;
             transform: translate(-50%, -50%);
           }
-    
-          .text-container{
+
+          .text-container {
             display: flex;
             align-items: center;
             gap: 200px;
-            .upper-text{
+
+            .upper-text {
               z-index: 4;
               font-size: 6rem;
-              color:white;
+              color: white;
               font-weight: bold;
             }
-    
-            
-    
-    
-    
-            .lower-text{
+
+
+
+
+
+            .lower-text {
               z-index: 1;
               font-size: 6rem;
               color: white;
               font-weight: bold;
             }
           }
-    
-          .circle{
+
+          .circle {
             position: absolute;
             border-radius: 50%;
             width: 650px;
@@ -134,181 +149,179 @@
             display: flex;
             justify-content: center;
             align-items: center;
-    
-        
-    
-            .innerCircle{
+
+
+
+            .innerCircle {
               position: absolute;
               border-radius: 50%;
               width: 400px;
               height: 400px;
               background-color: rgba(71, 168, 233, 0.199);
-    
+
             }
           }
         }
-        
 
-      }
+
       }
     }
-
-      
-    
   }
 
-  @media only screen and (max-width: 768px) {
-    .container {
-      .max-content {
+
+
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    .max-content {}
+
+    .wrapper {
+
+      .carousel>button:first-child {
+        margin-left: 40px;
       }
-        .wrapper{
-    
-          .carousel > button:first-child {
-            margin-left: 40px;
-          }
-      
-          .carousel > :last-child {
-            margin-right: 90px;
 
-          }
-          
-          .carousel {
-    
-          .items{
-    
-            .wrapper-slick{
-    
-              .background1{
-                height: 500px;
-              }
-        
-              .background2 {
-                width: 100%;
-              }
-        
-              .background3 {
-              }
-        
-              .img-background{
-                
-              }
-        
-              .top-img {
-                width: 200px;
-                height: auto;
-              }
-        
-              .text-container{
-                gap: 50px;
+      .carousel> :last-child {
+        margin-right: 90px;
 
-                .upper-text{
-                  font-size: 5rem;
-                }
-        
-                .lower-text{
-                  font-size: 5rem;
+      }
 
-                }
+      .carousel {
+
+        .items {
+
+          .wrapper-slick {
+
+            .background1 {
+              height: 500px;
+            }
+
+            .background2 {
+              width: 100%;
+            }
+
+            .background3 {}
+
+            .img-background {}
+
+            .top-img {
+              width: 200px;
+              height: auto;
+            }
+
+            .text-container {
+              gap: 50px;
+
+              .upper-text {
+                font-size: 5rem;
               }
-        
-              .circle{
-                width: 400px;
-                height: 400px;
-                .innerCircle{
-                  width: 250px;
-                  height: 250px;
-                }
+
+              .lower-text {
+                font-size: 5rem;
+
               }
             }
-            
-    
-          }
-          }
-         
-    
-          
-        }
-      }
-  }
 
-  @media only screen and (max-width: 400px) {
-    .container {
-      .max-content {
-      }
-        .wrapper{
-    
-          .carousel > button:first-child {
-            margin-left: 30px;
+            .circle {
+              width: 400px;
+              height: 400px;
 
-          }
-      
-          .carousel > :last-child {
-            margin-right: 40px;
-
-          }
-          
-          .carousel {
-
-            button {
-              &:before { 
-                height: 10px;
-                width: 10px;
-              }
-            }
-    
-          .items{
-    
-            .wrapper-slick{
-    
-              .background1{
-                width: 300px;
+              .innerCircle {
+                width: 250px;
                 height: 250px;
-            }
-        
-              .background2 {
-              }
-        
-              .background3 {
-                width: 300px;
-              }
-        
-              .img-background{
-                width: 100px;
-              }
-        
-              .top-img {
-                width: 100px;
-              }
-        
-              .text-container{
-                gap: 20px;
-
-                .upper-text{
-                  font-size: 2.5rem;
-                }
-        
-                .lower-text{
-                  font-size: 2.5rem;
-
-                }
-              }
-        
-              .circle{
-                width: 200px;
-                height: 200px;
-                .innerCircle{
-                  height: 125px;
-                  width: 125px;
-                }
               }
             }
-            
-    
           }
-          }
-         
-    
-          
+
+
         }
       }
+
+
+
+    }
   }
+}
+
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content {}
+
+    .wrapper {
+
+      .carousel>button:first-child {
+        margin-left: 30px;
+
+      }
+
+      .carousel> :last-child {
+        margin-right: 40px;
+
+      }
+
+      .carousel {
+
+        button {
+          &:before {
+            height: 10px;
+            width: 10px;
+          }
+        }
+
+        .items {
+
+          .wrapper-slick {
+
+            .background1 {
+              width: 300px;
+              height: 250px;
+            }
+
+            .background2 {}
+
+            .background3 {
+              width: 300px;
+            }
+
+            .img-background {
+              width: 100px;
+            }
+
+            .top-img {
+              width: 100px;
+            }
+
+            .text-container {
+              gap: 20px;
+
+              .upper-text {
+                font-size: 2.5rem;
+              }
+
+              .lower-text {
+                font-size: 2.5rem;
+
+              }
+            }
+
+            .circle {
+              width: 200px;
+              height: 200px;
+
+              .innerCircle {
+                height: 125px;
+                width: 125px;
+              }
+            }
+          }
+
+
+        }
+      }
+
+
+
+    }
+  }
+}

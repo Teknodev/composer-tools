@@ -2,12 +2,25 @@ import * as React from "react";
 import styles from "./header23.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 
 
 class Header23 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "icon",
+      key: "prev_icon",
+      displayer: "Prev icon",
+      value: "GrFormPrevious",
+    });
+    this.addProp({
+      type: "icon",
+      key: "next_icon",
+      displayer: "Next icon",
+      value: "GrFormNext",
+    });
 
     this.addProp({
       type: "array",
@@ -194,19 +207,20 @@ class Header23 extends BaseHeader {
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
+
     };
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-        <div className={this.decorateCSS("wrapper")}>
-        
-          <ComposerSlider
-            {...settings}
-            className={this.decorateCSS("carousel")}
-          >
-            {this.getPropValue("slider").map((item: any, index: number) => (
-              
+          <div className={this.decorateCSS("wrapper")}>
+
+            <ComposerSlider
+              {...settings}
+              className={this.decorateCSS("carousel")}
+            >
+              {this.getPropValue("slider").map((item: any, index: number) => (
+
                 <div className={this.decorateCSS("items")} key={`key${index}`}>
                   <div className={this.decorateCSS("wrapper-slick")}>
                     <img
@@ -245,11 +259,12 @@ class Header23 extends BaseHeader {
                     <div className={this.decorateCSS("circle")}>
                       <div className={this.decorateCSS("innerCircle")}></div>
                     </div>
+
                   </div>
-               
-              </div>
-            ))}
-          </ComposerSlider>
+
+                </div>
+              ))}
+            </ComposerSlider>
           </div>
         </div>
       </div>
