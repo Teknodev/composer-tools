@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header21.module.scss";
 import Slider from "react-slick";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type ISliderData = {
   title: string;
@@ -173,7 +174,7 @@ class Header21 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("slider-parent")}>
-              <Slider {...settings} className={this.decorateCSS("carousel")}>
+              <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {this.castToObject<ISliderData[]>("slider").map(
                   (item: ISliderData, index: number) => (
                     <div key={index} className={this.decorateCSS("content")}>
@@ -199,7 +200,7 @@ class Header21 extends BaseHeader {
                     </div>
                   )
                 )}
-              </Slider>
+              </ComposerSlider>
             </div>
           </div>
         </div>

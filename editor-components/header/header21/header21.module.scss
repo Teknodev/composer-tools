@@ -2,13 +2,15 @@
   width: 100%;
   min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
-  display: flex;
+  padding: 0px 0px;
   align-items: center;
-  
+  position: unset !important;
+
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
+    position: unset !important;
   }
 
   .wrapper {
@@ -24,6 +26,7 @@
       .carousel {
         height: 90%;
         width: 100%;
+        position: relative;
 
         .content {
           position: relative;
@@ -95,6 +98,7 @@
               width: 100%;
               height: 100%;
               align-items: center;
+
               justify-content: center;
               position: absolute;
               overflow: hidden;
@@ -109,26 +113,26 @@
           }
         }
 
-        > ul {
-          transform: translateY(-5px) translateX(-50%);
-          background-color: white;
-          border-radius: 100px;
-          width: auto;
-          position: absolute;
-          left: 50%;
-          padding: 0px 5px;
+        // >ul {
+        //   transform: translateY(-5px) translateX(-50%);
 
-          li {
-            button {
-              &:before {
-                font-size: 15px;
-                padding-top: 1px;
-              }
-            }
-          }
-        }
+        //   border-radius: 100px;
+        //   width: auto;
+        //   position: absolute;
+        //   left: 50%;
+        //   padding: 0px 5px;
 
-        > button {
+        //   li {
+        //     button {
+        //       &:before {
+        //         font-size: 15px;
+        //         padding-top: 1px;
+        //       }
+        //     }
+        //   }
+        // }
+
+        >button {
           z-index: 10;
           margin-left: 70px;
           margin-right: 130px;
@@ -145,13 +149,13 @@
           }
         }
 
-        > button:first-of-type {
+        >button:first-of-type {
           &:before {
             transform: rotateZ(-45deg);
           }
         }
 
-        > button:last-of-type {
+        >button:last-of-type {
           &:before {
             transform: rotateZ(135deg);
           }
@@ -173,11 +177,12 @@
               width: 100%;
 
               .description {
-                padding-top: 50%;
+                padding-top: 30%;
                 width: 80%;
-                padding-left: 20%;
+
                 font-size: 4rem;
                 opacity: 0.9;
+                color: white;
               }
 
               .background-image {
@@ -206,7 +211,61 @@
                 }
               }
             }
+
+            >button {
+              margin-left: 40px;
+              margin-right: 70px;
+
+              &:before {
+                content: "";
+
+                width: 30px;
+                height: 30px;
+
+              }
+            }
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    .max-content {
+      .wrapper {
+        .slider-parent {
+          .carousel {
+            width: 100%;
+
+            .content {
+              width: 100%;
+
+              .description {
+                bottom: 80px;
+                padding-top: unset;
+                font-size: 2.5rem;
+                color: black;
+                font-weight: bold
+              }
+            }
+
+            >button {
+              margin-left: 40px;
+              margin-right: 70px;
+
+              &:before {
+                content: "";
+
+                width: 30px;
+                height: 30px;
+
+              }
+            }
+          }
+
+
         }
       }
     }
