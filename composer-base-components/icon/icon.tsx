@@ -12,21 +12,22 @@ export function ComposerIcon({ name, propsIcon }: TypesPropsIcon): JSX.Element {
 
   let ElementIcon: any = null;
 
-  for (const iconLibrary of iconLibraries) {
-    if (ElementIcon) break;
+  // for (const iconLibrary of iconLibraries) {
+  //   if (ElementIcon) break;
 
-    for (const [iconName, Icon] of Object.entries(iconLibrary)) {
-      if (iconName === name) {
-        ElementIcon = Icon;
-        break;
-      }
-    }
-  }
+  //   for (const [iconName, Icon] of Object.entries(iconLibrary)) {
+  //     if (iconName === name) {
+  //       ElementIcon = Icon;
+  //       break;
+  //     }
+  //   }
+  // }
 
-  if (!ElementIcon) {
-    console.warn(`Icon "${name}" not found.`);
-    return <></>;
-  }
+  // if (!ElementIcon) {
+  //   console.warn(`Icon "${name}" not found.`);
+  //   return <></>;
+  // }
 
-  return <ElementIcon {...propsIcon} />;
+  // return <ElementIcon {...propsIcon} />;
+  return <div></div>
 }
