@@ -128,15 +128,6 @@ export abstract class Component
             'a': [ 'href', 'name', 'target' ],
             '*': [ 'style' ]
           },
-          // allowedStyles: {
-          //   '*': {
-          //     // Match HEX and RGB
-          //     'color': [/^#(0x)?[0-9a-f]+$/i, /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/],
-          //     'text-align': [/^left$/, /^right$/, /^center$/],
-          //     // Match any number with px, em, or %
-          //     'font-size': [/^\d+(?:px|em|%)$/]
-          //   },
-          // },
           parseStyleAttributes: false
         }
       )
@@ -144,7 +135,7 @@ export abstract class Component
     
     const SanitizeHTML = ({ html, options }: any) => (
       //@ts-ignore
-      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
+      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
     );
     
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
