@@ -2,15 +2,7 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ThirtyFpsRounded } from "@mui/icons-material";
-type Card = {
-  image: string;
-  header: string;
-  imgdescription: string;
-  comments: string;
-  time: string;
-  commentsUrl: URL;
-};
+
 class Content8 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -184,7 +176,7 @@ class Content8 extends BaseContent {
           </div>
           <div className={this.decorateCSS("cards-box")} >
 
-            {this.castToObject<Card[]>("cards").map((card: any, index: number) =>
+            {this.castToObject<any>("cards").map((card: any, index: number) =>
               <div className={this.decorateCSS("card")} style={{
                 width: 90 / this.getPropValue("itemCount") + "%",
               }}>
