@@ -2,18 +2,22 @@ import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
+import sanitizeHtml from 'sanitize-html';
 
-type TypeCSSProp = { [key: string]: { id: string, class: string }[] };
+type GetPropValueOptions = {
+  as_string?: boolean;
+};
+type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
 export type iComponent = {
   render(): any;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
-  getPropValue(propName: string): TypeUsableComponentProps;
+  getPropValue(propName: string, options?: GetPropValueOptions): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
-  setCSSClasses(key: string, value: { id: string, class: string }[]): void;
+  setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
 };
@@ -25,6 +29,7 @@ type AvailablePropTypes =
   | { type: "array"; value: TypeUsableComponentProps[] }
   | { type: "object"; value: TypeUsableComponentProps[] }
   | { type: "image"; value: string }
+  | { type: "video"; value: string }
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string };
@@ -36,13 +41,14 @@ export type TypeReactComponent = {
   children: string;
 };
 export type TypeUsableComponentProps = {
+  id?: string;
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
   max?: number;
 } & AvailablePropTypes & {
-  getPropValue?: (propName: string) => any;
-};
+    getPropValue?: (propName: string) => any;
+  };
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -63,12 +69,13 @@ export enum CATEGORIES {
   STATS = "stats",
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
-  LOCATION = "Location"
+  LOCATION = "Location",
 }
 
 export abstract class Component
-  extends React.Component<{}, { states: any, componentProps: any }>
-  implements iComponent {
+  extends React.Component<{}, { states: any; componentProps: any }>
+  implements iComponent
+{
   private styles: any;
   private _props: any;
   protected category: CATEGORIES;
@@ -105,14 +112,33 @@ export abstract class Component
     return prop;
   }
 
-  getPropValue(propName: string): any {
+  getPropValue(propName: string, options?: GetPropValueOptions): any {
     let prop = this.getProp(propName);
-    return prop?.type == "string" ? this._getPropValueAsElement(prop) : prop?.value;
+    return prop?.type == "string" && !options?.as_string
+      ? this.getPropValueAsElement(prop)
+      : prop?.value;
   }
 
-  _getPropValueAsElement(prop: TypeUsableComponentProps) {
-    //@ts-ignore
-    return <blinkpage prop-type={prop?.type}>{prop?.value}</blinkpage>;
+  getPropValueAsElement(prop: TypeUsableComponentProps) {
+    const sanitize = (dirty:string, options: sanitizeHtml.IOptions) => ({
+      __html: sanitizeHtml(
+        dirty,
+        {
+          allowedAttributes: {
+            'a': [ 'href', 'name', 'target' ],
+            '*': [ 'style' ]
+          },
+          parseStyleAttributes: false
+        }
+      )
+    });
+    
+    const SanitizeHTML = ({ html, options }: any) => (
+      //@ts-ignore
+      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
+    );
+    
+    return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
   getExportedCSSClasses() {
@@ -125,13 +151,12 @@ export abstract class Component
   }
   addProp(prop: TypeUsableComponentProps) {
     prop.value = (this._props && this._props[prop.key]) || prop.value;
+    prop.id = prop.key + "-" +Math.round(Math.random() * 1000000000).toString();
     prop = this.attachValueGetter(prop);
     this.state.componentProps.props.push(prop);
   }
   setProp(key: string, value: any): void {
-    let i = this.state.componentProps.props
-      .map((prop: any) => prop.key)
-      .indexOf(key);
+    let i = this.state.componentProps.props.map((prop: any) => prop.key).indexOf(key);
 
     if (i == -1) return;
 
@@ -144,13 +169,14 @@ export abstract class Component
 
   setComponentState(key: string, value: any): void {
     this.state.states[key] = value;
+    EventEmitter.emit("forceReload");
   }
 
   getComponentState(key: string): any {
     return this.state.states[key];
   }
 
-  setCSSClasses(key: string, value: { id: string, class: string }[]) {
+  setCSSClasses(key: string, value: { id: string; class: string }[]) {
     const componentPropsCopy = { ...this.state.componentProps };
     const cssClassesCopy = { ...componentPropsCopy.cssClasses };
     cssClassesCopy[key] = value;
@@ -174,22 +200,21 @@ export abstract class Component
   }
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
+    propValue["id"] = propValue["id"] || propValue.key + "-" +Math.round(Math.random() * 1000000000).toString();
     if (Array.isArray(propValue.value)) {
-      propValue.value = propValue.value.filter(value => value != null);
-      propValue.value = propValue.value.map(
-        (propValueItem: TypeUsableComponentProps) => {
-          if (Array.isArray(propValueItem.value)) {
-            propValueItem = this.attachValueGetter(propValueItem);
-            propValueItem["getPropValue"] = (propName: string) => {
-              return (propValueItem.value as TypeUsableComponentProps[]).filter(
-                (prop: TypeUsableComponentProps) => prop.key === propName
-              )[0].value;
-            };
-          }
-
-          return propValueItem;
+      propValue.value = propValue.value.filter((value) => value != null);
+      propValue.value = propValue.value.map((propValueItem: TypeUsableComponentProps) => {
+        if (Array.isArray(propValueItem.value)) {
+          propValueItem = this.attachValueGetter(propValueItem);
+          propValueItem["getPropValue"] = (propName: string) => {
+            return (propValueItem.value as TypeUsableComponentProps[]).filter(
+              (prop: TypeUsableComponentProps) => prop.key === propName
+            )[0].value;
+          };
         }
-      );
+
+        return propValueItem;
+      });
     }
     return propValue;
   }
@@ -206,9 +231,7 @@ export abstract class Component
     let casted = object.value.map((propValue: any) => {
       if (propValue.hasOwnProperty("getPropValue")) {
         propValue.value.forEach((nestedObject: any, index: number) => {
-          propValue[nestedObject.key] = propValue.getPropValue(
-            nestedObject.key
-          );
+          propValue[nestedObject.key] = propValue.getPropValue(nestedObject.key);
           if (nestedObject.hasOwnProperty("getPropValue")) {
             propValue[nestedObject.key] = this.castingProcess(nestedObject);
           }
@@ -223,7 +246,6 @@ export abstract class Component
 
 export abstract class BaseNavigator extends Component {
   protected category = CATEGORIES.NAVIGATOR;
-
 }
 
 export abstract class Testimonials extends Component {
@@ -236,58 +258,52 @@ export abstract class BaseList extends Component {
 
 export abstract class BaseHeader extends Component {
   protected category = CATEGORIES.HEADER;
-
 }
 
 export abstract class BasePricingTable extends Component {
   protected category = CATEGORIES.PRICING;
-
 }
 
 export abstract class BaseFooter extends Component {
   protected category = CATEGORIES.FOOTER;
 
-
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
-    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
+    };
     return axios.request(config).then((r: any) => r.data);
   }
 }
 
 export abstract class Team extends Component {
   protected category = CATEGORIES.TEAM;
-
 }
 
 export abstract class BaseContent extends Component {
   protected category = CATEGORIES.CONTENT;
-
 }
 
 export abstract class BaseDownload extends Component {
   protected category = CATEGORIES.DOWNLOAD;
-
 }
 
 export abstract class BaseCallToAction extends Component {
   protected category = CATEGORIES.CALLTOACTION;
-
 }
 
 export abstract class BaseSlider extends Component {
   protected category = CATEGORIES.SLIDER;
-
 }
 
 export abstract class BaseFAQ extends Component {
   protected category = CATEGORIES.FAQ;
-
 }
 
 export abstract class BaseImageGallery extends Component {
   protected category = CATEGORIES.IMAGEGALLERY;
-
 }
 
 export abstract class BaseModal extends Component {
@@ -295,39 +311,44 @@ export abstract class BaseModal extends Component {
 
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
-    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
+    };
     return axios.request(config).then((r: any) => r.data);
   }
 }
 
 export abstract class LogoClouds extends Component {
   protected category = CATEGORIES.LOGOCLOUDS;
-
 }
 
 export abstract class Location extends Component {
   protected category = CATEGORIES.LOCATION;
-
 }
 
 export abstract class BaseStats extends Component {
   protected category = CATEGORIES.STATS;
-
 }
 
 export abstract class BaseContacts extends Component {
   protected category = CATEGORIES.FORM;
 
-
   insertForm(name: string, data: Object) {
     const projectSettings = JSON.parse(getProjectHook().data);
     const project = projectSettings._id;
-    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form" };
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL
+        ? process.env.REACT_APP_API_URL
+        : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+    };
     return axios.request(config).then((r: any) => r.data);
   }
 }
 
 export abstract class BaseFeature extends Component {
   protected category = CATEGORIES.FEATURE;
-
 }
