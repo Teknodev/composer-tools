@@ -9,6 +9,7 @@ interface Card {
   name: string,
   position: string
   icons: { icon: string, url: string }[],
+  getPropValue: (key: string) => any
   
 }
 class Team11 extends Team {
@@ -227,6 +228,8 @@ class Team11 extends Team {
     return "Team 11";
   }
   render() {
+    console.log(this.castToObject<Card[]>("team-members"));
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -238,7 +241,7 @@ class Team11 extends Team {
               {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
                 return (
                 <div className={this.decorateCSS("item")} style={{ width: 90 / this.getPropValue("itemCount") + "%",}}>                                 
-                  <div key={indexCard} style={{ width: 100 / this.getPropValue("reverse") + "%" }} className={this.decorateCSS("card")}>                 
+                  <div key={indexCard} className={this.decorateCSS("card")}>                 
                     <div className={this.decorateCSS("hover")}>
                       <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
                       <div className={this.decorateCSS("icons-bar")}>
@@ -253,8 +256,8 @@ class Team11 extends Team {
                     </div>
                     <div className={this.decorateCSS("person-info")}>
                       <div className={this.decorateCSS("text-group")}>
-                        <h1 className={this.decorateCSS("item-name")}>{item.name}</h1>
-                        <h2 className={this.decorateCSS("item-position")}>{item.position}</h2>
+                        <h1 className={this.decorateCSS("item-name")}>{item.getPropValue("name")}</h1>
+                        <h2 className={this.decorateCSS("item-position")}>{item.getPropValue("position")}</h2>
                       </div>
                     </div>
                   </div>

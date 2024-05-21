@@ -1,6 +1,5 @@
 .container {
     width: 100%;
-    height: 800%;
     padding: 50px 0;
     background: var(--composer-html-background);
     .max-content {
@@ -12,7 +11,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-         .up-page {
+            .up-page {
                 display: flex;
                 margin-bottom: 40px;
                 .title {
@@ -39,7 +38,7 @@
                     position: relative;
                     flex-direction: column;
                     align-items: center;
-                  .hover {
+                    .hover {
                         position: relative;
                         overflow: hidden;
                         display: flex;
@@ -134,14 +133,12 @@
         }
         .down-page {
             width: 100% !important;
-            .item { 
-               
+            .item {
                 .card {
                     width: 100% !important;
                     margin-right: 10px;
-                  .hover {
+                    .hover {
                         overflow: initial !important;
-                       
                     }
                     .person-info {
                         .text-group {
@@ -160,6 +157,9 @@
         .basic-page {
             .up-page {
                 width: 92% !important;
+                .title {
+                    font-size: 3.5rem !important;
+                }
             }
         }
         .down-page {
@@ -168,10 +168,7 @@
             flex-direction: column;
             .item {
                 width: 100% !important;
-               .card {           
-                    .hover {
-                       
-                    }
+                .card {
                     .person-info {
                         .text-group {
                             position: relative;
