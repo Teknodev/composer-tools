@@ -2,26 +2,56 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table9.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-
-type Pricing = {
+type IIconBoxes = {
+  list: any;
   title: string;
+  description: string;
   price: string;
-  duration: string;
-  buttonText: string;
   link: string;
+  buttons: Buttons[];
+  icons: string;
+};
+type Buttons = {
+  buttonText: string;
+  url: string;
 };
 
-interface Feature {
-  infeature: object[];
-  featureTitle: string;
-  featureOptions: string;
-}
+type Button = {
+  buttonText: string;
+  url: string;
+  isPrimary: boolean;
+  buttonIcon: string;
+};
 
+type Card = {
+  title: string;
+  button: string;
+  url: string;
+  price: string;
+};
 
 class PricingTable9 extends BasePricingTable {
+  [x: string]: any;
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle1",
+      displayer: "SubTitle 1",
+      value: "Pricing table",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle2",
+      displayer: "SubTitle 2",
+      value: "Modern concept",
+    });
+
     this.addProp({
       type: "string",
       key: "title1",
@@ -41,103 +71,234 @@ class PricingTable9 extends BasePricingTable {
       value: "Advanced",
     });
     this.addProp({
+      type: "string",
+      key: "title4",
+      displayer: "Title 4",
+      value: "Advanced",
+    });
+
+    this.addProp({
       type: "array",
-      key: "pricefeatures",
-      displayer: "Price Features",
+      key: "cards",
+      displayer: "Card",
       value: [
         {
           type: "object",
-          key: "feature",
-          displayer: "Feature",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "featureTitle",
-              displayer: "Feature Title",
-              value: "Customization",
+              key: "title",
+              displayer: "Title",
+              value: "Tellus integer",
             },
             {
-              type: "string",
-              key: "featureOptions",
-              displayer: "Feature Options",
-              value: "Basic",
-            },
-            
-          ],
-        },
-        {
-          type: "object",
-          key: "feature",
-          displayer: "Feature",
-          value: [
-            {
-              type: "string",
-              key: "featureTitle",
-              displayer: "Feature Title",
-              value: "Live Chat",
-            },
-            {
-              type: "string",
-              key: "featureOptions",
-              displayer: "Feature Options",
-              value: "Basic",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "feature",
-          displayer: "Feature",
-          value: [
-            {
-              type: "string",
-              key: "featureTitle",
-              displayer: "Feature Title",
-              value: "Support",
-            },
-            {
-              type: "string",
-              key: "featureOptions",
-              displayer: "Feature Options",
-              value: "Basic, Standard",
+              type: "object",
+              key: "list",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "string",
+                  key: "basic_value",
+                  displayer: "Basic Value",
+                  value: "Massa id neque",
+                },
+                {
+                  type: "string",
+                  key: "basic_value",
+                  displayer: "Basic Value",
+                  value: "Aliquam vestib",
+                },
+                {
+                  type: "string",
+                  key: "basic_value",
+                  displayer: "Basic Value",
+                  value: "Ulum morbi bian",
+                },
+                {
+                  type: "string",
+                  key: "basic_value",
+                  displayer: "Property",
+                  value: "Dit cursus risus",
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "feature",
-          displayer: "Feature",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "featureTitle",
-              displayer: "Feature Title",
-              value: "Email Marketing",
+              key: "title",
+              displayer: "Title",
+              value: "Feugiat scelerisque",
             },
             {
-              type: "string",
-              key: "featureOptions",
-              displayer: "Feature Options",
-              value: "Basic, Standard, Advanced",
+              type: "object",
+              key: "list",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "string",
+                  key: "start_value",
+                  displayer: "Start Value",
+                  value: "-",
+                },
+                {
+                  type: "string",
+                  key: "start_value",
+                  displayer: "Start Value",
+                  value: "-",
+                },
+                {
+                  type: "string",
+                  key: "start_value",
+                  displayer: "Start Value",
+                  value: "Ulum morbi bian",
+                },
+                {
+                  type: "string",
+                  key: "start_value",
+                  displayer: "Start Value",
+                  value: "Dit cursus risus",
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "feature",
-          displayer: "Feature",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "featureTitle",
-              displayer: "Feature Title",
-              value: "Analytics",
+              key: "title",
+              displayer: "Title",
+              value: "Feugiat scelerisque",
             },
             {
+              type: "object",
+              key: "list",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "string",
+                  key: "start_value",
+                  displayer: "Start Value",
+                  value: "-",
+                },
+                {
+                  type: "string",
+                  key: "start_value",
+                  displayer: "Start Value",
+                  value: "Ulum morbi bian",
+                },
+                {
+                  type: "string",
+                  key: "start_value",
+                  displayer: "Start Value",
+                  value: "-",
+                },
+                {
+                  type: "string",
+                  key: "start_value",
+                  displayer: "Start Value",
+                  value: "Dit cursus risus",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
               type: "string",
-              key: "featureOptions",
-              displayer: "Feature Options",
-              value: "Basic, Standard, Advanced",
+              key: "title",
+              displayer: "Title",
+              value: "Scelerisgue varius",
+            },
+            {
+              type: "object",
+              key: "list",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "string",
+                  key: "standard_value",
+                  displayer: "Standard Value",
+                  value: "-",
+                },
+                {
+                  type: "string",
+                  key: "standard_value",
+                  displayer: "Standard Value",
+                  value: "-",
+                },
+                {
+                  type: "string",
+                  key: "standard_value",
+                  displayer: "Standard Value",
+                  value: "Ulum morbi bian",
+                },
+                {
+                  type: "string",
+                  key: "standard_value",
+                  displayer: "Standard Value",
+                  value: "Dit cursus risus",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Feugiat scelerisque",
+            },
+            {
+              type: "object",
+              key: "list",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "string",
+                  key: "business_value",
+                  displayer: "Business Value",
+                  value: "Massa id neque",
+                },
+                {
+                  type: "string",
+                  key: "business_value",
+                  displayer: "Business Value",
+                  value: "-",
+                },
+                {
+                  type: "string",
+                  key: "business_value",
+                  displayer: "Business Value",
+                  value: "-",
+                },
+                {
+                  type: "string",
+                  key: "business_value",
+                  displayer: "Business Value",
+                  value: "Dit cursus risus",
+                },
+              ],
             },
           ],
         },
@@ -145,36 +306,43 @@ class PricingTable9 extends BasePricingTable {
     });
 
     this.addProp({
+      type: "string",
+      key: "activePlan",
+      displayer: "Active Plan",
+      value: "monthly",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "aylık",
+      displayer: "aylık",
+      value: "Aylık",
+    });
+    this.addProp({
+      type: "string",
+      key: "yıllık",
+      displayer: "yıllık",
+      value: "Yıllık",
+    });
+    this.addProp({
       type: "object",
-      key: "price",
-      displayer: "Price Informations",
+      key: "monthly_buttons",
+      displayer: "monthly_buttons",
       value: [
         {
           type: "object",
-          key: "pricing",
-          displayer: "Pricing 1",
+          key: "button1",
+          displayer: "Button1",
           value: [
             {
               type: "string",
-              key: "price",
-              displayer: "Price",
-              value: "$50",
-            },
-            {
-              type: "string",
-              key: "duration",
-              displayer: "Duration",
-              value: "month",
-            },
-            {
-              type: "string",
               key: "buttonText",
-              displayer: "Button Text",
-              value: "Get started",
+              displayer: "buttonText",
+              value: "89,99/ for month",
             },
             {
               type: "page",
-              key: "link",
+              key: "url",
               displayer: "Button Link",
               value: "",
             },
@@ -182,30 +350,18 @@ class PricingTable9 extends BasePricingTable {
         },
         {
           type: "object",
-          key: "pricing",
-          displayer: "Pricing 2",
+          key: "button1",
+          displayer: "Button1",
           value: [
             {
               type: "string",
-              key: "price",
-              displayer: "Price",
-              value: "$150",
-            },
-            {
-              type: "string",
-              key: "duration",
-              displayer: "Duration",
-              value: "month",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Get started",
+              key: "buttonText1",
+              displayer: "buttonText1",
+              value: "89,99/ for month",
             },
             {
               type: "page",
-              key: "link",
+              key: "url",
               displayer: "Button Link",
               value: "",
             },
@@ -213,30 +369,120 @@ class PricingTable9 extends BasePricingTable {
         },
         {
           type: "object",
-          key: "pricing",
-          displayer: "Pricing 3",
+          key: "button1",
+          displayer: "Button1",
           value: [
             {
               type: "string",
-              key: "price",
-              displayer: "Price",
-              value: "$350",
-            },
-            {
-              type: "string",
-              key: "duration",
-              displayer: "Duration",
-              value: "month",
-            },
-            {
-              type: "string",
               key: "buttonText",
-              displayer: "Button Text",
-              value: "Get started",
+              displayer: "buttonText",
+              value: "89,99/ for month",
             },
             {
               type: "page",
-              key: "link",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "button1",
+          displayer: "Button1",
+          value: [
+            {
+              type: "string",
+              key: "buttonText3",
+              displayer: "buttonText3",
+              value: "49,99/ for month",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+    this.addProp({
+      type: "object",
+      key: "years_buttons",
+      displayer: "years_buttons",
+      value: [
+        {
+          type: "object",
+          key: "button1",
+          displayer: "Button1",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "buttonText",
+              value: "12 month",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "button1",
+          displayer: "Button1",
+          value: [
+            {
+              type: "string",
+              key: "buttonText1",
+              displayer: "buttonText1",
+              value: "10 month",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "button1",
+          displayer: "Button1",
+          value: [
+            {
+              type: "string",
+              key: "buttonText2",
+              displayer: "buttonText2",
+              value: "18 month",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "button1",
+          displayer: "Button1",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "buttonText",
+              value: "1 month",
+            },
+            {
+              type: "page",
+              key: "url",
               displayer: "Button Link",
               value: "",
             },
@@ -246,106 +492,183 @@ class PricingTable9 extends BasePricingTable {
     });
   }
 
+  setActivePlan(planType: string) {
+    console.log("setActivePlan: ", planType);
+
+    this.setComponentState("activePlan", planType);
+  }
+
   getName(): string {
     return "Pricing 9";
   }
 
   render() {
-    const pricingData = this.castToObject<Pricing[]>("price");
-
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 1000,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: window.innerWidth < 769 ? 1 : 3,
+      slidesToScroll: 1,
+      focusOnSelect: true,
+    };
+    const activePlanButtons =
+      this.getComponentState("activePlan") == "monthly"
+        ? this.getPropValue("monthly_buttons")
+        : this.getPropValue("years_buttons");
+    console.log(activePlanButtons);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-        <table className={this.decorateCSS("table")}>
-          <thead>
-            <tr>
-              <th></th>
-              <th>{this.getPropValue("title1")}</th>
-              <th>{this.getPropValue("title2")}</th>
-              <th>{this.getPropValue("title3")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* {this.castToObject<Feature[]>("pricefeatures").map(
-            (feature: any, index: number) => {
-              const lowerFeatureOptions = (feature.featureOptions).toLowerCase();
-              return (
-                <tr key={index}>
-                  <td>{feature.featureTitle}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title1").toLowerCase()) ? <span className={this.decorateCSS("span1")}>✔️</span> : <span className={this.decorateCSS("span4")}>❌</span>}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title2").toLowerCase()) ? <span className={this.decorateCSS("span2")}>✔️</span> : <span className={this.decorateCSS("span5")}>❌</span>}</td>
-                  <td>{feature.featureOptions && lowerFeatureOptions.includes(this.getPropValue("title3").toLowerCase()) ? <>✔️</> : <span className={this.decorateCSS("span6")}>❌</span>}</td>
+          <div className={this.decorateCSS("heading_background")}>
+            <div className={this.decorateCSS("heading-right")}>
+              <div
+                className={
+                  this.decorateCSS("plan-title") +
+                  " " +
+                  (this.getComponentState("activePlan") === "monthly" &&
+                    this.decorateCSS("activeTab"))
+                }
+                onClick={() => this.setActivePlan("monthly")}
+              >
+                {this.getPropValue("aylık")}
+              </div>
+              <div
+                className={
+                  this.decorateCSS("plan-title") +
+                  " " +
+                  (this.getComponentState("activePlan") === "yearly" &&
+                    this.decorateCSS("activeTab"))
+                }
+                onClick={() => this.setActivePlan("yearly")}
+              >
+                {this.getPropValue("yıllık")}
+              </div>
+            </div>
+            <div className={this.decorateCSS("heading-left")}>
+              <h3 className={this.decorateCSS("subtitle1")}>
+                {this.getPropValue("subtitle1")}
+              </h3>
+              <h3 className={this.decorateCSS("subtitle2")}>
+                {this.getPropValue("subtitle2")}
+              </h3>
+            </div>
+          </div>
+          <div className={this.decorateCSS("page-down")}>
+            <table className={this.decorateCSS("card")}>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td colSpan={4}>
+                    <div className={this.decorateCSS("heading-title")}>
+                      <h3 className={this.decorateCSS("title1")}>
+                        {this.getPropValue("title1")}
+                      </h3>
+                      <h3 className={this.decorateCSS("title2")}>
+                        {this.getPropValue("title2")}
+                      </h3>
+                      <h3 className={this.decorateCSS("title3")}>
+                        {this.getPropValue("title3")}
+                      </h3>
+                      <h3 className={this.decorateCSS("title4")}>
+                        {this.getPropValue("title4")}
+                      </h3>
+                    </div>
+                  </td>
                 </tr>
-              );
-            }
-  )} */}
-
-            <tr>
-              <td></td>
-                <td>
-                  <span className={this.decorateCSS("price-info")}>
-                    <span className={this.decorateCSS("per")}>per</span> {
-                      pricingData[0].price
-                    }
-                    <br></br>
-                    {
-                      pricingData[0].duration
-                    }
-                  </span>
-                  <ComposerLink path={
-                    pricingData[0].link
-                  }>
-                    <span className={this.decorateCSS("button")}>
-                      {
-                        pricingData[0].buttonText
-                      }
-                    </span>
-                  </ComposerLink>
-                </td>
-                <td>
-                  <span className={this.decorateCSS("price-info")}>
-                    <span className={this.decorateCSS("per1")}>per</span> {
-                      pricingData[1].price
-                    }
-                    <br></br>
-                    {
-                      pricingData[1].duration
-                    }
-                  </span>
-                  <ComposerLink path={
-                    pricingData[1].link
-                  }>
-                    <span className={this.decorateCSS("button")}>
-                      {
-                        pricingData[1].buttonText
-                      }
-                    </span>
-                  </ComposerLink>
-                </td>
-                <td>
-                  <span className={this.decorateCSS("price-info")}>
-                    <span className={this.decorateCSS("per2")}>per</span> {
-                      pricingData[2].price
-                    }
-                    <br></br>
-                    {
-                      pricingData[2].duration
-                    }
-                  </span>
-                  <ComposerLink path={
-                    pricingData[2].link
-                  }>
-                    <span className={this.decorateCSS("button")}>
-                      {
-                        pricingData[2].buttonText
-                      }
-                    </span>
-                  </ComposerLink>
-                </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                {this.castToObject<IIconBoxes[]>("cards").map(
+                  (card: IIconBoxes, index: number) => (
+                    <tr key={index}>
+                      <td>{card.title}</td>
+                      {card.list.map((listItem: any, listIndex: number) => (
+                        <td key={listIndex}>{listItem.value}</td>
+                      ))}
+                    </tr>
+                  )
+                )}
+                <tr>
+                  <td></td>
+                  <td colSpan={4}>
+                    <div className={this.decorateCSS("monthly_buttons")}>
+                      <div className={this.decorateCSS("button")}>
+                        {activePlanButtons[0].value[0].value}
+                      </div>
+                      <div className={this.decorateCSS("button")}>
+                        {activePlanButtons[1].value[0].value}
+                      </div>
+                      <div className={this.decorateCSS("button")}>
+                        {activePlanButtons[2].value[0].value}
+                      </div>
+                      <div className={this.decorateCSS("button")}>
+                        {activePlanButtons[3].value[0].value}
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>        
+          <ComposerSlider
+              {...settings}
+              className={this.decorateCSS("slider")}
+            >  
+              <div className={this.decorateCSS("page-down")}>
+            <table className={this.decorateCSS("card")}>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td colSpan={4}>
+                    <div className={this.decorateCSS("heading-title")}>
+                      <h3 className={this.decorateCSS("title1")}>
+                        {this.getPropValue("title1")}
+                      </h3>
+                      <h3 className={this.decorateCSS("title2")}>
+                        {this.getPropValue("title2")}
+                      </h3>
+                      <h3 className={this.decorateCSS("title3")}>
+                        {this.getPropValue("title3")}
+                      </h3>
+                      <h3 className={this.decorateCSS("title4")}>
+                        {this.getPropValue("title4")}
+                      </h3>
+                    </div>
+                  </td>
+                </tr>
+                {this.castToObject<IIconBoxes[]>("cards").map(
+                  (card: IIconBoxes, index: number) => (
+                    <tr key={index}>
+                      <td>{card.title}</td>
+                      {card.list.map((listItem: any, listIndex: number) => (
+                        <td key={listIndex}>{listItem.value}</td>  
+                      ))}
+                    </tr>
+                  )
+                )}
+                <tr>
+                  <td></td>
+                  <td colSpan={4}>
+                    <div className={this.decorateCSS("monthly_buttons")}>
+                      <div className={this.decorateCSS("button")}>
+                        {activePlanButtons[0].value[0].value}
+                      </div>
+                      <div className={this.decorateCSS("button")}>
+                        {activePlanButtons[1].value[0].value}
+                      </div>
+                      <div className={this.decorateCSS("button")}>
+                        {activePlanButtons[2].value[0].value}
+                      </div>
+                      <div className={this.decorateCSS("button")}>
+                        {activePlanButtons[3].value[0].value}
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div> 
+              </ComposerSlider>     
+        </div>
       </div>
     );
   }
