@@ -1,98 +1,146 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
-  display: flex;
-  align-items: center;
-
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  .background-layout {
+    width: 100%;
+  }
+  .image-container-1 {
+    width: 100%;
+  }
+  .image-container-2 {
+    position: absolute;
+    top: 10rem;
+    right: 10rem;
+    z-index: 0;
+  }
+  .image-container-3 {
+    position: absolute;
+    bottom: 1rem;
+    left: -20rem;
+    z-index: 0;
+  }
   .max-content {
     max-width: var(--composer-content-width);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
     margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    .return-container {
+      position: relative;
+    }
 
-    .header-page {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      
-      h3 {
-        font-size: 5rem;
-        text-align: center;
-        margin: unset;
-        color: var(--composer-primary-color);
-      }
-      p {
-        text-align: center;
-        margin: 50px 0;
-        
-      }
-      .long-text {
-        font-size: 1.8rem;
-        color: var(--composer-font-color-primary);
-      }
+    .background-text {
+      position: absolute !important;
+      z-index: 0;
+      font-size: 40rem;
+      animation: moveText 20s linear infinite;
+    }
 
-      .button-group {
+    .content-container {
+      position: relative;
+      margin: 0 auto;
+      max-width: 1200px;
+      width: 70%;
+      .title {
+        position: absolute;
+        top: 30%;
+        left: 60%;
+        font-size: 10rem;
+        color: #fff;
+        z-index: 1001;
+      }
+      .subtitle {
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: -13rem;
+        transform: rotateZ(-90deg);
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        z-index: 1001;
+      }
+      .image {
+        border-radius: 2%;
+        margin: 0 auto;
         width: 100%;
+        height: 100%;
+      }
+      .sliderNumber {
+        color: #fff;
+        font-size: 15px;
+        position: absolute;
+        top: 1rem;
+        right: 5%;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 50px;
-
-        .button {
-          cursor: pointer;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          color: white;
-          background-color: var(--composer-secondary-color);
-          padding: 15px 30px;
-          border-radius: 6px;
-          border: 1px solid transparent;
-          width: 200px;
-          font-size: 1.5rem;
-          text-align: center;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          &:hover {
-            color: var(--composer-primary-color);
-            background-color: transparent;
-            border: 1px solid var(--composer-primary-color);
-            transition: 0.3s;
-          }
+        justify-content: space-between;
+        .overlay {
+          display: inline-block;
+          height: 1px;
+          width: 2rem;
+          position: absolute;
+          right: 1rem;
+          bottom: 40%;
+          background: white;
+        }
+        .slider-number {
+          font-size: 13px;
         }
       }
     }
   }
-  .image {
-    max-height: 430px;
-    max-width: 100%;
-    object-fit: cover;
-    border-radius: 6px;
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    .header-page{
-      h3{
-        font-size: 3rem !important;
-      }
-      .long-text {
-        font-size: 1.5rem !important;
-      }
+@media screen and (max-width: 800px) {
+  .max-content {
+    width: 585px;
+    height: 360px;
+    .background-text {
+      font-size: 15rem !important;
+      margin-top: 5rem;
+    }
+    .title {
+      font-size: 3rem !important;
+    }
+    .image {
+      width: 585px;
+      height: 360px;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .max-content {
+    width: 350px;
+    height: 350px;
+    margin: 7rem auto !important;
 
-      .button-group {
-        .button {
-          font-size: 1.2rem !important;
-        }
-      }
+    .background-text {
+      font-size: 7rem !important;
+    }
+    .title {
+      font-size: 2rem !important;
+    }
+    .subtitle {
+      font-size: 0.5rem !important;
+      left: -6rem !important;
+    }
+    .image {
+      width: 200px;
+      height: 200px;
     }
   }
 }

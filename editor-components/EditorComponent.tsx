@@ -2,18 +2,22 @@ import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
+import sanitizeHtml from 'sanitize-html';
 
-type TypeCSSProp = { [key: string]: { id: string, class: string }[] };
+type GetPropValueOptions = {
+  as_string?: boolean;
+};
+type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
 export type iComponent = {
   render(): any;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
-  getPropValue(propName: string): TypeUsableComponentProps;
-  getExportedCSSClasses(): string[];
+  getPropValue(propName: string, options?: GetPropValueOptions): TypeUsableComponentProps;
+  getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
-  setCSSClasses(key: string, value: { id: string, class: string }[]): void;
+  setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
 };
@@ -25,9 +29,10 @@ type AvailablePropTypes =
   | { type: "array"; value: TypeUsableComponentProps[] }
   | { type: "object"; value: TypeUsableComponentProps[] }
   | { type: "image"; value: string }
+  | { type: "video"; value: string }
   | { type: "select"; value: string }
-  | { type: "color"; value: string}
-  | { type: "icon"; value: string};
+  | { type: "color"; value: string }
+  | { type: "icon"; value: string };
 
 export type TypeReactComponent = {
   type: string;
@@ -36,13 +41,14 @@ export type TypeReactComponent = {
   children: string;
 };
 export type TypeUsableComponentProps = {
+  id?: string;
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
-  max?: number; 
+  max?: number;
 } & AvailablePropTypes & {
-  getPropValue?: (propName: string) => any;
-};
+    getPropValue?: (propName: string) => any;
+  };
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -63,12 +69,13 @@ export enum CATEGORIES {
   STATS = "stats",
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
-  LOCATION = "Location"
+  LOCATION = "Location",
 }
 
 export abstract class Component
-  extends React.Component<{}, { states: any, componentProps: any }>
-  implements iComponent {
+  extends React.Component<{}, { states: any; componentProps: any }>
+  implements iComponent
+{
   private styles: any;
   private _props: any;
   protected category: CATEGORIES;
@@ -97,13 +104,43 @@ export abstract class Component
   getProps(): TypeUsableComponentProps[] {
     return this.state.componentProps.props;
   }
-  getPropValue(propName: string): any {
+  getProp(key: string) {
     let props: TypeUsableComponentProps[] = this.state.componentProps.props.filter(
-      (prop: TypeUsableComponentProps) => prop.key === propName
+      (prop: TypeUsableComponentProps) => prop.key === key
     );
     let prop = props[0] || null;
-    return prop?.value;
+    return prop;
   }
+
+  getPropValue(propName: string, options?: GetPropValueOptions): any {
+    let prop = this.getProp(propName);
+    return prop?.type == "string" && !options?.as_string
+      ? this.getPropValueAsElement(prop)
+      : prop?.value;
+  }
+
+  getPropValueAsElement(prop: TypeUsableComponentProps) {
+    const sanitize = (dirty:string, options: sanitizeHtml.IOptions) => ({
+      __html: sanitizeHtml(
+        dirty,
+        {
+          allowedAttributes: {
+            'a': [ 'href', 'name', 'target' ],
+            '*': [ 'style' ]
+          },
+          parseStyleAttributes: false
+        }
+      )
+    });
+    
+    const SanitizeHTML = ({ html, options }: any) => (
+      //@ts-ignore
+      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
+    );
+    
+    return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
+  }
+
   getExportedCSSClasses() {
     return this.styles;
   }
@@ -114,23 +151,22 @@ export abstract class Component
   }
   addProp(prop: TypeUsableComponentProps) {
     prop.value = (this._props && this._props[prop.key]) || prop.value;
+    prop.id = prop.key + "-" +Math.round(Math.random() * 1000000000).toString();
     prop = this.attachValueGetter(prop);
     this.state.componentProps.props.push(prop);
   }
   setProp(key: string, value: any): void {
-    let i = this.state.componentProps.props
-      .map((prop: any) => prop.key)
-      .indexOf(key);
+    let i = this.state.componentProps.props.map((prop: any) => prop.key).indexOf(key);
 
-      if(i == -1) return;
+    if (i == -1) return;
 
-      this.state.componentProps.props[i].value = value;
-      this.state.componentProps.props[i] = this.attachValueGetter(
-        this.state.componentProps.props[i]
-      );
-      this.setState({ componentProps: { ...this.state.componentProps } });
+    this.state.componentProps.props[i].value = value;
+    this.state.componentProps.props[i] = this.attachValueGetter(
+      this.state.componentProps.props[i]
+    );
+    this.setState({ componentProps: { ...this.state.componentProps } });
   }
-  
+
   setComponentState(key: string, value: any): void {
     this.state.states[key] = value;
     EventEmitter.emit("forceReload");
@@ -139,17 +175,17 @@ export abstract class Component
   getComponentState(key: string): any {
     return this.state.states[key];
   }
-  
-  setCSSClasses(key: string, value: { id: string, class: string }[]) {
+
+  setCSSClasses(key: string, value: { id: string; class: string }[]) {
     const componentPropsCopy = { ...this.state.componentProps };
     const cssClassesCopy = { ...componentPropsCopy.cssClasses };
     cssClassesCopy[key] = value;
     this.state.componentProps.cssClasses[key] = value;
-    this.setState({ componentProps: this.state.componentProps});
+    this.setState({ componentProps: this.state.componentProps });
   }
 
   decorateCSS(cssValue: string) {
-    let cssClass = [this.styles[cssValue]]; 
+    let cssClass = [this.styles[cssValue]];
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
@@ -163,22 +199,22 @@ export abstract class Component
     return cssClass.join(" ");
   }
 
-  private attachValueGetter(propValue: any) {
+  private attachValueGetter(propValue: TypeUsableComponentProps) {
+    propValue["id"] = propValue["id"] || propValue.key + "-" +Math.round(Math.random() * 1000000000).toString();
     if (Array.isArray(propValue.value)) {
-      propValue.value = propValue.value.map(
-        (propValueItem: TypeUsableComponentProps) => {
-          if (Array.isArray(propValueItem.value)) {
-            propValueItem = this.attachValueGetter(propValueItem);
-            propValueItem["getPropValue"] = (propName: string) => {
-              return (propValueItem.value as TypeUsableComponentProps[]).filter(
-                (prop: TypeUsableComponentProps) => prop.key === propName
-              )[0].value;
-            };
-          }
-
-          return propValueItem;
+      propValue.value = propValue.value.filter((value) => value != null);
+      propValue.value = propValue.value.map((propValueItem: TypeUsableComponentProps) => {
+        if (Array.isArray(propValueItem.value)) {
+          propValueItem = this.attachValueGetter(propValueItem);
+          propValueItem["getPropValue"] = (propName: string) => {
+            return (propValueItem.value as TypeUsableComponentProps[]).filter(
+              (prop: TypeUsableComponentProps) => prop.key === propName
+            )[0].value;
+          };
         }
-      );
+
+        return propValueItem;
+      });
     }
     return propValue;
   }
@@ -195,9 +231,7 @@ export abstract class Component
     let casted = object.value.map((propValue: any) => {
       if (propValue.hasOwnProperty("getPropValue")) {
         propValue.value.forEach((nestedObject: any, index: number) => {
-          propValue[nestedObject.key] = propValue.getPropValue(
-            nestedObject.key
-          );
+          propValue[nestedObject.key] = propValue.getPropValue(nestedObject.key);
           if (nestedObject.hasOwnProperty("getPropValue")) {
             propValue[nestedObject.key] = this.castingProcess(nestedObject);
           }
@@ -212,11 +246,10 @@ export abstract class Component
 
 export abstract class BaseNavigator extends Component {
   protected category = CATEGORIES.NAVIGATOR;
-  
 }
 
 export abstract class Testimonials extends Component {
-  protected category = CATEGORIES.TESTIMONIALS;  
+  protected category = CATEGORIES.TESTIMONIALS;
 }
 
 export abstract class BaseList extends Component {
@@ -225,98 +258,97 @@ export abstract class BaseList extends Component {
 
 export abstract class BaseHeader extends Component {
   protected category = CATEGORIES.HEADER;
-
 }
 
 export abstract class BasePricingTable extends Component {
   protected category = CATEGORIES.PRICING;
-
 }
 
 export abstract class BaseFooter extends Component {
   protected category = CATEGORIES.FOOTER;
 
-
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
-    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
+    };
     return axios.request(config).then((r: any) => r.data);
   }
 }
 
 export abstract class Team extends Component {
   protected category = CATEGORIES.TEAM;
-
 }
 
 export abstract class BaseContent extends Component {
   protected category = CATEGORIES.CONTENT;
-
 }
 
 export abstract class BaseDownload extends Component {
   protected category = CATEGORIES.DOWNLOAD;
-
 }
 
 export abstract class BaseCallToAction extends Component {
   protected category = CATEGORIES.CALLTOACTION;
-
 }
 
 export abstract class BaseSlider extends Component {
   protected category = CATEGORIES.SLIDER;
-
 }
 
 export abstract class BaseFAQ extends Component {
   protected category = CATEGORIES.FAQ;
-
 }
 
 export abstract class BaseImageGallery extends Component {
   protected category = CATEGORIES.IMAGEGALLERY;
-
 }
 
 export abstract class BaseModal extends Component {
   protected category = CATEGORIES.MODAL;
- 
+
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
-    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form" };
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
+    };
     return axios.request(config).then((r: any) => r.data);
   }
 }
 
 export abstract class LogoClouds extends Component {
   protected category = CATEGORIES.LOGOCLOUDS;
-
 }
 
 export abstract class Location extends Component {
   protected category = CATEGORIES.LOCATION;
-
 }
 
 export abstract class BaseStats extends Component {
   protected category = CATEGORIES.STATS;
-
 }
 
 export abstract class BaseContacts extends Component {
   protected category = CATEGORIES.FORM;
- 
 
   insertForm(name: string, data: Object) {
     const projectSettings = JSON.parse(getProjectHook().data);
     const project = projectSettings._id;
-    let config = { ...{ data: { name, data, project } }, method: "post", url: process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form" };
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL
+        ? process.env.REACT_APP_API_URL
+        : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+    };
     return axios.request(config).then((r: any) => r.data);
   }
 }
 
 export abstract class BaseFeature extends Component {
   protected category = CATEGORIES.FEATURE;
-
 }
