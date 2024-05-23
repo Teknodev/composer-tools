@@ -354,14 +354,13 @@ export abstract class BaseContacts extends Component {
   protected category = CATEGORIES.FORM;
 
   insertForm(name: string, data: Object) {
-    const projectSettings = JSON.parse(getProjectHook().data);
+    const projectSettings = getProjectHook();
     const project = projectSettings._id;
+    const url = process.env.REACT_APP_API_URL || process.env.NEXT_PUBLIC_PUBLIC_UR;
     let config = {
       ...{ data: { name, data, project } },
       method: "post",
-      url: process.env.REACT_APP_API_URL
-        ? process.env.REACT_APP_API_URL
-        : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+      url: url + "/fn-execute/project/insert-form",
     };
     return axios.request(config).then((r: any) => r.data);
   }
