@@ -2,6 +2,7 @@ import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
+import sanitizeHtml from 'sanitize-html';
 
 type GetPropValueOptions = {
   as_string?: boolean;
@@ -40,6 +41,7 @@ export type TypeReactComponent = {
   children: string;
 };
 export type TypeUsableComponentProps = {
+  id?: string;
   key: string;
   displayer: string;
   additionalParams?: { selectItems?: string[] };
@@ -113,13 +115,30 @@ export abstract class Component
   getPropValue(propName: string, options?: GetPropValueOptions): any {
     let prop = this.getProp(propName);
     return prop?.type == "string" && !options?.as_string
-      ? this._getPropValueAsElement(prop)
+      ? this.getPropValueAsElement(prop)
       : prop?.value;
   }
 
-  private _getPropValueAsElement(prop: TypeUsableComponentProps) {
-    //@ts-ignore
-    return <blinkpage prop-type={prop?.type}>{prop?.value}</blinkpage>;
+  getPropValueAsElement(prop: TypeUsableComponentProps) {
+    const sanitize = (dirty:string, options: sanitizeHtml.IOptions) => ({
+      __html: sanitizeHtml(
+        dirty,
+        {
+          allowedAttributes: {
+            'a': [ 'href', 'name', 'target' ],
+            '*': [ 'style' ]
+          },
+          parseStyleAttributes: false
+        }
+      )
+    });
+    
+    const SanitizeHTML = ({ html, options }: any) => (
+      //@ts-ignore
+      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
+    );
+    
+    return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
   getExportedCSSClasses() {
@@ -132,6 +151,7 @@ export abstract class Component
   }
   addProp(prop: TypeUsableComponentProps) {
     prop.value = (this._props && this._props[prop.key]) || prop.value;
+    prop.id = prop.key + "-" +Math.round(Math.random() * 1000000000).toString();
     prop = this.attachValueGetter(prop);
     this.state.componentProps.props.push(prop);
   }
@@ -180,6 +200,7 @@ export abstract class Component
   }
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
+    propValue["id"] = propValue["id"] || propValue.key + "-" +Math.round(Math.random() * 1000000000).toString();
     if (Array.isArray(propValue.value)) {
       propValue.value = propValue.value.filter((value) => value != null);
       propValue.value = propValue.value.map((propValueItem: TypeUsableComponentProps) => {
