@@ -1,8 +1,6 @@
 import * as React from "react";
-import { BaseContent, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseContent } from "../../EditorComponent";
 import styles from "./content18.module.scss";
-import { ThirtyFpsSelect, Widgets } from "@mui/icons-material";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Content18 extends BaseContent {

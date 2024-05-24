@@ -1,14 +1,9 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats3.module.scss";
-import { SubTitle } from "chart.js";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type cards = {
-  url: string;
-  icon: string;
-};
 class Stats3Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
