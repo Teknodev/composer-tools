@@ -1,10 +1,8 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./pricing-table5.module.scss";
-import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
+import { BasePricingTable } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { states } from "../../../../prefabs/component-settings/tabs/design/pseudo-properties";
-
 
 class PricingTable5 extends BasePricingTable {
   
