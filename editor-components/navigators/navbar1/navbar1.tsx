@@ -25,6 +25,13 @@ class Navbar1 extends BaseNavigator {
       value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
     this.addProp({
+      type: "page",
+      key: "image-url",
+      displayer: "Image Url",
+      value: "",
+    });
+
+    this.addProp({
       type: "icon",
       key: "hamburger_icon",
       displayer: "Hamburger Icon",
@@ -38,6 +45,12 @@ class Navbar1 extends BaseNavigator {
       displayer: "Logo Text",
       value:
         "Lorem",
+    });
+    this.addProp({
+      type: "page",
+      key: "logo_text_url",
+      displayer: "Logo Text Url",
+      value: "",
     });
 
     this.addProp({
@@ -646,7 +659,9 @@ class Navbar1 extends BaseNavigator {
   render() {
     const selectValue = this.getPropValue("select");
     const logoImage = this.getPropValue("image");
-    const logoText = this.getPropValue("logo_text")
+    const logoText = this.getPropValue("logo_text");
+    const imageUrl = this.getPropValue("image-url");
+    const textUrl = this.getPropValue("logo_text_url");
 
     return (
       <div
@@ -656,8 +671,12 @@ class Navbar1 extends BaseNavigator {
         <div className={this.decorateCSS("max-content")}>
           {
             logoImage ?
-              <img src={this.getPropValue("image")} width={200} alt="" /> :
-              <span className={this.decorateCSS("logo-text")}>{logoText}</span>
+              <ComposerLink path={imageUrl}>
+                <img src={logoImage} width={200} alt="" />
+              </ComposerLink> :
+              <ComposerLink path={textUrl}>
+                <span className={this.decorateCSS("logo-text")}>{logoText}</span>
+              </ComposerLink>
           }
 
           <nav className={this.decorateCSS("pc-navigator")}>
