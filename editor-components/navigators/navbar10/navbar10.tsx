@@ -141,18 +141,17 @@ class Navbar10 extends BaseNavigator {
       ]
     });
   }
+
   navClick() {
     let value: boolean = this.getComponentState("navActive");
     this.setComponentState("navActive", !value);
   }
+
   getName(): string {
     return "Navbar 10";
   }
 
-
-
   render() {
-
     const navActive = this.getComponentState("navActive");
     return (
       <div className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))} `}>
@@ -162,26 +161,24 @@ class Navbar10 extends BaseNavigator {
             <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>
           </div>
           <div className={this.decorateCSS("down-page")}>
-
             <div className={this.decorateCSS("leftItem")}>{this.getPropValue("leftItem")}</div>
-
             <div className={this.decorateCSS("bar")}>
               {this.castToObject<[]>("itemList").map(
                 (data: any, indexItemList: number) => {
                   return (
-                    <ComposerLink key={indexItemList} path={data.value[1].value}>
-                      <span className={this.decorateCSS("data-value")}>{data.value[0].value}</span>
+                    <ComposerLink key={indexItemList} path={data.url}>
+                      <span className={this.decorateCSS("data-value")}>{data.item}</span>
                     </ComposerLink>
                   );
                 }
               )}
             </div>
             <div className={this.decorateCSS("right")}>
-              {this.getPropValue("rightIcon").map((icons: any) => {
+              {this.castToObject<[]>("rightIcon").map((icons: any) => {
                 return (
                   <ComposerIcon
                     propsIcon={{ className: this.decorateCSS("icons") }}
-                    name={icons.value[0].value}
+                    name={icons.icon}
                   />
                 );
               })}
@@ -204,26 +201,24 @@ class Navbar10 extends BaseNavigator {
             </div>
             {navActive && (
               <div className={this.decorateCSS("down-page")}>
-
                 <div className={this.decorateCSS("leftItem")}>{this.getPropValue("leftItem")}</div>
-
                 <div className={this.decorateCSS("bar")}>
                   {this.castToObject<[]>("itemList").map(
                     (data: any, indexItemList: number) => {
                       return (
-                        <ComposerLink key={indexItemList} path={data.value[1].value}>
-                          <span className={this.decorateCSS("data-value")}>{data.value[0].value}</span>
+                        <ComposerLink key={indexItemList} path={data.url}>
+                          <span className={this.decorateCSS("data-value")}>{data.item}</span>
                         </ComposerLink>
                       );
                     }
                   )}
                 </div>
                 <div className={this.decorateCSS("right")}>
-                  {this.getPropValue("rightIcon").map((icons: any) => {
+                  {this.castToObject<[]>("rightIcon").map((icons: any) => {
                     return (
                       <ComposerIcon
                         propsIcon={{ className: this.decorateCSS("icons") }}
-                        name={icons.value[0].value}
+                        name={icons.icon}
                       />
                     );
                   })}
@@ -248,24 +243,23 @@ class Navbar10 extends BaseNavigator {
             </div>
             {navActive && (
               <div className={this.decorateCSS("down-page")}>
-
                 <div className={this.decorateCSS("bar")}>
                   {this.castToObject<[]>("itemList").map(
                     (data: any, indexItemList: number) => {
                       return (
-                        <ComposerLink key={indexItemList} path={data.value[1].value}>
-                          <span className={this.decorateCSS("data-value")}>{data.value[0].value}</span>
+                        <ComposerLink key={indexItemList} path={data.url}>
+                          <span className={this.decorateCSS("data-value")}>{data.item}</span>
                         </ComposerLink>
                       );
                     }
                   )}
                 </div>
                 <div className={this.decorateCSS("right")}>
-                  {this.getPropValue("rightIcon").map((icons: any) => {
+                  {this.castToObject<[]>("rightIcon").map((icons: any) => {
                     return (
                       <ComposerIcon
                         propsIcon={{ className: this.decorateCSS("icons") }}
-                        name={icons.value[0].value}
+                        name={icons.icon}
                       />
                     );
                   })}
