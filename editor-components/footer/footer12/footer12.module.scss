@@ -6,7 +6,7 @@
         max-width: var(--composer-content-width);
         margin: auto;
 
-        .content {
+        .section {
             padding: 25px 170px;
             display: flex;
             align-items: center;
@@ -23,21 +23,23 @@
                 font-size: 2rem;
                 font-weight: 600;
             }
-        }
 
-        .right-content {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            .up-text {
+            .right-content {
                 display: flex;
-                gap: 20px;
-                color: var(--composer-font-color-primary);
-            }
-
-            .down-text {
-                color: var(--composer-font-color-primary);
+                flex-direction: column;
+                gap: 10px;
+    
+                .up-text {
+                    display: flex;
+                    gap: 20px;
+                    color: var(--composer-font-color-primary);
+                }
+    
+                .ref-text{}
+    
+                .down-text {
+                    color: var(--composer-font-color-primary);
+                }
             }
         }
     }
