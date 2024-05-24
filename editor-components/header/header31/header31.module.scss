@@ -37,13 +37,16 @@
         .main-social {
             position: relative;
             bottom: 50px;
-            left: 50px;
             display: flex;
             height: 40px;
             color: white;
             font-size: 15px;
             gap: 20px;
             align-items: center;
+
+            .social-icon{
+                margin-left: 50px;
+            }
 
             .icon-stick {
                 width: 0px;
@@ -247,8 +250,11 @@
             }
 
             .main-social {
-                left: 20px;
                 bottom: 37px;
+
+                .social-icon{
+                    margin-left: 20px;
+                }
             }
         }
     }
@@ -289,7 +295,6 @@
             }
 
             .main-social {
-                left: 20px;
                 bottom: 37px;
             }
         }

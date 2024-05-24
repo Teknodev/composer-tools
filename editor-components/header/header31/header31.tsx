@@ -3,10 +3,8 @@ import styles from "./header31.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { TypeUsableComponentProps } from "../../EditorComponent";
-import { TiShoppingBag } from "react-icons/ti";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import Slider from "react-slick"
 
 type ISliderData = {
   title: string;
@@ -18,15 +16,12 @@ type ISliderData = {
   description: string;
   circleIcon: string;
   text: string;
-
 };
 interface IAnimationProps {
   animationState: string;
   startingAnimation: string;
   endingAnimation: string;
 }
-
-
 
 class Header31 extends BaseHeader {
   constructor(props?: any) {
@@ -40,15 +35,15 @@ class Header31 extends BaseHeader {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaTwitter"
+          value: "FaTwitter",
         },
         {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: ""
-        }
-      ]
+          value: "",
+        },
+      ],
     };
 
     let facebook: TypeUsableComponentProps = {
@@ -60,15 +55,15 @@ class Header31 extends BaseHeader {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaFacebook"
+          value: "FaFacebook",
         },
         {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: ""
-        }
-      ]
+          value: "",
+        },
+      ],
     };
 
     let instagram: TypeUsableComponentProps = {
@@ -80,21 +75,21 @@ class Header31 extends BaseHeader {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaInstagram"
+          value: "FaInstagram",
         },
         {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: ""
-        }
-      ]
+          value: "",
+        },
+      ],
     };
     this.addProp({
       type: "icon",
       key: "circleIcon",
       displayer: "Circle Icon",
-      value: "CiCircleChevRight"
+      value: "CiCircleChevRight",
     });
     this.addProp({
       type: "array",
@@ -110,33 +105,32 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project9/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project9/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project9/6.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project9/6.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "BRANDS"
+              value: "BRANDS",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Time Tag Watch"
+              value: "Time Tag Watch",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Sometimes, we need to check the time, wondering when our work or meeting will finish, without getting caught by others."
+              value:
+                "Sometimes, we need to check the time, wondering when our work or meeting will finish, without getting caught by others.",
             },
             {
               type: "string",
@@ -145,25 +139,32 @@ class Header31 extends BaseHeader {
               value: "01",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -174,33 +175,32 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project4/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project4/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project4/13.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project4/13.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "BRANDS"
+              value: "BRANDS",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Under Armour"
+              value: "Under Armour",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Cal was first. The first public university in the great state of California. They are the pioneers. They are the trailblazers who started it all."
+              value:
+                "Cal was first. The first public university in the great state of California. They are the pioneers. They are the trailblazers who started it all.",
             },
             {
               type: "string",
@@ -227,7 +227,7 @@ class Header31 extends BaseHeader {
                 },
               ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -238,33 +238,32 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project3/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project3/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project3/3.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project3/3.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "PHOTOGRAPHY"
+              value: "PHOTOGRAPHY",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Re Styling"
+              value: "Re Styling",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Once the brand strategy was sharp and real for everyone inside of the company, all the brand behavior started to roll out as stationary material."
+              value:
+                "Once the brand strategy was sharp and real for everyone inside of the company, all the brand behavior started to roll out as stationary material.",
             },
             {
               type: "string",
@@ -291,7 +290,7 @@ class Header31 extends BaseHeader {
                 },
               ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -302,33 +301,32 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project8/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project8/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project8/2.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project8/2.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "PHOTOGRAPHY"
+              value: "PHOTOGRAPHY",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Toast 2019 Reel"
+              value: "Toast 2019 Reel",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "We are thrilled to share our new reel with you all! Special thanks to all of our talented friends."
+              value:
+                "We are thrilled to share our new reel with you all! Special thanks to all of our talented friends.",
             },
             {
               type: "string",
@@ -355,7 +353,7 @@ class Header31 extends BaseHeader {
                 },
               ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -366,33 +364,32 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project7/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project7/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project7/2.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project7/2.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "PHOTOGRAPHY"
+              value: "PHOTOGRAPHY",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Nile - Kabutha"
+              value: "Nile - Kabutha",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Striking and powerful Aston Martin Vantage captivates you at the first sight."
+              value:
+                "Striking and powerful Aston Martin Vantage captivates you at the first sight.",
             },
             {
               type: "string",
@@ -419,7 +416,7 @@ class Header31 extends BaseHeader {
                 },
               ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -430,33 +427,31 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project6/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project6/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project6/4.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project6/4.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "PHOTOGRAPHY"
+              value: "PHOTOGRAPHY",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Sleep Walker"
+              value: "Sleep Walker",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: ""
+              value: "",
             },
             {
               type: "string",
@@ -483,7 +478,7 @@ class Header31 extends BaseHeader {
                 },
               ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -494,33 +489,32 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project1/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project1/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project1/2.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project1/2.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "SPORTS"
+              value: "SPORTS",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Magista"
+              value: "Magista",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "The Brief team has been sincerely committed to designing great communication around our projects."
+              value:
+                "The Brief team has been sincerely committed to designing great communication around our projects.",
             },
             {
               type: "string",
@@ -547,7 +541,7 @@ class Header31 extends BaseHeader {
                 },
               ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -558,33 +552,32 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project2/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project2/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project2/3.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project2/3.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "PHOTOGRAPHY"
+              value: "PHOTOGRAPHY",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Bastian Bux"
+              value: "Bastian Bux",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Bastian bux is the consequence of reducing everything surrounding a dj and producer to its essential element: the music."
+              value:
+                "Bastian bux is the consequence of reducing everything surrounding a dj and producer to its essential element: the music.",
             },
             {
               type: "string",
@@ -611,7 +604,7 @@ class Header31 extends BaseHeader {
                 },
               ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -622,39 +615,38 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project5/1.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project5/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://droow-dark.netlify.app/assets/img/project/project5/4.jpg",
+              value: "https://droow-dark.netlify.app/assets/img/project/project5/4.jpg",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "ARCHITECTURE"
+              value: "ARCHITECTURE",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Novara Conic"
+              value: "Novara Conic",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Cal was first. The first public university in the great state of California. They are the pioneers."
+              value:
+                "Cal was first. The first public university in the great state of California. They are the pioneers.",
             },
             {
               type: "string",
               key: "sliderNumber",
               displayer: "Slider Number",
-              value: "09"
+              value: "09",
             },
             {
               type: "object",
@@ -675,9 +667,9 @@ class Header31 extends BaseHeader {
                 },
               ],
             },
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     });
     this.addProp({
       type: "icon",
@@ -705,9 +697,8 @@ class Header31 extends BaseHeader {
         JSON.parse(JSON.stringify(twitter)),
         JSON.parse(JSON.stringify(facebook)),
         JSON.parse(JSON.stringify(instagram)),
-      ]
+      ],
     });
-
 
     this.setComponentState("animation-active", false);
     this.setComponentState("active-index", 0);
@@ -746,11 +737,10 @@ class Header31 extends BaseHeader {
       dotsClass: this.decorateCSS("dots"),
 
       beforeChange: (oldIndex: number, newIndex: number) => {
-        if (oldIndex == newIndex) return;
+        if (oldIndex === newIndex) return;
         this.setComponentState("active-index", newIndex);
         this.getComponentState("slider-ref").current.slickGoTo(newIndex);
         this.getComponentState("second-slider-ref").current.slickGoTo(newIndex);
-        if (oldIndex == newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
         this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
         this.setComponentState("subtitleAnimationClass", "animate__fadeOutDown");
@@ -761,17 +751,22 @@ class Header31 extends BaseHeader {
         }, 1200);
       },
     };
-    const subtitle = this.castToObject<ISliderData[]>("slider")[this.getComponentState("active-index")].subtitle
-    const title = this.castToObject<ISliderData[]>("slider")[this.getComponentState("active-index")].title
-    const description = this.castToObject<ISliderData[]>("slider")[this.getComponentState("active-index")].description
 
-    // const text = this.getPropValue("text", { as_string: true })
+    const activeIndex = this.getComponentState("active-index");
+    const activeSlideObj = this.castToObject<any>("slider")[activeIndex];
+    const subtitle = activeSlideObj.subtitle;
+    const title = activeSlideObj.title;
+    const description = activeSlideObj.description;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider ref={this.getComponentState("slider-ref")} {...settings} className={this.decorateCSS("slider")}>
+            <ComposerSlider
+              ref={this.getComponentState("slider-ref")}
+              {...settings}
+              className={this.decorateCSS("slider")}
+            >
               {this.castToObject<ISliderData[]>("slider").map(
                 (item: ISliderData, index: number) => (
                   <div key={index} className={this.decorateCSS("wrapper")}>
@@ -788,20 +783,31 @@ class Header31 extends BaseHeader {
             </ComposerSlider>
           </div>
           <div className={this.decorateCSS("slider-container")}>
-
-            <ComposerSlider ref={this.getComponentState("second-slider-ref")} {...settings} draggable={true} slidesToShow={3} vertical={true} verticalSwiping={true} centerMode={true} centerPadding={"0px"} className={this.decorateCSS("carousel")}>
+            <ComposerSlider
+              ref={this.getComponentState("second-slider-ref")}
+              {...settings}
+              draggable={true}
+              slidesToShow={3}
+              vertical={true}
+              verticalSwiping={true}
+              centerMode={true}
+              centerPadding={"0px"}
+              className={this.decorateCSS("carousel")}
+            >
               {this.castToObject<ISliderData[]>("slider").map(
                 (item: ISliderData, index: number) => (
-                  <div key={index} className={this.decorateCSS("swiper-wrapper")} >
-                    {this.getComponentState("active-index") === index && (
+                  <div key={index} className={this.decorateCSS("swiper-wrapper")}>
+                    {activeIndex === index && (
                       <div className={this.decorateCSS("content")}>
                         <span className={this.decorateCSS("sliderNumber-left")}>
-                          {this.castToObject<ISliderData[]>("slider")[this.getComponentState("active-index")].sliderNumber}
+                          {activeSlideObj.sliderNumber}
                         </span>
                       </div>
                     )}
                     <img
-                      className={`${this.decorateCSS("background-left")} ${this.getComponentState("active-index") === index ? this.decorateCSS("active") : ""}`}
+                      className={`${this.decorateCSS("background-left")} ${
+                        activeIndex === index ? this.decorateCSS("active") : ""
+                      }`}
                       src={item.leftImage}
                       alt={item.title}
                       onClick={() => {
@@ -814,117 +820,113 @@ class Header31 extends BaseHeader {
               )}
             </ComposerSlider>
             <div className={this.decorateCSS("slider-inner")}>
-              {subtitle && <div className={this.decorateCSS("up-text")}>
-                <div className={`${this.decorateCSS(
-                  "stick"
-                )}  animate__animated ${this.getComponentState(
-                  "stickAnimationClass"
-                )}`}
-                  onAnimationEnd={() => {
-                    this.handleAnimationEnd({
-                      animationState: "stickAnimationClass",
-                      startingAnimation: "animate__fadeInRight",
-                      endingAnimation: "animate__fadeOutDown",
-                    });
-                  }}></div>
-                <span className={`${this.decorateCSS(
-                  "subtitle"
-                )}  animate__animated ${this.getComponentState(
-                  "subtitleAnimationClass"
-                )}`}
-                  onAnimationEnd={() => {
-                    this.handleAnimationEnd({
-                      animationState: "subtitleAnimationClass",
-                      startingAnimation: "animate__fadeInRight",
-                      endingAnimation: "animate__fadeOutDown",
-                    });
-                  }}>
-                  {this.castToObject<ISliderData[]>("slider")[this.getComponentState("active-index")].subtitle}
-                </span>
-              </div>}
-
-              {title && <span className={`${this.decorateCSS(
-                "title"
-              )}  animate__animated ${this.getComponentState(
-                "titleAnimationClass"
-              )}`}
-                onAnimationEnd={() => {
-                  this.handleAnimationEnd({
-                    animationState: "titleAnimationClass",
-                    startingAnimation: "animate__fadeInRight",
-                    endingAnimation: "animate__fadeOutDown",
-                  });
-                }}>
-                {this.castToObject<ISliderData[]>("slider")[this.getComponentState("active-index")].title}
-              </span>}
-              {description && <p className={`${this.decorateCSS(
-                "description"
-              )} animate__animated ${this.getComponentState(
-                "descriptionAnimationClass"
-              )} `}
-                onAnimationEnd={() => {
-                  this.handleAnimationEnd({
-                    animationState: "descriptionAnimationClass",
-                    startingAnimation: "animate__fadeInUp",
-                    endingAnimation: "animate__fadeOut",
-                  });
-                }}>
-                {this.castToObject<ISliderData[]>("slider")[this.getComponentState("active-index")].description}
-              </p>}
-              {this.getPropValue("slider")[
-                this.getComponentState("active-index")
-              ].getPropValue("button")[0].value && (
-                  <ComposerLink
-                    path={
-                      this.getPropValue("slider")[
-                        this.getComponentState("active-index")
-                      ].getPropValue("button")[1].value
-                    }
+              {subtitle && (
+                <div className={this.decorateCSS("up-text")}>
+                  <div
+                    className={`${this.decorateCSS(
+                      "stick"
+                    )}  animate__animated ${this.getComponentState("stickAnimationClass")}`}
+                    onAnimationEnd={() => {
+                      this.handleAnimationEnd({
+                        animationState: "stickAnimationClass",
+                        startingAnimation: "animate__fadeInRight",
+                        endingAnimation: "animate__fadeOutDown",
+                      });
+                    }}
+                  ></div>
+                  <span
+                    className={`${this.decorateCSS(
+                      "subtitle"
+                    )}  animate__animated ${this.getComponentState("subtitleAnimationClass")}`}
+                    onAnimationEnd={() => {
+                      this.handleAnimationEnd({
+                        animationState: "subtitleAnimationClass",
+                        startingAnimation: "animate__fadeInRight",
+                        endingAnimation: "animate__fadeOutDown",
+                      });
+                    }}
                   >
-                    <div
-                      className={`${this.decorateCSS(
-                        "button"
-                      )} animate__animated ${this.getComponentState(
-                        "buttonAnimationClass"
-                      )}`}
-                      onAnimationEnd={() => {
-                        this.handleAnimationEnd({
-                          animationState: "buttonAnimationClass",
-                          startingAnimation: "animate__fadeInUp",
-                          endingAnimation: "animate__fadeOutDown",
-                        });
+                    {subtitle}
+                  </span>
+                </div>
+              )}
+
+              {title && (
+                <span
+                  className={`${this.decorateCSS(
+                    "title"
+                  )}  animate__animated ${this.getComponentState("titleAnimationClass")}`}
+                  onAnimationEnd={() => {
+                    this.handleAnimationEnd({
+                      animationState: "titleAnimationClass",
+                      startingAnimation: "animate__fadeInRight",
+                      endingAnimation: "animate__fadeOutDown",
+                    });
+                  }}
+                >
+                  {title}
+                </span>
+              )}
+              {description && (
+                <p
+                  className={`${this.decorateCSS(
+                    "description"
+                  )} animate__animated ${this.getComponentState("descriptionAnimationClass")} `}
+                  onAnimationEnd={() => {
+                    this.handleAnimationEnd({
+                      animationState: "descriptionAnimationClass",
+                      startingAnimation: "animate__fadeInUp",
+                      endingAnimation: "animate__fadeOut",
+                    });
+                  }}
+                >
+                  {description}
+                </p>
+              )}
+              {activeSlideObj.actions.map((el: any) => (
+                <ComposerLink path={el.link}>
+                  <div
+                    className={`${this.decorateCSS(
+                      "button"
+                    )} animate__animated ${this.getComponentState("buttonAnimationClass")}`}
+                    onAnimationEnd={() => {
+                      this.handleAnimationEnd({
+                        animationState: "buttonAnimationClass",
+                        startingAnimation: "animate__fadeInUp",
+                        endingAnimation: "animate__fadeOutDown",
+                      });
+                    }}
+                  >
+                    <ComposerIcon
+                      name={this.getPropValue("circleIcon")}
+                      propsIcon={{
+                        className: ``,
+                        size: 25,
                       }}
-                    >
-                      <ComposerIcon
-                        name={this.getPropValue("circleIcon")}
-                        propsIcon={{
-                          className: ``,
-                          size: 25,
-                        }}
-                      />
-                      <span className={this.decorateCSS("button-text")}>
-                        {
-                          this.getPropValue("slider")[
-                            this.getComponentState("active-index")
-                          ].getPropValue("button")[0].value
-                        }
-                      </span>
-                    </div>
-                  </ComposerLink>
-                )}
+                    />
+                    <span className={this.decorateCSS("button-text")}>{el.buttonText}</span>
+                  </div>
+                </ComposerLink>
+              ))}
             </div>
           </div>
           <div className={this.decorateCSS("main-social")}>
-            <ComposerIcon name={this.getPropValue("social-icon")} propsIcon={{
-              className: this.decorateCSS("social-icon")
-            }} />
+            <ComposerIcon
+              name={this.getPropValue("social-icon")}
+              propsIcon={{
+                className: this.decorateCSS("social-icon"),
+              }}
+            />
             <div className={this.decorateCSS("icon-stick")}></div>
             <div className={this.decorateCSS("icon-list-container")}>
               {this.castToObject<any>("icons").map((icon: any, indexIcons: number) => {
                 return (
                   <div key={indexIcons} className={this.decorateCSS("icon-item")}>
                     <ComposerLink path={icon.url}>
-                      <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      <ComposerIcon
+                        name={icon.icon}
+                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      />
                     </ComposerLink>
                   </div>
                 );
@@ -935,11 +937,9 @@ class Header31 extends BaseHeader {
             <ComposerIcon
               name={this.getPropValue("prev_icon")}
               propsIcon={{
-                className: `${this.decorateCSS(
-                  "prev-icon"
-                )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
-                this.decorateCSS("un-visible")
-                  }`,
+                className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow")} ${
+                  !this.getComponentState("display-none") && this.decorateCSS("un-visible")
+                }`,
                 size: 20,
                 onClick: () => {
                   this.getComponentState("slider-ref").current.slickPrev();
@@ -950,11 +950,9 @@ class Header31 extends BaseHeader {
             <ComposerIcon
               name={this.getPropValue("next_icon")}
               propsIcon={{
-                className: `${this.decorateCSS(
-                  "next-icon"
-                )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
-                this.decorateCSS("un-visible")
-                  }`,
+                className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow")} ${
+                  !this.getComponentState("display-none") && this.decorateCSS("un-visible")
+                }`,
                 size: 20,
                 onClick: () => {
                   this.getComponentState("slider-ref").current.slickNext();
@@ -964,9 +962,7 @@ class Header31 extends BaseHeader {
             />
           </div>
           <div className={this.decorateCSS("control-num")}>
-            <span className={this.decorateCSS("sliderNumber")}>
-              {this.castToObject<ISliderData[]>("slider")[this.getComponentState("active-index")].sliderNumber}
-            </span>
+            <span className={this.decorateCSS("sliderNumber")}>{activeSlideObj.sliderNumber}</span>
           </div>
         </div>
       </div>
