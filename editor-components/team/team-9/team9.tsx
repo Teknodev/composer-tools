@@ -220,8 +220,6 @@ class Team9 extends Team {
   }
 
   render() {
-    const image = this.getPropValue("person-image");
-    const title = this.getPropValue("up-page");
     const settings = {
       dots: false,
       infinite: true,
