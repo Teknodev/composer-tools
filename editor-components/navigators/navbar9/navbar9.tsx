@@ -1,10 +1,10 @@
 import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
-import styles from "./navbar10.module.scss";
+import styles from "./navbar9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-class Navbar10 extends BaseNavigator {
+class Navbar9 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
@@ -148,7 +148,7 @@ class Navbar10 extends BaseNavigator {
   }
 
   getName(): string {
-    return "Navbar 10";
+    return "Navbar 9";
   }
 
   render() {
@@ -277,4 +277,4 @@ class Navbar10 extends BaseNavigator {
   }
 }
 
-export default Navbar10;
+export default Navbar9;
