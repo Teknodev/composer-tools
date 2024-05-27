@@ -2,109 +2,323 @@ import * as React from "react";
 import styles from "./header18.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+type Item = {
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  description_title: string;
+  text: string;
+  cover_image: string;
+};
 
 class Header18 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "object",
-      key: "left-side",
-      displayer: "Left Side",
-      value: [
-        {
-          type: "object",
-          key: "message",
-          displayer: "Message",
-          value: [
-            {
-              type: "string",
-              key: "title-top",
-              displayer: "Title Top",
-              value: "Hot &",
-            },
-            {
-              type: "string",
-              key: "title-mid",
-              displayer: "Title Middle",
-              value: "Stylish",
-            },
-            {
-              type: "string",
-              key: "title-bottom",
-              displayer: "Title Bottom",
-              value: "Tshirt",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Content",
-              value: "Some Italian writings",
-            },
-            {
-              type: "string",
-              key: "side-text",
-              displayer: "Side Text",
-              value: "SUMMER COLLECTION 2022",
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "View More",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "image",
-              key: "left-image",
-              displayer: "Background",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcae1057bdf002c2ad7a3?alt=media&timestamp=1693305546889",
-            },
-          ],
-        },
-      ],
+      type: "icon",
+      key: "prev_icon",
+      displayer: "Prev icon",
+      value: "PiArrowLeftThin",
     });
-
     this.addProp({
-      type: "object",
-      key: "right-side",
-      displayer: "Right Side",
+      type: "icon",
+      key: "next_icon",
+      displayer: "Next icon",
+      value: "PiArrowRightThin",
+    });
+    this.addProp({
+      type: "array",
+      displayer: "Slider Carousel",
+      key: "slider",
       value: [
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
-              key: "side-text",
-              displayer: "Side Text",
-              value: "NEW MAN SUMMER LOOK",
+              displayer: "Title",
+              key: "title",
+              value: "Painting",
+            },
+            {
+              type: "string",
+              displayer: "Subitle",
+              key: "subtitle",
+              value: "visual art forms",
+            },
+            {
+              type: "string",
+              displayer: "Description Title",
+              key: "description_title",
+              value: "Definition",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Painting is the application of pigments to a support surface that establishes an image,design or decoration.",
             },
             {
               type: "image",
-              key: "left-image",
-              displayer: "Background",
+              displayer: "İmage",
+              key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcae1057bdf002c2ad7a4?alt=media&timestamp=1693305546889",
+                "https://images.unsplash.com/photo-1582561424760-0321d75e81fa?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value: "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            },
+          ],
+        },
+
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Scultpure",
+            },
+            {
+              type: "string",
+              displayer: "Subitle",
+              key: "subtitle",
+              value: "visual art forms",
+            },
+            {
+              type: "string",
+              displayer: "Description Title",
+              key: "description_title",
+              value: "Definition",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed ligula eu ligula congue vestibulum.",
+            },
+            {
+              type: "image",
+              displayer: "İmage",
+              key: "image",
+              value:
+                "https://images.unsplash.com/photo-1604490778200-7b1de465a6f3?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value: "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Architecture",
+            },
+            {
+              type: "string",
+              displayer: "Subitle",
+              key: "subtitle",
+              value: "visual art forms",
+            },
+            {
+              type: "string",
+              displayer: "Description Title",
+              key: "description_title",
+              value: "Definition",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu justo sed libero consectetur consequat.",
+            },
+            {
+              type: "image",
+              displayer: "İmage",
+              key: "image",
+              value:
+                "https://images.unsplash.com/photo-1563645774182-d14c97bd52fb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value: "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Ceramics",
+            },
+            {
+              type: "string",
+              displayer: "Subitle",
+              key: "subtitle",
+              value: "visual art forms",
+            },
+            {
+              type: "string",
+              displayer: "Description Title",
+              key: "description_title",
+              value: "Definition",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida felis sed nisl consequat, nec ultricies velit commodo.",
+            },
+            {
+              type: "image",
+              displayer: "İmage",
+              key: "image",
+              value:
+                "https://images.unsplash.com/photo-1590422749897-47036da0b0ff?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value: "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Photography",
+            },
+            {
+              type: "string",
+              displayer: "Subitle",
+              key: "subtitle",
+              value: "visual art forms",
+            },
+            {
+              type: "string",
+              displayer: "Description Title",
+              key: "description_title",
+              value: "Definition",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor justo ac lorem tincidunt, at convallis tortor efficitur.",
+            },
+            {
+              type: "image",
+              displayer: "İmage",
+              key: "image",
+              value:
+                "https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            },
+            {
+              type: "image",
+              key: "cover_image",
+              displayer: "Background Image",
+              value: "https://img.freepik.com/free-photo/gray-texture_1253-246.jpg",
             },
           ],
         },
       ],
     });
+    this.addProp({
+      type: "array",
+      key: "icons",
+      displayer: "Social Medias",
+      value: [
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Item",
+          value: [
+            {
+              type: "page",
+              key: "navigate",
+              displayer: "Link",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "facebook",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Item",
+          value: [
+            {
+              type: "page",
+              key: "navigate",
+              displayer: "Link",
+              value: "",
+            },
+            { type: "string", key: "name", displayer: "Name", value: "instagram" },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Item",
+          value: [
+            {
+              type: "page",
+              key: "navigate",
+              displayer: "Link",
+              value: "",
+            },
+            { type: "string", key: "name", displayer: "Name", value: "dribbble" },
+          ],
+        },
+      ],
+    });
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active-index", 0);
   }
 
   getName(): string {
@@ -112,59 +326,101 @@ class Header18 extends BaseHeader {
   }
 
   render() {
-    let leftImg = this.getPropValue("left-side")[0].value[6].value;
-    let topTxt = this.getPropValue("left-side")[0].value[0].value;
-    let midTxt = this.getPropValue("left-side")[0].value[1].value;
-    let bottomTxt = this.getPropValue("left-side")[0].value[2].value;
-    let leftSideText = this.getPropValue("left-side")[0].value[4].value;
-    let text = this.getPropValue("left-side")[0].value[3].value;
-    let buttonText = this.getPropValue("left-side")[0].value[5].value[0].value;
-    let buttonPath = this.getPropValue("left-side")[0].value[5].value[1].value;
+    const settings = {
+      dots: false,
+      infinite: true,
+      arrows: false,
+      speed: 2000,
+      autoplay: false,
+      autoplaySpeed: 5000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      beforeChange: (oldIndex: number, newIndex: number) => {
+        if (oldIndex === newIndex) return;
+        setTimeout(() => {
+          this.setComponentState("active-index", newIndex);
+        }, 1200);
+      },
+    };
 
-    let rightImg = this.getPropValue("right-side")[0].value[1].value;
-    let rightSideText = this.getPropValue("right-side")[0].value[0].value;
-
+    const sliderCount = this.castToObject<Item[]>("slider").length;
+    const progressPercentage = ((this.getComponentState("active-index") + 1) / sliderCount) * 100;
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("left")}>
-              <img src={leftImg} alt="" />
-              <div className={this.decorateCSS("text-content")}>
-                <div className={this.decorateCSS("tittle-wrapper")}>
-                  <div className={this.decorateCSS("top")}>
-                    <div>{topTxt}</div>
+          <ComposerSlider
+            {...settings}
+            ref={this.getComponentState("slider-ref")}
+            className={this.decorateCSS("slider-style")}
+          >
+            {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
+              <div className={this.decorateCSS("slider")} key={index}>
+                {item.cover_image && (
+                  <img className={this.decorateCSS("cover_image")} src={item.cover_image} alt="" />
+                )}
+                <div className={this.decorateCSS("card")}>
+                  <img src={item.image} alt={""} className={this.decorateCSS("image")} />
+                  <div className={this.decorateCSS("content")}>
+                    <div className={this.decorateCSS("text-content")}>
+                      <span className={this.decorateCSS("subtitle")}>{item.subtitle}</span>
+                      <span className={this.decorateCSS("title")}>{item.title}</span>
+                    </div>
+                    <div className={this.decorateCSS("pagination")}>
+                      <span className={this.decorateCSS("active-slide")}>
+                        {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
+                      </span>
+                      <div className={this.decorateCSS("progress-bar")}>
+                        <div
+                          className={this.decorateCSS("active")}
+                          style={{ width: `${progressPercentage}%` }}
+                        />
+                      </div>
+                      <span className={this.decorateCSS("slide-count")}>
+                        {sliderCount.toString().padStart(2, "0")}
+                      </span>
+                    </div>
                   </div>
-
-                  <div className={this.decorateCSS("middle")}>
-                    <div>{midTxt}</div>
-                  </div>
-
-                  <div className={this.decorateCSS("bottom")}>
-                    <div>{bottomTxt}</div>
+                  <div className={this.decorateCSS("description-div")}>
+                    <span className={this.decorateCSS("description_title")}>
+                      {item.description_title}
+                    </span>
+                    <span className={this.decorateCSS("item-description")}>{item.description}</span>
                   </div>
                 </div>
-
-                <div className={this.decorateCSS("text")}>{text}</div>
-
-                <ComposerLink path={buttonPath}>
-                  <span className={this.decorateCSS("action-button")}>
-                    {buttonText}
-                  </span>
+              </div>
+            ))}
+          </ComposerSlider>
+          <div className={this.decorateCSS("page-bottom")}>
+            <div className={this.decorateCSS("icons")}>
+              {this.getPropValue("icons").map((item: any) => (
+                <ComposerLink path={item.getPropValue("navigate")}>
+                  <span className={this.decorateCSS("name")}>{item.getPropValue("name")}</span>
                 </ComposerLink>
-              </div>
-              <div className={this.decorateCSS("side-text")}>
-                {leftSideText}
-              </div>
+              ))}
             </div>
-
-            <div className={this.decorateCSS("right")}>
-              <img src={rightImg} alt="" />
-
-              <div className={this.decorateCSS("side-text")}>
-                {rightSideText}
-              </div>
-            </div>
+            <ComposerIcon
+              name={this.getPropValue("prev_icon")}
+              propsIcon={{
+                className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow")} ${
+                  !this.getComponentState("display-none") && this.decorateCSS("un-visible")
+                }`,
+                onClick: () => {
+                  this.getComponentState("slider-ref").current.slickPrev();
+                },
+              }}
+            />
+            <ComposerIcon
+              name={this.getPropValue("next_icon")}
+              propsIcon={{
+                className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow")} ${
+                  !this.getComponentState("display-none") && this.decorateCSS("un-visible")
+                }`,
+                onClick: () => {
+                  this.getComponentState("slider-ref").current.slickNext();
+                },
+              }}
+            />
           </div>
         </div>
       </div>
