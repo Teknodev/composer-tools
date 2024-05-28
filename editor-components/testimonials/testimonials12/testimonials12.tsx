@@ -166,7 +166,6 @@ class Testimonials12Page extends Testimonials {
   }
 
   render() {
-    console.log(window.innerWidth)
     const settings = {
       infinite: true,
       speed: 700,

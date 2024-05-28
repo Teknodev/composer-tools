@@ -265,7 +265,6 @@ class Header12 extends BaseHeader {
         const settingFirst = {
             ...settings,
             beforeChange: (current: number, next: number) => {
-                console.log(next, current);
                 const currentIndex = parseInt(this.getComponentState("secondSliderIndex"));
                 if(
                     (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection1").length))
@@ -281,7 +280,6 @@ class Header12 extends BaseHeader {
         const settingSecond = {
             ...settings,
             beforeChange: (current: number, next: number) => {
-                console.log(next, current);
                 const currentIndex = parseInt(this.getComponentState("firstSliderIndex"));
                 if(
                     (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection2").length))
