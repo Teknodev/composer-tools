@@ -344,11 +344,9 @@ class Testimonials9Page extends Testimonials {
                     <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}
                       key={index}
                     >
-                      <img
-                        alt=""
-                        src={item.image}
-                        className={this.decorateCSS("img")}
-                      />
+                      {item.image && (
+                      <img alt="" src={item.image} className={this.decorateCSS("img")} />
+                      )}
                       <div className={this.decorateCSS("text")}>
                         <span className={this.decorateCSS("title")}>{item.title}</span>
                         <span className={this.decorateCSS("subtitle")}>{item.subtitle}</span>
