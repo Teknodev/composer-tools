@@ -31,8 +31,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         color: var(--composer-font-color-primary);
         padding: 0 0 18px 0;
 
+        .title {
+          margin: 0px;
+          text-align: center;
+          color: var(--composer-primary-color);
+        }
+
         .subtitle {
-          width: max-content;
+          text-align: center;
           color: var(--composer-primary-color);
           font-size: 30px;
           display: flex;
@@ -40,16 +46,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           letter-spacing: 5px;
         }
 
-        .heading {
-          background: var(--composer-secondary-color);
-          height: 4px;
-          width: 5%;
-        }
-
         .description {
           font-size: 17px;
           color: var(--composer-font-color-primary);
           letter-spacing: 1px;
+          text-align: center;
         }
       }
 
@@ -164,28 +165,19 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 min-width: 100px;
                 border: 0px solid;
                 border-radius: 24px;
-                color: #fff;
                 cursor: pointer;
                 padding: 15px;
                 background: transparent;
                 transition: $transition;
                 opacity: 0.9;
                 border: 1px solid var(--composer-secondary-color);
-
+                background-color: var(--composer-secondary-color);
+                color: var(--composer-font-color-secondary);
 
                 &:hover {
                   background-color: transparent;
                   color: var(--composer-font-color-primary);
                 }
-              }
-
-              .primary {
-                background-color: var(--composer-secondary-color);
-              }
-
-              .secondary {
-                border: 1px solid rgb(200, 200, 200);
-                color: black;
               }
             }
           }
@@ -254,10 +246,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       }
 
       .page {
-        .heading {
-          position: relative;
-        }
-
         .title {
           width: 82%;
           position: relative;

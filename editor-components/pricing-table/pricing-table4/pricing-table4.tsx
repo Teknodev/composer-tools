@@ -1,9 +1,6 @@
 import * as React from "react";
 import styles from "./pricing-table4.module.scss";
-import {
-  BasePricingTable,
-  TypeUsableComponentProps,
-} from "../../EditorComponent";
+import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
@@ -14,7 +11,7 @@ type Pricing = {
   pricing: string;
   buttons: Array<Button>;
   isFocus: boolean;
-  icons:string;
+  icons: string;
 };
 
 type Button = {
@@ -29,16 +26,16 @@ class PricingMultiple extends BasePricingTable {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "SubTitle",
-      value: "Pricing Plans",
+      key: "title",
+      displayer: "Title",
+      value: "Featured Products",
     });
 
     this.addProp({
       type: "string",
-      key: "heading",
-      displayer: "Heading",
-      value: "",
+      key: "subtitle",
+      displayer: "SubTitle",
+      value: "Pricing Plans",
     });
 
     this.addProp({
@@ -102,7 +99,6 @@ class PricingMultiple extends BasePricingTable {
               key: "list",
               displayer: "List Items",
               value: [
-
                 {
                   type: "string",
                   key: "liText",
@@ -135,7 +131,7 @@ class PricingMultiple extends BasePricingTable {
                 },
               ],
             },
-           
+
             {
               type: "array",
               key: "buttons",
@@ -157,12 +153,6 @@ class PricingMultiple extends BasePricingTable {
                       key: "url",
                       displayer: "Button Link",
                       value: "",
-                    },
-                    {
-                      type: "boolean",
-                      key: "isPrimary",
-                      displayer: "Is primary",
-                      value: true,
                     },
                   ],
                 },
@@ -210,7 +200,6 @@ class PricingMultiple extends BasePricingTable {
               key: "list",
               displayer: "List Items",
               value: [
-              
                 {
                   type: "string",
                   key: "liText",
@@ -243,7 +232,7 @@ class PricingMultiple extends BasePricingTable {
                 },
               ],
             },
-           
+
             {
               type: "array",
               key: "buttons",
@@ -265,12 +254,6 @@ class PricingMultiple extends BasePricingTable {
                       key: "url",
                       displayer: "Button Link",
                       value: "",
-                    },
-                    {
-                      type: "boolean",
-                      key: "isPrimary",
-                      displayer: "Is primary",
-                      value: true,
                     },
                   ],
                 },
@@ -318,7 +301,6 @@ class PricingMultiple extends BasePricingTable {
               key: "list",
               displayer: "List Items",
               value: [
-              
                 {
                   type: "string",
                   key: "liText",
@@ -351,7 +333,7 @@ class PricingMultiple extends BasePricingTable {
                 },
               ],
             },
-           
+
             {
               type: "array",
               key: "buttons",
@@ -374,12 +356,6 @@ class PricingMultiple extends BasePricingTable {
                       displayer: "Button Link",
                       value: "",
                     },
-                    {
-                      type: "boolean",
-                      key: "isPrimary",
-                      displayer: "Is primary",
-                      value: true,
-                    },
                   ],
                 },
               ],
@@ -398,99 +374,66 @@ class PricingMultiple extends BasePricingTable {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("page-up")}>
-              <h1 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h1>
-              <h1 className={this.decorateCSS("heading")}>
-                {this.getPropValue("heading")}
-              </h1>
+              <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
+              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
               <h1 className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
               </h1>
             </div>
             <div className={this.decorateCSS("page-down")}>
-              {this.castToObject<Pricing[]>("cards").map(
-                (price: Pricing, indexCards: number) => {
-                  return (
+              {this.castToObject<Pricing[]>("cards").map((price: Pricing, indexCards: number) => {
+                return (
+                  <div
+                    key={indexCards}
+                    className={this.decorateCSS("all-card")}
+                    style={{
+                      width: 100 / this.getPropValue("itemCount") + "%",
+                    }}
+                  >
                     <div
-                      key={indexCards}
-                      className={this.decorateCSS("all-card")}
-                      style={{
-                        width: 100 / this.getPropValue("itemCount") + "%",
-                      }}
+                      className={`${this.decorateCSS("card")} ${
+                        price.isFocus && this.decorateCSS("focused")
+                      }`}
                     >
-                      <div
-                        className={`${this.decorateCSS("card")} ${
-                          price.isFocus && this.decorateCSS("focused")
-                        }`}
-                      >
-                        <div className={this.decorateCSS("card-up")}>
-                          <div className={this.decorateCSS("card-up-texts")}>
-                            <h1 className={this.decorateCSS("price-title1")}>
-                              {price.title1}
-                            </h1>
-                            <p className={this.decorateCSS("price-title2")}>
-                              {price.title2}
-                            </p>
-                            <h1 className={this.decorateCSS("price-pricing")}>
-                              {price.pricing}
-                            </h1>
-                          </div>
-                        </div>
-                        <div className={this.decorateCSS("card-middle")}>
-                          <ul className={this.decorateCSS("list-group")}>
-                            {price.list.map(
-                              (item: any, indexListGroup: number) => {
-                                return (
-                                  <li
-                                    key={indexListGroup}
-                                    className={this.decorateCSS("li")}
-                                  >
-                                    <div
-                                      className={this.decorateCSS(
-                                        "circle-icon"
-                                      )}
-                                    >
-                                      
-                                       <ComposerIcon name={price.icons} propsIcon={{ className: this.decorateCSS("icons") }} />
-                                      
-                                    </div>
-                                    {item.value}
-                                  </li>
-                                );
-                              }
-                            )}
-                          </ul>
-                        </div>
-                        <div className={this.decorateCSS("card-down")}>
-                          {price.buttons.map(
-                            (item: Button, indexButtons: number) => {
-                              return (
-                                <ComposerLink
-                                  key={indexButtons}
-                                  path={item.url}
-                                >
-                                  <button
-                                    className={
-                                      this.decorateCSS("button") +
-                                      " " +
-                                      (item.isPrimary
-                                        ? this.decorateCSS("primary")
-                                        : this.decorateCSS("secondary"))
-                                    }
-                                  >
-                                    {item.buttonText}
-                                  </button>
-                                </ComposerLink>
-                              );
-                            }
-                          )}
+                      <div className={this.decorateCSS("card-up")}>
+                        <div className={this.decorateCSS("card-up-texts")}>
+                          <h1 className={this.decorateCSS("price-title1")}>{price.title1}</h1>
+                          <p className={this.decorateCSS("price-title2")}>{price.title2}</p>
+                          <h1 className={this.decorateCSS("price-pricing")}>{price.pricing}</h1>
                         </div>
                       </div>
+                      <div className={this.decorateCSS("card-middle")}>
+                        <ul className={this.decorateCSS("list-group")}>
+                          {price.list.map((item: any, indexListGroup: number) => {
+                            return (
+                              <li key={indexListGroup} className={this.decorateCSS("li")}>
+                                <div className={this.decorateCSS("circle-icon")}>
+                                  <ComposerIcon
+                                    name={price.icons}
+                                    propsIcon={{ className: this.decorateCSS("icons") }}
+                                  />
+                                </div>
+                                {item.value}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                      <div className={this.decorateCSS("card-down")}>
+                        {price.buttons.map((item: Button, indexButtons: number) => {
+                          return (
+                            <ComposerLink key={indexButtons} path={item.url}>
+                              <button className={this.decorateCSS("button")}>
+                                {item.buttonText}
+                              </button>
+                            </ComposerLink>
+                          );
+                        })}
+                      </div>
                     </div>
-                  );
-                }
-              )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
