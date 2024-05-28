@@ -189,9 +189,6 @@ export abstract class Component
   }
 
   setCSSClasses(key: string, value: { id: string; class: string }[]) {
-    const componentPropsCopy = { ...this.state.componentProps };
-    const cssClassesCopy = { ...componentPropsCopy.cssClasses };
-    cssClassesCopy[key] = value;
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
