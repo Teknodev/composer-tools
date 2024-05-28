@@ -113,7 +113,7 @@ export abstract class Component
     return prop;
   }
 
-  getPropValue(propName: string, properties?: any): any {
+  getPropValue(propName: string, properties?: GetPropValueProperties): any {
     let prop = (properties?.parent_object?.filter(
       (prop: TypeUsableComponentProps) => prop.key === propName
     )[0] || this.getProp(propName));
