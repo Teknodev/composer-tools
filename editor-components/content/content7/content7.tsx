@@ -5,7 +5,10 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 interface Card {
   title: string;
-  button: IButton[];
+  button: {
+    buttonText: string;
+    link: string;
+  };
   next_icon: string;
   backgroundImage: string;
   foregroundImage: string;
@@ -13,11 +16,6 @@ interface Card {
   beforeText: string;
   afterText: string;
 }
-
-type IButton = {
-  value: string;
-};
-
 class Content7 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -160,9 +158,9 @@ class Content7 extends BaseContent {
                     <div className={this.decorateCSS("left-card")}>
                       <span className={this.decorateCSS("title")}>{card.title}</span>
                       <span className={this.decorateCSS("description")}>{card.description}</span>
-                      <ComposerLink href={card.button[1].value}>
+                      <ComposerLink path={card.button.link}>
                         <button className={this.decorateCSS("button")}>
-                          {card.button[0].value}
+                          {card.button.buttonText}
                           <ComposerIcon
                             name={card.next_icon}
                             propsIcon={{ className: this.decorateCSS("icon") }}
@@ -191,6 +189,9 @@ class Content7 extends BaseContent {
                             className={this.decorateCSS("slider")}
                             id={`slider-${indexCards}`}
                             onChange={(e) => this.handleSliderChange(e, indexCards)}
+                            onMouseDown={() => { console.log("onMouseDown") }}
+                            onMouseUp={() => { console.log("onMouseUp") }}
+
                           />
                           <div className={this.decorateCSS("text")}>
                             <div className={this.decorateCSS("before-text")}>

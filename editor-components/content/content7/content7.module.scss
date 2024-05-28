@@ -160,6 +160,12 @@
                   opacity: 1;
                 }
               }
+              &:has(.slider:active){
+                background: unset !important;
+                .text{
+                  opacity: 0;
+                }
+              }
 
               .slider {
                 position: absolute;
