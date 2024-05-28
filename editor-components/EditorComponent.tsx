@@ -5,6 +5,7 @@ import { EventEmitter } from "../EventEmitter";
 import sanitizeHtml from 'sanitize-html';
 
 type GetPropValueOptions = {
+  parent_object?: TypeUsableComponentProps[];
   as_string?: boolean;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
@@ -113,7 +114,9 @@ export abstract class Component
   }
 
   getPropValue(propName: string, options?: GetPropValueOptions): any {
-    let prop = this.getProp(propName);
+    let prop = (options?.parent_object?.filter(
+      (prop: TypeUsableComponentProps) => prop.key === propName
+    )[0] || this.getProp(propName));
     return prop?.type == "string" && !options?.as_string
       ? this.getPropValueAsElement(prop)
       : prop?.value;
@@ -150,11 +153,20 @@ export abstract class Component
       : this.state.componentProps.cssClasses;
   }
   addProp(prop: TypeUsableComponentProps) {
-    prop.value = (this._props && this._props[prop.key]) || prop.value;
-    prop.id = prop.key + "-" +Math.round(Math.random() * 1000000000).toString();
+    const attachPropId = (_prop: TypeUsableComponentProps) => {
+      if(_prop.type == "array" || _prop.type == "object"){
+        _prop.value = (_prop.value as TypeUsableComponentProps[]).map((v:TypeUsableComponentProps) => attachPropId(v));
+      }else{
+        _prop.id = _prop.key + "-" +Math.round(Math.random() * 1000000000).toString();
+      }
+      return _prop
+    }
+    prop = attachPropId(prop);
     prop = this.attachValueGetter(prop);
+
     this.state.componentProps.props.push(prop);
   }
+
   setProp(key: string, value: any): void {
     let i = this.state.componentProps.props.map((prop: any) => prop.key).indexOf(key);
 
@@ -200,16 +212,13 @@ export abstract class Component
   }
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
-    propValue["id"] = propValue["id"] || propValue.key + "-" +Math.round(Math.random() * 1000000000).toString();
     if (Array.isArray(propValue.value)) {
       propValue.value = propValue.value.filter((value) => value != null);
       propValue.value = propValue.value.map((propValueItem: TypeUsableComponentProps) => {
         if (Array.isArray(propValueItem.value)) {
           propValueItem = this.attachValueGetter(propValueItem);
           propValueItem["getPropValue"] = (propName: string) => {
-            return (propValueItem.value as TypeUsableComponentProps[]).filter(
-              (prop: TypeUsableComponentProps) => prop.key === propName
-            )[0].value;
+            return this.getPropValue(propName,{parent_object: propValueItem.value as TypeUsableComponentProps[]});
           };
         }
 
@@ -229,16 +238,25 @@ export abstract class Component
 
   private castingProcess(object: any) {
     let casted = object.value.map((propValue: any) => {
-      if (propValue.hasOwnProperty("getPropValue")) {
-        propValue.value.forEach((nestedObject: any, index: number) => {
-          propValue[nestedObject.key] = propValue.getPropValue(nestedObject.key);
+      let clonedPropValue = {...propValue};
+      if (clonedPropValue.hasOwnProperty("getPropValue")) {
+        clonedPropValue.value.forEach((nestedObject: any, index: number) => {
+          clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(nestedObject.key);
           if (nestedObject.hasOwnProperty("getPropValue")) {
-            propValue[nestedObject.key] = this.castingProcess(nestedObject);
+            clonedPropValue[nestedObject.key] = this.castingProcess(nestedObject);
           }
         });
+      }else{
+        clonedPropValue = {key: clonedPropValue.key, value: object.getPropValue(clonedPropValue.key)};
       }
-      return propValue;
+      return clonedPropValue;
     });
+
+    if(object.type == "object"){
+      let tmpCasted = [...casted];
+      casted = {};
+      tmpCasted.forEach((manipulatedValue) => casted[manipulatedValue.key] = manipulatedValue.value);
+    }
 
     return casted;
   }

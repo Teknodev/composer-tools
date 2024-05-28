@@ -1,228 +1,176 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  height: 100%;
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
   display: flex;
   align-items: center;
+  position: relative !important;
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-    overflow: hidden;
-    .wrapper {
-      display: flex;
-      flex-direction: row;
+    height: 100vh;
 
-      width: 100%;
-      height: 100vh;
+    .slider-style {
+      .slider {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: 1;
+        overflow: hidden;
 
+        .cover_image {
+          width: 100vw;
+          height: 100vh;
+          object-fit: cover;
+          z-index: 1;
+          position: relative;
+        }
 
-      .left{
-        position: relative;   
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        width: 100%;
-        height: 100%;
-
-    img {
-      height: 100%;
-      width: 100%;
-    }
-
-        .text-content {
-          --b: 15px;   /* thickness of the border */
-          --c: whitesmoke;   /* color of the border */
-          --w: 200px;  /* width of border */
-          
-        
-          border: var(--b) solid #0000; /* space for the border */
-          --_g: #0000 90deg,var(--c) 0;
-          --_p: var(--w) var(--w) border-box no-repeat;
-
-          background:
-            conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p),
-            conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);
-
-          width: 70%;
-          height: 80%;
-          position: absolute;
-          margin: 40px;
-          padding: 7%;
+        .card {
           display: flex;
           flex-direction: column;
-          gap: 10%;
-          .tittle-wrapper{
+          place-items: center;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0px;
+          justify-content: center;
+          z-index: 2;
+
+
+          .image {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+
+          }
+
+          .content {
             display: flex;
             flex-direction: column;
+            position: absolute;
+            top: 180px;
+            left: 335px;
+            gap: 35px;
 
-            .top {
+            .text-content {
               display: flex;
-              justify-content: flex-start;
-              margin: 0;
-              color: #afa9a9 !important;
-              font-size: 5rem;
+              flex-direction: column;
+              gap: 35px;
+
+              .subtitle {
+                font-size: 13px;
+                font-weight: bold;
+                color: var(--composer-font-color-primary);
+
+              }
+
+              .title {
+                font-size: 5.5rem;
+                font-weight: bold;
+                color: var(--composer-primary-color);
+              }
             }
 
-            .middle {
+            .pagination {
               display: flex;
-              justify-content: center;
-              margin: 0;
-              color: whitesmoke !important;
-              font-size: 10rem;
-            }
+              place-items: center;
+              gap: 10px;
+              color: var(--composer-font-color-primary);
 
-            .bottom {
-              display: flex;
-              justify-content: flex-end;
-              margin: 0;
-              color:#c4a34a !important;
-              font-size: 8rem;
+              .active-slide {
+                font-weight: bold;
+              }
+
+              .slide-count {
+                font-weight: bold;
+              }
             }
           }
-          .text {
-            font-size: 2rem;
+
+          .progress-bar {
+            max-width: 40px;
+            height: 2px;
+            background-color: rgb(204, 191, 191);
+            position: relative;
+            width: 100%;
+          }
+
+          .active {
+            height: 100%;
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+
+          .description-div {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: black;
             color: white;
-
+            width: 300px;
+            height: 150px;
+            padding: 30px;
+            position: absolute;
+            right: 300px;
+            bottom: 160px;
           }
-
-          .action-button {
-            border: none;
-            width: 220px;
-            font-size: 1.5rem;
-            padding: 15px;
-            background-color: whitesmoke;
-
-            &:hover{
-              background-color: #e2e0e0;
-        }
-          }
-
-        }
-
-        .side-text {
-          font-size: 2rem;
-          font-weight: bold;
-          position: relative;
-          right: 4%;
-          color: white;
-          writing-mode: vertical-rl;
-          /*text-orientation: sideways;*/
-          transform:scale(-1);
         }
       }
-
-      .right {
-        position: relative;   
-        flex:1;
-        width: 100%;
-        height: 100%;
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
     }
 
-        .side-text {
-          color: black;
-          position: relative;
-          bottom: 65%;
-          writing-mode: vertical-rl;
-          /*text-orientation: sideways;*/
-          transform:scale(-1);
-          font-size: 2rem;
+    .page-bottom {
+      bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      place-items: center;
+      position: relative;
+    }
 
-        }
-      }
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--composer-font-color-primary);
+    }
+
+    .prev-icon {
+      left: 20px;
+      position: absolute;
+      font-size: 40px;
+    }
+
+    .next-icon {
+      right: 20px;
+      position: absolute;
+      font-size: 40px;
     }
   }
 }
-
 
 @media only screen and (max-width: 768px) {
   .container {
-
     .max-content {
-      .wrapper {
-        flex-direction: column;
-  
-        .left{
-
-      img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        object-fit: fill;
-      }
-  
-          .text-content {
-
-
-            --b: 5px;   /* thickness of the border */
-            --c: whitesmoke;   /* color of the border */
-            --w: 150px;  /* width of border */
-            
-          
-            border: var(--b) solid #0000; /* space for the border */
-            --_g: #0000 90deg,var(--c) 0;
-            --_p: var(--w) var(--w) border-box no-repeat;
-  
-            background:
-              conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p),
-              conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);
-
-              height: 75%;
-  
-            .tittle-wrapper{
-
-  
-              .top {
-                font-size: 3rem;
-              }
-  
-              .middle {
-                font-size: 4rem;
-
-              }
-  
-              .bottom {
-                font-size: 2.5rem;
-
-              }
-            }
-            .text {
-              font-size: 1.5rem;
-
-            }
-  
-            .action-button {
-              font-size: 1rem;
-              padding: 8px;
-            }
-  
+      .slider-style {
+        .slider {
+          .image {
+            width: 450px;
+            height: 450px;
           }
-  
-          .side-text {
-            position: absolute;
-            left: 1px;
+
+          .content {
+            left: 30px !important;
           }
-        }
-  
-        .right {
-  
-      img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        object-fit: cover;
-      }
-          .side-text {
-            top: 20%;
+
+          .description-div {
+            right: 30px !important;
           }
         }
       }
@@ -230,73 +178,56 @@
   }
 }
 
-
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 400px) {
   .container {
-
     .max-content {
-      .wrapper {
-  
-        .left{
+      .slider-style {
+        .slider {
+          .card {
+            .image {
+              width: 300px;
+              height: 300px;
+              position: relative;
+              top: -75px;
 
-      img {
-      }
-  
-          .text-content {
+            }
 
+            .content {
+              .text-content {
+                position: relative;
+                top: -140px;
+                gap: 5px;
 
-            --b: 2px;   /* thickness of the border */
-            --c: whitesmoke;   /* color of the border */
-            --w: 100px;  /* width of border */
-            
-          
-            border: var(--b) solid #0000; /* space for the border */
-            --_g: #0000 90deg,var(--c) 0;
-            --_p: var(--w) var(--w) border-box no-repeat;
-  
-            background:
-              conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--_g)) 0    0    / var(--_p),
-              conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--_g)) 100% 100% / var(--_p);
-
-  
-            .tittle-wrapper{
-
-  
-              .top {
-              font-size: 2.5rem;
-
+                .title {
+                  font-size: 3rem;
+                }
               }
-  
-              .middle {
-                font-size: 3rem;
 
-              }
-  
-              .bottom {
-                font-size: 2rem;
-
+              .pagination {
+                position: relative;
+                bottom: -325px;
+                left: 100px;
               }
             }
-            .text {
-              font-size: 1rem;
+
+            .description-div {
+              bottom: 100px;
+              left: 25px;
+
             }
-  
-            .action-button {
-            }
-  
-          }
-  
-          .side-text {
           }
         }
-  
-        .right {
-  
-      img {
       }
-          .side-text {
-          }
-        }
+    }
+
+    .page-bottom {
+
+      .prev-icon {
+        font-size: 30px;
+      }
+
+      .next-icon {
+        font-size: 30px;
       }
     }
   }
