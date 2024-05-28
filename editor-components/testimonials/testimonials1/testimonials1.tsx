@@ -7,24 +7,24 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 class Testimonials1Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
-   
- this.addProp({
+
+    this.addProp({
       type: "image",
       key: "right-image",
       displayer: "Right Image",
-      value: "https://craftohtml.themezaa.com/images/demo-restaurant-home-08.jpg"
+      value: "https://craftohtml.themezaa.com/images/demo-restaurant-home-08.jpg",
     });
     this.addProp({
       type: "color",
       key: "color",
-      displayer: "Background Color of Navbar",
-      value: "rgb(253, 246, 242);"
-  });
+      displayer: "Background Color of Component",
+      value: "#faf6f3",
+    });
     this.addProp({
       type: "image",
       key: "left-image",
       displayer: "Left Image",
-      value: "https://craftohtml.themezaa.com/images/demo-restaurant-home-07.jpg"
+      value: "https://craftohtml.themezaa.com/images/demo-restaurant-home-07.jpg",
     });
 
     this.addProp({
@@ -169,9 +169,7 @@ class Testimonials1Page extends Testimonials {
         },
       ],
     });
-    
 
-    
     this.setComponentState("active_index", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
@@ -181,77 +179,73 @@ class Testimonials1Page extends Testimonials {
   }
 
   onImageClick(itemIndex: number) {
-    this.setComponentState("active_index", itemIndex)
-    this.getComponentState("slider-ref").current.slickGoTo(itemIndex)
+    this.setComponentState("active_index", itemIndex);
+    this.getComponentState("slider-ref").current.slickGoTo(itemIndex);
   }
-  
+
   render() {
     const settings = {
       dots: false,
       infinite: true,
-      arrows:false,
+      arrows: false,
       speed: 500,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       beforeChange: (oldIndex: number, nextIndex: number) => {
-        this.setComponentState("active_index", nextIndex)
-      }
+        this.setComponentState("active_index", nextIndex);
+      },
     };
-    const styling = {
-      backgroundColor: `${this.getPropValue("color")}`,
-    };
+
     return (
-      <div className={this.decorateCSS("container")} style={{backgroundColor: this.getPropValue("color")}}>
-        
-        <div className={this.decorateCSS("max-content")}>    
-        <div className={this.decorateCSS("left")}>
-              <img
-                className={this.decorateCSS("food-image")}
-                src={this.getPropValue("left-image")}
-                alt=""
-              />
-            </div>
-          <div className={this.decorateCSS("testimonials1")}>
-          <ComposerSlider
-            {...settings}
-            ref={this.getComponentState("slider-ref")}
-          >
-              {this.getPropValue("items").map((item: any, index: number) => (
-                  <div className={this.decorateCSS("items")}>       
-                           <ComposerIcon name={item.value[2].value}
-                       propsIcon={{ className: this.decorateCSS("icons") }} 
-                     />                 
-                    <h1 className={this.decorateCSS("longtext")}>
-                      {item.value[0].value}
-                    </h1>
-                    <h3 className={this.decorateCSS("name")}>
-                      {item.value[1].value}
-                    </h3>                           
-                  </div>
-                ))}
-          </ComposerSlider>
-          <div className={this.decorateCSS("images")}>
-                {this.getPropValue("items").map((item: any, itemIndex: number) => {
-
-                  const imageSrc = item.getPropValue("button")[0].value;
-
-                  return <img
-                    src={imageSrc}
-                    className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") == itemIndex && this.decorateCSS("active")}`}
-                    onClick={() => this.onImageClick(itemIndex)} />
-                }
-                )}
-              </div>
-            
+      <div
+        className={this.decorateCSS("container")}
+        style={{ background: this.getPropValue("color") }}
+      >
+        <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("left")}>
+            <img
+              className={this.decorateCSS("food-image")}
+              src={this.getPropValue("left-image")}
+              alt=""
+            />
           </div>
-            <div className={this.decorateCSS("right")}>
-              <img
-                className={this.decorateCSS("food-image")}
-                src={this.getPropValue("right-image")}
-                alt=""
-              />
+          <div className={this.decorateCSS("testimonials1")}>
+            <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
+              {this.castToObject<any>("items").map((item: any, index: number) => (
+                <div className={this.decorateCSS("items")}>
+                  <ComposerIcon
+                    name={item.icons}
+                    propsIcon={{ className: this.decorateCSS("icons") }}
+                  />
+                  <h1 className={this.decorateCSS("longtext")}>{item.longtext}</h1>
+                  <h3 className={this.decorateCSS("name")}>{item.name}</h3>
+                </div>
+              ))}
+            </ComposerSlider>
+            <div className={this.decorateCSS("images")}>
+              {this.castToObject<any>("items").map((item: any, itemIndex: number) => {
+                const isActive = this.getComponentState("active_index") === itemIndex;
+                return (
+                  <img
+                    src={item.button["image-button"]}
+                    className={`${this.decorateCSS("image")} ${
+                      isActive && this.decorateCSS("active")
+                    }`}
+                    alt="avatar"
+                    onClick={() => this.onImageClick(itemIndex)}
+                  />
+                );
+              })}
             </div>
+          </div>
+          <div className={this.decorateCSS("right")}>
+            <img
+              className={this.decorateCSS("food-image")}
+              src={this.getPropValue("right-image")}
+              alt=""
+            />
+          </div>
         </div>
       </div>
     );
