@@ -140,7 +140,7 @@ export abstract class Component
     
     const SanitizeHTML = ({ html, options }: any) => (
       //@ts-ignore
-      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "inherit"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
+      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
     );
     
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
