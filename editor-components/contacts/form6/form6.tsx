@@ -493,10 +493,10 @@ class Form6 extends BaseContacts {
                               {inputObj.getPropValue("type") == "Text Area" ?
                                 <textarea
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder")} rows={12} onChange={handleChange}
+                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder",{ as_string: true })} rows={12} onChange={handleChange}
                                   name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}></textarea> :
                                 <input
-                                  placeholder={inputObj.getPropValue("placeholder")}
+                                  placeholder={inputObj.getPropValue("placeholder",{ as_string: true })}
                                   type={getInputType(inputObj.getPropValue("type"))}
                                   onChange={handleChange}
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
