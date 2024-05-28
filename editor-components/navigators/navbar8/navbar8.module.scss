@@ -16,16 +16,30 @@
         top: 0;
         left: 0;
         z-index: 2;
-        background: transparent !important;
+        background: transparent;
     }
     &.active {
-        background-color: var(--composer-html-background) !important;
+        background-color: var(--composer-html-background);
+        .max-content {
+            .bar {
+                .middle {
+                    .title,
+                    .subtitle {
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+            .navbar {
+                .hamburger-icon {
+                    color: var(--composer-font-color-primary);
+                }
+            }
+        }
     }
 
     .max-content {
         width: 100%;
         position: relative;
-
 
         .bar {
             display: flex;
@@ -34,7 +48,7 @@
             .image-box {
                 .image {
                     width: unset;
-                    height: 60px !important;
+                    height: 60px;
                     object-fit: contain;
                 }
             }
@@ -45,8 +59,15 @@
                 .title {
                     font-size: 3.5rem;
                     letter-spacing: 15px;
-                    color: var(--composer-primary-color);
+                    color: var(--composer-font-color-primary);
                     white-space: nowrap;
+                }
+
+                .active-title {
+                    content: "";
+                }
+                .active-subtitle {
+                    content: "";
                 }
 
                 .subtitle {
@@ -66,6 +87,10 @@
                 .hamburger-icon {
                     font-size: 40px;
                 }
+
+                .active-hamburger-icon {
+                    content: "";
+                }
             }
             .image-box,
             .middle,
@@ -78,7 +103,7 @@
             position: absolute;
             width: 100vw;
             left: -40px;
-            background-color: black;
+            background-color: var(--composer-html-background);
             display: flex;
             padding-top: 60px;
             opacity: 0;
@@ -100,18 +125,18 @@
             .left-page {
                 width: 50%;
                 text-align: -webkit-center;
-                border-right: 2px solid var(--composer-tertiary-color);
+                border-right: 2px solid var(--composer-font-color-primary);
 
                 .title1 {
                     text-align: center;
                     font-size: 25px;
                     letter-spacing: 5px;
                     padding-bottom: 50px;
-                    color: var(--composer-primary-color);
+                    color: var(--composer-font-color-primary);
                 }
 
                 .stick {
-                    border: 1px solid var(--composer-tertiary-color);
+                    border: 1px solid var(--composer-font-color-primary);
                     width: 85px;
                     margin-bottom: 80px;
                 }
@@ -120,7 +145,7 @@
                     display: flex;
                     text-align: left;
                     width: 57%;
-                    font-size: 16px;
+                    font-size: 18px;
                     color: var(--composer-font-color-primary);
                     word-spacing: 2px;
                 }
@@ -178,7 +203,7 @@
                 .image-box {
                     .image {
                         width: unset;
-                        height: 30px !important;
+                        height: 30px;
                         object-fit: contain;
                     }
                 }
@@ -190,7 +215,7 @@
                     }
 
                     .subtitle {
-                        font-size: 0.7rem !important;
+                        font-size: 0.7rem;
                     }
                 }
 
@@ -203,7 +228,7 @@
 
             .down-page {
                 left: -10px;
-                
+
                 .left-page {
                     width: 100%;
                     place-content: center;
