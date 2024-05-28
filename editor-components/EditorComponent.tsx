@@ -4,7 +4,7 @@ import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
 import sanitizeHtml from 'sanitize-html';
 
-type GetPropValueOptions = {
+type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
   as_string?: boolean;
 };
@@ -13,7 +13,7 @@ export type iComponent = {
   render(): any;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
-  getPropValue(propName: string, options?: GetPropValueOptions): TypeUsableComponentProps;
+  getPropValue(propName: string, properties?: GetPropValueProperties): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
@@ -48,7 +48,7 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[] };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string) => any;
+    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
   };
 
 export enum CATEGORIES {
@@ -113,11 +113,13 @@ export abstract class Component
     return prop;
   }
 
-  getPropValue(propName: string, options?: GetPropValueOptions): any {
-    let prop = (options?.parent_object?.filter(
+  getPropValue(propName: string, properties?: any): any {
+    let prop = (properties?.parent_object?.filter(
       (prop: TypeUsableComponentProps) => prop.key === propName
     )[0] || this.getProp(propName));
-    return prop?.type == "string" && !options?.as_string
+
+    
+    return prop?.type == "string" && !properties?.as_string
       ? this.getPropValueAsElement(prop)
       : prop?.value;
   }
@@ -138,7 +140,7 @@ export abstract class Component
     
     const SanitizeHTML = ({ html, options }: any) => (
       //@ts-ignore
-      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
+      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "inherit"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
     );
     
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
@@ -214,8 +216,10 @@ export abstract class Component
       propValue.value = propValue.value.map((propValueItem: TypeUsableComponentProps) => {
         if (Array.isArray(propValueItem.value)) {
           propValueItem = this.attachValueGetter(propValueItem);
-          propValueItem["getPropValue"] = (propName: string) => {
-            return this.getPropValue(propName,{parent_object: propValueItem.value as TypeUsableComponentProps[]});
+          propValueItem["getPropValue"] = (propName: string, properties?: GetPropValueProperties) => {
+            if(!properties) properties = {};
+            properties.parent_object = propValueItem.value as TypeUsableComponentProps[];
+            return this.getPropValue(propName, properties);
           };
         }
 
