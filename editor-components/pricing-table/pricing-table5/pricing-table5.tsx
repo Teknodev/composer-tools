@@ -5,11 +5,9 @@ import { BasePricingTable } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class PricingTable5 extends BasePricingTable {
-  
-    
-    constructor(props?: any) {
-      super(props, styles);
-      this.setComponentState("activePlan",0)
+  constructor(props?: any) {
+    super(props, styles);
+    this.setComponentState("activePlan", 0);
 
     this.addProp({
       type: "string",
@@ -28,7 +26,8 @@ class PricingTable5 extends BasePricingTable {
       type: "string",
       key: "description",
       displayer: "Description ",
-      value: "We are excited for our work and how it positively impacts clients. With over 12 years of experience we have been constantly providing excellent solutions.",
+      value:
+        "We are excited for our work and how it positively impacts clients. With over 12 years of experience we have been constantly providing excellent solutions.",
     });
     this.addProp({
       type: "array",
@@ -52,17 +51,23 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Button Link",
               value: "https://craftohtml.themezaa.com/demo-business-pricing.html",
             },
-          ]
-        }
-      ]
-    })
+          ],
+        },
+      ],
+    });
 
     this.addProp({
       type: "icon",
-      key: "downIcon",
-      displayer: "Down Icons",
+      key: "moreIcon",
+      displayer: "More Icon",
       value: "FaAngleDown",
+    });
 
+    this.addProp({
+      type: "icon",
+      key: "lessIcon",
+      displayer: "Less Icon",
+      value: "FaAngleUp",
     });
 
     this.addProp({
@@ -97,7 +102,7 @@ class PricingTable5 extends BasePricingTable {
               type: "string",
               key: "priceDescription",
               displayer: "Price Description",
-              value: " / Monthly"
+              value: " / Monthly",
             },
             {
               type: "string",
@@ -140,7 +145,7 @@ class PricingTable5 extends BasePricingTable {
               type: "string",
               key: "priceDescription",
               displayer: "Price Description",
-              value: " / Monthly"
+              value: " / Monthly",
             },
             {
               type: "string",
@@ -178,13 +183,12 @@ class PricingTable5 extends BasePricingTable {
               key: "price",
               displayer: "Price",
               value: "$39.99",
-              
             },
             {
               type: "string",
               key: "priceDescription",
               displayer: "Price Description",
-              value: " / Monthly"
+              value: " / Monthly",
             },
             {
               type: "string",
@@ -202,7 +206,6 @@ class PricingTable5 extends BasePricingTable {
         },
       ],
     });
-
   }
 
   getName(): string {
@@ -210,70 +213,90 @@ class PricingTable5 extends BasePricingTable {
   }
 
   onPlanClicked(index: number) {
-    
-    this.setComponentState("activePlan", index === this.getComponentState("activePlan") ? null : index);
+    this.setComponentState(
+      "activePlan",
+      index === this.getComponentState("activePlan") ? null : index
+    );
   }
 
   render(): React.ReactNode {
+    const subTitle = this.getPropValue("subtitle", {as_string: true});
+    const title = this.getPropValue("title", {as_string: true});
+    const description = this.getPropValue("description", {as_string: true});
+    const buttons = this.getPropValue("buttons");
+    const showLeftContent = subTitle || title || description || !!buttons.length;
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("left-content")}>
-              <h6 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h6>
-              <h2 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h2>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-
+            {showLeftContent && <div className={this.decorateCSS("left-content")}>
+              <h6 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h6>
+              <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
+              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
               <div className={this.decorateCSS("buttons")}>
-                {this.getPropValue("buttons").map((button: any) =>
+                {buttons?.map((button: any) => (
                   <ComposerLink path={button.getPropValue("url")}>
                     <div className={this.decorateCSS("button-box")}>
-                      <span className={this.decorateCSS("button-text")}>{button.getPropValue("buttonText")}</span>
+                      <span className={this.decorateCSS("button-text")}>
+                        {button.getPropValue("buttonText")}
+                      </span>
                     </div>
                   </ComposerLink>
-                )}
+                ))}
               </div>
-
-            </div>
-
+            </div>}
             <div className={this.decorateCSS("right-content")}>
-              {this.getPropValue("plans").map((plan: any, index: number) =>
-                <div className={`${this.decorateCSS("plan")} ${index === this.getComponentState("activePlan") ? this.decorateCSS("active") : ""}`} onClick={() => this.onPlanClicked(index)}>
-                  <div className={this.decorateCSS("plan-upper")}>
-                    <span className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</span>
-                    <div className={this.decorateCSS("icon-box")}>
-                      <ComposerIcon name={this.getPropValue("downIcon")} />
-                    </div>
-                  </div>
-
-                  <span className={this.decorateCSS("plan-description")}>{plan.getPropValue("description")}</span>
-                  <div className={this.decorateCSS("plan-price-box")}>
-                    <div className={this.decorateCSS("labels")}>
-                      <span className={this.decorateCSS("price")}>{plan.getPropValue("price")}</span>
-                      <span className={this.decorateCSS("price-description")}>{plan.getPropValue("priceDescription")}</span>
-                    </div>
-
-                    <ComposerLink path={plan.getPropValue("link")}>
-                      <div className={this.decorateCSS("plan-button")}>
-                        <span className={this.decorateCSS("plan-button-text")}>{plan.getPropValue("buttonText")}</span>
+              {this.getPropValue("plans").map((plan: any, index: number) => {
+                const isActive = index === this.getComponentState("activePlan");
+                return (
+                  <div
+                    className={`${this.decorateCSS("plan")} ${
+                      isActive ? this.decorateCSS("active") : ""
+                    }`}
+                    onClick={() => this.onPlanClicked(index)}
+                  >
+                    <div className={this.decorateCSS("plan-upper")}>
+                      <span className={this.decorateCSS("plan-title")}>
+                        {plan.getPropValue("planTitle")}
+                      </span>
+                      <div className={this.decorateCSS("icon-box")}>
+                        <ComposerIcon
+                          name={this.getPropValue(isActive ? "lessIcon" : "moreIcon")}
+                        />
                       </div>
-                    </ComposerLink>
+                    </div>
+
+                    <span className={this.decorateCSS("plan-description")}>
+                      {plan.getPropValue("description")}
+                    </span>
+                    <div className={this.decorateCSS("plan-price-box")}>
+                      <div className={this.decorateCSS("labels")}>
+                        <span className={this.decorateCSS("price")}>
+                          {plan.getPropValue("price")}
+                        </span>
+                        <span className={this.decorateCSS("price-description")}>
+                          {plan.getPropValue("priceDescription")}
+                        </span>
+                      </div>
+
+                      <ComposerLink path={plan.getPropValue("link")}>
+                        <div className={this.decorateCSS("plan-button")}>
+                          <span className={this.decorateCSS("plan-button-text")}>
+                            {plan.getPropValue("buttonText")}
+                          </span>
+                        </div>
+                      </ComposerLink>
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
     );
+  }
 }
-}
-
 
 export default PricingTable5;
