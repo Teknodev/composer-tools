@@ -214,9 +214,9 @@ class Content11 extends BaseContent {
             </div>}
             <div className={this.decorateCSS("content-right")}>
               {this.castToObject<Array<{ title: string, description: string }>>("items").map(item =>
-                <div>
+                <div className={this.decorateCSS("item")}>
                   <h2 className={this.decorateCSS("title")}>{item.title}</h2>
-                  <span className={this.decorateCSS("description")}>{item.description}</span>
+                  <p className={this.decorateCSS("description")}>{item.description}</p>
                 </div>
               )}
             </div>
