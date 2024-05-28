@@ -228,7 +228,6 @@ class Team11 extends Team {
     return "Team 11";
   }
   render() {
-    console.log(this.castToObject<Card[]>("team-members"));
     
     return (
       <div className={this.decorateCSS("container")}>
