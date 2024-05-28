@@ -89,8 +89,7 @@ class Team9 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://dt-dots.myshopify.com/cdn/shop/files/t1.png?v=1684321024&width=1500",
+          value: "https://dt-dots.myshopify.com/cdn/shop/files/t1.png?v=1684321024&width=1500",
         },
         {
           type: "string",
@@ -145,8 +144,7 @@ class Team9 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://dt-dots.myshopify.com/cdn/shop/files/t3.png?v=1684321143&width=1500",
+          value: "https://dt-dots.myshopify.com/cdn/shop/files/t3.png?v=1684321143&width=1500",
         },
         {
           type: "string",
@@ -173,8 +171,7 @@ class Team9 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://dt-dots.myshopify.com/cdn/shop/files/t4.png?v=1684321162&width=1500",
+          value: "https://dt-dots.myshopify.com/cdn/shop/files/t4.png?v=1684321162&width=1500",
         },
         {
           type: "string",
@@ -223,7 +220,7 @@ class Team9 extends Team {
     const settings = {
       dots: false,
       infinite: true,
-      arrows:false,
+      arrows: false,
       speed: 500,
       autoplay: false,
       autoplaySpeed: 3000,
@@ -234,90 +231,65 @@ class Team9 extends Team {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("basic-page")}>
             <div className={this.decorateCSS("up-page")}>
-              <h1 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             </div>
             <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("team-members").map(
-                (item: Card, indexCard: number) => {
-                  return (
-                    <div
-                      key={indexCard}
-                      style={{ width: 90 / this.getPropValue("reverse") + "%" }}
-                      className={this.decorateCSS("card")}
-                    >
-                      <img
-                        className={this.decorateCSS("person-image")}
-                        src={item.image}
-                        alt=""
-                      />
-                      <div className={this.decorateCSS("person-info")}>
-                        <div className={this.decorateCSS("text-group")}>
-                          <h1 className={this.decorateCSS("item-name")}>
-                            {item.name}
-                          </h1>
-                        </div>
-                        <div className={this.decorateCSS("icons-bar")}>
-                          {item.icons &&
-                            item.icons.map(
-                              (card: Icons, indexIcons: number) => (
-                                <ComposerLink key={indexIcons} path={card.url}>
-                                  <ComposerIcon
-                                    name={card.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon"),
-                                    }}
-                                  />
-                                </ComposerLink>
-                              )
-                            )}
-                        </div>
+              {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
+                return (
+                  <div
+                    key={indexCard}
+                    style={{ width: 90 / this.getPropValue("reverse") + "%" }}
+                    className={this.decorateCSS("card")}
+                  >
+                    <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
+                    <div className={this.decorateCSS("person-info")}>
+                      <div className={this.decorateCSS("text-group")}>
+                        <h1 className={this.decorateCSS("item-name")}>{item.name}</h1>
+                      </div>
+                      <div className={this.decorateCSS("icons-bar")}>
+                        {item.icons &&
+                          item.icons.map((card: Icons, indexIcons: number) => (
+                            <ComposerLink key={indexIcons} path={card.url}>
+                              <ComposerIcon
+                                name={card.icon}
+                                propsIcon={{
+                                  className: this.decorateCSS("icon"),
+                                }}
+                              />
+                            </ComposerLink>
+                          ))}
                       </div>
                     </div>
-                  );
-                }
-              )}
+                  </div>
+                );
+              })}
             </div>
-            <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("slider")}
-            >
-              {this.castToObject<Card[]>("team-members").map(
-                (item: Card, indexCard: number) => {
-                  return (
-                    <div key={indexCard} className={this.decorateCSS("card")}>
-                      <img
-                        className={this.decorateCSS("person-image")}
-                        src={item.image}
-                        alt=""
-                      />
-                      <div className={this.decorateCSS("person-info")}>
-                        <div className={this.decorateCSS("text-group")}>
-                          <h1 className={this.decorateCSS("item-name")}>
-                            {item.name}
-                          </h1>
-                        </div>
-                        <div className={this.decorateCSS("icons-bar")}>
-                          {item.icons &&
-                            item.icons.map(
-                              (card: Icons, indexIcons: number) => (
-                                <ComposerLink key={indexIcons} path={card.url}>
-                                  <ComposerIcon
-                                    name={card.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon"),
-                                    }}
-                                  />
-                                </ComposerLink>
-                              )
-                            )}
-                        </div>
+            <ComposerSlider {...settings} className={this.decorateCSS("slider")}>
+              {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
+                return (
+                  <div key={indexCard} className={this.decorateCSS("card")}>
+                    <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
+                    <div className={this.decorateCSS("person-info")}>
+                      <div className={this.decorateCSS("text-group")}>
+                        <h1 className={this.decorateCSS("item-name")}>{item.name}</h1>
+                      </div>
+                      <div className={this.decorateCSS("icons-bar")}>
+                        {item.icons &&
+                          item.icons.map((card: Icons, indexIcons: number) => (
+                            <ComposerLink key={indexIcons} path={card.url}>
+                              <ComposerIcon
+                                name={card.icon}
+                                propsIcon={{
+                                  className: this.decorateCSS("icon"),
+                                }}
+                              />
+                            </ComposerLink>
+                          ))}
                       </div>
                     </div>
-                  );
-                }
-              )}
+                  </div>
+                );
+              })}
             </ComposerSlider>
           </div>
         </div>

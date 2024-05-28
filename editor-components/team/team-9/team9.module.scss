@@ -1,244 +1,160 @@
 .container {
-    width: 100%;
-    padding: 50px 20px;
+  width: 100%;
+  padding: 50px 20px;
 
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
 
-        .basic-page {
+    .basic-page {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .up-page {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+
+        .title {
+          font-size: 6.9rem;
+          margin: unset;
+          text-align: center;
+          color: transparent;
+          -webkit-text-stroke: 1px var(--composer-primary-color);
+          letter-spacing: 3px;
+        }
+      }
+      .down-page,
+      .slider {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        .card {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          flex-direction: column-reverse;
+          .person-image {
+            position: relative;
+            height: 350px;
+            min-height: 350px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            transition: 0.4s;
+          }
+          .person-image:hover {
+            border-radius: 40%;
+            transition: 0.4s;
+          }
+          .person-info {
             width: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-direction: column-reverse;
             align-items: center;
-
-            .up-page {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 40px;
-
-                .title {
-                    font-size: 6.9rem;
-                    margin: unset;
-                    text-align: center;
-                    color: transparent;
-                    -webkit-text-stroke: 1px var(--composer-primary-color);
-                    letter-spacing: 3px;
-
-                }
+            bottom: 0;
+            border-radius: 6px;
+            opacity: 0.8;
+            padding: 15px 15px;
+            height: 180px;
+            .text-group {
+              padding: 15px 0;
+              background-color: var(--composer-html-background);
+              z-index: 2;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              transition: margin-bottom 1s, border-bottom 1s, padding-bottom 1s;
+              .item-name {
+                margin: unset;
+                font-size: 1.6rem;
+                color: var(--composer-font-color-primary);
+              }
             }
-            .slider {
-                display: none !important;
+            .icons-bar {
+              transition: 0.7s;
+              display: flex;
+              flex-direction: row;
+              gap: 13px;
+              width: 100%;
+              margin-bottom: -55px;
+              .icon {
+                font-size: 40px;
+                color: var(--composer-font-color-primary);
+                border-radius: 50%;
+                border: 1px solid var(--composer-secondary-color);
+                padding: 10px;
+              }
             }
-            .down-page,
-            .slider {
-                width: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-                .card {
-                    display: flex;
-                    justify-content: center;
-                    position: relative;
-                    flex-direction: column-reverse;
-                    .person-image {
-                        position: relative;
-                        height: 350px;
-                        min-height: 350px;
-                        width: 100%;
-                        object-fit: cover;
-                        border-radius: 6px;
-                        transition: 0.4s;
-                    }
-                    .person-image:hover {
-                        border-radius: 40%;
-                        transition: 0.4s;
-                    }
-                    .person-info {
-                        width: 100%;
-                        display: flex;
-                        flex-direction: column-reverse;
-                        align-items: center;
-                        bottom: 0;
-                        border-radius: 6px;
-                        opacity: 0.8;
-                        padding: 15px 15px;
-                        height: 180px;
-                        .text-group {
-                            padding: 15px 0;
-                            background-color: var(--composer-html-background);
-                            z-index: 2;
-                            width: 100%;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            transition: margin-bottom 1s, border-bottom 1s, padding-bottom 1s;
-                            .item-name {
-                                margin: unset;
-                                font-size: 1.6rem;
-                                color: var(--composer-font-color-primary);
-                            }
-                        }
-                        .icons-bar {
-                            transition: 0.7s;
-                            display: flex;
-                            flex-direction: row;
-                            gap: 13px;
-                            width: 100%;
-                            margin-bottom: -55px;
-                            .icon {
-                                font-size: 40px;
-                                color: var(--composer-font-color-primary);
-                                border-radius: 50%;
-                                border: 1px solid var(--composer-secondary-color) ;
-                                padding: 10px;
-                            }
-                        }
-                    }
-                    &:hover {
-                        .icons-bar {
-                            margin-bottom: 0px;
-                        }
-                    }
-                }
-                :nth-child(2n) {
-                    flex-direction: column;
-                }
+          }
+          &:hover {
+            .icons-bar {
+              margin-bottom: 0px;
             }
+          }
         }
+        :nth-child(2n) {
+          flex-direction: column;
+        }
+      }
+
+      .down-page{
+        display: flex;
+      }
+      .slider {
+        display: none;
+      }
     }
+  }
 }
 
-@media only screen and (max-width:768px) {
-    .container {
-        width: 100%;
-        padding: 50px 20px;
-
-        .max-content {
-            max-width: var(--composer-content-width);
-            margin: auto;
-
-            .basic-page {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                .up-page {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    margin-bottom: 40px;
-
-                    .title {
-                        font-size: 6.9rem;
-                        margin: unset;
-                        text-align: center;
-                        color: transparent;
-                        -webkit-text-stroke: 1px var(--composer-primary-color);
-                        letter-spacing: 3px;
-
-                    }
-                }
-
-                .slider {
-                    display: flex !important;
-                    width: 100%;
-                    gap: 10px !important;
-
-                    .card {
-                        padding: 0 10px 0 10px;
-                        display: flex !important;
-                        justify-content: center;
-                        position: relative;
-                        flex-direction: column;
-
-                        .person-image {
-                            position: relative;
-                            height: 350px;
-                            min-height: 350px;
-                            width: 100%;
-                            object-fit: cover;
-                            border-radius: 6px;
-                            transition: 0.4s;
-                        }
-                        .person-image:hover {
-                            border-radius: 40%;
-                            transition: 0.4s;
-                        }
-                        .person-info {
-                            width: 100%;
-                            display: flex;
-                            flex-direction: column-reverse;
-                            align-items: center;
-                            bottom: 0;
-                            border-radius: 6px;
-                            opacity: 0.8;
-                            padding: 15px 15px;
-                            height: 136px;
-                            .text-group {
-                                padding: 15px 0;
-                                background-color: var(--composer-html-background);
-                                z-index: 2;
-                                width: 100%;
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                transition: margin-bottom 1s, border-bottom 1s, padding-bottom 1s;
-                                .item-name {
-                                    margin: unset;
-                                    font-size: 1.6rem;
-                                    color: var(--composer-font-color-primary);
-
-                                }
-                            }
-                            .icons-bar {
-                                transition: 0.7s;
-                                display: flex;
-                                flex-direction: row;
-                                gap: 13px;
-                                width: 100%;
-                                margin-bottom: -55px;
-
-                                .icon {
-                                    font-size: 35px;
-                                    color: var(--composer-font-color-primary);
-                                    border-radius: 50%;
-                                    border: 1px solid var(--composer-secondary-color) ;
-                                    padding: 10px;
-                                }
-                            }
-                        }
-
-                        &:hover {
-                            .icons-bar {
-                                margin-bottom: 0px;
-
-                            }
-                        }
-                    }
-
-                    :nth-child(2n) {
-                        .card {
-                            display: flex !important;
-                            flex-direction: column-reverse !important;
-                        }
-                    }
-                }
-
-                .down-page {
-                    display: none;
-
-                }
-            }
+@media only screen and (max-width: 768px) {
+  .container {
+    .max-content {
+      .basic-page {
+        .up-page {
+          .title {
+            font-size: 6.9rem;
+          }
         }
+
+        .down-page {
+          display: none !important;
+        }
+        .slider {
+          display: flex !important;
+          gap: 10px;
+
+          .card {
+            padding: 0 10px 0 10px;
+            flex-direction: column;
+
+            .person-info {
+              height: 136px;
+              .icons-bar {
+                .icon {
+                  font-size: 35px;
+                }
+              }
+            }
+          }
+
+          :nth-child(2n) {
+            .card {
+              display: flex;
+              flex-direction: column-reverse;
+            }
+          }
+        }
+      }
     }
+  }
 }
