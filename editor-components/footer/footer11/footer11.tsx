@@ -17,7 +17,7 @@ class Footer11Page extends BaseFooter {
       type: "string",
       key: "ref-text",
       displayer: "Referral Text",
-      value: "LOREM IPSUM"
+      value: "YELİZ SARIOGLU"
     });
 
     this.addProp({
@@ -31,7 +31,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaFacebookF",
@@ -51,7 +51,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaInstagram",
@@ -71,7 +71,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaYoutube",
@@ -91,7 +91,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "IoLogoPinterest",

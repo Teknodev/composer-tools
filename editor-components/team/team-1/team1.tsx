@@ -320,7 +320,7 @@ class Team1 extends Team {
             </div>
           </div>
           <div className={this.decorateCSS("down-page")}>
-            {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
+            {this.castToObject<Card[]>("items").map((card: any, indexItems: number) => {
               return (
                 <div
                   key={indexItems}
@@ -333,7 +333,7 @@ class Team1 extends Team {
                     <div className={this.decorateCSS("top")}>
                       <img className={this.decorateCSS("image")} src={card.image} alt=""/>
                       <h2 className={this.decorateCSS("card-name")}>{card.name}</h2>
-                      <p className={this.decorateCSS("position")}>{card.position}</p>
+                      <p className={this.decorateCSS("position")}>{this.getPropValueAsElement(card.value[2])}</p>
                     </div>
                     <p className={this.decorateCSS("card-description")}>{card.description}</p>
                     <div className={this.decorateCSS("icon-group")}>

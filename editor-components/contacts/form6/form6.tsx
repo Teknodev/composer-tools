@@ -26,7 +26,14 @@ class Form6 extends BaseContacts {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Feel free to get in touch with me via the form below or by emailing me directly at hello@test.com"
+      value: "Feel free to get in touch with me via the form below or by emailing me directly at"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "mail",
+      displayer: "Mail",
+      value: "hello@yelizsarioglu.com"
     });
 
     this.addProp({
@@ -454,12 +461,12 @@ class Form6 extends BaseContacts {
             {isContactVisible &&
               <div className={this.decorateCSS("contact")} >
                 {title && <h1 className={this.decorateCSS("title")}> {this.getPropValue("title")} </h1>}
-                {description && <h3 className={this.decorateCSS("description")}> {this.getPropValue("description")} </h3>}
+                {description && <h3 className={this.decorateCSS("description")}> {this.getPropValue("description")} <span className={this.decorateCSS("mail")}>{this.getPropValue("mail")}</span> </h3>}
               </div>
             }
             {isAddressVisible &&
               <div className={this.decorateCSS("address")}>
-                {location && <h1 className={this.decorateCSS("title")}> {this.getPropValue("location")} </h1>}
+                {location && <h1 className={this.decorateCSS("title-2")}> {this.getPropValue("location")} </h1>}
                 {locationDetails && <h3 className={this.decorateCSS("description")}> {this.getPropValue("locationDetails")} </h3>}
               </div>
             }
@@ -486,10 +493,10 @@ class Form6 extends BaseContacts {
                               {inputObj.getPropValue("type") == "Text Area" ?
                                 <textarea
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder")} rows={12} onChange={handleChange}
+                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder",{ as_string: true })} rows={12} onChange={handleChange}
                                   name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}></textarea> :
                                 <input
-                                  placeholder={inputObj.getPropValue("placeholder")}
+                                  placeholder={inputObj.getPropValue("placeholder",{ as_string: true })}
                                   type={getInputType(inputObj.getPropValue("type"))}
                                   onChange={handleChange}
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
