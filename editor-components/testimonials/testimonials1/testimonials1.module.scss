@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  background: var(composer-html-background);
   padding: 100px 0 100px 0;
 
   .max-content {
@@ -22,7 +21,7 @@
             font-size: 50px;
             color: var(--composer-font-color-secondry);
             border-radius: 50%; 
-            background-color: var(--composer-tertiary-color); 
+            background-color: var(--composer-secondary-color); 
             display: inline-block; 
             padding: 10px; 
           }     
@@ -31,13 +30,13 @@
         .longtext {
           font-size: 20px;
           text-align: center;
-          color: var(--dark-gray);
+          color: var(--composer-font-color-primary);
           text-transform: uppercase;
         }
 
         .name {
           font-size: 19px;
-          color: var(--composer-tertiary-color);
+          color: var(--composer-secondary-color);
           text-align: center;
         }
       }
