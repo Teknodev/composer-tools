@@ -60,13 +60,14 @@
     }
 }
 
-.title {
+.title, .title-2 {
     margin: 0;
     color: var(--composer-primary-color);
     word-wrap: break-word;
     width: 100%;
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 600;
+    letter-spacing: 8px;
 }
 
 .description {
