@@ -189,7 +189,7 @@ class Testimonials1Page extends Testimonials {
       infinite: true,
       arrows: false,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       beforeChange: (oldIndex: number, nextIndex: number) => {
