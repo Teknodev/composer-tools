@@ -50,7 +50,7 @@
 @media screen and (max-width: 768px) {
     .container {
         .max-content {
-            .content {
+            .section {
                 padding: 20px 20px;
             }
         }
@@ -60,14 +60,15 @@
 @media screen and (max-width: 500px) {
     .container {
         .max-content {
-            .content {
+            .section {
                 padding: 19px 0px;
                 gap: 10px;
             }
 
             .right-content {
                 .up-text {
-                    gap: 10px;
+                    gap: 10px !important;
+                    flex-wrap: wrap;
                 }
             }
         }
