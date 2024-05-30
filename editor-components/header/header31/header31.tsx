@@ -209,21 +209,28 @@ class Header31 extends BaseHeader {
               value: "02",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -272,21 +279,28 @@ class Header31 extends BaseHeader {
               value: "03",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -335,21 +349,28 @@ class Header31 extends BaseHeader {
               value: "04",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -398,21 +419,28 @@ class Header31 extends BaseHeader {
               value: "05",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -460,21 +488,28 @@ class Header31 extends BaseHeader {
               value: "06",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -523,21 +558,28 @@ class Header31 extends BaseHeader {
               value: "07",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -586,21 +628,28 @@ class Header31 extends BaseHeader {
               value: "08",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -649,21 +698,28 @@ class Header31 extends BaseHeader {
               value: "09",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "actions",
+              displayer: "Action",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW CASE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "VIEW CASE",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
@@ -730,8 +786,8 @@ class Header31 extends BaseHeader {
       infinite: true,
       accessibility: false,
       speed: 1500,
-      autoplay: false,
-      autoplaySpeed: 3000,
+      autoplay: true,
+      autoplaySpeed: 4000,
       slidesToShow: 1,
       draggable: false,
       dotsClass: this.decorateCSS("dots"),
@@ -753,7 +809,8 @@ class Header31 extends BaseHeader {
     };
 
     const activeIndex = this.getComponentState("active-index");
-    const activeSlideObj = this.castToObject<any>("slider")[activeIndex];
+    const slider = this.castToObject<any>("slider");
+    const activeSlideObj = slider[activeIndex];
     const subtitle = activeSlideObj.subtitle;
     const title = activeSlideObj.title;
     const description = activeSlideObj.description;
@@ -767,19 +824,17 @@ class Header31 extends BaseHeader {
               {...settings}
               className={this.decorateCSS("slider")}
             >
-              {this.castToObject<ISliderData[]>("slider").map(
-                (item: ISliderData, index: number) => (
-                  <div key={index} className={this.decorateCSS("wrapper")}>
-                    <div className={this.decorateCSS("right-slider")}>
-                      <img
-                        className={this.decorateCSS("background-right")}
-                        src={item.rightImage}
-                        alt={item.title}
-                      />
-                    </div>
+              {slider?.map((item: ISliderData, index: number) => (
+                <div key={index} className={this.decorateCSS("wrapper")}>
+                  <div className={this.decorateCSS("right-slider")}>
+                    <img
+                      className={this.decorateCSS("background-right")}
+                      src={item.rightImage}
+                      alt={item.title}
+                    />
                   </div>
-                )
-              )}
+                </div>
+              ))}
             </ComposerSlider>
           </div>
           <div className={this.decorateCSS("slider-container")}>
@@ -794,30 +849,28 @@ class Header31 extends BaseHeader {
               centerPadding={"0px"}
               className={this.decorateCSS("carousel")}
             >
-              {this.castToObject<ISliderData[]>("slider").map(
-                (item: ISliderData, index: number) => (
-                  <div key={index} className={this.decorateCSS("swiper-wrapper")}>
-                    {activeIndex === index && (
-                      <div className={this.decorateCSS("content")}>
-                        <span className={this.decorateCSS("sliderNumber-left")}>
-                          {activeSlideObj.sliderNumber}
-                        </span>
-                      </div>
-                    )}
-                    <img
-                      className={`${this.decorateCSS("background-left")} ${
-                        activeIndex === index ? this.decorateCSS("active") : ""
-                      }`}
-                      src={item.leftImage}
-                      alt={item.title}
-                      onClick={() => {
-                        this.getComponentState("slider-ref").current.slickGoTo(index);
-                        this.getComponentState("second-slider-ref").current.slickGoTo(index);
-                      }}
-                    />
-                  </div>
-                )
-              )}
+              {slider.map((item: ISliderData, index: number) => (
+                <div key={index} className={this.decorateCSS("swiper-wrapper")}>
+                  {activeIndex === index && (
+                    <div className={this.decorateCSS("content")}>
+                      <span className={this.decorateCSS("sliderNumber-left")}>
+                        {activeSlideObj.sliderNumber}
+                      </span>
+                    </div>
+                  )}
+                  <img
+                    className={`${this.decorateCSS("background-left")} ${
+                      activeIndex === index ? this.decorateCSS("active") : ""
+                    }`}
+                    src={item.leftImage}
+                    alt={item.title}
+                    onClick={() => {
+                      this.getComponentState("slider-ref").current.slickGoTo(index);
+                      this.getComponentState("second-slider-ref").current.slickGoTo(index);
+                    }}
+                  />
+                </div>
+              ))}
             </ComposerSlider>
             <div className={this.decorateCSS("slider-inner")}>
               {subtitle && (
