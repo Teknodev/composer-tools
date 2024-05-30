@@ -20,12 +20,7 @@ type ISliderData = {
   customerDesc: string;
   leftDescription: string;
   rightDescription: string;
-  button: IButton[];
-  exploreIcon: string;
-};
-
-type IButton = {
-  value: string;
+  button: any;
 };
 
 interface IAnimationProps {
@@ -289,6 +284,7 @@ class Header27 extends BaseHeader {
     this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
 
     this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("slider-ref", "--animate-duration");
   }
   handleAnimationEnd = ({
     animationState,
@@ -307,8 +303,7 @@ class Header27 extends BaseHeader {
       infinite: true,
       fade: true,
       speed: 700,
-      // TODO
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -374,47 +369,40 @@ class Header27 extends BaseHeader {
 
                       <div className={this.decorateCSS("LowerDiv")}>
                         <div className={this.decorateCSS("button-contain")}>
-                          {this.getPropValue("slider")[
-                            this.getComponentState("active-index")
-                          ].getPropValue("button")[0].value && (
-                            <ComposerLink
-                              path={
-                                this.getPropValue("slider")[
-                                  this.getComponentState("active-index")
-                                ].getPropValue("button")[1].value
-                              }
-                            >
-                              <button
-                                className={`${this.decorateCSS(
-                                  "button"
-                                )} animate__animated ${this.getComponentState(
-                                  "buttonAnimationClass"
-                                )}`}
-                                onAnimationEnd={() => {
-                                  this.handleAnimationEnd({
-                                    animationState: "buttonAnimationClass",
-                                    startingAnimation: "animate__fadeInUp",
-                                    endingAnimation: "animate__fadeOutDown",
-                                  });
-                                }}
-                              >
-                                <span className={this.decorateCSS("button-text")}>
-                                  {
-                                    this.getPropValue("slider")[
-                                      this.getComponentState("active-index")
-                                    ].getPropValue("button")[0].value
-                                  }
-                                </span>
-                                <ComposerIcon
-                                  name={item.exploreIcon}
-                                  propsIcon={{
-                                    className: ``,
-                                    size: 10,
+                          {
+                            // TODO need to change this after getPropValur as_string is fixed
+                            this.getPropValue("slider")[
+                              this.getComponentState("active-index")
+                            ].getPropValue("button")[0].value && (
+                              <ComposerLink path={item.button.link}>
+                                <button
+                                  className={`${this.decorateCSS(
+                                    "button"
+                                  )} animate__animated ${this.getComponentState(
+                                    "buttonAnimationClass"
+                                  )}`}
+                                  onAnimationEnd={() => {
+                                    this.handleAnimationEnd({
+                                      animationState: "buttonAnimationClass",
+                                      startingAnimation: "animate__fadeInUp",
+                                      endingAnimation: "animate__fadeOutDown",
+                                    });
                                   }}
-                                />
-                              </button>
-                            </ComposerLink>
-                          )}
+                                >
+                                  <span className={this.decorateCSS("button-text")}>
+                                    {item.button.buttonText}
+                                  </span>
+                                  <ComposerIcon
+                                    name={item.button.exploreIcon}
+                                    propsIcon={{
+                                      className: ``,
+                                      size: 10,
+                                    }}
+                                  />
+                                </button>
+                              </ComposerLink>
+                            )
+                          }
 
                           <div className={this.decorateCSS("figure")}>
                             <div className={this.decorateCSS("pagination")}>

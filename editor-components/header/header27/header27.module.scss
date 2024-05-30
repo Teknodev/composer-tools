@@ -41,6 +41,7 @@
             display: flex;
             align-items: center;
             flex-direction: column;
+            padding-bottom: 50px;
 
             .UpperDiv{
               width: 100%;
@@ -142,6 +143,9 @@
                   transition: 0.3s all;
                   margin-top: 10px;
                   max-width: 15vw;
+                  border: 1px solid var(--composer-secondary-color);
+                  --animate-duration: 0.2s;
+
                   &:hover {
                     background: transparent;
                     color: var(--composer-font-color-primary);
@@ -262,6 +266,8 @@
           .content{
             .max-content{
               gap: 0px;
+              padding-bottom: 30px;
+
               .UpperDiv{
                 .top-title{
                   display: flex;
