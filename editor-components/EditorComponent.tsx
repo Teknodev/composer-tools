@@ -161,8 +161,8 @@ export abstract class Component
       const prefix = preSufFixToElement(properties?.prefix);
       const suffix = preSufFixToElement(properties?.suffix);
 
-      const stringPrefix = renderToString(prefix);
-      const stringSuffix = renderToString(suffix);
+      const stringPrefix = renderToString(prefix || <></>);
+      const stringSuffix = renderToString(suffix || <></>);
 
       const hasHtmlTag = html.includes("<");
 
