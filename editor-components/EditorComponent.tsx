@@ -2,7 +2,6 @@ import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
-//@ts-ignore
 import sanitizeHtml from 'sanitize-html';
 
 type GetPropValueOptions = {

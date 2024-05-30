@@ -6,6 +6,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type ISliderData = {
+  background: string;
   title1: string;
   title2: string;
   image: string;
@@ -20,6 +21,7 @@ type ISliderData = {
   leftDescription: string;
   rightDescription: string;
   button: IButton[];
+  exploreIcon: string;
 };
 
 type IButton = {
@@ -40,20 +42,6 @@ class Header27 extends BaseHeader {
     super(props, styles);
 
     this.addProp({
-      type: "image",
-      key: "background",
-      displayer: "Background",
-      value: "https://media.istockphoto.com/id/1755578861/tr/foto%C4%9Fraf/handmade-paper-scan.jpg?s=612x612&w=0&k=20&c=CUJjJgQ10OT3m7ftNpiBLHdlyaSenZjcYmyeZg-tcw8=",
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "next_icon",
-      displayer: "Explore Icon",
-      value: "MdOutlineArrowOutward",
-    });
-
-    this.addProp({
       type: "array",
       displayer: "Slider",
       key: "slider",
@@ -63,6 +51,13 @@ class Header27 extends BaseHeader {
           displayer: "Item",
           key: "item",
           value: [
+            {
+              type: "image",
+              key: "background",
+              displayer: "Background",
+              value:
+                "https://media.istockphoto.com/id/1755578861/tr/foto%C4%9Fraf/handmade-paper-scan.jpg?s=612x612&w=0&k=20&c=CUJjJgQ10OT3m7ftNpiBLHdlyaSenZjcYmyeZg-tcw8=",
+            },
             {
               type: "string",
               displayer: "Title",
@@ -120,6 +115,12 @@ class Header27 extends BaseHeader {
                   displayer: "Link",
                   value: "",
                 },
+                {
+                  type: "icon",
+                  key: "exploreIcon",
+                  displayer: "Explore Icon",
+                  value: "MdOutlineArrowOutward",
+                },
               ],
             },
             {
@@ -133,29 +134,25 @@ class Header27 extends BaseHeader {
               type: "string",
               displayer: "Rate No. 1",
               key: "itemNo",
-              value:
-                "30+",
+              value: "30+",
             },
             {
               type: "string",
               displayer: "Rate Desc. 1",
               key: "itemDesc",
-              value:
-                "Items Of Coffee",
+              value: "Items Of Coffee",
             },
             {
               type: "string",
               displayer: "Rate No. 2",
               key: "customerNo",
-              value:
-                "3K+",
+              value: "3K+",
             },
             {
               type: "string",
               displayer: "Rate Desc. 2",
               key: "customerDesc",
-              value:
-                "Happy Customer",
+              value: "Happy Customer",
             },
             {
               type: "string",
@@ -171,6 +168,13 @@ class Header27 extends BaseHeader {
           displayer: "Item",
           key: "item",
           value: [
+            {
+              type: "image",
+              key: "background",
+              displayer: "Background",
+              value:
+                "https://media.istockphoto.com/id/1755578861/tr/foto%C4%9Fraf/handmade-paper-scan.jpg?s=612x612&w=0&k=20&c=CUJjJgQ10OT3m7ftNpiBLHdlyaSenZjcYmyeZg-tcw8=",
+            },
             {
               type: "string",
               displayer: "Title",
@@ -228,6 +232,12 @@ class Header27 extends BaseHeader {
                   displayer: "Link",
                   value: "",
                 },
+                {
+                  type: "icon",
+                  key: "exploreIcon",
+                  displayer: "Explore Icon",
+                  value: "MdOutlineArrowOutward",
+                },
               ],
             },
             {
@@ -241,29 +251,25 @@ class Header27 extends BaseHeader {
               type: "string",
               displayer: "Rate No. 1",
               key: "itemNo",
-              value:
-                "100%",
+              value: "100%",
             },
             {
               type: "string",
               displayer: "Rate Desc. 1",
               key: "itemDesc",
-              value:
-                "Fresh Coffee",
+              value: "Fresh Coffee",
             },
             {
               type: "string",
               displayer: "Rate No. 2",
               key: "customerNo",
-              value:
-                "20+",
+              value: "20+",
             },
             {
               type: "string",
               displayer: "Rate Desc. 2",
               key: "customerDesc",
-              value:
-                "Different Countries",
+              value: "Different Countries",
             },
             {
               type: "string",
@@ -283,7 +289,6 @@ class Header27 extends BaseHeader {
     this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
 
     this.setComponentState("slider-ref", React.createRef());
-
   }
   handleAnimationEnd = ({
     animationState,
@@ -302,7 +307,8 @@ class Header27 extends BaseHeader {
       infinite: true,
       fade: true,
       speed: 700,
-      autoplay: true,
+      // TODO
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -317,67 +323,52 @@ class Header27 extends BaseHeader {
       },
     };
 
-    const sliderCount = this.castToObject<[]>("slider").length;
+    const slider = this.castToObject<ISliderData[]>("slider");
+    const sliderCount = slider.length;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div
           className={this.decorateCSS("content")}
           style={{
-            backgroundImage: `url(${this.getPropValue("background")})`,
+            backgroundImage: `url(${slider[this.getComponentState("active-index")].background})`,
           }}
         >
-        <div className={this.decorateCSS("slider-parent")}>
-          <Slider {...settings} className={this.decorateCSS("carousel")}>
-            {this.castToObject<ISliderData[]>("slider").map(
-              (item: ISliderData, index: number) => (
+          <div className={this.decorateCSS("slider-parent")}>
+            <Slider {...settings} className={this.decorateCSS("carousel")}>
+              {slider.map((item: ISliderData, index: number) => {
+                console.log("item: ", item);
+                return (
                   <div key={index} className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("max-content")}>
-                   
-                      <div className={this.decorateCSS("UpperDiv")}>        
+                      <div className={this.decorateCSS("UpperDiv")}>
                         <div className={this.decorateCSS("top-title")}>
-                          <div className={this.decorateCSS("title1")}>
-                            {item.title1}
-                          </div>
+                          <div className={this.decorateCSS("title1")}>{item.title1}</div>
 
-                          {item.image2 && 
+                          {item.image2 && (
                             <div className={this.decorateCSS("viewImage")}>
-                              <img
-                                className={this.decorateCSS("image1")}
-                                src={item.image2}
-                              />
+                              <img className={this.decorateCSS("image1")} src={item.image2} />
                             </div>
-                          }
+                          )}
                         </div>
 
                         <div className={this.decorateCSS("bottom-title")}>
-                          {item.image1 && 
+                          {item.image1 && (
                             <div className={this.decorateCSS("viewImage")}>
-                          <img
-                            className={this.decorateCSS("image2")}
-                            src={item.image1}
-                          />
-                          </div>
-                        }
-                        {item.image3 && 
-                          <div className={this.decorateCSS("viewImage")}>
-                          <img
-                            className={this.decorateCSS("image3")}
-                            src={item.image3}
-                          />
-                          </div>
-                        }
-                        {item.image4 && 
-                          <div className={this.decorateCSS("viewImage")}>
-                          <img
-                            className={this.decorateCSS("image4")}
-                            src={item.image4}
-                          />
-                          </div>
-                        }
-                          <div className={this.decorateCSS("title2")}>
-                            {item.title2}
-                          </div>
+                              <img className={this.decorateCSS("image2")} src={item.image1} />
+                            </div>
+                          )}
+                          {item.image3 && (
+                            <div className={this.decorateCSS("viewImage")}>
+                              <img className={this.decorateCSS("image3")} src={item.image3} />
+                            </div>
+                          )}
+                          {item.image4 && (
+                            <div className={this.decorateCSS("viewImage")}>
+                              <img className={this.decorateCSS("image4")} src={item.image4} />
+                            </div>
+                          )}
+                          <div className={this.decorateCSS("title2")}>{item.title2}</div>
                         </div>
                       </div>
 
@@ -415,7 +406,7 @@ class Header27 extends BaseHeader {
                                   }
                                 </span>
                                 <ComposerIcon
-                                  name={this.getPropValue("next_icon")}
+                                  name={item.exploreIcon}
                                   propsIcon={{
                                     className: ``,
                                     size: 10,
@@ -425,58 +416,54 @@ class Header27 extends BaseHeader {
                             </ComposerLink>
                           )}
 
-                            <div className={this.decorateCSS("figure")}>
-                              <div className={this.decorateCSS("pagination")}>
-                                <span className={this.decorateCSS("active-slide")}>
-                                  {(this.getComponentState("active-index") + 1)
-                                    .toString()
-                                    .padStart(2, "0")}
+                          <div className={this.decorateCSS("figure")}>
+                            <div className={this.decorateCSS("pagination")}>
+                              <span className={this.decorateCSS("active-slide")}>
+                                {(this.getComponentState("active-index") + 1)
+                                  .toString()
+                                  .padStart(2, "0")}
+                              </span>
+                              <sup className={this.decorateCSS("slide-count-power")}>
+                                <span className={this.decorateCSS("divider")}>/ </span>
+                                <span className={this.decorateCSS("slide-count")}>
+                                  {sliderCount.toString().padStart(2, "0")}
                                 </span>
-                                <sup className={this.decorateCSS("slide-count-power")}>
-                                  <span className={this.decorateCSS("divider")}>/ </span>
-                                  <span className={this.decorateCSS("slide-count")}>
-                                    {sliderCount.toString().padStart(2, "0")}
-                                  </span>
-                                </sup>
-                              </div>
-                            </div>
-                          </div>
-                          <div className={this.decorateCSS("desc-contain")}>
-                            <div className={this.decorateCSS("leftDescription")}>
-                              {item.leftDescription}
-                            </div>
-
-                            <div className={this.decorateCSS("count")}>
-                              <div className={this.decorateCSS("items")}>
-                                <div className={this.decorateCSS("itemsNo")}>
-                                  {item.itemNo}
-                                </div>
-                                <div className={this.decorateCSS("itemDesc")}>
-                                  {item.itemDesc}
-                                </div>
-                              </div>
-                              <div className={this.decorateCSS("line")}></div>
-
-                              <div className={this.decorateCSS("customers")}>
-                                <div className={this.decorateCSS("customerNo")}>
-                                  {item.customerNo}
-                                </div>
-                                <div className={this.decorateCSS("customerDesc")}>
-                                  {item.customerDesc}
-                                </div>
-                              </div>
-                            </div>
-                            <div className={this.decorateCSS("rightDescription")}>
-                              {item.rightDescription}
+                              </sup>
                             </div>
                           </div>
                         </div>
+                        <div className={this.decorateCSS("desc-contain")}>
+                          <div className={this.decorateCSS("leftDescription")}>
+                            {item.leftDescription}
+                          </div>
+
+                          <div className={this.decorateCSS("count")}>
+                            <div className={this.decorateCSS("items")}>
+                              <div className={this.decorateCSS("itemsNo")}>{item.itemNo}</div>
+                              <div className={this.decorateCSS("itemDesc")}>{item.itemDesc}</div>
+                            </div>
+                            <div className={this.decorateCSS("line")}></div>
+
+                            <div className={this.decorateCSS("customers")}>
+                              <div className={this.decorateCSS("customerNo")}>
+                                {item.customerNo}
+                              </div>
+                              <div className={this.decorateCSS("customerDesc")}>
+                                {item.customerDesc}
+                              </div>
+                            </div>
+                          </div>
+                          <div className={this.decorateCSS("rightDescription")}>
+                            {item.rightDescription}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-              )
-            )}
-          </Slider>
-        </div>
+                );
+              })}
+            </Slider>
+          </div>
         </div>
       </div>
     );
