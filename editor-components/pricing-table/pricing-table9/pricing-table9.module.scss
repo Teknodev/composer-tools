@@ -5,76 +5,215 @@
   justify-content: center;
   position: relative;
   bottom: 10px;
-  padding: 150px 50px;
+  padding: 40px 40px;
 
-.max-content {
-  max-width: var(--composer-content-width);
-  margin: auto;
-  width: 100%;
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 1.5rem;
-  color: var(--composer-font-color-primary);
-  th,
-  td {
-    padding: 20px;
-    text-align: center;
-    border: 1px solid var(--composer-tertiary-color);
-    color: var(--composer-font-color-primary);
-    .price-info{
-      font-size: 12px;
-      color: var(--composer-font-color-primary);
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .slider {
+      display: none;
     }
-  }
 
-  th {
-    background-color: var(--composer-html-background);
-  }
-}
+    .heading_background {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      background: var(--composer-secondary-color);
+      color: var(--composer-primary-color);
+      border-radius: 14px;
+      padding: 27px;
+    }
 
-.button {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: var(--composer-secondary-color);
-  color: var(--composer-font-color-secondary);
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px solid var(--composer-secondary-color);
-  margin-top: 6px;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-}
+    .heading-right {
+      display: flex;
+      font-size: 18px;
+      justify-content: flex-end;
+      border-radius: 11px;
+      background: #eeeeee;
 
-.button:hover {
-  background-color: transparent;
-  color: var(--composer-font-color-primary);
-}
-@media only screen and (max-width: 768px) {
-  .container{
-    .max-content{
-      .table {
+    }
+
+    .plan-title,
+    .activeTab {
+      display: inline-block;
+      cursor: pointer;
+      padding: 13px 21px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+    }
+
+    .activeTab {
+      background-color: #ccc;
+      color: #fff;
+    }
+
+
+    .activeTab:hover {
+      border-color: #ccc;
+    }
+
+    .heading-left {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      font-size: 17px;
+
+    }
+
+    .page-down {
+      background: var(--composer-font-color-secondary);
+      padding: 27px;
+      border-radius: 14px;
+      margin: 30px 0 0 0;
+
+      .card {
         width: 100%;
         border-collapse: collapse;
-    
-        th,
-        td {
-          padding: 7px;
-          text-align: center;
-          border: 1px solid #ccc;
-          .price-info{
-            font-size: 12px;
-            color: gray;
-          }
-        }
-    
-        th {
-          background-color: #f2f2f2;
-        }
-    
+        color: var(--composer-primary-color);
+      }
+
+      .heading-title {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 123px 0 13px;
+        color: var(--composer-font-color-secondary);
+      }
+
+      .heading-title h3 {
+        margin: 0;
+        background: var(--composer-primary-color);
+        padding: 12px;
+        border-radius: 11px;
+      }
+
+      .card td {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 18px;
+        font-size: 14px;
+      }
+
+      .card tr:first-child td {
+        border-top: none;
+      }
+
+      .card tr:last-child td {
+        border-bottom: none;
+        padding: 22px 122px 0 0;
+      }
+
+
+      .monthly_buttons {
+        display: flex;
+        justify-content: space-between;
+        color: var(--composer-font-color-secondary);
+      }
+
+      .monthly_buttons .button {
+        margin-right: 5px;
+        background: var(--composer-primary-color);
+        padding: 12px;
+        border-radius: 11px;
       }
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .heading-title {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 0 0 !important;
+  }
+
+  .card tr:last-child td {
+    border-bottom: none;
+    padding: 18px 0 0 19px !important
+  }
+
+  .monthly_buttons .button {
+    margin-right: 35px !important;
+    background: var(--composer-primary-color);
+    padding: 12px;
+    border-radius: 11px;
+  }
 }
+
+@media only screen and (max-width:365px) {
+
+  // .slider {
+  //   display: flex !important;
+  //   overflow-y: auto;
+
+  //   .table {
+  //     width: 100%;
+  //     border-collapse: collapse;
+
+  //     .card {
+  //       width: 100% !important;
+  //       border-collapse: collapse !important;
+  //       color: var(--composer-primary-color);
+  //     }
+
+  //     .tbody {
+  //       display: block;
+  //       overflow-y: auto;
+  //       height: 100%;
+  //           .heading-title {
+  //             display: flex;
+  //             justify-content: space-between;
+  //             margin: 0 123px 0 13px;
+  //             color: var(--composer-font-color-secondary);
+  //           }
+
+  //           .heading-title h3 {
+  //             margin: 0;
+  //             background: var(--composer-primary-color);
+  //             padding: 12px;
+  //             border-radius: 11px;
+  //           }
+
+  //           .card td {
+  //             border: 1px solid #ddd;
+  //             border-top: none;
+  //             border-left: none;
+  //             border-right: none;
+  //             padding: 18px;
+  //             font-size: 14px;
+  //           }
+
+  //           .card tr:first-child td {
+  //             border-top: none;
+  //           }
+
+  //           .card tr:last-child td {
+  //             border-bottom: none;
+  //             padding: 22px 122px 0 0;
+  //           }
+
+
+  //           .monthly_buttons {
+  //             display: flex;
+  //             justify-content: space-between;
+  //             color: var(--composer-font-color-secondary);
+  //           }
+
+  //           .monthly_buttons .button {
+  //             margin-right: 5px;
+  //             background: var(--composer-primary-color);
+  //             padding: 12px;
+  //             border-radius: 11px;
+  //           }
+  //     }
+  //   }
+  // } 
+  //  .page-down {
+  //       display: none;
+  //     }
 }
