@@ -124,10 +124,11 @@ export abstract class Component
     let prop = (properties?.parent_object?.filter(
       (prop: TypeUsableComponentProps) => prop.key === propName
     )[0] || this.getProp(propName));
+  
+    const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
 
-
-    return prop?.type == "string" && !properties?.as_string
-      ? this.getPropValueAsElement(prop, properties)
+    return isStringMustBeElement
+      ? this.getPropValueAsElement(prop)
       : prop?.value;
   }
 
@@ -277,8 +278,13 @@ export abstract class Component
     let i = this.state.componentProps.props
       .map((prop: any) => prop.key)
       .indexOf(propName);
+      
     let castedObject = this.castingProcess(this.state.componentProps.props[i]);
     return castedObject;
+  }
+
+  castToString(elem: JSX.Element): string {
+    return elem.props?.html;
   }
 
   private castingProcess(object: any) {
@@ -291,8 +297,12 @@ export abstract class Component
             clonedPropValue[nestedObject.key] = this.castingProcess(nestedObject);
           }
         });
-      }else{
-        clonedPropValue = {key: clonedPropValue.key, value: object.getPropValue(clonedPropValue.key)};
+      } else {
+        clonedPropValue = {
+          key: clonedPropValue.key, value: this.getPropValue(clonedPropValue.key, {
+            parent_object: object.value
+          })
+        };
       }
       return clonedPropValue;
     });
