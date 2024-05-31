@@ -2,6 +2,7 @@ import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
+//@ts-ignore
 import sanitizeHtml from 'sanitize-html';
 
 type GetPropValueOptions = {
@@ -48,8 +49,8 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[] };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string) => any;
-  };
+  getPropValue?: (propName: string) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -75,8 +76,7 @@ export enum CATEGORIES {
 
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
-  implements iComponent
-{
+  implements iComponent {
   private styles: any;
   private _props: any;
   protected category: CATEGORIES;
@@ -123,24 +123,24 @@ export abstract class Component
   }
 
   getPropValueAsElement(prop: TypeUsableComponentProps) {
-    const sanitize = (dirty:string, options: sanitizeHtml.IOptions) => ({
+    const sanitize = (dirty: string, options: sanitizeHtml.IOptions) => ({
       __html: sanitizeHtml(
         dirty,
         {
           allowedAttributes: {
-            'a': [ 'href', 'name', 'target' ],
-            '*': [ 'style' ]
+            'a': ['href', 'name', 'target'],
+            '*': ['style']
           },
           parseStyleAttributes: false
         }
       )
     });
-    
+
     const SanitizeHTML = ({ html, options }: any) => (
       //@ts-ignore
-      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
+      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%" }} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
     );
-    
+
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
@@ -154,10 +154,10 @@ export abstract class Component
   }
   addProp(prop: TypeUsableComponentProps) {
     const attachPropId = (_prop: TypeUsableComponentProps) => {
-      if(_prop.type == "array" || _prop.type == "object"){
-        _prop.value = (_prop.value as TypeUsableComponentProps[]).map((v:TypeUsableComponentProps) => attachPropId(v));
-      }else{
-        _prop.id = _prop.key + "-" +Math.round(Math.random() * 1000000000).toString();
+      if (_prop.type == "array" || _prop.type == "object") {
+        _prop.value = (_prop.value as TypeUsableComponentProps[]).map((v: TypeUsableComponentProps) => attachPropId(v));
+      } else {
+        _prop.id = _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
       }
       return _prop
     }
@@ -218,7 +218,7 @@ export abstract class Component
         if (Array.isArray(propValueItem.value)) {
           propValueItem = this.attachValueGetter(propValueItem);
           propValueItem["getPropValue"] = (propName: string) => {
-            return this.getPropValue(propName,{parent_object: propValueItem.value as TypeUsableComponentProps[]});
+            return this.getPropValue(propName, { parent_object: propValueItem.value as TypeUsableComponentProps[] });
           };
         }
 
@@ -238,7 +238,7 @@ export abstract class Component
 
   private castingProcess(object: any) {
     let casted = object.value.map((propValue: any) => {
-      let clonedPropValue = {...propValue};
+      let clonedPropValue = { ...propValue };
       if (clonedPropValue.hasOwnProperty("getPropValue")) {
         clonedPropValue.value.forEach((nestedObject: any, index: number) => {
           clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(nestedObject.key);
@@ -246,13 +246,13 @@ export abstract class Component
             clonedPropValue[nestedObject.key] = this.castingProcess(nestedObject);
           }
         });
-      }else{
-        clonedPropValue = {key: clonedPropValue.key, value: object.getPropValue(clonedPropValue.key)};
+      } else {
+        clonedPropValue = { key: clonedPropValue.key, value: object.getPropValue(clonedPropValue.key) };
       }
       return clonedPropValue;
     });
 
-    if(object.type == "object"){
+    if (object.type == "object") {
       let tmpCasted = [...casted];
       casted = {};
       tmpCasted.forEach((manipulatedValue) => casted[manipulatedValue.key] = manipulatedValue.value);
