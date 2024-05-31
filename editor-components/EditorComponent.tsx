@@ -15,7 +15,6 @@ type GetPropValueProperties = {
   as_string?: boolean;
   suffix?: PreSufFix;
   prefix?: PreSufFix;
-  string_object_keys?: string[];
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
 export type iComponent = {
@@ -126,10 +125,7 @@ export abstract class Component
       (prop: TypeUsableComponentProps) => prop.key === propName
     )[0] || this.getProp(propName));
   
-    const asString = properties?.as_string;
-    const isStringKey = properties?.string_object_keys?.includes(propName);
-
-    const isStringMustBeElement = prop?.type == "string" && !((!asString && isStringKey) || (asString && !isStringKey));
+    const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
 
     return isStringMustBeElement
       ? this.getPropValueAsElement(prop)
@@ -278,30 +274,33 @@ export abstract class Component
     return propValue;
   }
 
-  castToObject<Type>(propName: string, string_object_keys?: string[]): Type {
+  castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
       .map((prop: any) => prop.key)
       .indexOf(propName);
       
-    let castedObject = this.castingProcess(this.state.componentProps.props[i], string_object_keys);
+    let castedObject = this.castingProcess(this.state.componentProps.props[i]);
     return castedObject;
   }
 
-  private castingProcess(object: any, string_object_keys?: string[]) {
+  castToString(elem: JSX.Element): string {
+    return elem.props?.html;
+  }
+
+  private castingProcess(object: any) {
     let casted = object.value.map((propValue: any) => {
       let clonedPropValue = {...propValue};
       if (clonedPropValue.hasOwnProperty("getPropValue")) {
         clonedPropValue.value.forEach((nestedObject: any, index: number) => {
           clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(nestedObject.key);
           if (nestedObject.hasOwnProperty("getPropValue")) {
-            clonedPropValue[nestedObject.key] = this.castingProcess(nestedObject, string_object_keys);
+            clonedPropValue[nestedObject.key] = this.castingProcess(nestedObject);
           }
         });
       } else {
         clonedPropValue = {
           key: clonedPropValue.key, value: this.getPropValue(clonedPropValue.key, {
-            parent_object: object.value,
-            string_object_keys: string_object_keys
+            parent_object: object.value
           })
         };
       }
