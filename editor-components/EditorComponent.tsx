@@ -3,10 +3,18 @@ import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
 import sanitizeHtml from 'sanitize-html';
+import { renderToString } from "react-dom/server";
+
+type PreSufFix = {
+  label: string;
+  className: string;
+}
 
 type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
   as_string?: boolean;
+  suffix?: PreSufFix;
+  prefix?: PreSufFix;
   string_object_keys?: string[];
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
@@ -49,8 +57,8 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[] };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-  };
+  getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -76,8 +84,7 @@ export enum CATEGORIES {
 
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
-  implements iComponent
-{
+  implements iComponent {
   private styles: any;
   private _props: any;
   protected category: CATEGORIES;
@@ -129,25 +136,62 @@ export abstract class Component
       : prop?.value;
   }
 
-  getPropValueAsElement(prop: TypeUsableComponentProps) {
-    const sanitize = (dirty:string, options: sanitizeHtml.IOptions) => ({
+
+
+  getPropValueAsElement(prop: TypeUsableComponentProps, properties?: GetPropValueProperties) {
+    const sanitize = (dirty: string, options: sanitizeHtml.IOptions) => ({
       __html: sanitizeHtml(
         dirty,
         {
           allowedAttributes: {
-            'a': [ 'href', 'name', 'target' ],
-            '*': [ 'style' ]
+            'a': ['href', 'name', 'target'],
+            '*': ['style', 'class']
           },
           parseStyleAttributes: false
         }
       )
     });
-    
-    const SanitizeHTML = ({ html, options }: any) => (
+
+
+
+    const preSufFixToElement = (elem?: PreSufFix) => {
+      if (!elem) return null;
+
+      return React.createElement("span", { className: `${elem.className} suffix-prefix-elem`,children: elem.label });
+    };
+
+
+
+    const SanitizeHTML = ({ html, options }: any) => {
+      const prefix = preSufFixToElement(properties?.prefix);
+      const suffix = preSufFixToElement(properties?.suffix);
+
+      const stringPrefix = renderToString(prefix || <></>);
+      const stringSuffix = renderToString(suffix || <></>);
+
+      const hasHtmlTag = html.includes("<");
+
+      if (!hasHtmlTag) {
+        html = `<p> ${html} </p>`
+      }
+
+      const firstTagStartIndex = html.indexOf(">") + 1;
+      const firstTagEndIndex = html.lastIndexOf("<");
+
+      const htmlWithPrefixAndSuffix =
+        html.substring(0, firstTagStartIndex) +
+        stringPrefix +
+        html.substring(firstTagStartIndex, firstTagEndIndex) +
+        stringSuffix +
+        html.substring(firstTagEndIndex);
+
+
+      const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
+
       //@ts-ignore
-      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
-    );
-    
+      return <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%" }} dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>
+    };
+
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
