@@ -13,7 +13,7 @@ class Header4 extends BaseHeader {
       value: [
         {
           type: "string",
-          key: "sub-title",
+          key: "subtitle",
           displayer: "Subtitle",
           value: "Build perfect websites",
         },
@@ -82,18 +82,18 @@ class Header4 extends BaseHeader {
               <div className={this.decorateCSS("heading")}>
                 <div className={this.decorateCSS("heading-title")}>
                   <p className={this.decorateCSS("sub-title")}>
-                    {card[0].value}
+                    {card.subtitle}
                   </p>
-                  <h2 className={this.decorateCSS("title")}>{card[1].value}</h2>
+                  <h2 className={this.decorateCSS("title")}>{card.title}</h2>
                 </div>
               </div>
               {/* end of heading */}
-              <p className={this.decorateCSS("desc1")}>{card[2].value}</p>
-              <p className={this.decorateCSS("desc2")}>{card[3].value}</p>
+              <p className={this.decorateCSS("desc1")}>{card.desc1}</p>
+              <p className={this.decorateCSS("desc2")}>{card.desc2}</p>
               <button className={this.decorateCSS("btn")}>
-                {card[4].value}
+                {card.btn}
               </button>
-              <p className={this.decorateCSS("note")}>{card[5].value}</p>
+              <p className={this.decorateCSS("note")}>{card.note}</p>
             </div>
           </div>
         </div>
