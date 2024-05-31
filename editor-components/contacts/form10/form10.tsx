@@ -3,6 +3,8 @@ import * as React from "react";
 import * as Yup from "yup";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./form10.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Form10Page extends BaseContacts {
   constructor(props?: any) {
@@ -10,35 +12,53 @@ class Form10Page extends BaseContacts {
 
     this.addProp({
       type: "string",
-      displayer: "Title",
-      value: "FREE CONSULTATION REQUEST",
-      key: "title",
+      key: "subtitle",
+      displayer: "SubTitle",
+      value: "Contact Us",
     });
     this.addProp({
       type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Let us help you get your project started",
+    });
+
+    this.addProp({
+      type: "string",
       displayer: "text1",
-      value: "Your Name",
+      value: "What's your good name?*",
       key: "text1",
+    });
+    this.addProp({
+      type: "icon",
+      key: "Name",
+      displayer: "Icon",
+      value: "BsPerson",
     });
     this.addProp({
       type: "string",
       displayer: "text2",
-      value: "Your Email",
+      value: "Enter your email address*",
       key: "text2",
+    });
+    this.addProp({
+      type: "icon",
+      key: "e-mail",
+      displayer: "Icon",
+      value: "MdOutlineLocalPostOffice",
     });
     this.addProp({
       type: "string",
       displayer: "text3",
-      value: "Your Phone",
+      value: "Enter your message",
       key: "text3",
     });
     this.addProp({
-      type: "string",
-      displayer: "text4",
-      value: "Select Treatment",
-      key: "text4",
+      type: "icon",
+      key: "message",
+      displayer: "Icon",
+      value: "RiMessage2Line",
     });
-
     this.addProp({
       type: "string",
       key: "name",
@@ -59,19 +79,18 @@ class Form10Page extends BaseContacts {
       displayer: "Phone",
       value: "Phone-number",
     });
-
-    this.addProp({
-      type: "string",
-      key: "treatment",
-      displayer: "Treatment",
-      value: "-",
-    });
-
     this.addProp({
       type: "string",
       key: "button_text",
       displayer: "Button Text",
       value: "Send Request",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        " We are committed to protecting your privacy. We will never collect information about you without your explicit consent",
     });
   }
 
@@ -89,88 +108,112 @@ class Form10Page extends BaseContacts {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <h1 className={this.decorateCSS("title")}>
-            {this.getPropValue("title")}
-          </h1>
+          <div className={this.decorateCSS("content")}>
+            <div className={this.decorateCSS("left-page")}>
+              <h1 className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </h1>
+              <h1 className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </h1>
+            </div>
 
-          <div className={this.decorateCSS("text-box")}>
-            <h2 className={this.decorateCSS("text")}>
-              {this.getPropValue("text1")}
-            </h2>
-            <h2 className={this.decorateCSS("text")}>
-              {this.getPropValue("text2")}
-            </h2>
-            <h2 className={this.decorateCSS("text")}>
-              {this.getPropValue("text3")}
-            </h2>
-            <h2 className={this.decorateCSS("text")}>
-              {this.getPropValue("text4")}
-            </h2>
-          </div>
-          <div className={this.decorateCSS("form-container")}>
-            <Formik
-              initialValues={{ name: "", email: "", message: "" }}
-              validationSchema={this.validationSchema}
-              onSubmit={(data, { resetForm }) => {
-                this.insertForm("Contact Us", data);
-                resetForm();
-              }}
-            >
-              {({ handleChange, values }) => (
-                <Form className={this.decorateCSS("form")}>
-                  <input
-                    placeholder={this.getPropValue("name")}
-                    type="text"
-                    name="name"
-                    value={values.name}
-                    onChange={handleChange}
-                    className={this.decorateCSS("input")}
-                  />
-                  <ErrorMessage
-                    className={this.decorateCSS("error-message")}
-                    name="name"
-                    component={"span"}
-                  />
-                  <input
-                    placeholder={this.getPropValue("email")}
-                    type="text"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    className={this.decorateCSS("input")}
-                  />
-                  <ErrorMessage
-                    className={this.decorateCSS("error-message")}
-                    name="email"
-                    component={"span"}
-                  />
-                  <input
-                    placeholder={this.getPropValue("phone")}
-                    type="text"
-                    name="phone"
-                    value={values.message}
-                    onChange={handleChange}
-                    className={this.decorateCSS("input")}
-                  />
-                  <input
-                    placeholder={this.getPropValue("treatment")}
-                    type="text"
-                    name="treatment"
-                    value={values.message}
-                    onChange={handleChange}
-                    className={this.decorateCSS("input")}
-                  />
-                  <ErrorMessage
-                    className={this.decorateCSS("error-message")}
-                    name="message"
-                    component={"span"}
-                  />
-                </Form>
-              )}
-            </Formik>
-            <button className={this.decorateCSS("submit-button")} type="submit">
-              {this.getPropValue("button_text")}
-            </button>
+            <div className={this.decorateCSS("right-page")}>
+              <div className={this.decorateCSS("form-container")}>
+                <Formik
+                  initialValues={{ name: "", email: "", message: "" }}
+                  validationSchema={this.validationSchema}
+                  onSubmit={(data, { resetForm }) => {
+                    this.insertForm("Contact Us", data);
+                    resetForm();
+                  }}
+                >
+                  {({ handleChange, values }) => (
+                    <Form className={this.decorateCSS("form")}>
+                      <input
+                        placeholder={this.getPropValue("name")}
+                        type="text"
+                        name="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        className={this.decorateCSS("input")}
+                      />
+                      <div className={this.decorateCSS("name-box")}>
+                        <ComposerIcon
+                          name={this.getPropValue("Name")}
+                          propsIcon={{ className: this.decorateCSS("icon") }}
+                        />
+                        <h2 className={this.decorateCSS("text")}>
+                          {this.getPropValue("text1")}
+                        </h2>
+                      </div>
+                      <ErrorMessage
+                        className={this.decorateCSS("error-message")}
+                        name="name"
+                        component={"span"}
+                      />
+                      <input
+                        placeholder={this.getPropValue("email")}
+                        type="text"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        className={this.decorateCSS("input")}
+                      />
+                      <div className={this.decorateCSS("email-box")}>
+                        <ComposerIcon
+                          name={this.getPropValue("e-mail")}
+                          propsIcon={{ className: this.decorateCSS("icon") }}
+                        />
+
+                        <h2 className={this.decorateCSS("text")}>
+                          {this.getPropValue("text2")}
+                        </h2>
+                      </div>
+                      <ErrorMessage
+                        className={this.decorateCSS("error-message")}
+                        name="email"
+                        component={"span"}
+                      />
+                      <input
+                        placeholder={this.getPropValue("phone")}
+                        type="text"
+                        name="phone"
+                        value={values.message}
+                        onChange={handleChange}
+                        className={this.decorateCSS("input")}
+                      />
+                      <div className={this.decorateCSS("message-box")}>
+                        <ComposerIcon
+                          name={this.getPropValue("message")}
+                          propsIcon={{ className: this.decorateCSS("icon") }}
+                        />
+
+                        <h2 className={this.decorateCSS("text")}>
+                          {this.getPropValue("text3")}
+                        </h2>
+                      </div>
+                      <ErrorMessage
+                        className={this.decorateCSS("error-message")}
+                        name="message"
+                        component={"span"}
+                      />
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+              <button
+                className={this.decorateCSS("submit-button")}
+                type="submit"
+              >
+                {this.getPropValue("button_text")}
+              </button>
+              <div className={this.decorateCSS("right-description")}>
+                <h1 className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </h1>
+              </div>
+            </div>
           </div>
         </div>
       </div>
