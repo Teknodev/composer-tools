@@ -115,7 +115,7 @@ class Team14 extends Team {
               key: "description",
               displayer: "Description",
               value: "Bringing visions to life through innovative ideas and strategic executions. Transforming concenpts into captivating visual stories.",
-            },            
+            },
             {
               type: "image",
               key: "image",
@@ -170,85 +170,38 @@ class Team14 extends Team {
     }
   }
 
-    getName(): string {
-      return "Team 14";
-    }
-    render() {
-      const title = this.getPropValue("title");
-      const subtitle = this.getPropValue("subtitle");
-      const team = this.castToObject<Card[]>("team");
-      return (
-        <div className={this.decorateCSS("container")}>
-          <div className={this.decorateCSS("max-content")}> 
-            {(title || subtitle )&&(
-              <div className={this.decorateCSS("up-page")}>
-                {title && <h1 className={this.decorateCSS("title")}>{title}</h1>}
-                {subtitle && <p className={this.decorateCSS("subtitle")}>{subtitle}</p>}
-              </div>
-            )}
-              <div className={this.decorateCSS("down-page")}>
-              {team.map((teamMember, index) => (
-                  <div className={this.decorateCSS("portfolio")}>
-                    <img className={this.decorateCSS("image")} src={teamMember.image} alt={`${teamMember.name}'s image`} />
-                    <div className={this.decorateCSS("info")}>
-                      <div className={this.decorateCSS("name")}>{teamMember.name}</div>
-                      <div className={this.decorateCSS("position")}>{teamMember.position}</div>
-                      <div className={this.decorateCSS("description")}>{teamMember.description}</div>
-                    </div>
-                </div>
-              ))}
+  getName(): string {
+    return "Team 14";
+  }
+  render() {
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const team = this.castToObject<Card[]>("team");
+    return (
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          {(title || subtitle) && (
+            <div className={this.decorateCSS("up-page")}>
+              {title && <h1 className={this.decorateCSS("title")}>{title}</h1>}
+              {subtitle && <p className={this.decorateCSS("subtitle")}>{subtitle}</p>}
             </div>
-          
+          )}
+          <div className={this.decorateCSS("down-page")}>
+            {team.map((teamMember, index) => (
+              <div className={this.decorateCSS("portfolio")}>
+                <img className={this.decorateCSS("image")} src={teamMember.image} alt={`${teamMember.name}'s image`} />
+                <div className={this.decorateCSS("info")}>
+                  <div className={this.decorateCSS("name")}>{teamMember.name}</div>
+                  <div className={this.decorateCSS("position")}>{teamMember.position}</div>
+                  <div className={this.decorateCSS("description")}>{teamMember.description}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     );
   }
 }
-  export default Team14;
-
-
-        
-        //<div className={this.decorateCSS("container")}>
-        //   <div className={this.decorateCSS("max-content")}>
-        //     {this.castToObject<Portfolio[]>("portfolio").map(
-        //       (portfolio: Portfolio, indexPortfolio: number) => (
-        //         <div className={this.decorateCSS("card-item-count")} style={{
-        //           width: 90 / this.getPropValue("itemCount") + "%",
-        //         }}>
-        //         <div key={indexPortfolio} className={this.decorateCSS("portfolio")}>
-        //           <img className={this.decorateCSS("image")} src={portfolio.image} alt=""></img>
-        //           <div className={this.decorateCSS("little-container")}>
-        //             <h3 className={this.decorateCSS("title")}>{portfolio.title}</h3>
-        //             <p className={this.decorateCSS("description")}>
-        //               {portfolio.description}
-        //             </p>
-        //           </div>
-        //         </div>
-        //         </div>
-        //       )
-        //     )}
-        //   </div>
-        // </div>
-
-
-        //////////////////////////////////////////////
-
-
-
-/*            <div className={this.decorateCSS("down-page")} style={{ display: "flex", flexWrap: "wrap" }}>
-                {/ {this.castToObject<Card[]>("portfolio").map(
-                  (portfolio: any, index: number) => {
-                    return (
-                      <div
-                        key={indexTeamMembers}
-                        className={this.decorateCSS("card")}
-                        style={{ width: 90 / this.getPropValue("reverse") + "%" }}
-                      >
-                        <img src={item.image} alt="team" />
-                        <div className={this.decorateCSS("person-info")}>
-                          <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
-                          <p className={this.decorateCSS("item-position")}>{item.position}</p>
-                          <p className={this.decorateCSS("item-description")}>{item.description}</p>
-                        </div>
-                      </div>
-                    ); }         */
+export default Team14;
