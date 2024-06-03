@@ -1,19 +1,16 @@
 import * as React from "react";
 import styles from "./header3.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
+
 
 type ISliderData = {
   title: string;
   subtitle: string;
   image: string;
   description: string;
-  button: IButton[];
-};
-
-type IButton = {
-  value: string;
+  button: {
+    button_text: string;
+  };
 };
 
 class Header3 extends BaseHeader {
@@ -62,7 +59,7 @@ class Header3 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "button_text",
                   value: "discover more",
                 },
                 {
@@ -113,7 +110,7 @@ class Header3 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "button_text",
                   value: "discover more",
                 },
                 {
@@ -165,7 +162,7 @@ class Header3 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "button_text",
                   value: "discover more",
                 },
                 {
@@ -255,7 +252,7 @@ class Header3 extends BaseHeader {
                     )}
                     <div>
                       <button className={this.decorateCSS("button")}>
-                        {item.button[0].value}
+                        {item.button.button_text}
                       </button>
                     </div>
                   </div>
