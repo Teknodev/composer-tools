@@ -298,19 +298,35 @@ export abstract class Component
           }
         });
       } else {
+        const value = this.getPropValue(clonedPropValue.key, { parent_object: object.value });
         clonedPropValue = {
-          key: clonedPropValue.key, value: this.getPropValue(clonedPropValue.key, {
-            parent_object: object.value
-          })
+          key: clonedPropValue.key, value
         };
       }
       return clonedPropValue;
     });
 
-    if(object.type == "object"){
+    if (object.type == "object") {
+      const isObjectContainsAnotherObject = object.value.some((val: TypeUsableComponentProps) => val.type == "object")
+
       let tmpCasted = [...casted];
       casted = {};
-      tmpCasted.forEach((manipulatedValue) => casted[manipulatedValue.key] = manipulatedValue.value);
+
+      tmpCasted.forEach((manipulatedValue) => {
+        const initialProp = manipulatedValue;
+        let value: any = {};
+
+
+        if (initialProp.type == "object" && isObjectContainsAnotherObject) {
+          initialProp.value.forEach((propVal: any) => {
+            value[propVal.key] = initialProp[propVal.key]
+          })
+        } else {
+          value = manipulatedValue.value;
+        }
+
+        casted[manipulatedValue.key] = value;
+      });
     }
 
     return casted;
