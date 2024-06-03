@@ -332,7 +332,6 @@ class Header27 extends BaseHeader {
           <div className={this.decorateCSS("slider-parent")}>
             <Slider {...settings} className={this.decorateCSS("carousel")}>
               {slider.map((item: ISliderData, index: number) => {
-                console.log("item: ", item);
                 return (
                   <div key={index} className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("max-content")}>
@@ -369,40 +368,35 @@ class Header27 extends BaseHeader {
 
                       <div className={this.decorateCSS("LowerDiv")}>
                         <div className={this.decorateCSS("button-contain")}>
-                          {
-                            // TODO need to change this after getPropValur as_string is fixed
-                            this.getPropValue("slider")[
-                              this.getComponentState("active-index")
-                            ].getPropValue("button")[0].value && (
-                              <ComposerLink path={item.button.link}>
-                                <button
-                                  className={`${this.decorateCSS(
-                                    "button"
-                                  )} animate__animated ${this.getComponentState(
-                                    "buttonAnimationClass"
-                                  )}`}
-                                  onAnimationEnd={() => {
-                                    this.handleAnimationEnd({
-                                      animationState: "buttonAnimationClass",
-                                      startingAnimation: "animate__fadeInUp",
-                                      endingAnimation: "animate__fadeOutDown",
-                                    });
+                          {this.castToString(item.button.buttonText) && (
+                            <ComposerLink path={item.button.link}>
+                              <button
+                                className={`${this.decorateCSS(
+                                  "button"
+                                )} animate__animated ${this.getComponentState(
+                                  "buttonAnimationClass"
+                                )}`}
+                                onAnimationEnd={() => {
+                                  this.handleAnimationEnd({
+                                    animationState: "buttonAnimationClass",
+                                    startingAnimation: "animate__fadeInUp",
+                                    endingAnimation: "animate__fadeOutDown",
+                                  });
+                                }}
+                              >
+                                <span className={this.decorateCSS("button-text")}>
+                                  {item.button.buttonText}
+                                </span>
+                                <ComposerIcon
+                                  name={item.button.exploreIcon}
+                                  propsIcon={{
+                                    className: ``,
+                                    size: 10,
                                   }}
-                                >
-                                  <span className={this.decorateCSS("button-text")}>
-                                    {item.button.buttonText}
-                                  </span>
-                                  <ComposerIcon
-                                    name={item.button.exploreIcon}
-                                    propsIcon={{
-                                      className: ``,
-                                      size: 10,
-                                    }}
-                                  />
-                                </button>
-                              </ComposerLink>
-                            )
-                          }
+                                />
+                              </button>
+                            </ComposerLink>
+                          )}
 
                           <div className={this.decorateCSS("figure")}>
                             <div className={this.decorateCSS("pagination")}>
