@@ -241,7 +241,7 @@ class HeaderComponent28 extends BaseHeader {
         >
           {this.getPropValue("slider").map((item: any, indexSlider: number) => (
             <div className={this.decorateCSS("content")} key={indexSlider}>
-              <img src={item.getPropValue("image")} />
+              <img src={item.getPropValue("image")} className={this.decorateCSS("bg-img")}/>
 
               <div
                 className={`${this.decorateCSS("video-player-container")} ${
