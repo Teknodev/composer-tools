@@ -49,11 +49,7 @@ class HeaderComponent26 extends BaseHeader {
         },
       ],
     });
-    this.addProp({
-      type: "object",
-      key: "buttonprop",
-      displayer: "Button Prop",
-      value: [
+    this.addProp(
         {
           type: "object",
           displayer: "Button",
@@ -71,9 +67,7 @@ class HeaderComponent26 extends BaseHeader {
               key: "url",
               value: "",
             },
-          ],
-        },
-      ],
+          ]
     });
   }
 
@@ -83,39 +77,38 @@ class HeaderComponent26 extends BaseHeader {
 
   render() {
     let items: any = this.castToObject("items");
+    const button = this.castToObject<any>("button")    
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("background-image")}>
-              <img src={items[0].image} alt={items[0].title} />
+              <img src={items["left-top-item"].image} alt={items["left-top-item"].title} />
             </div>
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("title")}>
-                <h1 className={this.decorateCSS("items")}>{items[0].title}</h1>
+                <h1 className={this.decorateCSS("items")}>{items["left-top-item"].title}</h1>
               </div>
               <div className={this.decorateCSS("description")}>
-                <h3 className={this.decorateCSS("items-description")}>{items[0].description}</h3>
+                <h3 className={this.decorateCSS("items-description")}>{items["left-top-item"].description}</h3>
               </div>
 
-              {this.getPropValue("buttonprop").map(
-                (button: any, index: number) => (
-                  <ComposerLink path={button.value[0].value} key={index}>
+              
+                  <ComposerLink path={button.url}>
                     <div className={this.decorateCSS("button-wrapper")}>
                       <a
                         className={this.decorateCSS("button")}
-                        href={button.value[1].value}
                       >
-                        {button.value[0].value}
+                        {button.text}
                       </a>
                     </div>
                   </ComposerLink>
-                )
-              )}
+
+
             </div>
             <div className={this.decorateCSS("right")}>
-              <img src={items[1].value} alt={items[1].displayer} />
+              <img src={items.rightImage} />
             </div>
           </div>
         </div>
