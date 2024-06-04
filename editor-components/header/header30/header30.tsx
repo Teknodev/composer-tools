@@ -50,32 +50,27 @@ class HeaderComponent30 extends BaseHeader {
         },
       ],
     });
-    this.addProp({
-      type: "object",
-      key: "player-button",
-      displayer: "Player Button",
-      value: [
-        {
-          type: "object",
-          key: "box",
-          displayer: "Player Button",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value: "https://cdn-icons-png.flaticon.com/512/3039/3039386.png",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "https://youtu.be/V5QPXhStb5I",
-            },
-          ],
-        },
-      ],
-    });
+    this.addProp(
+      {
+        type: "object",
+        key: "box",
+        displayer: "Player Button",
+        value: [
+          {
+            type: "image",
+            key: "image",
+            value: "https://cdn-icons-png.flaticon.com/512/3039/3039386.png",
+            displayer: "Image",
+          },
+          {
+            type: "page",
+            key: "url",
+            displayer: "URL",
+            value: "https://youtu.be/V5QPXhStb5I",
+          },
+        ],
+      },
+    );
   }
 
   getName(): string {
@@ -84,41 +79,39 @@ class HeaderComponent30 extends BaseHeader {
 
   render() {
     let items: any = this.castToObject("items");
+    const box = this.castToObject<playerButton>("box");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("background-1")}>
-              <img src={items[1].value} alt={items[1].displayer} />
+              <img src={items.background1} />
             </div>
             <div className={this.decorateCSS("items")}>
               <div className={this.decorateCSS("top")}>
                 <div className={this.decorateCSS("content")}>
                   <h1 className={this.decorateCSS("title")}>
-                    {items[0].title}
+                    {items["top-of-dot"].title}
                   </h1>
                 </div>
               </div>
               <div className={this.decorateCSS("bottom")}>
                 <div className={this.decorateCSS("message")}>
-                  {items[0].message}
+                  {items["top-of-dot"].message}
                 </div>
                 <div className={this.decorateCSS("icon-button")}>
-                  {this.castToObject<playerButton[]>("player-button").map(
-                    (icon: any, index: number) => (
-                      <ComposerLink key={index} path={icon.url}>
-                        <div className={this.decorateCSS("icon-div")}>
-                          <img
-                            src={icon.image}
-                            alt={`Player Button ${index + 1}`}
-                            key={index}
-                          />
-                          <h4 className={this.decorateCSS("button-description")}>{items[0].buttonDescription}</h4>
-                        </div>
-                      </ComposerLink>
-                    )
-                  )}
+
+                  <ComposerLink path={box.url}>
+                    <div className={this.decorateCSS("icon-div")}>
+                      <img
+                        src={box.image}
+                      />
+                      <h4 className={this.decorateCSS("button-description")}>{items["top-of-dot"].buttonDescription}</h4>
+                    </div>
+                  </ComposerLink>
+
+
                 </div>
               </div>
             </div>
