@@ -36,7 +36,7 @@ class Form2Page extends BaseContacts {
               type: "string",
               key: "placeholder",
               displayer: "Placeholder",
-              value: "First&Last Name",
+              value: "Full Name",
             },
             {
               type: "boolean",
@@ -297,6 +297,7 @@ class Form2Page extends BaseContacts {
                         <div className={this.decorateCSS("input-container")}>
                           {input.getPropValue("type") == "Text Area" ? (
                             <textarea
+                              id={getInputName(index)}
                               value={values[getInputName(index)]}
                               placeholder=" "
                               className={`${this.decorateCSS("input")} ${this.decorateCSS(
@@ -304,18 +305,17 @@ class Form2Page extends BaseContacts {
                               )}`}
                               rows={12}
                               onChange={handleChange}
-                            ></textarea>
+                            />
                           ) : (
-                            <>
-                              <input
-                                placeholder=" "
-                                type={getInputType(input.getPropValue("type"))}
-                                onChange={handleChange}
-                                value={values[getInputName(index)]}
-                                name={getInputName(index)}
-                                className={this.decorateCSS("input")}
-                              />
-                            </>
+                            <input
+                              id={getInputName(index)}
+                              placeholder=" "
+                              type={getInputType(input.getPropValue("type"))}
+                              onChange={handleChange}
+                              value={values[getInputName(index)]}
+                              name={getInputName(index)}
+                              className={this.decorateCSS("input")}
+                            />
                           )}
                           <span className={this.decorateCSS("placeholder")}>
                             {input.getPropValue("placeholder")}{" "}
