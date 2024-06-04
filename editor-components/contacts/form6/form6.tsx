@@ -26,7 +26,14 @@ class Form6 extends BaseContacts {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Feel free to get in touch with me via the form below or by emailing me directly at hello@test.com"
+      value: "Feel free to get in touch with me via the form below or by emailing me directly at"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "mail",
+      displayer: "Mail",
+      value: "hello@yelizsarioglu.com"
     });
 
     this.addProp({
@@ -354,7 +361,7 @@ class Form6 extends BaseContacts {
     const locationDetails = this.getPropValue("locationDetails", { as_string: true });
     const isAddressVisible = location || locationDetails;
 
-    const inputItems = this.getPropValue("input_items")
+    const inputItems = this.getPropValue("input_items")!
     const image = this.getPropValue("image");
 
     function toObjectKey(str: string) {
@@ -387,8 +394,8 @@ class Form6 extends BaseContacts {
 
     function getInitialValue() {
       let value: any = {};
-      inputItems.map((inputItem: TypeUsableComponentProps, indexOfItem: number) => {
-        inputItem.getPropValue("inputs").map((_: TypeUsableComponentProps, indexOfInput: number) => {
+      inputItems.map((inputItem: any, indexOfItem: number) => {
+        inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
           value[key] = "";
         })
@@ -399,14 +406,14 @@ class Form6 extends BaseContacts {
     function getSchema() {
       let schema = Yup.object().shape({});
 
-      inputItems.map((inputItem: TypeUsableComponentProps, indexOfItem: number) => {
-        inputItem.getPropValue("inputs").map((input: TypeUsableComponentProps, indexOfInput: number) => {
+      inputItems.map((inputItem: any, indexOfItem: number) => {
+        inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
 
           const isRequired = input.getPropValue("is_required");
           const isEmail = getInputType(input.getPropValue("type")) == "email";
 
-          let fieldSchema = Yup.string();
+          let fieldSchema = Yup.string() as any;
 
           if (isRequired) {
             fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"))
@@ -443,8 +450,8 @@ class Form6 extends BaseContacts {
       return newObj;
     }
 
-    function isRequiredInput(inputItem: TypeUsableComponentProps): boolean {
-      return inputItem.getPropValue("inputs").some((input: TypeUsableComponentProps) => input.getPropValue("is_required"))
+    function isRequiredInput(inputItem: any): boolean {
+      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
     }
 
     return (
@@ -454,12 +461,12 @@ class Form6 extends BaseContacts {
             {isContactVisible &&
               <div className={this.decorateCSS("contact")} >
                 {title && <h1 className={this.decorateCSS("title")}> {this.getPropValue("title")} </h1>}
-                {description && <h3 className={this.decorateCSS("description")}> {this.getPropValue("description")} </h3>}
+                {description && <h3 className={this.decorateCSS("description")}> {this.getPropValue("description")} <span className={this.decorateCSS("mail")}>{this.getPropValue("mail")}</span> </h3>}
               </div>
             }
             {isAddressVisible &&
               <div className={this.decorateCSS("address")}>
-                {location && <h1 className={this.decorateCSS("title")}> {this.getPropValue("location")} </h1>}
+                {location && <h1 className={this.decorateCSS("title-2")}> {this.getPropValue("location")} </h1>}
                 {locationDetails && <h3 className={this.decorateCSS("description")}> {this.getPropValue("locationDetails")} </h3>}
               </div>
             }
@@ -477,19 +484,24 @@ class Form6 extends BaseContacts {
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
-                    {inputItems.map((inputItem: TypeUsableComponentProps, inputItemIndex: number) =>
+                    {inputItems.map((inputItem: any, inputItemIndex: number) =>
                       <div className={this.decorateCSS("input-container")}>
-                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label")} <p className={this.decorateCSS("require-star")}>{isRequiredInput(inputItem) && "*"}</p></span>
+                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label", {
+                          suffix: {
+                            label: isRequiredInput(inputItem) && "*",
+                            className: this.decorateCSS("require-star")
+                          }
+                        })}</span>
                         <div className={this.decorateCSS("inputs")}>
-                          {inputItem.getPropValue("inputs").map((inputObj: TypeUsableComponentProps, inputIndex: number) =>
+                          {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
                             <div className={this.decorateCSS("input-box")}>
                               {inputObj.getPropValue("type") == "Text Area" ?
                                 <textarea
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder")} rows={12} onChange={handleChange}
+                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder", { as_string: true })} rows={12} onChange={handleChange}
                                   name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}></textarea> :
                                 <input
-                                  placeholder={inputObj.getPropValue("placeholder")}
+                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                                   type={getInputType(inputObj.getPropValue("type"))}
                                   onChange={handleChange}
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}

@@ -70,7 +70,7 @@ class ContentComponent22 extends BaseContent {
 
   render() {
 
-    let header, image_one: string, image_two: string, image_three: string;
+    let header, image_one: string | undefined, image_two: string | undefined, image_three: string | undefined;
 
     const type = this.getPropValue("type");
 

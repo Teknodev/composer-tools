@@ -192,6 +192,7 @@ import FooterComponent8 from "./footer/footer8/footer8";
 import FooterComponent9 from "./footer/footer9/footer9";
 import FooterComponent10 from "./footer/footer10/footer10";
 import FooterComponent11 from "./footer/footer11/footer11";
+import FooterComponent12 from "./footer/footer12/footer12";
 import NavbarComponent1 from "./navigators/navbar1/navbar1";
 import NavbarComponent2 from "./navigators/navbar2/navbar2";
 import NavbarComponent3 from "./navigators/navbar3/navbar3";
@@ -200,7 +201,6 @@ import NavbarComponent5 from "./navigators/navbar5/navbar5";
 import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
-import NavbarComponent9 from "./navigators/navbar9/navbar9";
 import ImageGalleryCompanent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
@@ -336,7 +336,6 @@ function Registerables(composer: ComponentsRegistery) {
     new NavbarComponent6(),
     new NavbarComponent7(),
     new NavbarComponent8(),
-    new NavbarComponent9(),
     new ImageGalleryCompanent1(),
     new FeatureComponent1(),
     new FeatureComponent2(),
@@ -411,6 +410,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent9(),
     new FooterComponent10(),
     new FooterComponent11(),
+    new FooterComponent12(),
     new TermsOfUseModal(),
     new SurveyModal(),
     new NoticeModal(),
