@@ -143,7 +143,7 @@ class Header16 extends BaseHeader {
               value: [
                 {
                   type: "string",
-                  key: "button-text",
+                  key: "buttonText",
                   displayer: "Button Text",
                   value: "View Details",
                 },
