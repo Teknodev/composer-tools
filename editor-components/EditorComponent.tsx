@@ -3,10 +3,18 @@ import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
 import sanitizeHtml from 'sanitize-html';
+import { renderToString } from "react-dom/server";
+
+type PreSufFix = {
+  label: string;
+  className: string;
+}
 
 type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
   as_string?: boolean;
+  suffix?: PreSufFix;
+  prefix?: PreSufFix;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
 export type iComponent = {
@@ -48,8 +56,8 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[] };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-  };
+  getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -75,8 +83,7 @@ export enum CATEGORIES {
 
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
-  implements iComponent
-{
+  implements iComponent {
   private styles: any;
   private _props: any;
   protected category: CATEGORIES;
@@ -117,32 +124,70 @@ export abstract class Component
     let prop = (properties?.parent_object?.filter(
       (prop: TypeUsableComponentProps) => prop.key === propName
     )[0] || this.getProp(propName));
+  
+    const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
 
-    
-    return prop?.type == "string" && !properties?.as_string
+    return isStringMustBeElement
       ? this.getPropValueAsElement(prop)
       : prop?.value;
   }
 
-  getPropValueAsElement(prop: TypeUsableComponentProps) {
-    const sanitize = (dirty:string, options: sanitizeHtml.IOptions) => ({
+
+
+  getPropValueAsElement(prop: TypeUsableComponentProps, properties?: GetPropValueProperties) {
+    const sanitize = (dirty: string, options: sanitizeHtml.IOptions) => ({
       __html: sanitizeHtml(
         dirty,
         {
           allowedAttributes: {
-            'a': [ 'href', 'name', 'target' ],
-            '*': [ 'style' ]
+            'a': ['href', 'name', 'target'],
+            '*': ['style', 'class']
           },
           parseStyleAttributes: false
         }
       )
     });
-    
-    const SanitizeHTML = ({ html, options }: any) => (
+
+
+
+    const preSufFixToElement = (elem?: PreSufFix) => {
+      if (!elem) return null;
+
+      return React.createElement("span", { className: `${elem.className} suffix-prefix-elem`,children: elem.label });
+    };
+
+
+
+    const SanitizeHTML = ({ html, options }: any) => {
+      const prefix = preSufFixToElement(properties?.prefix);
+      const suffix = preSufFixToElement(properties?.suffix);
+
+      const stringPrefix = renderToString(prefix || <></>);
+      const stringSuffix = renderToString(suffix || <></>);
+
+      const hasHtmlTag = html.includes("<");
+
+      if (!hasHtmlTag) {
+        html = `<p> ${html} </p>`
+      }
+
+      const firstTagStartIndex = html.indexOf(">") + 1;
+      const firstTagEndIndex = html.lastIndexOf("<");
+
+      const htmlWithPrefixAndSuffix =
+        html.substring(0, firstTagStartIndex) +
+        stringPrefix +
+        html.substring(firstTagStartIndex, firstTagEndIndex) +
+        stringSuffix +
+        html.substring(firstTagEndIndex);
+
+
+      const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
+
       //@ts-ignore
-      <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{pointerEvents:"none", display:"inline-block", width: "100%"}} dangerouslySetInnerHTML={sanitize(html, options)}></blinkpage>
-    );
-    
+      return <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%" }} dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>
+    };
+
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
@@ -233,8 +278,13 @@ export abstract class Component
     let i = this.state.componentProps.props
       .map((prop: any) => prop.key)
       .indexOf(propName);
+      
     let castedObject = this.castingProcess(this.state.componentProps.props[i]);
     return castedObject;
+  }
+
+  castToString(elem: JSX.Element): string {
+    return elem.props?.html;
   }
 
   private castingProcess(object: any) {
@@ -247,16 +297,36 @@ export abstract class Component
             clonedPropValue[nestedObject.key] = this.castingProcess(nestedObject);
           }
         });
-      }else{
-        clonedPropValue = {key: clonedPropValue.key, value: object.getPropValue(clonedPropValue.key)};
+      } else {
+        const value = this.getPropValue(clonedPropValue.key, { parent_object: object.value });
+        clonedPropValue = {
+          key: clonedPropValue.key, value
+        };
       }
       return clonedPropValue;
     });
 
-    if(object.type == "object"){
+    if (object.type == "object") {
+      const isObjectContainsAnotherObject = object.value.some((val: TypeUsableComponentProps) => val.type == "object")
+
       let tmpCasted = [...casted];
       casted = {};
-      tmpCasted.forEach((manipulatedValue) => casted[manipulatedValue.key] = manipulatedValue.value);
+
+      tmpCasted.forEach((manipulatedValue) => {
+        const initialProp = manipulatedValue;
+        let value: any = {};
+
+
+        if (initialProp.type == "object" && isObjectContainsAnotherObject) {
+          initialProp.value.forEach((propVal: any) => {
+            value[propVal.key] = initialProp[propVal.key]
+          })
+        } else {
+          value = manipulatedValue.value;
+        }
+
+        casted[manipulatedValue.key] = value;
+      });
     }
 
     return casted;
