@@ -172,20 +172,26 @@ class Header17 extends BaseHeader {
         >
           {this.getPropValue("slider").map((item: any, index: number) => (
             <div className={this.decorateCSS("content")} key={`key${index}`}>
-              <img src={item.getPropValue("image")} alt="" className={this.decorateCSS("bg-img")} />
+              {item.getPropValue("image") && (
+                <img
+                  src={item.getPropValue("image")}
+                  alt=""
+                  className={this.decorateCSS("bg-img")}
+                />
+              )}
 
               <div className={this.decorateCSS("slider-item-container")}>
                 <div className={this.decorateCSS("slider-item-content")}>
                   <div className={this.decorateCSS("title-box")}>
                     <span className={this.decorateCSS("year")}>{item.getPropValue("year")}</span>
                     <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
-                  </div>
-                  <div className={this.decorateCSS("view-button")}>
-                    <ComposerLink path={item.getPropValue("button-url")}>
-                      <span className={this.decorateCSS("view-button-text")}>
-                        {item.getPropValue("button-text")}
-                      </span>
-                    </ComposerLink>
+                    <div className={this.decorateCSS("view-button")}>
+                      <ComposerLink path={item.getPropValue("button-url")}>
+                        <span className={this.decorateCSS("view-button-text")}>
+                          {item.getPropValue("button-text")}
+                        </span>
+                      </ComposerLink>
+                    </div>
                   </div>
                 </div>
               </div>
