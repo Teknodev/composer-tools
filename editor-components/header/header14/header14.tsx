@@ -1,26 +1,25 @@
 import * as React from "react";
 import styles from "./header14.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-type Slide = {
-  image: string;
-  title: string;
-  description: string;
-  firstButton: {
-    buttontext: string;
-  };
-  secondButton: {
-    buttontext: string;
-  };
-};
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class HeaderComponent14 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
+    this.addProp({
+      type: "icon",
+      key: "prev_icon",
+      displayer: "Prev icon",
+      value: "GrFormPrevious",
+    });
+    this.addProp({
+      type: "icon",
+      key: "next_icon",
+      displayer: "Next icon",
+      value: "GrFormNext",
+    });
     this.addProp({
       type: "array",
       displayer: "Slides",
@@ -28,14 +27,20 @@ class HeaderComponent14 extends BaseHeader {
       value: [
         {
           type: "object",
-          displayer: "First Slide",
-          key: "first-slide",
+          displayer: "Slide",
+          key: "slide",
           value: [
             {
               type: "string",
               displayer: "Title",
               key: "title",
               value: "Charge Your Phone Safely!",
+            },
+            {
+              type: "string",
+              displayer: "Sub Title",
+              key: "subTitle",
+              value: "Technology",
             },
             {
               type: "string",
@@ -53,40 +58,59 @@ class HeaderComponent14 extends BaseHeader {
             },
 
             {
-              type: "object",
-              displayer: "First Button",
-              key: "firstButton",
+              type: "array",
+              displayer: "Buttons",
+              key: "buttons",
               value: [
                 {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttontext",
-                  value: "TO SHOP",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "button-text",
+                      value: "TO SHOP",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button Link",
+                      key: "button-url",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Is Primary",
+                      key: "primary",
+                      value: true,
+                    },
+                  ],
                 },
                 {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "buttonurl",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Second Button",
-              key: "secondButton",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttontext",
-                  value: "READ MORE",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "buttonurl",
-                  value: "",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "button-text",
+                      value: "READ MORE",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button Link",
+                      key: "button-url",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Is Primary",
+                      key: "primary",
+                      value: false,
+                    },
+                  ],
                 },
               ],
             },
@@ -105,6 +129,12 @@ class HeaderComponent14 extends BaseHeader {
             },
             {
               type: "string",
+              displayer: "Sub Title",
+              key: "subTitle",
+              value: "Technology",
+            },
+            {
+              type: "string",
               displayer: "Description",
               key: "description",
               value:
@@ -118,40 +148,59 @@ class HeaderComponent14 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e3?alt=media&timestamp=1693304455863",
             },
             {
-              type: "object",
-              displayer: "First Button",
-              key: "firstButton",
+              type: "array",
+              displayer: "Buttons",
+              key: "buttons",
               value: [
                 {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttontext",
-                  value: "TO SHOP",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "button-text",
+                      value: "TO SHOP",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button Link",
+                      key: "button-url",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Is Primary",
+                      key: "primary",
+                      value: true,
+                    },
+                  ],
                 },
                 {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "buttonurl",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Second Button",
-              key: "secondButton",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttontext",
-                  value: "READ MORE",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "buttonurl",
-                  value: "",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "button-text",
+                      value: "READ MORE",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button Link",
+                      key: "button-url",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Is Primary",
+                      key: "primary",
+                      value: false,
+                    },
+                  ],
                 },
               ],
             },
@@ -159,14 +208,20 @@ class HeaderComponent14 extends BaseHeader {
         },
         {
           type: "object",
-          displayer: "First Slide",
-          key: "third-slide",
+          displayer: "Slide",
+          key: "slide",
           value: [
             {
               type: "string",
               displayer: "Title",
               key: "title",
               value: "Featured Accessories",
+            },
+            {
+              type: "string",
+              displayer: "Sub Title",
+              key: "subTitle",
+              value: "Technology",
             },
             {
               type: "string",
@@ -183,40 +238,59 @@ class HeaderComponent14 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e2?alt=media&timestamp=1693304455863",
             },
             {
-              type: "object",
-              displayer: "First Button",
-              key: "firstButton",
+              type: "array",
+              displayer: "Buttons",
+              key: "buttons",
               value: [
                 {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttontext",
-                  value: "TO SHOP",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "button-text",
+                      value: "TO SHOP",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button Link",
+                      key: "button-url",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Is Primary",
+                      key: "primary",
+                      value: true,
+                    },
+                  ],
                 },
                 {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "buttonurl",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Second Button",
-              key: "secondButton",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttontext",
-                  value: "READ MORE",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "buttonurl",
-                  value: "",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "button-text",
+                      value: "READ MORE",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button Link",
+                      key: "button-url",
+                      value: "",
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Is Primary",
+                      key: "primary",
+                      value: false,
+                    },
+                  ],
                 },
               ],
             },
@@ -224,6 +298,7 @@ class HeaderComponent14 extends BaseHeader {
         },
       ],
     });
+    this.setComponentState("slider-ref", React.createRef());
   }
 
   getName(): string {
@@ -233,53 +308,78 @@ class HeaderComponent14 extends BaseHeader {
   render() {
     const settings = {
       dots: true,
+      arrows: false,
       infinite: true,
-      speed: 700,
+      autoplay: true,
+      speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
     };
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("wrapper")}>
-            <Slider {...settings} className={this.decorateCSS("carousel")}>
-              {this.castToObject<Slide[]>("slides").map(
-                (item: Slide, index: number) => (
-                  <div
-                    className={this.decorateCSS("slider-inner-div")}
-                    key={`sld-8-${index}`}
-                  >
-                    <div className={this.decorateCSS("item")}>
-                      <div className={this.decorateCSS("background-image")}>
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <div className={this.decorateCSS("content")}>
-                        <h1 className={this.decorateCSS("title")}>
-                          {item.title}
-                        </h1>
-                        <h3 className={this.decorateCSS("description")}>
-                          {item.description}
-                        </h3>
-                        <div className={this.decorateCSS("buttons")}>
-                          <button className={this.decorateCSS("firstButton")}>
-                            {item.firstButton.buttontext}
-                          </button>
-                          <button className={this.decorateCSS("secondButton")}>
-                            {item.secondButton.buttontext}
-                          </button>
-                        </div>
-                      </div>
+        <ComposerSlider
+          {...settings}
+          className={this.decorateCSS("carousel")}
+          ref={this.getComponentState("slider-ref")}
+        >
+          {this.getPropValue("slides").map((item: any, index: number) => (
+            <div className={this.decorateCSS("slide")} key={`sld-8-${index}`}>
+              <img
+                src={item.getPropValue("image")}
+                alt={item.getPropValue("title")}
+                className={this.decorateCSS("bg-img")}
+              />
+              <div className={this.decorateCSS("content")}>
+                <span className={this.decorateCSS("sub-title")}>
+                  {item.getPropValue("subTitle")}
+                </span>
+                <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
+                <h3 className={this.decorateCSS("description")}>
+                  {item.getPropValue("description")}
+                </h3>
+                <div className={this.decorateCSS("buttons-container")}>
+                  {item.getPropValue("buttons").map((buttonItem: any, index: number) => (
+                    <div
+                      className={`${this.decorateCSS("button")} ${
+                        buttonItem.getPropValue("primary") ? this.decorateCSS("primary-button") : ""
+                      }`}
+                      key={`btn-${index}`}
+                    >
+                      <ComposerLink path={buttonItem.getPropValue("button-url")}>
+                        <span className={this.decorateCSS("text")}>
+                          {buttonItem.getPropValue("button-text")}
+                        </span>
+                      </ComposerLink>
                     </div>
-                  </div>
-                )
-              )}
-            </Slider>
-          </div>
-        </div>
+                  ))}
+                </div>
+              </div>
+              <ComposerIcon
+                name={this.getPropValue("prev_icon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("arrow")} ${this.decorateCSS("prev-icon")}`,
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickPrev();
+                  },
+                }}
+              />
+              <ComposerIcon
+                name={this.getPropValue("next_icon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("arrow")} ${this.decorateCSS("next-icon")}`,
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickNext();
+                  },
+                }}
+              />
+            </div>
+          ))}
+        </ComposerSlider>
       </div>
     );
   }
 }
 
 export default HeaderComponent14;
+
