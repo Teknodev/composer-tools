@@ -38,6 +38,12 @@ class HeaderComponent14 extends BaseHeader {
             },
             {
               type: "string",
+              displayer: "Sub Title",
+              key: "subTitle",
+              value: "Technology",
+            },
+            {
+              type: "string",
               displayer: "Description",
               key: "description",
               value:
@@ -123,6 +129,12 @@ class HeaderComponent14 extends BaseHeader {
             },
             {
               type: "string",
+              displayer: "Sub Title",
+              key: "subTitle",
+              value: "Technology",
+            },
+            {
+              type: "string",
               displayer: "Description",
               key: "description",
               value:
@@ -204,6 +216,12 @@ class HeaderComponent14 extends BaseHeader {
               displayer: "Title",
               key: "title",
               value: "Featured Accessories",
+            },
+            {
+              type: "string",
+              displayer: "Sub Title",
+              key: "subTitle",
+              value: "Technology",
             },
             {
               type: "string",
@@ -292,7 +310,8 @@ class HeaderComponent14 extends BaseHeader {
       dots: true,
       arrows: false,
       infinite: true,
-      speed: 700,
+      autoplay: true,
+      speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
       dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
@@ -306,11 +325,16 @@ class HeaderComponent14 extends BaseHeader {
         >
           {this.getPropValue("slides").map((item: any, index: number) => (
             <div className={this.decorateCSS("slide")} key={`sld-8-${index}`}>
-              <img src={item.getPropValue("image")} alt={item.getPropValue("title")} />
+              <img
+                src={item.getPropValue("image")}
+                alt={item.getPropValue("title")}
+                className={this.decorateCSS("bg-img")}
+              />
               <div className={this.decorateCSS("content")}>
-                <h1 className={this.decorateCSS("title")}>
-                  {item.getPropValue("title")}
-                </h1>
+                <span className={this.decorateCSS("sub-title")}>
+                  {item.getPropValue("subTitle")}
+                </span>
+                <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
                 <h3 className={this.decorateCSS("description")}>
                   {item.getPropValue("description")}
                 </h3>
@@ -318,14 +342,14 @@ class HeaderComponent14 extends BaseHeader {
                   {item.getPropValue("buttons").map((buttonItem: any, index: number) => (
                     <div
                       className={`${this.decorateCSS("button")} ${
-                        buttonItem.getPropValue("primary")
-                          ? this.decorateCSS("primary-button")
-                          : ""
+                        buttonItem.getPropValue("primary") ? this.decorateCSS("primary-button") : ""
                       }`}
                       key={`btn-${index}`}
                     >
                       <ComposerLink path={buttonItem.getPropValue("button-url")}>
-                        <span>{buttonItem.getPropValue("button-text")}</span>
+                        <span className={this.decorateCSS("text")}>
+                          {buttonItem.getPropValue("button-text")}
+                        </span>
                       </ComposerLink>
                     </div>
                   ))}
@@ -334,9 +358,7 @@ class HeaderComponent14 extends BaseHeader {
               <ComposerIcon
                 name={this.getPropValue("prev_icon")}
                 propsIcon={{
-                  className: `${this.decorateCSS("arrow")} ${this.decorateCSS(
-                    "prev-icon"
-                  )}`,
+                  className: `${this.decorateCSS("arrow")} ${this.decorateCSS("prev-icon")}`,
                   onClick: () => {
                     this.getComponentState("slider-ref").current.slickPrev();
                   },
@@ -345,9 +367,7 @@ class HeaderComponent14 extends BaseHeader {
               <ComposerIcon
                 name={this.getPropValue("next_icon")}
                 propsIcon={{
-                  className: `${this.decorateCSS("arrow")} ${this.decorateCSS(
-                    "next-icon"
-                  )}`,
+                  className: `${this.decorateCSS("arrow")} ${this.decorateCSS("next-icon")}`,
                   onClick: () => {
                     this.getComponentState("slider-ref").current.slickNext();
                   },
