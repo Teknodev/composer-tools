@@ -1,154 +1,200 @@
 import * as React from "react";
-import { BaseContacts } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form2.module.scss";
+import { ErrorMessage, Form, Formik } from "formik";
+import * as Yup from "yup";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type Item = {
-  image: string;
-};
-type ISection = {
-  section: Item[];
-};
 class Form2Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "image",
+      key: "background-img",
+      displayer: "Background Image",
+      value:
+        "https://static.tildacdn.com/tild6534-3036-4165-a632-363563666466/photo1432821596592e2c18b78144f",
+    });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "If you want to contact we,",
-    });
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "You can use this contact form to get in touch with us. The contact form serves as an effective tool for direct communication with us. If you have any questions, feedback, requests, or partnership proposals, please feel free to reach out to us through this form. ",
+      value: "CONTACT US",
     });
     this.addProp({
       type: "array",
-      key: "card-items",
-      displayer: "Card Items",
+      key: "inputs",
+      displayer: "Inputs",
       value: [
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "input",
+          displayer: "Input",
           value: [
             {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb8c5fba070002b74a852?alt=media&timestamp=1684846790397",
-                      displayer: "Image",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      value: "Adress",
-                      displayer: "1th Text",
-                    },
-                    {
-                      type: "string",
-                      key: "1th-text",
-                      value: "27 13 Lowe Haven",
-                      displayer: "1th Text",
-                    },
-                    {
-                      type: "string",
-                      key: "2th-text",
-                      value: "28 14 Lowe Haven",
-                      displayer: "2th Text",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646cb37dfba070002b74a624?alt=media&timestamp=1684845438304",
-                      displayer: "Image",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      value: "Phone",
-                      displayer: "1th Text",
-                    },
-                    {
-                      type: "string",
-                      key: "1th-text",
-                      value: "111 345 45 99",
-                      displayer: "1th Text",
-                    },
-                    {
-                      type: "string",
-                      key: "2th-text",
-                      value: "111 346 45 99",
-                      displayer: "2th Text",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png",
-                      displayer: "Image",
-                    },
-                    {
-                      type: "string",
-                      key: "card-title",
-                      value: "Email",
-                      displayer: "Card Title",
-                    },
-                    {
-                      type: "string",
-                      key: "1th-text",
-                      value: "business@info.com",
-                      displayer: "1th Text",
-                    },
-                    {
-                      type: "string",
-                      key: "2th-text",
-                      value: "support@info.com",
-                      displayer: "2th Text",
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Full Name",
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "Required",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Text",
+              additionalParams: {
+                selectItems: ["Text", "E-mail", "Number", "Text Area"],
+              },
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "input",
+          displayer: "Input",
+          value: [
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "E-mail",
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "Required",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Text",
+              additionalParams: {
+                selectItems: ["Text", "E-mail", "Number", "Text Area"],
+              },
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "input",
+          displayer: "Input",
+          value: [
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Phone",
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "Required",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Text",
+              additionalParams: {
+                selectItems: ["Text", "E-mail", "Number", "Text Area"],
+              },
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "input",
+          displayer: "Input",
+          value: [
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Message",
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "Required",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Text Area",
+              additionalParams: {
+                selectItems: ["Text", "E-mail", "Number", "Text Area"],
+              },
             },
           ],
         },
       ],
     });
     this.addProp({
-      type: "select",
-      key: "select",
-      displayer: "Location of Border",
-      value: "Top",
-      additionalParams: {
-        selectItems: ["None", "Top" , "Bottom" , "All Around"],
-      }
-    })
+      type: "string",
+      key: "button_text",
+      displayer: "Button Text",
+      value: "Send Email",
+    });
   }
 
   getName(): string {
@@ -156,35 +202,148 @@ class Form2Page extends BaseContacts {
   }
 
   render() {
-    const selectValue = this.getPropValue("select");
+    const inputs = this.getPropValue("inputs");
+    const initialValue = getInitialValue();
+
+    function getInputType(type: string): string {
+      switch (type) {
+        case "Text Area":
+          return "textarea";
+        case "E-mail":
+          return "email";
+        case "Tel":
+          return "tel";
+        case "Number":
+          return "number";
+        default:
+          return "text";
+      }
+    }
+    function getInputName(indexOfInput: number): string {
+      const name = `input_${indexOfInput}`;
+      return name;
+    }
+    function getInitialValue() {
+      let value: any = {};
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+        value[getInputName(indexOfInput)] = "";
+      });
+
+      return value;
+    }
+    const getSchema = () => {
+      let schema = Yup.object().shape({});
+
+      const inputs = this.getPropValue("inputs");
+
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+        const isRequired = input.getPropValue("is_required");
+        const isEmail = getInputType(input.getPropValue("type")) == "email";
+
+        let fieldSchema = Yup.string();
+
+        if (isRequired) {
+          fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
+        } else {
+          fieldSchema = fieldSchema.nullable();
+        }
+
+        if (isEmail) {
+          fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
+        }
+
+        schema = schema.shape({
+          [getInputName(indexOfInput)]: fieldSchema,
+        });
+      });
+
+      return schema;
+    };
+    function getFormDataWithConvertedKeys(obj: any) {
+      const newObj: any = {};
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
+          const parts = adjustedKey.split("_");
+          let newKey = "";
+          for (let i = 1; i < parts.length - 1; i++) {
+            newKey += (i > 1 ? "_" : "") + parts[i];
+          }
+          newObj[newKey] = obj[key];
+        }
+      }
+      return newObj;
+    }
+
     return (
-      <div
-        className={this.decorateCSS("container")}
-      >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("contacts2")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-            <section>
-              {this.castToObject<ISection[]>("card-items").map(
-                (section: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("card-child")}>
-                    {section.items.map((item: any, index: number) => (
-                      <div key={index} className={`${this.decorateCSS("card")} ${selectValue === "Top" ? this.decorateCSS("border-top") : selectValue === "Bottom" ? this.decorateCSS("border-bottom") : selectValue === "All Around" ? this.decorateCSS("border-all") : ""}`}>
-                        <div className={this.decorateCSS("img-child")}>
-                        <img className={this.decorateCSS("image")} width={50} height={50} src={item.value[0].value} alt=""/>
+          <div className={this.decorateCSS("input-items")}>
+            <div className={this.decorateCSS("input-item")}>
+              <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
+              <Formik
+                initialValues={initialValue}
+                validationSchema={getSchema()}
+                onSubmit={(data, { resetForm }) => {
+                  const formData = getFormDataWithConvertedKeys(data);
+                  this.insertForm("Contact Me", formData);
+                  resetForm();
+                }}
+              >
+                {({ handleChange, values }) => (
+                  <Form className={this.decorateCSS("form")}>
+                    {this.getPropValue("inputs").map((input: any, index: number) => (
+                      <>
+                        <div className={this.decorateCSS("input-container")}>
+                          {input.getPropValue("type") == "Text Area" ? (
+                            <textarea
+                              id={getInputName(index)}
+                              value={values[getInputName(index)]}
+                              placeholder=" "
+                              className={`${this.decorateCSS("input")} ${this.decorateCSS(
+                                "textarea"
+                              )}`}
+                              rows={12}
+                              onChange={handleChange}
+                            />
+                          ) : (
+                            <input
+                              id={getInputName(index)}
+                              placeholder=" "
+                              type={getInputType(input.getPropValue("type"))}
+                              onChange={handleChange}
+                              value={values[getInputName(index)]}
+                              name={getInputName(index)}
+                              className={this.decorateCSS("input")}
+                            />
+                          )}
+                          <span className={this.decorateCSS("placeholder")}>
+                            {input.getPropValue("placeholder")}{" "}
+                          </span>
+                          <ErrorMessage
+                            className={this.decorateCSS("error-message")}
+                            name={getInputName(index)}
+                            component={"span"}
+                          />
                         </div>
-                        <div className={this.decorateCSS("card-box")}>
-                          <h2 className={this.decorateCSS("item-value")}>{item.value[1].value}</h2>
-                          <h4 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h4>
-                          <h4 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h4>
-                        </div>
-                      </div>
+                      </>
                     ))}
-                  </div>
-                )
-              )}
-            </section>
+                    <button className={this.decorateCSS("submit-button")} type="submit">
+                      {this.getPropValue("button_text")}
+                    </button>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+            {this.getPropValue("background-img") && (
+              <div className={this.decorateCSS("background-image")}>
+                <img
+                  src={this.getPropValue("background-img")}
+                  alt="backgroundPhoto"
+                  className={this.decorateCSS("img")}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
