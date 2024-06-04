@@ -31,7 +31,8 @@ class Header16 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7db?alt=media&timestamp=1693305822758",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7db?alt=media&timestamp=1693305822758",
             },
             {
               type: "string",
@@ -60,11 +61,11 @@ class Header16 extends BaseHeader {
                   type: "page",
                   key: "buttonClick",
                   displayer: "Button Click",
-                  value: ""
+                  value: "",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -75,7 +76,8 @@ class Header16 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7dc?alt=media&timestamp=1693305822758",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7dc?alt=media&timestamp=1693305822758",
             },
             {
               type: "string",
@@ -104,11 +106,11 @@ class Header16 extends BaseHeader {
                   type: "page",
                   key: "buttonClick",
                   displayer: "Button Click",
-                  value: ""
+                  value: "",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -119,7 +121,8 @@ class Header16 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7dd?alt=media&timestamp=1693305822758",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edcbf5057bdf002c2ad7dd?alt=media&timestamp=1693305822758",
             },
             {
               type: "string",
@@ -140,7 +143,7 @@ class Header16 extends BaseHeader {
               value: [
                 {
                   type: "string",
-                  key: "button-text",
+                  key: "buttonText",
                   displayer: "Button Text",
                   value: "View Details",
                 },
@@ -148,14 +151,14 @@ class Header16 extends BaseHeader {
                   type: "page",
                   key: "buttonClick",
                   displayer: "Button Click",
-                  value: ""
+                  value: "",
                 },
-              ]
+              ],
             },
-          ]
+          ],
         },
       ],
-    }) 
+    });
   }
 
   getName(): string {
@@ -163,9 +166,9 @@ class Header16 extends BaseHeader {
   }
 
   render() {
-
     const settings = {
       dots: true,
+      arrows: false,
       infinite: true,
       speed: 500,
       autoplay: false,
@@ -173,41 +176,34 @@ class Header16 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-    
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <ComposerSlider
-                {...settings}
-                className={this.decorateCSS("carousel")}
-              >
-                {this.castToObject<ISliderData[]>("slider").map(
-                  (item: ISliderData, index: number) => (
-                    <div className={this.decorateCSS("item")} key={`key${index}`}>
-                      <div className={this.decorateCSS("image")}>
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <div className={this.decorateCSS("content")}>
-                      <div className={this.decorateCSS("description")}>
-                        {item.description}
-                      </div>
-                      <div className={this.decorateCSS("title")}>
-                        {item.title}
-                      </div>
-                      <div>
-                        <ComposerLink href={item.button.buttonClick}>
-                        <button className={this.decorateCSS("button") }>
+          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+            {this.castToObject<ISliderData[]>("slider").map(
+              (item: ISliderData, index: number) => (
+                <div className={this.decorateCSS("item")} key={`key${index}`}>
+                  <div className={this.decorateCSS("image")}>
+                    {item.image && <img src={item.image} alt={item.title} />}
+                  </div>
+                  <div className={this.decorateCSS("content")}>
+                    <div className={this.decorateCSS("description")}>
+                      {item.description}
+                    </div>
+                    <div className={this.decorateCSS("title")}>{item.title}</div>
+                    <div>
+                      <ComposerLink href={item.button.buttonClick}>
+                        <button className={this.decorateCSS("button")}>
                           {item.button.buttonText}
                         </button>
-                        </ComposerLink>
-                      </div>
+                      </ComposerLink>
                     </div>
                   </div>
-                )
-              )}
-            </ComposerSlider>
-          </div>
+                </div>
+              )
+            )}
+          </ComposerSlider>
         </div>
       </div>
     );
