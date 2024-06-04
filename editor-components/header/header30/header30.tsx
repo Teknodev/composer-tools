@@ -4,10 +4,6 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type playerButton = {
-  url: string;
-  image: string;
-};
 class HeaderComponent30 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -88,14 +84,10 @@ class HeaderComponent30 extends BaseHeader {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <video src={this.getPropValue("video")} autoPlay loop muted></video>
+          <video src={this.getPropValue("video")} autoPlay loop muted className={this.decorateCSS("video-section")}></video>
 
           <div className={this.decorateCSS("content")}>
-            <h1
-              className={`${this.decorateCSS("titles")} ${this.decorateCSS(
-                "first-title"
-              )} `}
-            >
+            <h1 className={`${this.decorateCSS("titles")} ${this.decorateCSS("first-title")} `}>
               {this.getPropValue("title_first")}
             </h1>
             <div className={this.decorateCSS("title-with-image")}>
@@ -107,17 +99,11 @@ class HeaderComponent30 extends BaseHeader {
                 />
               ) : null}
 
-              <h1
-                className={`${this.decorateCSS("titles")} ${this.decorateCSS(
-                  "second-title"
-                )} `}
-              >
+              <h1 className={`${this.decorateCSS("titles")} ${this.decorateCSS("second-title")} `}>
                 {this.getPropValue("title_second")}
               </h1>
             </div>
-            <p className={this.decorateCSS("description")}>
-              {this.getPropValue("description")}
-            </p>
+            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
             <div className={this.decorateCSS("buttons")}>
               {this.getPropValue("buttons").map((item: any, index: number) => (
                 <div className={this.decorateCSS("button")} key={index}>
