@@ -486,17 +486,22 @@ class Form6 extends BaseContacts {
                   <Form className={this.decorateCSS("form")}>
                     {inputItems.map((inputItem: any, inputItemIndex: number) =>
                       <div className={this.decorateCSS("input-container")}>
-                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label")} <p className={this.decorateCSS("require-star")}>{isRequiredInput(inputItem) && "*"}</p></span>
+                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label", {
+                          suffix: {
+                            label: isRequiredInput(inputItem) && "*",
+                            className: this.decorateCSS("require-star")
+                          }
+                        })}</span>
                         <div className={this.decorateCSS("inputs")}>
                           {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
                             <div className={this.decorateCSS("input-box")}>
                               {inputObj.getPropValue("type") == "Text Area" ?
                                 <textarea
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder")} rows={12} onChange={handleChange}
+                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder", { as_string: true })} rows={12} onChange={handleChange}
                                   name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}></textarea> :
                                 <input
-                                  placeholder={inputObj.getPropValue("placeholder")}
+                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                                   type={getInputType(inputObj.getPropValue("type"))}
                                   onChange={handleChange}
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}

@@ -63,6 +63,13 @@
                     white-space: nowrap;
                 }
 
+                .active-title {
+                    content: "";
+                }
+                .active-subtitle {
+                    content: "";
+                }
+
                 .subtitle {
                     font-size: 20px;
                     letter-spacing: 5px;
@@ -79,6 +86,10 @@
 
                 .hamburger-icon {
                     font-size: 40px;
+                }
+
+                .active-hamburger-icon {
+                    content: "";
                 }
             }
             .image-box,
