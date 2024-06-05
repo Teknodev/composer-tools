@@ -298,11 +298,11 @@ class Testimonials10Page extends Testimonials {
                 <div className={this.decorateCSS("button-group")}>
                   <ComposerLink
 
-                    path={this.castToObject<any>("buttonObject")[1].value}>
+                    path={this.castToObject<any>("buttonObject").url}>
                     <div className={this.decorateCSS("buttonText")}>
                       <button
                         className={`${this.decorateCSS("buttonObject")}`}>
-                        {this.castToObject<any>("buttonObject")[0].value}
+                        {this.castToObject<any>("buttonObject").buttonText}
                       </button>
                     </div>
                   </ComposerLink>
