@@ -1,13 +1,9 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content11.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Card = {
-  title: string;
-  description: string;
-  image: string;
-  size: string;
-};
 
 class Content11 extends BaseContent {
   constructor(props?: any) {
@@ -15,218 +11,232 @@ class Content11 extends BaseContent {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Create advertising materials for each platform.",
+      key: "box",
+      displayer: "title",
+      value: "ABOUT",
     });
 
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value:
-        "Reate creatives/banners for any advertising platform such as Facebook and Instagram Ads, Google Ads, LinkedIn Ads, Twitter Ads, Pinterest Ads, and any Display Advertising platform. A single tool that fulfills all your advertising design needs.",
-    });
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value: "GoChevronDown"
+    })
+
     this.addProp({
-      type: "string",
-      key: "subtitle2",
-      displayer: "Outer title of the card",
-      value: "Social Media Dimensions",
-    });
-    this.addProp({
-      type: "string",
-      key: "subtitle2-description",
-      displayer: "Outer Description of the card",
-      value: "The most common sizes for social media advertising",
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D"
     });
 
     this.addProp({
       type: "array",
-      key: "content-card",
-      displayer: "Content Card",
+      key: "items",
+      displayer: "Items",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Card Title",
-              value: "Post Size",
+              displayer: "Title",
+              value: "b.1991, LA, America",
             },
             {
               type: "string",
+              displayer: "Description",
               key: "description",
-              displayer: "Card Description",
-              value:
-                "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
+              value: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique nulla, tenetur necessitatibus asperiores voluptatum hic animi natus nisi quaerat cumque tempora laudantium ad voluptas dolorem neque repellendus totam aperiam alias! Similique nulla, tenetur necessitatibus asperiores voluptatum, Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique nulla, tenetur necessitatibus asperiores voluptatum hic animi natus nisi quaerat cumque tempora laudantium ad voluptas dolorem neque repellendus totam aperiam alias! Similique nulla, tenetur necessitatibus asperiores voluptatum"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Education",
             },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem?"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Exhibitions - Workshop",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem?"
+            }
+          ]
+        }
+      ]
 
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27eafba070002b74f3b7?alt=media&timestamp=1685006300589",
-            },
-            {
-              type: "string",
-              key: "size",
-              displayer: "Size",
-              value: "1080x1080",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Card Title",
-              value: "Land Size",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Card Description",
-              value:
-                "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27eafba070002b74f3b6?alt=media&timestamp=1685006300589",
-            },
-            {
-              type: "string",
-              key: "size",
-              displayer: "Size",
-              value: "1200x768",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Card Title",
-              value: "Story Size",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Card Description",
-              value:
-                "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27e2fba070002b74f3ae?alt=media&timestamp=1685006292040",
-            },
-            {
-              type: "string",
-              key: "size",
-              displayer: "Size",
-              value: "1080x1920",
-            },
-          ],
-        },
+    });
 
+    this.addProp({
+      type: "array",
+      key: "right-items",
+      displayer: "Icons",
+      value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "item",
+          displayer: "Item",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Card Title",
-              value: "Pin Size",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Card Description",
+              type: "icon",
+              key: "icon",
               value:
-                "LinkedIn Feed, Twitter Feed... perfect for most used horizontal size online",
+                "FaFacebook",
+              displayer: "Icon",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27eafba070002b74f3b7?alt=media&timestamp=1685006300589",
+                "FaInstagram",
+              displayer: "Icon",
             },
             {
-              type: "string",
-              key: "size",
-              displayer: "Size",
-              value: "1200x768",
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value:
+                "FaPinterest",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value:
+                "FaLinkedin",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
             },
           ],
         },
       ],
     });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 4,
-    });
   }
-
   getName(): string {
     return "Content 11";
   }
-
   render() {
+    const image = this.getPropValue("image");
+    const title = this.getPropValue("box");
+    const icon = this.getPropValue("icon");
+    const rightItems = this.getPropValue("right-items");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header")}>
-            <h2 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h2>
-            <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
-            <h3 className={this.decorateCSS("subtitle2")}>{this.getPropValue("subtitle2")}</h3>
-            <span className={this.decorateCSS("subtitle2-description")}>{this.getPropValue("subtitle2-description")}</span>
-          </div>
+          {title && <div className={this.decorateCSS("boxs-text-left")}>
+            <div className={this.decorateCSS("box-up")}>
+              <h2 className={this.decorateCSS("box")}>{this.getPropValue("box")}</h2>
+            </div>
+            {icon && <div className={this.decorateCSS("text-left")}>
+              <ComposerIcon
+                propsIcon={{ className: this.decorateCSS("text") }}
+                name={this.getPropValue("icon")}
+              />
 
-          <div className={this.decorateCSS("card-child")}>
-            {this.castToObject<Card[]>("content-card").map(
-              (card: Card, index: number) => (
-                <div style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                  <div
-                    key={`cnt-4-card-${index}`}
-                    className={this.decorateCSS("card")}
-                    >
-                    <i>
-                      <img alt="server" src={card.image} />
-                    </i>
-                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
-                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
-                    <p className={this.decorateCSS("size-p")}>{card.size}</p>
-                  </div>
+            </div>}
+          </div>}
+          <div className={this.decorateCSS("content")}>
+            {image && <div className={this.decorateCSS("image-box")}>
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="faq image" />
+            </div>}
+            <div className={this.decorateCSS("content-right")}>
+              {this.castToObject<Array<{ title: string, description: string }>>("items").map(item =>
+                <div className={this.decorateCSS("item")}>
+                  <h2 className={this.decorateCSS("title")}>{item.title}</h2>
+                  <p className={this.decorateCSS("description")}>{item.description}</p>
                 </div>
-              )
-            )}
+              )}
+            </div>
           </div>
+          {rightItems.length > 0 && <div className={this.decorateCSS("icons")}>
+            {rightItems.map((leftItem: any) => {
+              return (
+                <ComposerLink path={leftItem.value[1].value}>
+                  <ComposerIcon
+                    propsIcon={{ className: this.decorateCSS("Icon") }}
+                    name={leftItem.value[0].value}
+                  />
+                </ComposerLink>
+              );
+            })}
+          </div>}
+
         </div>
       </div>
+
     );
   }
 }

@@ -1,187 +1,235 @@
 import * as React from "react";
 import styles from "./header13.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeader, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import slider from "../../../composer-base-components/slider/slider";
 
 class Header13 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp(
-      {
-        type: "array",
-        key: "buttonprop",
-        displayer: "Button Prop",
-        value: [
-          {
-            type: "array",
-            key: "buttonLeft",
-            displayer: "Button Left",
-            value: [
-              {
-                type: "string",
-                key: "button-text",
-                displayer: "Button Text",
-                value: "EXPERT ADVICE",
-              },
-              {
-                type: "page",
-                key: "button-url",
-                displayer: "Button URL",
-                value: "",
-              },
-            ],
-          },
-          {
-            type: "array",
-            displayer: "Button Right",
-            key: "buttonRight",
-            value: [
-              {
-                type: "string",
-                displayer: "Button Text",
-                key: "button-text",
-                value: "VIEW MORE",
-              },
-              {
-                type: "page",
-                displayer: "Button URL",
-                key: "button-url",
-                value: "",
-              },
-            ],
-          },
-        ],
-
-      },
-    )
-
+    
     this.addProp({
       type: "array",
-      displayer: "Items",
-      key: "items",
+      key: "right-items",
+      displayer: "Right Items",
       value: [
         {
           type: "object",
-          displayer: "Item Left",
-          key: "item-left",
+          key: "item",
+          displayer: "Item",
           value: [
             {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Check Out Our Expert Advice",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "From the best designers",
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "EXPERT ADVICE",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
+                "FaFacebook",
+              displayer: "Icon",
             },
-
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
           ],
         },
         {
           type: "object",
-          displayer: "Item Right Top",
-          key: "item-right-top",
+          key: "item",
+          displayer: "Item",
           value: [
             {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Our Services",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Discover all the ways to get your product",
-            },
-
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
+                "FaInstagram",
+              displayer: "Icon",
             },
-
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
           ],
         },
         {
           type: "object",
-          displayer: "Item Right Bottom",
-          key: "item-right-bottom",
+          key: "item",
+          displayer: "Item",
           value: [
             {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Free Shipping!",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Free shipping on orders of $100 or more.",
-            },
-
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f5f2d3057bdf002c2c2eba?alt=media&timestamp=1693840060696",
+                "FaPinterest",
+              displayer: "Icon",
             },
             {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "Pre-Order Now",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
             },
           ],
         },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value:
+                "FaLinkedin",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+      ],
+    });
+    
+    this.addProp({
+      type: "array",
+      key: "slider",
+      displayer: "Slider",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value: "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        },
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        },
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value: "https://images.unsplash.com/photo-1566913485268-1287f67f87fe?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        },
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value: "https://images.unsplash.com/photo-1610306673745-258854d4bbcd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        },
+      ],
+    });
 
+    this.addProp({
+      type: "array",
+      key: "left-items",
+      displayer: "Left Items",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              value: "ARCHITECTURE",
+              displayer: "Text",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              value: "WEDDING",
+              displayer: "Text",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              value: "COMMERIAL",
+              displayer: "Text",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              value: "FASHION",
+              displayer: "Text",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              value: "LIFESTYLE",
+              displayer: "Text",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
       ],
     });
   }
@@ -189,81 +237,66 @@ class Header13 extends BaseHeader {
   getName(): string {
     return "Header-13";
   }
-
   render() {
-    let items: any = this.castToObject("items");
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows:false,
+    };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("item")}>
-                <div className={this.decorateCSS("bg-content")}>
-                  <div className={this.decorateCSS("description")}>
-                    {items[0].description}
-                  </div>
-                  <div className={this.decorateCSS("title")}>
-                    {items[0].title}
-                  </div >
-                  <div  className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={this.getPropValue("buttonprop")[0].value[1].value}>
-                          <span  className={this.decorateCSS("button")}>
-                          {this.getPropValue("buttonprop")[0].value[0].value }
-                          </span >
-                        </ComposerLink>
-                  </div>
-                  
-                </div>
-                <div className={this.decorateCSS("background-image-content")}>
-                  <img src={items[0].image} alt={items[0].title} />
-                </div>
-              </div>
+        <div className={this.decorateCSS("slider-parent")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+              {this.getPropValue("slider").map(
+                (item: any, indexSlider: number) => (
+                  <img
+                    alt=""
+                    src={item.value}
+                    className={this.decorateCSS("img")}
+                    key={indexSlider}
+                  />
+                )
+              )}
+            </ComposerSlider>
+
+          <div className={this.decorateCSS("Box")}>
+          <div className={this.decorateCSS("content-right")}>
+              {this.getPropValue("right-items").map((leftItem: any) => {
+                return (
+                  <ComposerLink path={leftItem.value[1].value}>
+                    <ComposerIcon
+                      propsIcon={{ className: this.decorateCSS("icons") }}
+                      name={leftItem.value[0].value}
+                    />
+                  </ComposerLink>
+                );
+              })}
             </div>
-            <div className={this.decorateCSS("right")}>
-              <div className={this.decorateCSS("top")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={items[1].image} alt={items[1].title} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {items[1].title}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {items[1].description}
-                    </div>
-                    <div className={this.decorateCSS("button-wrapper")}>
-                        <ComposerLink path={this.getPropValue("buttonprop")[1].value[1].value}>
-                          <span className={this.decorateCSS("button")}>
-                          {this.getPropValue("buttonprop")[1].value[0].value }
-                          </span>
-                        </ComposerLink>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              <div className={this.decorateCSS("bottom")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={items[2].image} alt={items[2].title} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {items[2].title}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {items[2].description}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className={this.decorateCSS("content-left")}>
+              {this.getPropValue("left-items").map((leftItem: any) => {
+                return (
+                  <ComposerLink path={leftItem.value[1].value}>
+                    <span className={this.decorateCSS("text")}>
+                      {leftItem.value[0].value}
+                    </span>
+                  </ComposerLink>
+                );
+              })}
             </div>
-          </div>
+            </div>
+                          
+            </div>
+          </div> 
         </div>
-      </div>
     );
   }
 }
+
 
 export default Header13;

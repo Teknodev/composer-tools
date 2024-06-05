@@ -5,130 +5,49 @@ import styles from "./header4.module.scss";
 class Header4 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Header",
-      value: "Get Fit and Stay Healthy with Our Personalized Fitness Plans",
-    });
 
     this.addProp({
       type: "object",
-      key: "card1",
-      displayer: "First Card",
+      key: "card",
+      displayer: "Card",
       value: [
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "Build perfect websites",
+        },
         {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: "Achieve Your Fitness Goals with Customized Plans",
+          value: "Unlimited power",
         },
         {
           type: "string",
-          key: "text",
+          key: "desc1",
           displayer: "Description",
           value:
-            "Get fit and stay healthy with our personalized fitness plans, designed to help you achieve your unique goals and get the results you want.",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "card2",
-      displayer: "Second Card",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Get Fit with Our Expert Guidance",
+            "Most of our wrtings have centered on implementing strategies for business units,with their unique",
         },
         {
           type: "string",
-          key: "text",
+          key: "desc2",
           displayer: "Description",
           value:
-            "Let our experienced trainers guide you on your fitness journey with customized workout plans tailored to your fitness level and goals.",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "card3",
-      displayer: "Third Card",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Transform Your Body with Personalized Fitness Plans",
+            "Most of our wrtings have centered on implementing strategies for business units,with their unique",
         },
         {
           type: "string",
-          key: "text",
-          displayer: "Description",
-          value:
-            "Whether you're looking to lose weight, gain muscle, or improve your overall health, our personalized fitness plans will help you reach your goals and transform your body.",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "card4",
-      displayer: "Fourth Card",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: " Your Fitness, Your Way",
+          key: "btn",
+          displayer: "Button",
+          value: "More Projects",
         },
         {
           type: "string",
-          key: "text",
-          displayer: "Description",
-          value:
-            "At our fitness center, we believe that everyone's fitness journey is unique. That's why we offer personalized fitness plans that are tailored to your individual needs and preferences.",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "card5",
-      displayer: "Fifth Card",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Reach Your Full Potential with Custom Fitness Plans",
-        },
-        {
-          type: "string",
-          key: "text",
-          displayer: "Description",
-          value:
-            "Whether you're a beginner or a seasoned athlete, our custom fitness plans will help you reach your full potential and take your fitness to the next level.",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "card6",
-      displayer: "Sixth Card",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Personalized Fitness Plans for Lasting Results",
-        },
-        {
-          type: "string",
-          key: "text",
-          displayer: "Description",
-          value:
-            "Get the support and guidance you need to achieve lasting results with our personalized fitness plans, designed to help you make meaningful progress towards your fitness goals.",
+          key: "note",
+          displayer: "Note",
+          value: "NOTE : Some details are very important.",
         },
       ],
     });
@@ -136,8 +55,7 @@ class Header4 extends BaseHeader {
       type: "image",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b1f868c3c2002cd2fab9?alt=media&timestamp=1693233999280",
+      value: "https://eremia-react.vercel.app/img/project/project3/2.jpg",
     });
   }
 
@@ -146,106 +64,36 @@ class Header4 extends BaseHeader {
   }
 
   render() {
-    let card1 = this.getPropValue("card1");
-    let card2 = this.getPropValue("card2");
-    let card3 = this.getPropValue("card3");
-    let card4 = this.getPropValue("card4");
-    let card5 = this.getPropValue("card5");
-    let card6 = this.getPropValue("card6");
+    let card: any = this.castToObject("card");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header-page")}>
-            <div className={this.decorateCSS("subtitle-container")}>
-              <h3 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h3>
-            </div>
-            <div className={this.decorateCSS("section")}>
-              <div
-                className={`${this.decorateCSS("boxs")} ${this.decorateCSS(
-                  "boxs-left"
-                )}`}
-              >
-                <div
-                  className={`${this.decorateCSS("box")} ${this.decorateCSS(
-                    "box-left"
-                  )}`}
-                >
-                  <h1 className={this.decorateCSS("card-title")}>
-                    {card1[0].value}
-                  </h1>
-                  <p className={this.decorateCSS("card1-value")}>
-                    {card1[1].value}
+          <div className={this.decorateCSS("image-container")}>
+            <img
+              alt=""
+              className={this.decorateCSS("image")}
+              src={this.getPropValue("image")}
+            ></img>
+          </div>
+          <div className={this.decorateCSS("card")}>
+            <div className={this.decorateCSS("box")}>
+              {/* heading */}
+              <div className={this.decorateCSS("heading")}>
+                <div className={this.decorateCSS("heading-title")}>
+                  <p className={this.decorateCSS("sub-title")}>
+                    {card.subtitle}
                   </p>
-                </div>
-                <div className={`${this.decorateCSS("box")}`}>
-                  <h1 className={this.decorateCSS("card-title")}>
-                    {card2[0].value}
-                  </h1>
-                  <p className={this.decorateCSS("card2-value")}>
-                    {card2[1].value}
-                  </p>
-                </div>
-                <div
-                  className={`${this.decorateCSS("box")} ${this.decorateCSS(
-                    "box-left"
-                  )}`}
-                >
-                  <h1 className={this.decorateCSS("card-title")}>
-                    {card3[0].value}
-                  </h1>
-                  <p className={this.decorateCSS("card3-value")}>
-                    {card3[1].value}
-                  </p>
+                  <h2 className={this.decorateCSS("title")}>{card.title}</h2>
                 </div>
               </div>
-              <div className={this.decorateCSS("image-container")}>
-                <img
-                  alt=""
-                  className={this.decorateCSS("image")}
-                  src={this.getPropValue("image")}
-                ></img>
-              </div>
-              <div
-                className={`${this.decorateCSS("boxs")} ${this.decorateCSS(
-                  "boxs-right"
-                )}`}
-              >
-                <div
-                  className={`${this.decorateCSS("box")} ${this.decorateCSS(
-                    "box-right"
-                  )}`}
-                >
-                  <h1 className={this.decorateCSS("card-title")}>
-                    {card4[0].value}
-                  </h1>
-                  <p className={this.decorateCSS("card4-value")}>
-                    {card4[1].value}
-                  </p>
-                </div>
-                <div className={`${this.decorateCSS("box")}`}>
-                  <h1 className={this.decorateCSS("card-title")}>
-                    {card5[0].value}
-                  </h1>
-                  <p className={this.decorateCSS("card5-value")}>
-                    {card5[1].value}
-                  </p>
-                </div>
-                <div
-                  className={`${this.decorateCSS("box")} ${this.decorateCSS(
-                    "box-right"
-                  )}`}
-                >
-                  <h1 className={this.decorateCSS("card-title")}>
-                    {card6[0].value}
-                  </h1>
-                  <p className={this.decorateCSS("card6-value")}>
-                    {card6[1].value}
-                  </p>
-                </div>
-              </div>
+              {/* end of heading */}
+              <p className={this.decorateCSS("desc1")}>{card.desc1}</p>
+              <p className={this.decorateCSS("desc2")}>{card.desc2}</p>
+              <button className={this.decorateCSS("btn")}>
+                {card.btn}
+              </button>
+              <p className={this.decorateCSS("note")}>{card.note}</p>
             </div>
           </div>
         </div>

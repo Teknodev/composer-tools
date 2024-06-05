@@ -4,100 +4,69 @@
     display: flex;
     justify-content: center;
     .max-content {
-        max-width: var(--composer-content-width);
-        .basic-page {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            &.basic-page-reverse {
-                flex-flow: row-reverse;
-            }
-            .page-1,
-            .page-2 {
-                flex: 1;
-                display: flex;
-                justify-content: center;
-            }
-            .page-1 {
-                flex-direction: column;
-                .box {
-                    .title1 {
-                        font-size: 3rem;
-                        font-weight: 600;
-                        margin: 0;
-                        margin: 20px 0;
-                        color: var(--composer-primary-color);
-                    }
-                    .text2 {
-                        font-size: 1.5rem;
-                        font-weight: 400;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .text3 {
-                        font-size: 1.5rem;
-                        font-weight: 400;
-                        margin: 0;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .button {
-                        margin-top: 15px;
-                        cursor: pointer;
-                        text-align: center;
-                        transition: 0.3s;
-                        display: block;
-                        background-color: var(--composer-secondary-color);
-                        padding: 10px 20px;
-                        border-radius: 6px;
-                        border: 1px solid transparent;
-                        width: 200px;
-                        font-size: 1.7rem;
-                        color: #fff;
-                        &:hover {
-                            background-color: transparent;
-                            border: 1px solid var(--composer-secondary-color);
-                            transition: 0.3s;
-                            color: var(--composer-secondary-color);
-                        }
-                        &.button-color {
-                            background-color: var(--composer-secondary-color);
-                            border: 1px solid var(--composer-secondary-color);
-                            &:hover {
-                                background-color: transparent;
-                                color: var(--composer-secondary-color);
-                            }
-                        }
-                    }
-                }
-            }
-            .page-2 {
-                display: flex;
-                justify-content: flex-end;
-                .image {
-                    max-height: 450px;
-                    object-fit: cover;
-                    margin: 0 !important;
-                }
-            }
-            p {
-                font-size: 1rem;
-            }
+        text-align: center;
+        font-weight: bold;
+        width: 100%;
+    }
+    .title1 {
+        @media screen and (max-width: 360px) {
+            font-size: 14px;
+        }
+        margin-top: 80px;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        color: var(--composer-primary-color);
+    }
+
+    .title2 {
+        font-size: 50px;
+        margin: 0;
+        color: var(--composer-primary-color);
+        @media screen and (max-width: 360px) {
+            font-size: 35px;
         }
     }
-}
+    .description {
+        font-size: 1.6rem;
+        font-weight: 240;
+        color: var(--composer-font-color-primary);
+        @media screen and (max-width:360px) {
+            padding: 10px;
+        }
+    }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .max-content {
-            flex-direction: column;
+    .box {
+        display: flex;
+        margin: 40px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .button {
+            display: flex;
+            padding: 30px;
+            width: 300px;
+            background-color: transparent;
+            gap: 10px;
+            justify-content: center;
             align-items: center;
-            .basic-page {
-                flex-direction: column;
-                .page-2 {
-                    justify-content: center;
+            cursor: pointer;
+            color: var(--composer-font-color-primary);
+            border: 2px solid var(--composer-secondary-color);
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: var(--composer-border-radius);
+        }
+
+        .button:hover {
+            background-color: var(--composer-secondary-color);
+            color: var(--composer-font-color-secondary);
+            .icon {
+                @media screen and (max-width:360px) {
+                    transform: scale(1);
                 }
-                .image {
-                    width: 100%;
+                @media screen and (max-width:800px) {
                 }
             }
         }

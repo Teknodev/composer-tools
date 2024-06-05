@@ -1,378 +1,339 @@
 import * as React from "react";
-import styles from "./header12.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import styles from "./header12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-type ISliderData = {
-  title: string;
-  image: string;
-  description: string;
-  button: IButton[];
-};
-
-type IButton = {
-  value: string;
-};
-class HeaderComponent12 extends BaseHeader {
-  constructor(props?: any) {
-    super(props, styles);
-
-    this.addProp({
-      type: "array",
-      displayer: "Slider Carousel",
-      key: "slider",
-      value: [
-        {
-          type: "object",
-          displayer: "Item 1",
-          key: "item1",
-          value: [
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "The New Google Pixel 7",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Shop gret deals on MacBook, iPad, iPhone and more.",
-            },
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2022/10/apple-shopping-event.jpg",
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "Pre-Order Now",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          displayer: "Item 2",
-          key: "item2",
-          value: [
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "The New Google Pixel 7",
-            },
-            {
-              type: "string",
-              displayer: "Description",
-              key: "description",
-              value: "Shop gret deals on MacBook, iPad, iPhone and more.",
-            },
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2022/10/apple-shopping-event.jpg",
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button-text",
-                  value: "Pre-Order Now",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Item Right",
-      key: "item-right",
-      value: [
-        {
-          type: "string",
-          displayer: "Title",
-          key: "title",
-          value: "Aurora Headset",
-        },
-        {
-          type: "string",
-          displayer: "Description",
-          key: "description",
-          value: "Shop gret deals on MacBook, iPad, iPhone and more.",
-        },
-
-        {
-          type: "image",
-          displayer: "Image",
-          key: "image",
-          value:
-            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
-        },
-        {
-          type: "object",
-          displayer: "Button",
-          key: "button",
-          value: [
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Pre-Order Now",
-            },
-            {
-              type: "page",
-              displayer: "Button Link",
-              key: "button-url",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "object",
-      displayer: "Item Right Bottom Left",
-      key: "item-right-bottom-left",
-      value: [
-        {
-          type: "string",
-          displayer: "Title",
-          key: "title",
-          value: "New Dual Sense",
-        },
-        {
-          type: "string",
-          displayer: "Description",
-          key: "description",
-          value: "For playstation 5",
-        },
-
-        {
-          type: "image",
-          displayer: "Image",
-          key: "image",
-          value:
-            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
-        },
-        {
-          type: "object",
-          displayer: "Button",
-          key: "button",
-          value: [
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Pre-Order Now",
-            },
-            {
-              type: "page",
-              displayer: "Button Link",
-              key: "button-url",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "object",
-      displayer: "Item Right Bottom Right",
-      key: "item-right-bottom-right",
-      value: [
-        {
-          type: "string",
-          displayer: "Title",
-          key: "title",
-          value: "Instant Cameras",
-        },
-        {
-          type: "string",
-          displayer: "Description",
-          key: "description",
-          value: "Get photo paper as a gift",
-        },
-
-        {
-          type: "image",
-          displayer: "Image",
-          key: "image",
-          value:
-            "https://woodmart.xtemos.com/mega-electronics/wp-content/uploads/sites/9/2023/02/logitech-aurora-headset.jpg",
-        },
-        {
-          type: "object",
-          displayer: "Button",
-          key: "button",
-          value: [
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "button-text",
-              value: "Pre-Order Now",
-            },
-            {
-              type: "page",
-              displayer: "Button URL",
-              key: "button-url",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-  }
-
-  getName(): string {
-    return "Header-12";
-  }
-
-  render() {
-    let itemsRight: any = this.getPropValue("item-right");
-    let itemsRightBottomLeft: any = this.getPropValue("item-right-bottom-left");
-    let itemsRightBottomRight: any = this.getPropValue("item-right-bottom-right");
-
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      autoplay: false,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
-    
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("left")}>
-              <ComposerSlider
-                {...settings}
-                className={this.decorateCSS("carousel")}
-              >
-                {this.castToObject<ISliderData[]>("slider").map(
-                  (item: ISliderData, index: number) => (
-                    <div className={this.decorateCSS("item")} key={`key${index}`}>
-                      <div className={this.decorateCSS("background-image")}>
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                      <div className={this.decorateCSS("content")}>
-                        <div className={this.decorateCSS("title")}>
-                          {item.title}
-                        </div>
-                        <div className={this.decorateCSS("description")}>
-                          {item.description}
-                        </div>
-                        <div>
-                          <button className={this.decorateCSS("button")}>
-                            {item.button[0].value}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-              </ComposerSlider>
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <div className={this.decorateCSS("top")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={itemsRight[2].value} alt={itemsRight[0].value} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {itemsRight[0].value}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {itemsRight[1].value}
-                    </div>
-                    <div>
-                      <button className={this.decorateCSS("button")}>
-                        {itemsRight[3].value[0].value}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className={this.decorateCSS("bottom")}>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={itemsRightBottomLeft[2].value} alt={itemsRightBottomLeft[0].value} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {itemsRightBottomLeft[0].value}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {itemsRightBottomLeft[1].value}
-                    </div>
-                    <div>
-                      <button className={this.decorateCSS("button")}>
-                        {itemsRightBottomLeft[3].value[0].value}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={itemsRightBottomRight[2].value} alt={itemsRightBottomRight[0].value} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {itemsRightBottomRight[0].value}
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {itemsRightBottomRight[1].value}
-                    </div>
-                    <div>
-                      <button className={this.decorateCSS("button")}>
-                        {itemsRightBottomRight[3].value[0].value}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+//Left Slider
+type LeftSlider = {
+    imageLeft: string;
+    iconLeft: string;
+    textLeft: string;
 }
 
-export default HeaderComponent12;
+//Right Slider
+type RightSlider = {
+    imageRight: string;
+    iconRight: string;
+    textRight: string;
+}
+
+//CLASS
+class Header12 extends BaseHeader {
+
+    firstSlider: any;
+    secondSlider: any;
+    
+    //constructor
+    constructor(props?: any) {
+        super(props, styles);
+
+        this.addProp({
+            type : "image",
+            key : "image",
+            displayer :"Image",
+            value : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
+        })
+
+        // SLIDER LEFT
+        this.addProp({
+            type: "array",
+            key: "carouselCollection1",
+            displayer: "Carousel Left",
+            value: [
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageLeft",
+                            displayer: "image Left",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry15-1.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textLeft",
+                            displayer: "Text Left",
+                            value: "Autumn Stuff",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageLeft",
+                            displayer: "image Left",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry18.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textLeft",
+                            displayer: "Text Left",
+                            value: "Breakfast",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageLeft",
+                            displayer: "image Left",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/book_on_leaves.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textLeft",
+                            displayer: "Text Left",
+                            value: "The Notebook",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageLeft",
+                            displayer: "image Left",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry05.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textLeft",
+                            displayer: "Text Left",
+                            value: "Little Pumpkin",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageLeft",
+                            displayer: "image Left",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry13.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textLeft",
+                            displayer: "Text Left",
+                            value: "Autumn Evening",
+                        },
+                    ]
+                },
+            ]
+        })
+
+        // SLIDER RIGHT
+        this.addProp({
+            type: "array",
+            key: "carouselCollection2",
+            displayer: "Carousel Right",
+            value: [
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageRight",
+                            displayer: "image Right",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/food_drink04.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textRight",
+                            displayer: "Text Right",
+                            value: "Pumpkin Pie",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageRight",
+                            displayer: "image Right",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/coffee.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textRight",
+                            displayer: "Text Right",
+                            value: "Coffee Time",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageRight",
+                            displayer: "image Right",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/book_and_leaf.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textRight",
+                            displayer: "Text Right",
+                            value: "Autumn Stories",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageRight",
+                            displayer: "image Right",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry11.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textRight",
+                            displayer: "Text Right",
+                            value: "Still Life",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "carouselObject",
+                    displayer: "Carousel Object",
+                    value: [
+                        {
+                            type: "image",
+                            key: "imageRight",
+                            displayer: "image Right",
+                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/photo-1476283721796-dd935b062838.jpg",
+                        },
+                        {
+                            type: "string",
+                            key: "textRight",
+                            displayer: "Text Right",
+                            value: "Boooo!",
+                        },
+                    ]
+                },
+            ]
+        })
+
+    } //constructor end
+
+    getName(): string {
+        return "Header 12";
+    }
+
+    //RENDER
+    render() {
+        const settings = {
+            dots: false,
+            infinite: true,
+            speed: 500,
+            autoplay: false,
+            autoplaySpeed: 2500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            vertical: true,
+            verticalSwiping: true,
+        };
+
+        const settingFirst = {
+            ...settings,
+            beforeChange: (current: number, next: number) => {
+                const currentIndex = parseInt(this.getComponentState("secondSliderIndex"));
+                if(
+                    (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection1").length))
+                || (current + 1 == this.castToObject<LeftSlider[]>("carouselCollection1").length && next == 0)){
+                    this.secondSlider.slickPrev()
+                }
+                else{
+                    this.secondSlider.slickNext()
+                }
+            }
+        }
+
+        const settingSecond = {
+            ...settings,
+            beforeChange: (current: number, next: number) => {
+                const currentIndex = parseInt(this.getComponentState("firstSliderIndex"));
+                if(
+                    (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection2").length))
+                || (current + 1 == this.castToObject<LeftSlider[]>("carouselCollection2").length && next == 0)){
+                    this.firstSlider.slickPrev()
+                }
+                else{
+                    this.firstSlider.slickNext()
+                }
+            }
+        }
+        //RETURN
+        return (
+            <div className={this.decorateCSS("container")}>
+                <div className={this.decorateCSS("max-content")}>
+                    <div className={this.decorateCSS("sliderContainer")}>
+                        <ComposerSlider className={this.decorateCSS("slider")} refObject={(slider: any) => (this.firstSlider = slider)} {...settingFirst}>
+                            {this.castToObject<LeftSlider[]>("carouselCollection1").map((item: LeftSlider, index: number) => (
+                                <div
+                                    key={index}
+                                >
+                                    <img
+                                        src={item.imageLeft}
+                                        alt=""
+                                        key={index}
+                                    />
+                                    <h1 className={this.decorateCSS("title")}>{item.textLeft}</h1>
+                                </div>
+
+                            ))}
+                        </ComposerSlider>
+
+                        <ComposerSlider className={this.decorateCSS("slider")} refObject={(slider: any) => (this.secondSlider = slider)} {...settingSecond}>
+                            {this.castToObject<RightSlider[]>("carouselCollection2").map((item: RightSlider, index: number) => (
+
+                                <div
+                                    
+                                    key={index}
+                                >
+                                    <img
+                                        src={item.imageRight}
+                                        alt=""
+                                        key={index}
+                                    />
+                                    <h1 className={this.decorateCSS("title")}>{item.textRight}</h1>
+                                </div>
+                            ))}
+                        </ComposerSlider>
+                    </div>
+                </div>
+            </div>
+        ); // RETURN end
+    } // RENDER end
+
+} // CLASS end
+
+export default Header12;
