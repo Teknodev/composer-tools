@@ -328,11 +328,11 @@ class PricingTable8 extends BasePricingTable {
                     <div className={this.decorateCSS("price-big")}>{card.priceBig}</div>
                     <p className={this.decorateCSS("plan")}>{card.plan}</p>
 
-
-
+                    <ComposerLink path={card.iconsButton.url}>
                       <ComposerIcon name={card.iconsButton.icon} propsIcon={{
                         className: this.decorateCSS("icon")
                       }} />
+                    </ComposerLink>
                   </div>
                 </div>
               ))}
@@ -351,11 +351,11 @@ class PricingTable8 extends BasePricingTable {
                     <div className={this.decorateCSS("price-big")}>{card.priceBig}</div>
                     <p className={this.decorateCSS("plan")}>{card.plan}</p>
 
-
-
+                    <ComposerLink path={card.iconsButton.url}>
                       <ComposerIcon name={card.iconsButton.icon} propsIcon={{
                         className: this.decorateCSS("icon")
                       }} />
+                    </ComposerLink>
 
                   </div>
                 </div>
