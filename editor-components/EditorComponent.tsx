@@ -126,9 +126,9 @@ export abstract class Component
     )[0] || this.getProp(propName));
   
     const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
-
+    
     return isStringMustBeElement
-      ? this.getPropValueAsElement(prop)
+      ? this.getPropValueAsElement(prop, properties)
       : prop?.value;
   }
 
