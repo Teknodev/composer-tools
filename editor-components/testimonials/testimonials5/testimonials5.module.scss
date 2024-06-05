@@ -11,12 +11,14 @@
     .testimonials5 {
       display: block;
       width: 100%;
+
       .title {
         text-align: center;
         font-size: 3rem;
         margin: 0 0 80px 0;
         color: var(--composer-primary-color);
       }
+
       .card-child {
         display: flex;
         justify-content: center;
@@ -32,16 +34,21 @@
           padding: 20px;
           display: flex;
           flex-direction: column;
+          margin-bottom: 100px;
+
           .stars {
             color: var(--composer-secondary-color);
+
             img {
               width: 15px;
               height: 15px;
             }
-            .star{
+
+            .star {
               color: var(--composer-secondary-color);
             }
           }
+
           img {
             margin-bottom: 20px;
           }
@@ -52,11 +59,13 @@
             font-size: 1.2rem;
             color: var(--composer-font-color-primary);
           }
-          .item-value3{
+
+          .item-value3 {
             font-weight: 800;
             font-size: 1.2rem;
             color: var(--composer-font-color-primary);
           }
+
           .item-value2 {
             opacity: 0.8;
             font-weight: 500;
