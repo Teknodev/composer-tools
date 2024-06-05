@@ -10,11 +10,12 @@ type ISliderData = {
   description: string;
   title2: string;
   time: string;
-  button: IButton[];
+  button: IButton;
 };
 
 type IButton = {
-  value: string;
+  buttonText: string;
+  buttonClick: string;
 };
 
 class Header2 extends BaseHeader {
@@ -245,9 +246,9 @@ class Header2 extends BaseHeader {
                           {item.description}
                           </div>
                           <div>
-                        <ComposerLink href={item.button[1].value}>
+                        <ComposerLink href={item.button.buttonClick}>
                         <button className={this.decorateCSS("button") }>
-                          {item.button[0].value}
+                          {item.button.buttonText}
                         </button>
                         </ComposerLink>
                       </div>
