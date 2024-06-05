@@ -192,6 +192,9 @@ class PricingTable8 extends BasePricingTable {
           ],
         },
       ],
+      additionalParams: {
+        maxElementCount:  3
+      }
     });
 
     this.addProp({
