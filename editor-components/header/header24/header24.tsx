@@ -10,11 +10,12 @@ type ISliderData = {
   image: string;
   flower_image: string;
   background_image: string;
-  button: IButton[];
-  button2: IButton[];
+  button: IButton;
+  button2: IButton;
 };
 type IButton = {
-  value: string;
+  buttonText: string;
+  buttonUrl: string;
 };
 
 class HeaderComponent24 extends BaseHeader {
@@ -72,13 +73,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -91,13 +92,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "VIEW MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -151,13 +152,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -170,13 +171,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "VIEW MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -229,13 +230,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -248,13 +249,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "VIEW MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -307,17 +308,17 @@ class HeaderComponent24 extends BaseHeader {
                         </div>
                         <div className={this.decorateCSS("buttons")}>
                           <ComposerLink
-                            path={item.button[1].value} className={this.decorateCSS("composer-link")}
+                            path={item.button.buttonUrl} className={this.decorateCSS("composer-link")}
                           >
                             <button className={this.decorateCSS("button")}>
-                              {item.button[0].value}
+                              {item.button.buttonText}
                             </button>
                           </ComposerLink>
                           <ComposerLink
-                            path={item.button2[1].value} className={this.decorateCSS("composer-link")}
+                            path={item.button2.buttonUrl} className={this.decorateCSS("composer-link")}
                           >
                             <button className={this.decorateCSS("button")}>
-                              {item.button2[0].value}
+                              {item.button2.buttonText}
                             </button>
                           </ComposerLink>
                         </div>

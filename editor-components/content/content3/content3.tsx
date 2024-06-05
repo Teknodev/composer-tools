@@ -1,75 +1,160 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content3.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type Card = {
+  icon: string;
+  image: string;
+  title: string;
+  description: string;
+};
 
 class Content3 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ae4968c3c2002cd2f9e5?alt=media&timestamp=1693230627411",
-    });
-    this.addProp({
       type: "array",
-      key: "buttonprop",
-      displayer: "Button Prop",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "button",
-          displayer: "Button",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "string",
-              key: "buttontext",
-              displayer: "Button Text",
-              value: "Continue",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LiaBicycleSolid",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "CREATE AMAZING DESING WITH MINT THEME",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Creating a higher spacing for people through a unique campaigns.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/photographer600.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LiaBicycleSolid",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "WE CRAFT BEAUTIFUL & AWESOME THEMES",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Creating a higher spacing for people through a unique campaigns.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/oldcity600.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LiaBicycleSolid",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "READY TO START YOUR NEXT WEB PROJECT NOW?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Creating a higher spacing for people through a unique campaigns.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/magazine.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LiaBicycleSolid",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "WE BELIEVE IN THE POWER OF GREAT DESIGN",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Creating a higher spacing for people through a unique campaigns.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/team04-1.jpg",
             },
           ],
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "content",
-      displayer: "Content",
-      value:
-        "The success of a small business can be attributed to various factors such as providing quality products or services, having a strong brand identity, building a loyal customer base, and implementing effective marketing strategies.",
-    });
-    this.addProp({
-      type: "string",
-      key: "secondTitle",
-      displayer: "Second Title",
-      value: "business.",
-    });
-    this.addProp({
-      type: "string",
-      key: "secondSubtitle",
-      displayer: "Second Subtitle",
-      value: "the success of a small",
-    });
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "12/12/2023",
-    });
 
     this.addProp({
-      type: "boolean",
-      key: "true",
-      displayer: "Column direction",
-      value: true,
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 4,
+      max: 4
     });
   }
 
@@ -81,44 +166,33 @@ class Content3 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-          <div
-            className={`${this.decorateCSS("wrapper")} ${
-              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
-            }`}
-          >
-            <div className={this.decorateCSS("image-background")}>
-              <img
-                alt=""
-                className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-              ></img>
-            </div>
-            <div className={this.decorateCSS("header-page")}>
-              <p className={this.decorateCSS("first-header")}>
-                {this.getPropValue("subtitle")}
-              </p>
-              <h1 className={this.decorateCSS("second-header")}>
-                {this.getPropValue("secondSubtitle")}
-              </h1>
-              <h3 className={`${this.decorateCSS("third-header")}`}>
-                {this.getPropValue("secondTitle")}
-              </h3>
-              <p className={this.decorateCSS("content")}>{this.getPropValue("content")}</p>
-              <div className={this.decorateCSS("button-wrapper")}>
-                {this.getPropValue("buttonprop").map(
-                  (button: any, index: number) => (
-                    <ComposerLink path={button.value[1].value} key={index}>
-                      <span className={this.decorateCSS("button")}>
-                        {button.value[0].value}
-                      </span>
-                    </ComposerLink>
-                  )
-                )}
+          {this.castToObject<Card[]>("cards").map(
+            (card: Card, indexCard: number) => (
+              <div key={indexCard} className={this.decorateCSS("card-item-count")} style={{
+                width: 100 / this.getPropValue("itemCount") + "%",
+              }}>
+                <div className={this.decorateCSS("card")}>
+                  <div className={this.decorateCSS("image-container")}>
+                    <img className={this.decorateCSS("image")} src={card.image} alt="" />
+                  </div>
+                  <div className={this.decorateCSS("little-container")}>
+                    <div className={this.decorateCSS("icon-title-container")}>
+                      <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      <h3 className={this.decorateCSS("title")}>
+                        {card.title}
+                      </h3>
+                    </div>
+                    <div className={this.decorateCSS("description-box")}>
+                      <p className={this.decorateCSS("description")}>
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          </div>
+            )
+          )}
+
         </div>
       </div>
     );
