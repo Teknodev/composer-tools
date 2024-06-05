@@ -14,15 +14,15 @@ type IIconBoxes = {
   priceBig: string;
   plan: string;
   link: string;
-  iconsButton: Buttons[];
-};
-type Buttons = {
-  buttonText: string;
-  url: string;
-  icon: string;
+  iconsButton: Button;
 };
 
 type Button = {
+  icon: string;
+  url: string;
+}
+
+type Buttons = {
   buttonText: string;
   url: string;
 }
@@ -76,23 +76,16 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Icons Button",
               value: [
                 {
-                  type: "object",
-                  key: "iconButton",
-                  displayer: "Icon Button",
-                  value: [
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Button icon",
-                      value: "AiOutlinePlus",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Button icon",
+                  value: "AiOutlinePlus",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Link",
+                  value: "",
                 },
               ],
             }
@@ -133,23 +126,16 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Icons Button",
               value: [
                 {
-                  type: "object",
-                  key: "iconButton",
-                  displayer: "Icon Button",
-                  value: [
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Button icon",
-                      value: "RiCheckDoubleFill",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Button icon",
+                  value: "RiCheckDoubleFill",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Link",
+                  value: "",
                 },
               ],
             }
@@ -190,23 +176,16 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Icons Button",
               value: [
                 {
-                  type: "object",
-                  key: "iconButton",
-                  displayer: "Icon Button",
-                  value: [
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Button icon",
-                      value: "AiOutlinePlus",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Button icon",
+                  value: "AiOutlinePlus",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Link",
+                  value: "",
                 },
               ],
             }
@@ -246,10 +225,10 @@ class PricingTable8 extends BasePricingTable {
               value: "500 Gb",
             },
             {
-              type: "string",
+              type: "number",
               key: "percent",
               displayer: "Percent",
-              value: "70",
+              value: 70,
             },
             {
               type: "color",
@@ -272,10 +251,10 @@ class PricingTable8 extends BasePricingTable {
               value: "3 Years",
             },
             {
-              type: "string",
+              type: "number",
               key: "percent",
               displayer: "Percent",
-              value: "50",
+              value: 50,
             },
             {
               type: "color",
@@ -289,32 +268,32 @@ class PricingTable8 extends BasePricingTable {
     });
 
     let button: TypeUsableComponentProps = {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "CONTINUE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        };
+      type: "object",
+      key: "button",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "CONTINUE",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Button Link",
+          value: "",
+        },
+      ],
+    };
 
-        this.addProp({
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [JSON.parse(JSON.stringify(button))],
-        });
-    
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [JSON.parse(JSON.stringify(button))],
+    });
+
   }
 
   getName(): string {
@@ -331,9 +310,9 @@ class PricingTable8 extends BasePricingTable {
       slidesToShow: window.innerWidth < 769 ? 1 : 3,
       slidesToScroll: 1,
       focusOnSelect: true,
-      arrows:false,
+      arrows: false,
     };
-  
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -341,51 +320,50 @@ class PricingTable8 extends BasePricingTable {
 
             <div className={this.decorateCSS("upper-container")}>
               {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => (
-                <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(this.getPropValue("cards").length / 2) ? this.decorateCSS("middle-card") : ""}`} 
+                <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(this.getPropValue("cards").length / 2) ? this.decorateCSS("middle-card") : ""} `}
                 >
                   <div className={this.decorateCSS("pricing")} key={index}>
                     <h3 className={this.decorateCSS("title")}>{card.title}</h3>
                     <p className={this.decorateCSS("price")}>{card.price}</p>
                     <div className={this.decorateCSS("price-big")}>{card.priceBig}</div>
                     <p className={this.decorateCSS("plan")}>{card.plan}</p>
-        
-                    {card.iconsButton.map((button: Buttons, buttonIndex: number) => (
-                      
-                      <ComposerIcon name={button.icon} propsIcon={{
-                          className: this.decorateCSS("icon")
+
+
+
+                      <ComposerIcon name={card.iconsButton.icon} propsIcon={{
+                        className: this.decorateCSS("icon")
                       }} />
-                    ))}
                   </div>
                 </div>
               ))}
-            </div>  
+            </div>
 
             <ComposerSlider
-            {...settings}
-            className={this.decorateCSS("carousel")}
-          >
+              {...settings}
+              className={this.decorateCSS("carousel")}
+            >
               {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => (
-                <div className={`${this.decorateCSS("card-item-count")}`} 
+                <div className={`${this.decorateCSS("card-item-count")}`}
                 >
                   <div className={this.decorateCSS("pricing")} key={index}>
                     <h3 className={this.decorateCSS("title")}>{card.title}</h3>
                     <p className={this.decorateCSS("price")}>{card.price}</p>
                     <div className={this.decorateCSS("price-big")}>{card.priceBig}</div>
                     <p className={this.decorateCSS("plan")}>{card.plan}</p>
-        
-                    {card.iconsButton.map((button: Buttons, buttonIndex: number) => (
-                      
-                      <ComposerIcon name={button.icon} propsIcon={{
-                          className: this.decorateCSS("icon")
+
+
+
+                      <ComposerIcon name={card.iconsButton.icon} propsIcon={{
+                        className: this.decorateCSS("icon")
                       }} />
-                    ))}
+
                   </div>
                 </div>
               ))}
-              </ComposerSlider>
+            </ComposerSlider>
 
             <div className={this.decorateCSS("lower-container")}>
-              
+
               <div className={this.decorateCSS("plan-desc")}>
                 <h1 className={this.decorateCSS("text")}>{this.getPropValue("plan-title")}</h1>
                 <p className={this.decorateCSS("description-text")}>{this.getPropValue("description")}</p>
@@ -393,13 +371,13 @@ class PricingTable8 extends BasePricingTable {
 
               <div className={this.decorateCSS("bar-rows")}>
                 <div className={this.decorateCSS("bar-row")}>
-                  {this.castToObject<Bar[]>("bars").map((bar:Bar, index: number ) => (
+                  {this.castToObject<Bar[]>("bars").map((bar: Bar, index: number) => (
                     <div className={this.decorateCSS("bar-desc")} key={index}>
                       <h3 className={this.decorateCSS("bar-title")}>{bar.barTitle}</h3>
 
                       <div className={this.decorateCSS("bar-percent")}>
-                        <div className={this.decorateCSS("percent-background")}></div>  
-                        <div className={this.decorateCSS("percent")} style={{ width: `${bar.percent}%`, backgroundColor: `${bar.color}` }}></div>  
+                        <div className={this.decorateCSS("percent-background")}></div>
+                        <div className={this.decorateCSS("percent")} style={{ width: `${bar.percent}%`, backgroundColor: `${bar.color}` }}></div>
                       </div>
                     </div>
                   ))}
@@ -408,22 +386,22 @@ class PricingTable8 extends BasePricingTable {
             </div>
 
             <div className={this.decorateCSS("button-position")}>
-              {this.castToObject<Button[]>("buttons").map(
+              {this.castToObject<Buttons[]>("buttons").map(
                 (item: Buttons, index: number) => {
-                return(
-                  <ComposerLink path={item.url} key={index}>
-                    <div className={this.decorateCSS("button")}>
-                      {item.buttonText}
-                    </div>
-                  </ComposerLink>
-                );
-              })}
-            
-            </div> 
+                  return (
+                    <ComposerLink path={item.url} key={index}>
+                      <div className={this.decorateCSS("button")}>
+                        {item.buttonText}
+                      </div>
+                    </ComposerLink>
+                  );
+                })}
+
+            </div>
           </div>
         </div>
       </div>
     );
-  }  
-}  
+  }
+}
 export default PricingTable8;
