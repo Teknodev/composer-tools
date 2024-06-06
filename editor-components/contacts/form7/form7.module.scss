@@ -1,21 +1,29 @@
 .container {
     width: 100%;
-    padding: 50px 0;
+    padding: 50px;
     background-color: var(--composer-html-background);
+    
 
     .max-content {
         max-width: 100%;
         margin: auto;
         display: flex;
         flex-direction: column;
+        background-color: var(--composer-font-color-primary);
+        position: relative;
+        padding: 30px 0;
+
+        .texts{
+            overflow: hidden;
+        }
 
         .badge {
             position: absolute;
             right: 40px;
-            top: 40px;
+            top: 20px;
             font-size: 19px;
             font-weight: bold;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-font-color-secondary);
         }
 
         .text {
@@ -27,15 +35,14 @@
             font-weight: bold;
             margin-bottom: 70px;
 
-
             .subtitle {
                 font-size: 16px;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-font-color-secondary);
             }
 
             .title {
                 font-size: 4rem;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-font-color-secondary);
             }
         }
 
@@ -46,7 +53,6 @@
 
             .inputs {
                 display: flex;
-                flex-wrap: wrap;
                 position: relative;
                 gap: 50px;
             }
@@ -67,7 +73,7 @@
                         transition: all 0.2s ease;
                         font-size: 14px;
                         pointer-events: none;
-                        color: var(--composer-font-color-primary);
+                        color: var(--composer-font-color-secondary);
                     }
 
                     .error-message {
@@ -76,7 +82,6 @@
                         position: absolute;
                         bottom: 5px;
                         left: 0;
-
                     }
                 }
             }
@@ -91,15 +96,15 @@
                 outline: none;
                 width: 100%;
                 width: 348px;
-                background-color: var(--composer-html-background);
-                color: var(--composer-font-color-primary);
+                background-color: transparent;
+                color: var(--composer-font-color-secondary);
+                font-family: inherit;
             }
 
-            .input:focus+.placeholder,
-            .input:not(:placeholder-shown)+.placeholder {
+            .input:focus + .placeholder,
+            .input:not(:placeholder-shown) + .placeholder {
                 bottom: 45px;
                 font-size: 12px;
-
             }
 
             .select {
@@ -112,19 +117,17 @@
                 outline: none;
                 width: 100%;
                 width: 348px;
-                background-color: var(--composer-html-background);
-                color: var(--composer-font-color-primary);
-
-
+                background-color: transparent;
+                color: var(--composer-font-color-secondary);
             }
 
-            .select:focus+.placeholder,
-            .select:valid+.placeholder {
+            .select:focus + .placeholder,
+            .select:valid + .placeholder {
                 bottom: 45px;
                 font-size: 12px;
             }
 
-            .select:invalid+.placeholder {
+            .select:invalid + .placeholder {
                 bottom: 25px;
                 font-size: 14px;
             }
@@ -134,47 +137,83 @@
     .submit-button {
         width: fit-content;
         height: fit-content;
-        padding: 10px 25px;
-        border-radius: 30px;
+
         text-align: center;
         font-weight: 700;
         cursor: pointer;
         margin-top: 30px;
         margin-bottom: 10px;
-        background-color: var(--composer-secondary-color);
+        background-color: var(--composer-html-background);
         color: #fff;
-        border: 1px solid var(--composer-secondary-color);
+        border: none;
+        position: absolute;
+        bottom: -30px;
+        right: 20px;
 
-        &:hover {
-            background-color: transparent;
-            color: var(--composer-secondary-color);
-            border: 1px solid var(--composer-secondary-color);
+
+
+        .button-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin: 20px 45px;
+
+
+            .button-circle {
+                background: var(--composer-secondary-color);
+                width: 35px;
+                height: 35px;
+                position: absolute;
+                transition: 0.3s;
+              
+                border-radius: 50px;
+                transform: translate(-10px, -50%);
+                top: 50%;
+                // left: 60px;
+            }
+            .button-text {
+                color: var(--composer-primary-color);
+                position: relative;
+                z-index: 1;
+                width: fit-content;
+                display: block;
+            }
+
+            &:hover{
+                .button-circle{
+                    width: calc(100% - 70px);
+
+                    // transform: translate(-50%, -50%);
+
+                }
+            }
         }
     }
 }
 
-
-
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 850px) {
     .container {
         padding: 50px 20px;
 
         .max-content {
             .text {
-                left: 0%;
+                left: 5%;
             }
 
             .form {
                 .inputs {
                     gap: 40px !important;
+                    justify-content: center !important;
+                    flex-direction: column;
+                    width: 70%;
                 }
 
                 .input {
-                    width: 320px;
+                    width: 100%;
                 }
 
                 .select {
-                    width: 320px;
+                    width: 100%;
                 }
             }
         }
@@ -193,7 +232,7 @@
             }
 
             .text {
-                left: 0%;
+
 
                 .title {
                     font-size: 3rem;
@@ -206,13 +245,6 @@
                     justify-content: center;
                 }
 
-                .input {
-                    width: 300px;
-                }
-
-                .select {
-                    width: 300px;
-                }
             }
         }
     }

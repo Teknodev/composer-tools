@@ -66,7 +66,7 @@ class Form7Page extends BaseContacts {
               displayer: "Type",
               value: "Text",
               additionalParams: {
-                selectItems: ["Text", "E-mail", "Number", "Text Area", "Select"],
+                selectItems: ["Text", "E-mail", "Number", "Select"],
               },
             },
             {
@@ -74,6 +74,14 @@ class Form7Page extends BaseContacts {
               key: "type_error_message",
               displayer: "Type error message",
               value: "Invalid type",
+            },
+            {
+              type: "array",
+              key: "options",
+              displayer: "Options",
+              value: [
+                { type: "string", key: "option", displayer: "Option", value: "Lorem ipsum" },
+              ],
             },
           ],
         },
@@ -106,7 +114,7 @@ class Form7Page extends BaseContacts {
               displayer: "Type",
               value: "Text",
               additionalParams: {
-                selectItems: ["Text", "E-mail", "Number", "Text Area", "Select"],
+                selectItems: ["Text", "E-mail", "Number", "Select"],
               },
             },
             {
@@ -114,6 +122,14 @@ class Form7Page extends BaseContacts {
               key: "type_error_message",
               displayer: "Type error message",
               value: "Invalid type",
+            },
+            {
+              type: "array",
+              key: "options",
+              displayer: "Options",
+              value: [
+                { type: "string", key: "option", displayer: "Option", value: "Lorem ipsum" },
+              ],
             },
           ],
         },
@@ -146,7 +162,7 @@ class Form7Page extends BaseContacts {
               displayer: "Type",
               value: "Select",
               additionalParams: {
-                selectItems: ["Text", "E-mail", "Number", "Text Area", "Select"],
+                selectItems: ["Text", "E-mail", "Number", "Select"],
               },
             },
             {
@@ -203,7 +219,7 @@ class Form7Page extends BaseContacts {
               displayer: "Type",
               value: "Text",
               additionalParams: {
-                selectItems: ["Text", "E-mail", "Number", "Text Area", "Select"],
+                selectItems: ["Text", "E-mail", "Number", "Select"],
               },
             },
             {
@@ -211,6 +227,14 @@ class Form7Page extends BaseContacts {
               key: "type_error_message",
               displayer: "Type error message",
               value: "Invalid type",
+            },
+            {
+              type: "array",
+              key: "options",
+              displayer: "Options",
+              value: [
+                { type: "string", key: "option", displayer: "Option", value: "Lorem ipsum" },
+              ],
             },
           ],
         },
@@ -243,7 +267,7 @@ class Form7Page extends BaseContacts {
               displayer: "Type",
               value: "Number",
               additionalParams: {
-                selectItems: ["Text", "E-mail", "Number", "Text Area", "Select"],
+                selectItems: ["Text", "E-mail", "Number", "Select"],
               },
             },
             {
@@ -251,6 +275,14 @@ class Form7Page extends BaseContacts {
               key: "type_error_message",
               displayer: "Type error message",
               value: "Invalid type",
+            },
+            {
+              type: "array",
+              key: "options",
+              displayer: "Options",
+              value: [
+                { type: "string", key: "option", displayer: "Option", value: "Lorem ipsum" },
+              ],
             },
           ],
         },
@@ -283,7 +315,7 @@ class Form7Page extends BaseContacts {
               displayer: "Type",
               value: "Text",
               additionalParams: {
-                selectItems: ["Text", "E-mail", "Number", "Text Area", "Select"],
+                selectItems: ["Text", "E-mail", "Number", "Select"],
               },
             },
             {
@@ -291,6 +323,14 @@ class Form7Page extends BaseContacts {
               key: "type_error_message",
               displayer: "Type error message",
               value: "Invalid type",
+            },
+            {
+              type: "array",
+              key: "options",
+              displayer: "Options",
+              value: [
+                { type: "string", key: "option", displayer: "Option", value: "Lorem ipsum" },
+              ],
             },
           ],
         },
@@ -310,8 +350,6 @@ class Form7Page extends BaseContacts {
 
     function getInputType(type: string): string {
       switch (type) {
-        case "Text Area":
-          return "textarea";
         case "E-mail":
           return "email";
         case "Tel":
@@ -343,7 +381,6 @@ class Form7Page extends BaseContacts {
       inputs.forEach((input: any, indexOfInput: number) => {
         const isRequired = input.getPropValue("is_required");
         const isEmail = getInputType(input.getPropValue("type")) === "email";
-        const isNumber = getInputType(input.getPropValue("type")) === "number";
         const requiredMessage = input.getPropValue("required_error_message");
         const typeErrorMessage = input.getPropValue("type_error_message");
 
@@ -379,6 +416,7 @@ class Form7Page extends BaseContacts {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("texts")}>
           <span className={this.decorateCSS("badge")}>
             {this.getPropValue("badge")}
           </span>
@@ -389,6 +427,7 @@ class Form7Page extends BaseContacts {
             <span className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
             </span>
+          </div>
           </div>
           <div className={this.decorateCSS("input-items")}>
             <Formik
@@ -467,7 +506,7 @@ class Form7Page extends BaseContacts {
                               value={values[getInputName(index + firstInputs.length, input.prefix)]}
                               onChange={handleChange}
                               name={getInputName(index + firstInputs.length, input.prefix)}
-                              className={this.decorateCSS("select")}
+                              className={`${this.decorateCSS("select")} ${this.decorateCSS("input")}`}
                             >
                               <option value="" label=" "></option>
                               {input.getPropValue("options").map((option: any, idx: number) => (
@@ -499,7 +538,12 @@ class Form7Page extends BaseContacts {
                     </div>
                   </div>
                   <button className={this.decorateCSS("submit-button")}>
-                    {this.getPropValue("button_text")}
+                    <div className={this.decorateCSS("button-inner")}>
+                    <div className={this.decorateCSS("button-circle")}>
+                    </div>
+                    <span className={this.decorateCSS("button-text")}>{this.getPropValue("button_text")}</span>
+                    </div>
+
                   </button>
                 </Form>
               )}
