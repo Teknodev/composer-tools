@@ -59,6 +59,28 @@ class Team6 extends Team {
       ],
     };
     super(props, styles);
+   
+    this.addProp({
+      type: "string",
+      key: "title1",
+      displayer: "Title-1",
+      value: "Our Team",
+    });
+
+    this.addProp({
+      type:  "string",
+      key: "title2",
+      displayer: "Title-2",
+      value: "Our Team"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "We work in collaboration, harmony, and trust to achieve our goals.",
+    });
+
     this.addProp({
       type: "array",
       key: "items",
@@ -192,60 +214,7 @@ class Team6 extends Team {
         },
       ],
     });
-
-    this.addProp({
-      type: "string",
-      key: "title1",
-      displayer: "Title-1",
-      value: "Our Team",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title2",
-      displayer: "Title-3",
-      value: "We work in collaboration, harmony, and trust to achieve our goals.",
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Open Positions",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: true,
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "Team",
-    });
+    
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -263,32 +232,11 @@ class Team6 extends Team {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div></div>
-            <div className={this.decorateCSS("up-page")}>
+            <div className={this.decorateCSS("up-page")}> 
               <div className={this.decorateCSS("text-group")}>
+                <h1 className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</h1>
                 <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
-                <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
-              </div>
-              <div className={this.decorateCSS("button-group")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (button: Button, indexButtons: number) => {
-                    return (
-                      <ComposerLink key={indexButtons} path={button.link}>
-                        <button
-                          className={
-                            this.decorateCSS("button") +
-                            " " +
-                            (button.isPrimary
-                              ? this.decorateCSS("primary")
-                              : this.decorateCSS("secondary"))
-                          }
-                        >
-                          {button.text}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
+                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>  
               </div>
             </div>
             <div className={this.decorateCSS("down-page")}>
@@ -299,30 +247,21 @@ class Team6 extends Team {
                       key={indexItems}
                       className={this.decorateCSS("all-card")}
                       style={{
-                        width: 90 / this.getPropValue("itemCount") + "%",
+                        width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`,
                       }}
                     >
-                      <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("top")}>
+                        <div className={this.decorateCSS("image-wrapper")}>
                           <img
-                            alt=""
                             className={this.decorateCSS("image")}
                             src={card.image}
+                            alt={card.name}
                           />
-                          <h2 className={this.decorateCSS("card-name")}>{card.name}</h2>
-                          <p className={this.decorateCSS("position")}>{card.position}</p>
+                          </div>
                         </div>
-                        <p className={this.decorateCSS("card-description")}>{card.description}</p>
-                        <div className={this.decorateCSS("icon-group")}>
-                          {card.platforms.map((item: any, indexPlatforms: number) => {
-                            return (
-                              <ComposerLink key={indexPlatforms} path={item.url}>
-                                <img src={item.icon} alt=""/>
-                              </ComposerLink>
-                            );
-                          })}
-                        </div>
-                      </div>
+                        <h5 className={this.decorateCSS("card-name")}>{card.name}</h5>
+                        <div className={this.decorateCSS("separator")}></div>
+                        <h2 className={this.decorateCSS("position")}>{card.position}</h2>
                     </div>
                   );
                 }
