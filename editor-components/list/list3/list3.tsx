@@ -14,7 +14,7 @@ class List3 extends BaseList {
       type: "string",
       key: "title",
       displayer: "title",
-      value: "_Event Schedule",
+      value: "Event Schedule",
     })
     this.addProp({
       type: "string",
@@ -22,33 +22,13 @@ class List3 extends BaseList {
       displayer: "description",
       value: "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     })
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Download Schedule",
-            },
 
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "https://www.google.com/",
-            },
-          ],
-        },
-      ],
-    });
+    this.addProp({
+      type:"string",
+      key:"button",
+      displayer:"Button",
+      value:"Download Schedule"
+    })
 
     this.addProp({
       type: "array",
@@ -177,51 +157,46 @@ class List3 extends BaseList {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("row")} 
+            style={{
+             gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)`
+             }}>
           <div className={this.decorateCSS("first")}>
-            <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+            <div className={this.decorateCSS("first-content")}>
+            <div className={this.decorateCSS("title")}>
+              <h1>{this.getPropValue("title")}</h1>
+            </div>
             <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
             <div className={this.decorateCSS("buttondiv")}>
-              {this.getPropValue("buttons").map(
-                (item: any, indexButtons: number) => {
-                  return (
-                    <ComposerLink
-                      key={indexButtons}
-                      path={item.value[1].value}
-                    >
-                      <button
-                        className={`${this.decorateCSS("button")}`}
-                      >
-                        {item.value[0].value}
+                    <ComposerLink>
+                      <button className={`${this.decorateCSS("button")}`}>
+                        {this.getPropValue("button")}
+                        <span className={this.decorateCSS("span")}>{this.getPropValue("span-text")}</span>
                       </button>
                     </ComposerLink>
-                  );
-                }
-              )}
+            </div>
             </div>
           </div>
           {this.getPropValue("list-items").map(
             (listItem: any, index: number) => (
               <div
                 key={index}
-                className={this.decorateCSS("all-card")}
-                style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}
-              >
-
+                className={this.decorateCSS("all-card")}>
                 <div className={this.decorateCSS("item-content")}>
-                  <p className={this.decorateCSS("item-title")}>{listItem.value[0].value}</p>
-                  <p className={this.decorateCSS("item-text")}>{listItem.value[1].value}</p>
-                  <p className={this.decorateCSS("item-text")}>{listItem.value[2].value}</p>
-                  <p className={this.decorateCSS("item-text3")}>{listItem.value[3].value}</p>
-
-
-                  <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
-
+                  <div className={this.decorateCSS("content")}>
+                      <p className={this.decorateCSS("item-title")}>{listItem.value[0].value}</p>
+                      <p className={this.decorateCSS("item-text")}>{listItem.value[1].value}</p>
+                      <span className={this.decorateCSS("span-item")}></span>
+                      <p className={this.decorateCSS("item-text")}>{listItem.value[2].value}</p>
+                      <span className={this.decorateCSS("span-item")}></span>
+                      <p className={this.decorateCSS("item-text3")}>{listItem.value[3].value}</p>
+                      <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
+                  </div>
                 </div>
               </div>
             )
           )}
+        </div>
         </div>
       </div>
     );
