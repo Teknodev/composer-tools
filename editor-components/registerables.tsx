@@ -19,30 +19,30 @@ import ListComponent6 from "./list/list6/list6";
 import ListComponent7 from "./list/list7/list7";
 import ListComponent8 from "./list/list8/list8";
 import LocationComponent1 from "./location/location1/location1";
-import ContentComponent1 from "./content/content1/content1";
-import ContentComponent2 from "./content/content2/content2";
-import ContentComponent3 from "./content/content3/content3";
-import ContentComponent4 from "./content/content4/content4";
-import ContentComponent5 from "./content/content5/content5";
-import ContentComponent6 from "./content/content6/content6";
-import ContentComponent7 from "./content/content7/content7";
-import ContentComponent8 from "./content/content8/content8";
-import ContentComponent9 from "./content/content9/content9";
+// import ContentComponent1 from "./content/content1/content1";
+// import ContentComponent2 from "./content/content2/content2";
+// import ContentComponent3 from "./content/content3/content3";
+// import ContentComponent4 from "./content/content4/content4";
+// import ContentComponent5 from "./content/content5/content5";
+// import ContentComponent6 from "./content/content6/content6";
+// import ContentComponent7 from "./content/content7/content7";
+// import ContentComponent8 from "./content/content8/content8";
+// import ContentComponent9 from "./content/content9/content9";
 import ContentComponent10 from "./content/content10/content10";
-import ContentComponent11 from "./content/content11/content11";
-import ContentComponent12 from "./content/content12/content12";
-import ContentComponent13 from "./content/content13/content13";
-import ContentComponent18 from "./content/content18/content18";
-import ContentComponent19 from "./content/content19/content19";
-import ContentComponent14 from "./content/content14/content14";
-import ContentComponent15 from "./content/content15/content15";
-import ContentComponent16 from "./content/content16/content16";
-import ContentComponent17 from "./content/content17/content17";
-import ContentComponent20 from "./content/content20/content20";
-import ContentComponent21 from "./content/content21/content21";
-import ContentComponent22 from "./content/content22/content22";
-import ContentComponent23 from "./content/content23/content23";
-import ContentComponent24 from "./content/content24/content24";
+// import ContentComponent11 from "./content/content11/content11";
+// import ContentComponent12 from "./content/content12/content12";
+// import ContentComponent13 from "./content/content13/content13";
+// import ContentComponent18 from "./content/content18/content18";
+// import ContentComponent19 from "./content/content19/content19";
+// import ContentComponent14 from "./content/content14/content14";
+// import ContentComponent15 from "./content/content15/content15";
+// import ContentComponent16 from "./content/content16/content16";
+// import ContentComponent17 from "./content/content17/content17";
+// import ContentComponent20 from "./content/content20/content20";
+// import ContentComponent21 from "./content/content21/content21";
+// import ContentComponent22 from "./content/content22/content22";
+// import ContentComponent23 from "./content/content23/content23";
+// import ContentComponent24 from "./content/content24/content24";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -228,30 +228,30 @@ function Registerables(composer: ComponentsRegistery) {
     new ListComponent7(),
     new ListComponent8(),
     new LocationComponent1(),
-    new ContentComponent1(),
-    new ContentComponent2(),
-    new ContentComponent3(),
-    new ContentComponent4(),
-    new ContentComponent5(),
-    new ContentComponent6(),
-    new ContentComponent7(),
-    new ContentComponent8(),
-    new ContentComponent9(),
+    // new ContentComponent1(),
+    // new ContentComponent2(),
+    // new ContentComponent3(),
+    // new ContentComponent4(),
+    // new ContentComponent5(),
+    // new ContentComponent6(),
+    // new ContentComponent7(),
+    // new ContentComponent8(),
+    // new ContentComponent9(),
     new ContentComponent10(),
-    new ContentComponent11(),
-    new ContentComponent12(),
-    new ContentComponent13(),
-    new ContentComponent14(),
-    new ContentComponent15(),
-    new ContentComponent16(),
-    new ContentComponent17(),
-    new ContentComponent18(),
-    new ContentComponent19(),
-    new ContentComponent20(),
-    new ContentComponent21(),
-    new ContentComponent22(),
-    new ContentComponent23(),
-    new ContentComponent24(),
+    // new ContentComponent11(),
+    // new ContentComponent12(),
+    // new ContentComponent13(),
+    // new ContentComponent14(),
+    // new ContentComponent15(),
+    // new ContentComponent16(),
+    // new ContentComponent17(),
+    // new ContentComponent18(),
+    // new ContentComponent19(),
+    // new ContentComponent20(),
+    // new ContentComponent21(),
+    // new ContentComponent22(),
+    // new ContentComponent23(),
+    // new ContentComponent24(),
     new SliderComponent1(),
     new SliderComponent2(),
     new SliderComponent3(),
