@@ -282,7 +282,8 @@ class HeaderComponent22 extends BaseHeader {
       value: "PREV",
     });
 
-    this.setComponentState("animation", true)
+    this.setComponentState("animation", true);
+    this.setComponentState("slideText", true);
     this.setComponentState("active-index", 0);
     this.setComponentState("titleAnimationClass", "animate__fadeInRight");
     this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
@@ -310,26 +311,25 @@ class HeaderComponent22 extends BaseHeader {
       dots: true,
       infinite: true,
       arrows: false,
-      speed: 100,
+      speed: 700,
       autoplay: true,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (oldIndex: number, newIndex: number) => {
         this.setComponentState("animation", false);
-        setTimeout(() => this.setComponentState("animation", true), 500);
+        this.setComponentState("textAnimation", false);
+
+        setTimeout(() => this.setComponentState("animation", true), 300);
+        setTimeout(() => this.setComponentState("textAnimation", true), 300);
+
         if (oldIndex == newIndex) return;
-        setTimeout(() => {
-          this.setComponentState("active-index", newIndex);
-        }, 1200);
+        this.setComponentState("active-index", newIndex);
       },
     };
 
     const shouldHaveAnimationClass = this.getComponentState("animation");
-    const imageAnimationClass = this.getComponentState("imageAnimationClass");
-
-    const sliderCount = this.getPropValue("slider").length;
-    const progressPercentage = ((this.getComponentState("active-index") + 1) / sliderCount) * 100;
+    const textAnimationClass = this.getComponentState("textAnimation");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -384,23 +384,16 @@ class HeaderComponent22 extends BaseHeader {
   
           <div className={this.decorateCSS("content-container")}>
             <div className={this.decorateCSS("layout")}>
-              <div  className={`${this.decorateCSS("content")} ${
-                    shouldHaveAnimationClass && this.decorateCSS("imageAnimationClass")
-                  }`} >
-                <div className={this.decorateCSS("title-container")}>
+              <div className={this.decorateCSS("content")}>
+                <div  className={`${this.decorateCSS("title-container")} ${
+                    textAnimationClass && this.decorateCSS("textAnimation")
+                  }`}>
                   <h3
                     className={`${this.decorateCSS(
                       "subtitle1"
                     )}  animate__animated ${this.getComponentState(
                       "titleAnimationClass"
                     )}`}
-                    onAnimationEnd={() => {
-                      this.handleAnimationEnd({
-                        animationState: "titleAnimationClass",
-                        startingAnimation: "animate__fadeInRight",
-                        endingAnimation: "animate__fadeOutDown",
-                      });
-                    }}
                   >
                     {this.getPropValue("slider")[
                       this.getComponentState("active-index")
@@ -412,13 +405,6 @@ class HeaderComponent22 extends BaseHeader {
                     )}  animate__animated ${this.getComponentState(
                       "titleAnimationClass"
                     )}`}
-                    onAnimationEnd={() => {
-                      this.handleAnimationEnd({
-                        animationState: "titleAnimationClass",
-                        startingAnimation: "animate__fadeInRight",
-                        endingAnimation: "animate__fadeOutDown",
-                      });
-                    }}
                   >
                     {this.getPropValue("slider")[
                       this.getComponentState("active-index")
@@ -430,13 +416,6 @@ class HeaderComponent22 extends BaseHeader {
                     )}  animate__animated ${this.getComponentState(
                       "titleAnimationClass"
                     )}`}
-                    onAnimationEnd={() => {
-                      this.handleAnimationEnd({
-                        animationState: "titleAnimationClass",
-                        startingAnimation: "animate__fadeInRight",
-                        endingAnimation: "animate__fadeOutDown",
-                      });
-                    }}
                   >
                     {this.getPropValue("slider")[
                       this.getComponentState("active-index")
@@ -461,13 +440,6 @@ class HeaderComponent22 extends BaseHeader {
                           )} animate__animated ${this.getComponentState(
                             "buttonAnimationClass"
                           )}`}
-                          onAnimationEnd={() => {
-                            this.handleAnimationEnd({
-                              animationState: "buttonAnimationClass",
-                              startingAnimation: "animate__fadeInUp",
-                              endingAnimation: "animate__fadeOutDown",
-                            });
-                          }}
                         >
                           <span className={this.decorateCSS("button-text")}>
                             {
@@ -482,39 +454,15 @@ class HeaderComponent22 extends BaseHeader {
                   </div>
                 </div>
                 <p
-                  className={`${this.decorateCSS(
-                    "description"
-                  )} animate__animated ${this.getComponentState(
-                    "descriptionAnimationClass"
-                  )} `}
-                  onAnimationEnd={() => {
-                    this.handleAnimationEnd({
-                      animationState: "descriptionAnimationClass",
-                      startingAnimation: "animate__fadeInUp",
-                      endingAnimation: "animate__fadeOut",
-                    });
-                  }}
+                  className={`${this.decorateCSS("description")} ${
+                    this.decorateCSS("slideText")
+                  }`}
                 >
                   {this.getPropValue("slider")[
                     this.getComponentState("active-index")
                   ].getPropValue("description")}
                 </p>
               </div>
-              <div className={this.decorateCSS("pagination")}>
-                      <span className={this.decorateCSS("active-slide")}>
-                        {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
-                      </span>
-                      <div className={this.decorateCSS("progress-bar")}>
-                        <div
-                          className={this.decorateCSS("active")}
-                          style={{ width: `${progressPercentage}%` }}
-                        />
-                      </div>
-                      <span className={this.decorateCSS("slide-count")}>
-                        {sliderCount.toString().padStart(2, "0")}
-                      </span>
-                    </div>
-              
               <div className={this.decorateCSS("arrows")}>
                 <div
                   className={this.decorateCSS("prev-arrow")}
@@ -554,6 +502,11 @@ class HeaderComponent22 extends BaseHeader {
               </div>
             </div>
           </div>
+        </div>
+        <div className={this.decorateCSS("low-op-text")}>
+          <h1 className={this.decorateCSS("background-op-text")}>
+            {this.getPropValue("background-text")}
+          </h1>
         </div>
       </div>
     );
