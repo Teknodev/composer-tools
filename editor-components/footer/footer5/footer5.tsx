@@ -17,36 +17,36 @@ class Footer5Page extends BaseFooter {
       key: "footerInfos",
       displayer: "Footer Infos",
       value: [
-            {
-              type: "string",
-              key: "footerInfoTitle",
-              displayer: "Footer Info Title",
-              value: "Office: (623) 680-4899"
-            },
-            {
-              type: "string",
-              key: "footerInfoTitle",
-              displayer: "Footer Info Title",
-              value: "Fax: (623) 680-4899"
-            },
-            {
-              type: "string",
-              key: "footerInfoTitle",
-              displayer: "Footer Info Title",
-              value: "1606 W. Whispering Wind Dr. Suite 2"
-            },
-            {
-              type: "string",
-              key: "footerInfoTitle",
-              displayer: "Footer Info Title",
-              value: "ROC B-3 242965"
-            },
-            {
-              type: "string",
-              key: "footerInfoTitle",
-              displayer: "Footer Info Title",
-              value: "ROC KA 291558"
-            },
+        {
+          type: "string",
+          key: "footerInfoTitle",
+          displayer: "Footer Info Title",
+          value: "Office: (623) 680-4899"
+        },
+        {
+          type: "string",
+          key: "footerInfoTitle",
+          displayer: "Footer Info Title",
+          value: "Fax: (623) 680-4899"
+        },
+        {
+          type: "string",
+          key: "footerInfoTitle",
+          displayer: "Footer Info Title",
+          value: "1606 W. Whispering Wind Dr. Suite 2"
+        },
+        {
+          type: "string",
+          key: "footerInfoTitle",
+          displayer: "Footer Info Title",
+          value: "ROC B-3 242965"
+        },
+        {
+          type: "string",
+          key: "footerInfoTitle",
+          displayer: "Footer Info Title",
+          value: "ROC KA 291558"
+        },
       ]
     })
     this.addProp({
@@ -55,195 +55,191 @@ class Footer5Page extends BaseFooter {
       displayer: "Footer Socials",
       value: [
         {
-        type: "object",
-        key: "footerSocialIconBox",
-        displayer: "Footer Social Icon Box",
-        value: [
-          {
-            type: "page",
-            key: "footerSocialIconLink",
-            displayer: "Footer Social Icon Link",
-            value: ""
-          },
-          {
-            type: "image",
-            key: "footerInfoSocialIcon",
-            displayer: "Footer Info Social Icon",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299694?alt=media&timestamp=1692713363046"
-          },
+          type: "object",
+          key: "footerSocialIconBox",
+          displayer: "Footer Social Icon Box",
+          value: [
+            {
+              type: "page",
+              key: "footerSocialIconLink",
+              displayer: "Footer Social Icon Link",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "footerInfoSocialIcon",
+              displayer: "Footer Info Social Icon",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299694?alt=media&timestamp=1692713363046"
+            },
           ]
         },
         {
-        type: "object",
-        key: "footerSocialIconBox",
-        displayer: "Footer Social Icon Box",
-        value: [
-          {
-            type: "page",
-            key: "footerSocialIconLink",
-            displayer: "Footer Social Icon Link",
-            value: ""
-          },
-          {
-            type: "image",
-            key: "footerInfoSocialIcon",
-            displayer: "Footer Info Social Icon",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299693?alt=media&timestamp=1692713363046"
-          },
+          type: "object",
+          key: "footerSocialIconBox",
+          displayer: "Footer Social Icon Box",
+          value: [
+            {
+              type: "page",
+              key: "footerSocialIconLink",
+              displayer: "Footer Social Icon Link",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "footerInfoSocialIcon",
+              displayer: "Footer Info Social Icon",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299693?alt=media&timestamp=1692713363046"
+            },
           ]
         },
         {
-        type: "object",
-        key: "footerSocialIconBox",
-        displayer: "Footer Social Icon Box",
-        value: [
-          {
-            type: "page",
-            key: "footerSocialIconLink",
-            displayer: "Footer Social Icon Link",
-            value: ""
-          },
-          {
-            type: "image",
-            key: "footerInfoSocialIcon",
-            displayer: "Footer Info Social Icon",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299692?alt=media&timestamp=1692713363046"
-          },
+          type: "object",
+          key: "footerSocialIconBox",
+          displayer: "Footer Social Icon Box",
+          value: [
+            {
+              type: "page",
+              key: "footerSocialIconLink",
+              displayer: "Footer Social Icon Link",
+              value: ""
+            },
+            {
+              type: "image",
+              key: "footerInfoSocialIcon",
+              displayer: "Footer Info Social Icon",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299692?alt=media&timestamp=1692713363046"
+            },
           ]
         },
       ]
     })
+
+    this.addProp({
+      type: "string",
+      key: "footerLinkSubTitle",
+      displayer: "Footer Link Subtitle",
+      value: "Quick Links"
+    },)
     this.addProp({
       type: "array",
       key: "footerLinks",
       displayer: "Footer Links",
       value: [
+
         {
-          type: "string",
-          key: "footerLinkSubTitle",
-          displayer: "Footer Link Subtitle",
-          value: "Quick Links"
+          type: "object",
+          key: "footerLinkBox",
+          displayer: "Footer Link Box",
+          value: [
+            {
+              type: "page",
+              key: "footerLink",
+              displayer: "Footer Link",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "footerLinkTitle",
+              displayer: "Footer Link Title",
+              value: "Markets We Serve"
+            },
+          ]
         },
         {
-          type: "array",
-          key: "footerLinkRow",
-          displayer: "Footer Link Row",
+          type: "object",
+          key: "footerLinkBox",
+          displayer: "Footer Link Box",
           value: [
-                {
-                  type: "object",
-                  key: "footerLinkBox",
-                  displayer: "Footer Link Box",
-                  value: [
-                    {
-                      type: "page",
-                      key: "footerLink",
-                      displayer: "Footer Link",
-                      value: ""
-                    },
-                    {
-                      type: "string",
-                      key: "footerLinkTitle",
-                      displayer: "Footer Link Title",
-                      value: "Markets We Serve"
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "footerLinkBox",
-                  displayer: "Footer Link Box",
-                  value: [
-                    {
-                      type: "page",
-                      key: "footerLink",
-                      displayer: "Footer Link",
-                      value: ""
-                    },
-                    {
-                      type: "string",
-                      key: "footerLinkTitle",
-                      displayer: "Footer Link Title",
-                      value: "Subcontractors"
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "footerLinkBox",
-                  displayer: "Footer Link Box",
-                  value: [
-                    {
-                      type: "page",
-                      key: "footerLink",
-                      displayer: "Footer Link",
-                      value: ""
-                    },
-                    {
-                      type: "string",
-                      key: "footerLinkTitle",
-                      displayer: "Footer Link Title",
-                      value: "Warrenty"
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "footerLinkBox",
-                  displayer: "Footer Link Box",
-                  value: [
-                    {
-                      type: "page",
-                      key: "footerLink",
-                      displayer: "Footer Link",
-                      value: ""
-                    },
-                    {
-                      type: "string",
-                      key: "footerLinkTitle",
-                      displayer: "Footer Link Title",
-                      value: "Testimonials"
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "footerLinkBox",
-                  displayer: "Footer Link Box",
-                  value: [
-                    {
-                      type: "page",
-                      key: "footerLink",
-                      displayer: "Footer Link",
-                      value: ""
-                    },
-                    {
-                      type: "string",
-                      key: "footerLinkTitle",
-                      displayer: "Footer Link Title",
-                      value: "Latest News"
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "footerLinkBox",
-                  displayer: "Footer Link Box",
-                  value: [
-                    {
-                      type: "page",
-                      key: "footerLink",
-                      displayer: "Footer Link",
-                      value: ""
-                    },
-                    {
-                      type: "string",
-                      key: "footerLinkTitle",
-                      displayer: "Footer Link Title",
-                      value: "Contact Us"
-                    },
-                  ]
-                },
+            {
+              type: "page",
+              key: "footerLink",
+              displayer: "Footer Link",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "footerLinkTitle",
+              displayer: "Footer Link Title",
+              value: "Subcontractors"
+            },
           ]
+        },
+        {
+          type: "object",
+          key: "footerLinkBox",
+          displayer: "Footer Link Box",
+          value: [
+            {
+              type: "page",
+              key: "footerLink",
+              displayer: "Footer Link",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "footerLinkTitle",
+              displayer: "Footer Link Title",
+              value: "Warrenty"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "footerLinkBox",
+          displayer: "Footer Link Box",
+          value: [
+            {
+              type: "page",
+              key: "footerLink",
+              displayer: "Footer Link",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "footerLinkTitle",
+              displayer: "Footer Link Title",
+              value: "Testimonials"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "footerLinkBox",
+          displayer: "Footer Link Box",
+          value: [
+            {
+              type: "page",
+              key: "footerLink",
+              displayer: "Footer Link",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "footerLinkTitle",
+              displayer: "Footer Link Title",
+              value: "Latest News"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "footerLinkBox",
+          displayer: "Footer Link Box",
+          value: [
+            {
+              type: "page",
+              key: "footerLink",
+              displayer: "Footer Link",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "footerLinkTitle",
+              displayer: "Footer Link Title",
+              value: "Contact Us"
+            },
+          ]
+
         }
       ]
     })
@@ -310,7 +306,7 @@ class Footer5Page extends BaseFooter {
     return "Footer 5";
   }
 
-  render() {
+  render() {    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -320,7 +316,7 @@ class Footer5Page extends BaseFooter {
                 <img src={this.getPropValue("footer-logo")} alt="logo" />
               </div>
               <div className={this.decorateCSS("footer-infos")}>
-              {this.castToObject<[]>("footerInfos").map((info: any, index: number) => (
+                {this.castToObject<[]>("footerInfos").map((info: any, index: number) => (
                   <div className={this.decorateCSS("footer-info-row")} key={index}>
                     <p className={this.decorateCSS("info.value")}>{info.value}</p>
                   </div>
@@ -329,8 +325,8 @@ class Footer5Page extends BaseFooter {
               <div className={this.decorateCSS("social-icons")}>
                 {this.castToObject<[]>("footerSocials").map((social: any, index: number) => (
                   <div className={this.decorateCSS("social-icon-row")} key={index}>
-                    <ComposerLink path={social.value[0].value}>
-                      <img src={social.value[1].value} alt="social-icon" />
+                    <ComposerLink path={social.footerSocialIconLink}>
+                      <img src={social.footerInfoSocialIcon} alt="social-icon" />
                     </ComposerLink>
                   </div>
                 ))}
@@ -338,11 +334,11 @@ class Footer5Page extends BaseFooter {
             </div>
             <div className={this.decorateCSS("footer-center")}>
               <div className={this.decorateCSS("footer-links")}>
-                <h2 className={this.decorateCSS("footerLinks")}>{this.getPropValue("footerLinks")[0].value}</h2>
-                {this.getPropValue("footerLinks")[1].value.map((link: any, index: number) => (
+                <h2 className={this.decorateCSS("footerLinks")}>{this.getPropValue("footerLinkSubTitle")}</h2>
+                {this.castToObject<any>("footerLinks").map((link: any, index: number) => (
                   <div className={this.decorateCSS("footer-link-row")} key={index}>
-                    <ComposerLink path={link.value[0].value}>
-                      <p className={this.decorateCSS("link-value1")}>{link.value[1].value}</p>
+                    <ComposerLink path={link.footerLink}>
+                      <p className={this.decorateCSS("link-value1")}>{link.footerLinkTitle}</p>
                     </ComposerLink>
                   </div>
                 ))}
@@ -350,24 +346,24 @@ class Footer5Page extends BaseFooter {
             </div>
             <div className={this.decorateCSS("footer-right")}>
               <div className={this.decorateCSS("footer-form")}>
-                <h2 className={this.decorateCSS("footerForm")}> 
-                  {this.getPropValue("footerForm")[0].value}
+                <h2 className={this.decorateCSS("footerForm")}>
+                  {this.castToObject<any>("footerForm").footerFormTitle}
                 </h2>
                 <div className={this.decorateCSS("input-box")}>
-                  <input type="text" placeholder="Type your email here" />
+                  <input type="text" placeholder={this.castToString(this.castToObject<any>("footerForm").footerFormPlaceholder)} />
                   <ComposerLink path={
-                    this.getPropValue("footerForm")[3].value
+                    this.castToObject<any>("footerForm").footerFormPage
                   }>
-                    <button>{this.getPropValue("footerForm")[2].value}</button>
+                    <button>{this.castToObject<any>("footerForm").footerFormButton}</button>
                   </ComposerLink>
                 </div>
               </div>
               <div className={this.decorateCSS("footer-text-area")}>
                 <h2 className={this.decorateCSS("footerAboutUs")}>
-                  {this.getPropValue("footerAboutUs")[0].value}
+                  {this.getPropValue("footerAboutUs").footerAboutUsTitle}
                 </h2>
                 <p className={this.decorateCSS("footer-aboutus")}>
-                  {this.getPropValue("footerAboutUs")[1].value}
+                  {this.getPropValue("footerAboutUs").footerAboutUsText}
                 </p>
               </div>
             </div>

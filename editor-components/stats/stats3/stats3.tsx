@@ -74,7 +74,7 @@ class Stats3Page extends BaseStats {
         "https://c.files.bbci.co.uk/6422/production/_97143652_b864328e-3368-4f03-bb44-996ddfd7e7f2.jpg",
     });
     this.addProp({
-      type: "object",
+      type: "array",
       key: "card-content",
       displayer: "Card Content",
       value: [
