@@ -1,84 +1,304 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
-  background-color: var(--composer-html-background);
-  padding: 50px 0px;
-  display: flex;
-  align-items: center;
+  background: var(--composer-html-background);
+  position: relative;
   
-  .max-content {
-    max-width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    
+  .background{
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(20px);
+    z-index: 0; 
+    object-fit: cover;
+  }
+
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
   
-  .wrapper {
-    display: flex;
-    width: var(--composer-content-width);
-    .right {
-      flex: 1;
-      justify-content: center;
-      align-items: center;
+    .slider-images {
+      display: flex;
       position: relative;
-      .image {
-        height: 100%;
-        width: 100%;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+  
+      .slider-image {
         position: relative;
-        top: 50px;
-        
-        
+        flex: 1;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        background-position: center center;
+        background-size: cover;
+        clip-path: polygon(30% 0, 30% 0, 30% 100%, 30% 100%);
+      }
+  
+      .imageAnimationClass {
+        animation: revealImage 0.5s forwards;
       }
     }
-    .middle {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      .content {
+  }  
+
+  .item {
+    height: 100%;
+    width: 100%;
+    position: absolute !important;
+    top: 0;
+    z-index: 2;
+    position: relative;
+
+    .left-figure-container {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      .bottom-figure {
         position: relative;
+        width: 10%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+        gap: 3rem;
+        padding: 4rem 0px;
+
+        .line {
+          height: 4vh;
+          width: 1px;
+          background: white;
+          margin-top: -16px;
+        }
+        .icons {
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          position: relative;
+
+          .icon {
+            color: #606060;
+            &:hover {
+              transition: 0.3s all;
+              cursor: pointer;
+              color: white;
+            }
+          }
+
+        }
+      }
+      .top-figure,
+      .bottom-figure {
+        position: absolute;
+        top: -35;
+        left: 0;
+      }
+    }
+
+    .content-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16rem;
+
+      .layout {
         width: 100%;
-        text-overflow: ellipsis;
-        top: 35%;
-        .divider {
-          background-color: black;
-          width: 85px;
-          height: 2px;
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        position: relative;
+
+        .content {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          color: white;
+          overflow: hidden;
+          justify-content: space-around;
+          position: relative;
+
+          .title-container {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            .subtitle1{
+              font-size: 1.8rem;
+              margin: unset;
+              font-family: serif;
+              animation: moveText 2s linear infinite;
+              position: relative;
+            }
+            .title {
+              font-size: 6rem;
+              margin: -85px 0px;
+              width: 50%;
+              font-family:initial ;
+              animation: moveText 2s linear infinite;
+              position: relative;
+            }
+            .subtitle2{
+              font-size: 1.8rem;
+              margin: unset;
+              font-family: serif;
+              animation: moveText 2s linear infinite;
+              position: relative;
+            }
+
+            .btn-line{
+              position: absolute;
+              left: 0;
+              top: 50%;
+              width: 2rem;
+              margin-top: 2px solid white;
+              transition: 0.3s;
+            }
+
+            .button {
+              font-size: 1.7rem;
+              outline: none;
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              font-weight: 400;
+              color: white;
+              transition: 0.3s all;
+              margin-top: 30px;
+              max-width: 15vw;
+              animation: moveText 2s linear infinite;
+              position: relative;
+  
+              &:hover {
+                transition: 0.3s all;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .description-and-button {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+          }
+          .description {
+            width: 50%;
+            max-width: 50%;
+            text-align: start;
+            font-size: 21px;
+          }
+
+        }
+
+        .pagination {
+          display: flex;
+          place-items: center;
+          gap: 10px;
+          color: var(--composer-font-color-primary);
+
+          .active-slide {
+            font-weight: bold;
+          }
+
+          .slide-count {
+            font-weight: bold;
+          }
         }
         
-        .title {
-          font-weight: lighter;
-          font-size: 4rem;
-          
-          color: black;
-          line-height: 60px;
-         
-        }
-        .button {
-          border: 0px;
-          color: black;
-          justify-content: flex-start;
-          font-weight: bold;
-          border-bottom: 1px solid #000;
-          padding-bottom: 6px;
-          &:hover {
-            color: grey;
-            cursor: pointer;
+        .arrows {
+          display: flex;
+          gap: 20px;
+          align-self: end;
+          position: absolute;
+          bottom: -40%;
+          right: 10px;
+          .line {
+            height: 5vh;
+            width: 2px;
+            background: #ffffff;
+            align-self: center;
+          }
+          div {
+            display: flex;
+            align-items: center;
+
+            &:hover {
+              .arrow {
+                opacity: 1;
+                transition: 0.2s all;
+              }
+            }
+          }
+
+          .arrow-text {
+            color: white;
+            font-size: 1.7rem;
           }
         }
       }
-    }
-    .left {
-      flex: 1;
-      .image {
-        width: 100%;
+
+      .arrow {
+        color: white;
+        opacity: 0.5;
+        transition: 0.2s all;
       }
+      .arrow:nth-child(1) {
+        margin-right: 10px;
+      }
+      .arrow:nth-child(2) {
+        margin-left: 10px;
+      }
+    }
+  }
+  .low-op-text {
+    position: absolute !important;
+    left: 0%;
+    font-size: 4rem;
+    opacity: 0.1;
+    color: white;
+    z-index: 4;
+    top: 21%;
+
+    h1 {
+      margin: 0;
     }
   }
 }
 
-
+@keyframes moveText {
+  0% {
+    transform: translateY(100%);
+  }
+  50% {
+    transform: translateY(0); 
+  }
+  100% {
+    transform: translateY(0); 
+  }
 }
+
+@keyframes revealImage {
+  0% {
+    clip-path: polygon(30% 0, 30% 0, 30% 100%, 30% 100%);
+    width: 100%;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     .max-content{
