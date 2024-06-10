@@ -1,26 +1,22 @@
 .container {
     width: 100%;
     background: var(--composer-html-background);
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    line-height: 28px;
+    padding: 60px 120px;
     margin-bottom: 30px;
     .max-content {
-        max-width: 95%;
-        width: 1180px;
-        margin-right: auto;
-        margin-left: auto;
+        max-width: var(--composer-content-width);
+        margin: 0 auto;
+        font-size: 16px;
+        line-height: 28px;
         .title{
             text-align: start;
             margin-top: 50px;
             max-width: 95%;
-            padding-bottom: 50px;
+            margin-bottom: 50px;
             h1 {
                 color: var(--composer-primary-color);
-
                 font-size: 52px;
                 line-height: 60px;
-                font-family: 'Playfair Display', serif;
                 font-weight: 400;
                 margin-left: 20px;
                 padding-top: 0;
@@ -54,9 +50,10 @@
                         }
                     }
                     .form-content {
-                        box-sizing: border-box;
-                        display: flex;
-                        flex-direction: column;
+                        padding: 15px 10px;
+                        .form{
+                            display: flex;
+                            flex-direction: column;
                             .form-input{
                                 width: 90%;
                                 border: none;
@@ -65,6 +62,7 @@
                                 outline: none;
                             }
                             .form-button{
+                                cursor: pointer;
                                 align-items: center;
                                 border: 1px solid var(--composer-tertiary-color);
                                 background-color: var(--composer-font-color-secondary);
@@ -74,9 +72,8 @@
                                 font-weight: 400;
                                 padding: 20px 40px 20 45px;
                                 text-align: center;
-                                font-family: 'Lato', sans-serif;
                         }
-
+                        }
                     }
             }
     }
@@ -84,62 +81,33 @@
 
 @media only screen and (max-width: 768px) {
     .container {
-        width: 100%;
-        color: #444;
-        background: var(--composer-html-background);
-        font-size: 16px;
-        font-family: 'Lato', sans-serif;
-        line-height: 28px;
-        letter-spacing: .5px;
+        padding: 30px 45px;
         .max-content {
-            max-width: 95%;
             .title{
                 text-align: center;
                 max-width: 100%;
                 margin-top: 50px;
-                padding-bottom: 0px;
                 h1 {
                     color: var(--composer-primary-color);
                     font-size: 40px;
                     line-height: 45px;
-                    font-family: 'Playfair Display', serif;
                     font-weight: 300;
-                    padding-top: 0;
-                  
-                    span {
-                      text-decoration: underline;
-                      text-decoration-color: var(--composer-secondary-color);
-                    }
                   }
             }
                 .page-content {
                     padding: 5%;
                     display: flex;
                     flex-direction: column;
-                    line-height: 28px;
-                    background-color: var(--composer-html-background);
                         .text-content{
                             margin: 0px 30px;
                             text-align: center;
-                            .th1-text{
-                                color: var(--composer-font-color-primary);
-                                margin-bottom: 44px;
-                            }
-                            .th2-text{
-                                color: var(--composer-font-color-primary);
-                                margin-bottom: 44px;
-                            }
-                            .th3-text{
-                                color: var(--composer-font-color-primary);
-                                margin: 0;
-                            }
                         }
                         .form-content {
-                            max-width: 90%;
-                            margin-left: auto;
+                            margin-top: 60px;
                             box-sizing: border-box;
                             display: flex;
                             flex-direction: column;
+                            text-align: center;
                                 .form-input{
                                     border: none;
                                     border-bottom: 1px solid black;
@@ -147,16 +115,7 @@
                                     outline: none;
                                 }
                                 .form-button{
-                                    margin: auto;
-                                    border: 1px solid var(--composer-tertiary-color);
-                                    background-color: var(--composer-font-color-secondary);
-                                    width: 135px;
-                                    height: 55px;
-                                    font-size: 11px;
-                                    font-weight: 400;
-                                    padding: 20px 40px 20 45px;
-                                    text-align: center;
-                                    font-family: 'Lato', sans-serif;
+                                    margin-left: 25px;
                                 }
                         }
                 }
@@ -167,15 +126,8 @@
 
 @media only screen and (max-width: 400px) {
     .container {
-        width: 100%;
-        color: #444;
-        background: var(--composer-html-background);
-        font-size: 16px;
-        font-family: 'Lato', sans-serif;
-        line-height: 28px;
-        letter-spacing: .5px;
+        padding: 20px 10px;
         .max-content {
-            max-width: 95%;
             .title{
                 text-align: center;
                 max-width: 100%;
@@ -185,7 +137,6 @@
                     color: var(--composer-primary-color);
                     font-size: 35px;
                     line-height: 40px;
-                    font-family: 'Playfair Display', serif;
                     font-weight: 300;
                     margin: 0px auto;
                     padding-top: 0;
@@ -200,23 +151,9 @@
                     padding: 5%;
                     display: flex;
                     flex-direction: column;
-                    line-height: 28px;
-                    background-color: var(--composer-html-background);
                         .text-content{
                             margin: 0px 20px;
                             text-align: center;
-                            .th1-text{
-                                color: var(--composer-font-color-primary);
-                                margin-bottom: 44px;
-                            }
-                            .th2-text{
-                                color: var(--composer-font-color-primary);
-                                margin-bottom: 44px;
-                            }
-                            .th3-text{
-                                color: var(--composer-font-color-primary);
-                                margin: 0;
-                            }
                         }
                         .form-content {
                             max-width: 90%;
@@ -224,24 +161,7 @@
                             box-sizing: border-box;
                             display: flex;
                             flex-direction: column;
-                                .form-input{
-                                    border: none;
-                                    border-bottom: 1px solid black;
-                                    margin-bottom: 35px;
-                                    outline: none;
-                                }
-                                .form-button{
-                                    margin: auto;
-                                    border: 1px solid var(--composer-tertiary-color);
-                                    background-color: var(--composer-font-color-secondary);
-                                    width: 135px;
-                                    height: 55px;
-                                    font-size: 11px;
-                                    font-weight: 400;
-                                    padding: 20px 40px 20 45px;
-                                    text-align: center;
-                                    font-family: 'Lato', sans-serif;
-                                }
+                            text-align: left;
                         }
                 }
         }

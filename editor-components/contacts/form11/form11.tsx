@@ -274,7 +274,6 @@ class Form11Page extends BaseContacts {
     const title = this.getPropValue("title", { as_string: true });
     const text1th = this.getPropValue("1th-text", { as_string: true });
     const text2th = this.getPropValue("2th-text", { as_string: true });
-    const text3th = this.getPropValue("3th-text", { as_string: true });
 
     const inputItems = this.getPropValue("input-items")!;
 
@@ -410,7 +409,7 @@ class Form11Page extends BaseContacts {
                   ))
               }
             </div>
-            <div>
+            <div className={this.decorateCSS("form-content")}>
             <Formik
                 initialValues={getInitialValue()}
                 validationSchema={getSchema()}
@@ -421,11 +420,9 @@ class Form11Page extends BaseContacts {
                 }}
               >
                 {({ handleChange, values }) => (
-                  <Form className={this.decorateCSS("form-content")}>
+                  <Form className={this.decorateCSS("form")}>
                     {inputItems.map((inputItem: any, inputItemIndex: number) =>
-                      <div>
-                        <div>
-                          {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
+                          inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
                             <div className={this.decorateCSS("input-box")}>
                               {inputObj.getPropValue("type") == "Text Area" ?
                                 <textarea
@@ -446,26 +443,16 @@ class Form11Page extends BaseContacts {
                                 component={"span"}
                               />
                             </div>
-                          )}
-                        </div>
-                      </div>
+                          )
                     )}
                     <button
                       className={this.decorateCSS("form-button")}
-                      type="submit"
-                    >
+                      type="submit">
                       {this.getPropValue("button_text")}
                     </button>
                   </Form>
                 )}
               </Formik>
-
-              {/* <form className={this.decorateCSS("form-content")}>
-                    <input className={this.decorateCSS("form-input")} type="text"  placeholder={"Name"}/>
-                    <input className={this.decorateCSS("form-input")} type="text" placeholder={"Email"}/>
-                    <textarea className={this.decorateCSS("form-input")} cols={30} rows={10} placeholder={"Message..."}></textarea>
-                    <button className={this.decorateCSS("form-button")}>{this.getPropValue("button-text")}</button>
-                  </form> */}
             </div>
           </div>
         </div>
