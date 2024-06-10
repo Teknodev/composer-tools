@@ -20,6 +20,12 @@ class CallToAction8Page extends BaseCallToAction {
       displayer: "Button",
       value: "Get Started",
     });
+    this.addProp({
+      type:"string",
+      key:"button-link",
+      displayer:"Button Link",
+      value:""
+    })
 
     this.addProp({
       type: "image",
@@ -33,23 +39,23 @@ class CallToAction8Page extends BaseCallToAction {
   getName(): string {
     return "Call To Action 8";
   }
-
   render() {
     const image = this.getPropValue("image")
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+          <div className={this.decorateCSS(`content`)}>
             <div className={this.decorateCSS("title-box")}>
-              <div>
+              <div className={this.decorateCSS("title")}>
               <h1>{this.getPropValue("title")}</h1>
               </div>
-              <div className={this.decorateCSS("title")}>
-
-              </div>
-              <div className={this.decorateCSS("button")}>
-                <button>{this.getPropValue("button-text")}</button>
-              </div>
+              <ComposerLink path={this.getPropValue("button-link")}>
+                <div className={this.decorateCSS("button")}>
+                <button>
+              {this.getPropValue("button-text")}
+              </button>
+                </div>
+            </ComposerLink>
             </div>
           {image &&<div className={this.decorateCSS("image-box")}>
               <img src={this.getPropValue("image")} alt="" />

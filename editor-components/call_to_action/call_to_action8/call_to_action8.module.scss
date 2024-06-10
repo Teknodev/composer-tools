@@ -1,16 +1,15 @@
 .container {
     width: 100%;
-    padding: 50px 0;
+    padding: 50px 50px;
     .max-content {
-        border: none;
-        max-width: 1280px;
+        max-width: var(--composer-content-width);
         background-color: var(--composer-font-color-primary);
         border-radius: 30px;
-        margin: auto;
+        margin:0 auto;
             .content {
-                display: flex;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
                 .image-box{
-                    flex: 1 1;
                     img{
                         max-width: 100%;
                         max-height: 100%;
@@ -18,7 +17,6 @@
                     }
                 }
                 .title-box{
-                    flex: 1 1;
                     align-items: stretch;
                     position: relative;
                     padding-left: 60px;
@@ -31,9 +29,9 @@
                     }
                         h1{
                             color: var(--composer-font-color-secondary);
-                            font-size: 64px;
+                            font-size: 60px;
                             font-weight: 900;
-                            line-height:70px;
+                            line-height:64px;
                             letter-spacing:0cm
                         }
                     .button{
@@ -60,49 +58,14 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 100%;
-        padding: 50px 0;
-        .max-content {
-            max-width: 90%;
-            background-color: #22242A;
-            border-radius: 30px;
-            margin: auto;
-                .content {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    .image-box{
-                        img{
-                            max-width: 100%;
-                            max-height: 100%;
-                            object-fit: contain;
-                        }
-                    }
-                    .title-box{
-                        position: relative;
-                        padding-left: 50px;
-                        padding-top: 15px;
-                        padding-bottom: 50px;
-                            h1{
-                                color: #FFFFFF;
-                                font-size: 38px;
-                                font-weight: 900;
-                                line-height:35px;
-                                letter-spacing:0cm
-                            }
-                        .button{
-                            position: absolute;
-                            bottom: 40px;
-                            button{
-                                background-color: #6478D3;
-                                color: #FFFFFF;
-                                font-size: 15px;
-                                font-weight:500;
-                                border: none;
-                                border-radius: 30px;
-                                padding: 15px 30px;
-                            }
+@media only screen and (max-width: 1000px){
+    .container{
+        .max-content{
+            .content{
+                .title-box{
+                    h1{
+                        font-size: 40px;
+                        line-height:40px;
                         }
                     }
                 }
@@ -110,44 +73,50 @@
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 768px) {
+    .container{
+        .max-content{
+            .content{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                .title-box{
+                    h1{
+                        font-size: 30px;
+                        line-height:30px;
+                        }
+                    .button{
+                        bottom: 30px;
+                        button{
+                        padding: 15px 30px;
+                        }
+                    }
+                    }
+                }
+        }
+    }
+}
+
+@media only screen and (max-width: 610px) {
     .container {
-        width: 100%;
-        padding: 50px 0;
+        padding: 30px 10px;
         .max-content {
-            max-width: 90%;
-            background-color: #22242A;
-            border-radius: 30px;
-            margin: auto;
                 .content {
                     display: flex;
                     flex-direction: column;
-                    .image-box{
-                        img{
-                            max-width: 100%;
-                            max-height: 100%;
-                            object-fit: contain;
-                        }
-                    }
                     .title-box{
                         position: relative;
-                        padding-left: 30px;
-                        padding-top: 15px;
-                        padding-bottom: 30px;
+                        padding: 15px 30px 30px 30px;
+                        .title{
+                            height: auto;
+                        }
                             h1{
-                                color: #FFFFFF;
-                                font-size: 40px;
-                                font-weight: 900;
-                                line-height:40px;
-                                letter-spacing:0cm
+                                font-size: 30px;
+                                line-height:30px;
                             }
                         .button{
-                            bottom:0;
-                            position: absolute;
-                            margin-top: 30;
+                            position: static;
+                            margin-top: 20px;
                             button{
-                                background-color: #6478D3;
-                                color: #FFFFFF;
                                 font-size: 12px;
                                 font-weight:500;
                                 border: none;
