@@ -275,21 +275,6 @@
   }
 }
 
-@keyframes slideText {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(0);
-  }
-  75% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
 @keyframes revealImage {
   0% {
     clip-path: polygon(30% 0, 30% 0, 30% 100%, 30% 100%);
