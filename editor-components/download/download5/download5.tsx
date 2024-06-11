@@ -2,48 +2,38 @@ import * as React from "react";
 import styles from "./download5.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Button = {
-  buttonText: string;
+  buttonText1: string;
+  buttonText2: string;
   url: string;
-  isPrimary: boolean;
-  buttonImage: string;
+  icon: string;
 };
+
 class Download5 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
 
-    let googlePlayIcon = require("./google-play.png");
-    let appStoreIcon = require("./appleicons.png");
-    let phoneImg = require("./phonescreen.png");
-
     this.addProp({
       type: "string",
       key: "title1",
-      value: "Get our mobile app to make the process faster.",
+      value: "Available On All App Store",
       displayer: "Title-1",
     });
 
     this.addProp({
       type: "string",
       key: "text1",
-      value:
-        "By downloading the app, users can access features and functions in a more convenient and efficient manner, which can save time and reduce the potential for errors or delays.",
+      value: "Download now & enjoy app with unlimited features",
       displayer: "Description-1",
     });
 
     this.addProp({
       type: "image",
       key: "image",
-      value: phoneImg,
+      value: "https://freakytheme.com/html/appol/image/bg-parallax-c.png",
       displayer: "Image",
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "reverse",
-      displayer: "Reverse",
-      value: false,
     });
 
     this.addProp({
@@ -58,15 +48,9 @@ class Download5 extends BaseDownload {
           value: [
             {
               type: "string",
-              key: "buttonText",
+              key: "buttonText1",
               displayer: "Button Text",
-              value: "Download for Android",
-            },
-            {
-              type: "page",
-              key: "Button Link",
-              displayer: "URL",
-              value:"",
+              value: "Download on the",
             },
             {
               type: "string",
@@ -75,10 +59,16 @@ class Download5 extends BaseDownload {
               value: "Google Play",
             },
             {
-              type: "image",
-              key: "buttonImage",
-              displayer: "In Button Icon",
-              value: googlePlayIcon,
+              type: "icon",
+              key: "icon",
+              value: "BsGooglePlay",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "Button Link",
+              displayer: "URL",
+              value: "",
             },
           ],
         },
@@ -89,15 +79,9 @@ class Download5 extends BaseDownload {
           value: [
             {
               type: "string",
-              key: "buttonText",
+              key: "buttonText1",
               displayer: "Button Text",
-              value: "Download for Ios",
-            },
-            {
-              type: "page",
-              key: "Button Link",
-              displayer: "URL",
-              value: "",
+              value: "Download on the",
             },
             {
               type: "string",
@@ -106,10 +90,16 @@ class Download5 extends BaseDownload {
               value: "App Store",
             },
             {
-              type: "image",
-              key: "buttonImage",
-              displayer: "In Button Icon",
-              value: appStoreIcon,
+              type: "icon",
+              key: "icon",
+              value: "BsApple",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "Button Link",
+              displayer: "URL",
+              value: "",
             },
           ],
         },
@@ -122,55 +112,51 @@ class Download5 extends BaseDownload {
   }
 
   render() {
+    const backgroundImage = this.getPropValue("image");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div
+        className={this.decorateCSS("container")}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      >
         <div className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("basic-page")} ${this.getPropValue("reverse") &&
-              this.decorateCSS("basic-page-reverse")
-              }`}
-          >
-            <div
-              className={`${this.decorateCSS("page-1")} ${this.getPropValue("reverse") &&
-                this.decorateCSS("page-1-border")
-                }`}
-            >
-              <div className={this.decorateCSS("box")}>
-                <h1 className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</h1>
-              </div>
-              <div className={this.decorateCSS("box")}>
-                <p className={this.decorateCSS("text1")}>{this.getPropValue("text1")}</p>
-              </div>
-              <div className={this.decorateCSS("box")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (item: Button, index: number) => {
-                    return (
-                      <ComposerLink key={`dw-5-btn-${index}`} path={item.url}>
-                        <div className={this.decorateCSS("button-group")}>
-                          <button
-                            className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")
-                              }`}
-                          >
-                            <img
-                              src={item.buttonImage}
-                              alt="icon"
-                              className={this.decorateCSS("button-logo")}
-                            />
-                            {item.buttonText}
-                          </button>
-                        </div>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
+          <div className={this.decorateCSS("page-1")}>
+            <div className={this.decorateCSS("box")}>
+              <h1 className={this.decorateCSS("title1")}>
+                {this.getPropValue("title1")}
+              </h1>
             </div>
-            <div className={this.decorateCSS("page-2")}>
-              <img
-                alt=""
-                className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-              />
+            <div className={this.decorateCSS("box")}>
+              <p className={this.decorateCSS("text1")}>
+                {this.getPropValue("text1")}
+              </p>
+            </div>
+
+            <div className={this.decorateCSS("box")}>
+              {this.castToObject<Button[]>("buttons").map(
+                (item: Button, index: number) => {
+                  return (
+                    <ComposerLink key={`dw-5-btn-${index}`} path={item.url}>
+                      <div className={this.decorateCSS("button")}>
+                        <div className={this.decorateCSS("icon-div")}>
+                          <ComposerIcon
+                            name={item.icon}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          />
+                        </div>
+                        <div className={this.decorateCSS("button-texts")}>
+                          <p className={this.decorateCSS("up-text")}>
+                            {item.buttonText1}
+                          </p>
+                          <h1 className={this.decorateCSS("down-text")}>
+                            {item.buttonText2}
+                          </h1>
+                        </div>
+                      </div>
+                    </ComposerLink>
+                  );
+                }
+              )}
             </div>
           </div>
         </div>
