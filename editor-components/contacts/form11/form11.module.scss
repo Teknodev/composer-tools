@@ -57,7 +57,9 @@
                             .form-input{
                                 width: 90%;
                                 border: none;
-                                border-bottom: 1px solid black;
+                                color: var(--composer-font-color-primary);
+                                background-color: var(--composer-html-background);
+                                border-bottom: 1px solid var(--composer-font-color-primary);
                                 margin-bottom: 35px;
                                 outline: none;
                             }
@@ -65,7 +67,8 @@
                                 cursor: pointer;
                                 align-items: center;
                                 border: 1px solid var(--composer-tertiary-color);
-                                background-color: var(--composer-font-color-secondary);
+                                color: var(--composer-font-color-primary);
+                                background-color: var(--composer-html-background);
                                 width: 135px ;
                                 height: 55px;
                                 font-size: 11px;
@@ -157,7 +160,7 @@
                         }
                         .form-content {
                             max-width: 90%;
-                            margin-left: auto;
+                            margin-left: 30px;
                             box-sizing: border-box;
                             display: flex;
                             flex-direction: column;
