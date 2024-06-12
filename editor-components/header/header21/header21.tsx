@@ -1,205 +1,103 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header21.module.scss";
-import Slider from "react-slick";
-
-type ISliderData = {
-  title: string;
-  image: string;
-  backgroundDescription: string;
-  background: string;
-  foreground: string;
-  des: string;
-  button: IButton[];
-};
-
-type IButton = {
-  value: string;
-};
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Header21 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "array",
-      displayer: "Slider Carousel",
-      key: "slider",
+      type: "object",
+      key: "card",
+      displayer: "Card",
       value: [
         {
-          type: "object",
-          displayer: "Item",
-          key: "item",
-          value: [
-            {
-              type: "string",
-              displayer: "Description",
-              key: "des",
-              value: "FASTER, STRONGER FIGHT TO THE END",
-            },
-            {
-              type: "string",
-              displayer: "Background Description",
-              key: "backgroundDescription",
-              value: "BE STRONG NEVER GIVE UP",
-            },
-            {
-              type: "image",
-              displayer: "Background Effect",
-              key: "background",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9ba0a057bdf002c2ce997?alt=media&timestamp=1694088048798",
-            },
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9a6e3057bdf002c2ce55b?alt=media&timestamp=1694082801038",
-            },
-            {
-              type: "image",
-              displayer: "Foreground Effect",
-              key: "foreground",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9c09e057bdf002c2ceba3?alt=media&timestamp=1694089389435",
-            },
-          ],
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "Quick parcel delivery,<span> from</span>",
         },
         {
-          type: "object",
-          displayer: "Item",
-          key: "item",
-          value: [
-            {
-              type: "string",
-              displayer: "Description",
-              key: "des",
-              value: "CREATE YOUR OUR NEW BODY",
-            },
-            {
-              type: "string",
-              displayer: "Background Description",
-              key: "backgroundDescription",
-              value: "BE STRONG NEVER GIVE UP",
-            },
-            {
-              type: "image",
-              displayer: "Background Effect",
-              key: "background",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9ba0a057bdf002c2ce997?alt=media&timestamp=1694089201049",
-            },
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9a78c057bdf002c2ce56d?alt=media&timestamp=1694082969788",
-            },
-            {
-              type: "image",
-              displayer: "Foreground Effect",
-              key: "foreground",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9c09e057bdf002c2ceba3?alt=media&timestamp=1694089389435g",
-            },
-          ],
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Get used to better entertaining",
         },
-
         {
-          type: "object",
-          displayer: "Item",
-          key: "item",
-          value: [
-            {
-              type: "string",
-              displayer: "Description",
-              key: "des",
-              value: "ALL POWER INSIDE YOU",
-            },
-            {
-              type: "string",
-              displayer: "Background Description",
-              key: "backgroundDescription",
-              value: "BE STRONG NEVER GIVE UP",
-            },
-            {
-              type: "image",
-              displayer: "Background Effect",
-              key: "background",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9ba0a057bdf002c2ce997?alt=media&timestamp=1694089201049",
-            },
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9a7f5057bdf002c2ce589?alt=media&timestamp=1694083075008",
-            },
-            {
-              type: "image",
-              displayer: "Foreground Effect",
-              key: "foreground",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64f9c09e057bdf002c2ceba3?alt=media&timestamp=1694089389435",
-            },
-          ],
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value:
+            "Holiday shopping with 3% back in rewards. <br/> Offer expires 12/31/2024",
         },
+        {
+          type: "string",
+          key: "button",
+          displayer: "Button-Text",
+          value: "More Projects",
+        },
+        {
+          type:"string",
+          key:"url",
+          displayer:"Url",
+          value:""
+        }
       ],
     });
+
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value:
+        "https://colabrio.ams3.cdn.digitaloceanspaces.com/stockie_landing/demo1/assets/2019/02/st_demo1_003-min.jpg",
+    });
+    this.addProp({
+      type:"icon",
+      key: "icon",
+      displayer:"Icon",
+      value:"MdOutlinePlayCircleOutline"
+    })
+    this.addProp({
+      type: "video",
+      displayer: "Video",
+      key: "video",
+      value: "https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
+    });
+    
+    this.setComponentState("is_video_visible", false);
+
   }
   getName(): string {
     return "Header 21";
   }
   render() {
-    const settings = {
-      dots: true,
-      arrow: true,
-      infinite: true,
-      speed: 500,
-      autoplay: false,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
+    let card: any = this.castToObject("card");
 
-    // let items: any = this.castToObject("items");
-    // this.getPropValue("slider").map((item: ISliderData, index: number) =>
-    //   // console.log(item.background)
-    // );
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("slider-parent")}>
-              <Slider {...settings} className={this.decorateCSS("carousel")}>
-                {this.castToObject<ISliderData[]>("slider").map(
-                  (item: ISliderData, index: number) => (
-                    <div key={index} className={this.decorateCSS("content")}>
-                      <div className={this.decorateCSS("description")}>
-                        {item.des}
-                      </div>
-                      <div className={this.decorateCSS("background-image")}>
-                        <div
-                          className={this.decorateCSS("background-description")}
-                        >
-                          <h1>{item.backgroundDescription}</h1>
-                        </div>
-                        <div className={this.decorateCSS("img1")}>
-                          <img src={item.background} alt={item.title} />
-                        </div>
-                        <div className={this.decorateCSS("img2")}>
-                          <img src={item.image} alt={item.title} />
-                        </div>
-                        <div className={this.decorateCSS("img3")}>
-                          <img src={item.foreground} alt={item.title} />
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-              </Slider>
+          <div className={this.decorateCSS("content")}>
+            <div className={this.decorateCSS("card")}>
+              <div className={this.decorateCSS("card-box")}>
+                <h3>{card.subtitle}</h3>
+                <h1>{card.title}</h1>
+                <h4>{card.description}</h4>
+              <ComposerLink path={card.url}>
+              <button>{card.button}</button>
+              </ComposerLink>
+              </div>
+            </div>
+            <div className={this.decorateCSS("image-box")}>
+                        <button className={this.decorateCSS("button")} onClick={()=>{this.setComponentState("is_video_visible",true)}}>
+                          <ComposerIcon name={this.getPropValue("icon")} propsIcon={{className:this.decorateCSS("btn-icon")}}/>
+                        </button>
+              <img src={this.getPropValue("image")} alt="" />
+              {this.getComponentState("is_video_visible") && <div className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
+            <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("player")} src={this.getPropValue("video")}></video>
+          </div>}
             </div>
           </div>
         </div>
@@ -209,3 +107,4 @@ class Header21 extends BaseHeader {
 }
 
 export default Header21;
+
