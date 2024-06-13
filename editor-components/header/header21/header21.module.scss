@@ -47,9 +47,9 @@
               font-weight: 600;
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-font-color-primary);
+              transition: transform 0.3s ease-in-out;
               &:hover{
                 transform: scale(1.1);
-                transition: transform 0.3s ease-in-out;
               }
             }
           }
@@ -79,7 +79,8 @@
           }
           button{
             margin-left: 50%;
-            margin-top: 33%;
+            margin-top: 35%;
+            transform: translate(-50%,-50%);
             border: none;
             position: absolute;
             background: none;
@@ -89,9 +90,9 @@
               color: var(--composer-html-background);
               width: 50px;
               height: 50px;
+              transition: transform 0.3s ease-in-out;
               &:hover{
                 transform: scale(1.2);
-                transition: transform 0.3s ease-in-out;
               }
             }
           }
@@ -112,9 +113,6 @@
             .card-box{
               h3{
                 font-size: 15px;
-                span{
-                  color: var(--composer-font-color-s);
-                }
               }
               h4{
                 font-weight: 100;
@@ -133,8 +131,6 @@
                 border: none;
                 font-size: 15px;
                 font-weight: 600;
-                color: var(--composer-font-color-secondary);
-                background-color: var(--composer-font-color-primary);
               }
             }
           }
@@ -152,9 +148,6 @@
               padding: 30px 40px;
               h3{
                 font-size: 10px;
-                span{
-                  color: var(--composer-font-color-s);
-                }
               }
               h4{
                 font-weight: 100;
@@ -173,8 +166,6 @@
                 border: none;
                 font-size: 10px;
                 font-weight: 600;
-                color: var(--composer-font-color-secondary);
-                background-color: var(--composer-font-color-primary);
               }
             }
           }
@@ -193,9 +184,6 @@
               line-height: 5px;
               h3{
                 font-size: 12px;
-                span{
-                  color: var(--composer-font-color-s);
-                }
               }
               h4{
                 font-weight: 100;
@@ -214,8 +202,6 @@
                 border: none;
                 font-size: 10px;
                 font-weight: 600;
-                color: var(--composer-font-color-secondary);
-                background-color: var(--composer-font-color-primary);
               }
             }
           }
@@ -226,14 +212,11 @@
 @media only screen and (max-width: 550px) {
   .container {
     width: 100%;
-    background-color: var(--composer-html-background);
     display: flex;
     justify-content: center;
     align-items: center;
     .max-content {
-      max-width: var(--composer-content-width);
       padding: 10px;
-  
       .content{
         display: flex;
         flex-direction: column;
@@ -243,19 +226,14 @@
           .card{
             flex: 1;
             z-index: 1;
-            color: var(--composer-font-color-primary);
             margin-right: 0%;
             .card-box{
               padding: 10px 10px;
-              background-color: rgba(250, 250, 250, 0.804);
               position: relative;
               max-width: 100%;
               line-height: 5px;
               h3{
                 font-size: 12px;
-                span{
-                  color: var(--composer-font-color-s);
-                }
               }
               h4{
                 font-weight: 100;
@@ -275,8 +253,6 @@
                 border: none;
                 font-size: 10px;
                 font-weight: 600;
-                color: var(--composer-font-color-secondary);
-                background-color: var(--composer-font-color-primary);
               }
             }
           }
@@ -285,19 +261,17 @@
             position: relative;
             max-width: 100%;
             button{
-              margin-left: 45%;
-              margin-top: 33%;
+              margin-left: 50%;
+              margin-top: 35%;
+              transform: translate(-50%,-50%);
               border: none;
               position: absolute;
               background: none;
               cursor: pointer;
               z-index: 2;
               .btn-icon{
-                width: 25px;
-                height: 25px;
-                &:hover{
-                  transform: scale(1.2);
-                }
+                width: 35px;
+                height: 35px;
               }
             }
             img{
