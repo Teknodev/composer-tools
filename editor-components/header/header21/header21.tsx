@@ -4,6 +4,15 @@ import styles from "./header21.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+
+type CardState = {
+  subtitle:string;
+  title : string;
+  description : string;
+  button:string;
+  button_url : string
+}
+
 class Header21 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -39,8 +48,8 @@ class Header21 extends BaseHeader {
           value: "More Projects",
         },
         {
-          type:"string",
-          key:"url",
+          type:"page",
+          key:"button_url",
           displayer:"Url",
           value:""
         }
@@ -74,8 +83,7 @@ class Header21 extends BaseHeader {
     return "Header 21";
   }
   render() {
-    let card: any = this.castToObject("card");
-
+    let card:CardState = this.castToObject("card");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -85,7 +93,7 @@ class Header21 extends BaseHeader {
                 <h3>{card.subtitle}</h3>
                 <h1>{card.title}</h1>
                 <h4>{card.description}</h4>
-              <ComposerLink path={card.url}>
+              <ComposerLink path={card.button_url}>
               <button>{card.button}</button>
               </ComposerLink>
               </div>
