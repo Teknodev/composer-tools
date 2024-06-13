@@ -3,6 +3,7 @@
     background-color: var(--composer-html-background);
     .max-content {
         max-width: var(--composer-content-width);
+        margin: 0 auto;
         .row{
             margin-top: 10px;
             display: grid;
@@ -11,8 +12,8 @@
         .first {
             margin-right: auto;
             margin-left: auto;
-            height: 530px;
-            padding: 20px 60px;
+            height: auto;
+            padding: 20px 30px;
             max-width: 1200px;
             border: 1px solid var(--composer-font-color-primary);
             .first-content{
@@ -20,12 +21,13 @@
                 display: flex;
                 flex-direction: column;
                 .title {
-                    margin-top: 70px;
+                    margin-top: 10px;
                     font-size: 20px;
                     color: var(--composer-primary-color);
                 }
                 .description {
                     font-size: 17px;
+                    line-height: 35px;
                     color: var(--composer-font-color-primary);
                 }
     
@@ -47,9 +49,9 @@
         }
         .all-card {
             .item-content {
-                padding: 80px 60px;
+                padding: 40px 30px;
                 position: relative;
-                height: 530px;
+                height: auto;
                 max-width: 771px;
                 margin-right: auto;
                 margin-left: auto;
@@ -72,7 +74,7 @@
                     .item-title {
                         text-align: left;
                         margin-bottom: 0px;
-                        font-size: 25px;
+                        font-size: 20px;
                         font-weight: 600;
                     }
                     .item-text {
@@ -94,7 +96,7 @@
                         -webkit-text-stroke-width: 3px;
                         letter-spacing: -5px;
                         -webkit-text-fill-color: transparent;
-                        margin-top:360px;
+                        margin-top:355px;
                     }
                 }
             }
@@ -121,7 +123,6 @@
                         flex-direction: column;
                         text-align: center;
                         .title {
-                            margin-top: 30px;
                             font-size: 35px;
                             color: var(--composer-primary-color);
                         }
@@ -131,12 +132,10 @@
                     width: 33.33333333%;
                     box-sizing: border-box;
                     .item-content{
-                        padding: 60px 70px;
                         min-width: 100%;
                         .content{
                             max-width: 400px;
                             .index{
-                                margin-top: 380px;
                                 margin-left: 10px;
                             }
                         }
@@ -166,7 +165,6 @@
                         flex-direction: column;
                         text-align: center;
                         .title {
-                            margin-top: 30px;
                             font-size: 30px;
                         }
                         .buttondiv {
@@ -181,13 +179,18 @@
                     width: 33.33333333%;
                     box-sizing: border-box;
                     .item-content{
-                        padding: 60px 25px;
+                        padding: 15px 20px;
                         min-width: 100%;
                         .content{
                             max-width: 400px;
                         }
-                        .index{
-                            margin-top: 65px;
+                        .index {
+                            position: absolute;
+                            font-size: 11rem;
+                            -webkit-text-stroke-width: 3px;
+                            letter-spacing: -5px;
+                            -webkit-text-fill-color: transparent;
+                            margin-top:330px;
                         }
                     }
                 }
@@ -231,11 +234,13 @@
                         position: relative;
                         max-width: 360px;
                         height: 530px;
+                        margin: 0 auto;
                         overflow: hidden;
                         text-align: center;
                         .content{
-                            width: 300px;
+                            width: auto;
                             justify-content: center;
+                            align-items: center;
                             text-align: center;
                             .item-title {
                                 text-align: center;
@@ -252,11 +257,14 @@
                                 margin-left: auto;
                                 width: 220px;
                                 line-height: 35px;
-                                color: var(--composer-font-color-primary);
+                            }
+                            .span-item{
+                                width: 100%;
                             }
                             .index {
                                 margin-top: 620px;
-                                margin-left: 80px;
+                                margin-left: auto;
+                                margin-right: auto;
                             }
                         }
                     }
