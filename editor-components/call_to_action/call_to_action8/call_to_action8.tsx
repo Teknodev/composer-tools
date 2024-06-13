@@ -21,9 +21,9 @@ class CallToAction8Page extends BaseCallToAction {
       value: "Get Started",
     });
     this.addProp({
-      type:"string",
-      key:"button-link",
-      displayer:"Button Link",
+      type:"page",
+      key:"button_url",
+      displayer:"Button Url",
       value:""
     })
 
@@ -49,7 +49,7 @@ class CallToAction8Page extends BaseCallToAction {
               <div className={this.decorateCSS("title")}>
               <h1>{this.getPropValue("title")}</h1>
               </div>
-              <ComposerLink path={this.getPropValue("button-link")}>
+              <ComposerLink path={this.getPropValue("button_url")}>
                 <div className={this.decorateCSS("button")}>
                 <button>
               {this.getPropValue("button-text")}
