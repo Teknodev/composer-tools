@@ -31,6 +31,13 @@ class List3 extends BaseList {
     })
 
     this.addProp({
+      type:"page",
+      key:"button_url",
+      displayer:"button_url",
+      value:""
+    })
+
+    this.addProp({
       type: "array",
       key: "list-items",
       displayer: "List Items",
@@ -168,7 +175,7 @@ class List3 extends BaseList {
             </div>
             <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
             <div className={this.decorateCSS("buttondiv")}>
-                    <ComposerLink>
+                    <ComposerLink path={this.getPropValue("button_url")}>
                       <button className={`${this.decorateCSS("button")}`}>
                         {this.getPropValue("button")}
                         <span className={this.decorateCSS("span")}>{this.getPropValue("span-text")}</span>
