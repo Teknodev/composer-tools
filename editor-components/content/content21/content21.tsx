@@ -299,12 +299,12 @@ class ContentComponent21 extends BaseContent {
                   >
                     <ComposerLink path={item.url} isFullWidth={true}>
 
-                      <img
+                      {item.image && <img
                         src={item.image}
                         alt="category"
                         className={this.decorateCSS("image")}
-                      />
-                      <div className={this.decorateCSS("category")}>
+                      />}
+                      <div className={`${this.decorateCSS("category")} ${!item.image && this.decorateCSS("text-visible")}`}>
                         <h2 className={this.decorateCSS("title")}>{item.title}</h2>
 
                       </div>
