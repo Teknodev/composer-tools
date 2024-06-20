@@ -29,9 +29,7 @@
       overflow: hidden;
   
       .slider-image {
-        opacity: 1;
         position: relative;
-        flex: 1;
         animation-duration: 0.3s;
         animation-fill-mode: forwards;
         width: 100%;
@@ -61,7 +59,8 @@
       position: absolute;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: auto;
+      bottom: 5%;
 
       .bottom-figure {
         position: relative;
@@ -95,14 +94,7 @@
               color: white;
             }
           }
-
         }
-      }
-      .top-figure,
-      .bottom-figure {
-        position: absolute;
-        bottom: 35%;
-        left: 0;
       }
     }
 
@@ -153,10 +145,10 @@
             }
             .title {
               font-size: 6rem;
-              margin: -85px 0px;
               width: 50%;
-              font-family:initial ;
+              font-family: initial;
               position: relative;
+              margin: 20px 0;
             }
             .subtitle2{
               font-size: 1.8rem;
@@ -331,7 +323,6 @@
           }
           .title {
             font-size: 4rem !important;
-            margin: -45px 0px !important;
           }
         }
         .description {

@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 class HeaderComponent22 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
+ 
     this.addProp({
       type: "image",
       key: "background",
@@ -230,12 +230,16 @@ class HeaderComponent22 extends BaseHeader {
 
   handleBeforeChange = (oldIndex: any, newIndex: any) => {
     if (oldIndex !== newIndex) {
-      this.setComponentState("imageAnimation", false);
       this.setComponentState("textAnimation", false);
+      this.setComponentState("imageAnimation", false);
   
       setTimeout(() => this.setComponentState("textAnimation", true), 100);
       setTimeout(() => this.setComponentState("imageAnimation", true), 300);
     }
+  };
+
+  handleAfterChange = (newIndex: any) => {
+    this.getComponentState("textSliderRef").current.slickGoTo(newIndex);
   };
 
   render() {
@@ -248,10 +252,8 @@ class HeaderComponent22 extends BaseHeader {
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: (oldIndex: any, newIndex: any) => {
-        this.handleBeforeChange(oldIndex, newIndex);
-        this.getComponentState("textSliderRef").current.slickGoTo(newIndex);
-      },
+      beforeChange: this.handleBeforeChange,
+      afterChange: this.handleAfterChange,
     };
     
     const textSettings = {
@@ -263,15 +265,12 @@ class HeaderComponent22 extends BaseHeader {
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: (oldIndex: any, newIndex: any) => {
-        this.handleBeforeChange(oldIndex, newIndex);
-        this.getComponentState("textSliderRef").current.slickGoTo(newIndex);
-      },
+      beforeChange: this.handleBeforeChange,
+      afterChange: this.handleAfterChange,
     };
 
     const shouldHaveAnimationClass = this.getComponentState("imageAnimation");
     const textAnimationClass = this.getComponentState("textAnimation");
-    this.setComponentState("currentSlide", 0);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -377,17 +376,7 @@ class HeaderComponent22 extends BaseHeader {
               </div>
             </div>
           ))}
-           
         </Slider>
-        <div className={this.decorateCSS("custom-dots")}>
-          {this.getPropValue("slider").map((_: any, index: any) => (
-            <div
-              className={`${this.decorateCSS("custom-dot")} ${this.getComponentState("currentSlide") === index ? this.decorateCSS("active") : ""}`}
-              key={index}
-              onClick={() => this.getComponentState("textSliderRef").current.slickGoTo(index)}
-            ></div>
-          ))}
-        </div>
         </div>
         <div className={this.decorateCSS("arrows")}>
           <div
