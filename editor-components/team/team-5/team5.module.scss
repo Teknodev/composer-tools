@@ -71,7 +71,8 @@
                         width: 80%;
                         aspect-ratio: 1;
                     }
-                    .background-image{
+
+                    .background-image {
                         width: 70%;
                     }
 
@@ -154,25 +155,28 @@
                 }
             }
 
-           
+
         }
     }
 }
 
 @media only screen and (max-width: 700px) {
-    .container-top{
+    .container-top {
         flex-direction: column;
-        .title-container,.description-container{
+
+        .title-container,
+        .description-container {
             width: 100% !important;
         }
     }
-    .egg-item{
+
+    .egg-item {
         width: 50% !important;
     }
 }
 
 @media only screen and (max-width: 500px) {
-    .egg-item{
+    .egg-item {
         width: 100% !important;
     }
 }
