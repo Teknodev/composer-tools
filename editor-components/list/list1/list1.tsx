@@ -4,7 +4,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { ClassNames } from "@emotion/react";
 
 type Card = {
   image: string;
