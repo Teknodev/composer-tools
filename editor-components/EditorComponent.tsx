@@ -381,6 +381,18 @@ export abstract class BaseDownload extends Component {
 
 export abstract class BaseCallToAction extends Component {
   protected category = CATEGORIES.CALLTOACTION;
+  insertForm(name: string, data: Object) {
+    const projectSettings = JSON.parse(getProjectHook().data);
+    const project = projectSettings._id;
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL
+        ? process.env.REACT_APP_API_URL
+        : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+    };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class BaseSlider extends Component {
@@ -437,6 +449,7 @@ export abstract class BaseContacts extends Component {
     return axios.request(config).then((r: any) => r.data);
   }
 }
+
 
 export abstract class BaseFeature extends Component {
   protected category = CATEGORIES.FEATURE;
