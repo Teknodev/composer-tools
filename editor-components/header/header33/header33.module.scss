@@ -1,86 +1,308 @@
 .container {
+    position: relative;
     width: 100%;
-    min-height: calc(100vh - 80px);
-    background-color: var(--composer-html-background);
-    padding: 50px 0px;
-    display: flex;
-    align-items: center;
-    .max-content {
-        max-width: var(--composer-content-width);
-        height: 50vh;
-        .content {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-color: rgba(0, 0, 0, 0.4);
-            background-blend-mode: color;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .container {
-                display: inline-block;
-                .logo-text{
-                    text-align: center;
-                    font-size: 3.5rem;
-                    letter-spacing: 5px;
-                    width: 100%;
-                    font-weight: lighter;
-                    line-height: 1.2;
-                    margin-Left: -330px;
-                    margin-top: 120px;
-                    margin-bottom: -50px;
-                    color: #fff;
-                }
+    overflow: hidden;
     
-                .svg-container{
-                    margin-bottom: -105px;
-                    margin-left: -240px;
-                }
-                .second-text {
-                    text-align: center;
-                    font-weight: lighter;
-                    font-size: 3vw;
-                    margin-bottom: 30px;
-                    margin-left: 20px;
-                    line-height: 1.2;
-                    margin-bottom: -200px;
-                    color: #fff;
-                }
-                .buttondiv {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    .button {
-                        height: 50px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: var(--composer-secondary-color);
-                        border: 1px solid var(--composer-secondary-color);
-                        color: white;
-                        font-size: 1.4rem;
-                        cursor: pointer;
-                        padding: 20px 30px;
-                        &:hover {
-                            color: var(--composer-primary-color);
-                            background: transparent;
-                            border: 1px solid var(--composer-primary-color);
-                        }
-                        &.primary {
-                            border: 1px solid var(--composer-primary-color);
-                            background-color: var(--composer-primary-color);
-                            color: white;
-                            &:hover {
-                                color: var(--composer-secondary-color);
-                                background: transparent;
-                                border: 1px solid var(--composer-secondary-color);
-                            }
-                        }
-                    }
-                }
+    .max-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      }
+      
+      .carousel {
+        position: relative;
+        width: 100%;
+        
+        .content {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: var(--composer-content-width);
+  
+        img {
+          width: 100vw;
+          height: 100%;
+          object-fit: cover;
+          z-index: -50;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+  
+        .corousel-content-div {
+         position: relative; 
+         top: 10%;
+  
+        .corousel-content {
+          position: absolute;
+          top: 40%;
+          left: 5%;
+          z-index: 9999;
+          text-align: left;
+          font-size: 45px;
+          font-weight: bold;
+          color: black;
+  
+          .rotate {
+            background-color: transparent;
+            width: 130px;
+            height: 130px;
+            animation: rotate 5s linear infinite;
+            z-index: 9999;
+          }
+  
+          h1 {
+            color: black;
+            font-weight: bold;
+            width: 70%;
+            animation: fadeInRight 1s forwards;
+            margin-top: 150px;
+          }
+  
+          button {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            color: black;
+            background-color: transparent;
+            background: transparent;
+            border-bottom: 2px solid black;
+            padding-bottom: 5px;
+            cursor: pointer;
+            animation: fadeInUp 1s forwards;
+            transition: transform 0.4s ease;
+  
+            }
+            button:hover {
+              transform: scale(1.2);
             }
         }
+      }
+      }
     }
-}
+  
+    .secondary-slide {
+      .corousel-content {
+        text-align: center;
+        top: 15% !important; 
+        left: 500px !important;
+        .rotate {
+          width: 130px !important;
+          height: 130px !important;
+          margin-left: 195px !important;
+        }
+  
+        h1 {
+          width: 700px !important;
+          
+        }
+        button {  
+          color: black !important;
+          margin-left: 200px !important;
+          padding-bottom: 5px !important;
+        }
+      }
+    }
+  
+    @media (max-width: 960px) {
+      .secondary-slide .corousel-content-div {
+  
+        .corousel-content {
+        text-align: center;
+        top: 35% !important; 
+        left: 34% !important;
+    
+        .rotate {
+          margin-left: 60px !important;
+          margin-top: 40%;
+        }
+    
+        h1 {
+          width: 100% !important;
+          font-size: 45px !important;
+          margin: 10px 0 !important;
+          margin-top: 250px !important;
+        }
+    
+        button {  
+          color: black !important;
+          margin-left: 65px !important;
+          margin-top: 10px;
+          font-size: 20px !important;
+          padding-bottom: 22px !important;
+        }
+      }
+    }}
+  
+    @media (max-width: 550px) {
+      .secondary-slide .corousel-content-div {
+        top: 20% !important;
+  
+        .corousel-content {
+        text-align: center;
+        top: 30% !important; 
+        left: 35% !important;
+        bottom: auto !important;
+    
+        .rotate {
+          width: 100px !important;
+          height: 100px !important;
+          margin-left: 8px !important;
+          margin-top: 70% !important;
+          margin-right: 0px;
+        }
+    
+        h1 {
+          width: 100% !important;
+          font-size: 20px !important;
+          margin: 10px 0 !important;
+          margin-top: 200px !important;
+        }
+    
+        button {  
+          color: var(--composer-font-color-secondary) !important;
+          color: black !important;
+          margin-left: 20px !important;
+          margin-top: 12px !important;
+          font-size: 12px !important;
+          padding-bottom: 15px !important;
+  
+        }
+      }
+    }}
+  
+    .arrow-next,
+    .arrow-prev {
+      position: absolute;
+      top: 50%;
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 100%;
+    }
+  
+    .arrow-next {
+      right: 1rem;
+    }
+  
+    .arrow-prev {
+      left: 1rem;
+    }
+  }
+  
+  @media (max-width: 960px) {
+    .content {
+      height: auto;
+    }
+  
+    .corousel-content {
+      font-size: 30px;
+  
+      .rotate {
+        width: 100px;
+        height: 100px;
+      }
+  
+      h1 {
+        font-size: 45px;
+        width: 200px !important;
+      }
+  
+      button {
+        font-size: 20px !important;
+        top: 95% !important;
+        bottom: 0;
+        border-bottom: 0px solid transparent;
+        padding-bottom: 22px !important;
+      }
+    }
+  }
+  
+  @media (max-width: 550px) {
+    .content {
+  
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+  
+    .corousel-content-div{
+      top: 40% !important ;
+  
+      .corousel-content {
+      position: absolute;
+      top: 15% !important;
+      left: 15px !important;
+      text-align: center;
+      bottom: 30%;
+  
+      .rotate {
+        width: 100px !important;
+        height: 100px !important;
+        margin-top: 20px !important;
+        margin-right: 50px;
+        margin-left: 0px;
+      }
+  
+      h1 {
+        font-size: 15px !important;
+        width: 200px !important;
+        // margin-top: 320px !important;
+      }
+  
+      button {
+        font-size: 12px !important;
+        margin-bottom: 25px !important;
+        padding-bottom: 15px !important;
+        margin-top: 180px !important;
+       
+      }
+    }
+  }}
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeOutDown {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
