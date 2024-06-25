@@ -51,7 +51,7 @@ class Feature1 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://tushi-nextjs.vercel.app/_next/image?url=%2Fimages%2Fblog%2F08.jpg&w=384&q=75",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b1?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
@@ -82,7 +82,7 @@ class Feature1 extends BaseFeature {
               type: "image",
               key: "profile_image",
               displayer: "Profile Image",
-              value: "https://tushi-nextjs.vercel.app/_next/image?url=%2Fimages%2Fauthor%2Falexander-hipp.jpg&w=48&q=75",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b2?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
@@ -113,7 +113,7 @@ class Feature1 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://tushi-nextjs.vercel.app/_next/image?url=%2Fimages%2Fblog%2F02.jpg&w=384&q=75",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b0?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
@@ -144,7 +144,7 @@ class Feature1 extends BaseFeature {
               type: "image",
               key: "profile_image",
               displayer: "Profile Image",
-              value: "https://tushi-nextjs.vercel.app/_next/image?url=%2Fimages%2Fauthor%2Fanil-vugels.jpg&w=48&q=75",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b3?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
@@ -208,7 +208,7 @@ class Feature1 extends BaseFeature {
               type: "image",
               key: "profile_image2",
               displayer: "Profile Image",
-              value: "https://tushi-nextjs.vercel.app/_next/image?url=%2Fimages%2Fauthor%2Falexander-hipp.jpg&w=48&q=75",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b2?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
@@ -264,7 +264,7 @@ class Feature1 extends BaseFeature {
               type: "image",
               key: "profile_image2",
               displayer: "Profile Image",
-              value: "https://tushi-nextjs.vercel.app/_next/image?url=%2Fimages%2Fauthor%2Fanil-vugels.jpg&w=48&q=75",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b3?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
@@ -431,12 +431,14 @@ class Feature1 extends BaseFeature {
                         </h1>
                       </ComposerLink>
                       <p className={this.decorateCSS("description")} >{card_info.description}</p>
-                      <div className={this.decorateCSS("user-info")}>
+                      <div className={this.decorateCSS("user-info") + (card_info.profile_image ? "" : " no-profile")}>
+                        {card_info.profile_image && (
                           <img className={this.decorateCSS("profile-image")} src={card_info.profile_image} alt="profile image" />
-                          <div className={this.decorateCSS("user")}>
-                              <h3 className={this.decorateCSS("written")}>{card_info.written}</h3>
-                              <h3 className={this.decorateCSS("fullname")}>{card_info.fullname}</h3>
-                          </div>
+                        )}
+                        <div className={this.decorateCSS("user")}>
+                          <h3 className={this.decorateCSS("written")}>{card_info.written}</h3>
+                          <h3 className={this.decorateCSS("fullname")}>{card_info.fullname}</h3>
+                        </div>
                       </div>
                     </div>
                   )
@@ -473,12 +475,14 @@ class Feature1 extends BaseFeature {
                         </h1>
                       </ComposerLink>
                       <p className={this.decorateCSS("description")} >{mini_card_info.description2}</p>
-                      <div className={this.decorateCSS("user-info")}>
+                      <div className={this.decorateCSS("user-info") + (mini_card_info.profile_image2 ? "" : " no-profile")}>
+                        {mini_card_info.profile_image2 && (
                           <img className={this.decorateCSS("profile-image")} src={mini_card_info.profile_image2} alt="profile image" />
-                          <div className={this.decorateCSS("user")}>
-                              <h3 className={this.decorateCSS("written")}>{mini_card_info.written2}</h3>
-                              <h3 className={this.decorateCSS("fullname")}>{mini_card_info.fullname2}</h3>
-                          </div>
+                        )}
+                        <div className={this.decorateCSS("user")}>
+                          <h3 className={this.decorateCSS("written")}>{mini_card_info.written2}</h3>
+                          <h3 className={this.decorateCSS("fullname")}>{mini_card_info.fullname2}</h3>
+                        </div>
                       </div>
                     </div>
                   )
@@ -517,12 +521,14 @@ class Feature1 extends BaseFeature {
                         </h1>
                       </ComposerLink>
                       <p className={this.decorateCSS("description")} >{card_info.description}</p>
-                      <div className={this.decorateCSS("user-info")}>
+                      <div className={this.decorateCSS("user-info") + (card_info.profile_image ? "" : " no-profile")}>
+                        {card_info.profile_image && (
                           <img className={this.decorateCSS("profile-image")} src={card_info.profile_image} alt="profile image" />
-                          <div className={this.decorateCSS("user")}>
-                              <h3 className={this.decorateCSS("written")}>{card_info.written}</h3>
-                              <h3 className={this.decorateCSS("fullname")}>{card_info.fullname}</h3>
-                          </div>
+                        )}
+                        <div className={this.decorateCSS("user")}>
+                          <h3 className={this.decorateCSS("written")}>{card_info.written}</h3>
+                          <h3 className={this.decorateCSS("fullname")}>{card_info.fullname}</h3>
+                        </div>
                       </div>
                     </div>
                   )
