@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature5.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Feature5 extends BaseFeature {
   constructor(props?: any) {
@@ -40,20 +41,20 @@ class Feature5 extends BaseFeature {
       value: [
         {
           type: "object",
-          key: "item1",
+          key: "left_item",
           displayer: "Description and Link",
           value: [
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value: "Newspaper is not only convenient to use, but it also uses very low resources and loads extremely fast. Welcome to the future!",
             },
             {
               type: "string",
-              displayer: "explore",
-              key: "Explore-text",
-              value: "Explore",
+              displayer: "Button Text",
+              key: "button_text",
+              value: "EXPLORE",
             },
             {
               type: "page",
@@ -65,7 +66,7 @@ class Feature5 extends BaseFeature {
         },
         {
           type: "object",
-          key: "item2",
+          key: "right_item",
           displayer: "Title and Image",
           value: [
             {
@@ -76,7 +77,7 @@ class Feature5 extends BaseFeature {
             },
             {
               type: "image",
-              key: "right-image",
+              key: "image",
               displayer: "Right Image",
               value: "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/29-1068x1417.jpg",
             },
@@ -183,6 +184,23 @@ class Feature5 extends BaseFeature {
   render() {
     const title = this.getPropValue("title", { as_string: true });
     const row1 = this.castToObject<{ left_image: string, title: JSX.Element }>("row1",);
+    const row2 = this.castToObject<{
+      left_item: {
+        description: JSX.Element,
+        button_text: JSX.Element,
+        link: string
+      }, right_item: {
+        text: JSX.Element,
+        image: string,
+        link: string
+      }
+    }>("row2");
+
+    const isRow1Visible = row1.left_image || this.castToString(row1.title);
+    const isRow2LeftItemVisible = this.castToString(row2.left_item.description);
+    const isRow2RightItemVisible = row2.right_item.image || this.castToString(row2.right_item.text);
+
+    const isRow2Visible = isRow2LeftItemVisible || isRow2RightItemVisible;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -193,7 +211,7 @@ class Feature5 extends BaseFeature {
               {this.getPropValue("title")}
             </h1>
           }
-          {(row1.left_image || this.castToString(row1.title)) && <div className={this.decorateCSS("row1")}>
+          {isRow1Visible && <div className={this.decorateCSS("row1")}>
 
             {row1.left_image && <img className={this.decorateCSS("left-image")} src={
               row1.left_image
@@ -203,20 +221,25 @@ class Feature5 extends BaseFeature {
             </h1>}
 
           </div>}
-          {/* <div className={this.decorateCSS("row2")}>
-            {this.getPropValue("row2").map((item: any) => {
-              return (
-                <div className={this.decorateCSS("basic")}>
-                  <p className={this.decorateCSS("text")}>
-                    {item.value[0].value}
-                  </p>
-                  <h1 className={this.decorateCSS("title")}>
-                    {item.value[1].value}
-                  </h1>
+
+          {isRow2Visible && <div className={this.decorateCSS("row2")}>
+            {isRow2LeftItemVisible && <div className={this.decorateCSS("left")}>
+              <span className={this.decorateCSS("description")}>{row2.left_item.description}</span>
+              {this.castToString(row2.left_item.button_text) && <ComposerLink path={row2.left_item.link}>
+                <span className={this.decorateCSS("button-text")}>{this.castToString(row2.left_item.button_text)}</span>
+              </ComposerLink>}
+            </div>}
+            {isRow2RightItemVisible && <div className={this.decorateCSS("right")}>
+              <ComposerLink path={row2.right_item.link} isFullWidth={true}>
+
+                <div className={this.decorateCSS("right-content")}>
+                  {this.castToString(row2.right_item.text) && <span className={this.decorateCSS("text")}>{row2.right_item.text}</span>}
+                  {row2.right_item.image && <img className={this.decorateCSS("image")} src={row2.right_item.image} />}
                 </div>
-              )
-            })}
-          </div>
+
+              </ComposerLink></div>}
+          </div>}
+          {/*
           <div className={this.decorateCSS("row3")}>
             {this.getPropValue("row3").map((item: any) => {
               return (
