@@ -4,24 +4,32 @@
     .max-content {
         max-width: var(--composer-content-width);
         width: 100%;
+        height: 100%;
         margin: auto;
         .title {
+            height: 1%;
             display: block;
             font-size: 2rem;
             font-weight: bold;
             padding-left: 30px;
+            padding: 0% 0% 2% 0%;
         }
         .row1 {
             display: flex;
             align-items: center;
             width: 100%;
+            height: 33%;
+
             .left-image {
-                width: 42%;
+                height: 100%;
+                width: 34%;
+                height: auto;
                 object-fit: cover;
                 aspect-ratio: 7 / 4;
             }
 
             .title {
+                height: 100%;
                 padding-left: 25px;
                 font-size: 2.25rem;
                 max-width: 350px;
@@ -30,9 +38,12 @@
         .row2 {
             display: flex;
             align-items: center;
+            width: 100%;
+            height: 33%;
 
             .left {
-                width: 42%;
+                height: 100%;
+                width: 34%;
                 display: flex;
                 flex-direction: column;
 
@@ -50,61 +61,93 @@
                 }
             }
             .right {
-                width: 58%;
+                height: 100%;
+                width: 66%;
                 .right-content {
                     display: flex;
                     width: 100%;
                     align-items: center;
                     justify-content: center;
-                    background: green;
+                    background: #22333a;
                     
                     .image{
                         object-fit: cover;
                         width: 50%;
                     }
                     .text{
+                        color: #eaeaea;
                         width: 50%;
                         font-size: 1.875rem;
-                        font-weight: 600;
-                        padding: 0 20px;
+                        font-weight: 800;
+                        padding: 0 40px;
                     }
                 }
             }
         }
         .row3 {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            .basic {
+            align-items: center;
+            width: 100%;
+            height: 33%;
+
+            .image_and_subtitle_1 {
+                height: 100%;
+                width: 34%;
                 display: flex;
-                flex-direction: row;
-                border-radius: 6px;
-                min-height: 200px;
-                padding: 20px;
-                flex: 1 1;
-                align-items: center;
-                img {
-                    width: 60%;
-                    height: 60%;
+                flex-direction: column;
+                object-fit: cover;
+                .image {
+                    width: 100%;
                     object-fit: cover;
-                    border-radius: 6px;
+                    aspect-ratio: 7 / 4;
                 }
-                .title {
-                    display: block;
-                    font-weight: bold;
-                    font-size: large;
-                    margin: 0;
-                    margin-top: 10px;
-                    color: var(--composer-primary-color);
-                }
-                .long-text {
-                    display: block;
-                    margin: 0;
-                    margin-top: 10px;
-                    color: var(--composer-font-color-primary);
+                .subtitle {
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-top: 20px;
                 }
             }
+            .image_and_subtitle_2 {
+                height: 100%;
+                width: 33%;
+                display: flex;
+                flex-direction: column;
+                object-fit: cover;
+                .image {
+                    width: 100%;
+                    object-fit: cover;
+                    aspect-ratio: 7 / 4;
+                }
+                .subtitle {
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-top: 20px;
+                }
+            }
+            .image_and_subtitle_3{  
+                height: 100%;
+                width: 33%;
+                display: flex;
+                flex-direction: column;
+                object-fit: cover;
+                .image {
+                    width: 100%;
+                    object-fit: cover;
+                    aspect-ratio: 7 / 4;
+                }
+                .subtitle {
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-top: 20px;
+                }
+            }
+            
         }
     }
 }

@@ -60,7 +60,7 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: ""
+              value: "https://www.google.com/"
             }
           ]
         },
@@ -85,7 +85,7 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: ""
+              value: "https://www.google.com/"
             }
           ]
         },
@@ -93,24 +93,24 @@ class Feature5 extends BaseFeature {
     });
 
     this.addProp({
-      type: "array",
+      type: "object",
       key: "row3",
       displayer: "third-row",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "image_and_subtitle_1",
+          displayer: "Image and Subtitle 1",
           value: [
             {
               type: "image",
-              key: "image1",
+              key: "image",
               displayer: "Left Image",
               value: "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/28-696x696.jpg",
             },
             {
               type: "string",
-              key: "sub-title",
+              key: "sub_title",
               displayer: "Sub-Title",
               value: "Girl's Guide: Tricks to Save Time in the Morning",
             },
@@ -118,24 +118,24 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: ""
+              value: "https://www.google.com/"
             }
           ]
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "image_and_subtitle_2",
+          displayer: "Image and Subtitle 2",
           value: [
             {
               type: "image",
-              key: "image2",
+              key: "image",
               displayer: "Middle Image",
               value: "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/27-696x870.jpg",
             },
             {
               type: "string",
-              key: "sub-title",
+              key: "sub_title",
               displayer: "Sub-Title",
               value: "Motivation Monday: Only 3 Days Left of Summer",
             },
@@ -143,24 +143,24 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: ""
+              value: "https://www.google.com/"
             }
           ]
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "image_and_subtitle_3",
+          displayer: "Image and Subtitle 3",
           value: [
             {
               type: "image",
-              key: "image3",
+              key: "image",
               displayer: "Right Image",
-              value: "	https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/26-696x464.jpg",
+              value: "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/26-696x464.jpg",
             },
             {
               type: "string",
-              key: "sub-title",
+              key: "sub_title",
               displayer: "Sub-Title",
               value: "Five Rules For a Long, Healthy and Happy Life",
             },
@@ -168,7 +168,7 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: ""
+              value: "https://www.google.com/"
             }
           ]
         },
@@ -201,6 +201,26 @@ class Feature5 extends BaseFeature {
     const isRow2RightItemVisible = row2.right_item.image || this.castToString(row2.right_item.text);
 
     const isRow2Visible = isRow2LeftItemVisible || isRow2RightItemVisible;
+    
+    const row3 = this.castToObject<{
+      image_and_subtitle_1: {
+        image: string,
+        sub_title: JSX.Element,
+        link: string
+      },
+      image_and_subtitle_2: {
+        image: string,
+        sub_title: JSX.Element,
+        link: string
+      },
+      image_and_subtitle_3: {
+        image: string,
+        sub_title: JSX.Element,
+        link: string
+      }
+    }>("row3");
+
+    const isRow3Visible = row3.image_and_subtitle_1.image || row3.image_and_subtitle_2.image || row3.image_and_subtitle_3.image;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -239,21 +259,24 @@ class Feature5 extends BaseFeature {
 
               </ComposerLink></div>}
           </div>}
-          {/*
-          <div className={this.decorateCSS("row3")}>
-            {this.getPropValue("row3").map((item: any) => {
-              return (
-                <div className={this.decorateCSS("basic")}>
-                  <img className={this.decorateCSS("left-image")} src={
-                    item.value[0].value
-                  } alt="" />
-                  <h1 className={this.decorateCSS("title")}>
-                    {item.value[1].value}
-                  </h1>
-                </div>
-              )
-            })}
-          </div> */}
+          {
+            <div className={this.decorateCSS("row3")}>
+              {isRow3Visible && <div className={this.decorateCSS("row3")}>
+                {row3.image_and_subtitle_1.image && <div className={this.decorateCSS("image_and_subtitle_1")}>
+                  <img className={this.decorateCSS("image")} src={row3.image_and_subtitle_1.image} />
+                  <h1 className={this.decorateCSS("sub-title")}>{row3.image_and_subtitle_1.sub_title}</h1>
+                </div>}
+                {row3.image_and_subtitle_2.image && <div className={this.decorateCSS("image_and_subtitle_2")}>
+                  <img className={this.decorateCSS("image")} src={row3.image_and_subtitle_2.image} />
+                  <h1 className={this.decorateCSS("sub-title")}>{row3.image_and_subtitle_2.sub_title}</h1>
+                </div>}
+                {row3.image_and_subtitle_3.image && <div className={this.decorateCSS("image_and_subtitle_3")}>
+                  <img className={this.decorateCSS("image")} src={row3.image_and_subtitle_3.image} />
+                  <h1 className={this.decorateCSS("sub-title")}>{row3.image_and_subtitle_3.sub_title}</h1>
+                </div>}
+              </div>}
+            </div>
+          }
         </div>
       </div>
     )
