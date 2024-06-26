@@ -40,42 +40,41 @@
     transition: transform 0.3s ease-in-out; 
 }
 
-.feature-contents{
+.feature-contents {
     position: absolute;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    column-gap: 150px;
+    column-gap: 0px;
     width: 80%;
     top: 100px;
     left: 180px;
     z-index: 1;
+}
 
-        .title {
-                color: var(--composer-font-color-secondary);
-                font-size: 44px !important;
-                width: 420px;
-                font: bold;
-                font-size: 32px;
-                text-align: left;
-                z-index: 1;
-            }
-        
-        
-        .description {
-            color: var(--composer-font-color-primary);
-            font-size: 16px !important;
-            text-align: left;
-            width: 250px;
-            font-size: 24px;
-        } 
-    } 
-    
+.feature-contents .title {
+    color: var(--composer-font-color-secondary);
+    font-size: 44px !important;
+    width: 420px;
+    font: bold;
+    font-size: 32px;
+    text-align: left;
+    z-index: 1;
+}
+
+.feature-contents .description {
+    color: var(--composer-font-color-primary);
+    font-size: 16px !important;
+    text-align: left;
+    width: 250px;
+    font-size: 24px;
+}
+
 .cards {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    column-gap: 60px;
+    column-gap: 30px;
     margin-top: 300px;
     row-gap: 20px;
     padding-left: 25px;
@@ -88,16 +87,17 @@
     height: 250px;
     border-radius: 2.5rem;
     z-index: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card:hover .card-icon {
+    transform: translateY(-10px);
 }
 
 .card-icon {
     width: 70px;
     height: 70px;
     transition: opacity 0.5s ease, transform 0.5s ease;
-
-    &:hover{
-        transform: translateY(-10px);
-    }
 }
 
 .card-title {
@@ -132,16 +132,12 @@
     position: absolute;
     top: 0;
     left: 5%;
-    transition: opacity 0.5s ease;
-    padding: 0px 5px;
     transition: opacity 0.5s ease, transform 0.5s ease;
-
-    &:hover{
-        transform: translateY(-10px);
-    }
 }
 
-
+.logo-image:hover {
+    transform: translateY(-10px);
+}
 
 
 @media (max-width: 768px) {
@@ -155,24 +151,24 @@
         left: 5%;
     }
 
-    .feature-contents{
+    .feature-contents {
         gap: 52px !important;
         top: 70px;
         left: 11.5% !important;
-    
-            .title {
-                    color: var(--composer-font-color-secondary);
-                    font-size: 32px !important;
-                    width: 300px !important;
-                }
-            
-            .description {
-                color: var(--composer-font-color-primary);
-                font-size: 14px !important;
-                text-align: left;
-                width: 250px;
-            } 
-        } 
+    }
+
+    .feature-contents .title {
+        color: var(--composer-font-color-secondary);
+        font-size: 32px !important;
+        width: 300px !important;
+    }
+
+    .feature-contents .description {
+        color: var(--composer-font-color-primary);
+        font-size: 14px !important;
+        text-align: left;
+        width: 250px;
+    }
 
     .cards {
         margin-top: 250px !important;
@@ -203,42 +199,41 @@
     }
 }
 
-@media (max-width: 576px) {
 
+@media (max-width: 576px) {
     .content {
         row-gap: 50px !important;
     }
 
-
     .feature-circle {
         width: 320px !important;
         height: 250px !important;
-        border-radius: 30% !important; 
+        border-radius: 30% !important;
         display: flex !important;
         left: 4.5% !important;
         flex-direction: column !important;
     }
 
-    .feature-contents{
+    .feature-contents {
         flex-direction: column !important;
         justify-content: baseline !important;
         gap: 0px !important;
         top: 5px !important;
         left: 0% !important;
         width: 100% !important;
-    
-            .title {
-                    font-size: 20px !important;
-                    width: 200px !important;
-                    text-align: center !important;
-                }
-            
-            .description {
-                font-size: 16px !important;
-                text-align: center !important;
-                margin-top: 4px !important;
-            } 
-        } 
+    }
+
+    .feature-contents .title {
+        font-size: 20px !important;
+        width: 200px !important;
+        text-align: center !important;
+    }
+
+    .feature-contents .description {
+        font-size: 16px !important;
+        text-align: center !important;
+        margin-top: 4px !important;
+    }
 
     .cards {
         flex-direction: column !important;
@@ -261,11 +256,11 @@
         height: 70px !important;
     }
 
-    .bottom-content{
+    .bottom-content {
         flex-direction: column !important;
         margin: 0 auto !important;
-
     }
+
     .logos {
         width: 320px !important;
         height: 120px !important;

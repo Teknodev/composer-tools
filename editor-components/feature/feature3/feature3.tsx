@@ -38,7 +38,7 @@ class Feature3 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Logo Image",
-              value: "https://template-kit.evonicmedia.com/layout49/wp-content/uploads/2023/10/new-logoipsum-289.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6dd?alt=media&timestamp=1719344851686",
             },
         ]
         },
@@ -57,7 +57,7 @@ class Feature3 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Logo Image",
-              value: "https://template-kit.evonicmedia.com/layout49/wp-content/uploads/2023/10/logoipsum-250-1.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6da?alt=media&timestamp=1719344851686",
             },
         ]
         },
@@ -76,7 +76,7 @@ class Feature3 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Logo Image",
-              value: "https://template-kit.evonicmedia.com/layout49/wp-content/uploads/2023/10/logoipsum-244.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6d9?alt=media&timestamp=1719344851686",
             },
         ]
         },
@@ -95,7 +95,7 @@ class Feature3 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Logo Image",
-              value: "https://template-kit.evonicmedia.com/layout49/wp-content/uploads/2023/10/new-logoipsum-265.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6dc?alt=media&timestamp=1719344851686",
             },
         ]
         },
@@ -114,7 +114,7 @@ class Feature3 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Logo Image",
-              value: "https://template-kit.evonicmedia.com/layout49/wp-content/uploads/2023/10/new-logoipsum-254.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6db?alt=media&timestamp=1719344851686",
             },
         ]
         },
