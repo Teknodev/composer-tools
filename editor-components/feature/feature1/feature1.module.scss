@@ -14,8 +14,8 @@
         .header{
             display: flex;
             justify-content: space-between;
-            padding-left: 19%;
-            padding-right: 19%;
+            padding-left: 7%;
+            padding-right: 7%;
             margin-bottom: 24px;
             align-items: center;
             width: 100%;
@@ -62,11 +62,11 @@
 
         .features {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             width: 100%;
             height: 100%;
-            column-gap: 40px;
-            row-gap: 40px;
+            padding-left: 7%;
+            row-gap: 30px;
 
             .card-1, .card-2 {
                 display: flex;
@@ -76,13 +76,15 @@
                 align-items: flex-start;
                 height: 100%;
                 min-height: 100%;
+                flex: 1;
             }
             
             .card-1 .card, .card-2 .card {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                width: 400px;
+                flex: 1;
+                width: 80%;
                 min-height: 580px;
                 background-color: var(--composer-font-color-primary);
                 padding-bottom: 2px !important;
@@ -141,7 +143,6 @@
                 display: flex;
                 flex: 1;
                 flex-direction: row;
-                // justify-content: flex-start;
                 align-items: center;
                 text-align: left;
                 gap: 10px;
@@ -180,12 +181,16 @@
             .middle-content {
                     display: flex;
                     flex-direction: column;
-                    row-gap: 70px;
+                    row-gap: 150px;
+                    width: 35%;
+                    margin: 0 auto;
 
                     .card {
                         flex-direction: column;
                         justify-content: center;
-                        width: 300px;
+                        max-width: 500px;
+                        margin: 0 auto;
+                        margin-right: 20%;
                         background-color: var(--composer-font-color-primary);
 
                         .date-time {
@@ -267,8 +272,30 @@
 @media screen and (max-width: 1900px) {
     .max-content {
         .header{
-            padding-left: 14rem !important;
-            padding-right: 14rem!important;
+            padding-left: 7% !important;
+            padding-right: 6%!important;
+
+        }
+
+        .features {
+
+            .card-1 .card, .card-2 .card {
+                padding-bottom: 2px !important;
+            }
+            
+            .card-1 .card .date-time, .card-2 .card .date-time {
+                margin-left: 1rem !important;
+            }
+
+            .middle-content {
+                    row-gap: 55px !important;
+                    width: 35%;
+
+                    .card {
+                        max-width: 400px !important;
+                        margin-right: 19% !important;
+                    }
+            }
 
         }
     }
@@ -286,39 +313,23 @@
 
         .header{
             padding: 0 13rem !important;
-            // margin-left: 0rem !important;
-            // margin-right: 0rem !important;
             margin-bottom: 12px !important;
             margin-top: 12px !important;
             width: 100% !important;
     
             .left-side{
-                
-                
                 .icon1{
                     width: 16px !important;
                     height: 16px !important;
-                    color: var(--composer-primary-color);
                 }
                 .first-text{
                     font-size: 16px !important;
-                    color: var(--composer-font-color-primary);
                 }
             }
             .right-side{
-                display: flex;
-                column-gap: 5px;
-                align-items: center;
-    
                 .button{
                     font-size: 16px !important;
-                    color: var(--composer-secondary-color);
                     text-decoration: underline !important;
-                    background-color: transparent;
-                    outline: none;
-                    border: none;
-                   
-                    
                 }
                 .icon2{
                     width: 16px !important;
@@ -333,28 +344,19 @@
             align-items: center !important;
             margin-left: 0rem !important;
             margin-right: 0rem !important;
+            padding-left: 0% !important;
             
             .card-1 .card, .card-2 .card {
                 width: 450px !important;
-                min-height: 580px;
                 margin-bottom: 10px !important;
-            }
-            
-            .card-1 .card .image, .card-2 .card .image {
-                width: 100%;
-                height: 40%;
-                max-height: 700px;
             }
             
             .card-1 .card .date-time, .card-2 .card .date-time {
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: space-between !important;
-                min-height: 20px;
                 margin-left: 1rem !important;
                 margin-right: 1rem !important;
-                font-size: 16px;
-                color: var(--composer-font-color-secondary);
             }
             
             .card-1 .card .title, .card-2 .card .title {
@@ -363,107 +365,33 @@
             
             .card-1 .card .description, .card-2 .card .description {
                 font-size: 16px !important;
-                margin-left: 1rem;
-                margin-right: 1rem;
             }
             
             .card-1 .card .user-info, .card-2 .card .user-info {
                 text-align: left !important;
                 justify-content: flex-start !important;
-                gap: 10px;
-                margin-left: 1rem;
-                margin-right: 1rem;
-            }
-            
-            .card-1 .card .profile-image, .card-2 .card .profile-image {
-                width: 44px;
-                height: 44px;
-            }
-            
-            .card-1 .card .user .written, .card-2 .card .user .written {
-                font-size: 14px;
-                color: var(--composer-font-color-secondary);
-            }
-            
-            .card-1 .card .user .fullname, .card-2 .card .user .fullname {
-                font-size: 14px;
-                font-weight: bold;
-                color: var(--composer-font-color-secondary);
             }
             
 
             .middle-content {
+                row-gap: 40px !important;
+                padding-right: 450px !important;
+                max-width: 600px !important;
+                
                     .card {
                         row-gap: 10px !important;
                         width: 450px !important;
+                        max-width: 450px !important;
+
                         
                         .date-time {
-                            display: flex;
-                            justify-content: space-between;
                             min-height: 20px !important;
                             margin-left: 1rem !important;
                             margin-right: 1rem !important;
-                            font-size: 16px;
-                            color: var(--composer-font-color-secondary);
-
-                            .date{
-                                display: flex;
-                                column-gap: 5px;
-                                align-items: center;
-                            }
-                            .time{
-                                display: flex;
-                                column-gap: 5px;
-                                align-items: center;
-                            }
-                        }
-
-                        .title {
-                            font-size: 20px;
-                            font-weight: bold;
-                            margin-left: 1rem;
-                            margin-right: 1rem;
-                            color: var(--composer-font-color-secondary);
-                            cursor: pointer;
-                        }
-
-                        .description {
-                            font-size: 16px;
-                            color: var(--composer-font-color-secondary);
-                            width: 90%;
-                            min-height: 30px ;
-                            margin-left: 1rem;
-                            margin-right: 1rem;
                         }
 
                         .user-info {
-                            flex: 1;
-                            justify-content: flex-start;
-                            align-items: center;
-                            text-align: left;
                             justify-content: flex-start !important; 
-                            align-items: center;
-                            gap: 10px;
-                            margin-left: 1rem;
-                            margin-right: 1rem;
-
-                            .profile-image {
-                                width: 34px;
-                                height: 34px;
-                            }
-
-                            .user {
-                                .written {
-                                    font-size: 14px;
-                                    color: var(--composer-font-color-secondary);
-                                }
-
-                                .fullname {
-                                    font-size: 14px;
-                                    font-weight: bold;
-                                    color: var(--composer-font-color-secondary);
-                                }
-                            }
                         }
                     }
             }
@@ -473,7 +401,6 @@
 
 @media only screen and (max-width: 576px) {
     .container {
-        padding: 0px 0;
 
         .max-content {
             gap: 10px !important;
@@ -493,26 +420,15 @@
                 .icon1{
                     width: 16px !important;
                     height: 16px !important;
-                    color: var(--composer-primary-color);
                 }
                 .first-text{
                     font-size: 16px !important;
-                    color: var(--composer-font-color-primary);
                 }
             }
             .right-side{
-                display: flex;
-                column-gap: 5px;
-                align-items: center;
-    
                 .button{
                     font-size: 16px !important;
-                    color: var(--composer-secondary-color);
                     text-decoration: underline !important;
-                    background-color: transparent;
-                    outline: none;
-                    border: none;
-                    
                 }
                 .icon2{
                     width: 16px !important;
@@ -525,28 +441,20 @@
             flex-direction: column !important;
             margin-left: 0rem !important;
             margin-right: 0rem !important;
+            padding-left: 0% !important;
             
             .card-1 .card, .card-2 .card {
                 width: 300px !important;
                 min-height: 580px;
                 margin-bottom: 10px !important;
             }
-            
-            .card-1 .card .image, .card-2 .card .image {
-                width: 100%;
-                height: 40%;
-                max-height: 700px;
-            }
-            
+          
             .card-1 .card .date-time, .card-2 .card .date-time {
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: space-between !important;
-                min-height: 20px;
                 margin-left: 1rem !important;
                 margin-right: 1rem !important;
-                font-size: 16px;
-                color: var(--composer-font-color-secondary);
             }
             
             .card-1 .card .title, .card-2 .card .title {
@@ -555,106 +463,27 @@
             
             .card-1 .card .description, .card-2 .card .description {
                 font-size: 16px !important;
-                margin-left: 1rem;
-                margin-right: 1rem;
             }
             
             .card-1 .card .user-info, .card-2 .card .user-info {
-                display: flex;
-                flex-direction: row;
                 justify-content: flex-start !important; 
-                align-items: center;
-                gap: 10px;
-                margin-left: 1rem;
-                margin-right: 1rem;
-            }
-            
-            .card-1 .card .profile-image, .card-2 .card .profile-image {
-                width: 44px;
-                height: 44px;
-            }
-            
-            .card-1 .card .user .written, .card-2 .card .user .written {
-                font-size: 14px;
-                color: var(--composer-font-color-secondary);
-            }
-            
-            .card-1 .card .user .fullname, .card-2 .card .user .fullname {
-                font-size: 14px;
-                font-weight: bold;
-                color: var(--composer-font-color-secondary);
             }
             
 
             .middle-content {
                 row-gap: 40px !important;
+                padding-right: 300px !important;
+               
                     .card {
                         width: 300px !important;
                         .date-time {
-                            display: flex;
-                            justify-content: space-between;
                             min-height: 20px !important;
                             margin-left: 1rem !important;
                             margin-right: 1rem !important;
-                            font-size: 16px;
-                            color: var(--composer-font-color-secondary);
-
-                            .date{
-                                display: flex;
-                                column-gap: 5px;
-                                align-items: center;
-                            }
-                            .time{
-                                display: flex;
-                                column-gap: 5px;
-                                align-items: center;
-                            }
-                        }
-
-                        .title {
-                            font-size: 20px;
-                            font-weight: bold;
-                            margin-left: 1rem;
-                            margin-right: 1rem;
-                            color: var(--composer-font-color-secondary);
-                            cursor: pointer;
-                        }
-
-                        .description {
-                            font-size: 16px;
-                            color: var(--composer-font-color-secondary);
-                            width: 90%;
-                            min-height: 30px ;
-                            margin-left: 1rem;
-                            margin-right: 1rem;
                         }
 
                         .user-info {
-                            display: flex;
-                            flex-direction: row;
                             justify-content: flex-start !important;
-                            align-items: center;
-                            gap: 10px;
-                            margin-left: 1rem;
-                            margin-right: 1rem;
-
-                            .profile-image {
-                                width: 34px;
-                                height: 34px;
-                            }
-
-                            .user {
-                                .written {
-                                    font-size: 14px;
-                                    color: var(--composer-font-color-secondary);
-                                }
-
-                                .fullname {
-                                    font-size: 14px;
-                                    font-weight: bold;
-                                    color: var(--composer-font-color-secondary);
-                                }
-                            }
                         }
                     }
             }
