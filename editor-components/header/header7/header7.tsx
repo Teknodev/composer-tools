@@ -39,7 +39,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/t-showcase-img-3-scaled.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453f?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -65,7 +65,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/t-showcase-img-6.jpeg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624542?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -91,7 +91,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/t-showcase-img-1-scaled.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453d?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -117,7 +117,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/t-showcase-img-4.jpeg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624540?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -143,7 +143,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/t-showcase-img-2-scaled.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453e?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -169,7 +169,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/t-showcase-img-5.jpeg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624541?alt=media&timestamp=1719483639150",
             },
           ],
         },

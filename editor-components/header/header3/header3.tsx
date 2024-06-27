@@ -49,7 +49,7 @@ class Header3 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624501?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -100,7 +100,7 @@ class Header3 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img3.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624502?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -152,7 +152,7 @@ class Header3 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img4.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",

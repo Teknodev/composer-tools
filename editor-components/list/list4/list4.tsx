@@ -68,7 +68,7 @@ class list4 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental1.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241eb?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -101,7 +101,7 @@ class list4 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental2.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241ec?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -134,7 +134,7 @@ class list4 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental3.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241ed?alt=media&timestamp=1719483639150",
             },
           ],
         },

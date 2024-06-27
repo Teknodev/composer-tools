@@ -31,13 +31,13 @@ class Header6 extends BaseHeader {
       type: "image",
       key: "image1",
       displayer: "Image",
-      value: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/revslider/main-home-slider/blob-1.png",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "image",
       key: "image2",
       displayer: "Image",
-      value: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/slider-mockup-1.png",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
     });
     
     this.addProp({
