@@ -144,22 +144,25 @@ class HeaderComponent26 extends BaseHeader {
   }
 
   handleBeforeChange = () => {
+    const sliderClass = this.decorateCSS("sliders");
     if (this.sliderRef.current) {
-      const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${styles.sliders}`);
+      const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${sliderClass}`);
       slides.forEach((slide: HTMLElement) => {
-        slide.classList.add(styles.shrink);
+        slide.classList.add(this.decorateCSS("shrink")); 
       });
     }
   };
-
+  
   handleAfterChange = () => {
+    const sliderClass = this.decorateCSS("sliders");
     if (this.sliderRef.current) {
-      const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${styles.sliders}`);
+      const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${sliderClass}`);
       slides.forEach((slide: HTMLElement) => {
-        slide.classList.remove(styles.shrink);
+        slide.classList.remove(this.decorateCSS("shrink")); 
       });
     }
   };
+  
 
   handlePrevNextChange = () => {
     this.handleBeforeChange();

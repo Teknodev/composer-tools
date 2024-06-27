@@ -77,14 +77,6 @@
       .shrink {
         transform: scale(0.9);
       }
-
-      // &.shrink {
-      //   transform: scale(0.9);
-      // }
-  
-      // &.expand {
-      //   transform: scale(1);
-      // }
     }
   }
   .shrink {
@@ -118,7 +110,6 @@
 
           .arrows {
             position: relative !important;
-            // flex-direction: row !important;
             left: 0px !important;
             bottom: 290px !important;
         
@@ -183,7 +174,6 @@
           .image {
             width: 350px !important;
             height: 90% !important;
-            // margin: 0 auto !important;
             object-fit: fill !important;
             padding-bottom: 200px !important;
           }
