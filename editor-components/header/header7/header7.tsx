@@ -35,7 +35,7 @@ class Header7 extends BaseHeader {
               value: "",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -61,7 +61,7 @@ class Header7 extends BaseHeader {
               value: "",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -87,7 +87,7 @@ class Header7 extends BaseHeader {
               value: "",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -113,7 +113,7 @@ class Header7 extends BaseHeader {
               value: "",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -139,7 +139,7 @@ class Header7 extends BaseHeader {
               value: "",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
@@ -165,7 +165,7 @@ class Header7 extends BaseHeader {
               value: "",
             },
             {
-              type: "string",
+              type: "image",
               key: "image",
               displayer: "Image",
               value:
