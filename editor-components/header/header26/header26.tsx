@@ -1,116 +1,242 @@
 import * as React from "react";
 import styles from "./header26.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class HeaderComponent26 extends BaseHeader {
+  
+  private sliderRef: React.RefObject<any>;
+
   constructor(props?: any) {
     super(props, styles);
 
+    this.sliderRef = React.createRef();
+    
     this.addProp({
-      type: "object",
-      displayer: "Items",
-      key: "items",
+      type: "array",
+      key: "sliders",
+      displayer: "Sliders",
       value: [
         {
           type: "object",
-          displayer: "Item Left Top",
-          key: "left-top-item",
+          key: "slider",
+          displayer: "Slider",
           value: [
             {
               type: "string",
-              displayer: "Title",
               key: "title",
-              value: "We Teach to Be Active and Creative",
+              displayer: "Title",
+              value: "FOR THE ROAD",
             },
             {
               type: "string",
-              displayer: "Description",
-              key: "description",
-              value:
-                "Anyway, you still use Lorem Ipsum and rightly so, as it will always have a place in the web workers toolbox, as things happen, not always.",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "3d Visualisation",
             },
             {
               type: "image",
-              displayer: "Image",
               key: "image",
+              displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edde21057bdf002c2adb30?alt=media&timestamp=1693310475090",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f611?alt=media&timestamp=1719412135932",
             },
           ],
         },
-
-        {
-          type: "image",
-          displayer: "Right Image",
-          key: "rightImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edde21057bdf002c2adb2f?alt=media&timestamp=1693310475090",
-        },
-      ],
-    });
-    this.addProp(
         {
           type: "object",
-          displayer: "Button",
-          key: "button",
+          key: "slider",
+          displayer: "Slider",
           value: [
             {
               type: "string",
-              displayer: "Button Text",
-              key: "text",
-              value: "VIEW MORE",
+              key: "title",
+              displayer: "Title",
+              value: "FALLING IN LOVE",
             },
             {
-              type: "page",
-              displayer: "Button URL",
-              key: "url",
-              value: "",
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "New illustrations",
             },
-          ]
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f612?alt=media&timestamp=1719412135932",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "ROCK ON ROCK",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "Design trends",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f613?alt=media&timestamp=1719412135932",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "JUST ONE MORE",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "Photography",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f614?alt=media&timestamp=1719412135932",
+            },
+          ],
+        },
+      ],
     });
+
+    this.addProp({
+      type: "icon",
+      key: "up_icon",
+      displayer: "Up icon",
+      value: "IoIosArrowUp",
+    });
+    this.addProp({
+      type: "icon",
+      key: "down_icon",
+      displayer: "Down icon",
+      value: "IoIosArrowDown",
+    }); 
   }
 
   getName(): string {
     return "Header-26";
   }
 
+  handleBeforeChange = () => {
+    if (this.sliderRef.current) {
+      const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${styles.sliders}`);
+      slides.forEach((slide: HTMLElement) => {
+        slide.classList.add(styles.shrink);
+      });
+    }
+  };
+
+  handleAfterChange = () => {
+    if (this.sliderRef.current) {
+      const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${styles.sliders}`);
+      slides.forEach((slide: HTMLElement) => {
+        slide.classList.remove(styles.shrink);
+      });
+    }
+  };
+
+  handlePrevNextChange = () => {
+    this.handleBeforeChange();
+    setTimeout(() => {
+      this.handleAfterChange();
+    }, 1500); 
+  };
+
+  handlePrevClick = () => {
+    if (this.sliderRef.current) {
+      this.sliderRef.current.slickPrev();
+      this.handlePrevNextChange();
+    }
+  };
+
+  handleNextClick = () => {
+    if (this.sliderRef.current) {
+      this.sliderRef.current.slickNext();
+      this.handlePrevNextChange();
+    }
+  };
+
   render() {
-    let items: any = this.castToObject("items");
-    const button = this.castToObject<any>("button")    
+    const settings = {
+      dots: false,
+      arrows: false,
+      infinite: true,
+      speed: 1500,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      draggable: true,
+      vertical: true,
+      verticalSwiping: true,
+      beforeChange: this.handleBeforeChange,
+      afterChange: this.handleAfterChange,
+    };
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("background-image")}>
-              <img src={items["left-top-item"].image} alt={items["left-top-item"].title} />
-            </div>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("title")}>
-                <h1 className={this.decorateCSS("items")}>{items["left-top-item"].title}</h1>
-              </div>
-              <div className={this.decorateCSS("description")}>
-                <h3 className={this.decorateCSS("items-description")}>{items["left-top-item"].description}</h3>
-              </div>
-
-              
-                  <ComposerLink path={button.url}>
-                    <div className={this.decorateCSS("button-wrapper")}>
-                      <a
-                        className={this.decorateCSS("button")}
-                      >
-                        {button.text}
-                      </a>
+          <ComposerSlider {...settings} ref={this.sliderRef}>
+            {this.castToObject<[]>("sliders").map((item: any, index: number) => (
+              <div className={this.decorateCSS("sliders")} key={index}>
+                <div className={this.decorateCSS("slider")}>
+                  <div className={this.decorateCSS("left-side")}>
+                    <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+                    <span className={this.decorateCSS("line")}></span>
+                    <h1 className={this.decorateCSS("subtitle")}>{item.subtitle}</h1>
+                    <div className={this.decorateCSS("arrows")}>
+                    <div
+                      className={this.decorateCSS("up-arrow")}
+                      onClick={this.handlePrevClick}
+                    >
+                      <ComposerIcon name={this.getPropValue("up_icon")} />
                     </div>
-                  </ComposerLink>
-
-
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <img src={items.rightImage} />
-            </div>
-          </div>
+                    <div
+                      className={this.decorateCSS("down-arrow")}
+                      onClick={this.handleNextClick}
+                    >
+                      <ComposerIcon name={this.getPropValue("down_icon")} />
+                    </div>
+                    </div>
+                  </div>
+                  <div className={this.decorateCSS("right-side")}>
+                    <img
+                      className={this.decorateCSS("image")}
+                      src={item.image}
+                      alt="Slider Image"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </ComposerSlider>
         </div>
       </div>
     );
