@@ -115,8 +115,7 @@ class Feature5 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Left Image",
-              value:
-                "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/28-696x696.jpg",
+              value: "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/28-696x696.jpg",
             },
             {
               type: "string",
@@ -251,23 +250,19 @@ class Feature5 extends BaseFeature {
             </h1>
           )}
           {isRow1Visible && (
-            <div className={this.decorateCSS("row1")}>
-              <ComposerLink path={row1.link} isFullWidth={true}>
-                <div className={this.decorateCSS("left-image-container")}>
-                  {row1.left_image && (
-                    <img
-                      className={this.decorateCSS("left-image")}
-                      src={row1.left_image}
-                    />
-                  )}
-                </div>
-                <div className={this.decorateCSS("title-container")}>
-                  {this.castToString(row1.title) && (
-                    <h1 className={this.decorateCSS("title")}>{row1.title}</h1>
-                  )}
-                </div>
-              </ComposerLink>
-            </div>
+            <ComposerLink path={row1.link} isFullWidth={true}>
+              <div className={this.decorateCSS("row1")}>
+                {row1.left_image && (
+                  <img
+                    className={this.decorateCSS("left-image")}
+                    src={row1.left_image}
+                  />
+                )}
+                {this.castToString(row1.title) && (
+                  <h1 className={this.decorateCSS("title")}>{row1.title}</h1>
+                )}
+              </div>
+            </ComposerLink>
           )}
 
           {isRow2Visible && (
@@ -278,17 +273,17 @@ class Feature5 extends BaseFeature {
                     {row2.left_item.description}
                   </span>
                   {this.castToString(row2.left_item.button_text) && (
-                    <ComposerLink path={row2.left_item.link}>
-                      <span className={this.decorateCSS("button-text")}>
+                    <span className={this.decorateCSS("button-text")}>
+                      <ComposerLink path={row2.left_item.link}>
                         {this.castToString(row2.left_item.button_text)}
-                      </span>
-                    </ComposerLink>
+                      </ComposerLink>
+                    </span>
                   )}
                 </div>
               )}
               {isRow2RightItemVisible && (
                 <div className={this.decorateCSS("right")}>
-                  <ComposerLink path={row2.right_item.link} isFullWidth={true}>
+                  {/* <ComposerLink path={row2.right_item.link} isFullWidth={true}> */}
                     <div className={this.decorateCSS("right-content")}>
                       {this.castToString(row2.right_item.text) && (
                         <span className={this.decorateCSS("text")}>
@@ -302,7 +297,7 @@ class Feature5 extends BaseFeature {
                         />
                       )}
                     </div>
-                  </ComposerLink>
+                  {/* </ComposerLink> */}
                 </div>
               )}
             </div>
@@ -311,58 +306,54 @@ class Feature5 extends BaseFeature {
           {isRow3Visible && (
             <div className={this.decorateCSS("row3")}>
               {row3.image_and_subtitle_1.image && (
-                <div className={this.decorateCSS("image_and_subtitle_1")}>
-                  <ComposerLink
-                    path={row3.image_and_subtitle_1.link}
-                    isFullWidth={true}
-                  >
-                    <img
-                      className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_1.image}
-                    />
+                <ComposerLink
+                  path={row3.image_and_subtitle_1.link}
+                  isFullWidth={true}>
+                  <div className={this.decorateCSS("image_and_subtitle_1")}>
+                    {row3.image_and_subtitle_1.image && (
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={row3.image_and_subtitle_1.image} />
+                    )}
                     {this.castToString(row3.image_and_subtitle_1.sub_title) && (
-                      <span className={this.decorateCSS("sub-title")}>
+                      <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
                       </span>
                     )}
-                  </ComposerLink>
-                </div>
+                  </div>
+                </ComposerLink>
               )}
               {row3.image_and_subtitle_2.image && (
-                <div className={this.decorateCSS("image_and_subtitle_2")}>
-                  <ComposerLink
-                    path={row3.image_and_subtitle_2.link}
-                    isFullWidth={true}
-                  >
+                <ComposerLink
+                  path={row3.image_and_subtitle_2.link}
+                  isFullWidth={true}>
+                  <div className={this.decorateCSS("image_and_subtitle_2")}>
                     <img
                       className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_2.image}
-                    />
+                      src={row3.image_and_subtitle_2.image} />
                     {this.castToString(row3.image_and_subtitle_2.sub_title) && (
-                      <span className={this.decorateCSS("sub-title")}>
+                      <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_2.sub_title}
                       </span>
                     )}
-                  </ComposerLink>
-                </div>
+                  </div>
+                </ComposerLink>
               )}
               {row3.image_and_subtitle_3.image && (
-                <div className={this.decorateCSS("image_and_subtitle_3")}>
-                  <ComposerLink
-                    path={row3.image_and_subtitle_3.link}
-                    isFullWidth={true}
-                  >
+                <ComposerLink
+                  path={row3.image_and_subtitle_3.link}
+                  isFullWidth={true}>
+                  <div className={this.decorateCSS("image_and_subtitle_3")}>
                     <img
                       className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_3.image}
-                    />
+                      src={row3.image_and_subtitle_3.image} />
                     {this.castToString(row3.image_and_subtitle_3.sub_title) && (
-                      <span className={this.decorateCSS("sub-title")}>
+                      <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_3.sub_title}
                       </span>
                     )}
-                  </ComposerLink>
-                </div>
+                  </div>
+                </ComposerLink>
               )}
             </div>
           )}

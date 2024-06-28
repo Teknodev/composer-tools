@@ -249,7 +249,7 @@ function Registerables(composer: ComponentsRegistery) {
     // new ContentComponent18(),
     // new ContentComponent19(),
     // new ContentComponent20(),
-    // new ContentComponent21(),
+    new ContentComponent21(),
     // new ContentComponent22(),
     // new ContentComponent23(),
     // new ContentComponent24(),

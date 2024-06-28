@@ -3,64 +3,64 @@
     padding: 50px;
     .max-content {
         max-width: var(--composer-content-width);
-        width: 100%;
-        height: 100%;
         margin: auto;
+        padding: 4% 4%;
         .title {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            padding-left: 30px;
+            display: flex;
+            font-size: 2.5vw;
+            font-weight: bolder;
         }
         .row1 {
-            margin-bottom: auto;
             display: flex;
             align-items: center;
             width: 100%;
             flex-direction: row;
 
             .left-image {
-                width: 34%;
+                width: 33.3%;
+                height: auto;
                 object-fit: cover;
                 aspect-ratio: 7 / 4;
             }
 
             .title {
-                height: 100%;
-                padding-left: 25px;
-                font-size: 2.25rem;
-                max-width: 350px;
+                padding-left: 1.563rem;
+                font-size: 1.89vw;
+                max-width: 40%;
             }
         }
         .row2 {
             display: flex;
-            align-items: center;
+            // align-items: center;
             width: 100%;
-            height: 15rem;
 
             .left {
-                width: 34%;
+                width: 33.3%;
                 display: flex;
                 flex-direction: column;
 
                 .description {
-                    font-size: 1.3rem;
-                    margin: 20px 0;
+                    font-size: 1.1vw;
+                    margin: 1.25rem 0;
                     max-width: 80%;
+                    line-height: 170%;
                 }
 
                 .button-text {
-                    font-size: 1.5rem;
-                    border-bottom: 1px solid black;
-                    padding-bottom: 10px;
-                    font-weight: 600;
+                    font-size: 1.1vw;
+                    border-bottom: 3px solid black;
+                    padding: 4% 1%;
+                    font-weight: 900;
+                    max-width: fit-content;
                 }
             }
             .right {
-                width: 66%;
+                width: 66.7%;
+                display: flex;
                 .right-content {
                     display: flex;
                     width: 100%;
+                    height: 100%;
                     align-items: center;
                     justify-content: center;
                     background: #22333a;
@@ -74,9 +74,10 @@
                         height: fit-content;
                         color: #eaeaea;
                         width: 50%;
-                        font-size: 1.875rem;
+                        font-size: 1.9vw;
+                        box-sizing: border-box;
                         font-weight: 800;
-                        padding: 0 40px;
+                        padding: 0 4rem;
                     }
                 }
             }
@@ -85,62 +86,63 @@
             display: flex;
             align-items: center;
             width: 100%;
+            background: #f4f7f7;
 
             .image_and_subtitle_1 {
-                width: 34%;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 object-fit: cover;
                 .image {
                     width: 100%;
                     object-fit: cover;
-                    aspect-ratio: 7 / 4;
+                    aspect-ratio: 7 / 4.2;
                 }
                 .subtitle {
                     align-items: center;
                     justify-content: center;
-                    font-size: 2rem;
-                    font-weight: 600;
-                    margin-top: 20px;
-                    padding: 0 2px;
+                    font-size: 1.5vw;
+                    font-weight: 700;
+                    padding: 7% 5%;
+                    display: flex;
                 }
             }
             .image_and_subtitle_2 {
-                width: 33%;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 object-fit: cover;
                 .image {
                     width: 100%;
-                    aspect-ratio: 7 / 4.1;
+                    aspect-ratio: 7 / 4.2;
                     object-fit: cover;
                 }
                 .subtitle {
                     align-items: center;
                     justify-content: center;
-                    font-size: 2rem;
-                    font-weight: 600;
-                    margin-top: 20px;
-                    padding: 0 2px;
+                    font-size: 1.5vw;
+                    font-weight: 700;
+                    padding: 7% 5%;
+                    display: flex;
                 }
             }
             .image_and_subtitle_3{  
-                width: 33%;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 object-fit: cover;
                 .image {
                     width: 100%;
                     object-fit: cover;
-                    aspect-ratio: 7 / 4.1;
+                    aspect-ratio: 7 / 4.2;
                 }
                 .subtitle {
                     align-items: center;
                     justify-content: center;
-                    font-size: 2rem;
-                    font-weight: 600;
-                    margin-top: 20px;
-                    padding: 0 2px;
+                    font-size: 1.5vw;
+                    font-weight: 700;
+                    padding: 7% 5%;
+                    display: flex;
                 }
             }
             
@@ -150,10 +152,217 @@
 
 @media only screen and (max-width: 768px) {
     .container {
-        padding: 50px 20px;
         .max-content {
-            .card-item-count {
-                min-width: 100%;
+            padding: 0%;
+            .title {
+                padding: 0 0;
+                //font-size: 3.3vw;
+            }
+            .row1 {
+                flex-direction: row;
+                .left-image {
+                    width: 33.4%;
+                }
+                .title {
+                    //font-size: 2.4vw;
+                    max-width: 30%;
+                }
+            }
+            .row2 {
+                flex-direction: row;
+                display: flex;
+                .left {
+                    width: 50%;
+                    .description {
+                        font-size: 1.7vw;
+                        margin: 1.1vw 0; 
+                    }
+                    .button-text {
+                        font-size: 2vw;
+                    }
+                }
+                .right {
+                    display: flex;
+                    width: 100%;
+                    flex-direction: row;
+                    .right-content {
+                        flex-direction: row;
+                        display: flex;
+                        width: 100%;
+                        align-items: center;
+                        justify-content: center;
+                        .image {
+                            width: 50%;
+                            aspect-ratio: 1 / 1;
+                        }
+                        .text {
+                            width: 50%;
+                            //font-size: 1.8rem;
+                            display: flex;
+                        }
+                    }
+                }
+            }
+            .row3 {
+                flex-direction: row;
+                .image_and_subtitle_1 {
+                    width: 100%;
+                    .image {
+                        width: 100%;
+                        aspect-ratio: 16/9.6;
+                    }
+                    .subtitle {
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 2vw;
+                        width: 100%;
+                        max-width: 80%;
+                    }
+                }
+                .image_and_subtitle_2 {
+                    width: 100%;
+                    .image {
+                        width: 100%;
+                        aspect-ratio: 7 / 4.2;
+                    }
+                    .subtitle {
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 2vw;
+                        width: 100%;
+                        max-width: 80%;
+                    }
+                }
+                .image_and_subtitle_3 {
+                    width: 100%;
+                    .image {
+                        width: 100%;
+                        aspect-ratio: 7 / 4.2;
+                    }
+                    .subtitle {
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 2vw;
+                        width: 100%;
+                        max-width: 80%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        padding: 5vw;
+        .max-content {
+            padding: 0%;
+            .title {
+                padding: 0 0;
+                font-size: 6vw;
+            }
+            .row1 {
+                flex-direction: row;
+                .left-image {
+                    width: 50%;
+                }
+                .title {
+                    font-size: 4vw;
+                    max-width: 50%;
+                }
+            }
+            .row2 {
+                flex-direction: column;
+                display: flex;
+                .left {
+                    flex-direction: column;
+                    width: 100%;
+                    padding: 5vw 0;
+                    .description {
+                        font-size: 4vw;
+                        margin: 1.1vw 0; 
+                        max-width: 100%;
+                    }
+                    .button-text {
+                        font-size: 4vw;
+                        border-bottom: 2px solid black ;
+                        padding: 3% 1%;
+                    }
+                }
+                .right {
+                    display: flex;
+                    width: 100%;
+                    flex-direction: row;
+                    .right-content {
+                        flex-direction: row;
+                        display: flex;
+                        width: 100%;
+                        align-items: center;
+                        justify-content: center;
+                        .image {
+                            width: 50%;
+                            aspect-ratio: 1 / 1;
+                        }
+                        .text {
+                            width: 50%;
+                            font-size: 1.25rem;
+                            display: flex;
+                            padding: 0% 3%;
+                        }
+                    }
+                }
+            }
+            .row3 {
+                flex-direction: column;
+                display: flex;
+                .image_and_subtitle_1 {
+                    flex-direction: row !important;
+                    display: flex !important;
+                    width: 100%;
+                    .image {
+                        width: 50%;
+                        aspect-ratio: 16/9.6;
+                    }
+                    .subtitle {
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 3.5vw;
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+                .image_and_subtitle_2 {
+                    flex-direction: row !important;
+                    display: flex !important;
+                    width: 100%;
+                    .image {
+                        width: 50%;
+                        aspect-ratio: 7 / 4.2;
+                    }
+                    .subtitle {
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 3.5vw;
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+                .image_and_subtitle_3 {
+                    flex-direction: row !important;
+                    display: flex !important;
+                    width: 100%;
+                    .image {
+                        width: 50%;
+                        aspect-ratio: 7 / 4.2;
+                    }
+                    .subtitle {
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 3.5vw;
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
             }
         }
     }
