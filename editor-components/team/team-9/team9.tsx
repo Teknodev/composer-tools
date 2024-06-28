@@ -90,7 +90,7 @@ class Team9 extends Team {
           key: "image",
           displayer: "Image",
           value:
-            "https://dt-dots.myshopify.com/cdn/shop/files/t1.png?v=1684321024&width=1500",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841",
         },
         {
           type: "string",
@@ -118,7 +118,7 @@ class Team9 extends Team {
           key: "image",
           displayer: "Image",
           value:
-            "https://dt-dots.myshopify.com/cdn/shop/files/AdobeStock_313594493.jpg?v=1684321703&width=1500",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
         },
         {
           type: "string",
@@ -146,7 +146,7 @@ class Team9 extends Team {
           key: "image",
           displayer: "Image",
           value:
-            "https://dt-dots.myshopify.com/cdn/shop/files/t3.png?v=1684321143&width=1500",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
         },
         {
           type: "string",
@@ -174,7 +174,7 @@ class Team9 extends Team {
           key: "image",
           displayer: "Image",
           value:
-            "https://dt-dots.myshopify.com/cdn/shop/files/t4.png?v=1684321162&width=1500",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
         },
         {
           type: "string",

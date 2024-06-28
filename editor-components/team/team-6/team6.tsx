@@ -158,7 +158,7 @@ class Team6 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "hhttps://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627cde?alt=media&timestamp=1719502692150",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627cde?alt=media&timestamp=1719558632841",
             },
             {
               type: "string",
