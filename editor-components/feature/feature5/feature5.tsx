@@ -283,7 +283,7 @@ class Feature5 extends BaseFeature {
               )}
               {isRow2RightItemVisible && (
                 <div className={this.decorateCSS("right")}>
-                  {/* <ComposerLink path={row2.right_item.link} isFullWidth={true}> */}
+                  <ComposerLink path={row2.right_item.link} isFullWidth={true}>
                     <div className={this.decorateCSS("right-content")}>
                       {this.castToString(row2.right_item.text) && (
                         <span className={this.decorateCSS("text")}>
@@ -297,7 +297,7 @@ class Feature5 extends BaseFeature {
                         />
                       )}
                     </div>
-                  {/* </ComposerLink> */}
+                  </ComposerLink>
                 </div>
               )}
             </div>
@@ -310,11 +310,9 @@ class Feature5 extends BaseFeature {
                   path={row3.image_and_subtitle_1.link}
                   isFullWidth={true}>
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
-                    {row3.image_and_subtitle_1.image && (
-                      <img
-                        className={this.decorateCSS("image")}
-                        src={row3.image_and_subtitle_1.image} />
-                    )}
+                    <img
+                      className={this.decorateCSS("image")}
+                      src={row3.image_and_subtitle_1.image} />
                     {this.castToString(row3.image_and_subtitle_1.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
