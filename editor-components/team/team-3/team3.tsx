@@ -103,7 +103,7 @@ class Team3 extends Team {
           key: "profile",
           displayer: "Image",
           value:
-            "https://images.pexels.com/photos/1800456/pexels-photo-1800456.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
         },
         {
           type: "string",
@@ -136,7 +136,7 @@ class Team3 extends Team {
           key: "profile",
           displayer: "Image",
           value:
-            "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c1?alt=media&timestamp=1719483639146",
         },
         {
           type: "string",
@@ -169,7 +169,7 @@ class Team3 extends Team {
           key: "profile",
           displayer: "Image",
           value:
-            "https://images.pexels.com/photos/1800456/pexels-photo-1800456.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
         },
         {
           type: "string",
@@ -202,7 +202,7 @@ class Team3 extends Team {
           key: "profile",
           displayer: "Image",
           value:
-            "https://images.pexels.com/photos/8434878/pexels-photo-8434878.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
         },
         {
           type: "string",
@@ -235,7 +235,7 @@ class Team3 extends Team {
           key: "profile",
           displayer: "Image",
           value:
-            "https://images.pexels.com/photos/5393594/pexels-photo-5393594.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627623?alt=media&timestamp=1719502692150",
         },
         {
           type: "string",
@@ -268,7 +268,7 @@ class Team3 extends Team {
           key: "profile",
           displayer: "Image",
           value:
-            "https://images.pexels.com/photos/8434878/pexels-photo-8434878.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
         },
         {
           type: "string",

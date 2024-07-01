@@ -40,7 +40,7 @@ class Testimonials12Page extends Testimonials {
               key: "card-photo",
               displayer: "Card Photo",
               value:
-                "https://rstheme.com/products/html/swipy/assets/images/testimonial/style1/testi2.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623eba?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -73,7 +73,7 @@ class Testimonials12Page extends Testimonials {
               key: "card-photo",
               displayer: "Card Photo",
               value:
-                "https://rstheme.com/products/html/swipy/assets/images/testimonial/style1/testi3.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623ebb?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -106,7 +106,7 @@ class Testimonials12Page extends Testimonials {
               key: "card-photo",
               displayer: "Card Photo",
               value:
-                "https://rstheme.com/products/html/swipy/assets/images/testimonial/style1/testi2.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623eba?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -139,7 +139,7 @@ class Testimonials12Page extends Testimonials {
               key: "card-photo",
               displayer: "Card Photo",
               value:
-                "https://rstheme.com/products/html/swipy/assets/images/testimonial/style1/testi3.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666178b7bd2970002c623ebb?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",

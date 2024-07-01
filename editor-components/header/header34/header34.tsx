@@ -36,7 +36,7 @@ class HeaderComponent34 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cb9?alt=media&timestamp=1719483639151",
             },
             {
               type: "string",
@@ -68,7 +68,7 @@ class HeaderComponent34 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.unsplash.com/photo-1635350736475-c8cef4b21906?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cbb?alt=media&timestamp=1719483639151",
             },
             {
               type: "string",
@@ -100,7 +100,7 @@ class HeaderComponent34 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=3271&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cba?alt=media&timestamp=1719483639151",
             },
             {
               type: "string",

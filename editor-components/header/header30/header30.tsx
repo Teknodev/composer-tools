@@ -13,7 +13,7 @@ class HeaderComponent30 extends BaseHeader {
       key: "video",
       displayer: "Background Video",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6621070664465a002c0a11b9?alt=media",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151",
     });
 
     this.addProp({
@@ -32,7 +32,7 @@ class HeaderComponent30 extends BaseHeader {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_img-1.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
     });
     this.addProp({
       type: "string",

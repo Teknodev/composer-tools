@@ -17,7 +17,7 @@ class Testimonials7Page extends Testimonials {
       key: "cover-image",
       displayer: "Background Image",
       value:
-        "https://wgl-demo.net/zium/wp-content/uploads/2022/02/home1_image_3-1.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617330bd2970002c623799?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "array",
@@ -40,7 +40,7 @@ class Testimonials7Page extends Testimonials {
               type: "image",
               key: "image",
               value:
-                "https://wgl-demo.net/zium/wp-content/uploads/2021/12/testimonials-1-200x200.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623790?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {
@@ -73,7 +73,7 @@ class Testimonials7Page extends Testimonials {
               type: "image",
               key: "image",
               value:
-                "https://wgl-demo.net/zium/wp-content/uploads/2021/12/testimonials-2-200x200.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623791?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {
@@ -106,7 +106,7 @@ class Testimonials7Page extends Testimonials {
               type: "image",
               key: "image",
               value:
-                "https://wgl-demo.net/zium/wp-content/uploads/2021/12/testimonials-3-200x200.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623792?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {

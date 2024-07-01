@@ -14,7 +14,7 @@ class Form2Page extends BaseContacts {
       key: "background-img",
       displayer: "Background Image",
       value:
-        "https://static.tildacdn.com/tild6534-3036-4165-a632-363563666466/photo1432821596592e2c18b78144f",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c4d3bd2970002c629028?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "string",
