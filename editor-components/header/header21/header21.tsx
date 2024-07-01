@@ -81,6 +81,7 @@ class Header21 extends BaseHeader {
   }
   getName(): string {
     return "Header 21";
+
   }
   render() {
     let card:CardState = this.castToObject("card");
@@ -92,10 +93,14 @@ class Header21 extends BaseHeader {
               <div className={this.decorateCSS("card-box")}>
                 <h3>{card.subtitle}</h3>
                 <h1>{card.title}</h1>
-                <h4>{card.description}</h4>
-              <ComposerLink path={card.button_url}>
-              <button>{card.button}</button>
-              </ComposerLink>
+                {this.castToString(card.description as any).length > 0 &&
+                  <h4>{card.description}</h4>
+                }
+                {this.castToString(card.button as any).length > 0 &&
+                  <ComposerLink path={card.button_url}>
+                    <button>{card.button}</button>
+                  </ComposerLink>
+                  }
               </div>
             </div>
             <div className={this.decorateCSS("image-box")}>
