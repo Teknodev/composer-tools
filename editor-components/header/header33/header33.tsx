@@ -47,7 +47,7 @@ class Header33 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://vela-kosi.myshopify.com/cdn/shop/files/slide11.jpg?v=1713324667",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7a?alt=media&timestamp=1719502103059",
             },
             {
               type: "string",
@@ -86,7 +86,7 @@ class Header33 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://vela-kosi.myshopify.com/cdn/shop/files/slide12.jpg?v=1713324667",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7b?alt=media&timestamp=1719502103059",
             },
             {
               type: "string",
@@ -125,7 +125,7 @@ class Header33 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://vela-kosi.myshopify.com/cdn/shop/files/slide13.jpg?v=1713324667",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7c?alt=media&timestamp=1719502103058",
             },
             {
               type: "string",
