@@ -20,14 +20,7 @@ class CallToAction6Page extends BaseCallToAction {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Get notified on latest",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title2",
-      displayer: "Title 2",
-      value: "updates and new releases.",
+      value: "Get notified on latest updates and new releases.",
     });
 
     this.addProp({
@@ -85,7 +78,6 @@ class CallToAction6Page extends BaseCallToAction {
 
   render() {
     const title = this.getPropValue("title", { as_string: true });
-    const title2 = this.getPropValue("title2", { as_string: true });
     const placeholder = this.getPropValue("placeholder", { as_string: true });
     const comment = this.getPropValue("comment", { as_string: true });
 
@@ -112,14 +104,6 @@ class CallToAction6Page extends BaseCallToAction {
                 {this.getPropValue("title")}
               </h1>
             )}
-
-            {title2 && (
-              <h1 className={this.decorateCSS("title2")}>
-                {this.getPropValue("title2")}
-              </h1>
-            )}
-
-            <div className={this.decorateCSS("space")}></div>
 
             {placeholder && (
               <input
