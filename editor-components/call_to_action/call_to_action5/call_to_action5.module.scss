@@ -102,21 +102,22 @@
     color: var(--composer-font-color-primary);
   }
   
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 980px) {
   .container {
     .bottom {
       .submit-button{
         padding: 19px 12px;
       }
       .form {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        row-gap: 0px ;
         .input-container {
           width: unset;
-          flex-direction: column;
+          flex-direction: row;
           .input{
              padding: 11px 44px;
+           }
+           .submit-button{
+            height: 43px;
            }
         }
         .error-message {
@@ -131,3 +132,34 @@
     }
   }
 }
+
+
+
+
+@media only screen and (max-width: 468px) {
+    .container {
+        .max-content{
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+        }
+        .action2 .subtitle{
+            font-size: 24px !important;
+        }
+      .bottom {
+        .input-container{
+            flex-direction: column !important;
+        }
+        .input{
+            height: 52px !important;
+        }
+        .submit-button{
+          width: 100% !important;
+          height: 52px !important;
+        }
+        .form {
+          flex-direction: column !important;
+          gap: 0px ;
+        }
+      }
+    }
+  }
