@@ -12,6 +12,7 @@ type ISliderData = {
   button_text: string;
   button_link: string;
   rotate_icon: string;
+  rotate_text: string;
 };
 
 
@@ -68,11 +69,10 @@ class Header33 extends BaseHeader {
               value: "",
             },
             {
-              type: "image",
-              key: "rotate_icon",
-              displayer: "Image",
-              value:
-                "https://cdn.shopify.com/s/files/1/0866/7660/3164/files/slide-icon.png?v=1713321347",
+              type: "string",
+              key: "rotate_text",
+              displayer: "Rotate Text",
+              value: "Teknodev Composer",
             },
           ],
         },
@@ -107,11 +107,10 @@ class Header33 extends BaseHeader {
               value: "",
             },
             {
-              type: "image",
-              key: "rotate_icon",
-              displayer: "Image",
-              value:
-                "https://cdn.shopify.com/s/files/1/0866/7660/3164/files/slide-icon.png?v=1713321347",
+              type: "string",
+              key: "rotate_text",
+              displayer: "Rotate Text",
+              value: "Teknodev Composer",
             },
           ],
         },
@@ -146,11 +145,10 @@ class Header33 extends BaseHeader {
               value: "",
             },
             {
-              type: "image",
-              key: "rotate_icon",
-              displayer: "Image",
-              value:
-                "https://cdn.shopify.com/s/files/1/0866/7660/3164/files/slide-icon.png?v=1713321347",
+              type: "string",
+              key: "rotate_text",
+              displayer: "Rotate Text",
+              value: "Teknodev Composer",
             },
           ],
         },
@@ -221,13 +219,26 @@ class Header33 extends BaseHeader {
                     alt={item.title}
                     className={this.decorateCSS("image")}
                   />
+                    
                  <div className={this.decorateCSS("corousel-content-div")}>
                   <div className={this.decorateCSS("corousel-content")}>
-                      <img
-                        src={item.rotate_icon}
-                        className={this.decorateCSS("rotate")}
-                        alt=""
-                      />
+                      <div className={this.decorateCSS("circle")}>
+                      <svg>
+                        <defs>
+                          <path
+                            id="circlePath"
+                            d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0"
+                          />
+                        </defs>
+                        <circle cx="150" cy="150" r="75" fill="none" />
+                        <g>
+                          <use xlinkHref="#circlePath" fill="none" />
+                          <text fill="#000">
+                            <textPath xlinkHref="#circlePath">{this.castToString(item.rotate_text as any)}</textPath>
+                          </text>
+                        </g>
+                      </svg>
+                    </div>
                       <h1 className={this.getComponentState("titleAnimationClass")}>
                         {item.title}
                       </h1>

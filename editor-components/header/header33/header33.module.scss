@@ -5,7 +5,7 @@
     
     .max-content {
       position: relative;
-      max-width: var(--composer-content-width);
+      // max-width: var(--composer-content-width);
       margin: 0 auto;
       width: 100%;
       height: 100%;
@@ -14,6 +14,7 @@
       .carousel {
         position: relative;
         width: 100%;
+       
         
         .content {
         position: relative;
@@ -23,10 +24,10 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
-        max-width: var(--composer-content-width);
+        
   
         img {
-          width: 100vw;
+          width: 100%;
           height: 100%;
           object-fit: cover;
           margin: 0 auto;
@@ -35,37 +36,55 @@
           left: 0;
           top: 0;
         }
-  
+
         .corousel-content-div {
+         max-width: var(--composer-content-width);
+         margin: 0 auto;
          position: relative; 
-         top: 10%;
+         top: 0%;
+         
   
         .corousel-content {
           position: absolute;
           display: flex;
           flex-direction: column;
-          top: 40%;
+          top: 0%;
           left: 5%;
           z-index: 9999;
           text-align: left;
           font-size: 45px;
           font-weight: bold;
           color: black;
-  
-          .rotate {
-            background-color: transparent;
-            width: 130px;
-            height: 130px;
+
+
+          .circle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
             animation: rotate 5s linear infinite;
-            z-index: 9999;
+            width: 300px;
+            height: 300px;
+          
+            svg {
+              width: 100%;
+              height: 100%;
+            }
+          
+            text {
+              font-size: 24px; 
+            }
           }
+
+          
   
           h1 {
             color: black;
             font-weight: bold;
             width: 70%;
             animation: fadeInRight 1s forwards;
-            margin-top: 150px;
+            padding-top: 30%;
           }
   
           button {
@@ -94,12 +113,10 @@
     .secondary-slide {
       .corousel-content {
         text-align: center;
-        top: 200px !important; 
-        left: 690px !important;
-        .rotate {
-          width: 130px !important;
-          height: 130px !important;
-          margin-left: 195px ;
+        top: 50px !important; 
+        left: 33% !important;
+        .circle {
+          margin-left: 100px !important;
         }
   
         h1 {
@@ -113,6 +130,61 @@
         }
       }
     }
+
+    @media (max-width: 960px) {
+      .max-content{
+        .content {
+          height: 60vh !important;
+        }
+      
+        .corousel-content {
+          font-size: 30px;
+      
+          .circle {
+            display: none !important;
+          }
+      
+          h1 {
+            font-size: 45px;
+            width: 200px !important;
+          }
+      
+          button {
+            font-size: 20px !important;
+            top: 95% !important;
+            bottom: 0;
+            border-bottom: 0px solid transparent;
+            padding-bottom: 22px !important;
+          }
+        }
+  
+        .secondary-slide {
+          .corousel-content {
+            display: flex !important;
+            flex-direction: column !important;
+            top: 50px !important; 
+            left: 265px !important;
+            bottom: 0px !important;
+            .circle {
+              display: none !important;
+            }
+    
+            h1 {
+              width: 400px !important;
+              
+            }
+            button {  
+              top: 220px !important;
+              left: 60px !important;
+              color: black !important;
+              margin-left: 0px !important;
+              padding-bottom: 25px !important;
+            }
+          }
+        }
+      }
+    }
+
   
   
     @media (max-width: 550px) {
@@ -125,14 +197,10 @@
         text-align: center;
         top: 15% !important; 
         left: 5% !important;
-        bottom: auto !important;
+        bottom: auto !important;;
     
-        .rotate {
-          width: 100px !important;
-          height: 100px !important;
-          margin-left: 8px !important;
-          margin-top: 10% !important;
-          margin-right: 0px;
+        .circle {
+          display: none !important;
         }
     
         h1 {
@@ -140,6 +208,7 @@
           font-size: 20px !important;
           margin: 10px 0 !important;
           margin-top: 120px !important;
+          padding-top: 0px !important;
         }
     
         button {  
@@ -154,18 +223,11 @@
       }
       .secondary-slide {
         .corousel-content {
-          text-align: center;
-          display: flex !important;
-          flex-direction: column !important;
-          top: 5% !important; 
+          top: 15px !important; 
           left: 120px !important;
-          bottom: 0px !important;
-          .rotate {
-            width: 100px !important;
-            height: 100px !important;
-            margin-left: 5px !important;
-            margin-bottom: 50px !important;
-            top: 5px !important;
+
+          .circle {
+            display: none !important;
           }
   
           h1 {
@@ -174,11 +236,19 @@
           }
           button {  
             color: black !important;
-            margin-left: 0px !important;
-            padding-bottom: 5px !important;
+            margin-left: -40px !important;
+            top: 150px !important;
+            padding-bottom: 15px !important;
           }
         }
       }
+      .arrow-next,
+      .arrow-prev {
+        position: absolute;
+        top: 90% !important;
+      }
+  }
+  
     }}
   
     .arrow-next,
@@ -199,141 +269,9 @@
     .arrow-prev {
       left: 1rem;
     }
-  }
-  
-  @media (max-width: 960px) {
-    .max-content{
-      .content {
-        height: 60vh !important;
-      }
-    
-      .corousel-content {
-        font-size: 30px;
-    
-        .rotate {
-          width: 100px;
-          height: 100px;
-        }
-    
-        h1 {
-          font-size: 45px;
-          width: 200px !important;
-        }
-    
-        button {
-          font-size: 20px !important;
-          top: 95% !important;
-          bottom: 0;
-          border-bottom: 0px solid transparent;
-          padding-bottom: 22px !important;
-        }
-      }
-
-      .secondary-slide {
-        .corousel-content {
-          display: flex !important;
-          flex-direction: column !important;
-          top: 50px !important; 
-          left: 265px !important;
-          bottom: 0px !important;
-          .rotate {
-            width: 130px !important;
-            height: 130px !important;
-            margin-left: 50px !important;
-          }
-  
-          h1 {
-            width: 400px !important;
-            
-          }
-          button {  
-            top: 250px !important;
-            left: 60px !important;
-            color: black !important;
-            margin-left: 0px !important;
-            padding-bottom: 20px !important;
-          }
-        }
-      }
-    }
-  }
   
 
-//   @media (max-width: 550px) {
-
-//     .max-content{
-//       height: 100% !important;
-//     }
-//     .content {
-//       height: 30vh !important;
-
   
-//       img {
-//         width: 100% !important;
-//         height: 100% !important;
-//         object-fit: fill !important;
-//       }
-//     }
-  
-//     .corousel-content-div{
-//       top: 5% !important ;
-  
-//       .corousel-content {
-//         text-align: center;
-//         top: 30% !important; 
-//         left: 35% !important;
-//         bottom: auto !important;
-    
-//         .rotate {
-//           width: 100px !important;
-//           height: 100px !important;
-//           margin-left: 8px !important;
-//           margin-top: 70% !important;
-//           margin-right: 0px;
-//         }
-    
-//         h1 {
-//           width: 100% !important;
-//           font-size: 20px !important;
-//           margin: 10px 0 !important;
-//           margin-top: 200px !important;
-//         }
-    
-//         button {  
-//           color: var(--composer-font-color-secondary) !important;
-//           color: black !important;
-//           margin-left: 20px !important;
-//           margin-top: 12px !important;
-//           font-size: 12px !important;
-//           padding-bottom: 15px !important;
-  
-//         }
-//       }
-//   }
-//     .secondary-slide {
-//       .corousel-content {
-//         text-align: center;
-//         top: 5% !important; 
-//         left: 500px !important;
-//         bottom: 200px !important;
-//         .rotate {
-//           width: 130px !important;
-//           height: 30px !important;
-//           margin-left: 195px !important;
-//         }
-
-//         h1 {
-//           width: 700px !important;
-          
-//         }
-//         button {  
-//           color: black !important;
-//           margin-left: 200px !important;
-//           padding-bottom: 5px !important;
-//         }
-//       }
-//     }
-// }
 
   
   @keyframes rotate {
