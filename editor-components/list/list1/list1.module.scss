@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     place-items: center;
+    
 
     .up-text {
       text-align: center;
@@ -29,6 +30,8 @@
 
     .carousel-div {
       width: 80%;
+      gap: 50px;
+      
 
       .carousel {
 
@@ -82,7 +85,7 @@
 
           .card-inner {
             padding: 3rem;
-            background-color: white;
+            background-color: var(--composer-font-color-primary);
             display: flex !important;
             flex-direction: column;
             gap: 10px;
@@ -99,17 +102,17 @@
             .title {
               font-size: 20px;
               font-weight: 700;
-              color: var(--composer-primary-color);
+              color: var(--composer-font-color-secondary);
             }
 
             .subtitle {
               font-size: 14px;
-              color: black;
+              color: var(--composer-font-color-secondary);
             }
 
             .link {
               margin: 20px 0 0;
-              color: black;
+              color: var(--composer-font-color-secondary);
 
               &:hover {
                 color: var(--composer-secondary-color);
@@ -142,11 +145,21 @@
         }
 
         .card {
+          
           &.active {
             ::before {
+              width: calc(100% + 4rem);
+              left: -11rem !important;
               content: "";
               display: none;
 
+            }
+          }
+
+          .card-inner{
+            text-align: center;
+            img{
+              margin: 0 auto;
             }
           }
         }
@@ -165,17 +178,18 @@
 
       .carousel {
         width: 100%;
-
+        
         .dots {
           margin-top: 0;
-
         }
 
         .card {
+          left: 0rem !important;
           &.active {
             ::before {
               content: "";
               display: none;
+              left: 0rem !important;
 
             }
           }

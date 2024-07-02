@@ -318,7 +318,7 @@ class List1 extends BaseList {
       speed: 200,
       autoplay: false,
       autoplaySpeed: 3000,
-      slidesToShow: window.innerWidth < 769 ? (window.innerWidth < 500 ? 1 : 2) : 3,
+      slidesToShow: window.innerWidth < 769 ? (window.innerWidth < 500 ? 1 : 1) : 3,
       slidesToScroll: 1,
       initialSlide: 1,
       arrows: false,
