@@ -396,7 +396,7 @@ class Form11Page extends BaseContacts {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("title")}>
-            <h1>{title && this.getPropValue("title")}</h1>
+            <h1 className={this.decorateCSS("text")}>{title && this.getPropValue("title")}</h1>
           </div>
           <div className={this.decorateCSS("page-content")}>
             <div className={this.decorateCSS("text-content")}>
