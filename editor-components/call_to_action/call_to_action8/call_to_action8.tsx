@@ -32,7 +32,7 @@ class CallToAction8Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://site.sociolib.com/dash/wp-content/uploads/sites/25/2024/04/10.png",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6683ec390181a1002c338033?alt=media&timestamp=1719921738698",
     });
   }
 
@@ -47,18 +47,20 @@ class CallToAction8Page extends BaseCallToAction {
           <div className={this.decorateCSS(`content`)}>
             <div className={this.decorateCSS("title-box")}>
               <div className={this.decorateCSS("title")}>
-              <h1>{this.getPropValue("title")}</h1>
+              <h1 className={this.decorateCSS("text")}>{this.getPropValue("title")}</h1>
               </div>
               <ComposerLink path={this.getPropValue("button_url")}>
                 <div className={this.decorateCSS("button")}>
-                <button>
+                <button className={this.decorateCSS("button-element")}>
               {this.getPropValue("button-text")}
               </button>
                 </div>
             </ComposerLink>
             </div>
           {image &&<div className={this.decorateCSS("image-box")}>
-              <img src={this.getPropValue("image")} alt="" />
+              <img
+                className={this.decorateCSS("image")} 
+                src={this.getPropValue("image")} alt="" />
             </div>}
           </div>
         </div>

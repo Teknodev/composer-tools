@@ -12,7 +12,7 @@
                 display: grid;
                 grid-template-columns: 2fr 1fr;
                 .image-box{
-                    img{
+                    .image{
                         max-width: 100%;
                     }
                 }
@@ -23,7 +23,7 @@
                     .title{
                         max-height: 500px;
                     }
-                        h1{
+                        .text{
                             margin-bottom: 150px;
                             color: var(--composer-font-color-secondary);
                             font-size: 60px;
@@ -34,7 +34,7 @@
                     .button{
                         position: absolute;
                         bottom: 50px;
-                        button{
+                        .button-element{
                             box-sizing: border-box;
                             background-color:var(--composer-secondary-color);
                             color: var(--composer-font-color-secondary);
@@ -60,7 +60,7 @@
             .content{
                 .title-box{
                     max-height: 450px;
-                    h1{
+                    .text{
                         font-size: 35px;
                         line-height:30px;
                         }
@@ -79,14 +79,14 @@
                 .title-box{
                     padding: 40px 40px 15px 40px;
                     max-height: 450px;
-                    h1{
+                    .text{
                         font-size: 30px;
                         line-height:30px;
                         margin-bottom: 100px;
                         }
                     .button{
                         bottom: 30px;
-                        button{
+                        .button-element{
                         padding: 15px 30px;
                         }
                     }
@@ -106,7 +106,7 @@
                     display: flex;
                     flex-direction: column;
                     .image-box{
-                        img{
+                        .image{
                             max-height: 50%;
                         }
                     }
@@ -117,14 +117,14 @@
                         .title{
                             height: auto;
                         }
-                            h1{
+                            .text{
                                 font-size: 30px;
                                 line-height:30px;
                             }
                         .button{
                             bottom:15px;
                             position: absolute;
-                            button{
+                            .button-element{
                                 margin-top: 20px;
                                 font-size: 12px;
                                 font-weight:500;
