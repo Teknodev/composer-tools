@@ -1,116 +1,105 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature6.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type IBasicBadge = {
+
+type Card = {
+  image: string;
   title: string;
-  description: string;
-  badge: string;
 };
+
+type Button = {
+  icon: string;
+  url: string;
+}
+
+type Buttons = {
+  buttonText: string;
+  url: string;
+}
+
 class Feature6 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "header",
+      displayer: "Header",
+      value: "CASE STUDIES"
+    })
+
+
+    this.addProp({
+      type: "string",
+      key: "subHeader",
+      displayer: "Sub Header",
+      value: "from vision to reality"
+    })
+
     this.addProp({
       type: "array",
-      key: "basic-card-badge",
-      displayer: "Basic Card",
+      key: "cards",
+      displayer: "cards",
       value: [
         {
           type: "object",
-          key: "basic-badge",
-          displayer: "Basic",
+          key: "card",
+          displayer: "card",
           value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://demo.tagdiv.com/newspaper_interior_designer_pro/wp-content/uploads/2023/11/10-3-696x928.jpg",
+            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Scientists Discover New Species of Butterfly in the Amazon Rainforest",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "A team of scientists has identified a new species of butterfly in the heart of the Amazon rainforest. The butterfly, which has been named Papilio amazonica, has distinctive markings and is the first new butterfly species to be discovered in the region in over a decade.",
-            },
-            {
-              type: "boolean",
-              key: "badgeCheck",
-              displayer: "Badge",
-              value: true,
-            },
-            {
-              type: "string",
-              key: "badge",
-              displayer: "Badge Text",
-              value: "NEW",
+              value: "The Lakeside Redesign: a Rustic House for Modern Living",
             },
           ],
         },
         {
           type: "object",
-          key: "basic-badge",
-          displayer: "Basic",
+          key: "card",
+          displayer: "card",
           value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://demo.tagdiv.com/newspaper_interior_designer_pro/wp-content/uploads/2023/11/9-3-696x614.jpg",
+            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "The Benefits of Meditation for Mental and Physical Health",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Meditation has been shown to have numerous positive effects on both mental and physical health. From reducing stress and anxiety to improving sleep and focus, discover the many ways that meditation can help you live a happier and healthier life.",
-            },
-            {
-              type: "boolean",
-              key: "badgeCheck",
-              displayer: "Badge",
-              value: true,
-            },
-            {
-              type: "string",
-              key: "badge",
-              displayer: "Badge Text",
-              value: "NEW",
+              value: "Minimalist Magic: A Contemporary Studio Apartment",
             },
           ],
         },
         {
           type: "object",
-          key: "basic-badge",
-          displayer: "Basic",
+          key: "card",
+          displayer: "card",
           value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://demo.tagdiv.com/newspaper_interior_designer_pro/wp-content/uploads/2023/11/50-3-696x510.jpg"
+            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "The Importance of Time Management for Increased Productivity",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Time management is crucial for achieving your goals and maximizing productivity. Learn the essential strategies for effectively managing your time, including setting priorities, creating a schedule, and minimizing distractions. Start making the most of your time today!",
-            },
-            {
-              type: "boolean",
-              key: "badgeCheck",
-              displayer: "Badge",
-              value: true,
-            },
-            {
-              type: "string",
-              key: "badge",
-              displayer: "Badge Text",
-              value: "NEW",
+              value: "The Heritage Home: Restoring Charm in a Victorian House",
             },
           ],
         },
@@ -121,6 +110,37 @@ class Feature6 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 3,
+      max: 3,
+    });
+    
+    let button: TypeUsableComponentProps = {
+      type: "object",
+      key: "button",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "VIEW ALL CASE STUDIES",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Button Link",
+          value: "",
+        },
+      ],
+    };
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [JSON.parse(JSON.stringify(button))],
+      additionalParams: {
+        maxElementCount:  2
+      }
     });
   }
 
@@ -131,26 +151,43 @@ class Feature6 extends BaseFeature {
   render() {
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            {this.castToObject<IBasicBadge[]>("basic-card-badge").map(
-              (basic: any, index: number) => (
+    <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("content")}>
+            <div className={this.decorateCSS("header-title")}>{this.getPropValue("header")}</div>
+            <div className={this.decorateCSS("header-subtitle")}>{this.getPropValue("subHeader")}</div>
+
+            {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => (
                 <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
+                    width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
-                <div className={this.decorateCSS("basic-badge")} key={index}>
-                  <h3 className={this.decorateCSS("title")}>
-                    {basic.badgeCheck && (<span className={this.decorateCSS("badge")}>{basic.badge}</span>)}
-                    {basic.title}
-                  </h3>
-                  <p className={this.decorateCSS("long-text")}>{basic.description}</p>
+                    <div key={indexCards} className={this.decorateCSS("listed")}>
+                        <img className={this.decorateCSS("image")} src={card.image} alt=""></img>
+                        <div className={this.decorateCSS("image-shadow")}>
+                            <p className={this.decorateCSS("title")}>{card.title}</p>
+                        </div>
+                    </div>
                 </div>
-                </div>
-              )
-            )}
-          </div>
+            ))}
+
+        <div className={this.decorateCSS("button-position")}>
+              {this.castToObject<Buttons[]>("buttons").map(
+                (item: Buttons, index: number) => {
+                  return (
+                    <ComposerLink path={item.url} key={index}>
+                      <div className={this.decorateCSS("button")}>
+                        {item.buttonText}
+                      </div>
+                    </ComposerLink>
+                  );
+                })}
+
+            </div>
+
+            
         </div>
-      </div>
+    </div>
+</div>
+
     );
   }
 }
