@@ -53,7 +53,7 @@ class Feature6 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://demo.tagdiv.com/newspaper_interior_designer_pro/wp-content/uploads/2023/11/10-3-696x928.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668561f10181a1002c33af0e?alt=media",
             },
             {
               type: "string",
@@ -73,7 +73,7 @@ class Feature6 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://demo.tagdiv.com/newspaper_interior_designer_pro/wp-content/uploads/2023/11/9-3-696x614.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562190181a1002c33af16?alt=media",
             },
             {
               type: "string",
@@ -93,7 +93,7 @@ class Feature6 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://demo.tagdiv.com/newspaper_interior_designer_pro/wp-content/uploads/2023/11/50-3-696x510.jpg"
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562330181a1002c33af23?alt=media"
             },
             {
               type: "string",
