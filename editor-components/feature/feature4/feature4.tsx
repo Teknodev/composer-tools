@@ -1,18 +1,46 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature4.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Verticals = {
   title: string;
+  subtitle: string;
+  icon: string;
   description: string;
   image: string;
   buttonText: string;
   link: string;
 };
+
 class Feature4 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Gateway to Premium Services"
+    })
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Empower Solutions"
+    })
+    this.addProp({
+      type: "string",
+      key: "linkText",
+      displayer: "Link Text",
+      value: "Navigating possibilities"
+    })
+    this.addProp({
+      type: "page",
+      key: "link",
+      displayer: "Link",
+      value: ""
+    })
+
     this.addProp({
       type: "array",
       key: "vertical-card",
@@ -27,27 +55,39 @@ class Feature4 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Discover Stunning Travel Destinations",
+              value: "Customer Center",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaClipboardUser",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Sustainable Practices",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                " From exotic beaches to bustling cities, our website offers a range of travel destinations that are sure to inspire your next adventure. Browse our image cards to discover breathtaking scenery and hidden gems around the world.",
+                "From exotic beaches to bustling cities, our website offers.",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ad5268c3c2002cd2f986?alt=media&timestamp=1682585227355",
+                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-05.jpg",
             },
             {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "LEARN MORE",
+              value: "More Info",
             },
             {
               type: "page",
@@ -66,27 +106,39 @@ class Feature4 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Tips for Effective Time Management",
+              value: "Assistance",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdAssistant",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Cross-functional Team",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Time management is a critical skill for success in both personal and professional settings. In this information corner, we'll provide tips for effective time management, such as setting goals, prioritizing tasks, and avoiding distractions.",
+                "From exotic beaches to bustling cities, our website offers.",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8724f72de2002caaa6f7?alt=media&timestamp=1682605873914",
+                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-03.jpg",
             },
             {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "LEARN MORE",
+              value: "More Info",
             },
             {
               type: "page",
@@ -105,27 +157,141 @@ class Feature4 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Navigating the Job Search Process",
+              value: "Solutions Hub",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "RiQuestionAnswerFill",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Customer Engagement",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Finding a job can be a daunting process, especially in today's competitive job market. In this information corner, we'll offer tips for navigating the job search process, including how to craft a strong resume and cover letter, networking strategies, and interview preparation.",
+                "From exotic beaches to bustling cities, our website offers.",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a8724f72de2002caaa6f6?alt=media&timestamp=1682605873915",
+                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-10.jpg",
             },
             {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "LEARN MORE",
+              value: "More Info",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Button Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "vertical",
+          displayer: "Vertical",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Performance",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GrDocumentPerformance",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Efficient Full Solutions",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "From exotic beaches to bustling cities, our website offers.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-09.jpg",
+            },
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "More Info",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Button Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "vertical",
+          displayer: "Vertical",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Operational",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaNetworkWired",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Efficient User Experience",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "From exotic beaches to bustling cities, our website offers.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-01.jpg",
+            },
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "More Info",
             },
             {
               type: "page",
@@ -136,12 +302,6 @@ class Feature4 extends BaseFeature {
           ],
         },
       ],
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
     });
   }
 
@@ -154,25 +314,43 @@ class Feature4 extends BaseFeature {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
+            <div className={this.decorateCSS("featured-card")} style={{ width: "30%" }}>
+              <div>
+                <h5>{this.getPropValue("subtitle")}</h5>
+                <h2>{this.getPropValue("title")}</h2>
+                <a href={`${this.getProp("link").value}`}>{this.getPropValue("linkText")}</a>
+              </div>
+            </div>
+
             {this.castToObject<Verticals[]>("vertical-card").map(
               (vertical: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div className={this.decorateCSS("vertical")} key={index}>
-                  <img className={this.decorateCSS("image")} src={vertical.image} alt=""></img>
-                  <h3 className={this.decorateCSS("title")}>{vertical.title}</h3>
-                  <p className={this.decorateCSS("long-text")}>{vertical.description}</p>
+                <div key={index} className={this.decorateCSS("card-item-count")} style={{ width: "30%" }}>
+                  <div className={this.decorateCSS("vertical")}>
+                    <div className={this.decorateCSS("vertical-content")}>
+                      {vertical.icon && <div className={this.decorateCSS("icon")}>
+                        <ComposerIcon
+                          propsIcon={{ className: this.decorateCSS("Icon") }}
+                          name={vertical.icon}
+                        />
+                      </div>}
 
-                  <ComposerLink path={vertical.link}>
-                    <span className={this.decorateCSS("button")}>
-                      {vertical.buttonText}
-                    </span>
-                  </ComposerLink>
+                      {/* <img className={this.decorateCSS("icon")}
+                        src={vertical.icon}
+                        alt={vertical.title} /> */}
+
+
+                      <h3 className={this.decorateCSS("title")}>{vertical.title}</h3>
+                      <h5 className={this.decorateCSS("subtitle")}>{vertical.subtitle}</h5>
+                    </div>
+                  </div>
+                  <div className={this.decorateCSS("overlay")} style={{ backgroundImage: `url(${vertical.image})` }}>
+                    <div className={this.decorateCSS("overlay-content")}>
+                      <p className={this.decorateCSS("long-text")}>{vertical.description}</p>
+                      <a href={vertical.link}>{vertical.buttonText}</a>
+                    </div>
+                  </div>
                 </div>
-                </div>
-              )
-            )}
+              ))}
           </div>
         </div>
       </div>
