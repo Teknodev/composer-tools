@@ -6,7 +6,7 @@
         margin: auto;
         .wrapper {
             width: 100%;
-            padding: 20px;
+            //padding: 20px;
             display: flex;
             justify-content: space-between;
             gap: 20px;
@@ -27,12 +27,12 @@
                             justify-content: center;
                             align-items: center;
                             .img-div {
-                                width: 150px;
-                                height: 150px;
-                                border-radius: 50%;
+                                width: 1527px;
+                                height: 100vh;
                                 overflow: hidden;
                                 border: 1px solid #ccc;
                                 img {
+                                    
                                     width: 100%;
                                     height: 100%;
                                     object-fit: cover;
@@ -60,6 +60,41 @@
                                     margin-top: 23px;
                                 }
                             }
+                            .button {
+                                display: flex;
+                                justify-content: space-between;
+                                border-top: 1px solid rgb(10, 5, 5);
+                                margin-top: 30px;
+                                padding-top: 30px;
+                                padding-left: 10px;
+                                padding-right: 10px;
+                                .button-text {
+                                  cursor: pointer;
+                                  text-decoration: none;
+                                  text-align: center;
+                                  transition: 0.3s;
+                                  color: rgb(255, 255, 255);
+                                  background-color: var(--composer-secondary-color);
+                                  padding: 5px 30px;
+                                  border-radius: 6px;
+                                  border: 1px solid transparent;
+                                  width: max-content;
+                                  height: max-content;
+                                  font-weight: 400;
+                                  font-size: 1.1em;
+                                  margin-top: 22px;
+                                  &:hover {
+                                    color: var(--composer-primary-color);
+                                    background-color: transparent;
+                                    border: 1px solid var(--composer-primary-color);
+                      
+                                  }
+                                }
+                                .item-price{
+                                  font-size: 2rem;
+                                  color: var(--composer-font-color-primary);
+                                }
+                              }
                         }
                     }
                     .slick-next {
