@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature4.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Verticals = {
   title: string;
@@ -81,7 +82,7 @@ class Feature4 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-05.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a7acba6bbe002b63bb00?alt=media",
             },
             {
               type: "string",
@@ -132,7 +133,7 @@ class Feature4 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-03.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a820ba6bbe002b63bb80?alt=media",
             },
             {
               type: "string",
@@ -183,7 +184,7 @@ class Feature4 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-10.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a84aba6bbe002b63bb93?alt=media",
             },
             {
               type: "string",
@@ -234,7 +235,7 @@ class Feature4 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-09.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a86aba6bbe002b63bbb3?alt=media",
             },
             {
               type: "string",
@@ -285,7 +286,7 @@ class Feature4 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/focus-01.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a887ba6bbe002b63bbcc?alt=media",
             },
             {
               type: "string",
@@ -310,17 +311,29 @@ class Feature4 extends BaseFeature {
   }
 
   render() {
+    const featuredSubtitle = this.getPropValue("subtitle", { as_string: true })
+    const featuredTitle = this.getPropValue("title", { as_string: true })
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("featured-card")} style={{ width: "30%" }}>
-              <div>
-                <h5>{this.getPropValue("subtitle")}</h5>
-                <h2>{this.getPropValue("title")}</h2>
-                <a href={`${this.getProp("link").value}`}>{this.getPropValue("linkText")}</a>
+            {(featuredSubtitle || featuredTitle) &&
+              <div className={this.decorateCSS("featured-card")} style={{ width: "30%" }}>
+                {featuredSubtitle &&
+                  <h5 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h5>
+                }
+                {featuredTitle &&
+                  <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
+                }
+                <span className={this.decorateCSS("featured-card-link")}>
+                  <ComposerLink
+                    children={this.getPropValue("linkText")}
+                    path={this.getPropValue("link", { as_string: true })}
+                  />
+                </span>
               </div>
-            </div>
+            }
 
             {this.castToObject<Verticals[]>("vertical-card").map(
               (vertical: any, index: number) => (
@@ -333,12 +346,6 @@ class Feature4 extends BaseFeature {
                           name={vertical.icon}
                         />
                       </div>}
-
-                      {/* <img className={this.decorateCSS("icon")}
-                        src={vertical.icon}
-                        alt={vertical.title} /> */}
-
-
                       <h3 className={this.decorateCSS("title")}>{vertical.title}</h3>
                       <h5 className={this.decorateCSS("subtitle")}>{vertical.subtitle}</h5>
                     </div>
@@ -346,7 +353,12 @@ class Feature4 extends BaseFeature {
                   <div className={this.decorateCSS("overlay")} style={{ backgroundImage: `url(${vertical.image})` }}>
                     <div className={this.decorateCSS("overlay-content")}>
                       <p className={this.decorateCSS("long-text")}>{vertical.description}</p>
-                      <a href={vertical.link}>{vertical.buttonText}</a>
+                      <span className={this.decorateCSS("overlay-link")}>
+                        <ComposerLink
+                          children={vertical.buttonText}
+                          path={vertical.link}
+                        />
+                      </span>
                     </div>
                   </div>
                 </div>

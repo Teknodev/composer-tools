@@ -17,32 +17,30 @@
 
       .featured-card {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: start;
 
-        h2,
-        h5 {
-          text-transform: uppercase;
-        }
-
-        h5 {
+        .subtitle {
           color: var(--composer-primary-color);
           font-size: 1.4em;
           font-weight: 500;
           margin-bottom: 20px;
+          text-transform: uppercase;
         }
 
-        h2 {
+        .title {
           color: var(--composer-font-color-primary);
           font-size: 3em;
           font-weight: 500;
           margin-top: 0;
           margin-bottom: 15px;
+          text-transform: uppercase;
         }
 
-        a {
+        .featured-card-link {
           color: var(--composer-font-color-primary);
-          text-decoration: underline;
+          text-decoration: underline !important;
           font-size: 1.5em;
           font-weight: 400;
         }
@@ -86,11 +84,11 @@
         padding: 3em;
         color: var(--composer-font-color-secondary);
 
-        p {
+        .long-text {
           font-size: 1.2em;
         }
 
-        a {
+        .overlay-link {
           text-decoration: none;
           color: var(--composer-font-color-secondary);
           border: 1px solid var(--composer-font-color-secondary);
