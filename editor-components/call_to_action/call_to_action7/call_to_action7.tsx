@@ -16,7 +16,7 @@ class CallToAction7Page extends BaseCallToAction {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://template.canva.com/EADaopxBna4/1/0/251w-ujD6UPGa9hw.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a7beba6bbe002b63bb11?alt=media",
     });
     this.addProp({
       type: "string",
@@ -43,11 +43,11 @@ class CallToAction7Page extends BaseCallToAction {
   }
 
   render() {
-    const title = this.getPropValue("title") as string;
-    const image = this.getPropValue("image") as string;
-    const buttonText = this.getPropValue("buttonText") as string;
-    const link = this.getPropValue("link") as string;
-    const placeholder = this.getPropValue("placeholder") as string;
+    const title = this.getPropValue("title");
+    const image = this.getPropValue("image");
+    const buttonText = this.getPropValue("buttonText");
+    const link = this.getPropValue("link");
+    const placeholder = this.getPropValue("placeholder");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -62,11 +62,11 @@ class CallToAction7Page extends BaseCallToAction {
                     type="text"
                     id="email"
                     name="email"
-                    placeholder="Enter your E-Mail!"
+                    placeholder={placeholder}
                   />
                   <span className={this.decorateCSS("placeholder")}>
-                    {placeholder}
-                  </span>
+                  {placeholder}
+                    </span>    
                 </div>
                 <div className={this.decorateCSS("button-container")}>
                   <ComposerLink path={link}>

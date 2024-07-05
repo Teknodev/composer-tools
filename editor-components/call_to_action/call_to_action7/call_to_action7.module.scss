@@ -41,6 +41,13 @@
   margin-bottom: 20px;
 }
 
+.input-button-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px; 
+}
+
 .input-box,
 .button-container {
   width: 100%;
@@ -54,10 +61,12 @@ input {
   border-radius: 5px;
   border: transparent;
   width: 100%;
-  padding: 14px;
+  padding: 18px; 
   color: var(--composer-font-color-secondary);
   outline: none;
   transition: border-color 0.3s ease;
+  height: 55px;
+  font-size: 1.5rem;
 }
 
 input::placeholder {
@@ -74,8 +83,9 @@ input::placeholder {
 .placeholder {
   font-size: 15px;
   position: absolute;
-  top: 15px;
+  top: 50%;
   left: 10px;
+  transform: translateY(-50%);
   transition: all 0.3s ease;
   pointer-events: none;
   color: var(--composer-font-color-secondary);
@@ -83,9 +93,9 @@ input::placeholder {
 
 .input-box input:focus + .placeholder,
 .input-box input:not(:placeholder-shown) + .placeholder {
-  top: -10px;
-  font-size: 12px;
-  color: var(--composer-font-color-primary);
+  top: 10px;
+  font-size: 7.5px;
+  color: var(--composer-font-color-secondary);
 }
 
 input:-webkit-autofill {
@@ -101,13 +111,13 @@ input:-webkit-autofill {
   display: block;
   color: var(--composer-font-color-secondary);
   background-color: var(--composer-secondary-color);
-  padding: 15px;
+  padding: 15px 30px;
   border-radius: 6px;
   border: 1px solid transparent;
   font-size: 1.5rem;
   font-weight: 500;
   width: 100%;
-  height: 45px;
+  height: 55px; 
 }
 
 .button:hover {
@@ -149,6 +159,7 @@ input:-webkit-autofill {
     width: 100%;
     padding: 16px;
     font-size: 1.2rem;
+    height: 55px; 
   }
 
   .button-container {
@@ -161,6 +172,7 @@ input:-webkit-autofill {
     font-size: 1.2rem !important;
     padding: 12px;
     width: 100%;
+    height: 55px; 
   }
 
   .image {
@@ -183,7 +195,7 @@ input:-webkit-autofill {
 
   .image {
     margin-bottom: -150px;
-    margin-left: 75px;
+    margin-left: 200px;
     object-fit: cover;
     width: 350px !important;
     height: 500px !important;
@@ -191,7 +203,7 @@ input:-webkit-autofill {
 
   .call-to-action7 {
     padding: 30px 30px;
-    margin-left: 50px;
+    margin-left: 100px;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
@@ -213,7 +225,8 @@ input:-webkit-autofill {
   }
 
   .input-box input {
-    width: 300px;
+    width: 350px; 
+    height: 55px; 
   }
 
   .button-container {
@@ -224,5 +237,6 @@ input:-webkit-autofill {
   .button {
     width: auto;
     padding: 15px 30px;
+    height: 55px; 
   }
 }
