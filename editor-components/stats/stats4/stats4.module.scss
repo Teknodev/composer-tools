@@ -1,122 +1,170 @@
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
+  width: 100%;
+  padding: 50px 0;
+  background-color: var(--composer-html-background);
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    .stats-container {
+      width: 80%;
+      min-height: 400px;
+      padding: 2em;
+
+      .upper-container {
         display: flex;
-        margin: auto;
-        .stats4-page {
-            display: block;
-            width: 100%;
-            padding: 0 100px;
-            .bottom-child {
-                display: flex;
-                margin-top: 50px;
-                margin: auto;
-                border-radius: 6px;
-                padding: 40px;
-                .title {
-                    display: block;
-                    .title-h1 {
-                        font-size: 3.5rem;
-                        margin: 0 20px 10px 0;
-                        color: var(--composer-primary-color);
-                    }
-                    .description {
-                        width: 70%;
-                        font-weight: 100;
-                        font-size: 1.8rem;
-                        opacity: 0.8;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-                .card {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 20px;
-                    height: 600px;
-                    border-radius: 6px;
-                    padding: 40px;
-                    width: 70%;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    .text-child {
-                        display: flex;
-                        align-items: center;
-                        text-align: center;
-                        justify-content: space-between;
-                        background-color: var(--composer-primary-color);
-                        color: white;
-                        padding: 5px 20px;
-                        border-radius: 10px;
-                        margin-top: 350px;
-                        .top-card-title {
-                            font-size: 2rem;
-                            margin: 0;
-                        }
-                        .top-card-description {
-                            width: 40%;
-                            font-size: 1.5rem;
-                        }
-                    }
-                    .text-child-blur {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        text-align: center;
-                        color: white;
-                        padding: 5px 20px;
-                        border-radius: 10px;
-                        background-size: cover;
-                        background: linear-gradient( 180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
-                        backdrop-filter: blur(10px);
-                        .bottom-card-title {
-                            font-size: 2rem;
-                            margin: 0;
-                        }
-                        .bottom-card-description {
-                            width: 40%;
-                            font-size: 1.5rem;
-                        }
-                    }
-                }
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+
+        .upper-container-main {
+          width: 100%;
+
+          .main-description {
+            color: var(--composer-font-color-primary);
+            font-size: 2.8em;
+            margin-top: 0;
+            font-weight: 600;
+          }
+
+          .main-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .title-line {
+              display: inline-block;
+              width: 25px;
+              height: 2px;
+              background-color: var(--composer-primary-color);
             }
+
+            .title {
+              text-transform: uppercase;
+              color: var(--composer-primary-color);
+            }
+          }
         }
+
+        .faq {
+          width: 100%;
+          color: var(--composer-font-color-primary);
+
+          .faq-item {
+
+            .faq-item-header {
+              display: flex !important;
+              justify-content: space-between !important;
+              align-items: center !important;
+              border-bottom: 1px solid var(--composer-primary-color) !important;
+
+              h3 {
+                font-size: 1.4em;
+                font-weight: 500;
+              }
+
+              .faq-item-button {
+                border: none;
+                font-size: 1.2em;
+                background: none;
+                color: var(--composer-primary-color);
+              }
+            }
+
+            .faq-item-content {
+              overflow: hidden;
+              max-height: 0;
+              transition: max-height 500ms ease-out;
+              font-size: 1.3em;
+              margin: 10px 0 0 0;
+            }
+
+            .faq-item-content.show-faq-item {
+              max-height: 400px;
+              transition: max-height 500ms ease-in;
+            }
+          }
+        }
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 40px;
+        min-height: 0;
+        min-width: 0;
+
+        .stat-item {
+          overflow: hidden;
+          min-width: 0;
+
+          .stat-item-title {
+            color: var(--composer-primary-color);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            margin-top: 0;
+            overflow-wrap: break-word;
+          }
+
+          .stat-item-content {
+            font-size: 1.4em;
+            color: var(--composer-font-color-primary);
+            margin-top: 0;
+            margin-bottom: 10px;
+            overflow-wrap: break-word;
+          }
+
+          .stat-item-stat-value {
+            color: var(--composer-primary-color);
+            margin-top: 0;
+            font-size: 3em;
+            font-weight: 600;
+
+            .stat-value-icon {
+              font-size: 25px;
+            }
+          }
+        }
+      }
     }
+  }
 }
 
-@media only screen and (max-width: 1300px) {
-    .container {
-        gap: 60px;
-        .max-content {
-            flex-direction: column;
-            .stats4-page {
-                text-align: center;
-                margin: 0;
-                padding: 0;
-                .bottom-child {
-                    display: block;
-                    margin: 0 auto;
-                    padding: 20px;
-                    .title {
-                        width: 100%;
-                        .title-h1 {
-                            width: 100%;
-                            margin: 20px 0;
-                        }
-                        .description {
-                            width: 100%;
-                        }
-                    }
-                    .card {
-                        min-width: 100%;
-                        max-width: 100%;
-                        .text-child {
-                            margin-top: 300px;
-                        }
-                    }
-                }
-            }
-        }
-    }
+@media only screen and (max-width: 968px) {
+  .container .max-content {
+    flex-direction: column;
+  }
+
+  .container .max-content .stats-container .upper-container {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .container .max-content .stats-container .upper-container main {
+    width: 100%;
+  }
+
+  .container .max-content .stats-container .upper-container .faq {
+    width: 100%;
+  }
+
+  .container .max-content .stats-container .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container .max-content .stats-container .stats {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .max-content .stats-container {
+    width: 100%;
+  }
 }
