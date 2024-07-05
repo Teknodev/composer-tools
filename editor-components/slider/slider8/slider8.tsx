@@ -340,8 +340,7 @@ class Slider8 extends BaseSlider {
                           <h1 className={this.decorateCSS("first-header")}>
                             {item.imagesubtitle}
                           </h1>
-                          <h3 className={this.decorateCSS("item-title")}>{item.imagetitle}</h3>
-                          <p className={this.decorateCSS("item-description")}>{item.imagedescription}</p>
+                        
                         </div>
                         <div className={this.decorateCSS("")}>
                         <div className={this.decorateCSS("arrows")}>

@@ -44,6 +44,8 @@
                                 justify-content: center;
                                 align-items: center;
                                 .first-header {
+                                    position: absolute;
+                                    top: 30px;
                                     text-transform: capitalize;
                                     font-weight: revert;
                                     font-size: 3.5rem;
@@ -58,6 +60,8 @@
                                     color: var(--composer-font-color-primary);
                                     font-size: 1.2rem;
                                     margin-top: 23px;
+                                    position: absolute;
+
                                 }
                             }
                             .button {
