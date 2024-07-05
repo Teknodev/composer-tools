@@ -178,11 +178,18 @@ input:-webkit-autofill {
   .image {
     order: 2;
     margin-top: 50px;
-    margin-bottom: -175px;
+    margin-bottom: -125px;
     border-radius: 6px;
-    width: 75%;
-    height: 75%;
+    width: 75%; 
+    height: 75%; 
     object-fit: cover;
+  }
+}
+
+@media only screen and (min-width: 450px){
+  .image {
+    width: 55%; 
+    height: 55%;
   }
 }
 
@@ -203,7 +210,7 @@ input:-webkit-autofill {
 
   .call-to-action7 {
     padding: 30px 30px;
-    margin-left: 100px;
+    margin-left: 25px;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
