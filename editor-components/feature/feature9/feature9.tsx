@@ -1,63 +1,122 @@
-import * as React from "react";
+import React, { useState,useEffect, useRef } from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
+import { colors } from "@mui/material";
+import { object, string } from "yup";
 
-type Horizontals = {
+
+type VerticalItem = {
+  id: string;
   title: string;
   description: string;
-  buttonText: string;
   image: string;
-  link: string;
 };
+
+type Verticals = {
+  id: string;
+  horizentals: VerticalItem[];
+};
+
+type ObserverCardProps = {
+  vertical_item: VerticalItem;
+  onIntersect: (id: string,isVisible:boolean) => void;
+};
+
+const ObserverCard: React.FC<ObserverCardProps> = ({ vertical_item, onIntersect }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  let status=0;
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        console.log("intersect1  "+vertical_item.id)
+        if (entry.isIntersecting) {
+          cardRef.current?.classList.add(styles.visible);
+          if(typeof(vertical_item.id)!="string"){
+            onIntersect("1",true);
+          }
+          else{
+            onIntersect(vertical_item.id,true);
+          }
+
+        } else {
+          cardRef.current?.classList.remove(styles.visible,);
+          onIntersect("",false);
+
+        }
+      },
+      { threshold:1,
+      }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, [vertical_item.id, onIntersect]);
+
+  return (
+    <div ref={cardRef} className={styles.card_item}>
+      <img alt="" className={styles.image} src={vertical_item.image}></img>
+      <h4 className={styles.title}>{vertical_item.title}</h4>
+      <h5 className={styles.title_description}>{vertical_item.description}</h5>
+      <br /><br /><br /><br /><br />      <br /><br /><br /><br />
+
+    </div>
+  );
+};
+
+let count="e"
+
 class Feature9 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "array",
-      key: "horizontal",
+      key: "vertical_item",
       displayer: "Card",
       value: [
         {
+          id: "1",
           type: "object",
           key: "horizontals",
           displayer: "Horizontal",
           value: [
             {
               type: "string",
+              key: "id",
+              value: "1",
+              displayer: "Id",
+            },
+            {
+              type: "string",
               key: "title",
-              value: "5 Essential Tips for Starting a Small Business",
+              value: "Discovery",
               displayer: "Title",
             },
             {
               type: "string",
               key: "description",
               value:
-                "Starting a small business can be both exciting and challenging. If you're thinking about starting your own business, check out these 5 essential tips that can help you get started on the right foot.",
+                "The first thing we do is conduct comprehensive research to understand your business and users' goals.We also identify your competition's strengths and weaknesses and define a plan to use all of the findings in your favor.",
               displayer: "Description",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
             },
             {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa361?alt=media&timestamp=1682597705111",
+                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_light_bulb_d6acf2aba1.svg",
               displayer: "Image",
             },
           ],
         },
         {
+          id: "2",
           type: "object",
           key: "horizontals",
           displayer: "Horizontal",
@@ -65,38 +124,27 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              value: "Top 5 Benefits of Yoga for Mind and Body",
+              value: "Foundation",
               displayer: "Title",
             },
             {
               type: "string",
               key: "description",
               value:
-                "Yoga is more than just a physical exercise - it's a practice that can benefit both your mind and body. In this article, we'll explore the top 5 benefits of yoga, including improved flexibility.",
+                "Based on research findings, we start setting up navigation and content hierarchy with the primary goal of making the whole experience as intuitive as possible.",
               displayer: "Description",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
             },
             {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa360?alt=media&timestamp=1682597705111",
+                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_check_bubble_a0da74b8bf.svg",
               displayer: "Image",
             },
           ],
         },
         {
+          id: "3",
           type: "object",
           key: "horizontals",
           displayer: "Horizontal",
@@ -104,33 +152,77 @@ class Feature9 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              value: "Top 5 Destinations for a Winter Getaway",
+              value: "Prototyping",
               displayer: "Title",
             },
             {
               type: "string",
               key: "description",
               value:
-                "Are you dreaming of a winter getaway? Look no further than these top 5 destinations for the perfect winter escape. From hitting the slopes in the Rocky Mountains for everyone.",
+                "We create a digital version of the best ideas from previous phase and create a medium-fidelity prototype.",
               displayer: "Description",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
             },
             {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa35f?alt=media&timestamp=1682597705111",
+                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_layers_03432568ec.svg",
+              displayer: "Image",
+            },
+          ],
+        },
+        {
+          id: "4",
+          type: "object",
+          key: "horizontals",
+          displayer: "Horizontal",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "Design",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "Our design process is about making simple but eye-catching experiences. The primary goal is to achieve the wow factor and set you apart with that premium look.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_start_burst_d46533a76e.svg",
+              displayer: "Image",
+            },
+          ],
+        },
+        {
+          id: "5",
+          type: "object",
+          key: "horizontals",
+          displayer: "Horizontal",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "Development",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "By leveraging the latest technologies, we share your brand and products with the world while focusing on a perfect visual output through stable and high-performing code.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value:
+                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_code_f3f0f45b00.svg",
               displayer: "Image",
             },
           ],
@@ -138,50 +230,55 @@ class Feature9 extends BaseFeature {
       ],
     });
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
+      type: "string",
+      key: "left-side-title",
+      displayer: "Title",
+      value: "Our process of building a successful digital product.",
     });
+    
   }
 
   getName(): string {
     return "Feature 9";
   }
-
   render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {this.castToObject<Horizontals[]>("horizontal").map(
-              (horizontals: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div className={this.decorateCSS("horizontal")} key={index}>
-                  <img
-                    alt=""
-                    className={this.decorateCSS("image")}
-                    src={horizontals.image}
-                  ></img>
-                  <div className={this.decorateCSS("block")}>
-                    <h3 className={this.decorateCSS("title")}>
-                      {horizontals.title}
-                    </h3>
-                    <p className={this.decorateCSS("title-description")}>
-                      {horizontals.description}
-                    </p>
-                    <ComposerLink path={horizontals.link}>
-                      <span className={this.decorateCSS("button")}>
-                        {horizontals.buttonText}
-                      </span>
-                    </ComposerLink>
-                  </div>
-                </div>
-                </div>
-              )
-            )}
+            <div className={this.decorateCSS("left-content")}>
+              <h1 className={this.decorateCSS("left_content_title")}>
+                {this.getPropValue("left-side-title")}
+              </h1>
+            </div>
+            <div className={this.decorateCSS("right-content")}>
+              <h4 id="counter" className={this.decorateCSS("counter")}></h4>
+
+              {this.castToObject<VerticalItem[]>("vertical_item").map(
+                (vertical_item: VerticalItem, index: number) => (
+                  <ObserverCard
+                  key={index}
+                  vertical_item={vertical_item}
+                  onIntersect={(id: string,isVisible:boolean) => {
+                    const counterElement = document.getElementById("counter");
+                    if(isVisible){
+                      counterElement.classList.add(this.decorateCSS("countervisible"))
+                    }
+                    else{
+                      counterElement.classList.remove(this.decorateCSS("countervisible"))
+                    }
+                    if (counterElement) {
+                      counterElement.innerText = id;
+                      counterElement.classList.add("changed");
+                      setTimeout(() => {
+                        counterElement.classList.remove("changed");
+                      }, 3000);
+                    }
+                  }}
+                />
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>
