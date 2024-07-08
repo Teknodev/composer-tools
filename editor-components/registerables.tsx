@@ -203,12 +203,14 @@ import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import NavbarComponent9 from "./navigators/navbar9/navbar9";
 import ImageGalleryCompanent1 from "./Image_gallery/image_gallery_1/image-gallery1";
+import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
+    new NotificationModal1(),
     new DownloadComponent1(),
     new DownloadComponent2(),
     new DownloadComponent3(),

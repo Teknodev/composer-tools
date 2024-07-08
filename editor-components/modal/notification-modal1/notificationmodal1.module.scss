@@ -1,0 +1,99 @@
+.container {
+  width: 100%;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    width: var(--composer-content-width);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+      max-height: 650px;
+      border-radius: 15px;
+      box-shadow: var(--composer-box-shadow);
+      background: white;
+
+      .image-container {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+
+        .image {
+          width: 100%;
+          height: 80px;
+        }
+
+        .first-header {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          text-align: center;
+          margin: auto;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-size: 1.2rem;
+        }
+      }
+
+      .second-header {
+        text-align: center;
+        font-size: 1.5rem;
+        color: red;
+        margin-top: 10px;
+        padding: 20px;
+      }
+
+      .notice-content {
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: bold;
+        justify-content: center;
+        color: gray;
+        margin-left: 50px;
+        margin-right: 50px;
+        
+        .highlight {
+          color: blue;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .button-background {
+      width: 100%;
+      padding: 20px;
+      background-color: rgba(230, 230, 232, 0.447);
+      border-radius: 0 0 15px 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around; 
+      align-items: center;
+      margin-top: 20px; 
+      text-align: center;
+
+      .button {
+        background-color: rgb(28, 143, 243);
+        color: white;
+        padding: 10px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      //  margin: 0 10px; /* Düzelttim: Butonlar arasındaki boşluk */
+
+        &:hover {
+          background-color: darkblue;
+        }
+      }
+    }
+  }
+}

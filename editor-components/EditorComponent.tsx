@@ -78,7 +78,7 @@ export enum CATEGORIES {
   STATS = "stats",
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
-  LOCATION = "Location",
+  LOCATION = "Location",  
 }
 
 export abstract class Component
