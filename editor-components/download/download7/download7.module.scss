@@ -21,6 +21,7 @@
         justify-content: center;
         align-items: center;
         bottom: 0;
+        padding: 20px;
 
         .contentTitle,
         .description,
@@ -34,7 +35,8 @@
           font-size: 18px;
           font-weight: 600;
           display: flex;
-          margin-bottom: 10px;
+          justify-content: center;
+          align-items: center;
         }
         .description {
           color: black;
@@ -49,9 +51,9 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          gap: 10px;
+          gap: 20px;
           width: 100%;
-          margin: 20px;
+          margin-bottom: 30px;
 
           .button-group-left,
           .button-group-right {
@@ -59,7 +61,7 @@
             justify-content: center;
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 20px;
             .button {
               padding: 20px 20px;
               background-color: var(--composer-secondary-color);
@@ -73,10 +75,14 @@
               min-width: 300px;
               color: #fff;
               gap: 7px;
+              transition: transform 0.5s ease-in-out;
               .button-icon {
                 width: 25px;
                 height: 25px;
               }
+            }
+            .button:hover {
+              transform: scale(1.1);
             }
           }
         }

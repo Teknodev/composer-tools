@@ -62,7 +62,7 @@ class Download7 extends BaseDownload {
             {
               type: "icon",
               key: "buttonIcon",
-              displayer: "In Button Icon",
+              displayer: "Button Icon",
               value: "FaAndroid",
             },
           ],
@@ -97,7 +97,7 @@ class Download7 extends BaseDownload {
             {
               type: "icon",
               key: "buttonIcon",
-              displayer: "In Button Icon",
+              displayer: "Button Icon",
               value: "FaApple",
             },
           ],
@@ -107,6 +107,13 @@ class Download7 extends BaseDownload {
         maxElementCount: 2,
       },
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "enableAnimation",
+      displayer: "Enable Animation",
+      value: true,
+    });
   }
 
   getName(): string {
@@ -114,20 +121,26 @@ class Download7 extends BaseDownload {
   }
 
   render() {
-    setTimeout(() => {
-      const content = document.querySelector(`.${this.decorateCSS("content")}`);
-      if (content) {
-        const elements = content.querySelectorAll(
-          `.${this.decorateCSS("contentTitle")}, .${this.decorateCSS(
-            "description"
-          )}, .${this.decorateCSS("button-groups")}`
-        );
+    const enableAnimation = this.getPropValue("enableAnimation");
 
-        elements.forEach((el, index) => {
-          setTimeout(() => {
-            (el as HTMLElement).style.transform = "translateY(0)";
-          }, index * 200);
-        });
+    setTimeout(() => {
+      if (enableAnimation) {
+        const content = document.querySelector(
+          `.${this.decorateCSS("content")}`
+        );
+        if (content) {
+          const elements = content.querySelectorAll(
+            `.${this.decorateCSS("contentTitle")}, .${this.decorateCSS(
+              "description"
+            )}, .${this.decorateCSS("button-groups")}`
+          );
+
+          elements.forEach((el, index) => {
+            setTimeout(() => {
+              (el as HTMLElement).style.transform = "translateY(0)";
+            }, index * 200);
+          });
+        }
       }
     }, 100);
     return (
