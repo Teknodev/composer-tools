@@ -2,13 +2,14 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-//TODO: index 0 'ı array dışına çıkart ve cssi düzenle
+
 type IMessages = {
   title: string;
-  button:string;
+  button: string;
   description?: string;
   icon?: string;
   iconColor?: string;
+  backgroundColor: string;
 };
 
 class Feature12 extends BaseFeature {
@@ -17,49 +18,46 @@ class Feature12 extends BaseFeature {
     super(props, styles);
     this.addProp({
       type: "string",
-      key:"upper-title",
-      displayer:"Upper Title",
-      value:"BEST FEATURES"
-    })
+      key: "upper-title",
+      displayer: "Upper Title",
+      value: "BEST FEATURES"
+    });
     this.addProp({
       type: "string",
-      key:"title",
-      displayer:"Title",
-      value:"SERVICES"
-    })
+      key: "title",
+      displayer: "Title",
+      value: "SERVICES"
+    });
     this.addProp({
       type: "string",
-      key:"title-backing-text",
-      displayer:"Title Backing Text",
-      value:"services"
-    })
+      key: "title-backing-text",
+      displayer: "Title Backing Text",
+      value: "services"
+    });
     this.addProp({
-      
-        type: "object",
-        key: "message", //TODO:BURASI
-        displayer: "Message",
-        value: [
-          {
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Best Of Our Features",
-          },
-          {
-            type: "string",
-            key: "button",
-            displayer: "Button",
-            value: "SEE ALL SERVICES",
-          },
-        ],
-      
-    })
+      type: "object",
+      key: "message",
+      displayer: "Message",
+      value: [
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Best Of Our Features",
+        },
+        {
+          type: "string",
+          key: "button",
+          displayer: "Button",
+          value: "SEE ALL SERVICES",
+        },
+      ],
+    });
     this.addProp({
       type: "array",
       key: "message-card",
       displayer: "Message Card",
       value: [
-     
         {
           type: "object",
           key: "message",
@@ -83,7 +81,12 @@ class Feature12 extends BaseFeature {
               displayer: "Icon",
               value: "PiPaintBucketFill",
             },
-          
+            {
+              type: "color",
+              key: "backgroundColor",
+              displayer: "Background Color",
+              value: "#181b21",
+            }
           ],
         },
         {
@@ -109,7 +112,12 @@ class Feature12 extends BaseFeature {
               displayer: "Icon",
               value: "IoPhonePortrait",
             },
-          
+            {
+              type: "color",
+              key: "backgroundColor",
+              displayer: "Background Color",
+              value: "#1a1e25",
+            }
           ],
         },
         {
@@ -135,16 +143,23 @@ class Feature12 extends BaseFeature {
               displayer: "Icon",
               value: "HiPresentationChartLine",
             },
-          
+            {
+              type: "color",
+              key: "backgroundColor",
+              displayer: "Background Color",
+              value: "#20242c",
+            }
           ],
         },
       ],
     });
+
+    const val = this.getPropValue("itemCount") > 5 ? 5 : 4;
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 4,
+      value: val,
     });
   }
 
@@ -153,12 +168,17 @@ class Feature12 extends BaseFeature {
   }
 
   render() {
-    const upperTitle=this.getPropValue("upper-title");
-    const title=this.getPropValue("title");
-    const titleBackingText=this.getPropValue("title-backing-text")
+    const upperTitle = this.getPropValue("upper-title");
+    const title = this.getPropValue("title");
+    const titleBackingText = this.getPropValue("title-backing-text");
     const itemCount = this.getPropValue("itemCount");
     const messageCards = this.castToObject<IMessages[]>("message-card");
-    const firstItem=this.getPropValue("message");
+    const firstItem = this.getPropValue("message");
+
+    if (itemCount > 5) {
+      this.setProp("itemCount", 5);
+    }
+
     return (
       <div className={this.decorateCSS("container")} style={{ paddingBottom: "0px" }}>
         <div className={this.decorateCSS("upper-title")} style={{ fontSize: "1.2em", textAlign: "center" }}>
@@ -171,48 +191,46 @@ class Feature12 extends BaseFeature {
           {title}
         </div>
         <div className={this.decorateCSS("max-content")} style={{ marginTop: "20px" }}>
-          
           <div className={this.decorateCSS("content")}>
-          {firstItem.length > 0 && (
-          <div className={this.decorateCSS("card-item-first")} style={{
-            width: `${100 / itemCount}%`,
-            marginBottom: "100px",
-            height:"50vh"
-          }}>
-            <div className={this.decorateCSS("blurry-background")}></div>
-            <h3 className={this.decorateCSS("title")}>{firstItem[0].value}</h3>
-            <button className={this.decorateCSS("button")} style={{ marginTop: "20px" }}>
-              {firstItem[1].value}
-            </button>
-          </div>
-        )}
+            {firstItem.length > 0 && (
+              <div className={this.decorateCSS("card-item-first")} style={{
+                width: `${100 / itemCount}%`,
+                marginBottom: "100px",
+                height: "50vh"
+              }}>
+                <div className={this.decorateCSS("blurry-background")}></div>
+                <h3 className={this.decorateCSS("title")}>{firstItem[0].value}</h3>
+                <button className={this.decorateCSS("button")} style={{ marginTop: "20px" }}>
+                  {firstItem[1].value}
+                </button>
+              </div>
+            )}
 
             {messageCards.map((message: IMessages, index: number) => {
               const shouldRender = message.title || message.description || message.button || message.icon;
-              
+
               if (shouldRender) {
                 return (
                   <div
                     className={`
-                      ${this.decorateCSS( "card-item-count")}
-                      ${this.decorateCSS(`card-item-${index%3}`)}
+                      ${this.decorateCSS("card-item-count")}
+                      ${this.decorateCSS(`card-item-${index % 3}`)}
                     `}
                     style={{
                       width: `${100 / itemCount}%`,
                       marginBottom: "100px",
-                      height:"50vh"
+                      height: "50vh",
+                      backgroundColor: message.backgroundColor,
                     }}
                     key={index}
                   >
-                    {  
-                      <div className={this.decorateCSS("message")}>
-                        <div>
-                          <ComposerIcon propsIcon={{ className: this.decorateCSS("Icon") }} name={message.icon} />
-                        </div>
-                        <h3 className={this.decorateCSS("title")}>{message.title}</h3>
-                        <p className={this.decorateCSS("long-text")}>{message.description}</p>
+                    <div className={this.decorateCSS("message")}>
+                      <div>
+                        <ComposerIcon propsIcon={{ className: this.decorateCSS("Icon") }} name={message.icon} />
                       </div>
-                    }
+                      <h3 className={this.decorateCSS("title")}>{message.title}</h3>
+                      <p className={this.decorateCSS("long-text")}>{message.description}</p>
+                    </div>
                   </div>
                 );
               } else {
@@ -224,7 +242,6 @@ class Feature12 extends BaseFeature {
       </div>
     );
   }
-  
 }
 
 export default Feature12;
