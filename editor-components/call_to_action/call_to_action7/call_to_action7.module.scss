@@ -1,3 +1,15 @@
+@keyframes fadeInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(25%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
 .container {
   width: 100%;
   padding: 50px 0;
@@ -22,6 +34,7 @@
   height: 100%;
   width: 500px;
   object-fit: cover;
+  animation: fadeInFromRight 1s ease-out forwards;
 }
 
 .call-to-action7 {
@@ -48,7 +61,8 @@
   gap: 10px; 
 }
 
-.input-box{
+.input-box,
+.button-container {
   width: 100%;
   position: relative;
 }
@@ -103,7 +117,6 @@ input:-webkit-autofill {
 }
 
 .button {
-  position: relative;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
@@ -118,15 +131,14 @@ input:-webkit-autofill {
   font-weight: 500;
   width: 100%;
   height: 55px; 
-  &:hover{
-    background-color: transparent;
-    color: var(--composer-font-color-primary);
-    border: 1px solid;
-    border-color: var(--composer-secondary-color);
-  }
 }
 
-
+.button:hover {
+  background-color: transparent;
+  color: var(--composer-font-color-primary);
+  border: 1px solid;
+  border-color: var(--composer-secondary-color);
+}
 
 @media only screen and (max-width: 768px) {
   .container {
@@ -163,11 +175,13 @@ input:-webkit-autofill {
     height: 55px; 
   }
 
-  
-
-  .button {
+  .button-container {
     order: 1;
     margin-top: 10px;
+    width: 100%;
+  }
+
+  .button {
     font-size: 1.2rem !important;
     padding: 12px;
     width: 100%;
@@ -235,8 +249,12 @@ input:-webkit-autofill {
     height: 55px; 
   }
 
-  .button {
+  .button-container {
     margin-left: 10px;
+    width: auto;
+  }
+
+  .button {
     width: auto;
     padding: 15px 30px;
     height: 55px; 
