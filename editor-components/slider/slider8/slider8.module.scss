@@ -20,47 +20,52 @@
         width: 100%;
         margin: auto;
 
-        > div > ul {
+        .dots{
           position: absolute;
-          top: 50%;
+          top: 30%;
           display: block;
           padding: 0;
-          margin: 0;
+          margin-right: 125px;
           list-style: none;
           text-align: center;
           right: 0;
-          transform: rotate(90deg);
+          transform: translateY(-50%);
           bottom: auto;
           width: auto;
 
-          > li button:before {
-            font-family: 'slick';
-            font-size: 6px;
-            line-height: 20px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            content: '•';
-            text-align: center;
-            opacity: 1;
-            color: white;
+          li {
+            button {
+              color: transparent;
+              position: relative;
+              background:none;
+              border: none;
+              margin: 10px;
+              padding: 10px;
+              width: 20px;
+              height: 20px;
+              &::before {
+                content: "•";
+                color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: 0.3s;
+                font-size: 1rem;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
           }
-          > li.slick-active > button:before {
 
-            color: black;
-            border: 2px solid white;
-            border-radius: 50%;
-            border-color: white;
+        }
 
-          }
-          
-          >li > button {
-            opacity: 1;
-          }
-
-          
+        .dots :global(li.slick-active) button {
+          border: 1px solid white;
+          border-radius: 50%;
         }
 
         .carousel {
@@ -114,6 +119,7 @@
                   background-position: center;
                   object-fit: cover;
                   z-index: 0;
+                  background-color: rgba(0, 0, 0, 0.4);
                 }
 
                 .item-title {
@@ -134,7 +140,7 @@
                   width: 100%;
                   margin-left: 50px;
                   margin-bottom: 50px;
-                  flex-direction: column;
+                  flex-direction: row;
                   flex-wrap: wrap;
                   gap: 20px;
                   z-index: 1;
@@ -259,17 +265,9 @@
         gap: 10px;
 
         .slider-parent {
-          > div > ul {
-            right: auto;
-            transform: rotate(0deg);
-            top: auto;
-            bottom: 0;
-
-            > li {
-              width: 15px;
-              height: 15px;
-              margin: 0 3px;
-            }
+          .dots {
+            margin-right: 20px;
+            margin-left: 50px;
           }
 
           .carousel {
@@ -333,16 +331,20 @@
         gap: 5px;
 
         .slider-parent {
-          > div > ul {
+          .dots {
+            margin-left: auto;
+            rotate: 90deg;
+            top: 80%;
             right: auto;
-            transform: rotate(0deg);
-            top: auto;
-            bottom: 0;
+            left: 0;
 
-            > li {
-              width: 10px;
-              height: 10px;
-              margin: 0 2px;
+            li {
+              button {
+                &::before {
+                  width: 5px;
+                  height: 5px;
+                }
+              }
             }
           }
 
@@ -354,7 +356,6 @@
 
                   &::before,
                   &::after {
-                    margin-left: 20px;
                     margin-top: -175px;
                   }
 
@@ -364,13 +365,11 @@
                   }
 
                   .item-title {
-                    margin-left: 20px;
                     margin-top:30px;
                     font-size: 3rem;
                   }
 
                   .buttons {
-                    margin-left: 10px;
                     margin-bottom: 20px;
 
                     .button {

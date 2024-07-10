@@ -15,7 +15,7 @@ type Card = {
 };
 
 type Button = {
-  buttonText: string;
+  buttonText: JSX.Element;
   url: string;
   buttonIcon: string;
 };
@@ -110,7 +110,7 @@ class Slider8 extends BaseSlider {
               type: "string",
               key: "imagetitle",
               displayer: "Image Title",
-              value: "The LightHouse",
+              value: "The Light House",
             },
             {
               type: "page",
@@ -208,33 +208,31 @@ class Slider8 extends BaseSlider {
     });
 
     this.addProp({
-      type: "array",
-      key: "nav-buttons",
-      displayer: "Nav Buttons",
+      type: "object",
+      key: "leftNavButton",
+      displayer: "Left Button",
       value: [
         {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "icon",
-              key: "prevIcon",
-              displayer: "Button Icon",
-              value: "FaArrowLeftLong",
-            },
-            {
-              type: "icon",
-              key: "nextIcon",
-              displayer: "Button Icon",
-              value: "FaArrowRightLong",
-            },
-          ],
+          type: "icon",
+          key: "icon",
+          displayer: "Button Icon",
+          value: "FaArrowLeftLong",
         },
       ],
-      additionalParams: {
-        maxElementCount: 2,
-      },
+    });
+
+    this.addProp({
+      type: "object",
+      key: "rightNavButton",
+      displayer: "Right Button",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Button Icon",
+          value: "FaArrowRightLong",
+        },
+      ],
     });
 
     this.setComponentState("slider-ref", React.createRef());
@@ -256,8 +254,9 @@ class Slider8 extends BaseSlider {
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
+      dotsClass: this.decorateCSS("dots"),
     };
-
+    console.log(this.getPropValue("rightNavButton"));
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -286,67 +285,66 @@ class Slider8 extends BaseSlider {
                               className={this.decorateCSS("image")}
                               style={{ backgroundImage: `url(${item.image})` }}
                             >
+                              <div style={{ width: "100%", height: "100%", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+                              </div>
                             </div>
                             <h3 className={this.decorateCSS("item-title")}>
                               {item.imagetitle}
                             </h3>
                             <div className={this.decorateCSS("buttons")}>
                               {this.castToObject<Button[]>("buttons").map(
-                                (button: Button, index: number) => (
-                                  <ComposerLink
-                                    key={`dw-7-btn-left-${index}`}
-                                    path={button.url}
-                                  >
-                                    <button className={this.decorateCSS("button")}>
-                                      {button.buttonText}
-                                      <ComposerIcon
-                                        propsIcon={{
-                                          className: this.decorateCSS("button-icon"),
-                                        }}
-                                        name={button.buttonIcon}
-                                      />
-                                    </button>
-                                  </ComposerLink>
-                                )
+                                (button: Button, index: number) => {
+                                  console.log(this.castToString(button.buttonText))
+
+                                  if (this.castToString(button.buttonText))
+                                    return (
+                                      <ComposerLink
+                                        key={`dw-7-btn-left-${index}`}
+                                        path={button.url}
+                                      >
+                                        <button className={this.decorateCSS("button")}>
+                                          {button.buttonText}
+                                          <ComposerIcon
+                                            propsIcon={{
+                                              className: this.decorateCSS("button-icon"),
+                                            }}
+                                            name={button.buttonIcon}
+                                          />
+                                        </button>
+                                      </ComposerLink>
+                                    )
+                                }
                               )}
                             </div>
                             <div className={this.decorateCSS("nav-buttons")}>
-                              {this.castToObject<ButtonNav[]>("nav-buttons").map(
-                                (button: ButtonNav, index: number) => (
-                                  <button
-                                    className={this.decorateCSS("nav-button")}
-                                    onClick={() => {
-                                      this.getComponentState("slider-ref").current.slickPrev();
-                                    }}
-                                  >
-                                    <ComposerIcon
-                                      name={button.prevIcon}
-                                      propsIcon={{
-                                        className: `${this.decorateCSS("arrow")}`,
-                                        size: 20,
-                                      }}
-                                    />
-                                  </button>
-                                )
-                              )}
-                              {this.castToObject<ButtonNav[]>("nav-buttons").map(
-                                (button: ButtonNav, index: number) => (
-                                  <button
-                                    className={this.decorateCSS("nav-button")}
-                                    onClick={() => {
-                                      this.getComponentState("slider-ref").current.slickNext();
-                                    }}
-                                  >
-                                    <ComposerIcon
-                                      name={button.nextIcon}
-                                      propsIcon={{
-                                        className: `${this.decorateCSS("arrow")}`,
-                                        size: 20,
-                                      }}
-                                    />
-                                  </button>
-                                )
-                              )}
+                              <button
+                                className={this.decorateCSS("nav-button")}
+                                onClick={() => {
+                                  this.getComponentState("slider-ref").current.slickPrev();
+                                }}
+                              >
+                                <ComposerIcon
+                                  name={this.getPropValue("leftNavButton")[0].value}
+                                  propsIcon={{
+                                    className: `${this.decorateCSS("Icon")}`,
+                                    size: 20,
+                                  }}
+                                />
+                              </button>
+                              <button
+                                className={this.decorateCSS("nav-button")}
+                                onClick={() => {
+                                  this.getComponentState("slider-ref").current.slickNext();
+                                }}
+                              >
+                                <ComposerIcon
+                                  name={this.getPropValue("rightNavButton")[0].value}
+                                  propsIcon={{
+                                    className: `${this.decorateCSS("Icon")}`,
+                                    size: 20,
+                                  }}
+                                />
+                              </button>
                             </div>
                           </div>
                         </div>
