@@ -1,126 +1,691 @@
 .container {
     width: 100%;
+    height: 100%;
+
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
-        .content {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        .tabs {
+            flex-direction: row;
+            justify-content: center;
+            position: relative;
             width: 100%;
-            justify-content: space-between;
-            .left-content {
-                display: flex;
-                width: 100%;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 0 20% 0;
-                margin: 0;
-                .first-text {
-                    font-size: 15px;
-                    font-weight: 800;
-                    opacity: 0.5;
-                    letter-spacing: 2px;
-                    width: 100%;
-                    margin-bottom: .5rem;
-                    line-height: 1.2;
-                    text-align: center;
-                    color: var(--composer-primary-color);
+            height: 100%;
+            display: flex;
+
+            .tab-1 {
+                width: 35%;
+                z-index: 1;
+                background-color: var(--composer-html-background);
+                position: relative;
+
+                ::before {
+                    z-index: -1;
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 0.1px;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.8);
                 }
-                .second-text {
-                    font-size: 38px;
+
+                .tab-buttons {
                     width: 100%;
-                    font-weight: 400;
-                    color: var(--composer-primary-color);
-                    text-align: center;
-                    line-height: 1.2;
-                    margin: 0;
-                }
-                .description {
-                    width: 100%;
-                    margin-top: 25px;
-                    opacity: 0.7;
-                    margin-bottom: 1rem;
-                    font-size: 18px;
-                    font-weight: 400;
-                    line-height: 1.5;
-                    text-align: center;
-                    color: var(--composer-font-color-primary);
-                }
-                .imagediv {
+                    height: 100%;
                     display: flex;
-                    flex-direction: row;
-                    a {
-                        display: inline-block;
-                        .link-images {
+                    flex-direction: column;
+                    justify-content: center;
+                    max-height: 100%;
+
+                    .tab-button {
+                        align-items: center;
+                        cursor: pointer;
+                        color: var(--composer-font-color-primary);
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        height: 100%;
+                        max-height: 100%;
+
+                        >div {
+                            padding-left: 4rem;
+                            max-width: 100%;
                             width: 100%;
                         }
+
+                        .tabText {
+                            font-size: 1.5vw;
+                            font-weight: 700;
+                        }
+
+                        .icon {
+                            display: none;
+                            position: absolute;
+                            right: -15px;
+                            border-radius: 5rem;
+                            font-size: 3rem;
+                            background-color: var(--composer-html-background);
+                            opacity: 0;
+                            transition: opacity 0.3s ease-in-out;
+                            z-index: 1000;
+                        }
+
+                        &::before {
+                            z-index: -1;
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 0;
+                            height: 100%;
+                            background: linear-gradient(90deg, var(--composer-secondary-color), var(--composer-secondary-color));
+                            transition: width 0.5s ease-in-out;
+                        }
+
+                        &.active {
+                            color: var(--composer-primary-color);
+
+                            &::before {
+                                width: 100%;
+                            }
+
+                            .icon {
+                                display: block;
+                                opacity: 1;
+                            }
+                        }
+
+                        &:hover {
+                            color: var(--composer-primary-color);
+
+                            &::before {
+                                width: 100%;
+                            }
+
+                            .icon {
+                                display: block;
+                                animation: show-icon 0.3s 0.5s forwards;
+                            }
+                        }
+
+                        &:not(:last-child)::after {
+                            content: "";
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 1px;
+                            background-color: rgba(0, 0, 0, 0.8);
+                            z-index: 2;
+                        }
                     }
                 }
-                .buttondiv {
-                    margin-top: 20px;
+            }
+
+            .tab {
+                z-index: -1;
+                opacity: 0;
+                transition: all 0.5s ease-out;
+                display: none;
+
+                &.active {
+                    display: flex;
+                    z-index: 0;
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                &.start {
+                    opacity: 1;
+                }
+
+                .content {
                     display: flex;
                     flex-direction: row;
-                    gap: 20px;
-                    a {
-                        text-decoration: none;
-                    }
-                    .button {
-                        padding-left: 15px;
-                        padding-right: 15px;
-                        height: 50px;
+                    width: 100%;
+                    max-width: 100%;
+                    height: 100%;
+                    max-height: 100%;
+
+                    .image_container {
+                        position: relative;
+                        width: 50%;
+                        //max-width: 50%;
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: var(--composer-secondary-color);
-                        border: 0px solid var(--composer-secondary-color);
-                        border-radius: 6px;
-                        color: white;
-                        font-size: 1.4rem;
-                        cursor: pointer;
-                        padding: 20px 30px;
-                        &:hover {
-                            color: var(--composer-secondary-color);
-                            background: transparent;
-                            border: 1px solid var(--composer-secondary-color);
+                        height: 100%;
+                        flex: 1 1 50%;
+
+                        .image {
+                            height: 100%;
+                            max-width: 100%;
+                            object-fit: cover;
+                            position: relative;
                         }
-                        &.primary {
-                            border: 1px solid var(--composer-primary-color);
-                            background-color: var(--composer-primary-color);
-                            color: white;
-                            &:hover {
+
+                        .box_container {
+                            height: 18%;
+                            max-width: 100%;
+                            right: 0;
+                            bottom: 0;
+                            z-index: 2;
+                            position: absolute;
+                            display: flex;
+                            flex-direction: row;
+                            width: 70%;
+
+                            .box1 {
+                                width: 50%;
+                                height: 100%;
+                                justify-content: center;
+                                align-items: center;
+                                display: flex;
+                                flex-direction: column;
                                 color: var(--composer-primary-color);
-                                background: transparent;
-                                border: 1px solid var(--composer-primary-color);
+                                background-color: azure;
+                                max-width: 100%;
+                                max-height: 100%;
+                                padding: 1rem;
+
+                                .box1_text {
+                                    font-size: 1.2vw;
+                                    max-width: max-content;
+                                    max-height: max-content;
+                                }
+
+                                .price {
+                                    font-size: 2vw;
+                                    font-weight: 700;
+                                    max-width: max-content;
+                                    max-height: max-content;
+                                }
+                            }
+
+                            .box2 {
+                                width: 50%;
+                                height: 100%;
+                                justify-content: center;
+                                align-items: center;
+                                display: flex;
+                                flex-direction: row;
+                                color: var(--composer-primary-color);
+                                background-color: blanchedalmond;
+                                max-width: 100%;
+                                max-height: 100%;
+
+                                >div {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width: 100% !important;
+                                    max-width: 100%;
+                                }
+
+                                .box2_text {
+                                    font-size: 200%;
+                                    padding: 1rem;
+                                    max-width: 50%;
+                                    font-weight: 700;
+                                    align-items: center;
+                                    display: flex;
+                                    justify-content: center;
+                                    text-align: center;
+                                }
+
+                                .box2_icon {
+                                    border-radius: 15vw;
+                                    font-size: 5rem;
+                                    padding: 1rem;
+                                    border: 0.4vw solid black;
+                                    cursor: pointer;
+                                    background-color: black;
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
+
+                    .content_container {
+                        background-color: var(--composer-html-background);
+                        display: flex;
+                        flex-direction: column;
+                        padding: 6rem;
+                        color: var(--composer-primary-color);
+                        width: 50%;
+                        //max-width: 50%;
+                        height: 100%;
+                        flex: 1 1 50%;
+
+                        .title_1 {
+                            font-size: 1.2vw;
+                            font-weight: 700;
+                        }
+
+                        .title_2 {
+                            font-size: 3vw;
+                            font-weight: 700;
+                        }
+
+                        .description {
+                            font-size: 1.2vw;
+                            padding: 2rem 0;
+                        }
+
+                        .icons_container {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            width: 100%;
+                            max-width: 100%;
+                            height: 100%;
+                            max-height: 100%;
+                            padding-top: 1vw;
+
+                            .icon_1_container,
+                            .icon_2_container,
+                            .icon_3_container {
+                                height: 100%;
+                                max-height: 100%;
+                                position: relative;
+                                text-align: center;
+                                padding: 0 1rem;
+                            }
+
+                            .icon_1_container::after,
+                            .icon_2_container::after {
+                                content: "";
+                                position: absolute;
+                                right: 0;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                width: 1px;
+                                height: 100%;
+                                background-color: var(--composer-primary-color);
+                            }
+
+                            .icon_1 {
+                                font-size: 3.5vw;
+                                padding-bottom: 1rem;
+                            }
+
+                            .text {
+                                font-size: 1.1vw;
+                            }
+
+                            .icon_2 {
+                                font-size: 3.5vw;
+                                padding-bottom: 1rem;
+                            }
+
+                            .icon_3 {
+                                font-size: 3.5vw;
+                                padding-bottom: 1rem;
+                            }
+                        }
+                    }
+
+                    .image_container:only-child,
+                    .content_container:only-child {
+                        flex: 1 1 100%;
+                        width: 100%;
+                    }
+                }
+
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        .max-content {
+            height: 100%;
+
+            .tabs {
+                .tab-1 {
+                    width: 45%;
+                    height: 100%;
+
+                    .tab-buttons {
+                        .tab-button {
+                            >div {
+                                padding-left: 2.5rem;
+                            }
+
+                            .tabText {
+                                font-size: 2vw;
+                            }
+
+                            .icon {
+                                font-size: 2.5rem;
                             }
                         }
                     }
                 }
-            }
-            .right-content {
-                width: 100%;
-                max-width: 100%;
-                margin: 0;
-                padding: 0;
-                .right-image {
-                    height: 100vh;
-                    width: 100%;
-                }
-            }
-        }
-        @media screen and (max-width:1000px) {
-            .content {
-                display: block;
-                .left-content {
-                    margin-bottom: 30px;
-                    .buttondiv {
-                        .button {
-                            font-size: 1.1rem;
+
+                .tab {
+                    width: 60%;
+
+                    .content {
+                        flex-direction: column;
+
+                        .image_container {
+                            width: 100%;
+                            max-width: 100%;
+                            height: 50%;
+                            max-height: 50%;
+
+                            .image {
+                                height: 100%;
+                                width: 100%;
+                                max-width: 100%;
+                            }
+
+                            .box_container {
+                                width: 50%;
+
+                                .box1 {
+                                    max-width: 50%;
+
+                                    .box1_text {
+                                        font-size: 1.5vw;
+                                        max-width: 100%;
+                                        max-height: 90%;
+                                    }
+
+                                    .price {
+                                        font-size: 2.3vw;
+                                        max-width: 100%;
+                                        max-height: 90%;
+                                    }
+                                }
+
+                                .box2 {
+
+                                    >div {
+                                        max-height: 100%;
+                                        height: 90%;
+                                    }
+
+                                    .box2_text {
+                                        font-size: 2.2vw;
+                                        padding: 0.5rem;
+                                        max-width: 50%;
+                                        width: 50%;
+                                        height: 100%;
+                                        max-height: 90%;
+                                    }
+
+                                    .box2_icon {
+                                        max-width: 40%;
+                                        max-height: 90%;
+                                        font-size: 6vw;
+                                    }
+                                }
+                            }
+
+                        }
+
+                        .content_container {
+                            padding: 3rem;
+                            width: 100%;
+                            max-width: 100%;
+                            height: 50%;
+                            max-height: 50%;
+                            align-items: center;
+
+                            .title_1 {
+                                font-size: 2vw;
+                            }
+
+                            .title_2 {
+                                font-size: 4vw;
+                            }
+
+                            .description {
+                                font-size: 2vw;
+                            }
+
+                            .icons_container {
+
+                                .icon_1_container,
+                                .icon_2_container,
+                                .icon_3_container {
+                                    height: 100%;
+                                    max-height: 80%;
+                                }
+
+                                .icon_1_container::after,
+                                .icon_2_container::after {
+                                    content: "";
+                                    position: absolute;
+                                    right: 0;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    width: 1px;
+                                    height: 100%;
+                                    background-color: var(--composer-primary-color);
+                                    /* Line color */
+                                }
+
+                                .icon_1 {
+                                    font-size: 6.5vw;
+                                    padding-bottom: 1rem;
+                                }
+
+                                .text {
+                                    font-size: 2vw;
+                                }
+
+                                .icon_2 {
+                                    font-size: 6.5vw;
+                                    padding-bottom: 1rem;
+                                }
+
+                                .icon_3 {
+                                    font-size: 6.5vw;
+                                    padding-bottom: 1rem;
+                                }
+                            }
+
+
                         }
                     }
                 }
             }
+
         }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        height: 100%;
+
+        .max-content {
+            height: 100%;
+
+            .tabs {
+                flex-direction: column;
+                justify-content: flex-start;
+                height: max-content;
+
+                .tab-1 {
+                    width: 100%;
+                    height: 100%;
+
+                    ::before {
+                        display: block;
+                    }
+
+                    .tab-buttons {
+                        .tab-button {
+                            justify-content: flex-start;
+
+                            >div {
+                                padding-left: 0;
+                                max-width: fit-content;
+                            }
+
+                            .tabText {
+                                font-size: 6.5vw;
+                                padding: 2rem;
+                                font-weight: 700;
+                                max-width: 80%;
+                                padding-right: 0;
+                            }
+
+                            .icon {
+                                right: 0;
+                                font-size: 3rem;
+                                padding-left: 0.5rem;
+                                align-items: center;
+                                justify-content: center;
+                                position: relative;
+                            }
+                        }
+                    }
+                }
+
+                .tab {
+                    width: 100%;
+                    max-width: 100%;
+
+                    .content {
+                        flex-direction: column;
+
+                        .image_container {
+                            width: 100%;
+                            max-width: 100%;
+
+                            .image {
+                                height: 100%;
+                                width: 100%;
+                                max-width: 100%;
+                            }
+
+                            .box_container {
+                                width: 90%;
+                                height: 25%;
+
+                                .box1 {
+                                    max-width: 50%;
+
+                                    .box1_text {
+                                        font-size: 3.5vw;
+                                    }
+
+                                    .price {
+                                        font-size: 6vw;
+
+                                    }
+                                }
+
+                                .box2 {
+
+                                    >div {
+                                        max-height: 100%;
+                                        height: 90%;
+                                    }
+
+                                    .box2_text {
+                                        font-size: 5vw;
+                                        padding: 0.5rem;
+                                    }
+
+                                    .box2_icon {
+                                        max-width: 50%;
+                                        max-height: 90%;
+                                        font-size: 15vw;
+                                        border-radius: 15vw;
+                                    }
+                                }
+                            }
+
+                        }
+
+                        .content_container {
+                            padding: 2rem;
+
+                            .title_1 {
+                                font-size: 3.5vw;
+                            }
+
+                            .title_2 {
+                                font-size: 7vw;
+                            }
+
+                            .description {
+                                font-size: 3.5vw;
+                                text-align: center;
+                            }
+
+                            .icons_container {
+                                flex-direction: column;
+
+                                .icon_1_container,
+                                .icon_2_container,
+                                .icon_3_container {
+                                    padding: 1rem;
+                                }
+
+                                .icon_1_container::after,
+                                .icon_2_container::after {
+                                    display: none;
+                                }
+
+                                .icon_1 {
+                                    font-size: 15vw;
+                                    padding-bottom: 1rem;
+                                }
+
+                                .text {
+                                    font-size: 3.5vw;
+                                }
+
+                                .icon_2 {
+                                    font-size: 15vw;
+                                    padding-bottom: 1rem;
+                                }
+
+                                .icon_3 {
+                                    font-size: 15vw;
+                                    padding-bottom: 1rem;
+                                }
+                            }
+
+
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@keyframes slide-in {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes show-icon {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }
