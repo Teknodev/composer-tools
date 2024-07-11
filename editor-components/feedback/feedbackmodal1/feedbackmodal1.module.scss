@@ -1,0 +1,196 @@
+.feedbackModal {
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease;
+
+  .feedbackModalHeader {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+
+    .icon {
+      width: 30px;
+    }
+
+    .feedbackModalHeaderh1 {
+      margin: 0;
+      font-size: 1.5rem;
+      padding-left: 7px;
+    }
+
+    .feedbackModalCloseButton {
+      justify-content: end;
+      background: white;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      padding-left: 220px;
+    }
+  }
+
+  .headerContent {
+    padding-bottom: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 20px;
+
+    h2 {
+      margin: 0;
+      font-size: 2rem;
+      text-align: center;
+    }
+  }
+
+  .descriptionContent {
+    margin: 0 auto;
+    width: 300px;
+
+    p {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+  }
+
+  .feedbackModalEmojis {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-bottom: 20px;
+
+    .feedbackModalEmoji {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 6px;
+      border-radius: 50%;
+      transition: background-color 0.3s, transform 0.3s;
+      background-color: #d2d1d13a;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+        z-index: -1;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+        z-index: -1;
+      }
+
+      &.selected {
+        border: 2px solid currentColor;
+      }
+
+      .feedbackModalEmojiIcon {
+        font-size: 2.5rem;
+        filter: grayscale(100%);
+        transition: filter 0.3s;
+      }
+
+      .feedbackModalEmojiLabel {
+        margin-top: 5px;
+        font-size: 0.75rem;
+      }
+
+      &:hover {
+        background: linear-gradient(to bottom, #f6df6d, #76dca3);
+        transform: scale(1.1);
+      }
+
+      &:hover .feedbackModalEmojiIcon {
+        filter: grayscale(0%);
+      }
+    }
+  }
+
+  .contact-form {
+    padding: 20px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    transition: 1s;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    padding: 20px 0 20px 0;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+      background: rgba(250, 250, 250, 0.664);
+      border-radius: var(--composer-border-radius);
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+
+      .input {
+        padding: 16px 10px;
+        border-radius: 6px;
+        background: rgba(250, 250, 250, 0.7);
+        border: 1px solid #8e8e8e91;
+        resize: none;
+
+        &:focus {
+          outline-color: var(--composer-primary-color);
+        }
+      }
+
+      .error-message {
+        color: red;
+        font-size: 0.6rem;
+        margin-top: 3px;
+      }
+    }
+  }
+
+  .feedbackModalComment {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+  }
+
+  .feedbackModalSubmit {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to bottom right, #418d7c, #28a745);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: linear-gradient(to bottom right, #418d7c, #218838);
+    }
+  }
+}
