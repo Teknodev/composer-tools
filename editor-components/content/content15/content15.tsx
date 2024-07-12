@@ -23,20 +23,12 @@ type ITabs = {
     title_1: JSX.Element;
     title_2: JSX.Element;
     description: JSX.Element;
-    icons_container: {
-      icon_1_container: {
-        icon_1: string;
+    icons_container: Array<{
+      icon_container: {
+        icon: string;
         text: JSX.Element;
       };
-      icon_2_container: {
-        icon_2: string;
-        text: JSX.Element;
-      };
-      icon_3_container: {
-        icon_3: string;
-        text: JSX.Element;
-      };
-    };
+    }>;
   };
 };
 
@@ -149,19 +141,19 @@ class Content15 extends BaseContent {
                     "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
                 },
                 {
-                  type: "object",
+                  type: "array",
                   key: "icons_container",
                   displayer: "Icons Container",
                   value: [
                     {
                       type: "object",
-                      key: "icon_1_container",
+                      key: "icon_container",
                       displayer: "Icon 1 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_1",
-                          displayer: "Icon 1",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiFrenchFries",
                         },
                         {
@@ -174,13 +166,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_2_container",
+                      key: "icon_container",
                       displayer: "Icon 2 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_2",
-                          displayer: "Icon 2",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiRobe",
                         },
                         {
@@ -193,13 +185,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_3_container",
+                      key: "icon_container",
                       displayer: "Icon 3 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_3",
-                          displayer: "Icon 3",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "FaCarRear",
                         },
                         {
@@ -316,19 +308,19 @@ class Content15 extends BaseContent {
                     "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
                 },
                 {
-                  type: "object",
+                  type: "array",
                   key: "icons_container",
                   displayer: "Icons Container",
                   value: [
                     {
                       type: "object",
-                      key: "icon_1_container",
+                      key: "icon_container",
                       displayer: "Icon 1 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_1",
-                          displayer: "Icon 1",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiRobe",
                         },
                         {
@@ -341,13 +333,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_2_container",
+                      key: "icon_container",
                       displayer: "Icon 2 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_2",
-                          displayer: "Icon 2",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiFrenchFries",
                         },
                         {
@@ -360,13 +352,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_3_container",
+                      key: "icon_container",
                       displayer: "Icon 3 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_3",
-                          displayer: "Icon 3",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "FaCarRear",
                         },
                         {
@@ -483,19 +475,19 @@ class Content15 extends BaseContent {
                     "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
                 },
                 {
-                  type: "object",
+                  type: "array",
                   key: "icons_container",
                   displayer: "Icons Container",
                   value: [
                     {
                       type: "object",
-                      key: "icon_1_container",
+                      key: "icon_container",
                       displayer: "Icon 1 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_1",
-                          displayer: "Icon 1",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiFrenchFries",
                         },
                         {
@@ -508,13 +500,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_2_container",
+                      key: "icon_container",
                       displayer: "Icon 2 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_2",
-                          displayer: "Icon 2",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiRobe",
                         },
                         {
@@ -527,13 +519,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_3_container",
+                      key: "icon_container",
                       displayer: "Icon 3 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_3",
-                          displayer: "Icon 3",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "FaCarRear",
                         },
                         {
@@ -650,19 +642,19 @@ class Content15 extends BaseContent {
                     "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
                 },
                 {
-                  type: "object",
+                  type: "array",
                   key: "icons_container",
                   displayer: "Icons Container",
                   value: [
                     {
                       type: "object",
-                      key: "icon_1_container",
+                      key: "icon_container",
                       displayer: "Icon 1 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_1",
-                          displayer: "Icon 1",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiRobe",
                         },
                         {
@@ -675,13 +667,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_2_container",
+                      key: "icon_container",
                       displayer: "Icon 2 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_2",
-                          displayer: "Icon 2",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiFrenchFries",
                         },
                         {
@@ -694,13 +686,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_3_container",
+                      key: "icon_container",
                       displayer: "Icon 3 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_3",
-                          displayer: "Icon 3",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "FaCarRear",
                         },
                         {
@@ -817,19 +809,19 @@ class Content15 extends BaseContent {
                     "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
                 },
                 {
-                  type: "object",
+                  type: "array",
                   key: "icons_container",
                   displayer: "Icons Container",
                   value: [
                     {
                       type: "object",
-                      key: "icon_1_container",
+                      key: "icon_container",
                       displayer: "Icon 1 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_1",
-                          displayer: "Icon 1",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiFrenchFries",
                         },
                         {
@@ -842,13 +834,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_2_container",
+                      key: "icon_container",
                       displayer: "Icon 2 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_2",
-                          displayer: "Icon 2",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "GiRobe",
                         },
                         {
@@ -861,13 +853,13 @@ class Content15 extends BaseContent {
                     },
                     {
                       type: "object",
-                      key: "icon_3_container",
+                      key: "icon_container",
                       displayer: "Icon 3 Container",
                       value: [
                         {
                           type: "icon",
-                          key: "icon_3",
-                          displayer: "Icon 3",
+                          key: "icon",
+                          displayer: "Icon",
                           value: "FaCarRear",
                         },
                         {
@@ -908,27 +900,38 @@ class Content15 extends BaseContent {
             <div className={this.decorateCSS("tab-1")}>
               <div className={this.decorateCSS("tab-buttons")}>
                 {this.castToObject<ITabs[]>("tabs").map(
-                  (tab: ITabs, index: number) => (
-                    <div
-                      className={
-                        this.decorateCSS("tab-button") +
-                        " " +
-                        (this.getComponentState("activeTab") == index &&
-                          this.decorateCSS("active"))
-                      }
-                      onClick={() => this.setActiveTab(index)}
-                    >
-                      <div className={this.decorateCSS("tabText")}>
-                        {tab.tabText}
-                      </div>
-                      <ComposerIcon
-                        name={tab.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                    </div>
-                  )
+                  (tab: ITabs, index: number) => {
+                    const isTabTextVisible = this.castToString(tab.tabText);
+                    const isTabIconVisible = tab.icon;
+                    const isTabVisible = isTabTextVisible || isTabIconVisible;
+                    return (
+                      isTabVisible && (
+                        <div
+                          className={
+                            this.decorateCSS("tab-button") +
+                            " " +
+                            (this.getComponentState("activeTab") == index &&
+                              this.decorateCSS("active"))
+                          }
+                          onClick={() => this.setActiveTab(index)}
+                        >
+                          {isTabTextVisible && (
+                            <div className={this.decorateCSS("tabText")}>
+                              {tab.tabText}
+                            </div>
+                          )}
+                          {isTabIconVisible && (
+                            <ComposerIcon
+                              name={tab.icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            />
+                          )}
+                        </div>
+                      )
+                    );
+                  }
                 )}
               </div>
             </div>
@@ -944,34 +947,14 @@ class Content15 extends BaseContent {
                 const isImageContainerVisible =
                   tab.image_container.image || isBoxContainerVisible;
 
-                const isIcon1ContainerVisible =
-                  tab.content_container.icons_container.icon_1_container
-                    .icon_1 ||
-                  this.castToString(
-                    tab.content_container.icons_container.icon_1_container.text
-                  );
-                const isIcon2ContainerVisible =
-                  tab.content_container.icons_container.icon_2_container
-                    .icon_2 ||
-                  this.castToString(
-                    tab.content_container.icons_container.icon_2_container.text
-                  );
-                const isIcon3ContainerVisible =
-                  tab.content_container.icons_container.icon_3_container
-                    .icon_3 ||
-                  this.castToString(
-                    tab.content_container.icons_container.icon_3_container.text
-                  );
-                const isIconsContainerVisible =
-                  isIcon1ContainerVisible ||
-                  isIcon2ContainerVisible ||
-                  isIcon3ContainerVisible;
+                const isIconContainerVisible =
+                  tab.content_container.icons_container.length > 0;
 
                 const isContentContainerVisible =
                   this.castToString(tab.content_container.title_1) ||
                   this.castToString(tab.content_container.title_2) ||
                   this.castToString(tab.content_container.description) ||
-                  isIconsContainerVisible;
+                  isIconContainerVisible;
 
                 return (
                   <div
@@ -1050,78 +1033,45 @@ class Content15 extends BaseContent {
                               {tab.content_container.description}
                             </div>
                           )}
-                          {isIconsContainerVisible && (
+                          {isIconContainerVisible && (
                             <div
                               className={this.decorateCSS("icons_container")}
                             >
-                              {isIcon1ContainerVisible && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "icon_1_container"
-                                  )}
-                                >
-                                  <ComposerIcon
-                                    name={
-                                      tab.content_container.icons_container
-                                        .icon_1_container.icon_1
-                                    }
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon_1"),
-                                    }}
-                                  />
-                                  <div className={this.decorateCSS("text")}>
-                                    {
-                                      tab.content_container.icons_container
-                                        .icon_1_container.text
-                                    }
-                                  </div>
-                                </div>
-                              )}
-                              {isIcon2ContainerVisible && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "icon_2_container"
-                                  )}
-                                >
-                                  <ComposerIcon
-                                    name={
-                                      tab.content_container.icons_container
-                                        .icon_2_container.icon_2
-                                    }
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon_2"),
-                                    }}
-                                  />
-                                  <div className={this.decorateCSS("text")}>
-                                    {
-                                      tab.content_container.icons_container
-                                        .icon_2_container.text
-                                    }
-                                  </div>
-                                </div>
-                              )}
-                              {isIcon3ContainerVisible && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "icon_3_container"
-                                  )}
-                                >
-                                  <ComposerIcon
-                                    name={
-                                      tab.content_container.icons_container
-                                        .icon_3_container.icon_3
-                                    }
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon_3"),
-                                    }}
-                                  />
-                                  <div className={this.decorateCSS("text")}>
-                                    {
-                                      tab.content_container.icons_container
-                                        .icon_3_container.text
-                                    }
-                                  </div>
-                                </div>
+                              {tab.content_container.icons_container.map(
+                                (iconContainer) => {
+                                  const isIconVisible = iconContainer.icon_container.icon;
+                                    const isTextVisible = this.castToString(
+                                    iconContainer.icon_container.text
+                                    );
+                                  const isIconContainerVisible =
+                                    isIconVisible || isTextVisible;
+                                  return (
+                                    isIconContainerVisible && (
+                                      <div
+                                        className={this.decorateCSS(
+                                          "icon_container"
+                                        )}
+                                      >
+                                        {isIconVisible && (
+                                          <ComposerIcon
+                                            name={iconContainer.icon_container.icon}
+                                            propsIcon={{
+                                              className:
+                                                this.decorateCSS("icon"),
+                                            }}
+                                          />
+                                        )}
+                                        {isTextVisible && (
+                                          <div
+                                            className={this.decorateCSS("text")}
+                                          >
+                                            {iconContainer.icon_container.text}
+                                          </div>
+                                        )}
+                                      </div>
+                                    )
+                                  );
+                                }
                               )}
                             </div>
                           )}
