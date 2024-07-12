@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 100px);
   background-color: var(--composer-html-background);
   display: flex;
   align-items: center;
@@ -8,6 +8,7 @@
   .max-content {
     max-width: var(--composer-content-width);
     width: 100%;
+    position: absolute;
     .image-container {
       height: 90vh;
       position: relative;
@@ -51,9 +52,7 @@
       transform: translate3d(0px, -48.0737px, 0px);
       right: 80px;
       .box {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-        padding-left: 3rem;
+        padding: 4rem 3rem;
         .heading {
           display: flex;
           flex-direction: column;
@@ -63,7 +62,6 @@
             letter-spacing: 3px;
             font-size: 16px;
             line-height: 1.6;
-            padding-left: 7rem;
           }
           .title {
             margin-top: 10px;
@@ -81,7 +79,7 @@
           margin-inline-start: 0px;
           margin-inline-end: 0px;
           font-size: 14px;
-          width: 80%;
+          width: 100%;
         }
         .btn {
           position: relative;
@@ -115,7 +113,6 @@
   }
   .card {
     position: relative !important;
-    transform: none !important;
     right: 0px !important;
     padding-top: 0;
     padding-bottom: 0;
@@ -132,6 +129,9 @@
   }
 }
 @media screen and (max-width: 400px) {
+  .max-content{
+    position: relative !important;
+  }
   .image-container {
     .image {
       height: 130%;
