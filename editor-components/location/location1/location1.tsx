@@ -141,13 +141,13 @@ class LocationComponent1 extends Location {
           key: "lat",
           displayer: "Lat",
           type: "number",
-          value: 1,
+          value: 36.900054,
         },
         {
           key: "lng",
           displayer: "LNG",
           type: "number",
-          value: 2,
+          value: 30.646022,
         },
         {
           key: "zoom",
@@ -228,7 +228,6 @@ class LocationComponent1 extends Location {
     }>("top_row");
 
     const mapConfig = this.getPropValue("mapConfig");
-    // console.log(mapConfig)
 
     const card = this.castToObject<{
       title: JSX.Element;
@@ -244,16 +243,10 @@ class LocationComponent1 extends Location {
     }>("buttom_row");
 
     const isSocialIconsVisible = topRow.social_media.length > 0;
-    const isTopRowVisible =
-      this.castToString(topRow.title) || isSocialIconsVisible;
-    const isButtomRowVisible =
-      this.castToString(buttomRow.description) ||
-      this.castToString(buttomRow.phone_number);
+    const isTopRowVisible = this.castToString(topRow.title) || isSocialIconsVisible;
+    const isButtomRowVisible = this.castToString(buttomRow.description) || this.castToString(buttomRow.phone_number);
 
-    const isCardVisible =
-      this.castToString(card.title) ||
-      this.castToString(card.description) ||
-      this.castToString(card.button_text);
+    const isCardVisible = this.castToString(card.title) || this.castToString(card.description) || this.castToString(card.button_text);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -278,57 +271,30 @@ class LocationComponent1 extends Location {
             )}
             <section style={{ position: "relative" }}>
               <center>
-                <LoadScript
-                  googleMapsApiKey={
-                    process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? ""
-                  }
-                >
+                <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? ""}>
                   <GoogleMap
-                    mapContainerStyle={{
-                      width: "100%",
-                      height: "400px",
-                      position: "relative",
-                    }}
-                    center={{
-                      lat: mapConfig[0]?.value,
-                      lng: mapConfig[1]?.value,
-                    }}
+                    mapContainerStyle={{ width: "100%", height: "400px", position: "relative" }}
+                    center={{ lat: mapConfig[0]?.value, lng: mapConfig[1]?.value }}
                     zoom={mapConfig[2]?.value}
                     options={{ styles: mapStyles }}
                   >
-                    <Marker
-                      position={{
-                        lat: mapConfig[0]?.value,
-                        lng: mapConfig[1]?.value,
-                      }}
-                      title="Logo Comp 1 Location"
-                    />
+                    <Marker position={{ lat: mapConfig[0]?.value, lng: mapConfig[1]?.value }} title="Location" />
                   </GoogleMap>
                 </LoadScript>
-                <div className={this.decorateCSS("card")}>
-                  <h4 className={this.decorateCSS("title")}>{card.title}</h4>
-                  <p className={this.decorateCSS("description")}>
-                    {card.description}
-                  </p>
-                  <button
-                    className={this.decorateCSS("button_text")}
-                    onClick={() => window.open(card.url, "_blank")}
-                  >
+                <div className={styles.card}>
+                  <h4 className={styles.title}>{card.title}</h4>
+                  <p className={styles.description}>{card.description}</p>
+                  <button className={styles.button_text} onClick={() => window.open(card.url, "_blank")}>
                     {card.button_text}
                   </button>
                 </div>
               </center>
             </section>
+
             {isButtomRowVisible && (
               <div className={this.decorateCSS("buttom_row")}>
-                <div className={this.decorateCSS("description")}>
-                  {buttomRow.description}
-                </div>
-                <div className={this.decorateCSS("phone_number")}>
-                  {/* <ComposerLink path={buttomRow.number_url}> */}
-                  {buttomRow.phone_number}
-                  {/* </ComposerLink> */}
-                </div>
+                <div className={this.decorateCSS("description")}>{buttomRow.description}</div>
+                <div className={this.decorateCSS("phone_number")}>{buttomRow.phone_number}</div>
               </div>
             )}
           </div>
