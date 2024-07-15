@@ -1,127 +1,247 @@
+import Slider from "react-slick";
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styles from "./content16.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
+type Card = {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  image_subtitle: string;
+  image_title: string;
+  image_description: string;
+  url: string;
+};
 
 class Content16 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Get Affordable Dental Treatment",
+      value: "Latest News",
     });
+
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "Dental Excellence Turkey has the latest technology advancements that provide efficient solutions and the highest quality services.",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.",
     });
+
     this.addProp({
-      type: "image",
-      key: "item1",
-      displayer: "1st Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628818?alt=media&timestamp=1719564433797",
+      type: "array",
+      key: "header",
+      displayer: "Header",
+      value: [
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "image_subtitle",
+              displayer: "Image Subtitle",
+              value: "May 18, 2023  /  Insights",
+            },
+            {
+              type: "string",
+              key: "image_title",
+              displayer: "Image Title",
+              value: "Smart Cities of Tomorrow",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66914f6c9e8fb8002c917c0c?alt=media",
+            },
+            {
+              type: "string",
+              key: "url",
+              displayer: "URL",
+              value: "https://example.com/smart-cities",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "image_subtitle",
+              displayer: "Image Subtitle",
+              value: "May 18, 2023  /  News",
+            },
+            {
+              type: "string",
+              key: "image_title",
+              displayer: "Image Title",
+              value: "Architectural Marvels",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669149d39e8fb8002c917b22?alt=media",
+            },
+            {
+              type: "string",
+              key: "url",
+              displayer: "URL",
+              value: "https://example.com/architectural-marvels",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "image_subtitle",
+              displayer: "Image Subtitle",
+              value: "May 15, 2023  /  Insights",
+            },
+            {
+              type: "string",
+              key: "image_title",
+              displayer: "Image Title",
+              value: "Exploring the Evolution of Architecture",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6691500b9e8fb8002c917c19?alt=media",
+            },
+            {
+              type: "string",
+              key: "url",
+              displayer: "URL",
+              value: "https://example.com/evolution-architecture",
+            },
+          ],
+        },
+      ],
     });
-    this.addProp({
-      type: "image",
-      key: "item2",
-      displayer: "2nd Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628816?alt=media&timestamp=1719564433797",
-    });
-    this.addProp({
-      type: "image",
-      key: "item3",
-      displayer: "3rd Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628817?alt=media&timestamp=1719564433797",
-    });
-    this.addProp({
-        type: "array",
-        key: "buttons",
-        displayer: "Buttons",
-        value: [
-          {
-            type: "object",
-            key: "button",
-            displayer: "Button",
-            value: [
-              {
-                type: "string",
-                key: "buttonText",
-                displayer: "Button Text",
-                value: "About Us",
-              },
-  
-              {
-                type: "page",
-                key: "url",
-                displayer: "Button Link",
-                value: "https://www.google.com/",
-              },
-            ],
-          },
-        ],
-      });
+
+    this.setComponentState(
+      "prevSlide",
+      this.castToObject<Card[]>("header").length - 1
+    );
+    this.setComponentState("activeSlide", 0);
+    this.setComponentState("nextSlide", 1);
   }
+
   getName(): string {
     return "Content 16";
   }
+
   render() {
+    const settings = {
+      arrows: false,
+      dots: true,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1280,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 885,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState(
+          "prevSlide",
+          next - 1 < 0
+            ? this.castToObject<Card[]>("header").length - 1
+            : next - 1
+        );
+        this.setComponentState("activeSlide", next);
+        this.setComponentState(
+          "nextSlide",
+          next + 1 > this.castToObject<Card[]>("header").length - 1
+            ? 0
+            : next + 1
+        );
+      },
+    };
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("left-content")}>
-              <div className={this.decorateCSS("left-column")}>
-                <img
-                  src={this.getPropValue("item1")}
-                  alt="firstPhoto"
-                  className={this.decorateCSS("item1")}
-                />
-              </div>
-              <div className={this.decorateCSS("right-column")}>
-                <img
-                  src={this.getPropValue("item2")}
-                  alt="firstPhoto"
-                  className={this.decorateCSS("item2")}
-                />
-                <img
-                  src={this.getPropValue("item3")}
-                  alt="firstPhoto"
-                  className={this.decorateCSS("item2")}
-                />
-              </div>
-            </div>
-            <div className={this.decorateCSS("right-content")}>
-              <h2 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h2>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-              <div className={this.decorateCSS("buttondiv")}>
-              {this.getPropValue("buttons").map(
-                  (item: any, indexButtons: number) => {
-                    return (
-                      <ComposerLink
-                        key={indexButtons}
-                        path={item.value[1].value}
-                      >
-                        <button
-                          className={`${this.decorateCSS("button")}`}
-                        >
-                          {item.value[0].value}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
+          <h2 className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </h2>
+          <div className="faint-line"></div>
+          <h4 className={this.decorateCSS("subtitle")}>
+            {this.getPropValue("subtitle")}
+          </h4>
+          <div className={this.decorateCSS("wrapper")}>
+            <div className={this.decorateCSS("slider-parent")}>
+              <Slider {...settings} className={this.decorateCSS("carousel")}>
+                {this.castToObject<Card[]>("header").map(
+                  (item: Card, index: number) => (
+                    <div
+                      className={
+                        this.decorateCSS("slider-inner-div") +
+                        " " +
+                        (this.getComponentState("prevSlide") == index
+                          ? this.decorateCSS("prevSlide")
+                          : "") +
+                        " " +
+                        (this.getComponentState("nextSlide") == index
+                          ? this.decorateCSS("nextSlide")
+                          : "")
+                      }
+                      key={`sld-8-${index}`}
+                    >
+                      <div className={this.decorateCSS("content-div")}>
+                        <div className={this.decorateCSS("img-div")}>
+                          <a href={item.url} target="_blank" rel="noopener noreferrer">
+                            <img
+                              alt=""
+                              src={item.image}
+                              className={this.decorateCSS("img")}
+                            />
+                          </a>
+                        </div>
+                        <div className={this.decorateCSS("header-page")}>
+                          <h1 className={this.decorateCSS("first-header")}>
+                            {item.image_subtitle}
+                          </h1>
+                          <h3 className={this.decorateCSS("item-title")}>
+                            {item.image_title}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  )
                 )}
-              </div>
+              </Slider>
             </div>
           </div>
         </div>
