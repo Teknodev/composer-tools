@@ -3,16 +3,17 @@ import styles from "./header26.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class HeaderComponent26 extends BaseHeader {
-  
+
   private sliderRef: React.RefObject<any>;
 
   constructor(props?: any) {
     super(props, styles);
 
     this.sliderRef = React.createRef();
-    
+
     this.addProp({
       type: "array",
       key: "sliders",
@@ -34,6 +35,12 @@ class HeaderComponent26 extends BaseHeader {
               key: "subtitle",
               displayer: "SubTitle",
               value: "3d Visualisation",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
             },
             {
               type: "image",
@@ -62,6 +69,12 @@ class HeaderComponent26 extends BaseHeader {
               value: "New illustrations",
             },
             {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -86,6 +99,12 @@ class HeaderComponent26 extends BaseHeader {
               key: "subtitle",
               displayer: "SubTitle",
               value: "Design trends",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
             },
             {
               type: "image",
@@ -114,6 +133,12 @@ class HeaderComponent26 extends BaseHeader {
               value: "Photography",
             },
             {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -136,7 +161,7 @@ class HeaderComponent26 extends BaseHeader {
       key: "down_icon",
       displayer: "Down icon",
       value: "IoIosArrowDown",
-    }); 
+    });
   }
 
   getName(): string {
@@ -148,27 +173,27 @@ class HeaderComponent26 extends BaseHeader {
     if (this.sliderRef.current) {
       const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${sliderClass}`);
       slides.forEach((slide: HTMLElement) => {
-        slide.classList.add(this.decorateCSS("shrink")); 
+        slide.classList.add(this.decorateCSS("shrink"));
       });
     }
   };
-  
+
   handleAfterChange = () => {
     const sliderClass = this.decorateCSS("sliders");
     if (this.sliderRef.current) {
       const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${sliderClass}`);
       slides.forEach((slide: HTMLElement) => {
-        slide.classList.remove(this.decorateCSS("shrink")); 
+        slide.classList.remove(this.decorateCSS("shrink"));
       });
     }
   };
-  
+
 
   handlePrevNextChange = () => {
     this.handleBeforeChange();
     setTimeout(() => {
       this.handleAfterChange();
-    }, 1500); 
+    }, 1500);
   };
 
   handlePrevClick = () => {
@@ -211,22 +236,29 @@ class HeaderComponent26 extends BaseHeader {
               <div className={this.decorateCSS("sliders")} key={index}>
                 <div className={this.decorateCSS("slider")}>
                   <div className={this.decorateCSS("left-side")}>
-                    <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+                    <ComposerLink
+                      key={`hdr-32-${index}`}
+                      path={item.url}
+                    >
+                      <h1 className={this.decorateCSS("title")}>
+                        {item.title}
+                      </h1>
+                    </ComposerLink>
                     <span className={this.decorateCSS("line")}></span>
                     <h1 className={this.decorateCSS("subtitle")}>{item.subtitle}</h1>
                     <div className={this.decorateCSS("arrows")}>
-                    <div
-                      className={this.decorateCSS("up-arrow")}
-                      onClick={this.handlePrevClick}
-                    >
-                      <ComposerIcon name={this.getPropValue("up_icon")} />
-                    </div>
-                    <div
-                      className={this.decorateCSS("down-arrow")}
-                      onClick={this.handleNextClick}
-                    >
-                      <ComposerIcon name={this.getPropValue("down_icon")} />
-                    </div>
+                      <div
+                        className={this.decorateCSS("up-arrow")}
+                        onClick={this.handlePrevClick}
+                      >
+                        <ComposerIcon name={this.getPropValue("up_icon")} />
+                      </div>
+                      <div
+                        className={this.decorateCSS("down-arrow")}
+                        onClick={this.handleNextClick}
+                      >
+                        <ComposerIcon name={this.getPropValue("down_icon")} />
+                      </div>
                     </div>
                   </div>
                   <div className={this.decorateCSS("right-side")}>
