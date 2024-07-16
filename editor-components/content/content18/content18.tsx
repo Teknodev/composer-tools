@@ -6,11 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 class Content18 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
-    interface Item {
-      title: string;
-      progress: number;
-      progressText: string;
-    }
+
     this.addProp({
       type: "image",
       key: "image1",
@@ -21,7 +17,7 @@ class Content18 extends BaseContent {
     this.addProp({
       type: "image",
       key: "image2",
-      displayer: "2st Image",
+      displayer: "2nd Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890f?alt=media&timestamp=1719564433797",
     });
@@ -224,34 +220,33 @@ class Content18 extends BaseContent {
               <div className={this.decorateCSS("progress-container")}>
                 {this.getPropValue("items").map((item: any, index: number) => (
                   <div className={this.decorateCSS("item")} key={index}>
-                    <div className={this.decorateCSS("progress-title-container")}>
+                    <div
+                      className={this.decorateCSS("progress-title-container")}
+                    >
                       <div className={this.decorateCSS("progress-title-icon")}>
                         <ComposerIcon
                           name={item.value[3].value}
                           propsIcon={{ className: this.decorateCSS("icon") }}
-                        ></ComposerIcon>
+                        />
                       </div>
                       <div className={this.decorateCSS("progress-title")}>
                         {item.value[0].value}
                       </div>
                     </div>
 
-                    {this.getPropValue("progress-text-is-primary") && (
-                      <div className={this.decorateCSS("progress-text-is-primary")}>
-                        <div className={this.decorateCSS("progress-percent")}>
+                    {item.value[2].value && (
+                      <div
+                        className={this.decorateCSS("progress-bar-container")}
+                      >
+                        <div className={this.decorateCSS("progress-bar")}>
                           <div
-                            className={this.decorateCSS("progress-text")}
-                            style={{ marginLeft: `${item.value[1].value}%` }}
-                          >
-                            {item.value[2].value}
-                          </div>
-                        </div>
-                        <div className={this.decorateCSS("progress-active")}>
-                          <div
-                            className={this.decorateCSS("progress-passive")}
+                            className={this.decorateCSS("progress")}
                             style={{ width: `${item.value[1].value}%` }}
-                          ></div>
+                          />
                         </div>
+                        <span className={this.decorateCSS("progress-text")}>
+                          {item.value[2].value}
+                        </span>
                       </div>
                     )}
                   </div>
