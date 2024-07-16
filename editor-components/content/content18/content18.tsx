@@ -3,6 +3,13 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content18.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
+type ProgressItem = {
+  progressTitle: string;
+  progress: number;
+  progressText: JSX.Element;
+  icon: string;
+};
+
 class Content18 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -52,7 +59,7 @@ class Content18 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "progress-title",
+              key: "progressTitle",
               displayer: "Progress Title",
               value: "Confidentiality",
             },
@@ -64,7 +71,7 @@ class Content18 extends BaseContent {
             },
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "90%",
             },
@@ -83,7 +90,7 @@ class Content18 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "progress-title",
+              key: "progressTitle",
               displayer: "Progress Title",
               value: "Consumer Satisfaction",
             },
@@ -96,7 +103,7 @@ class Content18 extends BaseContent {
 
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "95%",
             },
@@ -115,7 +122,7 @@ class Content18 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "progress-title",
+              key: "progressTitle",
               displayer: "Progress Title",
               value: "Therapy",
             },
@@ -128,7 +135,7 @@ class Content18 extends BaseContent {
 
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "98%",
             },
@@ -147,7 +154,7 @@ class Content18 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "progress-title",
+              key: "progressTitle",
               displayer: "Progress Title",
               value: "Counseling",
             },
@@ -160,7 +167,7 @@ class Content18 extends BaseContent {
 
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "85%",
             },
@@ -218,39 +225,44 @@ class Content18 extends BaseContent {
               </p>
 
               <div className={this.decorateCSS("progress-container")}>
-                {this.getPropValue("items").map((item: any, index: number) => (
-                  <div className={this.decorateCSS("item")} key={index}>
-                    <div
-                      className={this.decorateCSS("progress-title-container")}
-                    >
-                      <div className={this.decorateCSS("progress-title-icon")}>
-                        <ComposerIcon
-                          name={item.value[3].value}
-                          propsIcon={{ className: this.decorateCSS("icon") }}
-                        />
-                      </div>
-                      <div className={this.decorateCSS("progress-title")}>
-                        {item.value[0].value}
-                      </div>
-                    </div>
-
-                    {item.value[2].value && (
+                {this.castToObject<ProgressItem[]>("items").map(
+                  (item: ProgressItem, index: number) => (
+                    <div className={this.decorateCSS("item")} key={index}>
                       <div
-                        className={this.decorateCSS("progress-bar-container")}
+                        className={this.decorateCSS("progress-title-container")}
                       >
-                        <div className={this.decorateCSS("progress-bar")}>
-                          <div
-                            className={this.decorateCSS("progress")}
-                            style={{ width: `${item.value[1].value}%` }}
+                        <div
+                          className={this.decorateCSS("progress-title-icon")}
+                        >
+                          <ComposerIcon
+                            name={item.icon}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
                           />
                         </div>
-                        <span className={this.decorateCSS("progress-text")}>
-                          {item.value[2].value}
-                        </span>
+                        <div className={this.decorateCSS("progress-title")}>
+                          {item.progressTitle}
+                        </div>
                       </div>
-                    )}
-                  </div>
-                ))}
+                      {this.castToString(item.progressText) && (
+                        <div
+                          className={this.decorateCSS("progress-bar-container")}
+                        >
+                          <div className={this.decorateCSS("progress-bar")}>
+                            <div
+                              className={this.decorateCSS("progress")}
+                              style={{
+                                width: `${item.progress}%`,
+                              }}
+                            />
+                          </div>
+                          <span className={this.decorateCSS("progress-text")}>
+                            {item.progressText}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
