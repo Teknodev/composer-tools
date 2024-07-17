@@ -152,7 +152,7 @@ class Content16 extends BaseContent {
       arrows: false,
       dots: true,
       infinite: true,
-      speed: 700,
+      speed: 725,
       autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 3,
