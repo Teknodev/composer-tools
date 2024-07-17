@@ -16,7 +16,7 @@
       margin-bottom: 20px; 
       overflow: hidden;
       white-space: nowrap;
-      animation: title-appear 0.5s steps(20) forwards;
+      animation: title-appear 1.5s steps(20) forwards;
     }
 
     .subtitle {
@@ -43,7 +43,7 @@
         .carousel {
           .slider-inner-div {
             border-radius: 10px;
-            animation: slide-up 0.5s ease-out forwards;
+            animation: slide-up 1.5s ease-out forwards;
 
             .content-div {
               width: 100%;
@@ -53,7 +53,7 @@
               margin-bottom: 30px;
               padding: 20px;
               box-sizing: border-box;
-              transition: filter 0.3s;
+              transition: filter 0.5s;
 
               .descriptions {
                 font-size: 1rem;
@@ -72,7 +72,7 @@
                   width: 100%; 
                   height: 225px;
                   object-fit: cover;
-                  transition: transform 0.3s;
+                  transition: transform 0.5s;
                 }
 
                 &:hover img {
@@ -171,7 +171,7 @@
                 margin-bottom: 20px;
                 padding: 15px;
                 box-sizing: border-box;
-                transition: filter 0.3s;
+                transition: filter 0.5s;
 
                 .descriptions {
                   font-size: 0.9rem; 
@@ -190,7 +190,7 @@
                     width: 100%;
                     height: 400px;
                     object-fit: cover;
-                    transition: transform 0.3s;
+                    transition: transform 0.5s;
                   }
 
                   &:hover img {
@@ -203,12 +203,10 @@
 
                   .first-header {
                     font-size: 1.4rem;
-
                     margin: 8px 0;
                   }
 
                   .item-title {
-
                     font-size: 1.6rem;
                     margin: 8px 0;
                     font-weight: 700;
@@ -253,7 +251,6 @@
         margin-bottom: 20px;
       }
 
-
       .subtitle {
         font-size: 1.25rem;
         padding-left: 10px;
@@ -283,7 +280,7 @@
                     width: 100%;
                     height: 250px;
                     object-fit: cover;
-                    transition: transform 0.3s;
+                    transition: transform 0.5s;
                   }
                 }
 

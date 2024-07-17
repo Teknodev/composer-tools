@@ -193,19 +193,21 @@ class Content16 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <h2 className={this.decorateCSS("title")}>
-            {this.getPropValue("title")}
-          </h2>
-          <div className="faint-line"></div>
-          <h4 className={this.decorateCSS("subtitle")}>
-            {this.getPropValue("subtitle")}
-          </h4>
-          <div className={this.decorateCSS("wrapper")}>
+          <header>
+            <h1 className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </h1>
+            <hr className="faint-line" />
+            <h2 className={this.decorateCSS("subtitle")}>
+              {this.getPropValue("subtitle")}
+            </h2>
+          </header>
+          <main className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("slider-parent")}>
               <Slider {...settings} className={this.decorateCSS("carousel")}>
                 {this.castToObject<Card[]>("header").map(
                   (item: Card, index: number) => (
-                    <div
+                    <article
                       className={
                         this.decorateCSS("slider-inner-div") +
                         " " +
@@ -223,27 +225,27 @@ class Content16 extends BaseContent {
                         <div className={this.decorateCSS("img-div")}>
                           <a href={item.url} target="_blank" rel="noopener noreferrer">
                             <img
-                              alt=""
+                              alt={item.image_title || item.image_subtitle}
                               src={item.image}
                               className={this.decorateCSS("img")}
                             />
                           </a>
                         </div>
                         <div className={this.decorateCSS("header-page")}>
-                          <h1 className={this.decorateCSS("first-header")}>
+                          <h3 className={this.decorateCSS("first-header")}>
                             {item.image_subtitle}
-                          </h1>
-                          <h3 className={this.decorateCSS("item-title")}>
-                            {item.image_title}
                           </h3>
+                          <h2 className={this.decorateCSS("item-title")}>
+                            {item.image_title}
+                          </h2>
                         </div>
                       </div>
-                    </div>
+                    </article>
                   )
                 )}
               </Slider>
             </div>
-          </div>
+          </main>
         </div>
       </div>
     );
