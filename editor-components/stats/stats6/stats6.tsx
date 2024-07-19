@@ -3,7 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats6.module.scss";
 type CardData = {
   CardTitle: number;
-  CardDescription: string;
+  CardDescription: JSX.Element;
 };
 
 class Stats6Page extends BaseStats {
@@ -111,10 +111,10 @@ class Stats6Page extends BaseStats {
               Math.min(
                 statsData.CardTitle,
                 statNumber +
-                  Math.ceil(
-                    statsData.CardTitle /
-                      Math.round(this.getPropValue("animation-duration") / 30)
-                  )
+                Math.ceil(
+                  statsData.CardTitle /
+                  Math.round(this.getPropValue("animation-duration") / 30)
+                )
               ) || 0
             );
           }
@@ -128,33 +128,51 @@ class Stats6Page extends BaseStats {
   }
 
   render() {
+
+    const isHeaderExist = this.castToString(this.getPropValue("header"));
+    const isDescExist = this.castToString(this.getPropValue("description"));
+
     return (
-      <>
-        <div className={this.decorateCSS("container")}>
-          <div className={this.decorateCSS("max-content")}>
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          {(isHeaderExist || isDescExist) &&
             <div className={this.decorateCSS("banner")}>
-              <h1 className={this.decorateCSS("title")}>
-                {this.getPropValue("header")}
-              </h1>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+              {isHeaderExist &&
+                <h1 className={this.decorateCSS("title")}>
+                  {this.getPropValue("header")}
+                </h1>
+              }
+              {isDescExist &&
+                <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+              }
             </div>
+          }
+          {this.castToObject<CardData[]>("card-list").length > 0 &&
             <div className={this.decorateCSS("stats6-page")}>
               {this.castToObject<CardData[]>("card-list").map(
-                (data: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("card")}>
-                    <h4 className={this.decorateCSS("data-card-title")}>
-                      {this.getComponentState(`number-${index}`)}
-                    </h4>
-                    <p className={this.decorateCSS("data-card-description")}>
-                      {data.CardDescription}
-                    </p>
-                  </div>
-                )
+                (data: CardData, index: number) => {
+
+                  const isDescExist = this.castToString(data.CardDescription);
+
+                  if (data.CardTitle || isDescExist)
+                    return (
+                      <div key={index} className={this.decorateCSS("card")}>
+                        <h4 className={this.decorateCSS("data-card-title")}>
+                          {this.getComponentState(`number-${index}`)}
+                        </h4>
+                        {isDescExist &&
+                          <p className={this.decorateCSS("data-card-description")}>
+                            {data.CardDescription}
+                          </p>
+                        }
+                      </div>
+                    );
+                }
               )}
             </div>
-          </div>
+          }
         </div>
-      </>
+      </div>
     );
   }
 }
