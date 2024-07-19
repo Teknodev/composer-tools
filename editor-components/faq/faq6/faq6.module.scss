@@ -1,123 +1,129 @@
 .container {
-    width: 100%;
-    padding: 20px;
-    .max-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: var(--composer-content-width);
-        margin: auto;
-        gap: 30px;
+  width: 100%;
+  padding: 20px;
 
-        @media screen and (max-width: 900px) {
-            flex-direction: column;
-        }
+  .max-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: var(--composer-content-width);
+    margin: auto;
+    gap: 30px;
 
-        .items {
-            display: flex;
-            flex-direction: column;
-
-            border: 1px solid var(--composer-tertiary-color);
-            border-bottom: none;
-
-            .item {
-                width: 550px;
-                cursor: pointer;
-                @media screen and (max-width: 570px) {
-                    width: 100%;
-                }
-
-                .title-box {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: 10px;
-                    border-bottom: 1px solid var(--composer-tertiary-color);
-                    padding: 25px 20px;
-
-                    .title-text {
-                        font-weight: 600;
-                        font-size: 1.6rem;
-                        color: var(--composer-primary-color);
-                    }
-
-                    .icon {
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-            }
-            .description-box {
-                overflow: hidden;
-                max-height: 0px;
-                transition: max-height 0.6s;
-                .description-text {
-                    margin: 20px;
-                    font-size: 1.1rem;
-                    color: var(--composer-font-color-primary);
-                }
-
-                &.active {
-                    border-bottom: 1px solid var(--composer-tertiary-color);
-                    max-height: 1000px;
-                }
-            }
-
-            :last-child {
-                border: none;
-            }
-        }
-
-        .image-box {
-            width: 555px;
-            min-width: 555px;
-            height: 555px;
-            position: relative;
-
-            @media screen and (max-width: 1140px) {
-                width: 400px;
-                min-width: 400px;
-                height: 400px;
-            }
-
-            @media screen and (max-width: 990px) {
-                width: 300px;
-                min-width: 300px;
-                height: 300px;
-            }
-
-            @media screen and (max-width: 900px) {
-                width: 500px;
-                min-width: 500px;
-                height: 500px;
-            }
-
-            @media screen and (max-width: 570px) {
-                width: 300px;
-                min-width: 300px;
-                height: 300px;
-            }
-
-            .image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 100%;
-            }
-
-            .title {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                margin: auto 0;
-                height: fit-content;
-                left: 40px;
-                font-size: 5rem;
-                color: var(--composer-font-color-primary);
-
-                @media screen and (max-width: 990px) {
-                    font-size: 3rem;
-                    top: -100px;
-                }
-            }
-        }
+    @media screen and (max-width: 900px) {
+      flex-direction: column;
     }
+
+    .items {
+      display: flex;
+      flex-direction: column;
+
+      border: 1px solid var(--composer-tertiary-color);
+      border-bottom: none;
+      width: 100%;
+
+      .item {
+        width: 100%;
+        cursor: pointer;
+
+        @media screen and (max-width: 570px) {
+          width: 100%;
+        }
+
+        .title-box {
+          display: flex;
+          justify-content: space-between;
+          gap: 10px;
+          border-bottom: 1px solid var(--composer-tertiary-color);
+          padding: 25px 20px;
+
+          .title-text {
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: var(--composer-primary-color);
+          }
+
+          .icon {
+            color: var(--composer-font-color-primary);
+          }
+        }
+      }
+
+      .description-box {
+        overflow: hidden;
+        max-height: 0px;
+        transition: max-height 0.6s;
+
+        .description-text {
+          margin: 20px;
+          font-size: 1.1rem;
+          color: var(--composer-font-color-primary);
+        }
+
+        &.active {
+          border-bottom: 1px solid var(--composer-tertiary-color);
+          max-height: 1000px;
+        }
+      }
+
+      :last-child {
+        border: none;
+      }
+    }
+
+    .image-box {
+      width: 100%;
+      height: 100%;
+      max-width: 555px;
+      max-height: 555px;
+      position: relative;
+
+      @media screen and (max-width: 1140px) {
+        width: 400px;
+        min-width: 400px;
+        height: 400px;
+      }
+
+      @media screen and (max-width: 990px) {
+        width: 300px;
+        min-width: 300px;
+        height: 300px;
+      }
+
+      @media screen and (max-width: 900px) {
+        width: 500px;
+        min-width: 500px;
+        height: 500px;
+      }
+
+      @media screen and (max-width: 570px) {
+        width: 300px;
+        min-width: 300px;
+        height: 300px;
+      }
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+
+      .title {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+        height: fit-content;
+        left: 40px;
+        font-size: 5rem;
+        color: var(--composer-font-color-primary);
+
+        @media screen and (max-width: 990px) {
+          font-size: 3rem;
+          top: -100px;
+        }
+      }
+    }
+  }
 }
