@@ -3,8 +3,8 @@ import styles from "./faq1.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 
 type FAQ = {
-  subtitle: string;
-  text: string;
+  subtitle: JSX.Element;
+  text: JSX.Element;
   image: string;
 };
 
@@ -83,15 +83,15 @@ class Faq extends BaseFAQ {
     return "FAQ-1";
   }
 
-  cardClicked(index:number) {
-    const currentSelectCardIndex=this.getComponentState("selectCardIndex");
+  cardClicked(index: number) {
+    const currentSelectCardIndex = this.getComponentState("selectCardIndex");
 
-     if(currentSelectCardIndex === index) {
-      this.setComponentState("selectCardIndex",null);
-     }
-     else {
-      this.setComponentState("selectCardIndex",index);
-     }
+    if (currentSelectCardIndex === index) {
+      this.setComponentState("selectCardIndex", null);
+    }
+    else {
+      this.setComponentState("selectCardIndex", index);
+    }
   }
 
   render() {
@@ -99,25 +99,34 @@ class Faq extends BaseFAQ {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {this.castToObject<FAQ[]>("card").map((card: FAQ, indexCard: number) => (
-              <div
-                key={indexCard}
-                className={`${this.decorateCSS("card")}`}
-                onClick={()=>{
-                  this.cardClicked(indexCard);
-                }}
-              >
-                <div className={this.decorateCSS("in-box")}>
-                  <h2 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</h2>
-                  <img
-                    alt=""
-                    src={"https://www.svgrepo.com/show/80156/down-arrow.svg"}
-                    className={`${this.decorateCSS("img-1")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`}
-                  />
-                </div>
-                <p className={`${this.decorateCSS("card-text")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardTextActive") : ""}`}>{card.text}</p>
-              </div>
-            ))}
+            {this.castToObject<FAQ[]>("card").map((card: FAQ, indexCard: number) => {
+
+              const isQuestionExist = this.castToString(card.subtitle);
+              const isAnswerExist = this.castToString(card.text);
+
+              if (isQuestionExist)
+                return (
+                  <div
+                    key={indexCard}
+                    className={`${this.decorateCSS("card")}`}
+                    onClick={() => {
+                      this.cardClicked(indexCard);
+                    }}
+                  >
+                    <div className={this.decorateCSS("in-box")}>
+                      <h2 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</h2>
+                      <img
+                        alt=""
+                        src={"https://www.svgrepo.com/show/80156/down-arrow.svg"}
+                        className={`${this.decorateCSS("img-1")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`}
+                      />
+                    </div>
+                    {isAnswerExist &&
+                      <p className={`${this.decorateCSS("card-text")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardTextActive") : ""}`}>{card.text}</p>
+                    }
+                  </div>
+                );
+            })}
           </div>
         </div>
       </div>
