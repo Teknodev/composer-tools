@@ -4,10 +4,10 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature14.module.scss";
 
 type TopImages = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
   image: string;
-  buttonText: string;
+  buttonText: JSX.Element;
   link: string;
 };
 class Feature14 extends BaseFeature {
@@ -148,40 +148,60 @@ class Feature14 extends BaseFeature {
   }
 
   render() {
+
+    const list = this.castToObject<TopImages[]>("top-image-card");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {this.castToObject<TopImages[]>("top-image-card").map(
-              (top_image: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div className={this.decorateCSS("top-image")} key={index}>
-                  <div className={this.decorateCSS("image-background")}></div>
-                  <div className={this.decorateCSS("child")}>
-                    <img
-                      alt=""
-                      className={this.decorateCSS("image")}
-                      src={top_image.image}
-                    ></img>
-                    <h3 className={this.decorateCSS("title")}>{top_image.title}</h3>
-                    <p className={this.decorateCSS("long-text")}>
-                      {top_image.description}
-                    </p>
-                    <ComposerLink path={top_image.link}>
-                      <a>
-                        {top_image.buttonText}
-                      </a>
-                    </ComposerLink>
-                  </div>
-                </div>
-                </div>
-              )
-            )}
+            {list.length > 0 &&
+              list.map(
+                (item: TopImages, index: number) => {
+
+                  const isTitleExist = this.castToString(item.title);
+                  const isDescExist = this.castToString(item.description);
+                  const isButtonTextExist = this.castToString(item.buttonText);
+
+                  if (isTitleExist || isDescExist || isButtonTextExist)
+                    return (
+                      <div className={this.decorateCSS("card-item-count")} style={{
+                        width: 90 / this.getPropValue("itemCount") + "%",
+                      }}>
+                        <div className={this.decorateCSS("top-image")} key={index}>
+                          <div className={this.decorateCSS("image-background")}></div>
+                          <div className={this.decorateCSS("child")}>
+                            {item.image &&
+                              <img
+                                alt=""
+                                className={this.decorateCSS("image")}
+                                src={item.image}
+                              />
+                            }
+                            {isTitleExist &&
+                              <h3 className={this.decorateCSS("title")}>{item.title}</h3>
+                            }
+                            {isDescExist &&
+                              <p className={this.decorateCSS("long-text")}>
+                                {item.description}
+                              </p>
+                            }
+                            {isButtonTextExist &&
+                              <ComposerLink path={item.link}>
+                                <a>
+                                  {item.buttonText}
+                                </a>
+                              </ComposerLink>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    );
+                }
+              )}
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
