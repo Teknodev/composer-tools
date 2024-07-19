@@ -4,8 +4,20 @@ import { BaseFAQ } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
-  cardTitle: string;
-  description: string;
+  cardTitle: JSX.Element;
+  description: JSX.Element;
+};
+
+type DownContainer = {
+  title2: JSX.Element;
+  description: JSX.Element;
+  buttonGroup: Button[];
+};
+
+type Button = {
+  text: JSX.Element;
+  link: string;
+  isPrimary: boolean;
 };
 
 class FaqContainer extends BaseFAQ {
@@ -195,7 +207,7 @@ class FaqContainer extends BaseFAQ {
             },
             {
               type: "array",
-              key: "button",
+              key: "buttonGroup",
               displayer: "Button",
               value: [
                 {
@@ -232,7 +244,7 @@ class FaqContainer extends BaseFAQ {
   }
 
   getName(): string {
-    return "FAQ-02";
+    return "FAQ-2";
   }
 
   render() {
@@ -257,89 +269,117 @@ class FaqContainer extends BaseFAQ {
       }
     };
 
+    const isBadgeExist = this.castToString(this.getPropValue("badge"));
+    const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </div>
-              <h1 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h1>
-              <p className={this.decorateCSS("title-p")}>
-                {this.getPropValue("title")}
-              </p>
+              {isBadgeExist &&
+                <div className={this.decorateCSS("badge")}>
+                  {this.getPropValue("badge")}
+                </div>
+              }
+              {isSubtitleExist &&
+                <h1 className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </h1>
+              }
+              {isTitleExist &&
+                <p className={this.decorateCSS("title-p")}>
+                  {this.getPropValue("title")}
+                </p>
+              }
             </div>
             <div className={this.decorateCSS("card-page")}>
               {this.castToObject<Card[]>("card").map(
                 (item: Card, indexCard: number) => {
-                  return (
-                    <div
-                      key={indexCard}
-                      style={style()}
-                      className={this.decorateCSS("card-item-count")}
-                    >
-                      <div className={this.decorateCSS("card")}>
-                        <div className={this.decorateCSS("icon")}>
-                          <div>?</div>
-                        </div>
-                        <div className={this.decorateCSS("title")}>
-                          <h2 className={this.decorateCSS("item-cardTitle")}>
-                            {item.cardTitle}
-                          </h2>
-                        </div>
-                        <div className={this.decorateCSS("description")}>
-                          <p className={this.decorateCSS("item-description")}>
-                            {item.description}
-                          </p>
+                  const isTitleExist = this.castToString(item.cardTitle);
+                  const isDescExist = this.castToString(item.description);
+
+                  if (isTitleExist || isDescExist)
+                    return (
+                      <div
+                        key={indexCard}
+                        style={style()}
+                        className={this.decorateCSS("card-item-count")}
+                      >
+                        <div className={this.decorateCSS("card")}>
+                          <div className={this.decorateCSS("icon")}>
+                            <div>?</div>
+                          </div>
+                          {isTitleExist &&
+                            <div className={this.decorateCSS("title")}>
+                              <h2 className={this.decorateCSS("item-cardTitle")}>
+                                {item.cardTitle}
+                              </h2>
+                            </div>}
+                          {isDescExist &&
+                            <div className={this.decorateCSS("description")}>
+                              <p className={this.decorateCSS("item-description")}>
+                                {item.description}
+                              </p>
+                            </div>}
                         </div>
                       </div>
-                    </div>
-                  );
+                    );
                 }
               )}
             </div>
           </div>
         </div>
-        {this.castToObject<[]>("downContainer").map(
-          (item: any, index: number) => (
-            <div className={this.decorateCSS("down-container")}>
-              <div key={index} className={this.decorateCSS("child-container")}>
-                <h1 className={this.decorateCSS("title2")}>
-                  {item.value[0].value}
-                </h1>
-                <p className={this.decorateCSS("description")}>
-                  {item.value[1].value}
-                </p>
-                <div className={this.decorateCSS("button-group")}>
-                  {item.value[2].value.map(
-                    (button: any, buttonIndex: number) => {
-                      return (
-                        <ComposerLink
-                          key={buttonIndex}
-                          path={button.value[1].value}
-                        >
-                          <button
-                            className={
-                              this.decorateCSS("button") +
-                              " " +
-                              (button.value[2].value
-                                ? this.decorateCSS("primary")
-                                : this.decorateCSS("secondary"))
-                            }
-                          >
-                            {button.value[0].value}
-                          </button>
-                        </ComposerLink>
-                      );
-                    }
-                  )}
+        {this.castToObject<DownContainer[]>("downContainer").map(
+          (item: DownContainer, index: number) => {
+            const isTitleExist = this.castToString(item.title2);
+            const isDescExist = this.castToString(item.description);
+
+            return (
+              <div className={this.decorateCSS("down-container")}>
+                <div key={index} className={this.decorateCSS("child-container")}>
+                  {isTitleExist &&
+                    <h1 className={this.decorateCSS("title2")}>
+                      {item.title2}
+                    </h1>
+                  }
+                  {isDescExist &&
+                    <p className={this.decorateCSS("description")}>
+                      {item.description}
+                    </p>
+                  }
+                  <div className={this.decorateCSS("button-group")}>
+                    {item.buttonGroup?.map(
+                      (button: Button, buttonIndex: number) => {
+                        const isButtonTextExist = this.castToString(button.text);
+                        
+                        if (isButtonTextExist)
+                          return (
+                            <ComposerLink
+                              key={buttonIndex}
+                              path={button.link}
+                            >
+                              <button
+                                className={
+                                  this.decorateCSS("button") +
+                                  " " +
+                                  (button.isPrimary
+                                    ? this.decorateCSS("primary")
+                                    : this.decorateCSS("secondary"))
+                                }
+                              >
+                                {button.text}
+                              </button>
+                            </ComposerLink>
+                          );
+                      }
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          )
+            );
+          }
         )}
       </div>
     );
