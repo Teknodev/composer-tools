@@ -4,8 +4,8 @@ import { BaseFAQ } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
 };
 
 class FaqButton extends BaseFAQ {
@@ -134,57 +134,82 @@ class FaqButton extends BaseFAQ {
       this.activeIndex = this.activeIndex === index ? -1 : index;
     };
 
+    const isBadgeExist = this.castToString(this.getPropValue("badge"));
+    const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const isTextExist = this.castToString(this.getPropValue("text"));
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </div>
-              <h1 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h1>
-              <p className={this.decorateCSS("text-p")}>
-                {this.getPropValue("text")}
-              </p>
-            </div>
-            <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("card").map(
-                (card: Card, indexCard: any) => {
-                  return (
-                    <div className={this.decorateCSS("card")} key={indexCard}>
-                      <div className={this.decorateCSS("child-container")}>
-                        <div className={this.decorateCSS("card-title")}>
-                          <h3 className={this.decorateCSS("card-title-h3")}>
-                            {card.title}
-                          </h3>
-                        </div>
-                        <div className={this.decorateCSS("icon")} onClick={() => handleButton(indexCard)}
-                        >
-                          <ComposerIcon
-                            propsIcon={{className: this.decorateCSS("icon-svg")}}
-                            name={
-                              this.activeIndex === indexCard
-                                ? "FaAngleUp"
-                                : "FaAngleDown"
-                            }
-                          />
-                        </div>
-                      </div>
-                      <p
-                        className={`${this.activeIndex === indexCard
-                          ? this.decorateCSS("text")
-                          : this.decorateCSS("hide")
-                          }`}
-                      >
-                        {card.description}
-                      </p>
-                    </div>
-                  );
+            {(isBadgeExist || isSubtitleExist || isTextExist) && (
+              <div className={this.decorateCSS("up-page")}>
+                {isBadgeExist &&
+                  <div className={this.decorateCSS("badge")}>
+                    {this.getPropValue("badge")}
+                  </div>
                 }
-              )}
-            </div>
+                {isSubtitleExist &&
+                  <h1 className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </h1>
+                }
+                {isTextExist &&
+                  <p className={this.decorateCSS("text-p")}>
+                    {this.getPropValue("text")}
+                  </p>
+                }
+              </div>
+            )}
+            {this.castToObject<Card[]>("card").length > 0 && (
+              <div className={this.decorateCSS("down-page")}>
+                {this.castToObject<Card[]>("card").map(
+                  (card: Card, indexCard: any) => {
+
+                    const isTitleExist = this.castToString(card.title);
+                    const isDescExist = this.castToString(card.description);
+
+                    if (isTitleExist)
+                      return (
+                        <div className={this.decorateCSS("card")} key={indexCard}>
+                          <div className={this.decorateCSS("child-container")}>
+                            {isTitleExist &&
+                              <div className={this.decorateCSS("card-title")}>
+                                <h3 className={this.decorateCSS("card-title-h3")}>
+                                  {card.title}
+                                </h3>
+                              </div>
+                            }
+                            <div
+                              className={this.decorateCSS("icon")}
+                              onClick={() => handleButton(indexCard)}
+                            >
+                              <ComposerIcon
+                                propsIcon={{ className: this.decorateCSS("icon-svg") }}
+                                name={
+                                  this.activeIndex === indexCard
+                                    ? "FaAngleUp"
+                                    : "FaAngleDown"
+                                }
+                              />
+                            </div>
+                          </div>
+                          {isDescExist &&
+                            <p
+                              className={`${this.activeIndex === indexCard
+                                ? this.decorateCSS("text")
+                                : this.decorateCSS("hide")
+                                }`}
+                            >
+                              {card.description}
+                            </p>
+                          }
+                        </div>
+                      );
+                  }
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
