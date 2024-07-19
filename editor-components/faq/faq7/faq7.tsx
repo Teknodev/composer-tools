@@ -3,14 +3,13 @@ import styles from "./faq7.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 
 type Card = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
 };
 
 class FaqButton extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
-
 
     this.addProp({
       type: "string",
@@ -90,7 +89,7 @@ class FaqButton extends BaseFAQ {
               value: "As many as 40 million people avoid dental treatment due to dental anxiety. We want to make your treatment as comfortable as possible and sedation simply adds the extra bit of relaxation. It can prevent gag reflexes and help patients who fear the dentist relax. It is completely painless and will give you a sense of calm and happiness! We offer different types of sedation and your dentist will decide which is right for you, for longer or more complicated treatments intravenous sedation may be advisable. Sedation will not make you unconscious, but it will make it unsafe for you to drive or operate any machinery for a while afterwards, so we recommend asking for a friend or family member to join you! At Dental Excellence Turkey we want all our patients to have a very pleasant experience, making sure you are happy with all the aspects of your treatment!.",
             },
           ],
-        },{
+        }, {
           type: "object",
           key: "items",
           displayer: "Items",
@@ -111,45 +110,45 @@ class FaqButton extends BaseFAQ {
           ],
         },
         {
-            type: "object",
-            key: "items",
-            displayer: "Items",
-            value: [
-              {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value:
-                  "Is Porcelain Laminate Veneer an invasive or painful treatment?",
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Not at all, nowadays porcelain veneers are getting thinner, so tooth carving is minimal. It is a simple treatment, fast and without pain.",
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "items",
-            displayer: "Items",
-            value: [
-              {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value:
-                  "How to Care for Dental Veneers?",
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Porcelain veneers require the same maintenance as natural teeth. They are made of a material that is not affected by cavities but they are attached to a part of the tooth which is vulnerable to decay, so it is always recommended a good oral hygiene based on tooth brushing 3 times a day and the use of dental floss, once a day.",
-              },
-            ],
-          },
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                "Is Porcelain Laminate Veneer an invasive or painful treatment?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Not at all, nowadays porcelain veneers are getting thinner, so tooth carving is minimal. It is a simple treatment, fast and without pain.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                "How to Care for Dental Veneers?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Porcelain veneers require the same maintenance as natural teeth. They are made of a material that is not affected by cavities but they are attached to a part of the tooth which is vulnerable to decay, so it is always recommended a good oral hygiene based on tooth brushing 3 times a day and the use of dental floss, once a day.",
+            },
+          ],
+        },
       ],
     });
   }
@@ -162,57 +161,74 @@ class FaqButton extends BaseFAQ {
 
   render() {
     const handleButton = (index: number) => {
-      if(this.activeIndex == index){
-        this.setComponentState("activeIndex", -1)
-      }else{
-        this.setComponentState("activeIndex", index)
+      if (this.activeIndex == index) {
+        this.setComponentState("activeIndex", -1);
+      } else {
+        this.setComponentState("activeIndex", index);
       }
     };
+
+    const isTextExist = this.castToString(this.getPropValue("text"));
+    const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
+
+    const cardList = this.castToObject<Card[]>("card");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <p className={this.decorateCSS("text-p")}>{this.getPropValue("text")}</p>
-            </div>
-            <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("card").map(
-                (card: Card, indexCard: any) => {
-                  return (
-                    <div className={this.decorateCSS("card")} key={indexCard}>
-                      <div className={this.decorateCSS("child-container")}>
-                        <div className={this.decorateCSS("card-title")}>
-                          <h3 className={this.decorateCSS("card-title-h3")}>{card.title}</h3>
-                        </div>
-                        <div className={this.decorateCSS("icon")}>
-                          <img
-                            alt=""
-                            src={
-                              this.getComponentState("activeIndex") === indexCard
-                                ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
-                                : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
-                            }
-                            onClick={() => handleButton(indexCard)}
-                          />
-                        </div>
-                      </div>
-                      <p
-                        className={`${
-                          this.getComponentState("activeIndex") === indexCard
-                            ? this.decorateCSS("text")
-                            : this.decorateCSS("hide")
-                        }`}
-                      >
-                        {card.description}
-                      </p>
-                    </div>
-                  );
+            {(isTextExist || isSubtitleExist) &&
+              <div className={this.decorateCSS("up-page")}>
+                {isSubtitleExist &&
+                  <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
                 }
-              )}
-            </div>
+                {isTextExist &&
+                  <p className={this.decorateCSS("text-p")}>{this.getPropValue("text")}</p>
+                }
+              </div>
+            }
+            {cardList.length > 0 &&
+              <div className={this.decorateCSS("down-page")}>
+                {cardList.map(
+                  (card: Card, indexCard: number) => {
+                    const isTitleExist = this.castToString(card.title);
+                    const isDescExist = this.castToString(card.description);
+
+                    if (isTitleExist)
+                      return (
+                        <div className={this.decorateCSS("card")} key={indexCard}>
+                          <div className={this.decorateCSS("child-container")}>
+                            <div className={this.decorateCSS("card-title")}>
+                              <h3 className={this.decorateCSS("card-title-h3")}>{card.title}</h3>
+                            </div>
+                            <div className={this.decorateCSS("icon")}>
+                              <img
+                                alt=""
+                                src={
+                                  this.getComponentState("activeIndex") === indexCard
+                                    ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
+                                    : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
+                                }
+                                onClick={() => handleButton(indexCard)}
+                              />
+                            </div>
+                          </div>
+                          {isDescExist &&
+                            <p
+                              className={`${this.getComponentState("activeIndex") === indexCard
+                                ? this.decorateCSS("text")
+                                : this.decorateCSS("hide")
+                                }`}
+                            >
+                              {card.description}
+                            </p>
+                          }
+                        </div>
+                      );
+                  }
+                )}
+              </div>
+            }
           </div>
         </div>
       </div>
