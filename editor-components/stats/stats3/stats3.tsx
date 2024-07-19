@@ -173,10 +173,6 @@ class Stats3Page extends BaseStats {
       displayer: "is box visible",
       value: true,
     });
-
-    const ed = this.castToObject<any>("subTitle");
-
-    console.log(ed);
   }
 
   getName(): string {
@@ -185,15 +181,13 @@ class Stats3Page extends BaseStats {
 
   render() {
 
-
-
     const isSubtitleExist = this.castToString(this.getPropValue("subTitle"));
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isDescExist = this.castToString(this.getPropValue("description"));
     const isDescMoreExist = this.castToString(this.getPropValue("descriptionMore"));
 
-    const buttonList = this.castToObject<Button[]>("buttons");
-    const cardList = this.castToObject<CardContent[]>("card-content");
+    // const buttonList = this.castToObject<Button[]>("buttons");
+    // const cardList = this.castToObject<CardContent[]>("card-content");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -221,7 +215,7 @@ class Stats3Page extends BaseStats {
                     {this.getPropValue("descriptionMore")}
                   </h3>
                 }
-                <div className={this.decorateCSS("box")}>
+                {/* <div className={this.decorateCSS("box")}>
                   {buttonList.map((item: Button, index: number) => {
 
                     const isTextExist = this.castToString(item.text);
@@ -238,7 +232,7 @@ class Stats3Page extends BaseStats {
                         </ComposerLink>
                       );
                   })}
-                </div>
+                </div> */}
               </div>
 
               <div className={this.decorateCSS("card")}>
@@ -249,7 +243,7 @@ class Stats3Page extends BaseStats {
                     className={this.decorateCSS("image")}
                   />
                 }
-                {this.getPropValue("is_box_visible") && (
+                {/* {this.getPropValue("is_box_visible") && (
                   <div className={this.decorateCSS("boxs")}>
                     {cardList.map(
                       (item: CardContent, index: number) => {
@@ -287,7 +281,7 @@ class Stats3Page extends BaseStats {
                       }
                     )}
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
