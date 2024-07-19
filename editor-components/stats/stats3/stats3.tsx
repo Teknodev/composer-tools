@@ -57,7 +57,7 @@ class Stats3Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "buttonText",
+              key: "text",
               displayer: "Button Text",
               value: "Read More",
             },
@@ -186,8 +186,8 @@ class Stats3Page extends BaseStats {
     const isDescExist = this.castToString(this.getPropValue("description"));
     const isDescMoreExist = this.castToString(this.getPropValue("descriptionMore"));
 
-    // const buttonList = this.castToObject<Button[]>("buttons");
-    // const cardList = this.castToObject<CardContent[]>("card-content");
+    const buttonList = this.castToObject<Button[]>("buttons");
+    const cardList = this.castToObject<CardContent[]>("card-content");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -215,24 +215,26 @@ class Stats3Page extends BaseStats {
                     {this.getPropValue("descriptionMore")}
                   </h3>
                 }
-                {/* <div className={this.decorateCSS("box")}>
-                  {buttonList.map((item: Button, index: number) => {
+                {buttonList.length > 0 &&
+                  <div className={this.decorateCSS("box")}>
+                    {buttonList?.map((item: Button, index: number) => {
 
-                    const isTextExist = this.castToString(item.text);
+                      const isTextExist = this.castToString(item.text);
 
-                    if (isTextExist)
-                      return (
-                        <ComposerLink key={`stats-${index}`} path={item.url}>
-                          <button
-                            className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")
-                              }`}
-                          >
-                            {item.text}
-                          </button>
-                        </ComposerLink>
-                      );
-                  })}
-                </div> */}
+                      if (isTextExist)
+                        return (
+                          <ComposerLink key={`stats-${index}`} path={item.url}>
+                            <button
+                              className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")
+                                }`}
+                            >
+                              {item.text}
+                            </button>
+                          </ComposerLink>
+                        );
+                    })}
+                  </div>
+                }
               </div>
 
               <div className={this.decorateCSS("card")}>
@@ -243,7 +245,7 @@ class Stats3Page extends BaseStats {
                     className={this.decorateCSS("image")}
                   />
                 }
-                {/* {this.getPropValue("is_box_visible") && (
+                {this.getPropValue("is_box_visible") && (
                   <div className={this.decorateCSS("boxs")}>
                     {cardList.map(
                       (item: CardContent, index: number) => {
@@ -281,7 +283,7 @@ class Stats3Page extends BaseStats {
                       }
                     )}
                   </div>
-                )} */}
+                )}
               </div>
             </div>
           </div>
