@@ -109,16 +109,16 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               ))}
             </div>
             {isImageClicked && (
-              <div className={this.decorateCSS("overlay")}>
+              <div className={this.decorateCSS("overlay")} onClick={() => this.handleCloseClick()}>
                 <div className={this.decorateCSS("overlay-content")}>
                   <div className={this.decorateCSS("middle-content")}>
                     <button className={this.decorateCSS("close-button")} onClick={() => this.handleCloseClick()}>×</button>
-                    <img src={galleries[clickedImageIndex].value} alt="" className={this.decorateCSS("large-image")} onClick={() => this.handleNextImage()}/>
+                    <img src={galleries[clickedImageIndex].value} alt="" className={this.decorateCSS("large-image")} onClick={(e) =>  {e.stopPropagation();this.handleNextImage()}}/>
                     <div className={this.decorateCSS("image-caption")}>{clickedImageIndex + 1} of {galleries.length}</div>
                     <div className={this.decorateCSS("gallery-image")}>Gallery Image</div>
                   </div>
-                  <button className={this.decorateCSS("prev-button")} onClick={() => this.handlePrevImage()}>&lt;</button>
-                  <button className={this.decorateCSS("next-button")} onClick={() => this.handleNextImage()}>&gt;</button>
+                  <button className={this.decorateCSS("prev-button")} onClick={(e) =>  {e.stopPropagation();this.handlePrevImage()}}>&lt;</button>
+                  <button className={this.decorateCSS("next-button")} onClick={(e) =>  {e.stopPropagation();this.handleNextImage()}}>&gt;</button>
                 </div>
               </div>
             )}
