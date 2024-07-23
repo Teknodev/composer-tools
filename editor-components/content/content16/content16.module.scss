@@ -8,18 +8,25 @@
 
     .title {
       text-align: left;
-      font-size: 3rem;  /* Adjust as needed */
+      font-size: 10rem;
       color: var(--composer-primary-color);
-      margin: 20px 0 10px;
+      margin: 20px 0;
       padding-left: 30px;
+      position: relative;
+      margin-bottom: 20px; 
+      overflow: hidden;
+      white-space: nowrap;
+      animation: title-appear 1.5s steps(20) forwards;
     }
 
     .subtitle {
       text-align: left;
       color: var(--composer-font-color-primary);
-      font-size: 1.5rem;  /* Adjust as needed */
-      margin: 10px 0 30px;
-      padding-left: 30px;
+      font-size: 2.45rem;
+      margin: 20px 0 30px;
+      margin-top: 30px;
+      padding-left: 40px;
+      font-weight: lighter;
     }
 
     .faint-line {
@@ -30,7 +37,7 @@
 
     .wrapper {
       width: 100%;
-      padding: 0 30px;
+      padding: 20px;
       display: flex;
       justify-content: space-between;
       gap: 20px;
@@ -42,6 +49,7 @@
         .carousel {
           .slider-inner-div {
             border-radius: 10px;
+            animation: slide-up 1.5s ease-out forwards;
 
             .content-div {
               width: 100%;
@@ -84,7 +92,7 @@
                 .first-item {
                   font-size: 1.25rem;
                   font-weight: lighter;
-                  color: var(--composer-font-color-primary);
+                  color: var(--composer-font-color-primary);;
                   margin: 10px 0;
                 }
 
@@ -94,9 +102,20 @@
                   margin: 10px 0;
                   font-weight: 700;
                   letter-spacing: 1.2px;
+                  position: relative;
+                  display: inline-block;
+                  width: 100%;
+                  white-space: normal;
+                  word-wrap: break-word;
+                  overflow: hidden;
                 }
               }
             }
+          }
+
+          &.nextSlide,
+          &.prevSlide {
+            filter: none;
           }
         }
       }
@@ -104,20 +123,39 @@
   }
 }
 
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes title-appear {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 1280px) {
   .container {
-    padding: 30px; 
+    padding: 50px 20px;
+
     .max-content {
       .title {
-        margin: 20px 0 10px;
+        margin: 20px 0 20px;
         padding-left: 20px;
-        font-size: 2.5rem;
+        font-size: 6rem;
       }
 
       .subtitle {
-        margin: 10px 0 30px;
+        margin: 20px 0 30px;
         padding-left: 20px;
-        font-size: 1.5rem;
+        font-size: 2rem;
       }
 
       .wrapper {
@@ -179,6 +217,12 @@
                     margin: 8px 0;
                     font-weight: 700;
                     letter-spacing: 1.2px;
+                    position: relative;
+                    display: inline-block;
+                    width: 100%;
+                    white-space: normal;
+                    word-wrap: break-word;
+                    overflow: hidden;
                   }
                 }
 
@@ -196,8 +240,8 @@
 
 @media screen and (max-width: 600px) {
   .container {
-    padding: 0;
-    margin-top: 30px; 
+    padding: 0px;
+    margin-top: 30px;
     .max-content {
       .title,
       .subtitle {
@@ -207,21 +251,21 @@
       }
 
       .title {
-        font-size: 2rem;
+        font-size: 3rem;
         padding-left: 10px;
         padding-right: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
 
       .subtitle {
         font-size: 1.25rem;
         padding-left: 10px;
         padding-right: 10px;
-        margin: 10px 0 30px;
+        margin: 20px 0 30px;
       }
 
       .wrapper {
-        padding: 0;
+        padding: 0px;
 
         .slider-parent {
           .carousel {
@@ -259,6 +303,12 @@
                     margin: 10px 0;
                     font-weight: 700;
                     letter-spacing: 1.2px;
+                    position: relative;
+                    display: inline-block;
+                    width: 100%;
+                    white-space: normal;
+                    word-wrap: break-word;
+                    overflow: hidden;
                   }
                 }
               }
