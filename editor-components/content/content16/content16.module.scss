@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 100px 100px;
+  padding: 30px;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -8,30 +8,29 @@
 
     .title {
       text-align: left;
-      font-size: 10rem;
-      color: var(--composer-html-backgorund);
-      margin: 20px 0;
-      padding-left: 40px;
-      position: relative;
-      margin-bottom: 20px; 
-      overflow: hidden;
-      white-space: nowrap;
-      animation: title-appear 1.5s steps(20) forwards;
+      font-size: 3rem;  /* Adjust as needed */
+      color: var(--composer-primary-color);
+      margin: 20px 0 10px;
+      padding-left: 30px;
     }
 
     .subtitle {
       text-align: left;
-      color: var(--composer-html-backgorund);
-      font-size: 2.45rem;
-      margin: 20px 0 40px;
-      margin-top: 55px;
-      padding-left: 40px;
-      font-weight: lighter;
+      color: var(--composer-font-color-primary);
+      font-size: 1.5rem;  /* Adjust as needed */
+      margin: 10px 0 30px;
+      padding-left: 30px;
+    }
+
+    .faint-line {
+      border: none;
+      border-top: 1px solid var(--composer-font-color-primary);
+      margin: 0 30px;
     }
 
     .wrapper {
       width: 100%;
-      padding: 20px;
+      padding: 0 30px;
       display: flex;
       justify-content: space-between;
       gap: 20px;
@@ -43,7 +42,6 @@
         .carousel {
           .slider-inner-div {
             border-radius: 10px;
-            animation: slide-up 1.5s ease-out forwards;
 
             .content-div {
               width: 100%;
@@ -80,13 +78,13 @@
                 }
               }
 
-              .header-page {
+              .item-page {
                 width: 100%;
 
-                .first-header {
+                .first-item {
                   font-size: 1.25rem;
                   font-weight: lighter;
-                  color: var(--composer-html-backgorund);
+                  color: var(--composer-font-color-primary);
                   margin: 10px 0;
                 }
 
@@ -96,20 +94,9 @@
                   margin: 10px 0;
                   font-weight: 700;
                   letter-spacing: 1.2px;
-                  position: relative;
-                  display: inline-block;
-                  width: 100%;
-                  white-space: normal;
-                  word-wrap: break-word;
-                  overflow: hidden;
                 }
               }
             }
-          }
-
-          &.nextSlide,
-          &.prevSlide {
-            filter: none;
           }
         }
       }
@@ -117,39 +104,20 @@
   }
 }
 
-@keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes title-appear {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
 @media screen and (max-width: 1280px) {
   .container {
-    padding: 50px 20px;
-
+    padding: 30px; 
     .max-content {
       .title {
-        margin: 20px 0 20px;
+        margin: 20px 0 10px;
         padding-left: 20px;
-        font-size: 6rem;
+        font-size: 2.5rem;
       }
 
       .subtitle {
-        margin: 20px 0 40px;
+        margin: 10px 0 30px;
         padding-left: 20px;
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
 
       .wrapper {
@@ -198,10 +166,10 @@
                   }
                 }
 
-                .header-page {
+                .item-page {
                   width: 100%;
 
-                  .first-header {
+                  .first-item {
                     font-size: 1.4rem;
                     margin: 8px 0;
                   }
@@ -211,12 +179,6 @@
                     margin: 8px 0;
                     font-weight: 700;
                     letter-spacing: 1.2px;
-                    position: relative;
-                    display: inline-block;
-                    width: 100%;
-                    white-space: normal;
-                    word-wrap: break-word;
-                    overflow: hidden;
                   }
                 }
 
@@ -234,8 +196,8 @@
 
 @media screen and (max-width: 600px) {
   .container {
-    padding: 0px;
-    margin-top: 50px;
+    padding: 0;
+    margin-top: 30px; 
     .max-content {
       .title,
       .subtitle {
@@ -245,21 +207,21 @@
       }
 
       .title {
-        font-size: 3rem;
+        font-size: 2rem;
         padding-left: 10px;
         padding-right: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
 
       .subtitle {
         font-size: 1.25rem;
         padding-left: 10px;
         padding-right: 10px;
-        margin: 20px 0 40px;
+        margin: 10px 0 30px;
       }
 
       .wrapper {
-        padding: 0px;
+        padding: 0;
 
         .slider-parent {
           .carousel {
@@ -284,10 +246,10 @@
                   }
                 }
 
-                .header-page {
+                .item-page {
                   width: 100%;
 
-                  .first-header {
+                  .first-item {
                     font-size: 1.2rem;
                     margin: 10px 0;
                   }
@@ -297,12 +259,6 @@
                     margin: 10px 0;
                     font-weight: 700;
                     letter-spacing: 1.2px;
-                    position: relative;
-                    display: inline-block;
-                    width: 100%;
-                    white-space: normal;
-                    word-wrap: break-word;
-                    overflow: hidden;
                   }
                 }
               }

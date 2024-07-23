@@ -6,14 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "./content16.module.scss";
 
 type Card = {
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-  image_subtitle: string;
-  image_title: string;
-  image_description: string;
-  url: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  image?: string;
+  image_subtitle?: string;
+  image_title?: string;
+  image_description?: string;
+  url?: string;
 };
 
 class Content16 extends BaseContent {
@@ -36,8 +36,8 @@ class Content16 extends BaseContent {
 
     this.addProp({
       type: "array",
-      key: "header",
-      displayer: "Header",
+      key: "items",
+      displayer: "Items",
       value: [
         {
           type: "object",
@@ -137,7 +137,7 @@ class Content16 extends BaseContent {
 
     this.setComponentState(
       "prevSlide",
-      this.castToObject<Card[]>("header").length - 1
+      this.castToObject<Card[]>("items").length - 1
     );
     this.setComponentState("activeSlide", 0);
     this.setComponentState("nextSlide", 1);
@@ -149,107 +149,120 @@ class Content16 extends BaseContent {
 
   render() {
     const settings = {
-      arrows: false,
-      dots: true,
-      infinite: true,
-      speed: 725,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      responsive: [
-        {
-          breakpoint: 1280,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-          },
+        arrows: false,
+        dots: true,
+        infinite: true,
+        speed: 725,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1280,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 885,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+        beforeChange: (current: number, next: number) => {
+            this.setComponentState(
+                "prevSlide",
+                next - 1 < 0
+                    ? this.castToObject<Card[]>("items").length - 1
+                    : next - 1
+            );
+            this.setComponentState("activeSlide", next);
+            this.setComponentState(
+                "nextSlide",
+                next + 1 > this.castToObject<Card[]>("items").length - 1
+                    ? 0
+                    : next + 1
+            );
         },
-        {
-          breakpoint: 885,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-      beforeChange: (current: number, next: number) => {
-        this.setComponentState(
-          "prevSlide",
-          next - 1 < 0
-            ? this.castToObject<Card[]>("header").length - 1
-            : next - 1
-        );
-        this.setComponentState("activeSlide", next);
-        this.setComponentState(
-          "nextSlide",
-          next + 1 > this.castToObject<Card[]>("header").length - 1
-            ? 0
-            : next + 1
-        );
-      },
     };
 
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <header>
-            <h1 className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </h1>
-            <hr className="faint-line" />
-            <h2 className={this.decorateCSS("subtitle")}>
-              {this.getPropValue("subtitle")}
-            </h2>
-          </header>
-          <main className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("slider-parent")}>
-              <Slider {...settings} className={this.decorateCSS("carousel")}>
-                {this.castToObject<Card[]>("header").map(
-                  (item: Card, index: number) => (
-                    <article
-                      className={
-                        this.decorateCSS("slider-inner-div") +
-                        " " +
-                        (this.getComponentState("prevSlide") == index
-                          ? this.decorateCSS("prevSlide")
-                          : "") +
-                        " " +
-                        (this.getComponentState("nextSlide") == index
-                          ? this.decorateCSS("nextSlide")
-                          : "")
-                      }
-                      key={`sld-8-${index}`}
-                    >
-                      <div className={this.decorateCSS("content-div")}>
-                        <div className={this.decorateCSS("img-div")}>
-                          <a href={item.url} target="_blank" rel="noopener noreferrer">
-                            <img
-                              alt={item.image_title || item.image_subtitle}
-                              src={item.image}
-                              className={this.decorateCSS("img")}
-                            />
-                          </a>
-                        </div>
-                        <div className={this.decorateCSS("header-page")}>
-                          <h3 className={this.decorateCSS("first-header")}>
-                            {item.image_subtitle}
-                          </h3>
-                          <h2 className={this.decorateCSS("item-title")}>
-                            {item.image_title}
-                          </h2>
-                        </div>
-                      </div>
-                    </article>
-                  )
-                )}
-              </Slider>
-            </div>
-          </main>
-        </div>
-      </div>
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const items = this.castToObject<Card[]>("items").filter(
+        (item: Card) => item.image || item.image_title || item.image_subtitle || item.url
     );
-  }
+
+    return (
+        <div className={this.decorateCSS("container")}>
+            <div className={this.decorateCSS("max-content")}>
+                {(title || subtitle) && (
+                    <header>
+                        {title && (
+                            <h1 className={this.decorateCSS("title")}>
+                                {title}
+                            </h1>
+                        )}
+                        {title && subtitle && (
+                            <hr className={this.decorateCSS("faint-line")} />
+                        )}
+                        {subtitle && (
+                            <h2 className={this.decorateCSS("subtitle")}>
+                                {subtitle}
+                            </h2>
+                        )}
+                    </header>
+                )}
+                <main className={this.decorateCSS("wrapper")}>
+                    {items.length > 0 && (
+                        <div className={this.decorateCSS("slider-parent")}>
+                            <Slider {...settings} className={this.decorateCSS("carousel")}>
+                                {items.map((item: Card, index: number) => (
+                                    <article
+                                        className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index ? this.decorateCSS("prevSlide") : ""} ${this.getComponentState("nextSlide") === index ? this.decorateCSS("nextSlide") : ""}`}
+                                        key={`sld-16-${index}`}
+                                    >
+                                        <div className={this.decorateCSS("content-div")}>
+                                            {item.image && (
+                                                <div className={this.decorateCSS("img-div")}>
+                                                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                                        <img
+                                                            alt={item.image_title || item.image_subtitle}
+                                                            src={item.image}
+                                                            className={this.decorateCSS("img")}
+                                                        />
+                                                    </a>
+                                                </div>
+                                            )}
+                                            {(item.image_subtitle || item.image_title) && (
+                                                <div className={this.decorateCSS("item-page")}>
+                                                    {item.image_subtitle && (
+                                                        <h3 className={this.decorateCSS("first-item")}>
+                                                            {item.image_subtitle}
+                                                        </h3>
+                                                    )}
+                                                    {item.image_title && (
+                                                        <h2 className={this.decorateCSS("item-title")}>
+                                                            {item.image_title}
+                                                        </h2>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </article>
+                                ))}
+                            </Slider>
+                        </div>
+                    )}
+                </main>
+            </div>
+        </div>
+    );
 }
+}
+
 
 export default Content16;
