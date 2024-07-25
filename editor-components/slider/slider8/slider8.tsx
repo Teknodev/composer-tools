@@ -56,14 +56,14 @@ class Slider8 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/facade-modern-building-concept-with-glass-panels-with-straight-lines-by-day-copy-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a260052f8a5b002ce679e6?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/facade-modern-building-concept-with-glass-panels-with-straight-lines-by-day-copy-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a260052f8a5b002ce679e6?alt=media",
             },
 
           ],
@@ -90,14 +90,14 @@ class Slider8 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architecture-3d-rendering-illustration-modern-minimal-house-with-natural-landscape-6.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a2607a2f8a5b002ce67a30?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architecture-3d-rendering-illustration-modern-minimal-house-with-natural-landscape-6.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a2607a2f8a5b002ce67a30?alt=media",
             },
           ],
         },
@@ -123,48 +123,14 @@ class Slider8 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a260a82f8a5b002ce67a48?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
-            },
-
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "The Arches",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architectural-3d-rendering-illustration-modern-minimal-house-with-natural-landscape.jpg",
-            },
-            {
-              type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architectural-3d-rendering-illustration-modern-minimal-house-with-natural-landscape.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a260a82f8a5b002ce67a48?alt=media",
             },
           ],
         },
