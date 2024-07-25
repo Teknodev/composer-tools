@@ -1,28 +1,15 @@
 .container {
   width: 100%;
-  padding: 20px;
-  display: flex;
   background-color: var(--composer-color-background);
 
   .max-content {
-    display: flex;
-    flex-direction: column;
     width: var(--composer-content-width);
-    margin: 0 auto;
-    align-items: center;
-
+    
     .images {
-      justify-content: center;
+      width: 100%;
+      padding: 20px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 25px;
-      align-items: center;
-      @media only screen and (max-width: 1000px) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      @media only screen and (max-width: 700px) {
-        grid-template-columns: repeat(1, 1fr);
-      }
       .image-container {
         max-height: 559.975px;
         max-width: 470.388px;
@@ -52,6 +39,7 @@
       align-items: center;
       overflow: auto;
       cursor: zoom-out;
+      
       .overlay-content {
         position: absolute;
         display: flex;
@@ -127,3 +115,15 @@
   }
 }
 
+@media screen and (max-width: 780px) {
+  .images{
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media screen and (max-width: 475px) {
+  .images{
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
