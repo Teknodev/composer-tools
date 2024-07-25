@@ -10,7 +10,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 type Card = {
   image: string;
   backgroundImage: string;
-  imagetitle: string;
+  imagetitle: JSX.Element;
   url: string;
 };
 
@@ -56,16 +56,15 @@ class Slider8 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/facade-modern-building-concept-with-glass-panels-with-straight-lines-by-day-copy-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/facade-modern-building-concept-with-glass-panels-with-straight-lines-by-day-copy-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
             },
-
           ],
         },
         {
@@ -90,14 +89,14 @@ class Slider8 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architecture-3d-rendering-illustration-modern-minimal-house-with-natural-landscape-6.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architecture-3d-rendering-illustration-modern-minimal-house-with-natural-landscape-6.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
             },
           ],
         },
@@ -123,48 +122,14 @@ class Slider8 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
-            },
-
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "The Arches",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architectural-3d-rendering-illustration-modern-minimal-house-with-natural-landscape.jpg",
-            },
-            {
-              type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architectural-3d-rendering-illustration-modern-minimal-house-with-natural-landscape.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
             },
           ],
         },
@@ -208,31 +173,17 @@ class Slider8 extends BaseSlider {
     });
 
     this.addProp({
-      type: "object",
+      type: "icon",
       key: "leftNavButton",
       displayer: "Left Button",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Button Icon",
-          value: "FaArrowLeftLong",
-        },
-      ],
+      value: "FaArrowLeftLong",
     });
 
     this.addProp({
-      type: "object",
+      type: "icon",
       key: "rightNavButton",
       displayer: "Right Button",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Button Icon",
-          value: "FaArrowRightLong",
-        },
-      ],
+      value: "FaArrowRightLong",
     });
 
     this.setComponentState("slider-ref", React.createRef());
@@ -248,7 +199,7 @@ class Slider8 extends BaseSlider {
       dots: true,
       infinite: true,
       speed: 1500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -256,7 +207,6 @@ class Slider8 extends BaseSlider {
       verticalSwiping: true,
       dotsClass: this.decorateCSS("dots"),
     };
-    console.log(this.getPropValue("rightNavButton"));
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -276,88 +226,114 @@ class Slider8 extends BaseSlider {
                       >
                         <div
                           className={this.decorateCSS("content")}
-                          style={{ backgroundImage: `url("${item.backgroundImage}")` }}
+                          style={{
+                            backgroundImage: `url("${item.backgroundImage}")`,
+                          }}
                         >
-                          <div
-                            className={this.decorateCSS("content-div")}
-                          >
+                          <div className={this.decorateCSS("content-div")}>
                             <div
                               className={this.decorateCSS("image")}
                               style={{ backgroundImage: `url(${item.image})` }}
                             >
-                              <div style={{ width: "100%", height: "100%", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
-                              </div>
+                              <div
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                                }}
+                              ></div>
                             </div>
-                            <h3 className={this.decorateCSS("item-title")}>
-                              {item.imagetitle}
-                            </h3>
-                            <div className={this.decorateCSS("buttons")}>
-                              {this.castToObject<Button[]>("buttons").map(
-                                (button: Button, index: number) => {
-                                  console.log(this.castToString(button.buttonText))
+                            {this.castToString(item.imagetitle) && (
+                              <h3 className={this.decorateCSS("item-title")}>
+                                {item.imagetitle}
+                              </h3>
+                            )}
+                            {this.castToObject<Button[]>("buttons").length >
+                              0 && (
+                              <div className={this.decorateCSS("buttons")}>
+                                {this.castToObject<Button[]>("buttons").map(
+                                  (button: Button, index: number) => {
+                                    console.log(
+                                      this.castToString(button.buttonText)
+                                    );
 
-                                  if (this.castToString(button.buttonText))
-                                    return (
-                                      <ComposerLink
-                                        key={`dw-7-btn-left-${index}`}
-                                        path={button.url}
-                                      >
-                                        <button className={this.decorateCSS("button")}>
-                                          {button.buttonText}
-                                          <ComposerIcon
-                                            propsIcon={{
-                                              className: this.decorateCSS("button-icon"),
-                                            }}
-                                            name={button.buttonIcon}
-                                          />
-                                        </button>
-                                      </ComposerLink>
-                                    )
-                                }
-                              )}
-                            </div>
+                                    if (this.castToString(button.buttonText))
+                                      return (
+                                        <ComposerLink
+                                          key={`dw-7-btn-left-${index}`}
+                                          path={button.url}
+                                        >
+                                          <button
+                                            className={this.decorateCSS(
+                                              "button"
+                                            )}
+                                          >
+                                            {button.buttonText}
+                                            <ComposerIcon
+                                              propsIcon={{
+                                                className:
+                                                  this.decorateCSS(
+                                                    "button-icon"
+                                                  ),
+                                              }}
+                                              name={button.buttonIcon}
+                                            />
+                                          </button>
+                                        </ComposerLink>
+                                      );
+                                  }
+                                )}
+                              </div>
+                            )}
                             <div className={this.decorateCSS("nav-buttons")}>
-                              <button
-                                className={this.decorateCSS("nav-button")}
-                                onClick={() => {
-                                  this.getComponentState("slider-ref").current.slickPrev();
-                                }}
-                              >
-                                <ComposerIcon
-                                  name={this.getPropValue("leftNavButton")[0].value}
-                                  propsIcon={{
-                                    className: `${this.decorateCSS("Icon")}`,
-                                    size: 20,
+                              {this.getPropValue("leftNavButton") && (
+                                <button
+                                  className={this.decorateCSS("nav-button")}
+                                  onClick={() => {
+                                    this.getComponentState(
+                                      "slider-ref"
+                                    ).current.slickPrev();
                                   }}
-                                />
-                              </button>
-                              <button
-                                className={this.decorateCSS("nav-button")}
-                                onClick={() => {
-                                  this.getComponentState("slider-ref").current.slickNext();
-                                }}
-                              >
-                                <ComposerIcon
-                                  name={this.getPropValue("rightNavButton")[0].value}
-                                  propsIcon={{
-                                    className: `${this.decorateCSS("Icon")}`,
-                                    size: 20,
+                                >
+                                  <ComposerIcon
+                                    name={this.getPropValue("leftNavButton")}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("Icon")}`,
+                                      size: 20,
+                                    }}
+                                  />
+                                </button>
+                              )}
+                              {this.getPropValue("rightNavButton") && (
+                                <button
+                                  className={this.decorateCSS("nav-button")}
+                                  onClick={() => {
+                                    this.getComponentState(
+                                      "slider-ref"
+                                    ).current.slickNext();
                                   }}
-                                />
-                              </button>
+                                >
+                                  <ComposerIcon
+                                    name={this.getPropValue("rightNavButton")}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("Icon")}`,
+                                      size: 20,
+                                    }}
+                                  />
+                                </button>
+                              )}
                             </div>
                           </div>
                         </div>
-
                       </div>
-                    )
+                    );
                   }
                 )}
               </Slider>
             </div>
           </div>
-        </div >
-      </div >
+        </div>
+      </div>
     );
   }
 }
