@@ -27,13 +27,12 @@
 
     .content {
       width: 100%;
-      padding: 25px 0;
+      height: 80px;
+      padding: 0 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       .img-container {
-        padding-left: 4rem;
-
         .image {
           height: 80px;
         }
@@ -52,7 +51,6 @@
       }
       .icon-items {
         display: flex;
-        margin-right: 4rem;
         .icon-ul {
           padding-left: 10px;
         }
@@ -73,38 +71,42 @@
 @media only screen and (max-width: 900px) {
   .container {
     position: relative;
-  }
-  .navbar {
-    display: block !important;
-    padding-right: 4rem;
-  }
-  .img-hamburger {
-    pointer-events: all;
-    cursor: pointer;
-    transition: 0.4s;
-    font-weight: 100;
-    font-size: 30px;
-    width: 40px;
-    height: 40px;
-    &:hover {
-      transform: rotate(90deg);
+    .max-content {
+      .content {
+        padding: 0 25px;
+        .navbar {
+          display: block !important;
+        }
+        .img-hamburger {
+          pointer-events: all;
+          cursor: pointer;
+          transition: 0.4s;
+          font-weight: 100;
+          font-size: 30px;
+          width: 25px;
+          height: 25px;
+          &.rotate {
+            transform: rotate(90deg);
+          }
+        }
+        .list-items {
+          display: none !important;
+          &.active {
+            display: flex !important;
+            position: absolute !important;
+            top: 100px;
+            left: -5%;
+            width: 100%;
+            flex-direction: column;
+            align-items: end;
+            margin-left: 0 !important;
+            background-color: var(--composer-html-background);
+          }
+        }
+        .icon-items {
+          display: none !important;
+        }
+      }
     }
-  }
-  .list-items {
-    display: none !important;
-    &.active {
-      display: flex !important;
-      position: absolute !important;
-      top: 100px;
-      left: 0;
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-      margin-left: 0 !important;
-      background-color: var(--composer-html-background);
-    }
-  }
-  .icon-items {
-    display: none !important;
   }
 }
