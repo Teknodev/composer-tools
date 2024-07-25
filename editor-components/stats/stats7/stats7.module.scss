@@ -3,93 +3,246 @@
     padding: 50px 0;
     background-repeat: no-repeat;
     background-size: cover;
+  
     .max-content {
-        display: flex;
+      display: flex;
+      justify-content: space-between;
+      max-width: var(--composer-content-width);
+  
+      .title-child {
+        display: block;
         justify-content: space-around;
-        max-width: var(--composer-content-width);
+        align-items: center;
+        padding: 20px;
         margin: auto;
-        .stats1-page {
-            display: block;
-            width: 100%;
-            .title-child {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                padding: 20px;
-                .title {
-                    text-align: center;
-                    width: 40%;
-                    margin: 0;
-                    font-size: 4rem;
-                    color: var(--composer-primary-color);
-                }
-                .description {
-                    text-align: center;
-                    width: 40%;
-                    margin: 0;
-                    font-size: 1.5rem;
-                    color: var(--composer-font-color-primary);
-                }
-            }
-            .bottom-child {
-                display: flex;
-                justify-content: space-around;
-                box-shadow: var(--composer-box-shadow);
-                width: 100%;
-                margin: 0 auto;
-                border-radius: 6px;
-                padding: 60px 0;
-                .card {
-                    .card-data-title {
-                        text-align: center;
-                        font-size: 4rem;
-                        margin: 0;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .card-data-subtitle {
-                        text-align: center;
-                        font-size: 1.8rem;
-                        color: var(--composer-primary-color);
-                        margin: 20px 0;
-                    }
-                    .card-data-description {
-                        text-align: center;
-                        font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-            }
+  
+        .subtitle {
+          display: inline-block;
+          font-size: 1rem;
+          margin-left: 6rem;
+          padding: 4px 5px;
+          color: (--composer-primary-color);
+          text-transform: uppercase;
+          font-weight: 600;
         }
+  
+        .title {
+          font-size: 2.83333rem;
+          line-height: 1.35294;
+          font-family: "Roboto", sans-serif;
+          font-weight: 600;
+          color: (--composer-font-color-primary);
+          margin: 0 0 0 6rem;
+          margin-bottom: 1.5rem;
+  
+        }
+  
+        .description {
+          text-align: left;
+          font-family: Roboto, sans-serif;
+          font-style: normal;
+          width: 60%;
+          margin: 0 0 0 6rem;
+          font-size: 16px;
+          color: (--composer-font-color-primary);
+        }
+      }
+      .progress-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        max-width: var(--composer-content-width);
+        width: 100%;
+        margin: auto;
+        justify-content: space-around;
+  
+        .item {
+          transition: 0.3s;
+          width: 100%;
+          margin-top: 30px;
+          margin: auto;
+          gap: 20px;
+          padding: 20;
+  
+          .progress-title {
+            display: flex;
+            justify-content: space-between;
+            font-size: 17px;
+            font-weight: bold;
+            color: (--composer-font-color-primary);
+            margin-bottom: 5px;
+            margin: 0 6rem 0 0;
+          }
+  
+          .progress-percent {
+            display: flex;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--composer-font-color-primary);
+  
+  
+          }
+        }
+  
+        .progress-active {
+          background-color: (--composer-primary-color);
+          margin: 0 6rem 0 0;
+  
+          .progress-passive {
+            animation: fillProgress 2s ease-in-out forwards;
+            height: 0.16rem;
+            background-color: #333333;
+            margin: 0 6rem 0 0;
+          }
+  
+          @keyframes fillProgress {
+            from {
+              width: 0%;
+            }
+  
+            to {
+              width: progress;
+            }
+          }
+        }
+      }
     }
-}
-
-@media only screen and (max-width: 768px) {
+  
+  }
+  
+  
+  
+  @media only screen and (max-width: 1200px) and (min-width:769px) {
     .container {
-        .max-content {
-            padding: 0 20px;
-            justify-content: center;
-            .stats1-page {
-                .title-child {
-                    gap: 20px;
-                    flex-direction: column;
-                    .title {
-                        width: 100%;
-                    }
-                    .description {
-                        width: 100%;
-                    }
-                }
-                .bottom-child {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    padding: 20px;
-                    gap: 20px;
-                    .card {
-                        width: 100%;
-                    }
-                }
+      .max-content {
+        justify-content: space-between;
+  
+        .stats1-page {
+          justify-content: space-between;
+  
+          .title-child {
+            gap: 20px;
+            flex-direction: column;
+            align-items: flex-start;
+  
+            .maintitle {
+              width: 100%;
             }
+  
+            .title {
+              width: 100%;
+            }
+  
+            .description {
+              width: 100%;
+            }
+          }
+  
+          .progress-container {
+  
+            bottom: 0;
+  
+            .title {
+              font-size: 17px;
+            }
+          }
+  
         }
+      }
     }
-}
+  }
+  
+  
+  @media only screen and (max-width: 768px) and (min-width: 481px) {
+    .container {
+      .max-content {
+        padding: 0 0;
+        justify-content: space-between;
+  
+        
+  
+          .title-child {
+            flex-direction: column;
+            align-items: flex-start;
+  
+            .subtitle {
+              margin-left: 0px;
+              display: inline-block;
+              text-align: left;
+            }
+  
+            .title {
+              margin-left: 0px;
+              width: 100%;
+              text-align: left;
+            }
+  
+            .description {
+              margin-left: 0px;
+              width: 100%;
+              text-align: left;
+            }
+          }
+  
+          .progress-container {
+  
+  
+            .item {
+              margin-left: 30px;
+  
+            }
+          }
+        }
+      }
+    }
+  
+  
+  @media only screen and (max-width: 480px) {
+    .container {
+      .max-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+       
+  
+          .title-child {
+            gap: 15px;
+            flex-direction: column;
+            align-items: flex-start;
+  
+            .subtitle {
+              width: 100%;
+              text-align: left;
+              font-size: 1.2rem;
+              margin-left: 0;
+            }
+  
+            .title {
+              width: 100%;
+              text-align: left;
+              margin-left: 0;
+  
+            }
+  
+            .description {
+              width: 100%;
+              text-align: left;
+              font-size: 1rem;
+              margin-left: 0;
+            }
+          }
+  
+          .progress-container {
+            margin-left: 20px;
+  
+            .title {
+              font-size: 8px;
+            }
+          }
+        }
+      }
+    }
+  
+  
+  
