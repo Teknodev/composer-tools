@@ -3,25 +3,23 @@ import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery7.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-interface Image {
-    type: string;   
+
+type ImageType = {
+    type: string;
     key: string;
     displayer: string;
     value: string;
-}
-interface ImageItem {
-  type: string;
-  key: string;
-  displayer: string;
-  value: string;
-}
-
-interface CardItem {
-  type: "array";
-  key: "card";
-  displayer: string;
-  value: (ImageItem | { type: "string"; key: string; displayer: string; value: string })[];
-}
+  };
+  
+  
+  
+  type CardType = {
+    type: "array";
+    key: "card";
+    displayer: string;
+    value: ImageType[];
+  };
+  
 
 
 class ImageGallery7 extends BaseImageGallery {
@@ -448,12 +446,10 @@ class ImageGallery7 extends BaseImageGallery {
       }
     
       render() {
-  const gallery = this.getPropValue("gallery") as CardItem[];
+  const gallery = this.getPropValue("gallery") as CardType[];
   const repeatCount = this.getPropValue("cardRepeatTime") as number;
-  const cardBackgroundColor = this.getPropValue("cardBackgroundColor") as string || "#f1f1e8";
-  const primaryFontColor = this.getPropValue("primaryFontColor") as string || "#000";
-  const secondaryFontColor = this.getPropValue("secondaryFontColor") as string || "#555";
-
+  const cardBackgroundColor = this.getPropValue("backgroundColor") as string || "#f1f1e8";
+ 
   const repeatedGallery = Array.from({ length: repeatCount }).flatMap(() => gallery);
 
   return (
@@ -461,8 +457,6 @@ class ImageGallery7 extends BaseImageGallery {
       className={this.decorateCSS("imageGallery7")}
       style={{
         "--composer-card-background": cardBackgroundColor,
-        "--composer-font-color-primary": primaryFontColor,
-        "--composer-font-color-secondary": secondaryFontColor,
       } as React.CSSProperties}
     >
       <div className={this.decorateCSS("content")}>
@@ -471,9 +465,9 @@ class ImageGallery7 extends BaseImageGallery {
             {repeatedGallery
               .filter((_, index: number) => index % 4 === columnIndex)
               .map((card, index) => {
-                const image = card.value.find(item => item.type === "image") as ImageItem;
-                const title = card.value.find(item => item.key === "title") as { type: "string"; key: string; displayer: string; value: string };
-                const subtitle = card.value.find(item => item.key === "subtitle") as { type: "string"; key: string; displayer: string; value: string };
+                const image = card.value.find(item => item.type === "image") as ImageType;
+                const title = card.value.find(item => item.key === "title") as unknown as { type: "string"; key: string; displayer: string; value: string };
+                const subtitle = card.value.find(item => item.key === "subtitle") as unknown as  { type: "string"; key: string; displayer: string; value: string };
                 const backgroundColor = card.value.find(item => item.key === "backgroundColor")?.value as string || cardBackgroundColor;
 
                 return (
@@ -493,4 +487,4 @@ class ImageGallery7 extends BaseImageGallery {
   );
 }
 }
-export default ImageGallery7;
+export default ImageGallery7
