@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats7.module.scss";
-import { string } from "yup";
+
 
 interface Item {
   title: string;
@@ -14,26 +14,12 @@ class Stats7Page extends BaseStats {
     super(props, styles);
 
     this.addProp({
-      type: "array",
-      key: "mainProps",
-      displayer: "Maintitle",
-      value: [
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key:"maintitle",
-              displayer: "MainTitle",
-              value:"Our Skills."
-            }
-          ]
-        }
-      ]
-    });
-    
+      type: "string",
+      key: "subtitle",
+      displayer: "subtitle",
+      value: "Our Skills."
+    })
+
     this.addProp({
       type: "string",
       key: "title",
@@ -130,13 +116,6 @@ class Stats7Page extends BaseStats {
       ]
     })
 
-    this.addProp({
-      type: "boolean",
-      key: "progress-text-is-primary",
-      displayer: "progress-text-is-primary",
-      value: true,
-    });
-
   }
 
   getName(): string {
@@ -144,50 +123,63 @@ class Stats7Page extends BaseStats {
   }
 
   render() {
-    
+    const subtitle = this.getPropValue("subtitle")
+    const title = this.getPropValue("title")
+    const description = this.getPropValue("description")
+    const items = this.getPropValue("items")
+
+
     return (
       <div className={this.decorateCSS("container")} >
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats1-page")}>
-            <div className={this.decorateCSS("title-child")}>
-           
-              {this.castToObject<any []>("mainProps").map((item:any, key:number) => 
-              (
-                <h1 className={this.decorateCSS("maintitle")}> 
-                {item.maintitle}</h1>
-              ))}
-                
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-            </div>
-            <div className={this.decorateCSS("progress-container")}>
-              {this.getPropValue("items").map((item: any, index: number) => (
+
+          {subtitle && <div className={this.decorateCSS("title-child")}>
+            {subtitle && (
+              <h1 className={this.decorateCSS("subtitle")}>{subtitle}</h1>
+            )}
+            {title && (
+              <h1 className={this.decorateCSS("title")}>{title}</h1>
+            )}
+            {description && (
+              <p className={this.decorateCSS("description")}>
+                {description}
+              </p>
+            )}
+          </div>}
+
+          <div className={this.decorateCSS("progress-container")}>
+            {this.getPropValue("items").map((item: any, index: number) => {
+              const title = item.value[0].value;
+              const percent = item.value[1].value;
+              const text = item.value[2].value;
+
+              if (percent === null || percent === undefined || text === "") {
+                return null;
+              }
+
+              return (
                 <div className={this.decorateCSS("item")} key={index}>
                   <div className={this.decorateCSS("progress-title")}>
-                    {item.value[0].value}
+                    {title}
                     <div className={this.decorateCSS("progress-percent")}>
                       <div className={this.decorateCSS("progress-text")}>
-                        {item.value[2].value}
+                        {text}
                       </div>
                     </div>
                   </div>
-                  {this.getPropValue("progress-text-is-primary") && (
-                    <div className={this.decorateCSS("progress-text-is-primary")}>
-
-                      <div className={this.decorateCSS("progress-active")}>
-                        <div
-                          className={this.decorateCSS("progress-passive")}
-                          style={{ width: `${item.value[1].value}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  )}
+                  <div className={this.decorateCSS("progress-active")}>
+                    <div
+                      className={this.decorateCSS("progress-passive")}
+                      style={{ width: `${percent}%` }}
+                    ></div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>
+
     );
   }
 }
