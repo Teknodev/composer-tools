@@ -1,14 +1,12 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature7.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type FeatureProps = {
-  image: string;
-  mainTitle: string;
-  subtitle: string;
-  features: string[];
-  learnMore: string;
-  arrow: string;
+type Feature = {
+  title: string;
+  iconFeature: string;
 };
 
 class Feature7 extends BaseFeature {
@@ -16,68 +14,112 @@ class Feature7 extends BaseFeature {
     super(props, styles);
 
     this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value:
+        "https://vault.uicore.co/marketing-agency/wp-content/uploads/sites/41/2022/08/Marketing-Agency-Features-Image.webp",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "FEATURES",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "mainTitle",
+      displayer: "Main Title",
+      value: "Everything starts with a Marketing plan.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Turn your business into a sales machine today with lorem Things go wrong have questions.",
+    });
+
+    this.addProp({
       type: "array",
-      key: "featureProps",
-      displayer: "Feature Properties",
+      key: "features",
+      displayer: "Features",
       value: [
         {
-          type: "string",
-          key: "image",
-          displayer: "Image URL ",
-          value:
-            "https://vault.uicore.co/marketing-agency/wp-content/uploads/sites/41/2022/08/Marketing-Agency-Features-Image.webp",
-        },
-        {
-          type: "string",
-          key: "mainTitle",
-          displayer: "Main Title",
-          value: "Everything starts with a Marketing plan.",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value:
-            "Turn your business into a sales machine today with lorem Things go wrong have questions.",
-        },
-        {
-          type: "array",
-          key: "features",
-          displayer: "Features",
+          type: "object",
+          key: "feature",
+          displayer: "Feature",
           value: [
             {
               type: "string",
-              key: "feature1",
+              key: "title",
               displayer: "Feature 1",
               value: "Amazing communication.",
             },
             {
-              type: "string",
-              key: "feature2",
-              displayer: "Feature 2",
-              value: "Best trending designing experience.",
-            },
-            {
-              type: "string",
-              key: "feature3",
-              displayer: "Feature 3",
-              value: "Email & Live chat.",
+              type: "icon",
+              key: "iconFeature",
+              displayer: "Icon",
+              value: "FaCheck",
             },
           ],
         },
         {
-          type: "string",
-          key: "learnMore",
-          displayer: "Learn More Text",
-          value: "Want to learn more? Click here",
+          type: "object",
+          key: "feature",
+          displayer: "Feature",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Feature 2",
+              value: "Best trending designing experience.",
+            },
+            {
+              type: "icon",
+              key: "iconFeature",
+              displayer: "Icon",
+              value: "FaCheck",
+            },
+          ],
         },
         {
-          type: "string",
-          key: "arrow",
-          displayer: "Arrow",
-          value: "➜",
+          type: "object",
+          key: "feature",
+          displayer: "Feature",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Feature 3",
+              value: "Email & Live chat.",
+            },
+            {
+              type: "icon",
+              key: "iconFeature",
+              displayer: "Icon",
+              value: "FaCheck",
+            },
+          ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "string",
+      key: "linkText",
+      displayer: "Link Text",
+      value: "Want to learn more? Click here",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "iconLink",
+      displayer: "Icon",
+      value: "FaArrowRight",
     });
   }
 
@@ -86,60 +128,94 @@ class Feature7 extends BaseFeature {
   }
 
   render() {
-    const featurePropsArray = this.getPropValue("featureProps") as any[];
-
-    const featureProps: FeatureProps = featurePropsArray.reduce(
-      (acc: any, prop: any) => {
-        if (Array.isArray(prop.value)) {
-          acc[prop.key] = prop.value.map((item: any) => item.value);
-        } else {
-          acc[prop.key] = prop.value;
-        }
-        return acc;
-      },
-      {} as FeatureProps
-    );
-
-    const mainTitleParts = featureProps.mainTitle.split("Marketing");
+    const hasTitle = this.castToString(this.getPropValue("title"));
+    const hasMainTitle = this.castToString(this.getPropValue("mainTitle"));
+    const hasdescription = this.castToString(this.getPropValue("description"));
+    const hasFeatures = this.getPropValue("features");
+    const hasLinkText = this.castToString(this.getPropValue("linkText"));
+    const hasIconLink = this.getPropValue("iconLink");
+    const hasTextContent =
+      hasTitle ||
+      hasMainTitle ||
+      hasdescription ||
+      hasFeatures ||
+      hasLinkText ||
+      hasIconLink;
 
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("image-container")}>
-          <img
-            src={featureProps.image}
-            alt="Marketing Agency Features"
-            className={this.decorateCSS("image")}
-          />
-        </div>
-        <div className={this.decorateCSS("text-container")}>
-          <p className={this.decorateCSS("features-heading")}>FEATURES</p>
-          <h1>
-            {mainTitleParts[0]}
-            <span className={this.decorateCSS("highlight")}>Marketing</span>
-            {mainTitleParts[1]}
-          </h1>
-          <p className={this.decorateCSS("subtitle")}>
-            {featureProps.subtitle}
-          </p>
-          <ul className={this.decorateCSS("features-list")}>
-            {featureProps.features.map((feature, index) => (
-              <li key={index}>
-                <span className={this.decorateCSS("tick")}>✔</span> {feature}
-              </li>
-            ))}
-          </ul>
-          <div className={this.decorateCSS("learn-more")}>
-            <a
-              href="https://vault.uicore.co/marketing-agency/about-us/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>{featureProps.learnMore}</span>
-              <span className={this.decorateCSS("arrow")}>
-                {featureProps.arrow}
-              </span>
-            </a>
-          </div>
+        <div className={this.decorateCSS("max-content")}>
+          {this.getPropValue("image") && (
+            <div className={this.decorateCSS("image-container")}>
+              <img
+                src={this.getPropValue("image")}
+                className={this.decorateCSS("image")}
+              />
+            </div>
+          )}
+          {hasTextContent && (
+            <div className={this.decorateCSS("textContainer")}>
+              {hasTitle && (
+                <h2 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h2>
+              )}
+              {hasMainTitle && (
+                <h1 className={this.decorateCSS("mainTitle")}>
+                  {this.getPropValue("mainTitle")}
+                </h1>
+              )}
+              {hasdescription && (
+                <p className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </p>
+              )}
+              {hasFeatures && (
+                <ul className={this.decorateCSS("featuresList")}>
+                  {this.castToObject<Feature[]>("features").map(
+                    (feature: Feature, index: number) => (
+                      <li key={index} className={this.decorateCSS("feature")}>
+                        {feature.iconFeature && (
+                          <ComposerIcon
+                            name={feature.iconFeature}
+                            propsIcon={{
+                              className: this.decorateCSS("iconFeature"),
+                            }}
+                          />
+                        )}
+                        {feature.title && (
+                          <span className={this.decorateCSS("featureTitle")}>
+                            {feature.title}
+                          </span>
+                        )}
+                      </li>
+                    )
+                  )}
+                </ul>
+              )}
+              {(hasLinkText || hasIconLink) && (
+                <ComposerLink
+                  key={`ftr-7`}
+                  path={this.getPropValue("linkText")}
+                >
+                  <div className={this.decorateCSS("linkContainer")}>
+                    {hasLinkText && (
+                      <span className={this.decorateCSS("linkText")}>
+                        {this.getPropValue("linkText")}
+                      </span>
+                    )}
+
+                    {hasIconLink && (
+                      <ComposerIcon
+                        name={this.getPropValue("iconLink")}
+                        propsIcon={{ className: this.decorateCSS("iconLink") }}
+                      />
+                    )}
+                  </div>
+                </ComposerLink>
+              )}
+            </div>
+          )}
         </div>
       </div>
     );
