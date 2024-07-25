@@ -24,7 +24,7 @@
   .textContainer {
     width: 100%;
     margin-bottom: 30px;
-    color: var(--primary-text-color);
+    color: var(--composer-font-color-primary);
     .title {
       font-size: 1.6rem;
       margin-bottom: 0;
@@ -64,7 +64,7 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    color: var(--composer-font-primary);
+    color: var(--composer-font-color-primary);
     cursor: pointer;
     &:hover {
       color: var(--composer-secondary-color);
@@ -84,7 +84,7 @@
         bottom: -2px;
         width: 100%;
         height: 2px;
-        background-color: var(--link-color);
+        background-color: var(--composer-font-color-primary);
       }
     }
 
