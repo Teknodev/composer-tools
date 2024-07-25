@@ -18,7 +18,7 @@ class Feature7 extends BaseFeature {
       key: "image",
       displayer: "Image",
       value:
-        "https://vault.uicore.co/marketing-agency/wp-content/uploads/sites/41/2022/08/Marketing-Agency-Features-Image.webp",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a25bdb2f8a5b002ce67862?alt=media",
     });
 
     this.addProp({
