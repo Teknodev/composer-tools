@@ -195,7 +195,6 @@ class Feature7 extends BaseFeature {
               )}
               {(hasLinkText || hasIconLink) && (
                 <ComposerLink
-                  key={`ftr-7`}
                   path={this.getPropValue("linkText")}
                 >
                   <div className={this.decorateCSS("linkContainer")}>
