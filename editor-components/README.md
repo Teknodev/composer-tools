@@ -218,14 +218,14 @@ this.addProp({
 
 **You should create a type for this prop.**
 
-Name it like `I{entity_name}`. e.g.: ICard, IButton, ISliderItem...
+Name it like `{entity_name}Type`. e.g.: CardType, ButtonType, SliderItemType...
 
 Use singular names.
 
 For the prop above, the type will be like:
 
 ```javascript
-type CardItem = {
+type CardItemType = {
   title: JSX.Element;
   value: number;
   icon: string;
