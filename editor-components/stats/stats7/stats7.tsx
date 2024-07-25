@@ -126,7 +126,7 @@ class Stats7Page extends BaseStats {
     const subtitle = this.getPropValue("subtitle")
     const title = this.getPropValue("title")
     const description = this.getPropValue("description")
-    const items = this.getPropValue("items")
+  
 
 
     return (
