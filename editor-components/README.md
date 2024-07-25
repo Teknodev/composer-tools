@@ -89,31 +89,31 @@ this.addProp({
       type: "string",
       key: "name",
       displayer: "Name",
-      value: "John"
+      value: "John",
     },
     {
       type: "string",
       key: "surname",
       displayer: "Surname",
-      value: "Doe"
+      value: "Doe",
     },
     {
       type: "number",
       key: "age",
       displayer: "Age",
-      value: 22
+      value: 22,
     },
     {
       type: "image",
       key: "profilePicture",
       displayer: "Profile Picture",
-      value: "https://storage.googleapis.com/...."
+      value: "https://storage.googleapis.com/....",
     },
     {
       type: "icon",
       key: "favoriteIcon",
       displayer: "Their Favorite Icon",
-      value: "FaGithub"
+      value: "FaGithub",
     },
     {
       type: "array",
@@ -124,21 +124,21 @@ this.addProp({
           type: "string",
           key: "item",
           displayer: "Item",
-          value: "Bow"
+          value: "Bow",
         },
         {
           type: "string",
           key: "item",
           displayer: "Item",
-          value: "Arrow"
+          value: "Arrow",
         },
         {
           type: "string",
           key: "item",
           displayer: "Item",
-          value: "Sword"
+          value: "Sword",
         },
-      ]
+      ],
     },
   ],
 });
@@ -218,18 +218,18 @@ this.addProp({
 
 **You should create a type for this prop.**
 
-Name it like `I{entity_name}`. e.g.: ICard, IButton, ISliderItem...
+Name it like `{entity_name}Type`. e.g.: CardType, ButtonType, SliderItemType...
 
 Use singular names.
 
 For the prop above, the type will be like:
 
 ```javascript
-type CardItem = {
-  title: JSX.Element;
-  value: number;
-  icon: string;
-}
+type CardItemType = {
+  title: JSX.Element,
+  value: number,
+  icon: string,
+};
 ```
 
 ### Why JSX.Element for a String??
@@ -245,8 +245,10 @@ even if the input is empty, it will return a `<blinkpage>` element with an empty
 You can check if its empty or not, like:
 
 ```javascript
-{this.castToString(this.getPropValue("mainTitle")) &&
-  <h1>{this.getPropValue("mainTitle")}</h1>
+{
+  this.castToString(this.getPropValue("mainTitle")) && (
+    <h1>{this.getPropValue("mainTitle")}</h1>
+  );
 }
 ```
 
@@ -272,10 +274,8 @@ render(){
 If the case is for an array, then check it like this:
 
 ```javascript
-{cardItems.length > 0 &&
-  <div class={this.decorateCSS("card-items")}>
-    ...
-  </div>
+{
+  cardItems.length > 0 && <div class={this.decorateCSS("card-items")}>...</div>;
 }
 ```
 
