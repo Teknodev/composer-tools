@@ -1,0 +1,260 @@
+.container {
+  display: inline-block;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  width: 100%;
+
+  .max-content {
+    align-self: center;
+    width: 100%;
+    cursor: context-menu;
+
+    .content {
+      padding-left: 120px;
+      padding-right: 40px;
+
+      .border {
+        box-sizing: border-box;
+        position: relative;
+       
+        height: auto;
+        border-radius: 5px;
+      
+        .image-css {
+          width: 414px;
+          margin: 10px;
+          overflow: hidden;
+          display: inline-block;
+          border-radius: 5px;
+          padding: 0;
+          position: relative; /* Ensure relative positioning */
+      
+          .img {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform .4s cubic-bezier(.37, 0, .63, 1);
+            transform-origin: center center; /* Ensure zoom is centered */
+      
+            &:hover {
+              transform: scale(1.1); /* Uniform scaling */
+            }
+          }
+          .writing {
+                padding: 10px 0;
+                text-align: center;
+                margin: 0 auto;
+                color: #000;
+              }
+          
+        }
+      }
+      
+
+      
+      
+      
+      
+      
+
+      .button-css {
+        display: flex;
+        height: 60px;
+        gap: 8px;
+
+        .expContainer {
+          border: none;
+          margin-left: 610px;
+          display: inline-block;
+          align-content: center;
+          position: relative;
+          font-size: 16px;
+          font-weight: bold;
+        
+          .exploreText {
+            display: inline-block;
+            transition: transform 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+          }
+        
+          .arrow {
+            text-align: center;
+            color: var(--composer-font-color-primary);
+            background-color: var(--composer-secondary-color-primary);
+            width: max-content;
+            position: relative;
+            left: 110%;
+            transition: left 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550), opacity 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+        
+            &:before {
+              content: "→";
+              position: absolute;
+              color: black;
+              left: 105%;
+              opacity: 1;
+              transition: transform 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550), opacity 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+            }
+          }
+        
+          .arrow2 {
+            text-align: center;
+            color: var(--composer-font-color-primary);
+            background-color: var(--composer-secondary-color-primary);
+            width: max-content;
+            font-size: 18px;
+            position: relative;
+            left: -110%;
+            transition: left 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550), opacity 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+        
+            &:before {
+              content: "→";
+              position: absolute;
+              color: black;
+              left: -100%; /* Ok işaretinin başlangıçta görünmemesi için */
+              opacity: 0;
+              transition: transform 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550), opacity 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+            }
+          }
+        
+          &:hover {
+            .exploreText {
+              cursor: pointer;
+              transform: translateX(20px); /* Yazının sağa kayması */
+            }
+        
+            .arrow {
+              transform: translateX(20px); /* Ok işaretinin sağa kayması */
+              opacity: 0;
+        
+              &:before {
+                transform: translateX(20px); /* Ok işaretinin sağa kayması */
+                opacity: 0;
+              }
+            }
+        
+            .arrow2 {
+              transform: translateX(-20px); /* Ok işaretinin sola kayması */
+              opacity: 1;
+        
+              &:before {
+                transform: translateX(0); /* Ok işaretinin görünmesi */
+                opacity: 1;
+              }
+            }
+          }
+        }
+        
+        
+        
+        .button {
+          color: var(--composer-font-color-primary);
+          background-color: var(--composer-secondary-color-primary);
+          width: max-content;
+          font-size: 18px;
+          border: none;
+          position: relative;
+          padding: 0 18px;
+          color: gray;
+        
+          &.selected,
+          &:hover {
+            color: black;
+        
+            &::after {
+              content: "";
+              height: 2px;
+              background-color: black;
+              position: absolute;
+              bottom: 17%; /* Adjust this value as needed */
+              left: 50%;
+              transform: translateX(-50%);
+              width: calc(100% - 36px); 
+            }
+          }
+        
+          &.unselected {
+            color: gray;
+          }
+        }
+        
+  
+        
+        .button-title {
+          /* Add this part */
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        
+        
+        
+      }
+
+
+
+
+
+
+      
+    }
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .container {
+    .max-content {
+      .content {
+        .button {
+          width: auto;
+        }
+
+        .border {
+          .image-css {
+            img {
+              width: 34%;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .container {
+    .max-content {
+      .content {
+        .button-css {
+          .button {
+            max-width: 21%;
+            min-width: 21%;
+            font-size: 1rem;
+            border: 1px solid var(--composer-tertiary-color);
+            border-radius: 0px 0px 0px 0px;
+            height: 80%;
+            margin-top: 13px;
+          }
+        }
+
+        .border {
+          max-width: 88%;
+          min-width: 87%;
+          border-radius: 0px 0px 0px 0px;
+
+          .image-css {
+            display: block;
+
+            img {
+              cursor: pointer;
+              width: 100%;
+              display: block;
+              margin: 0 auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
