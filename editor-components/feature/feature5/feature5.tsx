@@ -115,7 +115,8 @@ class Feature5 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Left Image",
-              value: "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/28-696x696.jpg",
+              value:
+                "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/28-696x696.jpg",
             },
             {
               type: "string",
@@ -211,13 +212,6 @@ class Feature5 extends BaseFeature {
       };
     }>("row2");
 
-    const isRow1Visible = row1.left_image || this.castToString(row1.title);
-    const isRow2LeftItemVisible = this.castToString(row2.left_item.description);
-    const isRow2RightItemVisible =
-      row2.right_item.image || this.castToString(row2.right_item.text);
-
-    const isRow2Visible = isRow2LeftItemVisible || isRow2RightItemVisible;
-
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
         image: string;
@@ -236,6 +230,16 @@ class Feature5 extends BaseFeature {
       };
     }>("row3");
 
+    const isRow1Visible = row1.left_image || this.castToString(row1.title);
+    const isRow2LeftItemVisible =
+      this.castToString(row2.left_item.description) ||
+      this.castToString(row2.left_item.button_text) ||
+      row2.left_item.link;
+    const isRow2RightItemVisible =
+      row2.right_item.image ||
+      this.castToString(row2.right_item.text) ||
+      row2.right_item.link;
+    const isRow2Visible = isRow2LeftItemVisible || isRow2RightItemVisible;
     const isRow3Visible =
       row3.image_and_subtitle_1.image ||
       row3.image_and_subtitle_2.image ||
@@ -269,9 +273,11 @@ class Feature5 extends BaseFeature {
             <div className={this.decorateCSS("row2")}>
               {isRow2LeftItemVisible && (
                 <div className={this.decorateCSS("left")}>
-                  <span className={this.decorateCSS("description")}>
-                    {row2.left_item.description}
-                  </span>
+                  {this.castToString(row2.left_item.description) && (
+                    <span className={this.decorateCSS("description")}>
+                      {row2.left_item.description}
+                    </span>
+                  )}
                   {this.castToString(row2.left_item.button_text) && (
                     <span className={this.decorateCSS("button-text")}>
                       <ComposerLink path={row2.left_item.link}>
@@ -308,11 +314,13 @@ class Feature5 extends BaseFeature {
               {row3.image_and_subtitle_1.image && (
                 <ComposerLink
                   path={row3.image_and_subtitle_1.link}
-                  isFullWidth={true}>
+                  isFullWidth={true}
+                >
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
                     <img
                       className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_1.image} />
+                      src={row3.image_and_subtitle_1.image}
+                    />
                     {this.castToString(row3.image_and_subtitle_1.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
@@ -324,11 +332,13 @@ class Feature5 extends BaseFeature {
               {row3.image_and_subtitle_2.image && (
                 <ComposerLink
                   path={row3.image_and_subtitle_2.link}
-                  isFullWidth={true}>
+                  isFullWidth={true}
+                >
                   <div className={this.decorateCSS("image_and_subtitle_2")}>
                     <img
                       className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_2.image} />
+                      src={row3.image_and_subtitle_2.image}
+                    />
                     {this.castToString(row3.image_and_subtitle_2.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_2.sub_title}
@@ -340,11 +350,13 @@ class Feature5 extends BaseFeature {
               {row3.image_and_subtitle_3.image && (
                 <ComposerLink
                   path={row3.image_and_subtitle_3.link}
-                  isFullWidth={true}>
+                  isFullWidth={true}
+                >
                   <div className={this.decorateCSS("image_and_subtitle_3")}>
                     <img
                       className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_3.image} />
+                      src={row3.image_and_subtitle_3.image}
+                    />
                     {this.castToString(row3.image_and_subtitle_3.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_3.sub_title}
