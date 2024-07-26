@@ -6,7 +6,7 @@ import styles from "./call_to_action7.module.scss";
 class CallToAction7Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
-    
+
     this.addProp({
       type: "string",
       key: "title",
@@ -44,7 +44,12 @@ class CallToAction7Page extends BaseCallToAction {
       displayer: "Placeholder",
       value: "Enter your E-Mail!",
     });
-
+    this.addProp({
+      type: "boolean",
+      key: "disableAnimation",
+      displayer: "Disable Animation",
+      value: false,
+    });
   }
 
   getName(): string {
@@ -54,40 +59,35 @@ class CallToAction7Page extends BaseCallToAction {
   render() {
     const title = this.getPropValue("title");
     const image = this.getPropValue("image");
-    const buttonProps = this.getPropValue("button");
-    const buttonText = buttonProps[0].value;
-    const link = buttonProps[1].value;
-    const placeholder = this.getPropValue("placeholder");
+    const button = this.getPropValue("button");
+    const placeholder = this.getPropValue("placeholder", { as_string: true });
+    const disableAnimation = this.getPropValue("disableAnimation");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")}`}>
         <div className={this.decorateCSS("max-content")}>
-          <section className={this.decorateCSS("call-to-action7-container")}>
+          <section className={`${this.decorateCSS("call-to-action7-container")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
             {image && (
               <img className={this.decorateCSS("image")} src={image} alt="" />
             )}
-            {(title || buttonText) && (
+            {(title) && (
               <div className={this.decorateCSS("call-to-action7")}>
                 {title && (
                   <h1 className={this.decorateCSS("title")}>{title}</h1>
                 )}
                 <div className={this.decorateCSS("input-button-wrapper")}>
-                  <div className={this.decorateCSS("input-box")}>
-                    <input
-                      type="text"
-                      id="email"
-                      name="email"
-                      placeholder={placeholder}
-                    />
-                    <span className={this.decorateCSS("placeholder")}>
-                      {placeholder}
-                    </span>
-                  </div>
-                  {buttonText && (
+                  <input
+                    className={this.decorateCSS("input")}
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder={placeholder}
+                  />
+                  {button[0].value && (
                     <div className={this.decorateCSS("button-container")}>
-                      <ComposerLink path={link}>
+                      <ComposerLink path={button[1].value}>
                         <span className={this.decorateCSS("button")}>
-                          {buttonText}
+                          {button[0].value}
                         </span>
                       </ComposerLink>
                     </div>
