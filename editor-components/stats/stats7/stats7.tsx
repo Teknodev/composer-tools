@@ -4,9 +4,9 @@ import styles from "./stats7.module.scss";
 
 
 interface Item {
-  title: string;
+  title: JSX.Element;
   progress: number;
-  progressText: string;
+  progressText: JSX.Element;
 }
 
 class Stats7Page extends BaseStats {
@@ -15,8 +15,8 @@ class Stats7Page extends BaseStats {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "subtitle",
+      key: "subTitle",
+      displayer: "SubTitle",
       value: "Our Skills."
     })
 
@@ -45,19 +45,19 @@ class Stats7Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "progess-title",
+              key: "title",
               displayer: "Progress Title",
               value: "Design"
             },
             {
               type: "number",
-              key: "progres-percent",
+              key: "progress",
               displayer: "Progress",
               value: 75,
             },
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "75%"
             }
@@ -70,19 +70,19 @@ class Stats7Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "progess-title",
+              key: "title",
               displayer: "Progress Title",
               value: "Brand Identity"
             },
             {
               type: "number",
-              key: "progres-percent",
+              key: "progress",
               displayer: "Progress",
               value: 57,
             },
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "57%"
             }
@@ -95,19 +95,19 @@ class Stats7Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "progess-title",
+              key: "title",
               displayer: "Progress Title",
               value: "Sketch"
             },
             {
               type: "number",
-              key: "progres-percent",
+              key: "progress",
               displayer: "Progress",
               value: 84,
             },
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "84%"
             }
@@ -123,39 +123,47 @@ class Stats7Page extends BaseStats {
   }
 
   render() {
-    const subtitle = this.getPropValue("subtitle")
-    const title = this.getPropValue("title")
-    const description = this.getPropValue("description")
-  
-
+    const isSubtitleExist = this.castToString(this.getPropValue("subTitle"));
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const showDiv= isSubtitleExist || isTitleExist || isDescriptionExist;
+    const itemList= this.castToObject<Item[]>("items")
 
     return (
       <div className={this.decorateCSS("container")} >
         <div className={this.decorateCSS("max-content")}>
 
-          {subtitle && <div className={this.decorateCSS("title-child")}>
-            {subtitle && (
-              <h1 className={this.decorateCSS("subtitle")}>{subtitle}</h1>
+          {showDiv && <div className={this.decorateCSS("title-child")}>
+            {isSubtitleExist && (
+              <h1 className={this.decorateCSS("subTitle")}>{isSubtitleExist}</h1>
             )}
-            {title && (
-              <h1 className={this.decorateCSS("title")}>{title}</h1>
+            {isTitleExist && (
+              <h1 className={this.decorateCSS("title")}>{isTitleExist}</h1>
             )}
-            {description && (
+            {isDescriptionExist && (
               <p className={this.decorateCSS("description")}>
-                {description}
+                {isDescriptionExist}
               </p>
             )}
           </div>}
 
-          <div className={this.decorateCSS("progress-container")}>
-            {this.getPropValue("items").map((item: any, index: number) => {
-              const title = item.value[0].value;
-              const percent = item.value[1].value;
-              const text = item.value[2].value;
+          { itemList.length>0 && <div className={this.decorateCSS("progress-container")}>
+            {this.castToObject<Item[]>("items").map((item: any, index: number) => {
+              const [titleObj, percentObj] = item.value;
+              const title = titleObj.value;
+              let percent = percentObj.value;
+              let text = `${percent}%`;
 
-              if (percent === null || percent === undefined || text === "") {
-                return null;
+              if (percent === 0 || percent === null || percent === undefined) {
+                percent = 1;
+                text = "0%";
+              } else if (!text) {
+                text = `${percent}%`;
               }
+              if(percent >= 100){
+                percent =100;
+              }
+            
 
               return (
                 <div className={this.decorateCSS("item")} key={index}>
@@ -176,7 +184,7 @@ class Stats7Page extends BaseStats {
                 </div>
               );
             })}
-          </div>
+          </div>}
         </div>
       </div>
 

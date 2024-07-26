@@ -1,248 +1,241 @@
 .container {
+  width: 100%;
+  padding: 50px 0;
+  
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    display: flex;
+    justify-content: center;
     width: 100%;
-    padding: 50px 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-  
-    .max-content {
-      display: flex;
-      justify-content: space-between;
+    .title-child {
+      display: block;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px;
+      margin: auto;
       max-width: var(--composer-content-width);
-  
-      .title-child {
-        display: block;
-        justify-content: space-around;
-        align-items: center;
-        padding: 20px;
+
+      .subTitle {
+        display: inline-block;
+        font-size: 1rem;
+        margin-left: 6rem;
+        padding: 4px 5px;
+        color: var(--composer-font-color-primary);
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .title {
+        font-size: 2.83333rem;
+        line-height: 1.35294;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        color: var(--composer-font-color-primary);
+        margin: 0 0 0 6rem;
+        margin-bottom: 1.5rem;
+
+      }
+
+      .description {
+        text-align: left;
+        font-family: Roboto, sans-serif;
+        font-style: normal;
+        width: 60%;
+        margin: 0 0 0 6rem;
+        font-size: 16px;
+        color: var(--composer-font-color-primary);
+      }
+    }
+
+    .progress-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: var(--composer-content-width);
+      width: 100%;
+      margin: auto;
+      margin-left: 40px;
+      align-items: center;
+      justify-content: center; 
+      .item {
+        transition: 0.3s;
+        width: 100%;
+        margin-top: 30px;
         margin: auto;
-  
-        .subtitle {
-          display: inline-block;
-          font-size: 1rem;
-          margin-left: 6rem;
-          padding: 4px 5px;
-          color: (--composer-primary-color);
-          text-transform: uppercase;
-          font-weight: 600;
+        gap: 20px;
+        padding: 20;
+
+        .progress-title {
+          display: flex;
+          justify-content: space-between;
+          font-size: 17px;
+          font-weight: bold;
+          color: var(--composer-font-color-primary);
+          margin-bottom: 5px;
+          margin: 0 6rem 0 0;
         }
-  
-        .title {
-          font-size: 2.83333rem;
-          line-height: 1.35294;
-          font-family: "Roboto", sans-serif;
-          font-weight: 600;
-          color: (--composer-font-color-primary);
-          margin: 0 0 0 6rem;
-          margin-bottom: 1.5rem;
-  
-        }
-  
-        .description {
-          text-align: left;
-          font-family: Roboto, sans-serif;
-          font-style: normal;
-          width: 60%;
-          margin: 0 0 0 6rem;
-          font-size: 16px;
+        .progress-percent {
+          display: flex;
+          font-weight: bold;
+          margin-bottom: 5px;
           color: (--composer-font-color-primary);
         }
       }
-      .progress-container {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        max-width: var(--composer-content-width);
-        width: 100%;
-        margin: auto;
-        justify-content: space-around;
-  
-        .item {
-          transition: 0.3s;
-          width: 100%;
-          margin-top: 30px;
-          margin: auto;
-          gap: 20px;
-          padding: 20;
-  
-          .progress-title {
-            display: flex;
-            justify-content: space-between;
-            font-size: 17px;
-            font-weight: bold;
-            color: (--composer-font-color-primary);
-            margin-bottom: 5px;
-            margin: 0 6rem 0 0;
-          }
-  
-          .progress-percent {
-            display: flex;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--composer-font-color-primary);
-  
-  
-          }
-        }
-  
-        .progress-active {
-          background-color: (--composer-primary-color);
+      .progress-active {
+        background-color: #F7F7F7;
+        margin: 0 6rem 0 0;
+
+        .progress-passive {
+          animation: fillProgress 2s ease-in-out forwards;
+          height: 0.16rem;
+          background-color: var(--composer-secondary-color);
           margin: 0 6rem 0 0;
-  
-          .progress-passive {
-            animation: fillProgress 2s ease-in-out forwards;
-            height: 0.16rem;
-            background-color: #333333;
-            margin: 0 6rem 0 0;
+        }
+
+        @keyframes fillProgress {
+          from {
+            width: 0%;
           }
-  
-          @keyframes fillProgress {
-            from {
-              width: 0%;
-            }
-  
+
             to {
               width: progress;
             }
           }
         }
-      }
+      
     }
-  
   }
-  
-  
-  
-  @media only screen and (max-width: 1200px) and (min-width:769px) {
-    .container {
-      .max-content {
-        justify-content: space-between;
-  
-        .stats1-page {
-          justify-content: space-between;
-  
-          .title-child {
-            gap: 20px;
-            flex-direction: column;
-            align-items: flex-start;
-  
-            .maintitle {
-              width: 100%;
-            }
-  
-            .title {
-              width: 100%;
-            }
-  
-            .description {
-              width: 100%;
-            }
+
+}
+
+
+
+@media only screen and (max-width: 1200px) and (min-width:769px) {
+  .container {
+    .max-content {
+      justify-content: space-between;
+
+      
+        .title-child {
+          gap: 20px;
+          flex-direction: column;
+          align-items: flex-start;
+
+          .subTitle {
+            width: 100%;
           }
-  
-          .progress-container {
-  
-            bottom: 0;
-  
-            .title {
-              font-size: 17px;
-            }
+
+          .title {
+            width: 100%;
           }
-  
+
+          .description {
+            width: 100%;
+          }
         }
-      }
-    }
-  }
-  
-  
-  @media only screen and (max-width: 768px) and (min-width: 481px) {
-    .container {
-      .max-content {
-        padding: 0 0;
-        justify-content: space-between;
-  
-        
-  
-          .title-child {
-            flex-direction: column;
-            align-items: flex-start;
-  
-            .subtitle {
-              margin-left: 0px;
-              display: inline-block;
-              text-align: left;
-            }
-  
-            .title {
-              margin-left: 0px;
-              width: 100%;
-              text-align: left;
-            }
-  
-            .description {
-              margin-left: 0px;
-              width: 100%;
-              text-align: left;
-            }
-          }
-  
-          .progress-container {
-  
-  
-            .item {
-              margin-left: 30px;
-  
-            }
+
+        .progress-container {
+
+          bottom: 0;
+
+          .title {
+            font-size: 17px;
           }
         }
       }
-    }
-  
-  
-  @media only screen and (max-width: 480px) {
-    .container {
-      .max-content {
-        display: flex;
+      
+    
+  }
+}
+
+
+@media only screen and (max-width: 768px) and (min-width: 481px) {
+  .container {
+    .max-content {
+      flex-direction: column;
+      
+      justify-content: center;
+
+
+      .title-child {
         flex-direction: column;
-        justify-content: center;
-        
-       
-  
-          .title-child {
-            gap: 15px;
-            flex-direction: column;
-            align-items: flex-start;
-  
-            .subtitle {
-              width: 100%;
-              text-align: left;
-              font-size: 1.2rem;
-              margin-left: 0;
-            }
-  
-            .title {
-              width: 100%;
-              text-align: left;
-              margin-left: 0;
-  
-            }
-  
-            .description {
-              width: 100%;
-              text-align: left;
-              font-size: 1rem;
-              margin-left: 0;
-            }
-          }
-  
-          .progress-container {
-            margin-left: 20px;
-  
-            .title {
-              font-size: 8px;
-            }
-          }
+        align-items: center;
+        margin-left: 10px;
+
+        .subTitle {
+          margin-left: 0px;
+          text-align: left;
+        }
+
+        .title {
+          margin-left: 0px;
+          width: 100%;
+          text-align: left;
+        }
+
+        .description {
+          margin-left: 0px;
+          width: 100%;
+          text-align: left;
+        }
+      }
+
+      .progress-container {
+        margin-left: 0;
+        margin-top: 40px;
+
+        .item {
+          margin-left: 30px;
+
         }
       }
     }
-  
-  
-  
+  }
+}
+
+
+@media only screen and (max-width: 480px) {
+  .container {
+    .max-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .title-child {
+        gap: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .subTitle {
+          width: 100%;
+          text-align: left;
+          font-size: 1.2rem;
+          margin-left: 0;
+        }
+
+        .title {
+          width: 100%;
+          text-align: left;
+          margin-left: 0;
+
+        }
+
+        .description {
+          width: 100%;
+          text-align: left;
+          font-size: 1rem;
+          margin-left: 0;
+        }
+      }
+
+      .progress-container {
+        margin-left: 20px;
+
+        .title {
+          font-size: 8px;
+        }
+      }
+    }
+  }
+}
