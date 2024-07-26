@@ -3,9 +3,13 @@ import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./notificationmodal1.module.scss";
 
-type ButtonValues = {
-  buttonTitle: string;
-  urlText: string;
+type Image = {
+  src: string;
+};
+
+type Button = {
+  buttonText: string;
+  link: string;
 };
 
 class NotificationModal1 extends BaseModal {
@@ -13,18 +17,42 @@ class NotificationModal1 extends BaseModal {
     super(props, styles);
 
     this.addProp({
+      type: "image",
+      key: "background_image",
+      displayer: "Background Image",
+      value:
+        "https://c4.wallpaperflare.com/wallpaper/149/547/831/violet-gradient-abstract-wallpaper-preview.jpg",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "firstTitle",
+      displayer: "First Title",
+      value: "Endowment premium Pay",
+    });
+
+    this.addProp({
       type: "string",
       key: "secondTitle",
       displayer: "SecondTitle",
       value: "2 Days remaining",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value:
-        "Please pay premium by"+ <span className={styles.highlight}>"05  2021"</span>+ "otherwise you will be charged 20% amount of your premium.",
+        "Please pay premium by 05 Dec 2021, otherwise you will be charged 20% amount of your premium.",
     });
+
     this.addProp({
       type: "array",
       key: "buttonprops",
@@ -46,7 +74,7 @@ class NotificationModal1 extends BaseModal {
             },
             {
               type: "page",
-              key: "url",
+              key: "link",
               displayer: "Button Link",
               value: "",
             },
@@ -65,40 +93,9 @@ class NotificationModal1 extends BaseModal {
             },
             {
               type: "page",
-              key: "url",
+              key: "link",
               displayer: "Button Link",
               value: "",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "imageProps",
-      displayer: "Images",
-      additionalParams: {
-        maxElementCount: 1,
-      },
-      value: [
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "firstTitle",
-              displayer: "FirstTitle",
-              value: "Endowment premium Pay",
-            },
-            {
-              type: "image",
-              key: "background_image",
-              displayer: "Image",
-              value:
-                "https://c4.wallpaperflare.com/wallpaper/149/547/831/violet-gradient-abstract-wallpaper-preview.jpg",
             },
           ],
         },
@@ -111,21 +108,36 @@ class NotificationModal1 extends BaseModal {
   }
 
   render() {
+    const backgroundImage = this.getPropValue("background_image");
+    const overlay = this.getPropValue("overlay");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {this.castToObject<any[]>("imageProps").map((item: any, index: number) => (
-              <div key={index} className={this.decorateCSS("image-container")}>
-                <img
-                  className={this.decorateCSS("image")}
-                  src={item.background_image}
-                />
-                <h2 className={this.decorateCSS("first-header")}>
-                  {item.firstTitle}
-                </h2>
-              </div>
-            ))}
+            <div className={this.decorateCSS("image-container")}>
+              {backgroundImage && (
+                <>
+                  <img
+                    className={this.decorateCSS("image")}
+                    src={backgroundImage}
+                  />
+                  <h2 className={this.decorateCSS("first-header")}>
+                    {this.getPropValue("firstTitle")}
+                  </h2>
+                </>
+              )}
+              {overlay && (
+                <div className={this.decorateCSS("overlay")}></div>
+              )}
+              {!backgroundImage && overlay && (
+                <div className={this.decorateCSS("overlay2")}>
+                 <h2 className={this.decorateCSS("first-header")}>
+                  {this.getPropValue("firstTitle")}
+                </h2> 
+                </div>
+              )}
+            </div>
             <div>
               <h3 className={this.decorateCSS("second-header")}>
                 {this.getPropValue("secondTitle")}
@@ -135,9 +147,9 @@ class NotificationModal1 extends BaseModal {
               </p>
             </div>
             <div className={this.decorateCSS("button-background")}>
-              {this.castToObject<any[]>("buttonprops").map((item: any, index: number) => (
+              {this.castToObject<Button[]>("buttonprops").map((item: Button, index: number) => (
                 <ComposerModalClose key={index}>
-                  <a href={item.url} className={this.decorateCSS("button")}>
+                  <a href={item.link} className={this.decorateCSS("button")}>
                     {item.buttonText}
                   </a>
                 </ComposerModalClose>
