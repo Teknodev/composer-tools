@@ -15,6 +15,7 @@
 
     .icon {
       width: 30px;
+      height: 30px;
     }
 
     .feedbackModalHeaderh1 {
@@ -70,7 +71,7 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      padding: 6px;
+      padding: 10px;
       border-radius: 50%;
       transition: background-color 0.3s, transform 0.3s;
       background-color: #d2d1d13a;
@@ -106,9 +107,12 @@
       }
 
       .feedbackModalEmojiIcon {
+        align-items: center;
         font-size: 2.5rem;
         filter: grayscale(100%);
         transition: filter 0.3s;
+        width: 50px;
+        height: 50px;
       }
 
       .feedbackModalEmojiLabel {
@@ -191,6 +195,100 @@
 
     &:hover {
       background: linear-gradient(to bottom right, #418d7c, #218838);
+    }
+  }
+
+  @media (max-width: 768px) { /* Tablet */
+    width: 90%;
+    padding: 15px;
+
+    .feedbackModalHeader {
+      .feedbackModalHeaderh1 {
+        font-size: 1.25rem;
+      }
+
+      .feedbackModalCloseButton {
+        font-size: 1.5rem;
+        padding-left: 150px;
+      }
+    }
+
+    .headerContent h2 {
+      font-size: 1.75rem;
+    }
+
+    .descriptionContent {
+      width: 100%;
+
+      p {
+        font-size: 0.875rem;
+      }
+    }
+
+    .feedbackModalEmojis {
+      .feedbackModalEmoji {
+        .feedbackModalEmojiIcon {
+          font-size: 2rem;
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    .contact-form {
+      padding: 15px 0;
+    }
+
+    .feedbackModalSubmit {
+      font-size: 0.875rem;
+      padding: 8px;
+    }
+  }
+
+  @media (max-width: 480px) { /* Mobile */
+    width: 95%;
+    padding: 10px;
+
+    .feedbackModalHeader {
+      .feedbackModalHeaderh1 {
+        font-size: 1rem;
+      }
+
+      .feedbackModalCloseButton {
+        font-size: 1.25rem;
+        padding-left: 100px;
+      }
+    }
+
+    .headerContent h2 {
+      font-size: 1.5rem;
+    }
+
+    .descriptionContent {
+      width: 100%;
+
+      p {
+        font-size: 0.75rem;
+      }
+    }
+
+    .feedbackModalEmojis {
+      .feedbackModalEmoji {
+        .feedbackModalEmojiIcon {
+          font-size: 1.5rem;
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+
+    .contact-form {
+      padding: 10px 0;
+    }
+
+    .feedbackModalSubmit {
+      font-size: 0.75rem;
+      padding: 6px;
     }
   }
 }
