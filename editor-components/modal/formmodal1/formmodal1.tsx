@@ -3,6 +3,15 @@ import styles from "./formmodal1.module.scss";
 import { BaseModal, TypeUsableComponentProps } from "../../EditorComponent";
 import { Formik, Form } from "formik";
 
+type InputItems = {
+  label: string;
+  inputs: Array<Inputs>;
+}
+type Inputs = {
+  placeholder: string;
+  type: string;
+}
+
 class FormModal1 extends BaseModal{
 
     constructor(props?: any){
@@ -12,7 +21,7 @@ class FormModal1 extends BaseModal{
             type: "image",
             key: "image",
             displayer: "Image",
-            value: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Ch6xXOqHGPCePQ9gvej33g.jpeg",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a2698b2f8a5b002ce67e10?alt=media",
         });
         this.addProp({
             type: "string",
@@ -28,12 +37,12 @@ class FormModal1 extends BaseModal{
         });
         this.addProp({
           type: "array",
-          key: "input-items",
+          key: "inputItems",
           displayer: "Input Items",
           value: [
             {
               type: "object",
-              key: "input-item",
+              key: "inputItem",
               displayer: "Input Item",
               value: [
                 {
@@ -76,7 +85,7 @@ class FormModal1 extends BaseModal{
 
             {
               type: "object",
-              key: "input-item",
+              key: "inputItem",
               displayer: "Input Item",
               value: [
                 {
@@ -119,7 +128,7 @@ class FormModal1 extends BaseModal{
 
             {
               type: "object",
-              key: "input-item",
+              key: "inputItem",
               displayer: "Input Item",
               value: [
                 {
@@ -148,7 +157,7 @@ class FormModal1 extends BaseModal{
                           type: "select",
                           key: "type",
                           displayer: "Type",
-                          value: "Text",
+                          value: "E-mail",
                           additionalParams: {
                             selectItems: ["Text", "E-mail", "Number"],
                           },
@@ -162,7 +171,7 @@ class FormModal1 extends BaseModal{
 
             {
               type: "object",
-              key: "input-item",
+              key: "inputItem",
               displayer: "Input Item",
               value: [
                 {
@@ -191,7 +200,7 @@ class FormModal1 extends BaseModal{
                           type: "select",
                           key: "type",
                           displayer: "Type",
-                          value: "Text",
+                          value: "Number",
                           additionalParams: {
                             selectItems: ["Text", "E-mail", "Number"],
                           },
@@ -208,7 +217,7 @@ class FormModal1 extends BaseModal{
         
         this.addProp({
           type: "string",
-          key: "button_text",
+          key: "buttonText",
           displayer: "Button Text",
           value: "Get in touch",
         });
@@ -221,7 +230,10 @@ class FormModal1 extends BaseModal{
     render() {
       const header = this.getPropValue("header", { as_string: true });
       const context = this.getPropValue("context", { as_string: true });  
-      const inputItems = this.getPropValue("input-items")!;
+      const inputItems = this.getPropValue("inputItems")!;
+      const imageVal = this.getPropValue("image");
+      const buttonVal = this.getPropValue("buttonText", {as_string: true});
+      const hasRightPageProps = header || context || inputItems.length > 0 || buttonVal;
     
       function getInputType(type: string): string {
         switch (type) {
@@ -276,73 +288,79 @@ class FormModal1 extends BaseModal{
         <div className={this.decorateCSS("container")}>
           <div className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("page")}>
-              <div className={this.decorateCSS("left-page")}>
+              {imageVal && (
+                <div className={this.decorateCSS("left-page")}>
                 <img 
                   className={this.decorateCSS("image")}
                   src={this.getPropValue("image")}
                   alt=""
                 />
               </div>
-              <div className={this.decorateCSS("right-page")}>
-                <div className={this.decorateCSS("title")}>
-                  <h1 className={this.decorateCSS("header")}>{header && this.getPropValue("header")}</h1>
-                  <p className={this.decorateCSS("context")}>
-                    {context && this.getPropValue("context")}
-                  </p>
-                </div>
-                <div className={this.decorateCSS("form-content")}>
-                  <Formik
-                    initialValues={getInitialValue()}
-                    onSubmit={(data, { resetForm }) => {
-                      this.insertForm("Contact Us", data);
-                      resetForm();
-                    }}
-                    >
-                    {({handleChange, values}) => (
-                      <Form className={this.decorateCSS("form")}>
-                        {inputItems.map((inputItem: any, inputItemIndex: number) => 
-                          inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) => (
-                            inputObj.getPropValue("placeholder", { as_string: true }) === "+1(555) 000-0000" ? (
-                              <div className={this.decorateCSS("phone-input-container")} key={`${inputItemIndex}-${inputIndex}`}>
-                                <select className={this.decorateCSS("country-dropdown")}>
-                                  <option value="us">US</option>
-                                  <option value="tr">TR</option>
-                                  <option value="uk">UK</option>
-                                  <option value="ca">CA</option>
-                                </select>
-                                <input
-                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                  type={getInputType(inputObj.getPropValue("type"))}
-                                  onChange={handleChange}
-                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                                  className={this.decorateCSS("form-input")}
-                                />
-                              </div>
-                            ) : (
-                              <div className={this.decorateCSS("input-box")} key={`${inputItemIndex}-${inputIndex}`}>
-                                <input
-                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                  type={getInputType(inputObj.getPropValue("type"))}
-                                  onChange={handleChange}
-                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                                  className={this.decorateCSS("form-input")}
-                                />
-                              </div>
-                            )
-                          ))
+              )}
+              {hasRightPageProps && (
+                <div className={this.decorateCSS("right-page")}>
+                  <div className={this.decorateCSS("right-page-content")}>
+                    <div className={this.decorateCSS("title")}>
+                      <h1 className={this.decorateCSS("header")}>{header && this.getPropValue("header")}</h1>
+                      <p className={this.decorateCSS("context")}>{context && this.getPropValue("context")}</p>
+                    </div>
+                    <div className={this.decorateCSS("form-content")}>
+                      <Formik
+                        initialValues={getInitialValue()}
+                        onSubmit={(data, { resetForm }) => {
+                          this.insertForm("Contact Us", data);
+                          resetForm();
+                        }}
+                        >
+                        {({handleChange, values}) => (
+                          <Form className={this.decorateCSS("form")}>
+                            {this.castToObject<InputItems[]>("inputItems").map((inputItem: InputItems, inputItemIndex: number) => 
+                              inputItem.inputs.map((inputObj: any, inputIndex: number) => (
+                                inputObj.getPropValue("placeholder", { as_string: true }) === "+1(555) 000-0000" ?  (
+                                  <div className={this.decorateCSS("phone-input-container")} key={`${inputItemIndex}-${inputIndex}`}>
+                                    <select className={this.decorateCSS("country-dropdown")}>
+                                      <option value="us">US</option>
+                                      <option value="tr">TR</option>
+                                      <option value="uk">UK</option>
+                                      <option value="ca">CA</option>
+                                    </select>
+                                    <input
+                                      placeholder={inputObj.getPropValue("placeholder", {as_string: true})}
+                                      type={getInputType(inputObj.type)}
+                                      onChange={handleChange}
+                                      value={values[getInputName(inputItemIndex, inputItem.label, inputIndex)]}
+                                      name={getInputName(inputItemIndex, inputItem.label, inputIndex)}
+                                      className={this.decorateCSS("form-input")}
+                                    />
+                                  </div>
+                                ) : (
+                                  <div className={this.decorateCSS("input-box")} key={`${inputItemIndex}-${inputIndex}`}>
+                                    <input
+                                      placeholder={inputObj.getPropValue("placeholder", {as_string: true})}
+                                      type={getInputType(inputObj.type)}
+                                      onChange={handleChange}
+                                      value={values[getInputName(inputItemIndex, inputItem.label, inputIndex)]}
+                                      name={getInputName(inputItemIndex, inputItem.label, inputIndex)}
+                                      className={this.decorateCSS("form-input")}
+                                    />
+                                  </div>
+                                )
+                              ))
+                            )}
+                            {buttonVal && (
+                              <button
+                              className={this.decorateCSS("form-button")}
+                              type="submit">
+                              {buttonVal}
+                            </button>
+                            )}
+                          </Form>
                         )}
-                        <button
-                          className={this.decorateCSS("form-button")}
-                          type="submit">
-                          {this.getPropValue("button_text")}
-                        </button>
-                      </Form>
-                    )}
-                  </Formik>                              
+                      </Formik>                              
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
