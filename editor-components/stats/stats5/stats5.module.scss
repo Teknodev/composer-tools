@@ -44,12 +44,13 @@
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
+          font-weight: bolder;
         }
 
         .card-data-title {
           font-size: 9rem;
-          color: var(--composer-font-color-primary);
-          opacity: 0.2;
+          color: var(--composer-primary-color);
+          opacity: 0.3;
           margin: 0;
           line-height: 1;
         }

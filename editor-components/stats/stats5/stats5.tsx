@@ -16,7 +16,7 @@ class Stats5Page extends BaseStats {
 
     this.addProp({
       type: "array",
-      key: "card-content",
+      key: "cardContent",
       displayer: "Card Content",
       value: [
         {
@@ -113,7 +113,7 @@ class Stats5Page extends BaseStats {
       max: 4,
     });
 
-    this.castToObject<CardData[]>("card-content").map((statsData, index) =>
+    this.castToObject<CardData[]>("cardContent").map((statsData, index) =>
       this.setComponentState(`number-${index}`, 0)
     );
 
@@ -123,17 +123,15 @@ class Stats5Page extends BaseStats {
   }
 
   initializeCardStates() {
-    this.prevCardCount = this.castToObject<CardData[]>("card-content").length;
-    this.castToObject<CardData[]>("card-content").forEach(
-      (statsData, index) => {
-        this.setComponentState(`number-${index}`, 0);
-      }
-    );
+    this.prevCardCount = this.castToObject<CardData[]>("cardContent").length;
+    this.castToObject<CardData[]>("cardContent").forEach((statsData, index) => {
+      this.setComponentState(`number-${index}`, 0);
+    });
   }
 
   componentDidUpdate(prevProps: any) {
     const currentCardCount =
-      this.castToObject<CardData[]>("card-content").length;
+      this.castToObject<CardData[]>("cardContent").length;
     if (currentCardCount !== this.prevCardCount) {
       this.initializeCardStates();
       this.restartAnimation();
@@ -150,7 +148,7 @@ class Stats5Page extends BaseStats {
   startAnimation() {
     this.intervalId = setInterval(() => {
       let allCompleted = true;
-      this.castToObject<CardData[]>("card-content").forEach(
+      this.castToObject<CardData[]>("cardContent").forEach(
         (statsData: CardData, index: number) => {
           let statNumber = this.getComponentState(`number-${index}`);
           if (statNumber !== statsData.CardTitle) {
@@ -181,7 +179,6 @@ class Stats5Page extends BaseStats {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
-    console.log("componentWillUnmount");
   }
 
   getName(): string {
@@ -189,7 +186,7 @@ class Stats5Page extends BaseStats {
   }
 
   getCardClasses(index: number, itemCountInRow: number) {
-    const totalCards = this.castToObject<CardData[]>("card-content").length;
+    const totalCards = this.castToObject<CardData[]>("cardContent").length;
     const isLastInRow =
       (index + 1) % itemCountInRow === 0 || index === totalCards - 1;
 
@@ -198,33 +195,35 @@ class Stats5Page extends BaseStats {
 
   render() {
     const itemCountInRow = this.getPropValue("itemCountInRow");
+    const hasCard = this.castToObject<CardData[]>("cardContent").length > 0;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("bottom-child")}>
-            {this.castToObject<CardData[]>("card-content").map(
-              (data: any, index: number) => (
-                <div
-                  key={index}
-                  className={`${this.decorateCSS("card")} ${this.getCardClasses(
-                    index,
-                    itemCountInRow
-                  )}`}
-                  style={{
-                    width: 90 / itemCountInRow + "%",
-                  }}
-                >
-                  <h4 className={this.decorateCSS("card-data-title")}>
-                    {this.getComponentState(`number-${index}`)}
-                  </h4>
-                  <p className={this.decorateCSS("card-data-description")}>
-                    {data.CardDescription}
-                  </p>
-                </div>
-              )
-            )}
-          </div>
+          {hasCard && (
+            <div className={this.decorateCSS("bottom-child")}>
+              {this.castToObject<CardData[]>("cardContent").map(
+                (data: CardData, index: number) => (
+                  <div
+                    key={index}
+                    className={`${this.decorateCSS(
+                      "card"
+                    )} ${this.getCardClasses(index, itemCountInRow)}`}
+                    style={{
+                      width: 90 / itemCountInRow + "%",
+                    }}
+                  >
+                    <h4 className={this.decorateCSS("card-data-title")}>
+                      {this.getComponentState(`number-${index}`)}
+                    </h4>
+                    <p className={this.decorateCSS("card-data-description")}>
+                      {data.CardDescription}
+                    </p>
+                  </div>
+                )
+              )}
+            </div>
+          )}
         </div>
       </div>
     );
