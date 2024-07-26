@@ -7,16 +7,16 @@ type Card = {
   text: string;
 };
 
-type Stats2PageProps = {
-  header: string;
-  subHeader: string;
-  contactButton: string;
-  cards: Card[];
-};
-
 class Stats2Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "number",
+      key: "animation-duration",
+      displayer: "Number Animation Duration (ms)",
+      value: 2000,
+    });
 
     this.addProp({
       type: "string",
@@ -43,7 +43,7 @@ class Stats2Page extends BaseStats {
       type: "array",
       key: "cards",
       displayer: "cards",
-      additionalParams: {maxElementCount: 4},
+      additionalParams: { maxElementCount: 4 },
       value: [
         {
           type: "object",
@@ -131,21 +131,31 @@ class Stats2Page extends BaseStats {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
+    const animationDuration = this.getPropValue("animation-duration") as number;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header-wrapper")}>
-            <div className={this.decorateCSS("header")}>{this.getPropValue("header")}</div>
-            <div className={this.decorateCSS("subHeader")}>
-              {this.getPropValue("subHeader")}
-              <button className={this.decorateCSS("contact-button")}>{this.getPropValue("contactButton")}</button>
-            </div>
+            {this.getPropValue("header") && (
+              <div className={this.decorateCSS("header")}>{this.getPropValue("header")}</div>
+            )}
+
+            {this.getPropValue("subHeader") && (
+              <div className={this.decorateCSS("subHeader")}>
+                {this.getPropValue("subHeader")}
+                {this.getPropValue("contactButton") && (
+                  <button className={this.decorateCSS("contact-button")}>
+                    {this.getPropValue("contactButton")}
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
           <div className={this.decorateCSS("cards-container")}>
             {cards.map((card, index) => (
-              <AnimatedCard key={index} card={card} styles={styles} />
+              <AnimatedCard key={index} card={card} animationDuration={animationDuration} styles={styles} />
             ))}
           </div>
         </div>
@@ -156,87 +166,60 @@ class Stats2Page extends BaseStats {
 
 type AnimatedCardProps = {
   card: Card;
+  animationDuration: number;
   styles: typeof styles;
 };
 
-type AnimatedCardState = {
-  digits: number[];
-};
+const AnimatedCard: React.FC<AnimatedCardProps> = ({ card, animationDuration, styles }) => {
+  const [amount, setAmount] = React.useState(0);
+  const ref = React.useRef<HTMLDivElement>(null);
 
-class AnimatedCard extends React.Component<AnimatedCardProps, AnimatedCardState> {
-  private observer: IntersectionObserver;
-  private ref: React.RefObject<HTMLDivElement>;
-
-  constructor(props: AnimatedCardProps) {
-    super(props);
-    const initialDigits = Array.from(String(props.card.amount), () => 0);
-    this.state = {
-      digits: initialDigits,
-    };
-    this.ref = React.createRef();
-  }
-
-  componentDidMount() {
-    this.observer = new IntersectionObserver(
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            this.animateDigits();
-            this.observer.unobserve(entry.target);
+            animateDigits();
+            observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.5 }
     );
 
-    if (this.ref.current) {
-      this.observer.observe(this.ref.current);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
-  }
 
-  animateDigits() {
-    const { digits } = this.state;
-    const finalDigits = Array.from(String(this.props.card.amount), (digit) => parseInt(digit, 10));
-
-    finalDigits.forEach((finalDigit, index) => {
-      if (finalDigit !== digits[index]) {
-        this.animateDigit(index, finalDigit - 1);
-      }
-    });
-  }
-
-  animateDigit(index: number, finalValue: number) {
-    let currentValue = 0;
-    const increment = () => {
-      if (currentValue <= finalValue) {
-        this.setState((prevState) => {
-          const newDigits = [...prevState.digits];
-          newDigits[index] = currentValue;
-          return { digits: newDigits };
-        });
-        currentValue += 1;
-        if (currentValue <= finalValue) {
-          setTimeout(increment, 60);
-        }
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
       }
     };
-    increment();
-  }
+  }, [card.amount]);
 
-  render() {
-    const { digits } = this.state;
+  const animateDigits = () => {
+    const finalAmount = card.amount;
+    const steps = animationDuration / 30;
+    let currentAmount = 0;
+    const increment = finalAmount / steps;
 
-    return (
-      <div ref={this.ref} className={this.props.styles["listed"]}>
-        <p className={this.props.styles["card-text"]}>{this.props.card.text}</p>
-        <p className={this.props.styles["card-amount"]}>
-          {digits.map((digit, index) => (
-            <span key={index} className={digit > 0 ? this.props.styles["digit"] : ""}>{digit}</span>
-          ))}
-        </p>
-      </div>
-    );
-  }
-}
+    const interval = setInterval(() => {
+      currentAmount += increment;
+      if (currentAmount >= finalAmount) {
+        currentAmount = finalAmount;
+        clearInterval(interval);
+      }
+      setAmount(Math.ceil(currentAmount));
+    }, 30);
+  };
+
+  return (
+    <div ref={ref} className={styles["listed"]}>
+      <p className={styles["card-text"]}>{card.text}</p>
+      <p className={styles["card-amount"]}>{amount}</p>
+    </div>
+  );
+};
 
 export default Stats2Page;
