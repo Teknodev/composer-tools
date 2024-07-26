@@ -19,7 +19,7 @@ class Download7 extends BaseDownload {
       key: "image",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af5c68c3c2002cd2fa52?alt=media&timestamp=1692795543393",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a3651b2f8a5b002ce69dbd?alt=media",
     });
 
     this.addProp({
@@ -122,6 +122,14 @@ class Download7 extends BaseDownload {
 
   render() {
     const enableAnimation = this.getPropValue("enableAnimation");
+    const contentTitle = this.castToString(this.getPropValue("contentTitle"));
+    const hasContentTitle = contentTitle && contentTitle.length > 0;
+    const description = this.castToString(this.getPropValue("description"));
+    const hasDescription = description && description.length > 0;
+    const hasButtonsLeft =
+      this.castToObject<Button[]>("buttonsLeft").length > 0;
+    const hasButtonsRight =
+      this.castToObject<Button[]>("buttonsRight").length > 0;
 
     setTimeout(() => {
       if (enableAnimation) {
@@ -151,58 +159,68 @@ class Download7 extends BaseDownload {
             style={{ backgroundImage: `url(${this.getPropValue("image")})` }}
           >
             <div className={this.decorateCSS("content")}>
-              <h6 className={this.decorateCSS("contentTitle")}>
-                {this.getPropValue("contentTitle")}
-              </h6>
-              <h3 className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </h3>
-              <div className={this.decorateCSS("button-groups")}>
-                <div className={this.decorateCSS("button-group-left")}>
-                  {this.castToObject<Button[]>("buttonsLeft").map(
-                    (button: Button, index: number) => {
-                      return (
-                        <ComposerLink
-                          key={`dw-7-btn-left-${index}`}
-                          path={button.url}
-                        >
-                          <button className={this.decorateCSS("button")}>
-                            <ComposerIcon
-                              propsIcon={{
-                                className: this.decorateCSS("button-icon"),
-                              }}
-                              name={button.buttonIcon}
-                            />
-                            {button.buttonText}
-                          </button>
-                        </ComposerLink>
-                      );
-                    }
+              {hasContentTitle && (
+                <h6 className={this.decorateCSS("contentTitle")}>
+                  {this.getPropValue("contentTitle")}
+                </h6>
+              )}
+              {hasDescription && (
+                <h3 className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </h3>
+              )}
+              {(hasButtonsLeft || hasButtonsRight) && (
+                <div className={this.decorateCSS("button-groups")}>
+                  {hasButtonsLeft && (
+                    <div className={this.decorateCSS("button-group-left")}>
+                      {this.castToObject<Button[]>("buttonsLeft").map(
+                        (button: Button, index: number) => {
+                          return (
+                            <ComposerLink
+                              key={`dw-7-btn-left-${index}`}
+                              path={button.url}
+                            >
+                              <button className={this.decorateCSS("button")}>
+                                <ComposerIcon
+                                  propsIcon={{
+                                    className: this.decorateCSS("button-icon"),
+                                  }}
+                                  name={button.buttonIcon}
+                                />
+                                {button.buttonText}
+                              </button>
+                            </ComposerLink>
+                          );
+                        }
+                      )}
+                    </div>
+                  )}
+                  {hasButtonsRight && (
+                    <div className={this.decorateCSS("button-group-right")}>
+                      {this.castToObject<Button[]>("buttonsRight").map(
+                        (button: Button, index: number) => {
+                          return (
+                            <ComposerLink
+                              key={`dw-7-btn-right-${index}`}
+                              path={button.url}
+                            >
+                              <button className={this.decorateCSS("button")}>
+                                <ComposerIcon
+                                  propsIcon={{
+                                    className: this.decorateCSS("button-icon"),
+                                  }}
+                                  name={button.buttonIcon}
+                                />
+                                {button.buttonText}
+                              </button>
+                            </ComposerLink>
+                          );
+                        }
+                      )}
+                    </div>
                   )}
                 </div>
-                <div className={this.decorateCSS("button-group-right")}>
-                  {this.castToObject<Button[]>("buttonsRight").map(
-                    (button: Button, index: number) => {
-                      return (
-                        <ComposerLink
-                          key={`dw-7-btn-right-${index}`}
-                          path={button.url}
-                        >
-                          <button className={this.decorateCSS("button")}>
-                            <ComposerIcon
-                              propsIcon={{
-                                className: this.decorateCSS("button-icon"),
-                              }}
-                              name={button.buttonIcon}
-                            />
-                            {button.buttonText}
-                          </button>
-                        </ComposerLink>
-                      );
-                    }
-                  )}
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
