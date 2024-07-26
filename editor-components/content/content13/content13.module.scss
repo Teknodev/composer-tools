@@ -1,8 +1,7 @@
 .container {
     height: 100%;
     width: 100%;
-    background-image: url("https://craftohtml.themezaa.com/images/vertical-center-line-bg.svg");
-
+    
     .max-content {
         max-width: var(--composer-content-width);
         display: flex;
@@ -24,7 +23,7 @@
                 box-sizing: border-box;
                 font-size: 18px;
                 line-height: 30px;
-                color: var(--composer-tertiary-color-rgb);
+                color: var(--composer-font-color-primary);
                 font-family: 'Urbanist', sans-serif;
                 text-align: left;
                 margin-left: 10px;
@@ -38,7 +37,7 @@
                 font-size: 55px;
                 margin-top: 10px;
                 margin-left: 10px;
-                color: var(--dark-color);
+                color: var(--composer-font-color-primary);
                 font-family: "Rufina", serif;
                 text-align: left;
                 line-height: 3.5rem;
@@ -51,7 +50,7 @@
                 display: block;
                 letter-spacing: 1px;
                 font-size: 18px;
-                color: var(--text-color-secondary);
+                color: var(--composer-font-color-primary);
                 width: 80%;
                 margin-bottom: 35px;
                 font-weight: 400px;
@@ -67,7 +66,7 @@
 
                 .about-button {
                     align-items: center;
-                    background-color: var(--dark-color);
+                    background-color:  var(--composer-secondary-color);
                     color: var(--text-color-white);
                     text-align: center;
                     font-weight: 800;
@@ -77,11 +76,18 @@
                     border: none;
                     border-radius: 5px;
                     cursor: pointer;
-                    margin-left: 10px; // İsteğe bağlı: buton ile diğer içerik arasındaki boşluk
+                    margin-left: 10px; 
                     width: 40%;
-
-                    
+                    overflow: hidden;
+                
+                    .buttonText{
+                        color: (--composer-font-color-secondary);
+                        font-size: 14px;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
                 }
+            
 
                 .phone-icon {
                     font-size: 18px;
@@ -126,10 +132,10 @@
                     font-size: 15px;
                     line-height: 16px;
                     text-transform: uppercase;
-                    transform: translate(-180%, -80%);
+                    transform: translate(-180%, 60%);
                     left: 60px;
                     top: 90px;
-                    color: var(--text-color-secondary);
+                    color: var(--composer-primary-color);
                     font-weight: 700;
 
                 }
@@ -138,9 +144,7 @@
                     position: absolute;
                     line-height: 5.6rem;
                     font-size: 5.6rem;
-                    transform: translate(-60%, 140%);
-                    color: var(--primary-text-color);
-                    ;
+                    transform: translate(-60%, 110%);                    color: var(--composer-font-color-primary);
                     font-family: Urbanist, sans-serif;
                 }
 
@@ -154,7 +158,7 @@
 
                 .image2 {
                     position: absolute;
-                    left: 20px;
+                    left: 80px;
                     transform: translate(-60%, -80%);
                     width: 55%;
                     height: auto;
@@ -180,7 +184,7 @@
         }
     }
 }
-@media only screen and (max-width: 1024px) and (min-width:768px) {
+@media only screen and (max-width: 1024px)  {
     .container {
         .max-content {
             display: flex;
@@ -246,12 +250,15 @@
             }
 
             .right-page {
-                margin-left: 60px;
+                margin-left: 100px;
                 flex-direction: column;
                 align-items: flex-start;
                 .image-container{
                     .image1{
                         width: 100%;
+                    }
+                    .image2{
+                        transform: translate(-100%, -80%);
                     }
                 }
                
@@ -260,6 +267,8 @@
         }
     }
 }
+
+
 @media only screen and (max-width: 480px)  {
     .container {
         .max-content {
@@ -323,13 +332,13 @@
                     }
                 }
                 .right-page {
-                    
-                    
+                    margin-left: 200px;
                     .image-container {
                         position: relative;
                         max-width: 100%;
         
                         .text {
+                            margin-left: 10px;
                             position: absolute;
                             font-size: 15px;
                             line-height: 16px;
@@ -342,26 +351,28 @@
                         }
         
                         .year {
+                            margin-block-start: auto;
+                            margin-left: 10px;
                             position: absolute;
                             line-height: 5.6rem;
                             font-size: 3.5rem;
                             transform: translate(10%, 140%);
                             color: var(--primary-text-color);
-                            
                             font-family: Urbanist, sans-serif;
                         }
         
                         .image1 {
                             width: 40%;
-                            margin-left: 80px;
+                            margin-left: 100px;
                             border-radius: 4px;
                             margin-top: 10px;
                            
                         }
         
                         .image2 {
+                            margin-left: 10px;
                             position: absolute;
-                            transform: translate(-10%, 110%);
+                            transform: translate(-40%, 110%);
                             width: 30%;
                             height: auto;
         

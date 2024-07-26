@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content13.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 
 class Content13 extends BaseContent {
@@ -9,15 +10,15 @@ class Content13 extends BaseContent {
 
     this.addProp({
       type: "string",
-      key: "about-title",
-      displayer: "about-title",
+      key: "aboutTitle",
+      displayer: "Subtitle",
       value: "About resorts",
     });
 
     this.addProp({
       type: "string",
-      key: "maintitle",
-      displayer: "maintitle",
+      key: "mainTitle",
+      displayer: "Title",
       value: "Relax at the luxury resorts around the entire world.",
     });
 
@@ -31,29 +32,50 @@ class Content13 extends BaseContent {
     this.addProp({
       type: "string",
       key: "buttonText",
-      displayer: "Text of Button",
+      displayer: "Button Text",
       value: "About resort"
     });
 
     this.addProp({
       type: "string",
       key: "phone",
-      displayer: "PhoneNumber",
+      displayer: "Phone Number",
       value: "1 800 222 000"
     })
+    
+    this.addProp({
+      type: "string",
+      key: "text",
+      displayer: "Text",
+      value: "Started In"
+    })
+
+    this.addProp({
+      type: "string",
+      key:"year",
+      displayer: "Year",
+      value: "1995"
+    });
+
+    this.addProp({
+      type: "icon",
+      key:"phoneIcon",
+      displayer: "Icon",
+      value: "BsTelephoneOutbound"
+    });
 
     this.addProp({
       type: "image",
       key: "image1",
       displayer: "image1",
-      value: "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-home-01.jpg"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f132f8a5b002ce6b70b?alt=media"
     })
 
     this.addProp({
       type: "image",
       key: "image2",
       displayer: "image2",
-      value: "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-home-02.jpg"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media"
     })
 
 
@@ -67,30 +89,33 @@ class Content13 extends BaseContent {
 
   render() {
 
-
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("title-container")}>
-            <span className={this.decorateCSS("about-title")}>{this.getPropValue("about-title")}</span>
-            <h2 className={this.decorateCSS("maintitle")}>{this.getPropValue("maintitle")}</h2>
+            <span className={this.decorateCSS("about-title")}>{this.getPropValue("aboutTitle")}</span>
+            <h2 className={this.decorateCSS("maintitle")}>{this.getPropValue("mainTitle")}</h2>
             <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+            
             <div className={this.decorateCSS("button-icon")} >
-
-              <button className={this.decorateCSS("about-button")}>{this.getPropValue("buttonText")}</button>
+              <button className={this.decorateCSS("about-button")}>
+                <div className={this.decorateCSS("buttonText")}>{this.getPropValue("buttonText")}</div>
+              </button>
               <div className={this.decorateCSS("phone-icon")}>
-                <span className={this.decorateCSS("icon")}>📞</span>
+              <ComposerIcon
+                    propsIcon={{ className: this.decorateCSS("icon") }}
+                    name={this.getPropValue("phoneIcon")}
+                  />  
                 <h1 className={this.decorateCSS("phone")}>{this.getPropValue("phone")}</h1>
               </div>
             </div>
           </div>
           <div className={this.decorateCSS("right-page")}>
             <div className={this.decorateCSS("image-container")}>
-              <span className={this.decorateCSS("text")}> Started In</span>
-              <span className={this.decorateCSS("year")}>1995</span>
-              <img src={this.getPropValue("image1")} alt="" className={this.decorateCSS("image1")} />
-              <img src={this.getPropValue("image2")} alt="" className={this.decorateCSS("image2")} />
+              <h1 className={this.decorateCSS("text")}>{this.getPropValue("text")}</h1>
+              <h2 className={this.decorateCSS("year")}>{this.getPropValue("year")}</h2>
+              <img src={this.getPropValue("image1")} alt="Image 1" className={this.decorateCSS("image1")} />
+              <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />
             </div>
           </div>
         </div>
