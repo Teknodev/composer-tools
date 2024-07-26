@@ -23,7 +23,7 @@ class Content19 extends BaseContent {
       type:"image",
       key:"video-image",
       displayer:"Video Image",
-      value:"https://kamleshyadav.com/wp/astrologer/demo8/wp-content/uploads/sites/9/2021/09/video-bg.jpg"
+      value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a3a08f2f8a5b002ce6b795?alt=media"
     });
   
     this.addProp({
@@ -89,7 +89,7 @@ class Content19 extends BaseContent {
               type: "page",
               key: "url",
               displayer: "Button Link",
-              value: "dsad",
+              value: "",
             },
           ],
         }, 
@@ -108,7 +108,7 @@ class Content19 extends BaseContent {
               type: "page",
               key: "url",
               displayer: "Button Link",
-              value: "gfd",
+              value: "",
             }
           ],
         }
