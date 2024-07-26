@@ -5,22 +5,27 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh; 
+    background: var(--composer-html-background);
   
     p {
-      color: white;
+      color: var(--primary-text-color);
     }
   
     .max-content {
-      display: grid;
+      display: flex;
       grid-template-columns: repeat(2, 1fr);
       justify-content: space-around;
       max-width: var(--composer-content-width);
       margin: auto;
       padding: 0 60px;
       column-gap: 50px;
-      background: black;
       width: 100%; 
       flex: 1; 
+
+      &.image-absent {
+        display: inline-block; 
+        width: 100%;
+      }
   
       .stats2-page {
         width: 100%;
@@ -40,6 +45,7 @@
           .title {
             font-size: 2.5rem;
             color: var(--composer-primary-color);
+            margin: 7px;
           }
 
           .text-uppercase{
@@ -49,6 +55,7 @@
           .subtitle {
             font-size: 20px;
             padding: 10px 0;
+            margin: 30px 0 15px 0;
           }
   
           .description {
@@ -76,7 +83,7 @@
           }
           .author-role::before{
             width: 60px;
-            background-color: var(--darkreader-bg--assistant-color, #1a1d1e);
+            background-color: var(--color-divider) ;
             content: "";
             position: absolute;
             left: 0;
@@ -101,7 +108,7 @@
               margin: 5%;
               padding-top: 4%;
               padding-bottom: 4%;
-              background-color: #101010;
+              background-color: var(--color-divider) ;
 
               .stat-title {
                 font-size: 55px;
@@ -124,7 +131,7 @@
             height: auto;
             max-height: 750px;
             object-fit: cover;
-            opacity: 0.5;
+            opacity: 0.85;
             width: 100%;
           }
   
@@ -138,14 +145,12 @@
   
             .number {
               font-size: 110px;
-              color: white;
               margin-right: 10px;
               font-weight: 600;
             }
   
             .description {
               font-size: 16px;
-              color: white;
             }
           }
         }
@@ -185,6 +190,7 @@
         gap: 60px;
 
         .max-content {
+            display: grid;
             grid-template-columns: 1fr;
             padding: 0;
 
@@ -208,8 +214,6 @@
                 }
             }
         }
-        
-        
     }
 }
 

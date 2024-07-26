@@ -3,7 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats8.module.scss";
 
 type ICard = {
-  title: string;
+  title: number;
   description: string;
 };
 
@@ -56,10 +56,10 @@ class Stats8Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
+              type: "number",
               key: "title",
               displayer: "Title",
-              value: "37",
+              value: 37,
             },
             {
               type: "string",
@@ -75,10 +75,10 @@ class Stats8Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "string",
+              type: "number",
               key: "title",
               displayer: "Title",
-              value: "19",
+              value: 19,
             },
             {
               type: "string",
@@ -92,10 +92,10 @@ class Stats8Page extends BaseStats {
     });
 
     this.addProp({
-      type: "string",
+      type: "number",
       key: "overlayNumber",
       displayer: "Overlay Number",
-      value: "25",
+      value: 25,
     });
 
     this.addProp({
@@ -109,8 +109,35 @@ class Stats8Page extends BaseStats {
       type: "image",
       key: "imageSrc",
       displayer: "Image Source",
-      value: "https://eremia-react.vercel.app/img/about-intro.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a36aa42f8a5b002ce6a087?alt=media",
     });
+
+    this.addProp({
+      type: "number",
+      key: "animationDuration",
+      displayer: "Number Animation Duration (ms)",
+      value: 500,
+    });
+
+    this.castToObject<ICard[]>("stats").map((statsData, index) =>
+      this.setComponentState(`number-${index}`, 0)
+    );
+
+    let interval = setInterval(() => {
+      this.castToObject<ICard[]>("stats").map((statData: ICard, index: number) => {
+        let currentNumber = this.getComponentState(`number-${index}`);
+        if (currentNumber != statData.title) {
+          this.setComponentState(
+            `number-${index}`,
+            Math.min(
+              statData.title,
+              currentNumber + Math.ceil(statData.title / Math.round(this.getPropValue("animationDuration") / 30)
+              )
+            )|| 0
+          );
+        }
+      });
+    }, 30);
   }
 
   getName(): string {
@@ -118,36 +145,45 @@ class Stats8Page extends BaseStats {
   }
 
   render() {
+    const statsData = this.castToObject<ICard[]>("stats");
+    const imageSrc = this.getPropValue("imageSrc");
+  
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats2-page")}>
-            <div className={this.decorateCSS("content")}>
-              <h2 className={this.decorateCSS("title")+ " " + this.decorateCSS("text-uppercase")}>{this.getPropValue("title")}</h2>
+            <div className={this.decorateCSS("content") + (imageSrc ? "" : " full-width")}>
+              <h2 className={this.decorateCSS("title") + " " + this.decorateCSS("text-uppercase")}>{this.getPropValue("title")}</h2>
               <h6 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h6>
               <hr />
               <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
               <h5 className={this.decorateCSS("author")}>{this.getPropValue("author")}</h5>
               <span className={this.decorateCSS("author-role")}>{this.getPropValue("authorRole")}</span>
               <div className={this.decorateCSS("stats")}>
-                {this.castToObject<ICard[]>("stats").map((statData: any, indexStat: number) => (
+                {statsData.map((statData: ICard, indexStat: number) => (
+                  (statData.title && statData.description) && (
                     <div key={indexStat} className={this.decorateCSS("stat")}>
-                      <span className={this.decorateCSS("stat-title")}>{statData.title}</span>
+                      <span className={this.decorateCSS("stat-title")}>
+                        {this.getComponentState(`number-${indexStat}`)}
+                      </span>
                       <h5 className={this.decorateCSS("stat-description")}>{statData.description}</h5>
                     </div>
+                  )
                 ))}
               </div>
             </div>
           </div>
-          <div className={this.decorateCSS("stats2-page")}>
-            <div className={this.decorateCSS("image-container")}>
-              <img src={this.getPropValue("imageSrc")} alt="Digital Experience" />
-              <div className={this.decorateCSS("overlay")}>
-                <span className={this.decorateCSS("number")}>{this.getPropValue("overlayNumber")}</span>
-                <p className={this.decorateCSS("description")}>{this.getPropValue("overlayDescription")}</p>
+          {imageSrc && (
+            <div className={this.decorateCSS("stats2-page")}>
+              <div className={this.decorateCSS("image-container")}>
+                <img src={imageSrc} alt="Digital Experience" />
+                <div className={this.decorateCSS("overlay")}>
+                  <span className={this.decorateCSS("number")}>{this.getPropValue("overlayNumber")}</span>
+                  <p className={this.decorateCSS("description")}>{this.getPropValue("overlayDescription")}</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     );
