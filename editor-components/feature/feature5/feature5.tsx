@@ -24,7 +24,7 @@ class Feature5 extends BaseFeature {
           key: "left_image",
           displayer: "Left Image",
           value:
-            "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/30-1068x1602.jpg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2642f8a5b002ce6c032?alt=media",
         },
         {
           type: "string",
@@ -36,7 +36,7 @@ class Feature5 extends BaseFeature {
           type: "page",
           key: "link",
           displayer: "link",
-          value: "https://www.google.com/",
+          value: "",
         },
       ],
     });
@@ -68,7 +68,7 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -88,13 +88,13 @@ class Feature5 extends BaseFeature {
               key: "image",
               displayer: "Right Image",
               value:
-                "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/29-1068x1417.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2a22f8a5b002ce6c03e?alt=media",
             },
             {
               type: "page",
               key: "link",
               displayer: "link",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -115,7 +115,8 @@ class Feature5 extends BaseFeature {
               type: "image",
               key: "image",
               displayer: "Left Image",
-              value: "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/28-696x696.jpg",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2cc2f8a5b002ce6c04a?alt=media",
             },
             {
               type: "string",
@@ -127,7 +128,7 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -141,7 +142,7 @@ class Feature5 extends BaseFeature {
               key: "image",
               displayer: "Middle Image",
               value:
-                "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/27-696x870.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2ea2f8a5b002ce6c056?alt=media",
             },
             {
               type: "string",
@@ -153,7 +154,7 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -167,7 +168,7 @@ class Feature5 extends BaseFeature {
               key: "image",
               displayer: "Right Image",
               value:
-                "https://demo.tagdiv.com/newspaper_lifestyle_pro/wp-content/uploads/2020/06/26-696x464.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c3032f8a5b002ce6c062?alt=media",
             },
             {
               type: "string",
@@ -179,7 +180,7 @@ class Feature5 extends BaseFeature {
               type: "page",
               key: "link",
               displayer: "link",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -211,13 +212,6 @@ class Feature5 extends BaseFeature {
       };
     }>("row2");
 
-    const isRow1Visible = row1.left_image || this.castToString(row1.title);
-    const isRow2LeftItemVisible = this.castToString(row2.left_item.description);
-    const isRow2RightItemVisible =
-      row2.right_item.image || this.castToString(row2.right_item.text);
-
-    const isRow2Visible = isRow2LeftItemVisible || isRow2RightItemVisible;
-
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
         image: string;
@@ -236,6 +230,16 @@ class Feature5 extends BaseFeature {
       };
     }>("row3");
 
+    const isRow1Visible = row1.left_image || this.castToString(row1.title);
+    const isRow2LeftItemVisible =
+      this.castToString(row2.left_item.description) ||
+      this.castToString(row2.left_item.button_text) ||
+      row2.left_item.link;
+    const isRow2RightItemVisible =
+      row2.right_item.image ||
+      this.castToString(row2.right_item.text) ||
+      row2.right_item.link;
+    const isRow2Visible = isRow2LeftItemVisible || isRow2RightItemVisible;
     const isRow3Visible =
       row3.image_and_subtitle_1.image ||
       row3.image_and_subtitle_2.image ||
@@ -269,9 +273,11 @@ class Feature5 extends BaseFeature {
             <div className={this.decorateCSS("row2")}>
               {isRow2LeftItemVisible && (
                 <div className={this.decorateCSS("left")}>
-                  <span className={this.decorateCSS("description")}>
-                    {row2.left_item.description}
-                  </span>
+                  {this.castToString(row2.left_item.description) && (
+                    <span className={this.decorateCSS("description")}>
+                      {row2.left_item.description}
+                    </span>
+                  )}
                   {this.castToString(row2.left_item.button_text) && (
                     <span className={this.decorateCSS("button-text")}>
                       <ComposerLink path={row2.left_item.link}>
@@ -308,11 +314,13 @@ class Feature5 extends BaseFeature {
               {row3.image_and_subtitle_1.image && (
                 <ComposerLink
                   path={row3.image_and_subtitle_1.link}
-                  isFullWidth={true}>
+                  isFullWidth={true}
+                >
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
                     <img
                       className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_1.image} />
+                      src={row3.image_and_subtitle_1.image}
+                    />
                     {this.castToString(row3.image_and_subtitle_1.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
@@ -324,11 +332,13 @@ class Feature5 extends BaseFeature {
               {row3.image_and_subtitle_2.image && (
                 <ComposerLink
                   path={row3.image_and_subtitle_2.link}
-                  isFullWidth={true}>
+                  isFullWidth={true}
+                >
                   <div className={this.decorateCSS("image_and_subtitle_2")}>
                     <img
                       className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_2.image} />
+                      src={row3.image_and_subtitle_2.image}
+                    />
                     {this.castToString(row3.image_and_subtitle_2.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_2.sub_title}
@@ -340,11 +350,13 @@ class Feature5 extends BaseFeature {
               {row3.image_and_subtitle_3.image && (
                 <ComposerLink
                   path={row3.image_and_subtitle_3.link}
-                  isFullWidth={true}>
+                  isFullWidth={true}
+                >
                   <div className={this.decorateCSS("image_and_subtitle_3")}>
                     <img
                       className={this.decorateCSS("image")}
-                      src={row3.image_and_subtitle_3.image} />
+                      src={row3.image_and_subtitle_3.image}
+                    />
                     {this.castToString(row3.image_and_subtitle_3.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_3.sub_title}
