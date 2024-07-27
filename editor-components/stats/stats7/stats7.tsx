@@ -148,10 +148,9 @@ class Stats7Page extends BaseStats {
           </div>}
 
           { itemList.length>0 && <div className={this.decorateCSS("progress-container")}>
-            {this.castToObject<Item[]>("items").map((item: any, index: number) => {
-              const [titleObj, percentObj] = item.value;
-              const title = titleObj.value;
-              let percent = percentObj.value;
+            {this.castToObject<Item[]>("items").map((item: Item, index: number) => {
+              const { title,progress, progressText} = item;
+              let percent= progress
               let text = `${percent}%`;
 
               if (percent === 0 || percent === null || percent === undefined) {
@@ -163,8 +162,8 @@ class Stats7Page extends BaseStats {
               if(percent >= 100){
                 percent =100;
               }
-            
 
+              if(this.castToString(title) || this.castToString(progressText))
               return (
                 <div className={this.decorateCSS("item")} key={index}>
                   <div className={this.decorateCSS("progress-title")}>
