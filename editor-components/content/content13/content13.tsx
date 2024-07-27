@@ -88,32 +88,40 @@ class Content13 extends BaseContent {
   }
 
   render() {
+    const isAboutTitleExist= this.castToString(this.getPropValue("aboutTitle"))
+    const isMainTitleExist = this.castToString(this.getPropValue("mainTitle"))
+    const isDescriptionExist = this.castToString(this.getPropValue("description"))
+    const isButtonTextExist = this.castToString(this.getPropValue("buttonText"))
+    const isPhoneExist =this.castToString(this.getPropValue("phone"))
+    const isTextExist =this.castToString(this.getPropValue("text"))
+    const isYearExist= this.castToString(this.getPropValue("year"))
+
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("title-container")}>
-            <span className={this.decorateCSS("about-title")}>{this.getPropValue("aboutTitle")}</span>
-            <h2 className={this.decorateCSS("maintitle")}>{this.getPropValue("mainTitle")}</h2>
-            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+            { isAboutTitleExist && <span className={this.decorateCSS("about-title")}>{isAboutTitleExist}</span>}
+            { isMainTitleExist && <h2 className={this.decorateCSS("maintitle")}>{isMainTitleExist}</h2>}
+           { isDescriptionExist && <p className={this.decorateCSS("description")}>{isDescriptionExist}</p> }
             
             <div className={this.decorateCSS("button-icon")} >
               <button className={this.decorateCSS("about-button")}>
-                <div className={this.decorateCSS("buttonText")}>{this.getPropValue("buttonText")}</div>
+               {isButtonTextExist && <div className={this.decorateCSS("buttonText")}>{isButtonTextExist}</div> }
               </button>
               <div className={this.decorateCSS("phone-icon")}>
               <ComposerIcon
                     propsIcon={{ className: this.decorateCSS("icon") }}
                     name={this.getPropValue("phoneIcon")}
                   />  
-                <h1 className={this.decorateCSS("phone")}>{this.getPropValue("phone")}</h1>
+                {isPhoneExist && <h1 className={this.decorateCSS("phone")}>{isPhoneExist}</h1>}
               </div>
             </div>
           </div>
           <div className={this.decorateCSS("right-page")}>
             <div className={this.decorateCSS("image-container")}>
-              <h1 className={this.decorateCSS("text")}>{this.getPropValue("text")}</h1>
-              <h2 className={this.decorateCSS("year")}>{this.getPropValue("year")}</h2>
+              {isTextExist && <h1 className={this.decorateCSS("text")}>{isTextExist}</h1> }
+              {isYearExist && <h2 className={this.decorateCSS("year")}>{isYearExist}</h2>}
               <img src={this.getPropValue("image1")} alt="Image 1" className={this.decorateCSS("image1")} />
               <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />
             </div>
