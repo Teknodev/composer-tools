@@ -667,7 +667,6 @@ class FaqButton extends BaseFAQ {
   }
 
   render() {
-
     const categoryList = this.castToObject<Category[]>("categories");
 
     const isBadgeExist = this.castToString(this.getPropValue("badge"));
@@ -677,27 +676,28 @@ class FaqButton extends BaseFAQ {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(isBadgeExist || isSubtitleExist) &&
+            {(isBadgeExist || isSubtitleExist) && (
               <div className={this.decorateCSS("up-page")}>
-                {isBadgeExist &&
+                {isBadgeExist && (
                   <div className={this.decorateCSS("badge")}>
                     {this.getPropValue("badge")}
                   </div>
-                }
-                {isSubtitleExist &&
+                )}
+                {isSubtitleExist && (
                   <h1 className={this.decorateCSS("subtitle")}>
                     {this.getPropValue("subtitle")}
                   </h1>
-                }
+                )}
               </div>
-            }
-            {categoryList.length > 0 &&
+            )}
+            {categoryList.length > 0 && (
               <div className={this.decorateCSS("down-page")}>
                 <div className={this.decorateCSS("category-flex")}>
                   {categoryList.map(
                     (category: Category, indexCategory: number) => {
-
-                      const isCategoryNameExist = this.castToString(category.categoryName);
+                      const isCategoryNameExist = this.castToString(
+                        category.categoryName
+                      );
 
                       if (isCategoryNameExist)
                         return (
@@ -706,10 +706,11 @@ class FaqButton extends BaseFAQ {
                             key={indexCategory}
                           >
                             <div
-                              className={`${this.decorateCSS("categories")} ${this.getComponentState("activeIndex") ==
-                                indexCategory &&
+                              className={`${this.decorateCSS("categories")} ${
+                                this.getComponentState("activeIndex") ==
+                                  indexCategory &&
                                 this.decorateCSS("active-category")
-                                }`}
+                              }`}
                               onClick={() => this.handleButton(indexCategory)}
                             >
                               {/* inline icon */}
@@ -722,7 +723,9 @@ class FaqButton extends BaseFAQ {
                                     )}`,
                                   }}
                                 />
-                                <p className={this.decorateCSS("category-name")}>
+                                <p
+                                  className={this.decorateCSS("category-name")}
+                                >
                                   {category.categoryName}
                                 </p>
                               </div>
@@ -730,7 +733,7 @@ class FaqButton extends BaseFAQ {
                                 <ComposerIcon
                                   name={this.getPropValue("arrow-right")}
                                   propsIcon={{
-                                    className: this.decorateCSS("arrow-right")
+                                    className: this.decorateCSS("arrow-right"),
                                   }}
                                 />
                               </div>
@@ -740,58 +743,67 @@ class FaqButton extends BaseFAQ {
                     }
                   )}
                 </div>
-                {this.castToObject<Category[]>("categories")[this.getComponentState("activeIndex")]?.questions.length > 0
-                  &&
+                {this.castToObject<Category[]>("categories")[
+                  this.getComponentState("activeIndex")
+                ]?.questions.length > 0 && (
                   <div className={this.decorateCSS("questions")}>
                     {this.castToObject<Category[]>("categories")[
                       this.getComponentState("activeIndex")
                     ]?.questions.map((question, questionIndex) => {
-
                       const isQuestionExist = this.castToString(question.qq);
                       const isAnswerExist = this.castToString(question.answer);
 
                       if (isQuestionExist)
                         return (
-                          <div className={this.decorateCSS("categories-container")}>
+                          <div
+                            className={this.decorateCSS("categories-container")}
+                          >
                             <div
                               onClick={() => this.handleAnswer(questionIndex)}
-                              className={`${this.decorateCSS("text")} ${this.decorateCSS("box")}`}
+                              className={`${this.decorateCSS(
+                                "text"
+                              )} ${this.decorateCSS("box")}`}
                             >
-                              {isQuestionExist &&
+                              {isQuestionExist && (
                                 <div className={this.decorateCSS("question")}>
                                   <p
                                     className={
                                       this.getComponentState("activeIndex2") ===
-                                        questionIndex ? this.decorateCSS("active") : ""
+                                      questionIndex
+                                        ? this.decorateCSS("active")
+                                        : ""
                                     }
                                   >
                                     {question.qq}
                                   </p>
-                                  <ComposerIcon name="FaAngleDown" propsIcon={{ className: this.decorateCSS("icon") }} />
+                                  <ComposerIcon
+                                    name="FaAngleDown"
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon"),
+                                    }}
+                                  />
                                 </div>
-                              }
-                              {isAnswerExist &&
+                              )}
+                              {isAnswerExist && (
                                 <div
-                                  className={`${this.decorateCSS("text")} ${this.getComponentState("activeIndex2") ===
+                                  className={`${this.decorateCSS("text")} ${
+                                    this.getComponentState("activeIndex2") ===
                                     questionIndex
-                                    ? `${this.decorateCSS(
-                                      "answer-text"
-                                    )}`
-                                    : // this.decorateCSS("answer-text")
-                                    this.decorateCSS("hide")
-                                    }`}
+                                      ? `${this.decorateCSS("answer-text")}`
+                                      : this.decorateCSS("hide")
+                                  }`}
                                 >
                                   <p>{question.answer}</p>
                                 </div>
-                              }
+                              )}
                             </div>
                           </div>
                         );
                     })}
                   </div>
-                }
+                )}
               </div>
-            }
+            )}
           </div>
         </div>
       </div>
