@@ -2,8 +2,8 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header5.module.scss";
-import { Title } from "../../../../components/section-card/section-card";
-import { jsx } from "@emotion/react";
+import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
+
 
 type Heading = {
   titleColored: string;
@@ -14,6 +14,10 @@ type Heading = {
   overlay: boolean;
   backgroundImage: string;
 }
+type Button = {
+  buttonText: string;
+  url: string;
+};
 
 class Header5 extends BaseHeader {
   constructor(props?: any) {
@@ -53,36 +57,35 @@ class Header5 extends BaseHeader {
           key: "backgroundImage",
           displayer: "Background Image",
           value:
-            "https://static.wixstatic.com/media/f61af8_97a68d95c3584eee8952b7b3184f5f80~mv2_d_6924_3840_s_4_2.jpg/v1/fill/w_1699,h_1125,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/f61af8_97a68d95c3584eee8952b7b3184f5f80~mv2_d_6924_3840_s_4_2.jpg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a765ee2f8a5b002ce6d6a7?alt=media",
         },
       ],
     });
+    let button: TypeUsableComponentProps = {
+      type: "object",
+      key: "button",
+      displayer: "Displayer",
+      value: [
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "View More",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Button Link",
+          value: "",
+        },
+      ],
+    };
+
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "View More",
-            },
-
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-      ],
+      value: [JSON.parse(JSON.stringify(button))],
     });
   }
 
@@ -93,8 +96,12 @@ class Header5 extends BaseHeader {
   render() {
 
     const heading = this.castToObject<Heading>("heading");
+    const buttons = this.castToObject<Button[]>("buttons");
+    const isTitleExist = this.castToString(heading.title);
+    const description = this.castToString(heading.description);
 
-    
+
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -107,20 +114,24 @@ class Header5 extends BaseHeader {
             <div className={heading.overlay && this.decorateCSS("overlay")}>
               <div className={this.decorateCSS("heading-page")}>
                 <h1 className={this.decorateCSS("heading-section-name")}>{heading.titleColored}</h1>
-                <h2 className={this.decorateCSS("heading-title")}>{heading.title}</h2>
-                <h3 className={this.decorateCSS("heading-subtitle")}>{heading.description}</h3>
+                {isTitleExist &&
+                <h2 className={this.decorateCSS("heading-title")}>{heading.title}</h2> 
+                }
+                {description &&
+                <h3 className={this.decorateCSS("heading-subtitle")}>{heading.description}</h3> 
+                 }  
                 <div className={this.decorateCSS("buttondiv")}>
-                {this.getPropValue("buttons").map(
-                  (item: any, indexButtons: number) => {
+                {buttons.map(
+                  (item: Button, indexButtons: number) => {
                     return (
                       <ComposerLink
                         key={indexButtons}
-                        path={item.value[1].value}
+                        path={item.url}
                       >
                         <button
                           className={`${this.decorateCSS("button")}`}
-                        >
-                          {item.value[0].value}
+                          >
+                          {item.buttonText}
                         </button>
                       </ComposerLink>
                     );
