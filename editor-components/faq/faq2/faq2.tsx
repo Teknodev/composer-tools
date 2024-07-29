@@ -2,10 +2,12 @@ import * as React from "react";
 import styles from "./faq2.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   cardTitle: JSX.Element;
   description: JSX.Element;
+  icon: string;
 };
 
 type DownContainer = {
@@ -69,6 +71,12 @@ class FaqContainer extends BaseFAQ {
               value:
                 "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
+            },
           ],
         },
         {
@@ -88,6 +96,12 @@ class FaqContainer extends BaseFAQ {
               displayer: "Answer",
               value:
                 "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
             },
           ],
         },
@@ -109,6 +123,12 @@ class FaqContainer extends BaseFAQ {
               value:
                 " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
+            },
           ],
         },
         {
@@ -128,6 +148,12 @@ class FaqContainer extends BaseFAQ {
               displayer: "Answer",
               value:
                 "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
             },
           ],
         },
@@ -149,6 +175,12 @@ class FaqContainer extends BaseFAQ {
               value:
                 "Yes, we offer discounts and promotions from time to time. You can sign up for our newsletter to receive updates on our latest promotions.",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
+            },
           ],
         },
         {
@@ -168,6 +200,12 @@ class FaqContainer extends BaseFAQ {
               displayer: "Answer",
               value:
                 "We accept credit/debit cards, PayPal, and other digital payment methods. You can select your preferred payment method during checkout.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
             },
           ],
         },
@@ -278,27 +316,28 @@ class FaqContainer extends BaseFAQ {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("up-page")}>
-              {isBadgeExist &&
+              {isBadgeExist && (
                 <div className={this.decorateCSS("badge")}>
                   {this.getPropValue("badge")}
                 </div>
-              }
-              {isSubtitleExist &&
+              )}
+              {isSubtitleExist && (
                 <h1 className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
                 </h1>
-              }
-              {isTitleExist &&
+              )}
+              {isTitleExist && (
                 <p className={this.decorateCSS("title-p")}>
                   {this.getPropValue("title")}
                 </p>
-              }
+              )}
             </div>
             <div className={this.decorateCSS("card-page")}>
               {this.castToObject<Card[]>("card").map(
                 (item: Card, indexCard: number) => {
                   const isTitleExist = this.castToString(item.cardTitle);
                   const isDescExist = this.castToString(item.description);
+                  const icon = item.icon;
 
                   if (isTitleExist || isDescExist)
                     return (
@@ -308,21 +347,29 @@ class FaqContainer extends BaseFAQ {
                         className={this.decorateCSS("card-item-count")}
                       >
                         <div className={this.decorateCSS("card")}>
-                          <div className={this.decorateCSS("icon")}>
-                            <div>?</div>
-                          </div>
-                          {isTitleExist &&
+                          {icon && (
+                            <div className={this.decorateCSS("icon")}>
+                              <ComposerIcon name={icon} />
+                            </div>
+                          )}
+                          {isTitleExist && (
                             <div className={this.decorateCSS("title")}>
-                              <h2 className={this.decorateCSS("item-cardTitle")}>
+                              <h2
+                                className={this.decorateCSS("item-cardTitle")}
+                              >
                                 {item.cardTitle}
                               </h2>
-                            </div>}
-                          {isDescExist &&
+                            </div>
+                          )}
+                          {isDescExist && (
                             <div className={this.decorateCSS("description")}>
-                              <p className={this.decorateCSS("item-description")}>
+                              <p
+                                className={this.decorateCSS("item-description")}
+                              >
                                 {item.description}
                               </p>
-                            </div>}
+                            </div>
+                          )}
                         </div>
                       </div>
                     );
@@ -338,28 +385,30 @@ class FaqContainer extends BaseFAQ {
 
             return (
               <div className={this.decorateCSS("down-container")}>
-                <div key={index} className={this.decorateCSS("child-container")}>
-                  {isTitleExist &&
+                <div
+                  key={index}
+                  className={this.decorateCSS("child-container")}
+                >
+                  {isTitleExist && (
                     <h1 className={this.decorateCSS("title2")}>
                       {item.title2}
                     </h1>
-                  }
-                  {isDescExist &&
+                  )}
+                  {isDescExist && (
                     <p className={this.decorateCSS("description")}>
                       {item.description}
                     </p>
-                  }
+                  )}
                   <div className={this.decorateCSS("button-group")}>
                     {item.buttonGroup?.map(
                       (button: Button, buttonIndex: number) => {
-                        const isButtonTextExist = this.castToString(button.text);
-                        
+                        const isButtonTextExist = this.castToString(
+                          button.text
+                        );
+
                         if (isButtonTextExist)
                           return (
-                            <ComposerLink
-                              key={buttonIndex}
-                              path={button.link}
-                            >
+                            <ComposerLink key={buttonIndex} path={button.link}>
                               <button
                                 className={
                                   this.decorateCSS("button") +

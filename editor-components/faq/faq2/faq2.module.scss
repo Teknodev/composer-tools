@@ -41,7 +41,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           color: var(--composer-primary-color);
           border-radius: 10px;
           font-size: 1rem;
-          background: rgb(244, 244, 244);
+          background: rgba(var(--composer-secondary-color-rgb), 0.2);
           padding: 5px 7px;
           display: inline-block;
           width: max-content;
@@ -92,9 +92,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             position: relative;
             align-items: center;
 
-            div {
-              color: #fff;
-              font-size: 2rem;
+            >svg {
+              color: var(--composer-font-color-secondary);
+              font-size: 24px;
             }
           }
         }
@@ -149,7 +149,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         .button {
           border: 0px solid;
           border-radius: 6px;
-          color: #fff;
+          color: var(--composer-font-color-secondary);
           cursor: pointer;
           padding: 10px;
           background: transparent;

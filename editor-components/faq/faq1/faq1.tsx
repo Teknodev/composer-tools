@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./faq1.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type FAQ = {
   subtitle: JSX.Element;
@@ -76,6 +77,14 @@ class Faq extends BaseFAQ {
         },
       ],
     });
+
+    this.addProp({
+      type: "icon",
+      key: "faqIcon",
+      displayer: "FAQ Expand Icon",
+      value: "IoIosArrowDown",
+    });
+
     this.state["componentProps"]["selectCardIndex"] = null;
   }
 
@@ -88,8 +97,7 @@ class Faq extends BaseFAQ {
 
     if (currentSelectCardIndex === index) {
       this.setComponentState("selectCardIndex", null);
-    }
-    else {
+    } else {
       this.setComponentState("selectCardIndex", index);
     }
   }
@@ -99,34 +107,47 @@ class Faq extends BaseFAQ {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {this.castToObject<FAQ[]>("card").map((card: FAQ, indexCard: number) => {
+            {this.castToObject<FAQ[]>("card").map(
+              (card: FAQ, indexCard: number) => {
+                const isQuestionExist = this.castToString(card.subtitle);
+                const isAnswerExist = this.castToString(card.text);
+                const isSubtitleExist = this.castToString(card.subtitle);
 
-              const isQuestionExist = this.castToString(card.subtitle);
-              const isAnswerExist = this.castToString(card.text);
+                const icon = this.getPropValue("faqIcon");
 
-              if (isQuestionExist)
-                return (
-                  <div
-                    key={indexCard}
-                    className={`${this.decorateCSS("card")}`}
-                    onClick={() => {
-                      this.cardClicked(indexCard);
-                    }}
-                  >
-                    <div className={this.decorateCSS("in-box")}>
-                      <h2 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</h2>
-                      <img
-                        alt=""
-                        src={"https://www.svgrepo.com/show/80156/down-arrow.svg"}
-                        className={`${this.decorateCSS("img-1")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`}
-                      />
+                if (isQuestionExist)
+                  return (
+                    <div
+                      key={indexCard}
+                      className={`${this.decorateCSS("card")}`}
+                      onClick={() => {
+                        this.cardClicked(indexCard);
+                      }}
+                    >
+                      <div className={this.decorateCSS("in-box")}>
+                        {isSubtitleExist && (
+                          <h2 className={this.decorateCSS("card-subtitle")}>
+                            {card.subtitle}
+                          </h2>
+                        )}
+                        {icon && <ComposerIcon name={icon} />}
+                      </div>
+                      {isAnswerExist && (
+                        <p
+                          className={`${this.decorateCSS("card-text")} ${
+                            this.getComponentState("selectCardIndex") ===
+                            indexCard
+                              ? this.decorateCSS("cardTextActive")
+                              : ""
+                          }`}
+                        >
+                          {card.text}
+                        </p>
+                      )}
                     </div>
-                    {isAnswerExist &&
-                      <p className={`${this.decorateCSS("card-text")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardTextActive") : ""}`}>{card.text}</p>
-                    }
-                  </div>
-                );
-            })}
+                  );
+              }
+            )}
           </div>
         </div>
       </div>
