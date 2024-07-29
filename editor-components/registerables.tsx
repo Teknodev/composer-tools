@@ -207,8 +207,6 @@ import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
-import FormModal1 from "./modal/formmodal1/formmodal1";
-
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     new DownloadComponent1(),
@@ -419,7 +417,6 @@ function Registerables(composer: ComponentsRegistery) {
     new SurveyModal(),
     new NoticeModal(),
     new SubscriptionModal(),
-    new FormModal1(),
     new LocationComponent1(),
   ]);
 }
