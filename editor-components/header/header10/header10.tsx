@@ -32,7 +32,7 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "Get a guote",
+              value: "Get a quote",
             },
             {
               type: "page",
@@ -107,18 +107,18 @@ class Header10 extends BaseHeader {
         }
       ]
     };
+
     this.addProp({
       type: "icon",
       key: "next_icon",
       displayer: "Next icon",
-      value: "IoCaretForwardCircleOutline",
-
+      value: "IoCaretForwardSharp ",
     });
     this.addProp({
       type: "icon",
       key: "prev_icon",
       displayer: "Prev icon",
-      value: "IoCaretBackCircleOutline",
+      value: "IoCaretBackSharp",
     });
     this.addProp({
       type: "icon",
@@ -151,7 +151,7 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "We make structures,dams,bridges,scyscrapers and much more.Resistance,design,flexibility and usability are the main factors that we keep in mind in every project.",
+              value: "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
             },
             {
               type: "string",
@@ -163,7 +163,7 @@ class Header10 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: " Image",
-              value: "https://images.pexels.com/photos/8910086/pexels-photo-8910086.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media",
             },
             {
               type: "string",
@@ -175,7 +175,7 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "description1",
               displayer: "Description 1",
-              value: "We are 24/7 available through our social media.Follow us to stay up to date",
+              value: "We are 24/7 available through our social media. Follow us to stay up to date",
             },
             {
               type: "string",
@@ -211,7 +211,7 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "We make structures,dams,bridges,scyscrapers and much more.Resistance,design,flexibility and usability are the main factors that we keep in mind in every project.",
+              value: "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
             },
             {
               type: "string",
@@ -223,7 +223,7 @@ class Header10 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: " Image",
-              value: "https://cdn.britannica.com/85/137785-050-CF5F4EAB/Manhattan-Bridge-East-River-New-York-City.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media",
             },
             {
               type: "string",
@@ -235,7 +235,7 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "description1",
               displayer: "Description 1",
-              value: "We are 24/7 available through our social media.Follow us to stay up to date",
+              value: "We are 24/7 available through our social media. Follow us to stay up to date",
             },
             {
               type: "string",
@@ -271,7 +271,7 @@ class Header10 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -289,47 +289,49 @@ class Header10 extends BaseHeader {
               <div className={this.decorateCSS("content")} key={indexSlider}>
 
                 <div className={this.decorateCSS("left")}>
-                  <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
-                  <h1 className={this.decorateCSS("mobiltitle")}>{item.getPropValue("mobiltitle")}</h1>
-                  <p className={this.decorateCSS("description")}>{item.getPropValue("description")}</p>
-
-                  <ComposerIcon
-                    name={this.getPropValue("prev_icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS(
-                        "prev_icon"
-                      )} 
-                  }`,
-                      size: 45,
-                      onClick: () => {
-                        this.getComponentState("slider-ref").current.slickPrev();
-                      },
-                    }}
-                  />
-                  <ComposerIcon
-                    name={this.getPropValue("next_icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS(
-                        "next_icon"
-                      )} 
-                  }`,
-                      size: 45,
-                      onClick: () => {
-                        this.getComponentState("slider-ref").current.slickNext();
-                      },
-                    }}
-                  />
-
-                  {this.castToObject<[]>("button").map((item: any, indexButton: number) => {
-                    return (
-                      <ComposerLink key={`hdr-10-${indexButton}`} path={item.link}>
-                        <button className={this.decorateCSS("button")}>
-                          {item.buttonText}
-                        </button>
-                      </ComposerLink>
-                    );
-                  })}
-
+                  <div className={this.decorateCSS("left-content")}>
+                    <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
+                    <h1 className={this.decorateCSS("mobiltitle")}>{item.getPropValue("mobiltitle")}</h1>
+                    <p className={this.decorateCSS("description")}>{item.getPropValue("description")}</p>
+                    <div className={this.decorateCSS("slide-number")}>{String(indexSlider + 1).padStart(2, '0')}</div>
+  
+                    <ComposerIcon
+                      name={this.getPropValue("prev_icon")}
+                      propsIcon={{
+                        className: `${this.decorateCSS(
+                          "prev_icon"
+                        )} 
+                    }`,
+                        size: 45,
+                        onClick: () => {
+                          this.getComponentState("slider-ref").current.slickPrev();
+                        },
+                      }}
+                    />
+                    <ComposerIcon
+                      name={this.getPropValue("next_icon")}
+                      propsIcon={{
+                        className: `${this.decorateCSS(
+                          "next_icon"
+                        )} 
+                    }`,
+                        size: 45,
+                        onClick: () => {
+                          this.getComponentState("slider-ref").current.slickNext();
+                        },
+                      }}
+                    />
+  
+                    {this.castToObject<[]>("button").map((item: any, indexButton: number) => {
+                      return (
+                        <ComposerLink key={`hdr-10-${indexButton}`} path={item.link}>
+                          <button className={this.decorateCSS("button")}>
+                            {item.buttonText}
+                          </button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
                 </div>
 
 
@@ -347,16 +349,19 @@ class Header10 extends BaseHeader {
                   <div className={this.decorateCSS("icon")}>
                     <ComposerIcon name={this.getPropValue("ampersand_icon")} />
                   </div>
-                  <h2 className={this.decorateCSS("subtitle")}>{item.getPropValue("subtitle")}</h2>
-                  <p className={this.decorateCSS("description1")}>{item.getPropValue("description1")}</p>
-                  <div className={this.decorateCSS("icon-group")}>
-                    {item.getPropValue("icons").map((item: any, indexSlider: number) => (
-                      <ComposerLink path={item.getPropValue("url")}>
-                        <ComposerIcon name={item.getPropValue("icon")}
-                        />
-                      </ComposerLink>
-                    ))}
+                  <div className={this.decorateCSS("right-page-content")}>
+                    <h2 className={this.decorateCSS("subtitle")}>{item.getPropValue("subtitle")}</h2>
+                    <p className={this.decorateCSS("description1")}>{item.getPropValue("description1")}</p>
+                    <div className={this.decorateCSS("icon-group")}>
+                      {item.getPropValue("icons").map((item: any, indexSlider: number) => (
+                        <ComposerLink path={item.getPropValue("url")}>
+                          <ComposerIcon name={item.getPropValue("icon")}
+                          />
+                        </ComposerLink>
+                      ))}
+                    </div>
                   </div>
+                  
                 </div>
               </div>
 
