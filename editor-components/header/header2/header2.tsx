@@ -224,58 +224,67 @@ class Header2 extends BaseHeader {
           <div className={this.decorateCSS("slider")}>
             {sliderItems.length > 0 && (
               <ComposerSlider {...settings}>
-                {sliderItems.map((item: SliderItemType, idx: number) => (
-                  <div className={this.decorateCSS("slider-item")} key={idx}>
-                    <div
-                      className={this.decorateCSS(
-                        "slider-item-inner-container"
-                      )}
-                      style={{ backgroundImage: `url("${item.image}")` }}
-                    >
-                      <div className={this.decorateCSS("content-max-width")}>
-                        <div className={this.decorateCSS("card")}>
-                          {this.castToString(item.category) && (
-                            <h3 className={this.decorateCSS("category")}>
-                              {item.category}
-                            </h3>
-                          )}
-                          {this.castToString(item.title) && (
-                            <h1 className={this.decorateCSS("title")}>
-                              {item.title}
-                            </h1>
-                          )}
-                          {(this.castToString(item.author) ||
-                            this.castToString(item.date)) && (
-                            <div className={this.decorateCSS("date-author")}>
-                              {this.castToString(item.author) && (
-                                <span className={this.decorateCSS("author")}>
-                                  by <span>{item.author}</span>
-                                </span>
-                              )}
-                              {this.castToString(item.date) && (
-                                <span className={this.decorateCSS("date")}>
-                                  {item.date}
-                                </span>
-                              )}
-                            </div>
-                          )}
-                          {this.castToString(item.description) && (
-                            <p className={this.decorateCSS("description")}>
-                              {item.description}
-                            </p>
-                          )}
-                          {item.link && (
-                            <div className={this.decorateCSS("link-container")}>
-                              <ComposerLink href={item.link}>
-                                {item.linkText}
-                              </ComposerLink>
-                            </div>
-                          )}
+                {sliderItems.map((item: SliderItemType, idx: number) => {
+
+                  const isCategoryExist = this.castToString(item.category);
+                  const isTitleExist = this.castToString(item.title);
+                  const isAuthorExist = this.castToString(item.author);
+                  const isDateExist = this.castToString(item.date);
+                  const isDescExist = this.castToString(item.description);
+
+                  return (
+                    <div className={this.decorateCSS("slider-item")} key={idx}>
+                      <div
+                        className={this.decorateCSS(
+                          "slider-item-inner-container"
+                        )}
+                        style={{ backgroundImage: `url("${item.image}")` }}
+                      >
+                        <div className={this.decorateCSS("content-max-width")}>
+                          <div className={this.decorateCSS("card")}>
+                            {isCategoryExist && (
+                              <h3 className={this.decorateCSS("category")}>
+                                {item.category}
+                              </h3>
+                            )}
+                            {isTitleExist && (
+                              <h1 className={this.decorateCSS("title")}>
+                                {item.title}
+                              </h1>
+                            )}
+                            {(isAuthorExist ||
+                              isDateExist) && (
+                              <div className={this.decorateCSS("date-author")}>
+                                {isAuthorExist && (
+                                  <span className={this.decorateCSS("author")}>
+                                    by <span>{item.author}</span>
+                                  </span>
+                                )}
+                                {isDateExist && (
+                                  <span className={this.decorateCSS("date")}>
+                                    {item.date}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                            {isDescExist && (
+                              <p className={this.decorateCSS("description")}>
+                                {item.description}
+                              </p>
+                            )}
+                            {item.link && (
+                              <div className={this.decorateCSS("link-container")}>
+                                <ComposerLink href={item.link}>
+                                  {item.linkText}
+                                </ComposerLink>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </ComposerSlider>
             )}
           </div>
