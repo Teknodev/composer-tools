@@ -230,6 +230,7 @@ class Slider8 extends BaseSlider {
                             backgroundImage: `url("${item.backgroundImage}")`,
                           }}
                         >
+                          <div className={this.decorateCSS("overlay")}></div>
                           <div className={this.decorateCSS("content-div")}>
                             <div
                               className={this.decorateCSS("image")}
