@@ -68,7 +68,7 @@ class Header5 extends BaseHeader {
         {
           type: "object",
           key: "button",
-          displayer: "Displayer",
+          displayer: "",
           value: [
             {
               type: "string",
