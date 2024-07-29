@@ -2,20 +2,18 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header5.module.scss";
-import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
-
 
 type Heading = {
-  titleColored: string;
+  titleColored: JSX.Element;
   title: JSX.Element;
   description: JSX.Element;
   buttonText: JSX.Element;
   link: string;
   overlay: boolean;
   backgroundImage: string;
-}
+};
 type Button = {
-  buttonText: string;
+  buttonText: JSX.Element;
   url: string;
 };
 
@@ -61,31 +59,32 @@ class Header5 extends BaseHeader {
         },
       ],
     });
-    let button: TypeUsableComponentProps = {
-      type: "object",
-      key: "button",
-      displayer: "Displayer",
-      value: [
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "View More",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
-    };
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [JSON.parse(JSON.stringify(button))],
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "Displayer",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "View More",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
   }
 
@@ -94,13 +93,11 @@ class Header5 extends BaseHeader {
   }
 
   render() {
-
     const heading = this.castToObject<Heading>("heading");
     const buttons = this.castToObject<Button[]>("buttons");
     const isTitleExist = this.castToString(heading.title);
     const description = this.castToString(heading.description);
-
-
+    const isTitleColoredExist = this.castToString(heading.titleColored);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -113,31 +110,33 @@ class Header5 extends BaseHeader {
           >
             <div className={heading.overlay && this.decorateCSS("overlay")}>
               <div className={this.decorateCSS("heading-page")}>
-                <h1 className={this.decorateCSS("heading-section-name")}>{heading.titleColored}</h1>
-                {isTitleExist &&
-                <h2 className={this.decorateCSS("heading-title")}>{heading.title}</h2> 
-                }
-                {description &&
-                <h3 className={this.decorateCSS("heading-subtitle")}>{heading.description}</h3> 
-                 }  
-                <div className={this.decorateCSS("buttondiv")}>
-                {buttons.map(
-                  (item: Button, indexButtons: number) => {
-                    return (
-                      <ComposerLink
-                        key={indexButtons}
-                        path={item.url}
-                      >
-                        <button
-                          className={`${this.decorateCSS("button")}`}
-                          >
-                          {item.buttonText}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
+                {isTitleColoredExist && (
+                  <h1 className={this.decorateCSS("heading-section-name")}>
+                    {heading.titleColored}
+                  </h1>
                 )}
-              </div>
+                {isTitleExist && (
+                  <h2 className={this.decorateCSS("heading-title")}>
+                    {heading.title}
+                  </h2>
+                )}
+                {description && (
+                  <h3 className={this.decorateCSS("heading-subtitle")}>
+                    {heading.description}
+                  </h3>
+                )}
+                <div className={this.decorateCSS("buttondiv")}>
+                  {buttons.map((item: Button, index: number) => {
+                    if (this.castToString(item.buttonText))
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <button className={`${this.decorateCSS("button")}`}>
+                            {item.buttonText}
+                          </button>
+                        </ComposerLink>
+                      );
+                  })}
+                </div>
               </div>
             </div>
           </div>
