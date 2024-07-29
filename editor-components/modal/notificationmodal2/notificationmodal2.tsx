@@ -68,7 +68,7 @@ class NotificationModal2 extends BaseModal {
             </h2>
             {description && (
               <p className={this.decorateCSS("displayer-message")}>
-              {description}
+              {this.getPropValue("displayerMessage")}
               </p>
             )}
             {emailPlaceholder && (
@@ -81,7 +81,7 @@ class NotificationModal2 extends BaseModal {
                   />
                    {buttonval && (
                       <button className={this.decorateCSS("button")}>
-                        {buttonval}
+                        {this.getPropValue("button")}
                       </button>
                     )}
                 </div>  
