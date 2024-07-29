@@ -218,7 +218,6 @@ class Stats3Page extends BaseStats {
                 {buttonList.length > 0 &&
                   <div className={this.decorateCSS("box")}>
                     {buttonList?.map((item: Button, index: number) => {
-
                       const isTextExist = this.castToString(item.text);
 
                       if (isTextExist)

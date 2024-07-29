@@ -60,13 +60,16 @@
             border: 2px solid;
             padding: 15px 30px;
             background-color: transparent;
-            color: var(--composer-font-color-primary);
-
+            .button-text{
+              color: var(--composer-font-color-primary);
+            }
             &:hover {
               background-color: var(--composer-secondary-color);
-              color: var(--composer-font-color-secondary);
               border: 2px solid var(--composer-secondary-color);
               transform: scale(1.05);
+              .button-text{
+                color: var(--composer-font-color-secondary);
+              }
             }
           }
         }
