@@ -3,9 +3,6 @@ import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./notificationmodal1.module.scss";
 
-type Image = {
-  src: string;
-};
 
 type Button = {
   buttonText: JSX.Element;
