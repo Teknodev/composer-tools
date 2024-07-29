@@ -1,128 +1,123 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
-  background-color: var(--composer-html-background);
-  display: flex;
-  align-items: center;
-  padding: 50px 0px;
-  
+  padding: 0;
+
   .max-content {
+    margin: 0 auto;
+  }
+}
+
+.slider {
+  width: 100%;
+  height: calc(100vh - 60px);
+
+  div {
+    height: 100%;
+    >ul {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+.slider-item {
+  width: 100%;
+}
+
+.slider-item-inner-container {
+  width: 100%;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  height: auto !important;
+  position: absolute;
+  right: 100px;
+  top: 60%;
+  transform: translateY(-50%);
+  background-color: white;
+  width: 333px;
+  padding: 35px 25px;
+
+  div {
+    height: auto !important;
+  }
+
+  .category {
+    background-color: yellow;
+    position: absolute;
+    top: -15px;
+    left: 25px;
+    padding: .8em 1em;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 10px;
+  }
+  .title {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .date-author {
     display: flex;
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .wide-text-container {
-      border-radius: 6px;
-      width: 100%;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    .author {
       display: flex;
-      padding: 20px;
-      gap: 60px;
-
-      .wide-text {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        .wide-text1 {
-          line-height: 1.4;
-          color: var(--composer-primary-color);
-          width: 100%;
-          font-size: 1.5em;
-        }
-        .wide-text2 {
-          line-height: 1.4;
-          font-size: 4em;
-          width: 100%;
-          margin: 0;
-          color: var(--composer-font-color-primary);
-        }
-        .wide-text3 {
-          color: rgb(80, 80, 80);
-          font-size: 1.1em;
-          margin: 18px 0;
-          color: var(--composer-font-color-primary);
-        }
-        .button {
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          color: var(--composer-font-color-secondary);
-          background-color: var(--composer-secondary-color);
-          padding: 15px 30px;
-          border-radius: 6px;
-          border: 1px solid transparent;
-          width: 200px;
-          &:hover {
-            color: var(--composer-font-color-primary);
-            background-color: transparent;
-            border: 1px solid var(--composer-secondary-color);
-          }
-        }
+      gap: 8px;
+      color: #989898;
+      >span {
+        text-transform: uppercase;
       }
-      .image {
-        min-width: 250px;
-        width: 90%;
-        border-radius: 6px;
-        object-fit: cover;
+      &::after{
+        content: "•";
       }
     }
+    .date {
+      color: #989898;
+      text-transform: uppercase;
+    }
+  }
+  .description {
+    width: 100%;
+    color: #4b4b4b;
+    line-height: 1.8em;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .link-container {
+    font-style: italic !important;
   }
 }
 
-@media only screen and (max-width: 1510px) {
-  .container {
-    .max-content{
-      .image{
-        height: 100%;
-        padding: 0 100px;
-      }
-      .wide-text-container {
-        gap: 20px !important;
-        flex-direction: column !important;
-
-        .wide-text {
-          text-align: center;
-          align-items: center;
-
-          .wide-text1 {
-            margin-top: 0;
-          }
-        .wide-text2 {
-            font-size: 2rem !important;
-          }
-        }
-      }
-    }
-  }
+.content-max-width {
+  max-width: var(--composer-content-width) !important;
+  margin: 0 auto;
+  position: relative;
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    .max-content{
-      .image{
-        width: 100% !important;
-        height: 100%;
-        padding: 0 30px;
-      }
-      .wide-text-container {
-        gap: 20px !important;
-        flex-direction: column !important;
+@media screen and (max-width: 1000px) {
+  .card {
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 20px 25px 0 25px;
 
-        .wide-text {
-          text-align: center;
-          align-items: center;
-
-          .wide-text1 {
-            margin-top: 0;
-          }
-        .wide-text2 {
-            font-size: 2rem !important;
-          }
-        }
-      }
+    .description, .link-container {
+      display: none;
     }
   }
 }
