@@ -326,8 +326,27 @@ class ImageGallery2 extends BaseImageGallery {
         this.addProp({
             type:"icon",
             key:"icon",
-            displayer:"Icon Name",
+            displayer:"Magnifier Icon",
             value:"FaSearch"
+        })
+
+        this.addProp({
+            type:"icon",
+            key:"nextImageIcon",
+            displayer:"Next Image Icon",
+            value:"PiArrowRight"
+        })
+        this.addProp({
+            type:"icon",
+            key:"previousImageIcon",
+            displayer:"Previous Image Icon",
+            value:"PiArrowLeft"
+        })
+        this.addProp({
+            type:"icon",
+            key:"closeModalIcon",
+            displayer:"Close Modal Icon",
+            value:"IoCloseOutline"
         })
     }
 
@@ -341,19 +360,25 @@ class ImageGallery2 extends BaseImageGallery {
         this.setComponentState("modalOpen", false);
     };
 
+    changeImage = (direction: string) => {
+        const currentImageIndex = this.getComponentState("currentImageIndex");
+        const currentGallery = this.getCurrentGallery();
+        const galleryLength = currentGallery.length;
+        let newIndex;
+        if (direction === "prev") {
+            newIndex = (currentImageIndex - 1 + galleryLength) % galleryLength;
+        } else if (direction === "next") {
+            newIndex = (currentImageIndex + 1) % galleryLength;
+        }
+        this.setComponentState("currentImageIndex", newIndex);
+    };
     prevImage = () => {
-        const currentImageIndex = this.getComponentState("currentImageIndex");
-        const currentGallery = this.getCurrentGallery();
-        const newIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
-        this.setComponentState("currentImageIndex", newIndex);
+        this.changeImage("prev");
     };
-
     nextImage = () => {
-        const currentImageIndex = this.getComponentState("currentImageIndex");
-        const currentGallery = this.getCurrentGallery();
-        const newIndex = (currentImageIndex + 1) % currentGallery.length;
-        this.setComponentState("currentImageIndex", newIndex);
+        this.changeImage("next");
     };
+    
 
     getCurrentGallery() {
         const galleryCollection = this.getPropValue("gallery");
@@ -371,7 +396,12 @@ class ImageGallery2 extends BaseImageGallery {
         const currentImageIndex = this.getComponentState("currentImageIndex");
         const currentGallery = this.getCurrentGallery();
         const currentImage = currentGallery[currentImageIndex];
-        const magnifier_icon=this.getPropValue("icon");
+        
+        const nextImageIcon=this.getPropValue("nextImageIcon");
+        const previousImageIcon=this.getPropValue("previousImageIcon");
+        const closeModalIcon=this.getPropValue("closeModalIcon");
+
+        const magnifierIcon=this.getPropValue("icon");
         return (
             <div className={this.decorateCSS("surface")}>
                 <div className={this.decorateCSS("content")}>
@@ -397,7 +427,7 @@ class ImageGallery2 extends BaseImageGallery {
                                     />
                                     <div className={this.decorateCSS("overlay")} />
                                     <div className={this.decorateCSS("zoom-icon")}>
-                                        <ComposerIcon propsIcon={{ className: this.decorateCSS("magnifier-icon") }} name={magnifier_icon} />
+                                        <ComposerIcon propsIcon={{ className: this.decorateCSS("magnifier-icon") }} name={magnifierIcon} />
                                     </div>
                                 </div>
                             </div>
@@ -408,17 +438,17 @@ class ImageGallery2 extends BaseImageGallery {
                     <div className={this.decorateCSS("modal")}>
                         <div className={this.decorateCSS("modal-content")}>
                         <div className={this.decorateCSS("close")} onClick={this.closeModal}>
-                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name="IoCloseOutline" />
+                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={closeModalIcon} />
                              </div>
                     <div className={this.decorateCSS("prev")} onClick={this.prevImage}>
-                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name="PiArrowLeft" />
+                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={previousImageIcon} />
                             </div>
                     <div className={this.decorateCSS("next")} onClick={this.nextImage}>
-                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name="PiArrowRight" />
+                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={nextImageIcon} />
                             </div>
 
 
-                            <img src={currentImage.value} alt={currentImage.displayer} />
+                            <img src={currentImage.value}  className="modalImage" alt={currentImage.displayer} />
                         </div>
                     </div>
                 )}
