@@ -301,7 +301,7 @@ class Header10 extends BaseHeader {
                         className: `${this.decorateCSS(
                           "prev_icon"
                         )} 
-                    }`,
+                        }`,
                         size: 45,
                         onClick: () => {
                           this.getComponentState("slider-ref").current.slickPrev();
@@ -314,7 +314,7 @@ class Header10 extends BaseHeader {
                         className: `${this.decorateCSS(
                           "next_icon"
                         )} 
-                    }`,
+                        }`,
                         size: 45,
                         onClick: () => {
                           this.getComponentState("slider-ref").current.slickNext();

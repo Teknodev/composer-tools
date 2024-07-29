@@ -1,7 +1,8 @@
 .container {
   width: 100%;
+  min-height: calc(100vh - 80px);
   background-color: var(--composer-html-background);
-  padding: 0 50px;
+  padding: 50px 50px;
   display: flex;
   align-items: center;
 
@@ -14,46 +15,43 @@
     .carousel {
       display: flex;
       width: 100%;
+
       .content {
         display: flex !important;
 
 
         .left {
-          padding-right: 20px;
-          min-height: 100%;
           width: 100%;
-          .left-content{
-            align-items: center;
-            .mobiltitle {
-              display: none;
-              color: var(--composer-primary-color)
-            }
-  
-            .title {
-              font-size: 6rem;
-              color: var(--composer-primary-color);
-              margin: 0;
-            }
-  
-            .description {
-              font-size: 20px;
-              color: var(--composer-font-color-primary);
-              margin: 0;
-            }
-                      
-            .slide-number{
-              font-size: 20px;
-              margin: 0;
-            }
-  
-            .button {
-              display: flex;
-              background-color: var(--composer-secondary-color);
-              border: var(--composer-secondary-color);
-              color: var(--composer-font-color-secondary);
-              margin: 0;
-            }
+          height: 100%;
+          align-self: center;
+          padding-right: 30px;
+
+
+          .mobiltitle {
+            display: none;
+            color: var(--composer-primary-color)
           }
+
+          .title {
+            font-size: 8rem;
+            color: var(--composer-primary-color)
+          }
+
+          .description {
+            font-size: 20px;
+            color: var(--composer-font-color-primary)
+          }
+
+          .button {
+            display: flex;
+            margin-top: 30px;
+            background-color: var(--composer-secondary-color);
+            border: var(--composer-secondary-color);
+            color: var(--composer-font-color-secondary);
+          }
+
+
+
         }
 
         .middle {
@@ -65,17 +63,15 @@
           z-index: 1;
 
           .imagetitle {
-            align-self: center;
-            font-size: 6rem;
+            font-size: 8rem;
             position: absolute;
             color: white;
             z-index: 2;
-            left: 20px;
+            padding-top: 208px;
           }
 
           .image {
-            max-width: 100%;
-            object-fit: cover;
+            width: 100%;
           }
 
           .next-icon {
@@ -84,43 +80,33 @@
         }
 
         .right {
-          overflow: hidden;
           width: 100%;
           height: 100%;
           align-self: flex-end;
-          padding: 0 30px;
+          padding-left: 30px;
 
           .icon {
             font-size: 500px;
             opacity: 0.1;
             margin-left: -200px;
-            z-index: 1;
+
+
           }
 
-          .right-page-content{
-            justify-content: center;
-            display: flex;
-            flex-direction: column;
-            margin: 0 auto;
-            .subtitle {
+          .subtitle {
             font-size: 20px;
-            color: var(--composer-font-color-primary);
-            padding: 0;
-           }
-
-            .description1 {
-              font-size: 15px;
-              color: var(--composer-font-color-primary)
-            }
-  
-            .icon-group {
-              flex-direction: row;
-              display: flex;
-              gap: 20px;
-            }
+            color: var(--composer-font-color-primary)
           }
 
-          
+          .description1 {
+            font-size: 15px;
+            color: var(--composer-font-color-primary)
+          }
+
+          .icon-group {
+            display: flex;
+            gap: 20px;
+          }
         }
       }
     }
