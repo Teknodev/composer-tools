@@ -3,6 +3,11 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action7.module.scss";
 
+type ButtonType = {
+  buttonText: JSX.Element;
+  link: string;
+}
+
 class CallToAction7Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -59,43 +64,46 @@ class CallToAction7Page extends BaseCallToAction {
   render() {
     const title = this.getPropValue("title");
     const image = this.getPropValue("image");
-    const button = this.getPropValue("button");
+    const button = this.castToObject<ButtonType>("button");
     const placeholder = this.getPropValue("placeholder", { as_string: true });
     const disableAnimation = this.getPropValue("disableAnimation");
+    const isButtonTextExist = this.castToString(button.buttonText);
+    const isTitleTextExist = this.castToString(title);
+    const isCallToActionExist = isButtonTextExist || image || isTitleTextExist;
 
     return (
-      <div className={`${this.decorateCSS("container")}`}>
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <section className={`${this.decorateCSS("call-to-action7-container")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
-            {image && (
-              <img className={this.decorateCSS("image")} src={image} alt="" />
-            )}
-            {(title) && (
-              <div className={this.decorateCSS("call-to-action7")}>
-                {title && (
+          {isCallToActionExist && (
+            <section className={`${this.decorateCSS("call-to-action7-container")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
+              {image && (
+                <img className={this.decorateCSS("image")} src={image} alt="" />
+              )}
+              {isTitleTextExist && (
+                <div className={this.decorateCSS("call-to-action7")}>
                   <h1 className={this.decorateCSS("title")}>{title}</h1>
-                )}
-                <div className={this.decorateCSS("input-button-wrapper")}>
-                  <input
-                    className={this.decorateCSS("input")}
-                    type="text"
-                    id="email"
-                    name="email"
-                    placeholder={placeholder}
-                  />
-                  {button[0].value && (
-                    <div className={this.decorateCSS("button-container")}>
-                      <ComposerLink path={button[1].value}>
-                        <span className={this.decorateCSS("button")}>
-                          {button[0].value}
-                        </span>
-                      </ComposerLink>
-                    </div>
-                  )}
+                  <div className={this.decorateCSS("input-button-wrapper")}>
+                    <input
+                      className={this.decorateCSS("input")}
+                      type="text"
+                      id="email"
+                      name="email"
+                      placeholder={placeholder}
+                    />
+                    {isButtonTextExist && (
+                      <div className={this.decorateCSS("button-container")}>
+                        <ComposerLink path={button.link}>
+                          <span className={this.decorateCSS("button")}>
+                            {button.buttonText}
+                          </span>
+                        </ComposerLink>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </section>
+              )}
+            </section>
+          )}
         </div>
       </div>
     );
