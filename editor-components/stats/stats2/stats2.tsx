@@ -2,14 +2,15 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type ICard = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
   image: string;
-  increaseValue: string;
+  increaseValue: JSX.Element;
   isIncrease: boolean;
-  buttonText: string;
+  buttonText: JSX.Element;
   buttonLink: string;
 };
 class Stats2Page extends BaseStats {
@@ -67,7 +68,7 @@ class Stats2Page extends BaseStats {
               key: "buttonLink",
               displayer: "Button Link",
               value: "",
-            }
+            },
           ],
         },
         {
@@ -116,7 +117,7 @@ class Stats2Page extends BaseStats {
               key: "buttonLink",
               displayer: "Button Link",
               value: "",
-            }
+            },
           ],
         },
         {
@@ -134,7 +135,7 @@ class Stats2Page extends BaseStats {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Avarage CTR",
+              value: "Average CTR",
             },
             {
               type: "string",
@@ -165,10 +166,24 @@ class Stats2Page extends BaseStats {
               key: "buttonLink",
               displayer: "Button Link",
               value: "",
-            }
+            },
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "increaseIcon",
+      displayer: "Icon",
+      value: "FaArrowUp",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "decreaseIcon",
+      displayer: "Icon",
+      value: "FaArrowDown",
     });
   }
 
@@ -177,33 +192,88 @@ class Stats2Page extends BaseStats {
   }
 
   render() {
+    const cardList = this.castToObject<ICard[]>("card-content");
+    const increaseIcon = this.getPropValue("increaseIcon");
+    const decreaseIcon = this.getPropValue("decreaseIcon");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("bottom-child")}>
-            {this.castToObject<ICard[]>("card-content").map(
-              (cardData: ICard, indexCard: number) => (
-                <div key={indexCard} className={this.decorateCSS("card")}>
-                  <div className={this.decorateCSS("toppom")}>
-                    <div className={this.decorateCSS("img-container")}>
-                      <img src={cardData.image} alt="" />
-                    </div>
-                    <div className={this.decorateCSS("stats-texts")}>
-                      <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
-                      <div className={this.decorateCSS("counts")}>
-                        <p className={this.decorateCSS("count")}>{cardData.description}</p>
-                        <p className={`${cardData.isIncrease ? this.decorateCSS("increase") : this.decorateCSS("decrease")} ${this.decorateCSS("percent")}`}>{cardData.isIncrease ? "↑" : "↓"} {cardData.increaseValue}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={this.decorateCSS("bottoms")}>
-                    <ComposerLink path={cardData.buttonLink}>
-                      <p className={this.decorateCSS("card-button-text")}>{cardData.buttonText}</p>
-                    </ComposerLink>
-                  </div>
-                </div>
+            {cardList.map((item: ICard, indexCard: number) => {
+              const isTitleExist = this.castToString(item.title);
+              const isDescExist = this.castToString(item.description);
+              const isIncreaseValueExist = this.castToString(
+                item.increaseValue
+              );
+              const isButtonTextExist = this.castToString(item.buttonText);
+
+              if (
+                isTitleExist ||
+                isDescExist ||
+                isIncreaseValueExist ||
+                isButtonTextExist
               )
-            )}
+                return (
+                  <div key={indexCard} className={this.decorateCSS("card")}>
+                    <div className={this.decorateCSS("toppom")}>
+                      {item.image && (
+                        <div className={this.decorateCSS("img-container")}>
+                          <img
+                            src={item.image}
+                            alt={this.castToString(item.title)}
+                          />
+                        </div>
+                      )}
+                      {(isTitleExist ||
+                        isDescExist ||
+                        isIncreaseValueExist) && (
+                        <div className={this.decorateCSS("stats-texts")}>
+                          {isTitleExist && (
+                            <h4 className={this.decorateCSS("card-data-title")}>
+                              {item.title}
+                            </h4>
+                          )}
+                          {(isIncreaseValueExist || isDescExist) && (
+                            <div className={this.decorateCSS("counts")}>
+                              {isDescExist && (
+                                <p className={this.decorateCSS("count")}>
+                                  {item.description}
+                                </p>
+                              )}
+                              {isIncreaseValueExist && (
+                                <p
+                                  className={`${
+                                    item.isIncrease
+                                      ? this.decorateCSS("increase")
+                                      : this.decorateCSS("decrease")
+                                  } ${this.decorateCSS("percent")}`}
+                                >
+                                  {item.isIncrease ? (
+                                    <ComposerIcon name={increaseIcon} />
+                                  ) : (
+                                    <ComposerIcon name={decreaseIcon} />
+                                  )}
+                                  {item.increaseValue}
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    {isButtonTextExist && (
+                      <div className={this.decorateCSS("bottoms")}>
+                        <ComposerLink path={item.buttonLink}>
+                          <p className={this.decorateCSS("card-button-text")}>
+                            {item.buttonText}
+                          </p>
+                        </ComposerLink>
+                      </div>
+                    )}
+                  </div>
+                );
+            })}
           </div>
         </div>
       </div>
