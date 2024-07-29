@@ -2,6 +2,10 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
 
+type ImageType={
+  value:string;
+}
+
 class ImageGalleryComponent5 extends BaseImageGallery {
   constructor(probs?: any) {
     super(probs, styles);
@@ -76,21 +80,21 @@ class ImageGalleryComponent5 extends BaseImageGallery {
   }
 
   handleNextImage() {
-    const galleries = this.getPropValue("gallery");
+    const galleries = this.castToObject<ImageType[]>("gallery");
     let currentIndex = this.getComponentState("clicked_image_index");
     currentIndex = (currentIndex + 1) % galleries.length;
     this.setComponentState("clicked_image_index", currentIndex);
   }
 
   handlePrevImage() {
-    const galleries = this.getPropValue("gallery");
+    const galleries = this.castToObject<ImageType[]>("gallery");
     let currentIndex = this.getComponentState("clicked_image_index");
     currentIndex = (currentIndex - 1 + galleries.length) % galleries.length;
     this.setComponentState("clicked_image_index", currentIndex);
   }
 
   render() {
-    const galleries = this.getPropValue("gallery");
+    const galleries = this.castToObject<ImageType[]>("gallery");
     const isImageClicked = this.getComponentState("is_image_clicked");
     const clickedImageIndex = this.getComponentState("clicked_image_index");
     
@@ -100,7 +104,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
             <div className={this.decorateCSS("images")}
                 style={{gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)`}}
             >
-              {galleries.map((image: any, index: number) => (
+              {this.castToObject<ImageType[]>("gallery").map((image: ImageType, index: number) => (
                 <div 
                 className={this.decorateCSS("image-container")} 
                 key={index}
