@@ -1,91 +1,36 @@
-import React, { useState,useEffect, useRef } from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
-import { colors } from "@mui/material";
-import { object, string } from "yup";
 
-
-type VerticalItem = {
+type FeatureItem = {
   id: string;
   title: string;
   description: string;
   image: string;
 };
 
-type Verticals = {
-  id: string;
-  horizentals: VerticalItem[];
-};
-
-type ObserverCardProps = {
-  vertical_item: VerticalItem;
-  onIntersect: (id: string,isVisible:boolean) => void;
-};
-
-const ObserverCard: React.FC<ObserverCardProps> = ({ vertical_item, onIntersect }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  let status=0;
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        console.log("intersect1  "+vertical_item.id)
-        if (entry.isIntersecting) {
-          cardRef.current?.classList.add(styles.visible);
-          if(typeof(vertical_item.id)!="string"){
-            onIntersect("1",true);
-          }
-          else{
-            onIntersect(vertical_item.id,true);
-          }
-
-        } else {
-          cardRef.current?.classList.remove(styles.visible,);
-          onIntersect("",false);
-
-        }
-      },
-      { threshold:1,
-      }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, [vertical_item.id, onIntersect]);
-
-  return (
-    <div ref={cardRef} className={styles.card_item}>
-      <img alt="" className={styles.image} src={vertical_item.image}></img>
-      <h4 className={styles.title}>{vertical_item.title}</h4>
-      <h5 className={styles.title_description}>{vertical_item.description}</h5>
-      <br /><br /><br /><br /><br />      <br /><br /><br /><br />
-
-    </div>
-  );
-};
-
-let count="e"
 
 class Feature9 extends BaseFeature {
+  private observers: { [key: string]: IntersectionObserver } = {};
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "string",
+      key: "main-title",
+      displayer: "Title",
+      value: "Our process of building a successful digital product.",
+    });
+
+    this.addProp({
       type: "array",
-      key: "vertical_item",
+      key: "feature-items",
       displayer: "Card",
       value: [
         {
           id: "1",
           type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
+          key: "subtitle",
+          displayer: "Subtitle",
           value: [
             {
               type: "string",
@@ -110,7 +55,7 @@ class Feature9 extends BaseFeature {
               type: "image",
               key: "image",
               value:
-                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_light_bulb_d6acf2aba1.svg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75bbb2f8a5b002ce6d1bb?alt=media",
               displayer: "Image",
             },
           ],
@@ -118,8 +63,8 @@ class Feature9 extends BaseFeature {
         {
           id: "2",
           type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
+          key: "subtitles",
+          displayer: "Subtitles",
           value: [
             {
               type: "string",
@@ -138,7 +83,7 @@ class Feature9 extends BaseFeature {
               type: "image",
               key: "image",
               value:
-                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_check_bubble_a0da74b8bf.svg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75bdb2f8a5b002ce6d1d2?alt=media",
               displayer: "Image",
             },
           ],
@@ -146,8 +91,8 @@ class Feature9 extends BaseFeature {
         {
           id: "3",
           type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
+          key: "subtitles",
+          displayer: "Subtitles",
           value: [
             {
               type: "string",
@@ -159,14 +104,14 @@ class Feature9 extends BaseFeature {
               type: "string",
               key: "description",
               value:
-                "We create a digital version of the best ideas from previous phase and create a medium-fidelity prototype.",
+                "We create a digital version of the best ideas from previous phase and create a medium-fidelity prototype.We create a digital version of the best ideas from previous phase and create a medium-fidelity prototype.",
               displayer: "Description",
             },
             {
               type: "image",
               key: "image",
               value:
-                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_layers_03432568ec.svg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75bf32f8a5b002ce6d1e5?alt=media",
               displayer: "Image",
             },
           ],
@@ -174,8 +119,8 @@ class Feature9 extends BaseFeature {
         {
           id: "4",
           type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
+          key: "subtitles",
+          displayer: "Subtitles",
           value: [
             {
               type: "string",
@@ -194,7 +139,7 @@ class Feature9 extends BaseFeature {
               type: "image",
               key: "image",
               value:
-                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_start_burst_d46533a76e.svg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75c292f8a5b002ce6d206?alt=media",
               displayer: "Image",
             },
           ],
@@ -202,8 +147,8 @@ class Feature9 extends BaseFeature {
         {
           id: "5",
           type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
+          key: "subtitles",
+          displayer: "Subtitles",
           value: [
             {
               type: "string",
@@ -215,68 +160,114 @@ class Feature9 extends BaseFeature {
               type: "string",
               key: "description",
               value:
-                "By leveraging the latest technologies, we share your brand and products with the world while focusing on a perfect visual output through stable and high-performing code.",
+                "By leveraging the latest technologies, we share your brand and products with the world while focusing on a perfect visual output through stable and high-performing code. Thats all .",
               displayer: "Description",
             },
             {
               type: "image",
               key: "image",
               value:
-                "https://res.cloudinary.com/disqnlpbh/image/upload/v1672312426/icon_40px_code_f3f0f45b00.svg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75c352f8a5b002ce6d211?alt=media",
               displayer: "Image",
             },
           ],
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "left-side-title",
-      displayer: "Title",
-      value: "Our process of building a successful digital product.",
-    });
+
     
   }
-
   getName(): string {
     return "Feature 9";
   }
+
+
+
+  setupObservers() {
+    const featureItems = this.castToObject<FeatureItem[]>("feature-items");
+    featureItems.forEach((item, index) => {
+      const element = document.getElementById(`card-${index}`);
+      if (element) {
+        this.observers[index] = new IntersectionObserver(
+          ([entry]) => this.handleIntersection(entry, index),
+          { threshold: 0.82 }
+        );
+        this.observers[index].observe(element);
+      } else {
+        console.log(`Element not found for card-${index}`);
+      }
+    });
+  }
+  handleIntersection(entry: IntersectionObserverEntry, index: number) {
+    const counterElement = document.getElementById("counter");
+    const currentElement = entry.target as HTMLElement;
+    const nextElement = document.getElementById(`card-${index + 1}`);
+
+    if (entry.isIntersecting) {
+      currentElement.style.opacity = '1';
+      this.updateCounter(index + 1);
+      
+      if (nextElement) {
+        nextElement.style.opacity = '0';
+      }
+    } else {
+      counterElement.classList.add(this.decorateCSS("invisible"));
+      currentElement.style.opacity = '0';
+      
+      if (nextElement) {
+        nextElement.style.opacity = '0';
+      }
+    }
+
+    if(currentElement.id=="card-1") {
+      counterElement.classList.remove(this.decorateCSS("invisible"));
+    }
+  }
+
+  updateCounter(id: number) {
+    const counterElement = document.getElementById("counter");
+    if (counterElement) {
+      counterElement.innerText = id.toString();
+      counterElement.classList.remove(this.decorateCSS("invisible"));
+    }
+  }
+
+  renderCard(featureItem: FeatureItem, index: number) {
+    return (
+      <div 
+        key={index} 
+        id={`card-${index}`} 
+        className={this.decorateCSS("card-item")}>
+        <img
+          alt="description image" 
+          className={this.decorateCSS("image")}
+          src={featureItem.image}
+        />
+        <h4 className={this.decorateCSS("sub-title")}>{featureItem.title}</h4>
+        <h5 className={this.decorateCSS("sub-title-description")}>
+          {featureItem.description}
+        </h5>
+        <br /><br/><br/><br /><br/><br/>
+      </div>
+    );
+  }
+
   render() {
+    setTimeout(() => this.setupObservers(), 0);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("left-content")}>
-              <h1 className={this.decorateCSS("left_content_title")}>
-                {this.getPropValue("left-side-title")}
+            <div className={this.decorateCSS("main-title-content")}>
+              <h1 className={this.decorateCSS("main-title-content-text")}>
+                {this.getPropValue("main-title")}
               </h1>
             </div>
-            <div className={this.decorateCSS("right-content")}>
+            <div className={this.decorateCSS("sub-title-content")}>
               <h4 id="counter" className={this.decorateCSS("counter")}></h4>
-
-              {this.castToObject<VerticalItem[]>("vertical_item").map(
-                (vertical_item: VerticalItem, index: number) => (
-                  <ObserverCard
-                  key={index}
-                  vertical_item={vertical_item}
-                  onIntersect={(id: string,isVisible:boolean) => {
-                    const counterElement = document.getElementById("counter");
-                    if(isVisible){
-                      counterElement.classList.add(this.decorateCSS("countervisible"))
-                    }
-                    else{
-                      counterElement.classList.remove(this.decorateCSS("countervisible"))
-                    }
-                    if (counterElement) {
-                      counterElement.innerText = id;
-                      counterElement.classList.add("changed");
-                      setTimeout(() => {
-                        counterElement.classList.remove("changed");
-                      }, 3000);
-                    }
-                  }}
-                />
-                )
+              {this.castToObject<FeatureItem[]>("feature-items").map(
+                (featureItem: FeatureItem, index: number) =>
+                  this.renderCard(featureItem, index)
               )}
             </div>
           </div>
