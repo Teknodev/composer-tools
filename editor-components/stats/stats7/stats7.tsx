@@ -126,8 +126,8 @@ class Stats7Page extends BaseStats {
     const isSubtitleExist = this.castToString(this.getPropValue("subTitle"));
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
-    const showDiv= isSubtitleExist || isTitleExist || isDescriptionExist;
-    const itemList= this.castToObject<Item[]>("items")
+    const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist;
+    const itemList = this.castToObject<Item[]>("items")
 
     return (
       <div className={this.decorateCSS("container")} >
@@ -147,10 +147,10 @@ class Stats7Page extends BaseStats {
             )}
           </div>}
 
-          { itemList.length>0 && <div className={this.decorateCSS("progress-container")}>
+          {itemList.length > 0 && <div className={this.decorateCSS("progress-container")}>
             {this.castToObject<Item[]>("items").map((item: Item, index: number) => {
-              const { title,progress, progressText} = item;
-              let percent= progress
+              const { title, progress, progressText } = item;
+              let percent = progress
               let text = `${percent}%`;
 
               if (percent === 0 || percent === null || percent === undefined) {
@@ -159,29 +159,34 @@ class Stats7Page extends BaseStats {
               } else if (!text) {
                 text = `${percent}%`;
               }
-              if(percent >= 100){
-                percent =100;
+              if (percent >= 100) {
+                percent = 100;
               }
 
-              if(this.castToString(title) || this.castToString(progressText))
-              return (
-                <div className={this.decorateCSS("item")} key={index}>
-                  <div className={this.decorateCSS("progress-title")}>
-                    {title}
-                    <div className={this.decorateCSS("progress-percent")}>
-                      <div className={this.decorateCSS("progress-text")}>
-                        {text}
+              if (this.castToString(title) || this.castToString(progressText))
+                return (
+                  <div className={this.decorateCSS("item")} key={index}>
+
+                    {(title || text) && (
+                      <div className={this.decorateCSS("progress-title")}>
+                        {title}
+                        {text && (
+                          <div className={this.decorateCSS("progress-percent")}>
+                            <div className={this.decorateCSS("progress-text")}>
+                              {text}
+                            </div>
+                          </div>
+                        )}
                       </div>
+                    )}
+                    <div className={this.decorateCSS("progress-active")}>
+                      <div
+                        className={this.decorateCSS("progress-passive")}
+                        style={{ width: `${percent}%` }}
+                      ></div>
                     </div>
                   </div>
-                  <div className={this.decorateCSS("progress-active")}>
-                    <div
-                      className={this.decorateCSS("progress-passive")}
-                      style={{ width: `${percent}%` }}
-                    ></div>
-                  </div>
-                </div>
-              );
+                );
             })}
           </div>}
         </div>
