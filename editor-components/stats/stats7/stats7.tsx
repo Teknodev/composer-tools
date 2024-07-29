@@ -3,7 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats7.module.scss";
 
 
-interface Item {
+type Item ={
   title: JSX.Element;
   progress: number;
   progressText: JSX.Element;
@@ -127,7 +127,7 @@ class Stats7Page extends BaseStats {
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist;
-    const itemList = this.castToObject<Item[]>("items")
+    const items = this.castToObject<Item[]>("items")
 
     return (
       <div className={this.decorateCSS("container")} >
@@ -147,19 +147,16 @@ class Stats7Page extends BaseStats {
             )}
           </div>}
 
-          {itemList.length > 0 && <div className={this.decorateCSS("progress-container")}>
-            {this.castToObject<Item[]>("items").map((item: Item, index: number) => {
+          {items.length > 0 && <div className={this.decorateCSS("progress-container")}>
+            {items.map((item: Item, index: number) => {
               const { title, progress, progressText } = item;
-              let percent = progress
-              let text = `${percent}%`;
-
-              if (percent === 0 || percent === null || percent === undefined) {
+              let percent = progress ?? 1; 
+              let text = progressText ?? `${percent}%`; 
+              
+              if (percent === 0) {
                 percent = 1;
                 text = "0%";
-              } else if (!text) {
-                text = `${percent}%`;
-              }
-              if (percent >= 100) {
+              } else if (percent >= 100) {
                 percent = 100;
               }
 
