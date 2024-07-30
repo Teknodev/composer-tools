@@ -81,8 +81,8 @@ class Header9 extends BaseHeader {
     });
     this.addProp({
       type: "string",
-      key: "linkText",
-      displayer: "Link Text",
+      key: "footerDescription",
+      displayer: "Footer Description",
       value: "see all works",
     });
     this.addProp({
@@ -330,20 +330,21 @@ class Header9 extends BaseHeader {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("tabs")}>
-            <div className={this.decorateCSS("buttons")}>
-              <span className={this.decorateCSS("text")}>
-                {this.getPropValue("text")}
-              </span>
+          <div className={this.decorateCSS("buttons")}>
+            <span className={this.decorateCSS("text")}>
+              {this.getPropValue("text")}
+            </span>
 
-              <span className={this.decorateCSS("active-number")}>
-                {this.getComponentState("activeTab") + 1}
-              </span>
-              <span className={this.decorateCSS("slash")}>/</span>
-              <span className={this.decorateCSS("count")}>
-                {this.getPropValue("tabs").length}
-              </span>
-            </div>
+            <span className={this.decorateCSS("active-number")}>
+              {this.getComponentState("activeTab") + 1}
+            </span>
+            <span className={this.decorateCSS("slash")}>/</span>
+            <span className={this.decorateCSS("count")}>
+              {this.getPropValue("tabs").length}
+            </span>
+          </div>
+
+          <div className={this.decorateCSS("tabs")}>
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
                 (tab: any, index: number) => (
@@ -365,12 +366,11 @@ class Header9 extends BaseHeader {
                   </ComposerLink>
                 )
               )}
-              <ComposerLink path={this.getPropValue("linkText")}>
-                <h2 className={this.decorateCSS("linkText")}>
-                  {this.getPropValue("linkText")}
+              <div className={this.decorateCSS("footer-bottom")}>
+                <h2 className={this.decorateCSS("footer-description")}>
+                  {this.getPropValue("footer-description")}
                 </h2>
-              </ComposerLink>
-
+              </div>
               <div className={this.decorateCSS("social")}>
                 <div className={this.decorateCSS("footer-social")}>
                   {this.castToObject<ITabs[]>("social").map(
