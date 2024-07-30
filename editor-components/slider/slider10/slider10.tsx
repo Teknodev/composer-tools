@@ -178,20 +178,15 @@ class Slider10 extends BaseSlider {
       ],
     });
 
-    this.setComponentState("slider-items-temp", this.castToObject<SliderItem[]>("slider-items").map((e: SliderItem) => {
+    const sliderItemsCopy = this.castToObject<SliderItem[]>("slider-items").map((e: SliderItem) => {
       return {
         title: this.castToString(e.title),
         image: e.image,
         index: e.index
       }
-    }))
-    this.setComponentState("slider-items", this.castToObject<SliderItem[]>("slider-items").map((e: SliderItem) => {
-      return {
-        title: this.castToString(e.title),
-        image: e.image,
-        index: e.index
-      }
-    }))
+    })
+    this.setComponentState("slider-items-temp", sliderItemsCopy)
+    this.setComponentState("slider-items", sliderItemsCopy)
 
     this.addProp({
       type: "object",
