@@ -4,6 +4,13 @@ import { BaseList } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type Item = {
+  itemTitle: JSX.Element;
+  itemText1: JSX.Element;
+  itemText2: JSX.Element;
+  itemText3: JSX.Element;
+};
+
 class List3 extends BaseList {
   getName(): string {
     return "List 3";
@@ -15,137 +22,124 @@ class List3 extends BaseList {
       key: "title",
       displayer: "title",
       value: "Event Schedule",
-    })
+    });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "description",
-      value: "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
-    })
+      value:
+        "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
+    });
 
     this.addProp({
-      type:"string",
-      key:"button",
-      displayer:"Button",
-      value:"Download Schedule"
-    })
+      type: "string",
+      key: "button",
+      displayer: "Button",
+      value: "Download Schedule",
+    });
 
     this.addProp({
-      type:"page",
-      key:"button_url",
-      displayer:"button_url",
-      value:""
-    })
+      type: "page",
+      key: "buttonUrl",
+      displayer: "Button URL",
+      value: "",
+    });
 
     this.addProp({
       type: "array",
-      key: "list-items",
+      key: "listItems",
       displayer: "List Items",
       value: [
         {
           type: "object",
-          key: "list-item",
+          key: "listItem",
           displayer: "List Item",
           value: [
             {
               type: "string",
-              key: "item-title",
+              key: "itemTitle",
               displayer: "Item Title",
-              value:
-                "Friday, Dec 24",
+              value: "Friday, Dec 24",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText1",
               displayer: "Item Text",
-              value:
-                "Psychologist - John parker 10:00 AM to 12:30 PM.",
+              value: "Psychologist - John parker 10:00 AM to 12:30 PM.",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText2",
               displayer: "Item Text 2",
-              value:
-                "Sociology - Herman miller 02:00 PM to 04:30 PM",
+              value: "Sociology - Herman miller 02:00 PM to 04:30 PM",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText3",
               displayer: "Item Text 3",
-              value:
-                "Geologist - Jeremy dupont 05:00 PM to 07:30 PM",
+              value: "Geologist - Jeremy dupont 05:00 PM to 07:30 PM",
             },
-
           ],
         },
         {
           type: "object",
-          key: "list-item",
+          key: "listItem",
           displayer: "List Item",
           value: [
             {
               type: "string",
-              key: "item-title",
+              key: "itemTitle",
               displayer: "Item Title",
-              value:
-                "Saturday, Dec 25",
+              value: "Saturday, Dec 25",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText1",
               displayer: "Item Text",
-              value:
-                "Economy - Michal ruheen 10:00 AM to 12:30 PM",
+              value: "Economy - Michal ruheen 10:00 AM to 12:30 PM",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText2",
               displayer: "Item Text 2",
-              value:
-                "Engineer - Jessica dover 02:00 PM to 04:30 PM",
+              value: "Engineer - Jessica dover 02:00 PM to 04:30 PM",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText3",
               displayer: "Item Text 3",
-              value:
-                "Psychologist - John parker 05:00 PM to 07:30 PM",
+              value: "Psychologist - John parker 05:00 PM to 07:30 PM",
             },
-
           ],
         },
         {
           type: "object",
-          key: "list-item",
+          key: "listItem",
           displayer: "List Item",
           value: [
             {
               type: "string",
-              key: "item-title",
+              key: "itemTitle",
               displayer: "Item Title",
-              value:
-                "Sunday, Dec 26",
+              value: "Sunday, Dec 26",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText1",
               displayer: "Item Text",
-              value:
-                "Biologist- Saleena fountain 10:00 AM to 12:30 PM",
+              value: "Biologist- Saleena fountain 10:00 AM to 12:30 PM",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText2",
               displayer: "Item Text 2",
-              value:
-                "Secretary- Paulina morris 02:00 PM to 04:30 PM "
+              value: "Secretary- Paulina morris 02:00 PM to 04:30 PM ",
             },
             {
               type: "string",
-              key: "item-text",
+              key: "itemText3",
               displayer: "Item Text 3",
-              value:
-                "Politician - Wendaya royin 05:00 PM to 07:30 PM",
+              value: "Politician - Wendaya royin 05:00 PM to 07:30 PM",
             },
           ],
         },
@@ -161,49 +155,69 @@ class List3 extends BaseList {
   }
 
   render(): ReactNode {
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("row")} 
+          <div
+            className={this.decorateCSS("row")}
             style={{
-             gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)`
-             }}>
-          <div className={this.decorateCSS("first")}>
-            <div className={this.decorateCSS("first-content")}>
-            <div className={this.decorateCSS("title")}>
-              <h1>{this.getPropValue("title")}</h1>
-            </div>
-            <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
-            <div className={this.decorateCSS("buttondiv")}>
-                    <ComposerLink path={this.getPropValue("button_url")}>
-                      <button className={`${this.decorateCSS("button")}`}>
-                        {this.getPropValue("button")}
-                        <span className={this.decorateCSS("span")}>{this.getPropValue("span-text")}</span>
-                      </button>
-                    </ComposerLink>
-            </div>
-            </div>
-          </div>
-          {this.getPropValue("list-items").map(
-            (listItem: any, index: number) => (
-              <div
-                key={index}
-                className={this.decorateCSS("all-card")}>
-                <div className={this.decorateCSS("item-content")}>
-                  <div className={this.decorateCSS("content")}>
-                      <p className={this.decorateCSS("item-title")}>{listItem.value[0].value}</p>
-                      <p className={this.decorateCSS("item-text")}>{listItem.value[1].value}</p>
-                      <span className={this.decorateCSS("span-item")}></span>
-                      <p className={this.decorateCSS("item-text")}>{listItem.value[2].value}</p>
-                      <span className={this.decorateCSS("span-item")}></span>
-                      <p className={this.decorateCSS("item-text3")}>{listItem.value[3].value}</p>
-                      <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
-                  </div>
+              gridTemplateColumns: `repeat(${this.getPropValue(
+                "itemCount"
+              )}, 1fr)`,
+            }}
+          >
+            {(title || description) && (
+              <div className={this.decorateCSS("first")}>
+                <div className={this.decorateCSS("firstContent")}>
+                  {title && (
+                    <div className={this.decorateCSS("title")}>
+                      <h1>{title}</h1>
+                    </div>
+                  )}
+                  {description && (
+                    <div className={this.decorateCSS("description")}>
+                      {description}
+                    </div>
+                  )}
+                  {this.castToString(this.getPropValue("button")) && (
+                    <div className={this.decorateCSS("buttondiv")}>
+                      <ComposerLink path={this.getPropValue("buttonUrl")}>
+                        <button className={`${this.decorateCSS("button")}`}>
+                          {this.getPropValue("button")}
+                        </button>
+                      </ComposerLink>
+                    </div>
+                  )}
                 </div>
               </div>
-            )
-          )}
-        </div>
+            )}
+            {this.castToObject<Item[]>("listItems").map(
+              (listItem: Item, index: number) => (
+                <div key={index} className={this.decorateCSS("card")}>
+                  <p className={this.decorateCSS("itemTitle")}>
+                    {listItem.itemTitle}
+                  </p>
+                  <p className={this.decorateCSS("itemText")}>
+                    {listItem.itemText1}
+                  </p>
+                  <span className={this.decorateCSS("spanItem")}></span>
+                  <p className={this.decorateCSS("itemText")}>
+                    {listItem.itemText2}
+                  </p>
+                  <span className={this.decorateCSS("spanItem")}></span>
+                  <p className={this.decorateCSS("itemText")}>
+                    {listItem.itemText3}
+                  </p>
+                  <h3 className={this.decorateCSS("index")}>
+                    {index < 9 ? `0${index + 1}` : index + 1}
+                  </h3>
+                </div>
+              )
+            )}
+          </div>
         </div>
       </div>
     );
