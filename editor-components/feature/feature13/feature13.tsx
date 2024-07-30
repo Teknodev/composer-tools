@@ -4,19 +4,19 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import styles from "./feature13.module.scss";
 
 type Tab = {
-  title: string;
-  content: string;
-}
+  title: JSX.Element;
+  content: JSX.Element;
+};
 
 type Progress = {
-  title: string;
+  title: JSX.Element;
   percentage: number;
-}
+};
 
 type SliderImage = {
   imageSource: string;
   imageIndex: number;
-}
+};
 
 class Feature13 extends BaseFeature {
   constructor(props?: any) {
@@ -26,19 +26,22 @@ class Feature13 extends BaseFeature {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: '"Discover Our Story"'
+      value: '"Discover Our Story"',
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Designing the future, today - welcome to our architecture."
+      value: "Designing the future, today - welcome to our architecture.",
     });
 
     this.addProp({
       type: "array",
       key: "slider-images",
       displayer: "Slider Images",
+      additionalParams: {
+        maxElementCount: 4,
+      },
       value: [
         {
           type: "object",
@@ -49,15 +52,16 @@ class Feature13 extends BaseFeature {
               type: "number",
               key: "imageIndex",
               displayer: "Index",
-              value: 0
+              value: 0,
             },
             {
               type: "image",
               key: "imageSource",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e87dba6bbe002b63ec07?alt=media"
-            }
-          ]
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e87dba6bbe002b63ec07?alt=media",
+            },
+          ],
         },
         {
           type: "object",
@@ -68,15 +72,16 @@ class Feature13 extends BaseFeature {
               type: "number",
               key: "imageIndex",
               displayer: "Index",
-              value: 1
+              value: 1,
             },
             {
               type: "image",
               key: "imageSource",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8a5ba6bbe002b63ec1b?alt=media"
-            }
-          ]
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8a5ba6bbe002b63ec1b?alt=media",
+            },
+          ],
         },
         {
           type: "object",
@@ -87,22 +92,28 @@ class Feature13 extends BaseFeature {
               type: "number",
               key: "imageIndex",
               displayer: "Index",
-              value: 2
+              value: 2,
             },
             {
               type: "image",
               key: "imageSource",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8c6ba6bbe002b63ec3c?alt=media"
-            }
-          ]
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8c6ba6bbe002b63ec3c?alt=media",
+            },
+          ],
         },
-      ]
+      ],
     });
 
-
-    this.setComponentState("slider-images-temp", this.castToObject<SliderImage[]>("slider-images"))
-    this.setComponentState("slider-images", this.castToObject<SliderImage[]>("slider-images"))
+    this.setComponentState(
+      "slider-images-temp",
+      this.castToObject<SliderImage[]>("slider-images")
+    );
+    this.setComponentState(
+      "slider-images",
+      this.castToObject<SliderImage[]>("slider-images")
+    );
 
     this.addProp({
       type: "array",
@@ -118,15 +129,16 @@ class Feature13 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Tab Title",
-              value: "History"
+              value: "History",
             },
             {
               type: "string",
               key: "content",
               displayer: "Tab Content",
-              value: "Archy was founded in 1936 in Chicago, USA. The company was established by Louis Skidmore and Nathaniel Owings, and later joined by John O. Merrill. SOM has been responsible for the design of many notable buildings worldwide, including the Sears Tower (now known as Willis Tower) in Chicago, which was the world's tallest building from 1973 to 1998. The company has also designed the John Hancock Center, One World Trade Center, and Burj Khalifa, which is currently the tallest building in the world. Throughout its history, SOM has been recognized for its innovative designs and commitment to sustainability."
-            }
-          ]
+              value:
+                "Archy was founded in 1936 in Chicago, USA. The company was established by Louis Skidmore and Nathaniel Owings, and later joined by John O. Merrill. SOM has been responsible for the design of many notable buildings worldwide, including the Sears Tower (now known as Willis Tower) in Chicago, which was the world's tallest building from 1973 to 1998. The company has also designed the John Hancock Center, One World Trade Center, and Burj Khalifa, which is currently the tallest building in the world. Throughout its history, SOM has been recognized for its innovative designs and commitment to sustainability.",
+            },
+          ],
         },
         {
           type: "object",
@@ -137,15 +149,16 @@ class Feature13 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Tab Title",
-              value: "Mission"
+              value: "Mission",
             },
             {
               type: "string",
               key: "content",
               displayer: "Tab Content",
-              value: "We believe that good design should not only be aesthetically pleasing, but also functional and environmentally responsible. Our approach to architecture is rooted in a deep understanding of our clients' needs and the context in which we are designing. We work closely with our clients throughout the entire design process to ensure that their vision is realized and that their space is both beautiful and practical."
-            }
-          ]
+              value:
+                "We believe that good design should not only be aesthetically pleasing, but also functional and environmentally responsible. Our approach to architecture is rooted in a deep understanding of our clients' needs and the context in which we are designing. We work closely with our clients throughout the entire design process to ensure that their vision is realized and that their space is both beautiful and practical.",
+            },
+          ],
         },
         {
           type: "object",
@@ -156,18 +169,19 @@ class Feature13 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Tab Title",
-              value: "Vision"
+              value: "Vision",
             },
             {
               type: "string",
               key: "content",
               displayer: "Tab Content",
-              value: "Ratings and reviews, A numerical rating system and written reviews from clients can be very persuasive in convincing potential clients to hire an architecture firm. These reviews can be posted directly on the architecture firm's website or on third-party review sites such as Yelp or Google Reviews. It's important to respond to all reviews, whether positive or negative, in a professional and respectful manner. This shows that the architecture firm values feedback and is committed to delivering exceptional service."
-            }
-          ]
+              value:
+                "Ratings and reviews, A numerical rating system and written reviews from clients can be very persuasive in convincing potential clients to hire an architecture firm. These reviews can be posted directly on the architecture firm's website or on third-party review sites such as Yelp or Google Reviews. It's important to respond to all reviews, whether positive or negative, in a professional and respectful manner. This shows that the architecture firm values feedback and is committed to delivering exceptional service.",
+            },
+          ],
         },
-      ]
-    })
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -183,15 +197,15 @@ class Feature13 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Renovation"
+              value: "Renovation",
             },
             {
               type: "number",
               key: "percentage",
               displayer: "Percentage",
-              value: 75
-            }
-          ]
+              value: 75,
+            },
+          ],
         },
         {
           type: "object",
@@ -202,15 +216,15 @@ class Feature13 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Architecture"
+              value: "Architecture",
             },
             {
               type: "number",
               key: "percentage",
               displayer: "Percentage",
-              value: 95
-            }
-          ]
+              value: 95,
+            },
+          ],
         },
         {
           type: "object",
@@ -221,22 +235,37 @@ class Feature13 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Functional Spaces"
+              value: "Functional Spaces",
             },
             {
               type: "number",
               key: "percentage",
               displayer: "Percentage",
-              value: 85
-            }
-          ]
+              value: 85,
+            },
+          ],
         },
-      ]
-    })
+      ],
+    });
 
+    // this should be infinite, so there is no clear function.
     let x = setInterval(() => {
-      this.sliderNext()
+      this.sliderNext();
     }, 3000);
+
+    this.addProp({
+      type: "icon",
+      key: "sliderGoLeft",
+      displayer: "Slider Left Button Icon",
+      value: "FaArrowLeft",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "sliderGoRight",
+      displayer: "Slider Right Button Icon",
+      value: "FaArrowRight",
+    });
   }
 
   getName(): string {
@@ -250,157 +279,214 @@ class Feature13 extends BaseFeature {
   }
 
   sliderNext = () => {
-    const updatedImages = this.getComponentState("slider-images").map((image: SliderImage) => {
-      if (image.imageIndex === this.getComponentState("slider-images").length - 1)
+    const updatedImages = this.getComponentState("slider-images").map(
+      (image: SliderImage) => {
+        const isLast =
+          image.imageIndex ===
+          this.getComponentState("slider-images").length - 1;
+
         return {
           ...image,
-          imageIndex: 0
-        }
-      else
-        return {
-          ...image,
-          imageIndex: image.imageIndex + 1
-        }
-    })
-    this.setComponentState("slider-images", updatedImages)
-  }
+          imageIndex: isLast ? 0 : image.imageIndex + 1,
+        };
+      }
+    );
+    this.setComponentState("slider-images", updatedImages);
+  };
 
   sliderPrev = () => {
-    const updatedImages = this.getComponentState("slider-images").map((image: SliderImage) => {
-      if (image.imageIndex === 0)
+    const updatedImages = this.getComponentState("slider-images").map(
+      (image: SliderImage) => {
+        const isFirst = image.imageIndex === 0;
         return {
           ...image,
-          imageIndex: this.getComponentState("slider-images").length - 1
-        }
-      else
-        return {
-          ...image,
-          imageIndex: image.imageIndex - 1
-        }
-    })
-    this.setComponentState("slider-images", updatedImages)
-  }
+          imageIndex: isFirst
+            ? this.getComponentState("slider-images").length - 1
+            : image.imageIndex - 1,
+        };
+      }
+    );
+    this.setComponentState("slider-images", updatedImages);
+  };
 
   render() {
-
-    if (JSON.stringify(this.getComponentState("slider-images-temp")) !== JSON.stringify(this.castToObject<SliderImage[]>("slider-images"))) {
-      this.setComponentState("slider-images-temp", this.castToObject<SliderImage[]>("slider-images"));
-      this.setComponentState("slider-images", this.castToObject<SliderImage[]>("slider-images"));
+    if (
+      JSON.stringify(this.getComponentState("slider-images-temp")) !==
+      JSON.stringify(this.castToObject<SliderImage[]>("slider-images"))
+    ) {
+      this.setComponentState(
+        "slider-images-temp",
+        this.castToObject<SliderImage[]>("slider-images")
+      );
+      this.setComponentState(
+        "slider-images",
+        this.castToObject<SliderImage[]>("slider-images")
+      );
     }
 
+    const sliderImages = this.castToObject<SliderImage[]>("slider-images");
+    const titleExist = this.getPropValue("title", { as_string: true });
+    const descExist = this.getPropValue("description", { as_string: true });
+
+    const tabList = this.castToObject<Tab[]>("tab-items");
+    const progressList = this.castToObject<Progress[]>("progresses");
 
     return (
-      <div className={this.decorateCSS("container")} >
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("comp-container")}>
             <header className={this.decorateCSS("comp-header")}>
-              {this.getPropValue("title") &&
-                <h1 className={this.decorateCSS("comp-header-title")}>{this.getPropValue("title")}</h1>
-              }
-              {this.getPropValue("description") &&
-                <p className={this.decorateCSS("comp-header-description")}>{this.getPropValue("description")}</p>
-              }
+              {titleExist && (
+                <h1 className={this.decorateCSS("comp-header-title")}>
+                  {this.getPropValue("title")}
+                </h1>
+              )}
+              {descExist && (
+                <p className={this.decorateCSS("comp-header-description")}>
+                  {this.getPropValue("description")}
+                </p>
+              )}
             </header>
             <main className={this.decorateCSS("comp-wrapper")}>
-              {this.castToObject<SliderImage[]>("slider-images").length > 0 &&
-
+              {sliderImages.length > 0 && (
                 <div className={this.decorateCSS("comp-slider")}>
-                  {this.getComponentState("slider-images").map((image: SliderImage, index: number) => (
-                    <img
-                      key={index}
-                      style={{ marginLeft: `${image.imageIndex * 20}px`, marginTop: `${image.imageIndex * 20}px`, zIndex: image.imageIndex + 1 }}
-                      className={this.decorateCSS("slider-item")}
-                      src={image.imageSource}
-                      alt="" />
-                  ))}
+                  {this.getComponentState("slider-images").map(
+                    (image: SliderImage, index: number) => {
+                      if (image.imageSource)
+                        return (
+                          <img
+                            key={index}
+                            style={{
+                              marginLeft: `${image.imageIndex * 20}px`,
+                              marginTop: `${image.imageIndex * 20}px`,
+                              zIndex: image.imageIndex + 1,
+                            }}
+                            className={this.decorateCSS("slider-item")}
+                            src={image.imageSource}
+                            alt={"Image"}
+                          />
+                        );
+                    }
+                  )}
                   <footer className={this.decorateCSS("slider-buttons")}>
-                    <button onClick={this.sliderPrev} className={this.decorateCSS("slider-button")}>
-                      <ComposerIcon
-                        propsIcon={{ className: this.decorateCSS("Icon") }}
-                        name={"FaArrowLeft"}
-                      />
-                    </button>
-                    <button onClick={this.sliderNext} className={this.decorateCSS("slider-button")}>
-                      <ComposerIcon
-                        propsIcon={{ className: this.decorateCSS("Icon") }}
-                        name={"FaArrowRight"}
-                      />
-                    </button>
+                    {this.getPropValue("sliderGoLeft") && (
+                      <button
+                        onClick={this.sliderPrev}
+                        className={this.decorateCSS("slider-button")}
+                      >
+                        <ComposerIcon
+                          propsIcon={{ className: this.decorateCSS("Icon") }}
+                          name={this.getPropValue("sliderGoLeft")}
+                        />
+                      </button>
+                    )}
+                    {this.getPropValue("sliderGoRight") && (
+                      <button
+                        onClick={this.sliderNext}
+                        className={this.decorateCSS("slider-button")}
+                      >
+                        <ComposerIcon
+                          propsIcon={{ className: this.decorateCSS("Icon") }}
+                          name={this.getPropValue("sliderGoRight")}
+                        />
+                      </button>
+                    )}
                   </footer>
                 </div>
-              }
+              )}
 
-              {(this.castToObject<Tab[]>("tab-items").length > 0
-                || this.castToObject<Progress[]>("progresses").length > 0) &&
-
+              {(tabList.length > 0 || progressList.length > 0) && (
                 <div className={this.decorateCSS("comp-body-wrapper")}>
-                  {this.castToObject<Tab[]>("tab-items").length > 0 &&
+                  {tabList.length > 0 && (
                     <>
                       <header className={this.decorateCSS("tabs")}>
                         <ul className={this.decorateCSS("tabs-list")}>
-                          {this.getPropValue("tab-items").map((tabItem: any, index: number) => {
-                            const title = tabItem.value[0].value
+                          {tabList.map((item: Tab, index: number) => {
+                            const titleExist = this.castToString(item.title);
 
-                            if (title != "")
+                            if (titleExist)
                               return (
-                                <li key={index} className={this.decorateCSS("tabs-list-item")}>
+                                <li
+                                  key={index}
+                                  className={this.decorateCSS("tabs-list-item")}
+                                >
                                   <button
-                                    onClick={() => { this.switchTab(index) }}
-                                    className={`${this.decorateCSS("button")} ${this.activeTab === index ? this.decorateCSS("active") : ""}`}>
-                                    {title}
+                                    onClick={() => {
+                                      this.switchTab(index);
+                                    }}
+                                    className={`${this.decorateCSS("button")} ${
+                                      this.activeTab === index
+                                        ? this.decorateCSS("active")
+                                        : ""
+                                    }`}
+                                  >
+                                    {item.title}
                                   </button>
                                 </li>
                               );
                           })}
                         </ul>
                       </header>
-                      {(this.getPropValue("tab-items")[this.activeTab].value[0].value !== "" &&
-                        this.getPropValue("tab-items")[this.activeTab].value[1].value !== "") &&
-                        <p className={this.decorateCSS("comp-body-content")}>
-                          {this.castToObject<Tab[]>("tab-items")[this.activeTab].content}
-                        </p>
-                      }
+                      {this.castToString(tabList[this.activeTab].title) &&
+                        this.castToString(tabList[this.activeTab].content) && (
+                          <p className={this.decorateCSS("comp-body-content")}>
+                            {tabList[this.activeTab].content}
+                          </p>
+                        )}
                     </>
-                  }
-                  {this.castToObject<Progress[]>("progresses").length > 0 &&
+                  )}
+                  {progressList.length > 0 && (
                     <footer className={this.decorateCSS("comp-progresses")}>
-                      {this.getPropValue("progresses").map((progressItem: any, index: number) => {
-                        const progressTitle = progressItem.value[0].value;
-                        const progressPercentage = progressItem.value[1].value;
+                      {progressList.map((item: Progress, index: number) => {
+                        const titleExist = this.castToString(item.title);
+                        const percentage: number = item.percentage;
 
-                        console.log("title", progressTitle)
-                        console.log("percentage", progressPercentage)
-
-                        if (progressTitle !== "")
+                        if (titleExist)
                           return (
-                            <div className={this.decorateCSS("progress-item")} key={index}>
-                              <div className={this.decorateCSS("progress-header")}>
-                                <h3 className={this.decorateCSS("progress-title")}>{progressTitle}</h3>
-                                <span className={this.decorateCSS("progress-percent")}>
-                                  {progressPercentage >= 100 ?
-                                    "100" :
-                                    (!progressPercentage || progressPercentage == 0) ?
-                                    "0":
-                                    progressPercentage} %
+                            <div
+                              className={this.decorateCSS("progress-item")}
+                              key={index}
+                            >
+                              <div
+                                className={this.decorateCSS("progress-header")}
+                              >
+                                <h3
+                                  className={this.decorateCSS("progress-title")}
+                                >
+                                  {item.title}
+                                </h3>
+                                <span
+                                  className={this.decorateCSS(
+                                    "progress-percent"
+                                  )}
+                                >
+                                  {percentage >= 100
+                                    ? "100"
+                                    : !percentage || percentage == 0
+                                    ? "0"
+                                    : percentage}
+                                  %
                                 </span>
                               </div>
                               <div
                                 className={this.decorateCSS("progress-line")}
                                 style={{
-                                  width: `${progressPercentage >= 100 ?
-                                    '100%' :
-                                    (!progressPercentage || progressPercentage == 0) ?
-                                      '1%' :
-                                      `${progressPercentage}%`}`
-                                }}>
-                              </div>
+                                  width: `${
+                                    percentage >= 100
+                                      ? "100%"
+                                      : !percentage || percentage == 0
+                                      ? "1%"
+                                      : `${percentage}%`
+                                  }`,
+                                }}
+                              ></div>
                             </div>
-                          )
+                          );
                       })}
                     </footer>
-                  }
+                  )}
                 </div>
-              }
+              )}
             </main>
           </div>
         </div>
