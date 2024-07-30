@@ -14,7 +14,6 @@ type InputItem = {
 };
 
 type Emoji = {
-  value: string;
   icon: string;
 };
 
@@ -124,40 +123,46 @@ class FeedbackModal1 extends BaseModal {
 
     this.addProp({
       type: "array",
-      key: "emojiProps",
+      key: "emojis",
       displayer: "Emojis",
       value: [
         {
           type: "icon",
-          key: "emoji-1",
+          key: "emoji",
           displayer: "Very Bad",
           value: "FaRegFrown",
         },
         {
           type: "icon",
-          key: "emoji-2",
+          key: "emoji",
           displayer: "Bad",
           value: "FaRegMeh",
         },
         {
           type: "icon",
-          key: "emoji-3",
+          key: "emoji",
           displayer: "Neutral",
           value: "FaRegSmile",
         },
         {
           type: "icon",
-          key: "emoji-4",
+          key: "emoji",
           displayer: "Good",
           value: "FaRegSmile",
         },
         {
           type: "icon",
-          key: "emoji-5",
+          key: "emoji",
           displayer: "Very Good",
           value: "FaRegGrin",
         },
       ],
+    });
+    this.addProp({
+      type: "string",
+      key: "buttonText",
+      displayer: "Button Text",
+      value: "Submit Now",
     });
   }
 
@@ -185,47 +190,61 @@ class FeedbackModal1 extends BaseModal {
   render() {
     const inputItems = this.castToObject<InputItem[]>("input_items") || [];
     const placeholder = inputItems[0]?.placeholder || "Add a Comment...";
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isHeaderTitleExist = this.castToString(this.getPropValue("headerTitle"));
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const emojiProps = this.castToObject<Emoji[]>("emojis");
+    const isFeedbackIconExist = this.castToObject<Emoji>(this.getPropValue("feedback_icon"));
 
-    const emojiProps = this.getPropValue("emojiProps") as Emoji[] || [];
 
     return (
       <div className={this.decorateCSS("feedbackModal")}>
         <div className={this.decorateCSS("feedbackModalHeader")}>
-          <ComposerIcon
-            name={this.getPropValue("feedback_icon")}
-            propsIcon={{
-              className: `${this.decorateCSS("icon")}`,
-            }}
+        {isFeedbackIconExist &&
+        <ComposerIcon
+          name={this.getPropValue("feedback_icon")}
+          propsIcon={{
+            className: `${this.decorateCSS("icon")}`,
+          }}
           />
-          <h1 className={this.decorateCSS("feedbackModalHeaderh1")}>
-            {this.getPropValue("title")}
-          </h1>
+        }
+
+          {isTitleExist &&
+            <h1 className={this.decorateCSS("feedbackModalHeaderh1")}>
+              {this.getPropValue("title")}
+            </h1>}
           <button className={this.decorateCSS("feedbackModalCloseButton")}>&times;</button>
         </div>
         <div className={this.decorateCSS("headerContent")}>
-          <h2>{this.getPropValue("headerTitle")}</h2>
+          {isHeaderTitleExist &&
+            <h2>{this.getPropValue("headerTitle")}</h2>
+          }
         </div>
         <div className={this.decorateCSS("descriptionContent")}>
-          <p>{this.getPropValue("description")}</p>
+          {isDescriptionExist &&
+            <p>{this.getPropValue("description")}</p>
+          }
         </div>
-        <div className={this.decorateCSS("feedbackModalEmojis")}>
-          {emojiProps.map((item, index) => (
-            <span
-              key={index}
-              id={`emoji-${index + 1}`}
-              className={this.decorateCSS("feedbackModalEmoji")}
-              onClick={() => this.handleEmojiClick(index + 1)}
-            >
-              <ComposerIcon
-              
-              name={this.getPropValue("emoji_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("feedbackModalEmojiIcon")}`,
-                }}
-              />
-            </span>
-          ))}
-        </div>
+        {emojiProps.length > 0 ? (
+          <div className={this.decorateCSS("feedbackModalEmojis")}>
+            {emojiProps.map((item, index) => (
+              <span
+                key={index}
+                id={`emoji-${index + 1}`}
+                className={this.decorateCSS("feedbackModalEmoji")}
+                onClick={() => this.handleEmojiClick(index + 1)}
+              >
+                <ComposerIcon
+                  name={this.getPropValue("emoji_icon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS("feedbackModalEmojiIcon")}`,
+                  }}
+                />
+              </span>
+            ))}
+          </div>
+        ) : null}
+
 
         <div className={this.decorateCSS("contact-form")}>
           <Formik
@@ -254,7 +273,7 @@ class FeedbackModal1 extends BaseModal {
                   component={"span"}
                 />
                 <button type="submit" className={this.decorateCSS("feedbackModalSubmit")}>
-                  Submit Now
+                {this.getPropValue("buttonText")}
                 </button>
               </Form>
             )}
