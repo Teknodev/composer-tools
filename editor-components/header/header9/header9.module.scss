@@ -1,178 +1,211 @@
 .container {
+  width: 100%;
+  background-color: var(--composer-html-background);
+  display: flex;
+  align-items: center;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+    height: 100vh;
+    overflow: hidden;
     width: 100%;
-    background-color: var(--composer-html-background);
+  }
+
+  .tabs {
+    width: 100%;
+    height: 100%;
     display: flex;
-    align-items: center;
-  
-    .max-content{ 
-        max-width: var(--composer-content-width);
-        margin: auto;
-        height: 112vh;
-        display: flex;
-        overflow: hidden;
-        width: 100%;
+    flex-direction: row;
+    .buttons {
+      position: relative;
+      font-size: 1.5rem;
+      rotate: -90deg;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      color: var(--composer-font-color-primary);
+
+      .text {
+        margin-right: 15px;
+        font-size: 1.5rem;
+      }
+      .active-number {
+        color: var(--composer-primary-color);
+        font-size: 3.5rem;
+      }
+      .slash {
+        margin: 0px 5px;
+      }
+      .count {
+        color: var(--composer-primary-color);
+        font-size: 1.5rem;
+      }
     }
 
-    .buttons{
-        font-size: 30px;
-        transform: rotate(270deg);
-        bottom: 60px;
-        display: flex;
-        align-items: center;
-        position: relative;
-        right: 30px;
+    .tab-buttons {
+      position: relative;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      left: 10%;
+
+      .tabText {
         color: var(--composer-font-color-primary);
-
-        .text{
-            margin-right: 15px;
-            font-size: 2rem;
+        font-weight: inherit;
+        font-size: 4rem;
+        position: relative;
+        &::before {
+          content: "";
+          width: 0px;
+          height: 40%;
+          position: absolute;
+          top: 25px;
+          left: -10px;
+          background-color: var(--composer-primary-color);
+          transition: all 0.5s ease-out;
+          opacity: 0.5;
         }
-        .active-number{}
-        .slash{}
-        .count{}
+        &:hover {
+          text-decoration: underline;
+          text-shadow: 2px 2px 10px var(--composer-primary-color);
+          &::before {
+            width: 100%;
+          }
+        }
+      }
     }
-  
-  
-    .tabs{
-        width: 100%;
+    .social {
+      position: relative;
+      left: -200px;
+      bottom: -100px;
+      font-size: 1.5rem;
+      color: var(--composer-font-color-primary);
+      .footer-social {
         display: flex;
-        flex-direction: row;
-        .tab-buttons{
-            width: 50%;
-            left: 165px;
-            top:80px;
-            position: relative;
-            .tabText{
-                color: var(--composer-font-color-primary);
-                font-weight: inherit;
-                padding: 6px 0px;
-                font-size: 35px;
-                position: relative;
-                &::before{
-                    content: "";
-                    width: 0px;
-                    height: 40%;
-                    position: absolute;
-                    top: 15px;
-                    left: 0px;
-                    background-color:var(--composer-tertiary-color );
-                    transition: all 0.5s ease-out;
-                    opacity:0.5;
-                }
-                &:hover{
-                    text-decoration: underline; 
-                    color:var(--composer-primary-color);
-                    text-shadow: 2px 2px 10px var(--composer-tertiary-color);
-                    &::before{
-                        width: 20%;
-                    }
-                }      
-                
-            }
+        gap: 30px;
+        .social-link {
+          color: var(--composer-font-color-primary);
+          transition: color 0.1s ease-out;
+          &:hover {
+            color: var(--composer-primary-color);
+          }
         }
-
-        .social{
-            font-size: 20px;
-            top: 115px;
-            right: 232px;
-            position: relative;
-            color: var(--composer-font-color-primary);
-            .footer-social{
-                display: flex;
-                .social-link{
-                    margin-right: 30px;
-                    color: var(--composer-font-color-primary);
-                    transition: color 0.1s ease-out;
-                    &:hover{
-                        color: var(--composer-secondary-color);
-                    }
-                }
-            }
-        }
-
-        .footer-description{
-            font-size: 20px;
-            font-weight: unset;
-            text-decoration: underline;
-            margin-top: 60px;
-            color: var(--composer-font-color-primary);
-            &:hover{
-                color: var(--composer-primary-color);
-                
-            }
-
-        }  
-        .image{
-            width: 50%;
-            height: 90%;
-            object-fit: cover;
-        }
+      }
     }
 
-} 
-  
+    .linkText {
+      position: relative;
+      font-size: 20px;
+      font-weight: unset;
+      text-decoration: underline;
+      margin-top: 60px;
+      color: var(--composer-font-color-primary);
+
+      &:hover {
+        color: var(--composer-primary-color);
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--composer-font-color-primary);
+        transform: scaleX(1);
+        transform-origin: top left;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover::before {
+        transform: scaleX(0);
+      }
+    }
+    .image {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
 
 @media only screen and (max-width: 1024px) {
-    .container {
-        width: 150%;
-      .max-content {
-        height: 98vh;
-        .buttons{
-            display: none;
+  .container {
+    .max-content {
+      .tabs {
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        .buttons {
+          display: none;
         }
-        .tabs{
-            width: 100%;
-            .tab-buttons{
-                left:300px;
+        .tab-buttons {
+          order: 2;
+          top: 20px;
+          left: 0;
+          align-items: center;
+          .tabText {
+            font-size: 2.5rem;
+            &::before {
+              top: 15px;
             }
+          }
         }
-        .footer-social{
-            position: relative;
-            left: 140px;
+        .social {
+          font-size: 1.5rem;
+          left: 0;
+          bottom: -75px;
         }
-        .image{
-            width: 34%;
-            height: 100%;
-        }
+      }
+      .image {
+        width: 100%;
+        height: 40%;
       }
     }
   }
+}
 
-
-  
-@media only screen and (max-width: 768px) {
-    .container {
-      
-      .max-content { 
-       height: 110vh;
-        .tabs{
-            width: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            .tab-buttons{
-                order: 2;
-                left: 80px !important;
-                top: 20px;
-                .tabText{
-                    font-size: 20px;
-                }               
+@media only screen and (max-width: 767px) {
+  .container {
+    .max-content {
+      .tabs {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .buttons {
+          display: none;
+        }
+        .tab-buttons {
+          order: 2;
+          top: 20px;
+          left: 0;
+          .tabText {
+            font-size: 2rem;
+            &::before {
+              top: 15px;
             }
+          }
         }
-        .footer-social{
-            position: relative;
-            left: 142px;
-            bottom: 55px;
+        .social {
+          font-size: 1rem;
+          left: 0;
+          bottom: -75px;
         }
-        .image{
-            width: 67%;
-            height: 40%;
-        }      
+      }
+      .image {
+        width: 100%;
+        height: 40%;
       }
     }
   }
-
-
-
-
+}
