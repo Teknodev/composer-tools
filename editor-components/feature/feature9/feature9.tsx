@@ -9,7 +9,6 @@ type FeatureItem = {
   image: string;
 };
 
-
 class Feature9 extends BaseFeature {
   private observers: { [key: string]: IntersectionObserver } = {};
   constructor(props?: any) {
@@ -174,16 +173,31 @@ class Feature9 extends BaseFeature {
         },
       ],
     });
-
-    
   }
   getName(): string {
     return "Feature 9";
   }
 
+  componentDidMount() {
+     this.setupObservers();
+    this.initializeFirstCard();
+  }
+  
+  initializeFirstCard() {
+    const firstCard = document.getElementById('card-0');
+    const counter = document.getElementById('counter');
+    if (firstCard) {
+      firstCard.style.opacity = '1';
+    }
+    if (counter) {
+      counter.classList.remove(this.decorateCSS("invisible"));
+      counter.innerText = '1';
+    }
+  }
 
 
   setupObservers() {
+    console.log("setup observer start")
     const featureItems = this.castToObject<FeatureItem[]>("feature-items");
     featureItems.forEach((item, index) => {
       const element = document.getElementById(`card-${index}`);
@@ -202,7 +216,7 @@ class Feature9 extends BaseFeature {
     const counterElement = document.getElementById("counter");
     const currentElement = entry.target as HTMLElement;
     const nextElement = document.getElementById(`card-${index + 1}`);
-
+  
     if (entry.isIntersecting) {
       currentElement.style.opacity = '1';
       this.updateCounter(index + 1);
@@ -211,19 +225,22 @@ class Feature9 extends BaseFeature {
         nextElement.style.opacity = '0';
       }
     } else {
-      counterElement.classList.add(this.decorateCSS("invisible"));
-      currentElement.style.opacity = '0';
-      
+      if (index !== 0) { 
+        currentElement.style.opacity = '0';
+        counterElement.classList.add(this.decorateCSS("invisible"));
+
+      }
+
       if (nextElement) {
         nextElement.style.opacity = '0';
       }
     }
-
-    if(currentElement.id=="card-1") {
+  
+    if (index === 0) {
+      currentElement.style.opacity = '1';
       counterElement.classList.remove(this.decorateCSS("invisible"));
     }
   }
-
   updateCounter(id: number) {
     const counterElement = document.getElementById("counter");
     if (counterElement) {
@@ -233,6 +250,8 @@ class Feature9 extends BaseFeature {
   }
 
   renderCard(featureItem: FeatureItem, index: number) {
+    setTimeout(() => this.setupObservers(), 0);
+
     return (
       <div 
         key={index} 
@@ -243,25 +262,36 @@ class Feature9 extends BaseFeature {
           className={this.decorateCSS("image")}
           src={featureItem.image}
         />
-        <h4 className={this.decorateCSS("sub-title")}>{featureItem.title}</h4>
-        <h5 className={this.decorateCSS("sub-title-description")}>
-          {featureItem.description}
-        </h5>
-        <br /><br/><br/><br /><br/><br/>
+        {
+          featureItem.title &&(
+            <h4 className={this.decorateCSS("sub-title")}>{featureItem.title}</h4>
+          )
+        }
+        {
+          featureItem.description &&(
+            <h5 className={this.decorateCSS("sub-title-description")}>
+            {featureItem.description}
+          </h5>
+          )
+        }
+
       </div>
     );
   }
 
   render() {
-    setTimeout(() => this.setupObservers(), 0);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("main-title-content")}>
-              <h1 className={this.decorateCSS("main-title-content-text")}>
-                {this.getPropValue("main-title")}
-              </h1>
+              {
+                this.castToString(this.getPropValue("main-title"))&&(
+                  <h1 className={this.decorateCSS("main-title-content-text")}>
+                  {this.getPropValue("main-title")}
+                </h1>
+                )
+              }          
             </div>
             <div className={this.decorateCSS("sub-title-content")}>
               <h4 id="counter" className={this.decorateCSS("counter")}></h4>
