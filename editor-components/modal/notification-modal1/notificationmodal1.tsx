@@ -77,25 +77,6 @@ class NotificationModal1 extends BaseModal {
             },
           ],
         },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Visit Page",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
       ],
     });
   }
@@ -132,6 +113,13 @@ class NotificationModal1 extends BaseModal {
               {!backgroundImage && overlay && (
                 <div className={this.decorateCSS("overlay2")}>
                  <h2 className={this.decorateCSS("first-header")}>
+                  {this.getPropValue("firstTitle")}
+                </h2> 
+                </div>
+              )}
+              {!backgroundImage && !overlay && (
+                <div className={this.decorateCSS("overlay3")}>
+                  <h2 className={this.decorateCSS("first-header")}>
                   {this.getPropValue("firstTitle")}
                 </h2> 
                 </div>
