@@ -1,16 +1,16 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
-import styles from "./feature4.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import styles from "./feature4.module.scss";
 
-type Verticals = {
-  title: string;
-  subtitle: string;
+type Card = {
+  title: JSX.Element;
+  subtitle: JSX.Element;
   icon: string;
-  description: string;
+  description: JSX.Element;
   image: string;
-  buttonText: string;
+  buttonText: JSX.Element;
   link: string;
 };
 
@@ -21,36 +21,36 @@ class Feature4 extends BaseFeature {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Gateway to Premium Services"
-    })
+      value: "Gateway to Premium Services",
+    });
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Empower Solutions"
-    })
+      value: "Empower Solutions",
+    });
     this.addProp({
       type: "string",
       key: "linkText",
       displayer: "Link Text",
-      value: "Navigating possibilities"
-    })
+      value: "Navigating possibilities",
+    });
     this.addProp({
       type: "page",
       key: "link",
       displayer: "Link",
-      value: ""
-    })
+      value: "",
+    });
 
     this.addProp({
       type: "array",
-      key: "vertical-card",
-      displayer: "Vertical Card",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "vertical",
-          displayer: "Vertical",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -100,8 +100,8 @@ class Feature4 extends BaseFeature {
         },
         {
           type: "object",
-          key: "vertical",
-          displayer: "Vertical",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -151,8 +151,8 @@ class Feature4 extends BaseFeature {
         },
         {
           type: "object",
-          key: "vertical",
-          displayer: "Vertical",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -202,8 +202,8 @@ class Feature4 extends BaseFeature {
         },
         {
           type: "object",
-          key: "vertical",
-          displayer: "Vertical",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -253,8 +253,8 @@ class Feature4 extends BaseFeature {
         },
         {
           type: "object",
-          key: "vertical",
-          displayer: "Vertical",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -311,58 +311,96 @@ class Feature4 extends BaseFeature {
   }
 
   render() {
-    const featuredSubtitle = this.getPropValue("subtitle", { as_string: true })
-    const featuredTitle = this.getPropValue("title", { as_string: true })
+    const featuredSubtitle = this.getPropValue("subtitle", { as_string: true });
+    const featuredTitle = this.getPropValue("title", { as_string: true });
+    const featuredLink = this.getPropValue("link");
+    const cards = this.castToObject<Card[]>("cards");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(featuredSubtitle || featuredTitle) &&
-              <div className={this.decorateCSS("featured-card")} style={{ width: "30%" }}>
-                {featuredSubtitle &&
-                  <h5 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h5>
-                }
-                {featuredTitle &&
-                  <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
-                }
-                <span className={this.decorateCSS("featured-card-link")}>
-                  <ComposerLink
-                    children={this.getPropValue("linkText")}
-                    path={this.getPropValue("link", { as_string: true })}
-                  />
-                </span>
+            {(featuredSubtitle || featuredTitle || featuredLink) && (
+              <div
+                className={this.decorateCSS("featured-card")}
+                style={{ width: "30%" }}
+              >
+                {featuredSubtitle && (
+                  <h5 className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </h5>
+                )}
+                {featuredTitle && (
+                  <h2 className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </h2>
+                )}
+                {featuredLink && (
+                  <span className={this.decorateCSS("featured-card-link")}>
+                    <ComposerLink path={this.getPropValue("link")}>
+                      {this.getPropValue("linkText")}
+                    </ComposerLink>
+                  </span>
+                )}
               </div>
-            }
+            )}
 
-            {this.castToObject<Verticals[]>("vertical-card").map(
-              (vertical: any, index: number) => (
-                <div key={index} className={this.decorateCSS("card-item-count")} style={{ width: "30%" }}>
+            {cards.map((card: Card, index: number) => {
+              const titleExist = this.castToString(card.title);
+              const subtitleExist = this.castToString(card.subtitle);
+              const descExist = this.castToString(card.description);
+
+              return (
+                <div
+                  key={index}
+                  className={this.decorateCSS("card-item-count")}
+                  style={{ width: "30%" }}
+                >
                   <div className={this.decorateCSS("vertical")}>
                     <div className={this.decorateCSS("vertical-content")}>
-                      {vertical.icon && <div className={this.decorateCSS("icon")}>
-                        <ComposerIcon
-                          propsIcon={{ className: this.decorateCSS("Icon") }}
-                          name={vertical.icon}
-                        />
-                      </div>}
-                      <h3 className={this.decorateCSS("title")}>{vertical.title}</h3>
-                      <h5 className={this.decorateCSS("subtitle")}>{vertical.subtitle}</h5>
+                      {card.icon && (
+                        <div className={this.decorateCSS("icon")}>
+                          <ComposerIcon
+                            propsIcon={{
+                              className: this.decorateCSS("Icon"),
+                            }}
+                            name={card.icon}
+                          />
+                        </div>
+                      )}
+                      {titleExist && (
+                        <h3 className={this.decorateCSS("title")}>
+                          {card.title}
+                        </h3>
+                      )}
+                      {subtitleExist && (
+                        <h5 className={this.decorateCSS("subtitle")}>
+                          {card.subtitle}
+                        </h5>
+                      )}
                     </div>
                   </div>
-                  <div className={this.decorateCSS("overlay")} style={{ backgroundImage: `url(${vertical.image})` }}>
+                  <div
+                    className={this.decorateCSS("overlay")}
+                    style={{ backgroundImage: `url(${card.image})` }}
+                  >
                     <div className={this.decorateCSS("overlay-content")}>
-                      <p className={this.decorateCSS("long-text")}>{vertical.description}</p>
+                      {descExist && (
+                        <p className={this.decorateCSS("long-text")}>
+                          {card.description}
+                        </p>
+                      )}
                       <span className={this.decorateCSS("overlay-link")}>
                         <ComposerLink
-                          children={vertical.buttonText}
-                          path={vertical.link}
+                          children={card.buttonText}
+                          path={card.link}
                         />
                       </span>
                     </div>
                   </div>
                 </div>
-              ))}
+              );
+            })}
           </div>
         </div>
       </div>
