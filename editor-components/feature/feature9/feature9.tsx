@@ -1,12 +1,12 @@
 import React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
-
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 type FeatureItem = {
   id: string;
-  title: string;
-  description: string;
-  image: string;
+  title: JSX.Element;
+  description: JSX.Element;
+  icon: JSX.Element;
 };
 
 class Feature9 extends BaseFeature {
@@ -19,6 +19,13 @@ class Feature9 extends BaseFeature {
       displayer: "Title",
       value: "Our process of building a successful digital product.",
     });
+    this.addProp({
+      type: "boolean",
+      key: "is-counter-visible",
+      displayer: "Counter Visible",
+      value: true
+    });
+
 
     this.addProp({
       type: "array",
@@ -51,11 +58,11 @@ class Feature9 extends BaseFeature {
               displayer: "Description",
             },
             {
-              type: "image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75bbb2f8a5b002ce6d1bb?alt=media",
-              displayer: "Image",
+                "CgAdidas",
+              displayer: "Icon",
             },
           ],
         },
@@ -79,11 +86,11 @@ class Feature9 extends BaseFeature {
               displayer: "Description",
             },
             {
-              type: "image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75bdb2f8a5b002ce6d1d2?alt=media",
-              displayer: "Image",
+                "CgAdidas",
+              displayer: "Icon",
             },
           ],
         },
@@ -107,11 +114,10 @@ class Feature9 extends BaseFeature {
               displayer: "Description",
             },
             {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75bf32f8a5b002ce6d1e5?alt=media",
-              displayer: "Image",
+              type: "icon",
+              key: "icon",
+              value:"CgAdidas",
+              displayer: "Icon",
             },
           ],
         },
@@ -135,11 +141,11 @@ class Feature9 extends BaseFeature {
               displayer: "Description",
             },
             {
-              type: "image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75c292f8a5b002ce6d206?alt=media",
-              displayer: "Image",
+                "CgAdidas",
+              displayer: "Icon",
             },
           ],
         },
@@ -163,11 +169,11 @@ class Feature9 extends BaseFeature {
               displayer: "Description",
             },
             {
-              type: "image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a75c352f8a5b002ce6d211?alt=media",
-              displayer: "Image",
+                "CgAdidas",
+              displayer: "Icon",
             },
           ],
         },
@@ -179,32 +185,19 @@ class Feature9 extends BaseFeature {
   }
 
   componentDidMount() {
-     this.setupObservers();
-    this.initializeFirstCard();
+    setTimeout(() => {
+      this.setupObservers();
+    }, 1000); 
   }
-  
-  initializeFirstCard() {
-    const firstCard = document.getElementById('card-0');
-    const counter = document.getElementById('counter');
-    if (firstCard) {
-      firstCard.style.opacity = '1';
-    }
-    if (counter) {
-      counter.classList.remove(this.decorateCSS("invisible"));
-      counter.innerText = '1';
-    }
-  }
-
 
   setupObservers() {
-    console.log("setup observer start")
     const featureItems = this.castToObject<FeatureItem[]>("feature-items");
     featureItems.forEach((item, index) => {
       const element = document.getElementById(`card-${index}`);
-      if (element) {
+      if (element) {   
         this.observers[index] = new IntersectionObserver(
           ([entry]) => this.handleIntersection(entry, index),
-          { threshold: 0.82 }
+          { threshold: 0.8 }
         );
         this.observers[index].observe(element);
       } else {
@@ -213,93 +206,85 @@ class Feature9 extends BaseFeature {
     });
   }
   handleIntersection(entry: IntersectionObserverEntry, index: number) {
-    const counterElement = document.getElementById("counter");
     const currentElement = entry.target as HTMLElement;
     const nextElement = document.getElementById(`card-${index + 1}`);
-  
+    const prevElement = document.getElementById(`card-${index - 1}`);
+
     if (entry.isIntersecting) {
       currentElement.style.opacity = '1';
       this.updateCounter(index + 1);
-      
-      if (nextElement) {
-        nextElement.style.opacity = '0';
-      }
-    } else {
-      if (index !== 0) { 
-        currentElement.style.opacity = '0';
-        counterElement.classList.add(this.decorateCSS("invisible"));
-
-      }
 
       if (nextElement) {
         nextElement.style.opacity = '0';
       }
-    }
-  
-    if (index === 0) {
-      currentElement.style.opacity = '1';
-      counterElement.classList.remove(this.decorateCSS("invisible"));
-    }
+      if (prevElement) {
+        prevElement.style.opacity = '0';
+      }
+    } 
   }
   updateCounter(id: number) {
     const counterElement = document.getElementById("counter");
     if (counterElement) {
       counterElement.innerText = id.toString();
-      counterElement.classList.remove(this.decorateCSS("invisible"));
     }
   }
 
   renderCard(featureItem: FeatureItem, index: number) {
-    setTimeout(() => this.setupObservers(), 0);
-
+    setTimeout(() => this.setupObservers(), 0); 
     return (
       <div 
         key={index} 
         id={`card-${index}`} 
         className={this.decorateCSS("card-item")}>
-        <img
-          alt="description image" 
-          className={this.decorateCSS("image")}
-          src={featureItem.image}
-        />
         {
-          featureItem.title &&(
+          featureItem.icon.toString().length!=0 &&(
+            <ComposerIcon name={featureItem.icon.toString()}
+             propsIcon={{ className: this.decorateCSS("icon")}}></ComposerIcon>
+          )
+        }
+        {
+          this.castToString(featureItem.title) &&(
             <h4 className={this.decorateCSS("sub-title")}>{featureItem.title}</h4>
           )
         }
         {
-          featureItem.description &&(
+          this.castToString(featureItem.description) &&(
             <h5 className={this.decorateCSS("sub-title-description")}>
             {featureItem.description}
           </h5>
           )
         }
-
       </div>
     );
   }
 
   render() {
+    const featureItems = this.castToObject<FeatureItem[]>("feature-items");
+    const mainTitle = this.castToString(this.getPropValue("main-title"));
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("main-title-content")}>
-              {
-                this.castToString(this.getPropValue("main-title"))&&(
-                  <h1 className={this.decorateCSS("main-title-content-text")}>
-                  {this.getPropValue("main-title")}
+            {mainTitle && (
+              <div className={this.decorateCSS("main-title-content")}>
+                <h1 className={this.decorateCSS("main-title-content-text")}>
+                  {mainTitle}
                 </h1>
+              </div>
+            )}
+            {featureItems.length > 0 && (
+              <div className={this.decorateCSS("sub-title-content")}>
+              {
+                this.getProp("is-counter-visible").value &&(
+                  <h4 id="counter" className={this.decorateCSS("counter")}>1</h4>
                 )
-              }          
-            </div>
-            <div className={this.decorateCSS("sub-title-content")}>
-              <h4 id="counter" className={this.decorateCSS("counter")}></h4>
+              }
               {this.castToObject<FeatureItem[]>("feature-items").map(
                 (featureItem: FeatureItem, index: number) =>
                   this.renderCard(featureItem, index)
               )}
-            </div>
+              </div>
+          )}
           </div>
         </div>
       </div>
