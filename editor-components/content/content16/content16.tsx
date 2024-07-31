@@ -6,20 +6,19 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "./content16.module.scss";
 
 type CardType = {
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  image?: string;
-  imageSubtitle?: string;
-  imageTitle?: string;
-  imageDescription?: string;
-  url?: string;
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  description: JSX.Element;
+  imageSubtitle: JSX.Element;
+  imageTitle: JSX.Element;
+  imageDescription: JSX.Element;
+  image: string;
+  url: string;
 };
 
 class Content16 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
       type: "string",
       key: "title",
@@ -285,28 +284,28 @@ class Content16 extends BaseContent {
                   {items.map((item: CardType, index: number) => (
                     <article
                       className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index ? this.decorateCSS("prevSlide") : ""} ${this.getComponentState("nextSlide") === index ? this.decorateCSS("nextSlide") : ""}`}
-                      key={`sld-16-${index}`}
+                      key={index}
                     >
                       <div className={this.decorateCSS("content-div")}>
                         {item.image && (
                           <div className={this.decorateCSS("img-div")}>
                             <a href={item.url} target="_blank" rel="noopener noreferrer">
                               <img
-                                alt={item.imageTitle || item.imageSubtitle}
+                                alt={this.castToString(item.imageTitle) || this.castToString(item.imageSubtitle)}
                                 src={item.image}
                                 className={this.decorateCSS("img")}
                               />
                             </a>
                           </div>
                         )}
-                        {(item.imageSubtitle || item.imageTitle) && (
+                        {(this.castToString(item.imageSubtitle) || this.castToString(item.imageTitle)) && (
                           <div className={this.decorateCSS("item-page")}>
-                            {item.imageSubtitle && (
+                            {this.castToString(item.imageSubtitle) && (
                               <h3 className={this.decorateCSS("first-item")}>
                                 {item.imageSubtitle}
                               </h3>
                             )}
-                            {item.imageTitle && (
+                            {this.castToString(item.imageTitle) && (
                               <h2 className={this.decorateCSS("item-title")}>
                                 {item.imageTitle}
                               </h2>
