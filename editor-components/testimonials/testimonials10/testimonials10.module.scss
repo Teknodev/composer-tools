@@ -1,284 +1,267 @@
 .container {
-    width: 100%;
-    height: 722px;
-    padding: 10px 20px;
-    background-color: var(--composer-html-background);
+  width: 100%;
+  height: 90vh;
+  padding: 20px 20px;
+  background-color: var(--composer-html-background);
 
-    .max-content {
-        max-width: var(--composer-content-width);
+  .max-content {
+    max-width: var(--composer-content-width);
+    display: flex;
+    margin: 0 auto;
+
+    .container2 {
+      display: flex;
+      margin: 0 auto;
+      justify-content: center;
+
+      .testimonials10 {
+        width: 100%;
         display: flex;
-        margin: auto;
+        flex-direction: row;
 
+        .left-content {
+          width: 50%;
+          padding-left: 200px;
+          margin: 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
 
-        .container2 {
-            display: flex;
-            margin: 0 auto;
-            justify-content: center;
+          .title {
+            margin-bottom: 5px;
+            color: var(--composer-font-color-primary);
+            font-size: 2rem;
+          }
 
-            .testimonials10 {
-                width: 100%;
+          .subtitle {
+            margin: 0;
+            color: var(--composer-font-color-primary);
+            font-size: 3.5rem;
+          }
+
+          .description {
+            color: var(--composer-font-color-primary);
+            font-size: 1.5rem;
+            margin-top: 5px;
+            margin-bottom: 0;
+          }
+
+          .button-group {
+            .buttonObject {
+              font-size: 1.5rem;
+              border: none;
+              color: var(--composer-secondary-color);
+              border: 1px solid var(--composer-secondary-color);
+              background-color: transparent;
+              padding: 10px 30px;
+              transition-duration: 0.3s easein-out;
+            }
+            .buttonObject:hover {
+              color: var(--composer-font-color-secondary);
+              background-color: var(--composer-secondary-color);
+            }
+          }
+        }
+
+        .slider-style {
+          position: relative;
+          margin-top: 50px;
+          left: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: var(--composer-font-color-primary);
+          width: 100%;
+          height: 140%;
+
+          .hiliteTitle {
+            font-size: 6.5rem;
+            position: absolute;
+            color: var(--composer-font-color-secondary);
+            right: 0;
+            bottom: -15px;
+          }
+
+          .slider-inner-div {
+            background: var(--composer-font-color-primary);
+            width: 600px !important;
+
+            .img-div {
+              .img {
+                margin-bottom: -25px;
+                border: 4px solid var(--composer-html-background);
+              }
+            }
+
+            .header-page {
+              width: 100%;
+              font-size: 1.5rem;
+              margin-left: 150px;
+              background-color: var(--composer-html-background);
+              padding: 30px;
+
+              .icons {
+                font-size: 3rem;
                 display: flex;
-                flex-direction: row;
+                justify-content: flex-end;
+                gap: 15px;
+                color: var(--composer-font-color-primary);
+              }
 
-                .left-content {
-                    width: 50%;
-                    padding-left: 150px;
-                    margin: 20px;
-                    height: 300px;
+              .iconquote {
+                position: absolute;
+                font-size: 7rem;
+                color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+                top: 200px;
+              }
 
-                    .title {
-                        color: var(--composer-primary-color);
-                        font-size: 20px;
-                    }
-
-                    .subtitle {
-                        color: var(--composer-primary-color);
-                        font-size: 50px;
-                        margin-top: 20px;
-                    }
-
-                    .description {
-                        color: var(--composer-font-color-primary);
-                        font-size: 20px;
-                        bottom: 60px;
-                        position: relative;
-                    }
-
-                    .button-group {
-                        .buttonObject {
-                            font-size: 20px;
-                            border: none;
-                            color: var(--composer-font-color-secondary);
-                            background-color: var(--composer-secondary-color);                            
-                            width: 45%;
-                            height: 50px;
-                            
-                        }
-                    :hover{
-                        color: var(--composer-font-color-primary);
-                        background-color: transparent;
-                        border: 1px solid var(--composer-secondary-color);
-                    }
-                    }
+              .card {
+                .text {
+                  text-align: start;
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-primary);
                 }
-
-                .slider-style {
-                    background: color-mix(in srgb, var(--composer-secondary-color), #fff 50%);
-                    width: 100%;
-                    height: 130%;
-                    margin-top: 50px;
-                    left: 20px;
-                    position: relative;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    .hiliteTitle {
-                        font-size: 90px;
-                        position: absolute;
-                        top: 600px;
-                        left: 580px;
-                        font-family: fantasy;
-                        color: var(--composer-primary-color);
-
-                    }
-
-                    .slider-inner-div {
-                        background: color-mix(in srgb, var(--composer-secondary-color), #fff 50%);
-                        width: 450px !important;
-
-                        .img-div {
-
-                            .img {
-                                margin-bottom: -25px;
-                                border: 4px solid var(--composer-html-background);
-                            }
-                        }
-
-                        .header-page {
-                            width: 20%;
-                            width: 100%;
-                            font-size: 15px;
-                            margin-left: 150px;
-                            background-color: var(--composer-html-background);
-                            padding: 30px;
-
-                            .icons {
-                                font-size: 30px;
-                                display: flex;
-                                justify-content: flex-end;
-                                gap: 15px;
-                                color: var(--composer-font-color-primary);
-                            }
-
-                            .iconquote {
-                                position: absolute;
-                                font-size: 9rem;
-                                color: color-mix(in srgb, var(--composer-tertiary-color), #fff 20%);
-                                top: 182px;
-                            }
-
-                            .card {
-                                .text {
-                                    font-size: 20px;
-                                    color: var(--composer-font-color-primary);
-                                }
-                                .author {
-                                    color:  var(--composer-font-color-primary);
-                                    font-size: 30px;
-
-                                }
-                                .badge{
-                                  color: var(--composer-font-color-primary);
-                                }
-                            }
-
-                        }
-
-                    }
-
-                    .slider {
-                        width: 800px;
-                        height: 400px;
-                        margin-bottom: 90px;
-                        margin-right: 70px;
-
-
-                    }
+                .author {
+                  color: var(--composer-font-color-primary);
+                  font-size: 2rem;
                 }
+                .position {
+                  color: var(--composer-font-color-primary);
+                  font-size: 1.5rem;
+                }
+              }
             }
+          }
+
+          .slider {
+            width: 800px;
+            height: 400px;
+            margin-bottom: 90px;
+            margin-right: 70px;
+          }
         }
+      }
     }
+  }
 }
- @media screen and (max-width: 1400px) {
-     .container {
-         height: 990px !important;
-         .max-content {
+@media screen and (max-width: 900px) {
+  .container {
+    .max-content {
+      .testimonials10 {
+        display: flex !important;
+        flex-direction: column !important;
 
-             .testimonials10 {
-                 display: flex !important;
-                 flex-direction: column !important;
-
-                 .left-content {
-                     width: 84% !important;
-                     padding: 0 !important;
-                     margin: 0 !important;
-                     .button-group{
-                         .buttonObject{
-                             width: 30% !important;
-                         }
-                     }
-                 }
-
-                 .slider-style {
-                     width: 50%;
-                     margin-top: 72px !important;
-                     left:-29px !important;
-                     height: 610px !important;
-                     .hiliteTitle{
-                        font-size: 84px !important;
-                         position: relative;
-                         top: 524px !important;
-                         left: 367px !important;
-
-                     }
-
-                     .slider-inner-div {
-                         width: auto;
-                         .img-div{
-                             position: relative;
-                             top: 19px;
-                             left: 55px;
-                             .img{
-                                 width: 30%;
-                             }
-                         }
-
-                         .header-page {
-                             width: 126% !important;
-                            
-
-                             .iconquote{
-                                 position: relative;
-                                 font-size: 5rem !important;
-                                 top: 150px !important;
-                             }
-                         }
-                     }
-                 }
-
-             }
-
-         }
-
-     }
- }
-
-
- @media screen and (max-width: 767px) {
-    .container {
-        height: 1200px !important;
-        .max-content {
-
-            .testimonials10 {
-                display: flex !important;
-                flex-direction: column !important;
-
-                .left-content {
-                    width: 32% !important;
-                    padding: 0 !important;
-                    .button-group{
-                        .buttonObject{
-                            width: 50% !important;
-                        }
-                    }
-                }
-
-                .slider-style {
-                    width: 50%;
-                    margin-top: 250px !important;
-                    left:-29px !important;
-                    height: 551px !important;
-
-                    .slider-inner-div {
-                        width: auto;
-                        .img-div{
-                            position: relative;
-                            width: 50% !important;
-                            z-index: 1;
-                            .img{                           
-                                width: 65%;
-                            }
-                        }
-
-                        .header-page {
-                            width: 70% !important;
-                            margin-left: 0 !important;
-                            position: relative;
-                            right: -25px;
-                            height: 500px;
-                            top: -125px;
-
-                            .card{
-                               position: relative;
-                               top: 130px;
-                            }
-
-                            .iconquote{
-                                font-size: 3rem !important;
-                                position: relative;
-                                top: 170px !important;
-
-                            }
-                            .icons{
-                                position: relative;
-                                top: 10px;
-                            }
-                        }
-                    }
-                }
-            }
+        .left-content {
+          padding: 0 !important;
+          margin: 0 !important;
         }
+
+        .slider-style {
+          left: -30px !important;
+          height: 600px !important;
+
+          .hiliteTitle {
+            font-size: 5rem !important;
+            position: relative;
+            top: 524px !important;
+            left: 367px !important;
+          }
+
+          .slider-inner-div {
+            width: auto;
+            .img-div {
+              position: relative;
+              top: 19px;
+              left: 55px;
+              .img {
+                width: 30%;
+              }
+            }
+
+            .header-page {
+              width: 126% !important;
+
+              .icons {
+                margin-right: 100px;
+              }
+              .card {
+                margin-right: 100px;
+              }
+
+              .iconquote {
+                position: relative;
+                font-size: 5rem !important;
+                top: 200px !important;
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
 
+@media screen and (max-width: 767px) {
+  .container {
+    height: 1200px !important;
+    .max-content {
+      .testimonials10 {
+        display: flex !important;
+        flex-direction: column !important;
+
+        .left-content {
+          width: 32% !important;
+          padding: 0 !important;
+          .button-group {
+            .buttonObject {
+              width: 50% !important;
+            }
+          }
+        }
+
+        .slider-style {
+          width: 50%;
+          margin-top: 250px !important;
+          left: -29px !important;
+          height: 551px !important;
+
+          .slider-inner-div {
+            width: auto;
+            .img-div {
+              position: relative;
+              width: 50% !important;
+              z-index: 1;
+              .img {
+                width: 65%;
+              }
+            }
+
+            .header-page {
+              width: 70% !important;
+              margin-left: 0 !important;
+              position: relative;
+              right: -25px;
+              height: 500px;
+              top: -125px;
+
+              .card {
+                position: relative;
+                top: 130px;
+              }
+
+              .iconquote {
+                font-size: 3rem !important;
+                position: relative;
+                top: 170px !important;
+              }
+              .icons {
+                position: relative;
+                top: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

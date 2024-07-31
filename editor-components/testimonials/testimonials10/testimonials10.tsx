@@ -9,14 +9,13 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import Slider from "react-slick";
 
 type CardData = {
- // leftMiddle: number;
-
+  // leftMiddle: number;
 };
 
 interface Button {
   buttonText: string;
   url: string;
-};
+}
 
 type Item = {
   [x: string]: string;
@@ -27,13 +26,13 @@ type Item = {
 class Testimonials10Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
-    
+
     this.addProp({
-        type: "icon",
-        key: "quoteicon",
-        displayer: " quoteicon",
-        value: "FaQuoteLeft",
-      });
+      type: "icon",
+      key: "quoteicon",
+      displayer: " quoteicon",
+      value: "FaQuoteLeft",
+    });
     this.addProp({
       type: "icon",
       key: "nexticon",
@@ -63,7 +62,8 @@ class Testimonials10Page extends Testimonials {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "I feel very happy and be proud to connect with this industry. i presume this is a very productive and professional industry.i wish very good luck & success for this industry",
+      value:
+        "I feel very happy and be proud to connect with this industry. i presume this is a very productive and professional industry.i wish very good luck & success for this industry",
     });
 
     this.addProp({
@@ -73,26 +73,25 @@ class Testimonials10Page extends Testimonials {
       value: "CLIENT SAYS",
     });
 
-    this.addProp(
-      {
-        type: "object",
-        key: "buttonObject",
-        displayer: "Button",
-        value: [
-          {
-            type: "string",
-            key: "buttonText",
-            displayer: "Button Text",
-            value: "Contact Us",
-          },
-          {
-            type: "page",
-            key: "url",
-            displayer: "Button Link",
-            value: "https://www.google.com/",
-          },
-        ],
-      });
+    this.addProp({
+      type: "object",
+      key: "buttonObject",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Contact Us",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Button Link",
+          value: "https://www.google.com/",
+        },
+      ],
+    });
     this.addProp({
       type: "array",
       key: "profile-itemList",
@@ -113,15 +112,15 @@ class Testimonials10Page extends Testimonials {
             {
               type: "string",
               key: "text",
-              displayer:"Description",
+              displayer: "Description",
               value:
                 "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
             {
               type: "string",
               key: "author",
-              value:"Alex Madson",
-              displayer:  "Name",
+              value: "Alex Madson",
+              displayer: "Name",
             },
             {
               type: "string",
@@ -267,7 +266,6 @@ class Testimonials10Page extends Testimonials {
     });
 
     this.setComponentState("slider-ref", React.createRef());
-
   }
   getName(): string {
     return "Testimonials 10";
@@ -282,7 +280,7 @@ class Testimonials10Page extends Testimonials {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      className: this.decorateCSS("slider")
+      className: this.decorateCSS("slider"),
     };
 
     return (
@@ -291,59 +289,102 @@ class Testimonials10Page extends Testimonials {
           <div className={this.decorateCSS("container2")}>
             <div className={this.decorateCSS("testimonials10")}>
               <div className={this.decorateCSS("left-content")}>
-                <h3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h3>
-                <h5 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h5>
-                <p className={this.decorateCSS("description")}>{this.getPropValue("description")} </p>
+                <h3 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h3>
+                <h5 className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </h5>
+                <p className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}{" "}
+                </p>
 
                 <div className={this.decorateCSS("button-group")}>
                   <ComposerLink
-
-                    path={this.castToObject<any>("buttonObject").url}>
+                    path={this.castToObject<any>("buttonObject").url}
+                  >
                     <div className={this.decorateCSS("buttonText")}>
-                      <button
-                        className={`${this.decorateCSS("buttonObject")}`}>
+                      <button className={`${this.decorateCSS("buttonObject")}`}>
                         {this.castToObject<any>("buttonObject").buttonText}
                       </button>
                     </div>
                   </ComposerLink>
-
                 </div>
               </div>
               <div className={this.decorateCSS("slider-style")}>
-                <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}
+                <ComposerSlider
+                  {...settings}
+                  ref={this.getComponentState("slider-ref")}
                 >
-                  {this.castToObject<Item[]>("profile-itemList").map((item: Item, index: number) => (
-                    <div className={this.decorateCSS("slider-inner-div")}
-                      key={index}
-                    >
-                      <div className={this.decorateCSS("img-div")}>
-                        <img
-                          alt=""
-                          src={item.badge}
-                          className={this.decorateCSS("img")}
-                        />
+                  {this.castToObject<Item[]>("profile-itemList").map(
+                    (item: Item, index: number) => (
+                      <div
+                        className={this.decorateCSS("slider-inner-div")}
+                        key={index}
+                      >
+                        <div className={this.decorateCSS("img-div")}>
+                          <img
+                            alt=""
+                            src={item.badge}
+                            className={this.decorateCSS("img")}
+                          />
+                        </div>
+                        <div className={this.decorateCSS("header-page")}>
+                          <div className={this.decorateCSS("icons")}>
+                            <ComposerIcon
+                              name={this.getPropValue("previcon")}
+                              propsIcon={{
+                                className: this.decorateCSS("previcon"),
+                                onClick: () =>
+                                  this.getComponentState(
+                                    "slider-ref"
+                                  ).current.slickPrev(),
+                              }}
+                            />
+                            <ComposerIcon
+                              name={this.getPropValue("nexticon")}
+                              propsIcon={{
+                                className: this.decorateCSS("nexticon"),
+                                onClick: () =>
+                                  this.getComponentState(
+                                    "slider-ref"
+                                  ).current.slickNext(),
+                              }}
+                            />
+                          </div>
+                          <div className={this.decorateCSS("iconquote")}>
+                            <ComposerIcon
+                              name={this.getPropValue("quoteicon")}
+                              propsIcon={{
+                                className: this.decorateCSS("quoteicon"),
+                                onClick: () =>
+                                  this.getComponentState(
+                                    "slider-ref"
+                                  ).current.slickNext(),
+                              }}
+                            />
+                          </div>
+                          <div className={this.decorateCSS("card")}>
+                            <p className={this.decorateCSS("text")}>
+                              {item.text}
+                            </p>
+
+                            <h2 className={this.decorateCSS("author")}>
+                              {item.author}
+                            </h2>
+
+                            <h3 className={this.decorateCSS("position")}>
+                              {item.position}
+                            </h3>
+                          </div>
+                        </div>
                       </div>
-                      <div className={this.decorateCSS("header-page")}>
-                        <div className={this.decorateCSS("icons")}>
-                          <ComposerIcon name={this.getPropValue("previcon")} propsIcon={{ className: this.decorateCSS("previcon"), onClick: () => this.getComponentState("slider-ref").current.slickPrev() }} />
-                          <ComposerIcon name={this.getPropValue("nexticon")} propsIcon={{ className: this.decorateCSS("nexticon"), onClick: () => this.getComponentState("slider-ref").current.slickNext() }} />
-                        </div>  
-                        <div className={this.decorateCSS("iconquote")}>
-                        <ComposerIcon name={this.getPropValue("quoteicon")} propsIcon={{ className: this.decorateCSS("quoteicon"), onClick: () => this.getComponentState("slider-ref").current.slickNext() }} />
-                        </div>
-                        <div className={this.decorateCSS("card")}>                   
-                        <p className={this.decorateCSS("text")}>{item.text}</p>
-                        
-                        <h2 className={this.decorateCSS("author")}>{item.author}</h2>
-                        
-                        <h3 className={this.decorateCSS("position")}>{item.position}</h3>
-                        
-                        </div>
-                        </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </ComposerSlider>
-                <span className={this.decorateCSS("hiliteTitle")}>{this.getPropValue("hiliteTitle")}</span>
+                <span className={this.decorateCSS("hiliteTitle")}>
+                  {this.getPropValue("hiliteTitle")}
+                </span>
               </div>
             </div>
           </div>
@@ -352,6 +393,5 @@ class Testimonials10Page extends Testimonials {
     );
   }
 }
-
 
 export default Testimonials10Page;
