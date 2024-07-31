@@ -166,6 +166,8 @@ class Content8 extends BaseContent {
     return "Content 8";
   }
 
+  //deneme
+
   render() {
     return (
       <div className={this.decorateCSS("container")}>
