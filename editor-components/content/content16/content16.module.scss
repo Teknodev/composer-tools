@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   padding: 30px;
+  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
