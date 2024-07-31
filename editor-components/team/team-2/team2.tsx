@@ -1,23 +1,84 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Team } from "../../EditorComponent";
+import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team2.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type Platform={
+  icon: string;
+  url: string;
+}
 
 type TeamCardMember = {
   name: string;
   description: string;
   image: string;
   buttonText: string;
-  iconLeft: string;
-  iconCenter: string;
-  iconRight: string;
-  iconLinkLeft: string;
-  iconLinkCenter: string;
-  iconLinkRight: string;
+  platforms: { icon: string; url: string }[];
 };
 class Team2 extends Team {
   constructor(props?: any) {
     super(props, styles);
+    let twitter: TypeUsableComponentProps = {
+      type: "object",
+      key: "twitter",
+      displayer: "Twitter",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FaTwitterSquare",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+
+    let facebook: TypeUsableComponentProps = {
+      type: "object",
+      key: "facebook",
+      displayer: "Platform",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FaFacebookSquare",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+
+    let instagram: TypeUsableComponentProps = {
+      type: "object",
+      key: "instagram",
+      displayer: "Platform",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FiInstagram",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
+
     this.addProp({
       type: "string",
       key: "title",
@@ -58,46 +119,20 @@ class Team2 extends Team {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1682518974394",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a8?alt=media&timestamp=1719483639146",
               displayer: "Image",
             },
             {
-              type: "image",
-              key: "iconLeft",
-              value: "https://cdn-icons-png.flaticon.com/512/1400/1400829.png",
-              displayer: "Left Icon",
+              type: "array",
+              key: "platforms",
+              displayer: "Sosial Medias",
+              value: [
+                facebook,
+                twitter,
+                instagram,
+              ],
             },
-            {
-              type: "image",
-              key: "iconCenter",
-              value:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Facebook_icon_%28black%29.svg/1024px-Facebook_icon_%28black%29.svg.png",
-              displayer: "Center Icon",
-            },
-            {
-              type: "image",
-              key: "iconRight",
-              value: "https://cdn-icons-png.flaticon.com/512/60/60580.png",
-              displayer: "Right Icon",
-            },
-            {
-              type: "page",
-              key: "iconLinkLeft",
-              value: "",
-              displayer: "Left Icon Link",
-            },
-            {
-              type: "page",
-              key: "iconLinkCenter",
-              value: "",
-              displayer: "Center Icon Link",
-            },
-            {
-              type: "page",
-              key: "iconLinkRight",
-              value: "",
-              displayer: "Right Icon Link",
-            },
+
           ],
         },
         {
@@ -122,46 +157,20 @@ class Team2 extends Team {
               type: "image",
               key: "image",
               value:
-                "https://images.pexels.com/photos/1800456/pexels-photo-1800456.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a4?alt=media&timestamp=1719483639146",
               displayer: "Image",
             },
             {
-              type: "image",
-              key: "iconLeft",
-              value: "https://cdn-icons-png.flaticon.com/512/1400/1400829.png",
-              displayer: "Left Icon",
+              type: "array",
+              key: "platforms",
+              displayer: "Sosial Medias",
+              value: [
+                facebook,
+                twitter,
+                instagram,
+              ],
             },
-            {
-              type: "image",
-              key: "iconCenter",
-              value:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Facebook_icon_%28black%29.svg/1024px-Facebook_icon_%28black%29.svg.png",
-              displayer: "Center Icon",
-            },
-            {
-              type: "image",
-              key: "iconRight",
-              value: "https://cdn-icons-png.flaticon.com/512/60/60580.png",
-              displayer: "Right Icon",
-            },
-            {
-              type: "page",
-              key: "iconLinkLeft",
-              value: "",
-              displayer: "Left Icon Link",
-            },
-            {
-              type: "page",
-              key: "iconLinkCenter",
-              value: "",
-              displayer: "Center Icon Link",
-            },
-            {
-              type: "page",
-              key: "iconLinkRight",
-              value: "",
-              displayer: "Right Icon Link",
-            },
+
           ],
         },
         {
@@ -186,58 +195,23 @@ class Team2 extends Team {
               type: "image",
               key: "image",
               value:
-                "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a0?alt=media&timestamp=1719483639146",
               displayer: "Image",
             },
             {
-              type: "image",
-              key: "iconLeft",
-              value: "https://cdn-icons-png.flaticon.com/512/1400/1400829.png",
-              displayer: "Left Icon",
+              type: "array",
+              key: "platforms",
+              displayer: "Sosial Medias",
+              value: [
+                facebook,
+                twitter,
+                instagram,
+              ],
             },
-            {
-              type: "image",
-              key: "iconCenter",
-              value:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Facebook_icon_%28black%29.svg/1024px-Facebook_icon_%28black%29.svg.png",
-              displayer: "Center Icon",
-            },
-            {
-              type: "image",
-              key: "iconRight",
-              value: "https://cdn-icons-png.flaticon.com/512/60/60580.png",
-              displayer: "Right Icon",
-            },
-            {
-              type: "page",
-              key: "iconLinkLeft",
-              value: "",
-              displayer: "Left Icon Link",
-            },
-            {
-              type: "page",
-              key: "iconLinkCenter",
-              value: "",
-              displayer: "Center Icon Link",
-            },
-            {
-              type: "page",
-              key: "iconLinkRight",
-              value: "",
-              displayer: "Right Icon Link",
-            },
+
           ],
         },
       ],
-    });
-    this.addProp({
-      type: "select",
-      key: "select",
-      displayer: "Location of Border",
-      value: "Bottom",
-      additionalParams: {
-        selectItems: ["None", "Top", "Bottom", "All Around"],
-      },
     });
     this.addProp({
       type: "number",
@@ -252,7 +226,7 @@ class Team2 extends Team {
   }
 
   render() {
-    const selectValue = this.getPropValue("select");
+   
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -272,15 +246,7 @@ class Team2 extends Team {
                   }}
                 >
                   <div
-                    className={`${this.decorateCSS("team")} ${
-                      selectValue === "Top"
-                        ? this.decorateCSS("border-top")
-                        : selectValue === "Bottom"
-                        ? this.decorateCSS("border-bottom")
-                        : selectValue === "All Around"
-                        ? this.decorateCSS("border-all")
-                        : ""
-                    }`}
+                    className={`${this.decorateCSS("team")}`}
                     key={index}
                   >
                     <img
@@ -292,16 +258,20 @@ class Team2 extends Team {
                     <p className={this.decorateCSS("long-text")}>
                       {team.description}
                     </p>
-                    <div className={this.decorateCSS("social")}>
-                      <ComposerLink path={team.iconLinkLeft}>
-                        <img src={team.iconLeft} alt=""></img>
-                      </ComposerLink>
-                      <ComposerLink path={team.iconLinkCenter}>
-                        <img src={team.iconCenter} alt=""></img>
-                      </ComposerLink>
-                      <ComposerLink path={team.iconLinkRight}>
-                        <img src={team.iconRight} alt=""></img>
-                      </ComposerLink>
+                    <div className={this.decorateCSS("icon-group")}>
+
+                    {team.platforms && team.platforms.map(
+                        (item: Platform, indexPlatforms: number) => {
+                          return(
+                            <ComposerLink key={indexPlatforms} path={item.url}>
+                          <ComposerIcon
+                            name={item.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon")
+                            }}/>
+                          </ComposerLink>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
