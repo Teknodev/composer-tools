@@ -1,153 +1,193 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content18.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Item = {
-  image: string;
+type ProgressItem = {
+  progressTitle: string;
+  progress: number;
+  progressText: JSX.Element;
+  icon: string;
 };
-type ISection = {
-  section: Item[];
-};
+
 class Content18 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "image",
+      key: "image1",
+      displayer: "1st Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890e?alt=media&timestamp=1719564433797",
+    });
+    this.addProp({
+      type: "image",
+      key: "image2",
+      displayer: "2nd Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890f?alt=media&timestamp=1719564433797",
+    });
+    this.addProp({
+      type: "string",
+      key: "badge",
+      displayer: "Badge",
+      value: "Why Choose Us",
+    });
     this.addProp({
       type: "string",
       key: "title",
-      value: "Company news",
       displayer: "Title",
+      value: "Committed to Your Mental Well-being",
     });
     this.addProp({
       type: "string",
       key: "description",
-      value:
-        "We publish our latest news, upcoming events, and special offers",
       displayer: "Description",
+      value:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     });
     this.addProp({
       type: "array",
-      key: "card-items",
-      displayer: "Card Items",
+      key: "items",
+      displayer: "Items",
       value: [
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "item",
+          displayer: "Item",
           value: [
             {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://static.tildacdn.com/tild6530-3636-4835-b536-356533363530/erik-lucatero-d2MSDu.jpg",
-                      displayer: "Image",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "Rock climber Adrien Sragielli speaks to the La Roca magazine after the third victory in international competition",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "Canadian rock climber Adrien Sragielli gives an interview",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "09.04.2021",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://static.tildacdn.com/tild3463-3736-4766-a566-313332616665/bady-qb-VmYZe_yqxL0-.jpg",
-                      displayer: "Image",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "Our new big franchise store in Ottawa, at Vanier. Join our opening!",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "As a software developer, my main responsibility is to design, code, and test software programs that meet the specific needs of clients or organizations.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "14.03.2021",
-                      displayer: "Author",
-                    },
-                    
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://static.tildacdn.com/tild3630-6361-4236-a430-336631356236/bruno-kelzer-b5R-Eet.jpg",
-                      displayer: "Image",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "Kids Sportive is a new program for juniors aged 15-19 in sport climbing. Classes are available in the Nepean district",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "23.02.2021",
-                      displayer: "Author",
-                    },
-                    
-                  ],
-                },
-              ],
+              type: "string",
+              key: "progressTitle",
+              displayer: "Progress Title",
+              value: "Confidentiality",
+            },
+            {
+              type: "number",
+              key: "progress",
+              displayer: "Progress",
+              value: 90,
+            },
+            {
+              type: "string",
+              key: "progressText",
+              displayer: "Progress Text",
+              value: "90%",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "CgPlayButtonO",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "progressTitle",
+              displayer: "Progress Title",
+              value: "Consumer Satisfaction",
+            },
+            {
+              type: "number",
+              key: "progress",
+              displayer: "Progress",
+              value: 95,
+            },
+
+            {
+              type: "string",
+              key: "progressText",
+              displayer: "Progress Text",
+              value: "95%",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "CgPlayButtonO",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "progressTitle",
+              displayer: "Progress Title",
+              value: "Therapy",
+            },
+            {
+              type: "number",
+              key: "progress",
+              displayer: "Progress",
+              value: 98,
+            },
+
+            {
+              type: "string",
+              key: "progressText",
+              displayer: "Progress Text",
+              value: "98%",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "CgPlayButtonO",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "progressTitle",
+              displayer: "Progress Title",
+              value: "Counseling",
+            },
+            {
+              type: "number",
+              key: "progress",
+              displayer: "Progress",
+              value: 85,
+            },
+
+            {
+              type: "string",
+              key: "progressText",
+              displayer: "Progress Text",
+              value: "85%",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "icon",
+              value: "CgPlayButtonO",
             },
           ],
         },
       ],
     });
+    this.addProp({
+      type: "boolean",
+      key: "progress-text-is-primary",
+      displayer: "progress-text-is-primary",
+      value: true,
+    });
   }
-
   getName(): string {
     return "Content 18";
   }
@@ -156,36 +196,75 @@ class Content18 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials9")}>
-            <div className={this.decorateCSS("title-card")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
+          <div className={this.decorateCSS("page")}>
+            <div className={this.decorateCSS("left-page")}>
+              <div className={this.decorateCSS("up-image")}>
+                <img
+                  className={this.decorateCSS("image1")}
+                  src={this.getPropValue("image1")}
+                  alt=""
+                />
+              </div>
+              <div className={this.decorateCSS("down-image")}>
+                <img
+                  className={this.decorateCSS("image2")}
+                  src={this.getPropValue("image2")}
+                  alt=""
+                />
+              </div>
             </div>
-            <section>
-              {this.castToObject<ISection[]>("card-items").map(
-                (section: any, index: number) => (
-                  <div
-                    key={`testimonials9-${index}`}
-                    className={this.decorateCSS("card-child")}
-                  >
-                    {section.items.map((item: any, indexCard: number) => (
+            <div className={this.decorateCSS("right-page")}>
+              <div className={this.decorateCSS("badge")}>
+                {this.getPropValue("badge")}
+              </div>
+              <div className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </div>
+              <p className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </p>
+
+              <div className={this.decorateCSS("progress-container")}>
+                {this.castToObject<ProgressItem[]>("items").map(
+                  (item: ProgressItem, index: number) => (
+                    <div className={this.decorateCSS("item")} key={index}>
                       <div
-                        key={`testimonials9-card-${indexCard}`}
-                        className={this.decorateCSS("card")}
+                        className={this.decorateCSS("progress-title-container")}
                       >
-                      
-                        <img width={200} height={140} src={item.value[0].value} alt=""/>
-                        <div className={this.decorateCSS("content")}>
-                          <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
-                          <h5 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h5>
-                          <h4 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h4>
+                        <div
+                          className={this.decorateCSS("progress-title-icon")}
+                        >
+                          <ComposerIcon
+                            name={item.icon}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          />
+                        </div>
+                        <div className={this.decorateCSS("progress-title")}>
+                          {item.progressTitle}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                )
-              )}
-            </section>
+                      {this.castToString(item.progressText) && (
+                        <div
+                          className={this.decorateCSS("progress-bar-container")}
+                        >
+                          <div className={this.decorateCSS("progress-bar")}>
+                            <div
+                              className={this.decorateCSS("progress")}
+                              style={{
+                                width: `${item.progress}%`,
+                              }}
+                            />
+                          </div>
+                          <span className={this.decorateCSS("progress-text")}>
+                            {item.progressText}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

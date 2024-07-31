@@ -10,11 +10,11 @@ type Slide = {
   title: string;
   description: string;
   firstButton: {
-    value: string;
-  }[];
+    buttontext: string;
+  };
   secondButton: {
-    value: string;
-  }[];
+    buttontext: string;
+  };
 };
 
 class HeaderComponent14 extends BaseHeader {
@@ -49,7 +49,7 @@ class HeaderComponent14 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e4?alt=media&timestamp=1693304455863",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619109bd2970002c625a57?alt=media&timestamp=1719483639150",
             },
 
             {
@@ -60,13 +60,13 @@ class HeaderComponent14 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttontext",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button Link",
-                  key: "button-url",
+                  key: "buttonurl",
                   value: "",
                 },
               ],
@@ -79,13 +79,13 @@ class HeaderComponent14 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttontext",
                   value: "READ MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button Link",
-                  key: "button-url",
+                  key: "buttonurl",
                   value: "",
                 },
               ],
@@ -115,7 +115,7 @@ class HeaderComponent14 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e3?alt=media&timestamp=1693304455863",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619130bd2970002c625a77?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -125,13 +125,13 @@ class HeaderComponent14 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttontext",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button Link",
-                  key: "button-url",
+                  key: "buttonurl",
                   value: "",
                 },
               ],
@@ -144,13 +144,13 @@ class HeaderComponent14 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttontext",
                   value: "READ MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button Link",
-                  key: "button-url",
+                  key: "buttonurl",
                   value: "",
                 },
               ],
@@ -180,7 +180,7 @@ class HeaderComponent14 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc69e057bdf002c2ad5e2?alt=media&timestamp=1693304455863",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619109bd2970002c625a57?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -190,13 +190,13 @@ class HeaderComponent14 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttontext",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button Link",
-                  key: "button-url",
+                  key: "buttonurl",
                   value: "",
                 },
               ],
@@ -209,13 +209,13 @@ class HeaderComponent14 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttontext",
                   value: "READ MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button Link",
-                  key: "button-url",
+                  key: "buttonurl",
                   value: "",
                 },
               ],
@@ -263,10 +263,10 @@ class HeaderComponent14 extends BaseHeader {
                         </h3>
                         <div className={this.decorateCSS("buttons")}>
                           <button className={this.decorateCSS("firstButton")}>
-                            {item.firstButton[0].value}
+                            {item.firstButton.buttontext}
                           </button>
                           <button className={this.decorateCSS("secondButton")}>
-                            {item.secondButton[0].value}
+                            {item.secondButton.buttontext}
                           </button>
                         </div>
                       </div>

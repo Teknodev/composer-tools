@@ -46,7 +46,7 @@ class Team16 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/treatment/all-on-4-img.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b773bd2970002c628549?alt=media&timestamp=1719558632841",
             },
           ],
         },
@@ -78,7 +78,7 @@ class Team16 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/treatment/gum-contouring-img.jpeg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b773bd2970002c62854b?alt=media&timestamp=1719558632841",
             },
           ],
         },
@@ -110,14 +110,14 @@ class Team16 extends Team {
                 key: "icon",
                 displayer: "Icon",
                 value:
-                  "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/treatment/dental-veneer-img.jpg",
+                  "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b773bd2970002c62854a?alt=media&timestamp=1719558632841",
               },
             {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/treatment/dental-veneer-img.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b773bd2970002c62854a?alt=media&timestamp=1719558632841",
             },
           ],
         },

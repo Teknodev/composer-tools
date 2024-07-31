@@ -38,7 +38,7 @@ class Team14 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628416?alt=media&timestamp=1719558632841",
             },
           ],
         },
@@ -64,7 +64,7 @@ class Team14 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/2787341/pexels-photo-2787341.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628418?alt=media&timestamp=1719558632841",
             },
           ],
         },
@@ -90,7 +90,7 @@ class Team14 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628417?alt=media&timestamp=1719558632841",
             },
           ],
         },
