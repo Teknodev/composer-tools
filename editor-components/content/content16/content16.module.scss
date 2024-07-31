@@ -16,7 +16,7 @@
       margin-bottom: 20px; 
       overflow: hidden;
       white-space: nowrap;
-      animation: title-appear 1.5s steps(20) forwards;
+      
     }
 
     .subtitle {
@@ -49,7 +49,7 @@
         .carousel {
           .slider-inner-div {
             border-radius: 10px;
-            animation: slide-up 1.5s ease-out forwards;
+         
 
             .content-div {
               width: 100%;
@@ -120,24 +120,6 @@
         }
       }
     }
-  }
-}
-
-@keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes title-appear {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
   }
 }
 

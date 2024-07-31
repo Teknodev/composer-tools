@@ -10,9 +10,9 @@ type CardType = {
   subtitle?: string;
   description?: string;
   image?: string;
-  image_subtitle?: string;
-  image_title?: string;
-  image_description?: string;
+  imageSubtitle?: string;
+  imageTitle?: string;
+  imageDescription?: string;
   url?: string;
 };
 
@@ -132,6 +132,68 @@ class Content16 extends BaseContent {
             },
           ],
         },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imageSubtitle",
+              displayer: "Image Subtitle",
+              value: "Dec 15, 2022  /  News",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Image Title",
+              value: "Nature is Good",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a9adf82f8a5b002ce7303c?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imageSubtitle",
+              displayer: "Image Subtitle",
+              value: "Feb 14, 2021  /  News",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Image Title",
+              value: "New Day New You",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a9ae492f8a5b002ce73048?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
       ],
     });
 
@@ -189,27 +251,27 @@ class Content16 extends BaseContent {
         );
       },
     };
-
+    
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+    const isTitleExist = this.castToString(title);
+    const isSubTitleExist = this.castToString(subtitle);
     const items = this.castToObject<CardType[]>("items").filter(
-      (item: CardType) => item.image || item.image_title || item.image_subtitle || item.url
+      (item: CardType) => item.image || item.imageTitle || item.imageSubtitle || item.url
     );
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {(title || subtitle) && (
+          {(isTitleExist || isSubTitleExist) && (
             <header>
-              {title && (
+              {isTitleExist && (
                 <h1 className={this.decorateCSS("title")}>
                   {title}
                 </h1>
               )}
-              {title && subtitle && (
                 <hr className={this.decorateCSS("faint-line")} />
-              )}
-              {subtitle && (
+              {isSubTitleExist && (
                 <h2 className={this.decorateCSS("subtitle")}>
                   {subtitle}
                 </h2>
@@ -230,23 +292,23 @@ class Content16 extends BaseContent {
                           <div className={this.decorateCSS("img-div")}>
                             <a href={item.url} target="_blank" rel="noopener noreferrer">
                               <img
-                                alt={item.image_title || item.image_subtitle}
+                                alt={item.imageTitle || item.imageSubtitle}
                                 src={item.image}
                                 className={this.decorateCSS("img")}
                               />
                             </a>
                           </div>
                         )}
-                        {(item.image_subtitle || item.image_title) && (
+                        {(item.imageSubtitle || item.imageTitle) && (
                           <div className={this.decorateCSS("item-page")}>
-                            {item.image_subtitle && (
+                            {item.imageSubtitle && (
                               <h3 className={this.decorateCSS("first-item")}>
-                                {item.image_subtitle}
+                                {item.imageSubtitle}
                               </h3>
                             )}
-                            {item.image_title && (
+                            {item.imageTitle && (
                               <h2 className={this.decorateCSS("item-title")}>
-                                {item.image_title}
+                                {item.imageTitle}
                               </h2>
                             )}
                           </div>
