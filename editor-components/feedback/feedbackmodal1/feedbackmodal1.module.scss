@@ -3,7 +3,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: var (--composer-html-background);
   font-family: 'Arial', sans-serif;
   transition: background-color 0.3s ease;
 
@@ -12,30 +12,40 @@
     align-items: center;
     border-bottom: 1px solid #eee;
     padding-bottom: 20px;
+    position: relative;
 
     .icon {
       width: 30px;
       height: 30px;
+      color: var(--composer-primary-color);
     }
 
     .feedbackModalHeaderh1 {
       margin: 0;
       font-size: 1.5rem;
       padding-left: 7px;
+      flex-grow: 1;
     }
 
     .feedbackModalCloseButton {
-      justify-content: end;
-      background: white;
+      background-color:  var (--composer-html-background);
       border: none;
       font-size: 2rem;
       cursor: pointer;
-      padding-left: 220px;
+      position: absolute;
+      right: 0%;
+      top: 30%;
+      transform: translateY(-50%);
+      color: var (--composer-html-background);
+      .close_icon{
+        color: black;
+      }
     }
   }
 
+
   .headerContent {
-    padding-bottom: 10px !important;
+    
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 20px;
@@ -54,7 +64,7 @@
     p {
       text-align: center;
       font-size: 1rem;
-      color: #555;
+      color:  var(--composer-font-color-primary);
       margin-bottom: 20px;
     }
   }
@@ -64,7 +74,7 @@
     justify-content: space-around;
     flex-direction: row;
     margin-bottom: 20px;
-
+  
     .feedbackModalEmoji {
       position: relative;
       cursor: pointer;
@@ -75,101 +85,97 @@
       border-radius: 50%;
       transition: background-color 0.3s, transform 0.3s;
       background-color: #d2d1d13a;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-        z-index: -1;
-      }
-
+  
+      &::before,
       &::after {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 160px;
-        height: 160px;
         border-radius: 50%;
         background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
         z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s;
       }
-
+  
+      &::before {
+        width: 80px;
+        height: 80px;
+      }
+  
+      &::after {
+        width: 100px;
+        height: 100px;
+      }
+  
       &.selected {
         border: 2px solid currentColor;
       }
-
+  
       .feedbackModalEmojiIcon {
         align-items: center;
         font-size: 2.5rem;
         filter: grayscale(100%);
         transition: filter 0.3s;
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
       }
-
+  
       .feedbackModalEmojiLabel {
         margin-top: 5px;
         font-size: 0.75rem;
       }
-
+  
       &:hover {
         background: linear-gradient(to bottom, #f6df6d, #76dca3);
         transform: scale(1.1);
-      }
-
-      &:hover .feedbackModalEmojiIcon {
-        filter: grayscale(0%);
+  
+        &::before,
+        &::after {
+          opacity: 1;
+        }
+  
+        .feedbackModalEmojiIcon {
+          filter: grayscale(0%);
+        }
       }
     }
   }
+  
 
   .contact-form {
-    padding: 20px;
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin-top: 40px;
     transition: 1s;
-    flex-direction: column;
+    display: flex;
     width: 100%;
-    height: fit-content;
-    padding: 20px 0 20px 0;
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      gap: 20px;
-      background: rgba(250, 250, 250, 0.664);
-      border-radius: var(--composer-border-radius);
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+  
       .input {
-        padding: 16px 10px;
-        border-radius: 6px;
-        background: rgba(250, 250, 250, 0.7);
-        border: 1px solid #8e8e8e91;
-        resize: none;
-
+        position: relative;
+        width: 360px;
+        height: 95px;
+        border-radius:  var(--composer-border-radius);;
+        border: 0.5px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
+        background: var(--composer-html-background);
+        color: var(--composer-font-color-primary);
+        padding-bottom: 55px;
+        padding-left: 10px;
+  
         &:focus {
-          outline-color: var(--composer-primary-color);
+          outline-color: var(--composer-secondary-color);
         }
       }
-
-      .error-message {
-        color: red;
-        font-size: 0.6rem;
-        margin-top: 3px;
-      }
-    }
+  
+      
+    
   }
 
   .feedbackModalComment {
@@ -182,23 +188,21 @@
     margin-bottom: 20px;
   }
 
-  .feedbackModalSubmit {
+  .button {
     width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background: linear-gradient(to bottom right, #418d7c, #28a745);
-    color: #fff;
+    background: var(--composer-secondary-color);
+    color: var(--composer-font-color-secondary);
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s;
 
-    &:hover {
-      background: linear-gradient(to bottom right, #418d7c, #218838);
-    }
+    
   }
 
-  @media (max-width: 768px) { /* Tablet */
+  @media (max-width: 768px) { 
     width: 90%;
     padding: 15px;
 
@@ -245,7 +249,7 @@
     }
   }
 
-  @media (max-width: 480px) { /* Mobile */
+  @media (max-width: 480px) { 
     width: 95%;
     padding: 10px;
 
