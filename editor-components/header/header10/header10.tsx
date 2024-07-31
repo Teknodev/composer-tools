@@ -5,19 +5,20 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-class Header10 extends BaseHeader {
-  constructor(props?: any) {
-    super(props, styles);
-
-    type SliderObject = {
+type SliderObject = {
       title: string;
       description: string;
-      text: string;
+      imageTitle: string;
       image: string;
       subtitle: string;
       description1: string;
       icons: { icon: string, url: string }[],
     }
+
+class Header10 extends BaseHeader {
+  constructor(props?: any) {
+    super(props, styles);
+ 
     this.addProp({
       type: "array",
       key: "button",
@@ -75,7 +76,7 @@ class Header10 extends BaseHeader {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaFacebook"
+          value: "FaFacebookF"
         },
         {
           type: "page",
@@ -110,19 +111,19 @@ class Header10 extends BaseHeader {
 
     this.addProp({
       type: "icon",
-      key: "next_icon",
+      key: "nextIcon",
       displayer: "Next icon",
-      value: "IoCaretForwardSharp ",
+      value: "IoCaretForwardCircleSharp",
     });
     this.addProp({
       type: "icon",
-      key: "prev_icon",
+      key: "prevIcon",
       displayer: "Prev icon",
-      value: "IoCaretBackSharp",
+      value: "IoCaretBackCircleSharp",
     });
     this.addProp({
       type: "icon",
-      key: "ampersand_icon",
+      key: "ampersandIcon",
       displayer: "Ampersand icon",
       value: "TbAmpersand",
     });
@@ -145,7 +146,7 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Manificent ",
+              value: "Magnificent ",
             },
             {
               type: "string",
@@ -155,7 +156,7 @@ class Header10 extends BaseHeader {
             },
             {
               type: "string",
-              key: "imagetitle",
+              key: "imageTitle",
               displayer: "Image Title",
               value: "Structures ",
             },
@@ -176,12 +177,6 @@ class Header10 extends BaseHeader {
               key: "description1",
               displayer: "Description 1",
               value: "We are 24/7 available through our social media. Follow us to stay up to date",
-            },
-            {
-              type: "string",
-              key: "mobiltitle",
-              displayer: "Mobil Title",
-              value: "Manificent Structures",
             },
             {
               type: "array",
@@ -205,7 +200,7 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Manificent ",
+              value: "Magnificent ",
             },
             {
               type: "string",
@@ -215,7 +210,7 @@ class Header10 extends BaseHeader {
             },
             {
               type: "string",
-              key: "imagetitle",
+              key: "imageTitle",
               displayer: "Image Title",
               value: "Structures ",
             },
@@ -236,12 +231,6 @@ class Header10 extends BaseHeader {
               key: "description1",
               displayer: "Description 1",
               value: "We are 24/7 available through our social media. Follow us to stay up to date",
-            },
-            {
-              type: "string",
-              key: "mobiltitle",
-              displayer: "Mobil Title",
-              value: "Manificent Structures",
             },
             {
               type: "array",
@@ -270,12 +259,12 @@ class Header10 extends BaseHeader {
     const settings = {
       dots: false,
       infinite: true,
-      speed: 500,
-      autoplay: false,
+      speed: 3000,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-    };
+    };    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -285,42 +274,36 @@ class Header10 extends BaseHeader {
             ref={this.getComponentState("slider-ref")}
             className={this.decorateCSS("carousel")}
           >
-            {this.getPropValue("slider").map((item: any, indexSlider: number) => (
+            {this.castToObject<SliderObject[]>("slider").map((item: SliderObject, indexSlider: number) => (
               <div className={this.decorateCSS("content")} key={indexSlider}>
 
                 <div className={this.decorateCSS("left")}>
-                  <div className={this.decorateCSS("left-content")}>
-                    <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
-                    <h1 className={this.decorateCSS("mobiltitle")}>{item.getPropValue("mobiltitle")}</h1>
-                    <p className={this.decorateCSS("description")}>{item.getPropValue("description")}</p>
-                    <div className={this.decorateCSS("slide-number")}>{String(indexSlider + 1).padStart(2, '0')}</div>
-  
-                    <ComposerIcon
-                      name={this.getPropValue("prev_icon")}
-                      propsIcon={{
-                        className: `${this.decorateCSS(
-                          "prev_icon"
-                        )} 
-                        }`,
-                        size: 45,
-                        onClick: () => {
-                          this.getComponentState("slider-ref").current.slickPrev();
-                        },
-                      }}
-                    />
-                    <ComposerIcon
-                      name={this.getPropValue("next_icon")}
-                      propsIcon={{
-                        className: `${this.decorateCSS(
-                          "next_icon"
-                        )} 
-                        }`,
-                        size: 45,
-                        onClick: () => {
-                          this.getComponentState("slider-ref").current.slickNext();
-                        },
-                      }}
-                    />
+                  <div className={this.decorateCSS("left-page-content")}>
+                    <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+                    <p className={this.decorateCSS("description")}>{item.description}</p>
+                    <div className={this.decorateCSS("nav-buttons")}>
+                      <div className={this.decorateCSS("slide_number")}>{String(indexSlider + 1).padStart(2, '0')}</div>
+                      <ComposerIcon
+                        name={this.getPropValue("prevIcon")}
+                        propsIcon={{
+                          className:`${this.decorateCSS("prev_icon")}`,
+                          size: 60,
+                          onClick: () => {
+                            this.getComponentState("slider-ref").current.slickPrev();
+                          },
+                        }}
+                      />
+                      <ComposerIcon
+                        name={this.getPropValue("nextIcon")}
+                        propsIcon={{
+                          className:`${this.decorateCSS("next_icon")}`,
+                          size: 60,
+                          onClick: () => {
+                            this.getComponentState("slider-ref").current.slickNext();
+                          },
+                        }}
+                      />
+                    </div>
   
                     {this.castToObject<[]>("button").map((item: any, indexButton: number) => {
                       return (
@@ -334,26 +317,20 @@ class Header10 extends BaseHeader {
                   </div>
                 </div>
 
-
-
-                <div className={this.decorateCSS("middle")}>
-
-
-                  <img src={item.getPropValue("image")} alt="" />
-
-
-                  <h1 className={this.decorateCSS("imagetitle")}>{item.getPropValue("imagetitle")}</h1>
-
+                <div  className={this.decorateCSS("middle")}>        
+                  <h1 className={this.decorateCSS("imagetitle")}>{item.imageTitle}</h1>
+                  <img className={this.decorateCSS("image")} src={item.image} alt="" />
                 </div>
+
                 <div className={this.decorateCSS("right")}>
                   <div className={this.decorateCSS("icon")}>
-                    <ComposerIcon name={this.getPropValue("ampersand_icon")} />
+                    <ComposerIcon name={this.getPropValue("ampersandIcon")} />
                   </div>
                   <div className={this.decorateCSS("right-page-content")}>
-                    <h2 className={this.decorateCSS("subtitle")}>{item.getPropValue("subtitle")}</h2>
-                    <p className={this.decorateCSS("description1")}>{item.getPropValue("description1")}</p>
+                    <h2 className={this.decorateCSS("subtitle")}>{item.subtitle}</h2>
+                    <p className={this.decorateCSS("description1")}>{item.description1}</p>
                     <div className={this.decorateCSS("icon-group")}>
-                      {item.getPropValue("icons").map((item: any, indexSlider: number) => (
+                      {item.icons.map((item: any, indexSlider: number) => (
                         <ComposerLink path={item.getPropValue("url")}>
                           <ComposerIcon name={item.getPropValue("icon")}
                           />
