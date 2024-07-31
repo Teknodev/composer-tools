@@ -19,8 +19,14 @@ class Navbar8 extends BaseNavigator {
     })
     this.addProp({
       type: "image",
-      key: "image",
-      displayer: "Image",
+      key: "image_light",
+      displayer: "Image Light",
+      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
+    });
+    this.addProp({
+      type: "image",
+      key: "image_dark",
+      displayer: "Image Dark",
       value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
 
@@ -243,6 +249,7 @@ class Navbar8 extends BaseNavigator {
 
   render() {
     const navActive = this.getComponentState("navActive");
+    const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
     return (
       <div
         className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))} ${navActive && this.decorateCSS("active")}`}
@@ -251,19 +258,19 @@ class Navbar8 extends BaseNavigator {
           <nav className={this.decorateCSS("bar")}>
             <div className={this.decorateCSS("image-box")}>
               <ComposerLink path={this.getPropValue("logo_navigate")}>
-                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} width={200} alt="" />
+                <img className={this.decorateCSS("image")} src={logoSrc} width={200} alt="" />
               </ComposerLink>
             </div>
             <div className={this.decorateCSS("middle")}>
-              <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+              <div className={`${this.decorateCSS("title")} ${navActive && this.decorateCSS("active-title")}`}>{this.getPropValue("title")}</div>
 
-              <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>
+              <div className={`${this.decorateCSS("subtitle")} ${navActive && this.decorateCSS("active-subtitle")}`}>{this.getPropValue("subtitle")}</div>
             </div>
             <div className={this.decorateCSS("navbar")}>
               <ComposerIcon
                 name={navActive ? this.getPropValue("cross-icon") : this.getPropValue("hamburger-icon")}
                 propsIcon={{
-                  className: `${this.decorateCSS("hamburger-icon")}  `,
+                  className: `${this.decorateCSS("hamburger-icon")} ${navActive && this.decorateCSS("active-hamburger-icon")} `,
                   onClick: () => {
                     this.navClick();
                   },
@@ -288,7 +295,7 @@ class Navbar8 extends BaseNavigator {
                             key={indexItemList}
                             path={data.value[1].value}
                           >
-                            <h3 className={this.decorateCSS("item-title")} onClick={() => this.setComponentState("navActive",false)} key={indexItemList}>{data.value[0].value}</h3>
+                            <h3 className={this.decorateCSS("item-title")} key={indexItemList} onClick={() => this.setComponentState("navActive",false)}>{data.value[0].value}</h3>
                           </ComposerLink>
                         );
                       }

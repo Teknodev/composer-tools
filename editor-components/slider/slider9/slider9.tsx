@@ -42,14 +42,14 @@ class Slider9 extends BaseSlider {
           key: "image",
           displayer: "Image",
           value:
-            "https://static.tildacdn.com/tild6137-3163-4732-a330-373834646165/HDTwo_AngleUp_OnGray.jpeg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cceebd2970002c629755?alt=media&timestamp=1719584962578",
         },
         {
           type: "image",
           key: "image",
           displayer: "Image",
           value:
-            "https://static.tildacdn.com/tild3066-6430-4566-a331-643739626436/HDTwo_Rotated_OnGray.jpeg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cceebd2970002c629754?alt=media&timestamp=1719584962578",
         },
       ],
     });

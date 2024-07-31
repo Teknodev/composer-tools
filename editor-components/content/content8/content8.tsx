@@ -170,6 +170,7 @@ class Content8 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
+          
           <div className={this.decorateCSS("up-page")}>
             <div className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</div>
             <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>

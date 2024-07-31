@@ -28,14 +28,14 @@
             .badge {
                 font-size: 18px;
                 font-weight: 900;
-                color: var(--composer-font-color-primary)
+                color: var(--composer-font-color-primary);
             }
 
             .title {
                 font-size: 48px;
                 width: 40%;
                 font-weight: 900;
-                color: var(--composer-primary-color);
+                color: var(--composer-font-color-primary);
             }
 
             @media only screen and (max-width: 768px) {
@@ -91,7 +91,6 @@
                 align-items: center;
 
 
-
                 .card-div {
                     max-width: 400px;
                     translate: none;
@@ -100,7 +99,8 @@
                     transform: translate(0px, 0px);
                     opacity: 1;
                     border-radius: 8px;
-                    background-color: var(--composer-primary-color);
+                    //background-color: var(--composer-primary-color);
+                    background: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-font-color-secondary)70%);
 
                     &:hover {
                         .image-div {
@@ -184,6 +184,9 @@
                         color: var(--composer-font-color-secondary);
                         padding-left: 15px;
                         padding-bottom: 15px;
+                    }
+                    .details{
+                        color: var(--composer-font-color-secondary);
                     }
                 }
             }

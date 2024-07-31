@@ -3,27 +3,30 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content18.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
+type ProgressItem = {
+  progressTitle: string;
+  progress: number;
+  progressText: JSX.Element;
+  icon: string;
+};
+
 class Content18 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
-    interface Item {
-      title: string;
-      progress: number;
-      progressText: string;
-    }
+
     this.addProp({
       type: "image",
       key: "image1",
       displayer: "1st Image",
       value:
-        "https://www.verywellmind.com/thmb/aNigsYshgeBFgbu1_DsvnNsYEHs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1368615203-4c27e5cf53214c59b5243fffe2cb7f24.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890e?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "image",
       key: "image2",
-      displayer: "2st Image",
+      displayer: "2nd Image",
       value:
-        "https://www.greatlakespsychologygroup.com/wp-content/uploads/2020/08/glpg-great-lakes-psychology-group-counseling-therapy-therapist-benefits-prepare.png",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890f?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "string",
@@ -56,7 +59,7 @@ class Content18 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "progress-title",
+              key: "progressTitle",
               displayer: "Progress Title",
               value: "Confidentiality",
             },
@@ -68,7 +71,7 @@ class Content18 extends BaseContent {
             },
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "90%",
             },
@@ -87,7 +90,7 @@ class Content18 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "progress-title",
+              key: "progressTitle",
               displayer: "Progress Title",
               value: "Consumer Satisfaction",
             },
@@ -100,7 +103,7 @@ class Content18 extends BaseContent {
 
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "95%",
             },
@@ -119,7 +122,7 @@ class Content18 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "progress-title",
+              key: "progressTitle",
               displayer: "Progress Title",
               value: "Therapy",
             },
@@ -132,7 +135,7 @@ class Content18 extends BaseContent {
 
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "98%",
             },
@@ -151,7 +154,7 @@ class Content18 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "progress-title",
+              key: "progressTitle",
               displayer: "Progress Title",
               value: "Counseling",
             },
@@ -164,7 +167,7 @@ class Content18 extends BaseContent {
 
             {
               type: "string",
-              key: "progress-text",
+              key: "progressText",
               displayer: "Progress Text",
               value: "85%",
             },
@@ -222,40 +225,44 @@ class Content18 extends BaseContent {
               </p>
 
               <div className={this.decorateCSS("progress-container")}>
-                {this.getPropValue("items").map((item: any, index: number) => (
-                  <div className={this.decorateCSS("item")} key={index}>
-                    <div className={this.decorateCSS("progress-title-container")}>
-                      <div className={this.decorateCSS("progress-title-icon")}>
-                        <ComposerIcon
-                          name={item.value[3].value}
-                          propsIcon={{ className: this.decorateCSS("icon") }}
-                        ></ComposerIcon>
+                {this.castToObject<ProgressItem[]>("items").map(
+                  (item: ProgressItem, index: number) => (
+                    <div className={this.decorateCSS("item")} key={index}>
+                      <div
+                        className={this.decorateCSS("progress-title-container")}
+                      >
+                        <div
+                          className={this.decorateCSS("progress-title-icon")}
+                        >
+                          <ComposerIcon
+                            name={item.icon}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          />
+                        </div>
+                        <div className={this.decorateCSS("progress-title")}>
+                          {item.progressTitle}
+                        </div>
                       </div>
-                      <div className={this.decorateCSS("progress-title")}>
-                        {item.value[0].value}
-                      </div>
-                    </div>
-
-                    {this.getPropValue("progress-text-is-primary") && (
-                      <div className={this.decorateCSS("progress-text-is-primary")}>
-                        <div className={this.decorateCSS("progress-percent")}>
-                          <div
-                            className={this.decorateCSS("progress-text")}
-                            style={{ marginLeft: `${item.value[1].value}%` }}
-                          >
-                            {item.value[2].value}
+                      {this.castToString(item.progressText) && (
+                        <div
+                          className={this.decorateCSS("progress-bar-container")}
+                        >
+                          <div className={this.decorateCSS("progress-bar")}>
+                            <div
+                              className={this.decorateCSS("progress")}
+                              style={{
+                                width: `${item.progress}%`,
+                              }}
+                            />
                           </div>
+                          <span className={this.decorateCSS("progress-text")}>
+                            {item.progressText}
+                          </span>
                         </div>
-                        <div className={this.decorateCSS("progress-active")}>
-                          <div
-                            className={this.decorateCSS("progress-passive")}
-                            style={{ width: `${item.value[1].value}%` }}
-                          ></div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      )}
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
