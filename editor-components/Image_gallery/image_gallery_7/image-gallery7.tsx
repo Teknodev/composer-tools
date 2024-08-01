@@ -4,20 +4,15 @@ import styles from "./image-gallery7.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 
-type ImageType = {
-    type: string;
-    key: string;
-    displayer: string;
-    value: string;
-  };
+
   
   
   
-  type CardType = {
-    type: "array";
-    key: "card";
-    displayer: string;
-    value: ImageType[];
+type CardItemType = {
+    image: string;
+    title: JSX.Element;
+    subtitle: JSX.Element;
+    backgroundColor: string;
   };
   
 
@@ -36,26 +31,26 @@ class ImageGallery7 extends BaseImageGallery {
                 [
                     {
 
-                        type: "array",
+                        type: "object",
                         key: "card",
-                        displayer: "Card 1",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 1",
+                                displayer: "Image",
                                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669dfff22f8a5b002ce60115?alt=media", 
                             },
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Dubai",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Summer, Fashion"
                             },
                             {
@@ -69,24 +64,24 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 2",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 2",
+                                displayer: "Image",
                                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media", 
                             },
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Cosmoso",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Architecture"
                             },
                             {
@@ -100,24 +95,24 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 3",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 3",
+                                displayer: "Image",
                                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e003a2f8a5b002ce6012d?alt=media", 
                             },
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Ron Mcclenny",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Portraits, Summer"
                             },
                             {
@@ -131,24 +126,24 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 4",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 4",
+                                displayer: "Image",
                                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e005b2f8a5b002ce60139?alt=media", 
                             },
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Curitiba Brasil",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Architecture, Interior"
                             },
                             {
@@ -162,24 +157,24 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 5",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 5",
+                                displayer: "Image",
                                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00772f8a5b002ce60145?alt=media", 
                             },
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "John Doe",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Architecture, Interior"
                             },
                             {
@@ -193,24 +188,24 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 6",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 6",
+                                displayer: "Image",
                                 value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00952f8a5b002ce60151?alt=media", 
                             },
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Creme",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Architecture, Interior"
                             }
                             ,
@@ -226,25 +221,25 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 7",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 7",
+                                displayer: "Image",
                                 value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00ba2f8a5b002ce6015d?alt=media"
                                 , 
                             },
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Dublin",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Brutalism, Portraits"
                             }
                             ,
@@ -259,12 +254,12 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 8",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 8",
+                                displayer: "Image",
                                 value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00d52f8a5b002ce60169?alt=media"
 
                                 , 
@@ -272,13 +267,13 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Annie Spratt",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Portraits Summer"
                             }
                             ,
@@ -293,12 +288,12 @@ class ImageGallery7 extends BaseImageGallery {
                  {
                         type: "array",
                         key: "card",
-                        displayer: "Card 9",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 9",
+                                displayer: "Image",
                                 value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00f72f8a5b002ce60175?alt=media"
 
                                 , 
@@ -306,13 +301,13 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Ulitsa",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Brutalism, Portraits"
                             },
                             {
@@ -327,12 +322,12 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 10",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 10",
+                                displayer: "Image",
                                 value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01132f8a5b002ce60181?alt=media"
 
                                 , 
@@ -340,13 +335,13 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Brabant",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Summer, Fashion"
                             },
                             {
@@ -361,12 +356,12 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 11",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 11",
+                                displayer: "Image",
                                 value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media"
 
                                 , 
@@ -374,13 +369,13 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "Snowy Swiss Alps",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Summer, Fashion"
                             },
                             {
@@ -395,12 +390,12 @@ class ImageGallery7 extends BaseImageGallery {
                     {
                         type: "array",
                         key: "card",
-                        displayer: "Card 12",
+                        displayer: "Card",
                         value: [
                             { 
                                 type: "image",
                                 key: "image",
-                                displayer: "Image 12",
+                                displayer: "Image",
                                 value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01732f8a5b002ce6018d?alt=media"
 
                                 , 
@@ -408,13 +403,13 @@ class ImageGallery7 extends BaseImageGallery {
                             {
                                 type: "string",
                                 key: "title",
-                                displayer: "title",
+                                displayer: "Title",
                                 value: "National Aquarium Dubai",
                             },
                             {
                                 type: "string",
                                 key: "subtitle",
-                                displayer: "subtitle",
+                                displayer: "Subtitle",
                                 value: "Brutalism, Portraits"
                             }
                             ,
@@ -446,45 +441,56 @@ class ImageGallery7 extends BaseImageGallery {
       }
     
       render() {
-  const gallery = this.getPropValue("gallery") as CardType[];
-  const repeatCount = this.getPropValue("cardRepeatTime") as number;
-  const cardBackgroundColor = this.getPropValue("backgroundColor") as string || "#f1f1e8";
- 
-  const repeatedGallery = Array.from({ length: repeatCount }).flatMap(() => gallery);
-
-  return (
-    <div
-      className={this.decorateCSS("imageGallery7")}
-      style={{
-        "--composer-card-background": cardBackgroundColor,
-      } as React.CSSProperties}
-    >
-      <div className={this.decorateCSS("content")}>
-        {Array.from({ length: 4 }).map((_, columnIndex: number) => (
-          <div key={columnIndex} className={`${this.decorateCSS("column")} ${this.decorateCSS(`column-${columnIndex}`)}`}>
-            {repeatedGallery
-              .filter((_, index: number) => index % 4 === columnIndex)
-              .map((card, index) => {
-                const image = card.value.find(item => item.type === "image") as ImageType;
-                const title = card.value.find(item => item.key === "title") as unknown as { type: "string"; key: string; displayer: string; value: string };
-                const subtitle = card.value.find(item => item.key === "subtitle") as unknown as  { type: "string"; key: string; displayer: string; value: string };
-                const backgroundColor = card.value.find(item => item.key === "backgroundColor")?.value as string || cardBackgroundColor;
-
+        const gallery = this.castToObject<CardItemType[]>("gallery");
+        const repeatCount = this.getPropValue("cardRepeatTime") as number;
+      
+        const repeatedGallery = Array.from({ length: repeatCount }).flatMap(() => gallery);
+      
+        const groupedCards = Array.from({ length: 4 }).map((_, columnIndex) => {
+          return repeatedGallery.filter((_, index) => index % 4 === columnIndex);
+        });
+      
+        return (
+          <div className={this.decorateCSS("imageGallery7")}>
+            <div className={this.decorateCSS("content")}>
+              {groupedCards.map((cards, columnIndex) => {
+                const isOdd = columnIndex % 2 !== 0;
+                const columnClass = isOdd ? "column-odd" : "column-even";
+      
                 return (
-                  <div key={index} className={this.decorateCSS("card")} style={{ backgroundColor }}>
-                    <img src={image.value} alt={title.value} className={this.decorateCSS("image")} />
-                    <div className={this.decorateCSS("text-container")}>
-                      <div className={this.decorateCSS("title")}>{title.value}</div>
-                      <div className={this.decorateCSS("subtitle")}>{subtitle.value}</div>
-                    </div>
+                  <div
+                    key={columnIndex}
+                    className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
+                  >
+                    {cards.map((card, index) => {
+                      const image = card.image;
+                      const title = this.castToString(card.title);
+                      const subtitle = this.castToString(card.subtitle);
+                      const backgroundColor = card.backgroundColor;
+      
+                      return (
+                        <div key={index} className={this.decorateCSS("wrapper")}>
+                          {(title || subtitle) &&  
+                            <div
+                              className={this.decorateCSS("card")}
+                              style={{ backgroundColor: backgroundColor }}
+                            >
+                              <img src={image} alt={title} className={this.decorateCSS("image")} />
+                              <div className={this.decorateCSS("text-container")}>
+                                <div className={this.decorateCSS("title")}>{title}</div>
+                                <div className={this.decorateCSS("subtitle")}>{subtitle}</div>
+                              </div>
+                            </div>
+                          }
+                        </div>
+                      );
+                    })}
                   </div>
                 );
               })}
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-}
-export default ImageGallery7
+        );
+      }
+    }
+    export default ImageGallery7;

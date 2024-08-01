@@ -1,10 +1,10 @@
 .content {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px; 
+  gap: 10px;
   height: calc(100% - 60px);
-  padding: 0 10%; 
-  overflow-y: auto;  
+  padding: 0 10%;
+  overflow-y: auto;
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
@@ -25,12 +25,12 @@
   box-sizing: border-box;
   place-items: center;
   place-content: center;
+
   transform-style: preserve-3d;
-  overflow: hidden;  
+  overflow: hidden;
 
   .card {
-    background-color: var(--composer-card-background, #f1f1e8);
-    height: 57vh;
+    height: 425px;
     width: 100%;
     cursor: pointer;
     overflow: hidden;
@@ -41,7 +41,7 @@
 
     .image {
       width: 100%;
-      height: 55vh;
+      height: 115%;
       transition: filter 0.3s ease;
 
       &:hover {
@@ -51,14 +51,14 @@
 
     .text-container {
       padding: 10px;
-      height: 20vh;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
 
       .title {
-        color: var(--composer-font-color-secondary, #000);
+        color: var(--composer-font-color-secondary);
         font-size: 1.7em;
         font-weight: bold;
         letter-spacing: 0.6px;
@@ -67,7 +67,7 @@
       }
 
       .subtitle {
-        color: var(--composer-font-color-secondary, #555);
+        color: var(--composer-font-color-secondary);
         font-size: 1.2em;
         text-align: center;
         font-weight: lighter;
@@ -77,24 +77,14 @@
   }
 }
 
-.column-0 {
+.column-even {
   grid-column: span 1;
 }
 
-.column-1 {
+.column-odd {
   grid-column: span 1;
   @media (min-width: 900px) {
     margin-top: -320px;
   }
 }
 
-.column-2 {
-  grid-column: span 1;
-}
-
-.column-3 {
-  grid-column: span 1;
-  @media (min-width: 900px) {
-    margin-top: -320px;
-  }
-}
