@@ -20,7 +20,7 @@
         position: absolute;
         top: 0;
         z-index: 999;
-        color: white;
+        color: var(--composer-font-color-primary);
         cursor: pointer;
         bottom: 0;
         margin: auto 0;
@@ -37,25 +37,33 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 50%;
+        right: 0;
+        width: 100%;
         height: 100%;
         padding: 3.125rem 6.25rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin: 0 auto;
+        max-width: var(--composer-content-width);
 
         .title {
-          margin: 0;
+          margin: 0 0 10px 0;
           font-size: 42px;
           font-weight: bold;
+          color: var(--composer-font-color-primary);
         }
         .sub-title {
           margin-bottom: 10px;
           font-size: 1.3rem;
+          font-weight: 500;
+          color: var(--composer-font-color-primary);
         }
         .description {
+          width: 50%;
           font-size: 1.5rem;
           margin: 1.25rem 0;
+          color: var(--composer-font-color-primary);
         }
 
         .buttons-container {
@@ -75,9 +83,6 @@
             transition: all 0.2s linear;
             &:hover {
               transform: scale(1.05);
-            }
-
-            .text {
             }
           }
 
@@ -105,6 +110,8 @@
           justify-content: center;
 
           .title {
+            line-break: auto;
+            width: 50%;
             font-size: 42px;
             font-weight: bold;
           }
@@ -146,11 +153,13 @@
           align-items: center;
 
           .title {
+            width: 80%;
             font-size: 26px;
             font-weight: bold;
             text-align: center;
           }
           .description {
+            width: 80%;
             font-size: 1rem;
             text-align: center;
           }
@@ -160,7 +169,7 @@
             gap: 10px;
             flex-wrap: wrap;
             width: 100%;
-            justify-content: space-between;
+            justify-content: center;
           }
         }
       }
