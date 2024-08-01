@@ -26,7 +26,6 @@
         .left {
           max-width: 450px;
           max-height: 100%;
-          overflow: hidden;
           margin-right: 40px;
 
           .left-page-content{
@@ -64,14 +63,10 @@
               .prev_icon{
                 color: var(--composer-secondary-color);
                 cursor: pointer;
-                height: 50px;
-                width: 50px;
               }
               .next_icon{
                 color: var(--composer-secondary-color);
                 cursor: pointer;
-                height: 50px;
-                width: 50px;
               }
             }
             
@@ -83,7 +78,7 @@
               opacity: 0.6;
               color: var(--composer-font-color-primary);
               cursor: pointer;
-              }
+            }
             .button::before{
               content: "";
               display: inline-block;
@@ -132,6 +127,7 @@
           flex-direction: column;
           z-index: 1;
           .icon {
+            color: var(--composer-font-color-primary);
             position: relative;
             height: 450px;
             width: 450px;
@@ -184,32 +180,35 @@
 @media only screen and (max-width: 768px) {
   .container {
     width: 100%;
+    height: 100%;
     .max-content {
       margin: 0;
       .carousel {
         .content {
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
 
           .left{
+            margin-right: 0;
+            z-index: 1;
+            width: 50%;
+
             .left-page-content{
-              top: 170px;
               margin-left: 30px;
+              top: 70px;;
+              .title {
+                font-size: 4.5rem !important;
+              }
+              .description{
+                font-size: 14px;
+              }
+              
             }
           }
 
-          .left,
           .middle {
             width: 50%;
-
-            .title {
-              font-size: 4.5rem !important;
-            }
-
-            .description{
-              font-size: 14px;
-            }
+            z-index: 1;
 
             .image{
               max-width: 100%;
@@ -217,21 +216,25 @@
 
             .imagetitle {
               font-size: 5.5rem;
-              padding-top: 35px;
+              top: 20px;
             }
 
           }
 
           .right {
             width: 50%;
-            padding: 15px 15px;
-            margin-right: auto;
-            margin-left: 0;
-            padding-top: 0;
+            padding-right:25px;
+            padding-left: 0;
+            margin-right: 0;
+            overflow: visible;
+            z-index: 2;
+
+            .right-page-content{
+              margin-top: -170px;
+            }
 
             .icon {
               display: none;
-
             }
           }
         }
@@ -261,6 +264,7 @@
               .title {
                 font-size: 3rem !important;
                 overflow: unset;
+                margin-bottom: 60px;
               }
               .description {
                 font-size: 15px;
@@ -282,7 +286,11 @@
               width: 100%;
             }
             .imagetitle {
-              display: none;
+              font-size: 3rem !important;
+              color: var(--composer-font-color-primary);
+              margin: 0 0 0 155px;
+              top: -290px;
+              
             }
 
           }
@@ -292,6 +300,7 @@
 
             .right-page-content{
               padding: 0 15px;
+              margin-top: 0;
             }
             .icon {
               display: none;

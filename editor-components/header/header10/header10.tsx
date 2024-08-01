@@ -6,14 +6,19 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type SliderObject = {
-      title: string;
-      description: string;
-      imageTitle: string;
-      image: string;
-      subtitle: string;
-      description1: string;
-      icons: { icon: string, url: string }[],
-    }
+  title: JSX.Element;
+  description: JSX.Element;
+  imageTitle: JSX.Element;
+  image: string;
+  subtitle: JSX.Element;
+  description1: JSX.Element;
+  icons: { icon: string, url: string }[],
+}
+
+type ButtonObject = {
+  buttonText: JSX.Element;
+  buttonLink: JSX.Element;
+}
 
 class Header10 extends BaseHeader {
   constructor(props?: any) {
@@ -265,92 +270,134 @@ class Header10 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
     };    
+
+    const slider = this.castToObject<SliderObject[]>("slider");
+    const button = this.castToObject<ButtonObject[]>("button");
+    const nextIcon = this.getPropValue("nextIcon");
+    const prevIcon = this.getPropValue("prevIcon")
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-
           <ComposerSlider
             {...settings}
             ref={this.getComponentState("slider-ref")}
             className={this.decorateCSS("carousel")}
           >
-            {this.castToObject<SliderObject[]>("slider").map((item: SliderObject, indexSlider: number) => (
-              <div className={this.decorateCSS("content")} key={indexSlider}>
+            {slider.map((item: SliderObject, indexSlider: number) => {
+              const title = this.castToString(item.title);
+              const description = this.castToString(item.description);
+              const imageTitle = this.castToString(item.imageTitle);
+              const image = item.image;
+              const subtitle = this.castToString(item.subtitle);
+              const description1 = this.castToString(item.description1);
+              const leftPage = title || description || nextIcon || prevIcon || button.length > 0;
 
-                <div className={this.decorateCSS("left")}>
-                  <div className={this.decorateCSS("left-page-content")}>
-                    <h1 className={this.decorateCSS("title")}>{item.title}</h1>
-                    <p className={this.decorateCSS("description")}>{item.description}</p>
-                    <div className={this.decorateCSS("nav-buttons")}>
-                      <div className={this.decorateCSS("slide_number")}>{String(indexSlider + 1).padStart(2, '0')}</div>
-                      <ComposerIcon
-                        name={this.getPropValue("prevIcon")}
-                        propsIcon={{
-                          className:`${this.decorateCSS("prev_icon")}`,
-                          size: 60,
-                          onClick: () => {
-                            this.getComponentState("slider-ref").current.slickPrev();
-                          },
-                        }}
-                      />
-                      <ComposerIcon
-                        name={this.getPropValue("nextIcon")}
-                        propsIcon={{
-                          className:`${this.decorateCSS("next_icon")}`,
-                          size: 60,
-                          onClick: () => {
-                            this.getComponentState("slider-ref").current.slickNext();
-                          },
-                        }}
-                      />
+              return (
+                <div className={this.decorateCSS("content")} key={indexSlider}>
+                  {leftPage && (
+                    <div className={this.decorateCSS("left")}>
+                      <div className={this.decorateCSS("left-page-content")}>
+                        {title && (
+                          <h1 className={this.decorateCSS("title")}>{title}</h1>
+                        )}
+                        {description && (
+                          <p className={this.decorateCSS("description")}>
+                            {description}
+                          </p>
+                        )}
+                        <div className={this.decorateCSS("nav-buttons")}>
+                          {(prevIcon || nextIcon) && (
+                            <div className={this.decorateCSS("slide_number")}>
+                            {String(indexSlider + 1).padStart(2, "0")}
+                            </div>
+                          )}
+                            <ComposerIcon
+                              name={this.getPropValue("prevIcon")}
+                              propsIcon={{
+                                className: `${this.decorateCSS("prev_icon")}`,
+                                size: 45,
+                                onClick: () => {
+                                  this.getComponentState("slider-ref").current.slickPrev();
+                                },
+                              }}
+                            />
+                            <ComposerIcon
+                              name={this.getPropValue("nextIcon")}
+                              propsIcon={{
+                                className: `${this.decorateCSS("next_icon")}`,
+                                size: 45,
+                                onClick: () => {
+                                  this.getComponentState("slider-ref").current.slickNext();
+                                },
+                              }}
+                            />
+                        </div>
+                          {button.map((buttonItem: any, indexButton: number) => {
+                            const buttonText = this.castToString(buttonItem.buttonText);
+                            if (buttonText)
+                              return (
+                                <ComposerLink key={`hdr-10-${indexButton}`} path={buttonItem.link}>
+                                  <button className={this.decorateCSS("button")}>
+                                    {buttonText}
+                                  </button>
+                                </ComposerLink>
+                              );
+                          })}
+                      </div>
                     </div>
-  
-                    {this.castToObject<[]>("button").map((item: any, indexButton: number) => {
-                      return (
-                        <ComposerLink key={`hdr-10-${indexButton}`} path={item.link}>
-                          <button className={this.decorateCSS("button")}>
-                            {item.buttonText}
-                          </button>
-                        </ComposerLink>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div  className={this.decorateCSS("middle")}>        
-                  <h1 className={this.decorateCSS("imagetitle")}>{item.imageTitle}</h1>
-                  <img className={this.decorateCSS("image")} src={item.image} alt="" />
-                </div>
-
-                <div className={this.decorateCSS("right")}>
-                  <div className={this.decorateCSS("icon")}>
-                    <ComposerIcon name={this.getPropValue("ampersandIcon")} />
-                  </div>
-                  <div className={this.decorateCSS("right-page-content")}>
-                    <h2 className={this.decorateCSS("subtitle")}>{item.subtitle}</h2>
-                    <p className={this.decorateCSS("description1")}>{item.description1}</p>
-                    <div className={this.decorateCSS("icon-group")}>
-                      {item.icons.map((item: any, indexSlider: number) => (
-                        <ComposerLink path={item.getPropValue("url")}>
-                          <ComposerIcon name={item.getPropValue("icon")}
-                          />
-                        </ComposerLink>
-                      ))}
+                  )}
+                  {(image || imageTitle) && (
+                    <div className={this.decorateCSS("middle")}>
+                      {imageTitle && (
+                        <h1 className={this.decorateCSS("imagetitle")}>
+                          {imageTitle}
+                        </h1>
+                      )}
+                      {image && (
+                        <img
+                          className={this.decorateCSS("image")}
+                          src={item.image}
+                          alt=""
+                        />
+                      )}
                     </div>
-                  </div>
+                  )}
                   
+                  {(subtitle || description1) && (
+                    <div className={this.decorateCSS("right")}>
+                        <div className={this.decorateCSS("icon")}>
+                          <ComposerIcon name={this.getPropValue("ampersandIcon")} />
+                        </div>
+                      <div className={this.decorateCSS("right-page-content")}>
+                        {subtitle && (
+                          <h2 className={this.decorateCSS("subtitle")}>
+                            {subtitle}
+                          </h2>
+                        )}
+                        {description1 && (
+                          <p className={this.decorateCSS("description1")}>
+                            {description1}
+                          </p>
+                        )}
+                        <div className={this.decorateCSS("icon-group")}>
+                          {item.icons.map((item: any, indexSlider: number) => (
+                            <ComposerLink path={item.getPropValue("url")}>
+                              <ComposerIcon name={item.getPropValue("icon")}/>
+                            </ComposerLink>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-
-            ))}
-
+              );
+            })}
           </ComposerSlider>
         </div>
       </div>
-
     );
   }
 }
-
 
 export default Header10;
