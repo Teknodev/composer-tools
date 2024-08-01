@@ -33,6 +33,12 @@ class HeaderComponent28 extends BaseHeader {
       value: "IoCloseOutline",
     });
     this.addProp({
+      type: "boolean",
+      key: "textAnimation",
+      displayer: "Text Animation",
+      value: true,
+    },)
+    this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
@@ -50,7 +56,7 @@ class HeaderComponent28 extends BaseHeader {
                 "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg",
             },
             {
-              type: "string",
+              type: "video",
               key: "video",
               displayer: "Video Embeded Link",
               value: "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
@@ -94,7 +100,7 @@ class HeaderComponent28 extends BaseHeader {
                 "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg",
             },
             {
-              type: "string",
+              type: "video",
               key: "video",
               displayer: "Video",
               value: "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
@@ -138,7 +144,7 @@ class HeaderComponent28 extends BaseHeader {
                 "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dep-space-1400x700.jpg",
             },
             {
-              type: "string",
+              type: "video",
               key: "video",
               displayer: "Video",
               value: "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
@@ -217,16 +223,17 @@ class HeaderComponent28 extends BaseHeader {
       fade: true,
       afterChange: (index: number) => {
         this.setComponentState("animation-active", false);
-        this.setComponentState("display-none", true);
+        this.setComponentState("display-none", false);
         this.setComponentState("play-video", false);
       },
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
+        if (this.getPropValue("textAnimation"))
         this.setComponentState("animation-active", true);
         this.setComponentState("play-video", false);
         this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
 
-        this.setComponentState("display-none", false);
+        this.setComponentState("display-none", true );
 
         this.setComponentState("active-index", newIndex);
       },
@@ -241,12 +248,17 @@ class HeaderComponent28 extends BaseHeader {
         >
           {this.getPropValue("slider").map((item: any, indexSlider: number) => (
             <div className={this.decorateCSS("content")} key={indexSlider}>
-              <img src={item.getPropValue("image")} className={this.decorateCSS("bg-img")}/>
+              {
+                item.getPropValue("image") && <div className = {this.decorateCSS("image-box")}> 
+                <img 
+                className={this.decorateCSS("bg-img")}
+                src= {item.getPropValue("image")} alt="" />
+                </div>
+              }
 
               <div
-                className={`${this.decorateCSS("video-player-container")} ${
-                  this.getComponentState("play-video") && this.decorateCSS("video-player")
-                }`}
+                className={`${this.decorateCSS("video-player-container")} ${this.getComponentState("play-video") && this.decorateCSS("video-player")
+                  }`}
               >
                 <iframe
                   width="70%"
@@ -271,33 +283,43 @@ class HeaderComponent28 extends BaseHeader {
                 <ComposerIcon name={this.getPropValue("play_icon")} />
               </div>
               <div
-                className={`${this.decorateCSS("slide-content")}  ${
-                  !this.getComponentState("animation-active") &&
-                  this.decorateCSS("visible")
-                }`}
+              //
+                className={`${this.decorateCSS("slide-content")}  
+                ${!this.getComponentState("animation-active") && 
+                  this.decorateCSS("visible") 
+
+                  }`}
+                  
               >
-                <span className={this.decorateCSS("tag")}>
-                  {item.getPropValue("tag")}
-                </span>
-                <h1 className={this.decorateCSS("title")}>
-                  {item.getPropValue("title")}
-                </h1>
-                <h3 className={this.decorateCSS("sub_title")}>
-                  {item.getPropValue("sub_title")}
-                </h3>
-                <p className={this.decorateCSS("description")}>
-                  {item.getPropValue("description")}
-                </p>
+                {this.castToString(item.getPropValue("tag")) &&
+                  <span className={this.decorateCSS("tag")}>
+                    {item.getPropValue("tag")}
+                  </span>
+                }
+                {this.castToString(item.getPropValue("title")) &&
+                  <h1 className={this.decorateCSS("title")}>
+                    {item.getPropValue("title")}
+                  </h1>
+                }
+                {this.castToString(item.getPropValue("sub_title")) &&
+                  <h3 className={this.decorateCSS("sub_title")}>
+                    {item.getPropValue("sub_title")}
+                  </h3>
+                }
+                {this.castToString(item.getPropValue("description")) &&
+                  <p className={this.decorateCSS("description")}>
+                    {item.getPropValue("description")}
+                  </p>
+                }
               </div>
               <ComposerIcon
                 name={this.getPropValue("next_icon")}
                 propsIcon={{
                   className: `${this.decorateCSS("next-icon")} ${this.decorateCSS(
                     "arrow"
-                  )} ${
-                    !this.getComponentState("display-none") &&
-                    this.decorateCSS("un-visible")
-                  }`,
+                  )} ${!this.getComponentState("display-none") &&
+                  this.decorateCSS("un-visible")
+                    }`,
                   size: 40,
                   onClick: () => {
                     this.getComponentState("slider-ref").current.slickNext();
