@@ -3,7 +3,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: var (--composer-html-background);
+  background-color: var(--composer-html-background);
   font-family: 'Arial', sans-serif;
   transition: background-color 0.3s ease;
 
@@ -28,7 +28,7 @@
     }
 
     .feedbackModalCloseButton {
-      background-color:  var (--composer-html-background);
+      background-color:  var(--composer-html-background);
       border: none;
       font-size: 2rem;
       cursor: pointer;
@@ -36,7 +36,7 @@
       right: 0%;
       top: 30%;
       transform: translateY(-50%);
-      color: var (--composer-html-background);
+      color: var(--composer-html-background);
       .close_icon{
         color: black;
       }
