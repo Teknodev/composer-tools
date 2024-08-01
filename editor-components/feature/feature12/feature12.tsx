@@ -2,15 +2,18 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-
 type IMessages = {
-  title: string;
-  button: string;
-  description?: string;
+  title: JSX.Element;
+  description?: JSX.Element ;
   icon?: string;
-  iconColor?: string;
   backgroundColor: string;
 };
+
+type FirstItemType = {
+  title:JSX.Element;
+  button:JSX.Element;
+  backgroundImage:string;
+}
 
 class Feature12 extends BaseFeature {
   constructor(props?: any) {
@@ -178,25 +181,26 @@ class Feature12 extends BaseFeature {
     const titleBackingText = this.getPropValue("titleBackingText");
     const itemCount = this.getPropValue("itemCount");
     const messageCards = this.castToObject<IMessages[]>("messageCard");
-    const firstItem = this.getPropValue("message");
-    const firstCardTitle = firstItem[0].value;
-    const buttonText = firstItem[1].value;
-    const backgroundImage = firstItem[2].value;
+    const firstItem = this.castToObject<FirstItemType>("message");
+    const firstCardTitle = this.castToString(firstItem.title);
+    const buttonText =this.castToString(firstItem.button);
+    const backgroundImage = firstItem.backgroundImage;
    
     return (
-      <div className={this.decorateCSS("container")} style={{ paddingBottom: "0px" }}>
-        <div className={this.decorateCSS("upper-title")} style={{ fontSize: "1.2em", textAlign: "center" }}>
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("upper-title")}>
           {upperTitle}
         </div>
-        <div className={this.decorateCSS("shadow-header-title")} style={{ fontSize: "12.5em", textAlign: "center", marginBottom: "20px" }}>
+        <div className={this.decorateCSS("shadow-header-title")}>
           {titleBackingText}
         </div>
-        <div className={this.decorateCSS("header-title")} style={{ fontSize: "5em", textAlign: "center", marginTop: "35px" }}>
+        <div className={this.decorateCSS("header-title")}>
           {title}
         </div>
-        <div className={this.decorateCSS("max-content")} style={{ marginTop: "20px" }}>
+        <div className={this.decorateCSS("max-content")}>
+          
           <div className={this.decorateCSS("content")}>
-            {firstItem.length > 0 && (
+            {(firstCardTitle || buttonText ) &&
               <div
                 className={this.decorateCSS("card-item-first")}
                 style={{
@@ -211,13 +215,17 @@ class Feature12 extends BaseFeature {
                   {buttonText}
                 </button>
               </div>
-            )}
+              }
+  
+           
 
             {messageCards.map((message: IMessages, index: number) => {
-              const shouldRender = message.title || message.description || message.button || message.icon;
-
-              if (shouldRender) {
+              const shouldRender = this.castToString(message.description) || this.castToString(message.title);
+                if(!shouldRender)
+                  return null;
+                else
                 return (
+                 
                   <div
                     className={`
                       ${this.decorateCSS("card-item-count")}
@@ -225,8 +233,7 @@ class Feature12 extends BaseFeature {
                     `}
                     style={{
                       width: `${100 / itemCount}%`,
-                      marginBottom: "100px",
-                      height: "50vh",
+                      
                       backgroundColor: message.backgroundColor,
                     }}
                     key={index}
@@ -239,10 +246,10 @@ class Feature12 extends BaseFeature {
                       <p className={this.decorateCSS("long-text")}>{message.description}</p>
                     </div>
                   </div>
+                  
+                  
                 );
-              } else {
-                return null;
-              }
+             
             })}
           </div>
         </div>
