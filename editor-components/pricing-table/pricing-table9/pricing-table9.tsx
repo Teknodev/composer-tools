@@ -12,12 +12,6 @@ type Pricing = {
   link: string;
 };
 
-interface Feature {
-  infeature: object[];
-  featureTitle: string;
-  featureOptions: string;
-}
-
 
 class PricingTable9 extends BasePricingTable {
   constructor(props?: any) {
@@ -146,104 +140,99 @@ class PricingTable9 extends BasePricingTable {
 
     this.addProp({
       type: "object",
-      key: "price",
-      displayer: "Price Informations",
+      key: "pricing3",
+      displayer: "Pricing 3",
       value: [
         {
-          type: "object",
-          key: "pricing",
-          displayer: "Pricing 1",
-          value: [
-            {
-              type: "string",
-              key: "price",
-              displayer: "Price",
-              value: "$50",
-            },
-            {
-              type: "string",
-              key: "duration",
-              displayer: "Duration",
-              value: "month",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Get started",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
+          type: "string",
+          key: "price",
+          displayer: "Price",
+          value: "$350",
         },
         {
-          type: "object",
-          key: "pricing",
-          displayer: "Pricing 2",
-          value: [
-            {
-              type: "string",
-              key: "price",
-              displayer: "Price",
-              value: "$150",
-            },
-            {
-              type: "string",
-              key: "duration",
-              displayer: "Duration",
-              value: "month",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Get started",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
+          type: "string",
+          key: "duration",
+          displayer: "Duration",
+          value: "month",
         },
         {
-          type: "object",
-          key: "pricing",
-          displayer: "Pricing 3",
-          value: [
-            {
-              type: "string",
-              key: "price",
-              displayer: "Price",
-              value: "$350",
-            },
-            {
-              type: "string",
-              key: "duration",
-              displayer: "Duration",
-              value: "month",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Get started",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Get started",
+        },
+        {
+          type: "page",
+          key: "link",
+          displayer: "Button Link",
+          value: "",
         },
       ],
-    });
+    })
+
+    this.addProp({
+      type: "object",
+      key: "pricing2",
+      displayer: "Pricing 2",
+      value: [
+        {
+          type: "string",
+          key: "price",
+          displayer: "Price",
+          value: "$150",
+        },
+        {
+          type: "string",
+          key: "duration",
+          displayer: "Duration",
+          value: "month",
+        },
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Get started",
+        },
+        {
+          type: "page",
+          key: "link",
+          displayer: "Button Link",
+          value: "",
+        },
+      ],
+    })
+
+    this.addProp({
+      type: "object",
+      key: "pricing1",
+      displayer: "Pricing 1",
+      value: [
+        {
+          type: "string",
+          key: "price",
+          displayer: "Price",
+          value: "$50",
+        },
+        {
+          type: "string",
+          key: "duration",
+          displayer: "Duration",
+          value: "month",
+        },
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Get started",
+        },
+        {
+          type: "page",
+          key: "link",
+          displayer: "Button Link",
+          value: "",
+        },
+      ],
+    })
   }
 
   getName(): string {
@@ -251,7 +240,10 @@ class PricingTable9 extends BasePricingTable {
   }
 
   render() {
-    const pricingData = this.castToObject<Pricing[]>("price");
+    const pricing1 = this.castToObject<Pricing>("pricing1")
+    const pricing2 = this.castToObject<Pricing>("pricing2")
+    const pricing3 = this.castToObject<Pricing>("pricing3")
+
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -266,7 +258,7 @@ class PricingTable9 extends BasePricingTable {
             </tr>
           </thead>
           <tbody>
-            {this.castToObject<Feature[]>("pricefeatures").map(
+            {/* {this.castToObject<Feature[]>("pricefeatures").map(
             (feature: any, index: number) => {
               const lowerFeatureOptions = (feature.featureOptions).toLowerCase();
               return (
@@ -278,26 +270,26 @@ class PricingTable9 extends BasePricingTable {
                 </tr>
               );
             }
-  )}
+  )} */}
 
             <tr>
               <td></td>
                 <td>
                   <span className={this.decorateCSS("price-info")}>
                     <span className={this.decorateCSS("per")}>per</span> {
-                      pricingData[0].price
+                     pricing1.price
                     }
                     <br></br>
                     {
-                      pricingData[0].duration
+                     pricing1.duration
                     }
                   </span>
                   <ComposerLink path={
-                    pricingData[0].link
+                   pricing1.link
                   }>
                     <span className={this.decorateCSS("button")}>
                       {
-                        pricingData[0].buttonText
+                       pricing1.buttonText
                       }
                     </span>
                   </ComposerLink>
@@ -305,19 +297,19 @@ class PricingTable9 extends BasePricingTable {
                 <td>
                   <span className={this.decorateCSS("price-info")}>
                     <span className={this.decorateCSS("per1")}>per</span> {
-                      pricingData[1].price
+                      pricing2.price
                     }
                     <br></br>
                     {
-                      pricingData[1].duration
+                      pricing2.duration
                     }
                   </span>
                   <ComposerLink path={
-                    pricingData[1].link
+                    pricing2.link
                   }>
                     <span className={this.decorateCSS("button")}>
                       {
-                        pricingData[1].buttonText
+                        pricing2.buttonText
                       }
                     </span>
                   </ComposerLink>
@@ -325,19 +317,19 @@ class PricingTable9 extends BasePricingTable {
                 <td>
                   <span className={this.decorateCSS("price-info")}>
                     <span className={this.decorateCSS("per2")}>per</span> {
-                      pricingData[2].price
+                      pricing3.price
                     }
                     <br></br>
                     {
-                      pricingData[2].duration
+                      pricing3.duration
                     }
                   </span>
                   <ComposerLink path={
-                    pricingData[2].link
+                    pricing3.link
                   }>
                     <span className={this.decorateCSS("button")}>
                       {
-                        pricingData[2].buttonText
+                        pricing3.buttonText
                       }
                     </span>
                   </ComposerLink>

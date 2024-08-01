@@ -1,150 +1,110 @@
 .container {
-    width: 100%;
-    min-height: 136px;
+  width: 100%;
+  position: relative;
+  background-color: var(--composer-html-background);
+  &.sticky {
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+    box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
+  }
+  ul {
+    list-style-type: none;
+    > li {
+      font-size: 2rem;
+      letter-spacing: 0.5px;
+      line-height: 60px;
+      color: var(--composer-font-color-primary);
+      font-weight: 900;
+      list-style-type: none;
+      cursor: pointer;
+    }
+  }
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: auto;
+
+    .content {
+      width: 100%;
+      padding: 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .img-container {
+        padding-left: 4rem;
+
+        .image {
+          height: 80px;
+        }
+      }
+
+      .list-items {
+        display: flex;
+        margin-left: 4rem;
+        .list-item {
+          font-size: 1.4rem;
+          color: var(--composer-font-color-primary) !important;
+        }
+      }
+      .navbar {
+        display: none;
+      }
+      .icon-items {
+        display: flex;
+        margin-right: 4rem;
+        .icon-ul {
+          padding-left: 10px;
+        }
+        .icon-item {
+          border: 1px solid var(--composer-font-color-primary);
+          border-radius: 50%;
+          height: 36px;
+          width: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 900px) {
+  .container {
     position: relative;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .content {
-            width: 100%;
-            padding: 30px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-
-            .content-left {
-                display: flex;
-                width: 18%;
-                gap: 30px;
-                font-size: 18px;
-                margin-left: 300px;
-                
-                a {
-                    text-decoration: none;
-                    color: #666;
-                }
-                span {
-                    cursor: pointer;
-                    color: var(--composer-primary-color-secondary);
-                    font-weight: 900;
-                }
-            }
-
-            .middle {
-                text-align: center;
-                width: 10%;
-                font-size: 18px;
-                margin-left: 50px;
-                .image {
-                    width: 35%;
-                    height: 35%;
-                    color: var(--composer-font-color-primary)
-                }
-            }
-            .middle-3{
-                font-weight: 100;
-                display: flex;
-                align-items: center;
-                width: 15%;
-                font-size: 9px;
-                color: #666;
-            }
-
-            .svg-container{
-                margin-right: 10px;
-            }
-                   
-            .middle-2{
-                display: flex;
-                align-items: center;
-                width: 33%;
-                font-size: 9px;
-                color: #666;
-            }
-
-            .svg-container{
-                margin-right: 10px;
-            }
-
-            .content-right {
-                display: flex;
-                align-items: flex-end;
-                width: 33%; /* Genişlik 100% olarak değiştirildi */
-                gap: 30px;
-                margin-left: 100px;
-              
-                .svg-container {
-                  display: flex;
-                  gap: 5px;
-                  color: var(--composer-secondary-color);              
-                  /* Eklenen satır: SVG'leri yatayda hizalamak için flex özelliği */
-                  justify-content: flex-start;
-                  svg {
-                    color: var(--composer-tertiary-color);
-                    margin-left: 15px;
-                    transition: 0.4s;
-                
-                    &:hover {
-                      color: var(--composer-font-color-primary);
-                    }
-                    .second-svg {
-                        color: var(--your-color); /* Renk örneği */
-                        margin-left: 10px;
-                        margin-bottom: 15px; /* Margin örneği */
-                      }
-                    
-                      .second-svg:hover {
-                        color: var(--your-hover-color); /* Hover renk örneği */
-                      }
-                  }
-                }
-              
-
-              
-                /* İkinci SVG'ye özgü stil kuralları buraya eklenir (örneğin, sınıf adı .second-svg) */
-                
-              }
-              
+  }
+  .navbar {
+    display: block !important;
+    padding-right: 4rem;
+  }
+  .img-hamburger {
+    pointer-events: all;
+    cursor: pointer;
+    transition: 0.4s;
+    font-weight: 100;
+    font-size: 30px;
+    width: 40px;
+    height: 40px;
+    &:hover {
+      transform: rotate(90deg);
     }
-        @media screen and (max-width: 800px) {
-            .content {
-                .content-left {
-                    font-size: 15px;
-                }
-                .middle {
-                    font-size: 12px;
-                }
-            }
-        }
-        @media (max-width: 620px) {
-            .content {
-                padding: 10px 10px;
-                margin: 0 auto;
-                .content-left {
-                    text-align: center;
-                    font-size: 12px;
-                    gap: 10px;
-                    width: 33%;
-                    margin-top: 10%;
-                }
-                .content-right {
-                    text-align: center;
-                    gap: 10px;
-                    margin-top: 10%;
-                    width: 20%;
-                    font-size: 12px;
-                }
-                .middle {
-                    font-size: 8px;
-                    text-align: center;
-                    margin-top: 10%;
-                }
-                img {
-                    width: 18px;
-                    height: 18px;
-                }
-            }
-        }
+  }
+  .list-items {
+    display: none !important;
+    &.active {
+      display: flex !important;
+      position: absolute !important;
+      top: 100px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0 !important;
+      background-color: var(--composer-html-background);
     }
+  }
+  .icon-items {
+    display: none !important;
+  }
 }
