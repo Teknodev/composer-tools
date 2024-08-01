@@ -6,7 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Button } from "@mui/material";
 
 type ButtonProps = {
-  buttonText: string;
+  buttonText: JSX.Element;
   url: string;
 };
 
@@ -124,9 +124,12 @@ class Content19 extends BaseContent {
   
   render() {
     const videoImage = this.getPropValue("video-image");
-    const authorImage = this.getPropValue("author-icon");
+    const authorIcon = this.getPropValue("author-icon");
     const playIcon = this.getPropValue("play-icon");
-    const description = this.getProp("description");
+    const description = this.getPropValue("description");
+    const authorName = this.getPropValue("author-name");
+    const authorDescription = this.getPropValue("author-description");
+    const titleText=this.getPropValue("title-text");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -134,7 +137,7 @@ class Content19 extends BaseContent {
           <div className={this.decorateCSS("content")}>
             {videoImage && (
               <div className={this.decorateCSS("video-part")}>
-                <img alt="" src={videoImage} className={this.decorateCSS("video-images")} />
+                <img alt="video image" src={videoImage} className={this.decorateCSS("video-images")} />
                 <div className={this.decorateCSS("play-part")}>
                   <span className="as-play" onClick={() => {
                     this.setComponentState("is_video_visible", true);
@@ -143,7 +146,7 @@ class Content19 extends BaseContent {
                       <div className={this.decorateCSS("play-container")}>
                         <div className={this.decorateCSS("outer-circle")}></div>
                         <div className={this.decorateCSS("inner-circle")}></div>
-                        <ComposerIcon name={this.getPropValue("play-icon")} propsIcon={{
+                        <ComposerIcon name={playIcon} propsIcon={{
                           className: this.decorateCSS("play-image")
                         }}></ComposerIcon>
                       </div>
@@ -153,42 +156,50 @@ class Content19 extends BaseContent {
               </div>
             )}
             <div className={this.decorateCSS("text-side")}>
-              {this.getProp("title-text").value && (
-              <p className={this.decorateCSS("title-text")}>{this.getPropValue("title-text")}</p>
+              {this.castToString(titleText) && (
+              <p className={this.decorateCSS("title-text")}>{titleText}</p>
               )}
-              {description.value && (
+              {this.castToString(description) && (
                 <div className={this.decorateCSS("description-div")}>
-                  <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
+                  <h2 className={this.decorateCSS("description")}>{description}</h2>
                 </div>
               )}
               <div className={this.decorateCSS("description-author")}>
-                {authorImage && (
+                {authorIcon && (
                   <div className={this.decorateCSS("author-icon")}>
-                    <ComposerIcon name={this.getPropValue("author-icon")} propsIcon={{
+                    <ComposerIcon name={authorIcon} propsIcon={{
                       className: this.decorateCSS("author-icon-photo")
                     }}></ComposerIcon>
                   </div>
                 )}
                 <div className={this.decorateCSS("author-info")}>
-                  <p className={"author-description-text"}>{this.getPropValue("author-description")}</p>
-                  <h1 className={"author--text"}>{this.getPropValue("author-name")}</h1>
+                  {
+                    this.castToString(authorDescription) && (
+                      <p className={this.decorateCSS("author-description-text")}>{authorDescription}</p>
+                    )
+                  }
+                  {
+                    this.castToString(authorName) && (
+                      <h1 className={this.decorateCSS("author-name-text")}>{authorName}</h1>
+                    )
+                  }
                 </div>
               </div>
-          
               <div className={this.decorateCSS("button-container")}>
-                {(this.getProp("buttons").value as any[]).map((buttonObj, index) => {
-                  const buttonData = buttonObj.value;
-                  const buttonText = buttonData.find((item: any) => item.key === "buttonText")?.value || "";
-                  const url = buttonData.find((item: any) => item.key === "url")?.value || "";
-                  if (buttonText.trim() !== "") {
-                    return (
-                      <ComposerLink key={index} path={url}>
-                        <Button className={this.decorateCSS("button")}>{buttonText}</Button>
-                      </ComposerLink>
-                    );
-                  }
-                  return null;
-                })}
+                {
+                  this.castToObject<ButtonProps[]>("buttons").map((buttonObj, index) => {
+                    const buttonData = buttonObj;
+                    const buttonText = this.castToString(buttonData.buttonText);
+                    const url =  buttonData.url ;
+                    if (buttonText.trim() !== "") {
+                      return (
+                        <ComposerLink key={index} path={url}>
+                          <Button className={this.decorateCSS("button")}>{buttonText}</Button>
+                        </ComposerLink>
+                      );
+                    }
+                  })
+                }
               </div>
             </div>
           </div>
