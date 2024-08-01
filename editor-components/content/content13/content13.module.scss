@@ -9,13 +9,15 @@
         margin-right: auto;
         margin-left: auto;
 
+
         .title-container {
-            width: 50%;
             display: flex;
             flex-direction: column;
+            width: fit-content;
             padding: 40px 60px;
             text-align: center;
             margin-left: 40px;
+            max-width: var(--composer-content-width);
 
             .about-title {
                 display: block !important;
@@ -67,7 +69,7 @@
                 .about-button {
                     align-items: center;
                     background-color:  var(--composer-secondary-color);
-                    color: var(--text-color-white);
+                    color: var(--composer-font-color-primary);
                     text-align: center;
                     font-weight: 800;
                     text-transform: inherit;
@@ -77,8 +79,8 @@
                     border-radius: 5px;
                     cursor: pointer;
                     margin-left: 10px; 
-                    width: 40%;
-                    overflow: hidden;
+                    width: 50%;
+                   
                 
                     .buttonText{
                         color: (--composer-font-color-secondary);
@@ -92,7 +94,7 @@
                 .phone-icon {
                     font-size: 18px;
                     margin-right: 10px;
-                    color: var(--text-color-secondary);
+                    color: var(--composer-font-color-primary);
                     display: flex;
 
                     .icon {
@@ -110,7 +112,7 @@
                         display: flex;
                         align-items: center;
                         font-size: 1.5rem;
-                        color: var(--primary-text-color);
+                        color: var(--composer-font-color-primary);
                         font-weight: 600;
                     }
                 }
@@ -120,9 +122,8 @@
 
         .right-page {
             padding: 0px 15px;
-            width: 600px;
-
-
+            margin-top: 20px;
+            margin-right: 50px;
             .image-container {
                 position: relative;
                 max-width: 100%;
@@ -132,9 +133,9 @@
                     font-size: 15px;
                     line-height: 16px;
                     text-transform: uppercase;
-                    transform: translate(-180%, 60%);
-                    left: 60px;
-                    top: 90px;
+                    transform: translate(-160%, 120%);
+                    margin-left: 50px;
+                    margin-top: 80px;
                     color: var(--composer-primary-color);
                     font-weight: 700;
 
@@ -144,7 +145,8 @@
                     position: absolute;
                     line-height: 5.6rem;
                     font-size: 5.6rem;
-                    transform: translate(-60%, 110%);                    color: var(--composer-font-color-primary);
+                    transform: translate(-60%, 130%);
+                    color: var(--composer-font-color-primary);
                     font-family: Urbanist, sans-serif;
                 }
 
@@ -159,7 +161,8 @@
                 .image2 {
                     position: absolute;
                     left: 80px;
-                    transform: translate(-60%, -80%);
+                    transform: translate(-80%, -80%);
+                    border-radius: 4px;
                     width: 55%;
                     height: auto;
 
@@ -188,7 +191,6 @@
     .container {
         .max-content {
             display: flex;
-            
             padding: 0;
             .title-container {
                 display: flex;
@@ -250,10 +252,31 @@
             }
 
             .right-page {
-                margin-left: 100px;
+                margin-left: 80px;
+                margin-right: 0px;
                 flex-direction: column;
                 align-items: flex-start;
                 .image-container{
+                    .text{
+                        position: absolute;
+                        font-size: 15px;
+                        line-height: 16px;
+                        text-transform: uppercase;
+                        transform: translate(-160%, 100%);
+                        margin-left: 50px;
+                        margin-top: 100px;
+                        color: var(--composer-primary-color);
+                        font-weight: 700;
+    
+                    }
+                    .year{
+                        position: absolute;
+                        line-height: 5.6rem;
+                        font-size: 5.6rem;
+                        transform: translate(-60%, 120%);
+                        color: var(--composer-font-color-primary);
+                        font-family: Urbanist, sans-serif;
+                    }
                     .image1{
                         width: 100%;
                     }
@@ -332,20 +355,20 @@
                     }
                 }
                 .right-page {
-                    margin-left: 200px;
+                    margin-left: 0px;
                     .image-container {
                         position: relative;
                         max-width: 100%;
+                        margin-left: 10px;
         
                         .text {
-                            margin-left: 10px;
                             position: absolute;
                             font-size: 15px;
                             line-height: 16px;
                             text-transform: uppercase;
-                            transform: translate(-60%, -80%);
-                            margin-top: 10px;
-                            color: var(--text-color-secondary);
+                            transform: translate(-40%, 70%);
+                            margin-left: 50px;
+                            margin-top: 80px;
                             font-weight: 700;
         
                         }
@@ -357,23 +380,23 @@
                             line-height: 5.6rem;
                             font-size: 3.5rem;
                             transform: translate(10%, 140%);
-                            color: var(--primary-text-color);
                             font-family: Urbanist, sans-serif;
                         }
         
                         .image1 {
-                            width: 40%;
-                            margin-left: 100px;
+                            width: 70%;
+                            margin-left: 90px;
                             border-radius: 4px;
                             margin-top: 10px;
+                            margin-right: 0px;
                            
                         }
         
                         .image2 {
                             margin-left: 10px;
                             position: absolute;
-                            transform: translate(-40%, 110%);
-                            width: 30%;
+                            transform: translate(-70%, -50%);
+                            width: 50%;
                             height: auto;
         
                         }
