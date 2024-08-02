@@ -7,11 +7,13 @@ type listItem = {
   itemTitle: JSX.Element;
   itemIcon: string;
   itemText: JSX.Element;
-}
+};
+
 class List6 extends BaseList {
   getName(): string {
     return "List 6";
   }
+
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -19,7 +21,13 @@ class List6 extends BaseList {
       key: "description",
       displayer: "Description",
       value: "It's so challenging to find a good team to do great things. But we can provide you the best one.",
-    })
+    });
+    this.addProp({
+       type: "boolean",
+       key: "descriptionAnimation",
+       displayer: "Description Animation",
+       value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -41,7 +49,7 @@ class List6 extends BaseList {
               type: "icon",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "FaMinus"
+              value: "LuPenTool",
             },
             {
               type: "string",
@@ -67,7 +75,7 @@ class List6 extends BaseList {
               type: "icon",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "FaMinus"
+              value: "BiCodeBlock",
             },
             {
               type: "string",
@@ -93,7 +101,7 @@ class List6 extends BaseList {
               type: "icon",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "FaMinus"
+              value: "GoGoal",
             },
             {
               type: "string",
@@ -119,7 +127,7 @@ class List6 extends BaseList {
               type: "icon",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "FaMinus"
+              value: "BiBookContent",
             },
             {
               type: "string",
@@ -136,24 +144,47 @@ class List6 extends BaseList {
 
   render() {
     const listItems = this.castToObject<listItem[]>("listItems");
+    const description = this.castToString(this.getPropValue("description"));
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
+        {description && (
+            <div className={this.decorateCSS(this.getPropValue("descriptionAnimation") ? "description1" : "description2")}>
+              {description}
+            </div>
+          )}
           <ul className={this.decorateCSS("list-item")}>
             {listItems.map((listItem: listItem, index: number) => (
-              <li key={index} className={this.decorateCSS("item-container")}>
-                <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
+              <li
+                key={index}
+                className={this.decorateCSS("item-container")}
+                style={{
+                  border: description === "" && index === 0 ? "none" : this.decorateCSS("item-container")
+                }}
+              >
+                <h3 className={this.decorateCSS("index")}>
+                  {index < 9 ? `0${index + 1}` : index + 1}
+                </h3>
                 <div className={this.decorateCSS("cards")}>
                   <ComposerIcon
                     name={listItem.itemIcon}
                     propsIcon={{
-                      className :this.decorateCSS("icon"),
+                      className: this.decorateCSS("icon"),
                       size: 40,
                     }}
                   />
-                  <h1 className={this.decorateCSS("list-item-h1")}>{listItem.itemTitle}</h1>
-                  <p className={this.decorateCSS("list-item-p")}>{listItem.itemText}</p>
+                  {this.castToString(listItem.itemTitle) && (
+                    <h1 className={this.decorateCSS("list-item-h1")}>
+                      {listItem.itemTitle}
+                    </h1>
+                  )}
+
+                  {this.castToString(listItem.itemText) && (
+                    <p className={this.decorateCSS("list-item-p")}>
+                      {listItem.itemText}
+                    </p>
+                  )}
                 </div>
               </li>
             ))}
@@ -163,4 +194,5 @@ class List6 extends BaseList {
     );
   }
 }
+
 export default List6;
