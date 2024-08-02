@@ -3,19 +3,14 @@ import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./confirmation.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import image1 from "./image1-2.png";
 
 
-class Confirmation extends BaseModal{
+
+class ConfirmationModal extends BaseModal{
     constructor(props?: any) {
         super(props, styles);
 
-
-        this.addProp({
-            type: "image",
-            key: "title-img",
-            displayer: "Image",
-            value: "https://picsum.photos/200"
-        });
 
         this.addProp({
             type: "string",
@@ -46,7 +41,7 @@ class Confirmation extends BaseModal{
                     type: "page",
                     key: "button-path",
                     displayer: "Button Path",
-                    value: ""
+                    value: "// TODO"
                 }
             ]
         })
@@ -73,39 +68,43 @@ class Confirmation extends BaseModal{
     }
     
     render() {
-        const button1 = this.getPropValue("button-1");
-        const button2 = this.getPropValue("button-2");
+        
         return (
             <div className={this.decorateCSS("container")}>
                 <div className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("head-content")}>
-                        <img 
-                            alt= ""
-                            className={this.decorateCSS("image")}
-                            src={this.getPropValue("title-img")}                        
-                        ></img>
-                    </div>
-                    <div className={this.decorateCSS("bottom-content")}>
-                        <h2 className={this.decorateCSS("title")}>
-                            {this.getPropValue("title")}
-                        </h2>
-                        <span className={this.decorateCSS("description")}>
-                            {this.getPropValue("description")}
-                        </span>
-
-                        <ComposerModalClose>
-                        <div className={this.decorateCSS("buttons")}>
-                            <ComposerLink path={this.getPropValue("button-1")[1].value}>
-                                <button className={this.decorateCSS("button")} >
-                                    {this.getPropValue("button-1")[0].value}
-                                </button>
-                            </ComposerLink>
-
-                            <button className={this.decorateCSS("button")} >
-                                {this.getPropValue("button-2")[0].value}
-                            </button>
+                    <div className={this.decorateCSS("box")}>                 
+                        <div className={this.decorateCSS("head-content")}>
+                            <img 
+                                alt= ""
+                                className={this.decorateCSS("image")}
+                                src={image1}                        
+                            ></img>
+                            <ComposerModalClose>
+                                <button className={this.decorateCSS("close-button")}>&#10005;</button>
+                            </ComposerModalClose>
                         </div>
-                        </ComposerModalClose>                        
+                        <div className={this.decorateCSS("bottom-content")}>
+                            <h1 className={this.decorateCSS("title")}>
+                                {this.getPropValue("title")}
+                            </h1>
+                            <p className={this.decorateCSS("description")}>
+                                {this.getPropValue("description")}
+                            </p>
+
+                            <ComposerModalClose>
+                            <div className={this.decorateCSS("buttons")}>
+                                <ComposerLink path={this.getPropValue("button-1")[1].value}>
+                                    <button className={this.decorateCSS("button-1")} >
+                                        {this.getPropValue("button-1")[0].value}
+                                    </button>
+                                </ComposerLink>
+
+                                <button className={this.decorateCSS("button-2")} >
+                                    {this.getPropValue("button-2")[0].value}
+                                </button>
+                            </div>
+                            </ComposerModalClose>                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,4 +114,4 @@ class Confirmation extends BaseModal{
 
 
 
-export default Confirmation;
+export default ConfirmationModal;
