@@ -2,7 +2,6 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ISliderData = {
   title: string;
@@ -11,12 +10,6 @@ type ISliderData = {
   topWriting: string;
 };
 
-//CARD
-type Card = {
-  topWriting: string;
-  title: string;
-  description: string;
-};
 
 let words;
 function AnimatedText({ children, mode, animationStarted, randomizedFontSize }: any) {
@@ -115,7 +108,7 @@ class Header8 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://eremia-react.vercel.app/img/project/project2/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -147,7 +140,7 @@ class Header8 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://eremia-react.vercel.app/img/project/project1/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -179,7 +172,7 @@ class Header8 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://eremia-react.vercel.app/img/project/project2/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -211,7 +204,7 @@ class Header8 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://eremia-react.vercel.app/img/project/project2/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -296,7 +289,7 @@ class Header8 extends BaseHeader {
             (item: ISliderData, index: number) => (
               <div className={this.decorateCSS("info-box") + " " + (currentSlide == index + 1 && this.decorateCSS("active"))}>
                 <div className={this.decorateCSS("tag")}>{item.topWriting}</div>
-                <div className={this.decorateCSS("title")}><AnimatedText mode={(this.getComponentState("prevIndex") <= this.getComponentState("currentIndex")) ? "to_right" : "to_left"} animationStarted={currentSlide == index + 1}>{item.title}</AnimatedText></div>
+                <div className={this.decorateCSS("title")}><AnimatedText mode={(this.getComponentState("prevIndex") <= this.getComponentState("currentIndex")) ? "to_right" : "to_left"} animationStarted={currentSlide == index + 1}>{this.castToString(item.title as any)}</AnimatedText></div>
                 <div className={this.decorateCSS("description")}>
                   {item.description}
                 </div>

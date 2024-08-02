@@ -24,7 +24,7 @@ class FaqPost extends BaseFAQ {
       type: "image",
       displayer: "Image",
       key: "image",
-      value: "https://template-kit.evonicmedia.com/layout49/wp-content/uploads/2023/10/faq-2-1.jpg"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cd34bd2970002c62977c?alt=media&timestamp=1719584962578"
     })
 
     this.addProp({

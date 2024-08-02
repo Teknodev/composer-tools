@@ -106,7 +106,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image Title",
               value:
-                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/Color-flow-4.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247df?alt=media&timestamp=1719483639150",
             },
             {
               type: "page",
@@ -132,7 +132,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image Title",
               value:
-                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/Pal-2-min.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e2?alt=media&timestamp=1719483639150",
             },
             {
               type: "page",
@@ -158,7 +158,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image Title",
               value:
-                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/The-lofe-1-min.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e3?alt=media&timestamp=1719483639150",
             },
             {
               type: "page",
@@ -184,7 +184,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image Title",
               value:
-                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/Kla_1-min.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e0?alt=media&timestamp=1719483639150",
             },
             {
               type: "page",
@@ -210,7 +210,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image Title",
               value:
-                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/vifa-reykjavik-portable-wireless-speaker-2.jpg-min.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e4?alt=media&timestamp=1719483639150",
             },
             {
               type: "page",
@@ -236,7 +236,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image Title",
               value:
-                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/miguel-andrade-potCPE_Cw8A-unsplash-min.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e1?alt=media&timestamp=1719483639150",
             },
             {
               type: "page",
@@ -262,7 +262,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image Title",
               value:
-                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/02/cazador-min.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247de?alt=media&timestamp=1719483639150",
             },
             {
               type: "page",
@@ -288,7 +288,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image Title",
               value:
-                "https://preview.codeless.co/remake/default/wp-content/uploads/2020/03/alabaster-co-2r13qYSJEK8-unsplash-min-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247dd?alt=media&timestamp=1719483639150",
             },
             {
               type: "page",

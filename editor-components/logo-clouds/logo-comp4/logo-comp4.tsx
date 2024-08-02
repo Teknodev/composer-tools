@@ -33,7 +33,7 @@ class LogoComp4Page extends LogoClouds {
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cd92bd2970002c629817?alt=media&timestamp=1719584962578",
     });
     this.addProp({
       type: "array",
@@ -54,21 +54,21 @@ class LogoComp4Page extends LogoClouds {
                   type: "image",
                   key: "image",
                   value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf154?alt=media&timestamp=1683298841560",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf156?alt=media&timestamp=1719584962573",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf155?alt=media&timestamp=1683298841560",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf155?alt=media&timestamp=1719584962573",
                   displayer: "Image",
                 },
                 {
                   type: "image",
                   key: "image",
                   value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf156?alt=media&timestamp=1683298841560",
+                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551a0df72de2002caaf154?alt=media&timestamp=1719584962573",
                   displayer: "Image",
                 },
               ],
