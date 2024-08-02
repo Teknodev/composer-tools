@@ -16,15 +16,15 @@ class DownloadCard1 extends BaseDownload {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "title1",
-      displayer: "Title-1",
+      key: "title",
+      displayer: "Title",
       value: "DON'T WASTE TIME,",
     });
 
     this.addProp({
       type: "string",
-      key: "title2",
-      displayer: "Title-2",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Download Now!",
 
     });
@@ -128,14 +128,24 @@ class DownloadCard1 extends BaseDownload {
     }
 
   render() {
+    const title = this.getPropValue("title", {as_string: true});
+    const subtitle = this.getPropValue("subtitle", {as_string: true})
+    const description = this.getPropValue("description", {as_string: true})
       return(
       <div className = { this.decorateCSS("container") } >
           <div className={this.decorateCSS("max-content")}>
-            <p className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</p>
-            <p className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</p>
-                    
+            {title && (
+            <p className={this.decorateCSS("title")}>{this.getPropValue("title")}</p>
+            )}
+            {subtitle && (
+            <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
+            )}
+            {subtitle && (
             <div className={this.decorateCSS("line")}></div>
+            )}        
+            {description && (
             <p className={this.decorateCSS("description")}>{this.getPropValue("description")} </p>
+            )}
 
             <div className={this.decorateCSS("box")}>
               {this.castToObject<Button[]>("buttons").map(
@@ -149,8 +159,6 @@ class DownloadCard1 extends BaseDownload {
                         <ComposerIcon name={item.buttonIcon} propsIcon={{
                           className: this.decorateCSS("icon")
                         }} />
-
-
                         {item.buttonText}
                       </button>
                     </ComposerLink>
@@ -160,11 +168,7 @@ class DownloadCard1 extends BaseDownload {
             </div>
 
           </div>
-
-
       </div>
-
-
     );
   }
 }

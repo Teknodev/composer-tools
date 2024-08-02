@@ -3,26 +3,32 @@
     padding: 50px 0;
     display: flex;
     justify-content: center;
+    @media screen and (max-width:360px) {
+        padding: 0;        
+    }
 
     .max-content {
         text-align: center;
         font-weight: bold;
         width: 100%;
-    }
+        margin: 0 auto;
+        max-width: var(--composer-content-width);
 
-    .title1 {
+    .title {
         @media screen and (max-width: 360px) {
             font-size: 14px;
         }
 
         margin-top: 80px;
         margin-bottom: 10px;
-        font-size: 1.5rem;
-        color: var(--composer-primary-color);
+        font-size: 14px;
+        letter-spacing: 2px;
+        word-spacing: 3px;
+        color: var(--composer-font-color-primary);
     }
 
-    .title2 {
-        font-size: 50px;
+    .subtitle {
+        font-size: 36px;
         margin: 0;
         color: var(--composer-primary-color);
 
@@ -37,7 +43,8 @@
         color: var(--composer-font-color-primary);
 
         @media screen and (max-width:360px) {
-            padding: 10px;
+            padding: 0 20px;
+            font-size: 1.3rem;
         }
 
     }
@@ -47,7 +54,8 @@
         width: 90px;
         margin: auto;
         margin-top: 20px;
-        background: blue;
+        background: var(--composer-primary-color);
+        opacity: 0.8;
     }
 
     .box {
@@ -55,60 +63,48 @@
         justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
+        padding: 0 50px;
         padding-top: 5rem;
         row-gap: 50px;
+        @media screen and (max-width: 360px) {
+            padding-top: 20px;
+        }
         .button {
             display: flex;
-            padding: 39px;
-            width: 300px;
+            width: 250px;
+            height: 80px;
             background-color: transparent;
             gap: 10px;
+            letter-spacing: 2px;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             color: var(--composer-font-color-primary);
-            border: 2px solid var(--composer-secondary-color);
-            font-size: 15px;
+            border: 2px solid var(--composer-primary-color);
+            font-size: 14px;
             font-weight: bold;
             border-radius: var(--composer-border-radius);
+            transition: 0.4s;
         }
 
         .button:hover {
-            background-color: var(--composer-secondary-color);
+            background-color: var(--composer-primary-color);
             color: var(--composer-font-color-secondary);
 
             .icon {
                 @media screen and (max-width:360px) {
                     transform: scale(1);
                 }
-
-                @media screen and (max-width:800px) {}
             }
         }
     }
 }
+}
 
 @media only screen and (max-width: 768px) {
     .container {
-    
-
-        .max-content {}
-
-        .title1 {}
-
-        .title2 {}
-
-        .description {}
-
-        .line {}
-
         .box {
-            gap:3.125rem;
             padding-top: 1.875rem;
-
-            .button {}
-
-            .button:hover {}
         }
     }
 }
