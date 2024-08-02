@@ -64,10 +64,6 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-<<<<<<< HEAD
-              value:
-                "https://images.unsplash.com/photo-1524626625977-22112ef3c0ea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGJhc2ViYWxsJTIwcGxheWVyfGVufDB8fDB8fHww",
-=======
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370e3c68c3c2002cd30814?alt=media&timestamp=1719558632843",
             },
             {
@@ -81,7 +77,6 @@ class Team8 extends Team {
               key: "position",
               displayer: "Position",
               value: "Ceo",
->>>>>>> f50b5d6c3c60e7d787a64115aa928f7a976dcb31
             },
           ],
         },
@@ -112,10 +107,6 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-<<<<<<< HEAD
-              value:
-                "https://images.unsplash.com/photo-1489460427746-b6296f4bc3f5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFzZWJhbGwlMjBwbGF5ZXJ8ZW58MHx8MHx8fDA%3D",
-=======
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370e3c68c3c2002cd30813?alt=media&timestamp=1719558632843",
             },
             {
@@ -129,7 +120,6 @@ class Team8 extends Team {
               key: "position",
               displayer: "Position",
               value: "Web Developer",
->>>>>>> f50b5d6c3c60e7d787a64115aa928f7a976dcb31
             },
           ],
         },
@@ -160,7 +150,6 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-<<<<<<< HEAD
               value:
                 "https://plus.unsplash.com/premium_photo-1664304819769-61673bf23d1a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDl8fGJhc2ViYWxsJTIwcGxheWVyfGVufDB8fDB8fHww",
             },
@@ -176,9 +165,6 @@ class Team8 extends Team {
               key: "imagesubtitle",
               displayer: "Image Subtitle",
               value: "Joseph Hall",
-=======
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370e3c68c3c2002cd30812?alt=media&timestamp=1719558632843",
->>>>>>> f50b5d6c3c60e7d787a64115aa928f7a976dcb31
             },
             {
               type: "string",
