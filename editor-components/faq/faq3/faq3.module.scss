@@ -1,5 +1,4 @@
 .Main-container {
-
   .max-content {
     max-width: var(--composer-content-width);
     justify-content: center;
@@ -25,6 +24,9 @@
           line-height: 30px;
           padding-left: 15px;
 
+          > div:last-child {
+            border-bottom: none;
+          }
 
           .card {
             color: var(--composer-font-color-primary);
@@ -46,7 +48,8 @@
                 &.card-subtitle:hover {
                   color: var(--composer-primary-color);
                   cursor: pointer;
-                }              }
+                }
+              }
 
               .icon {
                 color: var(--composer-primary-color);
@@ -64,13 +67,12 @@
             color: var(--composer-font-color-primary);
             opacity: 0.6;
             margin: 20px;
+            margin-top: 0;
             font-size: 14px;
           }
-
-          &.active {
-            max-height: 1000px;
-          }
-          
+        }
+        .text-box.active {
+          max-height: 1000px;
         }
 
         :last-child {
@@ -82,12 +84,12 @@
           line-height: 30px;
           width: 50%;
           .info-items {
-            .title-info{
+            margin-bottom: 30px;
+            .title-info {
               color: var(--composer-font-color-primary);
               font-size: 22px;
               font-weight: bold;
             }
-
           }
 
           .description-item {
@@ -100,10 +102,10 @@
             opacity: 0.6;
             font-size: 14px;
             margin-bottom: 15px;
-
           }
 
           .button-info {
+            display: inline-block;
             color: var(--composer-font-color-secondary);
             background-color: var(--composer-font-color-primary);
             border: 2px solid var(--composer-primary-color);
@@ -112,20 +114,17 @@
             font-weight: bold;
             padding: 15px;
             padding-inline: 40px;
-            transition: 0.3s;
-            margin: 0 20px 0 0;
-            margin-bottom: 30px;
+            transition: 300ms;
+            transition-property: all;
           }
 
           .button-info:hover {
             color: var(--composer-font-color-secondary);
             background-color: var(--composer-primary-color);
-
+            cursor: pointer;
           }
-
         }
       }
-
     }
   }
 
@@ -137,9 +136,8 @@
       margin-top: 20px;
       margin-bottom: 50px;
       font-size: 35px;
-      letter-spacing: -.3px;
+      letter-spacing: -0.3px;
       text-decoration: underline;
-
     }
 
     .subtitle {
@@ -151,26 +149,15 @@
   }
 }
 
-@media screen and (max-width: 964px) {
-  .contentContainer {
-    margin: 0 !important;
-    padding: 10px !important;
-    width: 100% !important;
-  }
-
-  .content-right{
-    width: 100% !important;
-  }
-}
-
 @media screen and (min-width: 768px) and (max-width: 964px) {
   .contentContainer {
-    margin: 0 0 0 0;
+    margin: 0;
     padding: 0 10px;
     display: flex;
     flex-direction: column;
+    width: 100% !important;
   }
-  .content-right{
+  .content-right {
     width: 100% !important;
   }
 
@@ -181,9 +168,6 @@
   .caption {
     font-size: 25px !important;
   }
-
-
-
 }
 
 @media screen and (max-width: 767px) {
@@ -192,16 +176,13 @@
     padding: 0 10px;
     display: flex;
     flex-direction: column;
-
   }
 
   .cardsubtitle {
-
     font-size: 1rem !important;
   }
 
   .caption {
     font-size: 25px !important;
   }
-
 }
