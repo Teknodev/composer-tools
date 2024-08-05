@@ -33,7 +33,7 @@ class CallToAction7Page extends BaseCallToAction {
           type: "string",
           key: "buttonText",
           displayer: "Button Text",
-          value: "LOOK MORE",
+          value: "Get your FREE copy",
         },
         {
           type: "page",
@@ -47,7 +47,7 @@ class CallToAction7Page extends BaseCallToAction {
       type: "string",
       key: "placeholder",
       displayer: "Placeholder",
-      value: "Enter your E-Mail!",
+      value: "Email *",
     });
     this.addProp({
       type: "boolean",
