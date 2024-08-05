@@ -3,7 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats7.module.scss";
 
 
-type Item ={
+type Item = {
   title: JSX.Element;
   progress: number;
   progressText: JSX.Element;
@@ -150,10 +150,10 @@ class Stats7Page extends BaseStats {
           {items.length > 0 && <div className={this.decorateCSS("progress-container")}>
             {items.map((item: Item, index: number) => {
               const { title, progress, progressText } = item;
-              let percent = progress ?? 1; 
-              let text = progressText ?? `${percent}%`; 
-              
-              if (percent === 0) {
+              let percent = progress ;
+              let text = progressText ?? `${percent}%`;
+
+              if (percent === 0 ) {
                 percent = 1;
                 text = "0%";
               } else if (percent >= 100) {
@@ -176,12 +176,14 @@ class Stats7Page extends BaseStats {
                         )}
                       </div>
                     )}
-                    <div className={this.decorateCSS("progress-active")}>
-                      <div
-                        className={this.decorateCSS("progress-passive")}
-                        style={{ width: `${percent}%` }}
-                      ></div>
-                    </div>
+                    {percent !== null && percent !== undefined && (
+                      <div className={this.decorateCSS("progress-active")}>
+                        <div
+                          className={this.decorateCSS("progress-passive")}
+                          style={{ width: `${percent}%` }}
+                        ></div>
+                      </div>
+                    )}
                   </div>
                 );
             })}
