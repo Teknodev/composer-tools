@@ -317,7 +317,7 @@ class Header9 extends BaseHeader {
       value: "Project",
     });
 
-    const tabs = this.castToObject<ITabs[]>("tabs");
+    const tabs = this.castToObject<ITab[]>("tabs");
 
     const firstImage: string = tabs[0].image;
     this.setComponentState("image", firstImage);
@@ -339,7 +339,7 @@ class Header9 extends BaseHeader {
 
   render() {
     const textExist = this.getPropValue("text", { as_string: true });
-    const socials = this.castToObject<Social[]>("social");
+    const socials = this.castToObject<ISocial[]>("socials");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -403,20 +403,6 @@ class Header9 extends BaseHeader {
                   {this.getPropValue("linkText")}
                 </h2>
               </ComposerLink>
-
-              <div className={this.decorateCSS("socials")}>
-                <div className={this.decorateCSS("social")}>
-                  {this.castToObject<ISocial[]>("socials").map(
-                    (social: ISocial, index: number) => (
-                      <ComposerLink path={social.socialUrl} key={index}>
-                        <div className={this.decorateCSS("social-link")}>
-                          {this.castToString(social.socialLinkText)}
-                        </div>
-                      </ComposerLink>
-                    )
-                  )}
-                </div>
-              </div>
             </div>
             <img
               src={this.getComponentState("image")}
@@ -425,14 +411,14 @@ class Header9 extends BaseHeader {
             />
           </div>
           <div className={this.decorateCSS("social")}>
-            {socials.map((tab: Social, idx: number) => (
+            {socials.map((tab: ISocial, idx: number) => (
               <div
                 style={{ width: `${100 / socials.length} %` }}
                 className={this.decorateCSS("social-item")}
               >
-                <ComposerLink key={idx} path={tab.link}>
+                <ComposerLink key={idx} path={tab.socialUrl}>
                   <div className={this.decorateCSS("social-link")}>
-                    {tab.text}
+                    {tab.socialLinkText}
                   </div>
                 </ComposerLink>
               </div>
