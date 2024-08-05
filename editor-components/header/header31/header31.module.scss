@@ -9,7 +9,7 @@
 
     .max-content {
         max-width: var(--composer-content-width);
-        height: 100%;
+        height: 100vh;
         width: 100%;
 
         .slider-parent {
@@ -18,31 +18,48 @@
             height: 100%;
 
             .slider {
-                width: 80%;
-                left: 20%;
+                width: 82%;
+                left: 18%;
             }
 
             .right-slider {
                 position: relative;
                 height: 100%;
                 overflow: hidden;
-
+                
                 .background-right {
+                    position: relative;
+                    object-fit: cover;
                     height: 100vh;
                     width: 100%;
+                    z-index: 1 !important;
                 }
+                .overlay{
+                    background: #000;
+                    position: absolute;
+                    height: 100vh;
+                    width: 100%;
+                    opacity: 0.4;
+                    top: 0;
+                    left: 0;
+                    z-index: 2 !important;
+                }
+
             }
         }
 
         .main-social {
             position: relative;
             bottom: 50px;
+            left: 0px;
             display: flex;
             height: 40px;
             color: white;
             font-size: 15px;
             gap: 20px;
             align-items: center;
+            width: fit-content;
+            cursor: pointer;
 
             .social-icon{
                 margin-left: 50px;
@@ -89,10 +106,11 @@
             color: white;
             position: absolute;
             bottom: 20px;
-            right: 35px;
+            right: 80px;
             z-index: 3;
             display: flex;
             gap: 30px;
+            cursor: pointer;
         }
 
         .control-num {
@@ -155,39 +173,52 @@
                 width: 40%;
                 display: flex;
                 flex-direction: column;
-                gap: 5px;
+
 
                 .up-text {
                     display: flex;
                     align-items: center;
                     gap: 10px;
+                    margin: 0 0 30px 0;
 
                     .stick {
                         width: 35px;
                         height: 1px;
-                        background-color: white;
+                        background-color: var(--composer-font-color-secondary);
+                        opacity: 0.2 !important;
                     }
 
                     .subtitle {
                         font-size: 13px;
                         font-weight: 600;
                         letter-spacing: 2px;
-                        opacity: 0.8;
+                        opacity: 0.8 !important;
+                        color: var(--composer-font-color-secondary);
                     }
                 }
 
                 .title {
                     font-size: 65px;
+                    margin: 0;
+                    color: var(--composer-font-color-secondary);
                 }
 
                 .description {
-                    font-size: 18px;
-                    letter-spacing: 2px;
+                    font-size: 16px;
+                    margin: 30px 0 0;
+                    color: var(--composer-font-color-secondary);
+                    letter-spacing: 1px;
+                    line-height: 24px;
+                    max-width: 470px;
                 }
 
-                .button {
+                .button-box{
+                    transition: transform 0.3s linear !important;
+                    max-width: 40%;
+                    margin: 30px 0 0;
+                    .button {
                     padding: 15px 30px;
-                    border-radius: 50px;
+                    border-radius: 40px;
                     border: none;
                     outline: none;
                     display: flex;
@@ -195,17 +226,17 @@
                     gap: 10px;
                     font-weight: 400;
                     background: transparent;
-                    border: 2px solid white;
-                    color: white;
-                    transition: 0.3s all;
-                    margin-top: 10px;
-                    max-width: 15vw;
-
+                    border: 0.5px solid white;
+                    color: var(--composer-font-color-secondary);
+                    letter-spacing: 3px;
+                    } 
                     &:hover {
-                        transform: scale(1.1) !important;
+                        transform: scale(1.05) !important;
                         cursor: pointer;
-                    }
+                    
                 }
+                }
+                
             }
         }
     }
@@ -219,7 +250,6 @@
         .max-content {
             max-width: var(--composer-content-width);
             margin: auto;
-            height: 100vh;
 
             .slider-parent {
                 .slider {
@@ -228,16 +258,28 @@
                 }
 
                 .background-right {
-                    object-fit: none;
+                    position: relative;
+                    object-fit: cover;
+                    left: 23% !important;
+                    width: 80% !important;
                 }
             }
 
             .carousel {
-                display: none;
+                width: 10% !important;
+            }
+
+            .slider-container{
+                .content{
+                    left: 44px;
+                }
             }
 
             .slider-inner {
                 width: 100% !important;
+                .button-box{
+                    max-width: 30% !important;
+                }
             }
 
             .control-num {
@@ -245,12 +287,13 @@
             }
 
             .control-nav {
-                bottom: 10px;
-                right: 35px;
+                bottom: 20px;
+                right: 55px;
             }
 
             .main-social {
-                bottom: 37px;
+                bottom: 50px;
+                left: 50px;
 
                 .social-icon{
                     margin-left: 20px;
@@ -274,28 +317,52 @@
                     left: unset;
                     width: 100%;
                 }
+                .right-slider{
+                    .background-right{
+                        object-fit: cover;
+                        left: 0 !important;
+                        width: 100% !important;
+                    }
+                }
+                
             }
 
             .carousel {
                 display: none;
-
-                .slider-inner {
-                    width: unset;
-                }
             }
 
+            .slider-inner {
+                width: unset;
+                .subtitle{
+                    font-size: 13px !important;
+                }
+                .title{
+                    font-size: 45px !important;
+                    max-width: 300px !important;
+                }
+                .description{
+                    font-size: 13px !important;
+                }
+                .button-box{
+                    max-width: 60% !important;
+                }
+            }
+        
+
             .control-num {
-                bottom: 40px;
+                bottom: 60px;
+                right: 35px;
             }
 
             .control-nav {
-                bottom: 10px;
+                bottom: 35px;
                 right: 25px;
                 padding-top: 10px;
             }
 
             .main-social {
-                bottom: 37px;
+                bottom: 60px;
+                left: 0;
             }
         }
     }
