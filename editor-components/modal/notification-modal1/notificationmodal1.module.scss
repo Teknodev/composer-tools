@@ -41,7 +41,7 @@
           left: 5;
           width: 385px;
           height: 81px;
-          background-color: var(--composer-tertiary-color);
+          background-color: rgba(var(--composer-font-color-secondary-rgb), 0.4);
           z-index: 2;
         }
 
@@ -54,7 +54,7 @@
           height: 80px;
           padding: 20px;
           z-index: 2;
-          background-color: var(--composer-tertiary-color);
+          background-color: rgba(var(--composer-font-color-secondary-rgb), 0.4);
         }
 
         .overlay3 {
@@ -76,7 +76,7 @@
           text-align: center;
           margin: auto;
           transform: translate(-50%, -50%);
-          color: blue;
+          color: var(composer font-color-primary);;
           font-size: 1.2rem;
           z-index: 3;
         }
