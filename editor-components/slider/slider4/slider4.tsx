@@ -30,7 +30,7 @@ class Slider4 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a20?alt=media&timestamp=1692971091102",
+              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a1c?alt=media&timestamp=1719584962575",
             },
             {
               type: "string",
@@ -68,7 +68,7 @@ class Slider4 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a1f?alt=media&timestamp=1692971091102",
+              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a1d?alt=media&timestamp=1719584962575",
             },
             {
               type: "string",
@@ -106,7 +106,7 @@ class Slider4 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a1e?alt=media&timestamp=1692971091102",
+              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a1d?alt=media&timestamp=1719584962575",
             },
             {
               type: "string",
@@ -144,7 +144,7 @@ class Slider4 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a1d?alt=media&timestamp=1692971091102",
+              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a1f?alt=media&timestamp=1719584962575",
             },
             {
               type: "string",
@@ -182,7 +182,7 @@ class Slider4 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a1c?alt=media&timestamp=1692971091102",
+              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b066057bdf002c2a2a20?alt=media&timestamp=1719584962575",
             },
             {
               type: "string",
@@ -220,7 +220,7 @@ class Slider4 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b2b5057bdf002c2a2af4?alt=media&timestamp=1692971682179",
+              value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e8b2b5057bdf002c2a2af4?alt=media&timestamp=1719584962575",
             },
             {
               type: "string",

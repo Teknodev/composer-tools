@@ -1,127 +1,128 @@
 .container {
+    background: var(--composer-html-background);
     width: 100%;
-    padding: 50px 0;
-    @mixin flex-center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    padding: 50px;
+
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
         display: flex;
+        justify-content: center;
         flex-direction: column;
-        gap: 20px;
-        .header {
-            text-align: initial;
+        width: 100%;
+
+        .boxs-text-left {
             display: flex;
-            text-align: center;
             flex-direction: column;
-            gap: 15px;
-            font-size: 1.6rem;
-            padding: 0 20px;
-            .title {
-                font-weight: 800;
-                color: var(--composer-font-color-primary);
+            margin-bottom: 20px;
+            width: fit-content;
+            
+
+            .box-up {
+                margin: 0;
+                width: fit-content;
+
+                .box {
+                    font-size: 27px;
+                    color: var(--composer-primary-color);
+                    margin: 0;
+                    width: fit-content;
+                }
             }
-            .subtitle {
-                color: var(--composer-primary-color);
-                font-size: 4.2rem;
-                margin: 0 0 20px 0;
-            }
-            .subtitle2 {
-                color: var(--composer-primary-color);
-                font-size: 2.3rem;
-                margin: 35px 0 5px 0;
-            }
-            .subtitle2-description {
-                color: var(--composer-font-color-primary)
+
+            .text-left {
+                font-size: 60px;
+                color: var(--composer-tertiary-color);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
-        .card-child {
-            @include flex-center;
-            gap: 20px;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            .card {
-                background-color: transparent;
-                position: relative;
-                border: 1px solid var(--composer-tertiary-color);
-                border-radius: 6px;
-                padding: 30px;
-                width: 100%;
-                min-height: 400px;
-                height: 100%;
+
+        .content {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            width: 100%;
+            height: fit-content;
+
+            .image-box {
                 flex: 1 1;
-                @include flex-center;
+                position: relative;
+
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            }
+
+            .content-right {
+                display: flex;
                 flex-direction: column;
-                box-shadow: var(--composer-box-shadow);
-                &:hover {
-                    border: 1px solid var(--composer-secondary-color);
-                }
-                i {
-                    width: 100px;
-                    height: 100px;
-                    @include flex-center;
-                    background-color: white;
-                    box-shadow: var(--composer-box-shadow);
-                    border-radius: 50%;
-                    border: 1px solid var(--composer-tertiary-color);
-                    img {
-                        width: 50px;
-                        height: 50px;
+                gap: 25px;
+                align-items: stretch;
+                flex: 1 1;
+
+                .item{
+                    .title {
+                        font-size: 20px;
+                        color: var(--composer-primary-color);
                     }
+    
+                    .description {
+                        color: var(--composer-font-color-primary);
+                        font-size: 15px;
+                    }
+
                 }
-                .card-title {
-                    font-size: 2rem;
-                    margin: 20px 0;
-                    font-weight: 900;
-                    color: var(--composer-primary-color);
-                }
-                .card-description {
-                    font-size: 1.3rem;
-                    color: var(--composer-font-color-primary);
-                    margin: 0;
-                    font-weight: 400;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    white-space: normal;
-                    text-align: center;
-                }
-                .size-p {
-                    margin-top: 10px;
-                    color: var(--composer-font-color-primary);
-                }
+            }
+        }
+
+        .icons {
+            font-size: 27px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 100px;
+            color: var(--composer-tertiary-color);
+        }
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .max-content {
+
+
+        .content {
+            flex-direction: column;
+            gap: 0 !important;
+            .image-box {
+                width: 100% !important;
+                min-height: 377px !important;
+            }
+
+            .content-right {
+                gap: 0 !important;
+                width: 100% !important;
             }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
+@media screen and (max-width: 400px) {
+    .container{
+        padding: 50px 15px;
         .max-content {
-            .header {
-                width: 100%;
-                text-align: center;
-                .subtitle {
-                    font-size: 3rem;
+            .content {
+                .image-box {
+                    width: 100% !important;
                 }
-                .subtitle {
-                    font-size: 2.2rem;
-                }
-                .title {
-                    font-size: 1.2rem;
-                }
-            }
-        }
-        .card-child {
-            flex-direction: column;
-            .card {
-                width: 200px !important;
-                right: 7.8vh;
             }
         }
     }
+    
 }

@@ -3,121 +3,210 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header7.module.scss";
 
+type ISliderData = {
+  title: string;
+  image: string;
+  pagepath: string;
+};
+
 class Header7 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "BLOG POST",
-    });
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "In THIS",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "content",
-      displayer: "Content",
-      value: "Blogging has become an increasingly popular way for individuals and businesses to share their ideas, connect with their audience, and establish their online presence. In this blog post, we'll explore some of the key benefits of blogging and provide some tips on how to create successful blog content.",
-    });
-
-    this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "Button",
+      type: "array",
+      key: "pages",
+      displayer: "Page",
       value: [
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "GO TO PAGE",
+          type: "object",
+          key: "page1",
+          displayer: "Page-1",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Black & White II",
+            },
+            {
+              type: "page",
+              key: "pagepath",
+              displayer: "Page Path",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453f?alt=media&timestamp=1719483639150",
+            },
+          ],
         },
         {
-          type: "page",
-          key: "buttonPath",
-          displayer: "Button Link",
-          value: "",
+          type: "object",
+          key: "page2",
+          displayer: "Page",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Balance",
+            },
+            {
+              type: "page",
+              key: "pagepath",
+              displayer: "Page Path",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624542?alt=media&timestamp=1719483639150",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "page3",
+          displayer: "Page",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "The Village",
+            },
+            {
+              type: "page",
+              key: "pagepath",
+              displayer: "Page Path",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453d?alt=media&timestamp=1719483639150",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "page4",
+          displayer: "Page",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Wonderland",
+            },
+            {
+              type: "page",
+              key: "pagepath",
+              displayer: "Page Path",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624540?alt=media&timestamp=1719483639150",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "page5",
+          displayer: "Page",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Progressive",
+            },
+            {
+              type: "page",
+              key: "pagepath",
+              displayer: "Page Path",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453e?alt=media&timestamp=1719483639150",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "page6",
+          displayer: "Page",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Editorial Illustration",
+            },
+            {
+              type: "page",
+              key: "pagepath",
+              displayer: "Page Path",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624541?alt=media&timestamp=1719483639150",
+            },
+          ],
         },
       ],
     });
-
-    this.addProp({
-      type: "object",
-      key: "secondButton",
-      displayer: "Second Button",
-      value: [
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "LEARN MORE",
-        },
-        {
-          type: "page",
-          key: "buttonPath",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b25d68c3c2002cd2fad1?alt=media&timestamp=1693234196296",
-    });
+    this.setComponentState("active_image", this.castToObject<ISliderData[]>("pages")[0].image);
   }
   getName(): string {
     return "Header 7";
   }
   render() {
+    const handleMouseOver = (image: string) => {
+      this.setComponentState("active_image", image)
+    };
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div
-              className={this.decorateCSS("page")}
-              
-            >
-              <div
-                className={this.decorateCSS("header-page")}
-                
-              >
-                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-                <h3 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h3>
-                <p className={this.decorateCSS("content")}>{this.getPropValue("content")}</p>
-                <div
-                  className={this.decorateCSS("button-wrapper")}
-                  
-                >
-                  <ComposerLink path={this.getPropValue("button")[1].value}>
-                    <button
-                      className={this.decorateCSS("button")}
-                      
-                    >
-                      {this.getPropValue("button")[0].value}
-                    </button>
+          <div className={this.decorateCSS("container")}>
+            <div className={this.decorateCSS("items")}>
+              {this.castToObject<ISliderData[]>("pages").map(
+                (item: ISliderData, index: number) => (
+
+                  <ComposerLink path={item.pagepath} key={index}>
+                    <h2 onMouseOver={() => handleMouseOver(item.image)} className={this.decorateCSS("text")}>
+                      {item.title}
+                    </h2>
                   </ComposerLink>
-                  <ComposerLink path={this.getPropValue("secondButton")[1].value}>
-                    <button
-                      className={this.decorateCSS("button-reverse")}
-                      
-                    >
-                      {this.getPropValue("secondButton")[0].value}
-                    </button>
-                  </ComposerLink>
-                </div>
-              </div>
-              <div className={this.decorateCSS("image-background")}>
-                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt=""></img>
-              </div>
+
+
+                )
+              )}
             </div>
+            <img
+              src={this.getComponentState("active_image")}
+              className={`${this.decorateCSS("image")}`}
+            />
           </div>
         </div>
       </div>

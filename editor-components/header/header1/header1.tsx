@@ -1,62 +1,190 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 class Header1 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      type: "image",
+      key: "background-layout",
+      displayer: "Background Layout",
       value:
-        "In this blog post, we'll explore some practical tips and techniques for managing your time more effectively. ",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d7?alt=media&timestamp=1719483639150",
     });
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "In this blog post, we'll explore some practical tips and techniques for managing your time more effectively, so you can be more productive, reduce stress, and achieve your goals.",
+      type: "image",
+      key: "sun",
+      displayer: "Sun",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d6?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "array",
-      key: "button",
-      displayer: "Buttons",
+      key: "sliders",
+      displayer: "Sliders",
       value: [
         {
           type: "object",
-          key: "buttonObject",
-          displayer: "Button",
+          key: "slider",
+          displayer: "Slider - 1",
           value: [
             {
               type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Go There",
+              key: "title",
+              displayer: "Title",
+              value: "FORWARD",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "URL",
-              value: "",
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "BRANDING AND IDENTITY",
+            },
+            {
+              type: "number",
+              key: "sliderNumber",
+              displayer: "Slider Number",
+              value: 1,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-1",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d8?alt=media&timestamp=1719483639150",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider - 2",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "PIXFLOW",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "WEB AND APPLICATION",
+            },
+            {
+              type: "number",
+              key: "sliderNumber",
+              displayer: "Slider Number",
+              value: 2,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-2",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d9?alt=media&timestamp=1719483639150",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider - 3",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "HARDDOT",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "GRAPHICS AND IDENTITY",
+            },
+            {
+              type: "number",
+              key: "sliderNumber",
+              displayer: "Slider Number",
+              value: 3,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-3",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243da?alt=media&timestamp=1719483639150",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider - 4",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "TRAVELIO",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "PACKAGING AND WEB",
+            },
+            {
+              type: "number",
+              key: "sliderNumber",
+              displayer: "Slider Number",
+              value: 4,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-4",
+              value:
+                "hhttps://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider - 5",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "CROPOES",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "DESIGN AND IDENTITY",
+            },
+            {
+              type: "number",
+              key: "sliderNumber",
+              displayer: "Slider Number",
+              value: 5,
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image-5",
+              value:
+                "hhttps://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
             },
           ],
         },
       ],
-    });
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436b18868c3c2002cd2faad?alt=media&timestamp=1693233916133",
-    });
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "URL",
-      value: "",
     });
   }
 
@@ -65,29 +193,68 @@ class Header1 extends BaseHeader {
   }
 
   render() {
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true,
+    };
     return (
       <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("image-container-1")}>
+          <img
+            className={this.decorateCSS("background-layout")}
+            src={this.getPropValue("background-layout")}
+            alt=""
+          />
+        </div>
+        <div className={this.decorateCSS("image-container-2")}>
+          <img src={this.getPropValue("sun")} alt="" />
+        </div>
+        <div className={this.decorateCSS("image-container-3")}>
+          <img src={this.getPropValue("sun")} alt="" />
+        </div>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header-page")}>
-            <h3 className={this.decorateCSS("title")}>{this.getPropValue("subtitle")}</h3>
-            <p className={this.decorateCSS("long-text")}>{this.getPropValue("title")}</p>
-            <div className={this.decorateCSS("button-group")}>
-              {this.castToObject<[]>("button").map((item: any, indexItem: number) => {
+          <ComposerSlider {...settings}>
+            {this.castToObject<[]>("sliders").map(
+              (item: any, index: number) => {
                 return (
-                  <ComposerLink key={indexItem} path={item.link}>
-                    <button className={this.decorateCSS("button")}>
-                      {item.buttonText}
-                    </button>
-                  </ComposerLink>
+                  <div
+                    className={this.decorateCSS("return-container")}
+                    key={index}
+                  >
+                    <div className={this.decorateCSS("background-text")}>
+                      {item.title}
+                    </div>
+                    <div className={this.decorateCSS("content-container")}>
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={item.image}
+                        alt=""
+                      />
+                      <h1 className={this.decorateCSS("title")}>
+                        {item.title}
+                      </h1>
+                      <h1 className={this.decorateCSS("subtitle")}>
+                        {item.subtitle}
+                      </h1>
+                      <h1 className={this.decorateCSS("sliderNumber")}>
+                        <span className={this.decorateCSS("overlay")}></span>
+                        <span className={this.decorateCSS("slider-number")}>
+                          {item.sliderNumber}
+                        </span>
+                      </h1>
+                    </div>
+                  </div>
                 );
-              })}
-            </div>
-            <img
-              alt=""
-              className={this.decorateCSS("image")}
-              src={this.getPropValue("image")}
-            ></img>
-          </div>
+              }
+            )}
+          </ComposerSlider>
         </div>
       </div>
     );

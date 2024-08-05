@@ -16,7 +16,7 @@ class Testimonials11Page extends Testimonials {
       key: "cover-image",
       displayer: "Background Image",
       value:
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617848bd2970002c623df5?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "array",
@@ -33,7 +33,7 @@ class Testimonials11Page extends Testimonials {
               key: "item-image",
               displayer: "Card Image",
               value:
-                "https://static.tildacdn.com/tild3339-3439-4331-a235-333664313062/1.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -66,7 +66,7 @@ class Testimonials11Page extends Testimonials {
               key: "item-image",
               displayer: "Card Image",
               value:
-                "https://static.tildacdn.com/tild3066-3438-4335-a261-353337333639/2.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -99,7 +99,7 @@ class Testimonials11Page extends Testimonials {
               key: "item-image",
               displayer: "Card Image",
               value:
-                "https://static.tildacdn.com/tild3361-3630-4733-a163-643735633139/3.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -132,7 +132,7 @@ class Testimonials11Page extends Testimonials {
                 key: "item-image",
                 displayer: "Card Image",
                 value:
-                  "https://static.tildacdn.com/tild3361-3630-4733-a163-643735633139/3.png",
+                  "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
               },
               {
                 type: "string",
@@ -165,7 +165,7 @@ class Testimonials11Page extends Testimonials {
                 key: "item-image",
                 displayer: "Card Image",
                 value:
-                  "https://static.tildacdn.com/tild3361-3630-4733-a163-643735633139/3.png",
+                  "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
               },
               {
                 type: "string",
@@ -198,7 +198,7 @@ class Testimonials11Page extends Testimonials {
                 key: "item-image",
                 displayer: "Card Image",
                 value:
-                  "https://static.tildacdn.com/tild3361-3630-4733-a163-643735633139/3.png",
+                  "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
               },
               {
                 type: "string",

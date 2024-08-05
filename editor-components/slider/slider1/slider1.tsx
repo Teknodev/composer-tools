@@ -64,13 +64,13 @@ class Slider1 extends BaseSlider {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee3?alt=media&timestamp=1683296164904",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee3?alt=media&timestamp=1719584962573",
         },
         {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee2?alt=media&timestamp=1683296164904",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee2?alt=media&timestamp=1719584962573",
         },
       ],
     });

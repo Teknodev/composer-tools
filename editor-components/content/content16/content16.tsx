@@ -24,21 +24,21 @@ class Content16 extends BaseContent {
       key: "item1",
       displayer: "1st Image",
       value:
-        "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/de-daira.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628818?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "image",
       key: "item2",
       displayer: "2nd Image",
       value:
-        "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/de-daira-4.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628816?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "image",
       key: "item3",
       displayer: "3rd Image",
       value:
-        "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/de-daira-5.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628817?alt=media&timestamp=1719564433797",
     });
     this.addProp({
         type: "array",

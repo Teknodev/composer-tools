@@ -1,9 +1,10 @@
 import * as React from "react";
 import styles from "./team4.module.scss";
-import { Team } from "../../EditorComponent";
+import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type SocialMedia = {
+type platform = {
   url: string;
   icon: string;
 };
@@ -11,12 +12,30 @@ type TeamMember = {
   image: string;
   name: string;
   position: string;
-  socialMedias: SocialMedia[];
+  platforms: { icon: string; url: string }[];
 };
 class Team4 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
+    let facebook: TypeUsableComponentProps = {
+      type: "object",
+      key: "facebook",
+      displayer: "Platform",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Platform Icon",
+          value: "FaFacebookSquare",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+      ],
+    };
     this.addProp({
       type: "string",
       key: "title",
@@ -45,7 +64,7 @@ class Team4 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/2787341/pexels-photo-2787341.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
             },
             {
               type: "string",
@@ -61,28 +80,10 @@ class Team4 extends Team {
             },
             {
               type: "array",
-              key: "socialMedias",
-              displayer: "Social Medias",
+              key: "platforms",
+              displayer: "Sosial Medias",
               value: [
-                {
-                  type: "object",
-                  key: "media",
-                  displayer: "Media",
-                  value: [
-                    {
-                      type: "image",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "URL",
-                      value: "",
-                    },
-                  ],
-                },
+                facebook,
               ],
             },
           ],
@@ -97,7 +98,7 @@ class Team4 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d2?alt=media&timestamp=1719502692150",
             },
             {
               type: "string",
@@ -113,28 +114,10 @@ class Team4 extends Team {
             },
             {
               type: "array",
-              key: "socialMedias",
-              displayer: "Social Medias",
+              key: "platforms",
+              displayer: "Sosial Medias",
               value: [
-                {
-                  type: "object",
-                  key: "media",
-                  displayer: "Media",
-                  value: [
-                    {
-                      type: "image",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "URL",
-                      value: "",
-                    },
-                  ],
-                },
+                facebook,
               ],
             },
           ],
@@ -149,7 +132,7 @@ class Team4 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/718978/pexels-photo-718978.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d1?alt=media&timestamp=1719502692150",
             },
             {
               type: "string",
@@ -165,28 +148,10 @@ class Team4 extends Team {
             },
             {
               type: "array",
-              key: "socialMedias",
-              displayer: "Social Medias",
+              key: "platforms",
+              displayer: "Sosial Medias",
               value: [
-                {
-                  type: "object",
-                  key: "media",
-                  displayer: "Media",
-                  value: [
-                    {
-                      type: "image",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "https://cdn-icons-png.flaticon.com/512/4494/4494475.png",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "URL",
-                      value: "",
-                    },
-                  ],
-                },
+                facebook
               ],
             },
           ],
@@ -222,36 +187,32 @@ class Team4 extends Team {
                 <div className={this.decorateCSS("card-item-count")} style={{
                   width: 90 / this.getPropValue("itemCount") + "%",
                 }}>
-                <div
-                  key={indexTeamMembers}
-                  className={this.decorateCSS("team-member")}
-                >
-                  <img
-                    className={this.decorateCSS("member-image")}
-                    src={teamMember.image}
-                    alt={teamMember.name}
-                  />
-                  <div className={this.decorateCSS("name-and-position")}>
-                    <span className={this.decorateCSS("team-member-name")}>{teamMember.name}</span>
-                    <p className={this.decorateCSS("team-member-position")}>{teamMember.position}</p>
-                  </div>
+                  <div
+                    key={indexTeamMembers}
+                    className={this.decorateCSS("team-member")}
+                  >
+                    <img
+                      className={this.decorateCSS("member-image")}
+                      src={teamMember.image}
+                      alt={teamMember.name}
+                    />
+                    <div className={this.decorateCSS("name-and-position")}>
+                      <span className={this.decorateCSS("team-member-name")}>{teamMember.name}</span>
+                      <p className={this.decorateCSS("team-member-position")}>{teamMember.position}</p>
+                    </div>
 
-                  <div className={this.decorateCSS("social-media-list")}>
-                    {teamMember.socialMedias.map(
-                      (socialMedia: SocialMedia, indexSocialMedias: number) => (
-                        <ComposerLink
-                          key={indexSocialMedias}
-                          path={socialMedia.url}
-                        >
-                          <img
-                            alt=""
-                            className={this.decorateCSS("social-media-image")}
-                            src={socialMedia.icon}
-                          />
-                        </ComposerLink>
-                      )
-                    )}
-                  </div>
+                    <div className={this.decorateCSS("icon-group")}>
+                      {teamMember.platforms.map(
+                        (socialMedia: platform, indexPlatforms: number) => (
+                          <ComposerLink
+                            key={indexPlatforms}
+                            path={socialMedia.url}
+                          >
+                            <ComposerIcon name={socialMedia.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          </ComposerLink>
+                        )
+                      )}
+                    </div>
                   </div>
                 </div>
               )
