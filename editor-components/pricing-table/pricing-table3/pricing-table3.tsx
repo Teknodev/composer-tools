@@ -6,7 +6,7 @@ import {
 } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-
+//
 type Card = {
   title1: string;
   list: {
