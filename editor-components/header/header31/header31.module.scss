@@ -2,242 +2,246 @@
     width: 100%;
     height: 100vh;
     background-color: var(--composer-html-background);
-    padding: 0px 0px;
+    padding: 0;
     display: flex;
     align-items: center;
     background-color: black;
 
-    .max-content {
-        max-width: var(--composer-content-width);
-        height: 100vh;
+    .slider-parent {
+        position: relative;
         width: 100%;
+        height: 100vh;
 
-        .slider-parent {
+        .slider {
+            width: 82%;
+            left: 18%;
+        }
+
+        .right-slider {
             position: relative;
-            width: 100%;
             height: 100%;
-
-            .slider {
-                width: 82%;
-                left: 18%;
-            }
-
-            .right-slider {
+            overflow: hidden;
+            
+            .background-right {
                 position: relative;
-                height: 100%;
-                overflow: hidden;
-                
-                .background-right {
-                    position: relative;
-                    object-fit: cover;
-                    height: 100vh;
-                    width: 100%;
-                    z-index: 1 !important;
-                }
-                .overlay{
-                    background: #000;
-                    position: absolute;
-                    height: 100vh;
-                    width: 100%;
-                    opacity: 0.4;
-                    top: 0;
-                    left: 0;
-                    z-index: 2 !important;
-                }
-
+                object-fit: cover;
+                height: 100vh;
+                width: 100%;
+                z-index: 1 !important;
             }
-        }
-
-        .main-social {
-            position: relative;
-            bottom: 50px;
-            left: 0px;
-            display: flex;
-            height: 40px;
-            color: white;
-            font-size: 15px;
-            gap: 20px;
-            align-items: center;
-            width: fit-content;
-            cursor: pointer;
-
-            .social-icon{
-                margin-left: 50px;
-            }
-
-            .icon-stick {
-                width: 0px;
-                height: 1px;
-                background-color: white;
-                transition: width 0.5s;
-                transform: scaleX(0);
-            }
-
-            .icon-list-container {
-                display: flex;
-                gap: 20px;
-                width: 0;
-                transition: width 0.5s, gap 0.5s;
-                -webkit-transition: all 0.5s linear;
-                transform: scaleX(0);
-            }
-
-            &:hover {
-                .icon-list-container {
-                    transform: scaleX(1);
-
-                    .icon {
-                        width: 12px;
-                        height: 12px;
-                        object-fit: cover;
-                        position: relative;
-                    }
-                }
-
-                .icon-stick {
-                    width: 50px;
-                    background-color: white;
-                    transform: scaleX(1);
-                }
-            }
-        }
-
-        .control-nav {
-            color: white;
-            position: absolute;
-            bottom: 20px;
-            right: 80px;
-            z-index: 3;
-            display: flex;
-            gap: 30px;
-            cursor: pointer;
-        }
-
-        .control-num {
-            color: rgba(255, 255, 255, 0.03);
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.11);
-            position: absolute;
-            bottom: 50px;
-            z-index: 3;
-            right: 25px;
-            font-size: 11vw;
-        }
-
-        .slider-container {
-            position: absolute;
-            top: 25%;
-            left: 0;
-            display: flex;
-            align-items: center;
-            width: 100%;
-
-            .content {
+            .overlay{
+                background: #000;
                 position: absolute;
-                left: 95px;
-                top: -12px;
-                z-index: 1;
-                color: white;
-                font-size: 22px;
-                opacity: 0.8;
+                height: 100vh;
+                width: 100%;
+                opacity: 0.4;
+                top: 0;
+                left: 0;
+                z-index: 2 !important;
             }
-
-            .carousel {
-                width: 8%;
-
-                .swiper-wrapper {
-                    transition-duration: 300ms;
-                    position: relative;
-                    width: 100%;
-                    height: 90px;
-                    z-index: 1;
-
-                    .background-left {
-                        width: 20%;
-                        height: 100%;
-                        object-fit: cover;
-                        transition: 0.3s;
-                        border-radius: 0 3px 3px 0;
-
-                        &.active,
-                        &:hover {
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-
-            .slider-inner {
-                padding-left: 5.5vw;
-                color: white;
-                top: 50%;
-                width: 40%;
-                display: flex;
-                flex-direction: column;
+        }
+    }
 
 
-                .up-text {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    margin: 0 0 30px 0;
-
-                    .stick {
-                        width: 35px;
-                        height: 1px;
-                        background-color: var(--composer-font-color-secondary);
-                        opacity: 0.2 !important;
-                    }
-
-                    .subtitle {
-                        font-size: 13px;
-                        font-weight: 600;
-                        letter-spacing: 2px;
-                        opacity: 0.8 !important;
-                        color: var(--composer-font-color-secondary);
-                    }
-                }
-
-                .title {
-                    font-size: 65px;
-                    margin: 0;
-                    color: var(--composer-font-color-secondary);
-                }
-
-                .description {
-                    font-size: 16px;
-                    margin: 30px 0 0;
-                    color: var(--composer-font-color-secondary);
-                    letter-spacing: 1px;
-                    line-height: 24px;
-                    max-width: 470px;
-                }
-
-                .button-box{
-                    transition: transform 0.3s linear !important;
-                    max-width: 40%;
-                    margin: 30px 0 0;
-                    .button {
-                    padding: 15px 30px;
-                    border-radius: 40px;
-                    border: none;
-                    outline: none;
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    font-weight: 400;
-                    background: transparent;
-                    border: 0.5px solid white;
-                    color: var(--composer-font-color-secondary);
-                    letter-spacing: 3px;
-                    } 
-                    &:hover {
-                        transform: scale(1.05) !important;
-                        cursor: pointer;
-                    
-                }
-                }
-                
-            }
+    .max-content {
+        height: 100vh;
+        max-width: var(--composer-content-width);
+        width: 100%;
+        .slider-content{
+            width: 100%;
+            max-width: var(--composer-content-width);
+          .main-social {
+              position: relative;
+              bottom: 50px;
+              left: 0px;
+              display: flex;
+              height: 40px;
+              color: white;
+              font-size: 15px;
+              gap: 20px;
+              align-items: center;
+              width: fit-content;
+              cursor: pointer;
+      
+              .social-icon{
+                  margin-left: 50px;
+              }
+      
+              .icon-stick {
+                  width: 0px;
+                  height: 1px;
+                  background-color: white;
+                  transition: width 0.5s;
+                  transform: scaleX(0);
+              }
+      
+              .icon-list-container {
+                  display: flex;
+                  gap: 20px;
+                  width: 0;
+                  transition: width 0.5s, gap 0.5s;
+                  -webkit-transition: all 0.5s linear;
+                  transform: scaleX(0);
+              }
+      
+              &:hover {
+                  .icon-list-container {
+                      transform: scaleX(1);
+      
+                      .icon {
+                          width: 12px;
+                          height: 12px;
+                          object-fit: cover;
+                          position: relative;
+                      }
+                  }
+      
+                  .icon-stick {
+                      width: 50px;
+                      background-color: white;
+                      transform: scaleX(1);
+                  }
+              }
+          }
+      
+          .control-nav {
+              color: white;
+              position: absolute;
+              bottom: 20px;
+              right: 80px;
+              z-index: 3;
+              display: flex;
+              gap: 30px;
+              cursor: pointer;
+          }
+      
+          .control-num {
+              color: rgba(255, 255, 255, 0.03);
+              -webkit-text-stroke: 1px rgba(255, 255, 255, 0.11);
+              position: absolute;
+              bottom: 50px;
+              z-index: 3;
+              right: 25px;
+              font-size: 11vw;
+          }
+      
+          .slider-container {
+              position: absolute;
+              top: 25%;
+              left: 0;
+              display: flex;
+              align-items: center;
+              width: 100%;
+      
+              .content {
+                  position: absolute;
+                  left: 95px;
+                  top: -12px;
+                  z-index: 1;
+                  color: white;
+                  font-size: 22px;
+                  opacity: 0.8;
+              }
+      
+              .carousel {
+                  width: 8%;
+      
+                  .swiper-wrapper {
+                      transition-duration: 300ms;
+                      position: relative;
+                      width: 100%;
+                      height: 90px;
+                      z-index: 1;
+      
+                      .background-left {
+                          width: 20%;
+                          height: 100%;
+                          object-fit: cover;
+                          transition: 0.3s;
+                          border-radius: 0 3px 3px 0;
+      
+                          &.active,
+                          &:hover {
+                              width: 100%;
+                          }
+                      }
+                  }
+              }
+      
+              .slider-inner {
+                  padding-left: 5.5vw;
+                  color: white;
+                  top: 50%;
+                  width: 40%;
+                  display: flex;
+                  flex-direction: column;
+      
+      
+                  .up-text {
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      margin: 0 0 30px 0;
+      
+                      .stick {
+                          width: 35px;
+                          height: 1px;
+                          background-color: white;
+                          opacity: 0.2 ;
+                      }
+      
+                      .subtitle {
+                          font-size: 13px;
+                          font-weight: 600;
+                          letter-spacing: 2px;
+                          opacity: 0.8 ;
+                          color: white;
+                      }
+                  }
+      
+                  .title {
+                      font-size: 65px;
+                      margin: 0;
+                      color: white;
+                  }
+      
+                  .description {
+                      font-size: 16px;
+                      margin: 30px 0 0;
+                      color: white;
+                      letter-spacing: 1px;
+                      line-height: 24px;
+                      max-width: 470px;
+                  }
+      
+                  .button-box{
+                      transition: transform 0.3s linear !important;
+                      margin: 30px 0 0;
+                      width: 180px;
+                      .button {
+                          padding-left: 15px;
+                          border-radius: 40px;
+                          border: none;
+                          outline: none;
+                          display: flex;
+                          align-items: center;
+                          gap: 10px;
+                          font-weight: 400;
+                          background: transparent;
+                          border: 1px solid white;
+                          color: white;
+                          letter-spacing: 3px;
+                          height: 60px;
+                          width: 100%;
+                      } 
+                      &:hover {
+                          transform: scale(1.05) !important;
+                          cursor: pointer;
+                      }
+                  }
+                  
+              }
+          }
         }
     }
 }
@@ -277,9 +281,6 @@
 
             .slider-inner {
                 width: 100% !important;
-                .button-box{
-                    max-width: 30% !important;
-                }
             }
 
             .control-num {
@@ -342,9 +343,6 @@
                 }
                 .description{
                     font-size: 13px !important;
-                }
-                .button-box{
-                    max-width: 60% !important;
                 }
             }
         
