@@ -1,36 +1,26 @@
 import * as React from "react";
 import styles from "./pricing-table3.module.scss";
-import {
-  BasePricingTable,
-  TypeUsableComponentProps,
-} from "../../EditorComponent";
+import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-//
+
 type Card = {
-  title1: string;
-  list: {
-    liText: string;
-  }[];
-  title2: string;
+  icon: string;
+  title: JSX.Element;
+  price: number;
+  tagSettings: TagSettings;
+  items: { value: JSX.Element }[];
+  button: Button;
 };
 
-type Pricing = {
-  title1: string;
-  list: TypeUsableComponentProps[];
-  title2: string;
-  buttons: Array<Button>;
-  card?: Card;
-  popular_settings: {
-    value: string;
-    is_popular: boolean;
-  }[];
-  icon: string;
+type TagSettings = {
+  tag: JSX.Element;
+  showTag: boolean;
 };
 
 type Button = {
-  buttonText: string;
-  url: string;
+  text: JSX.Element;
+  link: string;
 };
 
 class PricingTable3 extends BasePricingTable {
@@ -39,8 +29,8 @@ class PricingTable3 extends BasePricingTable {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "title",
+      displayer: "Title",
       value: "Conference packages",
     });
 
@@ -59,13 +49,13 @@ class PricingTable3 extends BasePricingTable {
       value: [
         {
           type: "string",
-          key: "button-text",
+          key: "text",
           displayer: "Button Text",
           value: "PRICING PLANS",
         },
         {
           type: "page",
-          key: "url",
+          key: "link",
           displayer: "Button Link",
           value: "",
         },
@@ -73,16 +63,12 @@ class PricingTable3 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
-    });
-
-    this.addProp({
-      type: "object",
+      type: "array",
       key: "cards",
       displayer: "Cards",
+      additionalParams: {
+        maxElementCount: 4
+      },
       value: [
         {
           type: "object",
@@ -91,51 +77,72 @@ class PricingTable3 extends BasePricingTable {
           value: [
             {
               type: "object",
-              key: "popular_settings",
-              displayer: "Popular Settings",
+              key: "tagSettings",
+              displayer: "Tag Settings",
               value: [
                 {
                   type: "string",
-                  key: "text",
-                  displayer: "Text",
+                  key: "tag",
+                  displayer: "Tag",
                   value: "POPULAR",
                 },
                 {
                   type: "boolean",
-                  key: "is_popular",
-                  displayer: "Is Popular?",
+                  key: "showTag",
+                  displayer: "Show",
                   value: false,
                 },
               ],
             },
             {
-              type: "string",
-              key: "title1",
-              displayer: "Title-1",
-              value: "$250",
+              type: "number",
+              key: "price",
+              displayer: "Price",
+              value: 250,
             },
             {
               type: "array",
-              key: "list",
+              key: "items",
               displayer: "List Items",
               value: [
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Regular seats",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Regular seats",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Snacks and brunch",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Snacks and brunch",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Event certificate",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Event certificate",
+                    },
+                  ],
                 },
               ],
             },
@@ -143,37 +150,30 @@ class PricingTable3 extends BasePricingTable {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdPersonOutline",
+              value: "FaUsers",
             },
             {
               type: "string",
-              key: "title2",
-              displayer: "Title-2",
+              key: "title",
+              displayer: "Title",
               value: "PERSONAL",
             },
             {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
+              type: "object",
+              key: "button",
+              displayer: "Card Button",
               value: [
                 {
-                  type: "object",
-                  key: "card-button",
-                  displayer: "Card-Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "CHOOSE PACKAGE ",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
+                  type: "string",
+                  key: "text",
+                  displayer: "Button Text",
+                  value: "CHOOSE PACKAGE",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Button Link",
+                  value: "",
                 },
               ],
             },
@@ -186,57 +186,72 @@ class PricingTable3 extends BasePricingTable {
           value: [
             {
               type: "object",
-              key: "popular_settings",
-              displayer: "Popular Settings",
+              key: "tagSettings",
+              displayer: "Tag Settings",
               value: [
                 {
                   type: "string",
-                  key: "text",
-                  displayer: "Text",
+                  key: "tag",
+                  displayer: "Tag",
                   value: "POPULAR",
                 },
                 {
                   type: "boolean",
-                  key: "is_popular",
-                  displayer: "Is Popular?",
+                  key: "showTag",
+                  displayer: "Show",
                   value: true,
                 },
               ],
             },
             {
-              type: "string",
-              key: "title1",
-              displayer: "Title-1",
-              value: "$450",
+              type: "number",
+              key: "price",
+              displayer: "Price",
+              value: 250,
             },
             {
               type: "array",
-              key: "list",
+              key: "items",
               displayer: "List Items",
               value: [
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Regular seats",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Regular seats",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Snacks and brunch",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Snacks and brunch",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Photos allowed",
-                },
-                {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Event certificate",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Event certificate",
+                    },
+                  ],
                 },
               ],
             },
@@ -244,37 +259,30 @@ class PricingTable3 extends BasePricingTable {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdOutlineGroup",
+              value: "MdPersonOutline",
             },
             {
               type: "string",
-              key: "title2",
-              displayer: "Title-2",
-              value: "BUSİNESS",
+              key: "title",
+              displayer: "Title",
+              value: "PERSONAL",
             },
             {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
+              type: "object",
+              key: "button",
+              displayer: "Card Button",
               value: [
                 {
-                  type: "object",
-                  key: "card-button",
-                  displayer: "Card-Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "CHOOSE PACKAGE",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
+                  type: "string",
+                  key: "text",
+                  displayer: "Button Text",
+                  value: "CHOOSE PACKAGE",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Button Link",
+                  value: "",
                 },
               ],
             },
@@ -287,51 +295,72 @@ class PricingTable3 extends BasePricingTable {
           value: [
             {
               type: "object",
-              key: "popular_settings",
-              displayer: "Popular Settings",
+              key: "tagSettings",
+              displayer: "Tag Settings",
               value: [
                 {
                   type: "string",
-                  key: "text",
-                  displayer: "Text",
+                  key: "tag",
+                  displayer: "Tag",
                   value: "POPULAR",
                 },
                 {
                   type: "boolean",
-                  key: "is_popular",
-                  displayer: "Is Popular?",
+                  key: "showTag",
+                  displayer: "Show",
                   value: false,
                 },
               ],
             },
             {
-              type: "string",
-              key: "title1",
-              displayer: "Title-1",
-              value: "$250",
+              type: "number",
+              key: "price",
+              displayer: "Price",
+              value: 250,
             },
             {
               type: "array",
-              key: "list",
+              key: "items",
               displayer: "List Items",
               value: [
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Regular seats",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Regular seats",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Snacks and brunch",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Snacks and brunch",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
+                  type: "object",
+                  key: "item",
                   displayer: "List Item",
-                  value: "Event certificate",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "",
+                      value: "Event certificate",
+                    },
+                  ],
                 },
               ],
             },
@@ -339,37 +368,30 @@ class PricingTable3 extends BasePricingTable {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdPersonOutline",
+              value: "FaUsersGear",
             },
             {
               type: "string",
-              key: "title2",
-              displayer: "Title-2",
+              key: "title",
+              displayer: "Title",
               value: "PERSONAL",
             },
             {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
+              type: "object",
+              key: "button",
+              displayer: "Card Button",
               value: [
                 {
-                  type: "object",
-                  key: "card-button",
-                  displayer: "Card-Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "CHOOSE PACKAGE ",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
+                  type: "string",
+                  key: "text",
+                  displayer: "Button Text",
+                  value: "CHOOSE PACKAGE",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Button Link",
+                  value: "",
                 },
               ],
             },
@@ -384,117 +406,116 @@ class PricingTable3 extends BasePricingTable {
   }
 
   render() {
+    const cards = this.castToObject<Card[]>("cards");
+    const featuredButton = this.castToObject<Button>("button");
+
+    const titleExist = this.getPropValue("title", { as_string: true });
+    const descExist = this.getPropValue("description", { as_string: true });
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div
-              className={`${this.decorateCSS("child-page")} ${this.decorateCSS(
-                "child-page-left"
-              )}`}
-            >
-              <div className={this.decorateCSS("texts")}>
-                <h1 className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
-                </h1>
-                <p className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </p>
-                <ComposerLink path={this.getPropValue("button")[0].value}>
-                  <button
-                    className={this.decorateCSS("button")}
-                    onClick={(event) => {
-                      event.preventDefault();
-                    }}
-                  >
-                    {this.getPropValue("button")[0].value}
-                  </button>
-                </ComposerLink>
+          <div className={this.decorateCSS("wrapper")}>
+            {(titleExist ||
+              descExist ||
+              this.castToString(featuredButton.text)) && (
+              <div className={this.decorateCSS("featured")}>
+                {titleExist && (
+                  <h1 className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </h1>
+                )}
+                {descExist && (
+                  <p className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </p>
+                )}
+                {this.castToString(featuredButton.text) && (
+                  <ComposerLink path={featuredButton.link}>
+                    <button
+                      className={this.decorateCSS("button")}
+                      onClick={(event) => {
+                        event.preventDefault();
+                      }}
+                    >
+                      {featuredButton.text}
+                    </button>
+                  </ComposerLink>
+                )}
               </div>
-            </div>
-            <div className={this.decorateCSS("page-down")}>
-              {this.castToObject<Pricing[]>("cards").map(
-                (price: Pricing, indexCards: number) => {
-                  const isPopular =
-                    price?.popular_settings &&
-                    price?.popular_settings[1]?.value;
-                  console.log(price);
+            )}
+            {cards?.length > 0 && (
+              <div className={this.decorateCSS("cards-div")}>
+                {cards.map((card: Card, idx: number) => {
+                  const showTag = card.tagSettings.showTag;
+
+                  const titleExist = this.castToString(card.title);
 
                   return (
                     <div
-                      key={indexCards}
-                      className={`${this.decorateCSS("all-card")} ${
-                        isPopular && this.decorateCSS("popular-card")
+                      key={idx}
+                      className={`${this.decorateCSS("card-container")} ${
+                        showTag && this.decorateCSS("active")
                       }`}
-                      style={{
-                        width: `calc(100% / ${this.getPropValue("itemCount")})`,
-                      }}
                     >
                       <div className={this.decorateCSS("card")}>
-                        {isPopular && (
-                          <div
-                            className={`${this.decorateCSS(
-                              "popular-box"
-                            )} ${this.decorateCSS("active")}`}
-                          >
-                            <h1 className={this.decorateCSS("popular-text")}>
-                              {price.popular_settings[0].value}
-                            </h1>
+                        {showTag && (
+                          <div className={this.decorateCSS("tag")}>
+                            {card.tagSettings.tag}
                           </div>
                         )}
 
-                        <div className={this.decorateCSS("card-up")}>
-                          <ComposerIcon
-                            name={price.icon}
-                            propsIcon={{ className: this.decorateCSS("icon") }}
-                          />
-                          <div className={this.decorateCSS("card-up-texts")}>
-                            <p className={this.decorateCSS("price-title2")}>
-                              {price.title2}
-                            </p>
-                            <h1 className={this.decorateCSS("price-title1")}>
-                              {price.title1}
+                        <div className={this.decorateCSS("header")}>
+                          {card.icon && (
+                            <ComposerIcon
+                              name={card.icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            />
+                          )}
+                          {titleExist && (
+                            <h1 className={this.decorateCSS("title")}>
+                              {card.title}
                             </h1>
+                          )}
+                          <h3 className={this.decorateCSS("price")}>
+                            {card.price}$
+                          </h3>
+                        </div>
+                        {card.items.length > 0 && (
+                          <div className={this.decorateCSS("body")}>
+                            <ul className={this.decorateCSS("items")}>
+                              {card.items.map(
+                                (item: { value: JSX.Element }, idx: number) => {
+                                  return (
+                                    <li
+                                      key={idx}
+                                      className={this.decorateCSS("item")}
+                                    >
+                                      {item.value}
+                                    </li>
+                                  );
+                                }
+                              )}
+                            </ul>
                           </div>
-                        </div>
-                        <div className={this.decorateCSS("card-middle")}>
-                          {price.list.map(
-                            (item: any, indexListGroup: number) => {
-                              return (
-                                <div
-                                  key={indexListGroup}
-                                  className={this.decorateCSS("list-item")}
-                                >
-                                  <p>{item.value}</p>
-                                </div>
-                              );
-                            }
-                          )}
-                        </div>
-                        <div className={this.decorateCSS("card-down")}>
-                          {price.buttons.map(
-                            (item: Button, indexButtons: number) => {
-                              return (
-                                <ComposerLink
-                                  key={indexButtons}
-                                  path={item.url}
-                                >
-                                  <button
-                                    className={this.decorateCSS("button")}
-                                  >
-                                    {item.buttonText}
-                                  </button>
-                                </ComposerLink>
-                              );
-                            }
-                          )}
-                        </div>
+                        )}
+                        {this.castToString(card.button.text) && (
+                          <div className={this.decorateCSS("footer")}>
+                            <ComposerLink path={card.button.link}>
+                              <button className={this.decorateCSS("button")}>
+                                {card.button.text}
+                              </button>
+                            </ComposerLink>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
-                }
-              )}
-            </div>
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>
