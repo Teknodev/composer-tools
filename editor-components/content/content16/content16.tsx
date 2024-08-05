@@ -30,7 +30,7 @@ class Content16 extends BaseContent {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.",
+      value: "\"Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.\"",
     });
 
     this.addProp({
@@ -59,7 +59,7 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66914f6c9e8fb8002c917c0c?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media",
             },
             {
               type: "page",
@@ -90,7 +90,7 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669149d39e8fb8002c917b22?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac468003b007002cc74497?alt=media",
             },
             {
               type: "page",
@@ -121,7 +121,7 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6691500b9e8fb8002c917c19?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac46a203b007002cc744a3?alt=media",
             },
             {
               type: "page",
@@ -152,7 +152,7 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a9adf82f8a5b002ce7303c?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac472103b007002cc744b0?alt=media",
             },
             {
               type: "page",
@@ -183,7 +183,7 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a9ae492f8a5b002ce73048?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac476903b007002cc744bc?alt=media",
             },
             {
               type: "page",
@@ -194,6 +194,13 @@ class Content16 extends BaseContent {
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "disableAnimation",
+      displayer: "Disable Animation",
+      value: false,
     });
 
     this.setComponentState(
@@ -210,7 +217,7 @@ class Content16 extends BaseContent {
 
   render() {
     const settings = {
-      arrows: false,
+      arrows: true,
       dots: true,
       infinite: true,
       speed: 725,
@@ -222,17 +229,23 @@ class Content16 extends BaseContent {
         {
           breakpoint: 1280,
           settings: {
-            slidesToShow: 2,
+            arrows: false,
+            slidesToShow: 3,
             slidesToScroll: 1,
           },
         },
+        
         {
-          breakpoint: 885,
+          breakpoint: 600,
           settings: {
+            arrows: false,
             slidesToShow: 1,
             slidesToScroll: 1,
           },
         },
+
+        
+        
       ],
       beforeChange: (current: number, next: number) => {
         this.setComponentState(
@@ -250,11 +263,12 @@ class Content16 extends BaseContent {
         );
       },
     };
-    
+
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
     const isTitleExist = this.castToString(title);
     const isSubTitleExist = this.castToString(subtitle);
+    const disableAnimation = this.getPropValue("disableAnimation");
     const items = this.castToObject<CardType[]>("items").filter(
       (item: CardType) => item.image || item.imageTitle || item.imageSubtitle || item.url
     );
@@ -262,21 +276,23 @@ class Content16 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {(isTitleExist || isSubTitleExist) && (
+          
             <header>
               {isTitleExist && (
-                <h1 className={this.decorateCSS("title")}>
+                <h1 className={`${this.decorateCSS("title")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
                   {title}
                 </h1>
               )}
+              {isTitleExist && (
                 <hr className={this.decorateCSS("faint-line")} />
+              )}
               {isSubTitleExist && (
                 <h2 className={this.decorateCSS("subtitle")}>
                   {subtitle}
                 </h2>
               )}
             </header>
-          )}
+          
           <main className={this.decorateCSS("wrapper")}>
             {items.length > 0 && (
               <div className={this.decorateCSS("slider-parent")}>
@@ -306,7 +322,7 @@ class Content16 extends BaseContent {
                               </h3>
                             )}
                             {this.castToString(item.imageTitle) && (
-                              <h2 className={this.decorateCSS("item-title")}>
+                              <h2 className={`${this.decorateCSS("item-title")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
                                 {item.imageTitle}
                               </h2>
                             )}
