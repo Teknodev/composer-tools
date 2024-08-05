@@ -195,27 +195,43 @@ class List3 extends BaseList {
               </div>
             )}
             {this.castToObject<Item[]>("listItems").map(
-              (listItem: Item, index: number) => (
+              (listItem: Item, index: number) => {
+                const itemTitle = this.castToString(listItem.itemTitle);
+                const itemText1= this.castToString(listItem.itemText1);
+                const itemText2= this.castToString(listItem.itemText2);
+                const itemText3= this.castToString(listItem.itemText3);
+                return(
                 <div key={index} className={this.decorateCSS("card")}>
-                  <p className={this.decorateCSS("itemTitle")}>
-                    {listItem.itemTitle}
-                  </p>
-                  <p className={this.decorateCSS("itemText")}>
-                    {listItem.itemText1}
-                  </p>
-                  <span className={this.decorateCSS("spanItem")}></span>
-                  <p className={this.decorateCSS("itemText")}>
-                    {listItem.itemText2}
-                  </p>
-                  <span className={this.decorateCSS("spanItem")}></span>
-                  <p className={this.decorateCSS("itemText")}>
-                    {listItem.itemText3}
-                  </p>
-                  <h3 className={this.decorateCSS("index")}>
-                    {index < 9 ? `0${index + 1}` : index + 1}
-                  </h3>
+                  <div className={this.decorateCSS("card-content")}>
+                    {itemTitle && (
+                      <p className={this.decorateCSS("itemTitle")}>
+                        {listItem.itemTitle}
+                      </p>
+                    )}
+                    {itemText1 && (
+                      <p className={this.decorateCSS("itemText")}>
+                        {listItem.itemText1}
+                      </p>
+                    )}
+                    {itemText1 && (<span className={this.decorateCSS("spanItem")}></span>)}
+                    {itemText2 && (
+                      <p className={this.decorateCSS("itemText")}>
+                        {listItem.itemText2}
+                      </p>
+                    )}
+                    {itemText2 && (<span className={this.decorateCSS("spanItem")}></span>)}
+                    {itemText3 && (
+                      <p className={this.decorateCSS("itemText")}>
+                        {listItem.itemText3}
+                      </p>
+                    )}
+                  </div>  
+                    <h3 className={this.decorateCSS("index")}>
+                      {index < 9 ? `0${index + 1}` : index + 1}
+                    </h3>                                      
                 </div>
-              )
+                );
+              }
             )}
           </div>
         </div>

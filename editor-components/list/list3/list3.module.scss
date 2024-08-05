@@ -58,35 +58,44 @@
         background-color: var(--composer-font-color-secondary);
       }
     }
-
-    .itemTitle {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 20px;
+    .card-content{
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      
+      .itemTitle {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 0px;
+      }
+  
+      .itemText {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        opacity: 0.8;
+      }
+  
+      .spanItem {
+        display: block;
+        height: 1px;
+        background-color: var(--composer-primary-color);
+        margin: 10px 0;
+      }
+    }
+      .index {
+        position: absolute;
+        font-size: 11rem;
+        -webkit-text-stroke-width: 1px;
+        letter-spacing: -5px;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        bottom: -70px;
+           
     }
 
-    .itemText {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      opacity: 0.8;
-    }
 
-    .spanItem {
-      display: block;
-      height: 1px;
-      background-color: var(--composer-primary-color);
-      margin: 15px 0;
-    }
-
-    .index {
-      position: absolute;
-      font-size: 11rem;
-      -webkit-text-stroke-width: 1px;
-      letter-spacing: -5px;
-      -webkit-text-fill-color: transparent;
-      margin: 0;
-      bottom: -70px;
-    }
   }
 }
 
