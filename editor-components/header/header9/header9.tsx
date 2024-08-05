@@ -3,16 +3,15 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header9.module.scss";
 
-type ITabs = {
+type ITab = {
   tabText: JSX.Element;
-  description: JSX.Element;
   image: string;
-  url: string;
+  tabUrl: string;
 };
 
-type Social = {
-  text: JSX.Element;
-  link: string;
+type ISocial = {
+  socialLinkText: JSX.Element;
+  socialUrl: string;
 };
 
 class Header9 extends BaseHeader {
@@ -21,23 +20,23 @@ class Header9 extends BaseHeader {
 
     this.addProp({
       type: "array",
-      key: "social",
-      displayer: "Social",
+      key: "socials",
+      displayer: "Socials",
       value: [
         {
           type: "object",
-          key: "footer-social",
+          key: "social",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "text",
-              displayer: "Social Link",
+              key: "socialLinkText",
+              displayer: "Social Link Text",
               value: "Behance",
             },
             {
               type: "page",
-              key: "link",
+              key: "socialUrl",
               displayer: "Url",
               value: "",
             },
@@ -45,18 +44,18 @@ class Header9 extends BaseHeader {
         },
         {
           type: "object",
-          key: "footer-social",
+          key: "social",
           displayer: "Item",
           value: [
             {
               type: "page",
-              key: "text",
-              displayer: "Social Link",
+              key: "socialLinkText",
+              displayer: "Social Link Text",
               value: "Instagram",
             },
             {
               type: "page",
-              key: "link",
+              key: "socialUrl",
               displayer: "Url",
               value: "",
             },
@@ -64,18 +63,18 @@ class Header9 extends BaseHeader {
         },
         {
           type: "object",
-          key: "footer-social",
+          key: "social",
           displayer: "Item",
           value: [
             {
               type: "page",
-              key: "text",
-              displayer: "Social Link",
+              key: "socialLinkText",
+              displayer: "Social Link Text",
               value: "Twitter",
             },
             {
               type: "page",
-              key: "link",
+              key: "socialUrl",
               displayer: "Url",
               value: "",
             },
@@ -103,7 +102,7 @@ class Header9 extends BaseHeader {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -120,7 +119,7 @@ class Header9 extends BaseHeader {
             },
             {
               type: "page",
-              key: "url",
+              key: "tabUrl",
               displayer: "Url",
               value: "",
             },
@@ -129,7 +128,7 @@ class Header9 extends BaseHeader {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -146,7 +145,7 @@ class Header9 extends BaseHeader {
             },
             {
               type: "page",
-              key: "url",
+              key: "tabUrl",
               displayer: "Url",
               value: "",
             },
@@ -155,7 +154,7 @@ class Header9 extends BaseHeader {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -172,7 +171,7 @@ class Header9 extends BaseHeader {
             },
             {
               type: "page",
-              key: "url",
+              key: "tabUrl",
               displayer: "Url",
               value: "",
             },
@@ -181,7 +180,7 @@ class Header9 extends BaseHeader {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -198,7 +197,7 @@ class Header9 extends BaseHeader {
             },
             {
               type: "page",
-              key: "url",
+              key: "tabUrl",
               displayer: "Url",
               value: "",
             },
@@ -207,7 +206,7 @@ class Header9 extends BaseHeader {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -224,7 +223,7 @@ class Header9 extends BaseHeader {
             },
             {
               type: "page",
-              key: "url",
+              key: "tabUrl",
               displayer: "Url",
               value: "",
             },
@@ -233,7 +232,7 @@ class Header9 extends BaseHeader {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -250,7 +249,7 @@ class Header9 extends BaseHeader {
             },
             {
               type: "page",
-              key: "url",
+              key: "tabUrl",
               displayer: "Url",
               value: "",
             },
@@ -259,7 +258,7 @@ class Header9 extends BaseHeader {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -276,7 +275,7 @@ class Header9 extends BaseHeader {
             },
             {
               type: "page",
-              key: "url",
+              key: "tabUrl",
               displayer: "Url",
               value: "",
             },
@@ -285,7 +284,7 @@ class Header9 extends BaseHeader {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -302,7 +301,7 @@ class Header9 extends BaseHeader {
             },
             {
               type: "page",
-              key: "url",
+              key: "tabUrl",
               displayer: "Url",
               value: "",
             },
@@ -330,8 +329,8 @@ class Header9 extends BaseHeader {
     this.setComponentState("image", imageUrl);
   }
 
-  handleButtonClick(buttonUrl: string) {
-    window.open(buttonUrl, "_blank");
+  handleButtonClick(tabUrl: string) {
+    window.open(tabUrl, "_blank");
   }
 
   getName(): string {
@@ -362,38 +361,62 @@ class Header9 extends BaseHeader {
               </span>
             </div>
             <div className={this.decorateCSS("tab-buttons")}>
-              {this.castToObject<ITabs[]>("tabs").map(
-                (tab: ITabs, index: number) => {
-                  const tabTextExist = this.castToString(tab.tabText);
-
-                  if (tabTextExist)
-                    return (
-                      <ComposerLink path={tab.url}>
-                        <div
-                          className={
-                            this.decorateCSS("tabText") +
-                            " " +
-                            (this.getComponentState("activeTab") === index &&
-                              this.decorateCSS("active"))
-                          }
-                          onMouseEnter={() =>
-                            this.handleMouseEnter(index, tab.image)
-                          }
-                          onClick={() => this.handleButtonClick(tab.url)}
-                        >
-                          {tab.tabText}
-                        </div>
-                      </ComposerLink>
-                    );
+              {this.castToObject<ITab[]>("tabs").map(
+                (tab: ITab, index: number) => {
+                  const url = tab.tabUrl;
+                  return url ? (
+                    <ComposerLink key={index} path={url}>
+                      <div
+                        className={
+                          this.decorateCSS("tabText") +
+                          " " +
+                          (this.getComponentState("activeTab") == index &&
+                            this.decorateCSS("active"))
+                        }
+                        onMouseEnter={() =>
+                          this.handleMouseEnter(index, tab.image)
+                        }
+                      >
+                        {this.castToString(tab.tabText)}
+                      </div>
+                    </ComposerLink>
+                  ) : (
+                    <div
+                      key={index}
+                      className={
+                        this.decorateCSS("tabText") +
+                        " " +
+                        (this.getComponentState("activeTab") == index &&
+                          this.decorateCSS("active"))
+                      }
+                      onMouseEnter={() =>
+                        this.handleMouseEnter(index, tab.image)
+                      }
+                    >
+                      {this.castToString(tab.tabText)}
+                    </div>
+                  );
                 }
               )}
-              {this.getPropValue("featuredText", { as_string: true }) && (
-                <ComposerLink path={this.getPropValue("featuredLink")}>
-                  <h2 className={this.decorateCSS("linkText")}>
-                    {this.getPropValue("featuredText")}
-                  </h2>
-                </ComposerLink>
-              )}
+              <ComposerLink path={this.getPropValue("linkText")}>
+                <h2 className={this.decorateCSS("linkText")}>
+                  {this.getPropValue("linkText")}
+                </h2>
+              </ComposerLink>
+
+              <div className={this.decorateCSS("socials")}>
+                <div className={this.decorateCSS("social")}>
+                  {this.castToObject<ISocial[]>("socials").map(
+                    (social: ISocial, index: number) => (
+                      <ComposerLink path={social.socialUrl} key={index}>
+                        <div className={this.decorateCSS("social-link")}>
+                          {this.castToString(social.socialLinkText)}
+                        </div>
+                      </ComposerLink>
+                    )
+                  )}
+                </div>
+              </div>
             </div>
             <img
               src={this.getComponentState("image")}
