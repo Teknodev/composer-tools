@@ -1,73 +1,74 @@
 .container {
 
   width: 100%;
-  padding: 50px 0;
   position: relative;
-
+  
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     .carousel {
-      width: 100%;
+      width: 95%;
+      height: 700px;
       align-items: center;
-      margin-left: 15px;
-      button{
-        display: none !important;
+      justify-content: center;
+      display: flex;
+      position: relative;
+      margin: auto;
+   
+      .centerSlide {   
+        transform: scale(1.0) !important; /* Adjust the scale for the centered slide */
+        transition: transform 0.3s ease !important;
+        z-index: 2 !important;
       }
-      .card {
-        width: 95% !important;
-        background-color: var(--composer-html-background);
-        padding: 10px 30px;
-        border: 1px solid var(--composer-tertiary-color);
-        border-radius: 6px;
-        .img {
-          width: 100%;
-          height: 200px;
-          object-fit: contain;
-          border-radius: 6px;
-        }
-        .item-title{
-          font-size: 2rem;
-          color: var(--composer-primary-color);
-        }
-        .button {
-          display: flex;
-          justify-content: space-between;
-          border-top: 1px solid rgb(200, 200, 200);
-          margin-top: 30px;
-          padding-top: 30px;
-          padding-left: 10px;
-          padding-right: 10px;
-          .button-text {
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            transition: 0.3s;
-            color: rgb(255, 255, 255);
-            background-color: var(--composer-secondary-color);
-            padding: 5px 30px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            width: max-content;
-            height: max-content;
-            font-weight: 400;
-            font-size: 1.1em;
-            margin-top: 22px;
-            &:hover {
-              color: var(--composer-primary-color);
-              background-color: transparent;
-              border: 1px solid var(--composer-primary-color);
 
+      .card {
+        width: 360px !important; 
+        height: 360px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 15px; 
+        transition: transform 0.3s;
+        transform: scale(0.8);
+        position: relative;
+        z-index: 1;
+
+        .imgContainer {
+          width: 100% ;
+          height: 100% ; 
+          overflow: hidden;
+          position: relative;
+          z-index: 1;
+
+          .img {
+            width: 100% ;
+            height: 100% ; 
+            object-fit: cover;
+            transform: scale(1.1);
+            transform-origin: center;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.5s ease, filter 0.5s ease;
+            &:hover {
+                transform: scale(1.0);
+                filter: brightness(80%);
             }
-          }
-          .item-price{
-            font-size: 2rem;
-            color: var(--composer-font-color-primary);
-          }
+          
+            &:not(:hover) {
+              transform: scale(1.1); 
+              filter: brightness(100%);
+            }
+          } 
         }
       }
-    }
+    } 
   }
 }
 
@@ -91,13 +92,8 @@
                     width: 20%;
                     height: 100px;
                     border-radius: 6px;
-                }
-                .button {
-                  display: flex;
-                  justify-content: space-between;
-                  border-top: 1px solid rgb(200, 200, 200);
-                  margin-left: -30px;
-                }
+                    
+                }  
             }
         }
     }
@@ -130,3 +126,4 @@
       }
   }
 }
+
