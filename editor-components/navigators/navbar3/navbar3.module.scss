@@ -327,7 +327,10 @@
                 gap: 4px;
                 font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
-                
+                &:hover{
+                  color: var(--composer-font-color-secondary);
+                  background: var(--composer-secondary-color) !important;
+                }
               }
             }
             .sub-items {
@@ -342,6 +345,10 @@
                 white-space: nowrap !important;
                 padding: 12px 20px;
                 flex-direction: column !important;
+                &:hover{
+                  color: var(--composer-font-color-secondary);
+                  background: var(--composer-secondary-color) !important;
+                }
 
                 .sub-item-title {
                   color: var(--composer-font-color-primary);
@@ -359,6 +366,10 @@
                   color: var(--composer-font-color-primary);
                   padding: 12px 30px;
                   background: var(--composer-html-background);
+                  &:hover{
+                    color: var(--composer-font-color-secondary);
+                  background: var(--composer-secondary-color) !important;
+                  }
                 }
               }
             }
