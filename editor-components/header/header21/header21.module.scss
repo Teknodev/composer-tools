@@ -7,168 +7,125 @@
   .max-content {
     max-width: var(--composer-content-width);
     padding: 10px;
-    .content{
+    .content {
       display: flex;
       position: relative;
       align-items: center;
       width: 100%;
-        .card{
-          flex: 1;
-          z-index: 1;
-          color: var(--composer-font-color-primary);
-          margin-right: -35%;
-          .card-box{
-            padding: 40px 50px;
-            background-color:rgba(var(--composer-html-background-rgb),0.5);
-            position: relative;
-            max-width: 65%;
-            h3{
-              font-size: 20px;
-              span{
-                color: var(--composer-font-color-s);
-              }
+      .card {
+        flex: 1;
+        z-index: 1;
+        color: var(--composer-font-color-primary);
+        margin-right: -35%;
+        .card-box {
+          padding: 40px 50px;
+          background-color: rgba(var(--composer-html-background-rgb), 0.5);
+          position: relative;
+          max-width: 65%;
+          .card-subtitle {
+            font-size: 20px;
+            margin-bottom: 0;
+            line-height: 1.3em;
+          }
+          .card-description {
+            font-weight: 100;
+            font-size: 15px;
+            margin-bottom: 0;
+            line-height: 1.3em;
+          }
+          .card-title {
+            line-height: 1.3em;
+            font-weight: 600px;
+            font-size: 45px;
+            margin-bottom: 0;
+          }
+          .buttons {
+            display: flex;
+            column-gap: 20px;
+            row-gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+          }
+          .buttons {
+            margin-top: 25px;
+          }
+          .card-button {
+            margin: 0;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s ease-in-out;
+            transform-origin: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover {
+              transform: scale(1.1);
             }
-            h4{
-              font-weight: 100;
-              line-height: 12px;
-              font-size: 15px;
-            }
-            h1{
-              line-height: 50px;
-              font-weight: 600px;
-              font-size: 45px;
-            }
-            button{
-              margin-top: 30px;
+
+            > div {
               border-radius: 5px;
               padding: 12px 20px;
-              border: none;
               font-size: 16px;
               font-weight: 600;
+              text-align: center;
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-font-color-primary);
-              transition: transform 0.3s ease-in-out;
-              &:hover{
-                transform: scale(1.1);
+              display: inline;
+
+              > blinkpage {
+                width: auto !important;
               }
             }
           }
         }
-        .image-box{
-          flex: 1;
-          position: relative;
-          max-width: 1200px;
-          .video{
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
-            top: 0;
-            left: 0;
-            display: grid;
-            place-items: center;
-            padding: 20px;
-            z-index: 3;
-
-            .player {
-              width: 100%;
-              max-width: 800px;
-              height: 500px;
-              z-index: 10;
-          }
-          }
-          button{
-            margin-left: 50%;
-            margin-top: 35%;
-            transform: translate(-50%,-50%);
-            border: none;
-            position: absolute;
-            background: none;
-            cursor: pointer;
-            z-index: 2;
-            .btn-icon{
-              color: var(--composer-html-background);
-              width: 50px;
-              height: 50px;
-              transition: transform 0.3s ease-in-out;
-              &:hover{
-                transform: scale(1.2);
-              }
-            }
-          }
-          img{
-            width: 100%;
-            height: auto;
-          }
-        }
-    }
-  }
-}
-
-@media (max-width: 1200px) {
-  .container {
-    .max-content {
-      .content{
-          .card{
-            .card-box{
-              h3{
-                font-size: 15px;
-              }
-              h4{
-                font-weight: 100;
-                line-height: 12px;
-                font-size: 12px;
-              }
-              h1{
-                line-height: 35px;
-                font-weight: 600px;
-                font-size: 35px;
-              }
-              button{
-                margin-top: 30px;
-                border-radius: 5px;
-                padding: 9px 17px;
-                border: none;
-                font-size: 15px;
-                font-weight: 600;
-              }
-            }
-          }
       }
-    }
-  }
-}
+      .image-box {
+        flex: 1;
+        position: relative;
+        max-width: 1200px;
+        .video {
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.8);
+          top: 0;
+          left: 0;
+          display: grid;
+          place-items: center;
+          padding: 20px;
+          z-index: 3;
 
-@media (max-width: 992px) {
-  .container {
-    .max-content {
-      .content{
-          .card{
-            .card-box{
-              padding: 30px 40px;
-              h3{
-                font-size: 10px;
-              }
-              h4{
-                font-weight: 100;
-                line-height: 10px;
-                font-size: 10px;
-              }
-              h1{
-                line-height: 25px;
-                font-weight: 600px;
-                font-size: 30px;
-              }
-              button{
-                margin-top: 12px;
-                border-radius: 5px;
-                padding: 12px 20px;
-                border: none;
-                font-size: 10px;
-                font-weight: 600;
-              }
+          .player {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            z-index: 10;
+          }
+        }
+        .button {
+          margin-left: 50%;
+          margin-top: 35%;
+          transform: translate(-50%, -50%);
+          border: none;
+          position: absolute;
+          background: none;
+          cursor: pointer;
+          z-index: 2;
+          .btn-icon {
+            color: var(--composer-html-background);
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s ease-in-out;
+            &:hover {
+              transform: scale(1.2);
             }
           }
+        }
+        img {
+          width: 100%;
+          height: auto;
+        }
       }
     }
   }
@@ -177,34 +134,24 @@
 @media only screen and (max-width: 768px) {
   .container {
     .max-content {
-      .content{
-          .card{
-            .card-box{
-              padding: 20px 30px;
-              line-height: 5px;
-              h3{
-                font-size: 12px;
-              }
-              h4{
-                font-weight: 100;
-                line-height: 10px;
-                font-size: 10px;
-              }
-              h1{
-                line-height: 20px;
-                font-weight: 600px;
-                font-size: 25px;
-              }
-              button{
-                margin-top: 0px;
-                border-radius: 5px;
-                padding: 12px 20px;
-                border: none;
-                font-size: 10px;
-                font-weight: 600;
-              }
+      .content {
+        .card {
+          .card-box {
+            .card-subtitle {
+              font-size: 14px;
+            }
+            .card-description {
+              font-size: 12px;
+            }
+            .card-title {
+              font-size: 25px;
+            }
+            .card-button {
+              padding: 0;
+              font-size: 10px;
             }
           }
+        }
       }
     }
   }
@@ -217,70 +164,60 @@
     align-items: center;
     .max-content {
       padding: 10px;
-      .content{
+      .content {
         display: flex;
         flex-direction: column;
         position: relative;
         align-items: center;
         width: 100%;
-          .card{
-            flex: 1;
-            z-index: 1;
-            margin-right: 0%;
-            .card-box{
-              padding: 10px 10px;
-              position: relative;
-              max-width: 100%;
-              line-height: 5px;
-              h3{
-                font-size: 12px;
-              }
-              h4{
-                font-weight: 100;
-                line-height: 10px;
-                font-size: 10px;
-              }
-              h1{
-                line-height: 20px;
-                font-weight: 600px;
-                font-size: 25px;
-              }
-              button{
-                margin-top: 0px;
-                border-radius: 5px;
-                padding: 8px 16px;
-                margin-bottom: 5px;
-                border: none;
-                font-size: 10px;
-                font-weight: 600;
-              }
-            }
-          }
-          .image-box{
-            flex: 1;
+        .card {
+          flex: 1;
+          z-index: 1;
+          margin-right: 0%;
+          .card-box {
+            padding: 10px 10px;
             position: relative;
             max-width: 100%;
-            button{
-              margin-left: 50%;
-              margin-top: 35%;
-              transform: translate(-50%,-50%);
-              border: none;
-              position: absolute;
-              background: none;
-              cursor: pointer;
-              z-index: 2;
-              .btn-icon{
-                width: 35px;
-                height: 35px;
+
+            .buttons {
+              flex-direction: column;
+              row-gap: 10px;
+
+              .card-button {
+                display: block;
+                width: 100%;
+                >div {
+                  display: block;
+                  width: 100%;
+                }
               }
             }
-            img{
-              width: 100%;
-              height: auto;
+          }
+        }
+        .image-box {
+          flex: 1;
+          position: relative;
+          max-width: 100%;
+          button {
+            margin-left: 50%;
+            margin-top: 35%;
+            transform: translate(-50%, -50%);
+            border: none;
+            position: absolute;
+            background: none;
+            cursor: pointer;
+            z-index: 2;
+            .btn-icon {
+              width: 35px;
+              height: 35px;
             }
           }
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
       }
     }
   }
-  
 }

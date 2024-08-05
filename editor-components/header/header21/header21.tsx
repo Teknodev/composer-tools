@@ -4,14 +4,16 @@ import styles from "./header21.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-
 type CardState = {
-  subtitle:string;
-  title : string;
-  description : string;
-  button:string;
-  button_url : string
-}
+  subtitle: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
+};
+
+type Button = {
+  buttonText: JSX.Element;
+  buttonLink: string;
+};
 
 class Header21 extends BaseHeader {
   constructor(props?: any) {
@@ -26,7 +28,7 @@ class Header21 extends BaseHeader {
           type: "string",
           key: "subtitle",
           displayer: "Subtitle",
-          value: "Quick parcel delivery,<span> from</span>",
+          value: "Quick parcel delivery, from.",
         },
         {
           type: "string",
@@ -39,20 +41,54 @@ class Header21 extends BaseHeader {
           key: "description",
           displayer: "Description",
           value:
-            "Holiday shopping with 3% back in rewards. <br/> Offer expires 12/31/2024",
+            "Holiday shopping with 3% back in rewards. Offer expires 12/31/2024",
         },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
         {
-          type: "string",
+          type: "object",
           key: "button",
-          displayer: "Button-Text",
-          value: "More Projects",
+          displayer: "Button",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "More Projects",
+            },
+            {
+              type: "page",
+              key: "buttonLink",
+              displayer: "Url",
+              value: "",
+            },
+          ],
         },
         {
-          type:"page",
-          key:"button_url",
-          displayer:"Url",
-          value:""
-        }
+          type: "object",
+          key: "button",
+          displayer: "Button",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "More Projects",
+            },
+            {
+              type: "page",
+              key: "buttonLink",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
       ],
     });
 
@@ -61,57 +97,109 @@ class Header21 extends BaseHeader {
       key: "image",
       displayer: "Image",
       value:
-        "https://colabrio.ams3.cdn.digitaloceanspaces.com/stockie_landing/demo1/assets/2019/02/st_demo1_003-min.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
     });
     this.addProp({
-      type:"icon",
+      type: "icon",
       key: "icon",
-      displayer:"Icon",
-      value:"MdOutlinePlayCircleOutline"
-    })
+      displayer: "Icon",
+      value: "MdOutlinePlayCircleOutline",
+    });
     this.addProp({
       type: "video",
       displayer: "Video",
       key: "video",
-      value: "https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
     });
-    
-    this.setComponentState("is_video_visible", false);
 
+    this.setComponentState("is_video_visible", false);
   }
   getName(): string {
     return "Header 21";
-
   }
   render() {
-    let card:CardState = this.castToObject("card");
+    const card = this.castToObject<CardState>("card");
+    const buttons = this.castToObject<Button[]>("buttons");
+
+    const titleExist = this.castToString(card.title);
+    const subtitleExist = this.castToString(card.subtitle);
+    const descExist = this.castToString(card.description);
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("card")}>
-              <div className={this.decorateCSS("card-box")}>
-                <h3>{card.subtitle}</h3>
-                <h1>{card.title}</h1>
-                {this.castToString(card.description as any).length > 0 &&
-                  <h4>{card.description}</h4>
-                }
-                {this.castToString(card.button as any).length > 0 &&
-                  <ComposerLink path={card.button_url}>
-                    <button>{card.button}</button>
-                  </ComposerLink>
-                  }
+            {(titleExist || subtitleExist || descExist || buttons?.length) && (
+              <div className={this.decorateCSS("card")}>
+                <div className={this.decorateCSS("card-box")}>
+                  {subtitleExist && (
+                    <h3 className={this.decorateCSS("card-subtitle")}>
+                      {card.subtitle}
+                    </h3>
+                  )}
+                  {titleExist && (
+                    <h1 className={this.decorateCSS("card-title")}>
+                      {card.title}
+                    </h1>
+                  )}
+                  {descExist && (
+                    <p className={this.decorateCSS("card-description")}>
+                      {card.description}
+                    </p>
+                  )}
+                  {buttons.length > 0 && (
+                    <div className={this.decorateCSS("buttons")}>
+                      {buttons.map((button: Button, index: number) => {
+                        if(this.castToString(button.buttonText))
+                        return (
+                          <div
+                            key={index}
+                            className={this.decorateCSS("card-button")}
+                          >
+                            <ComposerLink path={button.buttonLink}>
+                              {button.buttonText}
+                            </ComposerLink>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className={this.decorateCSS("image-box")}>
-                        <button className={this.decorateCSS("button")} onClick={()=>{this.setComponentState("is_video_visible",true)}}>
-                          <ComposerIcon name={this.getPropValue("icon")} propsIcon={{className:this.decorateCSS("btn-icon")}}/>
-                        </button>
-              <img src={this.getPropValue("image")} alt="" />
-              {this.getComponentState("is_video_visible") && <div className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
-            <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("player")} src={this.getPropValue("video")}></video>
-          </div>}
-            </div>
+            )}
+            {(this.getPropValue("image", { as_string: true }) ||
+              this.getPropValue("video", { as_string: true })) && (
+              <div className={this.decorateCSS("image-box")}>
+                <button
+                  className={this.decorateCSS("button")}
+                  onClick={() => {
+                    this.setComponentState("is_video_visible", true);
+                  }}
+                >
+                  <ComposerIcon
+                    name={this.getPropValue("icon")}
+                    propsIcon={{ className: this.decorateCSS("btn-icon") }}
+                  />
+                </button>
+                <img src={this.getPropValue("image")} alt="image" />
+                {this.getComponentState("is_video_visible") && (
+                  <div
+                    className={this.decorateCSS("video")}
+                    onClick={() =>
+                      this.setComponentState("is_video_visible", false)
+                    }
+                  >
+                    <video
+                      onClick={(event) => event.stopPropagation()}
+                      controls
+                      className={this.decorateCSS("player")}
+                      src={this.getPropValue("video")}
+                    ></video>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -120,4 +208,3 @@ class Header21 extends BaseHeader {
 }
 
 export default Header21;
-
