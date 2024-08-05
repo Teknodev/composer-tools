@@ -1,21 +1,32 @@
 .container {
   width: 100%;
-  background-color: var(--composer-html-background);
+  min-height: calc(100vh - 80px);
+ 
   .max-content {
     max-width: var(--composer-content-width);
-    margin: auto;
+    margin:  0 auto;
+    height: 100vh;
+   
 
-    .image-container {
-      width: 100%;
-      height: 60vh;
+    .background-image {
+      
+      width: auto;
+      height: 100vh;
+      background-position: center;
       position: relative;
-      .image {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: brightness(0.5);
-      }
+      max-width: var(--composer-content-width);
+      margin: 0 auto;
+
+
+    }
+    .overlay {
+      width: 100%;
+      height: 100vh;
+      background: rgba(29, 29, 29, 0.4);
+      position: absolute;
+      max-width: var(--composer-content-width);
+      margin: 0 auto;
+
     }
 
     .text-box {
@@ -24,13 +35,18 @@
       text-align: center;
       justify-content: center;
       z-index: 1;
+
       .title {
         font-size: 4rem;
-        color: black; // Changed color to black
+        color: #fff;
+margin-top: 0;
+padding-top: 25px;
       }
+
       .description {
         font-size: 2rem;
-        color: black; // Changed color to black
+        color: #fff;
+        margin: auto;
       }
     }
 
@@ -45,49 +61,107 @@
       &-reverse {
         flex-flow: row-reverse;
       }
+
       .slider-parent {
         width: 100%;
+
         .carousel {
+          >button {
+            z-index: 10;
+            margin-left: 70px;
+            margin-right: 110px;
+            transition: 300ms;
+
+            &:hover {
+              background-color: #fff;
+              color: #fff;
+              scale: 1.1;
+            }
+
+            &:before {
+              content: "";
+              position: absolute;
+              transform: rotateZ(135deg);
+              font-size: 50px;
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          >ul {
+            transform: translateY(-40px) translateX(-50%);
+            width: auto;
+            position: absolute;
+            left: 50%;
+            padding: 0px 5px;
+
+            li {
+              button {
+                &:before {
+                  font-size: 1px;
+                  color: #fff;
+                  background-color: transparent;
+                  border: 3px solid transparent;
+                  border-radius: 100px;
+                  border-color: #fff;
+                  width: 10px;
+                  height: 10px;
+                }
+              }
+            }
+          }
+
           .slider-inner-div {
             border-radius: 10px;
             padding: 30px 20px 20px 20px;
+            align-items: flex-start;
+
+
             .content-div {
               min-height: 400px;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
+
+
               .img-div {
                 width: 150px;
                 height: 150px;
                 border-radius: 50%;
                 overflow: hidden;
-                border: 3px solid black; // Changed border color to black
-                img {
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
+
+                .image-box {
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
                 }
               }
+
               .header-page {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+
                 .item-title {
-                  color: black; // Changed color to black
+                  color: #fff;
                   font-size: 1rem;
                   margin-top: 10px;
                 }
+
                 .first-header {
                   text-transform: capitalize;
                   font-weight: revert;
                   font-size: 1.5rem;
-                  color: black; // Changed color to black
+                  color: #fff;
                   margin: 3px;
                 }
+
                 .sun-title {
-                  color: black; // Changed color to black
+                  color: #fff;
                   font-size: 1.2rem;
                   margin: 5px;
                 }
@@ -99,127 +173,65 @@
     }
   }
 
-  .slick-dots {
-    position: absolute !important;
-    bottom: 10px !important;
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    list-style: none !important;
-    z-index: 1000 !important;
 
-    li {
-      margin: 0 5px !important;
+  @media only screen and (max-width: 600px) {
+    .max-content {
+      .text-box {
+        display: block;
+        text-align: center;
+        justify-content: center;
 
-      button {
-        border: none !important;
-        background: none !important;
-        padding: 0 !important;
-        cursor: pointer !important;
+        .title {
+          font-size: 3rem;
+          color: #fff;
+        }
 
-        &::before {
-          content: "";
-          display: block !important;
-          width: 10px !important;
-          height: 10px !important;
-          border-radius: 50% !important;
-          border: 2px solid black !important;
-          background: white !important;
+        .description {
+          font-size: 1.75rem;
+          color: #fff;
         }
       }
 
-      &.slick-active button::before {
-        background: black !important;
-      }
-    }
-  }
+      .wrapper {
+        flex-direction: column;
+        width: 100%;
 
-  @media only screen and (max-width: 850px) {
-    .text-box {
-      display: block;
-      text-align: center;
-      justify-content: center;
-      .title {
-        font-size: 3rem;
-        color: black; // Changed color to black
-      }
-      .description {
-        font-size: 1.5rem;
-        color: black; // Changed color to black
-      }
-    }
+        .slider-parent {
+          .carousel {
+            >ul {
+              transform: translateY(-40px) translateX(-50%);
+              width: 19rem;
+              padding: 0px 5px;
 
-    .wrapper {
-      flex-direction: column;
-      width: 100%;
-      .slider-parent {
-        .carousel {
-          .slider-inner-div {
-            min-height: 490px;
-            .content-div {
-              padding-top: 25px;
-              .header-page {
-                .item-title {
-                  font-size: 1rem;
-                  color: black; // Changed color to black
-                }
-                .first-header {
-                  margin: 10px;
-                  font-size: 1.5rem;
-                  color: black; // Changed color to black
-                }
-                .sun-title {
-                  color: black; // Changed color to black
-                  font-size: 1.2rem;
-                  margin: 5px;
+              li {
+                button {
+                  &:before {
+                    width: 8px;
+                    height: 8px;
+                  }
                 }
               }
             }
-          }
-        }
-      }
-    }
-  }
 
-  @media only screen and (max-width: 450px) {
-    .text-box {
-      display: block;
-      text-align: center;
-      justify-content: center;
-      .title {
-        font-size: 2rem;
-        color: black; // Changed color to black
-      }
-      .description {
-        font-size: 1rem;
-        color: black; // Changed color to black
-      }
-    }
+            .slider-inner-div {
+              .content-div {
+                .header-page {
+                  .item-title {
+                    font-size: 1rem;
+                    color: #fff;
+                  }
 
-    .wrapper {
-      flex-direction: column;
-      width: 100%;
-      .slider-parent {
-        .carousel {
-          .slider-inner-div {
-            min-height: 490px;
-            .content-div {
-              padding-top: 25px;
-              .header-page {
-                .item-title {
-                  font-size: 1rem;
-                  color: black; // Changed color to black
-                }
-                .first-header {
-                  margin: 10px;
-                  font-size: 1.5rem;
-                  color: black; // Changed color to black
-                }
-                .sun-title {
-                  color: black; // Changed color to black
-                  font-size: 1.2rem;
-                  margin: 5px;
+                  .first-header {
+                    margin: 10px;
+                    font-size: 1.5rem;
+                    color: #fff;
+                  }
+
+                  .sun-title {
+                    color: #fff;
+                    font-size: 1.2rem;
+                    margin: 5px;
+                  }
                 }
               }
             }

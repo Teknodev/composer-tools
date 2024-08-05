@@ -1,17 +1,16 @@
-import Slider from "react-slick";
 import * as React from "react";
 import { Team } from "../../EditorComponent";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./team8.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Card = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
   image: string;
-  imagesubtitle: string;
-  imagetitle: string;
-  suntitle: string;
+  imagesubtitle: JSX.Element;
+  imagetitle: JSX.Element;
 };
 
 class Team8 extends Team {
@@ -33,128 +32,24 @@ class Team8 extends Team {
     });
 
     this.addProp({
+      type: "image",
+      key: "backroundImage",
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
+
+    });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    })
+
+    this.addProp({
       type: "array",
       key: "header",
       displayer: "Header",
       value: [
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "James Strans",
-            },
-            {
-              type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Pinch Runner",
-            },
-            {
-              type: "string",
-              key: "suntitle",
-              displayer: "Sun Title",
-              value: "Great Improvement",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370e3c68c3c2002cd30814?alt=media&timestamp=1719558632843",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Jason Covereye",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Ceo",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "David Davis",
-            },
-            {
-              type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Long Reliever",
-            },
-            {
-              type: "string",
-              key: "suntitle",
-              displayer: "Sun Title",
-              value: "Strong Arm",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370e3c68c3c2002cd30813?alt=media&timestamp=1719558632843",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Vaughn Edison",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Web Developer",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "Joshua Olds",
-            },
-            {
-              type: "string",
-              key: "imagetitle",
-              displayer: "Image Title",
-              value: "Closer",
-            },
-            {
-              type: "string",
-              key: "suntitle",
-              displayer: "Sun Title",
-              value: "Quick Reflexes",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://plus.unsplash.com/premium_photo-1664304819769-61673bf23d1a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDl8fGJhc2ViYWxsJTIwcGxheWVyfGVufDB8fDB8fHww",
-            },
-          ],
-        },
         {
           type: "object",
           key: "slidercontent",
@@ -173,17 +68,10 @@ class Team8 extends Team {
               value: "Pinch Hitter",
             },
             {
-              type: "string",
-              key: "suntitle",
-              displayer: "Sun Title",
-              value: "Powerful Hits",
-            },
-            {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://plus.unsplash.com/premium_photo-1664297507357-6062ff5b63d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTE3fHxiYXNlYmFsbCUyMHBsYXllcnxlbnwwfHwwfHx8MA%3D%3D",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
             },
           ],
         },
@@ -205,17 +93,137 @@ class Team8 extends Team {
               value: "Relief Pitcher",
             },
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
               type: "string",
-              key: "suntitle",
-              displayer: "Sun Title",
-              value: "Calm Under Pressure",
+              key: "imagesubtitle",
+              displayer: "Image Subtitle",
+              value: "Juan Quadra",
+            },
+            {
+              type: "string",
+              key: "imagetitle",
+              displayer: "Image Title",
+              value: "Closer",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imagesubtitle",
+              displayer: "Image Subtitle",
+              value: "Robert Caton",
+            },
+            {
+              type: "string",
+              key: "imagetitle",
+              displayer: "Image Title",
+              value: "Middle Reliever",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imagesubtitle",
+              displayer: "Image Subtitle",
+              value: "James Strans",
+            },
+            {
+              type: "string",
+              key: "imagetitle",
+              displayer: "Image Title",
+              value: "Pinch Runner",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                " https://images.unsplash.com/photo-1649030002864-2d5c4fbd507b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTU2fHxiYXNlYmFsbCUyMHBsYXllcnxlbnwwfHwwfHx8MA%3D%3D",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0838203b007002cc771fe?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imagesubtitle",
+              displayer: "Image Subtitle",
+              value: "David Davis",
+            },
+            {
+              type: "string",
+              key: "imagetitle",
+              displayer: "Image Title",
+              value: "Long Reliever",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imagesubtitle",
+              displayer: "Image Subtitle",
+              value: "Joshua Olds",
+            },
+            {
+              type: "string",
+              key: "imagetitle",
+              displayer: "Image Title",
+              value: "Closer",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0e2e803b007002cc79759?alt=media",
             },
           ],
         },
@@ -238,16 +246,6 @@ class Team8 extends Team {
       slidesToShow: 5,
       slidesToScroll: 1,
       rtl: false,
-      customPaging: (i: number) => (
-        <div className="slick-dots-custom">
-          <div className="slick-dots-circle"></div>
-        </div>
-      ),
-      appendDots: (dots: React.ReactNode) => (
-        <div style={{ bottom: "-50px" }}>
-          <ul> {dots} </ul>
-        </div>
-      ),
       responsive: [
         {
           breakpoint: 1024,
@@ -259,7 +257,7 @@ class Team8 extends Team {
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 1,
             slidesToScroll: 1,
           },
         },
@@ -268,61 +266,75 @@ class Team8 extends Team {
 
     return (
       <div className={this.decorateCSS("container")}>
+        <div
+            className={this.decorateCSS("background-image")}
+            style={{
+              backgroundImage: `url(${this.getPropValue("backroundImage")})`,
+            }}
+          >
+            <div className={this.getPropValue("overlay") && this.decorateCSS("overlay")}></div>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("image-container")}>
-            <img
-              alt=""
-              className={this.decorateCSS("image")}
-              src={this.getPropValue("image")}
-            ></img>
-          </div>
+         
+           
+              <div className={this.decorateCSS("text-box")}>
+                {this.castToString(this.getPropValue("title")) &&
+                  <h2 className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </h2>
+                }
+                {this.castToString(this.getPropValue("description")) &&
+                  <h3 className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </h3>
+                }
+              </div>
 
-          <div className={this.decorateCSS("text-box")}>
-            <h2 className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </h2>
-            <h3 className={this.decorateCSS("description")}>
-              {this.getPropValue("description")}
-            </h3>
-          </div>
+              <div className={this.decorateCSS("wrapper")}>
+                <div className={this.decorateCSS("slider-parent")}>
+                  <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+                    {this.castToObject<Card[]>("header").map(
+                      (item: Card, index: number) => (
+                        <div
+                          className={this.decorateCSS("slider-inner-div")}
+                          key={`sld-8-${index}`}
+                        >
+                          <div className={this.decorateCSS("content-div")}>
+                            <div className={this.decorateCSS("img-div")}>
+                              {item.image && <div className={this.decorateCSS("image-box")}>
+                                <img
+                                  alt=""
+                                  src={item.image}
+                                  className={this.decorateCSS("img")}
+                                />
+                              </div>
 
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("slider-parent")}>
-              <Slider {...settings} className={this.decorateCSS("carousel")}>
-                {this.castToObject<Card[]>("header").map(
-                  (item: Card, index: number) => (
-                    <div
-                      className={this.decorateCSS("slider-inner-div")}
-                      key={`sld-8-${index}`}
-                    >
-                      <div className={this.decorateCSS("content-div")}>
-                        <div className={this.decorateCSS("img-div")}>
-                          <img
-                            alt={item.imagesubtitle}
-                            src={item.image}
-                            className={this.decorateCSS("img")}
-                          />
+                              }
+
+                            </div>
+                            <div className={this.decorateCSS("header-page")}>
+                              <h3 className={this.decorateCSS("item-title")}>
+                                {item.imagetitle}
+                              </h3>
+
+                              {this.castToString(item.imagesubtitle) &&
+                                <h1 className={this.decorateCSS("first-header")}>
+                                  {item.imagesubtitle}
+                                </h1>
+                              }
+
+                            </div>
+                          </div>
                         </div>
-                        <div className={this.decorateCSS("header-page")}>
-                          <h3 className={this.decorateCSS("item-title")}>
-                            {item.imagetitle}
-                          </h3>
-                          <h1 className={this.decorateCSS("first-header")}>
-                            {item.imagesubtitle}
-                          </h1>
-                          <h2 className={this.decorateCSS("sun-title")}>
-                            {item.suntitle}
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-              </Slider>
+                      )
+                    )}
+                  </ComposerSlider>
+               
+             
             </div>
           </div>
         </div>
-      </div>
+        </div>
+        </div>
     );
   }
 }
