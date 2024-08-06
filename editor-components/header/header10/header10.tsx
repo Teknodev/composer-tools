@@ -4,6 +4,7 @@ import styles from "./header10.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Icons } from "react-toastify";
 
 type SliderObject = {
   title: JSX.Element;
@@ -12,7 +13,8 @@ type SliderObject = {
   image: string;
   subtitle: JSX.Element;
   description1: JSX.Element;
-  icons: { icon: string, url: string }[],
+  icons: { icon: string, url: string }[];
+  button: Array<ButtonObject>;
 }
 
 type ButtonObject = {
@@ -24,32 +26,6 @@ class Header10 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
  
-    this.addProp({
-      type: "array",
-      key: "button",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "buttonObject",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Get a quote",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
     let twitter: TypeUsableComponentProps = {
       type: "object",
       key: "twitter",
@@ -185,6 +161,32 @@ class Header10 extends BaseHeader {
             },
             {
               type: "array",
+              key: "button",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "buttonObject",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Get a quote",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
               key: "icons",
               displayer: "Social Media Platforms",
               value: [
@@ -239,6 +241,32 @@ class Header10 extends BaseHeader {
             },
             {
               type: "array",
+              key: "button",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "buttonObject",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Get a quote",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
               key: "icons",
               displayer: "Social Media Platforms",
               value: [
@@ -265,16 +293,16 @@ class Header10 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 3000,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
     };    
 
     const slider = this.castToObject<SliderObject[]>("slider");
-    const button = this.castToObject<ButtonObject[]>("button");
     const nextIcon = this.getPropValue("nextIcon");
     const prevIcon = this.getPropValue("prevIcon")
+    const ampersandIcon = this.getPropValue("ampersandIcon");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -291,7 +319,7 @@ class Header10 extends BaseHeader {
               const image = item.image;
               const subtitle = this.castToString(item.subtitle);
               const description1 = this.castToString(item.description1);
-              const leftPage = title || description || nextIcon || prevIcon || button.length > 0;
+              const leftPage = title || description;
 
               return (
                 <div className={this.decorateCSS("content")} key={indexSlider}>
@@ -333,11 +361,11 @@ class Header10 extends BaseHeader {
                               }}
                             />
                         </div>
-                          {button.map((buttonItem: any, indexButton: number) => {
+                          {item.button.map((buttonItem: any, indexButton: number) => {
                             const buttonText = this.castToString(buttonItem.buttonText);
                             if (buttonText)
                               return (
-                                <ComposerLink key={`hdr-10-${indexButton}`} path={buttonItem.link}>
+                                <ComposerLink key={`hdr-10-${indexButton}`} path={buttonItem.buttonLink}>
                                   <button className={this.decorateCSS("button")}>
                                     {buttonText}
                                   </button>
@@ -364,7 +392,7 @@ class Header10 extends BaseHeader {
                     </div>
                   )}
                   
-                  {(subtitle || description1) && (
+                  {(subtitle || description1 || item.icons.length > 0 || ampersandIcon) && (
                     <div className={this.decorateCSS("right")}>
                         <div className={this.decorateCSS("icon")}>
                           <ComposerIcon name={this.getPropValue("ampersandIcon")} />
@@ -380,14 +408,14 @@ class Header10 extends BaseHeader {
                             {description1}
                           </p>
                         )}
-                        <div className={this.decorateCSS("icon-group")}>
+                      </div>
+                      <div className={this.decorateCSS("icon-group")}>
                           {item.icons.map((item: any, indexSlider: number) => (
                             <ComposerLink path={item.getPropValue("url")}>
                               <ComposerIcon name={item.getPropValue("icon")}/>
                             </ComposerLink>
                           ))}
                         </div>
-                      </div>
                     </div>
                   )}
                 </div>
