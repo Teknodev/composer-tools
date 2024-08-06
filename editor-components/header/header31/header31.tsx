@@ -865,251 +865,292 @@ class Header31 extends BaseHeader {
     const activeIndex = this.getComponentState("active-index");
     const slider = this.castToObject<any>("slider");
     const activeSlideObj = slider[activeIndex];
-    const subtitle = activeSlideObj.subtitle;
-    const title = activeSlideObj.title;
-    const description = activeSlideObj.description;
+    const subtitle = slider.length > 0 ? activeSlideObj?.subtitle : <></>;
+    const title = slider.length > 0 ? activeSlideObj?.title : <></>;
+    const description = slider.length > 0 ? activeSlideObj?.description : <></>;
     const textAnimationEnabled = this.getPropValue("textAnimation");
     const overlay = this.getPropValue("overlay");
+
+    const icons = this.castToObject<any>("icons");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider
-              ref={this.getComponentState("slider-ref")}
-              {...settings}
-              className={this.decorateCSS("slider")}
-            >
-              {slider?.map((item: ISliderData, index: number) => (
-                <div key={index} className={this.decorateCSS("wrapper")}>
-                  <div className={this.decorateCSS("right-slider")}>
-                    <img
-                      className={this.decorateCSS("background-right")}
-                      src={item.rightImage}
-                      alt={item.title}
-                    />
-                    <div
-                      className={`${
-                        overlay ? this.decorateCSS("overlay") : ""
-                      }`}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </ComposerSlider>
-          </div>
-          <div className={this.decorateCSS("slider-content")}>
-            <div className={this.decorateCSS("slider-container")}>
-              <ComposerSlider
-                ref={this.getComponentState("second-slider-ref")}
-                {...settings}
-                draggable={true}
-                slidesToShow={3}
-                vertical={true}
-                verticalSwiping={true}
-                centerMode={true}
-                centerPadding={"0px"}
-                className={this.decorateCSS("carousel")}
-              >
-                {slider.map((item: ISliderData, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("swiper-wrapper")}
+          {slider?.length > 0 && (
+            <>
+              <div className={this.decorateCSS("slider-parent")}>
+                <ComposerSlider
+                  ref={this.getComponentState("slider-ref")}
+                  {...settings}
+                  className={this.decorateCSS("slider")}
+                >
+                  {slider?.map((item: ISliderData, index: number) => (
+                    <div key={index} className={this.decorateCSS("wrapper")}>
+                      <div className={this.decorateCSS("right-slider")}>
+                        {item.rightImage && (
+                          <img
+                            className={this.decorateCSS("background-right")}
+                            src={item.rightImage}
+                            alt={item.title}
+                          />
+                        )}
+                        <div
+                          className={`${
+                            overlay ? this.decorateCSS("overlay") : ""
+                          }`}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </ComposerSlider>
+              </div>
+              <div className={this.decorateCSS("slider-content")}>
+                <div className={this.decorateCSS("slider-container")}>
+                  <ComposerSlider
+                    ref={this.getComponentState("second-slider-ref")}
+                    {...settings}
+                    draggable={true}
+                    slidesToShow={3}
+                    vertical={true}
+                    verticalSwiping={true}
+                    centerMode={true}
+                    centerPadding={"0px"}
+                    className={this.decorateCSS("carousel")}
                   >
-                    {activeIndex === index && (
-                      <div className={this.decorateCSS("content")}>
-                        <span className={this.decorateCSS("sliderNumber-left")}>
-                          {activeSlideObj.sliderNumber}
+                    {slider.map((item: ISliderData, index: number) => {
+                      if (item.leftImage)
+                        return (
+                          <div
+                            key={index}
+                            className={this.decorateCSS("swiper-wrapper")}
+                          >
+                            {activeIndex === index && (
+                              <div className={this.decorateCSS("content")}>
+                                <span
+                                  className={this.decorateCSS(
+                                    "sliderNumber-left"
+                                  )}
+                                >
+                                  {activeSlideObj.sliderNumber}
+                                </span>
+                              </div>
+                            )}
+                            <img
+                              className={`${this.decorateCSS(
+                                "background-left"
+                              )} ${
+                                activeIndex === index
+                                  ? this.decorateCSS("active")
+                                  : ""
+                              }`}
+                              src={item.leftImage}
+                              alt={item.title}
+                              onClick={() => {
+                                this.getComponentState(
+                                  "slider-ref"
+                                ).current.slickGoTo(index);
+                                this.getComponentState(
+                                  "second-slider-ref"
+                                ).current.slickGoTo(index);
+                              }}
+                            />
+                          </div>
+                        );
+                    })}
+                  </ComposerSlider>
+                  <div className={this.decorateCSS("slider-inner")}>
+                    {subtitle && (
+                      <div className={this.decorateCSS("up-text")}>
+                        <div
+                          className={`${this.decorateCSS("stick")} ${
+                            textAnimationEnabled ? "animate__animated" : ""
+                          }  ${this.getComponentState("stickAnimationClass")}`}
+                          onAnimationEnd={() => {
+                            this.handleAnimationEnd({
+                              animationState: "stickAnimationClass",
+                              startingAnimation: "animate__fadeInRight",
+                              endingAnimation: "animate__fadeOutDown",
+                            });
+                          }}
+                        ></div>
+                        <span
+                          className={`${this.decorateCSS("subtitle")} ${
+                            textAnimationEnabled ? "animate__animated" : ""
+                          } ${this.getComponentState(
+                            "subtitleAnimationClass"
+                          )}`}
+                          onAnimationEnd={() => {
+                            this.handleAnimationEnd({
+                              animationState: "subtitleAnimationClass",
+                              startingAnimation: "animate__fadeInRight",
+                              endingAnimation: "animate__fadeOutDown",
+                            });
+                          }}
+                        >
+                          {/* {subtitle} */}
                         </span>
                       </div>
                     )}
-                    <img
-                      className={`${this.decorateCSS("background-left")} ${
-                        activeIndex === index ? this.decorateCSS("active") : ""
-                      }`}
-                      src={item.leftImage}
-                      alt={item.title}
-                      onClick={() => {
-                        this.getComponentState("slider-ref").current.slickGoTo(
-                          index
-                        );
-                        this.getComponentState(
-                          "second-slider-ref"
-                        ).current.slickGoTo(index);
-                      }}
-                    />
-                  </div>
-                ))}
-              </ComposerSlider>
-              <div className={this.decorateCSS("slider-inner")}>
-                {subtitle && (
-                  <div className={this.decorateCSS("up-text")}>
-                    <div
-                      className={`${this.decorateCSS("stick")} ${
-                        textAnimationEnabled ? "animate__animated" : ""
-                      }  ${this.getComponentState("stickAnimationClass")}`}
-                      onAnimationEnd={() => {
-                        this.handleAnimationEnd({
-                          animationState: "stickAnimationClass",
-                          startingAnimation: "animate__fadeInRight",
-                          endingAnimation: "animate__fadeOutDown",
-                        });
-                      }}
-                    ></div>
-                    <span
-                      className={`${this.decorateCSS("subtitle")} ${
-                        textAnimationEnabled ? "animate__animated" : ""
-                      } ${this.getComponentState("subtitleAnimationClass")}`}
-                      onAnimationEnd={() => {
-                        this.handleAnimationEnd({
-                          animationState: "subtitleAnimationClass",
-                          startingAnimation: "animate__fadeInRight",
-                          endingAnimation: "animate__fadeOutDown",
-                        });
-                      }}
-                    >
-                      {subtitle}
-                    </span>
-                  </div>
-                )}
 
-                {title && (
-                  <span
-                    className={`${this.decorateCSS("title")} ${
-                      textAnimationEnabled ? "animate__animated" : ""
-                    } ${this.getComponentState("titleAnimationClass")}`}
-                    onAnimationEnd={() => {
-                      this.handleAnimationEnd({
-                        animationState: "titleAnimationClass",
-                        startingAnimation: "animate__fadeInRight",
-                        endingAnimation: "animate__fadeOutDown",
-                      });
-                    }}
-                  >
-                    {title}
-                  </span>
-                )}
-                {description && (
-                  <p
-                    className={`${this.decorateCSS("description")} ${
-                      textAnimationEnabled ? "animate__animated" : ""
-                    } ${this.getComponentState("descriptionAnimationClass")} `}
-                    onAnimationEnd={() => {
-                      this.handleAnimationEnd({
-                        animationState: "descriptionAnimationClass",
-                        startingAnimation: "animate__fadeInUp",
-                        endingAnimation: "animate__fadeOut",
-                      });
-                    }}
-                  >
-                    {description}
-                  </p>
-                )}
-                {activeSlideObj.actions.map((el: any) => (
-                  <ComposerLink path={el.link}>
-                    <div className={this.decorateCSS("button-box")}>
-                      <div
-                        className={`${this.decorateCSS("button")} ${
+                    {title && (
+                      <span
+                        className={`${this.decorateCSS("title")} ${
                           textAnimationEnabled ? "animate__animated" : ""
-                        } ${this.getComponentState("buttonAnimationClass")}`}
+                        } ${this.getComponentState("titleAnimationClass")}`}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
-                            animationState: "buttonAnimationClass",
-                            startingAnimation: "animate__fadeInUp",
+                            animationState: "titleAnimationClass",
+                            startingAnimation: "animate__fadeInRight",
                             endingAnimation: "animate__fadeOutDown",
                           });
                         }}
                       >
-                        {this.getPropValue("circleIcon") && (
-                          <ComposerIcon
-                            name={this.getPropValue("circleIcon")}
-                            propsIcon={{
-                              className: ``,
-                              size: 25,
-                            }}
-                          />
-                        )}
-                        <span className={this.decorateCSS("button-text")}>
-                          {el.buttonText}
-                        </span>
-                      </div>
-                    </div>
-                  </ComposerLink>
-                ))}
-              </div>
-            </div>
-            <div className={this.decorateCSS("main-social")}>
-              <ComposerIcon
-                name={this.getPropValue("social-icon")}
-                propsIcon={{
-                  className: this.decorateCSS("social-icon"),
-                }}
-              />
-              <div className={this.decorateCSS("icon-stick")}></div>
-              <div className={this.decorateCSS("icon-list-container")}>
-                {this.castToObject<any>("icons").map(
-                  (icon: any, indexIcons: number) => {
-                    return (
-                      <div
-                        key={indexIcons}
-                        className={this.decorateCSS("icon-item")}
+                        {title}
+                      </span>
+                    )}
+                    {description && (
+                      <p
+                        className={`${this.decorateCSS("description")} ${
+                          textAnimationEnabled ? "animate__animated" : ""
+                        } ${this.getComponentState(
+                          "descriptionAnimationClass"
+                        )} `}
+                        onAnimationEnd={() => {
+                          this.handleAnimationEnd({
+                            animationState: "descriptionAnimationClass",
+                            startingAnimation: "animate__fadeInUp",
+                            endingAnimation: "animate__fadeOut",
+                          });
+                        }}
                       >
-                        <ComposerLink path={icon.url}>
-                          <ComposerIcon
-                            name={icon.icon}
-                            propsIcon={{ className: this.decorateCSS("icon") }}
-                          />
-                        </ComposerLink>
-                      </div>
-                    );
-                  }
+                        {description}
+                      </p>
+                    )}
+                    {activeSlideObj.actions.map((el: any) => (
+                      <ComposerLink path={el.link}>
+                        <div className={this.decorateCSS("button-box")}>
+                          <div
+                            className={`${this.decorateCSS("button")} ${
+                              textAnimationEnabled ? "animate__animated" : ""
+                            } ${this.getComponentState(
+                              "buttonAnimationClass"
+                            )}`}
+                            onAnimationEnd={() => {
+                              this.handleAnimationEnd({
+                                animationState: "buttonAnimationClass",
+                                startingAnimation: "animate__fadeInUp",
+                                endingAnimation: "animate__fadeOutDown",
+                              });
+                            }}
+                          >
+                            {this.getPropValue("circleIcon") && (
+                              <ComposerIcon
+                                name={this.getPropValue("circleIcon")}
+                                propsIcon={{
+                                  className: ``,
+                                  size: 25,
+                                }}
+                              />
+                            )}
+                            <span className={this.decorateCSS("button-text")}>
+                              {el.buttonText}
+                            </span>
+                          </div>
+                        </div>
+                      </ComposerLink>
+                    ))}
+                  </div>
+                </div>
+                <div className={this.decorateCSS("main-social")}>
+                  {this.getPropValue("social-icon") && (
+                    <ComposerIcon
+                      name={this.getPropValue("social-icon")}
+                      propsIcon={{
+                        className: this.decorateCSS("social-icon"),
+                      }}
+                    />
+                  )}
+                  <div className={this.decorateCSS("icon-stick")}></div>
+                  {icons?.length > 0 && (
+                    <div className={this.decorateCSS("icon-list-container")}>
+                      {icons.map((icon: any, indexIcons: number) => {
+                        if (icon.icon)
+                          return (
+                            <div
+                              key={indexIcons}
+                              className={this.decorateCSS("icon-item")}
+                            >
+                              <ComposerLink path={icon.url}>
+                                <ComposerIcon
+                                  name={icon.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                  }}
+                                />
+                              </ComposerLink>
+                            </div>
+                          );
+                      })}
+                    </div>
+                  )}
+                </div>
+                {(this.getPropValue("prev_icon") ||
+                  this.getPropValue("next_icon")) && (
+                  <div className={this.decorateCSS("control-nav")}>
+                    {this.getPropValue("prev_icon") && (
+                      <ComposerIcon
+                        name={this.getPropValue("prev_icon")}
+                        propsIcon={{
+                          className: `${this.decorateCSS(
+                            "prev-icon"
+                          )} ${this.decorateCSS("arrow")} ${
+                            !this.getComponentState("display-none") &&
+                            this.decorateCSS("un-visible")
+                          }`,
+                          size: 20,
+                          onClick: () => {
+                            this.getComponentState(
+                              "slider-ref"
+                            ).current.slickPrev();
+                            this.getComponentState(
+                              "second-slider-ref"
+                            ).current.slickPrev();
+                          },
+                        }}
+                      />
+                    )}
+                    {this.getPropValue("next_icon") && (
+                      <ComposerIcon
+                        name={this.getPropValue("next_icon")}
+                        propsIcon={{
+                          className: `${this.decorateCSS(
+                            "next-icon"
+                          )} ${this.decorateCSS("arrow")} ${
+                            !this.getComponentState("display-none") &&
+                            this.decorateCSS("un-visible")
+                          }`,
+                          size: 20,
+                          onClick: () => {
+                            this.getComponentState(
+                              "slider-ref"
+                            ).current.slickNext();
+                            this.getComponentState(
+                              "second-slider-ref"
+                            ).current.slickNext();
+                          },
+                        }}
+                      />
+                    )}
+                  </div>
                 )}
+                <div className={this.decorateCSS("control-num")}>
+                  <span className={this.decorateCSS("sliderNumber")}>
+                    {activeSlideObj.sliderNumber}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className={this.decorateCSS("control-nav")}>
-              <ComposerIcon
-                name={this.getPropValue("prev_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS(
-                    "prev-icon"
-                  )} ${this.decorateCSS("arrow")} ${
-                    !this.getComponentState("display-none") &&
-                    this.decorateCSS("un-visible")
-                  }`,
-                  size: 20,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                    this.getComponentState(
-                      "second-slider-ref"
-                    ).current.slickPrev();
-                  },
-                }}
-              />
-              <ComposerIcon
-                name={this.getPropValue("next_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS(
-                    "next-icon"
-                  )} ${this.decorateCSS("arrow")} ${
-                    !this.getComponentState("display-none") &&
-                    this.decorateCSS("un-visible")
-                  }`,
-                  size: 20,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                    this.getComponentState(
-                      "second-slider-ref"
-                    ).current.slickNext();
-                  },
-                }}
-              />
-            </div>
-            <div className={this.decorateCSS("control-num")}>
-              <span className={this.decorateCSS("sliderNumber")}>
-                {activeSlideObj.sliderNumber}
-              </span>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     );
