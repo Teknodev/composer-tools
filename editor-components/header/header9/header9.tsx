@@ -113,7 +113,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247df?alt=media&timestamp=1719483639150",
             },
@@ -139,7 +139,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e2?alt=media&timestamp=1719483639150",
             },
@@ -165,7 +165,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e3?alt=media&timestamp=1719483639150",
             },
@@ -191,7 +191,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e0?alt=media&timestamp=1719483639150",
             },
@@ -217,7 +217,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e4?alt=media&timestamp=1719483639150",
             },
@@ -243,7 +243,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e1?alt=media&timestamp=1719483639150",
             },
@@ -269,7 +269,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247de?alt=media&timestamp=1719483639150",
             },
@@ -295,7 +295,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247dd?alt=media&timestamp=1719483639150",
             },
@@ -317,20 +317,19 @@ class Header9 extends BaseHeader {
       value: "Project",
     });
 
-    const tabs = this.castToObject<ITab[]>("tabs");
-
-    const firstImage: string = tabs[0].image;
-    this.setComponentState("image", firstImage);
     this.setComponentState("activeTab", 0);
+    this.setComponentState("image", "");
+  }
+  componentDidMount() {
+    const tabs = this.castToObject<ITab[]>("tabs");
+    if (tabs.length > 0) {
+      this.setComponentState("image", tabs[0].image);
+    }
   }
 
   handleMouseEnter(index: number, imageUrl: string) {
     this.setComponentState("activeTab", index);
     this.setComponentState("image", imageUrl);
-  }
-
-  handleButtonClick(tabUrl: string) {
-    window.open(tabUrl, "_blank");
   }
 
   getName(): string {
@@ -340,8 +339,35 @@ class Header9 extends BaseHeader {
   render() {
     const textExist = this.getPropValue("text", { as_string: true });
     const socials = this.castToObject<ISocial[]>("socials");
-    const tabs = this.castToObject<ITab[]>("tabs");
     const featuredText = this.getPropValue("featuredText", { as_string: true });
+    const tabs = this.castToObject<ITab[]>("tabs");
+    let currentImage = this.getComponentState("image");
+
+    if (!currentImage && tabs.length > 0) {
+      currentImage = tabs[0].image;
+    }
+
+    const temp = this.getComponentState("tabs-temp");
+    const props = tabs.map((tab: ITab) => {
+      return {
+        tabText: this.castToString(tab.tabText),
+        image: tab.image,
+        tabUrl: tab.tabUrl,
+      };
+    });
+
+    if (JSON.stringify(temp) !== JSON.stringify(props)) {
+      const propsNew = tabs.map((tab: ITab) => {
+        return {
+          tabText: this.castToString(tab.tabText),
+          image: tab.image,
+          tabUrl: tab.tabUrl,
+        };
+      });
+      this.setComponentState("tabs-temp", propsNew);
+      this.setComponentState("tabs", propsNew);
+      this.setComponentState("activeTab", 0);
+    }
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -410,10 +436,10 @@ class Header9 extends BaseHeader {
                 </div>
               </div>
             )}
-            {this.getComponentState("image") && (
+            {currentImage && (
               <div className={this.decorateCSS("right-content")}>
                 <img
-                  src={this.getComponentState("image")}
+                  src={currentImage}
                   alt="image"
                   className={this.decorateCSS("image")}
                 />
