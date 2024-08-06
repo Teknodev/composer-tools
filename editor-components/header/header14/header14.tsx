@@ -323,8 +323,8 @@ class HeaderComponent14 extends BaseHeader {
     const settings = {
       dots: true,
       arrows: false,
-      infinite: false,
-      autoplay: false,
+      infinite: true,
+      autoplay: true,
       speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
