@@ -15,7 +15,7 @@ class Content6 extends BaseContent {
                     type: "image",
                     key: "leftImage",
                     displayer: "Left Image",
-                    value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec569f057bdf002c2a9cfb?alt=media&timestamp=1693210248545"
+                    value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec569f057bdf002c2a9cfb?alt=media&timestamp=1719561551672"
                 },
                 {
                     type: "array",
@@ -77,7 +77,7 @@ class Content6 extends BaseContent {
                     type: "image",
                     key: "rightImage",
                     displayer: "Right Image",
-                    value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec569f057bdf002c2a9cfa?alt=media&timestamp=1693210248545"
+                    value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec569f057bdf002c2a9cfa?alt=media&timestamp=1719561551672"
                 }
             ]
         });

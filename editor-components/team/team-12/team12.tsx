@@ -110,7 +110,7 @@ class Team12 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://restika.peacefulqode.com/wp-content/uploads/2023/03/1-5.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370ff268c3c2002cd3083a?alt=media&timestamp=1719558632843",
             },
             {
               type: "array",
@@ -153,7 +153,7 @@ class Team12 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                " https://restika.peacefulqode.com/wp-content/uploads/2023/03/7-2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575",
             },
             {
               type: "array",
@@ -196,7 +196,7 @@ class Team12 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://restika.peacefulqode.com/wp-content/uploads/2023/03/3-4.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334db9?alt=media&timestamp=1719560421360",
             },
             {
               type: "array",
@@ -239,7 +239,7 @@ class Team12 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://restika.peacefulqode.com/wp-content/uploads/2023/03/4-4.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334dba?alt=media&timestamp=1719560421360",
             },
             {
               type: "array",

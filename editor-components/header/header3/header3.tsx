@@ -1,19 +1,16 @@
 import * as React from "react";
 import styles from "./header3.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
+
 
 type ISliderData = {
   title: string;
   subtitle: string;
   image: string;
   description: string;
-  button: IButton[];
-};
-
-type IButton = {
-  value: string;
+  button: {
+    button_text: string;
+  };
 };
 
 class Header3 extends BaseHeader {
@@ -52,7 +49,7 @@ class Header3 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624501?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -62,7 +59,7 @@ class Header3 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "button_text",
                   value: "discover more",
                 },
                 {
@@ -103,7 +100,7 @@ class Header3 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img3.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624502?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -113,7 +110,7 @@ class Header3 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "button_text",
                   value: "discover more",
                 },
                 {
@@ -155,7 +152,7 @@ class Header3 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img4.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -165,7 +162,7 @@ class Header3 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "button_text",
                   value: "discover more",
                 },
                 {
@@ -255,7 +252,7 @@ class Header3 extends BaseHeader {
                     )}
                     <div>
                       <button className={this.decorateCSS("button")}>
-                        {item.button[0].value}
+                        {item.button.button_text}
                       </button>
                     </div>
                   </div>

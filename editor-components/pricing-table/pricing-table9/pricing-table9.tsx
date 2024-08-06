@@ -1103,7 +1103,71 @@ class PricingTable9 extends BasePricingTable {
           ],
         },
       ],
-    });
+    })
+
+    this.addProp({
+      type: "object",
+      key: "pricing2",
+      displayer: "Pricing 2",
+      value: [
+        {
+          type: "string",
+          key: "price",
+          displayer: "Price",
+          value: "$150",
+        },
+        {
+          type: "string",
+          key: "duration",
+          displayer: "Duration",
+          value: "month",
+        },
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Get started",
+        },
+        {
+          type: "page",
+          key: "link",
+          displayer: "Button Link",
+          value: "",
+        },
+      ],
+    })
+
+    this.addProp({
+      type: "object",
+      key: "pricing1",
+      displayer: "Pricing 1",
+      value: [
+        {
+          type: "string",
+          key: "price",
+          displayer: "Price",
+          value: "$50",
+        },
+        {
+          type: "string",
+          key: "duration",
+          displayer: "Duration",
+          value: "month",
+        },
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Get started",
+        },
+        {
+          type: "page",
+          key: "link",
+          displayer: "Button Link",
+          value: "",
+        },
+      ],
+    })
   }
 
   getName(): string {
@@ -1268,7 +1332,6 @@ class PricingTable9 extends BasePricingTable {
             >
               {rows.map((row: any, i: number) => {
                 const cols = row.value;
-
                 const fillCount = maxColNumber - cols.length;
 
                 return [...cols, ...Array(fillCount).fill(null)].map(

@@ -23,7 +23,7 @@ class Content14 extends BaseContent {
       key: "image",
       displayer: "Image",
       value:
-        "https://static.tildacdn.com/tild3865-3930-4235-b731-616134626238/Mask_Group.png",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
     });
     this.addProp({
       type: "array",
