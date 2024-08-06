@@ -118,14 +118,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project9/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dbc03b007002cc7d5c8?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project9/6.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dd303b007002cc7d5e1?alt=media",
             },
             {
               type: "string",
@@ -190,14 +190,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project4/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e0c03b007002cc7d5f0?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project4/13.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e2003b007002cc7d60d?alt=media",
             },
             {
               type: "string",
@@ -268,14 +268,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project3/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5603b007002cc7d623?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project3/3.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5c03b007002cc7d632?alt=media",
             },
             {
               type: "string",
@@ -340,14 +340,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project8/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9903b007002cc7d653?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project8/2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9f03b007002cc7d65a?alt=media",
             },
             {
               type: "string",
@@ -412,14 +412,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project7/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ecb03b007002cc7d667?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project7/2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ed103b007002cc7d66e?alt=media",
             },
             {
               type: "string",
@@ -484,14 +484,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project6/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0003b007002cc7d67a?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project6/4.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0e03b007002cc7d681?alt=media",
             },
             {
               type: "string",
@@ -555,14 +555,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project1/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4003b007002cc7d6a7?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project1/2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4503b007002cc7d6b2?alt=media",
             },
             {
               type: "string",
@@ -627,14 +627,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project2/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7403b007002cc7d6c5?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project2/3.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7b03b007002cc7d6cc?alt=media",
             },
             {
               type: "string",
@@ -699,14 +699,14 @@ class Header31 extends BaseHeader {
               displayer: "Right Image",
               key: "rightImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project5/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fcc03b007002cc7d709?alt=media",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
               value:
-                "https://droow-dark.netlify.app/assets/img/project/project5/4.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fd303b007002cc7d714?alt=media",
             },
             {
               type: "string",
