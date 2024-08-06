@@ -987,7 +987,7 @@ class Header31 extends BaseHeader {
                             });
                           }}
                         >
-                          {/* {subtitle} */}
+                          {subtitle}
                         </span>
                       </div>
                     )}
