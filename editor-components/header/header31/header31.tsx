@@ -830,7 +830,7 @@ class Header31 extends BaseHeader {
           this.setComponentState("stickAnimationClass", "animate__fadeInRight");
           this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
 
-        }, 1200);
+        }, 1000);
 
       },
     };
@@ -846,6 +846,7 @@ class Header31 extends BaseHeader {
 
     return (
       <div className={this.decorateCSS("container")}>
+       <div className={this.decorateCSS("max-content")}>
         <div className={this.decorateCSS("slider-parent")}>
           <ComposerSlider
             ref={this.getComponentState("slider-ref")}
@@ -866,7 +867,6 @@ class Header31 extends BaseHeader {
             ))}
           </ComposerSlider>
         </div>
-        <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-content")}>
             <div className={this.decorateCSS("slider-container")}>
               <ComposerSlider
