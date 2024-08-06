@@ -96,13 +96,13 @@ class Header31 extends BaseHeader {
       displayer: "Text Animation",
       key: "textAnimation",
       value: true,
-    })
+    });
     this.addProp({
       type: "boolean",
       displayer: "Overlay",
       key: "overlay",
       value: true,
-    })
+    });
     this.addProp({
       type: "array",
       key: "slider",
@@ -117,13 +117,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project9/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project9/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project9/6.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project9/6.jpg",
             },
             {
               type: "string",
@@ -187,13 +189,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project4/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project4/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project4/13.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project4/13.jpg",
             },
             {
               type: "string",
@@ -263,13 +267,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project3/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project3/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project3/3.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project3/3.jpg",
             },
             {
               type: "string",
@@ -333,13 +339,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project8/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project8/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project8/2.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project8/2.jpg",
             },
             {
               type: "string",
@@ -403,13 +411,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project7/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project7/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project7/2.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project7/2.jpg",
             },
             {
               type: "string",
@@ -473,13 +483,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project6/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project6/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project6/4.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project6/4.jpg",
             },
             {
               type: "string",
@@ -542,13 +554,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project1/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project1/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project1/2.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project1/2.jpg",
             },
             {
               type: "string",
@@ -612,13 +626,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project2/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project2/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project2/3.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project2/3.jpg",
             },
             {
               type: "string",
@@ -682,13 +698,15 @@ class Header31 extends BaseHeader {
               type: "image",
               displayer: "Right Image",
               key: "rightImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project5/1.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project5/1.jpg",
             },
             {
               type: "image",
               displayer: "Left Image",
               key: "leftImage",
-              value: "https://droow-dark.netlify.app/assets/img/project/project5/4.jpg",
+              value:
+                "https://droow-dark.netlify.app/assets/img/project/project5/4.jpg",
             },
             {
               type: "string",
@@ -814,7 +832,10 @@ class Header31 extends BaseHeader {
         if (oldIndex == newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
         this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("subtitleAnimationClass", "animate__fadeOutDown");
+        this.setComponentState(
+          "subtitleAnimationClass",
+          "animate__fadeOutDown"
+        );
         this.setComponentState("stickAnimationClass", "animate__fadeOutDown");
         this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
 
@@ -822,16 +843,22 @@ class Header31 extends BaseHeader {
           this.setComponentState("active-index", newIndex);
 
           this.getComponentState("slider-ref").current.slickGoTo(newIndex);
-          this.getComponentState("second-slider-ref").current.slickGoTo(newIndex);
+          this.getComponentState("second-slider-ref").current.slickGoTo(
+            newIndex
+          );
 
           this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
           this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-          this.setComponentState("subtitleAnimationClass", "animate__fadeInRight");
+          this.setComponentState(
+            "subtitleAnimationClass",
+            "animate__fadeInRight"
+          );
           this.setComponentState("stickAnimationClass", "animate__fadeInRight");
-          this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
-
+          this.setComponentState(
+            "descriptionAnimationClass",
+            "animate__fadeInUp"
+          );
         }, 1000);
-
       },
     };
 
@@ -846,27 +873,31 @@ class Header31 extends BaseHeader {
 
     return (
       <div className={this.decorateCSS("container")}>
-       <div className={this.decorateCSS("max-content")}>
-        <div className={this.decorateCSS("slider-parent")}>
-          <ComposerSlider
-            ref={this.getComponentState("slider-ref")}
-            {...settings}
-            className={this.decorateCSS("slider")}
-          >
-            {slider?.map((item: ISliderData, index: number) => (
-              <div key={index} className={this.decorateCSS("wrapper")}>
-                <div className={this.decorateCSS("right-slider")}>
-                  <img
-                    className={this.decorateCSS("background-right")}
-                    src={item.rightImage}
-                    alt={item.title}
-                  />
-                  <div className={`${overlay ? this.decorateCSS("overlay") : ""}`}></div>
+        <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("slider-parent")}>
+            <ComposerSlider
+              ref={this.getComponentState("slider-ref")}
+              {...settings}
+              className={this.decorateCSS("slider")}
+            >
+              {slider?.map((item: ISliderData, index: number) => (
+                <div key={index} className={this.decorateCSS("wrapper")}>
+                  <div className={this.decorateCSS("right-slider")}>
+                    <img
+                      className={this.decorateCSS("background-right")}
+                      src={item.rightImage}
+                      alt={item.title}
+                    />
+                    <div
+                      className={`${
+                        overlay ? this.decorateCSS("overlay") : ""
+                      }`}
+                    ></div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </ComposerSlider>
-        </div>
+              ))}
+            </ComposerSlider>
+          </div>
           <div className={this.decorateCSS("slider-content")}>
             <div className={this.decorateCSS("slider-container")}>
               <ComposerSlider
@@ -881,7 +912,10 @@ class Header31 extends BaseHeader {
                 className={this.decorateCSS("carousel")}
               >
                 {slider.map((item: ISliderData, index: number) => (
-                  <div key={index} className={this.decorateCSS("swiper-wrapper")}>
+                  <div
+                    key={index}
+                    className={this.decorateCSS("swiper-wrapper")}
+                  >
                     {activeIndex === index && (
                       <div className={this.decorateCSS("content")}>
                         <span className={this.decorateCSS("sliderNumber-left")}>
@@ -890,13 +924,18 @@ class Header31 extends BaseHeader {
                       </div>
                     )}
                     <img
-                      className={`${this.decorateCSS("background-left")} ${activeIndex === index ? this.decorateCSS("active") : ""
-                        }`}
+                      className={`${this.decorateCSS("background-left")} ${
+                        activeIndex === index ? this.decorateCSS("active") : ""
+                      }`}
                       src={item.leftImage}
                       alt={item.title}
                       onClick={() => {
-                        this.getComponentState("slider-ref").current.slickGoTo(index);
-                        this.getComponentState("second-slider-ref").current.slickGoTo(index);
+                        this.getComponentState("slider-ref").current.slickGoTo(
+                          index
+                        );
+                        this.getComponentState(
+                          "second-slider-ref"
+                        ).current.slickGoTo(index);
                       }}
                     />
                   </div>
@@ -906,9 +945,9 @@ class Header31 extends BaseHeader {
                 {subtitle && (
                   <div className={this.decorateCSS("up-text")}>
                     <div
-                      className={`${this.decorateCSS(
-                        "stick"
-                      )} ${textAnimationEnabled ? "animate__animated" : ""}  ${this.getComponentState("stickAnimationClass")}`}
+                      className={`${this.decorateCSS("stick")} ${
+                        textAnimationEnabled ? "animate__animated" : ""
+                      }  ${this.getComponentState("stickAnimationClass")}`}
                       onAnimationEnd={() => {
                         this.handleAnimationEnd({
                           animationState: "stickAnimationClass",
@@ -918,9 +957,9 @@ class Header31 extends BaseHeader {
                       }}
                     ></div>
                     <span
-                      className={`${this.decorateCSS(
-                        "subtitle"
-                      )} ${textAnimationEnabled ? "animate__animated" : ""} ${this.getComponentState("subtitleAnimationClass")}`}
+                      className={`${this.decorateCSS("subtitle")} ${
+                        textAnimationEnabled ? "animate__animated" : ""
+                      } ${this.getComponentState("subtitleAnimationClass")}`}
                       onAnimationEnd={() => {
                         this.handleAnimationEnd({
                           animationState: "subtitleAnimationClass",
@@ -936,9 +975,9 @@ class Header31 extends BaseHeader {
 
                 {title && (
                   <span
-                    className={`${this.decorateCSS(
-                      "title"
-                    )} ${textAnimationEnabled ? "animate__animated" : ""} ${this.getComponentState("titleAnimationClass")}`}
+                    className={`${this.decorateCSS("title")} ${
+                      textAnimationEnabled ? "animate__animated" : ""
+                    } ${this.getComponentState("titleAnimationClass")}`}
                     onAnimationEnd={() => {
                       this.handleAnimationEnd({
                         animationState: "titleAnimationClass",
@@ -952,9 +991,9 @@ class Header31 extends BaseHeader {
                 )}
                 {description && (
                   <p
-                    className={`${this.decorateCSS(
-                      "description"
-                    )} ${textAnimationEnabled ? "animate__animated" : ""} ${this.getComponentState("descriptionAnimationClass")} `}
+                    className={`${this.decorateCSS("description")} ${
+                      textAnimationEnabled ? "animate__animated" : ""
+                    } ${this.getComponentState("descriptionAnimationClass")} `}
                     onAnimationEnd={() => {
                       this.handleAnimationEnd({
                         animationState: "descriptionAnimationClass",
@@ -970,9 +1009,9 @@ class Header31 extends BaseHeader {
                   <ComposerLink path={el.link}>
                     <div className={this.decorateCSS("button-box")}>
                       <div
-                        className={`${this.decorateCSS(
-                          "button"
-                        )} ${textAnimationEnabled ? "animate__animated" : ""} ${this.getComponentState("buttonAnimationClass")}`}
+                        className={`${this.decorateCSS("button")} ${
+                          textAnimationEnabled ? "animate__animated" : ""
+                        } ${this.getComponentState("buttonAnimationClass")}`}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "buttonAnimationClass",
@@ -981,14 +1020,18 @@ class Header31 extends BaseHeader {
                           });
                         }}
                       >
-                        <ComposerIcon
-                          name={this.getPropValue("circleIcon")}
-                          propsIcon={{
-                            className: ``,
-                            size: 25,
-                          }}
-                        />
-                        <span className={this.decorateCSS("button-text")}>{el.buttonText}</span>
+                        {this.getPropValue("circleIcon") && (
+                          <ComposerIcon
+                            name={this.getPropValue("circleIcon")}
+                            propsIcon={{
+                              className: ``,
+                              size: 25,
+                            }}
+                          />
+                        )}
+                        <span className={this.decorateCSS("button-text")}>
+                          {el.buttonText}
+                        </span>
                       </div>
                     </div>
                   </ComposerLink>
@@ -1004,48 +1047,67 @@ class Header31 extends BaseHeader {
               />
               <div className={this.decorateCSS("icon-stick")}></div>
               <div className={this.decorateCSS("icon-list-container")}>
-                {this.castToObject<any>("icons").map((icon: any, indexIcons: number) => {
-                  return (
-                    <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                      <ComposerLink path={icon.url}>
-                        <ComposerIcon
-                          name={icon.icon}
-                          propsIcon={{ className: this.decorateCSS("icon") }}
-                        />
-                      </ComposerLink>
-                    </div>
-                  );
-                })}
+                {this.castToObject<any>("icons").map(
+                  (icon: any, indexIcons: number) => {
+                    return (
+                      <div
+                        key={indexIcons}
+                        className={this.decorateCSS("icon-item")}
+                      >
+                        <ComposerLink path={icon.url}>
+                          <ComposerIcon
+                            name={icon.icon}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          />
+                        </ComposerLink>
+                      </div>
+                    );
+                  }
+                )}
               </div>
             </div>
             <div className={this.decorateCSS("control-nav")}>
               <ComposerIcon
                 name={this.getPropValue("prev_icon")}
                 propsIcon={{
-                  className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") && this.decorateCSS("un-visible")
-                    }`,
+                  className: `${this.decorateCSS(
+                    "prev-icon"
+                  )} ${this.decorateCSS("arrow")} ${
+                    !this.getComponentState("display-none") &&
+                    this.decorateCSS("un-visible")
+                  }`,
                   size: 20,
                   onClick: () => {
                     this.getComponentState("slider-ref").current.slickPrev();
-                    this.getComponentState("second-slider-ref").current.slickPrev();
+                    this.getComponentState(
+                      "second-slider-ref"
+                    ).current.slickPrev();
                   },
                 }}
               />
               <ComposerIcon
                 name={this.getPropValue("next_icon")}
                 propsIcon={{
-                  className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") && this.decorateCSS("un-visible")
-                    }`,
+                  className: `${this.decorateCSS(
+                    "next-icon"
+                  )} ${this.decorateCSS("arrow")} ${
+                    !this.getComponentState("display-none") &&
+                    this.decorateCSS("un-visible")
+                  }`,
                   size: 20,
                   onClick: () => {
                     this.getComponentState("slider-ref").current.slickNext();
-                    this.getComponentState("second-slider-ref").current.slickNext();
+                    this.getComponentState(
+                      "second-slider-ref"
+                    ).current.slickNext();
                   },
                 }}
               />
             </div>
             <div className={this.decorateCSS("control-num")}>
-              <span className={this.decorateCSS("sliderNumber")}>{activeSlideObj.sliderNumber}</span>
+              <span className={this.decorateCSS("sliderNumber")}>
+                {activeSlideObj.sliderNumber}
+              </span>
             </div>
           </div>
         </div>
