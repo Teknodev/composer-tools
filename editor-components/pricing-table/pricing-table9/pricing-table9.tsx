@@ -1,302 +1,1102 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table9.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-type IIconBoxes = {
-  list: any;
-  title: string;
-  description: string;
-  price: string;
-  link: string;
-  buttons: Buttons[];
-  icons: string;
-};
-type Buttons = {
-  buttonText: string;
-  url: string;
+type Row = {
+  value: any[];
+  items: Item[];
 };
 
-type Button = {
-  buttonText: string;
-  url: string;
-  isPrimary: boolean;
-  buttonIcon: string;
-};
-
-type Card = {
-  title: string;
-  button: string;
-  url: string;
-  price: string;
+type Item = {
+  text: JSX.Element;
+  type: string;
 };
 
 class PricingTable9 extends BasePricingTable {
-  [x: string]: any;
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
       type: "string",
-      key: "subtitle1",
-      displayer: "SubTitle 1",
-      value: "Pricing table",
+      key: "title",
+      displayer: "Title",
+      value: "Choose your plan",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle2",
-      displayer: "SubTitle 2",
-      value: "Modern concept",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title1",
-      displayer: "Title 1",
-      value: "Basic",
-    });
-    this.addProp({
-      type: "string",
-      key: "title2",
-      displayer: "Title 2",
-      value: "Standard",
-    });
-    this.addProp({
-      type: "string",
-      key: "title3",
-      displayer: "Title 3",
-      value: "Advanced",
-    });
-    this.addProp({
-      type: "string",
-      key: "title4",
-      displayer: "Title 4",
-      value: "Advanced",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Decide according to your needs.",
     });
 
     this.addProp({
       type: "array",
-      key: "cards",
-      displayer: "Card",
+      key: "rows",
+      displayer: "Rows",
       value: [
         {
-          type: "object",
-          key: "card",
-          displayer: "Card",
+          type: "array",
+          key: "items",
+          displayer: "Items",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Tellus integer",
-            },
-            {
               type: "object",
-              key: "list",
-              displayer: "List Items",
+              key: "item",
+              displayer: "Item",
               value: [
                 {
                   type: "string",
-                  key: "basic_value",
-                  displayer: "Basic Value",
-                  value: "Massa id neque",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
                 },
                 {
-                  type: "string",
-                  key: "basic_value",
-                  displayer: "Basic Value",
-                  value: "Aliquam vestib",
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
                 },
                 {
-                  type: "string",
-                  key: "basic_value",
-                  displayer: "Basic Value",
-                  value: "Ulum morbi bian",
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
                 },
                 {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
                   type: "string",
-                  key: "basic_value",
-                  displayer: "Property",
-                  value: "Dit cursus risus",
+                  key: "text",
+                  displayer: "Content",
+                  value: "Basic",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Title",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "Starter",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Title",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "Standard",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Title",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "Enterprise",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Title",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
                 },
               ],
             },
           ],
         },
         {
-          type: "object",
-          key: "card",
-          displayer: "Card",
+          type: "array",
+          key: "items",
+          displayer: "Items",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Feugiat scelerisque",
-            },
-            {
               type: "object",
-              key: "list",
-              displayer: "List Items",
+              key: "item",
+              displayer: "Item",
               value: [
                 {
                   type: "string",
-                  key: "start_value",
-                  displayer: "Start Value",
-                  value: "-",
+                  key: "text",
+                  displayer: "Content",
+                  value: "Hundreds of Games",
                 },
                 {
-                  type: "string",
-                  key: "start_value",
-                  displayer: "Start Value",
-                  value: "-",
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Benefit",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
                 },
                 {
-                  type: "string",
-                  key: "start_value",
-                  displayer: "Start Value",
-                  value: "Ulum morbi bian",
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
                 },
                 {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
                   type: "string",
-                  key: "start_value",
-                  displayer: "Start Value",
-                  value: "Dit cursus risus",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
                 },
               ],
             },
           ],
         },
         {
-          type: "object",
-          key: "card",
-          displayer: "Card",
+          type: "array",
+          key: "items",
+          displayer: "Items",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Feugiat scelerisque",
-            },
-            {
               type: "object",
-              key: "list",
-              displayer: "List Items",
+              key: "item",
+              displayer: "Item",
               value: [
                 {
                   type: "string",
-                  key: "start_value",
-                  displayer: "Start Value",
-                  value: "-",
+                  key: "text",
+                  displayer: "Content",
+                  value: "Day one",
                 },
                 {
-                  type: "string",
-                  key: "start_value",
-                  displayer: "Start Value",
-                  value: "Ulum morbi bian",
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Benefit",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
                 },
                 {
-                  type: "string",
-                  key: "start_value",
-                  displayer: "Start Value",
-                  value: "-",
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
                 },
                 {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
                   type: "string",
-                  key: "start_value",
-                  displayer: "Start Value",
-                  value: "Dit cursus risus",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleXmark",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
                 },
               ],
             },
           ],
         },
         {
-          type: "object",
-          key: "card",
-          displayer: "Card",
+          type: "array",
+          key: "items",
+          displayer: "Items",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Scelerisgue varius",
-            },
-            {
               type: "object",
-              key: "list",
-              displayer: "List Items",
+              key: "item",
+              displayer: "Item",
               value: [
                 {
                   type: "string",
-                  key: "standard_value",
-                  displayer: "Standard Value",
-                  value: "-",
+                  key: "text",
+                  displayer: "Content",
+                  value: "Member deals & discount",
                 },
                 {
-                  type: "string",
-                  key: "standard_value",
-                  displayer: "Standard Value",
-                  value: "-",
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Benefit",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
                 },
                 {
-                  type: "string",
-                  key: "standard_value",
-                  displayer: "Standard Value",
-                  value: "Ulum morbi bian",
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
                 },
                 {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
                   type: "string",
-                  key: "standard_value",
-                  displayer: "Standard Value",
-                  value: "Dit cursus risus",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleXmark",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleXmark",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
                 },
               ],
             },
           ],
         },
         {
-          type: "object",
-          key: "card",
-          displayer: "Card",
+          type: "array",
+          key: "items",
+          displayer: "Items",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Feugiat scelerisque",
-            },
-            {
               type: "object",
-              key: "list",
-              displayer: "List Items",
+              key: "item",
+              displayer: "Item",
               value: [
                 {
                   type: "string",
-                  key: "business_value",
-                  displayer: "Business Value",
-                  value: "Massa id neque",
+                  key: "text",
+                  displayer: "Content",
+                  value: "Multiplayer Gaming",
                 },
                 {
-                  type: "string",
-                  key: "business_value",
-                  displayer: "Business Value",
-                  value: "-",
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Benefit",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
                 },
                 {
-                  type: "string",
-                  key: "business_value",
-                  displayer: "Business Value",
-                  value: "-",
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
                 },
                 {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
                   type: "string",
-                  key: "business_value",
-                  displayer: "Business Value",
-                  value: "Dit cursus risus",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleXmark",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleXmark",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleXmark",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaCircleCheck",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "array",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Content",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "50$ / month",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Button",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "75$ / month",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Button",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "100$ / month",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Button",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "item",
+              displayer: "Item",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Content",
+                  value: "1000$ / month",
+                },
+                {
+                  type: "select",
+                  key: "type",
+                  displayer: "Type",
+                  value: "Button",
+                  additionalParams: {
+                    selectItems: ["Title", "Content", "Benefit", "Button"],
+                  },
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
                 },
               ],
             },
@@ -304,370 +1104,191 @@ class PricingTable9 extends BasePricingTable {
         },
       ],
     });
-
-    this.addProp({
-      type: "string",
-      key: "activePlan",
-      displayer: "Active Plan",
-      value: "monthly",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "aylık",
-      displayer: "aylık",
-      value: "Aylık",
-    });
-    this.addProp({
-      type: "string",
-      key: "yıllık",
-      displayer: "yıllık",
-      value: "Yıllık",
-    });
-    this.addProp({
-      type: "object",
-      key: "monthly_buttons",
-      displayer: "monthly_buttons",
-      value: [
-        {
-          type: "object",
-          key: "button1",
-          displayer: "Button1",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "buttonText",
-              value: "89,99/ for month",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "button1",
-          displayer: "Button1",
-          value: [
-            {
-              type: "string",
-              key: "buttonText1",
-              displayer: "buttonText1",
-              value: "89,99/ for month",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "button1",
-          displayer: "Button1",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "buttonText",
-              value: "89,99/ for month",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "button1",
-          displayer: "Button1",
-          value: [
-            {
-              type: "string",
-              key: "buttonText3",
-              displayer: "buttonText3",
-              value: "49,99/ for month",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "years_buttons",
-      displayer: "years_buttons",
-      value: [
-        {
-          type: "object",
-          key: "button1",
-          displayer: "Button1",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "buttonText",
-              value: "12 month",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "button1",
-          displayer: "Button1",
-          value: [
-            {
-              type: "string",
-              key: "buttonText1",
-              displayer: "buttonText1",
-              value: "10 month",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "button1",
-          displayer: "Button1",
-          value: [
-            {
-              type: "string",
-              key: "buttonText2",
-              displayer: "buttonText2",
-              value: "18 month",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "button1",
-          displayer: "Button1",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "buttonText",
-              value: "1 month",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-  }
-
-  setActivePlan(planType: string) {
-    console.log("setActivePlan: ", planType);
-
-    this.setComponentState("activePlan", planType);
   }
 
   getName(): string {
     return "Pricing 9";
   }
 
+  elements: any = {
+    Title: (e: any) => (
+      <h2 className={this.decorateCSS("title")}>
+        {this.getIcon(e) && (
+          <ComposerIcon
+            name={this.getIcon(e)}
+            propsIcon={{ className: this.decorateCSS("icon") }}
+          />
+        )}
+        {this.getText(e)}
+      </h2>
+    ),
+    Content: (e: any) => (
+      <p className={this.decorateCSS("content")}>
+        {this.getIcon(e) && (
+          <ComposerIcon
+            name={this.getIcon(e)}
+            propsIcon={{ className: this.decorateCSS("content-icon") }}
+          />
+        )}
+        {this.getText(e)}
+      </p>
+    ),
+    Benefit: (e: any) => (
+      <h4 className={this.decorateCSS("benefit")}>
+        {this.getIcon(e) && (
+          <ComposerIcon
+            name={this.getIcon(e)}
+            propsIcon={{ className: this.decorateCSS("icon") }}
+          />
+        )}
+        {this.getText(e)}
+      </h4>
+    ),
+    Button: (e: any) => (
+      <div className={this.decorateCSS("button")}>
+        <ComposerLink path={this.getLink(e) || "#"} isFullWidth={true}>
+          {this.getIcon(e) && (
+            <ComposerIcon
+              name={this.getIcon(e)}
+              propsIcon={{ className: this.decorateCSS("icon") }}
+            />
+          )}
+          {this.getText(e)}
+        </ComposerLink>
+      </div>
+    ),
+  };
+
+  getText = (e: any): string => e.value[0].value;
+  getType = (e: any): string => e.value[1].value;
+  getIcon = (e: any): string => e.value[2].value;
+  getLink = (e: any): string => e.value[3].value;
+
+  getElement = (e: any) => {
+    if (!e) return <div></div>;
+
+    if (this.getText(e) === "" && this.getIcon(e) === "")
+      return this.elements["Content"](e);
+    else return this.elements[this.getType(e)](e);
+  };
+
   render() {
+    const rows = this.castToObject<Row[]>("rows");
+
+    const maxColNumber: number = Math.max(...rows.map((e) => e.value.length));
+
+    const benefits = rows.flatMap((row: any) =>
+      row.value
+        .map((item: any) => {
+          if (this.getType(item) === "Benefit") {
+            return this.getElement(item);
+          }
+          return null;
+        })
+        .filter((e: any) => e !== null)
+    );
+
     const settings = {
+      arrows: false,
       dots: true,
       infinite: true,
-      speed: 1000,
+      speed: 2000,
       autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: window.innerWidth < 769 ? 1 : 3,
+      slidesToShow: 1,
       slidesToScroll: 1,
-      focusOnSelect: true,
     };
-    const activePlanButtons =
-      this.getComponentState("activePlan") == "monthly"
-        ? this.getPropValue("monthly_buttons")
-        : this.getPropValue("years_buttons");
-    console.log(activePlanButtons);
+
+    const getPlans = (rows: any[]) => {
+      let arr = [];
+
+      /**
+       * get columns from every arrow.
+       * if maxColNumber > row's length
+       *  return empty div.
+       */
+      for (let i = 1; i < maxColNumber; i++) {
+        const col = rows.map((e: any) => {
+          if (!e.value[i]) return this.getElement(null);
+
+          if (this.getType(e.value[i]) === "Title")
+            return (
+              <p
+                className={`${this.decorateCSS("content")} ${this.decorateCSS(
+                  "m-plan-title"
+                )}`}
+              >
+                {this.getText(e.value[i])}
+              </p>
+            );
+          if (this.getType(e.value[i]) === "Button")
+            return (
+              <div
+                className={`${this.decorateCSS("button")} ${this.decorateCSS(
+                  "m-plan-price"
+                )}`}
+              >
+                {this.getElement(e.value[i])}
+              </div>
+            );
+          return this.getElement(e.value[i]);
+        });
+        arr.push(col);
+      }
+
+      return arr;
+    };
+
+    const titleExist = this.getPropValue("title", { as_string: true });
+    const subtitleExist = this.getPropValue("subtitle", { as_string: true });
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("heading_background")}>
-            <div className={this.decorateCSS("heading-right")}>
-              <div
-                className={
-                  this.decorateCSS("plan-title") +
-                  " " +
-                  (this.getComponentState("activePlan") === "monthly" &&
-                    this.decorateCSS("activeTab"))
-                }
-                onClick={() => this.setActivePlan("monthly")}
-              >
-                {this.getPropValue("aylık")}
-              </div>
-              <div
-                className={
-                  this.decorateCSS("plan-title") +
-                  " " +
-                  (this.getComponentState("activePlan") === "yearly" &&
-                    this.decorateCSS("activeTab"))
-                }
-                onClick={() => this.setActivePlan("yearly")}
-              >
-                {this.getPropValue("yıllık")}
-              </div>
+          {(titleExist || subtitleExist) && (
+            <header>
+              {titleExist && (
+                <h2 className={this.decorateCSS("main-title")}>
+                  {this.getPropValue("title")}
+                </h2>
+              )}
+              {subtitleExist && (
+                <h3 className={this.decorateCSS("main-subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </h3>
+              )}
+            </header>
+          )}
+          <div className={this.decorateCSS("wrapper")}>
+            <div
+              className={this.decorateCSS("grid-container")}
+              style={{
+                gridTemplateColumns: `repeat(${maxColNumber}, 1fr)`,
+                gridTemplateRows: `repeat(${rows.length}, 1fr)`,
+              }}
+            >
+              {rows.map((row: any, i: number) => {
+                const cols = row.value;
+
+                const fillCount = maxColNumber - cols.length;
+
+                return [...cols, ...Array(fillCount).fill(null)].map(
+                  (item: any, j: number) => {
+                    return <div key={`${i}-${j}`}>{this.getElement(item)}</div>;
+                  }
+                );
+              })}
             </div>
-            <div className={this.decorateCSS("heading-left")}>
-              <h3 className={this.decorateCSS("subtitle1")}>
-                {this.getPropValue("subtitle1")}
-              </h3>
-              <h3 className={this.decorateCSS("subtitle2")}>
-                {this.getPropValue("subtitle2")}
-              </h3>
+            <div className={this.decorateCSS("mobile")}>
+              <ComposerSlider {...settings}>
+                {getPlans(rows).map((e: any, index: number) => (
+                  <div key={index}>{e}</div>
+                ))}
+              </ComposerSlider>
+              <div className={this.decorateCSS("m-benefits")}>
+                {benefits.map((e: any) => e)}
+              </div>
             </div>
           </div>
-          <div className={this.decorateCSS("page-down")}>
-            <table className={this.decorateCSS("card")}>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td colSpan={4}>
-                    <div className={this.decorateCSS("heading-title")}>
-                      <h3 className={this.decorateCSS("title1")}>
-                        {this.getPropValue("title1")}
-                      </h3>
-                      <h3 className={this.decorateCSS("title2")}>
-                        {this.getPropValue("title2")}
-                      </h3>
-                      <h3 className={this.decorateCSS("title3")}>
-                        {this.getPropValue("title3")}
-                      </h3>
-                      <h3 className={this.decorateCSS("title4")}>
-                        {this.getPropValue("title4")}
-                      </h3>
-                    </div>
-                  </td>
-                </tr>
-                {this.castToObject<IIconBoxes[]>("cards").map(
-                  (card: IIconBoxes, index: number) => (
-                    <tr key={index}>
-                      <td>{card.title}</td>
-                      {card.list.map((listItem: any, listIndex: number) => (
-                        <td key={listIndex}>{listItem.value}</td>
-                      ))}
-                    </tr>
-                  )
-                )}
-                <tr>
-                  <td></td>
-                  <td colSpan={4}>
-                    <div className={this.decorateCSS("monthly_buttons")}>
-                      <div className={this.decorateCSS("button")}>
-                        {activePlanButtons[0].value[0].value}
-                      </div>
-                      <div className={this.decorateCSS("button")}>
-                        {activePlanButtons[1].value[0].value}
-                      </div>
-                      <div className={this.decorateCSS("button")}>
-                        {activePlanButtons[2].value[0].value}
-                      </div>
-                      <div className={this.decorateCSS("button")}>
-                        {activePlanButtons[3].value[0].value}
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>        
-          <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("slider")}
-            >  
-              <div className={this.decorateCSS("page-down")}>
-            <table className={this.decorateCSS("card")}>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td colSpan={4}>
-                    <div className={this.decorateCSS("heading-title")}>
-                      <h3 className={this.decorateCSS("title1")}>
-                        {this.getPropValue("title1")}
-                      </h3>
-                      <h3 className={this.decorateCSS("title2")}>
-                        {this.getPropValue("title2")}
-                      </h3>
-                      <h3 className={this.decorateCSS("title3")}>
-                        {this.getPropValue("title3")}
-                      </h3>
-                      <h3 className={this.decorateCSS("title4")}>
-                        {this.getPropValue("title4")}
-                      </h3>
-                    </div>
-                  </td>
-                </tr>
-                {this.castToObject<IIconBoxes[]>("cards").map(
-                  (card: IIconBoxes, index: number) => (
-                    <tr key={index}>
-                      <td>{card.title}</td>
-                      {card.list.map((listItem: any, listIndex: number) => (
-                        <td key={listIndex}>{listItem.value}</td>  
-                      ))}
-                    </tr>
-                  )
-                )}
-                <tr>
-                  <td></td>
-                  <td colSpan={4}>
-                    <div className={this.decorateCSS("monthly_buttons")}>
-                      <div className={this.decorateCSS("button")}>
-                        {activePlanButtons[0].value[0].value}
-                      </div>
-                      <div className={this.decorateCSS("button")}>
-                        {activePlanButtons[1].value[0].value}
-                      </div>
-                      <div className={this.decorateCSS("button")}>
-                        {activePlanButtons[2].value[0].value}
-                      </div>
-                      <div className={this.decorateCSS("button")}>
-                        {activePlanButtons[3].value[0].value}
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div> 
-              </ComposerSlider>     
         </div>
       </div>
     );
