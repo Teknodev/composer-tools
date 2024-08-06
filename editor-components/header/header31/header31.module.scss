@@ -65,7 +65,6 @@
               font-size: 15px;
               gap: 20px;
               align-items: center;
-              width: fit-content;
               cursor: pointer;
       
               .social-icon{
@@ -73,38 +72,33 @@
               }
       
               .icon-stick {
-                  width: 0px;
                   height: 1px;
                   background-color: white;
                   transition: width 0.5s;
-                  transform: scaleX(0);
+                  width: 0;
+                  overflow-x: hidden;
               }
       
               .icon-list-container {
                   display: flex;
                   gap: 20px;
                   width: 0;
+                  overflow-x: hidden;
                   transition: width 0.5s, gap 0.5s;
-                  -webkit-transition: all 0.5s linear;
-                  transform: scaleX(0);
               }
       
               &:hover {
                   .icon-list-container {
-                      transform: scaleX(1);
+                      width: auto !important;
       
                       .icon {
-                          width: 12px;
-                          height: 12px;
                           object-fit: cover;
-                          position: relative;
                       }
                   }
       
                   .icon-stick {
                       width: 50px;
                       background-color: white;
-                      transform: scaleX(1);
                   }
               }
           }
