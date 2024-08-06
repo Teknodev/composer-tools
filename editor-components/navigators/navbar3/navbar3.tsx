@@ -1633,6 +1633,8 @@ class Navbar3 extends BaseNavigator {
     this.state["componentProps"]["hamburgerNavActive"] = true;
     this.state["componentProps"]["navActive"] = null;
     this.state["componentProps"]["subNavActive"] = null;
+    this.state["componentProps"]["selectCardIndex"] = null;
+
   }
 
   getName(): string {
@@ -1644,27 +1646,40 @@ class Navbar3 extends BaseNavigator {
     this.setComponentState("hamburgerNavActive", !value);
   }
 
-  navCLick(index:number) {
-    let value: boolean = this.getComponentState("navActive");
-    this.setComponentState("navActive", !value);
-    this.setComponentState("subNavActiveIndex",index);
+  navCLick(index: number) {
+    const currentValue = this.getComponentState("subNavActiveIndex");
+  if (currentValue === index) {
+    this.setComponentState("navActive", !this.getComponentState("navActive"));
+    this.setComponentState("subNavActiveIndex", null);
+    this.setComponentState("subNavActive", null)
 
+  } else {
+    this.setComponentState("subNavActiveIndex", null);
+    this.setComponentState("navActive", false);
+    this.setComponentState("subNavActive", null)
+
+    this.setComponentState("navActive", true);
+    this.setComponentState("subNavActiveIndex", index);
   }
-  subNavCLick(index: any) {
-    let value = this.getComponentState("subNavActive");
-    this.setComponentState("subNavActive", value === index ? null : index);
+}
 
+subNavCLick(index: any) {
+  const currentValue = this.getComponentState("subNavActive");
+  if (currentValue === index) {
+    this.setComponentState("subNavActive", null);
+  } else {
+    this.setComponentState("subNavActive", null);
+
+    this.setComponentState("subNavActive", index);
   }
-
-  
-
+}
   render() {
     const selectValue = this.getPropValue("select");
     const logoImage = this.getPropValue("image");
     const logoText = this.getPropValue("logo_text");
     const imageUrl = this.getPropValue("image-url");
     const textUrl = this.getPropValue("logo_text_url");
-    const Atext = this.getPropValue("Atext");
+    const Atext = this.getPropValue("Atext", {as_string:true});
     
 
     return (
@@ -1678,24 +1693,31 @@ class Navbar3 extends BaseNavigator {
       >
         
 <div className={this.decorateCSS("max-content")}>
-  
-        <div className={`${this.decorateCSS("contentTop")} ${this.getPropValue("RightItems") ? this.decorateCSS("iconSocial") : ""}`}>
-          <div className={this.decorateCSS("content-item")}>
-        <div className={this.decorateCSS("contentLeft")}>
-        {this.getPropValue("right-items").map((leftItem: any) => {
-                        return (
-                          <ComposerLink path={leftItem.value[1].value}>
-                            <ComposerIcon
-                              propsIcon={{ className: this.decorateCSS("icons") }} 
-                              name={leftItem.value[0].value}
-                            />
-                          </ComposerLink>
-                        );
-                      })}
-        </div>
-        {this.castToString(this.getPropValue("Atext")) &&
-        <div className={this.decorateCSS("right-Text")}>
-          {this.getPropValue("Atext")}
+
+<div className={`${(this.getPropValue("right-items").length > 0 || this.getPropValue("Atext")) ? this.decorateCSS("contentTop") : ""} ${this.getPropValue("RightItems") ? this.decorateCSS("iconSocial") : ""}`}>
+
+<div className={`${this.decorateCSS("contentTop")} ${this.getPropValue("RightItems") ? this.decorateCSS("iconSocial") : ""}`}>
+    {(this.getPropValue("right-items").length > 0) &&
+
+<div className={this.decorateCSS("content-item")}>
+
+    <div className={this.decorateCSS("contentLeft")}>
+      {this.getPropValue("right-items").map((leftItem: any) => {
+        return (
+          <ComposerLink path={leftItem.value[1].value}>
+            <ComposerIcon
+              propsIcon={{ className: this.decorateCSS("icons") }} 
+              name={leftItem.value[0].value}
+            />
+          </ComposerLink>
+        );
+      })}
+    </div>
+        {Atext && (
+      <div className={this.decorateCSS("right-Text")}>
+        {this.getPropValue("Atext")}
+      </div>)}
+
         </div>}
         </div>
         </div>
