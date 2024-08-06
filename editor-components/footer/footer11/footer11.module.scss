@@ -17,6 +17,8 @@
             .text {
                 font-size: 12px;
                 display: flex;
+                justify-content: center;
+                align-items: center;
                 gap: 5px;
                 font-weight: bold;
                 color: var(--composer-font-color-primary)
@@ -24,6 +26,7 @@
 
             .ref-page {
                 font-size: 10px;
+                min-width: 100px;
             }
 
             .icons-div {
