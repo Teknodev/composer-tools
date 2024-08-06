@@ -176,12 +176,12 @@ class List3 extends BaseList {
                 <div className={this.decorateCSS("firstContent")}>
                   {title && (
                     <div className={this.decorateCSS("title")}>
-                      <h1>{this.getPropValue("title")}</h1>
+                      <h1 className={this.decorateCSS("title-inner")}>{this.getPropValue("title")}</h1>
                     </div>
                   )}
                   {description && (
                     <div className={this.decorateCSS("description")}>
-                      <p>{this.getPropValue("description")}</p>
+                      <p className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</p>
                     </div>
                   )}
                   {buttonExist && (
