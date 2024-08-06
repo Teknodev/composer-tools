@@ -20,13 +20,14 @@ class List6 extends BaseList {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "It's so challenging to find a good team to do great things. But we can provide you the best one.",
+      value:
+        "It's so challenging to find a good team to do great things. But we can provide you the best one.",
     });
     this.addProp({
-       type: "boolean",
-       key: "descriptionAnimation",
-       displayer: "Description Animation",
-       value: true,
+      type: "boolean",
+      key: "descriptionAnimation",
+      displayer: "Description Animation",
+      value: true,
     });
 
     this.addProp({
@@ -149,9 +150,15 @@ class List6 extends BaseList {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-        {description && (
-            <div className={this.decorateCSS(this.getPropValue("descriptionAnimation") ? "description1" : "description2")}>
-              {description}
+          {description && (
+            <div
+              className={this.decorateCSS(
+                this.getPropValue("descriptionAnimation")
+                  ? "description1"
+                  : "description2"
+              )}
+            >
+              {this.getPropValue("description")}
             </div>
           )}
           <ul className={this.decorateCSS("list-item")}>
@@ -160,24 +167,34 @@ class List6 extends BaseList {
                 key={index}
                 className={this.decorateCSS("item-container")}
                 style={{
-                  border: description === "" && index === 0 ? "none" : this.decorateCSS("item-container")
+                  border:
+                    description === "" && index === 0
+                      ? "none"
+                      : this.decorateCSS("item-container"),
                 }}
               >
                 <h3 className={this.decorateCSS("index")}>
                   {index < 9 ? `0${index + 1}` : index + 1}
                 </h3>
                 <div className={this.decorateCSS("cards")}>
-                  <ComposerIcon
-                    name={listItem.itemIcon}
-                    propsIcon={{
-                      className: this.decorateCSS("icon"),
-                      size: 40,
-                    }}
-                  />
-                  {this.castToString(listItem.itemTitle) && (
-                    <h1 className={this.decorateCSS("list-item-h1")}>
-                      {listItem.itemTitle}
-                    </h1>
+                  {(listItem.itemIcon ||
+                    this.castToString(listItem.itemTitle)) && (
+                    <div className={this.decorateCSS("icon-title-container")}>
+                      {listItem.itemIcon && (
+                        <ComposerIcon
+                          name={listItem.itemIcon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                            size: 40,
+                          }}
+                        />
+                      )}
+                      {this.castToString(listItem.itemTitle) && (
+                        <h1 className={this.decorateCSS("list-item-h1")}>
+                          {listItem.itemTitle}
+                        </h1>
+                      )}
+                    </div>
                   )}
 
                   {this.castToString(listItem.itemText) && (

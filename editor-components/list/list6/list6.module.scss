@@ -1,217 +1,163 @@
 .container {
-    width: 100%;
-    overflow: auto;
-    background-color: var(--composer-html-background);
+  width: 100%;
+  overflow: auto;
+  background-color: var(--composer-html-background);
+  margin: auto;
+
+  .max-content {
+    color: var(--composer-font-color-primary);
+    max-width: var(--composer-content-width);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: auto;
 
-    .max-content {
-        color: var(--composer-font-color-primary);
-        max-width: var(--composer-content-width);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: auto;
-    
-
-
     .description1 {
-        font-size: 3rem;
-        align-items: left;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 3rem;
-        margin-top: 3rem;
-        font-weight: bold;
-        animation: fadeInUp 400ms ease-out;
-        flex-direction: column;
-        max-width: 70%;
-
-
-
-        @media only screen and (min-width: 451px) and (max-width: 1024px) {
-            margin-left: 35px;
-            max-width: 100%;
-            margin-right: 10px;
-
-        }
-
-        @media only screen and (max-width: 450px) {
-            margin-left: 35px;
-            font-size: 24px;
-            max-width: 100%;
-            margin-right: 20px;
-
-        }
+      font-size: 3rem;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+      margin-top: 3rem;
+      font-weight: bold;
+      animation: fadeInUp 400ms ease-out;
+      flex-direction: column;
+      letter-spacing: -2px !important;
+      max-width: 80%;
     }
 
     .description2 {
-        font-size: 3rem;
-        align-items: left;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 3rem;
-        margin-top: 3rem;
-        font-weight: bold;
-        flex-direction: column;
-        max-width: 70%;
-
-        @media only screen and (min-width: 451px) and (max-width: 1024px) {
-            margin-left: 35px;
-            max-width: 100%;
-            margin-right: 10px;
-        }
-
-        @media only screen and (max-width: 450px) {
-            margin-left: 35px;
-            max-width: 100%;
-            font-size: 24px;
-            margin-right: 20px;
-        }
+      font-size: 3rem;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+      margin-top: 3rem;
+      font-weight: bold;
+      flex-direction: column;
+      letter-spacing: -2px !important;
+      max-width: 80%;
     }
 
+    @media only screen and (max-width: 900px) {
+      .description1, .description2 {
+        width: 90%;
+        max-width: none;
+      }
+    }
 
     .list-item {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      flex-direction: column;
+      padding-left: 0;
+      max-width: 80%;
+
+      @media only screen and (max-width: 900px) {
+        width: 90%;
+        margin: 0 auto;
+        max-width: none;
+      }
+
+      > li {
+        border-bottom: 1px solid black;
+      }
+      > li:first-child {
+        border-top: 1px solid black;
+      }
+
+      .item-container {
         display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-        max-width: 75%; 
-        flex-direction: column;
-        @media only screen and (min-width: 451px) and (max-width: 1024px) {
-            max-width: 100%; 
-            margin-right: 2.1rem;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 100px;
+        border-top: 2px solid rgba(var(--composer-tertiary-color-rgb), 0.2);
+        padding-top: 20px;
+        padding-bottom: 20px;
+        min-height: 150px;
+
+        @media only screen and (max-width: 900px) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+          padding-left: 0;
+          padding-right: 0;
+          width: 100%;
+
+          .index {
+            padding-left: 0 !important;
+          }
+
+          .cards {
+            flex-direction: column;
+          }
         }
 
-        @media only screen and (max-width: 450px) {
-            max-width: 100%; 
-            margin-right: 2.8rem;
-
+        .index {
+          font-size: 18px;
+          padding-left: 30px;
+          color: var(--composer-font-color-primary);
+          font-weight: normal;
         }
-
 
         .cards {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          min-height: 50px;
+          color: var(--composer-font-color-primary);
+
+          .icon-title-container {
             display: flex;
-            flex-direction: row;
+            justify-content: flex-start;
             align-items: center;
-            justify-content: center;
-            margin-left: 2rem;
-            margin-top: 4rem;
-            min-height: 50px;
+            gap: 20px;
+            width: 100%;
+          }
+
+          .icon {
+            width: 50px !important;
+            height: 50px !important;
+            flex-shrink: 0;
+            color: var(--composer-primary-color);
+          }
+
+          .list-item-h1 {
+            text-align: center;
+            white-space: nowrap;
+            font-weight: bold;
+            font-size: 22px;
+            line-height: 1.35;
+            letter-spacing: 3px;
+            max-width: 16rem;
             color: var(--composer-font-color-primary);
+          }
 
-            @media only screen and (max-width: 450px) {
-                display: table;
-                margin: 2rem;
-                margin-left: 4rem;
-            }
-        }
-
-
-        .item-container {
-            display: flex;
-            justify-content: left;
-            align-items: center;
-            border-top: 2px solid rgba(var(--composer-tertiary-color-rgb), 0.2);
-
-            @media only screen and (max-width: 450px) {
-                position: relative;
-            }
-
-            .index {
-                font-size: 2rem;
-                margin-right: 10px;
-                padding-bottom: 2.8rem;
-                margin-top: 5rem;
-                color: var(--composer-font-color-primary);
-                font-weight: normal;
-
-                @media only screen and (max-width: 450px) {
-                    font-size: 22px;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    margin-top: 1.5rem;
-                }
-            }
-
-            .icon {
-                width: 50px !important;
-                height: 50px !important;
-                margin-right: 10px;
-                margin-bottom: 50px;
-                flex-shrink: 0;
-                color: var(--composer-tertiary-color);
-
-                @media only screen and (max-width: 450px) {
-                    margin-right: 0;
-                    margin-left: -4rem;
-                    margin-bottom: -2rem;
-                    margin-top: 3rem;
-                    vertical-align: middle;
-                }
-            }
-
-            .list-item-h1 {
-                margin-left: 2rem;
-                margin-top: -2.5rem;
-                text-align: center;
-                white-space: nowrap;
-                font-weight: bold;
-                font-size: 22px;
-                line-height: 1.35;
-                padding-right: 10rem;
-                max-width: 16rem;
-                color: var(--composer-font-color-primary);
-
-                @media only screen and (max-width: 450px) {
-                    font-size: 22px;
-                    margin-left: 3rem;
-                    margin-top: -0.9rem;
-                }
-            }
-        }
-
-        .list-item-p {
+          .list-item-p {
             justify-content: center;
             text-align: left;
             font-size: 16px;
             line-height: 1.55;
-            margin-left: 20px;
-            margin-top: 10px;
             color: var(--composer-font-color-primary);
-
-            @media only screen and (min-width: 451px) and (max-width: 1024px) {
-                margin-top: 2px;
-            }
-
-            @media only screen and (max-width: 450px) {
-                font-size: 14px;
-                margin-left: -4rem;
-                margin-right: 4px;
-                margin-bottom: 0;
-                margin-top: 2rem;
-            }
+            width: 100%;
+          }
         }
-
+      }
     }
+  }
 }
-}
-
-
-
-
 
 @keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
