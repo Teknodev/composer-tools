@@ -283,7 +283,7 @@ class HeaderComponent28 extends BaseHeader {
                 <ComposerIcon name={this.getPropValue("play_icon")} />
               </div>
               <div
-              //
+              
                 className={`${this.decorateCSS("slide-content")}  
                 ${!this.getComponentState("animation-active") && 
                   this.decorateCSS("visible") 

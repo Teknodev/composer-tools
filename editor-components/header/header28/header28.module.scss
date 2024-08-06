@@ -206,6 +206,9 @@
             font-size: 0.875rem;
           }
         }
+        .next-icon,.prev-icon{
+          display: none;
+        }
       }
     }
   }
@@ -224,7 +227,8 @@
         }
 
         .slide-content {
-          margin-left: 3.5rem;
+          margin-left: 3rem;
+          padding: 0;
           .title {
             font-size: 2.8rem;
           }
@@ -241,7 +245,23 @@
             font-size: 0.875rem;
           }
         }
+        .next-icon,.prev-icon{
+          display: none;
+        }
       }
+    }
+  }
+  .customDots{
+    li{
+    button{
+      width: 10px;
+      height: 10px;
+    }
+    button:before{
+      font-size: 6px;
+      display: flex;
+      left: 3px;
+    }
     }
   }
 }
