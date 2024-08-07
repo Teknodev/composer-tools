@@ -155,7 +155,7 @@ class List6 extends BaseList {
               className={this.decorateCSS(
                 this.getPropValue("descriptionAnimation")
                   ? "description1"
-                  : "description2"
+                  : "description2",
               )}
             >
               {this.getPropValue("description")}
@@ -167,10 +167,7 @@ class List6 extends BaseList {
                 key={index}
                 className={this.decorateCSS("item-container")}
                 style={{
-                  border:
-                    description === "" && index === 0
-                      ? "none"
-                      : this.decorateCSS("item-container"),
+                  borderTop: !description && "none",
                 }}
               >
                 <h3 className={this.decorateCSS("index")}>
