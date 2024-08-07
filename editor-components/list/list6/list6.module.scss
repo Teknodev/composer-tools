@@ -41,7 +41,8 @@
     }
 
     @media only screen and (max-width: 900px) {
-      .description1, .description2 {
+      .description1,
+      .description2 {
         width: 90%;
         max-width: none;
       }
@@ -63,10 +64,10 @@
       }
 
       > li {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid var(--composer-font-color-primary);
       }
       > li:first-child {
-        border-top: 1px solid black;
+        border-top: 1px solid var(--composer-font-color-primary);
       }
 
       .item-container {
@@ -74,7 +75,6 @@
         justify-content: flex-start;
         align-items: center;
         gap: 100px;
-        border-top: 2px solid rgba(var(--composer-tertiary-color-rgb), 0.2);
         padding-top: 20px;
         padding-bottom: 20px;
         min-height: 150px;
@@ -105,8 +105,9 @@
 
         .cards {
           display: flex;
-          justify-content: flex-start;
+          justify-content: space-between;
           align-items: center;
+          width: 100%;
           min-height: 50px;
           color: var(--composer-font-color-primary);
 
@@ -114,8 +115,8 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            gap: 20px;
             width: 100%;
+            gap: 20px;
           }
 
           .icon {
@@ -137,12 +138,12 @@
           }
 
           .list-item-p {
-            justify-content: center;
+            display: flex;
+            justify-content: flex-end;
             text-align: left;
             font-size: 16px;
             line-height: 1.55;
             color: var(--composer-font-color-primary);
-            width: 100%;
           }
         }
       }
