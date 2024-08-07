@@ -1104,38 +1104,6 @@ class PricingTable9 extends BasePricingTable {
         },
       ],
     });
-
-    this.addProp({
-      type: "object",
-      key: "pricing1",
-      displayer: "Pricing 1",
-      value: [
-        {
-          type: "string",
-          key: "price",
-          displayer: "Price",
-          value: "$50",
-        },
-        {
-          type: "string",
-          key: "duration",
-          displayer: "Duration",
-          value: "month",
-        },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Get started",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
-    });
   }
 
   getName(): string {
