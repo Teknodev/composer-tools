@@ -43,12 +43,12 @@ class PricingTable9 extends BasePricingTable {
         {
           type: "array",
           key: "items",
-          displayer: "Items",
+          displayer: "Columns",
           value: [
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -82,7 +82,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -116,7 +116,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -150,7 +150,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -184,7 +184,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -220,12 +220,12 @@ class PricingTable9 extends BasePricingTable {
         {
           type: "array",
           key: "items",
-          displayer: "Items",
+          displayer: "Columns",
           value: [
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -259,7 +259,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -293,7 +293,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -327,7 +327,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -361,7 +361,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -397,12 +397,12 @@ class PricingTable9 extends BasePricingTable {
         {
           type: "array",
           key: "items",
-          displayer: "Items",
+          displayer: "Columns",
           value: [
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -436,7 +436,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -470,7 +470,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -504,7 +504,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -538,7 +538,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -574,12 +574,12 @@ class PricingTable9 extends BasePricingTable {
         {
           type: "array",
           key: "items",
-          displayer: "Items",
+          displayer: "Columns",
           value: [
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -613,7 +613,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -647,7 +647,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -681,7 +681,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -715,7 +715,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -751,12 +751,12 @@ class PricingTable9 extends BasePricingTable {
         {
           type: "array",
           key: "items",
-          displayer: "Items",
+          displayer: "Columns",
           value: [
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -790,7 +790,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -824,7 +824,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -858,7 +858,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -892,7 +892,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -928,12 +928,12 @@ class PricingTable9 extends BasePricingTable {
         {
           type: "array",
           key: "items",
-          displayer: "Items",
+          displayer: "Columns",
           value: [
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -967,7 +967,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -1001,7 +1001,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -1035,7 +1035,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
@@ -1069,7 +1069,7 @@ class PricingTable9 extends BasePricingTable {
             {
               type: "object",
               key: "item",
-              displayer: "Item",
+              displayer: "Cell",
               value: [
                 {
                   type: "string",
