@@ -229,11 +229,11 @@ class HeaderComponent28 extends BaseHeader {
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
         if (this.getPropValue("textAnimation"))
-        this.setComponentState("animation-active", true);
+          this.setComponentState("animation-active", true);
         this.setComponentState("play-video", false);
         this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
 
-        this.setComponentState("display-none", true );
+        this.setComponentState("display-none", true);
 
         this.setComponentState("active-index", newIndex);
       },
@@ -249,10 +249,10 @@ class HeaderComponent28 extends BaseHeader {
           {this.getPropValue("slider").map((item: any, indexSlider: number) => (
             <div className={this.decorateCSS("content")} key={indexSlider}>
               {
-                item.getPropValue("image") && <div className = {this.decorateCSS("image-box")}> 
-                <img 
-                className={this.decorateCSS("bg-img")}
-                src= {item.getPropValue("image")} alt="" />
+                item.getPropValue("image") && <div className={this.decorateCSS("image-box")}>
+                  <img
+                    className={this.decorateCSS("bg-img")}
+                    src={item.getPropValue("image")} alt="" />
                 </div>
               }
 
@@ -277,19 +277,25 @@ class HeaderComponent28 extends BaseHeader {
                 </div>
               </div>
               <div
+                className={this.decorateCSS("player")}
+                onClick={() => this.setComponentState("play-video", true)}
+              ></div>
+              <div
                 className={this.decorateCSS("play-button")}
                 onClick={() => this.setComponentState("play-video", true)}
               >
                 <ComposerIcon name={this.getPropValue("play_icon")} />
               </div>
               <div
-              
+
                 className={`${this.decorateCSS("slide-content")}  
-                ${!this.getComponentState("animation-active") && 
-                  this.decorateCSS("visible") 
+                ${!this.getComponentState("animation-active") &&
+                  this.decorateCSS("visible")
 
                   }`}
-                  
+
+                onClick={() => this.setComponentState("play-video", true)}
+
               >
                 {this.castToString(item.getPropValue("tag")) &&
                   <span className={this.decorateCSS("tag")}>
@@ -340,6 +346,7 @@ class HeaderComponent28 extends BaseHeader {
               />
             </div>
           ))}
+
         </ComposerSlider>
       </div>
     );
