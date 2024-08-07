@@ -55,7 +55,7 @@ class Content8 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://writebot-html.themetags.net/assets/img/blog-img-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f2703b007002cc7f55e?alt=media",
             },
             {
               type: "string",
@@ -99,7 +99,7 @@ class Content8 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://writebot-html.themetags.net/assets/img/blog-img-2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f6f03b007002cc7f56e?alt=media",
             },
             {
               type: "string",
@@ -143,7 +143,7 @@ class Content8 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://writebot-html.themetags.net/assets/img/blog-img-3.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b351ed03b007002cc7f6d9?alt=media",
             },
             {
               type: "string",
