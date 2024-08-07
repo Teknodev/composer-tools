@@ -53,7 +53,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[] };
+  additionalParams?: { selectItems?: string[], maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
@@ -126,9 +126,9 @@ export abstract class Component
     )[0] || this.getProp(propName));
   
     const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
-
+    
     return isStringMustBeElement
-      ? this.getPropValueAsElement(prop)
+      ? this.getPropValueAsElement(prop, properties)
       : prop?.value;
   }
 

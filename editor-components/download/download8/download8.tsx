@@ -20,7 +20,7 @@ class Download8 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Background Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1692795803063",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1719564433794",
         });
 
         this.addProp({

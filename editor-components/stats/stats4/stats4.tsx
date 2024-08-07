@@ -34,7 +34,7 @@ class Stats4Page extends BaseStats {
       key: "backgroundImage",
       displayer: "Card Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644b7bc3f72de2002caaa9a2?alt=media&timestamp=1682668493790",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644b7bc3f72de2002caaa9a2?alt=media&timestamp=1719584962573",
     });
 
     this.addProp({
