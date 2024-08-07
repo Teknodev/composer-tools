@@ -318,18 +318,10 @@ class Header9 extends BaseHeader {
     });
 
     this.setComponentState("activeTab", 0);
-    this.setComponentState("image", "");
-  }
-  componentDidMount() {
-    const tabs = this.castToObject<ITab[]>("tabs");
-    if (tabs.length > 0) {
-      this.setComponentState("image", tabs[0].image);
-    }
   }
 
-  handleMouseEnter(index: number, imageUrl: string) {
+  handleMouseEnter(index: number) {
     this.setComponentState("activeTab", index);
-    this.setComponentState("image", imageUrl);
   }
 
   getName(): string {
@@ -341,34 +333,9 @@ class Header9 extends BaseHeader {
     const socials = this.castToObject<ISocial[]>("socials");
     const featuredText = this.getPropValue("featuredText", { as_string: true });
     const tabs = this.castToObject<ITab[]>("tabs");
-    let currentImage = this.getComponentState("image");
-
-    if (!currentImage && tabs.length > 0) {
-      currentImage = tabs[0].image;
-    }
-
-    const temp = this.getComponentState("tabs-temp");
-    const props = tabs.map((tab: ITab) => {
-      return {
-        tabText: this.castToString(tab.tabText),
-        image: tab.image,
-        tabUrl: tab.tabUrl,
-      };
-    });
-
-    if (JSON.stringify(temp) !== JSON.stringify(props)) {
-      const propsNew = tabs.map((tab: ITab) => {
-        return {
-          tabText: this.castToString(tab.tabText),
-          image: tab.image,
-          tabUrl: tab.tabUrl,
-        };
-      });
-      this.setComponentState("tabs-temp", propsNew);
-      this.setComponentState("tabs", propsNew);
-      this.setComponentState("activeTab", 0);
-    }
-
+    const activeTabIndex = this.getComponentState("activeTab")
+    let currentImage = tabs[activeTabIndex].image;
+    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -383,11 +350,11 @@ class Header9 extends BaseHeader {
                   )}
 
                   <span className={this.decorateCSS("active-number")}>
-                    {this.getComponentState("activeTab") + 1}
+                    {activeTabIndex + 1}
                   </span>
                   <span className={this.decorateCSS("slash")}>/</span>
                   <span className={this.decorateCSS("count")}>
-                    {this.getPropValue("tabs").length}
+                    {tabs.length}
                   </span>
                 </div>
                 <div className={this.decorateCSS("tab-buttons")}>
@@ -403,7 +370,7 @@ class Header9 extends BaseHeader {
                               this.decorateCSS("active"))
                           }
                           onMouseEnter={() =>
-                            this.handleMouseEnter(index, tab.image)
+                            this.handleMouseEnter(index)
                           }
                         >
                           {this.castToString(tab.tabText)}
@@ -419,7 +386,7 @@ class Header9 extends BaseHeader {
                             this.decorateCSS("active"))
                         }
                         onMouseEnter={() =>
-                          this.handleMouseEnter(index, tab.image)
+                          this.handleMouseEnter(index)
                         }
                       >
                         {this.castToString(tab.tabText)}
