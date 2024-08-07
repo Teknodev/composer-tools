@@ -15,8 +15,7 @@ class Navbar7 extends BaseNavigator {
       type: "image",
       key: "image",
       displayer: "Image",
-      value:
-        "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
+      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
     this.addProp({
       type: "boolean",
@@ -33,16 +32,16 @@ class Navbar7 extends BaseNavigator {
     });
     this.addProp({
       type: "array",
-      key: "icons",
+      key: "iconsSocial",
       displayer: "Social Media",
       value: [
         {
           type: "object",
-          key: "iconss",
+          key: "icons",
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Twitter",
               value: "CiTwitter",
@@ -57,11 +56,11 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "iconss",
+          key: "icons",
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Facebook",
               value: "CiFacebook",
@@ -76,11 +75,11 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "iconss",
+          key: "icons",
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Google",
               value: "FaGooglePlusG",
@@ -95,11 +94,11 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "iconss",
+          key: "icons",
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Vk",
               value: "SlSocialVkontakte",
@@ -114,11 +113,11 @@ class Navbar7 extends BaseNavigator {
         },
         {
           type: "object",
-          key: "iconss",
+          key: "icons",
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Wifi",
               value: "CiWifiOn",
@@ -245,54 +244,67 @@ class Navbar7 extends BaseNavigator {
   }
 
   render(): ReactNode {
+    const navItems = this.castToObject<[]>("main-navigator");
+    const hasNavItems = navItems.length > 0;
+    const socialIcons = this.castToObject<[]>("iconsSocial");
+    const hasSocialIcons = socialIcons.length > 0;
+
     return (
       <div
-        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-          }`}
+        className={`${this.decorateCSS("container")} ${
+          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+        }`}
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("img-container")}>
-              <img
-                className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-                alt=""
-              />
-            </div>
-            <div
-              className={`${this.decorateCSS("list-items")} ${this.getComponentState("navActive") &&
-                this.decorateCSS("active")
+            {this.getPropValue("image") && (
+              <div className={this.decorateCSS("img-container")}>
+                <img
+                  className={this.decorateCSS("image")}
+                  src={this.getPropValue("image")}
+                  alt=""
+                />
+              </div>
+            )}
+            {hasNavItems && (
+              <div
+                className={`${this.decorateCSS("list-items")} ${
+                  this.getComponentState("navActive") &&
+                  this.decorateCSS("active")
                 }`}
-            >
-              {this.castToObject<[]>("main-navigator").map(
-                (data: any, index: number) => {
-                  return (
-                    <ul key={index}>
-                      <ComposerLink path={data.url}>
-                        <li className={this.decorateCSS("list-item")}>
-                          {data.item}
-                        </li>
-                      </ComposerLink>
-                    </ul>
-                  );
-                }
-              )}
-            </div>
-            <div className={this.decorateCSS("icon-items")}>
-              {this.castToObject<[]>("icons").map(
-                (data: any, index: number) => {
-                  return (
-                    <ul className={this.decorateCSS("icon-ul")} key={index}>
-                      <ComposerLink path={data.url}>
-                        <li className={this.decorateCSS("icon-item")}>
-                          <ComposerIcon name={data.icon} />
-                        </li>
-                      </ComposerLink>
-                    </ul>
-                  );
-                }
-              )}
-            </div>
+              >
+                {this.castToObject<[]>("main-navigator").map(
+                  (data: any, index: number) => {
+                    return (
+                      <ul key={index}>
+                        <ComposerLink path={data.url}>
+                          <li className={this.decorateCSS("list-item")}>
+                            {data.item}
+                          </li>
+                        </ComposerLink>
+                      </ul>
+                    );
+                  }
+                )}
+              </div>
+            )}
+            {hasSocialIcons && (
+              <div className={this.decorateCSS("icon-items")}>
+                {this.castToObject<[]>("iconsSocial").map(
+                  (data: any, index: number) => {
+                    return (
+                      <ul className={this.decorateCSS("icon-ul")} key={index}>
+                        <ComposerLink path={data.url}>
+                          <li className={this.decorateCSS("icon-item")}>
+                            <ComposerIcon name={data.icon} />
+                          </li>
+                        </ComposerLink>
+                      </ul>
+                    );
+                  }
+                )}
+              </div>
+            )}
             <div className={this.decorateCSS("navbar")}>
               <ComposerIcon
                 name={this.getPropValue("hamburger")}

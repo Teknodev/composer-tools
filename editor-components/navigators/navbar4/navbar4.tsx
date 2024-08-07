@@ -5,21 +5,27 @@ import styles from "./navbar4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-//CLASS
+interface LeftItem {
+  label: string;
+  link: string;
+}
+
+interface RightItem {
+  icon: string;
+  link: string;
+}
 class Navbar4 extends BaseNavigator {
   getName(): string {
     return "Navbar 4";
   }
 
-  //constructor
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "icon",
       key: "img-ham",
       displayer: "Image",
-      value:
-        "IoMenu",
+      value: "IoMenu",
     });
     this.addProp({
       type: "boolean",
@@ -113,8 +119,7 @@ class Navbar4 extends BaseNavigator {
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaFacebook",
+              value: "FaFacebook",
               displayer: "Icon",
             },
             {
@@ -133,8 +138,7 @@ class Navbar4 extends BaseNavigator {
             {
               type: "icon",
               key: "icon",
-              value:
-                "AiFillTwitterCircle",
+              value: "AiFillTwitterCircle",
               displayer: "Icon",
             },
             {
@@ -153,8 +157,7 @@ class Navbar4 extends BaseNavigator {
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaLinkedin",
+              value: "FaLinkedin",
               displayer: "Icon",
             },
             {
@@ -168,7 +171,7 @@ class Navbar4 extends BaseNavigator {
       ],
     });
     this.state["componentProps"]["navActive"] = true;
-  } //constructor end
+  }
 
   navClick() {
     let value: boolean = this.getComponentState("navActive");
@@ -176,46 +179,60 @@ class Navbar4 extends BaseNavigator {
   }
 
   render(): ReactNode {
-    //RETURN
+    const leftItems = this.castToObject<[]>("left-items");
+    const hasLeftItems = leftItems && leftItems.length > 0;
+    const rightItems = this.castToObject<[]>("right-items");
+    const hasRightItems = rightItems && rightItems.length > 0;
+
+    const midTextClass =
+      hasLeftItems && hasRightItems
+        ? `${this.decorateCSS("mid-text--center")}`
+        : hasLeftItems
+        ? `${this.decorateCSS("mid-text--end")}`
+        : `${this.decorateCSS("mid-text--start")}`;
+
+    console.log(midTextClass);
     return (
       <div
-        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-          }`}
+        className={`${this.decorateCSS("container")} ${
+          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+        }`}
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("content-left")}>
-              {this.getPropValue("left-items").map((leftItem: any) => {
-                return (
-                  <ComposerLink path={leftItem.value[1].value}>
-                    <span className={this.decorateCSS("text")}>
-                      {leftItem.value[0].value}
-                    </span>
-                  </ComposerLink>
-                );
-              })}
-            </div>
+            {hasLeftItems && (
+              <div className={this.decorateCSS("content-left")}>
+                {leftItems.map((leftItem: LeftItem) => {
+                  return (
+                    <ComposerLink path={leftItem.link}>
+                      <span className={this.decorateCSS("text")}>
+                        {leftItem.label}
+                      </span>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
 
             <div>
               <ComposerIcon
-
                 propsIcon={{
                   onClick: () => this.navClick(),
-                  className: `${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
-                    ? this.decorateCSS("rotate")
-                    : ""
-                    }    `
+                  className: `${this.decorateCSS("img-hamburger")} ${
+                    this.getComponentState("navActive")
+                      ? this.decorateCSS("rotate")
+                      : ""
+                  }    `,
                 }}
                 name={this.getPropValue("img-ham")}
-
               />
               {this.getComponentState("navActive") && (
                 <div className={this.decorateCSS("navbar-child")}>
-                  {this.castToObject<[]>("left-items").map(
-                    (item: any, index: number) => {
+                  {this.castToObject<[LeftItem]>("left-items").map(
+                    (item: LeftItem, index: number) => {
                       return (
-                        <ComposerLink key={index} path={item.value[1].value}>
-                          <h3 key={index}>{item.value[0].value}</h3>
+                        <ComposerLink key={index} path={item.link}>
+                          <h3 key={index}>{item.label}</h3>
                         </ComposerLink>
                       );
                     }
@@ -224,32 +241,33 @@ class Navbar4 extends BaseNavigator {
               )}
             </div>
 
-            <div className={this.decorateCSS("middle")}>
-              <h1 className={this.decorateCSS("center-text")}>
-                {this.getPropValue("center-text")}
-              </h1>
-            </div>
+            {this.castToString(this.getPropValue("center-text")) && (
+              <div className={midTextClass}>
+                <h1 className={this.decorateCSS("text")}>
+                  {this.castToString(this.getPropValue("center-text"))}
+                </h1>
+              </div>
+            )}
 
-            <div className={this.decorateCSS("content-right")}>
-              {this.getPropValue("right-items").map((leftItem: any) => {
-                return (
-                  <ComposerLink path={leftItem.value[1].value}>
-                    <ComposerIcon
-                      propsIcon={{ className: this.decorateCSS("icons") }}
-                      name={leftItem.value[0].value}
-                    />
-                  </ComposerLink>
-                );
-              })}
-            </div>
+            {hasRightItems && (
+              <div className={this.decorateCSS("content-right")}>
+                {rightItems.map((rightItem: RightItem) => {
+                  return (
+                    <ComposerLink path={rightItem.link}>
+                      <ComposerIcon
+                        propsIcon={{ className: this.decorateCSS("icons") }}
+                        name={rightItem.icon}
+                      />
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>
     );
-    //RETURN End
   }
 }
-//End Class
 
-//Higher Order Component
 export default Navbar4;

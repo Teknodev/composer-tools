@@ -4,10 +4,25 @@ import styles from "./navbar6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
+type LeftItem = {
+  label: string;
+  link: string;
+};
+
+type RightItem = {
+  label: string;
+  link: string;
+};
+
+type CombinedItem = {
+  label: string;
+  link: string;
+};
 class Navbar6 extends BaseNavigator {
   getName(): string {
     return "Navbar 6";
   }
+
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -161,7 +176,7 @@ class Navbar6 extends BaseNavigator {
       ],
     });
     this.state["componentProps"]["navActive"] = true;
-  } //constructor end
+  } //constructor ends
 
   navClick() {
     let value: boolean = this.getComponentState("navActive");
@@ -169,63 +184,71 @@ class Navbar6 extends BaseNavigator {
   }
 
   render() {
-    const leftItems = this.getPropValue("left-items");
-    const rightItems = this.getPropValue("right-items");
+    const leftItems = this.castToObject<[]>("left-items");
+    const hasleftItems = leftItems.length > 0;
+    const rightItems = this.castToObject<[]>("right-items");
+    const hasrightItems = rightItems.length > 0;
 
     //Combining left and right items (arrays)
     const combinedItems = [...leftItems, ...rightItems];
 
     return (
       <div
-        className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-          }`}
+        className={`${this.decorateCSS("container")} ${
+          this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+        }`}
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("content-left")}>
-              {this.getPropValue("left-items").map((leftItem: any) => {
-                return (
-                  <ComposerLink path={leftItem.value[1].value}>
-                    <span className={this.decorateCSS("text")}>
-                      {leftItem.value[0].value}
-                    </span>
-                  </ComposerLink>
-                );
-              })}
-            </div>
+            {hasleftItems && (
+              <div className={this.decorateCSS("content-left")}>
+                {leftItems.map((leftItem: LeftItem, index: number) => {
+                  return (
+                    <ComposerLink path={leftItem.link} key={index}>
+                      <span className={this.decorateCSS("text")}>
+                        {leftItem.label}
+                      </span>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
 
-            <div className={this.decorateCSS("middle")}>
-              <img src={this.getPropValue("center-image")} alt=""></img>
-            </div>
+            {this.getPropValue("center-image") && (
+              <div className={this.decorateCSS("middle")}>
+                <img src={this.getPropValue("center-image")} alt=""></img>
+              </div>
+            )}
 
-            <div className={this.decorateCSS("content-right")}>
-              {this.getPropValue("right-items").map((rightItem: any) => {
-                return (
-                  <ComposerLink path={rightItem.value[1].value}>
-                    <span className={this.decorateCSS("text")}>
-                      {rightItem.value[0].value}
-                    </span>
-                  </ComposerLink>
-                );
-              })}
-            </div>
+            {hasrightItems && (
+              <div className={this.decorateCSS("content-right")}>
+                {rightItems.map((rightItem: RightItem, index: number) => {
+                  return (
+                    <ComposerLink path={rightItem.link} key={index}>
+                      <span className={this.decorateCSS("text")}>
+                        {rightItem.label}
+                      </span>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
             <ComposerIcon
               propsIcon={{
-                className: `${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
-                  ? this.decorateCSS("rotate")
-                  : ""
-                  }`,
-                onClick: () => this.navClick()
+                className: `${this.decorateCSS("img-hamburger")} ${
+                  this.getComponentState("navActive")
+                    ? this.decorateCSS("rotate")
+                    : ""
+                }`,
+                onClick: () => this.navClick(),
               }}
               name={this.getPropValue("hamburger")}
-
-
             />
             {this.getComponentState("navActive") && (
               <div className={this.decorateCSS("navbar-child")}>
-                {combinedItems.map((item: any, index: number) => (
-                  <ComposerLink key={index} path={item.value[1].value}>
-                    <h3 key={index}>{item.value[0].value}</h3>
+                {combinedItems.map((item: CombinedItem, index: number) => (
+                  <ComposerLink key={index} path={item.link}>
+                    <h3 key={index}>{item.label}</h3>
                   </ComposerLink>
                 ))}
               </div>
