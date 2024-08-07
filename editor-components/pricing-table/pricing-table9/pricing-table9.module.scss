@@ -104,6 +104,15 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  width: 100%;
+  transition:
+    color,
+    background-color 300ms;
+
+  &:hover {
+    color: var(--composer-font-color-secondary);
+    background-color: var(--composer-primary-color);
+  }
 
   > a {
     display: flex;
