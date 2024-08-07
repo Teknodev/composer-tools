@@ -24,17 +24,19 @@
     .up-page {
       display: flex;
       justify-content: space-between;
+      gap: 50px;
 
       .badge {
         font-size: 18px;
         font-weight: 900;
+        width: 100%;
         color: var(--composer-font-color-primary);
-        margin-left: 4rem;
+        margin-left: 2rem;
       }
 
       .title {
         font-size: 48px;
-        width: 40%;
+        width: 100%;
         font-weight: 900;
         color: var(--composer-font-color-primary);
       }
@@ -43,15 +45,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
+        gap: 10px;
 
         .badge {
           margin-left: 0;
-          margin-bottom: 10px;
-          width: 100%;
         }
 
         .title {
-          width: 100%;
           font-size: 34px;
         }
       }
@@ -78,13 +78,9 @@
       justify-content: center;
       place-items: center;
 
-      @media only screen and (max-width: 1000px) {
-        .card {
-          width: 48% !important;
-        }
-      }
+      @media only screen and (max-width: 769px) {
+        margin-top: 20px;
 
-      @media only screen and (max-width: 700px) {
         .card {
           width: 100% !important;
         }
