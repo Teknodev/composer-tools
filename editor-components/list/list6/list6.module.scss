@@ -24,7 +24,7 @@
       font-weight: bold;
       animation: fadeInUp 400ms ease-out;
       flex-direction: column;
-      letter-spacing: -2px !important;
+      letter-spacing: -2px;
       max-width: 80%;
     }
 
@@ -36,7 +36,7 @@
       margin-top: 3rem;
       font-weight: bold;
       flex-direction: column;
-      letter-spacing: -2px !important;
+      letter-spacing: -2px;
       max-width: 80%;
     }
 
@@ -45,6 +45,14 @@
       .description2 {
         width: 90%;
         max-width: none;
+      }
+    }
+
+    @media only screen and (max-width: 500px) {
+      .description1,
+      .description2 {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
       }
     }
 
