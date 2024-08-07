@@ -6,7 +6,17 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 type Heading = {
   badge: JSX.Element;
   title: JSX.Element;
-}
+};
+
+type Card = {
+  image: string;
+  badge: JSX.Element;
+  description: JSX.Element;
+  date: JSX.Element;
+  details: JSX.Element;
+  detailsUrl: string;
+};
+
 class Content8 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -27,8 +37,9 @@ class Content8 extends BaseContent {
           displayer: "Title",
           value: "The Latest Updates News & Blog",
         },
-      ]
+      ],
     });
+
     this.addProp({
       type: "array",
       key: "cards",
@@ -43,7 +54,8 @@ class Content8 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://writebot-html.themetags.net/assets/img/blog-img-1.jpg",
+              value:
+                "https://writebot-html.themetags.net/assets/img/blog-img-1.jpg",
             },
             {
               type: "string",
@@ -73,9 +85,9 @@ class Content8 extends BaseContent {
               type: "page",
               key: "detailsUrl",
               displayer: "Details Url",
-              value: ""
+              value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -86,7 +98,8 @@ class Content8 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://writebot-html.themetags.net/assets/img/blog-img-2.jpg",
+              value:
+                "https://writebot-html.themetags.net/assets/img/blog-img-2.jpg",
             },
             {
               type: "string",
@@ -116,9 +129,9 @@ class Content8 extends BaseContent {
               type: "page",
               key: "detailsUrl",
               displayer: "Details Url",
-              value: ""
+              value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -129,7 +142,8 @@ class Content8 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://writebot-html.themetags.net/assets/img/blog-img-3.jpg",
+              value:
+                "https://writebot-html.themetags.net/assets/img/blog-img-3.jpg",
             },
             {
               type: "string",
@@ -159,12 +173,12 @@ class Content8 extends BaseContent {
               type: "page",
               key: "detailsUrl",
               displayer: "Details Url",
-              value: ""
+              value: "",
             },
-          ]
-        }
-      ]
-    })
+          ],
+        },
+      ],
+    });
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -179,54 +193,87 @@ class Content8 extends BaseContent {
 
   render() {
     const heading = this.castToObject<Heading>("heading");
+    const cards = this.castToObject<Card[]>("cards");
+
     const isTitleExist = this.castToString(heading.title);
-    const isbadgeExist = this.castToString(heading.badge);
+    const isBadgeExist = this.castToString(heading.badge);
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-
-          <div className={this.decorateCSS("up-page")}>
-            {
-              isbadgeExist && (
+          {(isBadgeExist || isTitleExist) && (
+            <div className={this.decorateCSS("up-page")}>
+              {isBadgeExist && (
                 <div className={this.decorateCSS("badge")}>{heading.badge}</div>
               )}
-            {
-              isTitleExist && (
+              {isTitleExist && (
                 <div className={this.decorateCSS("title")}>{heading.title}</div>
               )}
-          </div>
-          <div className={this.decorateCSS("cards-box")} >
+            </div>
+          )}
+          <div className={this.decorateCSS("cards-box")}>
+            {cards.map((card: Card, index: number) => {
+              const badgeExist = this.castToString(card.badge);
+              const descExist = this.castToString(card.description);
+              const dateExist = this.castToString(card.date);
+              const detailsExist = this.castToString(card.details);
 
-            {this.castToObject<any>("cards").map((card: any, index: number) =>
-              <div className={this.decorateCSS("card")} style={{
-                width: 90 / this.getPropValue("itemCount") + "%",
-              }}>
-                <div className={this.decorateCSS("card-div")}>
-                  <div className={this.decorateCSS("badge")}>{card.getPropValue("badge")}</div>
-                  <div className={this.decorateCSS("image-div")}>
-                    {card.image && <div className={this.decorateCSS("image-box")}>
-                      <img
-                        className={this.decorateCSS("image")}
-                        src={card.image} alt="" />
-                    </div>}
-                  </div>
-                  <div className={this.decorateCSS("card-body")}>
-                    <div className={this.decorateCSS("description")}>{card.getPropValue("description")}</div>
-                    <div className={this.decorateCSS("time-comments")}>
-                      <h4 className={this.decorateCSS("date")}>{card.getPropValue("date")}</h4>
-                      <ComposerLink path={card.getPropValue("detailsUrl")}>
-                        <h4 className={this.decorateCSS("details")}>{card.getPropValue("details")}</h4>
-                      </ComposerLink>
+              return (
+                <div
+                  key={index}
+                  className={this.decorateCSS("card")}
+                  style={{
+                    width: 90 / this.getPropValue("itemCount") + "%",
+                  }}
+                >
+                  <div className={this.decorateCSS("card-div")}>
+                    {badgeExist && (
+                      <div className={this.decorateCSS("badge")}>
+                        {card.badge}
+                      </div>
+                    )}
+                    <div className={this.decorateCSS("image-div")}>
+                      {card.image && (
+                        <div className={this.decorateCSS("image-box")}>
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={card.image}
+                            alt=""
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <div className={this.decorateCSS("card-body")}>
+                      {descExist && (
+                        <div className={this.decorateCSS("description")}>
+                          {card.description}
+                        </div>
+                      )}
+                      {(dateExist || detailsExist) && (
+                        <div className={this.decorateCSS("time-comments")}>
+                          {dateExist && (
+                            <h4 className={this.decorateCSS("date")}>
+                              {card.date}
+                            </h4>
+                          )}
+                          {detailsExist && (
+                            <ComposerLink path={card.detailsUrl}>
+                              <h4 className={this.decorateCSS("details")}>
+                                {card.details}
+                              </h4>
+                            </ComposerLink>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              );
+            })}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 export default Content8;
