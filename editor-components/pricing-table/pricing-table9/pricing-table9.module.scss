@@ -259,6 +259,10 @@
       padding: 0.4em;
       border-radius: 10px;
     }
+    &:hover {
+      color: var(--composer-font-color-primary);
+      background-color: var(--composer-primary-secondary);
+    }
     border: none;
     position: absolute;
     bottom: calc(100% + 20px);

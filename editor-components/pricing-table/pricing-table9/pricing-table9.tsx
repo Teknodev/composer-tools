@@ -1223,9 +1223,7 @@ class PricingTable9 extends BasePricingTable {
           if (this.getType(e.value[i]) === "Button")
             return (
               <div
-                className={`${this.decorateCSS("button")} ${this.decorateCSS(
-                  "m-plan-price",
-                )}`}
+                className={`${this.decorateCSS("button")} ${this.decorateCSS("m-plan-price")}`}
               >
                 {this.getElement(e.value[i])}
               </div>
