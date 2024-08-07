@@ -76,9 +76,11 @@
             text-align: center;
             border-radius: 5px;
             padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border: 1px solid var(--composer-secondary-color);
-            max-width: 40vh;
-            width: 20vh;
+            max-width: 200px;
             background-color: transparent;
             transition: all 0.2s linear;
             &:hover {
