@@ -12,18 +12,20 @@
     display: flex;
     flex-direction: column;
     place-items: center;
-    
 
     .up-text {
       text-align: center;
-      line-height: 10px;
 
       .subtitle {
         font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 10px;
         color: var(--composer-font-color-primary);
       }
 
       .title {
+        margin-top: 0;
+        margin-bottom: 0;
         font-size: 35px;
         color: var(--composer-primary-color);
       }
@@ -32,10 +34,8 @@
     .carousel-div {
       width: 80%;
       gap: 50px;
-      
 
       .carousel {
-
         .dots {
           display: flex !important;
           flex-direction: row;
@@ -43,17 +43,17 @@
           width: fit-content;
           gap: 10px;
           list-style-type: none;
-          margin-top: -20px;
+          margin-top: -24px;
           padding: 0;
 
           li {
             button {
+              border: none;
               transition: 0.3s;
               content-visibility: hidden;
               width: 10px;
               height: 10px;
-              background: var(--composer-font-color-secondary);
-              border-color: var(--composer-font-color-secondary);
+              background: var(--composer-font-color-primary);
               border-radius: 100px;
               margin: 0;
               padding: 0;
@@ -77,7 +77,7 @@
               position: absolute;
               width: calc(100% + 4rem);
               height: 65%;
-              bottom: -30px;
+              bottom: 5px;
               left: -2rem;
               background-color: var(--composer-primary-color);
               z-index: -1;
@@ -86,8 +86,12 @@
 
           .card-inner {
             padding: 3rem;
-            background-color: color-mix(in srgb, var(--composer-font-color-primary),var(--composer-html-background) 90%);
-            display: flex ;
+            background-color: color-mix(
+              in srgb,
+              var(--composer-font-color-primary),
+              var(--composer-html-background) 90%
+            );
+            display: flex;
             flex-direction: column;
             z-index: 0;
             gap: 10px;
@@ -143,31 +147,28 @@
 
         .dots {
           margin-top: 0;
-
         }
 
         .card {
           display: flex !important;
           flex-direction: column !important;
-          
+
           &.active {
             ::before {
               width: calc(100% + 4rem);
               left: -11rem !important;
               content: "";
               display: none;
-
             }
           }
 
-          .card-inner{
+          .card-inner {
             text-align: center;
-            img{
+            img {
               margin: 0 auto;
             }
           }
         }
-
       }
     }
   }
@@ -182,7 +183,7 @@
 
       .carousel {
         width: 100%;
-        
+
         .dots {
           margin-top: 0;
         }
@@ -194,11 +195,9 @@
               content: "";
               display: none;
               left: 0rem !important;
-
             }
           }
         }
-
       }
     }
   }
