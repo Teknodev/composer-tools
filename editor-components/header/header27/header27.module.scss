@@ -63,7 +63,7 @@
                   word-wrap: break-word;
                   text-align: center;
                   height: 200px;
-                  color: var(--composer-primary-color);
+                  color: black;
                 }
 
                 .viewImage{
@@ -102,7 +102,7 @@
                   text-overflow: ellipsis;
                   text-align: center;
                   height: 200px;
-                  color: var(--composer-primary-color);
+                  color: black;
                 }
                 .viewImage{
                   width: 100%;
@@ -138,20 +138,21 @@
                   align-items: center;
                   gap: 10px;
                   font-weight: 400;
-                  background: var(--composer-secondary-color);
+                  background: black;
                   color: var(--composer-font-color-secondary);
                   transition: 0.3s all;
                   margin-top: 10px;
                   max-width: 15vw;
-                  border: 1px solid var(--composer-secondary-color);
+                  border: 1px solid black;
                   --animate-duration: 0.2s;
+                  
 
                   &:hover {
                     background: transparent;
                     color: var(--composer-font-color-primary);
                     transition: 0.3s all;
                     cursor: pointer;
-                    border: 1px solid var(--composer-tertiary-color);
+                    border: 1px solid black;
                   }
                 }
                 .figure {
@@ -167,11 +168,11 @@
                     font-size: 20px;
                     left: -81%;
                     .active-slide {
-                      color: var(--composer-primary-color);
+                      color: black;
                       font-size: 4rem;
                     }
                     .slide-count-power {
-                      color: var(--composer-primary-color);
+                      color: black;
                       .divider{
                         font-size: 30px;
                         margin-left: 10px;
@@ -211,7 +212,7 @@
                   .itemsNo{
                     font-size: 2rem;
                     font-weight: bold;
-                    color: var(--composer-primary-color);
+                    color: black;
                   }
                   .itemDesc{
                     font-size: 1.3rem;
@@ -231,7 +232,7 @@
                   .customerNo{
                     font-size: 2rem;
                     font-weight: bold;
-                    color: var(--composer-primary-color);
+                    color: black;
                   }
                   .customerDesc{
                     font-size: 1.3rem;
@@ -318,11 +319,11 @@
                       font-size: 20px;
                       left: -81%;
                       .active-slide {
-                        color: var(--composer-primary-color);
+                        color: black;
                         font-size: 3.2rem !important;
                       }
                       .slide-count-power {
-                        color: var(--composer-primary-color);
+                        color: black;
                         .divider{
                           font-size: 30px;
                           margin-left: 10px;
@@ -435,11 +436,11 @@
                       font-size: 20px;
                       left: -81%;
                       .active-slide {
-                        color: var(--composer-primary-color);
+                        color: black;
                         font-size: 2.5rem !important;
                       }
                       .slide-count-power {
-                        color: var(--composer-primary-color);
+                        color:black;
                         .divider{
                           font-size: 20px !important;
                           margin-left: 3px;

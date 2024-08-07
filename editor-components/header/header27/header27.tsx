@@ -36,6 +36,7 @@ class Header27 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
+
     this.addProp({
       type: "array",
       displayer: "Slider",
@@ -51,7 +52,7 @@ class Header27 extends BaseHeader {
               key: "background",
               displayer: "Background",
               value:
-                "https://media.istockphoto.com/id/1755578861/tr/foto%C4%9Fraf/handmade-paper-scan.jpg?s=612x612&w=0&k=20&c=CUJjJgQ10OT3m7ftNpiBLHdlyaSenZjcYmyeZg-tcw8=",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b33adc03b007002cc7ed8d?alt=media",
             },
             {
               type: "string",
@@ -168,7 +169,7 @@ class Header27 extends BaseHeader {
               key: "background",
               displayer: "Background",
               value:
-                "https://media.istockphoto.com/id/1755578861/tr/foto%C4%9Fraf/handmade-paper-scan.jpg?s=612x612&w=0&k=20&c=CUJjJgQ10OT3m7ftNpiBLHdlyaSenZjcYmyeZg-tcw8=",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b33adc03b007002cc7ed8d?alt=media",
             },
             {
               type: "string",
@@ -278,6 +279,15 @@ class Header27 extends BaseHeader {
       ],
     });
 
+    this.addProp({
+      type:"boolean",
+      key:"buttonAnimation",
+      displayer:"Button Animation",
+      value:true,
+    })
+
+    
+
     this.setComponentState("active-index", 0);
     this.setComponentState("titleAnimationClass", "animate__fadeInRight");
     this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
@@ -297,6 +307,9 @@ class Header27 extends BaseHeader {
   };
 
   render() {
+
+    const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
+
     const settings = {
       dots: true,
       arrows: false,
@@ -371,9 +384,9 @@ class Header27 extends BaseHeader {
                           {this.castToString(item.button.buttonText) && (
                             <ComposerLink path={item.button.link}>
                               <button
-                                className={`${this.decorateCSS(
-                                  "button"
-                                )} animate__animated ${this.getComponentState(
+                                className={`${this.decorateCSS("button")} ${
+                                  buttonAnimationEnabled ?
+                                 "animate__animated" : "" } ${this.getComponentState(
                                   "buttonAnimationClass"
                                 )}`}
                                 onAnimationEnd={() => {
