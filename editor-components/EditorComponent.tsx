@@ -53,7 +53,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[] };
+  additionalParams?: { selectItems?: string[], maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
@@ -126,9 +126,9 @@ export abstract class Component
     )[0] || this.getProp(propName));
   
     const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
-
+    
     return isStringMustBeElement
-      ? this.getPropValueAsElement(prop)
+      ? this.getPropValueAsElement(prop, properties)
       : prop?.value;
   }
 
@@ -298,19 +298,35 @@ export abstract class Component
           }
         });
       } else {
+        const value = this.getPropValue(clonedPropValue.key, { parent_object: object.value });
         clonedPropValue = {
-          key: clonedPropValue.key, value: this.getPropValue(clonedPropValue.key, {
-            parent_object: object.value
-          })
+          key: clonedPropValue.key, value
         };
       }
       return clonedPropValue;
     });
 
-    if(object.type == "object"){
+    if (object.type == "object") {
+      const isObjectContainsAnotherObject = object.value.some((val: TypeUsableComponentProps) => val.type == "object")
+
       let tmpCasted = [...casted];
       casted = {};
-      tmpCasted.forEach((manipulatedValue) => casted[manipulatedValue.key] = manipulatedValue.value);
+
+      tmpCasted.forEach((manipulatedValue) => {
+        const initialProp = manipulatedValue;
+        let value: any = {};
+
+
+        if (initialProp.type == "object" && isObjectContainsAnotherObject) {
+          initialProp.value.forEach((propVal: any) => {
+            value[propVal.key] = initialProp[propVal.key]
+          })
+        } else {
+          value = manipulatedValue.value;
+        }
+
+        casted[manipulatedValue.key] = value;
+      });
     }
 
     return casted;

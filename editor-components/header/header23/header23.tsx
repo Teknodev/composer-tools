@@ -24,7 +24,7 @@ class Header23 extends BaseHeader {
               displayer: "Top Image",
               key: "top-image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8ed?alt=media&timestamp=1693306974629",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cc?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -43,28 +43,28 @@ class Header23 extends BaseHeader {
               displayer: "Background 1",
               key: "background1",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8ee?alt=media&timestamp=1693306974629",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cd?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8ef?alt=media&timestamp=1693306974629",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266ce?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8f1?alt=media&timestamp=1693306974629",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d0?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 4",
               key: "background4",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd074057bdf002c2ad8f0?alt=media&timestamp=1693306974629",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cf?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -78,7 +78,7 @@ class Header23 extends BaseHeader {
               displayer: "Top Image",
               key: "top-image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad961?alt=media&timestamp=1693307539687",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c7?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -97,28 +97,28 @@ class Header23 extends BaseHeader {
               displayer: "Background 1",
               key: "background1",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad962?alt=media&timestamp=1693307539687",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad963?alt=media&timestamp=1693307539687",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad964?alt=media&timestamp=1693307539687",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 4",
               key: "background4",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd2a9057bdf002c2ad965?alt=media&timestamp=1693307539687",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -132,7 +132,7 @@ class Header23 extends BaseHeader {
               displayer: "Top Image",
               key: "top-image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd323057bdf002c2ad98e?alt=media&timestamp=1693307661626",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d3?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -151,21 +151,21 @@ class Header23 extends BaseHeader {
               displayer: "Background 1",
               key: "background1",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd323057bdf002c2ad98f?alt=media&timestamp=1693307661626",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d4?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd323057bdf002c2ad98d?alt=media&timestamp=1693307661626",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d2?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edd323057bdf002c2ad98c?alt=media&timestamp=1693307661626",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d1?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
