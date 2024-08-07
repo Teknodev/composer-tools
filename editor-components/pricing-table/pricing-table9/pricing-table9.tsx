@@ -1103,39 +1103,7 @@ class PricingTable9 extends BasePricingTable {
           ],
         },
       ],
-    })
-
-    this.addProp({
-      type: "object",
-      key: "pricing2",
-      displayer: "Pricing 2",
-      value: [
-        {
-          type: "string",
-          key: "price",
-          displayer: "Price",
-          value: "$150",
-        },
-        {
-          type: "string",
-          key: "duration",
-          displayer: "Duration",
-          value: "month",
-        },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Get started",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
-    })
+    });
 
     this.addProp({
       type: "object",
@@ -1167,7 +1135,7 @@ class PricingTable9 extends BasePricingTable {
           value: "",
         },
       ],
-    })
+    });
   }
 
   getName(): string {
@@ -1249,7 +1217,7 @@ class PricingTable9 extends BasePricingTable {
           }
           return null;
         })
-        .filter((e: any) => e !== null)
+        .filter((e: any) => e !== null),
     );
 
     const settings = {
@@ -1278,7 +1246,7 @@ class PricingTable9 extends BasePricingTable {
             return (
               <p
                 className={`${this.decorateCSS("content")} ${this.decorateCSS(
-                  "m-plan-title"
+                  "m-plan-title",
                 )}`}
               >
                 {this.getText(e.value[i])}
@@ -1288,7 +1256,7 @@ class PricingTable9 extends BasePricingTable {
             return (
               <div
                 className={`${this.decorateCSS("button")} ${this.decorateCSS(
-                  "m-plan-price"
+                  "m-plan-price",
                 )}`}
               >
                 {this.getElement(e.value[i])}
@@ -1337,7 +1305,7 @@ class PricingTable9 extends BasePricingTable {
                 return [...cols, ...Array(fillCount).fill(null)].map(
                   (item: any, j: number) => {
                     return <div key={`${i}-${j}`}>{this.getElement(item)}</div>;
-                  }
+                  },
                 );
               })}
             </div>
