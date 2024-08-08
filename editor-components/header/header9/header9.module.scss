@@ -64,6 +64,10 @@
           font-weight: inherit;
           font-size: 4rem;
           position: relative;
+          text-align: center;
+          max-width: 70%;
+          word-break: break-all;
+
           &::before {
             content: "";
             width: 0px;

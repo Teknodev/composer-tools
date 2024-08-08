@@ -98,7 +98,9 @@ class Header9 extends BaseHeader {
       type: "array",
       key: "tabs",
       displayer: "Tabs",
-      max: 8,
+      additionalParams: {
+        maxElementCount: 8,
+      },
       value: [
         {
           type: "object",
