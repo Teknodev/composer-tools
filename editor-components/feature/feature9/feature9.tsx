@@ -1,187 +1,290 @@
-import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
-
-type Horizontals = {
-  title: string;
-  description: string;
-  buttonText: string;
-  image: string;
-  link: string;
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+type FeatureItem = {
+  id: string;
+  title: JSX.Element;
+  description: JSX.Element;
+  icon: JSX.Element;
 };
+
 class Feature9 extends BaseFeature {
+  private observers: { [key: string]: IntersectionObserver } = {};
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "string",
+      key: "main-title",
+      displayer: "Title",
+      value: "Our process of building a successful digital product.",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "is-counter-visible",
+      displayer: "Counter Visible",
+      value: true
+    });
+
+
+    this.addProp({
       type: "array",
-      key: "horizontal",
+      key: "feature-items",
       displayer: "Card",
       value: [
         {
+          id: "1",
           type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
+          key: "subtitle",
+          displayer: "Subtitle",
           value: [
             {
               type: "string",
+              key: "id",
+              value: "1",
+              displayer: "Id",
+            },
+            {
+              type: "string",
               key: "title",
-              value: "5 Essential Tips for Starting a Small Business",
+              value: "Discovery",
               displayer: "Title",
             },
             {
               type: "string",
               key: "description",
               value:
-                "Starting a small business can be both exciting and challenging. If you're thinking about starting your own business, check out these 5 essential tips that can help you get started on the right foot.",
+                "The first thing we do is conduct comprehensive research to understand your business and users' goals.We also identify your competition's strengths and weaknesses and define a plan to use all of the findings in your favor.",
               displayer: "Description",
             },
             {
-              type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa361?alt=media&timestamp=1682597705111",
-              displayer: "Image",
+                "CgAdidas",
+              displayer: "Icon",
             },
           ],
         },
         {
+          id: "2",
           type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
+          key: "subtitles",
+          displayer: "Subtitles",
           value: [
             {
               type: "string",
               key: "title",
-              value: "Top 5 Benefits of Yoga for Mind and Body",
+              value: "Foundation",
               displayer: "Title",
             },
             {
               type: "string",
               key: "description",
               value:
-                "Yoga is more than just a physical exercise - it's a practice that can benefit both your mind and body. In this article, we'll explore the top 5 benefits of yoga, including improved flexibility.",
+                "Based on research findings, we start setting up navigation and content hierarchy with the primary goal of making the whole experience as intuitive as possible.",
               displayer: "Description",
             },
             {
-              type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "image",
-              key: "image",
+              type: "icon",
+              key: "icon",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa360?alt=media&timestamp=1682597705111",
-              displayer: "Image",
+                "CgAdidas",
+              displayer: "Icon",
             },
           ],
         },
         {
+          id: "3",
           type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
+          key: "subtitles",
+          displayer: "Subtitles",
           value: [
             {
               type: "string",
               key: "title",
-              value: "Top 5 Destinations for a Winter Getaway",
+              value: "Prototyping",
               displayer: "Title",
             },
             {
               type: "string",
               key: "description",
               value:
-                "Are you dreaming of a winter getaway? Look no further than these top 5 destinations for the perfect winter escape. From hitting the slopes in the Rocky Mountains for everyone.",
+                "We create a digital version of the best ideas from previous phase and create a medium-fidelity prototype.We create a digital version of the best ideas from previous phase and create a medium-fidelity prototype.",
               displayer: "Description",
             },
             {
+              type: "icon",
+              key: "icon",
+              value:"CgAdidas",
+              displayer: "Icon",
+            },
+          ],
+        },
+        {
+          id: "4",
+          type: "object",
+          key: "subtitles",
+          displayer: "Subtitles",
+          value: [
+            {
               type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
+              key: "title",
+              value: "Design",
+              displayer: "Title",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "image",
-              key: "image",
+              type: "string",
+              key: "description",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a673cf72de2002caaa35f?alt=media&timestamp=1682597705111",
-              displayer: "Image",
+                "Our design process is about making simple but eye-catching experiences. The primary goal is to achieve the wow factor and set you apart with that premium look.",
+              displayer: "Description",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              value:
+                "CgAdidas",
+              displayer: "Icon",
+            },
+          ],
+        },
+        {
+          id: "5",
+          type: "object",
+          key: "subtitles",
+          displayer: "Subtitles",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              value: "Development",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "By leveraging the latest technologies, we share your brand and products with the world while focusing on a perfect visual output through stable and high-performing code. Thats all .",
+              displayer: "Description",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              value:
+                "CgAdidas",
+              displayer: "Icon",
             },
           ],
         },
       ],
     });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
-    });
   }
-
   getName(): string {
     return "Feature 9";
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setupObservers();
+    }, 1000); 
+  }
+
+  setupObservers() {
+    const featureItems = this.castToObject<FeatureItem[]>("feature-items");
+    featureItems.forEach((item, index) => {
+      const element = document.getElementById(`card-${index}`);
+      if (element) {   
+        this.observers[index] = new IntersectionObserver(
+          ([entry]) => this.handleIntersection(entry, index),
+          { threshold: 0.8 }
+        );
+        this.observers[index].observe(element);
+      } else {
+        console.log(`Element not found for card-${index}`);
+      }
+    });
+  }
+  handleIntersection(entry: IntersectionObserverEntry, index: number) {
+    const currentElement = entry.target as HTMLElement;
+    const nextElement = document.getElementById(`card-${index + 1}`);
+    const prevElement = document.getElementById(`card-${index - 1}`);
+
+    if (entry.isIntersecting) {
+      currentElement.style.opacity = '1';
+      this.updateCounter(index + 1);
+
+      if (nextElement) {
+        nextElement.style.opacity = '0';
+      }
+      if (prevElement) {
+        prevElement.style.opacity = '0';
+      }
+    } 
+  }
+  updateCounter(id: number) {
+    const counterElement = document.getElementById("counter");
+    if (counterElement) {
+      counterElement.innerText = id.toString();
+    }
+  }
+
+  renderCard(featureItem: FeatureItem, index: number) {
+    setTimeout(() => this.setupObservers(), 0); 
+    return (
+      <div 
+        key={index} 
+        id={`card-${index}`} 
+        className={this.decorateCSS("card-item")}>
+        {
+          featureItem.icon.toString().length!=0 &&(
+            <ComposerIcon name={featureItem.icon.toString()}
+             propsIcon={{ className: this.decorateCSS("icon")}}></ComposerIcon>
+          )
+        }
+        {
+          this.castToString(featureItem.title) &&(
+            <h4 className={this.decorateCSS("sub-title")}>{featureItem.title}</h4>
+          )
+        }
+        {
+          this.castToString(featureItem.description) &&(
+            <h5 className={this.decorateCSS("sub-title-description")}>
+            {featureItem.description}
+          </h5>
+          )
+        }
+      </div>
+    );
+  }
+
   render() {
+    const featureItems = this.castToObject<FeatureItem[]>("feature-items");
+    const mainTitle = this.castToString(this.getPropValue("main-title"));
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {this.castToObject<Horizontals[]>("horizontal").map(
-              (horizontals: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div className={this.decorateCSS("horizontal")} key={index}>
-                  <img
-                    alt=""
-                    className={this.decorateCSS("image")}
-                    src={horizontals.image}
-                  ></img>
-                  <div className={this.decorateCSS("block")}>
-                    <h3 className={this.decorateCSS("title")}>
-                      {horizontals.title}
-                    </h3>
-                    <p className={this.decorateCSS("title-description")}>
-                      {horizontals.description}
-                    </p>
-                    <ComposerLink path={horizontals.link}>
-                      <span className={this.decorateCSS("button")}>
-                        {horizontals.buttonText}
-                      </span>
-                    </ComposerLink>
-                  </div>
-                </div>
-                </div>
-              )
+            {mainTitle && (
+              <div className={this.decorateCSS("main-title-content")}>
+                <h1 className={this.decorateCSS("main-title-content-text")}>
+                  {mainTitle}
+                </h1>
+              </div>
             )}
+            {featureItems.length > 0 && (
+              <div className={this.decorateCSS("sub-title-content")}>
+              {
+                this.getProp("is-counter-visible").value &&(
+                  <h4 id="counter" className={this.decorateCSS("counter")}>1</h4>
+                )
+              }
+              {this.castToObject<FeatureItem[]>("feature-items").map(
+                (featureItem: FeatureItem, index: number) =>
+                  this.renderCard(featureItem, index)
+              )}
+              </div>
+          )}
           </div>
         </div>
       </div>
