@@ -159,6 +159,7 @@
       .tabs {
         flex-direction: column;
         gap: 24px;
+        padding-bottom: 20px;
 
         .left-content {
           order: 1;
@@ -201,7 +202,6 @@
     order: 2;
     justify-content: center !important;
     row-gap: 8px;
-    padding-bottom: 20px;
   }
 }
 

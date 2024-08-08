@@ -347,8 +347,8 @@ class Header9 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("tabs")}>
-            {tabs.length > 0 && (
-              <div className={this.decorateCSS("left-content")}>
+            <div className={this.decorateCSS("left-content")}>
+              {tabs.length > 0 && (
                 <div className={this.decorateCSS("buttons")}>
                   {textExist && (
                     <span className={this.decorateCSS("text")}>
@@ -364,8 +364,10 @@ class Header9 extends BaseHeader {
                     {tabs.length}
                   </span>
                 </div>
-                <div className={this.decorateCSS("tab-buttons")}>
-                  {tabs.map((tab: ITab, index: number) => {
+              )}
+              <div className={this.decorateCSS("tab-buttons")}>
+                {tabs.length > 0 &&
+                  tabs.map((tab: ITab, index: number) => {
                     const url = tab.tabUrl;
                     return url ? (
                       <ComposerLink key={index} path={url}>
@@ -396,16 +398,15 @@ class Header9 extends BaseHeader {
                       </div>
                     );
                   })}
-                  {featuredText && (
-                    <ComposerLink path={this.getPropValue("featuredLink")}>
-                      <h2 className={this.decorateCSS("linkText")}>
-                        {this.getPropValue("featuredText")}
-                      </h2>
-                    </ComposerLink>
-                  )}
-                </div>
+                {featuredText && (
+                  <ComposerLink path={this.getPropValue("featuredLink")}>
+                    <h2 className={this.decorateCSS("linkText")}>
+                      {this.getPropValue("featuredText")}
+                    </h2>
+                  </ComposerLink>
+                )}
               </div>
-            )}
+            </div>
             {currentImage && (
               <div className={this.decorateCSS("right-content")}>
                 <img
