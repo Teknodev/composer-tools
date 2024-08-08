@@ -53,7 +53,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[] };
+  additionalParams?: { selectItems?: string[], maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
@@ -124,9 +124,10 @@ export abstract class Component
     let prop = (properties?.parent_object?.filter(
       (prop: TypeUsableComponentProps) => prop.key === propName
     )[0] || this.getProp(propName));
-
-
-    return prop?.type == "string" && !properties?.as_string
+  
+    const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
+    
+    return isStringMustBeElement
       ? this.getPropValueAsElement(prop, properties)
       : prop?.value;
   }
@@ -277,8 +278,13 @@ export abstract class Component
     let i = this.state.componentProps.props
       .map((prop: any) => prop.key)
       .indexOf(propName);
+      
     let castedObject = this.castingProcess(this.state.componentProps.props[i]);
     return castedObject;
+  }
+
+  castToString(elem: JSX.Element): string {
+    return elem.props?.html;
   }
 
   private castingProcess(object: any) {
@@ -291,16 +297,36 @@ export abstract class Component
             clonedPropValue[nestedObject.key] = this.castingProcess(nestedObject);
           }
         });
-      }else{
-        clonedPropValue = {key: clonedPropValue.key, value: object.getPropValue(clonedPropValue.key)};
+      } else {
+        const value = this.getPropValue(clonedPropValue.key, { parent_object: object.value });
+        clonedPropValue = {
+          key: clonedPropValue.key, value
+        };
       }
       return clonedPropValue;
     });
 
-    if(object.type == "object"){
+    if (object.type == "object") {
+      const isObjectContainsAnotherObject = object.value.some((val: TypeUsableComponentProps) => val.type == "object")
+
       let tmpCasted = [...casted];
       casted = {};
-      tmpCasted.forEach((manipulatedValue) => casted[manipulatedValue.key] = manipulatedValue.value);
+
+      tmpCasted.forEach((manipulatedValue) => {
+        const initialProp = manipulatedValue;
+        let value: any = {};
+
+
+        if (initialProp.type == "object" && isObjectContainsAnotherObject) {
+          initialProp.value.forEach((propVal: any) => {
+            value[propVal.key] = initialProp[propVal.key]
+          })
+        } else {
+          value = manipulatedValue.value;
+        }
+
+        casted[manipulatedValue.key] = value;
+      });
     }
 
     return casted;

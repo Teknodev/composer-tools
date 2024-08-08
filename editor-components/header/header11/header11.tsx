@@ -30,7 +30,7 @@ class Header11 extends BaseHeader {
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3760c057bdf002c296572?alt=media&timestamp=1692628473706"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3760c057bdf002c296572?alt=media&timestamp=1719483639148"
     })
     this.addProp({
       type: "array",
@@ -74,7 +74,7 @@ class Header11 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27a4fba070002b74f37f?alt=media&timestamp=1685006245609",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d67b90181a1002c334885?alt=media&timestamp=1719494609268",
             },
             {
               type: "string",
@@ -102,7 +102,7 @@ class Header11 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f27e7fba070002b74f3b2?alt=media&timestamp=1685006312349",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d67b90181a1002c334886?alt=media&timestamp=1719494609268",
             },
             {
               type: "string",
@@ -130,7 +130,7 @@ class Header11 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f28cbfba070002b74f407?alt=media&timestamp=1685006549635",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d67b90181a1002c334887?alt=media&timestamp=1719494609268",
             },
             {
               type: "string",
