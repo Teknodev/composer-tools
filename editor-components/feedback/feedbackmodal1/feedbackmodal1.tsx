@@ -123,7 +123,7 @@ class FeedbackModal1 extends BaseModal {
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isHeaderTitleExist = this.castToString(this.getPropValue("headerTitle"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
-    const emojiProps = this.castToObject<Emoji[]>("emojis");
+    const emojiProps = this.getPropValue("emojis");
     const isFeedbackIconExist = this.castToString(this.getPropValue("feedback_icon"));
     const inputPlaceholder = this.castToString(this.getPropValue("input_text"));
     const buttonval = this.castToString(this.getPropValue("buttonText"));
@@ -168,7 +168,7 @@ class FeedbackModal1 extends BaseModal {
         
         {emojiProps.length > 0 && (
           <div className={this.decorateCSS("feedbackModalEmojis")}>
-            {emojiProps.map((item, index) => (
+            {emojiProps.map((item: Emoji, index: number) => (
               <span
                 key={index}
                 id={`emoji-${index + 1}`}
