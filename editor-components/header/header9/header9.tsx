@@ -371,7 +371,7 @@ class Header9 extends BaseHeader {
                           className={
                             this.decorateCSS("tabText") +
                             " " +
-                            (this.getComponentState("activeTab") == index &&
+                            (this.getComponentState("activeTab") === index &&
                               this.decorateCSS("active"))
                           }
                           onMouseEnter={() => this.handleMouseEnter(index)}
@@ -385,7 +385,7 @@ class Header9 extends BaseHeader {
                         className={
                           this.decorateCSS("tabText") +
                           " " +
-                          (this.getComponentState("activeTab") == index &&
+                          (this.getComponentState("activeTab") === index &&
                             this.decorateCSS("active"))
                         }
                         onMouseEnter={() => this.handleMouseEnter(index)}
