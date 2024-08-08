@@ -2,7 +2,7 @@ import * as React from "react";
 import { Team } from "../../EditorComponent";
 import styles from "./team14.module.scss";
 
-interface Card {
+type Card = {
   image: string;
   name: string;
   position: string;
@@ -159,7 +159,15 @@ class Team14 extends Team {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4,
+      max: 5,
+    });
   }
+
   componentDidMount() {
     const downPageElement = document.querySelector(`.${styles["down-page"]}`);
     if (downPageElement) {
@@ -174,31 +182,60 @@ class Team14 extends Team {
     return "Team 14";
   }
   render() {
-    const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title", { as_string: true });
+    const subtitle = this.getPropValue("subtitle", { as_string: true });
     const team = this.castToObject<Card[]>("team");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {(title || subtitle) && (
             <div className={this.decorateCSS("up-page")}>
-              {title && <h1 className={this.decorateCSS("title")}>{title}</h1>}
-              {subtitle && <p className={this.decorateCSS("subtitle")}>{subtitle}</p>}
+              {title && (<h1 className={this.decorateCSS("title")}>{title}</h1>)}
+              {subtitle && (<p className={this.decorateCSS("subtitle")}>{subtitle}</p>)}
             </div>
           )}
-          <div className={this.decorateCSS("down-page")}>
-            {team.map((teamMember, index) => (
-              <div className={this.decorateCSS("portfolio")}>
-                <img className={this.decorateCSS("image")} src={teamMember.image} alt={`${teamMember.name}'s image`} />
-                <div className={this.decorateCSS("info")}>
-                  <div className={this.decorateCSS("name")}>{teamMember.name}</div>
-                  <div className={this.decorateCSS("position")}>{teamMember.position}</div>
-                  <div className={this.decorateCSS("description")}>{teamMember.description}</div>
-                </div>
-              </div>
-            ))}
-          </div>
 
+          <div className={this.decorateCSS("down-page")}
+            style={{
+              gridTemplateColumns: `repeat(${this.getPropValue(
+                "itemCount"
+              )}, 1fr)`,
+            }}
+          >
+            {team.map((teamItem: Card, index: number) => {
+              const image = teamItem.image;
+              const name = this.getPropValue(teamItem.name, { as_string: true });
+              const position = this.getPropValue(teamItem.position, { as_string: true });
+              const description = this.getPropValue(teamItem.description, { as_string: true });
+
+              return (
+                <div className={this.decorateCSS("card")}>
+                  <div className={this.decorateCSS("portfolio")}>
+                    {image && (
+                      <img className={this.decorateCSS("image")}
+                        src={image}
+                        alt={`${name}'s image`}
+                        key={`team14-${index}`}
+                      />
+                    )}
+                    { (
+                      <div className={this.decorateCSS("info")}>
+                        {(
+                          <div className={this.decorateCSS("name")}>{name}</div>
+                        )}
+                        {(
+                          <div className={this.decorateCSS("position")}>{position}</div>
+                        )}
+                        {(
+                          <div className={this.decorateCSS("description")}>{description}</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
