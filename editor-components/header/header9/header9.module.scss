@@ -17,6 +17,8 @@
     height: 100%;
     display: flex;
     flex-direction: row;
+    position: relative;
+
     .left-content {
       width: 100%;
       display: flex;
@@ -124,7 +126,7 @@
 
 .social {
   position: absolute;
-  left: 60px;
+  left: 0;
   bottom: 50px;
   font-size: 1.5rem;
   color: var(--composer-font-color-primary);
