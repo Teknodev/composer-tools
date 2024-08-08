@@ -23,7 +23,7 @@
           width: 40%;
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 5px;
           padding: 0 40px 0 80px;
 
           justify-content: center;
@@ -49,6 +49,10 @@
           }
 
           .button-group {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            gap: 10px;
             .button {
               font-size: 1.5rem;
               border: none;
@@ -57,6 +61,7 @@
               background-color: transparent;
               padding: 10px 30px;
               transition-duration: 0.3s easein-out;
+              min-width: 180px;
             }
             .button:hover {
               color: var(--composer-font-color-secondary);
@@ -214,6 +219,13 @@
         .left-content {
           width: 100% !important;
           padding: 0 30px !important;
+
+          .button-group {
+            .button {
+              font-size: 1.5rem !important;
+              min-width: 150px !important;
+            }
+          }
         }
 
         .slider-style {
@@ -368,6 +380,7 @@
           .button-group {
             .button {
               font-size: 1rem !important;
+              min-width: 120px !important;
             }
           }
         }

@@ -280,7 +280,7 @@ class Testimonials10Page extends Testimonials {
       dots: false,
       infinite: true,
       speed: 700,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
