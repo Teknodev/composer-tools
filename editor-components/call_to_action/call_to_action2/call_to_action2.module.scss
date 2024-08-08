@@ -1,120 +1,266 @@
 .container {
     width: 100%;
-    padding: 150px 50px;
+    padding: 50px;
+    background: var(--composer-html-background);
+
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
         display: flex;
-        justify-content: center;
-        .call-to-action2-page {
+        flex-direction: column-reverse;
+        .video {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.8);
+            left: 118px;
+            top: 279px;
+            place-items: center;
+            padding: 20px;
+            z-index: 9;
+            width: 84%;
+            .player {
+                width: 97%;
+                height: 670px;
+                z-index: 10;
+               
+            }}
+        .video-container {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
             justify-content: center;
-            gap: 20px;
-            width: 50%;
-            .description {
-                font-weight: 100;
-                color: var(--composer-font-color-primary);
-                margin: 0;
+            position: relative;
+            top: 585px;
+            left: 19px;
+
+            .play-icon-box {
+                position: absolute;
+                top: 50%;                 
+                transform: translate(-50%, -50%);
+                color: var(--composer-font-color-secondary);
                 font-size: 2rem;
-                line-height: 1.5;
-            }
-            .h-1 {
-                font-size: 4rem;
-                color: var(--composer-primary-color);
-                margin: 0px 0px 20px;
+                background: var(--composer-primary-color);
+                width: 80px;
+                height: 80px;
+                display: grid;
+                place-items: center;
+                border-radius: 100%;
+                cursor: pointer;
+                z-index: 2;
+            }}
+
+        .header-2 {
+            .image-container {
+                display: flex;
+                justify-content: center;
+
+                .image {
+                    width: 90%;
+                    bottom: 372px;
+                    z-index: 1;
+                    position: relative;
+                }
             }
         }
-        .call-to-action2-page-buttons {
-            width: 50%;
+
+        .call-to-action {
             display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
-            padding-top: 10px;
-            .button {
-                margin: 0 20px;
-                cursor: pointer;
-                text-decoration: none;
-                text-align: center;
-                transition: 0.3s;
-                display: block;
-                color: white;
-                background-color: var(--composer-secondary-color);
-                padding: 15px 30px;
-                font-size: 1.5rem;
-                font-weight: 400;
-                border-radius: 6px;
-                border: 1px solid transparent;
-                width: 250px;
-                &:hover {
-                    background-color: transparent;
-                    color: white;
-                    border: 1px solid white;
+            width: 100%;
+            background: var(--composer-secondary-color);
+            padding: 67px;
+            height: 600px;
+    
+            .header {
+        
+                .subtitle {
+                    color: var(--composer-primary-color);
+                    margin: 0px 0px 20px;
+                    overflow: visible;
+                    white-space: normal;
+                    word-wrap: break-word;
+                    word-break: break-all; 
+                    max-width: 400px; 
+                    font-size: 18px;               
                 }
-            }
-            .button2 {
-                cursor: pointer;
-                text-decoration: none;
-                text-align: center;
-                transition: 0.3s;
-                display: block;
-                color: white;
-                background-color: var(--composer-secondary-color);
-                padding: 15px 30px;
-                font-size: 1.5rem;
-                font-weight: 400;
-                border-radius: 6px;
-                border: 1px solid transparent;
-                width: 250px;
-                &:hover {
-                    background-color: transparent;
-                    border: 1px solid white;
+             }
+
+                .title{
+                    font-size: 33px;
+                    letter-spacing: 3px;
+                    overflow: visible;
+                    white-space: normal;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                    word-break: normal; 
+                    overflow-wrap: normal; 
+                    color: var(--composer-primary-color);
+                    
+                }
+            
+
+            .call-to-action-buttons {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                position: relative;
+                top: 50px;
+
+                .button {
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                    transition: 0.3s;
+                    display: block;
+                    color: var(--composer-font-color-secondary);
+                    background-color: var(--composer-primary-color);
+                    padding: 15px 30px;
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    width: 250px;
+                    overflow: visible;
+                    white-space: normal;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                    &:hover {
+                        background-color: var(--composer-tertiary-color);
+                        color: var(--composer-font-color-secondary);
+                        border: 1px var(--composer-font-color-primary);
+                    }
                 }
             }
         }
+
+    }
+    .new-component-button{
+        bottom: 320px;
     }
 }
+
 
 @media only screen and (max-width: 768px) {
     .container {
         padding: 50px 20px;
-        .call-to-action2-page {
-            text-align: center;
+
+        .header-2 {
+          
+            .image-container {
+                .image {
+                    bottom: 337px !important;
+                }
+            }
+        }
+
+        .call-to-action {
             width: 100%;
-            margin: 0;
-            padding: 10px;
-            h1,
-            h2 {
-                width: 100% !important;
+            padding: 37px !important;
+            height: 533px !important;
+
+            .header {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                width: 100%;
+                position: relative;
+                top: 43px;
+
+                .title{
+                    font-size: 22px !important;
+                }
+                .subtitle{
+                    margin: 0 0 0 0 !important;
+                }
+
+                .button {
+                    position: relative;
+                    top: 55px;
+                }
             }
+
+
         }
-        .call-to-action2-page-buttons {
-            flex-direction: column;
-            .button2{
-                margin: 20px;
-            }
-        }
+        .video {  
+            position: fixed;
+            width: 85vw;
+            height: 80vw;
+            background: rgba(0, 0, 0, 0.8);
+            top: 248px !important;
+            left: 57px !important;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            z-index: 9;
+            width: 85% !important;
+            .player { 
+                height: 574px !important;            
+            }}
+        .video-container {
+            position: relative;
+            top: 398px !important;
+            .play-icon-box {
+            width: 63px !important;
+            height: 63px !important;
+            }}
     }
 }
 
 @media only screen and (max-width: 450px) {
     .container {
         padding: 50px 20px;
-        .call-to-action2-page {
-            text-align: center;
-            width: 100%;
-            h1,
-            h2 {
-                width: 100% !important;
-            }
-        }
-        .call-to-action2-page-buttons {
+        .header-2 {
+            display: flex;
             flex-direction: column;
-            
-            .button2{
-                margin: 20px;
+            align-items: center;
+
+            .image {
+               margin-top: 288px ;
             }
         }
+
+        .call-to-action {
+            display: flex;
+            flex-direction: column;
+            height: 285px !important;
+
+            .header {
+                flex-direction: column !important;
+                align-items: center !important;
+                top: 0 !important;
+
+                .title{
+                    font-size: 20px !important;
+                    text-align: center;
+                }
+                .subtitle{
+                    margin: 0 0 0 0 !important;
+                }
+            }
+
+            .call-to-action-buttons {
+                justify-content: center !important;
+                top: 0 !important;
+                margin: 15px 0 0 0 !important;
+            }
+        }
+        .video {
+            position: fixed;
+            width: 78vw !important;
+            height: 64vh !important;
+            background: rgba(0, 0, 0, 0.8);
+            top: 80vw !important;
+            left: 36px !important;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            z-index: 9;
+            .player {
+                width: 100%;
+                height: 243px !important;
+                z-index: 10;
+               
+            }}
+        .video-container {
+           position: relative;
+           top: 306px !important;
+          left: 23px !important;
+
+            .play-icon-box {
+                width: 50px !important;
+                height: 50px !important;
+            }}
     }
 }
