@@ -57,31 +57,31 @@ class FeedbackModal1 extends BaseModal {
         {
           type: "icon",
           key: "emoji",
-          displayer: "Very Bad",
+          displayer: "Icon",
           value: "FaRegFrown",
         },
         {
           type: "icon",
           key: "emoji",
-          displayer: "Bad",
+          displayer: "Icon",
           value: "FaRegMeh",
         },
         {
           type: "icon",
           key: "emoji",
-          displayer: "Neutral",
+          displayer: "Icon",
           value: "FaRegSmile",
         },
         {
           type: "icon",
           key: "emoji",
-          displayer: "Good",
+          displayer: "Icon",
           value: "FaRegSmile",
         },
         {
           type: "icon",
           key: "emoji",
-          displayer: "Very Good",
+          displayer: "Icon",
           value: "FaRegGrin",
         },
       ],
@@ -105,13 +105,14 @@ class FeedbackModal1 extends BaseModal {
   handleEmojiClick(emojiId: number) {
     const emojiElements = document.querySelectorAll(`.${styles.feedbackModalEmoji}`);
     emojiElements.forEach((element) => {
-      element.classList.remove(styles.selected);
-      (element as HTMLElement).style.backgroundColor = "transparent";
+        element.classList.remove(styles.selected);
     });
 
     const selectedElement = document.getElementById(`emoji-${emojiId}`);
     if (selectedElement) {
-      selectedElement.classList.add(styles.selected);
+        selectedElement.classList.add(styles.selected);
+    } else {
+        console.error(`Element with id emoji-${emojiId} not found.`);
     }
   }
 

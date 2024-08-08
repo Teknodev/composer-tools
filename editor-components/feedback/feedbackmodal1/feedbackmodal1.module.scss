@@ -17,7 +17,7 @@
     .icon {
       width: 30px;
       height: 30px;
-      color: var(--composer-primary-color);
+      color: var(--composer-font-color-primary);
     }
 
     .feedbackModalHeaderh1 {
@@ -25,6 +25,7 @@
       font-size: 1.5rem;
       padding-left: 7px;
       flex-grow: 1;
+      color: var(--composer-font-color-primary);
     }
 
     .feedbackModalCloseButton {
@@ -54,6 +55,7 @@
       margin: 0;
       font-size: 2rem;
       text-align: center;
+      color: var(--composer-font-color-primary);
     }
   }
 
@@ -74,6 +76,7 @@
     justify-content: space-around;
     flex-direction: row;
     margin-bottom: 20px;
+    flex-wrap: wrap;
   
     .feedbackModalEmoji {
       position: relative;
@@ -85,6 +88,7 @@
       border-radius: 50%;
       transition: background-color 0.3s, transform 0.3s;
       background-color: #d2d1d13a;
+      margin-bottom: 10px;
   
       &::before,
       &::after {
@@ -110,10 +114,6 @@
         height: 100px;
       }
   
-      &.selected {
-        border: 2px solid currentColor;
-      }
-  
       .feedbackModalEmojiIcon {
         align-items: center;
         font-size: 2.5rem;
@@ -123,20 +123,16 @@
         height: 30px;
       }
   
-      .feedbackModalEmojiLabel {
-        margin-top: 5px;
-        font-size: 0.75rem;
-      }
-  
+      &.selected,
       &:hover {
         background: linear-gradient(to bottom, #f6df6d, #76dca3);
         transform: scale(1.1);
-  
+    
         &::before,
         &::after {
           opacity: 1;
         }
-  
+    
         .feedbackModalEmojiIcon {
           filter: grayscale(0%);
         }
@@ -162,8 +158,9 @@
         position: relative;
         width: 360px;
         height: 95px;
+        border-color: var(--composer-font-color-primary);
         border-radius:  var(--composer-border-radius);;
-        border: 0.5px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
+        //border: 0.5px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
         background: var(--composer-html-background);
         color: var(--composer-font-color-primary);
         padding-bottom: 55px;
