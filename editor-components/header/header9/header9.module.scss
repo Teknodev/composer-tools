@@ -148,28 +148,25 @@
   .container {
     .max-content {
       height: auto;
-      min-height: 100vh;
 
       .tabs {
         flex-direction: column;
+        gap: 24px;
 
         .left-content {
           order: 1;
-          height: 48vh;
-          padding: 2rem 1rem;
+          height: auto;
           .buttons {
             display: none;
           }
 
           .tab-buttons {
             position: static;
-            left: 0;
             align-items: center;
 
             .tabText {
               font-size: 2.5rem;
               text-align: center;
-
               &::before {
                 top: 18px;
               }
@@ -177,11 +174,9 @@
           }
 
           .linkText {
-            height: 4vh;
             text-align: center;
-            &::before {
-              top: 25px;
-            }
+            margin: 0;
+            margin-top: 20px;
           }
         }
 
@@ -194,10 +189,11 @@
 
   .social {
     width: 100%;
-    left: 50%;
-    bottom: 10px;
-    transform: translateX(-50%);
+    position: static;
+    order: 2;
     justify-content: center !important;
+    row-gap: 8px;
+    padding-bottom: 20px;
   }
 }
 
@@ -206,8 +202,6 @@
     .max-content {
       .tabs {
         .left-content {
-          margin-bottom: 0;
-          height: 50vh;
           .tab-buttons {
             .tabText {
               font-size: 1.5rem;
@@ -218,9 +212,9 @@
             }
           }
           .linkText {
-            font-size: 1.5rem;
+            font-size: 1rem;
             &::before {
-              top: 25px;
+              top: 17px;
             }
           }
         }
@@ -233,6 +227,5 @@
   }
   .social {
     font-size: 1rem;
-    bottom: 10px;
   }
 }

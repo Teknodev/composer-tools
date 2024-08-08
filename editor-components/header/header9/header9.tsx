@@ -98,6 +98,7 @@ class Header9 extends BaseHeader {
       type: "array",
       key: "tabs",
       displayer: "Tabs",
+      max: 8,
       value: [
         {
           type: "object",
@@ -329,13 +330,17 @@ class Header9 extends BaseHeader {
   }
 
   render() {
-    const textExist = this.getPropValue("text", { as_string: true });
+    const textExist: string = this.getPropValue("text", { as_string: true });
     const socials = this.castToObject<ISocial[]>("socials");
-    const featuredText = this.getPropValue("featuredText", { as_string: true });
+    const featuredText: string = this.getPropValue("featuredText", {
+      as_string: true,
+    });
     const tabs = this.castToObject<ITab[]>("tabs");
-    const activeTabIndex = this.getComponentState("activeTab")
-    let currentImage = tabs[activeTabIndex].image;
-    
+    const activeTabIndex: number = this.getComponentState("activeTab");
+
+    // this prevents crash when tabs.length === 0
+    const currentImage = tabs[activeTabIndex]?.image ?? null;
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -369,9 +374,7 @@ class Header9 extends BaseHeader {
                             (this.getComponentState("activeTab") == index &&
                               this.decorateCSS("active"))
                           }
-                          onMouseEnter={() =>
-                            this.handleMouseEnter(index)
-                          }
+                          onMouseEnter={() => this.handleMouseEnter(index)}
                         >
                           {this.castToString(tab.tabText)}
                         </div>
@@ -385,9 +388,7 @@ class Header9 extends BaseHeader {
                           (this.getComponentState("activeTab") == index &&
                             this.decorateCSS("active"))
                         }
-                        onMouseEnter={() =>
-                          this.handleMouseEnter(index)
-                        }
+                        onMouseEnter={() => this.handleMouseEnter(index)}
                       >
                         {this.castToString(tab.tabText)}
                       </div>
@@ -407,28 +408,28 @@ class Header9 extends BaseHeader {
               <div className={this.decorateCSS("right-content")}>
                 <img
                   src={currentImage}
-                  alt="image"
+                  alt="slider-image"
                   className={this.decorateCSS("image")}
                 />
               </div>
             )}
+            {socials.length > 0 && (
+              <div className={this.decorateCSS("social")}>
+                {socials.map((tab: ISocial, idx: number) => (
+                  <div
+                    style={{ width: `${100 / socials.length} %` }}
+                    className={this.decorateCSS("social-item")}
+                  >
+                    <ComposerLink key={idx} path={tab.socialUrl}>
+                      <div className={this.decorateCSS("social-link")}>
+                        {tab.socialLinkText}
+                      </div>
+                    </ComposerLink>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          {socials.length > 0 && (
-            <div className={this.decorateCSS("social")}>
-              {socials.map((tab: ISocial, idx: number) => (
-                <div
-                  style={{ width: `${100 / socials.length} %` }}
-                  className={this.decorateCSS("social-item")}
-                >
-                  <ComposerLink key={idx} path={tab.socialUrl}>
-                    <div className={this.decorateCSS("social-link")}>
-                      {tab.socialLinkText}
-                    </div>
-                  </ComposerLink>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     );
