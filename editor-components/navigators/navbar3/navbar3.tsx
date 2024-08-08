@@ -1742,7 +1742,12 @@ class Navbar3 extends BaseNavigator {
           <div className={this.decorateCSS("contentDown")}>
             {logoImage ? (
               <ComposerLink path={imageUrl}>
-                <img src={logoImage} width={200} alt="" />
+                <img
+                  className={this.decorateCSS("logo-img")}
+                  src={logoImage}
+                  width={200}
+                  alt=""
+                />
               </ComposerLink>
             ) : (
               <ComposerLink path={textUrl}>
