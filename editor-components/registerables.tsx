@@ -206,6 +206,7 @@ import ImageGalleryCompanent1 from "./Image_gallery/image_gallery_1/image-galler
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
+import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -416,6 +417,7 @@ function Registerables(composer: ComponentsRegistery) {
     new TermsOfUseModal(),
     new SurveyModal(),
     new NoticeModal(),
+    new NotificationModal2(),
     new SubscriptionModal(),
     new LocationComponent1(),
   ]);
