@@ -88,43 +88,46 @@ class NotificationModal1 extends BaseModal {
   render() {
     const backgroundImage = this.getPropValue("background_image");
     const overlay = this.getPropValue("overlay");
+    const firstTitle = this.castToString(this.getPropValue("firstTitle"));
     const isTitleExist = this.castToString(this.getPropValue("secondTitle"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
-    
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("image-container")}>
-              {backgroundImage && (
-                <>
-                  <img
-                    className={this.decorateCSS("image")}
-                    src={backgroundImage}
-                  />
-                  <h2 className={this.decorateCSS("first-header")}>
+            {(backgroundImage || firstTitle) && (
+              <div className={this.decorateCSS("image-container")}>
+                
+                {backgroundImage && (
+                  <>
+                    <img
+                      className={this.decorateCSS("image")}
+                      src={backgroundImage}
+                    />
+                    <h2 className={this.decorateCSS("first-header")}>
                     {this.getPropValue("firstTitle")}
-                  </h2>
-                </>
-              )}
-              {overlay && (
-                <div className={this.decorateCSS("overlay")}></div>
-              )}
-              {!backgroundImage && overlay && (
-                <div className={this.decorateCSS("overlay2")}>
-                 <h2 className={this.decorateCSS("first-header")}>
-                  {this.getPropValue("firstTitle")}
-                </h2> 
-                </div>
-              )}
-              {!backgroundImage && !overlay && (
-                <div className={this.decorateCSS("overlay3")}>
-                  <h2 className={this.decorateCSS("first-header")}>
-                  {this.getPropValue("firstTitle")}
-                </h2> 
-                </div>
-              )}
-            </div>
+                    </h2>
+                  </>
+                )}
+                {overlay && (
+                  <div className={this.decorateCSS("overlay")}></div>
+                )}
+                {!backgroundImage && overlay && (
+                  <div className={this.decorateCSS("overlay2")}>
+                    <h2 className={this.decorateCSS("first-header")}>
+                    {this.getPropValue("firstTitle")}
+                    </h2>
+                  </div>
+                )}
+                {!backgroundImage && !overlay && (
+                  <div className={this.decorateCSS("overlay3")}>
+                    <h2 className={this.decorateCSS("first-header")}>
+                    {this.getPropValue("firstTitle")}
+                    </h2>
+                  </div>
+                )}
+              </div>
+            )}
             <div>
                {isTitleExist &&
               <h3 className={this.decorateCSS("second-header")}>

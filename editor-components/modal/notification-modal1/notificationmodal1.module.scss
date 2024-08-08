@@ -76,7 +76,7 @@
           text-align: center;
           margin: auto;
           transform: translate(-50%, -50%);
-          color: var(composer font-color-primary);;
+          color: var(composer font-color-primary);
           font-size: 1.2rem;
           z-index: 3;
         }
@@ -105,16 +105,17 @@
 
     .button-background {
       width: 100%;
-      padding: 20px;
+      padding: 20px 40px 20px 20px;
       background-color: color-mix(in srgb, var(--composer-font-color-secondary), var(--composer-font-color-primary) 10%);
       ;
       border-radius: 0 0 15px 15px;
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
       margin-top: 20px;
       text-align: center;
+      gap: 80px;
 
       .button {
         background-color: var(--composer-primary-color);
@@ -128,6 +129,9 @@
         &:hover {
           background-color: var(--composer-primary-color);
         }
+      }
+      .button:not(:first-child) {
+        margin-right: 10px;
       }
     }
   }
