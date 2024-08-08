@@ -108,7 +108,7 @@ class Header5 extends BaseHeader {
               backgroundImage: `url(${heading.backgroundImage})`,
             }}
           >
-            <div className={heading.overlay && this.decorateCSS("overlay")}>
+            <div className={heading.overlay ? this.decorateCSS("overlay"):""}>
               <div className={this.decorateCSS("heading-page")}>
                 {isTitleColoredExist && (
                   <h1 className={this.decorateCSS("heading-section-name")}>
