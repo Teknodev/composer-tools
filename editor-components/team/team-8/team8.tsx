@@ -229,6 +229,12 @@ class Team8 extends Team {
         },
       ],
     });
+    this.addProp({
+      type:"number",
+      key:"slidesToShow",
+      displayer:"Slides To Show",
+      value:5
+    })
   }
 
   getName(): string {
@@ -236,15 +242,43 @@ class Team8 extends Team {
   }
 
   render() {
+    const slides = this.castToObject<Card[]>("header");
+
     const settings = {
       arrows: false,
       dots: true,
       infinite: true,
-      speed: 700,
+      speed: 500,
       autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: 5,
+      slidesToShow: slides.length <this.getPropValue("slidesToShow")? slides.length:this.getPropValue("slidesToShow"),
       slidesToScroll: 1,
+      appenDots:(dots: true) => (
+        <div 
+        style={{
+          backgroundColor: "#fff",
+          borderRadius: "10px",
+          padding:"10px",
+        }}
+        >
+          <ul style={{margin: "0px"}}>{dots}</ul>
+        </div>
+      ),
+      customPaging: (i: any) => (
+        <div className={this.decorateCSS("dotsStyle")}
+          style={{
+          width: "10px",
+          height:"10px",
+          color: "transparent",
+          border: "2px white solid",
+          borderRadius:"50%",
+        }}
+       >
+        
+        {i+1}
+       </div> 
+      ),
+    
       rtl: false,
       responsive: [
         {
@@ -292,7 +326,7 @@ class Team8 extends Team {
               <div className={this.decorateCSS("wrapper")}>
                 <div className={this.decorateCSS("slider-parent")}>
                   <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-                    {this.castToObject<Card[]>("header").map(
+                    {slides.map(
                       (item: Card, index: number) => (
                         <div
                           className={this.decorateCSS("slider-inner-div")}
