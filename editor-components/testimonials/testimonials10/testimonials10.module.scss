@@ -20,12 +20,13 @@
         flex-direction: row;
 
         .left-content {
-          width: 50%;
-          padding-left: 200px;
-          margin: 30px;
+          width: 40%;
           display: flex;
           flex-direction: column;
           gap: 20px;
+          padding: 0 40px 0 80px;
+
+          justify-content: center;
 
           .title {
             margin-bottom: 5px;
@@ -37,6 +38,7 @@
             margin: 0;
             color: var(--composer-font-color-primary);
             font-size: 3.5rem;
+            text-align: start;
           }
 
           .description {
@@ -47,7 +49,7 @@
           }
 
           .button-group {
-            .buttonObject {
+            .button {
               font-size: 1.5rem;
               border: none;
               color: var(--composer-secondary-color);
@@ -56,7 +58,7 @@
               padding: 10px 30px;
               transition-duration: 0.3s easein-out;
             }
-            .buttonObject:hover {
+            .button:hover {
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-secondary-color);
             }
@@ -66,39 +68,45 @@
         .slider-style {
           position: relative;
           margin-top: 50px;
-          left: 20px;
           display: flex;
+          flex-direction: column;
           justify-content: center;
+          padding-left: 20px;
           align-items: center;
           background: var(--composer-font-color-primary);
           width: 100%;
           height: 140%;
+          left: 20px;
+          gap: 40px;
 
           .hiliteTitle {
             font-size: 6.5rem;
             position: absolute;
             color: var(--composer-font-color-secondary);
-            right: 0;
+            right: 50px;
             bottom: -15px;
           }
 
-          .slider-inner-div {
+          .slider-inner-div-with-image {
             background: var(--composer-font-color-primary);
-            width: 600px !important;
+            width: 75%;
+            display: flex !important;
+            justify-content: start;
 
             .img-div {
+              z-index: 1;
               .img {
-                margin-bottom: -25px;
-                border: 4px solid var(--composer-html-background);
+                width: 90%;
+                border: 2px solid var(--composer-html-background);
               }
             }
 
             .header-page {
-              width: 100%;
+              width: 60%;
               font-size: 1.5rem;
-              margin-left: 150px;
               background-color: var(--composer-html-background);
-              padding: 30px;
+              padding: 25px 40px;
+              margin: 80px 0 0 -50px;
 
               .icons {
                 font-size: 3rem;
@@ -112,7 +120,60 @@
                 position: absolute;
                 font-size: 7rem;
                 color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-                top: 200px;
+                top: 100px;
+              }
+
+              .card {
+                .text {
+                  text-align: start;
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-primary);
+                }
+                .author {
+                  color: var(--composer-font-color-primary);
+                  font-size: 2rem;
+                }
+                .position {
+                  color: var(--composer-font-color-primary);
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+          .slider-inner-div {
+            background: var(--composer-font-color-primary);
+            width: 75%;
+            display: flex !important;
+            justify-content: center;
+
+            .img-div {
+              z-index: 1;
+              .img {
+                width: 90%;
+                border: 2px solid var(--composer-html-background);
+              }
+            }
+
+            .header-page {
+              width: 70%;
+              font-size: 1.5rem;
+              background-color: var(--composer-html-background);
+              padding: 25px 40px;
+              margin: 80px 0 0 -50px;
+
+              .icons {
+                font-size: 3rem;
+                display: flex;
+                justify-content: flex-end;
+                gap: 15px;
+                color: var(--composer-font-color-primary);
+              }
+
+              .iconquote {
+                position: absolute;
+                font-size: 7rem;
+                color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+                top: 95px;
               }
 
               .card {
@@ -136,8 +197,7 @@
           .slider {
             width: 800px;
             height: 400px;
-            margin-bottom: 90px;
-            margin-right: 70px;
+            margin-top: -30px;
           }
         }
       }
@@ -146,54 +206,132 @@
 }
 @media screen and (max-width: 900px) {
   .container {
+    padding: 0;
     .max-content {
       .testimonials10 {
         display: flex !important;
         flex-direction: column !important;
-
         .left-content {
-          padding: 0 !important;
-          margin: 0 !important;
+          width: 100% !important;
+          padding: 0 30px !important;
         }
 
         .slider-style {
-          left: -30px !important;
-          height: 600px !important;
+          height: 500px !important;
+          width: 100% !important;
+          left: 0 !important;
+          gap: 20px !important;
+          align-items: center !important;
+          padding-left: 0 !important;
 
           .hiliteTitle {
-            font-size: 5rem !important;
+            font-size: 3rem !important;
             position: relative;
-            top: 524px !important;
-            left: 367px !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            margin-right: 10px;
           }
 
-          .slider-inner-div {
-            width: auto;
+          .slider-inner-div-with-image {
+            height: 100% !important;
+            width: 100% !important;
+            flex-direction: column !important;
+            justify-content: start !important;
+            padding: 0 20px !important;
             .img-div {
-              position: relative;
-              top: 19px;
-              left: 55px;
+              width: 50%;
               .img {
-                width: 30%;
+                width: 50% !important;
               }
             }
 
             .header-page {
-              width: 126% !important;
-
+              width: 80% !important;
+              margin: -60px 0 0 120px !important;
+              height: 300px !important;
+              display: flex !important;
+              flex-direction: column !important;
+              justify-content: center !important;
               .icons {
-                margin-right: 100px;
+                font-size: 2rem !important;
+                z-index: 2 !important;
+                margin-right: 25px !important;
               }
-              .card {
-                margin-right: 100px;
+              .iconquote {
+                font-size: 4rem !important;
+                top: 120px !important;
               }
 
-              .iconquote {
-                position: relative;
-                font-size: 5rem !important;
-                top: 200px !important;
+              .card {
+                margin-right: 25px !important;
+
+                .text {
+                  font-size: 1.5rem !important;
+                  padding-right: 0px !important;
+                }
+                .author {
+                  font-size: 2rem !important;
+                }
+                .position {
+                  font-size: 1.5rem !important;
+                }
               }
             }
+          }
+          .slider-inner-div {
+            height: 100% !important;
+            width: 100% !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            margin-top: 0 !important;
+            padding: 0 20px !important;
+            .img-div {
+              width: 40%;
+              height: 40%;
+              .img {
+                width: 100% !important;
+              }
+            }
+
+            .header-page {
+              width: 100% !important;
+              margin: 0 !important;
+              height: 300px !important;
+              display: flex !important;
+              flex-direction: column !important;
+              justify-content: center !important;
+              .icons {
+                font-size: 2rem !important;
+                z-index: 2 !important;
+                margin-right: 25px !important;
+              }
+              .iconquote {
+                font-size: 4rem !important;
+                top: 60px !important;
+              }
+
+              .card {
+                .text {
+                  font-size: 1.5rem !important;
+                  padding-right: 0px !important;
+                }
+                .author {
+                  font-size: 2rem !important;
+                }
+                .position {
+                  font-size: 1.5rem !important;
+                }
+              }
+            }
+          }
+          .slider {
+            max-width: var(--composer-content-width) !important;
+            width: 600px !important;
+            margin-top: 0 !important;
+            margin-right: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
           }
         }
       }
@@ -203,62 +341,154 @@
 
 @media screen and (max-width: 767px) {
   .container {
-    height: 1200px !important;
+    padding: 0;
+    height: auto !important;
     .max-content {
       .testimonials10 {
         display: flex !important;
         flex-direction: column !important;
+        width: 360px !important;
 
         .left-content {
-          width: 32% !important;
-          padding: 0 !important;
+          order: 0 !important;
+          width: 100% !important;
+          margin: 30px 0 !important;
+          .title {
+            font-size: 1.5rem !important;
+            padding-right: 0px !important;
+            margin-bottom: 0 !important;
+          }
+          .subtitle {
+            font-size: 2rem !important;
+          }
+          .description {
+            font-size: 1rem !important;
+            margin-top: 0 !important;
+          }
           .button-group {
-            .buttonObject {
-              width: 50% !important;
+            .button {
+              font-size: 1rem !important;
             }
           }
         }
 
         .slider-style {
-          width: 50%;
-          margin-top: 250px !important;
-          left: -29px !important;
-          height: 551px !important;
+          width: 100% !important;
+          margin-top: 0px !important;
+          left: 0px !important;
+          height: auto !important;
+          padding: 20px 0 !important;
 
-          .slider-inner-div {
-            width: auto;
+          .hiliteTitle {
+            display: none;
+          }
+
+          .slider-inner-div-with-image {
+            width: 100% !important;
+            padding: 20px 0 !important;
+            justify-content: center !important;
+            align-items: center !important;
+            margin-left: 0px !important;
+            margin-top: 0px !important;
             .img-div {
-              position: relative;
-              width: 50% !important;
-              z-index: 1;
+              width: 100% !important;
+              display: flex !important;
+              justify-content: start !important;
+              margin-bottom: -175px;
               .img {
-                width: 65%;
+                width: 40% !important;
+                margin: 0 0 0 56px !important;
               }
             }
 
             .header-page {
-              width: 70% !important;
-              margin-left: 0 !important;
-              position: relative;
-              right: -25px;
-              height: 500px;
-              top: -125px;
+              padding: 20px 20px !important;
+              margin: 0 !important;
+              display: flex !important;
+              flex-direction: column !important;
+              justify-content: space-between !important;
+              height: 400px !important;
 
-              .card {
-                position: relative;
-                top: 130px;
+              .icons {
+                font-size: 2rem !important;
+                margin-right: 0 !important;
               }
 
               .iconquote {
                 font-size: 3rem !important;
-                position: relative;
                 top: 170px !important;
               }
-              .icons {
-                position: relative;
-                top: 10px;
+
+              .card {
+                margin-bottom: 20px !important;
+                .text {
+                  font-size: 1rem !important;
+                }
+                .author {
+                  font-size: 1.5rem !important;
+                }
+                .position {
+                  font-size: 1rem !important;
+                }
               }
             }
+          }
+
+          .slider-inner-div {
+            width: 100% !important;
+            justify-content: center !important;
+            align-items: start !important;
+            margin-left: 0px !important;
+            margin-top: 0px !important;
+            .img-div {
+              width: 300px !important;
+              display: flex !important;
+              justify-content: start !important;
+              top: 100px !important;
+              .img {
+                width: 40%;
+                margin: 0 0 !important;
+              }
+            }
+
+            .header-page {
+              padding: 20px 0 20px 10px !important;
+              margin: 30px 20px !important;
+              width: 100% !important;
+              height: 200px !important;
+              display: flex !important;
+              flex-direction: column !important;
+              justify-content: space-between !important;
+
+              .icons {
+                font-size: 2rem !important;
+                margin-right: 10px !important;
+              }
+
+              .iconquote {
+                font-size: 3rem !important;
+                top: 50px !important;
+              }
+
+              .card {
+                .text {
+                  font-size: 1rem !important;
+                }
+                .author {
+                  font-size: 1.5rem !important;
+                }
+                .position {
+                  font-size: 1rem !important;
+                }
+              }
+            }
+          }
+
+          .slider {
+            max-width: var(--composer-content-width) !important;
+            width: 100% !important;
+            margin-right: 0 !important;
+            height: auto !important;
           }
         }
       }
