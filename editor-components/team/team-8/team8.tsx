@@ -35,20 +35,20 @@ class Team8 extends Team {
       type: "image",
       key: "backroundImage",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
-
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
     });
     this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
       value: true,
-    })
+    });
 
     this.addProp({
       type: "array",
-      key: "header",
-      displayer: "Header",
+      key: "slides",
+      displayer: "Slider",
       value: [
         {
           type: "object",
@@ -71,7 +71,8 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
             },
           ],
         },
@@ -96,7 +97,8 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
             },
           ],
         },
@@ -121,7 +123,8 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
             },
           ],
         },
@@ -146,7 +149,8 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
             },
           ],
         },
@@ -197,7 +201,8 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
             },
           ],
         },
@@ -230,11 +235,11 @@ class Team8 extends Team {
       ],
     });
     this.addProp({
-      type:"number",
-      key:"slidesToShow",
-      displayer:"Slides To Show",
-      value:5
-    })
+      type: "number",
+      key: "slidesToShow",
+      displayer: "Slides To Show",
+      value: 3,
+    });
   }
 
   getName(): string {
@@ -242,49 +247,39 @@ class Team8 extends Team {
   }
 
   render() {
-    const slides = this.castToObject<Card[]>("header");
+    const slides = this.castToObject<Card[]>("slides");
 
     const settings = {
       arrows: false,
       dots: true,
+      dotsClass: this.decorateCSS("dots"),
       infinite: true,
       speed: 500,
       autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: slides.length <this.getPropValue("slidesToShow")? slides.length:this.getPropValue("slidesToShow"),
+      centerMode: true,
+      customPaging: (i: number) => (
+        <button
+          style={
+            this.getComponentState("current-slide") === i
+              ? { background: "white" }
+              : {}
+          }
+        ></button>
+      ),
+      slidesToShow:
+        slides.length < this.getPropValue("slidesToShow")
+          ? slides.length
+          : this.getPropValue("slidesToShow"),
       slidesToScroll: 1,
-      appenDots:(dots: true) => (
-        <div 
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: "10px",
-          padding:"10px",
-        }}
-        >
-          <ul style={{margin: "0px"}}>{dots}</ul>
-        </div>
-      ),
-      customPaging: (i: any) => (
-        <div className={this.decorateCSS("dotsStyle")}
-          style={{
-          width: "10px",
-          height:"10px",
-          color: "transparent",
-          border: "2px white solid",
-          borderRadius:"50%",
-        }}
-       >
-        
-        {i+1}
-       </div> 
-      ),
-    
-      rtl: false,
+      afterChange: (currentSlide: number) => {
+        this.setComponentState("current-slide", currentSlide);
+      },
       responsive: [
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 2,
             slidesToScroll: 1,
           },
         },
@@ -301,74 +296,73 @@ class Team8 extends Team {
     return (
       <div className={this.decorateCSS("container")}>
         <div
-            className={this.decorateCSS("background-image")}
-            style={{
-              backgroundImage: `url(${this.getPropValue("backroundImage")})`,
-            }}
-          >
-            <div className={this.getPropValue("overlay") && this.decorateCSS("overlay")}></div>
-        <div className={this.decorateCSS("max-content")}>
-         
-           
-              <div className={this.decorateCSS("text-box")}>
-                {this.castToString(this.getPropValue("title")) &&
-                  <h2 className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </h2>
-                }
-                {this.castToString(this.getPropValue("description")) &&
-                  <h3 className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </h3>
-                }
-              </div>
+          className={this.decorateCSS("background-image")}
+          style={{
+            backgroundImage: `url(${this.getPropValue("backroundImage")})`,
+          }}
+        >
+          <div
+            className={
+              this.getPropValue("overlay") && this.decorateCSS("overlay")
+            }
+          ></div>
+          <div className={this.decorateCSS("max-content")}>
+            <div className={this.decorateCSS("text-box")}>
+              {this.castToString(this.getPropValue("title")) && (
+                <h2 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h2>
+              )}
+              {this.castToString(this.getPropValue("description")) && (
+                <h3 className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </h3>
+              )}
+            </div>
 
-              <div className={this.decorateCSS("wrapper")}>
-                <div className={this.decorateCSS("slider-parent")}>
-                  <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-                    {slides.map(
-                      (item: Card, index: number) => (
-                        <div
-                          className={this.decorateCSS("slider-inner-div")}
-                          key={`sld-8-${index}`}
-                        >
-                          <div className={this.decorateCSS("content-div")}>
-                            <div className={this.decorateCSS("img-div")}>
-                              {item.image && <div className={this.decorateCSS("image-box")}>
-                                <img
-                                  alt=""
-                                  src={item.image}
-                                  className={this.decorateCSS("img")}
-                                />
-                              </div>
-
-                              }
-
+            <div className={this.decorateCSS("wrapper")}>
+              <div className={this.decorateCSS("slider-parent")}>
+                <ComposerSlider
+                  {...settings}
+                  className={this.decorateCSS("carousel")}
+                >
+                  {slides.map((item: Card, index: number) => (
+                    <div
+                      className={this.decorateCSS("slider-inner-div")}
+                      key={index}
+                    >
+                      <div className={this.decorateCSS("content-div")}>
+                        <div className={this.decorateCSS("img-div")}>
+                          {item.image && (
+                            <div className={this.decorateCSS("image-box")}>
+                              <img
+                                alt=""
+                                src={item.image}
+                                className={this.decorateCSS("img")}
+                              />
                             </div>
-                            <div className={this.decorateCSS("header-page")}>
-                              <h3 className={this.decorateCSS("item-title")}>
-                                {item.imagetitle}
-                              </h3>
-
-                              {this.castToString(item.imagesubtitle) &&
-                                <h1 className={this.decorateCSS("first-header")}>
-                                  {item.imagesubtitle}
-                                </h1>
-                              }
-
-                            </div>
-                          </div>
+                          )}
                         </div>
-                      )
-                    )}
-                  </ComposerSlider>
-               
-             
+                        <div className={this.decorateCSS("header-page")}>
+                          <h3 className={this.decorateCSS("item-title")}>
+                            {item.imagetitle}
+                          </h3>
+
+                          {this.castToString(item.imagesubtitle) && (
+                            <h1 className={this.decorateCSS("first-header")}>
+                              {item.imagesubtitle}
+                            </h1>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </ComposerSlider>
+              </div>
             </div>
           </div>
         </div>
-        </div>
-        </div>
+      </div>
     );
   }
 }

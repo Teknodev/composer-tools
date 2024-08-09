@@ -1,9 +1,9 @@
 .container {
   width: 100%;
- 
+
   .max-content {
     max-width: var(--composer-content-width);
-    margin:  0 auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,14 +11,12 @@
     padding: 20px 0;
 
     .background-image {
-      
       width: auto;
       height: 100%;
       background-position: center;
       position: relative;
       max-width: var(--composer-content-width);
       margin: 0 auto;
-
     }
     .overlay {
       width: 100%;
@@ -27,10 +25,7 @@
       position: absolute;
       max-width: var(--composer-content-width);
       margin: 0 auto;
-
     }
-
-    
 
     .text-box {
       position: relative;
@@ -50,7 +45,7 @@
       .description {
         font-size: 1.75em;
         color: #fff;
-        margin-top: .8em;
+        margin-top: 0.8em;
       }
     }
 
@@ -69,32 +64,28 @@
         width: 100%;
 
         .carousel {
-          >button {
+          /* > button {
             z-index: 10;
             margin-left: 70px;
             margin-right: 110px;
             transition: 300ms;
-          
           }
-          
-          >
-          ul{ 
+
+          > ul {
             transform: translateY(-40px) translateX(-50%);
             width: auto;
             position: absolute;
             left: 50%;
             padding: 0px 5px;
 
-            li{
-              .dotsStyle{
-                &:hover{   
+            li {
+              .dotsStyle {
+                &:hover {
                   background-color: white;
                 }
-                
-              }  
+              }
             }
-          }    
-          
+          } */
 
           .slider-inner-div {
             border-radius: 10px;
@@ -107,7 +98,6 @@
               flex-direction: column;
               justify-content: center;
               align-items: center;
-
 
               .img-div {
                 width: 120px;
@@ -156,66 +146,69 @@
       }
     }
   }
+}
 
+.dots {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  list-style-type: none;
+  padding-left: 0;
 
-  @media only screen and (max-width: 600px) {
-    .max-content {
-     
-      .text-box {
-        display: block;
-        text-align: center;
+  li {
+    background: transparent;
+    > button {
+      padding: 0;
+      background: transparent;
+      border: 2px solid white;
+      border-radius: 100px;
+      display: block;
+      width: 10px;
+      height: 10px;
 
-        .title {
-          font-size: 3rem;
-          color: #fff;
-        }
+      &:hover {
+        background: white;
+      }
+    }
+  }
+}
 
-        .description {
-          font-size: 1.1rem;
-          color: #fff;
-        }
+@media only screen and (max-width: 600px) {
+  .max-content {
+    .text-box {
+      display: block;
+      text-align: center;
+
+      .title {
+        font-size: 3rem;
+        color: #fff;
       }
 
-      .wrapper {
-        flex-direction: column;
-        width: 100%;
+      .description {
+        font-size: 1.1rem;
+        color: #fff;
+      }
+    }
 
-        .slider-parent {
-          .carousel {
-            >ul {
-              transform: translateY(-40px) translateX(-50%);
-              width: 19rem;
-              padding: 0px 5px;
+    .wrapper {
+      flex-direction: column;
+      width: 100%;
 
-              li {
-                button {
-                  &:before {
-                    width: 8px;
-                    height: 8px;
-                  }
+      .slider-parent {
+        .carousel {
+          .slider-inner-div {
+            .content-div {
+              .header-page {
+                .item-title {
+                  font-size: 1rem;
+                  color: #fff;
                 }
-              }
-            }
 
-            .slider-inner-div {
-              .content-div {
-                .header-page {
-                  .item-title {
-                    font-size: 1rem;
-                    color: #fff;
-                  }
-
-                  .first-header {
-                    margin: 10px;
-                    font-size: 1.5rem;
-                    color: #fff;
-                  }
-
-                  .sun-title {
-                    color: #fff;
-                    font-size: 1.2rem;
-                    margin: 5px;
-                  }
+                .first-header {
+                  margin: 10px;
+                  font-size: 1.5rem;
+                  color: #fff;
                 }
               }
             }
