@@ -305,11 +305,6 @@ class Team8 extends Team {
             backgroundImage: `url(${this.getPropValue("backroundImage")})`,
           }}
         >
-          <div
-            className={
-              this.getPropValue("overlay") && this.decorateCSS("overlay")
-            }
-          ></div>
           <div className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("text-box")}>
               {titleExist && (
@@ -376,6 +371,9 @@ class Team8 extends Team {
               </div>
             </div>
           </div>
+          {this.getPropValue("overlay") && (
+            <div className={this.decorateCSS("overlay")} />
+          )}
         </div>
       </div>
     );
