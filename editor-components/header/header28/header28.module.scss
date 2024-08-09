@@ -2,16 +2,24 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
+  div {
+    height: 100%;
   }
   .carousel {
     .content {
       height: 100%;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      max-width: var(--composer-content-width);
+      margin: 0 auto;
 
       .image-box {
         width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+
         .bg-img {
           width: 100%;
           height: 100%;
@@ -72,20 +80,20 @@
       }
 
       .slide-content {
-        position: absolute;
+        position: relative; // for z-index to make it work
+        height: auto;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: start;
         flex-direction: column;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
         gap: 10px;
         padding: 0 6%;
         opacity: 0;
         margin-top: 60px;
         transition: all 0.2s;
+        cursor: pointer;
+        z-index: 2;
 
         .title {
           color: #fff;
@@ -130,7 +138,7 @@
       .arrow {
         position: absolute;
         top: 0;
-        z-index: 999;
+        z-index: 10;
         color: white;
         cursor: pointer;
         bottom: 0;

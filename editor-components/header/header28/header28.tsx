@@ -218,7 +218,7 @@ class HeaderComponent28 extends BaseHeader {
       infinite: true,
       accessibility: true,
       speed: 1000,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       draggable: false,
@@ -313,28 +313,26 @@ class HeaderComponent28 extends BaseHeader {
                     : () => {}
                 }
               >
-                <div className={this.decorateCSS("max-content")}>
-                  {this.castToString(item.getPropValue("tag")) && (
-                    <span className={this.decorateCSS("tag")}>
-                      {item.getPropValue("tag")}
-                    </span>
-                  )}
-                  {this.castToString(item.getPropValue("title")) && (
-                    <h1 className={this.decorateCSS("title")}>
-                      {item.getPropValue("title")}
-                    </h1>
-                  )}
-                  {this.castToString(item.getPropValue("sub_title")) && (
-                    <h3 className={this.decorateCSS("sub_title")}>
-                      {item.getPropValue("sub_title")}
-                    </h3>
-                  )}
-                  {this.castToString(item.getPropValue("description")) && (
-                    <p className={this.decorateCSS("description")}>
-                      {item.getPropValue("description")}
-                    </p>
-                  )}
-                </div>
+                {this.castToString(item.getPropValue("tag")) && (
+                  <span className={this.decorateCSS("tag")}>
+                    {item.getPropValue("tag")}
+                  </span>
+                )}
+                {this.castToString(item.getPropValue("title")) && (
+                  <h1 className={this.decorateCSS("title")}>
+                    {item.getPropValue("title")}
+                  </h1>
+                )}
+                {this.castToString(item.getPropValue("sub_title")) && (
+                  <h3 className={this.decorateCSS("sub_title")}>
+                    {item.getPropValue("sub_title")}
+                  </h3>
+                )}
+                {this.castToString(item.getPropValue("description")) && (
+                  <p className={this.decorateCSS("description")}>
+                    {item.getPropValue("description")}
+                  </p>
+                )}
               </div>
               <ComposerIcon
                 name={this.getPropValue("next_icon")}
