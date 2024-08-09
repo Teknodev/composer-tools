@@ -14,10 +14,10 @@ type ISliderData = {
   image2: string;
   image3: string;
   image4: string;
-  itemNo: string;
-  itemDesc: string;
-  customerNo: string;
-  customerDesc: string;
+  itemNo: JSX.Element;
+  itemDesc: JSX.Element;
+  customerNo: JSX.Element;
+  customerDesc: JSX.Element;
   leftDescription: string;
   rightDescription: string;
   button: any;
@@ -52,7 +52,7 @@ class Header27 extends BaseHeader {
               key: "background",
               displayer: "Background",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b33adc03b007002cc7ed8d?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
             },
             {
               type: "string",
@@ -169,7 +169,7 @@ class Header27 extends BaseHeader {
               key: "background",
               displayer: "Background",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b33adc03b007002cc7ed8d?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
             },
             {
               type: "string",
@@ -280,13 +280,13 @@ class Header27 extends BaseHeader {
     });
 
     this.addProp({
-      type:"boolean",
-      key:"buttonAnimation",
-      displayer:"Button Animation",
-      value:true,
+      type: "boolean",
+      key: "buttonAnimation",
+      displayer: "Button Animation",
+      value: true,
     })
 
-    
+
 
     this.setComponentState("active-index", 0);
     this.setComponentState("titleAnimationClass", "animate__fadeInRight");
@@ -345,6 +345,10 @@ class Header27 extends BaseHeader {
           <div className={this.decorateCSS("slider-parent")}>
             <Slider {...settings} className={this.decorateCSS("carousel")}>
               {slider.map((item: ISliderData, index: number) => {
+                const itemNoExist = this.castToString(item.itemNo)
+                const itemDescExist = this.castToString(item.itemDesc)
+                const customerNo = this.castToString(item.customerNo)
+                const customerDesc = this.castToString(item.customerDesc)
                 return (
                   <div key={index} className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("max-content")}>
@@ -384,11 +388,10 @@ class Header27 extends BaseHeader {
                           {this.castToString(item.button.buttonText) && (
                             <ComposerLink path={item.button.link}>
                               <button
-                                className={`${this.decorateCSS("button")} ${
-                                  buttonAnimationEnabled ?
-                                 "animate__animated" : "" } ${this.getComponentState(
-                                  "buttonAnimationClass"
-                                )}`}
+                                className={`${this.decorateCSS("button")} ${buttonAnimationEnabled ?
+                                    "animate__animated" : ""} ${this.getComponentState(
+                                      "buttonAnimationClass"
+                                    )}`}
                                 onAnimationEnd={() => {
                                   this.handleAnimationEnd({
                                     animationState: "buttonAnimationClass",
@@ -431,22 +434,31 @@ class Header27 extends BaseHeader {
                           <div className={this.decorateCSS("leftDescription")}>
                             {item.leftDescription}
                           </div>
-
+                         
                           <div className={this.decorateCSS("count")}>
-                            <div className={this.decorateCSS("items")}>
-                              <div className={this.decorateCSS("itemsNo")}>{item.itemNo}</div>
-                              <div className={this.decorateCSS("itemDesc")}>{item.itemDesc}</div>
-                            </div>
-                            <div className={this.decorateCSS("line")}></div>
-
-                            <div className={this.decorateCSS("customers")}>
-                              <div className={this.decorateCSS("customerNo")}>
-                                {item.customerNo}
-                              </div>
-                              <div className={this.decorateCSS("customerDesc")}>
-                                {item.customerDesc}
-                              </div>
-                            </div>
+                          {(this.castToString(item.itemNo) || this.castToString(item.itemDesc))&&
+                              <div className={this.decorateCSS("items")}>
+                                <div className={this.decorateCSS("itemsNo")}>
+                                  {item.itemNo}
+                                </div>
+                                <div className={this.decorateCSS("itemDesc")}>
+                                  {item.itemDesc}
+                                </div>
+                              </div>}
+                            {((this.castToString(item.itemNo) || this.castToString(item.itemDesc))
+                             
+                             && (this.castToString(item.customerNo) || this.castToString(item.customerDesc))) &&
+                              <div className={this.decorateCSS("line")}></div>
+                            }
+                              {(this.castToString(item.customerNo) || this.castToString(item.customerDesc))&&
+                              <div className={this.decorateCSS("customers")}>
+                                <div className={this.decorateCSS("customerNo")}>
+                                  {item.customerNo}
+                                </div>
+                                <div className={this.decorateCSS("customerDesc")}>
+                                  {item.customerDesc}
+                                </div>
+                              </div>}
                           </div>
                           <div className={this.decorateCSS("rightDescription")}>
                             {item.rightDescription}

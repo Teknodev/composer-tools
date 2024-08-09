@@ -11,7 +11,6 @@
 
   .slider-parent {
     padding-top: 50px;
-    width: var(--composer-content-width);
     display: flex;
     justify-content: center;
     margin: auto;
@@ -20,8 +19,8 @@
     min-height: 800px;
 
     .carousel {
-      width: 100%;
-      max-width: 1270px;
+      width: 90%;
+      max-width:var(--composer-content-width);
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -96,7 +95,7 @@
                 }
                 .title2 {
                   font-size: 14rem;
-                  width: 50%;
+                  width: 70%;
                   font-weight: bold;
                   font-family: fangsong;
                   text-overflow: ellipsis;
@@ -293,7 +292,7 @@
                   }
                   .title2{
                     text-align: center;
-                    font-size: 9rem !important;
+                    font-size: 10rem !important;
                     width: 60%;
                     height: auto !important;
                   }
