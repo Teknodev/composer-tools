@@ -10,39 +10,65 @@ type ICard = {
 class Stats8Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Hello We are DSN Grid",
+      type: "object",
+      key: "titleItem",
+      displayer: "Item Title",
+      value: [{
+        type: "string",
+        key: "title",
+        displayer: "Title",
+        value: "Hello We are DSN Grid",
+      }],
     });
 
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "We’re a creative agency with an expertise in make custom websites",
+      type: "object",
+      key: "subtitleItem",
+      displayer: "Item Subtitle",
+      value: [{
+        type: "string",
+        key: "subtitle",
+        displayer: "Subtitle",
+        value: "We’re a creative agency with an expertise in making custom websites",
+      }],
     });
 
     this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Founded in 2000, Dsn Grid has become one of the best Digital Agency in Themeforest. Blue money going forward, but deploy to production. First-order optimal strategies build on a culture of contribution and inclusion so those options",
+      type: "object",
+      key: "descriptionItem",
+      displayer: "Item Description",
+      value: [{
+        type: "string",
+        key: "description",
+        displayer: "Description",
+        value: "Founded in 2000, Dsn Grid has become one of the best Digital Agency in Themeforest. Blue money going forward, but deploy to production. First-order optimal strategies build on a culture of contribution and inclusion so those options",
+      }],
     });
 
     this.addProp({
-      type: "string",
-      key: "author",
-      displayer: "Author",
-      value: "Salvador Dali",
+      type: "object",
+      key: "authorItem",
+      displayer: "Item Author",
+      value: [{
+        type: "string",
+        key: "author",
+        displayer: "Author",
+        value: "Salvador Dali",
+      }],
     });
 
     this.addProp({
-      type: "string",
-      key: "authorRole",
-      displayer: "Author Role",
-      value: "Digital Artist",
+      type: "object",
+      key: "authorRoleItem",
+      displayer: "Item Author Role",
+      value: [{
+        type: "string",
+        key: "authorRole",
+        displayer: "Author Role",
+        value: "Digital Artist",
+      }],
     });
 
     this.addProp({
@@ -131,9 +157,8 @@ class Stats8Page extends BaseStats {
             `number-${index}`,
             Math.min(
               statData.title,
-              currentNumber + Math.ceil(statData.title / Math.round(this.getPropValue("animationDuration") / 30)
-              )
-            )|| 0
+              currentNumber + Math.ceil(statData.title / Math.round(this.getPropValue("animationDuration") / 30))
+            ) || 0
           );
         }
       });
@@ -147,34 +172,54 @@ class Stats8Page extends BaseStats {
   render() {
     const statsData = this.castToObject<ICard[]>("stats");
     const imageSrc = this.getPropValue("imageSrc");
-  
+
+    const title = this.getPropValue("titleItem").find((item: any) => item.key === "title")?.value;
+    const subtitle = this.getPropValue("subtitleItem").find((item: any) => item.key === "subtitle")?.value;
+    const description = this.getPropValue("descriptionItem").find((item: any) => item.key === "description")?.value;
+    const author = this.getPropValue("authorItem").find((item: any) => item.key === "author")?.value;
+    const authorRole = this.getPropValue("authorRoleItem").find((item: any) => item.key === "authorRole")?.value;
+
+    const hasItems = !!title || !!subtitle || !!description || !!author || !!authorRole;
+    const hasStats = statsData && statsData.some(statData => statData.title && statData.description);
+
+    const renderLeftSide = hasItems || hasStats;
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats2-page")}>
-            <div className={this.decorateCSS("content") + (imageSrc ? "" : " full-width")}>
-              <h2 className={this.decorateCSS("title") + " " + this.decorateCSS("text-uppercase")}>{this.getPropValue("title")}</h2>
-              <h6 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h6>
-              <hr />
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-              <h5 className={this.decorateCSS("author")}>{this.getPropValue("author")}</h5>
-              <span className={this.decorateCSS("author-role")}>{this.getPropValue("authorRole")}</span>
-              <div className={this.decorateCSS("stats")}>
-                {statsData.map((statData: ICard, indexStat: number) => (
-                  (statData.title && statData.description) && (
-                    <div key={indexStat} className={this.decorateCSS("stat")}>
-                      <span className={this.decorateCSS("stat-title")}>
-                        {this.getComponentState(`number-${indexStat}`)}
-                      </span>
-                      <h5 className={this.decorateCSS("stat-description")}>{statData.description}</h5>
-                    </div>
-                  )
-                ))}
+          {renderLeftSide && (
+            <div className={this.decorateCSS("stats2-page")}>
+              <div className={this.decorateCSS("content")}>
+                {hasItems && (
+                  <div className={this.decorateCSS("item")}>
+                    {title && <h2 className={this.decorateCSS("title") + " " + this.decorateCSS("text-uppercase")}>{title}</h2>}
+                    {subtitle && <h6 className={this.decorateCSS("subtitle")}>{subtitle}</h6>}
+                    {description && <p className={this.decorateCSS("description")}>{description}</p>}
+                    {author && <h5 className={this.decorateCSS("author")}>{author}</h5>}
+                    {authorRole && <span className={this.decorateCSS("author-role")}>{authorRole}</span>}
+                  </div>
+                )}
+                {hasStats && (
+                  <div className={this.decorateCSS("stats")}>
+                    {statsData.map((statData: ICard, indexStat: number) => (
+                      (statData.title && statData.description) && (
+                        <div key={indexStat} className={this.decorateCSS("stat")}>
+                          <span className={this.decorateCSS("stat-title")}>
+                            {this.getComponentState(`number-${indexStat}`)}
+                          </span>
+                          <h5 className={this.decorateCSS("stat-description") + " " + this.decorateCSS("text-uppercase")}>
+                            {statData.description}
+                          </h5>
+                        </div>
+                      )
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
-          </div>
+          )}
           {imageSrc && (
-            <div className={this.decorateCSS("stats2-page")}>
+            <div className={this.decorateCSS("stats2-page") + (renderLeftSide ? "" : " " + this.decorateCSS("full-width"))}>
               <div className={this.decorateCSS("image-container")}>
                 <img src={imageSrc} alt="Digital Experience" />
                 <div className={this.decorateCSS("overlay")}>
