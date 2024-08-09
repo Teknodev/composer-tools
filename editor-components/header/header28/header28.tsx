@@ -256,7 +256,7 @@ class HeaderComponent28 extends BaseHeader {
                   <img
                     className={this.decorateCSS("bg-img")}
                     src={item.getPropValue("image")}
-                    alt=""
+                    alt={"slider-image"}
                   />
                 </div>
               )}
@@ -267,16 +267,21 @@ class HeaderComponent28 extends BaseHeader {
                     this.getComponentState("play-video") &&
                     this.decorateCSS("video-player")
                   }`}
+                  onClick={() => {
+                    this.setComponentState("play-video", false);
+                  }}
                 >
-                  <iframe
-                    width="70%"
-                    height="60%"
-                    src={item.getPropValue("video")}
-                    title="Video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  ></iframe>
+                  {this.getComponentState("play-video") && (
+                    <iframe
+                      width="70%"
+                      height="60%"
+                      src={item.getPropValue("video")}
+                      title="Video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    ></iframe>
+                  )}
                   {this.getPropValue("close_icon") && (
                     <div
                       className={this.decorateCSS("close-button")}
