@@ -4,10 +4,10 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature8.module.scss";
 
 type Features = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
   image: string;
-  buttonText: string;
+  buttonText: JSX.Element;
   link: string;
 };
 class Feature8 extends BaseFeature {
@@ -132,35 +132,61 @@ class Feature8 extends BaseFeature {
   }
 
   render() {
+
+    const isTitleExist = this.castToString(this.getPropValue("card-title"));
+    const isButtonTextExist = this.castToString(this.getPropValue("card-button"));
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <h1 className={this.decorateCSS("card-title")}>{this.getPropValue("card-title")}</h1>
-
+            {isTitleExist &&
+              <h1 className={this.decorateCSS("card-title")}>
+                {this.getPropValue("card-title")}
+              </h1>
+            }
             <div className={this.decorateCSS("card")}>
               {this.castToObject<Features[]>("features-card").map(
-                (features: any, index: number) => (
-                  <div className={this.decorateCSS("card-item-count")} style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
-                  }}>
-                  <div className={this.decorateCSS("features")} key={index}>
-                    <img className={this.decorateCSS("image")} src={features.image} alt=""></img>
-                    <h3 className={this.decorateCSS("title")}>{features.title}</h3>
-                    <p className={this.decorateCSS("long-text")}>
-                      {features.description}
-                    </p>
-                  </div>
-                  </div>
-                )
+                (feature: Features, index: number) => {
+
+                  const isTitleExist = this.castToString(feature.title);
+                  const isDescExist = this.castToString(feature.description);
+
+                  if (isTitleExist || isDescExist || feature.image)
+                    return (
+                      <div
+                        key={index}
+                        className={this.decorateCSS("card-item-count")}
+                        style={{
+                          width: 90 / this.getPropValue("itemCount") + "%",
+                        }}
+                      >
+                        <div className={this.decorateCSS("features")}>
+                          {feature.image &&
+                            <img className={this.decorateCSS("image")} src={feature.image} alt=""></img>
+                          }
+                          {isTitleExist &&
+                            <h3 className={this.decorateCSS("title")}>{feature.title}</h3>
+                          }
+                          {isDescExist &&
+                            <p className={this.decorateCSS("long-text")}>
+                              {feature.description}
+                            </p>
+                          }
+                        </div>
+                      </div>
+                    );
+                }
               )}
             </div>
 
-            <div className={this.decorateCSS("button")}>
-              <ComposerLink path={this.getPropValue("link")}>
-                {this.getPropValue("card-button")}
-              </ComposerLink>
-            </div>
+            {isButtonTextExist &&
+              <div className={this.decorateCSS("button")}>
+                <ComposerLink path={this.getPropValue("link")}>
+                  {this.getPropValue("card-button")}
+                </ComposerLink>
+              </div>
+            }
           </div>
         </div>
       </div>

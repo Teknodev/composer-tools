@@ -4,13 +4,13 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
 
 type listedListItem = {
-  listedItem: string;
+  listedItem: JSX.Element;
 };
 type Listed = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
   image: string;
-  buttonText: string;
+  buttonText: JSX.Element;
   link: string;
   listedListItem: listedListItem[];
 };
@@ -212,49 +212,75 @@ class Feature10 extends BaseFeature {
   }
 
   render() {
+
+    const cardList = this.castToObject<Listed[]>("listed-card");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {this.castToObject<Listed[]>("listed-card").map(
-              (listed: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div key={index} className={this.decorateCSS("listed")}>
-                  <img
-                    alt=""
-                    className={this.decorateCSS("image")}
-                    src={listed.image}
-                  ></img>
-                  <h3 className={this.decorateCSS("title")}>{listed.title}</h3>
-                  <p className={this.decorateCSS("long-text")}>
-                    {listed.description}
-                  </p>
+            {cardList.length > 0 &&
+              cardList.map(
+                (listed: Listed, index: number) => {
 
-                  <ComposerLink path={listed.link}>
-                    <span className={this.decorateCSS("button")}>
-                      {listed.buttonText}
-                    </span>
-                  </ComposerLink>
-                  <ul className={this.decorateCSS("list")}>
-                    {listed.listedListItem.map(
-                      (tableData: listedListItem, index: number) => {
-                        return (
-                          <li
-                            className={this.decorateCSS("list-item")}
-                            key={index}
-                          >
-                            {tableData.listedItem}
-                          </li>
-                        );
-                      }
-                    )}
-                  </ul>
-                </div>
-                </div>
-              )
-            )}
+                  const isTitleExist = this.castToString(listed.title);
+                  const isDescExist = this.castToString(listed.description);
+                  const isButtonTextExist = this.castToString(listed.buttonText);
+
+                  if (isTitleExist || isDescExist || isButtonTextExist)
+                    return (
+                      <div key={index}
+                        className={this.decorateCSS("card-item-count")} style={{
+                          width: 90 / this.getPropValue("itemCount") + "%",
+                        }}
+                      >
+                        <div className={this.decorateCSS("listed")}>
+                          {listed.image &&
+                            <img
+                              alt=""
+                              className={this.decorateCSS("image")}
+                              src={listed.image}
+                            />
+                          }
+                          {isTitleExist &&
+                            <h3 className={this.decorateCSS("title")}>{listed.title}</h3>
+                          }
+                          {isDescExist &&
+                            <p className={this.decorateCSS("long-text")}>
+                              {listed.description}
+                            </p>
+                          }
+                          {isButtonTextExist &&
+                            <ComposerLink path={listed.link}>
+                              <span className={this.decorateCSS("button")}>
+                                {listed.buttonText}
+                              </span>
+                            </ComposerLink>
+                          }
+                          {listed.listedListItem.length > 0 &&
+                            <ul className={this.decorateCSS("list")}>
+                              {listed.listedListItem.map(
+                                (tableData: listedListItem, index: number) => {
+                                  const isTextExist = this.castToString(tableData.listedItem);
+
+                                  if (isTextExist)
+                                    return (
+                                      <li
+                                        className={this.decorateCSS("list-item")}
+                                        key={index}
+                                      >
+                                        {tableData.listedItem}
+                                      </li>
+                                    );
+                                }
+                              )}
+                            </ul>
+                          }
+                        </div>
+                      </div>
+                    );
+                }
+              )}
           </div>
         </div>
       </div>
