@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
   padding: 20px 20px;
   background-color: var(--composer-html-background);
 
@@ -107,6 +107,7 @@
             }
 
             .header-page {
+              position: relative;
               width: 60%;
               font-size: 1.5rem;
               background-color: var(--composer-html-background);
@@ -125,7 +126,8 @@
                 position: absolute;
                 font-size: 7rem;
                 color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-                top: 100px;
+                top: 20px;
+                left: 40px;
               }
 
               .card {
@@ -160,6 +162,7 @@
             }
 
             .header-page {
+              position: relative;
               width: 70%;
               font-size: 1.5rem;
               background-color: var(--composer-html-background);
@@ -178,7 +181,8 @@
                 position: absolute;
                 font-size: 7rem;
                 color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-                top: 95px;
+                top: 20px;
+                left: 40px;
               }
 
               .card {
@@ -201,8 +205,16 @@
 
           .slider {
             width: 800px;
-            height: 400px;
+            height: 100%;
             margin-top: -30px;
+            display: flex;
+            align-items: center;
+          }
+
+          .slider > div > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
@@ -229,19 +241,19 @@
         }
 
         .slider-style {
-          height: 500px !important;
+          height: 100% !important;
           width: 100% !important;
           left: 0 !important;
           gap: 20px !important;
           align-items: center !important;
-          padding-left: 0 !important;
+          padding: 20px !important;
 
           .hiliteTitle {
             font-size: 3rem !important;
-            position: relative;
+            position: relative !important;
+            width: 100% !important;
+            text-align: end !important;
             right: 0 !important;
-            bottom: 0 !important;
-            margin-right: 10px;
           }
 
           .slider-inner-div-with-image {
@@ -260,7 +272,7 @@
             .header-page {
               width: 80% !important;
               margin: -60px 0 0 120px !important;
-              height: 300px !important;
+              height: 100% !important;
               display: flex !important;
               flex-direction: column !important;
               justify-content: center !important;
@@ -270,13 +282,11 @@
                 margin-right: 25px !important;
               }
               .iconquote {
-                font-size: 4rem !important;
-                top: 120px !important;
+                font-size: 5rem !important;
+                top: 30px !important;
               }
 
               .card {
-                margin-right: 25px !important;
-
                 .text {
                   font-size: 1.5rem !important;
                   padding-right: 0px !important;
@@ -308,7 +318,7 @@
             .header-page {
               width: 100% !important;
               margin: 0 !important;
-              height: 300px !important;
+              height: 100% !important;
               display: flex !important;
               flex-direction: column !important;
               justify-content: center !important;
@@ -318,8 +328,8 @@
                 margin-right: 25px !important;
               }
               .iconquote {
-                font-size: 4rem !important;
-                top: 60px !important;
+                font-size: 5rem !important;
+                top: 30px !important;
               }
 
               .card {
@@ -342,7 +352,12 @@
             margin-top: 0 !important;
             margin-right: 0 !important;
             display: flex !important;
-            flex-direction: column !important;
+            justify-content: center !important;
+          }
+
+          .slider > div > div {
+            display: flex !important;
+            align-items: center !important;
             justify-content: center !important;
           }
         }
@@ -420,7 +435,7 @@
               display: flex !important;
               flex-direction: column !important;
               justify-content: space-between !important;
-              height: 400px !important;
+              height: 100% !important;
 
               .icons {
                 font-size: 2rem !important;
@@ -428,12 +443,14 @@
               }
 
               .iconquote {
+                position: relative !important;
                 font-size: 3rem !important;
-                top: 170px !important;
+                top: 130px !important;
+                left: 0 !important;
               }
 
               .card {
-                margin-bottom: 20px !important;
+                margin-top: 110px;
                 .text {
                   font-size: 1rem !important;
                 }
@@ -468,7 +485,7 @@
               padding: 20px 0 20px 10px !important;
               margin: 30px 20px !important;
               width: 100% !important;
-              height: 200px !important;
+              height: 100% !important;
               display: flex !important;
               flex-direction: column !important;
               justify-content: space-between !important;
@@ -479,11 +496,14 @@
               }
 
               .iconquote {
+                position: relative !important;
                 font-size: 3rem !important;
-                top: 50px !important;
+                top: 20px !important;
+                left: 0 !important;
               }
 
               .card {
+                margin-right: 10px;
                 .text {
                   font-size: 1rem !important;
                 }
