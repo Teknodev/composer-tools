@@ -188,15 +188,21 @@ class Feature12 extends BaseFeature {
    
     return (
       <div className={this.decorateCSS("container")}>
+        {upperTitle&&
         <div className={this.decorateCSS("upper-title")}>
           {upperTitle}
         </div>
+  }
+      {titleBackingText&&
         <div className={this.decorateCSS("shadow-header-title")}>
           {titleBackingText}
         </div>
+  }
+      {title&&
         <div className={this.decorateCSS("header-title")}>
           {title}
         </div>
+  }
         <div className={this.decorateCSS("max-content")}>
           
           <div className={this.decorateCSS("content")}>

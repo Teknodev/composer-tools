@@ -4,6 +4,7 @@
     padding: 50px 0;
     background-color: var(--composer-html-background);
     padding-bottom: 0px;
+    
     .upper-title {
         padding-bottom: 20px;
         font-size: 1.2em;
@@ -51,7 +52,6 @@
     }
 
     .max-content {
-       
         margin-top: 20px;
         max-width: var(--composer-content-width);
         margin: auto;
@@ -63,7 +63,7 @@
         justify-content: center;
 
         .content {
-            margin-top: 140px;
+            margin-top: 200px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -72,19 +72,16 @@
             gap: 0px;
 
             .card-item-first,
-            
             .card-item-count {
-                min-height: 50px;
-                margin-top: 60px;
-                background-color: var(--composer-font-color-primary);
+                min-height: 30rem;
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 90%);
             }
 
             .card-item-first {
                 width: 100%;
                 align-items: center;
                 background-size: cover;
-                margin-bottom: 100px;
-                height:30rem ;
+                height: 30rem;
                 background-repeat: no-repeat;
                 background-position: start;
                 justify-content: center;
@@ -144,8 +141,7 @@
 
             .card-item-count {
                 width: 100%;
-                margin-bottom: 100px;
-                height:30rem;
+                height: 30rem;
                 .message {
                     width: 100%;
                     display: flex;
@@ -166,7 +162,7 @@
                         display: block;
                         padding: 20px;
                         line-height: 25px;
-                        color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-primary);
                         font-size: medium;
                         font-weight: medium;
                         align-self: center;
@@ -187,7 +183,7 @@
 
             .Icon {
                 margin: 10%;
-                color: var(--composer-secondary-color);
+                color: var(--composer-font-color-primary);
                 width: 40px;
                 height: 40px;
             }
@@ -196,3 +192,167 @@
 }
 
 
+@media (max-width: 767px) {
+    .container {
+        padding: 20px 0;
+
+        .upper-title {
+            font-size: 1em;
+            letter-spacing: 5px;
+            transform: translateY(50%);
+        }
+
+        .shadow-header-title {
+            font-size: 6em;
+            transform: translateY(-20px);
+        }
+
+        .header-title {
+            font-size: 2.5em;
+            transform: translateY(-25%);
+        }
+
+        .max-content {
+            width: 90%;
+
+            .content {
+                margin-top: 150px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                .card-item-first,
+                .card-item-count {
+                    height: 15rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center; 
+                    align-items: center; 
+                    text-align: center; 
+                    line-height: 110%    ;
+
+                }
+                .card-item-count{
+                    .message{
+                        width:100%;
+                        height: 60%;
+                    .title{
+                        letter-spacing: 0;
+                        justify-items: center;
+                        text-align: center;
+                        font-size: small;
+                        padding: 0;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        width: 100%;
+                        color: var(--composer-font-color-primary);
+                        line-height: 110%    ;
+                        height: 25%;
+
+                    }
+                    .long-text{
+                        text-align: center;
+                        line-height: 90%;
+                        width: 100%;
+                        height: 15%;
+                        letter-spacing: 0;
+                        padding: 0  ;
+                        text-align: center;
+                        font-size: small;
+                    }
+                    
+                }
+                }
+
+                .card-item-first {
+                    .title {
+                        font-size: small;
+                        line-height: 125%;
+                        color: var(--composer-font-color-primary);
+                        padding: 0 5%;
+                    }
+
+                    .button {
+                        width: 90%;
+                        font-size: smaller;
+                        text-align: center;
+                        padding: 5px 10px;
+                        margin-right: 10%;
+                    }
+                }
+
+                
+                .Icon{
+                    width: 35px;
+                    height: 35px;
+                    margin-top: 5%;
+                    margin-bottom: 5%;
+                    
+                }
+            }
+           
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        padding: 30px 0;
+
+        .upper-title {
+            font-size: 1.1em;
+            letter-spacing: 7px;
+            transform: translateY(70%);
+        }
+
+        .shadow-header-title {
+            font-size: 10em;
+            transform: translateY(-25px);
+        }
+
+        .header-title {
+            font-size: 4em;
+            transform: translateY(15%);
+        }
+    }
+
+    .max-content {
+        width: 5%;
+
+        .content {
+            margin-top: 150px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            .card-item-first{
+                .button{
+                    margin-right: 10%;
+                }
+            }
+            .card-item-first,
+            .card-item-count {
+                display: flex;
+                flex-direction: column;
+                justify-content: center; 
+                align-items: center; 
+            
+                text-align: center; 
+            }
+            .card-item-count{
+                .message{
+                    padding: 0;
+                    .title{
+                        height:75%;
+                        padding: 0;
+                        color: var(--composer-font-color-primary);
+                        line-height: 0px;
+                    }
+                    .long-text{
+                        height: 75%;
+                    }
+                }
+            }
+        }
+    }
+}
