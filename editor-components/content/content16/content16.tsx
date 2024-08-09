@@ -1,7 +1,20 @@
+import Slider from "react-slick";
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styles from "./content16.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
+type CardType = {
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  description: JSX.Element;
+  imageSubtitle: JSX.Element;
+  imageTitle: JSX.Element;
+  imageDescription: JSX.Element;
+  image: string;
+  url: string;
+};
 
 class Content16 extends BaseContent {
   constructor(props?: any) {
@@ -10,120 +23,318 @@ class Content16 extends BaseContent {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Get Affordable Dental Treatment",
+      value: "Latest News",
     });
+
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "Dental Excellence Turkey has the latest technology advancements that provide efficient solutions and the highest quality services.",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "\"Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.\"",
     });
+
     this.addProp({
-      type: "image",
-      key: "item1",
-      displayer: "1st Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628818?alt=media&timestamp=1719564433797",
+      type: "array",
+      key: "items",
+      displayer: "Items",
+      value: [
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imageSubtitle",
+              displayer: "Image Subtitle",
+              value: "May 18, 2023  /  Insights",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Image Title",
+              value: "Smart Cities of Tomorrow",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imageSubtitle",
+              displayer: "Image Subtitle",
+              value: "May 18, 2023  /  News",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Image Title",
+              value: "Architectural Marvels",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac468003b007002cc74497?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imageSubtitle",
+              displayer: "Image Subtitle",
+              value: "May 15, 2023  /  Insights",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Image Title",
+              value: "Exploring the Evolution of Architecture",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac46a203b007002cc744a3?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imageSubtitle",
+              displayer: "Image Subtitle",
+              value: "Dec 15, 2022  /  News",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Image Title",
+              value: "Nature is Good",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac472103b007002cc744b0?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "string",
+              key: "imageSubtitle",
+              displayer: "Image Subtitle",
+              value: "Feb 14, 2021  /  News",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Image Title",
+              value: "New Day New You",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac476903b007002cc744bc?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
+
     this.addProp({
-      type: "image",
-      key: "item2",
-      displayer: "2nd Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628816?alt=media&timestamp=1719564433797",
+      type: "boolean",
+      key: "disableAnimation",
+      displayer: "Disable Animation",
+      value: false,
     });
-    this.addProp({
-      type: "image",
-      key: "item3",
-      displayer: "3rd Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bbc6bd2970002c628817?alt=media&timestamp=1719564433797",
-    });
-    this.addProp({
-        type: "array",
-        key: "buttons",
-        displayer: "Buttons",
-        value: [
-          {
-            type: "object",
-            key: "button",
-            displayer: "Button",
-            value: [
-              {
-                type: "string",
-                key: "buttonText",
-                displayer: "Button Text",
-                value: "About Us",
-              },
-  
-              {
-                type: "page",
-                key: "url",
-                displayer: "Button Link",
-                value: "https://www.google.com/",
-              },
-            ],
-          },
-        ],
-      });
+
+    this.setComponentState(
+      "prevSlide",
+      this.castToObject<CardType[]>("items").length - 1
+    );
+    this.setComponentState("activeSlide", 0);
+    this.setComponentState("nextSlide", 1);
   }
+
   getName(): string {
     return "Content 16";
   }
+
   render() {
+    const settings = {
+      arrows: true,
+      dots: true,
+      infinite: true,
+      speed: 725,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1280,
+          settings: {
+            arrows: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+        
+        {
+          breakpoint: 600,
+          settings: {
+            arrows: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+
+        
+        
+      ],
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState(
+          "prevSlide",
+          next - 1 < 0
+            ? this.castToObject<CardType[]>("items").length - 1
+            : next - 1
+        );
+        this.setComponentState("activeSlide", next);
+        this.setComponentState(
+          "nextSlide",
+          next + 1 > this.castToObject<CardType[]>("items").length - 1
+            ? 0
+            : next + 1
+        );
+      },
+    };
+
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const isTitleExist = this.castToString(title);
+    const isSubTitleExist = this.castToString(subtitle);
+    const disableAnimation = this.getPropValue("disableAnimation");
+    const items = this.castToObject<CardType[]>("items").filter(
+      (item: CardType) => item.image || item.imageTitle || item.imageSubtitle || item.url
+    );
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("left-content")}>
-              <div className={this.decorateCSS("left-column")}>
-                <img
-                  src={this.getPropValue("item1")}
-                  alt="firstPhoto"
-                  className={this.decorateCSS("item1")}
-                />
+          
+            <header>
+              {isTitleExist && (
+                <h1 className={`${this.decorateCSS("title")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
+                  {title}
+                </h1>
+              )}
+              {isTitleExist && (
+                <hr className={this.decorateCSS("faint-line")} />
+              )}
+              {isSubTitleExist && (
+                <h2 className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </h2>
+              )}
+            </header>
+          
+          <main className={this.decorateCSS("wrapper")}>
+            {items.length > 0 && (
+              <div className={this.decorateCSS("slider-parent")}>
+                <Slider {...settings} className={this.decorateCSS("carousel")}>
+                  {items.map((item: CardType, index: number) => (
+                    <article
+                      className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index ? this.decorateCSS("prevSlide") : ""} ${this.getComponentState("nextSlide") === index ? this.decorateCSS("nextSlide") : ""}`}
+                      key={index}
+                    >
+                      <div className={this.decorateCSS("content-div")}>
+                        {item.image && (
+                          <div className={this.decorateCSS("img-div")}>
+                            <a href={item.url} target="_blank" rel="noopener noreferrer">
+                              <img
+                                alt={this.castToString(item.imageTitle) || this.castToString(item.imageSubtitle)}
+                                src={item.image}
+                                className={this.decorateCSS("img")}
+                              />
+                            </a>
+                          </div>
+                        )}
+                        {(this.castToString(item.imageSubtitle) || this.castToString(item.imageTitle)) && (
+                          <div className={this.decorateCSS("item-page")}>
+                            {this.castToString(item.imageSubtitle) && (
+                              <h3 className={this.decorateCSS("first-item")}>
+                                {item.imageSubtitle}
+                              </h3>
+                            )}
+                            {this.castToString(item.imageTitle) && (
+                              <h2 className={`${this.decorateCSS("item-title")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
+                                {item.imageTitle}
+                              </h2>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </Slider>
               </div>
-              <div className={this.decorateCSS("right-column")}>
-                <img
-                  src={this.getPropValue("item2")}
-                  alt="firstPhoto"
-                  className={this.decorateCSS("item2")}
-                />
-                <img
-                  src={this.getPropValue("item3")}
-                  alt="firstPhoto"
-                  className={this.decorateCSS("item2")}
-                />
-              </div>
-            </div>
-            <div className={this.decorateCSS("right-content")}>
-              <h2 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h2>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-              <div className={this.decorateCSS("buttondiv")}>
-              {this.getPropValue("buttons").map(
-                  (item: any, indexButtons: number) => {
-                    return (
-                      <ComposerLink
-                        key={indexButtons}
-                        path={item.value[1].value}
-                      >
-                        <button
-                          className={`${this.decorateCSS("button")}`}
-                        >
-                          {item.value[0].value}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-          </div>
+            )}
+          </main>
         </div>
       </div>
     );
