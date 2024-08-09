@@ -23,12 +23,12 @@ class Form10 extends BaseContacts {
 
     this.addProp({
       type: "array",
-      key: "input_items",
+      key: "inputItems",
       displayer: "Input Items",
       value: [
         {
           type: "object",
-          key: "input_item",
+          key: "inputItem",
           displayer: "Input Item",
           value: [
             {
@@ -49,13 +49,13 @@ class Form10 extends BaseContacts {
                     },
                     {
                       type: "boolean",
-                      key: "is_required",
+                      key: "isRequired",
                       displayer: "Is Required",
                       value: true,
                     },
                     {
                       type: "string",
-                      key: "required_error_message",
+                      key: "requiredErrorMessage",
                       displayer: "Required error message",
                       value: "Required",
                     },
@@ -71,11 +71,11 @@ class Form10 extends BaseContacts {
 
                     {
                       type: "string",
-                      key: "type_error_message",
+                      key: "typeErrorMessage",
                       displayer: "Type error message",
                       value: "Invalid type",
                     },
-                  ],  
+                  ],
                 },
                 {
                   type: "object",
@@ -90,13 +90,13 @@ class Form10 extends BaseContacts {
                     },
                     {
                       type: "boolean",
-                      key: "is_required",
+                      key: "isRequired",
                       displayer: "Is Required",
                       value: true,
                     },
                     {
                       type: "string",
-                      key: "required_error_message",
+                      key: "requiredErrorMessage",
                       displayer: "Required error message",
                       value: "Required",
                     },
@@ -106,13 +106,13 @@ class Form10 extends BaseContacts {
                       displayer: "Type",
                       value: "Text",
                       additionalParams: {
-                        selectItems:["E-mail "],
+                        selectItems: ["E-mail "],
                       },
                     },
 
                     {
                       type: "string",
-                      key: "type_error_message",
+                      key: "typeErrorMessage",
                       displayer: "Type error message",
                       value: "Invalid type",
                     },
@@ -124,7 +124,7 @@ class Form10 extends BaseContacts {
         },
         {
           type: "object",
-          key: "input_item",
+          key: "inputItem",
           displayer: "Input Item",
           value: [
             {
@@ -145,13 +145,13 @@ class Form10 extends BaseContacts {
                     },
                     {
                       type: "boolean",
-                      key: "is_required",
+                      key: "isRequired",
                       displayer: "Is Required",
                       value: false,
                     },
                     {
                       type: "string",
-                      key: "required_error_message",
+                      key: "requiredErrorMessage",
                       displayer: "Required error message",
                       value: "",
                     },
@@ -167,7 +167,7 @@ class Form10 extends BaseContacts {
                     },
                     {
                       type: "string",
-                      key: "type_error_message",
+                      key: "typeErrorMessage",
                       displayer: "Type error message",
                       value: "Invalid type",
                     },
@@ -181,7 +181,7 @@ class Form10 extends BaseContacts {
     })
     this.addProp({
       type: "string",
-      key: "button_text",
+      key: "buttonText",
       displayer: "Button Text",
       value: "SEND MESSAGE",
     });
@@ -202,11 +202,11 @@ class Form10 extends BaseContacts {
     const subtitle = this.getPropValue("subtitle", { as_string: true });
     const title = this.getPropValue("title", { as_string: true });
     const description = this.getPropValue("description", { as_string: true });
-    const inputItems = this.getPropValue("input_items")!;
+    const inputItems = this.getPropValue("inputItems")!;
     const isContactVisible = title || subtitle;
     const isDescriptionVisible = description;
 
-  
+
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
         str = "_" + str;
@@ -214,7 +214,7 @@ class Form10 extends BaseContacts {
       str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
       return str;
     }
-  
+
     function getInputType(type: string): string {
       switch (type) {
         case "Text Area":
@@ -229,12 +229,12 @@ class Form10 extends BaseContacts {
           return "text";
       }
     }
-  
+
     function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number) {
       const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
       return toObjectKey(name);
     }
-  
+
     function getInitialValue() {
       let value: any = {};
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
@@ -245,38 +245,38 @@ class Form10 extends BaseContacts {
       });
       return value;
     }
-  
+
     function getSchema() {
       let schema = Yup.object().shape({});
-  
+
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs").forEach((input: any, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
-  
-          const isRequired = input.getPropValue("is_required");
+
+          const isRequired = input.getPropValue("isRequired");
           const isEmail = getInputType(input.getPropValue("type")) === "E-mail";
-  
+
           let fieldSchema = Yup.string();
-  
+
           if (isRequired) {
-            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
+            fieldSchema = fieldSchema.required(input.getPropValue("requiredErrorMessage"));
           } else {
             fieldSchema = fieldSchema.nullable();
           }
-  
+
           if (isEmail) {
-            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
+            fieldSchema = fieldSchema.email(input.getPropValue("typeErrorMessage"));
           }
-  
+
           schema = schema.shape({
             [key]: fieldSchema,
           });
         });
       });
-  
+
       return schema;
     }
-  
+
     function getFormDataWithConvertedKeys(obj: any) {
       const newObj: any = {};
       for (const key in obj) {
@@ -293,20 +293,20 @@ class Form10 extends BaseContacts {
       return newObj;
     }
     function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
+      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("isRequired"))
     }
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("left-container")} >
-            {isContactVisible &&
-              <div className={this.decorateCSS("contact")} >
-                {subtitle && <h1 className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </h1>}
-                {title && <h3 className={this.decorateCSS("title")}> {this.getPropValue("title")}  </h3>}
-              </div>
-            }
-          </div>
+          {isContactVisible && (
+            <div className={this.decorateCSS("left-container")} >
+                <div className={this.decorateCSS("contact")} >
+                  {subtitle && <h1 className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </h1>}
+                  {title && <h3 className={this.decorateCSS("title")}> {this.getPropValue("title")}  </h3>}
+                </div>
+            </div>
+          )}
           <div className={this.decorateCSS("right-container")} >
             <div className={this.decorateCSS("form-container")} >
               <Formik
@@ -320,71 +320,73 @@ class Form10 extends BaseContacts {
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
-                   {inputItems.map((inputItem: any, inputItemIndex: number) =>
-                    <div className={this.decorateCSS("input-container")}>
-                      <span className={this.decorateCSS("placeholder")}>{inputItem.getPropValue("placeholder", {
-                        suffix: {
-                          label: isRequiredInput(inputItem) && "*",
-                          className: this.decorateCSS("require-star")
-                        }
-                      })}</span>
-                      <div className={this.decorateCSS("inputs")}>
-                        {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
-                          <div className={this.decorateCSS("input-box")}>
+                    {inputItems.map((inputItem: any, inputItemIndex: number) =>
+                      <div className={this.decorateCSS("input-container")}>
+                        <span className={this.decorateCSS("placeholder")}>{inputItem.getPropValue("placeholder", {
+                          suffix: {
+                            label: isRequiredInput(inputItem) && "*",
+                            className: this.decorateCSS("require-star")
+                          }
+                        })}</span>
+                        <div className={this.decorateCSS("inputs")}>
+                          {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
+                            <div className={this.decorateCSS("input-box")}>
 
-                            {inputObj.getPropValue("type") === "Text Area" ?
-                              <textarea
-                                value={values[getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)]}
-                                className={this.decorateCSS("input")} 
-                                placeholder={inputObj.getPropValue("placeholder", { as_string: true })} 
-                                rows={9} 
-                                onChange={handleChange} 
-                                name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}>
+                              {inputObj.getPropValue("type") === "Text Area" ?
+                                <textarea
+                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)]}
+                                  className={this.decorateCSS("input")}
+                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                  rows={9}
+                                  onChange={handleChange}
+                                  name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}>
                                 </textarea> :
-                              <input
-                                placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                type={getInputType(inputObj.getPropValue("type"))}
-                                onChange={handleChange}
-                                value={values[getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)]}
+                                <input
+                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                  type={getInputType(inputObj.getPropValue("type"))}
+                                  onChange={handleChange}
+                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)]}
+                                  name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}
+                                  className={this.decorateCSS("input")}
+                                />}
+                              <ErrorMessage
+                                className={this.decorateCSS("error-message")}
                                 name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}
-                                className={this.decorateCSS("input")}
-                              />}
-                            <ErrorMessage
-                              className={this.decorateCSS("error-message")}
-                              name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}
-                              component={"span"}
-                            />
-                          </div>
-                        )}
+                                component={"span"}
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
                     <div className={this.decorateCSS("bottom-section")}>
-                    {isDescriptionVisible &&
-                      <div className={this.decorateCSS("description")}>
-                        {description && <h1 className={this.decorateCSS("description-text")}>{description}</h1>}
-                      </div>
-                    }
-                    <button
-                      className={this.decorateCSS("submit-button")}
-                      type="submit"
-                    >
-                      <span>{this.getPropValue("button_text")}</span>
-                    </button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-    
+                      {isDescriptionVisible &&
+                        <div className={this.decorateCSS("description")}>
+                          {description && <h1 className={this.decorateCSS("description-text")}>{description}</h1>}
+                        </div>
+                      }
+                      <div className={this.decorateCSS("button-box")}>
+                      <button
+                        className={this.decorateCSS("submit-button")}
+                        type="submit"
+                      >
+                        <span>{this.getPropValue("buttonText")}</span>
+                      </button>
+                    </div>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+
             </div>
           </div>
         </div>
       </div >
     );
-    
-  
-}
+
+
+  }
 }
 
 export default Form10;
