@@ -1,9 +1,11 @@
 import * as React from "react";
 import ComposerModalClose from "../../../composer-base-components/close/close";
-import { BaseModal } from "../../EditorComponent";
+import { BaseModal, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./confirmation.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import image1 from "./image1-2.png";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+
 
 
 
@@ -11,6 +13,21 @@ class ConfirmationModal extends BaseModal{
     constructor(props?: any) {
         super(props, styles);
 
+        
+
+        this.addProp({
+            type: "image",
+            key: "image",
+            displayer: "image",
+            value: "https://picsum.photos/200"
+        });
+
+        this.addProp({
+            type: "icon",
+            key: "close-icon",
+            displayer: "icon",
+            value: "AiOutlineClose"
+        })
 
         this.addProp({
             type: "string",
@@ -41,23 +58,23 @@ class ConfirmationModal extends BaseModal{
                     type: "page",
                     key: "button-path",
                     displayer: "Button Path",
-                    value: "// TODO"
+                    value: ""
                 }
             ]
         })
-        
+
         this.addProp({
             type: "object",
             key: "button-2",
             displayer: "Button 2",
-            value: [
-                {
-                    type: "string",
-                    key: "button2-text",
-                    displayer: "Button Text",
-                    value: "Let Me Rethink"
-                }
-            ]
+            value:
+                    [{
+                        type: "string",
+                        key: "button2-text",
+                        displayer: "Button Text",
+                        value: "Let Me Rethink"
+                    }]
+             
         })
     }
 
@@ -66,31 +83,39 @@ class ConfirmationModal extends BaseModal{
     getName(): string {
         return "Confirmation Modal";
     }
-    
+
     render() {
-        
+
+        const closeIcon = this.getPropValue("close-icon");
+
         return (
             <div className={this.decorateCSS("container")}>
                 <div className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("box")}>                 
                         <div className={this.decorateCSS("head-content")}>
-                            <img 
-                                alt= ""
-                                className={this.decorateCSS("image")}
-                                src={image1}                        
-                            ></img>
-                            <ComposerModalClose>
-                                <button className={this.decorateCSS("close-button")}>&#10005;</button>
-                            </ComposerModalClose>
+                            {this.getPropValue("image") && (
+                                <img 
+                                    alt= ""
+                                    className={this.decorateCSS("image")}
+                                    src={this.getPropValue("image")}                        
+                                ></img>
+                            )}
+                            <button className={this.decorateCSS("close-button")}>
+                                <ComposerIcon name={closeIcon} propsIcon={{ size: 18, color: 'pink' }} />
+                            </button>
                         </div>
                         <div className={this.decorateCSS("bottom-content")}>
-                            <h1 className={this.decorateCSS("title")}>
-                                {this.getPropValue("title")}
-                            </h1>
-                            <p className={this.decorateCSS("description")}>
-                                {this.getPropValue("description")}
-                            </p>
-
+                            {this.getPropValue("title") && this.getPropValue("title") !== "" && (
+                                <h1 className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}  
+                                </h1>  
+                            )}
+                            {this.getPropValue("description") && this.getPropValue("description") !== "" && (
+                                <p className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </p>
+                            )}
+                            
                             <ComposerModalClose>
                             <div className={this.decorateCSS("buttons")}>
                                 <ComposerLink path={this.getPropValue("button-1")[1].value}>
