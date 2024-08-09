@@ -218,7 +218,7 @@ class HeaderComponent28 extends BaseHeader {
       infinite: true,
       accessibility: true,
       speed: 1000,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       draggable: false,
@@ -230,7 +230,7 @@ class HeaderComponent28 extends BaseHeader {
         this.setComponentState("play-video", false);
       },
       beforeChange: (oldIndex: number, newIndex: number) => {
-        if (oldIndex == newIndex) return;
+        if (oldIndex === newIndex) return;
         if (this.getPropValue("textAnimation"))
           this.setComponentState("animation-active", true);
         this.setComponentState("play-video", false);
@@ -261,32 +261,42 @@ class HeaderComponent28 extends BaseHeader {
                 </div>
               )}
 
-              <div
-                className={`${this.decorateCSS("video-player-container")} ${
-                  this.getComponentState("play-video") &&
-                  this.decorateCSS("video-player")
-                }`}
-              >
-                <iframe
-                  width="70%"
-                  height="60%"
-                  src={item.getPropValue("video")}
-                  title="Video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
+              {item.getPropValue("video") && (
                 <div
-                  className={this.decorateCSS("close-button")}
-                  onClick={() => this.setComponentState("play-video", false)}
+                  className={`${this.decorateCSS("video-player-container")} ${
+                    this.getComponentState("play-video") &&
+                    this.decorateCSS("video-player")
+                  }`}
                 >
-                  <ComposerIcon name={this.getPropValue("close_icon")} />
+                  <iframe
+                    width="70%"
+                    height="60%"
+                    src={item.getPropValue("video")}
+                    title="Video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                  {this.getPropValue("close_icon") && (
+                    <div
+                      className={this.decorateCSS("close-button")}
+                      onClick={() =>
+                        this.setComponentState("play-video", false)
+                      }
+                    >
+                      <ComposerIcon name={this.getPropValue("close_icon")} />
+                    </div>
+                  )}
                 </div>
-              </div>
+              )}
               {this.getPropValue("play_icon") && (
                 <div
                   className={this.decorateCSS("play-button")}
-                  onClick={() => this.setComponentState("play-video", true)}
+                  onClick={
+                    item.getPropValue("video")
+                      ? () => this.setComponentState("play-video", true)
+                      : () => {}
+                  }
                 >
                   <ComposerIcon name={this.getPropValue("play_icon")} />
                 </div>
@@ -297,28 +307,34 @@ class HeaderComponent28 extends BaseHeader {
                   !this.getComponentState("animation-active") &&
                   this.decorateCSS("visible")
                 }`}
-                onClick={() => this.setComponentState("play-video", true)}
+                onClick={
+                  item.getPropValue("video")
+                    ? () => this.setComponentState("play-video", true)
+                    : () => {}
+                }
               >
-                {this.castToString(item.getPropValue("tag")) && (
-                  <span className={this.decorateCSS("tag")}>
-                    {item.getPropValue("tag")}
-                  </span>
-                )}
-                {this.castToString(item.getPropValue("title")) && (
-                  <h1 className={this.decorateCSS("title")}>
-                    {item.getPropValue("title")}
-                  </h1>
-                )}
-                {this.castToString(item.getPropValue("sub_title")) && (
-                  <h3 className={this.decorateCSS("sub_title")}>
-                    {item.getPropValue("sub_title")}
-                  </h3>
-                )}
-                {this.castToString(item.getPropValue("description")) && (
-                  <p className={this.decorateCSS("description")}>
-                    {item.getPropValue("description")}
-                  </p>
-                )}
+                <div className={this.decorateCSS("max-content")}>
+                  {this.castToString(item.getPropValue("tag")) && (
+                    <span className={this.decorateCSS("tag")}>
+                      {item.getPropValue("tag")}
+                    </span>
+                  )}
+                  {this.castToString(item.getPropValue("title")) && (
+                    <h1 className={this.decorateCSS("title")}>
+                      {item.getPropValue("title")}
+                    </h1>
+                  )}
+                  {this.castToString(item.getPropValue("sub_title")) && (
+                    <h3 className={this.decorateCSS("sub_title")}>
+                      {item.getPropValue("sub_title")}
+                    </h3>
+                  )}
+                  {this.castToString(item.getPropValue("description")) && (
+                    <p className={this.decorateCSS("description")}>
+                      {item.getPropValue("description")}
+                    </p>
+                  )}
+                </div>
               </div>
               <ComposerIcon
                 name={this.getPropValue("next_icon")}

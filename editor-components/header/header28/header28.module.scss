@@ -2,12 +2,16 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+  }
   .carousel {
     .content {
-      height: 100vh;
-      width: 100vw;
+      height: 100%;
 
       .image-box {
+        width: 100%;
         .bg-img {
           width: 100%;
           height: 100%;
@@ -16,9 +20,11 @@
       }
 
       .play-button {
-        background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
         position: absolute;
         top: 50%;
         left: 50%;
@@ -180,9 +186,6 @@
           .bg-img {
             height: 100vh;
           }
-
-
-          
         }
         .play-button {
           display: none;
@@ -206,7 +209,8 @@
             font-size: 0.875rem;
           }
         }
-        .next-icon,.prev-icon{
+        .next-icon,
+        .prev-icon {
           display: none;
         }
       }
@@ -245,23 +249,24 @@
             font-size: 0.875rem;
           }
         }
-        .next-icon,.prev-icon{
+        .next-icon,
+        .prev-icon {
           display: none;
         }
       }
     }
   }
-  .customDots{
-    li{
-    button{
-      width: 10px;
-      height: 10px;
-    }
-    button:before{
-      font-size: 6px;
-      display: flex;
-      left: 3px;
-    }
+  .customDots {
+    li {
+      button {
+        width: 10px;
+        height: 10px;
+      }
+      button:before {
+        font-size: 6px;
+        display: flex;
+        left: 3px;
+      }
     }
   }
 }
