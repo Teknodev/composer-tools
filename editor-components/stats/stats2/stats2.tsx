@@ -1,171 +1,124 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats2.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type ICard = {
-  title: string;
-  description: string;
-  image: string;
-  increaseValue: string;
-  isIncrease: boolean;
-  buttonText: string;
-  buttonLink: string;
+type Card = {
+  amount: number;
+  text: string;
 };
+
 class Stats2Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
+      type: "number",
+      key: "animation-duration",
+      displayer: "Number Animation Duration (ms)",
+      value: 2000,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "header",
+      displayer: "Header Content",
+      value: "Intuition and strategy integrate the research methodology that we also apply to traditional media.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subHeader",
+      displayer: "Sub Header Content",
+      value: "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "contactButton",
+      displayer: "Button Content",
+      value: "LET'S TALK NOW",
+    });
+
+    this.addProp({
       type: "array",
-      key: "card-content",
-      displayer: "Card Content",
+      key: "cards",
+      displayer: "cards",
+      additionalParams: { maxElementCount: 4 },
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "card",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://static.thenounproject.com/png/1159670-200.png",
-            },
-            {
               type: "string",
-              key: "title",
+              key: "text",
               displayer: "Title",
-              value: "Clicks",
+              value: "Users on marketplaces we've created in 2023.",
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "71,897",
+              type: "number",
+              key: "amount",
+              displayer: "Amount",
+              value: 8500,
             },
-            {
-              type: "boolean",
-              key: "isIncrease",
-              displayer: "Adjust the Stats Percent",
-              value: true,
-            },
-            {
-              type: "string",
-              key: "increaseValue",
-              displayer: "Percent Value",
-              value: "5,2",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "VIEW MORE →",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            }
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "card",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://cdn-icons-png.flaticon.com/512/25/25186.png",
-            },
-            {
               type: "string",
-              key: "title",
+              key: "text",
               displayer: "Title",
-              value: "Impressions",
+              value: "Successfully finished projects with creativity.",
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "14,926",
+              type: "number",
+              key: "amount",
+              displayer: "Amount",
+              value: 660,
             },
-            {
-              type: "boolean",
-              key: "isIncrease",
-              displayer: "Adjust the Stats Percent",
-              value: true,
-            },
-            {
-              type: "string",
-              key: "increaseValue",
-              displayer: "Percent Value",
-              value: "8,9",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "VIEW MORE →",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            }
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "card",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://cdn-icons-png.flaticon.com/512/43/43580.png",
-            },
-            {
               type: "string",
-              key: "title",
+              key: "text",
               displayer: "Title",
-              value: "Avarage CTR",
+              value: "Monthly visitors on our e-Commerce platform.",
             },
+            {
+              type: "number",
+              key: "amount",
+              displayer: "Amount",
+              value: 6834,
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "card",
+          value: [
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "24.65%",
+              key: "text",
+              displayer: "Title",
+              value: "Onboarding conversions growth increased.",
             },
             {
-              type: "boolean",
-              key: "isIncrease",
-              displayer: "Adjust the Stats Percent",
-              value: false,
+              type: "number",
+              key: "amount",
+              displayer: "Amount",
+              value: 300,
             },
-            {
-              type: "string",
-              key: "increaseValue",
-              displayer: "Percent Value",
-              value: "3,9",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "VIEW MORE →",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            }
           ],
         },
       ],
@@ -177,38 +130,96 @@ class Stats2Page extends BaseStats {
   }
 
   render() {
+    const cards = this.castToObject<Card[]>("cards");
+    const animationDuration = this.getPropValue("animation-duration") as number;
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("bottom-child")}>
-            {this.castToObject<ICard[]>("card-content").map(
-              (cardData: ICard, indexCard: number) => (
-                <div key={indexCard} className={this.decorateCSS("card")}>
-                  <div className={this.decorateCSS("toppom")}>
-                    <div className={this.decorateCSS("img-container")}>
-                      <img src={cardData.image} alt="" />
-                    </div>
-                    <div className={this.decorateCSS("stats-texts")}>
-                      <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
-                      <div className={this.decorateCSS("counts")}>
-                        <p className={this.decorateCSS("count")}>{cardData.description}</p>
-                        <p className={`${cardData.isIncrease ? this.decorateCSS("increase") : this.decorateCSS("decrease")} ${this.decorateCSS("percent")}`}>{cardData.isIncrease ? "↑" : "↓"} {cardData.increaseValue}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={this.decorateCSS("bottoms")}>
-                    <ComposerLink path={cardData.buttonLink}>
-                      <p className={this.decorateCSS("card-button-text")}>{cardData.buttonText}</p>
-                    </ComposerLink>
-                  </div>
-                </div>
-              )
+          <div className={this.decorateCSS("header-wrapper")}>
+            {this.getPropValue("header") && (
+              <div className={this.decorateCSS("header")}>{this.getPropValue("header")}</div>
             )}
+
+            {this.getPropValue("subHeader") && (
+              <div className={this.decorateCSS("subHeader")}>
+                {this.getPropValue("subHeader")}
+                {this.getPropValue("contactButton") && (
+                  <button className={this.decorateCSS("contact-button")}>
+                    {this.getPropValue("contactButton")}
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className={this.decorateCSS("cards-container")}>
+            {cards.map((card, index) => (
+              <AnimatedCard key={index} card={card} animationDuration={animationDuration} styles={styles} />
+            ))}
           </div>
         </div>
       </div>
     );
   }
 }
+
+type AnimatedCardProps = {
+  card: Card;
+  animationDuration: number;
+  styles: typeof styles;
+};
+
+const AnimatedCard: React.FC<AnimatedCardProps> = ({ card, animationDuration, styles }) => {
+  const [amount, setAmount] = React.useState(0);
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateDigits();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [card.amount]);
+
+  const animateDigits = () => {
+    const finalAmount = card.amount;
+    const steps = animationDuration / 30;
+    let currentAmount = 0;
+    const increment = finalAmount / steps;
+
+    const interval = setInterval(() => {
+      currentAmount += increment;
+      if (currentAmount >= finalAmount) {
+        currentAmount = finalAmount;
+        clearInterval(interval);
+      }
+      setAmount(Math.ceil(currentAmount));
+    }, 30);
+  };
+
+  return (
+    <div ref={ref} className={styles["listed"]}>
+      <p className={styles["card-text"]}>{card.text}</p>
+      <p className={styles["card-amount"]}>{amount}</p>
+    </div>
+  );
+};
 
 export default Stats2Page;
