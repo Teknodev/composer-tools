@@ -4,9 +4,9 @@ import styles from "./team14.module.scss";
 
 type Card = {
   image: string;
-  name: string;
-  position: string;
-  description: string;
+  name: JSX.Element;
+  position: JSX.Element;
+  description: JSX.Element;
 }
 
 class Team14 extends Team {
@@ -153,7 +153,7 @@ class Team14 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/2787341/pexels-photo-2787341.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628418?alt=media&timestamp=1719558632841",
             },
           ],
         },
@@ -166,16 +166,6 @@ class Team14 extends Team {
       value: 4,
       max: 5,
     });
-  }
-
-  componentDidMount() {
-    const downPageElement = document.querySelector(`.${styles["down-page"]}`);
-    if (downPageElement) {
-      const images = downPageElement.querySelectorAll("img");
-      if (images.length == 0) {
-        downPageElement.remove();
-      }
-    }
   }
 
   getName(): string {
@@ -195,42 +185,41 @@ class Team14 extends Team {
             </div>
           )}
 
-          <div className={this.decorateCSS("down-page")}
-            style={{
-              gridTemplateColumns: `repeat(${this.getPropValue(
-                "itemCount"
-              )}, 1fr)`,
-            }}
-          >
-            {team.map((teamItem: Card, index: number) => {
+          <div className={this.decorateCSS("down-page")}>
+            {team.filter(teamItem => teamItem.image).map((teamItem: Card, index: number) => {
               const image = teamItem.image;
-              const name = this.getPropValue(teamItem.name, { as_string: true });
-              const position = this.getPropValue(teamItem.position, { as_string: true });
-              const description = this.getPropValue(teamItem.description, { as_string: true });
+              const name = this.castToString(teamItem.name);
+              const position = this.castToString(teamItem.position);
+              const description = this.castToString(teamItem.description);
 
               return (
-                <div className={this.decorateCSS("card")}>
-                  <div className={this.decorateCSS("portfolio")}>
-                    {image && (
-                      <img className={this.decorateCSS("image")}
-                        src={image}
-                        alt={`${name}'s image`}
-                        key={`team14-${index}`}
-                      />
-                    )}
-                    { (
-                      <div className={this.decorateCSS("info")}>
-                        {(
-                          <div className={this.decorateCSS("name")}>{name}</div>
-                        )}
-                        {(
-                          <div className={this.decorateCSS("position")}>{position}</div>
-                        )}
-                        {(
-                          <div className={this.decorateCSS("description")}>{description}</div>
-                        )}
-                      </div>
-                    )}
+                <div className={this.decorateCSS("itemCount")}
+                  style={{
+                    width: 95 / this.getPropValue("itemCount") + "%",
+                  }}>
+                  <div className={this.decorateCSS("card")}>
+                    <div className={this.decorateCSS("portfolio")}>
+                      {image && (
+                        <img className={this.decorateCSS("image")}
+                          src={image}
+                          alt={`${name}'s image`}
+                          key={`team14-${index}`}
+                        />
+                      )}
+                      {(name || position || description) && (
+                        <div className={this.decorateCSS("info")}>
+                          {name && (
+                            <div className={this.decorateCSS("name")}>{teamItem.name}</div>
+                          )}
+                          {position && (
+                            <div className={this.decorateCSS("position")}>{teamItem.position}</div>
+                          )}
+                          {description && (
+                            <div className={this.decorateCSS("description")}>{teamItem.description}</div>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               );
