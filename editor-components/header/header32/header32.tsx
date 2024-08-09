@@ -1,19 +1,22 @@
 import * as React from "react";
-import styles from "./header32.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styles from "./header32.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type ISliderData = {
-  title: string;
-  image: string;
-  description: string;
-  button: IButton;
+type Card = {
+  backgroundImage: string;
+  imageTitle: JSX.Element;
+  imageDescription: JSX.Element;
+  urlTitle: JSX.Element;
+  url: string;
 };
 
-type IButton = {
-  buttonText: string;
-  buttonClick: string;
+type Button = {
+  buttonIcon: string;
 };
 
 class Header32 extends BaseHeader {
@@ -22,55 +25,189 @@ class Header32 extends BaseHeader {
 
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
-      key: "slider",
+      key: "header",
+      displayer: "Header",
       value: [
         {
           type: "object",
-          displayer: "Item 1",
-          key: "item1",
+          key: "sliderContent",
+          displayer: "Slider Content",
           value: [
             {
               type: "image",
-              key: "image",
+              key: "backgroundImage",
               displayer: "Background Image",
-              value: "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/slide/main.jpg",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383502f8a5b002ce6aa53?alt=media",
             },
             {
               type: "string",
-              key: "title",
-              value: "Dental treatments in Turkey",
+              key: "imageTitle",
               displayer: "Title",
+              value: "Transforming ideas into structures",
             },
             {
               type: "string",
-              key: "description",
-              value: "Premium Quality Dental Care",
+              key: "imageDescription",
               displayer: "Description",
+              value:
+                "Architects can conduct site analysis and evaluation to determine the best location for a building or development project.",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "GET FREE QUOTE",
-                },
-                {
-                  type: "page",
-                  key: "buttonClick",
-                  displayer: "Button Click",
-                  value: ""
-                },
-              ]
+              type: "string",
+              key: "urlTitle",
+              displayer: "URL Title",
+              value: "Details",
             },
-          ]
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383962f8a5b002ce6aa92?alt=media",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Title",
+              value: "Building your vision, creating reality",
+            },
+            {
+              type: "string",
+              key: "imageDescription",
+              displayer: "Description",
+              value:
+                "Architects can conduct site analysis and evaluation to determine the best location for a building or development project.",
+            },
+            {
+              type: "string",
+              key: "urlTitle",
+              displayer: "URL Title",
+              value: "Details",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383c62f8a5b002ce6aac7?alt=media",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Title",
+              value: "Designing spaces, creating experiences",
+            },
+            {
+              type: "string",
+              key: "imageDescription",
+              displayer: "Description",
+              value:
+                "Architects can conduct site analysis and evaluation to determine the best location for a building or development project.",
+            },
+            {
+              type: "string",
+              key: "urlTitle",
+              displayer: "URL Title",
+              value: "Details",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderContent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383fd2f8a5b002ce6aae3?alt=media",
+            },
+            {
+              type: "string",
+              key: "imageTitle",
+              displayer: "Title",
+              value: "Architecture is our passion, design is our art",
+            },
+            {
+              type: "string",
+              key: "imageDescription",
+              displayer: "Description",
+              value:
+                "Architects offer design and planning services for buildings, landscapes, and interiors.",
+            },
+            {
+              type: "string",
+              key: "urlTitle",
+              displayer: "URL Title",
+              value: "Details",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+          ],
         },
       ],
-    }) 
+    });
+    this.addProp({
+      type: "boolean",
+      key: "enableOverlay",
+      displayer: "Enable Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "leftButtonIcon",
+      displayer: "Left Button",
+      value: "FaArrowLeftLong",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "rightButtonIcon",
+      displayer: "Left Button",
+      value: "FaArrowRightLong",
+    });
+
+    this.setComponentState("slider-ref", React.createRef());
   }
 
   getName(): string {
@@ -78,50 +215,160 @@ class Header32 extends BaseHeader {
   }
 
   render() {
-
     const settings = {
+      arrows: false,
       dots: true,
       infinite: true,
-      speed: 500,
-      autoplay: false,
+      speed: 1500,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      dotsClass: this.decorateCSS("dots"),
+      customPaging: function (i: number) {
+        return (
+          <div>
+            <button></button>
+            <span className={styles.dotIndex}>{`0${i + 1}`}</span>
+          </div>
+        );
+      },
     };
-    
+
+    const hasleftButtonIcon = this.getPropValue("leftButtonIcon");
+    const hasrightButtonIcon = this.getPropValue("rightButtonIcon");
+    const enableOverlay = this.getPropValue("enableOverlay");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <ComposerSlider
+            <div className={this.decorateCSS("slider-parent")}>
+              <Slider
                 {...settings}
                 className={this.decorateCSS("carousel")}
+                ref={this.getComponentState("slider-ref")}
               >
-                {this.castToObject<ISliderData[]>("slider").map(
-                  (item: ISliderData, index: number) => (
-                    <div className={this.decorateCSS("item")} key={`key${index}`}>
-                      <div className={this.decorateCSS("image")}>
-                        <img src={item.image} alt={item.title} />
+                {this.castToObject<Card[]>("header").map(
+                  (item: Card, index: number) => {
+                    return (
+                      <div
+                        className={this.decorateCSS("slide-inner")}
+                        key={`hdr-32-${index}`}
+                      >
+                        <div
+                          className={this.decorateCSS("content")}
+                          style={{
+                            backgroundImage: `url(${item.backgroundImage})`,
+                          }}
+                        >
+                          <div className={this.decorateCSS("content-inner")}>
+                            {enableOverlay && (
+                              <div
+                                className={this.decorateCSS("slide-shape")}
+                              ></div>
+                            )}
+
+                            {this.castToString(item.imageTitle) && (
+                              <h2 className={this.decorateCSS("image-title")}>
+                                {item.imageTitle}
+                              </h2>
+                            )}
+
+                            {(this.castToString(item.imageDescription) ||
+                              this.castToString(item.urlTitle)) && (
+                              <div
+                                className={this.decorateCSS("image-details")}
+                              >
+                                {this.castToString(item.imageDescription) && (
+                                  <p
+                                    className={this.decorateCSS("description")}
+                                  >
+                                    {item.imageDescription}
+                                  </p>
+                                )}
+
+                                <div
+                                  className={this.decorateCSS("stick")}
+                                ></div>
+
+                                {this.castToString(item.urlTitle) && (
+                                  <div
+                                    className={this.decorateCSS(
+                                      "url-container"
+                                    )}
+                                  >
+                                    <ComposerLink
+                                      key={`hdr-32-${index}`}
+                                      path={item.url}
+                                    >
+                                      <p
+                                        className={this.decorateCSS(
+                                          "url-title"
+                                        )}
+                                      >
+                                        {item.urlTitle}
+                                      </p>
+                                    </ComposerLink>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            {(hasleftButtonIcon || hasrightButtonIcon) && (
+                              <div className={this.decorateCSS("nav-buttons")}>
+                                {hasleftButtonIcon && (
+                                  <button
+                                    className={this.decorateCSS("nav-button")}
+                                    onClick={() => {
+                                      this.getComponentState(
+                                        "slider-ref"
+                                      ).current.slickPrev();
+                                    }}
+                                  >
+                                    <ComposerIcon
+                                      name={this.getPropValue("leftButtonIcon")}
+                                      propsIcon={{
+                                        className: `${this.decorateCSS(
+                                          "Icon"
+                                        )}`,
+                                        size: 20,
+                                      }}
+                                    />
+                                  </button>
+                                )}
+                                {hasrightButtonIcon && (
+                                  <button
+                                    className={this.decorateCSS("nav-button")}
+                                    onClick={() => {
+                                      this.getComponentState(
+                                        "slider-ref"
+                                      ).current.slickNext();
+                                    }}
+                                  >
+                                    <ComposerIcon
+                                      name={this.getPropValue(
+                                        "rightButtonIcon"
+                                      )}
+                                      propsIcon={{
+                                        className: `${this.decorateCSS(
+                                          "Icon"
+                                        )}`,
+                                        size: 20,
+                                      }}
+                                    />
+                                  </button>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <div className={this.decorateCSS("content")}>
-                      <div className={this.decorateCSS("description")}>
-                        {item.description}
-                      </div>
-                      <div className={this.decorateCSS("title")}>
-                        {item.title}
-                      </div>
-                      <div>
-                        <ComposerLink href={item.button.buttonClick}>
-                        <button className={this.decorateCSS("button") }>
-                          {item.button.buttonText}
-                        </button>
-                        </ComposerLink>
-                      </div>
-                    </div>
-                  </div>
-                )
-              )}
-            </ComposerSlider>
+                    );
+                  }
+                )}
+              </Slider>
+            </div>
           </div>
         </div>
       </div>
