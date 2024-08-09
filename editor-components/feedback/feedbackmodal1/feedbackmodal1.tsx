@@ -5,9 +5,6 @@ import { object, string } from "yup";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Emoji = {
-  type: "icon";
-  key: string;
-  displayer: string;
   value: string;
 };
 
@@ -155,17 +152,17 @@ class FeedbackModal1 extends BaseModal {
           </button>
         </div>
 
-        <div className={this.decorateCSS("headerContent")}>
           {isHeaderTitleExist &&
-            <h2>{this.getPropValue("headerTitle")}</h2>
+            <h2 className={this.decorateCSS("headerContent")}>
+              {this.getPropValue("headerTitle")}</h2>
           }
-        </div>
+        
 
-        <div className={this.decorateCSS("descriptionContent")}>
           {isDescriptionExist &&
-            <p>{this.getPropValue("description")}</p>
+            <p className={this.decorateCSS("descriptionContent")}>
+              {this.getPropValue("description")}</p>
           }
-        </div>
+        
         
         {emojiProps.length > 0 && (
           <div className={this.decorateCSS("feedbackModalEmojis")}>
@@ -187,7 +184,7 @@ class FeedbackModal1 extends BaseModal {
           </div>
         ) }
 
-        {inputPlaceholder && (
+      
           <div className={this.decorateCSS("send-mail")}>
             <div className={this.decorateCSS("contact-form")}>
               <input
@@ -202,8 +199,6 @@ class FeedbackModal1 extends BaseModal {
               </button>
             )}
           </div>
-        )}
-
       </div>
     );
   }

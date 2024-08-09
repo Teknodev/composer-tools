@@ -2,15 +2,14 @@
   width: 400px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px  rgba(var(--composer-font-color-primary-rgb), 0.1);;
   background-color: var(--composer-html-background);
-  font-family: 'Arial', sans-serif;
   transition: background-color 0.3s ease;
 
   .feedbackModalHeader {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--composer-font-color-primary);
     padding-bottom: 20px;
     position: relative;
 
@@ -39,7 +38,7 @@
       transform: translateY(-50%);
       color: var(--composer-html-background);
       .close_icon{
-        color: black;
+        color:  var(--composer-font-color-primary);;
       }
     }
   }
@@ -47,7 +46,7 @@
 
   .headerContent {
     
-    padding-left: 10px !important;
+    padding-left: 100px !important;
     padding-right: 10px !important;
     padding-top: 20px;
 
@@ -74,7 +73,6 @@
   .feedbackModalEmojis {
     display: flex;
     justify-content: space-around;
-    flex-direction: row;
     margin-bottom: 20px;
     flex-wrap: wrap;
   
@@ -82,12 +80,11 @@
       position: relative;
       cursor: pointer;
       display: flex;
-      flex-direction: row;
       align-items: center;
       padding: 10px;
       border-radius: 50%;
       transition: background-color 0.3s, transform 0.3s;
-      background-color: #d2d1d13a;
+      background-color: var(--secondary-text-color);
       margin-bottom: 10px;
   
       &::before,
@@ -159,8 +156,7 @@
         width: 360px;
         height: 95px;
         border-color: var(--composer-font-color-primary);
-        border-radius:  var(--composer-border-radius);;
-        //border: 0.5px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
+        border-radius:  var(--composer-border-radius);
         background: var(--composer-html-background);
         color: var(--composer-font-color-primary);
         padding-bottom: 55px;
@@ -178,7 +174,7 @@
   .feedbackModalComment {
     width: 100%;
     height: 60px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--composer-html-background);;
     border-radius: 5px;
     padding: 10px;
     font-size: 0.875rem;
@@ -199,7 +195,7 @@
     
   }
 
-  @media (max-width: 768px) { 
+  @media only screen and  (max-width: 768px) { 
     width: 90%;
     padding: 15px;
 
@@ -246,7 +242,7 @@
     }
   }
 
-  @media (max-width: 480px) { 
+  @media only screen and  (max-width: 480px) { 
     width: 95%;
     padding: 10px;
 
