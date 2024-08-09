@@ -1,222 +1,310 @@
 .container {
+  position: relative;
+  height: 100vh;
   width: 100%;
-  min-height: calc(100vh - 80px);
-  background-color: var(--composer-html-background);
-  padding: 50px 0px;
-  display: flex;
-  align-items: center;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    justify-content: center;
+  overflow: hidden;
 
-  .wrapper {
-    display: flex;
-    width: 100%;
-    height: 700px;
+  .image-container {
+    width: 100% !important;
+    height: 100vh;
+    z-index: -1;
+    display: flex !important;
     position: relative;
-    .left {
-      flex: 1;
+    max-width: 100%;
+
+    .image {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+  }
+
+  .max-content {
+    display: flex;
+    overflow: hidden;
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+
+    .item {
       display: flex;
-      flex-direction: column;
-      gap: 50px;
-      height: 100%;
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
 
-      margin-left: 10%;
 
-      .top {
-        flex: 5;
-
-        flex-direction: column;
+      .content-container {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100vh;
         display: flex;
-        align-items: start;
-        justify-content: center;
-        position: relative;
-        height: 100%;
-        .title {
-          .items {
-            font-size: 42px;
-            color: white;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 1000px;
-          }
-        }
-        .button-and-input {
-          display: flex;
-          gap: 20px;
-          .input {
-            border-radius: 5px;
-            padding: 5px 20px;
-            border: none;
-          }
-          button {
-            cursor: pointer;
-            border-radius: 5px;
-            padding: 10px 10px;
-            background-color: var(--composer-secondary-color);
-            color: var(--composer-font-color-secondary);
-            font-size: 15px;
-            border: 1px solid var(--composer-tertiary-color);
-            &:hover {
-              background-color: transparent;
-              color: var(--composer-font-color-secondary);
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5rem;
+        z-index: 1;
+        max-width: -webkit-fill-available;
+
+        .title-container {
+          height: 50%;
+          max-height: 50%;
+          z-index: 3;
+          padding: 8.33rem 8.33rem;
+          color: white;
+          pointer-events: auto;
+          text-align: center;
+
+          .title {
+            padding-bottom: 4rem;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            font-size: 6vw;
+            font-weight: bolder;
+            max-width: fit-content;
+
+            .number {
+              font-size: 0.8vw;
+              font-weight: bolder;
+              margin-left: 1rem;
+            }
+
+            &.previous,
+            &.next {
+              color: transparent;
+              -webkit-text-stroke: 1px white;
+              font-weight: normal;
+              opacity: 0.3;
+            }
+
+            &.current {
+              font-weight: bolder;
+              opacity: 1;
+              -webkit-text-stroke: none;
             }
           }
-        }
-        .icons {
-          z-index: 5;
-          margin-top: 20px;
-          display: flex;
-          align-items: center;
-          li {
-            display: flex;
+
+          .previous-placeholder {
             width: 100%;
-            .icon-div {
-              margin: 0 10px;
+            height: 6rem;
+          }
+        }
+
+        .buttomRow {
+          width: auto;
+          max-width: 100%;
+          z-index: 1;
+          display: flex !important;
+          flex-direction: row;
+          align-items: center;
+          font-weight: 700;
+          font-size: 1.2rem;
+          gap: 3.5%;
+          padding: 2rem;
+          color: white;
+
+          .navigation {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 40%;
+
+            .up,
+            .down {
+              margin: 1%;
+            }
+
+            .icon {
+              font-size: 4rem;
+            }
+          }
+
+          .comment-and-icon-text-container {
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            width: 100%;
+
+            .comment {
+              font-size: 1.2rem;
+              display: flex;
+              width: auto;
+              max-width: fit-content;
+            }
+
+            .icon-text-container {
+              justify-content: center;
+              display: flex;
+              width: auto;
+              max-width: fit-content;
               cursor: pointer;
-              img {
-                margin: 5px 0;
-                width: 30px;
-                height: 30px;
+              position: relative;
+              width: auto;
+              max-width: 100%;
+
+              &:hover .icon_text {
+                transform: translate(4rem, -4.5rem);
+                transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+              }
+
+              &:hover .social-icons {
+                opacity: 1;
+                transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+              }
+
+              &:hover .icon-next-to-text {
+                transform: translate(0, -4rem);
+                opacity: 0;
+                transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+              }
+
+              .icon_text {
+                transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+                font-weight: bolder;
+                padding-right: 2rem;
+              }
+
+              .social-icons {
+                position: absolute;
+                left: 0;
+                transform: translate(-50%, -15%);
+                display: flex;
+                gap: 20%;
+                opacity: 0;
+                transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+
+                .icon {
+                  font-size: 1.3rem;
+                }
+              }
+
+              .icon-next-to-text {
+                font-size: 1.3rem;
+                transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
               }
             }
           }
         }
       }
+    }
+  }
+}
 
-      .bottom {
-        z-index: 5;
-        width: 100%;
-        flex: 1;
-        justify-content: center;
-        li {
-          display: flex;
-          border: 0;
-          a {
-            text-decoration: none;
-            cursor: pointer;
-            padding: 3px;
-            border-right: 2px solid white;
-            color: white;
-            font-weight: bold;
-            font-size: 15px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 400px;
-            &:last-child {
-              border-right: none;
+@media only screen and (max-width: 1300px) {
+  .container {
+    .max-content {
+      .item {
+        .content-container {
+          .title-container {
+            padding-left: 0;
+
+            .title {
+              .number {
+                font-size: 1.5vw;
+              }
             }
           }
         }
       }
     }
-
-    .right {
-      flex: 1;
-      .image {
-        align-items: flex-start;
-
-        position: relative;
-        height: 300px;
-        width: 300px;
-      }
-    }
-    .background-image {
-      z-index: 0;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      overflow: hidden;
-      justify-content: center;
-      display: flex;
-      filter: brightness(80%); 
-
-      img {
-        transform: scale(1);
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-    }
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   .container {
-    .wrapper {
-      .left {
-        .top {
-          .title {
-            font-size: 30px;
-          }
-          .button-and-input {
-            .input {
-              padding: 5px 20px;
+    .max-content {
+      .item {
+        .content-container {
+          .title-container {
+            padding-left: 0;
+
+            .title {
+              font-size: 6vw;
+
+              .number {
+                font-size: 2vw;
+              }
             }
-            button {
-              padding: 10px 10px;
-              font-size: 15px;
-            }
           }
-          .icons {
-            li {
-              .icon-div {
-                img {
-                  width: 20px;
-                  height: 20px;
+
+          .buttomRow {
+            .comment-and-icon-text-container {
+              .icon-text-container {
+                .icon_text {
+                  display: none;
+                }
+
+                .social-icons {
+                  opacity: 1;
+                  padding-right: 2vw;
+                  transform: translate(-130%, -50%);
+                }
+
+                .icon-next-to-text {
+                  display: none;
                 }
               }
             }
           }
         }
       }
-      .right {
-        display: none;
-      }
-      .background-image{
-        img{
-          width: 300%;
-        }
-      }
     }
   }
 }
-}
-@media only screen and (max-width: 360px) {
+
+@media only screen and (max-width: 480px) {
   .container {
-    .wrapper {
-      height: 400px;
-      .left {
-        width: 100%;
-        margin-left: 0;
-        .top {
-          .title {
-            h1 {
-              font-size: 30px;
+    .max-content {
+      .item {
+        .content-container {
+          padding-right: 2rem;
+          padding-left: 2rem;
+
+          .title-container {
+            padding-top: 80%;
+            padding-left: 0;
+            justify-content: end;
+            width: 100vw;
+
+            .title {
+              font-size: 9vw;
+
+              .number {
+                font-size: 4vw;
+              }
             }
+
           }
-          .button-and-input {
-            .input {
-              padding: 5px 20px;
+
+          .buttomRow {
+            padding-bottom: 0;
+            flex-direction: row-reverse;
+            gap: 30%;
+
+            .navigation {
+              margin-right: 0;
+              gap: 30%;
+
+              .up,
+              .down {
+                margin: 0;
+              }
+
+              .icon {
+                font-size: 3rem;
+              }
             }
-            button {
-              padding: 10px 10px;
-              font-size: 15px;
+
+            .comment-and-icon-text-container {
+              direction: ltr;
+
+              .icon-text-container {
+                display: none;
+              }
             }
           }
         }
-        .bottom {
-          li {
-            a {
-              font-size: 70%;
-            }
-          }
-        }
-      }
-      .right {
-        display: none;
       }
     }
   }
