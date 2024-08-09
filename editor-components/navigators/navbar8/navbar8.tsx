@@ -262,15 +262,15 @@ class Navbar8 extends BaseNavigator {
               </ComposerLink>
             </div>
             <div className={this.decorateCSS("middle")}>
-              <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+              <div className={`${this.decorateCSS("title")} ${navActive && this.decorateCSS("active-title")}`}>{this.getPropValue("title")}</div>
 
-              <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>
+              <div className={`${this.decorateCSS("subtitle")} ${navActive && this.decorateCSS("active-subtitle")}`}>{this.getPropValue("subtitle")}</div>
             </div>
             <div className={this.decorateCSS("navbar")}>
               <ComposerIcon
                 name={navActive ? this.getPropValue("cross-icon") : this.getPropValue("hamburger-icon")}
                 propsIcon={{
-                  className: `${this.decorateCSS("hamburger-icon")}  `,
+                  className: `${this.decorateCSS("hamburger-icon")} ${navActive && this.decorateCSS("active-hamburger-icon")} `,
                   onClick: () => {
                     this.navClick();
                   },
