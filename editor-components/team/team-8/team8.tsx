@@ -238,7 +238,7 @@ class Team8 extends Team {
       type: "number",
       key: "slidesToShow",
       displayer: "Slides To Show",
-      value: 3,
+      value: 5,
     });
   }
 
@@ -293,6 +293,10 @@ class Team8 extends Team {
       ],
     };
 
+    const titleExist = this.getPropValue("title", { as_string: true });
+    const descriptionExist = this.getPropValue("description", {
+      as_string: true,
+    });
     return (
       <div className={this.decorateCSS("container")}>
         <div
@@ -308,12 +312,12 @@ class Team8 extends Team {
           ></div>
           <div className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("text-box")}>
-              {this.castToString(this.getPropValue("title")) && (
+              {titleExist && (
                 <h2 className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </h2>
               )}
-              {this.castToString(this.getPropValue("description")) && (
+              {descriptionExist && (
                 <h3 className={this.decorateCSS("description")}>
                   {this.getPropValue("description")}
                 </h3>
@@ -326,37 +330,48 @@ class Team8 extends Team {
                   {...settings}
                   className={this.decorateCSS("carousel")}
                 >
-                  {slides.map((item: Card, index: number) => (
-                    <div
-                      className={this.decorateCSS("slider-inner-div")}
-                      key={index}
-                    >
-                      <div className={this.decorateCSS("content-div")}>
-                        <div className={this.decorateCSS("img-div")}>
-                          {item.image && (
-                            <div className={this.decorateCSS("image-box")}>
-                              <img
-                                alt=""
-                                src={item.image}
-                                className={this.decorateCSS("img")}
-                              />
+                  {slides.map((item: Card, index: number) => {
+                    const titleExist = this.castToString(item.imagetitle);
+                    const subtitleExist = this.castToString(item.imagesubtitle);
+
+                    return (
+                      <div
+                        className={this.decorateCSS("slider-inner-div")}
+                        key={index}
+                      >
+                        <div className={this.decorateCSS("content-div")}>
+                          <div className={this.decorateCSS("img-div")}>
+                            {item.image && (
+                              <div className={this.decorateCSS("image-box")}>
+                                <img
+                                  alt=""
+                                  src={item.image}
+                                  className={this.decorateCSS("img")}
+                                />
+                              </div>
+                            )}
+                          </div>
+                          {(titleExist || subtitleExist) && (
+                            <div className={this.decorateCSS("header-page")}>
+                              {titleExist && (
+                                <h3 className={this.decorateCSS("item-title")}>
+                                  {item.imagetitle}
+                                </h3>
+                              )}
+
+                              {subtitleExist && (
+                                <h1
+                                  className={this.decorateCSS("first-header")}
+                                >
+                                  {item.imagesubtitle}
+                                </h1>
+                              )}
                             </div>
                           )}
                         </div>
-                        <div className={this.decorateCSS("header-page")}>
-                          <h3 className={this.decorateCSS("item-title")}>
-                            {item.imagetitle}
-                          </h3>
-
-                          {this.castToString(item.imagesubtitle) && (
-                            <h1 className={this.decorateCSS("first-header")}>
-                              {item.imagesubtitle}
-                            </h1>
-                          )}
-                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </ComposerSlider>
               </div>
             </div>
