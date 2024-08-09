@@ -49,7 +49,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageLeft",
                             displayer: "image Left",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry15-1.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625904?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -68,7 +68,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageLeft",
                             displayer: "image Left",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry18.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -87,7 +87,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageLeft",
                             displayer: "image Left",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/book_on_leaves.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fe?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -106,7 +106,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageLeft",
                             displayer: "image Left",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry05.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625901?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -125,7 +125,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageLeft",
                             displayer: "image Left",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry13.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -153,7 +153,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageRight",
                             displayer: "image Right",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/food_drink04.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625900?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -172,7 +172,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageRight",
                             displayer: "image Right",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/coffee.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -191,7 +191,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageRight",
                             displayer: "image Right",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/book_and_leaf.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fd?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -210,7 +210,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageRight",
                             displayer: "image Right",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/masonry11.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625902?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -229,7 +229,7 @@ class Header12 extends BaseHeader {
                             type: "image",
                             key: "imageRight",
                             displayer: "image Right",
-                            value: "https://demo-storage.com/pm/wp/aurel/dark/wp-content/uploads/2017/11/photo-1476283721796-dd935b062838.jpg",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
                         },
                         {
                             type: "string",
@@ -265,7 +265,6 @@ class Header12 extends BaseHeader {
         const settingFirst = {
             ...settings,
             beforeChange: (current: number, next: number) => {
-                console.log(next, current);
                 const currentIndex = parseInt(this.getComponentState("secondSliderIndex"));
                 if(
                     (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection1").length))
@@ -281,7 +280,6 @@ class Header12 extends BaseHeader {
         const settingSecond = {
             ...settings,
             beforeChange: (current: number, next: number) => {
-                console.log(next, current);
                 const currentIndex = parseInt(this.getComponentState("firstSliderIndex"));
                 if(
                     (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection2").length))

@@ -17,7 +17,7 @@
       gap: 10px;
       padding-bottom: 20px;
 
-      .wrapper {
+      .duration-items {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -38,6 +38,7 @@
         }
 
         .icon {
+          color: var(--composer-font-color-primary);
           font-size: 18px;
           right: 0px;
           bottom: 5px;
@@ -95,16 +96,11 @@
           background-color: var(--composer-secondary-color);
         }
 
-        .input:focus+.slider {
-          box-shadow: 0 0 1px #2196F3;
-        }
-
         .input:checked+.slider:before {
           -webkit-transform: translateX(26px);
           -ms-transform: translateX(26px);
           transform: translateX(26px);
         }
-
 
         .slider.round {
           border-radius: 34px;
@@ -117,8 +113,6 @@
         .plan-items {
           display: flex;
         }
-
-
       }
 
       .subtitle {
@@ -150,26 +144,25 @@
         display: flex;
         justify-content: center;
 
+        .price-hover:hover {
+          box-shadow: 0 10px 30px rgba(var(--composer-font-color-primary-rgb), 0.2);
+          transform: translateY(-10px);
+        }
+
         .price {
           transition: 0.5s;
           display: flex;
           flex-direction: column;
-          box-shadow: var(--composer-box-shadow);
-          border: 1px solid var(--composer-tertiary-color);
+          box-shadow: 0 10px 30px rgba(var(--composer-font-color-primary-rgb), 0.2);
           border-radius: 20px;
           height: max-content;
           padding: 20px;
           flex: 1 1;
-
           max-width: 350px;
           position: relative;
 
-          &:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-            transform: translateY(-10px);
-          }
-
           .popular-box {
+            box-shadow: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 90%);
             width: fit-content;
             border: 1px solid var(--composer-secondary-color);
             border-radius: 100px;
@@ -184,9 +177,7 @@
             }
           }
 
-          .badge-basic,
-          .badge-pro,
-          .badge-advanced {
+          .badge {
             width: fit-content;
             height: 35px;
             padding: 15px;
@@ -196,58 +187,55 @@
             border-radius: 100px;
             display: flex;
             color: var(--composer-font-color-secondary);
-
           }
-
-          .badge-basic {
-            background-color: var(--composer-primary-color);
-          }
-
-          .badge-pro {
-            background-color: var(--composer-secondary-color);
-          }
-
-          .badge-advanced {
-            background-color: var(--composer-tertiary-color);
-          }
-
-
 
           .price-text {
-            margin: 0;
-            padding: 15px 0px;
+            margin-top: 25px;
             display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            font-size: 3.5rem;
+            align-items: flex-end;
             color: var(--composer-font-color-primary);
+            justify-content: flex-start;
+
+            .price-title {
+              margin: 0;
+              font-weight: bold;
+              font-size: 3.5rem;
+            }
 
             .duration-text {
               margin: 0;
+              margin-bottom: 5px;
               color: var(--composer-font-color-primary);
-              font-size: 1.1rem;
+              font-size: 1.2rem;
               font-weight: 500;
+              opacity: 0.5;
             }
           }
 
-          .text {
+          .promoText {
+            margin-top: 15px;
             font-size: 14px;
             font-weight: bold;
             color: var(--composer-font-color-primary);
+          }
 
+          hr {
+            border: 1px solid var(--composer-font-color-primary);
+            border-radius: 10px;
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            opacity: 0.1;
           }
 
           .description {
-            padding-top: 20px;
-            border-top: 1px solid black;
+            display: flex;
             font-size: 14px;
             opacity: 0.6;
             color: var(--composer-font-color-primary);
           }
 
           .features {
-            margin: 30px 40px 0 40px;
             padding-left: 0;
             text-align: left;
             list-style-type: none;
@@ -264,24 +252,26 @@
               color: var(--composer-font-color-primary);
 
               icon {
+                color: var(--composer-font-color-primary);
                 width: 25px;
                 height: 25px;
+
               }
             }
           }
 
           .button {
-            border: none;
+            border: 1px solid var(--composer-secondary-color);
+            border-radius: 100px;
             overflow: hidden;
             z-index: 1;
-            color: var(--composer-font-color-secondary);
-            background-color: var(--composer-secondary-color);
+            color: var(--composer-font-color-primary);
+            background-color: transparent;
             transition: 0.5s;
-            border-radius: 100px;
             font-weight: 500;
             font-size: 1.2rem;
             padding: 13px 25px;
-            margin: 30px 40px 0 40px;
+            margin: 15px 0px 5px 0px;
             gap: 5px;
             display: flex;
             width: fit-content;
@@ -289,9 +279,11 @@
             align-items: center;
 
             &:hover {
+
               color: var(--composer-font-color-primary);
               border: 1px solid var(--composer-secondary-color);
               background-color: transparent;
+              font-size: 1.4rem;
             }
           }
         }
@@ -309,7 +301,9 @@
 
       .up-text {
         .description {
-          font-size: 13px;
+          font-size: 14px;
+          margin: 0px 20px;
+          text-align: center;
         }
       }
 

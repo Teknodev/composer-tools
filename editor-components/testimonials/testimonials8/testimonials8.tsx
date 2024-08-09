@@ -34,7 +34,7 @@ class Testimonials8Page extends Testimonials {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644930bdf72de2002caa9944?alt=media&timestamp=1682518219540",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388a?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {
@@ -73,7 +73,7 @@ class Testimonials8Page extends Testimonials {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449315ff72de2002caa998e?alt=media&timestamp=1682518379680",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388b?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {
@@ -112,7 +112,7 @@ class Testimonials8Page extends Testimonials {
               type: "image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449315ff72de2002caa998f?alt=media&timestamp=1682518379680",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661740cbd2970002c623895?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {

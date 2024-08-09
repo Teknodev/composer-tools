@@ -1,110 +1,195 @@
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        display: flex;
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .testimonials9 {
-            display: block;
-            width: 100%;
-            padding: 20px;
-            .title-card {
-                display: flex;
-                flex-direction: column;
-                text-align: center;
-                justify-content: center;
-                margin-bottom: 60px;
-                .title {
-                    text-align: center;
-                    font-size: 3.5rem;
-                    font-weight: 900;
-                    margin: 0 0 10px 0;
-                    color: var(--composer-primary-color);
-                }
-                .description {
-                    text-align: center;
-                    font-weight: 100;
-                    font-size: 1.2rem;
-                    margin: 0 0 40px 0;
-                    color: var(--composer-font-color-primary);
-                }
-            }
-            .card-child {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                .card {
-                    flex: 1 1;
-                    max-width: 760px;
-                    display: flex;
-                    border-radius: 0;
-                    border-bottom: 1px solid var(--composer-tertiary-color);
-                    margin-top: 15px;
-                    img {
-                        border-radius: 0px;
-                        margin-bottom: 15px;
-                    }
-                    .content {
-                        padding: 0 20px;
-                        margin-bottom: 15px;
-                        .item-value1 {
-                            font-weight: 800;
-                            font-size: 2rem;
-                            color: var(--composer-primary-color);
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            margin-left: 0;
-                            margin-right: 0;
-                        }
-                        .item-value2 {
-                            opacity: 0.8;
-                            font-weight: 100;
-                            font-size: 1.2rem;
-                            color: var(--composer-font-color-primary);
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            margin-left: 0;
-                            margin-right: 0;
-                        }
-                        .item-value3 {
-                            opacity: 0.8;
-                            font-weight: 100;
-                            font-size: 1rem;
-                            color: var(--composer-font-color-primary);
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            margin-left: 0;
-                            margin-right: 0;
-                        }
-                    }
-                }
-                .card:last-child {
-                    border-bottom: 0;
-                }
-            }
+  width: 100%;
+  background-color: var(--composer-html-background);
+
+  .max-content {
+    display: flex;
+    max-width: var(--composer-content-width);
+    margin: auto;
+    padding: 50px 100px;
+
+    .page {
+      display: flex;
+      gap: 100px;
+
+      .left-page {
+        width: 50%;
+        .down-image {
+          position: static;
+          display: flex;
+          flex-direction: row-reverse;
+
+          .image2 {
+            width: 75%;
+            border-radius: 22px !important;
+            border: 10px solid var(--composer-html-background);
+            position: relative;
+            bottom: 138px;
+            left: 53px;
+            object-fit: cover;
+          }
         }
+        .up-image {
+          padding: 0 0 0 20px;
+          .image1 {
+            width: 83% !important;
+            height: 346px;
+            border-radius: 16px;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .right-page {
+        width: 50%;
+        .badge {
+          font-size: 14px;
+          opacity: 0.8;
+          font-weight: bold;
+          color: var(--composer-font-color-primary);
+          padding-bottom: 5px;
+        }
+        .title {
+          font-size: 50px;
+          font-weight: 700;
+          color: var(--composer-primary-color);
+        }
+        .description {
+          font-size: 13px;
+          font-weight: bold;
+          opacity: 0.6;
+          color: var(--composer-font-color-primary);
+        }
+        .progress-container {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          .item {
+            transition: 0.3s;
+
+            .progress-title-container {
+              display: flex;
+              gap: 10px;
+              font-size: 16px;
+              font-weight: bold;
+              color: var(--composer-primary-color);
+              margin-bottom: 10px;
+
+              .progress-title-icon {
+                margin-top: 2px;
+              }
+            }
+
+            .progress-bar-container {
+              position: relative;
+
+              .progress-bar {
+                width: 100%;
+                background-color: #f0f0f0;
+                border-radius: 10px;
+                overflow: hidden;
+
+                .progress {
+                  height: 8px;
+                  background-color: var(--composer-secondary-color);
+                  width: 0;
+                  transition: width 1.5s ease-in-out;
+                }
+              }
+
+              .progress-text {
+                position: absolute;
+                right: 0;
+                top: -20px;
+                font-size: 12px;
+                font-weight: bold;
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .max-content {
-            .testimonials9 {
-                .card-child {
-                    gap: 60px;
-                    .card {
-                        flex-direction: column;
-                        align-items: center;
-                        text-align: center;
-                        .content {
-                            margin-top: 20px;
-                        }
-                    }
-                }
-            }
+@media screen and (max-width: 1000px) {
+  .container {
+    .max-content {
+      padding: 50px 30px;
+
+      .page {
+        flex-direction: column !important;
+
+        .left-page {
+          width: 91%;
         }
+
+        .right-page {
+          padding: 0px 30px;
+          width: 100%;
+          position: relative;
+          bottom: 115px;
+        }
+      }
     }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    height: 100%;
+
+    .max-content {
+      padding-left: 0;
+      padding-right: 0;
+
+      .page {
+        flex-direction: column;
+        width: 100%;
+
+        .left-page {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          gap: 0;
+
+          .up-image {
+            padding: 0;
+            .image1 {
+              width: 100% !important;
+              height: 212px;
+              position: relative;
+              left: 0;
+            }
+          }
+
+          .down-image {
+            top: 0;
+            left: 0;
+            position: relative;
+            width: 89% !important;
+            align-items: center;
+
+            .image2 {
+              height: 200px;
+              width: 100%;
+              bottom: 40%;
+              right: 0;
+            }
+          }
+        }
+
+        .right-page {
+          padding: 0px 20px;
+          bottom: 0;
+
+          .title {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
 }

@@ -3,37 +3,41 @@ import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { ToggleButton } from "@mui/material";
+import { Margin } from "@mui/icons-material";
+import { useState, useEffect } from 'react';
+import { number } from "yup";
+
 
 type PricingItem = {
   itemText: string;
   icon: string;
 };
 
-
 type MonthlyPlan = {
   badge: string;
   price: string;
   duration: string;
-  text: string;
+  promoText: string;
   description: string;
   buttonText: string;
   link: string;
   item: PricingItem[];
   isActive: boolean;
   popular_settings: any;
+  isHoverActive: boolean;
 }[];
 type YearlyPlan = {
   badge: string;
   price: string;
   duration: string;
-  text: string;
+  promoText: string;
   description: string;
   buttonText: string;
   link: string;
   item: PricingItem[];
   isActive: boolean;
   popular_settings: any;
+  isHoverActive: boolean;
 }[];
 
 class PricingTable7 extends BasePricingTable {
@@ -61,25 +65,25 @@ class PricingTable7 extends BasePricingTable {
     this.addProp({
       type: "string",
       key: "text",
-      displayer: "Text",
+      displayer: "Monthly Plan",
       value: "Monthly",
     });
     this.addProp({
       type: "string",
       key: "text1",
-      displayer: "Text 1",
+      displayer: "Yearly Plan",
       value: "Yearly",
     });
     this.addProp({
       type: "icon",
       key: "icon",
-      displayer: "Icon",
-      value: "HiArrowDownLeft"
+      displayer: "Plan's Icon",
+      value: "HiArrowDownLeft"  //HiArrowDownLeft
     });
     this.addProp({
       type: "string",
       key: "text2",
-      displayer: "Text 2",
+      displayer: "Plan's Discount",
       value: "(Save 20%)",
     });
     this.addProp(
@@ -101,21 +105,21 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "string",
                     key: "text",
-                    displayer: "Text",
+                    displayer: "Title",
                     value: "Most Popular"
-                  },
-                  {
-                    type: "boolean",
-                    key: "is_popular",
-                    displayer: "Is Popular?",
-                    value: false
                   },
                 ]
               },
               {
+                type: "boolean",
+                key: "isActive",
+                displayer: "Is Active?",
+                value: false,
+              },
+              {
                 type: "string",
                 key: "badge",
-                displayer: "badge",
+                displayer: "Badge",
                 value: "Basic",
               },
               {
@@ -128,12 +132,12 @@ class PricingTable7 extends BasePricingTable {
                 type: "string",
                 key: "duration",
                 displayer: "Duration",
-                value: "/ month",
+                value: "/mo",
               },
               {
                 type: "string",
-                key: "text",
-                displayer: "Text",
+                key: "promoText",
+                displayer: "Promo Text",
                 value: "Get your 14 day free trial."
               },
               {
@@ -155,17 +159,23 @@ class PricingTable7 extends BasePricingTable {
                 value: "",
               },
               {
+                type: "boolean",
+                key: "isHoverActive",
+                displayer: "Hover Activation",
+                value: true,
+              },
+              {
                 type: "array",
                 key: "item",
-                displayer: "Item",
+                displayer: "Feature List",
                 value: [
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -173,7 +183,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Case Management",
                       },
                     ],
@@ -181,10 +191,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -192,19 +202,14 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Task Management",
                       },
                     ],
                   },
                 ],
               },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "ıs active",
-                value: false,
-              },
+
             ],
           },
           {
@@ -217,19 +222,22 @@ class PricingTable7 extends BasePricingTable {
                 key: "popular_settings",
                 displayer: "Popular Settings",
                 value: [
+
+
                   {
                     type: "string",
                     key: "text",
-                    displayer: "Text",
+                    displayer: "Title",
                     value: "Most Popular"
                   },
-                  {
-                    type: "boolean",
-                    key: "is_popular",
-                    displayer: "Is Popular?",
-                    value: true
-                  },
+
                 ]
+              },
+              {
+                type: "boolean",
+                key: "isActive",
+                displayer: "Is Active?",
+                value: true,
               },
               {
                 type: "string",
@@ -247,12 +255,12 @@ class PricingTable7 extends BasePricingTable {
                 type: "string",
                 key: "duration",
                 displayer: "Duration",
-                value: "/ month",
+                value: "/mo",
               },
               {
                 type: "string",
-                key: "text",
-                displayer: "Text",
+                key: "promoText",
+                displayer: "Promo Text",
                 value: "Billed $276 per website annually."
               },
               {
@@ -274,17 +282,23 @@ class PricingTable7 extends BasePricingTable {
                 value: "",
               },
               {
+                type: "boolean",
+                key: "isHoverActive",
+                displayer: "Hover Activation",
+                value: true,
+              },
+              {
                 type: "array",
                 key: "item",
-                displayer: "Item",
+                displayer: "Feature List",
                 value: [
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -292,7 +306,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Unlimited eSignature",
                       },
                     ],
@@ -300,10 +314,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -311,7 +325,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Custom Fields",
                       },
                     ],
@@ -319,10 +333,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -330,19 +344,14 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Client Intake Management",
                       },
                     ],
                   },
                 ],
               },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "ıs active",
-                value: true,
-              },
+
             ],
           },
           {
@@ -358,16 +367,17 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "string",
                     key: "text",
-                    displayer: "Text",
+                    displayer: "Title",
                     value: "Most Popular"
                   },
-                  {
-                    type: "boolean",
-                    key: "is_popular",
-                    displayer: "Is Popular?",
-                    value: false
-                  },
+
                 ]
+              },
+              {
+                type: "boolean",
+                key: "isActive",
+                displayer: "Is Active?",
+                value: false,
               },
               {
                 type: "string",
@@ -385,12 +395,12 @@ class PricingTable7 extends BasePricingTable {
                 type: "string",
                 key: "duration",
                 displayer: "Duration",
-                value: "/ month",
+                value: "/mo",
               },
               {
                 type: "string",
-                key: "text",
-                displayer: "Text",
+                key: "promoText",
+                displayer: "Promo Text",
                 value: "Billed $276 per website annually."
               },
               {
@@ -412,17 +422,23 @@ class PricingTable7 extends BasePricingTable {
                 value: "",
               },
               {
+                type: "boolean",
+                key: "isHoverActive",
+                displayer: "Hover Activation",
+                value: true,
+              },
+              {
                 type: "array",
                 key: "item",
-                displayer: "Item",
+                displayer: "Feature List",
                 value: [
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -430,7 +446,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Everything in Basic & Pro",
                       },
                     ],
@@ -438,10 +454,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -449,7 +465,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "MyCase Drive",
                       },
                     ],
@@ -457,10 +473,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -468,7 +484,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Advanced Document",
                       },
                     ],
@@ -476,10 +492,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -487,19 +503,13 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Full Text Search",
                       },
                     ],
                   },
                 ],
               },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "ıs active",
-                value: false,
-              }
             ],
           },
         ]
@@ -524,21 +534,22 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "string",
                     key: "text",
-                    displayer: "Text",
+                    displayer: "Title",
                     value: "Most Popular"
                   },
-                  {
-                    type: "boolean",
-                    key: "is_popular",
-                    displayer: "Is Popular?",
-                    value: false
-                  },
+
                 ]
+              },
+              {
+                type: "boolean",
+                key: "isActive",
+                displayer: "Is Active?",
+                value: false,
               },
               {
                 type: "string",
                 key: "badge",
-                displayer: "badge",
+                displayer: "Badge",
                 value: "Basic",
               },
               {
@@ -555,8 +566,8 @@ class PricingTable7 extends BasePricingTable {
               },
               {
                 type: "string",
-                key: "text",
-                displayer: "Text",
+                key: "promoText",
+                displayer: "Promo Text",
                 value: "Get your 14 day free trial."
               },
               {
@@ -578,17 +589,23 @@ class PricingTable7 extends BasePricingTable {
                 value: "",
               },
               {
+                type: "boolean",
+                key: "isHoverActive",
+                displayer: "Hover Activation",
+                value: true,
+              },
+              {
                 type: "array",
                 key: "item",
-                displayer: "Item",
+                displayer: "Feature List",
                 value: [
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -596,7 +613,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Case Management",
                       },
                     ],
@@ -604,10 +621,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -615,18 +632,12 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Task Management",
                       },
                     ],
                   },
                 ],
-              },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "ıs active",
-                value: false,
               },
             ],
           },
@@ -643,16 +654,16 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "string",
                     key: "text",
-                    displayer: "Text",
+                    displayer: "Title",
                     value: "Most Popular"
                   },
-                  {
-                    type: "boolean",
-                    key: "is_popular",
-                    displayer: "Is Popular?",
-                    value: true
-                  },
                 ]
+              },
+              {
+                type: "boolean",
+                key: "isActive",
+                displayer: "Is Active?",
+                value: true,
               },
               {
                 type: "string",
@@ -674,8 +685,8 @@ class PricingTable7 extends BasePricingTable {
               },
               {
                 type: "string",
-                key: "text",
-                displayer: "Text",
+                key: "promoText",
+                displayer: "Promo Text",
                 value: "Billed $276 per website annually."
               },
               {
@@ -697,17 +708,23 @@ class PricingTable7 extends BasePricingTable {
                 value: "",
               },
               {
+                type: "boolean",
+                key: "isHoverActive",
+                displayer: "Hover Activation",
+                value: true,
+              },
+              {
                 type: "array",
                 key: "item",
-                displayer: "Item",
+                displayer: "Feature List",
                 value: [
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -715,7 +732,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Unlimited eSignature",
                       },
                     ],
@@ -723,10 +740,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -734,7 +751,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Custom Fields",
                       },
                     ],
@@ -742,10 +759,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -753,18 +770,12 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Client Intake Management",
                       },
                     ],
                   },
                 ],
-              },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "ıs active",
-                value: true,
               },
             ],
           },
@@ -781,16 +792,16 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "string",
                     key: "text",
-                    displayer: "Text",
+                    displayer: "Title",
                     value: "Most Popular"
                   },
-                  {
-                    type: "boolean",
-                    key: "is_popular",
-                    displayer: "Is Popular?",
-                    value: false
-                  },
                 ]
+              },
+              {
+                type: "boolean",
+                key: "isActive",
+                displayer: "Is Active?",
+                value: false,
               },
               {
                 type: "string",
@@ -812,8 +823,8 @@ class PricingTable7 extends BasePricingTable {
               },
               {
                 type: "string",
-                key: "text",
-                displayer: "Text",
+                key: "promoText",
+                displayer: "Promo Text",
                 value: "Billed $276 per website annually."
               },
               {
@@ -835,17 +846,23 @@ class PricingTable7 extends BasePricingTable {
                 value: "",
               },
               {
+                type: "boolean",
+                key: "isHoverActive",
+                displayer: "Hover Activation",
+                value: true,
+              },
+              {
                 type: "array",
                 key: "item",
-                displayer: "Item",
+                displayer: "Feature List",
                 value: [
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -853,7 +870,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Everything in Basic & Pro",
                       },
                     ],
@@ -861,10 +878,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -872,7 +889,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "MyCase Drive",
                       },
                     ],
@@ -880,10 +897,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -891,7 +908,7 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Advanced Document",
                       },
                     ],
@@ -899,10 +916,10 @@ class PricingTable7 extends BasePricingTable {
                   {
                     type: "object",
                     key: "item-list",
-                    displayer: "Item List",
+                    displayer: "Custom Fields",
                     value: [
                       {
-                        type: "string",
+                        type: "icon",
                         key: "icon",
                         displayer: "Icon",
                         value: "CiCircleCheck"
@@ -910,19 +927,13 @@ class PricingTable7 extends BasePricingTable {
                       {
                         type: "string",
                         key: "itemText",
-                        displayer: "Item Text",
+                        displayer: "Text",
                         value: "Full Text Search",
                       },
                     ],
                   },
                 ],
               },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "ıs active",
-                value: false,
-              }
             ],
           },
         ]
@@ -930,21 +941,16 @@ class PricingTable7 extends BasePricingTable {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Items per Row",
       value: 3,
       max: 3
     });
 
-
     this.setComponentState("plan_type", "monthly-plans");
-
   }
   setActiveTab(activeTabIndex: number) {
     this.setComponentState("activeTab", activeTabIndex);
   }
-
-
-
 
   getName(): string {
     return "Pricing Table 7";
@@ -957,61 +963,117 @@ class PricingTable7 extends BasePricingTable {
     const monthly_plans: MonthlyPlan[] = this.castToObject<any>("monthly_plans");
     const yearly_plans: YearlyPlan[] = this.castToObject<any>("yearly_plans");
 
-    console.log(planType);
+
+    const monthlyText = this.getPropValue("text", { as_string: true });
+    const yearlyText = this.getPropValue("text1", { as_string: true });
+    const durationIcon = this.getPropValue("icon");
+    const plansDiscountText = this.getPropValue("text2");
+    const subtitle = this.getPropValue("subtitle", { as_string: true });
+    const title = this.getPropValue("title", { as_string: true });
+    const description = this.getPropValue("description", { as_string: true });
+
+    const badgeColors = [
+      'var(--composer-primary-color)',
+      'var(--composer-secondary-color)',
+      'var(--composer-tertiary-color)',
+    ];
+
+    const shouldRenderIconAndDiscount = monthlyText || yearlyText;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-text")}>
-            <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>
-            <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
-            <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
-            <div className={this.decorateCSS("wrapper")}>
-              <span className={this.decorateCSS("text")}>{this.getPropValue("text")}</span>
-
-              <div className={this.decorateCSS("switch")} onClick={() => this.setComponentState("plan_type", (this.getComponentState("plan_type") == "monthly-plans") ? "yearly-plans" : "monthly-plans")}>
-                <input className={this.decorateCSS("input")} type="checkbox" checked={planType == "yearly-plans"} />
-                <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
-              </div>
-
-              <span className={this.decorateCSS("text1")}>{this.getPropValue("text1")}</span>
-
-              <ComposerIcon name={this.getPropValue("icon")} propsIcon={{
-                className: this.decorateCSS("icon")
-              }} />
-              <span className={this.decorateCSS("text2")}>{this.getPropValue("text2")}</span>
-            </div>
+            {subtitle && <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>}
+            {title && <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>}
+            {description && <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>}
+            {shouldRenderIconAndDiscount &&
+              (
+                <div className={this.decorateCSS("duration-items")}>
+                  <>
+                    <span className={this.decorateCSS("text")}>{this.getPropValue("text")}</span>
+                    <div className={this.decorateCSS("switch")} onClick={() => this.setComponentState("plan_type", (this.getComponentState("plan_type") == "monthly-plans") ? "yearly-plans" : "monthly-plans")}>
+                      <input className={this.decorateCSS("input")} type="checkbox" checked={planType == "yearly-plans"} />
+                      <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
+                    </div>
+                    <span className={this.decorateCSS("text1")}>{this.getPropValue("text1")}</span>
+                    <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                    <span className={this.decorateCSS("text2")}>{plansDiscountText}</span>
+                  </>
+                </div>
+              )
+            }
           </div>
           <div className={this.decorateCSS("card")}>
-            {(planType === "monthly-plans" ? monthly_plans : yearly_plans).map((pricing: any, index: number) => (
-              <div className={this.decorateCSS("card-item-count")} style={{ width: 90 / this.getPropValue("itemCount") + "%" }}>
-                <div key={index} className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")}`}>
-                  {pricing.isActive && pricing.popular_settings && pricing.popular_settings[0] && pricing.popular_settings[0].value && (
-                    <div className={`${this.decorateCSS("popular-box")} ${pricing.popular_settings[1] && pricing.popular_settings[1].value && this.decorateCSS("active")}`}>
-                      <span className={this.decorateCSS("popular-text")}>{pricing.popular_settings[0].value}</span>
-                    </div>
-                  )}
-                  <div className={`${this.decorateCSS("badge")} ${this.decorateCSS(`badge-${pricing.badge.toLowerCase()}`)}`}>{pricing.badge}</div>
-                  <h1 className={this.decorateCSS("price-text")}>
-                    {pricing.price}
-                    <p className={this.decorateCSS("duration-text")}>{pricing.duration}</p>
-                  </h1>
-                  <span className={this.decorateCSS("text")}>{pricing.text}</span>
-                  <p className={this.decorateCSS("description")}>{pricing.description}</p>
-                  <div className={this.decorateCSS("features")}>
-                    {pricing.item.map((data: any, index: number) => (
-                      <li key={`price7-list-${index}`}>
-                        <ComposerIcon name={data.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                        {data.itemText}
-                      </li>
-                    ))}
+            {(planType === "monthly-plans" ? monthly_plans : yearly_plans).map((pricing: any, index: number) => {
+              return (
+                <div className={this.decorateCSS("card-item-count")} style={{ width: 90 / this.getPropValue("itemCount") + "%" }}>
+                  <div key={index} className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")} && 
+                  ${pricing.isHoverActive ? this.decorateCSS("price-hover") : ""}
+                  }`}>
+                    {this.castToString(pricing.popular_settings.text) && pricing.isActive && (
+                      <div className={`${this.decorateCSS("popular-box")} ${this.decorateCSS("active")}`}>
+                        <span className={this.decorateCSS("popular-text")}>{pricing.popular_settings.text}</span>
+                      </div>
+                    )}
+                    {this.castToString(pricing.badge) && (
+                      <div className={`${this.decorateCSS("badge")}`}
+                        style={{
+                          backgroundColor: badgeColors[index]
+                        }}
+                      >{pricing.badge}
+                      </div>
+                    )}
+                    {[pricing.price, pricing.duration].some(this.castToString) && (
+                      <div className={this.decorateCSS("price-text")}>
+                        <h1 className={this.decorateCSS("price-title")}>{pricing.price}</h1>
+                        <p className={this.decorateCSS("duration-text")}>{pricing.duration}</p>
+                      </div>
+                    )}
+                    {this.castToString(pricing.promoText) && <span className={this.decorateCSS("promoText")}>{pricing.promoText}</span>}
+                    {[pricing.promoText, pricing.price, pricing.duration].some(this.castToString) && (
+                      <>
+                        <hr style={{ margin: 'none' }} />
+                      </>
+                    )}
+
+                    {this.castToString(pricing.description) &&
+                      <p className={this.decorateCSS("description")}>{pricing.description}</p>
+                    }
+
+                    {pricing.item.length > 0 && <ul className={this.decorateCSS("features")}>
+                      {pricing.item.map((data: any, index: number) => (
+                        <li key={`price7-list-${index}`}>
+                          <ComposerIcon name={data.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          {data.itemText}
+                        </li>
+                      ))}
+                    </ul>}
+
+                    {this.castToString(pricing.buttonText) &&
+                      <ComposerLink path={pricing.link}>
+                        <span
+                          className={this.decorateCSS("button")}
+                          style={
+                            pricing.isActive
+                              ? {
+                                backgroundColor: 'var(--composer-secondary-color)',
+                                borderColor: 'var(--composer-secondary-color)',
+                                borderStyle: 'solid',
+                                borderWidth: '1px',
+                                color: 'var(--composer-font-color-secondary)',
+                              }
+                              : {}
+                          }
+                        >
+                          {this.castToString(pricing.buttonText)}
+                        </span>
+                      </ComposerLink>
+                    }
                   </div>
-                  <ComposerLink path={pricing.link}>
-                    <span className={this.decorateCSS("button")}>{pricing.buttonText}</span>
-                  </ComposerLink>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>

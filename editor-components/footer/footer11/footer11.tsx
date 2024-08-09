@@ -17,7 +17,7 @@ class Footer11Page extends BaseFooter {
       type: "string",
       key: "ref-text",
       displayer: "Referral Text",
-      value: "LOREM IPSUM"
+      value: "Adam Smith"
     });
 
     this.addProp({
@@ -31,7 +31,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaFacebookF",
@@ -51,7 +51,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaInstagram",
@@ -71,7 +71,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "FaYoutube",
@@ -91,7 +91,7 @@ class Footer11Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
                 "IoLogoPinterest",
@@ -117,10 +117,10 @@ class Footer11Page extends BaseFooter {
       <div className={this.decorateCSS("container")} >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <span className={this.decorateCSS("text")}>
+            <div className={this.decorateCSS("text")}>
               {this.getPropValue("text")}
-              <span className={this.decorateCSS("ref-page")}>{this.getPropValue("ref-text")}</span>
-            </span>
+              <div className={this.decorateCSS("ref-page")}>{this.getPropValue("ref-text")}</div>
+            </div>
             <div className={this.decorateCSS("icons-div")}>
               {this.getPropValue("icons").map((icon: any, index: number) => {
                 return (

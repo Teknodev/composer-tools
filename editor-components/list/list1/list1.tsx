@@ -4,7 +4,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { ClassNames } from "@emotion/react";
 
 type Card = {
   image: string;
@@ -45,7 +44,7 @@ class List1 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://html.webinane.com/assets/images/resources/recipe6.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d23a03b007002cc7aa52?alt=media",
             },
             {
               type: "string",
@@ -90,7 +89,7 @@ class List1 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://html.webinane.com/assets/images/resources/today-recipe2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d26803b007002cc7aa71?alt=media",
             },
             {
               type: "string",
@@ -134,7 +133,7 @@ class List1 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://html.webinane.com/assets/images/resources/today-recipe3.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d2b303b007002cc7aa9f?alt=media",
             },
             {
               type: "string",
@@ -178,7 +177,7 @@ class List1 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://html.webinane.com/assets/images/resources/today-recipe1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d1ef03b007002cc7aa41?alt=media",
             },
             {
               type: "string",
@@ -222,7 +221,7 @@ class List1 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://html.webinane.com/assets/images/resources/recipe6.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d30603b007002cc7aacf?alt=media",
             },
             {
               type: "string",
@@ -267,7 +266,7 @@ class List1 extends BaseList {
               key: "image",
               displayer: "Image",
               value:
-                "https://html.webinane.com/assets/images/resources/today-recipe2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d32d03b007002cc7aae7?alt=media",
             },
             {
               type: "string",
@@ -319,7 +318,7 @@ class List1 extends BaseList {
       speed: 200,
       autoplay: false,
       autoplaySpeed: 3000,
-      slidesToShow: window.innerWidth < 769 ? (window.innerWidth < 500 ? 1 : 2) : 3,
+      slidesToShow: window.innerWidth < 769 ? (window.innerWidth < 500 ? 1 : 1) : 3,
       slidesToScroll: 1,
       initialSlide: 1,
       arrows: false,
@@ -343,14 +342,17 @@ class List1 extends BaseList {
               className={this.decorateCSS("carousel")}
             >
               {this.castToObject<Card[]>("slider").map(
-                (item: Card, indexSlider: number) => (
+               (item: Card, indexSlider: number) => (
                   <div key={indexSlider} className={`${this.decorateCSS("card")} ${this.getComponentState("active-index") == indexSlider ? this.decorateCSS("active") : ""}`}>
                     <div className={this.decorateCSS("card-inner")}>
+                      
+                    {item.image && <div className={this.decorateCSS("img-div")}>
                       <img
-                        src={item.image}
                         className={this.decorateCSS("img")}
+                        src={item.image}
                         alt=""
-                      />
+                      /></div>}
+
                       <span className={this.decorateCSS("title")}>
                         {item.title}
                       </span>

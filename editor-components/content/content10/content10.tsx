@@ -1,60 +1,37 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content10.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Card = {
-  title: string;
-  description: string;
-  image: string;
-};
 class Content10 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "For Startups",
+      displayer: "Video",
+      key: "video",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188"
     });
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "Spend your money on creatives that convert, make the most of the strongest artificial intelligence on the ad creation market.",
-    });
+
     this.addProp({
       type: "image",
-      key: "image",
-      displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5ceb8057bdf002c29bb4a?alt=media&timestamp=1692967262397"
-    })
+      displayer: "Cover image of video",
+      key: "cover_image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9b7bd2970002c6286c7?alt=media&timestamp=1719561551671"
+    });
+
     this.addProp({
-      type: "object",
-      key: "buttonprop",
-      displayer: "Button",
-      value: [
-        {
-          type: "string",
-          key: "button",
-          displayer: "Button",
-          value: "Generate Ad Creatives",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "URL",
-          value: "",
-        },
-      ],
+      type: "icon",
+      displayer: "Icon of play button",
+      key: "play_icon",
+      value: "FaPlay"
     });
 
     this.addProp({
       type: "array",
-      key: "content-card",
-      displayer: "Content Card",
+      displayer: "Cards",
+      key: "cards",
       value: [
         {
           type: "object",
@@ -62,57 +39,130 @@ class Content10 extends BaseContent {
           displayer: "Card",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646b76dbfba070002b74850c?alt=media&timestamp=1684764380744",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "TbChartHistogram"
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Future One"
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Convert Better",
+              value: "EFECTIVITY FIRST"
             },
             {
               type: "string",
-              key: "description",
               displayer: "Description",
-              value:
-                "Higher Conversion Rates Up to 14x better conversion rates than ad creatives designed with no data-driven approach.",
-            },
-          ],
+              key: "description",
+              value: "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi."
+            }
+          ]
         },
-
         {
           type: "object",
           key: "card",
           displayer: "Card",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646b7b84fba070002b748643?alt=media&timestamp=1684765573382",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GrClose"
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Future Two"
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Save Time & Money",
+              value: "NO SIDE EFFECT"
             },
             {
               type: "string",
-              key: "description",
               displayer: "Description",
-              value:
-                "Cut up to 90% of design tasks and costs. Spend your time and money on your startup.",
-            },
-          ],
+              key: "description",
+              value: "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi."
+            }
+          ]
         },
-      ],
-    });
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GiFruitBowl"
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Future Three"
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "ORGANIC PRODUCT"
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi."
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GiScooter"
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Future Four"
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "QUICK DELEVARY"
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi."
+            }
+          ]
+        }
+      ]
+    })
+
+    this.setComponentState("is_video_visible", false);
+
+
   }
 
   getName(): string {
@@ -123,37 +173,30 @@ class Content10 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header")}>
-            <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
-            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-            <ComposerLink path={this.getPropValue("buttonprop")[1].value}>
-              <button>{this.getPropValue("buttonprop")[0].value}</button>
-            </ComposerLink>
+          <div className={this.decorateCSS("cards")}>
+            {this.getPropValue("cards").map((card: any, index: number) => <div key={index} className={this.decorateCSS("card")}>
+              <div className={this.decorateCSS("icon-box")}>
+                <ComposerIcon name={card.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+              </div>
+              <div className={this.decorateCSS("labels")}>
+                <span className={this.decorateCSS("subtitle")}>{card.getPropValue("subtitle")}</span>
+                <h1 className={this.decorateCSS("title")}>{card.getPropValue("title")}</h1>
+                <p className={this.decorateCSS("description")}>{card.getPropValue("description")}</p>
+              </div>
+            </div>)}
           </div>
+          <div className={this.decorateCSS("video-container")}>
+            <img className={this.decorateCSS("image")} src={this.getPropValue("cover_image")} alt="Cover image" />
 
-          <div className={this.decorateCSS("card-left")}>
-            <div className={this.decorateCSS("card-child")}>
-              {this.castToObject<Card[]>("content-card").map(
-                (card: Card, index: number) => (
-                  <div
-                    key={`cnt-10-card-${index}`}
-                    className={this.decorateCSS("card")}
-                  >
-                    <i>
-                      <img src={card.image} alt=""/>
-                    </i>
-                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
-                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
-                  </div>
-                )
-              )}
-            </div>
-            <div className={this.decorateCSS("image")}>
-              <img src={
-                this.getPropValue("image")
-              } alt=""/>
+            <div className={this.decorateCSS("play-icon-box")} onClick={() => {
+              this.setComponentState("is_video_visible", true)
+            }}>
+              <ComposerIcon name={this.getPropValue("play_icon")} propsIcon={{ className: this.decorateCSS("play-icon") }} />
             </div>
           </div>
+          {this.getComponentState("is_video_visible") && <div className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
+            <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("player")} src={this.getPropValue("video")}></video>
+          </div>}
         </div>
       </div>
     );
