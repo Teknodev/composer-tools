@@ -1,30 +1,38 @@
+:root {
+  --head-bg-color: rgb(249, 159, 191);
+  --color-light: rgb(255, 255, 255);
+  --color-dark: rgb(243, 74, 135);
+  --color-transparent: rgb(254, 241, 245);
+  --color-gray: rgb(143, 142, 142);
+}
+
 .container {
   width: 100%;
-  
+
   .max-content {
       max-width: var(--composer-content-width);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      
+
       .box {
           width: 450px;
           height: 340px;
-          background: greenyellow;
           border-radius: 24px;
           overflow: hidden;
-          box-shadow: 45px 45px 80px 1px rgb(143, 142, 142);
+          box-shadow: 45px 45px 80px 1px var(--color-gray);
+          
 
           .head-content {
               display: flex;
               justify-content: center;
               width: 100% !important;                        
               height: 35% !important;                   
-              background: rgb(249, 159, 191);
+              background-color: var(--head-bg-color);
               position: relative;
               padding: 15px;
-              
+
               .close-button {
                 position: absolute;
                 top: 15px;
@@ -33,12 +41,12 @@
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                background-color: white;
+                background-color: var(--color-light);
                 border: none;
                 font-size: 16px;
                 font-weight: bold;
                 cursor: pointer;
-                color: rgb(237, 47, 133);
+                color: var(--color-dark);
                 width: 36px;
                 height: 36px;
                 border-radius: 50%;
@@ -48,7 +56,7 @@
               width: 150px;
               height: 110px;
               position: absolute;
-              top: 15px;
+              top: 15px;              
               }    
           }
 
@@ -58,11 +66,12 @@
               overflow: hidden;
               position: relative;
               padding: 10px 0px;
-              background: white;
+              background-color: var(--color-light);
               box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
 
               .title {               
                 text-align: center;
+                padding: 0px 50px;
               }
 
               .description {
@@ -85,10 +94,10 @@
                     height: 40px;
                     margin-top: 16px;
                     border-radius: 8px;
-                    background: rgb(243, 74, 135);
+                    background-color: var(--color-dark);
                     border: none;
                     cursor: pointer;
-                    color: white;
+                    color: var(--color-light);
                     &:hover {
                       filter: brightness(120%);
                       transition: filter 0.3s;
@@ -100,13 +109,13 @@
                     height: 40px;
                     margin-top: 16px;
                     border-radius: 8px;
-                    background: rgb(254, 241, 245);
+                    background-color: var(--color-transparent);
                     border: none;
                     cursor: pointer;
-                    color: rgb(243, 74, 135);
+                    color: var(--color-dark);
                     &:hover {
-                      background: transparent;
-                      border: 2px solid var(--composer-primary-color);
+                      
+                      border: 2px solid var(--color-dark);
                     }
                   }
               }  
