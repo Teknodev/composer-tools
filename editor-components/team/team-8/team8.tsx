@@ -335,8 +335,8 @@ class Team8 extends Team {
                         key={index}
                       >
                         <div className={this.decorateCSS("content-div")}>
-                          <div className={this.decorateCSS("img-div")}>
-                            {item.image && (
+                          {item.image && (
+                            <div className={this.decorateCSS("img-div")}>
                               <div className={this.decorateCSS("image-box")}>
                                 <img
                                   alt=""
@@ -344,8 +344,8 @@ class Team8 extends Team {
                                   className={this.decorateCSS("img")}
                                 />
                               </div>
-                            )}
-                          </div>
+                            </div>
+                          )}
                           {(titleExist || subtitleExist) && (
                             <div className={this.decorateCSS("header-page")}>
                               {titleExist && (
@@ -370,10 +370,10 @@ class Team8 extends Team {
                 </ComposerSlider>
               </div>
             </div>
+            {this.getPropValue("overlay") && (
+              <div className={this.decorateCSS("overlay")} />
+            )}
           </div>
-          {this.getPropValue("overlay") && (
-            <div className={this.decorateCSS("overlay")} />
-          )}
         </div>
       </div>
     );
