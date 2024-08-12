@@ -5,8 +5,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Button = {
-  buttonText1: string;
-  buttonText2: string;
+  buttonText1: JSX.Element;
+  buttonText2: JSX.Element;
   url: string;
   icon: string;
 };
@@ -114,6 +114,9 @@ class Download5 extends BaseDownload {
   render() {
     const backgroundImage = this.getPropValue("image");
 
+    const titleExist = this.getPropValue("title1", { as_string: true });
+    const textExist = this.getPropValue("text1", { as_string: true });
+
     return (
       <div
         className={this.decorateCSS("container")}
@@ -121,41 +124,60 @@ class Download5 extends BaseDownload {
       >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page-1")}>
-            <div className={this.decorateCSS("box")}>
-              <h1 className={this.decorateCSS("title1")}>
-                {this.getPropValue("title1")}
-              </h1>
-            </div>
-            <div className={this.decorateCSS("box")}>
-              <p className={this.decorateCSS("text1")}>
-                {this.getPropValue("text1")}
-              </p>
-            </div>
+            {titleExist && (
+              <div className={this.decorateCSS("box")}>
+                <h1 className={this.decorateCSS("title1")}>
+                  {this.getPropValue("title1")}
+                </h1>
+              </div>
+            )}
+            {textExist && (
+              <div className={this.decorateCSS("box")}>
+                <p className={this.decorateCSS("text1")}>
+                  {this.getPropValue("text1")}
+                </p>
+              </div>
+            )}
 
             <div className={this.decorateCSS("box")}>
               {this.castToObject<Button[]>("buttons").map(
                 (item: Button, index: number) => {
-                  return (
-                    <ComposerLink key={`dw-5-btn-${index}`} path={item.url}>
-                      <div className={this.decorateCSS("button")}>
-                        <div className={this.decorateCSS("icon-div")}>
-                          <ComposerIcon
-                            name={item.icon}
-                            propsIcon={{ className: this.decorateCSS("icon") }}
-                          />
+                  const text1Exist = this.castToString(item.buttonText1);
+                  const text2Exist = this.castToString(item.buttonText2);
+
+                  if (text1Exist || text2Exist || item.icon)
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <div className={this.decorateCSS("button")}>
+                          {item.icon && (
+                            <div className={this.decorateCSS("icon-div")}>
+                              <ComposerIcon
+                                name={item.icon}
+                                propsIcon={{
+                                  className: this.decorateCSS("icon"),
+                                }}
+                              />
+                            </div>
+                          )}
+                          {(text1Exist || text2Exist) && (
+                            <div className={this.decorateCSS("button-texts")}>
+                              {text1Exist && (
+                                <p className={this.decorateCSS("up-text")}>
+                                  {item.buttonText1}
+                                </p>
+                              )}
+                              {text2Exist && (
+                                <h1 className={this.decorateCSS("down-text")}>
+                                  {item.buttonText2}
+                                </h1>
+                              )}
+                            </div>
+                          )}
                         </div>
-                        <div className={this.decorateCSS("button-texts")}>
-                          <p className={this.decorateCSS("up-text")}>
-                            {item.buttonText1}
-                          </p>
-                          <h1 className={this.decorateCSS("down-text")}>
-                            {item.buttonText2}
-                          </h1>
-                        </div>
-                      </div>
-                    </ComposerLink>
-                  );
-                }
+                      </ComposerLink>
+                    );
+                  return <></>;
+                },
               )}
             </div>
           </div>
