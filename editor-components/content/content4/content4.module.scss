@@ -168,8 +168,11 @@ $gap: 20px;
       height: 100%;
     }
     .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 400px;
       .content {
-        margin-top: 75%;
         .title {
           font-size: 2.2rem;
         }
