@@ -110,7 +110,7 @@ class CallToAction2Page extends BaseCallToAction {
         <div
           style={
             this.getPropValue("image")
-              ? { height: "550px" }
+              ? { height: "550px", marginBottom: "300px" }
               : { height: "auto" }
           }
           className={this.decorateCSS("background")}
