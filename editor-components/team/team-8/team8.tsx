@@ -291,6 +291,7 @@ class Team8 extends Team {
           },
         },
       ],
+      centerPadding: 0,
     };
 
     const titleExist = this.getPropValue("title", { as_string: true });
