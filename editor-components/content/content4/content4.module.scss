@@ -5,7 +5,7 @@ $gap: 20px;
   width: 100%;
   padding-bottom: 30px;
   display: flex;
-  
+
   .max-content {
     width: var(--composer-content-width);
     height: 100vh;
@@ -15,8 +15,8 @@ $gap: 20px;
   }
 
   .left {
-    flex: 1;
     display: flex;
+    width: 100%;
     .item {
       align-items: flex-start;
       padding: 25px 50px;
@@ -38,8 +38,8 @@ $gap: 20px;
   }
 
   .right {
-    flex: 1;
     display: flex;
+    width: 100%;
     flex-direction: column;
     gap: $gap;
     height: 100%;
@@ -52,7 +52,7 @@ $gap: 20px;
         flex: 1;
       }
     }
-    
+
     .bottom {
       display: flex;
       gap: $gap;
@@ -60,7 +60,6 @@ $gap: 20px;
 
       .item {
         flex: 1;
-        
       }
     }
   }
@@ -102,9 +101,9 @@ $gap: 20px;
       max-width: 90%;
       margin-top: auto;
       margin-bottom: 10%;
-      height: auto; /* Değişiklik burada, fit-content yerine auto kullanılacak */
-      font-size: 1rem; /* Değişiklik burada, isteğe göre ayarlayabilirsiniz */
-      white-space: normal; /* Değişiklik burada, nowrap yerine normal kullanılacak */
+      height: auto;
+      font-size: 1rem;
+      white-space: normal;
 
       .title {
         font-size: 2.3rem;
@@ -127,18 +126,17 @@ $gap: 20px;
         width: 100px;
       }
     }
-    .icon1,.icon2{
+    .icon1,
+    .icon2 {
       position: absolute;
-
     }
-    .icon1{
+    .icon1 {
       left: 0;
     }
-    .icon2{
+    .icon2 {
       left: 40px;
     }
     &:hover .icons .icon2 {
-      
       left: 50px;
     }
   }
@@ -150,12 +148,12 @@ $gap: 20px;
 
     .max-content {
       display: grid;
-      grid-template-rows: 1fr 1fr; /* İki satır olacak şekilde grid şablonu ayarlanıyor */
-      height: auto; /* Yüksekliği otomatik ayarlıyoruz */
+      grid-template-rows: 1fr 1.25fr;
+      height: auto;
     }
 
     .left {
-      grid-row: 1 / 2; /* Sol kısım ilk satırı kaplar */
+      grid-row: 1 / 2;
       .item {
         align-items: flex-start;
         padding: 50px;
@@ -164,41 +162,35 @@ $gap: 20px;
     }
 
     .right {
-      grid-row: 2 / 3; /* Sağ kısım ikinci satırı kaplar */
+      grid-row: 2 / 3;
       display: flex;
       gap: 1%;
       height: 100%;
     }
-    .item {        
+    .item {
       .content {
-        
-        margin-top: 75%; /* İstenilen yüzdeye göre margin-bottom */
+        margin-top: 75%;
         .title {
           font-size: 2.2rem;
         }
       }
-      
     }
   }
 }
 
-
-
-
 @media only screen and (max-width: 550px) {
-  .container{
+  .container {
     .max-content {
       flex-direction: column;
       grid-template-rows: auto;
     }
   }
-  
-  .right
-   {
+
+  .right {
     width: 100%;
   }
 
-  .right .item{
+  .right .item {
     width: 100%;
   }
 
@@ -207,7 +199,7 @@ $gap: 20px;
     flex-direction: column;
   }
 
-  .right .item .content .title{
+  .right .item .content .title {
     font-size: 2rem;
   }
 }
