@@ -103,7 +103,7 @@ class PricingTable9 extends BasePricingTable {
                   type: "icon",
                   key: "icon",
                   displayer: "Icon",
-                  value: "FaCircleCheck",
+                  value: "",
                 },
                 {
                   type: "page",
