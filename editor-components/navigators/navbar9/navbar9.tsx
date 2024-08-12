@@ -4,7 +4,7 @@ import styles from "./navbar9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-class Navbar8 extends BaseNavigator {
+class Navbar9 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
@@ -14,39 +14,8 @@ class Navbar8 extends BaseNavigator {
       displayer: "Position",
       value: "Default",
       additionalParams: {
-        selectItems: ["Default", "Sticky", "Absolute"]
-      }
-    })
-    this.addProp({
-      type: "image",
-      key: "image_light",
-      displayer: "Image Light",
-      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
-    });
-    this.addProp({
-      type: "image",
-      key: "image_dark",
-      displayer: "Image Dark",
-      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "logo_navigate",
-      displayer: "Logo Navigation",
-      value: ""
-    })
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "LOREM IPSUM",
-    });
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "PHOTOGRAPHY & DESIGN",
+        selectItems: ["Default", "Sticky", "Absolute"],
+      },
     });
     this.addProp({
       type: "icon",
@@ -55,29 +24,36 @@ class Navbar8 extends BaseNavigator {
       value: "RxHamburgerMenu",
     });
     this.addProp({
-      type: "icon",
-      key: "cross-icon",
-      displayer: "Cross Icon",
-      value: "RxCross2",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "sticky",
-      displayer: "Is sticky",
-      value: false,
+      type: "object",
+      key: "title",
+      displayer: "Title",
+      value: [
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "DESERT GLOW",
+        },
+        {
+          type: "page",
+          key: "link",
+          displayer: "Link",
+          value: "",
+        },
+      ],
     });
 
     this.addProp({
       type: "string",
-      key: "title1",
-      displayer: "Title 1",
-      value: "Lorem Ipsum",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "cosmetics",
     });
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Amidst the ever-shifting landscapes of creativity, I emerge as a dynamic professional, blending boundless energy with an adaptable nature and a profoundly artistic perspective."
+      key: "leftItem",
+      displayer: "Left Item",
+      value: "27 13 Lowe Haven, Apt. 13 East Johnathon, TN 99367",
     });
     this.addProp({
       type: "array",
@@ -100,8 +76,8 @@ class Navbar8 extends BaseNavigator {
               key: "url",
               displayer: "Url",
               value: "",
-            }
-          ]
+            },
+          ],
         },
         {
           type: "object",
@@ -112,7 +88,7 @@ class Navbar8 extends BaseNavigator {
               type: "string",
               key: "item",
               displayer: "Item",
-              value: "About",
+              value: "Phone",
             },
             {
               type: "page",
@@ -120,7 +96,7 @@ class Navbar8 extends BaseNavigator {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -131,7 +107,7 @@ class Navbar8 extends BaseNavigator {
               type: "string",
               key: "item",
               displayer: "Item",
-              value: "Portfolio",
+              value: "Whatsapp",
             },
             {
               type: "page",
@@ -139,39 +115,15 @@ class Navbar8 extends BaseNavigator {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "item",
-              displayer: "Item",
-              value: "Contact",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
-            },
-          ]
-        },
-      ]
+      ],
     });
-    this.addProp({
-      type: "string",
-      key: "icon-text",
-      displayer: "Icon Text",
-      value: "FOLLOW ME",
-    });
+
     this.addProp({
       type: "array",
-      key: "social-media-items",
-      displayer: "Social Media Items",
+      key: "rightContent",
+      displayer: "Right Content",
       value: [
         {
           type: "object",
@@ -181,65 +133,25 @@ class Navbar8 extends BaseNavigator {
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaFacebook",
+              value: "FaPhoneVolume",
               displayer: "Icon",
             },
             {
-              type: "page",
-              key: "link",
-              value: "",
-              displayer: "Navigate To",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              value:
-                "AiFillTwitterCircle",
-              displayer: "Icon",
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "+ 1235 2355 98",
             },
             {
               type: "page",
-              key: "link",
+              key: "url",
+              displayer: "Url",
               value: "",
-              displayer: "Navigate To",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              value:
-                "FaLinkedin",
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "link",
-              value: "",
-              displayer: "Navigate To",
             },
           ],
         },
       ],
     });
-
-  }
-
-  getName(): string {
-    return "Navbar 9";
   }
 
   navClick() {
@@ -247,84 +159,104 @@ class Navbar8 extends BaseNavigator {
     this.setComponentState("navActive", !value);
   }
 
+  getName(): string {
+    return "Navbar 9";
+  }
+
+  renderRightContent() {
+    return this.castToObject<[]>("rightContent").map((item: any) => {
+      return (
+        <div className={this.decorateCSS("rightItem")}>
+          <ComposerIcon propsIcon={{ className: this.decorateCSS("icons") }} name={item.icon} />
+          <ComposerLink path={item.url}>
+            <span className={this.decorateCSS("text")}>{item.text}</span>
+          </ComposerLink>
+        </div>
+      );
+    });
+  }
+
   render() {
     const navActive = this.getComponentState("navActive");
-    const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
+    const title = this.castToObject<any>("title");
+
     return (
       <div
-        className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))} ${navActive && this.decorateCSS("active")}`}
+        className={`${this.decorateCSS("container")} ${this.decorateCSS(
+          this.getPropValue("position")
+        )} `}
       >
         <div className={this.decorateCSS("max-content")}>
-          <nav className={this.decorateCSS("bar")}>
-            <div className={this.decorateCSS("image-box")}>
-              <ComposerLink path={this.getPropValue("logo_navigate")}>
-                <img className={this.decorateCSS("image")} src={logoSrc} width={200} alt="" />
+          <div className={this.decorateCSS("content")}>
+            <div className={this.decorateCSS("header")}>
+              <ComposerLink path={title.link}>
+                <span className={this.decorateCSS("title")}>{title.text}</span>
               </ComposerLink>
-            </div>
-            <div className={this.decorateCSS("middle")}>
-              <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
-
-              <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>
-            </div>
-            <div className={this.decorateCSS("navbar")}>
-              <ComposerIcon
-                name={navActive ? this.getPropValue("cross-icon") : this.getPropValue("hamburger-icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("hamburger-icon")}  `,
-                  onClick: () => {
-                    this.navClick();
-                  },
-                }}
-              />
-            </div>
-          </nav>
-          {navActive && (
-            <div className={this.decorateCSS("down-page")}>
-              <div className={this.decorateCSS("left-page")}>
-                <div className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</div>
-                <div className={this.decorateCSS("stick")}></div>
-                <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
-              </div>
-              <div className={this.decorateCSS("right-page")}>
-                <div className={this.decorateCSS("itemList")}>
-                  <div className={this.decorateCSS("items")}>
-                    {this.castToObject<[]>("itemList").map(
-                      (data: any, indexItemList: number) => {
-                        return (
-                          <ComposerLink
-                            key={indexItemList}
-                            path={data.value[1].value}
-                          >
-                            <h3 className={this.decorateCSS("item-title")} key={indexItemList} onClick={() => this.setComponentState("navActive",false)}>{data.value[0].value}</h3>
-                          </ComposerLink>
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-                <div className={this.decorateCSS("social-media-box")}>
-                  <h4 className={this.decorateCSS("icon-text")}>{this.getPropValue("icon-text")}</h4>
-                  <div className={this.decorateCSS("icon-group")}>
-                    {this.getPropValue("social-media-items").map((icons: any) => {
-                      return (
-                        <ComposerLink path={icons.value[1].value}>
-                          <ComposerIcon
-                            propsIcon={{ className: this.decorateCSS("icons") }}
-                            name={icons.value[0].value}
-                          />
-                        </ComposerLink>
-                      );
-                    })}
-                  </div>
-                </div>
+              <div className={this.decorateCSS("navbar")}>
+                <ComposerIcon
+                  name={this.getPropValue("hamburger-icon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS("hamburger-icon")}  `,
+                    onClick: () => {
+                      this.navClick();
+                    },
+                  }}
+                />
               </div>
             </div>
-          )}
+            <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>
+          </div>
+          <div className={this.decorateCSS("down-page")}>
+            <div className={this.decorateCSS("leftItem")}>{this.getPropValue("leftItem")}</div>
+            <div className={this.decorateCSS("bar")}>
+              {this.castToObject<[]>("itemList").map((data: any, indexItemList: number) => {
+                return (
+                  <ComposerLink key={indexItemList} path={data.url}>
+                    <span className={this.decorateCSS("data-value")}>{data.item}</span>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+            <div className={this.decorateCSS("right")}>{this.renderRightContent()}</div>
+          </div>
+          <div className={this.decorateCSS("responsive")}>
+            {navActive && (
+              <div className={this.decorateCSS("down-page")}>
+                <div className={this.decorateCSS("leftItem")}>{this.getPropValue("leftItem")}</div>
+                <div className={this.decorateCSS("bar")}>
+                  {this.castToObject<[]>("itemList").map((data: any, indexItemList: number) => {
+                    return (
+                      <ComposerLink key={indexItemList} path={data.url}>
+                        <span className={this.decorateCSS("data-value")}>{data.item}</span>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+                {this.renderRightContent()}
+              </div>
+            )}
+          </div>
+          <div className={this.decorateCSS("responsive-mobil")}>
+            {navActive && (
+              <div className={this.decorateCSS("down-page")}>
+                <div className={this.decorateCSS("bar")}>
+                  {this.castToObject<[]>("itemList").map((data: any, indexItemList: number) => {
+                    return (
+                      <ComposerLink key={indexItemList} path={data.url}>
+                        <span className={this.decorateCSS("data-value")}>{data.item}</span>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+                {this.renderRightContent()}
+                <div className={this.decorateCSS("leftItem")}>{this.getPropValue("leftItem")}</div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-
     );
   }
 }
 
-export default Navbar8;
+export default Navbar9;

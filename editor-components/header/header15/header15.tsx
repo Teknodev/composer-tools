@@ -19,14 +19,14 @@ class HeaderComponent15 extends BaseHeader {
       key: "background-image",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc7b0057bdf002c2ad641?alt=media&timestamp=1693304729496",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619218bd2970002c625be1?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edc7b0057bdf002c2ad640?alt=media&timestamp=1693304729496",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619218bd2970002c625be0?alt=media&timestamp=1719483639150",
     });
 
     this.addProp({
