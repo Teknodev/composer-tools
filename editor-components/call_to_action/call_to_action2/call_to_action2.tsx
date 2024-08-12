@@ -1,12 +1,8 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import {
-  BaseCallToAction,
-  TypeUsableComponentProps,
-} from "../../EditorComponent";
+import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { Subtitles } from "@mui/icons-material";
 
 class CallToAction2Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -45,16 +41,18 @@ class CallToAction2Page extends BaseCallToAction {
 
     this.addProp({
       type: "icon",
-      key: "name",
-      displayer: "Icon",
-      value: "FaYoutube",
+      displayer: "Icon of play button",
+      key: "play_icon",
+      value: "FaPlay",
     });
     this.addProp({
-      type: "page",
-      key: "url",
-      displayer: "video-link",
-      value: "https://www.youtube.com/",
+      type: "video",
+      displayer: "Video",
+      key: "video",
+      value:
+        "https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4",
     });
+    this.setComponentState("is_video_visible", false);
   }
 
   getName(): string {
@@ -69,16 +67,6 @@ class CallToAction2Page extends BaseCallToAction {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header-2")}>
-            {icon && (
-              <div className={this.decorateCSS("icons-bar")}>
-                <ComposerLink path={this.getPropValue("url")}>
-                  <ComposerIcon
-                    name={this.getPropValue("name")}
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-                  />
-                </ComposerLink>
-              </div>
-            )}
             {image && (
               <div className={this.decorateCSS("image-container")}>
                 <img
@@ -90,7 +78,7 @@ class CallToAction2Page extends BaseCallToAction {
             )}
           </div>
           <div className={this.decorateCSS("call-to-action")}>
-           <div className={this.decorateCSS("header")}>
+            <div className={this.decorateCSS("header")}>
               <h1 className={this.decorateCSS("subtitle")}>
                 {this.getPropValue("subtitle")}
               </h1>
@@ -98,14 +86,42 @@ class CallToAction2Page extends BaseCallToAction {
                 {this.getPropValue("title")}
               </h1>
             </div>
-          { buttons &&   <div className={this.decorateCSS("call-to-action-buttons")}>
-              <ComposerLink path={this.getPropValue("video-link")}>
-                <span className={this.decorateCSS("button")}>
-                  {this.getPropValue("ButtonText")}
-                </span>
-              </ComposerLink>
-            </div>}
+            {buttons && (
+              <div className={this.decorateCSS("call-to-action-buttons")}>
+                <ComposerLink path={this.getPropValue("Button Link")}>
+                  <span className={this.decorateCSS("button")}>
+                    {this.getPropValue("ButtonText")}
+                  </span>
+                </ComposerLink>
+              </div>
+            )}
           </div>
+          <div className={this.decorateCSS("video-container")}>
+            <div
+              className={this.decorateCSS("play-icon-box")}
+              onClick={() => {
+                this.setComponentState("is_video_visible", true);
+              }}
+            >
+              <ComposerIcon
+                name={this.getPropValue("play_icon")}
+                propsIcon={{ className: this.decorateCSS("play-icon") }}
+              />
+            </div>
+          </div>
+          {this.getComponentState("is_video_visible") && (
+            <div
+              className={this.decorateCSS("video")}
+              onClick={() => this.setComponentState("is_video_visible", false)}
+            >
+              <video
+                onClick={(event) => event.stopPropagation()}
+                controls
+                className={this.decorateCSS("player")}
+                src={this.getPropValue("video")}
+              ></video>
+            </div>
+          )}
         </div>
       </div>
     );
