@@ -28,11 +28,6 @@
       }
 
       .play-button {
-        background: linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.2) 0%,
-          rgba(255, 255, 255, 0) 100%
-        );
         position: absolute;
         top: 50%;
         left: 50%;
@@ -47,6 +42,8 @@
         border: 6px solid rgba(255, 255, 255, 0.45);
         color: #fff;
         z-index: 10;
+        display: grid;
+        place-items: center;
       }
 
       .video-player-container {
