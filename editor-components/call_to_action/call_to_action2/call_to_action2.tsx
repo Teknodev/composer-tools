@@ -114,17 +114,17 @@ class CallToAction2Page extends BaseCallToAction {
     const renderHeader: boolean =
       titleExist || subtitleExist || buttons.length > 0;
 
+    const adjustBackground = () => {
+      if (this.getPropValue("image")) {
+        if (renderHeader) return this.decorateCSS("fixedHeightWithMargin");
+        else return this.decorateCSS("heightAutoWithNoMargin");
+      } else return this.decorateCSS("heightAuto");
+    };
+
     return (
       <div className={this.decorateCSS("container")}>
         <div
-          style={
-            this.getPropValue("image")
-              ? renderHeader
-                ? { height: "550px", marginBottom: "300px" }
-                : { height: "auto", marginBottom: 0 }
-              : { height: "auto" }
-          }
-          className={this.decorateCSS("background")}
+          className={`${this.decorateCSS("background")} ${adjustBackground}`}
         >
           <div className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("wrapper")}>
@@ -216,7 +216,12 @@ class CallToAction2Page extends BaseCallToAction {
                       className={this.decorateCSS("close-icon-box")}
                       onClick={this.hideVideo}
                     >
-                      <ComposerIcon name={closeIcon} />
+                      <ComposerIcon
+                        propsIcon={{
+                          className: this.decorateCSS("close-icon"),
+                        }}
+                        name={closeIcon}
+                      />
                     </div>
                   )}
                 </div>

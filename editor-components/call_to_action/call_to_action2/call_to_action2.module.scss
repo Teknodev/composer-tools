@@ -171,6 +171,20 @@
   }
 }
 
+.fixedHeightWithMargin {
+  height: 550px;
+  margin-bottom: 300px;
+}
+
+.heightAutoWithNoMargin {
+  height: auto;
+  margin-bottom: 0;
+}
+
+.heightAuto {
+  height: auto;
+}
+
 @media only screen and (max-width: 900px) {
   .button-container {
     justify-content: center;
