@@ -4,7 +4,6 @@ import styles from "./header10.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Icons } from "react-toastify";
 
 type SliderObject = {
   title: JSX.Element;

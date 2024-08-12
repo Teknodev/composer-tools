@@ -167,7 +167,7 @@ class List6 extends BaseList {
                 key={index}
                 className={this.decorateCSS("item-container")}
                 style={{
-                  borderTop: !description && "none",
+                  borderTop: !description ? "none" : "",
                 }}
               >
                 <h3 className={this.decorateCSS("index")}>
