@@ -117,7 +117,7 @@ class Form10 extends BaseContacts {
                       value: "Invalid type",
                     },
                   ],
-                }
+                },
               ],
             },
           ],
@@ -162,7 +162,7 @@ class Form10 extends BaseContacts {
                       displayer: "Type",
                       value: "Text Area",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
                       },
                     },
                     {
@@ -171,14 +171,14 @@ class Form10 extends BaseContacts {
                       displayer: "Type error message",
                       value: "Invalid type",
                     },
-                  ]
+                  ],
                 },
-              ]
-            }
-          ]
-        }
-      ]
-    })
+              ],
+            },
+          ],
+        },
+      ],
+    });
     this.addProp({
       type: "string",
       key: "buttonText",
@@ -206,7 +206,6 @@ class Form10 extends BaseContacts {
     const isContactVisible = title || subtitle;
     const isDescriptionVisible = description;
 
-
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
         str = "_" + str;
@@ -230,7 +229,11 @@ class Form10 extends BaseContacts {
       }
     }
 
-    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number) {
+    function getInputName(
+      indexOfLabel: number,
+      inputLabel: string,
+      indexOfInput: number,
+    ) {
       const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
       return toObjectKey(name);
     }
@@ -238,10 +241,16 @@ class Form10 extends BaseContacts {
     function getInitialValue() {
       let value: any = {};
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
-        inputItem.getPropValue("inputs")?.forEach((_: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
-          value[key] = "";
-        });
+        inputItem
+          .getPropValue("inputs")
+          ?.forEach((_: any, indexOfInput: number) => {
+            const key = getInputName(
+              indexOfItem,
+              inputItem.getPropValue("label"),
+              indexOfInput,
+            );
+            value[key] = "";
+          });
       });
       return value;
     }
@@ -250,28 +259,39 @@ class Form10 extends BaseContacts {
       let schema = Yup.object().shape({});
 
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
-        inputItem.getPropValue("inputs").forEach((input: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+        inputItem
+          .getPropValue("inputs")
+          .forEach((input: any, indexOfInput: number) => {
+            const key = getInputName(
+              indexOfItem,
+              inputItem.getPropValue("label"),
+              indexOfInput,
+            );
 
-          const isRequired = input.getPropValue("isRequired");
-          const isEmail = getInputType(input.getPropValue("type")) === "E-mail";
+            const isRequired = input.getPropValue("isRequired");
+            const isEmail =
+              getInputType(input.getPropValue("type")) === "E-mail";
 
-          let fieldSchema = Yup.string();
+            let fieldSchema = Yup.string();
 
-          if (isRequired) {
-            fieldSchema = fieldSchema.required(input.getPropValue("requiredErrorMessage"));
-          } else {
-            fieldSchema = fieldSchema.nullable();
-          }
+            if (isRequired) {
+              fieldSchema = fieldSchema.required(
+                input.getPropValue("requiredErrorMessage"),
+              );
+            } else {
+              fieldSchema = fieldSchema.nullable();
+            }
 
-          if (isEmail) {
-            fieldSchema = fieldSchema.email(input.getPropValue("typeErrorMessage"));
-          }
+            if (isEmail) {
+              fieldSchema = fieldSchema.email(
+                input.getPropValue("typeErrorMessage"),
+              );
+            }
 
-          schema = schema.shape({
-            [key]: fieldSchema,
+            schema = schema.shape({
+              [key]: fieldSchema,
+            });
           });
-        });
       });
 
       return schema;
@@ -281,11 +301,11 @@ class Form10 extends BaseContacts {
       const newObj: any = {};
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          let adjustedKey = key.startsWith('_') ? key.slice(1) : key;
-          const parts = adjustedKey.split('_');
-          let newKey = '';
+          let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
+          const parts = adjustedKey.split("_");
+          let newKey = "";
           for (let i = 1; i < parts.length - 1; i++) {
-            newKey += (i > 1 ? '_' : '') + parts[i];
+            newKey += (i > 1 ? "_" : "") + parts[i];
           }
           newObj[newKey] = obj[key];
         }
@@ -293,99 +313,172 @@ class Form10 extends BaseContacts {
       return newObj;
     }
     function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("isRequired"))
+      return inputItem
+        .getPropValue("inputs")
+        .some((input: any) => input.getPropValue("isRequired"));
     }
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {isContactVisible && (
-            <div className={this.decorateCSS("left-container")} >
-                <div className={this.decorateCSS("contact")} >
-                  {subtitle && <h1 className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </h1>}
-                  {title && <h3 className={this.decorateCSS("title")}> {this.getPropValue("title")}  </h3>}
-                </div>
+            <div className={this.decorateCSS("left-container")}>
+              <div className={this.decorateCSS("contact")}>
+                {subtitle && (
+                  <h1 className={this.decorateCSS("subtitle")}>
+                    {" "}
+                    {this.getPropValue("subtitle")}{" "}
+                  </h1>
+                )}
+                {title && (
+                  <h3 className={this.decorateCSS("title")}>
+                    {" "}
+                    {this.getPropValue("title")}{" "}
+                  </h3>
+                )}
+              </div>
             </div>
           )}
-          <div className={this.decorateCSS("right-container")} >
-            <div className={this.decorateCSS("form-container")} >
-              <Formik
-                initialValues={getInitialValue()}
-                validationSchema={getSchema()}
-                onSubmit={(data, { resetForm }) => {
-                  const formData = getFormDataWithConvertedKeys(data)
-                  this.insertForm("CONTACT US", formData);
-                  resetForm();
-                }}
-              >
-                {({ handleChange, values }) => (
-                  <Form className={this.decorateCSS("form")}>
-                    {inputItems.map((inputItem: any, inputItemIndex: number) =>
-                      <div className={this.decorateCSS("input-container")}>
-                        <span className={this.decorateCSS("placeholder")}>{inputItem.getPropValue("placeholder", {
-                          suffix: {
-                            label: isRequiredInput(inputItem) && "*",
-                            className: this.decorateCSS("require-star")
-                          }
-                        })}</span>
-                        <div className={this.decorateCSS("inputs")}>
-                          {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
-                            <div className={this.decorateCSS("input-box")}>
-
-                              {inputObj.getPropValue("type") === "Text Area" ?
-                                <textarea
-                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)]}
-                                  className={this.decorateCSS("input")}
-                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                  rows={9}
-                                  onChange={handleChange}
-                                  name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}>
-                                </textarea> :
-                                <input
-                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                  type={getInputType(inputObj.getPropValue("type"))}
-                                  onChange={handleChange}
-                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)]}
-                                  name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}
-                                  className={this.decorateCSS("input")}
-                                />}
-                              <ErrorMessage
-                                className={this.decorateCSS("error-message")}
-                                name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}
-                                component={"span"}
-                              />
+          {inputItems.length > 0 && (
+            <div className={this.decorateCSS("right-container")}>
+              <div className={this.decorateCSS("form-container")}>
+                <Formik
+                  initialValues={getInitialValue()}
+                  validationSchema={getSchema()}
+                  onSubmit={(data, { resetForm }) => {
+                    const formData = getFormDataWithConvertedKeys(data);
+                    this.insertForm("CONTACT US", formData);
+                    resetForm();
+                  }}
+                >
+                  {({ handleChange, values }) => (
+                    <Form className={this.decorateCSS("form")}>
+                      {inputItems.map(
+                        (inputItem: any, inputItemIndex: number) => (
+                          <div className={this.decorateCSS("input-container")}>
+                            <span className={this.decorateCSS("placeholder")}>
+                              {inputItem.getPropValue("placeholder", {
+                                suffix: {
+                                  label: isRequiredInput(inputItem) && "*",
+                                  className: this.decorateCSS("require-star"),
+                                },
+                              })}
+                            </span>
+                            <div className={this.decorateCSS("inputs")}>
+                              {inputItem
+                                .getPropValue("inputs")
+                                .map((inputObj: any, inputIndex: number) => (
+                                  <div
+                                    className={this.decorateCSS("input-box")}
+                                  >
+                                    {inputObj.getPropValue("type") ===
+                                    "Text Area" ? (
+                                      <textarea
+                                        value={
+                                          values[
+                                            getInputName(
+                                              inputItemIndex,
+                                              inputItem.getPropValue(
+                                                "placeholder",
+                                              ),
+                                              inputIndex,
+                                            )
+                                          ]
+                                        }
+                                        className={this.decorateCSS("input")}
+                                        placeholder={inputObj.getPropValue(
+                                          "placeholder",
+                                          { as_string: true },
+                                        )}
+                                        rows={9}
+                                        onChange={handleChange}
+                                        name={getInputName(
+                                          inputItemIndex,
+                                          inputItem.getPropValue("placeholder"),
+                                          inputIndex,
+                                        )}
+                                      ></textarea>
+                                    ) : (
+                                      <input
+                                        placeholder={inputObj.getPropValue(
+                                          "placeholder",
+                                          { as_string: true },
+                                        )}
+                                        type={getInputType(
+                                          inputObj.getPropValue("type"),
+                                        )}
+                                        onChange={handleChange}
+                                        value={
+                                          values[
+                                            getInputName(
+                                              inputItemIndex,
+                                              inputItem.getPropValue(
+                                                "placeholder",
+                                              ),
+                                              inputIndex,
+                                            )
+                                          ]
+                                        }
+                                        name={getInputName(
+                                          inputItemIndex,
+                                          inputItem.getPropValue("placeholder"),
+                                          inputIndex,
+                                        )}
+                                        className={this.decorateCSS("input")}
+                                      />
+                                    )}
+                                    <ErrorMessage
+                                      className={this.decorateCSS(
+                                        "error-message",
+                                      )}
+                                      name={getInputName(
+                                        inputItemIndex,
+                                        inputItem.getPropValue("placeholder"),
+                                        inputIndex,
+                                      )}
+                                      component={"span"}
+                                    />
+                                  </div>
+                                ))}
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        ),
+                      )}
+
+                      <div className={this.decorateCSS("bottom-section")}>
+                        {isDescriptionVisible && (
+                          <div className={this.decorateCSS("description")}>
+                            {description && (
+                              <h1
+                                className={this.decorateCSS("description-text")}
+                              >
+                                {description}
+                              </h1>
+                            )}
+                          </div>
+                        )}
+                        {this.getPropValue("buttonText", {
+                          as_string: true,
+                        }) && (
+                          <div className={this.decorateCSS("button-box")}>
+                            <button
+                              className={this.decorateCSS("submit-button")}
+                              type="submit"
+                            >
+                              <span>{this.getPropValue("buttonText")}</span>
+                            </button>
+                          </div>
+                        )}
                       </div>
-                    )}
-
-                    <div className={this.decorateCSS("bottom-section")}>
-                      {isDescriptionVisible &&
-                        <div className={this.decorateCSS("description")}>
-                          {description && <h1 className={this.decorateCSS("description-text")}>{description}</h1>}
-                        </div>
-                      }
-                      <div className={this.decorateCSS("button-box")}>
-                      <button
-                        className={this.decorateCSS("submit-button")}
-                        type="submit"
-                      >
-                        <span>{this.getPropValue("buttonText")}</span>
-                      </button>
-                    </div>
-                    </div>
-                  </Form>
-                )}
-              </Formik>
-
+                    </Form>
+                  )}
+                </Formik>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-      </div >
+      </div>
     );
-
-
   }
 }
 

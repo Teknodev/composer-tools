@@ -4,7 +4,6 @@
   align-items: flex-start;
   width: 100%;
 
-
   .max-content {
     max-width: var(--composer-content-width);
     padding: 0 20px;
@@ -61,23 +60,19 @@
 
       .bottom-section {
         display: flex;
-        justify-content: space-between; 
-        align-items: center;
-        position: relative;
+        justify-content: space-between;
         height: 125px;
+        gap: 20px;
+        padding-top: 10px;
+
         .description {
           font-size: 2rem;
-          line-height: 3rem;
-          max-width: 51%;
+          line-height: 1.75rem;
+          width: 100%;
         }
 
         .button-box {
-          display: flex;
-          position: absolute;
-          right: 0;
-
           .submit-button {
-
             position: relative;
             padding: 10px 20px;
             font-size: 16px;
@@ -89,7 +84,6 @@
             border: none;
             transition: color 0.4s;
             left: 0;
-
 
             span {
               position: relative;
@@ -120,7 +114,6 @@
             }
           }
         }
-
       }
 
       .inputs {
@@ -134,7 +127,6 @@
           grid-row: auto;
         }
       }
-
 
       .input {
         color: var(--composer-font-color-primary);
@@ -183,15 +175,10 @@
 
         .title {
           letter-spacing: -1px !important;
-
         }
       }
     }
   }
-
-
-
-
 }
 
 @media only screen and (max-width: 400px) {
@@ -215,7 +202,6 @@
 
         .inputs {
           display: unset;
-
         }
 
         .bottom-section {
@@ -223,18 +209,16 @@
           align-items: flex-start;
           height: unset;
 
-          .button-box{
+          .button-box {
             position: relative;
           }
 
           .description {
             font-size: 0.8rem;
             max-width: 100%;
-
           }
         }
       }
-
     }
   }
 }
