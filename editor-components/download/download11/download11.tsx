@@ -34,7 +34,7 @@ class Download11 extends BaseDownload {
             type: "image",
             key: "image",
             displayer: "Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645a38f1f72de2002cab15aa?alt=media&timestamp=1683634430199",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645a38f1f72de2002cab15aa?alt=media&timestamp=1719584962573",
         });
 
         this.addProp({

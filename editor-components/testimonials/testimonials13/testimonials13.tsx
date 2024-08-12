@@ -44,7 +44,7 @@ class Testimonials13Page extends Testimonials {
       key: "bigImage1",
       displayer: "Image 1 : ",
       value:
-        "https://re-bytes.ancorathemes.com/wp-content/uploads/elementor/thumbs/about-info-6-po9i9czqze6vcgdqt7l7z5pigujfoyidbksla0hquk.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3e?alt=media&timestamp=1719483639150",
     });
 
     //Carousel Prop Start
@@ -64,7 +64,7 @@ class Testimonials13Page extends Testimonials {
               key: "badge",
               displayer: "Badge 1",
               value:
-                "https://re-bytes.ancorathemes.com/wp-content/uploads/2022/04/testimonials-image-3-150x150.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f41?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -99,7 +99,7 @@ class Testimonials13Page extends Testimonials {
               key: "badge",
               displayer: "Badge 2",
               value:
-                "https://re-bytes.ancorathemes.com/wp-content/uploads/2020/04/testimonials-image-1-150x150.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3f?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -134,7 +134,7 @@ class Testimonials13Page extends Testimonials {
               key: "badge",
               displayer: "Badge 3",
               value:
-                "https://re-bytes.ancorathemes.com/wp-content/uploads/2020/04/testimonials-image-2-150x150.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f40?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",

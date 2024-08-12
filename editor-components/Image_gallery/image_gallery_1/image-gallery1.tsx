@@ -113,13 +113,11 @@ class ImageGallery1 extends BaseImageGallery {
   }
 
   componentDidMount(): void {
-    console.log("componentDidMount");
   }
 
 
   render() {
     const galleries = this.getPropValue("gallery");
-    console.log(this.getPropValue("gallery"));
 
     return (
       <div className={this.decorateCSS("container")}>

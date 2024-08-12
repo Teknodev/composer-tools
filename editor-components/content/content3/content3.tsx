@@ -1,7 +1,6 @@
 import * as React from "react";
-import { BaseContent, Team } from "../../EditorComponent";
+import { BaseContent } from "../../EditorComponent";
 import styles from "./content3.module.scss";
-import { Content } from "../../../../components/section-card/section-card";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
@@ -47,7 +46,7 @@ class Content3 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/photographer600.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a5?alt=media&timestamp=1719561551671",
             },
           ],
         },
@@ -79,7 +78,7 @@ class Content3 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/oldcity600.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a4?alt=media&timestamp=1719561551671",
             },
           ],
         },
@@ -111,7 +110,7 @@ class Content3 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/magazine.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a3?alt=media&timestamp=1719561551671",
             },
           ],
         },
@@ -143,7 +142,7 @@ class Content3 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://20148114.fs1.hubspotusercontent-na1.net/hubfs/20148114/team04-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a6?alt=media&timestamp=1719561551671",
             },
           ],
         },
