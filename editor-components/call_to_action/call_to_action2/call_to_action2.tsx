@@ -63,7 +63,7 @@ class CallToAction2Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2120&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f2a93292c6002b23c493?alt=media",
     });
 
     this.addProp({
@@ -84,7 +84,7 @@ class CallToAction2Page extends BaseCallToAction {
       displayer: "Video",
       key: "video",
       value:
-        "https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
     });
     this.setComponentState("isVideoVisible", false);
   }
@@ -119,7 +119,9 @@ class CallToAction2Page extends BaseCallToAction {
         <div
           style={
             this.getPropValue("image")
-              ? { height: "550px", marginBottom: "300px" }
+              ? renderHeader
+                ? { height: "550px", marginBottom: "300px" }
+                : { height: "auto", marginBottom: 0 }
               : { height: "auto" }
           }
           className={this.decorateCSS("background")}

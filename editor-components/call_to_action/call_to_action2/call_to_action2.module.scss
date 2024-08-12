@@ -16,19 +16,24 @@
 .background {
   background-color: var(--composer-primary-color);
   width: 85%;
+  max-width: var(--composer-content-width);
   margin: 0 auto;
   padding: 50px;
 }
 
 .wrapper {
   color: var(--composer-font-color-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
 }
 
 .titles {
@@ -60,6 +65,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 51px;
+  border: 1px solid transparent;
+  transition: 300ms;
 
   > div {
     display: flex;
@@ -69,7 +77,14 @@
     gap: 10px;
     svg {
       display: block;
+      font-size: 25px;
     }
+  }
+
+  &:hover {
+    color: var(--composer-font-color-secondary);
+    border: 1px solid var(--composer-font-color-secondary);
+    background-color: transparent;
   }
 }
 
@@ -84,7 +99,7 @@
   cursor: pointer;
 
   &:hover {
-    opacity: 0.9;
+    filter: brightness(1.2);
   }
 
   .play-icon-box {
@@ -102,6 +117,7 @@
 
     .play-icon {
       color: var(--composer-font-color-secondary);
+      font-size: 30px;
     }
   }
 }
