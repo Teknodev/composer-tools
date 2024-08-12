@@ -7,7 +7,7 @@ type Card = {
   name: JSX.Element;
   position: JSX.Element;
   description: JSX.Element;
-}
+};
 
 class Team14 extends Team {
   constructor(props?: any) {
@@ -22,7 +22,8 @@ class Team14 extends Team {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Meet the creative minds behind the magic! Our team is dynamic blend of visionaries, storytellers, and artisans, united by a passion for innovation and excellence",
+      value:
+        "Meet the creative minds behind the magic! Our team is dynamic blend of visionaries, storytellers, and artisans, united by a passion for innovation and excellence",
     });
     this.addProp({
       type: "array",
@@ -50,7 +51,8 @@ class Team14 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Crafting innovative design for the future, with a blend of experience and creativity.",
+              value:
+                "Crafting innovative design for the future, with a blend of experience and creativity.",
             },
             {
               type: "image",
@@ -82,7 +84,8 @@ class Team14 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Cragfting captivating content to inform, inspire and engage. Let's tell your story together.",
+              value:
+                "Cragfting captivating content to inform, inspire and engage. Let's tell your story together.",
             },
             {
               type: "image",
@@ -114,7 +117,8 @@ class Team14 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Bringing visions to life through innovative ideas and strategic executions. Transforming concenpts into captivating visual stories.",
+              value:
+                "Bringing visions to life through innovative ideas and strategic executions. Transforming concenpts into captivating visual stories.",
             },
             {
               type: "image",
@@ -175,56 +179,76 @@ class Team14 extends Team {
     const title = this.getPropValue("title", { as_string: true });
     const subtitle = this.getPropValue("subtitle", { as_string: true });
     const team = this.castToObject<Card[]>("team");
+
+    const itemCount: number = this.getPropValue("itemCount");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {(title || subtitle) && (
             <div className={this.decorateCSS("up-page")}>
-              {title && (<h1 className={this.decorateCSS("title")}>{title}</h1>)}
-              {subtitle && (<p className={this.decorateCSS("subtitle")}>{subtitle}</p>)}
+              {title && <h1 className={this.decorateCSS("title")}>{title}</h1>}
+              {subtitle && (
+                <p className={this.decorateCSS("subtitle")}>{subtitle}</p>
+              )}
             </div>
           )}
 
-          <div className={this.decorateCSS("down-page")}>
-            {team.filter(teamItem => teamItem.image).map((teamItem: Card, index: number) => {
-              const image = teamItem.image;
-              const name = this.castToString(teamItem.name);
-              const position = this.castToString(teamItem.position);
-              const description = this.castToString(teamItem.description);
+          {team.length > 0 && (
+            <div className={this.decorateCSS("down-page")}>
+              {team
+                .filter((teamItem) => teamItem.image)
+                .map((teamItem: Card, index: number) => {
+                  const image = teamItem.image;
+                  const name = this.castToString(teamItem.name);
+                  const position = this.castToString(teamItem.position);
+                  const description = this.castToString(teamItem.description);
 
-              return (
-                <div className={this.decorateCSS("itemCount")}
-                  style={{
-                    width: 95 / this.getPropValue("itemCount") + "%",
-                  }}>
-                  <div className={this.decorateCSS("card")}>
-                    <div className={this.decorateCSS("portfolio")}>
-                      {image && (
-                        <img className={this.decorateCSS("image")}
-                          src={image}
-                          alt={`${name}'s image`}
-                          key={`team14-${index}`}
-                        />
-                      )}
-                      {(name || position || description) && (
-                        <div className={this.decorateCSS("info")}>
-                          {name && (
-                            <div className={this.decorateCSS("name")}>{teamItem.name}</div>
+                  return (
+                    <div
+                      className={this.decorateCSS("itemCount")}
+                      style={{
+                        width: (100 - itemCount) / itemCount + "%",
+                      }}
+                    >
+                      <div className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("portfolio")}>
+                          {image && (
+                            <img
+                              className={this.decorateCSS("image")}
+                              src={image}
+                              alt={name}
+                              key={index}
+                            />
                           )}
-                          {position && (
-                            <div className={this.decorateCSS("position")}>{teamItem.position}</div>
-                          )}
-                          {description && (
-                            <div className={this.decorateCSS("description")}>{teamItem.description}</div>
+                          {(name || position || description) && (
+                            <div className={this.decorateCSS("info")}>
+                              {name && (
+                                <div className={this.decorateCSS("name")}>
+                                  {teamItem.name}
+                                </div>
+                              )}
+                              {position && (
+                                <div className={this.decorateCSS("position")}>
+                                  {teamItem.position}
+                                </div>
+                              )}
+                              {description && (
+                                <div
+                                  className={this.decorateCSS("description")}
+                                >
+                                  {teamItem.description}
+                                </div>
+                              )}
+                            </div>
                           )}
                         </div>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                  );
+                })}
+            </div>
+          )}
         </div>
       </div>
     );

@@ -13,9 +13,7 @@
     align-items: center;
 
     .up-page {
-
       margin-bottom: 0;
-      padding-left: 80px;
       align-self: flex-start;
 
       .title {
@@ -25,7 +23,6 @@
 
       .subtitle {
         margin-right: 25px;
-        width: 55%;
         font-size: 1.5rem;
         text-align: left;
         color: var(--composer-font-color-primary);
@@ -51,14 +48,14 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      width: 270px;
+      width: 80%;
       max-width: 100%;
       height: 400px;
       transition: width ease 0.4s;
     }
 
     .portfolio:hover {
-      width: 320px;
+      width: 100%;
     }
 
     .portfolio .image {
@@ -76,10 +73,14 @@
       max-width: 100%;
       display: flex;
       flex-direction: column;
-      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary)10%);
+      background-color: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        var(--composer-font-color-primary) 10%
+      );
       padding: 10px;
       opacity: 0;
-      transform: translateY(100%) !important;
+      transform: translateY(100%);
       transition:
         opacity 0.3s,
         transform 0.5s ease-in-out;
@@ -137,27 +138,53 @@
     .max-content {
       .up-page {
         width: 100%;
-        padding-left: 40px;
+        margin: 0 10px;
 
         .subtitle {
           width: unset;
         }
       }
 
-      .itemCount{
-        width: unset;
-      
-      .down-page {
-
+      /* .down-page {
         .portfolio {
           min-width: 250px !important;
         }
-      }
-    }}
+      } */
+    }
+  }
+
+  .itemCount {
+    width: 45% !important;
+  }
+
+  .portfolio {
+    width: 320px !important;
+  }
+  .portfolio .info {
+    transform: translateY(-15%) !important;
+    opacity: 1 !important;
+  }
+
+  .portfolio .image {
+    border-radius: 6px !important;
+    filter: grayscale(0%) !important;
+  }
+
+  .portfolio .image {
+    border-radius: 6px !important;
+  }
+
+  .portfolio .image {
+    border-radius: 6px !important;
+  }
+
+  .portfolio .down-page {
+    border-radius: 6px !important;
+    justify-content: space-between !important;
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 600px) {
   .container {
     padding: unset;
 
@@ -165,12 +192,14 @@
       padding: 45px 20px;
 
       .up-page {
-        padding-left: 40px;
-
         .subtitle {
           width: unset;
         }
       }
     }
+  }
+
+  .itemCount {
+    width: 100% !important;
   }
 }
