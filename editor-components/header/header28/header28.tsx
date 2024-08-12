@@ -273,6 +273,7 @@ class HeaderComponent28 extends BaseHeader {
                 >
                   {this.getComponentState("play-video") && (
                     <iframe
+                      className={this.decorateCSS("video-iframe")}
                       width="70%"
                       height="60%"
                       src={item.getPropValue("video")}
@@ -289,7 +290,12 @@ class HeaderComponent28 extends BaseHeader {
                         this.setComponentState("play-video", false)
                       }
                     >
-                      <ComposerIcon name={this.getPropValue("close_icon")} />
+                      <ComposerIcon
+                        propsIcon={{
+                          className: this.decorateCSS("close-button-icon"),
+                        }}
+                        name={this.getPropValue("close_icon")}
+                      />
                     </div>
                   )}
                 </div>
