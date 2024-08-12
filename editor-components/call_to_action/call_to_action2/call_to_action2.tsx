@@ -124,7 +124,7 @@ class CallToAction2Page extends BaseCallToAction {
     return (
       <div className={this.decorateCSS("container")}>
         <div
-          className={`${this.decorateCSS("background")} ${adjustBackground}`}
+          className={`${this.decorateCSS("background")} ${adjustBackground()}`}
         >
           <div className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("wrapper")}>
