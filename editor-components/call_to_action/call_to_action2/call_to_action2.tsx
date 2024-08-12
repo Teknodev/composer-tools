@@ -63,7 +63,7 @@ class CallToAction2Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f2a93292c6002b23c493?alt=media",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f51c3292c6002b23c4f6?alt=media",
     });
 
     this.addProp({
