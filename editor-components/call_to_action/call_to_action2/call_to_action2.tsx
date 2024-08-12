@@ -26,23 +26,38 @@ class CallToAction2Page extends BaseCallToAction {
       displayer: "Title",
     });
     this.addProp({
-      type: "string",
-      key: "buttonText",
-      value: " Start Your Free Trial",
-      displayer: "Button Text",
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "Button",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Start Your Free Trial",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaArrowRight",
+            },
+          ],
+        },
+      ],
     });
-    this.addProp({
-      type: "page",
-      key: "buttonLink",
-      displayer: "Button Link",
-      value: "",
-    });
-    this.addProp({
-      type: "icon",
-      key: "buttonIcon",
-      displayer: "Button Icon",
-      value: "FaArrowRight",
-    });
+
     this.addProp({
       type: "image",
       key: "image",
@@ -87,23 +102,17 @@ class CallToAction2Page extends BaseCallToAction {
   };
 
   render() {
+    const buttons = this.castToObject<Button[]>("buttons");
+
     const image = this.getPropValue("image");
-    const button: Button = {
-      text: this.getPropValue("buttonText"),
-      link: this.getPropValue("buttonLink"),
-      icon: this.getPropValue("buttonIcon"),
-    };
     const playIcon: string = this.getPropValue("playIcon");
     const closeIcon: string = this.getPropValue("closeIcon");
-    const buttonIcon: string = this.getPropValue("buttonIcon");
 
     const titleExist = this.getPropValue("title", { as_string: true });
     const subtitleExist = this.getPropValue("subtitle", { as_string: true });
 
-    const buttonTextExist = this.castToString(button.text);
-
     const renderHeader: boolean =
-      titleExist || subtitleExist || buttonTextExist || buttonIcon;
+      titleExist || subtitleExist || buttons.length > 0;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -133,14 +142,28 @@ class CallToAction2Page extends BaseCallToAction {
                       )}
                     </div>
                   )}
-                  {(buttonTextExist || buttonIcon) && (
+                  {buttons?.length > 0 && (
                     <div className={this.decorateCSS("button-container")}>
-                      <ComposerLink path={button.link}>
-                        <span className={this.decorateCSS("button")}>
-                          {buttonIcon && <ComposerIcon name={buttonIcon} />}
-                          {buttonTextExist && button.text}
-                        </span>
-                      </ComposerLink>
+                      {buttons.map((button: Button, index: number) => {
+                        const buttonTextExist = this.castToString(button.text);
+
+                        if (buttonTextExist || button.icon)
+                          return (
+                            <div
+                              key={index}
+                              className={this.decorateCSS("button")}
+                            >
+                              <ComposerLink path={button.link}>
+                                {button.icon && (
+                                  <ComposerIcon name={button.icon} />
+                                )}
+                                {buttonTextExist && button.text}
+                              </ComposerLink>
+                            </div>
+                          );
+
+                        return <></>;
+                      })}
                     </div>
                   )}
                 </div>
