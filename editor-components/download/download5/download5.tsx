@@ -17,29 +17,30 @@ class Download5 extends BaseDownload {
 
     this.addProp({
       type: "string",
-      key: "title1",
+      key: "title",
       value: "Available On All App Store",
-      displayer: "Title-1",
+      displayer: "Title",
     });
 
     this.addProp({
       type: "string",
-      key: "text1",
+      key: "description",
       value: "Download now & enjoy app with unlimited features",
-      displayer: "Description-1",
+      displayer: "Description",
     });
 
     this.addProp({
       type: "image",
-      key: "image",
-      value: "https://freakytheme.com/html/appol/image/bg-parallax-c.png",
-      displayer: "Image",
+      key: "backgroundImage",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb0c0a3292c6002b23e266?alt=media",
+      displayer: "Background Image",
     });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Button",
+
       value: [
         {
           type: "object",
@@ -49,25 +50,25 @@ class Download5 extends BaseDownload {
             {
               type: "string",
               key: "buttonText1",
-              displayer: "Button Text",
+              displayer: "Button Text 1",
               value: "Download on the",
             },
             {
               type: "string",
               key: "buttonText2",
-              displayer: "Button Text",
+              displayer: "Button Text 2",
               value: "Google Play",
             },
             {
               type: "icon",
               key: "icon",
+              displayer: "Button Icon",
               value: "BsGooglePlay",
-              displayer: "Icon",
             },
             {
               type: "page",
-              key: "Button Link",
-              displayer: "URL",
+              key: "url",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -80,25 +81,25 @@ class Download5 extends BaseDownload {
             {
               type: "string",
               key: "buttonText1",
-              displayer: "Button Text",
+              displayer: "Button Text 1",
               value: "Download on the",
             },
             {
               type: "string",
               key: "buttonText2",
-              displayer: "Button Text",
+              displayer: "Button Text 2",
               value: "App Store",
             },
             {
               type: "icon",
               key: "icon",
+              displayer: "Button Icon",
               value: "BsApple",
-              displayer: "Icon",
             },
             {
               type: "page",
-              key: "Button Link",
-              displayer: "URL",
+              key: "url",
+              displayer: "Button Link",
               value: "",
             },
           ],
@@ -112,10 +113,15 @@ class Download5 extends BaseDownload {
   }
 
   render() {
-    const backgroundImage = this.getPropValue("image");
+    const backgroundImage = this.getPropValue("backgroundImage");
 
-    const titleExist = this.getPropValue("title1", { as_string: true });
-    const textExist = this.getPropValue("text1", { as_string: true });
+    const title = this.getPropValue("title");
+    const titleExist = this.getPropValue("title", { as_string: true });
+
+    const desc = this.getPropValue("description");
+    const descExist = this.getPropValue("description", { as_string: true });
+
+    const buttons = this.castToObject<Button[]>("buttons");
 
     return (
       <div
@@ -127,59 +133,61 @@ class Download5 extends BaseDownload {
             {titleExist && (
               <div className={this.decorateCSS("box")}>
                 <h1 className={this.decorateCSS("title1")}>
-                  {this.getPropValue("title1")}
+                  {title}
                 </h1>
               </div>
             )}
-            {textExist && (
+            {descExist && (
               <div className={this.decorateCSS("box")}>
                 <p className={this.decorateCSS("text1")}>
-                  {this.getPropValue("text1")}
+                  {desc}
                 </p>
               </div>
             )}
 
-            <div className={this.decorateCSS("box")}>
-              {this.castToObject<Button[]>("buttons").map(
-                (item: Button, index: number) => {
-                  const text1Exist = this.castToString(item.buttonText1);
-                  const text2Exist = this.castToString(item.buttonText2);
+            {buttons.length > 0 &&
+              <div className={this.decorateCSS("buttons-box")}>
+                {buttons.map(
+                  (item: Button, index: number) => {
+                    const text1Exist = this.castToString(item.buttonText1);
+                    const text2Exist = this.castToString(item.buttonText2);
 
-                  if (text1Exist || text2Exist || item.icon)
-                    return (
-                      <ComposerLink key={index} path={item.url}>
-                        <div className={this.decorateCSS("button")}>
-                          {item.icon && (
-                            <div className={this.decorateCSS("icon-div")}>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                              />
-                            </div>
-                          )}
-                          {(text1Exist || text2Exist) && (
-                            <div className={this.decorateCSS("button-texts")}>
-                              {text1Exist && (
-                                <p className={this.decorateCSS("up-text")}>
-                                  {item.buttonText1}
-                                </p>
-                              )}
-                              {text2Exist && (
-                                <h1 className={this.decorateCSS("down-text")}>
-                                  {item.buttonText2}
-                                </h1>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      </ComposerLink>
-                    );
-                  return <></>;
-                },
-              )}
-            </div>
+                    if (text1Exist || text2Exist || item.icon)
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <div className={this.decorateCSS("button")}>
+                            {item.icon && (
+                              <div className={this.decorateCSS("icon-div")}>
+                                <ComposerIcon
+                                  name={item.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                  }}
+                                />
+                              </div>
+                            )}
+                            {(text1Exist || text2Exist) && (
+                              <div className={this.decorateCSS("button-texts")}>
+                                {text1Exist && (
+                                  <p className={this.decorateCSS("up-text")}>
+                                    {item.buttonText1}
+                                  </p>
+                                )}
+                                {text2Exist && (
+                                  <h1 className={this.decorateCSS("down-text")}>
+                                    {item.buttonText2}
+                                  </h1>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </ComposerLink>
+                      );
+                    return null;
+                  },
+                )}
+              </div>
+            }
           </div>
         </div>
       </div>

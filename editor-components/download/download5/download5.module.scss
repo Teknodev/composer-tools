@@ -1,50 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+$min-height: 500px;
+
 .container {
   padding: 20px;
   background-color: var(--composer-html-background);
   font-weight: bold;
-  position: relative;
   background-size: cover;
   background-position: center;
-  height: 500px;
+  min-height: $min-height;
   width: 100%;
 }
 
 .max-content {
   max-width: var(--composer-content-width);
   margin: 0 auto;
-  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: $min-height;
 }
 
 .page-1 {
-  z-index: 10;
-  padding: 20px;
-  margin: 20px;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -30px;
+  gap: 15px;
 }
 
 .box {
   display: flex;
-  width: 700px;
   flex-wrap: wrap;
-  column-gap: 1rem;
-  margin-left: 100px;
+  word-break: normal;
 }
 
 .title1 {
   font-size: 44px;
   font-weight: bold;
-  margin: 0;
-  margin-top: 150px;
   color: var(--composer-font-color-primary);
 }
 
 .text1 {
   font-size: 20px;
-  margin: 5px 0;
-  margin-top: 24px;
   color: var(--composer-font-color-primary);
 }
 
 .button {
+  min-height: 68px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -59,7 +64,6 @@
   transition:
     background-color 0.3s ease,
     transform 0.3s ease;
-  margin-top: 20px;
   width: 240px;
   color: var(--composer-font-color-primary);
 }
@@ -69,39 +73,30 @@
   background: transparent;
   border: 1px solid var(--composer-secondary-color);
   color: var(--composer-font-color-primary);
-}
 
-.button:hover .up-text,
-.button:hover .down-text {
-  color: var(--composer-font-color-primary);
-}
-
-.button:hover .icon {
-  color: var(--composer-font-color-primary);
+  .up-text,
+  .down-text,
+  .icon {
+    color: var(--composer-font-color-primary);
+  }
 }
 
 .button-texts {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .up-text {
   font-size: 0.8rem;
-  color: #fff;
+  color: var(--composer-font-color-secondary);
   opacity: 0.8;
-  margin: unset;
-  margin-bottom: 5px;
 }
 
 .down-text {
   font-size: 1.8rem;
-  color: #fff;
+  color: var(--composer-font-color-secondary);
   letter-spacing: 1px;
-  margin: unset;
-}
-
-.image {
-  display: none;
 }
 
 .icon {
@@ -110,86 +105,86 @@
   color: var(--composer-font-color-secondary);
 }
 
-@media (max-width: 1024px) {
-  .container {
-    padding: 0px;
-  }
-  .box {
-    width: 500px;
-    margin-left: 0px;
-  }
-  .button {
-    width: 160px;
-    padding: 7px 7px;
-  }
-  .down-text {
-    font-size: 1.3rem;
-  }
+.buttons-box {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
   .title1 {
-    font-size: 30px;
-    margin-top: 200px;
+    font-size: 32px;
   }
+
   .text1 {
-    font-size: 14px;
+    font-size: 16px;
   }
+
+  .button {
+    font-size: 14px;
+    column-gap: 8px;
+    width: 200px;
+    padding: 10px 8px;
+    min-height: auto;
+  }
+
   .icon {
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .button-texts {
+    gap: 0;
+  }
+
+  .up-text {
+    font-size: 0.8em;
+  }
+
+  .down-text {
+    font-size: 1.2em;
   }
 }
 
-@media (max-width: 655px) {
-  .container {
-    height: 300px;
-    padding: 0px;
-  }
-  .max-content {
-    align-items: left !important;
-    margin: 0px !important;
-  }
+@media (max-width: 600px) {
   .page-1 {
-    padding: 0px;
     margin: 10px;
   }
-  .button {
-    width: 110px;
-    height: 34px;
-    padding: 3px 3px;
-    column-gap: 0.4rem;
-    margin-top: 10px;
-  }
-  .box {
-    text-align: left !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  .icon {
-    width: 20px;
-    height: 20px;
-  }
-  .up-text {
-    font-size: 0.5rem;
-  }
-  .down-text {
-    font-size: 0.7rem;
-  }
-  .box {
-    margin-left: 0;
-    text-align: center;
-  }
+
   .title1 {
-    font-size: 18px;
-    margin-top: 100px;
+    font-size: 20px;
   }
+
   .text1 {
-    font-size: 8px;
-    margin-top: 10px;
+    font-size: 14px;
   }
-  .button-group {
-    flex-direction: column;
-    margin-top: 15px;
+
+  .buttons-box {
+    gap: 8px;
   }
+
   .button {
-    margin-bottom: 10px;
+    font-size: 12px;
+    padding: 8px 5px;
+    width: 180px;
+    column-gap: 5px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .button-texts {
+    gap: 0;
+  }
+
+  .up-text {
+    font-size: 0.8em;
+  }
+
+  .down-text {
+    font-size: 1.2em;
   }
 }
