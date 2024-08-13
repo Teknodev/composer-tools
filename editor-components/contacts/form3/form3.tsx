@@ -6,15 +6,19 @@ import * as Yup from "yup";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { TypeUsableComponentProps } from "../../EditorComponent";
+import { Label } from "@mui/icons-material";
 
 type Left = {
   contactName: string;
   contactIcon: string;
+  image: JSX.Element
 };
 
 type Social = {
-  social: { icon: string, url: string }[],
+  url: string;
+  icon: string;
 };
+
 
 class Form3Page extends BaseContacts {
   constructor(props?: any) {
@@ -26,7 +30,7 @@ class Form3Page extends BaseContacts {
       displayer: "Top Subtitle",
       value: "Reach Out",
     });
-    
+
     this.addProp({
       type: "string",
       key: "topTitle",
@@ -38,7 +42,7 @@ class Form3Page extends BaseContacts {
       type: "image",
       key: "background",
       displayer: "Background Image",
-      value: "https://images.unsplash.com/photo-1557683304-673a23048d34?q=80&w=1700&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb57653292c6002b23ff58?alt=media",
     });
 
     this.addProp({
@@ -72,7 +76,7 @@ class Form3Page extends BaseContacts {
             {
               type: "icon",
               key: "contactIcon",
-              value: "ImLocation2",
+              value: "FaLocationDot",
               displayer: "locationIcon",
             },
           ],
@@ -91,7 +95,7 @@ class Form3Page extends BaseContacts {
             {
               type: "icon",
               key: "contactIcon",
-              value: "FaPhone",
+              value: "FaPhoneAlt",
               displayer: "phone Icon",
             },
           ],
@@ -110,7 +114,7 @@ class Form3Page extends BaseContacts {
             {
               type: "icon",
               key: "contactIcon",
-              value: "FiMail",
+              value: "TbMailFilled",
               displayer: "mailIcon",
             },
           ],
@@ -125,8 +129,8 @@ class Form3Page extends BaseContacts {
       value: [
         {
           type: "object",
-          key:"social",
-          displayer:"Social",
+          key: "social",
+          displayer: "Social",
           value: [
             {
               type: "icon",
@@ -144,8 +148,8 @@ class Form3Page extends BaseContacts {
         },
         {
           type: "object",
-          key:"social",
-          displayer:"Social",
+          key: "social",
+          displayer: "Social",
           value: [
             {
               type: "icon",
@@ -163,8 +167,8 @@ class Form3Page extends BaseContacts {
         },
         {
           type: "object",
-          key:"social",
-          displayer:"Social",
+          key: "social",
+          displayer: "Social",
           value: [
             {
               type: "icon",
@@ -182,8 +186,8 @@ class Form3Page extends BaseContacts {
         },
         {
           type: "object",
-          key:"social",
-          displayer:"Social",
+          key: "social",
+          displayer: "Social",
           value: [
             {
               type: "icon",
@@ -512,7 +516,7 @@ class Form3Page extends BaseContacts {
         }
       ]
     });
-    
+
 
     this.addProp({
       type: "string",
@@ -529,16 +533,21 @@ class Form3Page extends BaseContacts {
 
   render() {
 
+    const button_text = this.getPropValue("button_text", { as_string: true });
+
     const topTitle = this.getPropValue("topTitle", { as_string: true });
+    const topSubtitle = this.getPropValue("topSubtitle", { as_string: true });
     const leftTitle = this.getPropValue("leftTitle", { as_string: true });
-    const leftSubtitle = this.getPropValue("leftSubtitle",  { as_string: true });
+    const leftSubtitle = this.getPropValue("leftSubtitle", { as_string: true });
 
     const rightTitle = this.getPropValue("rightTitle", { as_string: true });
-    const rightSubtitle = this.getPropValue("rightSubtitle",  { as_string: true });
+    const rightSubtitle = this.getPropValue("rightSubtitle", { as_string: true });
 
     const contactInfo = this.getPropValue("contactInfo");
+    const contactIcon = this.getPropValue("contactIcon");
 
-    const inputItems = this.getPropValue("input_items")!
+    const inputItems = this.getPropValue("input_items");
+    const social = this.getPropValue("social");
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -586,6 +595,7 @@ class Form3Page extends BaseContacts {
         inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
 
+
           const isRequired = input.getPropValue("is_required");
           const isEmail = getInputType(input.getPropValue("type")) == "email";
 
@@ -630,121 +640,150 @@ class Form3Page extends BaseContacts {
       return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
     }
 
+    const icons = this.castToObject<Social[]>("socials");
+    const background = this.getPropValue("background");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("top")}>
-            <h3 className={this.decorateCSS("topSubtitle")}> {this.getPropValue("topSubtitle")} </h3>
-            <h1 className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </h1>
-          </div>
-      <div className={this.decorateCSS("box")}>
-        <div className={this.decorateCSS("left-container")}>
-        
-          <img
-            className={this.decorateCSS("background")}
-            src={this.getPropValue("background")}
-          />  
-          <div className={this.decorateCSS("left")}>
-                <div className={this.decorateCSS("title1")}>
-                  <h3 className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </h3>
-                  <h1 className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")}  </h1>
-                </div>
-
-                <div className={this.decorateCSS("contacts")}>
-                {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
-                <div className={this.decorateCSS("contact")}>  
-                  <ComposerIcon name={contact.contactIcon} propsIcon={{ className: this.decorateCSS("icon") }} /> 
-                  <div className={this.decorateCSS("contactName")}> {contact.contactName} </div>
-                </div>
-                ))}
-                </div>
-
-              <div className={this.decorateCSS("socials")}>
-              {this.castToObject<Social[]>("socials").map((social: any, index: number) => (
-                <div className={this.decorateCSS("icon-container")}>
-               <ComposerLink key={index} path={social.url}>
-                  <ComposerIcon
-                    name={social.icon}
-                    propsIcon={{
-                      className: this.decorateCSS("icon")
-                    }}/>
-                </ComposerLink>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className={this.decorateCSS("right-container")}>
-            
-          <div className={this.decorateCSS("title2")} >
-            <h1 className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </h1>
-            <h3 className={this.decorateCSS("rightSubtitle")}> {this.getPropValue("rightSubtitle")} </h3>
-          </div>
-          
-          <div className={this.decorateCSS("form-container")} >
-            <Formik
-              initialValues={getInitialValue()}
-              validationSchema={getSchema()}
-              onSubmit={(data, { resetForm }) => {
-                const formData = getFormDataWithConvertedKeys(data)
-                this.insertForm("Contact Us", formData);
-                resetForm();
-              }}
-            >
-              {({ handleChange, values }) => (
-                <Form className={this.decorateCSS("form")}>
-                  {inputItems.map((inputItem: any, inputItemIndex: number) =>
-                    <div className={this.decorateCSS("input-container")} key={inputItemIndex}>
-                      {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
-                        <div className={this.decorateCSS("input-box")} key={inputIndex}>
-                          <span className={this.decorateCSS("label")}>
-                            {inputObj.getPropValue("label")}
-                            <p className={this.decorateCSS("require-star")}>
-                              {inputObj.getPropValue("is_required") && "*"}
-                            </p>
-                          </span>
-                          {inputObj.getPropValue("type") == "Text Area" ? (
-                            <textarea
-                              value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
-                              className={this.decorateCSS("input")}
-                              placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                              rows={3}
-                              onChange={handleChange}
-                              name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
-                            ></textarea>
-                          ) : (
-                            <input
-                              placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                              type={getInputType(inputObj.getPropValue("type"))}
-                              onChange={handleChange}
-                              value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
-                              name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
-                              className={this.decorateCSS("input")}
-                            />
-                          )}
-                          <ErrorMessage
-                            className={this.decorateCSS("error-message")}
-                            name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
-                            component={"span"}
-                          />
+          {(topSubtitle || topTitle) && (
+            <div className={this.decorateCSS("top")}>
+              {topSubtitle && (
+                <h3 className={this.decorateCSS("topSubtitle")}> {this.getPropValue("topSubtitle")} </h3>)}
+              {topTitle && (
+                <h1 className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </h1>)}
+            </div>)}
+          <div className={this.decorateCSS("box")}>
+              {(icons || background || leftSubtitle || leftTitle || contactInfo  || contactIcon ).length > 1 &&
+            <div className={this.decorateCSS("left-container")}>
+                {background && (
+              <img
+                className={this.decorateCSS("background")}
+                src={this.getPropValue("background")}
+              />)}
+              <div className={this.decorateCSS("left")}>
+                <div className={this.decorateCSS("textSide")}>
+                  {(leftTitle || leftSubtitle) && (
+                    <div className={this.decorateCSS("title1")}>
+                      {leftTitle && (
+                        <h3 className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </h3>)}
+                      {leftSubtitle && (
+                        <h1 className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")}  </h1>)}
+                    </div>)}
+                  {(contactInfo || contactIcon) && (
+                    <div className={this.decorateCSS("contacts")}>
+                      {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
+                        <div className={this.decorateCSS("contact")}>
+                          <ComposerIcon name={contact.contactIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          {(this.castToString(contact.contactName)) && (
+                            <div className={this.decorateCSS("contactName")}> {contact.contactName} </div>)}
                         </div>
-                      )}
+                      ))}
+                    </div>)}
+                </div>
+                      
+                {
+                  icons.length > 0 && 
+                  <div className={this.decorateCSS("socials")}>
+                  {icons.map((social: Social, index: number) => {
+
+                    if(social.icon)
+                    return (
+                    <div className={this.decorateCSS("icon-container")}>
+                      <ComposerLink key={index} path={social.url}>
+                        <ComposerIcon
+                          name={social.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon")
+                          }} />
+                      </ComposerLink>
                     </div>
+                  )
+                  })}
+                </div>
+                }
+              </div>
+            </div>}
+                {((rightSubtitle || rightTitle) || button_text || inputItems).length > 0 &&
+            <div className={this.decorateCSS("right-container")}>
+              {(rightTitle || rightSubtitle) && (
+                <div className={this.decorateCSS("title2")} >
+                  {rightTitle && (
+                    <h1 className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </h1>)}
+                  {rightSubtitle && (
+                    <h3 className={this.decorateCSS("rightSubtitle")}> {this.getPropValue("rightSubtitle")} </h3>)}
+                </div>)}
+                {(button_text || inputItems).length > 0 &&
+              <div className={this.decorateCSS("form-container")} >
+                <Formik
+                  initialValues={getInitialValue()}
+                  validationSchema={getSchema()}
+                  onSubmit={(data, { resetForm }) => {
+                    const formData = getFormDataWithConvertedKeys(data)
+                    this.insertForm("Contact Us", formData);
+                    resetForm();
+                  }}
+                >
+                  {({ handleChange, values }) => (
+                    <Form className={this.decorateCSS("form")}>
+                     {inputItems && 
+                      <div className={this.decorateCSS("inputSide")}>
+                        {inputItems.map((inputItem: any, inputItemIndex: number) =>
+                        
+                          <div className={this.decorateCSS("input-container")} key={inputItemIndex}>
+                            {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
+                              inputObj.getPropValue("label", { as_string: true }) ?
+                                <div className={this.decorateCSS("input-box")} key={inputIndex}>
+                                  <span className={this.decorateCSS("label")}>
+                                    {inputObj.getPropValue("label")}
+                                    <p className={this.decorateCSS("require-star")}>
+                                      {inputObj.getPropValue("is_required") && "*"}
+                                    </p>
+                                  </span>
+                                  {inputObj.getPropValue("type") == "Text Area" ? (
+                                    <textarea
+                                      value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
+                                      className={this.decorateCSS("input")}
+                                      placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                      rows={3}
+                                      onChange={handleChange}
+                                      name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
+                                    ></textarea>
+                                  ) : (
+                                    <input
+                                      placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                      type={getInputType(inputObj.getPropValue("type"))}
+                                      onChange={handleChange}
+                                      value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
+                                      name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
+                                      className={this.decorateCSS("input")}
+                                    />
+                                  )}
+                                  <ErrorMessage
+                                    className={this.decorateCSS("error-message")}
+                                    name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
+                                    component={"span"}
+                                  />
+                                </div> : null
+                            )}
+                          </div>
+
+                        )}</div>}
+                      {button_text && (
+                        <div className={this.decorateCSS("buttonSide")}>
+                          <button
+                            className={this.decorateCSS("submit-button")}
+                            type="submit"
+                          >
+                            {this.getPropValue("button_text")}
+                          </button>
+                        </div>)}
+                    </Form>
                   )}
-                  <button
-                    className={this.decorateCSS("submit-button")}
-                    type="submit"
-                  >
-                    {this.getPropValue("button_text")}
-                  </button>
-                </Form>
-              )}
-            </Formik>
+                </Formik>
+              </div>}
+            </div>}
           </div>
-         </div>
         </div>
-       </div>
       </div>
     );
   }

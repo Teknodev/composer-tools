@@ -19,17 +19,18 @@
       .topSubtitle{
         position: absolute;
         top: -30px;
-        color: var(--composer-primary-color);
+        color: var(--composer-font-color-primary);
         font-size: 2rem;
         margin: unset;
         word-wrap: break-word;
       }
 
       .topTitle{
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
           font-size: 3rem;
           margin: unset;
           word-wrap: break-word;
+          padding: 5px 0 50px 0;
       }
     }
     
@@ -37,16 +38,15 @@
         display: flex;
         flex-direction: row;
         width: 90%;
-        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 5px 5px 30px rgba(var(--composer-font-color-primary-rgb), 0.3);
         position: relative;
 
         .left-container{
-            width: 90%;
-            height: 600px;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 80px 50px;
+            padding: 10px 50px;
             flex-direction: column;
             position: relative;
 
@@ -60,20 +60,28 @@
             }
 
             .left{
-                display: flex;
+              display: flex;
                 flex-direction: column;
                 width: 100%;
-                height: 100%;
+                height: 90%;
                 align-items: center;
                 position: relative;
+
+                .textSide{
+                  justify-content: center;
+                  height: 100%;
+                  gap: 20px;
+                  display: flex;
+                  flex-direction: column;
+               
                 .title1{
                     position: relative;
                     z-index: 1;
                     color: var(--composer-font-color-secondary);
                     word-wrap: break-word;
+                    padding-bottom: 10px;
                     .leftTitle{
-                        position: absolute;
-                        color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-primary);
                         font-size: 1.5rem;
                         font-family: 'DM Sans';
                         margin: unset;
@@ -81,7 +89,7 @@
                     }
                     .leftSubtitle{
                         position: relative;
-                        color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-primary);
                         font-size: 3rem;
                         font-family: sans-serif;
                         margin: unset;
@@ -89,10 +97,10 @@
                     }
                 }
                 .contacts{
+                  width: 100%;
+                  gap: 20px;
                     display: flex;
                     flex-direction: column;
-                    height: 100%;
-                    margin-left: -85px;
                     position: relative;
                     .contact{
                         display: flex;
@@ -100,36 +108,43 @@
                         position: relative;
                         align-items: center;
                         .icon{
-                            color: var(--composer-font-color-secondary);
+                            color: var(--composer-font-color-primary);
                             font-size: 2.5rem;
                             position: relative;
                         }
                         .contactName{
-                            color: var(--composer-font-color-secondary);
+                          max-width: 200px;
+                            color: var(--composer-font-color-primary);
                             font-size: 1.5rem;
                             font-family: none;
-                            word-wrap: break-word;
                             position: relative;
+                            word-wrap: break-word;
+
                         }
                         
                     }
                 }
+              }
+              
                 .socials{
                     display: flex;
                     flex-direction: row;
-                    gap: 10px;
+                    gap: 20px;
                     align-self: center;
                     position: relative;
+                    
                 .icon-container{
                     align-content: center;
-                    background-color: #00000045;
+                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 80%);
                     color: var(--composer-font-color-secondary);
                     font-size: 2rem;
-                    border-radius: 50%;
-                    padding: 1px 3px;
+                    border-radius: 100%;
                     position: relative;
                     .icon{
-                        margin: 10px;
+                        font-size: 20px;
+                        margin: 8px;
+                        display: flex ;
+                        
                     }
                 }
               }
@@ -137,29 +152,34 @@
         }
 
         .right-container{
+            height: 500px;
             display: flex;
-            width: 100%;
+            width: 150%;
             flex-direction: column;
-            padding: 25px 40px;
+            padding: 25px 30px;
+            padding-right: 70px;
             position: relative;
             .title2{
                 width: 100%;
                 position: relative;
                 .rightTitle{
-                    color: var(--composer-primary-color);
+                    color: var(--composer-font-color-primary);
                     font-size: 2.5rem; 
                     margin: unset;
                     margin-top: 25px;
                     word-wrap: break-word;
+                    padding-bottom: 25px;
                 }
                 .rightSubtitle{
-                    color: var(--composer-primary-color);
-                    opacity: 0.1;
-                    font-size: 4rem;
+                    z-index: 0;
+                    color: var(--composer-font-color-primary);
+                    opacity: 0.2;
+                    font-size: 5rem;
                     margin: unset;
                     position: absolute;
-                    top: -27px;
+                    top: -20px;
                     word-wrap: break-word;
+                    padding-top: 5px;
                 }
             }
 
@@ -176,8 +196,13 @@
               .form {
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                position: absolute;
+                gap: 50px;
               }
+              .inputSide{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
               .input-container {
                 width: 100%;
                 display: flex;
@@ -193,7 +218,7 @@
               }
               
               .require-star {
-                color: var(--composer-primary-color);
+                color: var(--composer-font-color-primary);
               }
               .inputs {
                 display: flex;
@@ -201,9 +226,12 @@
                 gap: 20px;
               }
               .input-box {
+                color: var(--composer-font-color-primary);
                 width: 100%;
               }
+              
               .input {
+                color: var(--composer-font-color-primary);
                 resize: vertical;
                 padding: 2px 20px;
                 border: none;
@@ -212,6 +240,12 @@
                 font-family: inherit;
                 outline: none;
                 background-color: var(--composer-html-background);
+
+                &::placeholder{
+                  color: var(--composer-font-color-primary);
+                  opacity: 0.7;
+                }
+
               }
               .input:focus {
                 outline: none;
@@ -221,24 +255,31 @@
                 font-size: 0.6rem;
                 margin-top: 3px;
               }
+            }
+
+            .buttonSide{
+              align-self: center;
+              display: flex;
               .submit-button {
-                position: relative;
-                margin-top: 40px;
-                align-self: center;
-                height: 50px;
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                padding: 20px 25px;
+                width: 100%;
+                height: 35px;
                 background-color: var(--composer-secondary-color);
                 color: var(--composer-font-color-secondary);
-                border-radius: 10px;
+                border-radius: 7px;
                 cursor: pointer;
                 transition: 0.1s;
-                width: 25%;
-                border-color: var(--composer-secondary-color);
+                border: 2px solid var(--composer-secondary-color);
               }
               .submit-button:hover {
                 background-color: transparent;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-secondary-color);
                 border: 1px solid var(--composer-secondary-color);
               } 
+            }
             }
         }
     }
@@ -254,7 +295,20 @@
             font-size: 1.5rem !important;
             top: -8px;
           }
+
+          .topTitle{
+            padding: 5px 0 30px 0;
+          }
         }
+        
+        .left-container{
+          height: 570px;
+        }
+
+        .left{
+          height: 95% !important;
+        }
+        
           .leftTitle{
               font-size: 1rem !important;
           }
@@ -275,11 +329,12 @@
               font-size: 1rem !important;
           }
           .right-container{
+            height: 570px !important;
               padding: 10px 25px !important;
           }
           .rightSubtitle{
-              font-size: 2.7rem !important;
-              top: -10px;
+              font-size: 3.5rem !important;
+              top: -10px !important;
           }
           .rightTitle{
               font-size: 2rem !important;
@@ -310,7 +365,7 @@
           }
           .submit-button {
             margin-top: 0px !important;
-            width: 40% !important;
+            width: 100% !important;
           }
        }
     }
@@ -327,13 +382,22 @@
   }
   .left-container{
     width: 100% !important;
-    height: 500px !important;
+    height: 400px !important;
     padding: 0px !important;
   }
   .left{
     height: 75% !important;
   }
   .topTitle{
+    padding: 5px 0 30px 0 !important;
     font-size: 2.5rem !important;
   }
+
+  .right-container{
+    width: 100% !important;
+    height: 600px !important;
+  }
+   .rightSubtitle{
+      font-size: 2.7rem !important;
+    }
 }
