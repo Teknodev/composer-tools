@@ -68,7 +68,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            width: 30%;
+            width: 70%;
 
             .input-container {
               position: relative;
@@ -188,6 +188,9 @@
           &:hover {
             .button-circle {
               width: calc(100% - 70px);
+            }
+            .button-text {
+              color: var(--composer-font-color-secondary);
             }
           }
         }
