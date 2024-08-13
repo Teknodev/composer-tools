@@ -1,35 +1,35 @@
 import * as React from "react";
 import { BaseCallToAction } from "../../EditorComponent";
-import * as Yup from "yup";
-import { ErrorMessage, Formik, Form } from "formik";
 import styles from "./call_to_action5.module.scss";
 
-type InputItem = {
-  inputs: Input[];
-}
-
-type Input = {
+type Field = {
   placeholder: JSX.Element;
-  is_required: boolean;
-  required_error_message: JSX.Element;
-  type: string;
-  type_error_message: JSX.Element;
+  isVisible: boolean;
+  isRequired: boolean;
 }
 
 class CallToAction5Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "image",
+      key: "background",
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb46cb3292c6002b23faeb?alt=media"
+    });
+
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "NEWSLETTER SIGNUP",
+      value: "NEWSLETTER SIGN UP",
     });
+
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "JOIN FOR NEWS UPDATES.",
+      value: "JOIN FOR NEW UPDATES.",
     });
 
     this.addProp({
@@ -40,209 +40,121 @@ class CallToAction5Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "array",
-      key: "input_items",
-      displayer: "Input Items",
+      type: "object",
+      key: "email",
+      displayer: "E-mail Field",
       value: [
         {
-          type: "object",
-          key: "input_item_1",
-          displayer: "Input Item 1",
-          value: [
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Placeholder",
-                  key: "placeholder",
-                  value: "Email Address",
-                },
-                {
-                  type: "boolean",
-                  key: "is_required",
-                  displayer: "Is Required",
-                  value: true,
-                },
-                {
-                  type: "string",
-                  key: "required_error_message",
-                  displayer: "Required error message",
-                  value: "The email field is required.",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "E-mail",
-                  additionalParams: {
-                    selectItems: ["E-mail", "Number"],
-                  },
-                },
-                {
-                  type: "string",
-                  key: "type_error_message",
-                  displayer: "Type error message",
-                  value: "Please enter a valid email address.",
-                },
-              ],
-            },
-          ],
+          type: "string",
+          key: "placeholder",
+          displayer: "Placeholder",
+          value: "Enter e-mail address"
         },
-      ],
+        {
+          type: "boolean",
+          key: "isVisible",
+          displayer: "Is visible?",
+          value: true
+        },
+        {
+          type: "boolean",
+          key: "isRequired",
+          displayer: "Is required?",
+          value: true
+        }
+      ]
+    });
+
+    this.addProp({
+      type: "object",
+      key: "phone",
+      displayer: "Phone Field",
+      value: [
+        {
+          type: "string",
+          key: "placeholder",
+          displayer: "Placeholder",
+          value: "Enter phone number"
+        },
+        {
+          type: "boolean",
+          key: "isVisible",
+          displayer: "Is visible?",
+          value: true
+        },
+        {
+          type: "boolean",
+          key: "isRequired",
+          displayer: "Is required?",
+          value: true
+        }
+      ]
     });
   }
+
   getName(): string {
     return "Call To Action 5";
   }
+
   render() {
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9]/g, "_");
-      return str;
-    }
-    function getInputName(indexOfLabel: number, inputItemIndex: number, indexOfInput: number) {
-      const name = toObjectKey(`${indexOfLabel}_${inputItemIndex}_${indexOfInput}`);
-      return toObjectKey(name);
-    }
-    function getInitialValue() {
-      let value: any = {};
-      inputItems.forEach((inputItem: any, sectionIndex: number) => {
-        inputItem.getPropValue("inputs").forEach((_: any, indexOfInput: number) => {
-          const key = getInputName(sectionIndex, sectionIndex, indexOfInput);
-          value[key] = "";
-        });
-      });
-      return value;
-    }
-    function getInputType(type: string): string {
-      switch (type) {
-        case "E-mail":
-          return "email";
-        case "Number":
-          return "number";
-        default:
-          return "text";
-      }
-    }
-    const getSchema = () => {
-      let schema = Yup.object().shape({});
-      const inputItems = this.castToObject<InputItem[]>("input_items")!;
-      inputItems.forEach((inputItem: InputItem, sectionIndex: number) => {
-        inputItem.inputs.forEach((input: Input, indexOfInput: number) => {
-          const isRequired = input.is_required;
-          const inputType = getInputType(input.type);
-          const isEmail = inputType === "email";
-          let fieldSchema = Yup.string() as any;
-          const requiredErrorMessage = inputType === "number"
-            ? "The phone number field is required."
-            : input.required_error_message;
-          const typeErrorMessage = inputType === "number"
-            ? "Please enter a valid phone number."
-            : input.type_error_message;
-          if (isRequired) {
-            fieldSchema = fieldSchema.required(requiredErrorMessage);
-          } else {
-            fieldSchema = fieldSchema.nullable();
-          }
-          if (isEmail) {
-            fieldSchema = fieldSchema.email(typeErrorMessage);
-          } else if (inputType === "number") {
-            fieldSchema = fieldSchema
-              .min(6, "Phone number must be at least 6 characters")
-              .max(20, "Phone number must be at most 20 characters");
-          }
-          schema = schema.shape({
-            [getInputName(sectionIndex, sectionIndex, indexOfInput)]: fieldSchema,
-          });
-        });
-      });
-      return schema;
-    };
-    const inputItems = this.castToObject<any>("input_items")!;
-    const initialValues = getInitialValue();
 
     const titleExist = this.getPropValue("title", { as_string: true });
     const subtitleExist = this.getPropValue("subtitle", { as_string: true });
     const buttonTextExist = this.getPropValue("buttonText", { as_string: true });
 
+    const email = this.castToObject<Field>("email");
+    const phone = this.castToObject<Field>("phone");
+
+    const backgroundImage = this.getPropValue("background");
+
+    const insertBackground = backgroundImage
+      ? {
+        background: `url(${backgroundImage})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
+      }
+      : {};
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")}
+        style={insertBackground}
+      >
         <div className={this.decorateCSS("max-content")}>
           {(titleExist || subtitleExist) &&
-            <div className={this.decorateCSS("top")}>
+            <div className={this.decorateCSS("header")}>
               {titleExist && (
-                <div className={this.decorateCSS("action")}>
-                  <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-                </div>
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
               )}
               {subtitleExist && (
-                <div className={this.decorateCSS("action2")}>
-                  <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
-                </div>
+                <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
               )}
             </div>
           }
-          <div className={this.decorateCSS("bottom")}>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={getSchema()}
-              onSubmit={(data, { resetForm }) => {
-                this.insertForm("Contact Us", data);
-                resetForm();
-              }}
+          {(email.isVisible || phone.isVisible || buttonTextExist) &&
+            <div className={`${this.decorateCSS("newsletter")} 
+              ${email.isVisible && phone.isVisible ? this.decorateCSS("vertical") : ""}`}
             >
-              {({ handleChange, values }) => (
-                <Form className={this.decorateCSS("form")}>
-                  <h3 className={this.decorateCSS("email")}>
-                    email
-                    {/* {this.getPropValue("email")} */}
-                  </h3>
-                  {inputItems.map((inputItem: InputItem, inputItemIndex: number) => (
-                    <div key={inputItemIndex} className={this.decorateCSS("input-container")}>
-                      <div className={this.decorateCSS("input-text")}>
-                        {inputItem.inputs.map((inputObj: Input, inputIndex: number) => (
-                          <React.Fragment key={inputIndex}>
-                            {getInputType(inputObj.type) === "number" && (
-                              <div className={this.decorateCSS("prefix")}>+</div>
-                            )}
-                            <input
-                              placeholder={
-                                getInputType(inputObj.type) === "number"
-                                  ? "Enter your phone number"
-                                  : this.castToString(inputObj.placeholder)
-                              }
-                              type={inputObj.type}
-                              name={getInputName(inputItemIndex, inputItemIndex, inputIndex)}
-                              onChange={handleChange}
-                              className={this.decorateCSS("input")}
-                            />
-                            <ErrorMessage
-                              className={this.decorateCSS("error-message")}
-                              name={getInputName(inputItemIndex, inputItemIndex, inputIndex)}
-                              component={"span"}
-                            />
-                          </React.Fragment>
-                        ))}
-                      </div>
-                      {buttonTextExist &&
-                        <button
-                          className={this.decorateCSS("submit-button")}
-                          type="submit"
-                        >
-                          {this.getPropValue("buttonText")}
-                        </button>
-                      }
-                    </div>
-                  ))}
-                </Form>
-              )}
-            </Formik>
-          </div>
+              {(email.isVisible || phone.isVisible) &&
+                <div className={this.decorateCSS("inputs")}>
+                  {email.isVisible &&
+                    <input className={this.decorateCSS("input")} type="email" placeholder={this.castToString(email.placeholder)} required={email.isRequired} />
+                  }
+                  {phone.isVisible &&
+                    <input className={this.decorateCSS("input")} type="tel" placeholder={this.castToString(phone.placeholder)} required={phone.isRequired} />
+                  }
+                </div>
+              }
+              {buttonTextExist &&
+                <button
+                  className={this.decorateCSS("submit-button")}
+                  type="submit"
+                >
+                  {this.getPropValue("buttonText")}
+                </button>
+              }
+            </div>
+          }
         </div>
       </div>
     );
