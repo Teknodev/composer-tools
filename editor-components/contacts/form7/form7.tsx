@@ -521,18 +521,17 @@ class Form7 extends BaseContacts {
                                 }
                                 onChange={handleChange}
                                 name={getInputName(index, input.prefix)}
-                                className={this.decorateCSS("select")}
+                                className={`${this.decorateCSS(
+                                  "select"
+                                )} ${this.decorateCSS("custom-select")}`}
                               >
+                                <option value="" disabled hidden>
+                                  {input.getPropValue("placeholder")}
+                                </option>
                                 {input
                                   .getPropValue("options")
                                   .map((option: any, idx: number) => (
-                                    <option
-                                      key={idx}
-                                      value={option.value}
-                                      className={this.decorateCSS(
-                                        "custom-select"
-                                      )}
-                                    >
+                                    <option key={idx} value={option.value}>
                                       {option.value}
                                     </option>
                                   ))}
@@ -613,10 +612,9 @@ class Form7 extends BaseContacts {
                                   "select"
                                 )} ${this.decorateCSS("custom-select")}`}
                               >
-                                <option
-                                  value={input.getInputName}
-                                  label=" "
-                                ></option>
+                                <option value="" disabled hidden>
+                                  {input.getPropValue("placeholder")}
+                                </option>
                                 {input
                                   .getPropValue("options")
                                   .map((option: any, idx: number) => (
@@ -645,9 +643,14 @@ class Form7 extends BaseContacts {
                                 className={this.decorateCSS("input")}
                               />
                             )}
-                            <span className={this.decorateCSS("placeholder")}>
-                              {input.getPropValue("placeholder")}
-                            </span>
+                            {getInputType(input.getPropValue("type")) ===
+                            "select" ? (
+                              ""
+                            ) : (
+                              <span className={this.decorateCSS("placeholder")}>
+                                {input.getPropValue("placeholder")}
+                              </span>
+                            )}
                             <ErrorMessage
                               className={this.decorateCSS("error-message")}
                               name={getInputName(
