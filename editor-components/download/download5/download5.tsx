@@ -32,8 +32,15 @@ class Download5 extends BaseDownload {
     this.addProp({
       type: "image",
       key: "backgroundImage",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb0c0a3292c6002b23e266?alt=media",
       displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb0c0a3292c6002b23e266?alt=media",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true
     });
 
     this.addProp({
@@ -114,6 +121,7 @@ class Download5 extends BaseDownload {
 
   render() {
     const backgroundImage = this.getPropValue("backgroundImage");
+    const overlay = this.getPropValue("overlay");
 
     const title = this.getPropValue("title");
     const titleExist = this.getPropValue("title", { as_string: true });
@@ -123,13 +131,15 @@ class Download5 extends BaseDownload {
 
     const buttons = this.castToObject<Button[]>("buttons");
 
+    const widenContent = backgroundImage ? { width: "60%" } : {};
+
     return (
       <div
         className={this.decorateCSS("container")}
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page-1")}>
+          <div className={this.decorateCSS("page-1")} style={widenContent}>
             {titleExist && (
               <div className={this.decorateCSS("box")}>
                 <h1 className={this.decorateCSS("title1")}>
@@ -190,6 +200,9 @@ class Download5 extends BaseDownload {
             }
           </div>
         </div>
+        {overlay &&
+          <div className={this.decorateCSS("overlay")} />
+        }
       </div>
     );
   }

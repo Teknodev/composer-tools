@@ -13,6 +13,7 @@ $min-height: 500px;
   background-position: center;
   min-height: $min-height;
   width: 100%;
+  position: relative;
 }
 
 .max-content {
@@ -21,6 +22,8 @@ $min-height: 500px;
   display: flex;
   align-items: center;
   min-height: $min-height;
+  position: relative; // for z-index to make it work
+  z-index: 2;
 }
 
 .page-1 {
@@ -110,6 +113,16 @@ $min-height: 500px;
   gap: 15px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 1000px) {
