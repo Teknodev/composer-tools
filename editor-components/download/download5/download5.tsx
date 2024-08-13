@@ -40,7 +40,7 @@ class Download5 extends BaseDownload {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true
+      value: false
     });
 
     this.addProp({
