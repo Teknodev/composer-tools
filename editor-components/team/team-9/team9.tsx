@@ -102,6 +102,9 @@ class Team9 extends Team {
           type: "array",
           key: "icons",
           displayer: "Social Media Platforms",
+          additionalParams: {
+            maxElementCount: 6,
+          },
           value: [twitter, facebook, instagram],
         },
       ],
@@ -130,6 +133,9 @@ class Team9 extends Team {
           type: "array",
           key: "icons",
           displayer: "Social Media Platforms",
+          additionalParams: {
+            maxElementCount: 6,
+          },
           value: [twitter, facebook, instagram],
         },
       ],
@@ -158,6 +164,9 @@ class Team9 extends Team {
           type: "array",
           key: "icons",
           displayer: "Social Media Platforms",
+          additionalParams: {
+            maxElementCount: 6,
+          },
           value: [twitter, facebook, instagram],
         },
       ],
@@ -186,6 +195,9 @@ class Team9 extends Team {
           type: "array",
           key: "icons",
           displayer: "Social Media Platforms",
+          additionalParams: {
+            maxElementCount: 6,
+          },
           value: [twitter, facebook, instagram],
         },
       ],
@@ -231,15 +243,15 @@ class Team9 extends Team {
           breakpoint: 1024,
           settings: {
             slidesToShow: 2,
-          }
+          },
         },
         {
           breakpoint: 500,
           settings: {
             slidesToShow: 1,
-          }
+          },
         },
-      ]
+      ],
     };
 
     const titleExist = this.getPropValue("title", { as_string: true });
@@ -249,12 +261,14 @@ class Team9 extends Team {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("basic-page")}>
-            {titleExist &&
+            {titleExist && (
               <div className={this.decorateCSS("up-page")}>
-                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                <h1 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h1>
               </div>
-            }
-            {members.length > 0 &&
+            )}
+            {members.length > 0 && (
               <div className={this.decorateCSS("down-page")}>
                 {members.map((item: Card, index: number) => {
                   const nameExist = this.castToString(item.name);
@@ -262,25 +276,29 @@ class Team9 extends Team {
                     <div
                       key={index}
                       style={{ width: 90 / this.getPropValue("reverse") + "%" }}
-                      className={`${this.decorateCSS("card")} ${!(item.image) ? this.decorateCSS("card-noimg") : ""}`}
+                      className={`${this.decorateCSS("card")} ${!item.image ? this.decorateCSS("card-noimg") : ""}`}
                     >
-                      {item.image &&
-                        <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />
-                      }
-                      {(nameExist || item.icons.length > 0) &&
+                      {item.image && (
+                        <img
+                          className={this.decorateCSS("person-image")}
+                          src={item.image}
+                          alt={nameExist}
+                        />
+                      )}
+                      {(nameExist || item.icons.length > 0) && (
                         <div
-                          className={`${this.decorateCSS("person-info")} ${!(item.image) ? this.decorateCSS("personinfo-noimg") : ""}`}
+                          className={`${this.decorateCSS("person-info")} ${!item.image ? this.decorateCSS("personinfo-noimg") : ""}`}
                         >
-                          {nameExist &&
+                          {nameExist && (
                             <div className={this.decorateCSS("text-group")}>
                               <h1
-                                className={`${this.decorateCSS("item-name")} ${!(item.image) ? this.decorateCSS("itemname-noimg") : ""}`}
+                                className={`${this.decorateCSS("item-name")} ${!item.image ? this.decorateCSS("itemname-noimg") : ""}`}
                               >
                                 {item.name}
                               </h1>
                             </div>
-                          }
-                          {item.icons.length > 0 &&
+                          )}
+                          {item.icons.length > 0 && (
                             <div className={this.decorateCSS("icons-bar")}>
                               {item.icons.map((card: Icon, index: number) => {
                                 if (card.icon)
@@ -297,58 +315,73 @@ class Team9 extends Team {
                                 return null;
                               })}
                             </div>
-                          }
+                          )}
                         </div>
-                      }
+                      )}
                     </div>
                   );
                 })}
               </div>
-            }
-            {members.length > 0 &&
-              <ComposerSlider {...settings} className={this.decorateCSS("slider")}>
+            )}
+            {members.length > 0 && (
+              <ComposerSlider
+                {...settings}
+                className={this.decorateCSS("slider")}
+              >
                 {members.map((item: Card, indexCard: number) => {
                   const nameExist = this.castToString(item.name);
 
                   if (item.image || nameExist || item.icons.length > 0)
                     return (
                       <div key={indexCard} className={this.decorateCSS("card")}>
-                        {item.image &&
-                          <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />
-                        }
-                        {(nameExist || item.icons.length > 0) &&
+                        {item.image && (
+                          <img
+                            className={this.decorateCSS("person-image")}
+                            src={item.image}
+                            alt={nameExist}
+                          />
+                        )}
+                        {(nameExist || item.icons.length > 0) && (
                           <div className={this.decorateCSS("person-info")}>
-                            {nameExist &&
+                            {nameExist && (
                               <div className={this.decorateCSS("text-group")}>
-                                <h1 className={this.decorateCSS("item-name")}>{item.name}</h1>
+                                <h1 className={this.decorateCSS("item-name")}>
+                                  {item.name}
+                                </h1>
                               </div>
-                            }
-                            {item.icons.length > 0 &&
+                            )}
+                            {item.icons.length > 0 && (
                               <div className={this.decorateCSS("icons-bar")}>
-                                {item.icons.map((card: Icon, indexIcons: number) => {
-                                  if (card.icon)
-                                    return (
-                                      <ComposerLink key={indexIcons} path={card.url}>
-                                        <ComposerIcon
-                                          name={card.icon}
-                                          propsIcon={{
-                                            className: this.decorateCSS("icon"),
-                                          }}
-                                        />
-                                      </ComposerLink>
-                                    );
-                                  return null;
-                                })}
+                                {item.icons.map(
+                                  (card: Icon, indexIcons: number) => {
+                                    if (card.icon)
+                                      return (
+                                        <ComposerLink
+                                          key={indexIcons}
+                                          path={card.url}
+                                        >
+                                          <ComposerIcon
+                                            name={card.icon}
+                                            propsIcon={{
+                                              className:
+                                                this.decorateCSS("icon"),
+                                            }}
+                                          />
+                                        </ComposerLink>
+                                      );
+                                    return null;
+                                  },
+                                )}
                               </div>
-                            }
+                            )}
                           </div>
-                        }
+                        )}
                       </div>
                     );
                   return null;
                 })}
               </ComposerSlider>
-            }
+            )}
           </div>
         </div>
       </div>
