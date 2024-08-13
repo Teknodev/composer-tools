@@ -19,7 +19,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
 
         .title {
           font-size: 6.9rem;
@@ -30,31 +30,38 @@
           letter-spacing: 3px;
         }
       }
+
       .down-page,
       .slider {
         width: 100%;
         flex-wrap: wrap;
         justify-content: center;
         gap: 20px;
+
         .card {
           display: flex;
           justify-content: center;
           position: relative;
           flex-direction: column-reverse;
+          max-width: 400px;
+
           .person-image {
             position: relative;
-            height: 350px;
-            min-height: 350px;
+            height: 400px;
+            min-height: 400px;
             width: 100%;
             object-fit: cover;
             border-radius: 6px;
             transition: 0.4s;
           }
+
           .person-image:hover {
-            border-radius: 40%;
+            border-radius: 45%;
             transition: 0.4s;
           }
+
           .person-info {
+            overflow: hidden;
             width: 100%;
             display: flex;
             flex-direction: column-reverse;
@@ -64,6 +71,7 @@
             opacity: 0.8;
             padding: 15px 15px;
             height: 180px;
+
             .text-group {
               padding: 15px 0;
               background-color: var(--composer-html-background);
@@ -73,47 +81,67 @@
               flex-direction: column;
               justify-content: center;
               transition: margin-bottom 1s, border-bottom 1s, padding-bottom 1s;
+
               .item-name {
                 margin: unset;
                 font-size: 1.6rem;
                 color: var(--composer-font-color-primary);
               }
             }
+
             .icons-bar {
-              transition: 0.7s;
+              transition: 0.5s;
               display: flex;
+              opacity: 0;
               flex-direction: row;
               gap: 13px;
               width: 100%;
               margin-bottom: -55px;
+
               .icon {
                 font-size: 40px;
                 color: var(--composer-font-color-primary);
                 border-radius: 50%;
-                border: 1px solid var(--composer-secondary-color);
+                border: 1px solid var(--composer-font-color-primary);
                 padding: 10px;
               }
             }
           }
+
           &:hover {
             .icons-bar {
               margin-bottom: 0px;
+              opacity: 1;
             }
           }
         }
-        :nth-child(2n) {
+
+        :nth-child(2n + 1) {
           flex-direction: column;
         }
       }
 
-      .down-page{
+      .down-page {
         display: flex;
       }
+
       .slider {
         display: none;
       }
     }
   }
+}
+
+.card-noimg {
+  align-items: center !important;
+}
+
+.personinfo-noimg {
+  width: auto !important;
+}
+
+.itemname-noimg {
+  text-align: center !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -122,13 +150,14 @@
       .basic-page {
         .up-page {
           .title {
-            font-size: 6.9rem;
+            font-size: 5rem;
           }
         }
 
         .down-page {
           display: none !important;
         }
+
         .slider {
           display: flex !important;
           gap: 10px;
@@ -139,6 +168,7 @@
 
             .person-info {
               height: 136px;
+
               .icons-bar {
                 .icon {
                   font-size: 35px;
@@ -155,6 +185,14 @@
           }
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .up-page {
+    .title {
+      font-size: 3.2rem !important;
     }
   }
 }
