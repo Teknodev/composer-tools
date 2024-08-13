@@ -4,122 +4,142 @@
   display: flex;
   justify-content: center;
 }
-  .max-content {
-    max-width: var(--composer-content-width);
-    flex-direction: column;
-    margin: auto;
-  }
-  .top {
-    margin-top: 30px;
-    text-align: center;
-  } 
-  .action,
-  .action2 {
-    margin-bottom: 20px;
-  }
-  .action .title {
-    letter-spacing: .2em;
-    font-size: 1rem ;
-    color: var(--composer-secondary-color);
-  }
-  .action2 .subtitle {
-    font-size: 4rem;
-    line-height: 1.2;
-    color: var(--composer-primary-color);
-    margin-top: 10px;
-    font-weight: 700;
-  }
-  .bottom {
+
+.max-content {
+  max-width: var(--composer-content-width);
+  flex-direction: column;
+  margin: auto;
+}
+
+.top {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.action,
+.action2 {
+  margin-bottom: 20px;
+}
+
+.action .title {
+  letter-spacing: .2em;
+  font-size: 1rem;
+  color: var(--composer-secondary-color);
+}
+
+.action2 .subtitle {
+  font-size: 4rem;
+  line-height: 1.2;
+  color: var(--composer-primary-color);
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.bottom {
+  width: 100%;
+  margin-bottom: 30px;
+
+  .form {
+    display: flex;
+    gap: 13px;
     width: 100%;
-    margin-bottom: 30px;
-    .form {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .input-container {
       display: flex;
-      gap: 13px;
-      width: 100%;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      .input-container {
-        display: flex;
-        align-items: center;
-        position: relative;
-        gap: 10px;        
-        width: 100%;
-        flex-grow: 1;
-      }
-      .input-container .prefix  {
-        content: "+";
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--composer-font-color-primary); 
-        font-size: 16px; 
-      }
-      .input {
-        border-color: var(--composer-font-color-primary);
-        padding: 20px;
-        font-size: 16px;
-        padding-right: 300px;
-        background-color: var(--composer-html-background);
-        width: 100%;
-        &:focus {
-          border: 2px solid var(--composer-tertiary-color);
-          outline: none;
-        }
-      }
-      .error-message {
-        color: var(--composer-secondary-color);
-        font-size: 11px;
-        position: absolute;
-        top: 4px;
-        right: 130px;
-        pointer-events: none;
-      }  
+      position: relative;
+      gap: 10px;
+      width: 100%;
+      flex-grow: 1;
     }
-    .submit-button {
-      height: 61px;
-      border: none;
-      color: var(--composer-font-color-secondary);
-      font-size: 12px;
-      line-height: 0.25;
-      font-weight: 600;
-      text-align: center;
-      cursor: pointer;
-      white-space: nowrap;
+
+    .input-container .prefix {
+      content: "+";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--composer-font-color-primary);
+      font-size: 16px;
+    }
+
+    .input {
+      border-color: var(--composer-font-color-primary);
+      padding: 20px;
+      font-size: 16px;
+      padding-right: 300px;
+      background-color: var(--composer-html-background);
+      width: 100%;
+
+      &:focus {
+        border: 2px solid var(--composer-tertiary-color);
+        outline: none;
+      }
+    }
+
+    .error-message {
+      color: var(--composer-secondary-color);
+      font-size: 11px;
+      position: absolute;
+      top: 4px;
+      right: 130px;
+      pointer-events: none;
+    }
+  }
+
+  .submit-button {
+    height: 61px;
+    border: none;
+    color: var(--composer-font-color-secondary);
+    font-size: 12px;
+    line-height: 0.25;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: transparent;
+    background-color: var(--composer-secondary-color);
+    background-repeat: repeat-x;
+    transition: .1s ease-out all;
+
+    &:hover {
       background-color: transparent;
-      background-color: var(--composer-secondary-color);
-      background-repeat: repeat-x;
-      transition: .1s ease-out all;
-      &:hover {
-        background-color: transparent;
-        color: var(--composer-font-color-primary);
-        border: 1px solid var(--composer-secondary-color);
-      }
+      color: var(--composer-font-color-primary);
+      border: 1px solid var(--composer-secondary-color);
     }
   }
-  .input-container .input::placeholder {
-    color: var(--composer-font-color-primary);
-  }
-  
+}
+
+.input-container .input::placeholder {
+  color: var(--composer-font-color-primary);
+}
+
 @media only screen and (max-width: 980px) {
   .container {
     .bottom {
-      .submit-button{
+      .submit-button {
         padding: 19px 12px;
       }
+
       .form {
-        row-gap: 0px ;
+        row-gap: 0px;
+
         .input-container {
           width: unset;
           flex-direction: row;
-          .input{
-             padding: 11px 44px;
-           }
-           .submit-button{
+
+          .input {
+            padding: 11px 44px;
+          }
+
+          .submit-button {
             height: 43px;
-           }
+          }
         }
+
         .error-message {
           color: var(--composer-secondary-color);
           font-size: 10px;
@@ -137,29 +157,34 @@
 
 
 @media only screen and (max-width: 468px) {
-    .container {
-        .max-content{
-            padding-left: 2rem !important;
-            padding-right: 2rem !important;
-        }
-        .action2 .subtitle{
-            font-size: 24px !important;
-        }
-      .bottom {
-        .input-container{
-            flex-direction: column !important;
-        }
-        .input{
-            height: 52px !important;
-        }
-        .submit-button{
-          width: 100% !important;
-          height: 52px !important;
-        }
-        .form {
-          flex-direction: column !important;
-          gap: 0px ;
-        }
+  .container {
+    .max-content {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+    }
+
+    .action2 .subtitle {
+      font-size: 24px !important;
+    }
+
+    .bottom {
+      .input-container {
+        flex-direction: column !important;
+      }
+
+      .input {
+        height: 52px !important;
+      }
+
+      .submit-button {
+        width: 100% !important;
+        height: 52px !important;
+      }
+
+      .form {
+        flex-direction: column !important;
+        gap: 0px;
       }
     }
   }
+}
