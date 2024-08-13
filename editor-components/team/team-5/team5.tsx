@@ -43,13 +43,13 @@ class Team5 extends Team {
               type: "image",
               key: "background",
               displayer: "Background",
-              value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/egg_background.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
             },
             {
               type: "image",
               key: "picture",
               displayer: "Picture",
-              value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/team_6.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c26?alt=media&timestamp=1719502692150",
             },
             {
               type: "array",
@@ -139,13 +139,13 @@ class Team5 extends Team {
               type: "image",
               key: "background",
               displayer: "Background",
-              value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/egg_background.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
             },
             {
               type: "image",
               key: "picture",
               displayer: "Picture",
-              value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/team_11.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c28?alt=media&timestamp=1719502692150",
             },
             {
               type: "array",
@@ -235,13 +235,13 @@ class Team5 extends Team {
               type: "image",
               key: "background",
               displayer: "Background",
-              value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/egg_background.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
             },
             {
               type: "image",
               key: "picture",
               displayer: "Picture",
-              value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/team_8.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c27?alt=media&timestamp=1719502692150",
             },
             {
               type: "array",
@@ -331,13 +331,13 @@ class Team5 extends Team {
               type: "image",
               key: "background",
               displayer: "Background",
-              value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/egg_background.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
             },
             {
               type: "image",
               key: "picture",
               displayer: "Picture",
-              value: "http://kits.themegum.com/petmo/wp-content/uploads/sites/21/2022/06/team_4.png",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c25?alt=media&timestamp=1719502692150",
             },
             {
               type: "array",
