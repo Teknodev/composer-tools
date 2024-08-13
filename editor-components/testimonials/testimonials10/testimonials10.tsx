@@ -63,7 +63,7 @@ class Testimonials10Page extends Testimonials {
     this.addProp({
       type: "string",
       key: "hiliteTitle",
-      displayer: "hiliteTitle",
+      displayer: "Bottom Title",
       value: "CLIENT SAYS",
     });
 
