@@ -252,13 +252,15 @@ class Content4 extends BaseContent {
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
                 <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img
-                      src={itemLeft.image}
-                      alt="content"
-                      className={this.decorateCSS("image")}
-                    />
-                  </div>
+                  {itemLeft.image &&
+                    <div className={this.decorateCSS("background-image")}>
+                      <img
+                        src={itemLeft.image}
+                        alt="content"
+                        className={this.decorateCSS("image")}
+                      />
+                    </div>
+                  }
                   {(itemLeft.title || itemLeft.icon || itemLeft.icon2) && (
                     <div className={this.decorateCSS("content")}>
                       {itemLeft.title && (
@@ -306,32 +308,32 @@ class Content4 extends BaseContent {
                         {(itemTopRight.title ||
                           itemTopRight.icon ||
                           itemTopRight.icon2) && (
-                          <div className={this.decorateCSS("content")}>
-                            {itemTopRight.title && (
-                              <h2 className={this.decorateCSS("title")}>
-                                {itemTopRight.title}
-                              </h2>
-                            )}
-                            <div className={this.decorateCSS("icons")}>
-                              {itemTopRight.icon && (
-                                <ComposerIcon
-                                  name={itemTopRight.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon1"),
-                                  }}
-                                />
+                            <div className={this.decorateCSS("content")}>
+                              {itemTopRight.title && (
+                                <h2 className={this.decorateCSS("title")}>
+                                  {itemTopRight.title}
+                                </h2>
                               )}
-                              {itemTopRight.icon2 && (
-                                <ComposerIcon
-                                  name={itemTopRight.icon2}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon2"),
-                                  }}
-                                />
-                              )}
+                              <div className={this.decorateCSS("icons")}>
+                                {itemTopRight.icon && (
+                                  <ComposerIcon
+                                    name={itemTopRight.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon1"),
+                                    }}
+                                  />
+                                )}
+                                {itemTopRight.icon2 && (
+                                  <ComposerIcon
+                                    name={itemTopRight.icon2}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon2"),
+                                    }}
+                                  />
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </ComposerLink>
                   ) : null}
@@ -350,32 +352,32 @@ class Content4 extends BaseContent {
                         {(itemTopLeft.title ||
                           itemTopLeft.icon ||
                           itemTopLeft.icon2) && (
-                          <div className={this.decorateCSS("content")}>
-                            {itemTopLeft.title && (
-                              <h2 className={this.decorateCSS("title")}>
-                                {itemTopLeft.title}
-                              </h2>
-                            )}
-                            <div className={this.decorateCSS("icons")}>
-                              {itemTopLeft.icon && (
-                                <ComposerIcon
-                                  name={itemTopLeft.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon1"),
-                                  }}
-                                />
+                            <div className={this.decorateCSS("content")}>
+                              {itemTopLeft.title && (
+                                <h2 className={this.decorateCSS("title")}>
+                                  {itemTopLeft.title}
+                                </h2>
                               )}
-                              {itemTopLeft.icon2 && (
-                                <ComposerIcon
-                                  name={itemTopLeft.icon2}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon2"),
-                                  }}
-                                />
-                              )}
+                              <div className={this.decorateCSS("icons")}>
+                                {itemTopLeft.icon && (
+                                  <ComposerIcon
+                                    name={itemTopLeft.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon1"),
+                                    }}
+                                  />
+                                )}
+                                {itemTopLeft.icon2 && (
+                                  <ComposerIcon
+                                    name={itemTopLeft.icon2}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon2"),
+                                    }}
+                                  />
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </ComposerLink>
                   ) : null}
@@ -386,84 +388,88 @@ class Content4 extends BaseContent {
                   {itemBottomLeft.Visibility ? (
                     <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
                       <div className={this.decorateCSS("item")}>
-                        <div className={this.decorateCSS("background-image")}>
-                          <img
-                            src={itemBottomLeft.image}
-                            alt="content"
-                            className={this.decorateCSS("image")}
-                          />
-                        </div>
+                        {itemBottomLeft.image &&
+                          <div className={this.decorateCSS("background-image")}>
+                            <img
+                              src={itemBottomLeft.image}
+                              alt="content"
+                              className={this.decorateCSS("image")}
+                            />
+                          </div>
+                        }
                         {(itemBottomLeft.title ||
                           itemBottomLeft.icon ||
                           itemBottomLeft.icon2) && (
-                          <div className={this.decorateCSS("content")}>
-                            {itemBottomLeft.title && (
-                              <h2 className={this.decorateCSS("title")}>
-                                {itemBottomLeft.title}
-                              </h2>
-                            )}
-                            <div className={this.decorateCSS("icons")}>
-                              {itemBottomLeft.icon && (
-                                <ComposerIcon
-                                  name={itemBottomLeft.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon1"),
-                                  }}
-                                />
+                            <div className={this.decorateCSS("content")}>
+                              {itemBottomLeft.title && (
+                                <h2 className={this.decorateCSS("title")}>
+                                  {itemBottomLeft.title}
+                                </h2>
                               )}
-                              {itemBottomLeft.icon2 && (
-                                <ComposerIcon
-                                  name={itemBottomLeft.icon2}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon2"),
-                                  }}
-                                />
-                              )}
+                              <div className={this.decorateCSS("icons")}>
+                                {itemBottomLeft.icon && (
+                                  <ComposerIcon
+                                    name={itemBottomLeft.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon1"),
+                                    }}
+                                  />
+                                )}
+                                {itemBottomLeft.icon2 && (
+                                  <ComposerIcon
+                                    name={itemBottomLeft.icon2}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon2"),
+                                    }}
+                                  />
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </ComposerLink>
                   ) : null}
                   {itemBottomRight.Visibility ? (
                     <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
                       <div className={this.decorateCSS("item")}>
-                        <div className={this.decorateCSS("background-image")}>
-                          <img
-                            src={itemBottomRight.image}
-                            alt="content"
-                            className={this.decorateCSS("image")}
-                          />
-                        </div>
+                        {itemBottomRight.image &&
+                          <div className={this.decorateCSS("background-image")}>
+                            <img
+                              src={itemBottomRight.image}
+                              alt="content"
+                              className={this.decorateCSS("image")}
+                            />
+                          </div>
+                        }
                         {(itemBottomRight.title ||
                           itemBottomRight.icon ||
                           itemBottomRight.icon2) && (
-                          <div className={this.decorateCSS("content")}>
-                            {itemBottomRight.title && (
-                              <h2 className={this.decorateCSS("title")}>
-                                {itemBottomRight.title}
-                              </h2>
-                            )}
-                            <div className={this.decorateCSS("icons")}>
-                              {itemBottomRight.icon && (
-                                <ComposerIcon
-                                  name={itemBottomRight.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon1"),
-                                  }}
-                                />
+                            <div className={this.decorateCSS("content")}>
+                              {itemBottomRight.title && (
+                                <h2 className={this.decorateCSS("title")}>
+                                  {itemBottomRight.title}
+                                </h2>
                               )}
-                              {itemBottomRight.icon2 && (
-                                <ComposerIcon
-                                  name={itemBottomRight.icon2}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon2"),
-                                  }}
-                                />
-                              )}
+                              <div className={this.decorateCSS("icons")}>
+                                {itemBottomRight.icon && (
+                                  <ComposerIcon
+                                    name={itemBottomRight.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon1"),
+                                    }}
+                                  />
+                                )}
+                                {itemBottomRight.icon2 && (
+                                  <ComposerIcon
+                                    name={itemBottomRight.icon2}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon2"),
+                                    }}
+                                  />
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </ComposerLink>
                   ) : null}
