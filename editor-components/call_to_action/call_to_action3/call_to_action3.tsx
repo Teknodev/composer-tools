@@ -74,7 +74,7 @@ class CallToAction3Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://20067062.fs1.hubspotusercontent-na1.net/hubfs/20067062/cta-bg.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
     });
   }
   getName(): string {

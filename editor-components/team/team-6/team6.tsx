@@ -74,7 +74,7 @@ class Team6 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1800456/pexels-photo-1800456.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627ce0?alt=media&timestamp=1719502692150",
             },
             {
               type: "string",
@@ -116,7 +116,7 @@ class Team6 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627cdf?alt=media&timestamp=1719502692150",
             },
             {
               type: "string",
@@ -158,7 +158,7 @@ class Team6 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627cde?alt=media&timestamp=1719558632841",
             },
             {
               type: "string",

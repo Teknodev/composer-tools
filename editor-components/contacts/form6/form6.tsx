@@ -12,7 +12,7 @@ class Form6 extends BaseContacts {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64ec6a8c057bdf002c2aa09a?alt=media&timestamp=1693215349696",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797",
     });
 
     this.addProp({
@@ -486,17 +486,22 @@ class Form6 extends BaseContacts {
                   <Form className={this.decorateCSS("form")}>
                     {inputItems.map((inputItem: any, inputItemIndex: number) =>
                       <div className={this.decorateCSS("input-container")}>
-                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label")} <p className={this.decorateCSS("require-star")}>{isRequiredInput(inputItem) && "*"}</p></span>
+                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label", {
+                          suffix: {
+                            label: isRequiredInput(inputItem) && "*",
+                            className: this.decorateCSS("require-star")
+                          }
+                        })}</span>
                         <div className={this.decorateCSS("inputs")}>
                           {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
                             <div className={this.decorateCSS("input-box")}>
                               {inputObj.getPropValue("type") == "Text Area" ?
                                 <textarea
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder")} rows={12} onChange={handleChange}
+                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder", { as_string: true })} rows={12} onChange={handleChange}
                                   name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}></textarea> :
                                 <input
-                                  placeholder={inputObj.getPropValue("placeholder")}
+                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                                   type={getInputType(inputObj.getPropValue("type"))}
                                   onChange={handleChange}
                                   value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
