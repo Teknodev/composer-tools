@@ -547,7 +547,6 @@ class Form3Page extends BaseContacts {
     const contactIcon = this.getPropValue("contactIcon");
 
     const inputItems = this.getPropValue("input_items");
-    const social = this.getPropValue("social");
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
