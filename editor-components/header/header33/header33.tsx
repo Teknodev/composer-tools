@@ -222,7 +222,7 @@ class Header33 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -278,8 +278,8 @@ class Header33 extends BaseHeader {
                           className={this.decorateCSS("image")}
                         />
                       )}
-                      <div className={this.decorateCSS("corousel-content-div")}>
-                        <div className={this.decorateCSS("corousel-content")}>
+                      <div className={this.decorateCSS("carousel-content-div")}>
+                        <div className={this.decorateCSS("carousel-content")}>
                           {titleExist && (
                             <h1
                               className={this.getComponentState(
@@ -290,7 +290,7 @@ class Header33 extends BaseHeader {
                             </h1>
                           )}
 
-                          {buttons?.length && buttons?.length > 0 && (
+                          {buttons?.length > 0 && (
                             <div className={this.decorateCSS("buttons-div")}>
                               {buttons.map((item: Button, index: number) => (
                                 <ComposerLink
@@ -312,25 +312,29 @@ class Header33 extends BaseHeader {
                         </div>
                       </div>
                       {rotateText && (
-                        <div className={this.decorateCSS("circle")}>
-                          <svg className={this.decorateCSS("circle-svg")}>
-                            <defs>
-                              <path
-                                id="circlePath"
-                                d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0"
-                              />
-                            </defs>
-                            <circle cx="150" cy="150" r="75" fill="none" />
-                            <g>
-                              <use xlinkHref="#circlePath" fill="none" />
-                              <text fill="#000">
-                                <textPath xlinkHref="#circlePath">
-                                  {rotateText}
-                                </textPath>
-                              </text>
-                            </g>
-                          </svg>
-                        </div>
+                        <svg className={this.decorateCSS("circle")}>
+                          <defs>
+                            <path
+                              id="circlePath"
+                              d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0"
+                            />
+                          </defs>
+                          <circle cx="150" cy="150" r="75" fill="none" />
+                          <g>
+                            <use xlinkHref="#circlePath" fill="none" />
+                            <text fill="#000">
+                              <textPath
+                                // TODO
+                                // style={{
+                                //   letterSpacing: `${Math.ceil(192 / rotateText.length)}px`,
+                                // }}
+                                xlinkHref="#circlePath"
+                              >
+                                {rotateText}
+                              </textPath>
+                            </text>
+                          </g>
+                        </svg>
                       )}
                     </div>
                   );

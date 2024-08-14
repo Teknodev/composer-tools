@@ -35,7 +35,7 @@
         top: 0;
       }
 
-      .corousel-content-div {
+      .carousel-content-div {
         max-width: var(--composer-content-width);
         margin: 0 auto;
         width: 90%;
@@ -46,11 +46,9 @@
         position: relative;
         z-index: 10;
 
-        .corousel-content {
-          /* position: relative; */
+        .carousel-content {
           display: flex;
           flex-direction: column;
-          /* z-index: 10; */
           text-align: left;
           color: black;
           width: 70%;
@@ -109,24 +107,19 @@
     transform-origin: center;
     width: 300px;
     height: 300px;
-    top: -60px;
+    top: 50px;
     z-index: 10;
 
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .circle-svg text {
-      font-size: 24px;
+    text {
+      font-size: 18px;
     }
   }
 
   .secondary-slide {
-    .corousel-content-div {
+    .carousel-content-div {
       justify-content: center !important;
 
-      .corousel-content {
+      .carousel-content {
         align-items: center;
         width: 100% !important;
 
@@ -149,10 +142,10 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .corousel-content-div {
+  .carousel-content-div {
     width: 80% !important;
 
-    .corousel-content {
+    .carousel-content {
       width: 100% !important;
       margin-bottom: -40px !important;
 
@@ -177,16 +170,16 @@
     }
   }
 
-  .circle-svg text {
+  .circle text {
     font-size: 18px !important;
   }
 }
 
 @media only screen and (max-width: 500px) {
-  .corousel-content-div {
+  .carousel-content-div {
     width: 70% !important;
 
-    .corousel-content {
+    .carousel-content {
       h1 {
         font-size: 30px !important;
         line-height: 32px !important;
@@ -200,7 +193,7 @@
     }
   }
 
-  .circle-svg text {
+  .circle text {
     font-size: 14px !important;
   }
 }
