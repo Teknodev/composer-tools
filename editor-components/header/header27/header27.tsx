@@ -21,6 +21,7 @@ type ISliderData = {
   leftDescription: string;
   rightDescription: string;
   button: any;
+  icon: string;
 };
 
 interface IAnimationProps {
@@ -362,7 +363,7 @@ class Header27 extends BaseHeader {
                             </div>
                           )}
                         </div>
-
+                          <div className={this.decorateCSS("title-div")}>
                         <div className={this.decorateCSS("bottom-title")}>
                           {item.image1 && (
                             <div className={this.decorateCSS("viewImage")}>
@@ -379,14 +380,18 @@ class Header27 extends BaseHeader {
                               <img className={this.decorateCSS("image4")} src={item.image4} />
                             </div>
                           )}
-                          <div className={this.decorateCSS("title2")}>{item.title2}</div>
+                          
+                        </div>
+                        <div className={this.decorateCSS("title2")}>{item.title2}</div>
                         </div>
                       </div>
 
                       <div className={this.decorateCSS("LowerDiv")}>
+                        <div className={this.decorateCSS("button-container")}>
                         <div className={this.decorateCSS("button-contain")}>
-                          {this.castToString(item.button.buttonText) && (
+                         {(item.button.exploreIcon || this.castToString(item.button.buttonText)) && (
                             <ComposerLink path={item.button.link}>
+
                               <button
                                 className={`${this.decorateCSS("button")} ${buttonAnimationEnabled ?
                                     "animate__animated" : ""} ${this.getComponentState(
@@ -400,21 +405,25 @@ class Header27 extends BaseHeader {
                                   });
                                 }}
                               >
+
                                 <span className={this.decorateCSS("button-text")}>
                                   {item.button.buttonText}
                                 </span>
+                                {item.button.exploreIcon && 
                                 <ComposerIcon
                                   name={item.button.exploreIcon}
                                   propsIcon={{
                                     className: ``,
                                     size: 10,
                                   }}
-                                />
+                                />}
                               </button>
-                            </ComposerLink>
-                          )}
+                            </ComposerLink>)}
+                          
+                          </div>
 
                           <div className={this.decorateCSS("figure")}>
+                            {slider.length > 1 &&
                             <div className={this.decorateCSS("pagination")}>
                               <span className={this.decorateCSS("active-slide")}>
                                 {(this.getComponentState("active-index") + 1)
@@ -427,9 +436,9 @@ class Header27 extends BaseHeader {
                                   {sliderCount.toString().padStart(2, "0")}
                                 </span>
                               </sup>
-                            </div>
+                            </div>}
                           </div>
-                        </div>
+                          </div>
                         <div className={this.decorateCSS("desc-contain")}>
                           <div className={this.decorateCSS("leftDescription")}>
                             {item.leftDescription}
