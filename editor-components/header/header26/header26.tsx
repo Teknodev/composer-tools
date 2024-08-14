@@ -215,7 +215,7 @@ class HeaderComponent26 extends BaseHeader {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {slides?.length && slides?.length > 0 && (
+          {slides?.length > 0 && (
             <ComposerSlider {...settings} ref={this.sliderRef}>
               {slides.map((item: Slide, index: number) => {
                 const titleExist = this.castToString(item.title);
