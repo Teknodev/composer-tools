@@ -5,8 +5,14 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-class HeaderComponent26 extends BaseHeader {
+type Slide = {
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  url: string;
+  image: string;
+};
 
+class HeaderComponent26 extends BaseHeader {
   private sliderRef: React.RefObject<any>;
 
   constructor(props?: any) {
@@ -162,52 +168,22 @@ class HeaderComponent26 extends BaseHeader {
       displayer: "Down icon",
       value: "IoIosArrowDown",
     });
+
+    this.setComponentState("next", null);
   }
 
   getName(): string {
     return "Header-26";
   }
 
-  handleBeforeChange = () => {
-    const sliderClass = this.decorateCSS("sliders");
-    if (this.sliderRef.current) {
-      const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${sliderClass}`);
-      slides.forEach((slide: HTMLElement) => {
-        slide.classList.add(this.decorateCSS("shrink"));
-      });
-    }
-  };
-
-  handleAfterChange = () => {
-    const sliderClass = this.decorateCSS("sliders");
-    if (this.sliderRef.current) {
-      const slides = this.sliderRef.current.innerSlider.list.querySelectorAll(`.${sliderClass}`);
-      slides.forEach((slide: HTMLElement) => {
-        slide.classList.remove(this.decorateCSS("shrink"));
-      });
-    }
-  };
-
-
-  handlePrevNextChange = () => {
-    this.handleBeforeChange();
-    setTimeout(() => {
-      this.handleAfterChange();
-    }, 1500);
-  };
-
   handlePrevClick = () => {
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickPrev();
-      this.handlePrevNextChange();
-    }
+    const slider = this.sliderRef.current;
+    if (slider) slider.slickPrev();
   };
 
   handleNextClick = () => {
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickNext();
-      this.handlePrevNextChange();
-    }
+    const slider = this.sliderRef.current;
+    if (slider) slider.slickNext();
   };
 
   render() {
@@ -215,7 +191,7 @@ class HeaderComponent26 extends BaseHeader {
       dots: false,
       arrows: false,
       infinite: true,
-      speed: 1500,
+      speed: 500,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -224,54 +200,91 @@ class HeaderComponent26 extends BaseHeader {
       draggable: true,
       vertical: true,
       verticalSwiping: true,
-      beforeChange: this.handleBeforeChange,
-      afterChange: this.handleAfterChange,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("old", current);
+        this.setComponentState("next", next);
+      },
+      afterChange: (current: number, next: number) => {
+        this.setComponentState("old", null);
+        this.setComponentState("next", null);
+      },
     };
+
+    const slides = this.castToObject<Slide[]>("sliders");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider {...settings} ref={this.sliderRef}>
-            {this.castToObject<[]>("sliders").map((item: any, index: number) => (
-              <div className={this.decorateCSS("sliders")} key={index}>
-                <div className={this.decorateCSS("slider")}>
-                  <div className={this.decorateCSS("left-side")}>
-                    <ComposerLink
-                      key={`hdr-32-${index}`}
-                      path={item.url}
-                    >
-                      <h1 className={this.decorateCSS("title")}>
-                        {item.title}
-                      </h1>
-                    </ComposerLink>
-                    <span className={this.decorateCSS("line")}></span>
-                    <h1 className={this.decorateCSS("subtitle")}>{item.subtitle}</h1>
-                    <div className={this.decorateCSS("arrows")}>
-                      <div
-                        className={this.decorateCSS("up-arrow")}
-                        onClick={this.handlePrevClick}
-                      >
-                        <ComposerIcon name={this.getPropValue("up_icon")} />
+          {slides?.length && slides?.length > 0 && (
+            <ComposerSlider {...settings} ref={this.sliderRef}>
+              {slides.map((item: Slide, index: number) => {
+                const titleExist = this.castToString(item.title);
+                const subtitleExist = this.castToString(item.subtitle);
+
+                return (
+                  <div
+                    className={`${this.decorateCSS("sliders")}
+                      ${this.decorateCSS(
+                        this.getComponentState("next") === index ||
+                          this.getComponentState("old") === index
+                          ? "shrink"
+                          : "",
+                      )}`}
+                    key={index}
+                  >
+                    <div className={this.decorateCSS("slider")}>
+                      <div className={this.decorateCSS("left-side")}>
+                        <div className={this.decorateCSS("left-side-content")}>
+                          {titleExist && (
+                            <ComposerLink path={item.url}>
+                              <h1 className={this.decorateCSS("title")}>
+                                {item.title}
+                              </h1>
+                            </ComposerLink>
+                          )}
+                          {titleExist && subtitleExist && (
+                            <span className={this.decorateCSS("line")} />
+                          )}
+                          {subtitleExist && (
+                            <h1 className={this.decorateCSS("subtitle")}>
+                              {item.subtitle}
+                            </h1>
+                          )}
+                          <div className={this.decorateCSS("arrows")}>
+                            <div
+                              className={this.decorateCSS("up-arrow")}
+                              onClick={this.handlePrevClick}
+                            >
+                              <ComposerIcon
+                                name={this.getPropValue("up_icon")}
+                              />
+                            </div>
+                            <div
+                              className={this.decorateCSS("down-arrow")}
+                              onClick={this.handleNextClick}
+                            >
+                              <ComposerIcon
+                                name={this.getPropValue("down_icon")}
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div
-                        className={this.decorateCSS("down-arrow")}
-                        onClick={this.handleNextClick}
-                      >
-                        <ComposerIcon name={this.getPropValue("down_icon")} />
-                      </div>
+                      {item.image && (
+                        <div className={this.decorateCSS("right-side")}>
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={item.image}
+                            alt="Slide"
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className={this.decorateCSS("right-side")}>
-                    <img
-                      className={this.decorateCSS("image")}
-                      src={item.image}
-                      alt="Slider Image"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </ComposerSlider>
+                );
+              })}
+            </ComposerSlider>
+          )}
         </div>
       </div>
     );
