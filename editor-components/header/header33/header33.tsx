@@ -216,6 +216,47 @@ class Header33 extends BaseHeader {
     this.setComponentState("currentIndex", slideIndex);
   }
 
+  calculateManipulations(rotateText: string) {
+    let parentCircleToInnerCircleScaleRatio = 2.72;
+    let circleRadius = 52;
+    let circleContainerW =
+      Math.round(2 * circleRadius * Math.cos(45)) *
+      parentCircleToInnerCircleScaleRatio;
+    const circleContainerMaxW = 300;
+    let circlePerimeter = 2 * 3.14 * circleRadius;
+    const circleScale = parseFloat((circleContainerW / 300).toFixed(2));
+
+    const textLength = rotateText.length;
+    let fontSize = 40;
+
+    let letterSpacing = parseFloat(
+      (circlePerimeter / (textLength * circleScale * fontSize)).toFixed(2),
+    );
+    console.log(letterSpacing, circlePerimeter);
+    if (letterSpacing < 1) {
+      letterSpacing = 0;
+      fontSize = parseFloat(
+        (circlePerimeter / (textLength * circleScale)).toFixed(2),
+      );
+      if (fontSize <= 24) {
+        fontSize = 24;
+        circleRadius = textLength * 2.2;
+        circleContainerW =
+          Math.round(2 * circleRadius * Math.cos(45)) *
+          parentCircleToInnerCircleScaleRatio;
+      }
+    }
+
+    console.log(circleContainerW, Math.cos(45));
+
+    return {
+      fontSize: fontSize,
+      letterSpacing: letterSpacing,
+      width: circleContainerW,
+      scale: parseFloat((circleContainerW / 300).toFixed(2)),
+    };
+  }
+
   render() {
     const settings = {
       arrows: false,
@@ -263,6 +304,8 @@ class Header33 extends BaseHeader {
                   const buttons = item.buttons;
                   const rotateText = this.castToString(item.rotate_text);
                   const titleExist = this.castToString(item.title);
+                  const styleManipulations =
+                    this.calculateManipulations(rotateText);
 
                   return (
                     <div
@@ -312,7 +355,13 @@ class Header33 extends BaseHeader {
                         </div>
                       </div>
                       {rotateText && (
-                        <svg className={this.decorateCSS("circle")}>
+                        <svg
+                          className={this.decorateCSS("circle")}
+                          style={{
+                            width: styleManipulations.width + "px",
+                            height: styleManipulations.width + "px",
+                          }}
+                        >
                           <defs>
                             <path
                               id="circlePath"
@@ -320,7 +369,11 @@ class Header33 extends BaseHeader {
                             />
                           </defs>
                           <circle cx="150" cy="150" r="75" fill="none" />
-                          <g>
+                          <g
+                            style={{
+                              transform: `scale(${styleManipulations.scale})`,
+                            }}
+                          >
                             <use xlinkHref="#circlePath" fill="none" />
                             <text fill="#000">
                               <textPath
@@ -329,6 +382,10 @@ class Header33 extends BaseHeader {
                                 //   letterSpacing: `${Math.ceil(192 / rotateText.length)}px`,
                                 // }}
                                 xlinkHref="#circlePath"
+                                style={{
+                                  fontSize: `${styleManipulations.fontSize}px`,
+                                  letterSpacing: `${styleManipulations.letterSpacing}px`,
+                                }}
                               >
                                 {rotateText}
                               </textPath>
