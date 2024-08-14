@@ -1007,7 +1007,11 @@ class PricingTable7 extends BasePricingTable {
           <div className={this.decorateCSS("card")}>
             {(planType === "monthly-plans" ? monthly_plans : yearly_plans).map((pricing: any, index: number) => {
               return (
-                <div className={this.decorateCSS("card-item-count")} style={{ width: 90 / this.getPropValue("itemCount") + "%" }}>
+                <div className={this.decorateCSS("card-item-count")} style={{ 
+                  width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`, //350px
+                  //width: 90 / this.getPropValue("itemCount") + "%"  //333px
+                  }}>
+                  
                   <div key={index} className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")} && 
                   ${pricing.isHoverActive ? this.decorateCSS("price-hover") : ""}
                   }`}>

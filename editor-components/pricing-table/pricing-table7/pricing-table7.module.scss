@@ -134,16 +134,15 @@
     }
 
     .card {
+      
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       place-self: center;
       gap: 30px;
-
       .card-item-count {
         display: flex;
         justify-content: center;
-
         .price-hover:hover {
           box-shadow: 0 10px 30px rgba(var(--composer-font-color-primary-rgb), 0.2);
           transform: translateY(-10px);
@@ -311,14 +310,14 @@
         display: inline !important;
 
         .price {
+          margin: 0px 60px;
+          max-width: 100% !important;
           margin-bottom: 30px;
         }
       }
 
       .card-item-count {
         min-width: 100%;
-
-
       }
     }
   }
