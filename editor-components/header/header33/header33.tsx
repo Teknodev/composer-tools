@@ -5,16 +5,18 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-
-type ISliderData = {
+type Slide = {
   image: string;
-  title: string;
-  button_text: string;
-  button_link: string;
+  title: JSX.Element;
   rotate_icon: string;
-  rotate_text: string;
+  rotate_text: JSX.Element;
+  buttons: Button[];
 };
 
+type Button = {
+  button_text: JSX.Element;
+  button_link: string;
+};
 
 class Header33 extends BaseHeader {
   constructor(props?: any) {
@@ -32,7 +34,7 @@ class Header33 extends BaseHeader {
       displayer: "Next icon",
       value: "PiArrowRightThin",
     });
-    
+
     this.addProp({
       type: "array",
       key: "slider",
@@ -58,21 +60,35 @@ class Header33 extends BaseHeader {
             },
             {
               type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "Shop Now",
-            },
-            {
-              type: "page",
-              key: "button_link",
-              displayer: "Button Navigate",
-              value: "",
-            },
-            {
-              type: "string",
               key: "rotate_text",
               displayer: "Rotate Text",
               value: "Teknodev Composer",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "button_text",
+                      displayer: "Button Text",
+                      value: "Shop Now",
+                    },
+                    {
+                      type: "page",
+                      key: "button_link",
+                      displayer: "Button Navigate",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -96,21 +112,35 @@ class Header33 extends BaseHeader {
             },
             {
               type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "Shop Now",
-            },
-            {
-              type: "page",
-              key: "button_link",
-              displayer: "Button Navigate",
-              value: "",
-            },
-            {
-              type: "string",
               key: "rotate_text",
               displayer: "Rotate Text",
               value: "Teknodev Composer",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "button_text",
+                      displayer: "Button Text",
+                      value: "Shop Now",
+                    },
+                    {
+                      type: "page",
+                      key: "button_link",
+                      displayer: "Button Navigate",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -134,21 +164,35 @@ class Header33 extends BaseHeader {
             },
             {
               type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "Shop Now",
-            },
-            {
-              type: "page",
-              key: "button_link",
-              displayer: "Button Navigate",
-              value: "",
-            },
-            {
-              type: "string",
               key: "rotate_text",
               displayer: "Rotate Text",
               value: "Teknodev Composer",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "button_text",
+                      displayer: "Button Text",
+                      value: "Shop Now",
+                    },
+                    {
+                      type: "page",
+                      key: "button_link",
+                      displayer: "Button Navigate",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -173,13 +217,12 @@ class Header33 extends BaseHeader {
   }
 
   render() {
-
     const settings = {
       arrows: false,
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -194,86 +237,137 @@ class Header33 extends BaseHeader {
       afterChange: () => {
         this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
         this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
-      }
+        this.setComponentState(
+          "descriptionAnimationClass",
+          "animate__fadeInUp",
+        );
+      },
     };
+
+    const slides = this.castToObject<Slide[]>("slider");
+
+    const nextArrowIcon: string = this.getPropValue("next_icon");
+    const prevArrowIcon: string = this.getPropValue("prev_icon");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider
-            {...settings}
-            ref={this.getComponentState("slider-ref")}
-            className={this.decorateCSS("carousel")}
-            >
-            {this.castToObject<ISliderData[]>("slider").map(
-              (item: ISliderData, index: number) => (
-                <div
-                  className={`${this.decorateCSS("content")} ${this.decorateCSS(
-                    index === 1 ? "secondary-slide" : ""
-                  )}`}
-                  key={index}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className={this.decorateCSS("image")}
-                  />
-                    
-                 <div className={this.decorateCSS("corousel-content-div")}>
-                  <div className={this.decorateCSS("corousel-content")}>
-                      <div className={this.decorateCSS("circle")}>
-                      <svg>
-                        <defs>
-                          <path
-                            id="circlePath"
-                            d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0"
-                          />
-                        </defs>
-                        <circle cx="150" cy="150" r="75" fill="none" />
-                        <g>
-                          <use xlinkHref="#circlePath" fill="none" />
-                          <text fill="#000">
-                            <textPath xlinkHref="#circlePath">{this.castToString(item.rotate_text as any)}</textPath>
-                          </text>
-                        </g>
-                      </svg>
+          {slides?.length && slides?.length > 0 && (
+            <>
+              <ComposerSlider
+                {...settings}
+                ref={this.getComponentState("slider-ref")}
+                className={this.decorateCSS("carousel")}
+              >
+                {slides.map((item: Slide, index: number) => {
+                  const buttons = item.buttons;
+                  const rotateText = this.castToString(item.rotate_text);
+                  const titleExist = this.castToString(item.title);
+
+                  return (
+                    <div
+                      className={`${this.decorateCSS("content")} ${this.decorateCSS(
+                        index % 2 === 1 ? "secondary-slide" : "",
+                      )}`}
+                      key={index}
+                    >
+                      {item.image && (
+                        <img
+                          src={item.image}
+                          alt={this.castToString(item.title)}
+                          className={this.decorateCSS("image")}
+                        />
+                      )}
+                      <div className={this.decorateCSS("corousel-content-div")}>
+                        <div className={this.decorateCSS("corousel-content")}>
+                          {titleExist && (
+                            <h1
+                              className={this.getComponentState(
+                                "titleAnimationClass",
+                              )}
+                            >
+                              {item.title}
+                            </h1>
+                          )}
+
+                          {buttons?.length && buttons?.length > 0 && (
+                            <div className={this.decorateCSS("buttons-div")}>
+                              {buttons.map((item: Button, index: number) => (
+                                <ComposerLink
+                                  key={index}
+                                  path={item.button_link}
+                                >
+                                  <button
+                                    className={`
+                                    ${this.getComponentState("buttonAnimationClass")}
+                                    ${this.decorateCSS("button")}
+                                    `}
+                                  >
+                                    {item.button_text}
+                                  </button>
+                                </ComposerLink>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      {rotateText && (
+                        <div className={this.decorateCSS("circle")}>
+                          <svg className={this.decorateCSS("circle-svg")}>
+                            <defs>
+                              <path
+                                id="circlePath"
+                                d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0"
+                              />
+                            </defs>
+                            <circle cx="150" cy="150" r="75" fill="none" />
+                            <g>
+                              <use xlinkHref="#circlePath" fill="none" />
+                              <text fill="#000">
+                                <textPath xlinkHref="#circlePath">
+                                  {rotateText}
+                                </textPath>
+                              </text>
+                            </g>
+                          </svg>
+                        </div>
+                      )}
                     </div>
-                      <h1 className={this.getComponentState("titleAnimationClass")}>
-                        {item.title}
-                      </h1>
-                      <ComposerLink path={item.button_link}>
-                      <button className={`${this.getComponentState("buttonAnimationClass")} ${styles.button}`}>
-                          {item.button_text}
-                        </button>
-                      </ComposerLink>
-                    </div>
-                  </div>
+                  );
+                })}
+              </ComposerSlider>
+              {(prevArrowIcon || nextArrowIcon) && (
+                <div className={this.decorateCSS("page-bottom")}>
+                  {prevArrowIcon && (
+                    <ComposerIcon
+                      name={prevArrowIcon}
+                      propsIcon={{
+                        className: `${this.decorateCSS("prev-icon")} ${styles["arrow-prev"]}`,
+                        onClick: () => {
+                          this.getComponentState(
+                            "slider-ref",
+                          ).current.slickPrev();
+                        },
+                      }}
+                    />
+                  )}
+                  {nextArrowIcon && (
+                    <ComposerIcon
+                      name={nextArrowIcon}
+                      propsIcon={{
+                        className: `${this.decorateCSS("next-icon")} ${styles["arrow-next"]}`,
+                        onClick: () => {
+                          this.getComponentState(
+                            "slider-ref",
+                          ).current.slickNext();
+                        },
+                      }}
+                    />
+                  )}
                 </div>
-              )
-            )}
-          </ComposerSlider>
-          <div className={this.decorateCSS("page-bottom")}>
-            <ComposerIcon
-              name={this.getPropValue("prev_icon")}
-              propsIcon={{
-                className: `${this.decorateCSS("prev-icon")} ${styles["arrow-prev"]}`,
-                onClick: () => {
-                  this.getComponentState("slider-ref").current.slickPrev();
-                },
-              }}
-            />
-            <ComposerIcon
-              name={this.getPropValue("next_icon")}
-              propsIcon={{
-                className: `${this.decorateCSS("next-icon")} ${styles["arrow-next"]}`,
-                onClick: () => {
-                  this.getComponentState("slider-ref").current.slickNext();
-                },
-              }}
-            />
-          </div>
-            
+              )}
+            </>
+          )}
         </div>
       </div>
     );
