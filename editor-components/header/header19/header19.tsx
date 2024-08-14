@@ -35,7 +35,7 @@ class Header19 extends BaseHeader {
           displayer: "Image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad87b?alt=media&timestamp=1693306471422",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f79?alt=media&timestamp=1719483639150",
         },
         {
           type: "object",
@@ -87,7 +87,7 @@ class Header19 extends BaseHeader {
           displayer: "Image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad87a?alt=media&timestamp=1693306471422",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f78?alt=media&timestamp=1719483639150",
         },
         {
           type: "object",
@@ -140,7 +140,7 @@ class Header19 extends BaseHeader {
           displayer: "Image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad878?alt=media&timestamp=1693306471422",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7a?alt=media&timestamp=1719483639150",
         },
         {
           type: "object",
@@ -193,7 +193,7 @@ class Header19 extends BaseHeader {
           displayer: "Image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edce7d057bdf002c2ad879?alt=media&timestamp=1693306471422",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7b?alt=media&timestamp=1719483639150",
         },
         {
           type: "object",

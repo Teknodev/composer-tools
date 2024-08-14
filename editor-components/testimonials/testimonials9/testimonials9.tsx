@@ -52,7 +52,7 @@ class Testimonials9Page extends Testimonials {
               key: "image",
               displayer: "Image",
               value:
-                "https://static.tildacdn.com/tild3730-6561-4138-b835-303836373364/09w.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -84,7 +84,7 @@ class Testimonials9Page extends Testimonials {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -116,7 +116,7 @@ class Testimonials9Page extends Testimonials {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/716411/pexels-photo-716411.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b34?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -148,7 +148,7 @@ class Testimonials9Page extends Testimonials {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -180,7 +180,7 @@ class Testimonials9Page extends Testimonials {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1820934/pexels-photo-1820934.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b36?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -212,7 +212,7 @@ class Testimonials9Page extends Testimonials {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b35?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -244,7 +244,7 @@ class Testimonials9Page extends Testimonials {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1800456/pexels-photo-1800456.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617728bd2970002c623bd5?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -276,7 +276,7 @@ class Testimonials9Page extends Testimonials {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
