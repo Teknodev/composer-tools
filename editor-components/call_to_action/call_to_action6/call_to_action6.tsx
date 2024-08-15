@@ -105,10 +105,12 @@ class CallToAction6Page extends BaseCallToAction {
                 {this.getPropValue("title")}
               </h1>
             )}
-            {title &&
+
+            {((placeholder) && (title)) &&
               <div className={this.decorateCSS("Space")}>
                 <hr className={this.decorateCSS("space")} />
               </div>}
+
             {placeholder && (
               <input
                 type="text"
