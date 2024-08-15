@@ -221,6 +221,13 @@ class HeaderComponent26 extends BaseHeader {
                 const titleExist = this.castToString(item.title);
                 const subtitleExist = this.castToString(item.subtitle);
 
+                // stick arrows to the bottom of the screen on mobile and tablet
+                const stickToBottomCondition =
+                  (item.image && !(titleExist || subtitleExist)) ||
+                  (!item.image && (titleExist || subtitleExist))
+                    ? this.decorateCSS("stick-to-bottom")
+                    : "";
+
                 return (
                   <div
                     className={`${this.decorateCSS("sliders")}
@@ -265,7 +272,10 @@ class HeaderComponent26 extends BaseHeader {
                           />
                         </div>
                       )}
-                      <div className={this.decorateCSS("arrows")}>
+                      <div
+                        className={`${this.decorateCSS("arrows")}
+                        ${stickToBottomCondition}`}
+                      >
                         <div
                           className={this.decorateCSS("up-arrow")}
                           onClick={this.handlePrevClick}
