@@ -1,8 +1,21 @@
 import * as React from "react";
 import styles from "./download6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseDownload } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type LeftCol = {
+  title: JSX.Element;
+  description: JSX.Element;
+  button: {
+    button_text: JSX.Element;
+    link: string;
+  };
+};
+
+type RightCol = {
+  image: string;
+};
 
 class Download6 extends BaseDownload {
   constructor(props?: any) {
@@ -41,7 +54,7 @@ class Download6 extends BaseDownload {
               type: "page",
               key: "link",
               displayer: "Button Link",
-              value: "https://www.google.com/",
+              value: "",
             },
           ],
         },
@@ -63,8 +76,9 @@ class Download6 extends BaseDownload {
         {
           type: "image",
           key: "image",
-          displayer: "Right Image",
-          value: "https://ela.bz/zappy/images/mockups/07.jpg",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdb43307399d002cb4160b?alt=media",
         },
       ],
     });
@@ -75,20 +89,11 @@ class Download6 extends BaseDownload {
   }
 
   render() {
-    const leftcolumn = this.castToObject<{
-      title: JSX.Element;
-      description: JSX.Element;
-      button: {
-        button_text: JSX.Element;
-        link: string;
-      };
-    }>("left-column");
+    const leftcolumn = this.castToObject<LeftCol>("left-column");
 
-    const rightcolumn = this.castToObject<{
-      image: string;
-    }>("right-column");
+    const rightcolumn = this.castToObject<RightCol>("right-column");
 
-    const icon = this.getPropValue("icon");
+    const icon: string = this.getPropValue("icon");
 
     const isLeftColumnVisible =
       leftcolumn &&
@@ -106,7 +111,6 @@ class Download6 extends BaseDownload {
         <div className={this.decorateCSS("max-content")}>
           {isLeftColumnVisible && (
             <div className={this.decorateCSS("left-column")}>
-              
               {leftcolumn.title && (
                 <h1 className={this.decorateCSS("title")}>
                   {leftcolumn.title}
@@ -152,6 +156,7 @@ class Download6 extends BaseDownload {
               <img
                 className={this.decorateCSS("image")}
                 src={rightcolumn.image}
+                alt={"download"}
               />
             </div>
           )}
