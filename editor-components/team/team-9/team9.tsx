@@ -344,14 +344,20 @@ class Team9 extends Team {
                         {(nameExist || item.icons.length > 0) && (
                           <div className={this.decorateCSS("person-info")}>
                             {nameExist && (
-                              <div className={this.decorateCSS("text-group")}>
+                              <div
+                                style={!item.image ? { width: "auto" } : {}}
+                                className={this.decorateCSS("text-group")}
+                              >
                                 <h1 className={this.decorateCSS("item-name")}>
                                   {item.name}
                                 </h1>
                               </div>
                             )}
                             {item.icons.length > 0 && (
-                              <div className={this.decorateCSS("icons-bar")}>
+                              <div
+                                style={!item.image ? { width: "auto" } : {}}
+                                className={this.decorateCSS("icons-bar")}
+                              >
                                 {item.icons.map(
                                   (card: Icon, indexIcons: number) => {
                                     if (card.icon)

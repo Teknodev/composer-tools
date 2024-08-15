@@ -154,6 +154,7 @@
 
 @media only screen and (max-width: 768px) {
   .container {
+    height: 100vh;
     .max-content {
       .basic-page {
         .up-page {
@@ -169,13 +170,25 @@
         .slider {
           display: flex !important;
           gap: 10px;
+          height: 550px;
+
+          div {
+            height: 100%;
+          }
 
           .card {
             padding: 0 10px 0 10px;
+            display: flex !important;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
 
             .person-info {
               height: 136px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
 
               .icons-bar {
                 .icon {
