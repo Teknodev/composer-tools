@@ -1,13 +1,13 @@
 import * as React from "react";
 import styles from "./download7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseDownload } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Button = {
-  buttonText: string;
-  url: string;
-  buttonIcon: string;
+  text: JSX.Element;
+  link: string;
+  icon: string;
 };
 
 class Download7 extends BaseDownload {
@@ -23,8 +23,15 @@ class Download7 extends BaseDownload {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
-      key: "contentTitle",
+      key: "title",
       displayer: "Card Title",
       value: "DO IT NOW",
     });
@@ -39,8 +46,8 @@ class Download7 extends BaseDownload {
 
     this.addProp({
       type: "array",
-      key: "buttonsLeft",
-      displayer: "Button Left",
+      key: "buttons",
+      displayer: "Buttons",
       value: [
         {
           type: "object",
@@ -49,34 +56,24 @@ class Download7 extends BaseDownload {
           value: [
             {
               type: "string",
-              key: "buttonText",
+              key: "text",
               displayer: "Button Text",
               value: "Download for Android",
             },
             {
               type: "page",
-              key: "url",
+              key: "link",
               displayer: "Button Link",
               value: "",
             },
             {
               type: "icon",
-              key: "buttonIcon",
+              key: "icon",
               displayer: "Button Icon",
               value: "FaAndroid",
             },
           ],
         },
-      ],
-      additionalParams: {
-        maxElementCount: 2,
-      },
-    });
-    this.addProp({
-      type: "array",
-      key: "buttonsRight",
-      displayer: "Button Right",
-      value: [
         {
           type: "object",
           key: "button",
@@ -84,19 +81,19 @@ class Download7 extends BaseDownload {
           value: [
             {
               type: "string",
-              key: "buttonText",
+              key: "text",
               displayer: "Button Text",
               value: "Download for iOS",
             },
             {
               type: "page",
-              key: "url",
+              key: "link",
               displayer: "Button Link",
               value: "",
             },
             {
               type: "icon",
-              key: "buttonIcon",
+              key: "icon",
               displayer: "Button Icon",
               value: "FaApple",
             },
@@ -104,15 +101,8 @@ class Download7 extends BaseDownload {
         },
       ],
       additionalParams: {
-        maxElementCount: 2,
+        maxElementCount: 4,
       },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "enableAnimation",
-      displayer: "Enable Animation",
-      value: true,
     });
   }
 
@@ -121,104 +111,61 @@ class Download7 extends BaseDownload {
   }
 
   render() {
-    const enableAnimation = this.getPropValue("enableAnimation");
-    const contentTitle = this.castToString(this.getPropValue("contentTitle"));
-    const hasContentTitle = contentTitle && contentTitle.length > 0;
-    const description = this.castToString(this.getPropValue("description"));
-    const hasDescription = description && description.length > 0;
-    const hasButtonsLeft =
-      this.castToObject<Button[]>("buttonsLeft").length > 0;
-    const hasButtonsRight =
-      this.castToObject<Button[]>("buttonsRight").length > 0;
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const overlay = this.getPropValue("overlay");
 
-    setTimeout(() => {
-      if (enableAnimation) {
-        const content = document.querySelector(
-          `.${this.decorateCSS("content")}`
-        );
-        if (content) {
-          const elements = content.querySelectorAll(
-            `.${this.decorateCSS("contentTitle")}, .${this.decorateCSS(
-              "description"
-            )}, .${this.decorateCSS("button-groups")}`
-          );
+    const titleExist = this.getPropValue("title", {
+      as_string: true,
+    });
+    const descExist = this.getPropValue("description", { as_string: true });
 
-          elements.forEach((el, index) => {
-            setTimeout(() => {
-              (el as HTMLElement).style.transform = "translateY(0)";
-            }, index * 200);
-          });
+    const buttons = this.castToObject<Button[]>("buttons");
+
+    const conditionalOverlay = overlay
+      ? {
+          backgroundColor: `rgba(var(--composer-html-background-rgb), 0.3)`,
         }
-      }
-    }, 100);
+      : {};
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div
-            className={this.decorateCSS("page")}
+            className={this.decorateCSS("wrapper")}
             style={{ backgroundImage: `url(${this.getPropValue("image")})` }}
           >
-            <div className={this.decorateCSS("content")}>
-              {hasContentTitle && (
-                <h6 className={this.decorateCSS("contentTitle")}>
-                  {this.getPropValue("contentTitle")}
-                </h6>
+            <div
+              className={this.decorateCSS("content-container")}
+              style={conditionalOverlay}
+            >
+              {titleExist && (
+                <h2 className={this.decorateCSS("title")}>{title}</h2>
               )}
-              {hasDescription && (
-                <h3 className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </h3>
+              {descExist && (
+                <p className={this.decorateCSS("description")}>{description}</p>
               )}
-              {(hasButtonsLeft || hasButtonsRight) && (
-                <div className={this.decorateCSS("button-groups")}>
-                  {hasButtonsLeft && (
-                    <div className={this.decorateCSS("button-group-left")}>
-                      {this.castToObject<Button[]>("buttonsLeft").map(
-                        (button: Button, index: number) => {
-                          return (
-                            <ComposerLink
-                              key={`dw-7-btn-left-${index}`}
-                              path={button.url}
-                            >
-                              <button className={this.decorateCSS("button")}>
-                                <ComposerIcon
-                                  propsIcon={{
-                                    className: this.decorateCSS("button-icon"),
-                                  }}
-                                  name={button.buttonIcon}
-                                />
-                                {button.buttonText}
-                              </button>
-                            </ComposerLink>
-                          );
-                        }
-                      )}
-                    </div>
-                  )}
-                  {hasButtonsRight && (
-                    <div className={this.decorateCSS("button-group-right")}>
-                      {this.castToObject<Button[]>("buttonsRight").map(
-                        (button: Button, index: number) => {
-                          return (
-                            <ComposerLink
-                              key={`dw-7-btn-right-${index}`}
-                              path={button.url}
-                            >
-                              <button className={this.decorateCSS("button")}>
-                                <ComposerIcon
-                                  propsIcon={{
-                                    className: this.decorateCSS("button-icon"),
-                                  }}
-                                  name={button.buttonIcon}
-                                />
-                                {button.buttonText}
-                              </button>
-                            </ComposerLink>
-                          );
-                        }
-                      )}
-                    </div>
-                  )}
+              {buttons?.length > 0 && (
+                <div className={this.decorateCSS("buttons-container")}>
+                  {buttons.map((button: Button, index: number) => {
+                    if (this.castToString(button.text))
+                      return (
+                        <ComposerLink key={index} path={button.link}>
+                          <button className={this.decorateCSS("button")}>
+                            {button.icon && (
+                              <ComposerIcon
+                                propsIcon={{
+                                  className: this.decorateCSS("button-icon"),
+                                }}
+                                name={button.icon}
+                              />
+                            )}
+                            {button.text}
+                          </button>
+                        </ComposerLink>
+                      );
+                    return null;
+                  })}
                 </div>
               )}
             </div>
