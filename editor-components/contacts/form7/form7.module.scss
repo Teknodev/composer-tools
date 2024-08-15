@@ -148,7 +148,6 @@
       .submit-button {
         width: fit-content;
         height: fit-content;
-
         text-align: center;
         font-weight: 700;
         cursor: pointer;
@@ -226,10 +225,11 @@
           flex-direction: column;
           width: 100%;
           align-items: center;
+          padding: 0 !important;
 
           .first-inputs,
           .second-inputs {
-            width: 75% !important;
+            width: 70% !important;
           }
         }
 
@@ -250,10 +250,6 @@
         right: 30px !important;
         bottom: -30px !important;
         .button-inner {
-          .button-circle {
-            width: 30px !important;
-            height: 30px !important;
-          }
           .button-text {
             font-size: 1rem !important;
           }
@@ -310,10 +306,6 @@
         right: 15px !important;
         bottom: -30px !important;
         .button-inner {
-          .button-circle {
-            width: 25px !important;
-            height: 25px !important;
-          }
           .button-text {
             font-size: 0.8rem !important;
           }
