@@ -18,7 +18,6 @@
 
 .wrapper {
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
   background-size: cover;
   background-position: center;
@@ -36,6 +35,7 @@
   align-items: center;
   padding: 50px;
   gap: 40px;
+  min-height: 600px;
 }
 
 .title {
@@ -82,17 +82,17 @@
 
 @media only screen and (max-width: 768px) {
   .container {
-    height: 90vh;
+    height: auto !important;
   }
-
   .wrapper {
     width: 100%;
     max-width: unset;
   }
 
   .content-container {
-    padding: 20px 10px;
+    padding: 50px 10px;
     gap: 20px;
+    min-height: unset !important;
   }
 
   .title {
