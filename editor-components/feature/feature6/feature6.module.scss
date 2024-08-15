@@ -17,7 +17,7 @@
       display: flex;
       justify-content: center;
       flex-direction: column;
-      gap: 10px;
+      gap: 20px;
       width: 100%;
 
       .header-title {
@@ -25,6 +25,7 @@
         justify-content: center;
         text-align: center;
         font-size: 6rem;
+        line-height: 5rem;
         width: 100%;
         color: var(--composer-font-color-primary);
       }
@@ -40,8 +41,9 @@
       .button-position {
         display: flex;
         justify-content: center;
+        align-items: center;
         margin: 0 auto;
-        gap: 30px;
+        gap: 20px;
       }
 
       .button {
@@ -70,12 +72,13 @@
   justify-content: center;
   width: 90%;
   flex-wrap: wrap;
-  margin: 20px auto;
+  margin: 0 auto;
   gap: 20px;
 
   .card-item-count {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 
     .listed {
       position: relative;
@@ -93,7 +96,7 @@
 
       .image {
         display: block;
-        height: 45rem;
+        height: 500px;
         transition: transform 0.3s ease;
         object-fit: cover;
         text-align: center;
@@ -129,47 +132,52 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .header-title {
+    font-size: 4rem !important;
+    line-height: 4rem !important;
+  }
+
+  .header-subtitle {
+    font-size: 2.25rem !important;
+  }
+
+  .image {
+    height: 300px !important;
+  }
+
+  .title {
+    font-size: 1.8rem !important;
+    line-height: 2rem !important;
+  }
+
+  .image-shadow {
+    padding: 0 12px 12px 12px !important;
+  }
 }
 
-/* @media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    .max-content {
-      .content {
-        gap: 20px !important;
-        .card-item-count {
-          min-width: 100%;
-          .listed {
-            margin-top: 20px;
-            margin: 0 auto;
-          }
-        }
-        .header-title {
-          font-size: 28px;
-        }
-        .header-subtitle {
-          font-size: 16px;
-        }
-        .button-position {
-          flex-direction: column;
-          overflow: hidden;
-          gap: 5px;
-          width: 100%;
-        }
-        .button {
-          overflow: hidden;
-          margin: 0 auto;
-          text-align: center;
-          height: 40px;
-          font-size: 14px;
-          &:hover {
-            background-color: transparent;
-            border: 1px solid var(--composer-secondary-color);
-            color: var(--composer-font-color-primary);
-            transform: scale(1);
-          }
-        }
-      }
+@media only screen and (max-width: 500px) {
+  .header-title {
+    font-size: 3rem !important;
+    line-height: 3rem !important;
+  }
+
+  .header-subtitle {
+    font-size: 1.75rem !important;
+  }
+
+  .cards-container {
+    flex-direction: column;
+    .card-item-count {
+      width: 100% !important;
     }
   }
-} */
+
+  .button-position {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .button {
+    font-size: 14px !important;
+  }
+}
