@@ -40,7 +40,7 @@ class HeaderComponent26 extends BaseHeader {
               type: "string",
               key: "subtitle",
               displayer: "SubTitle",
-              value: "3d Visualisation",
+              value: "3D Visualization",
             },
             {
               type: "page",
@@ -233,43 +233,29 @@ class HeaderComponent26 extends BaseHeader {
                     key={index}
                   >
                     <div className={this.decorateCSS("slider")}>
-                      <div className={this.decorateCSS("left-side")}>
-                        <div className={this.decorateCSS("left-side-content")}>
-                          {titleExist && (
-                            <ComposerLink path={item.url}>
-                              <h1 className={this.decorateCSS("title")}>
-                                {item.title}
+                      {(titleExist || subtitleExist) && (
+                        <div className={this.decorateCSS("left-side")}>
+                          <div
+                            className={this.decorateCSS("left-side-content")}
+                          >
+                            {titleExist && (
+                              <ComposerLink path={item.url}>
+                                <h1 className={this.decorateCSS("title")}>
+                                  {item.title}
+                                </h1>
+                              </ComposerLink>
+                            )}
+                            {titleExist && subtitleExist && (
+                              <span className={this.decorateCSS("line")} />
+                            )}
+                            {subtitleExist && (
+                              <h1 className={this.decorateCSS("subtitle")}>
+                                {item.subtitle}
                               </h1>
-                            </ComposerLink>
-                          )}
-                          {titleExist && subtitleExist && (
-                            <span className={this.decorateCSS("line")} />
-                          )}
-                          {subtitleExist && (
-                            <h1 className={this.decorateCSS("subtitle")}>
-                              {item.subtitle}
-                            </h1>
-                          )}
-                          <div className={this.decorateCSS("arrows")}>
-                            <div
-                              className={this.decorateCSS("up-arrow")}
-                              onClick={this.handlePrevClick}
-                            >
-                              <ComposerIcon
-                                name={this.getPropValue("up_icon")}
-                              />
-                            </div>
-                            <div
-                              className={this.decorateCSS("down-arrow")}
-                              onClick={this.handleNextClick}
-                            >
-                              <ComposerIcon
-                                name={this.getPropValue("down_icon")}
-                              />
-                            </div>
+                            )}
                           </div>
                         </div>
-                      </div>
+                      )}
                       {item.image && (
                         <div className={this.decorateCSS("right-side")}>
                           <img
@@ -279,6 +265,20 @@ class HeaderComponent26 extends BaseHeader {
                           />
                         </div>
                       )}
+                      <div className={this.decorateCSS("arrows")}>
+                        <div
+                          className={this.decorateCSS("up-arrow")}
+                          onClick={this.handlePrevClick}
+                        >
+                          <ComposerIcon name={this.getPropValue("up_icon")} />
+                        </div>
+                        <div
+                          className={this.decorateCSS("down-arrow")}
+                          onClick={this.handleNextClick}
+                        >
+                          <ComposerIcon name={this.getPropValue("down_icon")} />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );

@@ -32,6 +32,7 @@
   justify-content: space-between;
   align-items: stretch;
   height: 100%;
+  position: relative;
 }
 
 .left-side {
@@ -40,7 +41,6 @@
   justify-content: center;
   align-items: center;
   padding-left: 100px;
-  position: relative;
 }
 
 .left-side-content {
@@ -142,6 +142,13 @@
     height: auto;
     object-fit: cover;
   }
+
+  .arrows {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: unset;
+    margin-top: -60px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -186,6 +193,9 @@
     justify-content: center;
     gap: 10px;
     left: 20px;
-    bottom: 20px;
+
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -30px;
   }
 }
