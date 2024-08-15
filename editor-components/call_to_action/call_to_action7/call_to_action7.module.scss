@@ -31,7 +31,6 @@
 .image {
   width: 350px;
   height: 500px;
-  margin-left: 200px;
   margin-top: 50px;
   margin-bottom: -150px;
   border-radius: 6px;
@@ -81,6 +80,7 @@
   height: 55px;
   font-size: 1.5rem;
   width: 400px;
+  color: var(--composer-font-color-primary);
 }
 
 input:focus::placeholder,
@@ -104,7 +104,11 @@ input:not(:placeholder-shown)::placeholder {
   font-weight: 500;
   height: 55px;
   white-space: nowrap;
-  width: auto;
+  max-width: 300px;
+  height: auto;
+  overflow: hidden;
+  text-wrap: balance;
+  word-wrap: break-word;  
 }
 
 .button:hover {
@@ -186,7 +190,6 @@ input:not(:placeholder-shown)::placeholder {
 @media only screen and (min-width: 601px) and (max-width: 1280px) {
   .container {
     padding: 20px 20px;
-    margin-top: 50px;
   }
 
   .call-to-action7-container {
@@ -225,13 +228,13 @@ input:not(:placeholder-shown)::placeholder {
 
   .button-container {
     
-    width: 100%;
+    width: 70%;
   }
 
   .button {
     font-size: 1.5rem !important;
     padding: 16px 50px;
-    width: 100%;
+    width: 70%;
     height: 60px;
     white-space: nowrap;
     text-align: center !important;
