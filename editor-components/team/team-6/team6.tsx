@@ -1,9 +1,6 @@
 import * as React from "react";
 import styles from "./team6.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
-import { useState } from 'react';
-import { features } from "monaco-editor/esm/metadata";
-import { AddCircle, RemoveCircle } from "@mui/icons-material";
+import { Team } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Feature = {
@@ -496,10 +493,7 @@ class Team6 extends Team {
       value: 4,
       max: 5,
     });
-
-
     this.setComponentState("activeIndex", null)
-
   }
 
   getName(): string {
@@ -507,7 +501,6 @@ class Team6 extends Team {
   }
 
   render() {
-
     const handleButton = (index: number) => {
       if (this.getComponentState("activeIndex") === index) {
         this.setComponentState("activeIndex", null)
@@ -518,16 +511,6 @@ class Team6 extends Team {
 
     const title1Exist = this.getPropValue("title1", { as_string: true });
     const descriptionExist = this.getPropValue("description", { as_string: true });
-    const shouldRenderUpPage = title1Exist && descriptionExist;
-    const image = this.getPropValue("image");
-    const positionExist: [] = this.getPropValue("position", { as_string: true });
-    const nameExist: [] = this.getPropValue("name", { as_string: true });
-
-
-    const items = this.castToObject<Card[]>("items");
-    const itemCount = this.getPropValue('itemCount')
-    console.log("Item Count:", itemCount);
-
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -554,12 +537,7 @@ class Team6 extends Team {
               </div>
             )}
 
-            <div className={this.decorateCSS("down-page")}
-              style={{
-
-              }}
-
-            >
+            <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("items").length > 0 && this.castToObject<Card[]>("items").map(
                 (card: Card, indexItems: number) => (
                   <div
@@ -569,45 +547,19 @@ class Team6 extends Team {
                       width: `calc((100% / ${this.getPropValue("itemCount")}) - 60px)`,
                     }}
                   >
-
                     <div className={this.decorateCSS("top")}>
-
                       <div className={this.decorateCSS("image-wrapper")}>
 
                         <button
                           onClick={() => handleButton(indexItems)}
-                          style={{
-                            backgroundColor: 'transparent',
-                            border: 'none',
-                            padding: '0',
-                            margin: '0',
-                            outline: 'none',
-                            cursor: 'pointer',
-                            width: '100%'
-                          }}
+                          className="image-button"
                         >
-                          {this.getComponentState("activeIndex") === indexItems ? (
-                            <RemoveCircle className={this.decorateCSS("image-icon")} style={{
-                              position: 'absolute',
-                              top: '5px',
-                              right: '5px',
-                              zIndex: '1',
-                              fontSize: '24px',
-                              color: 'var(--font-color-primary)',
-                              opacity: '0.6',
-
-                            }} />
-                          ) : (
-                            <AddCircle className={this.decorateCSS("image-icon")} style={{
-                              position: 'absolute',
-                              top: '5px',
-                              right: '5px',
-                              zIndex: '1',
-                              fontSize: '24px',
-                              color: 'var(--font-color-primary)',
-                              opacity: '0.6'
-                            }} />
-                          )}
+                          {this.getComponentState("activeIndex") === indexItems
+                            ?
+                            (<ComposerIcon name={"IoRemoveCircleOutline"} propsIcon={{ className: this.decorateCSS("image-icon") }} />)
+                            :
+                            (<ComposerIcon name={"IoAddCircleOutline"} propsIcon={{ className: this.decorateCSS("image-icon") }} />)
+                          }
                           {card.image && (
                             <img
                               className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems ? this.decorateCSS("shrink") : ""}`}
@@ -626,7 +578,7 @@ class Team6 extends Team {
                             {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
                               <ul className={this.decorateCSS("features")}>
                                 {card.features.map((feature: Feature, idx: number) => (
-                                  <li key={idx}>
+                                  <li key={idx} className={this.decorateCSS("feature")}>
                                     <ComposerIcon name={feature.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                                     {feature.feature}</li>
                                 ))}

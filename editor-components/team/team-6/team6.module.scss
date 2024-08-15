@@ -61,6 +61,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 .all-card {
                     height: 550px;
                     margin-bottom: 70px;
+
                     .top {
                         height: 650px;
                         overflow: hidden;
@@ -70,6 +71,16 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                             height: 100%;
                             object-fit: cover;
                             position: relative;
+
+                            .image-icon{
+                              position: absolute;
+                              top: 5px;
+                              right: 5px;
+                              z-index: 1;
+                              font-size: 24px;
+                              color: var(--font-color-primary);
+                              opacity: 0.6;
+                            }
 
                             .image {
 
@@ -96,11 +107,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                                     width: 100%;
                                     flex-direction: column;
 
-                                    .icon{
+                                    .icon {
                                         margin-right: 10px;
                                     }
                                 }
                             }
+
                         }
 
                         .card-name {
@@ -119,7 +131,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     }
 
                     ul {
-                        
+
                         margin-top: 10px;
                         padding: 0;
                     }
@@ -130,7 +142,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                         list-style-type: none;
                         font-style: none;
                         color: var(--composer-font-color-primary);
-                        text-align:start;
+                        text-align: start;
                         font-size: 1.4rem;
                         justify-content: left;
                     }
@@ -157,6 +169,16 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--font-color-primary);
                 padding: 1px 10px;
                 opacity: 0.6;
+            }
+
+            button{
+                background-color: transparent;
+                border: none;
+                padding: 0;
+                margin: 0;
+                outline: none;
+                cursor: pointer;
+                width: 100%;
             }
         }
     }
@@ -191,12 +213,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     align-items: center;
 
                     .image-wrapper {
-                        .image {
-                        }
+                        .image {}
+
                         image.shrink {}
+
                         .overlay-bar {
-                            .features {
-                            }
+                            .features {}
                         }
                     }
 
@@ -208,10 +230,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                         margin: 0;
                     }
                 }
+
                 ul {
                     margin-top: 10px;
                     padding-left: 20px;
                 }
+
                 li {
                     text-align: justify;
                     font-size: 1.2rem !important;
@@ -219,13 +243,16 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
             }
         }
+
         .separator {
             margin: 15px auto;
             width: 80%;
         }
+
         h5 {
             font-size: 2rem !important;
         }
+
         h2 {
             font-size: 1.2rem !important;
         }
@@ -236,18 +263,21 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 @media only screen and (max-width: 500px) {
     .container {
         padding: 20px !important;
+
         .up-page {
             .text-group {
                 .title1 {
                     margin-left: 10px !important;
 
                 }
+
                 .description {
                     margin-left: 10px !important;
                     font-size: 2.2rem !important;
                 }
             }
         }
+
         .down-page {
             height: 75% !important;
             display: flex;
@@ -257,36 +287,40 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             gap: 20px;
             padding-top: 25px;
             justify-self: center;
+
             .all-card {
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 30px;
                 height: 550px;
                 width: 100% !important;
+
                 .top {
                     .image-wrapper {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         position: relative;
-                        .shrink {
-                        }
+                        .shrink {}
                         .overlay-bar {
-                            .features {
-                            }
+                            .features {}
                         }
                     }
+
                     .card-name {
                         margin: 0;
                     }
+
                     .position {
                         margin: 0;
                     }
                 }
+
                 ul {
                     margin-top: 10px;
                     padding-left: 20px;
                 }
+
                 li {
                     text-align: justify;
                     font-size: 1.2rem !important;
@@ -294,12 +328,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
             }
         }
+
         .separator {
             width: 80%;
         }
+
         h5 {
             font-size: 2rem !important;
         }
+
         h2 {
             font-size: 1.2rem !important;
         }
