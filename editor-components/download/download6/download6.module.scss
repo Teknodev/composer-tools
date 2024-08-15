@@ -13,10 +13,12 @@
 
   .max-content {
     max-width: var(--composer-content-width);
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
+    height: 100%;
 
     .left-column {
       flex-direction: column;
@@ -78,6 +80,7 @@
 
     .right-column {
       width: 25%;
+      height: 100%;
 
       .image {
         width: 100%;

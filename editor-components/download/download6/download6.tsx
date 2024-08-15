@@ -114,13 +114,13 @@ class Download6 extends BaseDownload {
         <div className={this.decorateCSS("max-content")}>
           {isLeftColumnVisible && (
             <div className={this.decorateCSS("left-column")}>
-              {leftcolumn.title && (
+              {this.castToString(leftcolumn.title) && (
                 <h1 className={this.decorateCSS("title")}>
                   {leftcolumn.title}
                 </h1>
               )}
 
-              {leftcolumn.description && (
+              {this.castToString(leftcolumn.description) && (
                 <h3 className={this.decorateCSS("description")}>
                   {leftcolumn.description}
                 </h3>
