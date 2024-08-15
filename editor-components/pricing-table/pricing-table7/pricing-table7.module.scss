@@ -284,6 +284,14 @@
               background-color: transparent;
               font-size: 1.4rem;
             }
+
+          }
+          .button-active {
+            background-color: var(--composer-secondary-color);
+            border-color: var(--composer-secondary-color);
+            border-style: solid;
+            border-width: 1px;
+            color: var(--composer-font-color-secondary);
           }
         }
       }

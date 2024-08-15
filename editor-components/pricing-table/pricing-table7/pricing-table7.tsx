@@ -3,10 +3,6 @@ import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { Margin } from "@mui/icons-material";
-import { useState, useEffect } from 'react';
-import { number } from "yup";
-
 
 type PricingItem = {
   itemText: string;
@@ -54,7 +50,7 @@ class PricingTable7 extends BasePricingTable {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "FLEXİBLE PRİCİNG OPTİONS"
+      value: "FLEXIBLE PRICING OPTIONS"
     });
     this.addProp({
       type: "string",
@@ -957,17 +953,40 @@ class PricingTable7 extends BasePricingTable {
   }
 
 
-  render() {
+  togglePlanType() {
+    const currentPlanType = this.getComponentState("plan_type");
+    const newPlanType = currentPlanType === "monthly-plans" ? "yearly-plans" : "monthly-plans";
+    this.setComponentState("plan_type", newPlanType);
+  }
 
+  renderDurationItems() {
     const planType = this.getComponentState("plan_type");
-    const monthly_plans: MonthlyPlan[] = this.castToObject<any>("monthly_plans");
-    const yearly_plans: YearlyPlan[] = this.castToObject<any>("yearly_plans");
-
-
     const monthlyText = this.getPropValue("text", { as_string: true });
     const yearlyText = this.getPropValue("text1", { as_string: true });
     const durationIcon = this.getPropValue("icon");
     const plansDiscountText = this.getPropValue("text2");
+
+    return (
+      <div className={this.decorateCSS("duration-items")}>
+        <span className={this.decorateCSS("text")}>{monthlyText}</span>
+        <div className={this.decorateCSS("switch")} onClick={this.togglePlanType.bind(this)}>
+          <input className={this.decorateCSS("input")} type="checkbox" checked={planType === "yearly-plans"} />
+          <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
+        </div>
+        <span className={this.decorateCSS("text1")}>{yearlyText}</span>
+        <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+        <span className={this.decorateCSS("text2")}>{plansDiscountText}</span>
+      </div>
+    );
+  }
+
+
+  render() {
+    const planType = this.getComponentState("plan_type");
+    const monthly_plans = this.castToObject<MonthlyPlan[]>("monthly_plans");
+    const yearly_plans = this.castToObject<YearlyPlan[]>("yearly_plans");
+    const monthlyText = this.getPropValue("text", { as_string: true });
+    const yearlyText = this.getPropValue("text1", { as_string: true });
     const subtitle = this.getPropValue("subtitle", { as_string: true });
     const title = this.getPropValue("title", { as_string: true });
     const description = this.getPropValue("description", { as_string: true });
@@ -987,31 +1006,15 @@ class PricingTable7 extends BasePricingTable {
             {subtitle && <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>}
             {title && <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>}
             {description && <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>}
-            {shouldRenderIconAndDiscount &&
-              (
-                <div className={this.decorateCSS("duration-items")}>
-                  <>
-                    <span className={this.decorateCSS("text")}>{this.getPropValue("text")}</span>
-                    <div className={this.decorateCSS("switch")} onClick={() => this.setComponentState("plan_type", (this.getComponentState("plan_type") == "monthly-plans") ? "yearly-plans" : "monthly-plans")}>
-                      <input className={this.decorateCSS("input")} type="checkbox" checked={planType == "yearly-plans"} />
-                      <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
-                    </div>
-                    <span className={this.decorateCSS("text1")}>{this.getPropValue("text1")}</span>
-                    <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                    <span className={this.decorateCSS("text2")}>{plansDiscountText}</span>
-                  </>
-                </div>
-              )
-            }
+            {shouldRenderIconAndDiscount && this.renderDurationItems()}
           </div>
           <div className={this.decorateCSS("card")}>
             {(planType === "monthly-plans" ? monthly_plans : yearly_plans).map((pricing: any, index: number) => {
               return (
-                <div className={this.decorateCSS("card-item-count")} style={{ 
+                <div className={this.decorateCSS("card-item-count")} style={{
                   width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`, //350px
-                  //width: 90 / this.getPropValue("itemCount") + "%"  //333px
-                  }}>
-                  
+                }}>
+
                   <div key={index} className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")} && 
                   ${pricing.isHoverActive ? this.decorateCSS("price-hover") : ""}
                   }`}>
@@ -1037,7 +1040,7 @@ class PricingTable7 extends BasePricingTable {
                     {this.castToString(pricing.promoText) && <span className={this.decorateCSS("promoText")}>{pricing.promoText}</span>}
                     {[pricing.promoText, pricing.price, pricing.duration].some(this.castToString) && (
                       <>
-                        <hr style={{ margin: 'none' }} />
+                        <hr style={{ margin: 'none' }} className="divider" />
                       </>
                     )}
 
@@ -1057,18 +1060,7 @@ class PricingTable7 extends BasePricingTable {
                     {this.castToString(pricing.buttonText) &&
                       <ComposerLink path={pricing.link}>
                         <span
-                          className={this.decorateCSS("button")}
-                          style={
-                            pricing.isActive
-                              ? {
-                                backgroundColor: 'var(--composer-secondary-color)',
-                                borderColor: 'var(--composer-secondary-color)',
-                                borderStyle: 'solid',
-                                borderWidth: '1px',
-                                color: 'var(--composer-font-color-secondary)',
-                              }
-                              : {}
-                          }
+                          className={`${this.decorateCSS("button")} ${pricing.isActive ? this.decorateCSS("button-active") : ""}`}
                         >
                           {this.castToString(pricing.buttonText)}
                         </span>
