@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 20px 0;
   background-color: var(--composer-html-background);
 
   .max-content {
@@ -8,17 +8,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    margin: 0 auto;
 
     .stats-container {
       width: 80%;
       min-height: 400px;
-      padding: 2em;
+      padding: 0 2em;
 
       .upper-container {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         gap: 30px;
 
         .upper-container-main {
@@ -27,26 +27,9 @@
           .main-description {
             color: var(--composer-font-color-primary);
             font-size: 2.8em;
+            width: 70%;
             margin-top: 0;
             font-weight: 600;
-          }
-
-          .main-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            .title-line {
-              display: inline-block;
-              width: 25px;
-              height: 2px;
-              background-color: var(--composer-primary-color);
-            }
-
-            .title {
-              text-transform: uppercase;
-              color: var(--composer-primary-color);
-            }
           }
         }
 
@@ -55,12 +38,16 @@
           color: var(--composer-font-color-primary);
 
           .faq-item {
-
+            &:has(.faq-item-content.show-faq-item) {
+              .faq-item-header {
+                border-bottom: 1px solid transparent;
+              }
+            }
             .faq-item-header {
-              display: flex !important;
-              justify-content: space-between !important;
-              align-items: center !important;
-              border-bottom: 1px solid var(--composer-primary-color) !important;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              border-bottom: 1px solid var(--composer-primary-color);
 
               h3 {
                 font-size: 1.4em;
@@ -78,14 +65,18 @@
             .faq-item-content {
               overflow: hidden;
               max-height: 0;
-              transition: max-height 500ms ease-out;
+              transition: 200ms;
               font-size: 1.3em;
-              margin: 10px 0 0 0;
+              margin: 0;
+              opacity: 0;
+              border-bottom: 1px solid transparent;
             }
 
             .faq-item-content.show-faq-item {
               max-height: 400px;
-              transition: max-height 500ms ease-in;
+              border-bottom: 1px solid var(--composer-primary-color);
+              padding: 10px 0 20px 0;
+              opacity: 0.7;
             }
           }
         }
@@ -103,8 +94,15 @@
           overflow: hidden;
           min-width: 0;
 
+          .stat-line {
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+            width: 100%;
+            height: 1px;
+            margin-bottom: 10px;
+          }
+
           .stat-item-title {
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
             font-size: 1.5em;
             margin-bottom: 15px;
             margin-top: 0;
@@ -120,8 +118,9 @@
           }
 
           .stat-item-stat-value {
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
             margin-top: 0;
+            margin-bottom: 0;
             font-size: 3em;
             font-weight: 600;
 
@@ -135,9 +134,31 @@
   }
 }
 
+.main-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .title-line {
+    display: inline-block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--composer-primary-color);
+  }
+
+  .title {
+    text-transform: uppercase;
+    color: var(--composer-primary-color);
+  }
+}
+
 @media only screen and (max-width: 968px) {
   .container .max-content {
     flex-direction: column;
+  }
+
+  .main-description {
+    width: 100% !important;
   }
 
   .container .max-content .stats-container .upper-container {
@@ -161,10 +182,10 @@
 @media only screen and (max-width: 500px) {
   .container .max-content .stats-container .stats {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 30px;
   }
 
   .max-content .stats-container {
-    width: 100%;
+    width: 100% !important;
   }
 }
