@@ -7,10 +7,12 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 type LeftCol = {
   title: JSX.Element;
   description: JSX.Element;
-  button: {
-    button_text: JSX.Element;
-    link: string;
-  };
+};
+
+type Button = {
+  button_text: JSX.Element;
+  link: string;
+  icon: string;
 };
 
 type RightCol = {
@@ -39,6 +41,14 @@ class Download6 extends BaseDownload {
           value:
             "Packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
         },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
         {
           type: "object",
           key: "button",
@@ -56,16 +66,15 @@ class Download6 extends BaseDownload {
               displayer: "Button Link",
               value: "",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Button Icon",
+              value: "IoIosArrowRoundForward",
+            },
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "icon",
-      displayer: "icon",
-      value: "IoIosArrowRoundForward",
     });
 
     this.addProp({
@@ -90,19 +99,13 @@ class Download6 extends BaseDownload {
 
   render() {
     const leftcolumn = this.castToObject<LeftCol>("left-column");
-
     const rightcolumn = this.castToObject<RightCol>("right-column");
-
-    const icon: string = this.getPropValue("icon");
+    const buttons = this.castToObject<Button[]>("buttons");
 
     const isLeftColumnVisible =
-      leftcolumn &&
-      (this.castToString(leftcolumn.title) ||
-        this.castToString(leftcolumn.description) ||
-        leftcolumn.button);
-
-    const isButtonEmpty =
-      icon || this.castToString(leftcolumn.button.button_text);
+      this.castToString(leftcolumn.title) ||
+      this.castToString(leftcolumn.description) ||
+      buttons?.length > 0;
 
     const isRightColumnVisible = rightcolumn.image;
 
@@ -123,30 +126,42 @@ class Download6 extends BaseDownload {
                 </h3>
               )}
 
-              {isButtonEmpty && (
-                <ComposerLink
-                  path={leftcolumn.button.link}
-                  isFullWidth={true}
-                  className={this.decorateCSS("button")}
-                >
-                  <div className={this.decorateCSS("button-container")}>
-                    <button className={this.decorateCSS("button")}>
-                      {leftcolumn.button.button_text && (
-                        <div className={this.decorateCSS("button_text")}>
-                          {leftcolumn.button.button_text}
-                        </div>
-                      )}
-                      {icon && (
-                        <ComposerIcon
-                          name={icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                          }}
-                        />
-                      )}
-                    </button>
-                  </div>
-                </ComposerLink>
+              {buttons?.length > 0 && (
+                <div className={this.decorateCSS("buttons-container")}>
+                  {buttons.map((button: Button, index: number) => {
+                    const buttonTextExist = this.castToString(
+                      button.button_text,
+                    );
+
+                    const buttonExist = button.icon || buttonTextExist;
+
+                    if (buttonExist)
+                      return (
+                        <ComposerLink
+                          key={index}
+                          path={button.link}
+                          isFullWidth={false}
+                        >
+                          <button className={this.decorateCSS("button")}>
+                            {buttonTextExist && (
+                              <div className={this.decorateCSS("button_text")}>
+                                {button.button_text}
+                              </div>
+                            )}
+                            {button.icon && (
+                              <ComposerIcon
+                                name={button.icon}
+                                propsIcon={{
+                                  className: this.decorateCSS("icon"),
+                                }}
+                              />
+                            )}
+                          </button>
+                        </ComposerLink>
+                      );
+                    return null;
+                  })}
+                </div>
               )}
             </div>
           )}
