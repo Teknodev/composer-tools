@@ -140,7 +140,9 @@
       justify-content: center;
       place-self: center;
       gap: 30px;
+      height: 100%;
       .card-item-count {
+        height: 100%;
         display: flex;
         justify-content: center;
         .price-hover:hover {
@@ -301,6 +303,8 @@
 
 @media only screen and (max-width: 768px) {
   .container {
+    padding: 0;
+    padding-top: 25px;
     .max-content {
       align-items: center;
       flex-direction: column;

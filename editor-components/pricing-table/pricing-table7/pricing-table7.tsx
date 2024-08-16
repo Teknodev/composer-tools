@@ -74,7 +74,7 @@ class PricingTable7 extends BasePricingTable {
       type: "icon",
       key: "icon",
       displayer: "Plan's Icon",
-      value: "HiArrowDownLeft"  //HiArrowDownLeft
+      value: "HiArrowDownLeft"
     });
     this.addProp({
       type: "string",
@@ -82,6 +82,13 @@ class PricingTable7 extends BasePricingTable {
       displayer: "Plan's Discount",
       value: "(Save 20%)",
     });
+    this.addProp({
+      type: "boolean",
+      key: "isHoverActive",
+      displayer: "Hover Activation",
+      value: true,
+    });
+
     this.addProp(
       {
         type: "array",
@@ -154,12 +161,7 @@ class PricingTable7 extends BasePricingTable {
                 displayer: "Button Link",
                 value: "",
               },
-              {
-                type: "boolean",
-                key: "isHoverActive",
-                displayer: "Hover Activation",
-                value: true,
-              },
+
               {
                 type: "array",
                 key: "item",
@@ -276,12 +278,6 @@ class PricingTable7 extends BasePricingTable {
                 key: "link",
                 displayer: "Button Link",
                 value: "",
-              },
-              {
-                type: "boolean",
-                key: "isHoverActive",
-                displayer: "Hover Activation",
-                value: true,
               },
               {
                 type: "array",
@@ -416,12 +412,6 @@ class PricingTable7 extends BasePricingTable {
                 key: "link",
                 displayer: "Button Link",
                 value: "",
-              },
-              {
-                type: "boolean",
-                key: "isHoverActive",
-                displayer: "Hover Activation",
-                value: true,
               },
               {
                 type: "array",
@@ -585,12 +575,6 @@ class PricingTable7 extends BasePricingTable {
                 value: "",
               },
               {
-                type: "boolean",
-                key: "isHoverActive",
-                displayer: "Hover Activation",
-                value: true,
-              },
-              {
                 type: "array",
                 key: "item",
                 displayer: "Feature List",
@@ -702,12 +686,6 @@ class PricingTable7 extends BasePricingTable {
                 key: "link",
                 displayer: "Button Link",
                 value: "",
-              },
-              {
-                type: "boolean",
-                key: "isHoverActive",
-                displayer: "Hover Activation",
-                value: true,
               },
               {
                 type: "array",
@@ -840,12 +818,6 @@ class PricingTable7 extends BasePricingTable {
                 key: "link",
                 displayer: "Button Link",
                 value: "",
-              },
-              {
-                type: "boolean",
-                key: "isHoverActive",
-                displayer: "Hover Activation",
-                value: true,
               },
               {
                 type: "array",
@@ -990,6 +962,7 @@ class PricingTable7 extends BasePricingTable {
     const subtitle = this.getPropValue("subtitle", { as_string: true });
     const title = this.getPropValue("title", { as_string: true });
     const description = this.getPropValue("description", { as_string: true });
+    const isHoverActive = this.getPropValue("isHoverActive", {as_string: true});
 
     const badgeColors = [
       'var(--composer-primary-color)',
@@ -997,7 +970,7 @@ class PricingTable7 extends BasePricingTable {
       'var(--composer-tertiary-color)',
     ];
 
-    const shouldRenderIconAndDiscount = monthlyText || yearlyText;
+    const shouldRenderIconAndDiscount = monthlyText && yearlyText;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -1012,12 +985,13 @@ class PricingTable7 extends BasePricingTable {
             {(planType === "monthly-plans" ? monthly_plans : yearly_plans).map((pricing: any, index: number) => {
               return (
                 <div className={this.decorateCSS("card-item-count")} style={{
-                  width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`, //350px
+                  width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`,
                 }}>
 
                   <div key={index} className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")} && 
-                  ${pricing.isHoverActive ? this.decorateCSS("price-hover") : ""}
+                  ${isHoverActive ? this.decorateCSS("price-hover") : ""}
                   }`}>
+                  
                     {this.castToString(pricing.popular_settings.text) && pricing.isActive && (
                       <div className={`${this.decorateCSS("popular-box")} ${this.decorateCSS("active")}`}>
                         <span className={this.decorateCSS("popular-text")}>{pricing.popular_settings.text}</span>
