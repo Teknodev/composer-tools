@@ -2,18 +2,20 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 type IMessages = {
   title: JSX.Element;
-  description?: JSX.Element ;
+  description?: JSX.Element;
   icon?: string;
   backgroundColor: string;
 };
 
 type FirstItemType = {
-  title:JSX.Element;
-  button:JSX.Element;
-  backgroundImage:string;
-}
+  title: JSX.Element;
+  button: JSX.Element;
+  backgroundImage: string;
+  overlay: boolean;
+};
 
 class Feature12 extends BaseFeature {
   constructor(props?: any) {
@@ -33,7 +35,7 @@ class Feature12 extends BaseFeature {
     this.addProp({
       type: "string",
       key: "titleBackingText",
-      displayer: "Title Backing Text",
+      displayer: "Behind the Title",
       value: "services",
     });
     this.addProp({
@@ -57,7 +59,14 @@ class Feature12 extends BaseFeature {
           type: "image",
           key: "backgroundImage",
           displayer: "Background Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a356692f8a5b002ce695ac?alt=media",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a356692f8a5b002ce695ac?alt=media",
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Blur Overlay",
+          value: true,
         },
       ],
     });
@@ -89,12 +98,6 @@ class Feature12 extends BaseFeature {
               displayer: "Icon",
               value: "PiPaintBucketFill",
             },
-            {
-              type: "color",
-              key: "backgroundColor",
-              displayer: "Background Color",
-              value: "#181b21",
-            },
           ],
         },
         {
@@ -119,12 +122,6 @@ class Feature12 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               value: "IoPhonePortrait",
-            },
-            {
-              type: "color",
-              key: "backgroundColor",
-              displayer: "Background Color",
-              value: "#1a1e25",
             },
           ],
         },
@@ -151,12 +148,6 @@ class Feature12 extends BaseFeature {
               displayer: "Icon",
               value: "HiPresentationChartLine",
             },
-            {
-              type: "color",
-              key: "backgroundColor",
-              displayer: "Background Color",
-              value: "#20242c",
-            },
           ],
         },
       ],
@@ -167,7 +158,7 @@ class Feature12 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
-      max:4
+      max: 4,
     });
   }
 
@@ -176,87 +167,112 @@ class Feature12 extends BaseFeature {
   }
 
   render() {
+    const upperTitleExist = this.getPropValue("upperTitle", {
+      as_string: true,
+    });
+    const titleExist = this.getPropValue("title", { as_string: true });
+    const titleBackingTextExist = this.getPropValue("titleBackingText", {
+      as_string: true,
+    });
+
     const upperTitle = this.getPropValue("upperTitle");
     const title = this.getPropValue("title");
     const titleBackingText = this.getPropValue("titleBackingText");
+
     const itemCount = this.getPropValue("itemCount");
+
     const messageCards = this.castToObject<IMessages[]>("messageCard");
     const firstItem = this.castToObject<FirstItemType>("message");
-    const firstCardTitle = this.castToString(firstItem.title);
-    const buttonText =this.castToString(firstItem.button);
+
+    const firstCardTitleExist = this.castToString(firstItem.title);
+    const buttonTextExist = this.castToString(firstItem.button);
+
     const backgroundImage = firstItem.backgroundImage;
-   
+    const overlay = firstItem.overlay;
+
     return (
       <div className={this.decorateCSS("container")}>
-        {upperTitle&&
-        <div className={this.decorateCSS("upper-title")}>
-          {upperTitle}
-        </div>
-  }
-      {titleBackingText&&
-        <div className={this.decorateCSS("shadow-header-title")}>
-          {titleBackingText}
-        </div>
-  }
-      {title&&
-        <div className={this.decorateCSS("header-title")}>
-          {title}
-        </div>
-  }
+        <header className={this.decorateCSS("header")}>
+          {upperTitleExist && (
+            <div className={this.decorateCSS("upper-title")}>{upperTitle}</div>
+          )}
+          {titleBackingTextExist && (
+            <div className={this.decorateCSS("shadow-header-title")}>
+              {titleBackingText}
+            </div>
+          )}
+          {titleExist && (
+            <div className={this.decorateCSS("header-title")}>{title}</div>
+          )}
+        </header>
         <div className={this.decorateCSS("max-content")}>
-          
           <div className={this.decorateCSS("content")}>
-            {(firstCardTitle || buttonText ) &&
+            {(firstCardTitleExist || buttonTextExist) && (
               <div
                 className={this.decorateCSS("card-item-first")}
                 style={{
                   width: `${100 / itemCount}%`,
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)), url(${backgroundImage})`,
-                 
+                  backgroundImage: `${overlay ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%))," : ""} url(${backgroundImage})`,
                 }}
               >
-                <div className={this.decorateCSS("blurry-background")}></div>
-                <h3 className={this.decorateCSS("title")}>{firstCardTitle}</h3>
-                <button className={this.decorateCSS("button")}>
-                  {buttonText}
-                </button>
+                {firstCardTitleExist && (
+                  <h3 className={this.decorateCSS("title")}>
+                    {firstItem.title}
+                  </h3>
+                )}
+                {buttonTextExist && (
+                  <button className={this.decorateCSS("button")}>
+                    {firstItem.button}
+                  </button>
+                )}
               </div>
-              }
-  
-           
+            )}
 
-            {messageCards.map((message: IMessages, index: number) => {
-              const shouldRender = this.castToString(message.description) || this.castToString(message.title);
-                if(!shouldRender)
-                  return null;
+            {messageCards?.length > 0 &&
+              messageCards.map((message: IMessages, index: number) => {
+                const descExist = this.castToString(message.description);
+                const titleExist = this.castToString(message.title);
+
+                const shouldRender = descExist || titleExist;
+
+                if (!shouldRender) return null;
                 else
-                return (
-                 
-                  <div
-                    className={`
-                      ${this.decorateCSS("card-item-count")}
-                      ${this.decorateCSS(`card-item-${index % 3}`)}
-                    `}
-                    style={{
-                      width: `${100 / itemCount}%`,
-                      
-                      backgroundColor: message.backgroundColor,
-                    }}
-                    key={index}
-                  >
-                    <div className={this.decorateCSS("message")}>
-                      <div className={this.decorateCSS("Icon")}>
-                        <ComposerIcon propsIcon={{ className: this.decorateCSS("Icon") }} name={message.icon} />
-                      </div>
-                      <h3 className={this.decorateCSS("title")}>{message.title}</h3>
-                      <p className={this.decorateCSS("long-text")}>{message.description}</p>
+                  return (
+                    <div
+                      className={this.decorateCSS("card-item-count")}
+                      style={{
+                        width: `${100 / itemCount}%`,
+                        backgroundColor: `color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) ${10 + (index % (itemCount - 1)) * 5}%)`,
+                      }}
+                      key={index}
+                    >
+                      {(message.icon || titleExist || descExist) && (
+                        <div className={this.decorateCSS("message")}>
+                          {message.icon && (
+                            <div className={this.decorateCSS("Icon")}>
+                              <ComposerIcon
+                                propsIcon={{
+                                  className: this.decorateCSS("Icon"),
+                                }}
+                                name={message.icon}
+                              />
+                            </div>
+                          )}
+                          {titleExist && (
+                            <h3 className={this.decorateCSS("title")}>
+                              {message.title}
+                            </h3>
+                          )}
+                          {descExist && (
+                            <p className={this.decorateCSS("long-text")}>
+                              {message.description}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
-                  </div>
-                  
-                  
-                );
-             
-            })}
+                  );
+              })}
           </div>
         </div>
       </div>
