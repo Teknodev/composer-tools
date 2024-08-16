@@ -554,15 +554,15 @@ class Team6 extends Team {
                           onClick={() => handleButton(indexItems)}
                           className="image-button"
                         >
-                          {this.getComponentState("activeIndex") === indexItems
+                          {card.features.length > 0 && (this.getComponentState("activeIndex") === indexItems
                             ?
                             (<ComposerIcon name={"IoRemoveCircleOutline"} propsIcon={{ className: this.decorateCSS("image-icon") }} />)
                             :
-                            (<ComposerIcon name={"IoAddCircleOutline"} propsIcon={{ className: this.decorateCSS("image-icon") }} />)
+                            (<ComposerIcon name={"IoAddCircleOutline"} propsIcon={{ className: this.decorateCSS("image-icon") }} />))
                           }
                           {card.image && (
                             <img
-                              className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems ? this.decorateCSS("shrink") : ""}`}
+                              className={`${this.decorateCSS("image")} ${(this.getComponentState("activeIndex") === indexItems && card.features.length > 0) ? this.decorateCSS("shrink") : ""}`}
                               src={card.image}
                               alt={this.castToString(card.name)}
                             />

@@ -5,7 +5,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     width: 100%;
     padding: 50px;
     background-color: var(--composer-html-background);
-
+    height: auto;
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -59,11 +59,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 width: 100%;
 
                 .all-card {
-                    height: 550px;
-                    margin-bottom: 70px;
+                    height: 100%;
+                    //margin-bottom: 70px;
 
                     .top {
-                        height: 650px;
+                        height: 100%;
                         overflow: hidden;
 
                         .image-wrapper {
@@ -78,7 +78,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                               right: 5px;
                               z-index: 1;
                               font-size: 24px;
-                              color: var(--font-color-primary);
+                              color: var(--composer-font-color-primary);
                               opacity: 0.6;
                             }
 
@@ -206,21 +206,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .all-card {
                 width: 48% !important;
-                margin: 40px 0px;
+                //margin: 40px 0px;
 
                 .top {
                     justify-content: center;
                     align-items: center;
-
-                    .image-wrapper {
-                        .image {}
-
-                        image.shrink {}
-
-                        .overlay-bar {
-                            .features {}
-                        }
-                    }
 
                     .card-name {
                         margin: 0;
@@ -291,7 +281,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .all-card {
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 30px;
+                //margin-bottom: 30px;
                 height: 550px;
                 width: 100% !important;
 
@@ -301,10 +291,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                         height: 100%;
                         object-fit: cover;
                         position: relative;
-                        .shrink {}
-                        .overlay-bar {
-                            .features {}
-                        }
+
                     }
 
                     .card-name {
