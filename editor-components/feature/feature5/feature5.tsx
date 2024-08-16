@@ -48,15 +48,14 @@ class Feature5 extends BaseFeature {
       value: [
         {
           type: "object",
-          key: "left_item",
+          key: "first_item",
           displayer: "Description and Link",
           value: [
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "Newspaper is not only convenient to use, but it also uses very low resources and loads extremely fast. Welcome to the future!",
+              value: "Newspaper is not only convenient to use, but it also uses very low resources and loads extremely fast. Welcome to the future!",
             },
             {
               type: "string",
@@ -67,15 +66,15 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "link",
+              displayer: "Link",
               value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "right_item",
-          displayer: "Title and Image",
+          key: "second_item",
+          displayer: "Description and Link",
           value: [
             {
               type: "string",
@@ -84,22 +83,36 @@ class Feature5 extends BaseFeature {
               value: "Don't Let Your Summer Hard Work Go to Waste",
             },
             {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "third_item",
+          displayer: "Additional Content",
+          value: [
+            {
               type: "image",
               key: "image",
-              displayer: "Right Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2a22f8a5b002ce6c03e?alt=media",
+              displayer: "Additional Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2a22f8a5b002ce6c03e?alt=media",
             },
             {
               type: "page",
               key: "link",
-              displayer: "link",
+              displayer: "Link",
               value: "",
             },
           ],
         },
       ],
     });
+
+
 
     this.addProp({
       type: "object",
@@ -200,17 +213,21 @@ class Feature5 extends BaseFeature {
       link: string;
     }>("row1");
     const row2 = this.castToObject<{
-      left_item: {
+      first_item: {
         description: JSX.Element;
         button_text: JSX.Element;
         link: string;
       };
-      right_item: {
+      second_item: {
         text: JSX.Element;
+        link: string;
+      };
+      third_item: {
         image: string;
         link: string;
       };
     }>("row2");
+
 
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
@@ -231,19 +248,29 @@ class Feature5 extends BaseFeature {
     }>("row3");
 
     const isRow1Visible = row1.left_image || this.castToString(row1.title);
-    const isRow2LeftItemVisible =
-      this.castToString(row2.left_item.description) ||
-      this.castToString(row2.left_item.button_text) ||
-      row2.left_item.link;
-    const isRow2RightItemVisible =
-      row2.right_item.image ||
-      this.castToString(row2.right_item.text) ||
-      row2.right_item.link;
-    const isRow2Visible = isRow2LeftItemVisible || isRow2RightItemVisible;
+
+    const isFirstColumnVisible =
+      this.castToString(row2.first_item.description) ||
+      this.castToString(row2.first_item.button_text) ||
+      row2.first_item.link;
+    const isSecondColumnVisible = this.castToString(row2.second_item.text)
+    const isThirdColumnVisible = row2.third_item.image
+    const isFirstItemExist = (this.castToString(row2.first_item.description) ||
+      this.castToString(row2.first_item.button_text))
+    const isSecondItemExist = this.castToString(row2.second_item.text)
+    const isThirdItemExist = row2.third_item.image
+    const row2Status = (!isFirstItemExist || !isSecondItemExist || !isThirdItemExist)
+    const isRow2Visible =
+      isFirstColumnVisible || isSecondColumnVisible || isThirdColumnVisible;
+
     const isRow3Visible =
       row3.image_and_subtitle_1.image ||
       row3.image_and_subtitle_2.image ||
       row3.image_and_subtitle_3.image;
+    const isFirstImageExist = row3.image_and_subtitle_1.image
+    const isSecondImageExist = row3.image_and_subtitle_2.image
+    const isThirdImageExist = row3.image_and_subtitle_3.image;
+    const row3Status = (!isFirstImageExist || !isSecondImageExist || !isThirdImageExist)
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -257,60 +284,90 @@ class Feature5 extends BaseFeature {
             <ComposerLink path={row1.link} isFullWidth={true}>
               <div className={this.decorateCSS("row1")}>
                 {row1.left_image && (
-                  <img
-                    className={this.decorateCSS("left-image")}
+                  (<img
+                    className={`${this.decorateCSS("left-image")} 
+                    ${!this.castToString(row1.title) &&
+                      this.decorateCSS("row1-image-only")}`}
                     src={row1.left_image}
-                  />
+                  />)
                 )}
                 {this.castToString(row1.title) && (
-                  <h1 className={this.decorateCSS("title")}>{row1.title}</h1>
+                  <h1 className={`${this.decorateCSS("title")} ${!row1.left_image &&
+                    this.decorateCSS("row1-title-only")} 
+                        }`}>
+                    {row1.title}
+                  </h1>
                 )}
               </div>
             </ComposerLink>
           )}
 
           {isRow2Visible && (
-            <div className={this.decorateCSS("row2")}>
-              {isRow2LeftItemVisible && (
-                <div className={this.decorateCSS("left")}>
-                  {this.castToString(row2.left_item.description) && (
+            <div
+              className={`${this.decorateCSS("row2")} ${row2Status &&
+                this.decorateCSS("row2-items-less")
+                }`}
+            >
+              {isFirstColumnVisible && (
+                <div
+                  className={`${this.decorateCSS("first")} ${row2Status &&
+                    this.decorateCSS("row2-items-less")
+                    }`}
+                >
+                  {this.castToString(row2.first_item.description) && (
                     <span className={this.decorateCSS("description")}>
-                      {row2.left_item.description}
+                      {row2.first_item.description}
                     </span>
                   )}
-                  {this.castToString(row2.left_item.button_text) && (
+                  {this.castToString(row2.first_item.button_text) && (
                     <span className={this.decorateCSS("button-text")}>
-                      <ComposerLink path={row2.left_item.link}>
-                        {this.castToString(row2.left_item.button_text)}
+                      <ComposerLink path={row2.first_item.link}>
+                        {this.castToString(row2.first_item.button_text)}
                       </ComposerLink>
                     </span>
                   )}
                 </div>
               )}
-              {isRow2RightItemVisible && (
-                <div className={this.decorateCSS("right")}>
-                  <ComposerLink path={row2.right_item.link} isFullWidth={true}>
-                    <div className={this.decorateCSS("right-content")}>
-                      {this.castToString(row2.right_item.text) && (
-                        <span className={this.decorateCSS("text")}>
-                          {row2.right_item.text}
-                        </span>
-                      )}
-                      {row2.right_item.image && (
-                        <img
-                          className={this.decorateCSS("image")}
-                          src={row2.right_item.image}
-                        />
-                      )}
-                    </div>
-                  </ComposerLink>
+              {isSecondColumnVisible && (
+                <div
+                  className={`${this.decorateCSS("second")} ${row2Status &&
+                    this.decorateCSS("row2-items-less")
+                    }`}
+                >
+                  {this.castToString(row2.second_item.text) && (
+                    <span className={this.decorateCSS("text")}>
+                      <ComposerLink path={row2.second_item.link}>
+                        {this.castToString(row2.second_item.text)}
+                      </ComposerLink>
+                    </span>
+                  )}
+                </div>
+              )}
+              {isThirdColumnVisible && (
+                <div
+                  className={`${this.decorateCSS("third")} ${row2Status &&
+                    this.decorateCSS("row2-items-less")
+                    }`}
+                >
+                  {row2.third_item.image && (
+                    <ComposerLink path={row2.third_item.link}>
+                      <img
+                        className={`${this.decorateCSS("image")} ${row2Status &&
+                          this.decorateCSS("row2-items-less")
+                          }`}
+                        src={row2.third_item.image}
+                        alt="Third Column Image"
+                      />
+                    </ComposerLink>
+                  )}
                 </div>
               )}
             </div>
           )}
-
           {isRow3Visible && (
-            <div className={this.decorateCSS("row3")}>
+            <div className={this.decorateCSS("row3")}
+            >
+
               {row3.image_and_subtitle_1.image && (
                 <ComposerLink
                   path={row3.image_and_subtitle_1.link}
@@ -318,7 +375,9 @@ class Feature5 extends BaseFeature {
                 >
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
                     <img
-                      className={this.decorateCSS("image")}
+                      className={`${this.decorateCSS("image")} 
+                      ${row3Status && this.decorateCSS("row3-images-less")}
+                      `}
                       src={row3.image_and_subtitle_1.image}
                     />
                     {this.castToString(row3.image_and_subtitle_1.sub_title) && (
@@ -336,7 +395,9 @@ class Feature5 extends BaseFeature {
                 >
                   <div className={this.decorateCSS("image_and_subtitle_2")}>
                     <img
-                      className={this.decorateCSS("image")}
+                      className={`${this.decorateCSS("image")} 
+                      ${row3Status && this.decorateCSS("row3-images-less")}
+                      `}
                       src={row3.image_and_subtitle_2.image}
                     />
                     {this.castToString(row3.image_and_subtitle_2.sub_title) && (
@@ -354,7 +415,9 @@ class Feature5 extends BaseFeature {
                 >
                   <div className={this.decorateCSS("image_and_subtitle_3")}>
                     <img
-                      className={this.decorateCSS("image")}
+                      className={`${this.decorateCSS("image")} 
+                      ${row3Status && this.decorateCSS("row3-images-less")}
+                      `}
                       src={row3.image_and_subtitle_3.image}
                     />
                     {this.castToString(row3.image_and_subtitle_3.sub_title) && (
