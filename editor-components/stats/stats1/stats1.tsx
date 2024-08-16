@@ -3,9 +3,9 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats1.module.scss";
 
 type ICard = {
-  subtitle: string;
-  title: string;
-  description: string;
+  subtitle: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
 };
 
 class Stats1Page extends BaseStats {
@@ -115,23 +115,49 @@ class Stats1Page extends BaseStats {
   }
 
   render() {
+
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescExist = this.castToString(this.getPropValue("description"));
+
+    const cardList = this.castToObject<ICard[]>("card-content");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("stats1-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
-            <div className={this.decorateCSS("bottom-child")}>
-              {this.castToObject<ICard[]>("card-content").map(
-                (cardData: any, indexCard: number) => (
-                  <div key={indexCard} className={this.decorateCSS("card")}>
-                    <h5 className={this.decorateCSS("card-data-subtitle")}>{cardData.subtitle}</h5>
-                    <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
-                    <p className={this.decorateCSS("card-data-description")}>{cardData.description}</p>
-                  </div>
-                )
-              )}
-            </div>
+            {isTitleExist &&
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+            }
+            {isDescExist &&
+              <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
+            }
+            {cardList.length > 0 &&
+              <div className={this.decorateCSS("bottom-child")}>
+                {cardList.map(
+                  (cardData: ICard, indexCard: number) => {
+
+                    const isSubtitleExist = this.castToString(cardData.subtitle);
+                    const isTitleExist = this.castToString(cardData.title);
+                    const isDescExist = this.castToString(cardData.description);
+
+                    if (isSubtitleExist || isTitleExist || isDescExist)
+                      return (
+                        <div key={indexCard} className={this.decorateCSS("card")}>
+                          {isSubtitleExist &&
+                            <h5 className={this.decorateCSS("card-data-subtitle")}>{cardData.subtitle}</h5>
+                          }
+                          {isTitleExist &&
+                            <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
+                          }
+                          {isDescExist &&
+                            <p className={this.decorateCSS("card-data-description")}>{cardData.description}</p>
+                          }
+                        </div>
+                      );
+                  }
+                )}
+              </div>
+            }
           </div>
         </div>
       </div>
