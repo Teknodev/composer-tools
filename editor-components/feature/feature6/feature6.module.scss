@@ -131,6 +131,13 @@
   }
 }
 
+.listed-height-modify {
+  height: 300px;
+}
+.image-shadow-full-height {
+  height: 100%;
+}
+
 @media only screen and (max-width: 768px) {
   .header-title {
     font-size: 4rem !important;

@@ -208,8 +208,10 @@ class Feature6 extends BaseFeature {
                       <ComposerLink isFullWidth={true} path={card.link || ""}>
                         {(card.image || titleExist) && (
                           <div
-                            style={!card.image ? { height: "300px" } : {}}
-                            className={this.decorateCSS("listed")}
+                            className={`
+                              ${this.decorateCSS("listed")}
+                              ${!card.image ? this.decorateCSS("listed-height-modify") : ""}
+                              `}
                           >
                             {card.image && (
                               <img
@@ -219,10 +221,10 @@ class Feature6 extends BaseFeature {
                               />
                             )}
                             <div
-                              style={!card.image ? { height: "100%" } : {}}
                               className={`
                                 ${this.decorateCSS("image-shadow")}
                                 ${overlay ? this.decorateCSS("overlay") : ""}
+                                ${!card.image ? this.decorateCSS("image-shadow-full-height") : ""}
                               `}
                             >
                               {titleExist && (
