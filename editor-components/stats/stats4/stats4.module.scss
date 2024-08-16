@@ -12,7 +12,6 @@
 
     .stats-container {
       width: 80%;
-      min-height: 400px;
       padding: 0 2em;
 
       .upper-container {
@@ -83,16 +82,14 @@
       }
 
       .stats {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        justify-content: space-between;
         gap: 30px;
         margin-top: 40px;
-        min-height: 0;
-        min-width: 0;
+        flex-wrap: wrap;
 
         .stat-item {
-          overflow: hidden;
-          min-width: 0;
+          width: 23%;
 
           .stat-line {
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
@@ -174,18 +171,22 @@
     width: 100%;
   }
 
-  .container .max-content .stats-container .stats {
-    grid-template-columns: repeat(2, 1fr);
+  .stat-item {
+    width: 45% !important;
   }
 }
 
 @media only screen and (max-width: 500px) {
   .container .max-content .stats-container .stats {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 30px;
   }
 
   .max-content .stats-container {
+    width: 100% !important;
+  }
+
+  .stat-item {
     width: 100% !important;
   }
 }

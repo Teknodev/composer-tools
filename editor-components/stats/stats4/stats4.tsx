@@ -248,25 +248,41 @@ class Stats4Page extends BaseStats {
       this.setComponentState(`number-${index}`, 0),
     );
 
-    let x = setInterval(() => {
-      this.castToObject<Stat[]>("statItems").map(
-        (statsData: Stat, index: number) => {
-          let statNumber = this.getComponentState(`number-${index}`);
-          if (statNumber != statsData.stat) {
-            this.setComponentState(
-              `number-${index}`,
-              Math.min(
-                statsData.stat,
-                statNumber +
-                  Math.ceil(
-                    statsData.stat /
-                      Math.round(this.getPropValue("animation-duration") / 30),
-                  ),
-              ) || 0,
-            );
-          }
-        },
+    this.animate();
+  }
+
+  x: NodeJS.Timeout;
+
+  animate() {
+    this.x = setInterval(() => {
+      const cards = this.castToObject<Stat[]>("statItems");
+      cards.map((card: Stat, index: number) => {
+        let statNumber = this.getComponentState(`number-${index}`);
+        if (statNumber !== card.stat) {
+          this.setComponentState(
+            `number-${index}`,
+            Math.min(
+              card.stat,
+              statNumber +
+                Math.ceil(
+                  card.stat /
+                    Math.round(this.getPropValue("animation-duration") / 30),
+                ),
+            ) || 0,
+          );
+        }
+      });
+
+      const stats = cards.map((card: any) =>
+        card.stat === "" ? 0 : card.stat,
       );
+      const numbers = cards.map((_, index) =>
+        this.getComponentState(`number-${index}`),
+      );
+
+      if (JSON.stringify(stats) === JSON.stringify(numbers)) {
+        clearInterval(this.x);
+      }
     }, 30);
   }
 
@@ -388,54 +404,70 @@ class Stats4Page extends BaseStats {
                 )}
               </div>
             )}
-            <section className={this.decorateCSS("stats")}>
-              {stats.map((item: Stat, index: number) => {
-                const titleExist = this.castToString(item.title);
-                const contentExist = this.castToString(item.content);
+            {stats?.length > 0 && (
+              <section className={this.decorateCSS("stats")}>
+                {stats.map((item: Stat, index: number) => {
+                  const titleExist = this.castToString(item.title);
+                  const contentExist = this.castToString(item.content);
 
-                return (
-                  <article
-                    className={this.decorateCSS("stat-item")}
-                    key={index}
-                  >
-                    {(titleExist || contentExist) && (
-                      <>
-                        <div className={this.decorateCSS("stat-item-body")}>
-                          {titleExist && (
-                            <h4 className={this.decorateCSS("stat-item-title")}>
-                              {item.title}
-                            </h4>
-                          )}
-                          {contentExist && (
-                            <p
-                              className={this.decorateCSS("stat-item-content")}
-                            >
-                              {item.content}
-                            </p>
-                          )}
-                        </div>
-                        <div className={this.decorateCSS("stat-line")} />
-                      </>
-                    )}
-                    {item.stat && (
-                      <h3 className={this.decorateCSS("stat-item-stat-value")}>
-                        {this.getComponentState(`number-${index}`)}
-                        {statIcon && (
-                          <span className={this.decorateCSS("stat-value-icon")}>
-                            <ComposerIcon
-                              propsIcon={{
-                                className: this.decorateCSS("stat-icon"),
-                              }}
-                              name={statIcon}
-                            />
-                          </span>
+                  if (titleExist || contentExist || item.stat)
+                    return (
+                      <article
+                        className={this.decorateCSS("stat-item")}
+                        key={index}
+                      >
+                        {(titleExist || contentExist) && (
+                          <>
+                            <div className={this.decorateCSS("stat-item-body")}>
+                              {titleExist && (
+                                <h4
+                                  className={this.decorateCSS(
+                                    "stat-item-title",
+                                  )}
+                                >
+                                  {item.title}
+                                </h4>
+                              )}
+                              {contentExist && (
+                                <p
+                                  className={this.decorateCSS(
+                                    "stat-item-content",
+                                  )}
+                                >
+                                  {item.content}
+                                </p>
+                              )}
+                            </div>
+                            <div className={this.decorateCSS("stat-line")} />
+                          </>
                         )}
-                      </h3>
-                    )}
-                  </article>
-                );
-              })}
-            </section>
+                        {item.stat && (
+                          <h3
+                            className={this.decorateCSS("stat-item-stat-value")}
+                          >
+                            {this.getComponentState(`number-${index}`)
+                              ? this.getComponentState(`number-${index}`)
+                              : item.stat}
+                            {statIcon && (
+                              <span
+                                className={this.decorateCSS("stat-value-icon")}
+                              >
+                                <ComposerIcon
+                                  propsIcon={{
+                                    className: this.decorateCSS("stat-icon"),
+                                  }}
+                                  name={statIcon}
+                                />
+                              </span>
+                            )}
+                          </h3>
+                        )}
+                      </article>
+                    );
+                  return null;
+                })}
+              </section>
+            )}
           </div>
         </div>
       </div>
