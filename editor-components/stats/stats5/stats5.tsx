@@ -2,22 +2,18 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats5.module.scss";
 
-type CardData = {
-  CardTitle: number;
-  CardDescription: string;
+type Card = {
+  stat: number;
+  title: JSX.Element;
 };
 
 class Stats5Page extends BaseStats {
-  private intervalId: NodeJS.Timeout | null = null;
-  private prevCardCount: number = 0;
-
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
       type: "array",
-      key: "cardContent",
-      displayer: "Card Content",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
@@ -26,14 +22,14 @@ class Stats5Page extends BaseStats {
           value: [
             {
               type: "number",
-              key: "CardTitle",
-              displayer: "Title",
+              key: "stat",
+              displayer: "Stat",
               value: 98,
             },
             {
               type: "string",
-              key: "CardDescription",
-              displayer: "CardDescription",
+              key: "title",
+              displayer: "Title",
               value: "Services",
             },
           ],
@@ -45,14 +41,14 @@ class Stats5Page extends BaseStats {
           value: [
             {
               type: "number",
-              key: "CardTitle",
-              displayer: "Title",
+              key: "stat",
+              displayer: "Stat",
               value: 65,
             },
             {
               type: "string",
-              key: "CardDescription",
-              displayer: "CardDescription",
+              key: "title",
+              displayer: "Title",
               value: "Technicians",
             },
           ],
@@ -64,14 +60,14 @@ class Stats5Page extends BaseStats {
           value: [
             {
               type: "number",
-              key: "CardTitle",
-              displayer: "Title",
+              key: "stat",
+              displayer: "Stat",
               value: 7,
             },
             {
               type: "string",
-              key: "CardDescription",
-              displayer: "CardDescription",
+              key: "title",
+              displayer: "Title",
               value: "Days a Week",
             },
           ],
@@ -83,14 +79,14 @@ class Stats5Page extends BaseStats {
           value: [
             {
               type: "number",
-              key: "CardTitle",
-              displayer: "Title",
+              key: "stat",
+              displayer: "Stat",
               value: 10,
             },
             {
               type: "string",
-              key: "CardDescription",
-              displayer: "CardDescription",
+              key: "title",
+              displayer: "Title",
               value: "Offices",
             },
           ],
@@ -113,80 +109,54 @@ class Stats5Page extends BaseStats {
       max: 4,
     });
 
-    this.castToObject<CardData[]>("cardContent").map((statsData, index) =>
-      this.setComponentState(`number-${index}`, 0)
+    this.castToObject<Card[]>("cards").map((statsData, index) =>
+      this.setComponentState(`number-${index}`, 0),
     );
 
-    this.initializeCardStates();
-
-    this.startAnimation();
-  }
-
-  initializeCardStates() {
-    this.prevCardCount = this.castToObject<CardData[]>("cardContent").length;
-    this.castToObject<CardData[]>("cardContent").forEach((statsData, index) => {
-      this.setComponentState(`number-${index}`, 0);
-    });
-  }
-
-  componentDidUpdate(prevProps: any) {
-    const currentCardCount =
-      this.castToObject<CardData[]>("cardContent").length;
-    if (currentCardCount !== this.prevCardCount) {
-      this.initializeCardStates();
-      this.restartAnimation();
-    }
-  }
-
-  restartAnimation() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-    this.startAnimation();
-  }
-
-  startAnimation() {
-    this.intervalId = setInterval(() => {
-      let allCompleted = true;
-      this.castToObject<CardData[]>("cardContent").forEach(
-        (statsData: CardData, index: number) => {
-          let statNumber = this.getComponentState(`number-${index}`);
-          if (statNumber !== statsData.CardTitle) {
-            allCompleted = false;
-            this.setComponentState(
-              `number-${index}`,
-              Math.min(
-                statsData.CardTitle,
-                statNumber +
-                  Math.ceil(
-                    statsData.CardTitle /
-                      Math.round(this.getPropValue("animation-duration") / 30)
-                  )
-              ) || 0
-            );
-          }
-        }
-      );
-
-      if (allCompleted && this.intervalId) {
-        clearInterval(this.intervalId);
-        this.intervalId = null;
-      }
-    }, 30);
-  }
-
-  componentWillUnmount() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    this.animate();
   }
 
   getName(): string {
     return "Stats 5";
   }
+  x: NodeJS.Timeout;
+
+  animate() {
+    const cards = this.castToObject<Card[]>("cards");
+
+    this.x = setInterval(() => {
+      cards.map((card: Card, index: number) => {
+        let statNumber = this.getComponentState(`number-${index}`);
+        if (statNumber !== card.stat) {
+          this.setComponentState(
+            `number-${index}`,
+            Math.min(
+              card.stat,
+              statNumber +
+                Math.ceil(
+                  card.stat /
+                    Math.round(this.getPropValue("animation-duration") / 30),
+                ),
+            ) || 0,
+          );
+        }
+      });
+
+      const stats = cards.map((card: any) =>
+        card.stat === "" ? 0 : card.stat,
+      );
+      const numbers = cards.map((_, index) =>
+        this.getComponentState(`number-${index}`),
+      );
+
+      if (JSON.stringify(stats) === JSON.stringify(numbers)) {
+        clearInterval(this.x);
+      }
+    }, 30);
+  }
 
   getCardClasses(index: number, itemCountInRow: number) {
-    const totalCards = this.castToObject<CardData[]>("cardContent").length;
+    const totalCards = this.castToObject<Card[]>("cards").length;
     const isLastInRow =
       (index + 1) % itemCountInRow === 0 || index === totalCards - 1;
 
@@ -195,33 +165,47 @@ class Stats5Page extends BaseStats {
 
   render() {
     const itemCountInRow = this.getPropValue("itemCountInRow");
-    const hasCard = this.castToObject<CardData[]>("cardContent").length > 0;
+
+    const cards = this.castToObject<Card[]>("cards");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {hasCard && (
+          {cards?.length > 0 && (
             <div className={this.decorateCSS("bottom-child")}>
-              {this.castToObject<CardData[]>("cardContent").map(
-                (data: CardData, index: number) => (
-                  <div
-                    key={index}
-                    className={`${this.decorateCSS(
-                      "card"
-                    )} ${this.getCardClasses(index, itemCountInRow)}`}
-                    style={{
-                      width: 90 / itemCountInRow + "%",
-                    }}
-                  >
-                    <h4 className={this.decorateCSS("card-data-title")}>
-                      {this.getComponentState(`number-${index}`)}
-                    </h4>
-                    <p className={this.decorateCSS("card-data-description")}>
-                      {data.CardDescription}
-                    </p>
-                  </div>
-                )
-              )}
+              {cards.map((data: Card, index: number) => {
+                const titleExist = this.castToString(data.title);
+
+                if (titleExist || data.stat)
+                  return (
+                    <div
+                      key={index}
+                      className={`
+                        ${this.decorateCSS("card")}
+                        ${this.getCardClasses(index, itemCountInRow)}
+                      `}
+                      style={{
+                        width: 90 / itemCountInRow + "%",
+                      }}
+                    >
+                      {data.stat && (
+                        <h4 className={this.decorateCSS("card-data-title")}>
+                          {this.getComponentState(`number-${index}`)
+                            ? this.getComponentState(`number-${index}`)
+                            : data.stat}
+                        </h4>
+                      )}
+                      {titleExist && (
+                        <p
+                          className={this.decorateCSS("card-data-description")}
+                        >
+                          {data.title}
+                        </p>
+                      )}
+                    </div>
+                  );
+                return null;
+              })}
             </div>
           )}
         </div>
