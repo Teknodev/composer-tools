@@ -11,7 +11,7 @@
 
 .container {
   width: 100%;
-  padding: 50px 20px; 
+  padding: 50px; 
   background-color: var(--composer-html-background);
 }
 
@@ -26,12 +26,15 @@
   justify-content: space-between;
   display: flex;
   margin: 0 auto;
+  width: 100%;
+gap: 100px;
 }
+
+
 
 .image {
   width: 350px;
   height: 500px;
-  margin-top: 50px;
   margin-bottom: -150px;
   border-radius: 6px;
   object-fit: cover;
@@ -43,8 +46,6 @@
 }
 
 .call-to-action7 {
-  padding: 30px;
-  margin-left: 25px;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
@@ -54,61 +55,78 @@
 }
 
 .title {
+  width: 85%;
   margin: 0;
   font-size: 5em;
   font-weight: bolder;
   color: var(--composer-font-color-primary);
   margin-bottom: 20px;
-  max-width: 50%;
   word-wrap: break-word;
 }
 
 .input-button-wrapper {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: nowrap;
 }
 
+.input-div{
+  width: 60%;
+}
+
 .input {
+
   background-color: var(--composer-html-background);
   border: 1px solid var(--composer-secondary-color);
   border-radius: 5px;
-  padding: 18px;
+  padding: 20px;
   outline: none;
   transition: border-color 0.3s ease;
-  height: 55px;
   font-size: 1.5rem;
-  width: 400px;
+  width: 100%;
   color: var(--composer-font-color-primary);
+
+  &:focus::placeholder{
+    color: var(--composer-font-color-primary);
+    font-size: 1.5rem;
+  }
 }
 
-input:focus::placeholder,
-input:not(:placeholder-shown)::placeholder {
-  color: var(--composer-font-color-primary);
-  font-size: 1.5rem;
-}
 
+.button-container{
+  width: 45%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
 .button {
+  width: 100%;
+  height: auto;
   cursor: pointer;
-  text-decoration: none;
-  text-align: center;
   transition: 0.3s;
   display: block;
   color: var(--composer-font-color-secondary);
   background-color: var(--composer-secondary-color);
-  padding: 15px 70px;
   border-radius: 6px;
   border: 1px solid transparent;
+
+  
+}
+
+.buttonText{
+  display: flex;
+  align-items: center;
+  padding: 20px ;
+  white-space: nowrap;
   font-size: 1.5rem;
   font-weight: 500;
-  height: 55px;
-  white-space: nowrap;
-  max-width: 300px;
-  height: auto;
-  overflow: hidden;
-  text-wrap: balance;
-  word-wrap: break-word;  
+  text-decoration: none;
+  text-align: center;
+  overflow: hidden !important;
+  text-wrap: wrap !important;
+  word-wrap: break-word !important;  
 }
 
 .button:hover {
@@ -127,16 +145,22 @@ input:not(:placeholder-shown)::placeholder {
     padding: 10px;
     margin-top: 25px;
     margin-left: 0px;
+    width: 100%;
+  }
+
+  .title{
+    width: 100%;
   }
 
   .call-to-action7-container {
     flex-direction: column !important;
     align-items: center;
     text-align: center;
+    gap: 25px;
   }
 
   .call-to-action7 .title {
-    font-size: 3em;
+    font-size: 2.5rem;
     font-weight: bolder;
     margin-bottom: 15px;
     order: -3;
@@ -152,31 +176,49 @@ input:not(:placeholder-shown)::placeholder {
     width: 100%;
   }
 
+  .input-div{
+    width: 100%;
+  }
   .input {
     order: -2;
     margin-bottom: 10px;
     width: 100%;
+    height: auto;
     padding: 16px;
     font-size: 1.5rem;
-    height: 65px;
+
+    &::placeholder{
+      font-size: 1rem;
+    }
   }
 
+
   .button-container {
+    display: flex;
+    justify-content: center;
     order: 1;
     margin-top: 5px;
     width: 100%;
   }
 
   .button {
+    justify-content: center;
+    display: flex;
+    align-items: center;
     font-size: 1.5rem !important;
-    padding: 12px;
     width: 100%;
-    height: 55px;
+    height: auto;
+  }
+  .buttonText{
+    padding: 15px;
+    font-size: 1.3rem;
   }
 
+  .image-div{
+    width: 100%;
+  }
   .image {
     order: 2;
-    margin-top: 50px;
     margin-bottom: -125px;
     width: 250px !important;
     height: 400px;
@@ -196,16 +238,20 @@ input:not(:placeholder-shown)::placeholder {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 20px;
   }
 
   .call-to-action7 {
+    display: inline-block;
     margin-left: 15px;
     margin-bottom: 75px;
     align-items: center;
     text-align: center;
+    width: 60%;
   }
 
   .call-to-action7 .title {
+    width: 90%;
     text-align: left;
     font-size: 3em;
     margin-bottom: 20px;
@@ -213,29 +259,38 @@ input:not(:placeholder-shown)::placeholder {
   }
 
   .input-button-wrapper {
+    flex-direction: column;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 10px;
     flex-wrap: nowrap;
   }
 
+  .input-div{
+    width: 100%;
+  }
   .input {
-    width: 150px;
+    width: 100%;
     height: 60px;
     padding: 14px;
     font-size: 1.5rem;
   }
 
   .button-container {
-    
-    width: 70%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .button {
+  .button{
+    width: 100%;
+    height: auto;
+  }
+
+  .buttonText {
     font-size: 1.5rem !important;
-    padding: 16px 50px;
-    width: 70%;
-    height: 60px;
     white-space: nowrap;
     text-align: center !important;
   }
