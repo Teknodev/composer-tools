@@ -109,7 +109,7 @@ class Stats5Page extends BaseStats {
       max: 4,
     });
 
-    this.castToObject<Card[]>("cards").map((statsData, index) =>
+    this.castToObject<Card[]>("cards").map((card, index) =>
       this.setComponentState(`number-${index}`, 0),
     );
 
@@ -119,12 +119,12 @@ class Stats5Page extends BaseStats {
   getName(): string {
     return "Stats 5";
   }
+
   x: NodeJS.Timeout;
 
   animate() {
-    const cards = this.castToObject<Card[]>("cards");
-
     this.x = setInterval(() => {
+      const cards = this.castToObject<Card[]>("cards");
       cards.map((card: Card, index: number) => {
         let statNumber = this.getComponentState(`number-${index}`);
         if (statNumber !== card.stat) {
