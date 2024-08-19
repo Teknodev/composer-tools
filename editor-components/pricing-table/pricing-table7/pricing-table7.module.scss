@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 50px;
   background: var(--composer-html-background);
 
   .max-content {
@@ -134,17 +134,18 @@
     }
 
     .card {
-      
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       place-self: center;
       gap: 30px;
       height: 100%;
+
       .card-item-count {
         height: 100%;
         display: flex;
         justify-content: center;
+
         .price-hover:hover {
           box-shadow: 0 10px 30px rgba(var(--composer-font-color-primary-rgb), 0.2);
           transform: translateY(-10px);
@@ -159,7 +160,6 @@
           height: max-content;
           padding: 20px;
           flex: 1 1;
-          max-width: 350px;
           position: relative;
 
           .popular-box {
@@ -288,6 +288,7 @@
             }
 
           }
+
           .button-active {
             background-color: var(--composer-secondary-color);
             border-color: var(--composer-secondary-color);
@@ -305,6 +306,7 @@
   .container {
     padding: 0;
     padding-top: 25px;
+
     .max-content {
       align-items: center;
       flex-direction: column;
@@ -356,12 +358,14 @@
         }
       }
 
-      .card-item-count {
-        min-width: 100%;
+      .card {
+        .card-item-count {
+          min-width: 100%;
 
-        .price {
-          margin: 30px 30px;
+          .price {
+            margin: 30px 30px;
 
+          }
         }
       }
     }
