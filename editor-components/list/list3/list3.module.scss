@@ -1,92 +1,108 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  background-color: var(--composer-html-background);
+  padding: 25px 0;
 
   .max-content {
     max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
+    margin: 0 auto;
+  }
 
-    .icon-list {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--composer-tertiary-color);
-      border-top: 5px solid var(--composer-primary-color);
-      border-radius: 6px;
-      min-width: 250px;
-      min-height: 100px;
-      flex: 1 1;
-      padding: 20px;
+  .row {
+    display: grid;
+  }
 
-      .title {
-        display: block;
-        font-weight: bold;
-        padding: 0;
-        margin: 0 0 5px 0;
-        color: var(--composer-primary-color);
-      }
-      hr {
-        display: block;
-        width: 100%;
-        max-width: 180px;
-        margin: 0 0 12px 0;
-        border: 1px solid var(--composer-primary-color);
-        padding: 0;
-      }
-      .list-group {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        
-        .list-item {
-          display: flex;
-          cursor: pointer;
-          align-items: center;
-          color: black;
-          background-color: white;
-          transition: all 0.5s;
-          border-radius: 6px;
-          border-left: 3px solid var(--composer-primary-color);
-          min-height: 70px;
-          &:hover {
-            box-shadow: var(--composer-box-shadow);
-            img {
-              margin-right: 10px;
-            }
-          }
-          img {
-            transition: all 0.5s;
-            padding: 5px;
-            margin-right: 15px;
-            width: 70px;
-            height: 70px;
-          }
-          .item-value {
-            margin-top: 11px;
-          }
-        }
+  .first {
+    padding: 40px;
+    color: var(--composer-font-color-primary);
+    border: 1px solid var(--composer-primary-color);
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      opacity: 0.8;
+    }
+
+    .button {
+      background-color: transparent;
+      color: var(--composer-font-color-primary);
+      border: 1px solid var(--composer-primary-color);
+      padding: 12px 24px;
+      font-size: 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
       }
     }
   }
+
+  .card {
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    color: var(--composer-font-color-primary);
+    border: 1px solid var(--composer-primary-color);
+
+    &:not(.first):hover {
+      background-color: var(--composer-primary-color);
+      color: var(--composer-font-color-secondary);
+      .spanItem {
+        background-color: var(--composer-font-color-secondary);
+      }
+    }
+    .card-content{
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      
+      .itemTitle {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 0px;
+      }
+  
+      .itemText {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        opacity: 0.8;
+      }
+  
+      .spanItem {
+        display: block;
+        height: 1px;
+        background-color: var(--composer-primary-color);
+        margin: 10px 0;
+      }
+    }
+      .index {
+        position: absolute;
+        font-size: 11rem;
+        -webkit-text-stroke-width: 1px;
+        letter-spacing: -5px;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        bottom: -70px;
+           
+    }
+
+
+  }
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .container {
-    padding: 50px 20px;
-    .max-content{
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      .card{
-        width: 100% !important;
-      }
+    .row {
+      grid-template-columns: 1fr !important;
     }
   }
 }
