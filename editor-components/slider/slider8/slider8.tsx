@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import * as React from "react";
-import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseSlider } from "../../EditorComponent";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider8.module.scss";
@@ -9,35 +9,25 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   image: string;
+  backgroundImage: string;
+  imagetitle: JSX.Element;
   url: string;
-  button: string;
-  imagesubtitle: string;
-  imagetitle: string;
-  imagedescription: string;
 };
 
-interface IAnimationProps {
-  animationState: string;
-  startingAnimation: string;
-  endingAnimation: string;
-} 
+type Button = {
+  buttonText: JSX.Element;
+  url: string;
+  buttonIcon: string;
+};
+
+type ButtonNav = {
+  prevIcon: string;
+  nextIcon: string;
+};
 
 class Slider8 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "icon",
-      key: "prev_icon",
-      displayer: "Prev icon",
-      value: "FaArrowLeftLong",
-    });
-    this.addProp({
-      type: "icon",
-      key: "next_icon",
-      displayer: "Next icon",
-      value: "FaArrowRightLong",
-    });
 
     this.addProp({
       type: "array",
@@ -51,35 +41,29 @@ class Slider8 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
+              key: "imagetitle",
+              displayer: "Image Title",
               value: "The Petronas Twin Towers",
             },
             {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+            {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/facade-modern-building-concept-with-glass-panels-with-straight-lines-by-day-copy-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW PROJECT →",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
             },
           ],
         },
@@ -90,75 +74,29 @@ class Slider8 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
+              key: "imagetitle",
+              displayer: "Image Title",
               value: "Multi-Family Housing",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architecture-3d-rendering-illustration-modern-minimal-house-with-natural-landscape-6.jpg",
-            },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW PROJECT →",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "The Lighthouse",
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW PROJECT →",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
             },
           ],
         },
@@ -169,221 +107,260 @@ class Slider8 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "The Arches",
+              key: "imagetitle",
+              displayer: "Image Title",
+              value: "The Light House",
             },
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "VIEW PROJECT → ",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/architectural-3d-rendering-illustration-modern-minimal-house-with-natural-landscape.jpg",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "Riverside Residence",
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/low-angle-red-geometrical-structure-blue-sky.jpg",
-            },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW PROJECT →",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "imagesubtitle",
-              displayer: "Image Subtitle",
-              value: "Dream House",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
             },
             {
               type: "image",
-              key: "image",
-              displayer: "Image",
+              key: "backgroundImage",
+              displayer: "Background Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/joel-filipe-PkE6yQwE-6Y-unsplash.jpg",
-            },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW PROJECT →",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
             },
           ],
         },
       ],
     });
 
-    this.setComponentState(
-      "prevSlide",
-      this.castToObject<Card[]>("header").length - 1
-    );
-    this.setComponentState("active-index", 0);/* */
-    this.setComponentState("titleAnimationClass", "animate__fadeInUp");
-    //this.setComponentState("activeSlide", 0);
-    //this.setComponentState("nextSlide", 1);
-    this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
-    this.setComponentState("slider-ref", React.createRef());/* */
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "Button",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "VIEW PROJECT",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+            {
+              type: "icon",
+              key: "buttonIcon",
+              displayer: "Button Icon",
+              value: "FaArrowRight",
+            },
+          ],
+        },
+      ],
+      additionalParams: {
+        maxElementCount: 2,
+      },
+    });
 
+    
+    this.addProp({
+      type: "boolean",
+      key: "textAnim",
+      displayer: "Text Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "leftNavButton",
+      displayer: "Left Button",
+      value: "FaArrowLeftLong",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "rightNavButton",
+      displayer: "Right Button",
+      value: "FaArrowRightLong",
+    });
+
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("prevIndex", 0);
+    this.setComponentState("currentIndex", 0);
+    this.setComponentState("titleAnimationClass", "animate__fadeInRight");
+    this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
+    this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
   }
+
   getName(): string {
     return "Slider 8";
   }
 
-  handleAnimationEnd = ({
-    animationState,
-    startingAnimation,
-    endingAnimation,
-  }: IAnimationProps) => {
-    if (this.getComponentState(animationState) === endingAnimation) {
-      this.setComponentState(animationState, startingAnimation);
-    }
-  };
+  changeCurrentSlide(slideIndex: number) {
+    this.setComponentState("prevIndex", this.getComponentState("currentIndex"));
+    this.setComponentState("currentIndex", slideIndex);
+  }
+
   render() {
     const settings = {
       arrows: false,
       dots: true,
       infinite: true,
-      speed: 700,
-      autoplay: false,
+      speed: 1500,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true,
+      dotsClass: this.decorateCSS("dots"),
       beforeChange: (oldIndex: number, newIndex: number) => {
-        if (oldIndex == newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
         this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
         this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
         setTimeout(() => {
-          this.setComponentState("active-index", newIndex);
+          this.changeCurrentSlide(newIndex);
         }, 1200);
+      },
+      afterChange: () => {
+        this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
+        this.setComponentState("titleAnimationClass", "animate__fadeInRight");
+        this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
       }
     };
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("wrapper")}
-          >
+          <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("slider-parent")}>
-              <Slider {...settings} className={this.decorateCSS("carousel")}>
+              <Slider
+                {...settings}
+                className={this.decorateCSS("carousel")}
+                ref={this.getComponentState("slider-ref")}
+              >
                 {this.castToObject<Card[]>("header").map(
-                  (item: Card, index: number) => (
-                    <div
-                      className={this.decorateCSS("slider-inner-div")}
-                      key={`sld-8-${index}`}
-                    >
-                      <div className={this.decorateCSS("content-div")}>
-                        <div className={this.decorateCSS("img-div")}>
-                          <img
-                            alt=""
-                            src={item.image}
-                            className={this.decorateCSS("img")}
-                          />
-                        </div>
-                        <div className={this.decorateCSS("header-page")}>
-                          <h1 className={this.decorateCSS("first-header")}>
-                            {item.imagesubtitle}
-                          </h1>
-                        
-                        </div>
-                        <div className={this.decorateCSS("")}>
-                        <div className={this.decorateCSS("arrows")}>
-                <div
-                  className={this.decorateCSS("prev-arrow")}
-                  onClick={() => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  }}
-                >
-                  <ComposerIcon
-                    name={this.getPropValue("prev_icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS("arrow")}`,
-                      size: 20,
-                    }}
-                  />
-                  <span className={this.decorateCSS("arrow-text")}>
-                    {this.getPropValue("prev-arrow-text")}
-                  </span>
-                </div>
+                  (item: Card, index: number) => {
+                    return (
+                      <div
+                        className={this.decorateCSS("slider-inner-div")}
+                        key={`sld-8-${index}`}
+                      >
+                        <div
+                          className={this.decorateCSS("content")}
+                          style={{
+                            backgroundImage: `url("${item.backgroundImage}")`,
+                          }}
+                        >
+                          <div className={this.decorateCSS("overlay")}></div>
+                          <div className={this.decorateCSS("content-div")}>
+                            <div
+                              className={this.decorateCSS("image")}
+                              style={{ backgroundImage: `url(${item.image})` }}
+                            >
+                              <div
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                                }}
+                              ></div>
+                            </div>
+                            {this.castToString(item.imagetitle) && (
+                              <h3 className={this.getComponentState("titleAnimationClass")}>
+                                {item.imagetitle}
+                              </h3>
+                              
+                            )}
+                            {this.castToObject<Button[]>("buttons").length >
+                              0 && (
+                              <div className={this.decorateCSS("buttons")}>
+                                {this.castToObject<Button[]>("buttons").map(
+                                  (button: Button, index: number) => {
+                                    console.log(
+                                      this.castToString(button.buttonText)
+                                    );
 
-                <div
-                  className={this.decorateCSS("next-arrow")}
-                  onClick={() => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  }}
-                >
-                  <span className={this.decorateCSS("arrow-text")}>
-                    {this.getPropValue("next-arrow-text")}
-                  </span>
-                  <ComposerIcon
-                    name={this.getPropValue("next_icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS("arrow")}`,
-                      size: 20,
-                    }}
-                  />
-                </div>
-              </div>
+                                    if (this.castToString(button.buttonText))
+                                      return (
+                                        <ComposerLink
+                                          key={`dw-7-btn-left-${index}`}
+                                          path={button.url}
+                                        >
+                                          <button
+                                            className={this.decorateCSS(
+                                              "button"
+                                            )}
+                                          >
+                                            {button.buttonText}
+                                            <ComposerIcon
+                                              propsIcon={{
+                                                className:
+                                                  this.decorateCSS(
+                                                    "button-icon"
+                                                  ),
+                                              }}
+                                              name={button.buttonIcon}
+                                            />
+                                          </button>
+                                        </ComposerLink>
+                                      );
+                                  }
+                                )}
+                              </div>
+                            )}
+                            <div className={this.decorateCSS("nav-buttons")}>
+                              {this.getPropValue("leftNavButton") && (
+                                <button
+                                  className={this.decorateCSS("nav-button")}
+                                  onClick={() => {
+                                    this.getComponentState(
+                                      "slider-ref"
+                                    ).current.slickPrev();
+                                  }}
+                                >
+                                  <ComposerIcon
+                                    name={this.getPropValue("leftNavButton")}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("Icon")}`,
+                                      size: 20,
+                                    }}
+                                  />
+                                </button>
+                              )}
+                              {this.getPropValue("rightNavButton") && (
+                                <button
+                                  className={this.decorateCSS("nav-button")}
+                                  onClick={() => {
+                                    this.getComponentState(
+                                      "slider-ref"
+                                    ).current.slickNext();
+                                  }}
+                                >
+                                  <ComposerIcon
+                                    name={this.getPropValue("rightNavButton")}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("Icon")}`,
+                                      size: 20,
+                                    }}
+                                  />
+                                </button>
+                              )}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )
+                    );
+                  }
                 )}
               </Slider>
             </div>
