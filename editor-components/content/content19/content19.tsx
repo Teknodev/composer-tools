@@ -20,17 +20,17 @@ class Content19 extends BaseContent {
       value: "https://www.youtube.com/embed/yB7MtnWmYzI"
     });
     this.addProp({
-      type:"image",
-      key:"video-image",
-      displayer:"Video Image",
-      value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a3a08f2f8a5b002ce6b795?alt=media"
+      type: "image",
+      key: "video-image",
+      displayer: "Video Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a3a08f2f8a5b002ce6b795?alt=media"
     });
-  
+
     this.addProp({
-      type:"icon",
-      key:"play-icon",
-      displayer:"Play Image",
-      value:"AiOutlinePlayCircle"
+      type: "icon",
+      key: "play-icon",
+      displayer: "Play Image",
+      value: "AiOutlinePlayCircle"
     });
     this.addProp({
       type: "string",
@@ -47,10 +47,10 @@ class Content19 extends BaseContent {
 
 
     this.addProp({
-      type:"icon",
-      key:"author-icon",
-      displayer:"Author Icon",
-      value:"BiLogoWhatsapp"
+      type: "icon",
+      key: "author-icon",
+      displayer: "Author Icon",
+      value: "BiLogoWhatsapp"
     });
     this.addProp({
       type: "string",
@@ -92,7 +92,7 @@ class Content19 extends BaseContent {
               value: "",
             },
           ],
-        }, 
+        },
         {
           type: "object",
           key: "button",
@@ -121,7 +121,7 @@ class Content19 extends BaseContent {
   getName(): string {
     return "Content 19";
   }
-  
+
   render() {
     const videoImage = this.getPropValue("video-image");
     const authorIcon = this.getPropValue("author-icon");
@@ -129,7 +129,7 @@ class Content19 extends BaseContent {
     const description = this.getPropValue("description");
     const authorName = this.getPropValue("author-name");
     const authorDescription = this.getPropValue("author-description");
-    const titleText=this.getPropValue("title-text");
+    const titleText = this.getPropValue("title-text");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -155,53 +155,57 @@ class Content19 extends BaseContent {
                 </div>
               </div>
             )}
-            <div className={this.decorateCSS("text-side")}>
-              {this.castToString(titleText) && (
-              <p className={this.decorateCSS("title-text")}>{titleText}</p>
-              )}
-              {this.castToString(description) && (
-                <div className={this.decorateCSS("description-div")}>
-                  <h2 className={this.decorateCSS("description")}>{description}</h2>
-                </div>
-              )}
-              <div className={this.decorateCSS("description-author")}>
-                {authorIcon && (
-                  <div className={this.decorateCSS("author-icon")}>
-                    <ComposerIcon name={authorIcon} propsIcon={{
-                      className: this.decorateCSS("author-icon-photo")
-                    }}></ComposerIcon>
+            {
+              (this.castToString(titleText) || this.castToString(description) || this.castToString(authorDescription) || this.castToString(authorName) || this.castToObject<ButtonProps[]>("buttons").length > 0) && (
+                <div className={this.decorateCSS("text-side")}>
+                  {this.castToString(titleText) && (
+                    <p className={this.decorateCSS("title-text")}>{titleText}</p>
+                  )}
+                  {this.castToString(description) && (
+                    <div className={this.decorateCSS("description-div")}>
+                      <h2 className={this.decorateCSS("description")}>{description}</h2>
+                    </div>
+                  )}
+                  <div className={this.decorateCSS("description-author")}>
+                    {authorIcon && (
+                      <div className={this.decorateCSS("author-icon")}>
+                        <ComposerIcon
+                          name={authorIcon}
+                          propsIcon={{ className: this.decorateCSS("author-icon-photo") }}
+                        />
+                      </div>
+                    )}
+                    <div className={this.decorateCSS("author-info")}>
+                      {this.castToString(authorDescription) && (
+                        <p className={this.decorateCSS("author-description-text")}>
+                          {authorDescription}
+                        </p>
+                      )}
+                      {this.castToString(authorName) && (
+                        <h1 className={this.decorateCSS("author-name-text")}>{authorName}</h1>
+                      )}
+                    </div>
                   </div>
-                )}
-                <div className={this.decorateCSS("author-info")}>
-                  {
-                    this.castToString(authorDescription) && (
-                      <p className={this.decorateCSS("author-description-text")}>{authorDescription}</p>
-                    )
-                  }
-                  {
-                    this.castToString(authorName) && (
-                      <h1 className={this.decorateCSS("author-name-text")}>{authorName}</h1>
-                    )
-                  }
+                  <div className={this.decorateCSS("button-container")}>
+                    {this.castToObject<ButtonProps[]>("buttons").map((buttonObj, index) => {
+                      const buttonData = buttonObj;
+                      const buttonText = this.castToString(buttonData.buttonText);
+                      const url = buttonData.url;
+                      if (buttonText.trim() !== "") {
+                        return (
+                          <ComposerLink key={index} path={url}>
+                            <Button className={this.decorateCSS("button")}>
+                              {buttonText}
+                            </Button>
+                          </ComposerLink>
+                        );
+                      }
+                    })}
+                  </div>
                 </div>
-              </div>
-              <div className={this.decorateCSS("button-container")}>
-                {
-                  this.castToObject<ButtonProps[]>("buttons").map((buttonObj, index) => {
-                    const buttonData = buttonObj;
-                    const buttonText = this.castToString(buttonData.buttonText);
-                    const url =  buttonData.url ;
-                    if (buttonText.trim() !== "") {
-                      return (
-                        <ComposerLink key={index} path={url}>
-                          <Button className={this.decorateCSS("button")}>{buttonText}</Button>
-                        </ComposerLink>
-                      );
-                    }
-                  })
-                }
-              </div>
-            </div>
+              )
+            }
+
           </div>
           {this.getComponentState("is_video_visible") && (
             <div className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
