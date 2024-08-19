@@ -31,7 +31,7 @@ class Content15 extends BaseContent {
       key: "image",
       displayer: "Right Image",
       value:
-        "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/virtual-tour-img.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bb45bd2970002c6287e4?alt=media&timestamp=1719564173697",
     });
     this.addProp({
       type: "array",

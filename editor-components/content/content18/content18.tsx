@@ -16,14 +16,14 @@ class Content18 extends BaseContent {
       key: "image1",
       displayer: "1st Image",
       value:
-        "https://www.verywellmind.com/thmb/aNigsYshgeBFgbu1_DsvnNsYEHs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1368615203-4c27e5cf53214c59b5243fffe2cb7f24.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890e?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "image",
       key: "image2",
       displayer: "2st Image",
       value:
-        "https://www.greatlakespsychologygroup.com/wp-content/uploads/2020/08/glpg-great-lakes-psychology-group-counseling-therapy-therapist-benefits-prepare.png",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890f?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "string",

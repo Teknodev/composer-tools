@@ -71,7 +71,7 @@ class Stats3Page extends BaseStats {
       key: "backgroundImage",
       displayer: "Card Background Image",
       value:
-        "https://c.files.bbci.co.uk/6422/production/_97143652_b864328e-3368-4f03-bb44-996ddfd7e7f2.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ced0bd2970002c6298e9?alt=media&timestamp=1719584962578",
     });
     this.addProp({
       type: "array",

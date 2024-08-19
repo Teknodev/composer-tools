@@ -25,7 +25,7 @@ class Content7 extends BaseContent {
       key: "cover-image",
       displayer: "Background Image",
       value:
-        "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjZ8fGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c62866f?alt=media&timestamp=1719561551671",
     });
     this.addProp({
       type: "string",
@@ -91,7 +91,7 @@ class Content7 extends BaseContent {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
-              value: "https://demo.archiwp.com/multipurpose-dark/wp-content/uploads/sites/15/2018/06/1b.jpg"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c628671?alt=media&timestamp=1719561551671"
             },
             {
               type: "string",
@@ -103,7 +103,7 @@ class Content7 extends BaseContent {
               type: "image",
               key: "foregroundImage",
               displayer: "Foreground Image",
-              value: "https://demo.archiwp.com/multipurpose-dark/wp-content/uploads/sites/15/2018/06/1a.jpg"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c628670?alt=media&timestamp=1719561551671"
             },
             {
               type: "string",

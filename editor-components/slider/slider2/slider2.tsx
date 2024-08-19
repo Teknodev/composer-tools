@@ -44,7 +44,7 @@ class Slider2 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://images.pexels.com/photos/17941220/pexels-photo-17941220/free-photo-of-elbe-philharmonic-hall.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294dd?alt=media&timestamp=1719584962578",
             },
             {
               type: "string",
@@ -75,7 +75,7 @@ class Slider2 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "http://clapat.ro/themes/grenada-wordpress/wp-content/uploads/2018/10/07hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294e0?alt=media&timestamp=1719584962578",
             },
             {
               type: "string",
@@ -106,7 +106,7 @@ class Slider2 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://images.pexels.com/photos/20317614/pexels-photo-20317614/free-photo-of-farol-cabo-da-roca.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294de?alt=media&timestamp=1719584962578",
             },
             {
               type: "string",
@@ -137,7 +137,7 @@ class Slider2 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "http://clapat.ro/themes/grenada-wordpress/wp-content/uploads/2018/10/04hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294df?alt=media&timestamp=1719584962578",
             },
             {
               type: "string",
