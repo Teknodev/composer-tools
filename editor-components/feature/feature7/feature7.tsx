@@ -9,6 +9,12 @@ type Feature = {
   iconFeature: string;
 };
 
+type Link = {
+  linkText: string;
+  iconLink: string;
+  url: string;
+}
+
 class Feature7 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
@@ -109,17 +115,36 @@ class Feature7 extends BaseFeature {
     });
 
     this.addProp({
-      type: "string",
-      key: "linkText",
-      displayer: "Link Text",
-      value: "Want to learn more? Click here",
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "iconLink",
-      displayer: "Icon",
-      value: "FaArrowRight",
+      type: "array",
+      key: "links",
+      displayer: "Links",
+      value: [
+        {
+          type: "object",
+          key: "link",
+          displayer: "link",
+          value: [
+            {
+              type: "string",
+              key: "linkText",
+              displayer: "Link Text",
+              value: "Want to learn more? Click here",
+            },
+            {
+              type: "icon",
+              key: "iconLink",
+              displayer: "Icon",
+              value: "FaArrowRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            }
+          ],
+        },
+      ],
     });
   }
 
@@ -132,15 +157,12 @@ class Feature7 extends BaseFeature {
     const hasMainTitle = this.castToString(this.getPropValue("mainTitle"));
     const hasdescription = this.castToString(this.getPropValue("description"));
     const hasFeatures = this.getPropValue("features");
-    const hasLinkText = this.castToString(this.getPropValue("linkText"));
-    const hasIconLink = this.getPropValue("iconLink");
+    const hasLinks = this.getPropValue("links");
     const hasTextContent =
       hasTitle ||
       hasMainTitle ||
       hasdescription ||
-      hasFeatures ||
-      hasLinkText ||
-      hasIconLink;
+      hasLinks || hasFeatures;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -170,7 +192,7 @@ class Feature7 extends BaseFeature {
                   {this.getPropValue("description")}
                 </p>
               )}
-              {hasFeatures && (
+              {hasFeatures.lenght > 0 && (
                 <ul className={this.decorateCSS("featuresList")}>
                   {this.castToObject<Feature[]>("features").map(
                     (feature: Feature, index: number) => (
@@ -193,25 +215,33 @@ class Feature7 extends BaseFeature {
                   )}
                 </ul>
               )}
-              {(hasLinkText || hasIconLink) && (
-                <ComposerLink
-                  path={this.getPropValue("linkText")}
-                >
-                  <div className={this.decorateCSS("linkContainer")}>
-                    {hasLinkText && (
-                      <span className={this.decorateCSS("linkText")}>
-                        {this.getPropValue("linkText")}
-                      </span>
-                    )}
 
-                    {hasIconLink && (
-                      <ComposerIcon
-                        name={this.getPropValue("iconLink")}
-                        propsIcon={{ className: this.decorateCSS("iconLink") }}
-                      />
-                    )}
-                  </div>
-                </ComposerLink>
+              {hasLinks.length > 0 && (
+                <ul className={this.decorateCSS("linkList")}>
+                  {this.castToObject<Link[]>("links").map(
+                    (link: Link, index: number) => (
+                      <div className={this.decorateCSS("linkContainer")}>
+                        <li key={index} className={this.decorateCSS("link")}>
+                          {link.linkText && (
+                            <ComposerLink path={link.url}>
+                                <span className={this.decorateCSS("linkText")}>
+                                  {link.linkText}
+                                </span>
+                            </ComposerLink>
+                          )}
+                          {link.iconLink && (
+                            <ComposerIcon
+                              name={link.iconLink}
+                              propsIcon={{
+                                className: this.decorateCSS("iconLink"),
+                              }}
+                            />
+                          )}
+                        </li>
+                      </div>
+                    )
+                  )}
+                </ul>
               )}
             </div>
           )}
