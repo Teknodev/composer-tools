@@ -1,8 +1,11 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
-import styles from "./slider10.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styles from "./slider10.module.scss";
 
 type SliderItem = {
   title: JSX.Element;
@@ -20,6 +23,14 @@ type FeaturedItem = {
 class Slider10 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
       key: "slider-items",
@@ -43,12 +54,6 @@ class Slider10 extends BaseSlider {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb8f6ba6bbe002b645872?alt=media",
             },
-            {
-              type: "number",
-              key: "index",
-              displayer: "Layer",
-              value: 5,
-            },
           ],
         },
         {
@@ -68,12 +73,6 @@ class Slider10 extends BaseSlider {
               displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb90fba6bbe002b64588b?alt=media",
-            },
-            {
-              type: "number",
-              key: "index",
-              displayer: "Layer",
-              value: 4,
             },
           ],
         },
@@ -95,12 +94,6 @@ class Slider10 extends BaseSlider {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb921ba6bbe002b645896?alt=media",
             },
-            {
-              type: "number",
-              key: "index",
-              displayer: "Layer",
-              value: 3,
-            },
           ],
         },
         {
@@ -120,12 +113,6 @@ class Slider10 extends BaseSlider {
               displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb92dba6bbe002b6458a2?alt=media",
-            },
-            {
-              type: "number",
-              key: "index",
-              displayer: "Layer",
-              value: 2,
             },
           ],
         },
@@ -147,12 +134,6 @@ class Slider10 extends BaseSlider {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb939ba6bbe002b6458b4?alt=media",
             },
-            {
-              type: "number",
-              key: "index",
-              displayer: "Layer",
-              value: 1,
-            },
           ],
         },
         {
@@ -173,122 +154,114 @@ class Slider10 extends BaseSlider {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb949ba6bbe002b6458c8?alt=media",
             },
-            {
-              type: "number",
-              key: "index",
-              displayer: "Layer",
-              value: 0,
-            },
           ],
         },
       ],
     });
 
-    const sliderItemsCopy = this.castToObject<SliderItem[]>("slider-items").map(
-      (item: SliderItem) => {
-        return {
-          title: this.castToString(item.title),
-          image: item.image,
-          index: item.index,
-        };
-      }
-    );
-    this.setComponentState("slider-items-temp", sliderItemsCopy);
-    this.setComponentState("slider-items", sliderItemsCopy);
-
     this.addProp({
-      type: "object",
-      key: "first-featured-item",
-      displayer: "First Featured Item",
+      type: "array",
+      key: "featured-items",
+      displayer: "Featured Items",
+      additionalParams: {
+        maxElementCount: 3,
+      },
       value: [
         {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Multi-Family Housing",
+          type: "object",
+          key: "featured-item",
+          displayer: "Featured Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Multi-Family Housing",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "The Oaks",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb8f6ba6bbe002b645872?alt=media",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
         },
         {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "The Oaks",
+          type: "object",
+          key: "featured-item",
+          displayer: "Featured Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "The Arches",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Modern House",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb90fba6bbe002b64588b?alt=media",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
         },
         {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb8f6ba6bbe002b645872?alt=media",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "second-featured-item",
-      displayer: "Second Featured Item",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "The Arches",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Modern House",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb90fba6bbe002b64588b?alt=media",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "third-featured-item",
-      displayer: "Third Featured Item",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Dream House",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Modern Farmhouse",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb921ba6bbe002b645896?alt=media",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
+          type: "object",
+          key: "featured-item",
+          displayer: "Featured Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Dream House",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Modern Farmhouse",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb921ba6bbe002b645896?alt=media",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
+            },
+          ],
         },
       ],
     });
@@ -305,307 +278,213 @@ class Slider10 extends BaseSlider {
       displayer: "Next Slide Button",
       value: "FaArrowRight",
     });
+
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active", 0);
   }
 
   getName(): string {
     return "Slider 10";
   }
 
-  sliderNext = () => {
-    const sliderItems = this.getComponentState("slider-items");
-    const updatedItems = sliderItems.map((item: SliderItem) => {
-      const isLast = item.index === sliderItems.length - 1;
-      return {
-        ...item,
-        index: isLast ? 0 : item.index + 1,
-      };
-    });
-    this.setComponentState("slider-items", updatedItems);
-  };
-
-  sliderPrev = () => {
-    const sliderItems = this.getComponentState("slider-items");
-    const updatedItems = sliderItems.map((item: SliderItem) => {
-      const isFirst = item.index === 0;
-      return {
-        ...item,
-        index: isFirst ? sliderItems.length - 1 : item.index - 1,
-      };
-    });
-    this.setComponentState("slider-items", updatedItems);
-  };
-
   render() {
-    const sliderItems = this.castToObject<SliderItem[]>("slider-items");
+    const settings = {
+      dots: false,
+      arrows: false,
+      infinite: true,
+      autoplay: true,
+      speed: 1500,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      fade: true,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("active", next);
+      },
+    };
 
-    const temp = this.getComponentState("slider-items-temp");
-    const props = sliderItems.map((item: SliderItem) => {
-      return {
-        title: this.castToString(item.title),
-        image: item.image,
-        index: item.index,
-      };
-    });
+    const slides = this.castToObject<SliderItem[]>("slider-items");
 
-    if (JSON.stringify(temp) !== JSON.stringify(props)) {
-      const propsWithBlinkpageTitle = sliderItems.map((item: SliderItem) => {
-        return {
-          title: item.title,
-          image: item.image,
-          index: item.index,
-        };
-      });
-      this.setComponentState("slider-items-temp", propsWithBlinkpageTitle);
-      this.setComponentState("slider-items", propsWithBlinkpageTitle);
-    }
+    const featuredItems = this.castToObject<FeaturedItem[]>("featured-items");
+    const featuredItemsNonEmptyLength = featuredItems.filter(
+      (item) =>
+        item.image ||
+        this.castToString(item.title) ||
+        this.castToString(item.subtitle),
+    ).length;
+    const adjustFeaturedItemWidth = {
+      width: `${featuredItemsNonEmptyLength === 1 ? 25 : featuredItemsNonEmptyLength * 20}%`,
+    };
 
-    const firstFeaturedItem = this.castToObject<FeaturedItem>(
-      "first-featured-item"
-    );
-    const secondFeaturedItem = this.castToObject<FeaturedItem>(
-      "second-featured-item"
-    );
-    const thirdFeaturedItem = this.castToObject<FeaturedItem>(
-      "third-featured-item"
-    );
+    const sliderRef = this.getComponentState("slider-ref");
+    const overlay: boolean = this.getPropValue("overlay");
 
-    const renderFirstFeaturedItem =
-      this.castToString(firstFeaturedItem.title) ||
-      this.castToString(firstFeaturedItem.subtitle) ||
-      firstFeaturedItem.image;
-    const renderSecondFeaturedItem =
-      this.castToString(secondFeaturedItem.title) ||
-      this.castToString(secondFeaturedItem.subtitle) ||
-      secondFeaturedItem.image;
-    const renderThirdFeaturedItem =
-      this.castToString(thirdFeaturedItem.title) ||
-      this.castToString(thirdFeaturedItem.subtitle) ||
-      thirdFeaturedItem.image;
+    const prevIcon: string = this.getPropValue("prev-button-icon");
+    const nextIcon: string = this.getPropValue("next-button-icon");
 
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("slider-wrapper")}>
-            {this.getComponentState("slider-items").map(
-              (item: SliderItem, index: number) => {
-                const length = this.getComponentState("slider-items").length;
-                const isItemTop = item.index === length - 1;
-                const titleExist = this.castToString(item.title);
+        <div className={this.decorateCSS("slider-wrapper")}>
+          <div className={this.decorateCSS("slider")}>
+            {slides?.length > 0 && (
+              <ComposerSlider ref={sliderRef} {...settings}>
+                {slides.map((item: SliderItem, index: number) => {
+                  const titleExist = this.castToString(item.title);
 
-                return (
+                  if (item.image || titleExist)
+                    return (
+                      <div key={index}>
+                        <div
+                          className={this.decorateCSS("slider-item")}
+                          style={{
+                            backgroundImage: `url(${item.image})`,
+                          }}
+                        >
+                          <div className={this.decorateCSS("max-content")}>
+                            {titleExist && (
+                              <h1
+                                className={`
+                                ${this.decorateCSS("slider-item-title")}
+                                ${
+                                  this.getComponentState("active") === index
+                                    ? this.decorateCSS("anim")
+                                    : ""
+                                }
+                              `}
+                              >
+                                {item.title}
+                              </h1>
+                            )}
+                          </div>
+                          {overlay && (
+                            <div
+                              className={this.decorateCSS(
+                                "slider-item-overlay",
+                              )}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    );
+                  return null;
+                })}
+              </ComposerSlider>
+            )}
+          </div>
+          {(featuredItems?.length > 0 || prevIcon || nextIcon) && (
+            <div className={this.decorateCSS("footer-max-content")}>
+              <footer
+                className={this.decorateCSS("slider-footer")}
+                style={adjustFeaturedItemWidth}
+              >
+                {featuredItems?.length > 0 && (
                   <div
-                    key={index}
-                    className={this.decorateCSS("slider-item")}
+                    className={this.decorateCSS("slider-footer-items")}
                     style={{
-                      opacity: isItemTop ? 1 : 0,
-                      zIndex: item.index,
-                      backgroundImage: `url('${item.image}')`,
+                      gridTemplateColumns: `repeat(${featuredItemsNonEmptyLength}, 1fr)`,
                     }}
                   >
-                    {titleExist && (
-                      <h1
-                        style={{ marginTop: isItemTop ? 0 : "100px" }}
-                        className={this.decorateCSS("slider-item-title")}
-                      >
-                        {item.title}
-                      </h1>
-                    )}
-                    <div
-                      className={this.decorateCSS("slider-item-overlay")}
-                    ></div>
+                    {featuredItems.map((item: FeaturedItem, index: number) => {
+                      const titleExist = this.castToString(item.title);
+                      const subtitleExist = this.castToString(item.subtitle);
+
+                      if (titleExist || subtitleExist || item.image)
+                        return (
+                          <div
+                            key={index}
+                            className={this.decorateCSS("slider-footer-item")}
+                          >
+                            {item.image && (
+                              <img
+                                className={this.decorateCSS(
+                                  "slider-footer-item-image",
+                                )}
+                                src={item.image}
+                                alt={this.castToString(item.title)}
+                              />
+                            )}
+                            {(titleExist || subtitleExist) && (
+                              <div
+                                className={this.decorateCSS(
+                                  "slider-footer-item-body",
+                                )}
+                              >
+                                {titleExist &&
+                                  (!item.link ? (
+                                    <h3
+                                      className={this.decorateCSS(
+                                        "slider-footer-item-title",
+                                      )}
+                                    >
+                                      {item.title}
+                                    </h3>
+                                  ) : (
+                                    <ComposerLink path={item.link}>
+                                      <h3
+                                        className={this.decorateCSS(
+                                          "slider-footer-item-title",
+                                        )}
+                                      >
+                                        {item.title}
+                                      </h3>
+                                    </ComposerLink>
+                                  ))}
+                                {subtitleExist && (
+                                  <h5
+                                    className={this.decorateCSS(
+                                      "slider-footer-item-subtitle",
+                                    )}
+                                  >
+                                    {item.subtitle}
+                                  </h5>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      return null;
+                    })}
                   </div>
-                );
-              }
-            )}
-            {(renderFirstFeaturedItem ||
-              renderSecondFeaturedItem ||
-              renderThirdFeaturedItem) && (
-              <footer className={this.decorateCSS("slider-footer")}>
-                <div className={this.decorateCSS("slider-footer-items")}>
-                  {renderFirstFeaturedItem && (
-                    <div className={this.decorateCSS("slider-footer-item")}>
-                      {firstFeaturedItem.image && (
-                        <img
-                          className={this.decorateCSS(
-                            "slider-footer-item-image"
-                          )}
-                          src={firstFeaturedItem.image}
-                          alt={this.castToString(firstFeaturedItem.title)}
-                        />
-                      )}
-                      {this.castToString(firstFeaturedItem.title) ||
-                        (this.castToString(firstFeaturedItem.subtitle) && (
-                          <div
-                            className={this.decorateCSS(
-                              "slider-footer-item-body"
-                            )}
-                          >
-                            {this.castToString(firstFeaturedItem.title) &&
-                              (!firstFeaturedItem.link ? (
-                                <h3
-                                  className={this.decorateCSS(
-                                    "slider-footer-item-title"
-                                  )}
-                                >
-                                  {firstFeaturedItem.title}
-                                </h3>
-                              ) : (
-                                <ComposerLink path={firstFeaturedItem.link}>
-                                  <h3
-                                    className={this.decorateCSS(
-                                      "slider-footer-item-title"
-                                    )}
-                                  >
-                                    {firstFeaturedItem.title}
-                                  </h3>
-                                </ComposerLink>
-                              ))}
-                            {this.castToString(firstFeaturedItem.subtitle) && (
-                              <h5
-                                className={this.decorateCSS(
-                                  "slider-footer-item-subtitle"
-                                )}
-                              >
-                                {firstFeaturedItem.subtitle}
-                              </h5>
-                            )}
-                          </div>
-                        ))}
-                    </div>
-                  )}
-                  {renderSecondFeaturedItem && (
-                    <div className={this.decorateCSS("slider-footer-item")}>
-                      {secondFeaturedItem.image && (
-                        <img
-                          className={this.decorateCSS(
-                            "slider-footer-item-image"
-                          )}
-                          src={secondFeaturedItem.image}
-                          alt={this.castToString(secondFeaturedItem.title)}
-                        />
-                      )}
-                      {this.castToString(secondFeaturedItem.title) ||
-                        (this.castToString(secondFeaturedItem.subtitle) && (
-                          <div
-                            className={this.decorateCSS(
-                              "slider-footer-item-body"
-                            )}
-                          >
-                            {this.castToString(secondFeaturedItem.title) &&
-                              (!secondFeaturedItem.link ? (
-                                <h3
-                                  className={this.decorateCSS(
-                                    "slider-footer-item-title"
-                                  )}
-                                >
-                                  {secondFeaturedItem.title}
-                                </h3>
-                              ) : (
-                                <ComposerLink path={secondFeaturedItem.link}>
-                                  <h3
-                                    className={this.decorateCSS(
-                                      "slider-footer-item-title"
-                                    )}
-                                  >
-                                    {secondFeaturedItem.title}
-                                  </h3>
-                                </ComposerLink>
-                              ))}
-                            {this.castToString(secondFeaturedItem.subtitle) && (
-                              <h5
-                                className={this.decorateCSS(
-                                  "slider-footer-item-subtitle"
-                                )}
-                              >
-                                {secondFeaturedItem.subtitle}
-                              </h5>
-                            )}
-                          </div>
-                        ))}
-                    </div>
-                  )}
-                  {renderThirdFeaturedItem && (
-                    <div className={this.decorateCSS("slider-footer-item")}>
-                      {thirdFeaturedItem.image && (
-                        <img
-                          className={this.decorateCSS(
-                            "slider-footer-item-image"
-                          )}
-                          src={thirdFeaturedItem.image}
-                          alt={this.castToString(thirdFeaturedItem.title)}
-                        />
-                      )}
-                      {this.castToString(thirdFeaturedItem.title) ||
-                        (this.castToString(thirdFeaturedItem.subtitle) && (
-                          <div
-                            className={this.decorateCSS(
-                              "slider-footer-item-body"
-                            )}
-                          >
-                            {this.castToString(thirdFeaturedItem.title) &&
-                              (!thirdFeaturedItem.link ? (
-                                <h3
-                                  className={this.decorateCSS(
-                                    "slider-footer-item-title"
-                                  )}
-                                >
-                                  {thirdFeaturedItem.title}
-                                </h3>
-                              ) : (
-                                <ComposerLink path={thirdFeaturedItem.link}>
-                                  <h3
-                                    className={this.decorateCSS(
-                                      "slider-footer-item-title"
-                                    )}
-                                  >
-                                    {thirdFeaturedItem.title}
-                                  </h3>
-                                </ComposerLink>
-                              ))}
-                            {this.castToString(thirdFeaturedItem.subtitle) && (
-                              <h5
-                                className={this.decorateCSS(
-                                  "slider-footer-item-subtitle"
-                                )}
-                              >
-                                {thirdFeaturedItem.subtitle}
-                              </h5>
-                            )}
-                          </div>
-                        ))}
-                    </div>
-                  )}
-                </div>
-                {(this.getPropValue("prev-button-icon") ||
-                  this.getPropValue("next-button-icon")) && (
+                )}
+                {(prevIcon || nextIcon) && (
                   <div className={this.decorateCSS("slider-buttons")}>
-                    {this.getPropValue("prev-button-icon") && (
+                    {prevIcon && (
                       <button
-                        onClick={this.sliderPrev}
+                        onClick={() => {
+                          sliderRef.current.slickPrev();
+                        }}
                         className={this.decorateCSS("slider-button")}
                       >
                         <ComposerIcon
-                          propsIcon={{ className: this.decorateCSS("Icon") }}
-                          name={this.getPropValue("prev-button-icon")}
+                          propsIcon={{
+                            className: this.decorateCSS("slider-arrow-icon"),
+                            size: "20px",
+                          }}
+                          name={prevIcon}
                         />
                       </button>
                     )}
-                    {this.getPropValue("next-button-icon") && (
+                    {nextIcon && (
                       <button
-                        onClick={this.sliderNext}
+                        onClick={() => {
+                          sliderRef.current.slickNext();
+                        }}
                         className={this.decorateCSS("slider-button")}
                       >
                         <ComposerIcon
-                          propsIcon={{ className: this.decorateCSS("Icon") }}
-                          name={this.getPropValue("next-button-icon")}
+                          propsIcon={{
+                            className: this.decorateCSS("slider-arrow-icon"),
+                            size: "20px",
+                          }}
+                          name={nextIcon}
                         />
                       </button>
                     )}
                   </div>
                 )}
               </footer>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     );

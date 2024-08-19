@@ -5,48 +5,67 @@
 
 .container {
   width: 100%;
-  height: auto;
+  height: 640px;
 
   .max-content {
     max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 
 .slider-wrapper {
   width: 100%;
+  height: 100%;
   position: relative;
-  height: 550px;
+}
+
+.slider {
+  height: 100%;
+  width: 100%;
+
+  div {
+    height: 100%;
+  }
 }
 
 .slider-item {
-  position: absolute;
   width: 100%;
-  height: 550px;
+  height: 100%;
   background-position: center;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition-property: all;
+  position: relative;
   transition: 500ms;
+
+  .max-content {
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .slider-item-title {
     font-size: 5em;
     color: white;
-    z-index: 2;
-    transition-property: all;
     transition: 700ms;
+    margin-bottom: -200px;
+    opacity: 0;
+
+    &.anim {
+      margin-bottom: 0;
+      opacity: 1;
+    }
   }
 
   .slider-item-overlay {
     width: 100%;
     height: 100%;
     background-color: black;
-    opacity: .4;
+    opacity: 0.4;
     position: absolute;
     top: 0;
     left: 0;
@@ -54,34 +73,45 @@
   }
 }
 
+.footer-max-content {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 100%;
+  max-width: var(--composer-content-width);
+  height: 125px;
+}
+
 .slider-footer {
   position: absolute;
   border-top-left-radius: 10px;
   bottom: 0;
   right: 0;
-  width: 70%;
-  height: 150px;
+  height: 125px;
   background-color: var(--composer-html-background);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
 
   .slider-footer-items {
     width: 90%;
-    display: flex;
-    padding: 1em 1.6em;
-    gap: 20px;
+    height: 125px;
+    display: grid;
+    padding: 20px;
+    gap: 8px;
 
     .slider-footer-item {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      gap: 15px;
+      height: 85px;
+      gap: 10px;
 
       .slider-footer-item-image {
-        width: 100%;
+        width: 60%;
         height: 100%;
         object-fit: cover;
         border-radius: 12px;
@@ -90,12 +120,12 @@
 
         &:hover {
           transform-origin: center;
-          transform: rotate(8deg);
+          transform: rotate(5deg);
         }
       }
 
       .slider-footer-item-body {
-        width: 100%;
+        width: 40%;
 
         .slider-footer-item-title {
           line-height: 1em;
@@ -104,14 +134,18 @@
         }
 
         .slider-footer-item-subtitle {
-          color: var(--composer-font-color-primary);
+          color: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 60%
+          );
         }
       }
     }
   }
 
   .slider-buttons {
-    width: 10%;
+    width: 62.5px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -123,7 +157,7 @@
       background-color: var(--composer-font-color-primary);
       color: var(--composer-font-color-secondary);
       width: 100%;
-      height: 50%;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -146,26 +180,37 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
   .slider-footer {
-    width: 100%;
-    height: auto;
+    width: auto !important;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 
     .slider-footer-items {
-      display: none !important;
+      width: 100%;
     }
 
     .slider-buttons {
-      flex-direction: row;
-      justify-content: end;
-      width: auto;
-      margin-top: -52px;
+      justify-content: center;
+    }
+  }
+}
 
+@media only screen and (max-width: 500px) {
+  .slider-footer {
+    height: 62.5px;
+
+    .slider-footer-items {
+      display: none;
+    }
+
+    .slider-buttons {
+      height: 100%;
+      width: 125px;
+      flex-direction: row;
       .slider-button {
-        width: 50px;
-        height: 50px;
+        width: 100%;
+        height: 100%;
       }
     }
   }
