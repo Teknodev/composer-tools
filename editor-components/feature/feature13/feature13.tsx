@@ -407,18 +407,16 @@ class Feature13 extends BaseFeature {
                             if (titleExist)
                               return (
                                 <li
-                                  key={index}
                                   className={this.decorateCSS("tabs-list-item")}
                                 >
                                   <button
                                     onClick={() => {
                                       this.switchTab(index);
                                     }}
-                                    className={`${this.decorateCSS("button")} ${
-                                      this.activeTab === index
-                                        ? this.decorateCSS("active")
-                                        : ""
-                                    }`}
+                                    className={`${this.decorateCSS("button")} ${this.activeTab === index
+                                      ? this.decorateCSS("active")
+                                      : ""
+                                      }`}
                                   >
                                     {item.title}
                                   </button>
@@ -445,7 +443,6 @@ class Feature13 extends BaseFeature {
                           return (
                             <div
                               className={this.decorateCSS("progress-item")}
-                              key={index}
                             >
                               <div
                                 className={this.decorateCSS("progress-header")}
@@ -455,7 +452,7 @@ class Feature13 extends BaseFeature {
                                 >
                                   {item.title}
                                 </h3>
-                                <span
+                                {percentage && (<span
                                   className={this.decorateCSS(
                                     "progress-percent"
                                   )}
@@ -463,23 +460,22 @@ class Feature13 extends BaseFeature {
                                   {percentage >= 100
                                     ? "100"
                                     : !percentage || percentage == 0
-                                    ? "0"
-                                    : percentage}
+                                      ? "0"
+                                      : percentage}
                                   %
-                                </span>
+                                </span>)}
                               </div>
-                              <div
+                              {percentage && (<div
                                 className={this.decorateCSS("progress-line")}
                                 style={{
-                                  width: `${
-                                    percentage >= 100
-                                      ? "100%"
-                                      : !percentage || percentage == 0
+                                  width: `${percentage >= 100
+                                    ? "100%"
+                                    : !percentage || percentage == 0
                                       ? "1%"
                                       : `${percentage}%`
-                                  }`,
+                                    }`,
                                 }}
-                              ></div>
+                              ></div>)}
                             </div>
                           );
                       })}
@@ -492,6 +488,7 @@ class Feature13 extends BaseFeature {
         </div>
       </div>
     );
+
   }
 }
 
