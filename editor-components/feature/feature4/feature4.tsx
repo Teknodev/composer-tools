@@ -18,6 +18,20 @@ class Feature4 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+      max: 4,
+    });
+    this.addProp({
+      type: "image",
+      key: "backgroundImage",
+      displayer: "backgroundImage",
+      value:
+        "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/clear-02-1.jpg",
+    });
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
@@ -315,6 +329,7 @@ class Feature4 extends BaseFeature {
     const featuredTitle = this.getPropValue("title", { as_string: true });
     const featuredLink = this.getPropValue("link");
     const cards = this.castToObject<Card[]>("cards");
+    const backgroundImage = this.getPropValue("backgroundImage");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -325,6 +340,24 @@ class Feature4 extends BaseFeature {
                 className={this.decorateCSS("featured-card")}
                 style={{ width: "30%" }}
               >
+                <div
+                  style={{
+                    width: "100%",
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                  className={this.decorateCSS("container")}
+                ></div>
+
+                <div className={this.decorateCSS("backgroundImage")}></div>
+
+                <div
+                  className={this.decorateCSS("card-item-count")}
+                  style={{
+                    width: 90 / this.getPropValue("itemCount") + "%",
+                  }}
+                ></div>
                 {featuredSubtitle && (
                   <h5 className={this.decorateCSS("subtitle")}>
                     {this.getPropValue("subtitle")}
@@ -335,7 +368,7 @@ class Feature4 extends BaseFeature {
                     {this.getPropValue("title")}
                   </h2>
                 )}
-                {featuredLink && (
+                {this.getPropValue("linkText", { as_string: true }) && (
                   <span className={this.decorateCSS("featured-card-link")}>
                     <ComposerLink path={this.getPropValue("link")}>
                       {this.getPropValue("linkText")}

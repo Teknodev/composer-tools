@@ -2,6 +2,7 @@
   width: 100%;
   padding: 50px 0;
   background-color: var(--composer-html-background);
+  display: flex;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -27,6 +28,7 @@
           font-weight: 500;
           margin-bottom: 20px;
           text-transform: uppercase;
+          margin-left: 60px;
         }
 
         .title {
@@ -35,21 +37,27 @@
           font-weight: 500;
           margin-top: 0;
           margin-bottom: 15px;
+          margin-left: 60px;
           text-transform: uppercase;
         }
 
         .featured-card-link {
           color: var(--composer-font-color-primary);
-          text-decoration: underline !important;
           font-size: 1.5em;
           font-weight: 400;
+          margin-top: 10px;
+          margin-left: 60px;
+
+          >div p {
+            text-decoration: underline;
+
+          }
         }
       }
 
       .card-item-count {
         position: relative;
         width: 30%;
-        min-height: 300px;
         overflow: hidden;
       }
 
@@ -114,7 +122,8 @@
         min-height: 250px;
         margin: auto;
         flex: 1 1;
-        border: 1px solid var(--composer-tertiary-color);
+        border: 1px solid rgba(var(--composer-tertiary-color-rgb), 0.4);
+
         padding: 3.5em 5em;
         min-height: 100%;
         z-index: 1;
@@ -139,14 +148,22 @@
 
         .icon {
           font-size: 4em;
+          color: var(--composer-font-color-secondary);
+          background-color: rgba(var(--composer-primary-color-rgb), 0.4);
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         .title {
           font-weight: lighter;
           color: var(--composer-font-color-primary);
-          margin-top: .2rem;
-          margin-bottom: 1.2rem;
-          font-size: 1.5em;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          font-size: 1.8em;
         }
 
         .subtitle {
@@ -154,7 +171,7 @@
           color: var(--secondary-text-color);
           margin-top: 0;
           margin-bottom: 0;
-          font-size: 1.2em;
+          font-size: 1.5em;
         }
 
         .long-text {
