@@ -8,6 +8,9 @@ type Card = {
 };
 
 class Stats5Page extends BaseStats {
+  stats: number[];
+  numbers: number[];
+
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -109,11 +112,15 @@ class Stats5Page extends BaseStats {
       max: 4,
     });
 
-    this.castToObject<Card[]>("cards").map((card, index) =>
-      this.setComponentState(`number-${index}`, 0),
-    );
-
+    this.init();
     this.animate();
+
+    const cards = this.castToObject<Card[]>("cards");
+
+    this.stats = cards.map((e) => e.stat);
+    this.numbers = cards
+      .map((e, index) => this.getComponentState(`number-${index}`))
+      .filter((e) => e !== undefined && e !== "");
   }
 
   getName(): string {
@@ -121,6 +128,12 @@ class Stats5Page extends BaseStats {
   }
 
   x: NodeJS.Timeout;
+
+  init() {
+    this.castToObject<Card[]>("cards").map((card, index) =>
+      this.setComponentState(`number-${index}`, 0),
+    );
+  }
 
   animate() {
     this.x = setInterval(() => {
@@ -168,11 +181,20 @@ class Stats5Page extends BaseStats {
 
     const cards = this.castToObject<Card[]>("cards");
 
+    if (JSON.stringify(this.stats) !== JSON.stringify(this.numbers)) {
+      this.animate();
+    }
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {cards?.length > 0 && (
-            <div className={this.decorateCSS("bottom-child")}>
+            <div
+              className={this.decorateCSS("bottom-child")}
+              style={{
+                gridTemplateColumns: `repeat(${itemCountInRow}, 1fr)`,
+              }}
+            >
               {cards.map((data: Card, index: number) => {
                 const titleExist = this.castToString(data.title);
 
@@ -181,12 +203,9 @@ class Stats5Page extends BaseStats {
                     <div
                       key={index}
                       className={`
-                        ${this.decorateCSS("card")}
-                        ${this.getCardClasses(index, itemCountInRow)}
-                      `}
-                      style={{
-                        width: 90 / itemCountInRow + "%",
-                      }}
+                          ${this.decorateCSS("card")}
+                          ${this.getCardClasses(index, itemCountInRow)}
+                        `}
                     >
                       {data.stat && (
                         <h4 className={this.decorateCSS("card-data-title")}>
