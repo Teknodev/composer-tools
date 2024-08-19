@@ -2,6 +2,7 @@ import * as React from "react";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./notificationmodal1.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 
 type Button = {
@@ -49,6 +50,13 @@ class NotificationModal1 extends BaseModal {
       value:
         "Please pay premium by 05 Dec 2021, otherwise you will be charged 20% amount of your premium.",
     });
+    this.addProp({
+      type: "icon",
+      key: "exitIcon",
+      displayer: "ExitIcon",
+      value:
+        "IoCloseSharp"
+    });
 
     this.addProp({
       type: "array",
@@ -91,13 +99,23 @@ class NotificationModal1 extends BaseModal {
     const firstTitle = this.castToString(this.getPropValue("firstTitle"));
     const isTitleExist = this.castToString(this.getPropValue("secondTitle"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const buttonProps = this.castToObject<Button[]>("buttonprops");
+    const validButtons = buttonProps.filter((item: Button) => this.castToString(item.buttonText));
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
+            <div className={this.decorateCSS("exit-icon")}>
+              <ComposerModalClose>
+                <a href={""} >
+                  <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon"), style: { width: "25px", height: "25px" } }} name={this.getPropValue("exitIcon")} />
+                </a>
+              </ComposerModalClose>
+            </div>
+
             {(backgroundImage || firstTitle) && (
               <div className={this.decorateCSS("image-container")}>
-                
+
                 {backgroundImage && (
                   <>
                     <img
@@ -105,7 +123,7 @@ class NotificationModal1 extends BaseModal {
                       src={backgroundImage}
                     />
                     <h2 className={this.decorateCSS("first-header")}>
-                    {this.getPropValue("firstTitle")}
+                      {this.getPropValue("firstTitle")}
                     </h2>
                   </>
                 )}
@@ -115,41 +133,41 @@ class NotificationModal1 extends BaseModal {
                 {!backgroundImage && overlay && (
                   <div className={this.decorateCSS("overlay2")}>
                     <h2 className={this.decorateCSS("first-header")}>
-                    {this.getPropValue("firstTitle")}
+                      {this.getPropValue("firstTitle")}
                     </h2>
                   </div>
                 )}
                 {!backgroundImage && !overlay && (
                   <div className={this.decorateCSS("overlay3")}>
                     <h2 className={this.decorateCSS("first-header")}>
-                    {this.getPropValue("firstTitle")}
+                      {this.getPropValue("firstTitle")}
                     </h2>
                   </div>
                 )}
               </div>
             )}
             <div>
-               {isTitleExist &&
-              <h3 className={this.decorateCSS("second-header")}>
-                {this.getPropValue("secondTitle")}
-              </h3>}
+              {isTitleExist &&
+                <h3 className={this.decorateCSS("second-header")}>
+                  {this.getPropValue("secondTitle")}
+                </h3>}
               {isDescriptionExist &&
-              <p className={this.decorateCSS("notice-content")}>
-                {this.getPropValue("description")}
-              </p>}
+                <p className={this.decorateCSS("notice-content")}>
+                  {this.getPropValue("description")}
+                </p>}
             </div>
-            <div className={this.decorateCSS("button-background")}>
-            {this.castToObject<Button[]>("buttonprops").map((item: Button, index: number) => {
-                if(this.castToString(item.buttonText))
-                  return (
+
+            {validButtons.length > 0 && (  // Eğer geçerli düğmeler varsa button-background render edilir
+              <div className={this.decorateCSS("button-background")}>
+                {validButtons.map((item: Button, index: number) => (
                   <ComposerModalClose key={index}>
                     <a href={item.link} className={this.decorateCSS("button")}>
                       {item.buttonText}
                     </a>
                   </ComposerModalClose>
-                )
-              })}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
