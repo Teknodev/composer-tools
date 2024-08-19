@@ -11,16 +11,17 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      padding: 8%;
+      padding: 60px;
+      gap: 50px;
+      margin: 20px 0;
 
 
       .main-title-content{
         position: sticky;
         top: 20px;
-        width: 45%;
+        width: 35%;
         overflow-wrap: break-word; 
         word-wrap: break-word;
-        hyphens: auto; 
 
         &:only-child {
           width: 45%;
@@ -30,7 +31,7 @@
           width: 100%; 
           color:  var(--composer-font-color-primary);
           position: sticky;
-          top: 40%;
+          top: 30%;
           font-size: 48px;
           bottom: 40%;
           margin: 0;
@@ -39,6 +40,24 @@
         }
       }
 
+      .link-text{
+        width: 100%;
+        display: flex;
+          justify-content: center;
+      }
+        .link-Text{
+          color: var(--composer-font-color-primary);
+          max-width: 100%;
+          margin-top: 7.5rem;
+          text-align: center;
+          font-size: 1.2rem;
+          display: flex;
+          justify-content: center;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+        
 
 
       .sub-title-content {
@@ -55,15 +74,15 @@
         }
         .counter{
           color: var(--composer-font-color-primary);
-          opacity: 1;
+          opacity: 0.7;
           width: auto;
           text-align: left;
           position: sticky;
-          top: 55%;
+          top: 50%;
           left: 0;
           font-size: 24px;
           margin-bottom: 20px;
-          transition: opacity 0.5s ease-out, transform 0.5s ease-out ; 
+          transition: opacity 0s ease-out, transform 0.5s ease-out ; 
           z-index: 10;
           .counter.changed {
             opacity: 0;
@@ -78,7 +97,7 @@
           transition: opacity 0.5s ease-out, transform 0.5s ease-out;
           background-color:var (--composer-html-background);
           width: 100%;
-          padding:15%;
+          padding:80px;
           padding-top: 0;
           .visible {
             opacity: 1;
@@ -104,8 +123,9 @@
           }
           .sub-title-description {
             display: block;
-            font-size: 22px;
+            font-size: 20px;
             color: var(--composer-font-color-primary);
+            margin: 20px 0;
           }
 
         }
@@ -125,6 +145,11 @@
             font-size: 40px;
           }        
         }
+
+        .link-text{
+          margin-bottom: 20px;
+        }
+
         .sub-title-content{
           .sub-title {
             font-size: 28px;
@@ -152,6 +177,11 @@
           .main-title-content-text {
             position: static;
           }
+        }
+
+        
+        .link-text{
+          margin-bottom: 20px;
         }
 
         .sub-title-content {
@@ -188,6 +218,11 @@
             font-size: 32px;
           }
         }
+        
+        .link-text{
+          margin-bottom: 20px;
+        }
+        
         .sub-title-content{
           .counter {
             font-size: 20px;

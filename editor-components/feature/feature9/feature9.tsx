@@ -2,12 +2,18 @@ import React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 type FeatureItem = {
   id: string;
   title: JSX.Element;
   description: JSX.Element;
   icon: JSX.Element;
 };
+
+type LinkArray ={
+  linkText:JSX.Element;
+  link:string;
+}
 
 class Feature9 extends BaseFeature {
   private observers: { [key: string]: IntersectionObserver } = {};
@@ -61,7 +67,7 @@ class Feature9 extends BaseFeature {
               type: "icon",
               key: "icon",
               value:
-                "CgAdidas",
+                "RiCompassDiscoverLine",
               displayer: "Icon",
             },
           ],
@@ -89,7 +95,7 @@ class Feature9 extends BaseFeature {
               type: "icon",
               key: "icon",
               value:
-                "CgAdidas",
+                "MdFoundation",
               displayer: "Icon",
             },
           ],
@@ -116,7 +122,7 @@ class Feature9 extends BaseFeature {
             {
               type: "icon",
               key: "icon",
-              value:"CgAdidas",
+              value:"GrProjects",
               displayer: "Icon",
             },
           ],
@@ -144,7 +150,7 @@ class Feature9 extends BaseFeature {
               type: "icon",
               key: "icon",
               value:
-                "CgAdidas",
+                "MdOutlineDesignServices",
               displayer: "Icon",
             },
           ],
@@ -172,9 +178,36 @@ class Feature9 extends BaseFeature {
               type: "icon",
               key: "icon",
               value:
-                "CgAdidas",
+                "MdDeveloperMode",
               displayer: "Icon",
             },
+          ],
+        },
+      ],
+    });
+    
+    this.addProp({
+      type:"array",
+      key:"linkArray",
+      displayer:"Link",
+      value: [
+        {
+          type:"object",
+          key:"links",
+          displayer:"Links",
+          value:[
+            {
+              type:"string",
+              key:"linkText",
+              displayer:"Link Text",
+              value:"View Our Services",
+            },
+            {
+              type:"page",
+              key:"link",
+              displayer:"link",
+              value:""
+            }
           ],
         },
       ],
@@ -232,6 +265,8 @@ class Feature9 extends BaseFeature {
   renderCard(featureItem: FeatureItem, index: number) {
     setTimeout(() => this.setupObservers(), 0); 
     return (
+      
+      
       <div 
         key={index} 
         id={`card-${index}`} 
@@ -260,6 +295,7 @@ class Feature9 extends BaseFeature {
 
   render() {
     const featureItems = this.castToObject<FeatureItem[]>("feature-items");
+    const linkArray = this.castToObject<LinkArray[]>("linkArray");
     const mainTitle = this.castToString(this.getPropValue("main-title"));
     return (
       <div className={this.decorateCSS("container")}>
@@ -285,6 +321,18 @@ class Feature9 extends BaseFeature {
               )}
               </div>
           )}
+            {linkArray &&(
+          <div className={this.decorateCSS("link-text")}>
+            {linkArray.map((item:LinkArray, index:number) => (
+              <ComposerLink isFullWidth={true} path={this.getPropValue("link")}>
+                {this.castToString(item.linkText) &&(
+                  <div key={index} className={this.decorateCSS("link-Text")}>
+                  {item.linkText}
+                </div>
+              )}
+              </ComposerLink>
+            ))}  
+                </div>)}
           </div>
         </div>
       </div>
