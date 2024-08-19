@@ -38,7 +38,7 @@
                 font-weight: 200;
                 text-align: center;
                 font-size: 52px;
-                margin-bottom: 10px;
+                margin-bottom: 50px;
                 color: var(--composer-font-color-secondary);
             }
 
@@ -46,7 +46,7 @@
                 width: 100%;
                 display: flex;
                 justify-content: center;
-                margin: 50px 0;
+                margin-bottom: 50px;
 
                 .space {
                     border-bottom: 1px solid var(--composer-font-color-secondary);
@@ -143,10 +143,12 @@
                 .title {
                     font-size: 40px;
                 }
-
-                .button{
-                   margin-bottom: 30px;
+                .buttonS{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
                 }
+
                 .button_text {
                     font-size: 1.3rem;
                 }
@@ -181,9 +183,12 @@
                     font-size: 1rem;
                 }
 
-                .button{
-                    margin-bottom: 25px;
+                .buttonS{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
                 }
+
                 .button_text {
                     font-size: 1rem;
                     padding: 0.6vw 2.5vw;

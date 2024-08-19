@@ -78,6 +78,13 @@ class CallToAction6Page extends BaseCallToAction {
 
     });
 
+    this.addProp({
+      type: "boolean",
+      key:"spaceLine",
+      displayer:"Space Line",
+      value: true,
+    })
+
 
   }
 
@@ -86,6 +93,7 @@ class CallToAction6Page extends BaseCallToAction {
   }
 
   render() {
+    const spaceLineExist = this.getPropValue("spaceLine");
     const title = this.getPropValue("title", { as_string: true });
     const placeholder = this.getPropValue("placeholder", { as_string: true });
     const comment = this.getPropValue("comment", { as_string: true });
@@ -106,7 +114,7 @@ class CallToAction6Page extends BaseCallToAction {
               </h1>
             )}
 
-            {((placeholder) && (title)) &&
+              {spaceLineExist &&
               <div className={this.decorateCSS("Space")}>
                 <hr className={this.decorateCSS("space")} />
               </div>}
