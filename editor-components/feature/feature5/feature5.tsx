@@ -263,10 +263,22 @@ class Feature5 extends BaseFeature {
     const isRow2Visible =
       isFirstColumnVisible || isSecondColumnVisible || isThirdColumnVisible;
 
+      const subtitle1= this.castToString(row3.image_and_subtitle_1.sub_title)
+      const imageOrSubtitleExist1 = (row3.image_and_subtitle_1.image || subtitle1);
+  
+      const subtitle2= this.castToString(row3.image_and_subtitle_2.sub_title)
+      const imageOrSubtitleExist2 = (row3.image_and_subtitle_2.image || subtitle2);
+  
+      const subtitle3= this.castToString(row3.image_and_subtitle_3.sub_title)
+      const imageOrSubtitleExist3 = (row3.image_and_subtitle_3.image || subtitle3);
+
     const isRow3Visible =
       row3.image_and_subtitle_1.image ||
       row3.image_and_subtitle_2.image ||
-      row3.image_and_subtitle_3.image;
+      row3.image_and_subtitle_3.image || 
+      subtitle1 ||
+      subtitle2 || 
+      subtitle3;
     const isFirstImageExist = row3.image_and_subtitle_1.image
     const isSecondImageExist = row3.image_and_subtitle_2.image
     const isThirdImageExist = row3.image_and_subtitle_3.image;
@@ -368,18 +380,18 @@ class Feature5 extends BaseFeature {
             <div className={this.decorateCSS("row3")}
             >
 
-              {row3.image_and_subtitle_1.image && (
+              {(imageOrSubtitleExist1) && (
                 <ComposerLink
                   path={row3.image_and_subtitle_1.link}
                   isFullWidth={true}
                 >
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
-                    <img
+                    {row3.image_and_subtitle_1.image && <img
                       className={`${this.decorateCSS("image")} 
                       ${row3Status && this.decorateCSS("row3-images-less")}
                       `}
                       src={row3.image_and_subtitle_1.image}
-                    />
+                    />}
                     {this.castToString(row3.image_and_subtitle_1.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
@@ -388,18 +400,18 @@ class Feature5 extends BaseFeature {
                   </div>
                 </ComposerLink>
               )}
-              {row3.image_and_subtitle_2.image && (
+              {(imageOrSubtitleExist2) && (
                 <ComposerLink
                   path={row3.image_and_subtitle_2.link}
                   isFullWidth={true}
                 >
                   <div className={this.decorateCSS("image_and_subtitle_2")}>
-                    <img
+                    {row3.image_and_subtitle_2.image && <img
                       className={`${this.decorateCSS("image")} 
                       ${row3Status && this.decorateCSS("row3-images-less")}
                       `}
                       src={row3.image_and_subtitle_2.image}
-                    />
+                    />}
                     {this.castToString(row3.image_and_subtitle_2.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_2.sub_title}
@@ -408,18 +420,18 @@ class Feature5 extends BaseFeature {
                   </div>
                 </ComposerLink>
               )}
-              {row3.image_and_subtitle_3.image && (
+              {(imageOrSubtitleExist3) && (
                 <ComposerLink
                   path={row3.image_and_subtitle_3.link}
                   isFullWidth={true}
                 >
                   <div className={this.decorateCSS("image_and_subtitle_3")}>
-                    <img
+                    {row3.image_and_subtitle_3.image && <img
                       className={`${this.decorateCSS("image")} 
                       ${row3Status && this.decorateCSS("row3-images-less")}
                       `}
                       src={row3.image_and_subtitle_3.image}
-                    />
+                    />}
                     {this.castToString(row3.image_and_subtitle_3.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_3.sub_title}
