@@ -299,7 +299,7 @@ class Slider10 extends BaseSlider {
       dots: false,
       arrows: false,
       infinite: true,
-      autoplay: false,
+      autoplay: true,
       speed: 1500,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -319,8 +319,23 @@ class Slider10 extends BaseSlider {
         this.castToString(item.title) ||
         this.castToString(item.subtitle),
     ).length;
-    const adjustFeaturedItemWidth = {
-      width: `${featuredItemsNonEmptyLength === 1 ? 25 : featuredItemsNonEmptyLength * 20}%`,
+
+    const adjustFooterWidth = {
+      width: `${
+        featuredItemsNonEmptyLength === 1
+          ? "25%"
+          : featuredItemsNonEmptyLength * 20 + "%"
+      }`,
+    };
+
+    const getButtonClass = () => {
+      if (featuredItemsNonEmptyLength === 0) {
+        return this.decorateCSS("full-width");
+      }
+      if (featuredItemsNonEmptyLength <= 2) {
+        return this.decorateCSS("width-20-percent");
+      }
+      return "";
     };
 
     const sliderRef = this.getComponentState("slider-ref");
@@ -382,8 +397,11 @@ class Slider10 extends BaseSlider {
           {(featuredItems?.length > 0 || prevIcon || nextIcon) && (
             <div className={this.decorateCSS("footer-max-content")}>
               <footer
-                className={this.decorateCSS("slider-footer")}
-                style={adjustFeaturedItemWidth}
+                className={`
+                  ${this.decorateCSS("slider-footer")}
+                  ${this.decorateCSS(featuredItemsNonEmptyLength === 0 ? "footer-disappear" : "")}
+                `}
+                style={adjustFooterWidth}
               >
                 {featuredItems?.length > 0 && (
                   <div
@@ -462,7 +480,19 @@ class Slider10 extends BaseSlider {
                   </div>
                 )}
                 {(prevIcon || nextIcon) && (
-                  <div className={this.decorateCSS("slider-buttons")}>
+                  <div
+                    className={`
+                      ${this.decorateCSS("slider-buttons")}
+                      ${getButtonClass()}
+                    `}
+                    style={
+                      featuredItemsNonEmptyLength === 0
+                        ? { width: "100%" }
+                        : featuredItemsNonEmptyLength <= 2
+                          ? { width: "20%" }
+                          : {}
+                    }
+                  >
                     {prevIcon && (
                       <button
                         onClick={() => {
