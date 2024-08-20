@@ -1,118 +1,172 @@
 .container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  .max-content {
     width: 100%;
+    max-width: 420px;
+    height: auto;
+    min-height: 100px;
+    border-radius: 30px;
+    background-color: var(--composer-html-background);
+    margin: auto;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
 
-    .max-content {
-      width: 420px;
-      height: 300px;
-      border-radius: 30px;
-      background-color: var(--composer-html-background);
+    .exit-button {
+      position: absolute;
+      padding-top: 15px;
+      right: 5px;
+      top: 5px;
+      background-color: transparent;
+      border: none;
+      font-size: 18px;
+      padding-right: 15px;
+      color: var(--composer-font-color-primary);
+
+    }
+
+    .content {
+      position: relative;
       margin: auto;
-      padding: 40px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-shrink: 1;
+      min-height: 100%;
+      gap: 20px;
 
-      .content {
-        position: relative;
-        margin: auto;       
-        flex-direction: column;
+      .icon {
+        color: var(--composer-font-color-primary);
+        margin: 0;
+        font-size: 60px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .notification-title {
+        margin: 0;
+        text-align: center;
+        align-items: center;
+        font-size: 20px;
+        font-family: sans-serif;
+        display: flex;
+        color: var(--composer-font-color-primary);
+      }
+
+      .displayer-message {
+        margin: 0;
+        width: 100%;
+        height: fit-content;
+        font-size: 16px;
+        font-family: sans-serif;
+        color: gray;
+        text-align: center;
+        word-wrap: break-word;
+        align-items: center;
+        justify-content: center;
+        color: var(--composer-font-color-primary);
+      }
+
+      .send-mail {
+        margin: 0;
+        transition: 1s;
+        display: flex;
+        width: 100%;
         justify-content: center;
         align-items: center;
+        width: 100%;
         display: flex;
-        min-height: 100%;
-        gap: 20px;
+        justify-content: center;
 
-        .icon {
-          color: var(--composer-font-color-primary);
-          margin: 0;
-          font-size: 60px;
-          border-radius: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center; 
-        }
-  
-        .notification-title {
-          margin: 0;
-          text-align: center;
-          align-items: center;
-          font-size: 20px;
-          font-family: sans-serif;
-          display: flex;
-          color: var(--composer-font-color-primary);
-        }
-  
-        .displayer-message {
-          margin: 0;
+        .input-group {
+          position: relative;
           width: 100%;
-          height: fit-content;
-          font-size: 16px;
-          font-family: sans-serif;
-          color: gray;
-          text-align: center;
-          word-wrap: break-word;
-          align-items: center;
-          justify-content: center;
-          color: var(--composer-font-color-primary);
-        }
-  
-        .send-mail {
-          margin: 0;
-          transition: 1s;
-          display: flex;
-          width: 100%;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-  
-          .input-group {
-            position: relative;
-            width: 360px;
+          max-width: 360px;
 
-            .input {
-              width: 100%;
-              height: 45px;
-              padding: 16px 10px;
-              padding-right: 140px; 
-              border-radius: 20px;
-              border: 0.5px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
-              background: var(--composer-html-background);
-              color: var(--composer-font-color-primary);
+          .input {
+            width: 100%;
+            height: 45px;
+            padding: 16px 10px;
+            padding-right: 140px;
+            border-radius: 20px;
+            border: 0.5px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
+            background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            color: var(--composer-font-color-primary);
 
-
-              &:focus {
-                outline-color: var(--composer-secondary-color);
-              }
+            .input-style {
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             }
-  
-            .button {
-              position: absolute;
-              right: 5px;
-              top: 50%;
-              transform: translateY(-50%);
-              width: 100px;
-              height: calc(85%);
-              border-radius: 20px;
-              background-color: var(--composer-secondary-color);
-              border: none;
-              box-shadow: var(--composer-box-shadow);
-              color: white;
-              cursor: pointer;
-              font-size: 14px;
 
-              &:hover {
-                color: white;
-                background-color: var(--composer-secondary-color);
-              }
+            &:focus {
+              outline-color: var(--composer-secondary-color);
+            }
+          }
+
+          .button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+            height: calc(85%);
+            border-radius: 20px;
+            background-color: var(--composer-secondary-color);
+            border: none;
+            box-shadow: var(--composer-box-shadow);
+            color: (--composer-font-color-secondary);
+            cursor: pointer;
+            font-size: 14px;
+
+
+            &:hover {
+              color: white;
+              background-color: var(--composer-secondary-color);
             }
           }
         }
       }
     }
   }
+}
 
-@media only screen and (max-width: 450px){
-  .max-content{
-    width: 100%;
+@media only screen and (max-width: 450px) {
+
+  .container {
+
+    .max-content {
+      width: 90%;
+      padding: 15px;
+    }
+
+    .icon {
+      font-size: 40px !important;
+    }
+
+    .notification-title {
+      font-size: 18px !important;
+    }
+
+    .displayer-message {
+      font-size: 14px !important;
+    }
+
+    .input-group .input {
+      height: 40px !important;
+    }
+
+    .input-group .button {
+      font-size: 12px !important;
+      width: 90px !important;
+      height: calc(80%) !important;
+    }
   }
 }
-  

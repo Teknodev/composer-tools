@@ -16,6 +16,13 @@ class NotificationModal2 extends BaseModal {
 
     this.addProp({
       type: "string",
+      key: "exit-button",
+      displayer: "exit-button",
+      value: "X",
+    });
+
+    this.addProp({
+      type: "string",
       key: "notificationTitle",
       displayer: "Title",
       value: "Notifications",
@@ -25,7 +32,8 @@ class NotificationModal2 extends BaseModal {
       type: "string",
       key: "displayerMessage",
       displayer: "Description",
-      value: "Receive an email every time a new lesson is added to the website.",
+      value:
+        "Receive an email every time a new lesson is added to the website.",
     });
 
     this.addProp({
@@ -39,7 +47,7 @@ class NotificationModal2 extends BaseModal {
       type: "string",
       key: "button",
       displayer: "Button",
-      value:"Subscribe",
+      value: "Subscribe",
     });
   }
 
@@ -49,28 +57,40 @@ class NotificationModal2 extends BaseModal {
 
   render() {
     const icon = this.getPropValue("icon");
-    const buttonval = this.getPropValue("button", {as_string: true});
-    const emailPlaceholder = this.getPropValue("email", {as_string: true});
-    const description = this.getPropValue("displayerMessage", {as_string: true});
+    const buttonval = this.getPropValue("button", { as_string: true });
+    const emailPlaceholder = this.getPropValue("email", { as_string: true });
+    const description = this.getPropValue("displayerMessage", {
+      as_string: true,
+    });
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
+          <button
+            className={`${this.decorateCSS("button")} ${this.decorateCSS(
+              "exit-button"
+            )}`}
+          >
+            {this.getPropValue("exit-button")}
+          </button>
           <div className={this.decorateCSS("content")}>
-            {icon && <div className={this.decorateCSS("icon")}>
-              <ComposerIcon
-                propsIcon={{ className: this.decorateCSS("Icon")}}
-                name={this.getPropValue("icon")}
-              />
-            </div>}
+            {icon && (
+              <div className={this.decorateCSS("icon")}>
+                <ComposerIcon
+                  propsIcon={{ className: this.decorateCSS("Icon") }}
+                  name={this.getPropValue("icon")}
+                />
+              </div>
+            )}
             <h2 className={this.decorateCSS("notification-title")}>
               {this.getPropValue("notificationTitle")}
             </h2>
             {description && (
               <p className={this.decorateCSS("displayer-message")}>
-              {this.getPropValue("displayerMessage")}
+                {this.getPropValue("displayerMessage")}
               </p>
             )}
+
             {emailPlaceholder && (
               <div className={this.decorateCSS("send-mail")}>
                 <div className={this.decorateCSS("input-group")}>
@@ -79,12 +99,13 @@ class NotificationModal2 extends BaseModal {
                     type="text"
                     className={this.decorateCSS("input")}
                   />
-                   {buttonval && (
-                      <button className={this.decorateCSS("button")}>
-                        {this.getPropValue("button")}
-                      </button>
-                    )}
-                </div>  
+
+                  {buttonval && (
+                    <button className={this.decorateCSS("button")}>
+                      {this.getPropValue("button")}
+                    </button>
+                  )}
+                </div>
               </div>
             )}
           </div>
