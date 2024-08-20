@@ -24,6 +24,12 @@ class LogoComp3Page extends LogoClouds {
       value: 4,
       max: 6,
     });
+    this.addProp({
+      type: "boolean",
+      key: "toggleLines",
+      displayer: "Toggle Lines",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -99,6 +105,7 @@ class LogoComp3Page extends LogoClouds {
 
     const itemCountInRow: number = this.getPropValue("itemCountInRow");
     const itemCount: number = items.length;
+    const toggleLines: boolean = this.getPropValue("toggleLines");
 
     const titleExist = this.getPropValue("title", { as_string: true });
     const subtitleExist = this.getPropValue("subtitle", { as_string: true });
@@ -125,33 +132,35 @@ class LogoComp3Page extends LogoClouds {
               </div>
             )}
             {items?.length > 0 && (
-              <section
-                className={this.decorateCSS("items")}
-                style={{
-                  gridTemplateColumns: `repeat(${itemCountInRow}, 1fr)`,
-                }}
-              >
-                {items.map((item: any, index: number) => {
-                  if (item.value)
-                    return (
-                      <div
-                        className={`
-                        ${this.decorateCSS("item-container")}
-                        ${this.decorateCSS(index % itemCountInRow !== itemCountInRow - 1 ? "insert-line-right" : "")}
-                        ${this.decorateCSS(index < itemCount - itemCountInRow ? "insert-line-bottom" : "")}
-                      `}
-                        key={index}
-                      >
-                        <img
-                          className={this.decorateCSS("image")}
-                          src={item.value}
-                          alt="logo"
-                        />
-                      </div>
-                    );
-                  return null;
-                })}
-              </section>
+              <main className={this.decorateCSS("items-container")}>
+                <section
+                  className={this.decorateCSS("items")}
+                  style={{
+                    gridTemplateColumns: `repeat(${itemCountInRow}, 1fr)`,
+                  }}
+                >
+                  {items.map((item: any, index: number) => {
+                    if (item.value)
+                      return (
+                        <div
+                          className={`
+                          ${this.decorateCSS("item-container")}
+                          ${toggleLines && this.decorateCSS(index % itemCountInRow !== itemCountInRow - 1 ? "insert-line-right" : "")}
+                          ${toggleLines && this.decorateCSS(index < itemCount - itemCountInRow ? "insert-line-bottom" : "")}
+                        `}
+                          key={index}
+                        >
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={item.value}
+                            alt="logo"
+                          />
+                        </div>
+                      );
+                    return null;
+                  })}
+                </section>
+              </main>
             )}
           </div>
         </div>

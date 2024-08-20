@@ -59,6 +59,12 @@
   }
 }
 
+.items-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .items {
   display: grid;
   width: 100%;
