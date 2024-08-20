@@ -60,6 +60,7 @@
       .bottom-child {
         padding: 0px;
         gap: 10px;
+        grid-template-columns: 1fr 1fr !important;
         .card {
           margin: 0px;
           .card-data-title {
@@ -82,6 +83,7 @@
         flex-direction: column;
         align-items: center;
         gap: 30px;
+        grid-template-columns: 1fr !important;
 
         .card {
           height: auto;
