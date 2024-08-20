@@ -34,7 +34,7 @@ class Feature12 extends BaseFeature {
     });
     this.addProp({
       type: "string",
-      key: "titleBackingText",
+      key: "behindTitle",
       displayer: "Behind the Title",
       value: "services",
     });
@@ -171,13 +171,13 @@ class Feature12 extends BaseFeature {
       as_string: true,
     });
     const titleExist = this.getPropValue("title", { as_string: true });
-    const titleBackingTextExist = this.getPropValue("titleBackingText", {
+    const behindTitleTextExist = this.getPropValue("behindTitle", {
       as_string: true,
     });
 
     const upperTitle = this.getPropValue("upperTitle");
     const title = this.getPropValue("title");
-    const titleBackingText = this.getPropValue("titleBackingText");
+    const behindtitleText = this.getPropValue("behindTitle");
 
     const itemCount = this.getPropValue("itemCount");
 
@@ -192,19 +192,23 @@ class Feature12 extends BaseFeature {
 
     return (
       <div className={this.decorateCSS("container")}>
-        <header className={this.decorateCSS("header")}>
-          {upperTitleExist && (
-            <div className={this.decorateCSS("upper-title")}>{upperTitle}</div>
-          )}
-          {titleBackingTextExist && (
-            <div className={this.decorateCSS("shadow-header-title")}>
-              {titleBackingText}
-            </div>
-          )}
-          {titleExist && (
-            <div className={this.decorateCSS("header-title")}>{title}</div>
-          )}
-        </header>
+        {(upperTitleExist || behindTitleTextExist || titleExist) && (
+          <header className={this.decorateCSS("header")}>
+            {upperTitleExist && (
+              <div className={this.decorateCSS("upper-title")}>
+                {upperTitle}
+              </div>
+            )}
+            {behindTitleTextExist && (
+              <div className={this.decorateCSS("shadow-header-title")}>
+                {behindtitleText}
+              </div>
+            )}
+            {titleExist && (
+              <div className={this.decorateCSS("header-title")}>{title}</div>
+            )}
+          </header>
+        )}
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(firstCardTitleExist || buttonTextExist) && (
