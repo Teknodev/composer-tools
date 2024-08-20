@@ -15,6 +15,9 @@ type Stat = {
 };
 
 class Stats4Page extends BaseStats {
+  stats: number[];
+  numbers: number[];
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -253,6 +256,13 @@ class Stats4Page extends BaseStats {
 
     this.init();
     this.animate();
+
+    const cards = this.castToObject<Stat[]>("statItems");
+
+    this.stats = cards.map((e) => e.stat);
+    this.numbers = cards
+      .map((e, index) => this.getComponentState(`number-${index}`))
+      .filter((e) => e !== undefined && e !== "");
   }
 
   init() {
@@ -287,6 +297,7 @@ class Stats4Page extends BaseStats {
 
       if (JSON.stringify(stats) === JSON.stringify(numbers)) {
         clearInterval(this.x);
+        console.log("clear");
       }
     }, this.getPropValue("animation-duration"));
   }
@@ -317,6 +328,13 @@ class Stats4Page extends BaseStats {
     const collapseIcon = this.getPropValue("collapseIcon");
     const statIcon = this.getPropValue("statIcon");
     const lineExist = this.getPropValue("lineExist");
+
+    console.log(this.stats);
+    console.log(this.numbers);
+
+    // if (JSON.stringify(this.stats) !== JSON.stringify(this.numbers)) {
+    //   this.animate();
+    // }
 
     return (
       <div className={this.decorateCSS("container")}>
