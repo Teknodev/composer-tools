@@ -111,6 +111,7 @@
             width: 100%;
             height: 40%;
             max-height: 250px;
+            object-fit: cover;
           }
 
           .card-content {
@@ -168,16 +169,20 @@
             }
 
             .user {
-              .written {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              gap: 10px;
+              height: 44px;
+
+              .profile-description {
                 font-size: 14px;
                 color: var(--composer-font-color-secondary);
-                margin: 0 0 10px 0;
               }
               .fullname {
                 font-size: 14px;
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
-                margin: 10px 0 0 0;
               }
             }
           }
@@ -258,17 +263,20 @@
             }
 
             .user {
-              .written {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              gap: 5px;
+              height: 34px;
+              .profile-description {
                 font-size: 14px;
                 color: var(--composer-font-color-secondary);
-                margin: 0 0 5px 0;
               }
 
               .fullname {
                 font-size: 14px;
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
-                margin: 5px 0 0 0;
               }
             }
           }
@@ -306,6 +314,7 @@
             width: 100%;
             height: 40%;
             max-height: 250px;
+            object-fit: cover;
           }
 
           .card-content {
@@ -363,17 +372,20 @@
               }
 
               .user {
-                .written {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 10px;
+                height: 44px;
+                .profile-description {
                   font-size: 14px;
                   color: var(--composer-font-color-secondary);
-                  margin: 0 0 10px 0;
                 }
 
                 .fullname {
                   font-size: 14px;
                   font-weight: bold;
                   color: var(--composer-font-color-secondary);
-                  margin: 10px 0 0 0;
                 }
               }
             }
@@ -460,17 +472,20 @@
             }
 
             .user {
-              .written {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              gap: 5px;
+              height: 34px;
+              .profile-description {
                 font-size: 14px;
                 color: var(--composer-font-color-secondary);
-                margin: 0 0 5px 0;
               }
 
               .fullname {
                 font-size: 14px;
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
-                margin: 5px 0 0 0;
               }
             }
           }
@@ -537,8 +552,6 @@
             display: flex !important;
             flex-direction: row !important;
             justify-content: space-between !important;
-            margin-left: 1rem !important;
-            margin-right: 1rem !important;
           }
 
           .title {
@@ -552,16 +565,6 @@
           .user-info {
             text-align: left !important;
             justify-content: flex-start !important;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            margin-top: 20px !important;
-
-            .written {
-              margin: 0 0 10px 0 !important;
-            }
-            .fullname {
-              margin: 10px 0 0 0 !important;
-            }
           }
         }
       }
@@ -584,21 +587,11 @@
 
           .date-time {
             min-height: 20px !important;
-            margin-left: 1rem !important;
-            margin-right: 1rem !important;
           }
 
           .user-info {
             align-items: end !important;
             justify-content: flex-start !important;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            .written {
-              margin: 0 0 10px 0 !important;
-            }
-            .fullname {
-              margin: 10px 0 0 0 !important;
-            }
           }
         }
       }
@@ -627,8 +620,6 @@
             display: flex !important;
             flex-direction: row !important;
             justify-content: space-between !important;
-            margin-left: 1rem !important;
-            margin-right: 1rem !important;
           }
 
           .title {
@@ -642,16 +633,6 @@
           .user-info {
             text-align: left !important;
             justify-content: flex-start !important;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            margin-top: 20px !important;
-
-            .written {
-              margin: 0 0 10px 0 !important;
-            }
-            .fullname {
-              margin: 10px 0 0 0 !important;
-            }
           }
         }
       }
@@ -674,21 +655,11 @@
 
           .date-time {
             min-height: 20px !important;
-            margin-left: 1rem !important;
-            margin-right: 1rem !important;
           }
 
           .user-info {
             align-items: end !important;
             justify-content: flex-start !important;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            .written {
-              margin: 0 0 10px 0 !important;
-            }
-            .fullname {
-              margin: 10px 0 0 0 !important;
-            }
           }
         }
       }
@@ -761,17 +732,8 @@
           height: 200px !important;
         }
 
-        .date-time,
-        .title,
-        .description,
-        .user-info {
-          margin-left: 1rem !important;
-          margin-right: 1rem !important;
-        }
-
         .title {
           font-size: 18px !important;
-          margin-top: 10px !important;
         }
 
         .description {
@@ -779,16 +741,13 @@
         }
 
         .user-info {
-          margin-top: 15px !important;
-          margin-bottom: 15px !important;
-
           .profile-image {
             width: 40px !important;
             height: 40px !important;
           }
 
           .user {
-            .written {
+            .profile-description {
               font-size: 12px !important;
             }
             .fullname {
@@ -829,17 +788,8 @@
           height: 200px !important;
         }
 
-        .date-time,
-        .title,
-        .description,
-        .user-info {
-          margin-left: 1rem !important;
-          margin-right: 1rem !important;
-        }
-
         .title {
           font-size: 18px !important;
-          margin-top: 10px !important;
         }
 
         .description {
@@ -847,16 +797,13 @@
         }
 
         .user-info {
-          margin-top: 15px !important;
-          margin-bottom: 15px !important;
-
           .profile-image {
             width: 40px !important;
             height: 40px !important;
           }
 
           .user {
-            .written {
+            .profile-description {
               font-size: 12px !important;
             }
             .fullname {

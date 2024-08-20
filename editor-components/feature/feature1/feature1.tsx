@@ -12,7 +12,7 @@ type CardComponent = {
   description: JSX.Element;
   profile_image: string;
   fullname: JSX.Element;
-  written: JSX.Element;
+  profileDescription: JSX.Element;
   url: string;
 };
 
@@ -23,7 +23,7 @@ type MiniCardComponent = {
   description2: JSX.Element;
   profile_image2: string;
   fullname2: JSX.Element;
-  written2: JSX.Element;
+  profileDescription2: JSX.Element;
   url2: string;
 };
 
@@ -69,8 +69,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "The nine-to-five Is Dead. Here’s What to Replace It With...",
+              value: "The nine-to-five Is Dead. Here’s What to Replace It With",
             },
             {
               type: "string",
@@ -89,13 +88,13 @@ class Feature1 extends BaseFeature {
             {
               type: "string",
               key: "fullname",
-              displayer: "fullname",
+              displayer: "Fullname",
               value: "Alexander Hipp",
             },
             {
               type: "string",
-              key: "written",
-              displayer: "written",
+              key: "profileDescription",
+              displayer: "Profile Description",
               value: "Written by",
             },
             {
@@ -134,7 +133,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Why the security engineers loves working...",
+              value: "Why the security engineers loves working",
             },
             {
               type: "string",
@@ -153,13 +152,13 @@ class Feature1 extends BaseFeature {
             {
               type: "string",
               key: "fullname",
-              displayer: "fullname",
+              displayer: "Fullname",
               value: "Anil Vugels",
             },
             {
               type: "string",
-              key: "written",
-              displayer: "written",
+              key: "profileDescription",
+              displayer: "Profile Description",
               value: "Written by",
             },
             {
@@ -199,8 +198,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "title2",
               displayer: "Title",
-              value:
-                "The nine-to-five Is Dead. Here’s What to Replace It With...",
+              value: "The nine-to-five Is Dead. Here’s What to Replace It With",
             },
             {
               type: "string",
@@ -219,13 +217,13 @@ class Feature1 extends BaseFeature {
             {
               type: "string",
               key: "fullname2",
-              displayer: "fullname",
+              displayer: "Fullname",
               value: "Alexander Hipp",
             },
             {
               type: "string",
-              key: "written2",
-              displayer: "written",
+              key: "profileDescription2",
+              displayer: "Profile Description",
               value: "Written by",
             },
             {
@@ -257,7 +255,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "title2",
               displayer: "Title",
-              value: "Why the security engineers loves working...",
+              value: "Why the security engineers loves working",
             },
             {
               type: "string",
@@ -276,13 +274,13 @@ class Feature1 extends BaseFeature {
             {
               type: "string",
               key: "fullname2",
-              displayer: "fullname",
+              displayer: "Fullname",
               value: "Anil Vugels",
             },
             {
               type: "string",
-              key: "written2",
-              displayer: "written",
+              key: "profileDescription2",
+              displayer: "Profile Description",
               value: "Written by",
             },
             {
@@ -354,14 +352,58 @@ class Feature1 extends BaseFeature {
       displayer: "Time Icon",
       value: "CiClock2",
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "enableEllipsisTitle",
+      displayer: "Enable Ellipsis for Title",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "enableEllipsisDesc",
+      displayer: "Enable Ellipsis for Description",
+      value: true,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "maxTitleLength",
+      displayer: "Max Title Length",
+      value: 50,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "maxDescriptionLength",
+      displayer: "Max Description Length",
+      value: 100,
+    });
   }
 
   getName(): string {
     return "Feature 1";
   }
 
+  truncateText(
+    text: string,
+    maxLength: number,
+    isTitle: boolean = false
+  ): string {
+    if (!text) return "";
+    const shouldTruncate = isTitle
+      ? this.getPropValue("enableEllipsisTitle")
+      : this.getPropValue("enableEllipsisDesc");
+    if (shouldTruncate && text.length > maxLength) {
+      return text.slice(0, maxLength) + "...";
+    }
+    return text;
+  }
+
   render() {
     const leftSideText = this.castToString(this.getPropValue("text"));
+    const leftSideIcon = this.castToString(this.getPropValue("icon1"));
     const cardContent = this.castToObject<CardComponent[]>("card");
     const middleContent = this.castToObject<MiniCardComponent[]>("miniCard");
     const links = this.castToObject<Link[]>("links");
@@ -370,17 +412,21 @@ class Feature1 extends BaseFeature {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            {leftSideText && (
+            {(leftSideText || leftSideIcon) && (
               <div className={this.decorateCSS("left-side")}>
-                <ComposerIcon
-                  name={this.getPropValue("icon1")}
-                  propsIcon={{
-                    className: this.decorateCSS("icon1"),
-                  }}
-                />
-                <h1 className={this.decorateCSS("first-text")}>
-                  {leftSideText}
-                </h1>
+                {leftSideIcon && (
+                  <ComposerIcon
+                    name={leftSideIcon}
+                    propsIcon={{
+                      className: this.decorateCSS("icon1"),
+                    }}
+                  />
+                )}
+                {leftSideText && (
+                  <h1 className={this.decorateCSS("first-text")}>
+                    {leftSideText}
+                  </h1>
+                )}
               </div>
             )}
 
@@ -457,17 +503,24 @@ class Feature1 extends BaseFeature {
                         {this.castToString(card_info.title) && (
                           <ComposerLink path={card_info.url}>
                             <h1 className={this.decorateCSS("title")}>
-                              {card_info.title}
+                              {this.truncateText(
+                                this.castToString(card_info.title),
+                                this.getPropValue("maxTitleLength"),
+                                true
+                              )}
                             </h1>
                           </ComposerLink>
                         )}
                         {this.castToString(card_info.description) && (
                           <p className={this.decorateCSS("description")}>
-                            {card_info.description}
+                            {this.truncateText(
+                              this.castToString(card_info.description) || "",
+                              this.getPropValue("maxDescriptionLength")
+                            )}
                           </p>
                         )}
                         {(card_info.profile_image ||
-                          this.castToString(card_info.written) ||
+                          this.castToString(card_info.profileDescription) ||
                           this.castToString(card_info.fullname)) && (
                           <div
                             className={
@@ -482,12 +535,18 @@ class Feature1 extends BaseFeature {
                                 alt="profile image"
                               />
                             )}
-                            {(this.castToString(card_info.written) ||
+                            {(this.castToString(card_info.profileDescription) ||
                               this.castToString(card_info.fullname)) && (
                               <div className={this.decorateCSS("user")}>
-                                {this.castToString(card_info.written) && (
-                                  <h3 className={this.decorateCSS("written")}>
-                                    {card_info.written}
+                                {this.castToString(
+                                  card_info.profileDescription
+                                ) && (
+                                  <h3
+                                    className={this.decorateCSS(
+                                      "profile-description"
+                                    )}
+                                  >
+                                    {card_info.profileDescription}
                                   </h3>
                                 )}
                                 {this.castToString(card_info.fullname) && (
@@ -545,13 +604,21 @@ class Feature1 extends BaseFeature {
                       {this.castToString(mini_card_info.title2) && (
                         <ComposerLink path={mini_card_info.url2}>
                           <h1 className={this.decorateCSS("title")}>
-                            {mini_card_info.title2}
+                            {this.truncateText(
+                              this.castToString(mini_card_info.title2),
+                              this.getPropValue("maxTitleLength"),
+                              true
+                            )}
                           </h1>
                         </ComposerLink>
                       )}
                       {this.castToString(mini_card_info.description2) && (
                         <p className={this.decorateCSS("description")}>
-                          {mini_card_info.description2}
+                          {this.truncateText(
+                            this.castToString(mini_card_info.description2) ||
+                              "",
+                            this.getPropValue("maxDescriptionLength")
+                          )}
                         </p>
                       )}
                       <div
@@ -567,12 +634,20 @@ class Feature1 extends BaseFeature {
                             alt="profile image"
                           />
                         )}
-                        {(this.castToString(mini_card_info.written2) ||
+                        {(this.castToString(
+                          mini_card_info.profileDescription2
+                        ) ||
                           this.castToString(mini_card_info.fullname2)) && (
                           <div className={this.decorateCSS("user")}>
-                            {this.castToString(mini_card_info.written2) && (
-                              <h3 className={this.decorateCSS("written")}>
-                                {mini_card_info.written2}
+                            {this.castToString(
+                              mini_card_info.profileDescription2
+                            ) && (
+                              <h3
+                                className={this.decorateCSS(
+                                  "profile-description"
+                                )}
+                              >
+                                {mini_card_info.profileDescription2}
                               </h3>
                             )}
                             {this.castToString(mini_card_info.fullname2) && (
@@ -637,17 +712,24 @@ class Feature1 extends BaseFeature {
                         {this.castToString(card_info.title) && (
                           <ComposerLink path={card_info.url}>
                             <h1 className={this.decorateCSS("title")}>
-                              {card_info.title}
+                              {this.truncateText(
+                                this.castToString(card_info.title),
+                                this.getPropValue("maxTitleLength"),
+                                true
+                              )}
                             </h1>
                           </ComposerLink>
                         )}
                         {this.castToString(card_info.description) && (
                           <p className={this.decorateCSS("description")}>
-                            {card_info.description}
+                            {this.truncateText(
+                              this.castToString(card_info.description) || "",
+                              this.getPropValue("maxDescriptionLength")
+                            )}
                           </p>
                         )}
                         {(card_info.profile_image ||
-                          this.castToString(card_info.written) ||
+                          this.castToString(card_info.profileDescription) ||
                           this.castToString(card_info.fullname)) && (
                           <div
                             className={
@@ -662,12 +744,18 @@ class Feature1 extends BaseFeature {
                                 alt="profile image"
                               />
                             )}
-                            {(this.castToString(card_info.written) ||
+                            {(this.castToString(card_info.profileDescription) ||
                               this.castToString(card_info.fullname)) && (
                               <div className={this.decorateCSS("user")}>
-                                {this.castToString(card_info.written) && (
-                                  <h3 className={this.decorateCSS("written")}>
-                                    {card_info.written}
+                                {this.castToString(
+                                  card_info.profileDescription
+                                ) && (
+                                  <h3
+                                    className={this.decorateCSS(
+                                      "profile-description"
+                                    )}
+                                  >
+                                    {card_info.profileDescription}
                                   </h3>
                                 )}
                                 {this.castToString(card_info.fullname) && (
@@ -735,17 +823,24 @@ class Feature1 extends BaseFeature {
                         {this.castToString(card_info.title) && (
                           <ComposerLink path={card_info.url}>
                             <h1 className={this.decorateCSS("title")}>
-                              {card_info.title}
+                              {this.truncateText(
+                                this.castToString(card_info.title),
+                                this.getPropValue("maxTitleLength"),
+                                true
+                              )}
                             </h1>
                           </ComposerLink>
                         )}
                         {this.castToString(card_info.description) && (
                           <p className={this.decorateCSS("description")}>
-                            {card_info.description}
+                            {this.truncateText(
+                              this.castToString(card_info.description) || "",
+                              this.getPropValue("maxDescriptionLength")
+                            )}
                           </p>
                         )}
                         {(card_info.profile_image ||
-                          this.castToString(card_info.written) ||
+                          this.castToString(card_info.profileDescription) ||
                           this.castToString(card_info.fullname)) && (
                           <div
                             className={
@@ -760,12 +855,18 @@ class Feature1 extends BaseFeature {
                                 alt="profile image"
                               />
                             )}
-                            {(this.castToString(card_info.written) ||
+                            {(this.castToString(card_info.profileDescription) ||
                               this.castToString(card_info.fullname)) && (
                               <div className={this.decorateCSS("user")}>
-                                {this.castToString(card_info.written) && (
-                                  <h3 className={this.decorateCSS("written")}>
-                                    {card_info.written}
+                                {this.castToString(
+                                  card_info.profileDescription
+                                ) && (
+                                  <h3
+                                    className={this.decorateCSS(
+                                      "profile-description"
+                                    )}
+                                  >
+                                    {card_info.profileDescription}
                                   </h3>
                                 )}
                                 {this.castToString(card_info.fullname) && (
@@ -821,13 +922,21 @@ class Feature1 extends BaseFeature {
                       {this.castToString(mini_card_info.title2) && (
                         <ComposerLink path={mini_card_info.url2}>
                           <h1 className={this.decorateCSS("title")}>
-                            {mini_card_info.title2}
+                            {this.truncateText(
+                              this.castToString(mini_card_info.title2),
+                              this.getPropValue("maxTitleLength"),
+                              true
+                            )}
                           </h1>
                         </ComposerLink>
                       )}
                       {this.castToString(mini_card_info.description2) && (
                         <p className={this.decorateCSS("description")}>
-                          {mini_card_info.description2}
+                          {this.truncateText(
+                            this.castToString(mini_card_info.description2) ||
+                              "",
+                            this.getPropValue("maxDescriptionLength")
+                          )}
                         </p>
                       )}
                       <div
@@ -843,12 +952,20 @@ class Feature1 extends BaseFeature {
                             alt="profile image"
                           />
                         )}
-                        {(this.castToString(mini_card_info.written2) ||
+                        {(this.castToString(
+                          mini_card_info.profileDescription2
+                        ) ||
                           this.castToString(mini_card_info.fullname2)) && (
                           <div className={this.decorateCSS("user")}>
-                            {this.castToString(mini_card_info.written2) && (
-                              <h3 className={this.decorateCSS("written")}>
-                                {mini_card_info.written2}
+                            {this.castToString(
+                              mini_card_info.profileDescription2
+                            ) && (
+                              <h3
+                                className={this.decorateCSS(
+                                  "profile-description"
+                                )}
+                              >
+                                {mini_card_info.profileDescription2}
                               </h3>
                             )}
                             {this.castToString(mini_card_info.fullname2) && (
@@ -910,17 +1027,24 @@ class Feature1 extends BaseFeature {
                         {this.castToString(card_info.title) && (
                           <ComposerLink path={card_info.url}>
                             <h1 className={this.decorateCSS("title")}>
-                              {card_info.title}
+                              {this.truncateText(
+                                this.castToString(card_info.title),
+                                this.getPropValue("maxTitleLength"),
+                                true
+                              )}
                             </h1>
                           </ComposerLink>
                         )}
                         {this.castToString(card_info.description) && (
                           <p className={this.decorateCSS("description")}>
-                            {card_info.description}
+                            {this.truncateText(
+                              this.castToString(card_info.description) || "",
+                              this.getPropValue("maxDescriptionLength")
+                            )}
                           </p>
                         )}
                         {(card_info.profile_image ||
-                          this.castToString(card_info.written) ||
+                          this.castToString(card_info.profileDescription) ||
                           this.castToString(card_info.fullname)) && (
                           <div
                             className={
@@ -935,12 +1059,18 @@ class Feature1 extends BaseFeature {
                                 alt="profile image"
                               />
                             )}
-                            {(this.castToString(card_info.written) ||
+                            {(this.castToString(card_info.profileDescription) ||
                               this.castToString(card_info.fullname)) && (
                               <div className={this.decorateCSS("user")}>
-                                {this.castToString(card_info.written) && (
-                                  <h3 className={this.decorateCSS("written")}>
-                                    {card_info.written}
+                                {this.castToString(
+                                  card_info.profileDescription
+                                ) && (
+                                  <h3
+                                    className={this.decorateCSS(
+                                      "profile-description"
+                                    )}
+                                  >
+                                    {card_info.profileDescription}
                                   </h3>
                                 )}
                                 {this.castToString(card_info.fullname) && (
