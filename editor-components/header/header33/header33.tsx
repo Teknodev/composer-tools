@@ -224,30 +224,34 @@ class Header33 extends BaseHeader {
       parentCircleToInnerCircleScaleRatio;
     const circleContainerMaxW = 300;
     let circlePerimeter = 2 * 3.14 * circleRadius;
-    const circleScale = parseFloat((circleContainerW / 300).toFixed(2));
+    let circleScale = parseFloat((circleContainerW / 300).toFixed(2));
 
     const textLength = rotateText.length;
     let fontSize = 40;
 
     let letterSpacing = parseFloat(
-      (circlePerimeter / (textLength * circleScale * fontSize)).toFixed(2),
+      (circlePerimeter / (textLength * circleScale * fontSize)).toFixed(2)
     );
-    console.log(letterSpacing, circlePerimeter);
+
     if (letterSpacing < 1) {
       letterSpacing = 0;
       fontSize = parseFloat(
-        (circlePerimeter / (textLength * circleScale)).toFixed(2),
+        (circlePerimeter / ((textLength - 1) * circleScale)).toFixed(2)
       );
       if (fontSize <= 24) {
-        fontSize = 24;
         circleRadius = textLength * 2.2;
-        circleContainerW =
+        circlePerimeter = 2 * 3.14 * circleRadius;
+        circleContainerW = Math.min(
+          circleContainerMaxW,
           Math.round(2 * circleRadius * Math.cos(45)) *
-          parentCircleToInnerCircleScaleRatio;
+            parentCircleToInnerCircleScaleRatio
+        );
+        circleScale = parseFloat((circleContainerW / 300).toFixed(2));
+        fontSize = parseFloat(
+          (circlePerimeter / ((textLength - 1) * circleScale)).toFixed(2)
+        );
       }
     }
-
-    console.log(circleContainerW, Math.cos(45));
 
     return {
       fontSize: fontSize,
@@ -280,7 +284,7 @@ class Header33 extends BaseHeader {
         this.setComponentState("titleAnimationClass", "animate__fadeInRight");
         this.setComponentState(
           "descriptionAnimationClass",
-          "animate__fadeInUp",
+          "animate__fadeInUp"
         );
       },
     };
@@ -289,6 +293,8 @@ class Header33 extends BaseHeader {
 
     const nextArrowIcon: string = this.getPropValue("next_icon");
     const prevArrowIcon: string = this.getPropValue("prev_icon");
+
+    console.log("GELDI");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -309,8 +315,10 @@ class Header33 extends BaseHeader {
 
                   return (
                     <div
-                      className={`${this.decorateCSS("content")} ${this.decorateCSS(
-                        index % 2 === 1 ? "secondary-slide" : "",
+                      className={`${this.decorateCSS(
+                        "content"
+                      )} ${this.decorateCSS(
+                        index % 2 === 1 ? "secondary-slide" : ""
                       )}`}
                       key={index}
                     >
@@ -326,7 +334,7 @@ class Header33 extends BaseHeader {
                           {titleExist && (
                             <h1
                               className={this.getComponentState(
-                                "titleAnimationClass",
+                                "titleAnimationClass"
                               )}
                             >
                               {item.title}
@@ -342,7 +350,9 @@ class Header33 extends BaseHeader {
                                 >
                                   <button
                                     className={`
-                                    ${this.getComponentState("buttonAnimationClass")}
+                                    ${this.getComponentState(
+                                      "buttonAnimationClass"
+                                    )}
                                     ${this.decorateCSS("button")}
                                     `}
                                   >
@@ -403,10 +413,12 @@ class Header33 extends BaseHeader {
                     <ComposerIcon
                       name={prevArrowIcon}
                       propsIcon={{
-                        className: `${this.decorateCSS("prev-icon")} ${styles["arrow-prev"]}`,
+                        className: `${this.decorateCSS("prev-icon")} ${
+                          styles["arrow-prev"]
+                        }`,
                         onClick: () => {
                           this.getComponentState(
-                            "slider-ref",
+                            "slider-ref"
                           ).current.slickPrev();
                         },
                       }}
@@ -416,10 +428,12 @@ class Header33 extends BaseHeader {
                     <ComposerIcon
                       name={nextArrowIcon}
                       propsIcon={{
-                        className: `${this.decorateCSS("next-icon")} ${styles["arrow-next"]}`,
+                        className: `${this.decorateCSS("next-icon")} ${
+                          styles["arrow-next"]
+                        }`,
                         onClick: () => {
                           this.getComponentState(
-                            "slider-ref",
+                            "slider-ref"
                           ).current.slickNext();
                         },
                       }}
