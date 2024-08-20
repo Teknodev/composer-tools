@@ -240,50 +240,55 @@ class Stats4Page extends BaseStats {
     this.addProp({
       type: "number",
       key: "animation-duration",
-      displayer: "Number Animation Duration (ms)",
-      value: 500,
+      displayer: "Stat Animation Duration (ms)",
+      value: 30,
     });
 
-    this.castToObject<Stat[]>("statItems").map((statsData, index) =>
-      this.setComponentState(`number-${index}`, 0),
-    );
+    this.addProp({
+      type: "number",
+      key: "increment-value",
+      displayer: "Stat Animation Increment Value",
+      value: 2,
+    });
 
+    this.init();
     this.animate();
   }
 
-  x: NodeJS.Timeout;
+  init() {
+    this.castToObject<Stat[]>("statItems").map((statsData, index) =>
+      this.setComponentState(`number-${index}`, 0),
+    );
+  }
 
+  x: NodeJS.Timeout;
   animate() {
     this.x = setInterval(() => {
-      const cards = this.castToObject<Stat[]>("statItems");
-      cards.map((card: Stat, index: number) => {
+      const statItems = this.castToObject<Stat[]>("statItems");
+      statItems.forEach((item: Stat, index: number) => {
         let statNumber = this.getComponentState(`number-${index}`);
-        if (statNumber !== card.stat) {
+        if (statNumber !== item.stat) {
           this.setComponentState(
             `number-${index}`,
             Math.min(
-              card.stat,
-              statNumber +
-                Math.ceil(
-                  card.stat /
-                    Math.round(this.getPropValue("animation-duration") / 30),
-                ),
+              item.stat,
+              statNumber + this.getPropValue("increment-value"),
             ) || 0,
           );
         }
       });
 
-      const stats = cards.map((card: any) =>
+      const stats = statItems.map((card: any) =>
         card.stat === "" ? 0 : card.stat,
       );
-      const numbers = cards.map((_, index) =>
+      const numbers = statItems.map((_, index) =>
         this.getComponentState(`number-${index}`),
       );
 
       if (JSON.stringify(stats) === JSON.stringify(numbers)) {
         clearInterval(this.x);
       }
-    }, 30);
+    }, this.getPropValue("animation-duration"));
   }
 
   getName(): string {
