@@ -18,6 +18,13 @@
         width: 950px;
         justify-content: center;
         align-items: center;
+        .exit-icon{
+          display: flex;
+          top: 10px;
+          right: 10px;
+          color:var(--composer-font-color-primary);
+          position: absolute; 
+        }
         .left-page{
           height: 100%;
           min-width: 50%;
