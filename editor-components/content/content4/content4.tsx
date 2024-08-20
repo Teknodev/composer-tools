@@ -1,461 +1,482 @@
 import * as React from "react";
-import { BaseContent } from "../../EditorComponent";
 import styles from "./content4.module.scss";
+import { BaseContent } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Horizontals = {
-  title: string;
-  description: string;
-  image: string;
-};
-type smallImages = {
-  url: string;
-  image: string;
-};
-
-type Button = {
-  buttonText: string;
-  url: string;
-}
 class Content4 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Generate social creatives for any platform",
-    });
-    this.addProp({
-      type: "string",
-      key: "subtitleSmall",
-      displayer: "Small Subtitle",
-      value:
-        "Generate social post creatives for any social media platform such as: Facebook, Instagram, LinkedIn, Twitter, Pinterest and so on. One tool to cover all your social design needs.",
-    });
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
+      type: "object",
+      key: "item-left",
+      displayer: "Item Left",
       value: [
         {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [ 
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Generate Ad Creatives",
-                },
-                {
-                  type: "page",
-                  key: "url",
-                  displayer: "Button Link",
-                  value: "",
-                }
-          ]
-        }
-      ]
-    });
-    this.addProp({
-      type: "array",
-      key: "horizontal",
-      displayer: "Card",
-      value: [
-        {
-          type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "Facebook & Instagram Post",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "description",
-              value:
-                "Perfect square post that looks good both on mobile and desktop.",
-              displayer: "Description",
-            },
-
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64745d17fba070002b756145?alt=media&timestamp=1685351192962",
-              displayer: "Image",
-            },
-          ],
+          type: "boolean",
+          key: "Visibility",
+          displayer: "visibility",
+          value: true,
         },
         {
-          type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "LinkedIn Post",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "description",
-              value:
-                "Official horizontal size recommended by LinkedIn that looks good on every device.",
-              displayer: "Description",
-            },
-
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64745c88fba070002b756107?alt=media&timestamp=1685350902787",
-              displayer: "Image",
-            },
-          ],
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
         },
         {
-          type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "Pinterest Post",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "description",
-              value:
-                "Official pin size recommended by Pinterest,vertical, similar to story sizes.",
-              displayer: "Description",
-            },
-
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64745c88fba070002b756108?alt=media&timestamp=1685350878015",
-              displayer: "Image",
-            },
-          ],
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
         },
         {
-          type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "Twitter Post",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "description",
-              value:
-                "Official landscape size recommended by Twitter that looks good on every device.",
-              displayer: "Description",
-            },
-
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6479fe666f95a2002c649b56?alt=media&timestamp=1685716566616",
-              displayer: "Image",
-            },
-          ],
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "",
         },
         {
-          type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "Youtube Post",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "description",
-              value:
-                "Official landscape size recommended by Youtube that looks good on every device.",
-              displayer: "Description",
-            },
-
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6479fc086f95a2002c649a6c?alt=media&timestamp=1685716331416",
-              displayer: "Image",
-            },
-          ],
+          type: "icon",
+          key: "icon2",
+          displayer: "Icon2",
+          value: "",
         },
         {
-          type: "object",
-          key: "horizontals",
-          displayer: "Horizontal",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "General Story",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "description",
-              value:
-                "Perfect vertical story for any platform such as Instagram and Facebook.",
-              displayer: "Description",
-            },
-
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64745d17fba070002b756145?alt=media&timestamp=1685351192962",
-              displayer: "Image",
-            },
-          ],
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-01.jpg",
         },
       ],
     });
     this.addProp({
-      type: "array",
-      key: "smallImages",
-      displayer: "Small Social Media Images",
+      type: "object",
+      displayer: "Item Right Top Left",
+      key: "item-right-top-left",
       value: [
         {
-          type: "object",
-          key: "box",
-          displayer: "Facebook",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756910?alt=media&timestamp=1685356321123",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
+          type: "boolean",
+          key: "Visibility",
+          displayer: "visibility",
+          value: true,
         },
         {
-          type: "object",
-          key: "box",
-          displayer: "Instagram",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756913?alt=media&timestamp=1685356321123",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
         },
         {
-          type: "object",
-          key: "box",
-          displayer: "Google",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756912?alt=media&timestamp=1685356321123",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
         },
         {
-          type: "object",
-          key: "box",
-          displayer: "LinkedIn",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756915?alt=media&timestamp=1685356321123",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "",
         },
         {
-          type: "object",
-          key: "box",
-          displayer: "Twitter",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756911?alt=media&timestamp=1685356321123",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
+          type: "icon",
+          key: "icon2",
+          displayer: "Icon2",
+          value: "",
         },
         {
-          type: "object",
-          key: "box",
-          displayer: "Pinterest",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b756914?alt=media&timestamp=1685356321123",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "box",
-          displayer: "Youtube",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64747f2efba070002b75690f?alt=media&timestamp=1685356321123",
-              displayer: "Image",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-          ],
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-03.jpg",
         },
       ],
     });
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
+      type: "object",
+      displayer: "Item Right Top Right",
+      key: "item-right-top-right",
+      value: [
+        {
+          type: "boolean",
+          key: "Visibility",
+          displayer: "visibility",
+          value: true,
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Start business with mentors",
+        },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "RxDividerVertical",
+        },
+        {
+          type: "icon",
+          key: "icon2",
+          displayer: "Icon2",
+          value: "LuChevronRight",
+        },
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-02.jpg",
+        },
+      ],
+    });
+    this.addProp({
+      type: "object",
+      displayer: "Item Right Bottom Left",
+      key: "item-right-bottom-left",
+      value: [
+        {
+          type: "boolean",
+          key: "Visibility",
+          displayer: "visibility",
+          value: true,
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Achieve goals & coach fast",
+        },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "RxDividerVertical",
+        },
+        {
+          type: "icon",
+          key: "icon2",
+          displayer: "Icon2",
+          value: "LuChevronRight",
+        },
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-04.jpg",
+        },
+      ],
+    });
+    this.addProp({
+      type: "object",
+      displayer: "Item Right Bottom Right",
+      key: "item-right-bottom-right",
+      value: [
+        {
+          type: "boolean",
+          key: "Visibility",
+          displayer: "visibility",
+          value: true,
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Url",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
+        },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "",
+        },
+        {
+          type: "icon",
+          key: "icon2",
+          displayer: "Icon2",
+          value: "",
+        },
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-05.jpg",
+        },
+      ],
     });
   }
-
   getName(): string {
-    return "Content 4";
+    return "Content-4";
   }
 
   render() {
+    const itemLeft = this.castToObject<any>("item-left");
+    const itemTopRight = this.castToObject<any>("item-right-top-left");
+    const itemTopLeft = this.castToObject<any>("item-right-top-right");
+    const itemBottomLeft = this.castToObject<any>("item-right-bottom-left");
+    const itemBottomRight = this.castToObject<any>("item-right-bottom-right");
+
+    const renderRight =
+      itemTopLeft.Visibility ||
+      itemTopRight.Visibility ||
+      itemBottomLeft.Visibility ||
+      itemBottomRight.Visibility;
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("h-group")}>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <h2 className={this.decorateCSS("subtitleSmall")}>{this.getPropValue("subtitleSmall")}</h2>
-            </div>
-
-            {this.castToObject<Horizontals[]>("horizontal").map(
-              (horizontals: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div className={this.decorateCSS("horizontal")} key={index}>
-                  <div className={this.decorateCSS("block")}>
-                    <div className={this.decorateCSS("title-desc-block")}>
-                      <h3 className={this.decorateCSS("title")}>
-                        {horizontals.title}
-                      </h3>
-                      <div
-                        className={this.decorateCSS("title-description-div")}
-                        >
-                        <p className={this.decorateCSS("title-description")}>
-                          {horizontals.description}
-                        </p>
+          {itemLeft.Visibility && itemLeft.image ? (
+            <div className={this.decorateCSS("left")}>
+              <ComposerLink path={itemLeft.url} isFullWidth={true}>
+                <div className={this.decorateCSS("item")}>
+                  {itemLeft.image &&
+                    <div className={this.decorateCSS("background-image")}>
+                      <img
+                        src={itemLeft.image}
+                        alt="content"
+                        className={this.decorateCSS("image")}
+                      />
+                    </div>
+                  }
+                  {(itemLeft.title || itemLeft.icon || itemLeft.icon2) && (
+                    <div className={this.decorateCSS("content")}>
+                      {itemLeft.title && (
+                        <h2 className={this.decorateCSS("title")}>
+                          {itemLeft.title}
+                        </h2>
+                      )}
+                      <div className={this.decorateCSS("icons")}>
+                        {itemLeft.icon && (
+                          <ComposerIcon
+                            name={itemLeft.icon}
+                            propsIcon={{ className: this.decorateCSS("icon1") }}
+                          />
+                        )}
+                        {itemLeft.icon2 && (
+                          <ComposerIcon
+                            name={itemLeft.icon2}
+                            propsIcon={{ className: this.decorateCSS("icon2") }}
+                          />
+                        )}
                       </div>
                     </div>
-                    <div className={this.decorateCSS("image")}>
-                      <img src={horizontals.image} alt=""></img>
-                    </div>
-                  </div>
+                  )}
                 </div>
-              </div>
-              )
-            )}
-          </div>
-          <div className={this.decorateCSS("small-image-container")}>
-            {this.castToObject<smallImages[]>("smallImages").map(
-              (smallimage: any, index: number) => (
-                <ComposerLink key={index} path={smallimage.url}>
-                  <div className={this.decorateCSS("small-image")}>
-                    <img
-                      src={smallimage.image}
-                      alt={`Small ${index + 1}`}
-                      key={index}
-                    />
-                  </div>
-                </ComposerLink>
-              )
-            )}
-          </div>
-          <div className={this.decorateCSS("button-container")}>
-                {this.castToObject<any>("buttons").map((
-                  button: Button, index: number) => (
-                    <ComposerLink path={button.url} key={index}>
-                      <button className={this.decorateCSS("button")}>
-                        {button.buttonText}
-                      </button>
+              </ComposerLink>
+            </div>
+          ) : null}
+
+          {renderRight && (
+            <div className={this.decorateCSS("right")}>
+              {itemTopLeft.Visibility || itemTopRight.Visibility ? (
+                <div className={this.decorateCSS("top")}>
+                  {itemTopRight.Visibility ? (
+                    <ComposerLink path={itemTopRight.url} isFullWidth={true}>
+                      <div className={this.decorateCSS("item")}>
+                        {itemTopRight.image && (
+                          <div className={this.decorateCSS("background-image")}>
+                            <img
+                              src={itemTopRight.image}
+                              alt="content"
+                              className={this.decorateCSS("image")}
+                            />
+                          </div>
+                        )}
+                        {(itemTopRight.title ||
+                          itemTopRight.icon ||
+                          itemTopRight.icon2) && (
+                            <div className={this.decorateCSS("content")}>
+                              {itemTopRight.title && (
+                                <h2 className={this.decorateCSS("title")}>
+                                  {itemTopRight.title}
+                                </h2>
+                              )}
+                              <div className={this.decorateCSS("icons")}>
+                                {itemTopRight.icon && (
+                                  <ComposerIcon
+                                    name={itemTopRight.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon1"),
+                                    }}
+                                  />
+                                )}
+                                {itemTopRight.icon2 && (
+                                  <ComposerIcon
+                                    name={itemTopRight.icon2}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon2"),
+                                    }}
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          )}
+                      </div>
                     </ComposerLink>
-                  ))}
-          </div>
+                  ) : null}
+                  {itemTopLeft.Visibility ? (
+                    <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
+                      <div className={this.decorateCSS("item")}>
+                        {itemTopLeft.image && (
+                          <div className={this.decorateCSS("background-image")}>
+                            <img
+                              src={itemTopLeft.image}
+                              alt="content"
+                              className={this.decorateCSS("image")}
+                            />
+                          </div>
+                        )}
+                        {(itemTopLeft.title ||
+                          itemTopLeft.icon ||
+                          itemTopLeft.icon2) && (
+                            <div className={this.decorateCSS("content")}>
+                              {itemTopLeft.title && (
+                                <h2 className={this.decorateCSS("title")}>
+                                  {itemTopLeft.title}
+                                </h2>
+                              )}
+                              <div className={this.decorateCSS("icons")}>
+                                {itemTopLeft.icon && (
+                                  <ComposerIcon
+                                    name={itemTopLeft.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon1"),
+                                    }}
+                                  />
+                                )}
+                                {itemTopLeft.icon2 && (
+                                  <ComposerIcon
+                                    name={itemTopLeft.icon2}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon2"),
+                                    }}
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          )}
+                      </div>
+                    </ComposerLink>
+                  ) : null}
+                </div>
+              ) : null}
+              {itemBottomLeft.Visibility || itemBottomRight.Visibility ? (
+                <div className={this.decorateCSS("bottom")}>
+                  {itemBottomLeft.Visibility ? (
+                    <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
+                      <div className={this.decorateCSS("item")}>
+                        {itemBottomLeft.image &&
+                          <div className={this.decorateCSS("background-image")}>
+                            <img
+                              src={itemBottomLeft.image}
+                              alt="content"
+                              className={this.decorateCSS("image")}
+                            />
+                          </div>
+                        }
+                        {(itemBottomLeft.title ||
+                          itemBottomLeft.icon ||
+                          itemBottomLeft.icon2) && (
+                            <div className={this.decorateCSS("content")}>
+                              {itemBottomLeft.title && (
+                                <h2 className={this.decorateCSS("title")}>
+                                  {itemBottomLeft.title}
+                                </h2>
+                              )}
+                              <div className={this.decorateCSS("icons")}>
+                                {itemBottomLeft.icon && (
+                                  <ComposerIcon
+                                    name={itemBottomLeft.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon1"),
+                                    }}
+                                  />
+                                )}
+                                {itemBottomLeft.icon2 && (
+                                  <ComposerIcon
+                                    name={itemBottomLeft.icon2}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon2"),
+                                    }}
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          )}
+                      </div>
+                    </ComposerLink>
+                  ) : null}
+                  {itemBottomRight.Visibility ? (
+                    <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
+                      <div className={this.decorateCSS("item")}>
+                        {itemBottomRight.image &&
+                          <div className={this.decorateCSS("background-image")}>
+                            <img
+                              src={itemBottomRight.image}
+                              alt="content"
+                              className={this.decorateCSS("image")}
+                            />
+                          </div>
+                        }
+                        {(itemBottomRight.title ||
+                          itemBottomRight.icon ||
+                          itemBottomRight.icon2) && (
+                            <div className={this.decorateCSS("content")}>
+                              {itemBottomRight.title && (
+                                <h2 className={this.decorateCSS("title")}>
+                                  {itemBottomRight.title}
+                                </h2>
+                              )}
+                              <div className={this.decorateCSS("icons")}>
+                                {itemBottomRight.icon && (
+                                  <ComposerIcon
+                                    name={itemBottomRight.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon1"),
+                                    }}
+                                  />
+                                )}
+                                {itemBottomRight.icon2 && (
+                                  <ComposerIcon
+                                    name={itemBottomRight.icon2}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon2"),
+                                    }}
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          )}
+                      </div>
+                    </ComposerLink>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          )}
         </div>
       </div>
     );

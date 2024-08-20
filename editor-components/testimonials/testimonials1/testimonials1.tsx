@@ -12,7 +12,7 @@ class Testimonials1Page extends Testimonials {
       type: "image",
       key: "right-image",
       displayer: "Right Image",
-      value: "https://craftohtml.themezaa.com/images/demo-restaurant-home-08.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616d9dbd2970002c623612?alt=media&timestamp=1719483639149",
     });
     this.addProp({
       type: "color",
@@ -24,7 +24,7 @@ class Testimonials1Page extends Testimonials {
       type: "image",
       key: "left-image",
       displayer: "Left Image",
-      value: "https://craftohtml.themezaa.com/images/demo-restaurant-home-07.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616d71bd2970002c6235f8?alt=media&timestamp=1719483639149",
     });
 
     this.addProp({
@@ -65,7 +65,7 @@ class Testimonials1Page extends Testimonials {
                   type: "image",
                   key: "image-button",
                   displayer: "Image-button",
-                  value: "https://craftohtml.themezaa.com/images/avtar-33.jpg",
+                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361d?alt=media&timestamp=1719483639149",
                 },
                 {
                   type: "page",
@@ -110,7 +110,7 @@ class Testimonials1Page extends Testimonials {
                   type: "image",
                   key: "image-button",
                   displayer: "Image-button",
-                  value: "https://craftohtml.themezaa.com/images/avtar-34.jpg",
+                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361e?alt=media&timestamp=1719483639149",
                 },
                 {
                   type: "page",
@@ -155,7 +155,7 @@ class Testimonials1Page extends Testimonials {
                   type: "image",
                   key: "image-button",
                   displayer: "Image-button",
-                  value: "https://craftohtml.themezaa.com/images/avtar-35.jpg",
+                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361f?alt=media&timestamp=1719483639150",
                 },
                 {
                   type: "page",

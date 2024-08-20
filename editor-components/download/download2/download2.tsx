@@ -29,7 +29,7 @@ class Download2 extends BaseDownload {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
-              value: "https://bilbo.surge.sh/codepen/download-cards/apple.png"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c754bd2970002c62916b?alt=media&timestamp=1719564433797"
             },
             {
               type: "image",
@@ -72,7 +72,7 @@ class Download2 extends BaseDownload {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
-              value: "https://bilbo.surge.sh/codepen/download-cards/android.png"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c754bd2970002c62916a?alt=media&timestamp=1719564433797"
             },
             {
               type: "image",
@@ -115,7 +115,7 @@ class Download2 extends BaseDownload {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
-              value: "https://bilbo.surge.sh/codepen/download-cards/web.png"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c754bd2970002c62916c?alt=media&timestamp=1719564433797"
             },
             {
               type: "image",

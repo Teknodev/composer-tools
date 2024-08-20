@@ -59,7 +59,7 @@ class Header25 extends BaseHeader {
               displayer: "Item",
               key: "image",
               value:
-                "https://7seven-miles.com/wp/go-arch/go-arch-dark/wp-content/uploads/2016/09/slide1-2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b0?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -105,7 +105,7 @@ class Header25 extends BaseHeader {
               displayer: "Item",
               key: "image",
               value:
-                "https://7seven-miles.com/wp/go-arch/go-arch-dark/wp-content/uploads/2016/09/slide2-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -151,7 +151,7 @@ class Header25 extends BaseHeader {
               displayer: "Item",
               key: "image",
               value:
-                "https://7seven-miles.com/wp/go-arch/go-arch-dark/wp-content/uploads/2016/09/slide3-2.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b2?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
