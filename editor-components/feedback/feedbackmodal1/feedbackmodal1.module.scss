@@ -1,16 +1,22 @@
 .feedbackModal {
-  width: 400px;
+  width: 480px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px  rgba(var(--composer-font-color-primary-rgb), 0.1);;
+  box-shadow: 0 4px 6px rgba(var(--composer-font-color-primary-rgb), 0.1);
   background-color: var(--composer-html-background);
   transition: background-color 0.3s ease;
+
+  .divider {
+    border: 1px solid rgba((var(--composer-font-color-primary-rgb)), 0.1);
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 40px;
+  }
 
   .feedbackModalHeader {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--composer-font-color-primary);
-    padding-bottom: 20px;
     position: relative;
 
     .icon {
@@ -28,7 +34,7 @@
     }
 
     .feedbackModalCloseButton {
-      background-color:  var(--composer-html-background);
+      background-color: var(--composer-html-background);
       border: none;
       font-size: 2rem;
       cursor: pointer;
@@ -37,18 +43,21 @@
       top: 30%;
       transform: translateY(-50%);
       color: var(--composer-html-background);
-      .close_icon{
-        color:  var(--composer-font-color-primary);;
+
+      .close_icon {
+        color: var(--composer-font-color-primary);
+        ;
       }
     }
   }
 
 
+
+
   .headerContent {
-    
-    padding-left: 100px !important;
+    padding-left: 10px !important;
     padding-right: 10px !important;
-    padding-top: 20px;
+    padding-top: 10px;
 
     h2 {
       margin: 0;
@@ -56,91 +65,140 @@
       text-align: center;
       color: var(--composer-font-color-primary);
     }
+
+    p {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   .descriptionContent {
     margin: 0 auto;
-    width: 300px;
+    width: 425px;
+    margin-bottom: 30px;
 
     p {
       text-align: center;
       font-size: 1rem;
-      color:  var(--composer-font-color-primary);
-      margin-bottom: 20px;
+      color: var(--composer-font-color-primary);
     }
   }
 
   .feedbackModalEmojis {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
     flex-wrap: wrap;
-  
-    .feedbackModalEmoji {
-      position: relative;
-      cursor: pointer;
+
+    .emojiWrapper {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      padding: 10px;
-      border-radius: 50%;
-      transition: background-color 0.3s, transform 0.3s;
-      background-color: var(--secondary-text-color);
-      margin-bottom: 10px;
-  
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-        z-index: -1;
+      //margin: 10px;
+
+      .emojiLabel {
+        background-color: darkgray;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        position: relative;
+        display: inline-block;
         opacity: 0;
-        transition: opacity 0.3s;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
       }
-  
-      &::before {
-        width: 80px;
-        height: 80px;
+
+      .emojiLabel::after {
+        content: "";
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent darkgray transparent;
       }
-  
-      &::after {
-        width: 100px;
-        height: 100px;
-      }
-  
-      .feedbackModalEmojiIcon {
+
+
+      .feedbackModalEmoji {
+        position: relative;
+        cursor: pointer;
+        display: flex;
         align-items: center;
-        font-size: 2.5rem;
-        filter: grayscale(100%);
-        transition: filter 0.3s;
-        width: 30px;
-        height: 30px;
-      }
-  
-      &.selected,
-      &:hover {
-        background: linear-gradient(to bottom, #f6df6d, #76dca3);
-        transform: scale(1.1);
-    
-        &::before,
+        padding: 10px;
+        border-radius: 50%;
+        transition: background-color 0.3s, transform 0.3s;
+        // background-color: var(--secondary-text-color);
+        // filter: grayscale(100%);
+        margin-bottom: 10px;
+
         &::after {
-          opacity: 1;
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.3s;
+          border-style: solid;
+          border-width: 1px 3px;
+          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
-    
+
+
+        &::after {
+          width: 75px;
+          height: 75px;
+        }
+
         .feedbackModalEmojiIcon {
-          filter: grayscale(0%);
+          align-items: center;
+          font-size: 2.5rem;
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 30%); //var(--composer-font-color-primary) rgba(var(--composer-font-color-primary-rgb),0.5);
+          transition: filter 0.3s;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+
+        &.selected,
+        &:hover {
+          background: radial-gradient(circle,
+              rgba(var(--composer-secondary-color-rgb, 1), 0.80),
+              rgba(var(--composer-html-background-rgb, 1), 1));
+
+          //background: var(--composer-font-color-secondary);
+          transform: scale(1.2);
+
+
+          &::after {
+            opacity: 1;
+          }
+
+
+          .feedbackModalEmoji {
+            filter: grayscale(0%);
+          }
+
+          .feedbackModalEmojiIcon {
+            background-color: rgba(var(--composer-secondary-color-rgb), 1); //var(--composer-font-color-primary)
+            filter: grayscale(0%);
+          }
+
+          ~.emojiLabel {
+            opacity: 1;
+            visibility: visible;
+          }
         }
       }
     }
   }
-  
+
 
   .contact-form {
     margin-bottom: 20px;
-    margin-top: 40px;
+    //margin-top: 40px;
     transition: 1s;
     display: flex;
     width: 100%;
@@ -149,32 +207,33 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    
-  
-      .input {
-        position: relative;
-        width: 360px;
-        height: 95px;
-        border-color: var(--composer-font-color-primary);
-        border-radius:  var(--composer-border-radius);
-        background: var(--composer-html-background);
-        color: var(--composer-font-color-primary);
-        padding-bottom: 55px;
-        padding-left: 10px;
-  
-        &:focus {
-          outline-color: var(--composer-secondary-color);
-        }
+
+    .input {
+      position: relative;
+      width: 450px;
+      height: 95px;
+      border-color: rgba(var(--composer-font-color-primary-rgb), 0.025);
+      border-radius: var(--composer-border-radius);
+      background: var(--composer-html-background);
+      color: var(--composer-font-color-primary);
+      padding-bottom: 55px;
+      padding-left: 10px;
+
+      &:focus {
+        outline-color: var(--composer-secondary-color);
       }
-  
-      
-    
+    }
+  }
+
+  .no-emojis {
+    margin-top: 0px !important;
   }
 
   .feedbackModalComment {
     width: 100%;
     height: 60px;
-    border: 1px solid var(--composer-html-background);;
+    border: 1px solid var(--composer-html-background);
+    ;
     border-radius: 5px;
     padding: 10px;
     font-size: 0.875rem;
@@ -192,10 +251,10 @@
     cursor: pointer;
     transition: background 0.3s;
 
-    
+
   }
 
-  @media only screen and  (max-width: 768px) { 
+  @media only screen and (max-width: 768px) {
     width: 90%;
     padding: 15px;
 
@@ -206,7 +265,7 @@
 
       .feedbackModalCloseButton {
         font-size: 1.5rem;
-        padding-left: 150px;
+        //padding-left: 150px;
       }
     }
 
@@ -242,7 +301,7 @@
     }
   }
 
-  @media only screen and  (max-width: 480px) { 
+  @media only screen and (max-width: 480px) {
     width: 95%;
     padding: 10px;
 
@@ -253,7 +312,7 @@
 
       .feedbackModalCloseButton {
         font-size: 1.25rem;
-        padding-left: 100px;
+        //padding-left: 100px;
       }
     }
 

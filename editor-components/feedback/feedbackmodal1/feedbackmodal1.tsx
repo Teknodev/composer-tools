@@ -3,9 +3,11 @@ import { BaseModal } from "../../EditorComponent";
 import styles from "./feedbackmodal1.module.scss";
 import { object, string } from "yup";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { boolean } from "yup/lib/locale";
 
 type Emoji = {
   value: string;
+  label: string
 };
 
 class FeedbackModal1 extends BaseModal {
@@ -28,14 +30,21 @@ class FeedbackModal1 extends BaseModal {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Title",
+      displayer: "Modal Title",
       value: "Feedback",
     });
 
     this.addProp({
+      type: "boolean",
+      key: "divider",
+      displayer: "isDividerActive?",
+      value: true,
+    })
+
+    this.addProp({
       type: "string",
       key: "headerTitle",
-      displayer: "Header Title",
+      displayer: "Title",
       value: "How are you feeling?",
     });
 
@@ -52,34 +61,99 @@ class FeedbackModal1 extends BaseModal {
       displayer: "Emojis",
       value: [
         {
-          type: "icon",
-          key: "emoji",
-          displayer: "Icon",
-          value: "FaRegFrown",
+          type: "object",
+          key: "emojiItem",
+          displayer: "Emoji Item",
+          value: [
+            {
+              type: "icon",
+              key: "emoji",
+              displayer: "Icon",
+              value: "FaRegFrown",
+            },
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Very Bad",
+            },
+          ],
         },
         {
-          type: "icon",
-          key: "emoji",
-          displayer: "Icon",
-          value: "FaRegMeh",
+          type: "object",
+          key: "emojiItem",
+          displayer: "Emoji Item",
+          value: [
+            {
+              type: "icon",
+              key: "emoji",
+              displayer: "Icon",
+              value: "FaRegMeh",
+            },
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Bad",
+            },
+          ],
         },
         {
-          type: "icon",
-          key: "emoji",
-          displayer: "Icon",
-          value: "FaRegSmile",
+          type: "object",
+          key: "emojiItem",
+          displayer: "Emoji Item",
+          value: [
+            {
+              type: "icon",
+              key: "emoji",
+              displayer: "Icon",
+              value: "FaRegSmile",
+            },
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Neutral",
+            },
+          ],
         },
         {
-          type: "icon",
-          key: "emoji",
-          displayer: "Icon",
-          value: "FaRegSmile",
+          type: "object",
+          key: "emojiItem",
+          displayer: "Emoji Item",
+          value: [
+            {
+              type: "icon",
+              key: "emoji",
+              displayer: "Icon",
+              value: "FaRegSmile",
+            },
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Good",
+            },
+          ],
         },
         {
-          type: "icon",
-          key: "emoji",
-          displayer: "Icon",
-          value: "FaRegGrin",
+          type: "object",
+          key: "emojiItem",
+          displayer: "Emoji Item",
+          value: [
+            {
+              type: "icon",
+              key: "emoji",
+              displayer: "Icon",
+              value: "FaRegGrin",
+            },
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Very Good",
+            },
+          ],
         },
       ],
     });
@@ -102,14 +176,14 @@ class FeedbackModal1 extends BaseModal {
   handleEmojiClick(emojiId: number) {
     const emojiElements = document.querySelectorAll(`.${styles.feedbackModalEmoji}`);
     emojiElements.forEach((element) => {
-        element.classList.remove(styles.selected);
+      element.classList.remove(styles.selected);
     });
 
     const selectedElement = document.getElementById(`emoji-${emojiId}`);
     if (selectedElement) {
-        selectedElement.classList.add(styles.selected);
+      selectedElement.classList.add(styles.selected);
     } else {
-        console.error(`Element with id emoji-${emojiId} not found.`);
+      console.error(`Element with id emoji-${emojiId} not found.`);
     }
   }
 
@@ -122,28 +196,37 @@ class FeedbackModal1 extends BaseModal {
     const isHeaderTitleExist = this.castToString(this.getPropValue("headerTitle"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const emojiProps = this.getPropValue("emojis");
-    const isFeedbackIconExist = this.castToString(this.getPropValue("feedback_icon"));
+    const isFeedbackIconExist = this.getPropValue("feedback_icon");
     const inputPlaceholder = this.castToString(this.getPropValue("input_text"));
     const buttonval = this.castToString(this.getPropValue("buttonText"));
+    const isDividerActive = this.getPropValue("divider");
 
+
+    const emojis = this.castToObject<Emoji[]>("emojis");
+    const emojiExist = emojis.length > 0;
+    // console.log("emojisProps: ", emojiProps);
+    // console.log("emojis: ", emojis);
+    // console.log("emoji var mı?",emojiExist);
+    // console.log("isDividerActive", isDividerActive);
+    console.log("isFeedbackIconExist: ", isFeedbackIconExist);
     return (
       <div className={this.decorateCSS("feedbackModal")}>
         <div className={this.decorateCSS("feedbackModalHeader")}>
-          
-            <ComposerIcon
-              name={this.getPropValue("feedback_icon")}
-              propsIcon={{
-                className: `${this.decorateCSS("icon")}`,
-              }}
-            />
-          
+
+          {isFeedbackIconExist && <ComposerIcon
+            name={this.getPropValue("feedback_icon")}
+            propsIcon={{
+              className: `${this.decorateCSS("icon")}`,
+            }}
+          />}
+
 
           {isTitleExist &&
             <h1 className={this.decorateCSS("feedbackModalHeaderh1")}>
               {this.getPropValue("title")}
             </h1>}
           <button className={this.decorateCSS("feedbackModalCloseButton")}>
-          <ComposerIcon
+            <ComposerIcon
               name={this.getPropValue("close_icon")}
               propsIcon={{
                 className: `${this.decorateCSS("close_icon")}`,
@@ -152,53 +235,67 @@ class FeedbackModal1 extends BaseModal {
           </button>
         </div>
 
-          {isHeaderTitleExist &&
-            <h2 className={this.decorateCSS("headerContent")}>
-              {this.getPropValue("headerTitle")}</h2>
-          }
-        
+        {isDividerActive && (isFeedbackIconExist || isTitleExist) && (
+          <>
+            <hr style={{ margin: 'none' }} className={this.decorateCSS("divider")} />
+          </>
+        )}
 
-          {isDescriptionExist &&
-            <p className={this.decorateCSS("descriptionContent")}>
-              {this.getPropValue("description")}</p>
-          }
-        
-        
-        {emojiProps.length > 0 && (
+        {isHeaderTitleExist &&
+          <h2 className={this.decorateCSS("headerContent")}>
+            {this.getPropValue("headerTitle")}</h2>
+        }
+
+
+        {isDescriptionExist &&
+          <p className={this.decorateCSS("descriptionContent")}>
+            {this.getPropValue("description")}</p>
+        }
+
+
+        {emojis.length > 0 && (
           <div className={this.decorateCSS("feedbackModalEmojis")}>
-            {emojiProps.map((item: Emoji, index: number) => (
-              <span
-                key={index}
-                id={`emoji-${index + 1}`}
-                className={this.decorateCSS("feedbackModalEmoji")}
-                onClick={() => this.handleEmojiClick(index + 1)}
-              >
-                <ComposerIcon
-                  name={item.value}
-                  propsIcon={{
-                    className: `${this.decorateCSS("feedbackModalEmojiIcon")}`,
-                  }}
-                />
-              </span>
+            {this.castToObject<Emoji[]>("emojis").map((item: any, index: number) => (
+              <div className={this.decorateCSS("emojiWrapper")} key={index}>
+                <span
+                  id={`emoji-${index + 1}`}
+                  className={this.decorateCSS("feedbackModalEmoji")}
+                  onClick={() => this.handleEmojiClick(index + 1)}
+                >
+                  <ComposerIcon
+                    name={item.emoji}
+                    propsIcon={{
+                      className: `${this.decorateCSS("feedbackModalEmojiIcon")}`,
+                    }}
+                  />
+                </span>
+                <p className={this.decorateCSS("emojiLabel")}>{item.label}</p>
+              </div>
             ))}
           </div>
-        ) }
+        )}
 
-      
-          <div className={this.decorateCSS("send-mail")}>
-            <div className={this.decorateCSS("contact-form")}>
-              <input
-                placeholder={inputPlaceholder}
-                type="text"
-                className={this.decorateCSS("input")}
-              />
+        {
+          (buttonval || inputPlaceholder) && (
+            <div className={this.decorateCSS("send-mail")}>
+              {inputPlaceholder && (
+                <div className={`${this.decorateCSS("contact-form")} ${!emojiExist && this.decorateCSS("no-emojis")}`}>
+                  <input
+                    placeholder={inputPlaceholder}
+                    type="text"
+                    className={this.decorateCSS("input")}
+                  />
+                </div>
+              )}
+              {buttonval && (
+                <button className={this.decorateCSS("button")}>
+                  {buttonval}
+                </button>
+              )}
             </div>
-            {buttonval && (
-              <button className={this.decorateCSS("button")}>
-                {buttonval}
-              </button>
-            )}
-          </div>
+          )
+        }
+
       </div>
     );
   }
