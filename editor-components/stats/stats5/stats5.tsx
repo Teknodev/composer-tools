@@ -99,17 +99,24 @@ class Stats5Page extends BaseStats {
 
     this.addProp({
       type: "number",
-      key: "animation-duration",
-      displayer: "Number Animation Duration (ms)",
-      value: 500,
-    });
-
-    this.addProp({
-      type: "number",
       key: "itemCountInRow",
       displayer: "Item Count in a Row",
       value: 4,
       max: 4,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "animation-duration",
+      displayer: "Stat Animation Duration (ms)",
+      value: 30,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "increment-value",
+      displayer: "Stat Animation Increment Value",
+      value: 2,
     });
 
     this.init();
@@ -138,18 +145,14 @@ class Stats5Page extends BaseStats {
   animate() {
     this.x = setInterval(() => {
       const cards = this.castToObject<Card[]>("cards");
-      cards.map((card: Card, index: number) => {
+      cards.forEach((card: Card, index: number) => {
         let statNumber = this.getComponentState(`number-${index}`);
         if (statNumber !== card.stat) {
           this.setComponentState(
             `number-${index}`,
             Math.min(
               card.stat,
-              statNumber +
-                Math.ceil(
-                  card.stat /
-                    Math.round(this.getPropValue("animation-duration") / 30),
-                ),
+              statNumber + this.getPropValue("increment-value"),
             ) || 0,
           );
         }
@@ -165,7 +168,7 @@ class Stats5Page extends BaseStats {
       if (JSON.stringify(stats) === JSON.stringify(numbers)) {
         clearInterval(this.x);
       }
-    }, 30);
+    }, this.getPropValue("animation-duration"));
   }
 
   getCardClasses(index: number, itemCountInRow: number) {
@@ -209,7 +212,8 @@ class Stats5Page extends BaseStats {
                     >
                       {data.stat && (
                         <h4 className={this.decorateCSS("card-data-title")}>
-                          {this.getComponentState(`number-${index}`)
+                          {this.getComponentState(`number-${index}`) ||
+                          this.getComponentState(`number-${index}`) === 0
                             ? this.getComponentState(`number-${index}`)
                             : data.stat}
                         </h4>
