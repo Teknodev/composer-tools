@@ -32,6 +32,13 @@ class Slider10 extends BaseSlider {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "hoverAnimation",
+      displayer: "Featured Items Hover Animation",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "slider-items",
       displayer: "Slider",
@@ -45,7 +52,7 @@ class Slider10 extends BaseSlider {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "First Slide",
+              value: "The Petronas Twin Towers",
             },
             {
               type: "image",
@@ -65,7 +72,7 @@ class Slider10 extends BaseSlider {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Second Slide",
+              value: "Multi-Family Housing",
             },
             {
               type: "image",
@@ -85,7 +92,7 @@ class Slider10 extends BaseSlider {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Third Slide",
+              value: "The Lighthouse",
             },
             {
               type: "image",
@@ -105,7 +112,7 @@ class Slider10 extends BaseSlider {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Fourth Slide",
+              value: "The Arches",
             },
             {
               type: "image",
@@ -125,7 +132,7 @@ class Slider10 extends BaseSlider {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Fifth Slide",
+              value: "Riverside Residence",
             },
             {
               type: "image",
@@ -145,7 +152,7 @@ class Slider10 extends BaseSlider {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Sixth Slide",
+              value: "Dream House",
             },
             {
               type: "image",
@@ -292,7 +299,7 @@ class Slider10 extends BaseSlider {
       dots: false,
       arrows: false,
       infinite: true,
-      autoplay: true,
+      autoplay: false,
       speed: 1500,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -318,6 +325,7 @@ class Slider10 extends BaseSlider {
 
     const sliderRef = this.getComponentState("slider-ref");
     const overlay: boolean = this.getPropValue("overlay");
+    const hoverAnimation: boolean = this.getPropValue("hoverAnimation");
 
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
@@ -396,9 +404,16 @@ class Slider10 extends BaseSlider {
                           >
                             {item.image && (
                               <img
-                                className={this.decorateCSS(
-                                  "slider-footer-item-image",
-                                )}
+                                className={`
+                                  ${this.decorateCSS(
+                                    "slider-footer-item-image",
+                                  )}
+                                  ${
+                                    hoverAnimation
+                                      ? this.decorateCSS("hover-animation")
+                                      : ""
+                                  }
+                                `}
                                 src={item.image}
                                 alt={this.castToString(item.title)}
                               />
