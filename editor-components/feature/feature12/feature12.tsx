@@ -193,7 +193,12 @@ class Feature12 extends BaseFeature {
     return (
       <div className={this.decorateCSS("container")}>
         {(upperTitleExist || behindTitleTextExist || titleExist) && (
-          <header className={this.decorateCSS("header")}>
+          <header
+            className={`
+              ${this.decorateCSS("header")}
+              ${titleExist ? this.decorateCSS("min-height-unset") : ""}
+            `}
+          >
             {upperTitleExist && (
               <div className={this.decorateCSS("upper-title")}>
                 {upperTitle}
@@ -216,7 +221,11 @@ class Feature12 extends BaseFeature {
                 className={this.decorateCSS("card-item-first")}
                 style={{
                   width: `${100 / itemCount}%`,
-                  backgroundImage: `${overlay ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%))," : ""} url(${backgroundImage})`,
+                  backgroundImage: `${
+                    overlay
+                      ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
+                      : ""
+                  } url(${backgroundImage})`,
                 }}
               >
                 {firstCardTitleExist && (
@@ -243,10 +252,18 @@ class Feature12 extends BaseFeature {
                 else
                   return (
                     <div
-                      className={this.decorateCSS("card-item-count")}
+                      className={`
+                        ${this.decorateCSS("card-item-count")}
+                        ${this.decorateCSS(itemCount >= 4 ? "border-top" : "")}
+                      `}
                       style={{
                         width: `${100 / itemCount}%`,
-                        backgroundColor: `color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) ${10 + (index % (itemCount - 1)) * 5}%)`,
+                        backgroundColor: `
+                          color-mix(
+                          in srgb,
+                          var(--composer-html-background),
+                          var(--composer-font-color-primary) ${5 + ((index + 1) % 4) * 5}%
+                        )`,
                       }}
                       key={index}
                     >

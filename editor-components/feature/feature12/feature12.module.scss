@@ -34,6 +34,10 @@
   min-height: 120px;
   width: 100%;
   max-width: var(--composer-content-width);
+
+  &.min-height-unset {
+    min-height: unset;
+  }
 }
 
 .upper-title {
@@ -125,6 +129,10 @@
 }
 
 .card-item-count {
+  &.border-top {
+    border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+  }
+
   .message {
     color: var(--composer-font-color-primary);
     width: 100%;
@@ -135,29 +143,29 @@
     height: 100%;
     overflow: hidden;
     text-align: center;
+    gap: 20px;
 
     .title,
     .long-text {
       margin: 0;
-      padding: 20px;
       color: var(--composer-font-color-primary);
-      font-size: medium;
-      font-weight: medium;
       text-align: center;
+      width: 90%;
     }
 
     .title {
-      font-weight: bold;
+      font-weight: 800;
       font-size: large;
-      width: 100%;
-      font-weight: bolder;
       color: var(--composer-font-color-primary);
+    }
+
+    .long-text {
+      font-size: medium;
     }
   }
 }
 
 .Icon {
-  margin: 10%;
   color: var(--composer-primary-color);
   width: 40px;
   height: 40px;
