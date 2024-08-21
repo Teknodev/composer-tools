@@ -5,8 +5,10 @@
 
 .container {
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 50px;
   background-color: var(--composer-html-background);
+  margin: 0 auto;
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: 0 auto;
