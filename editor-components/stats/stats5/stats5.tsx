@@ -118,6 +118,13 @@ class Stats5Page extends BaseStats {
       value: 20,
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "lines",
+      displayer: "Toggle Lines",
+      value: true,
+    });
+
     this.init();
     this.animate();
   }
@@ -125,8 +132,6 @@ class Stats5Page extends BaseStats {
   getName(): string {
     return "Stats 5";
   }
-
-  x: any;
 
   init() {
     this.castToObject<Card[]>("cards").map((card, index) =>
@@ -179,7 +184,9 @@ class Stats5Page extends BaseStats {
     const isLastInRow =
       (index + 1) % itemCountInRow === 0 || index === totalCards - 1;
 
-    return !isLastInRow ? this.decorateCSS("stick") : "";
+    return !isLastInRow && this.getPropValue("lines")
+      ? this.decorateCSS("stick")
+      : "";
   }
 
   render() {
@@ -187,8 +194,6 @@ class Stats5Page extends BaseStats {
 
     const cards = this.castToObject<Card[]>("cards");
 
-    console.log(this.getStats());
-    console.log(this.getNumbers());
     /**
      * Execute animate() only if:
      *    it is executed and it's interval is cleared before
