@@ -25,8 +25,8 @@
             content: "";
             position: absolute;
             right: 0;
+            // top and bottom are correct
             top: 35%;
-            // TODO: change later
             bottom: 35%;
             width: 1px;
             background-color: var(--composer-font-color-primary);
@@ -95,11 +95,11 @@
           }
 
           .card-data-title {
-            font-size: 10rem;
+            font-size: 7rem;
           }
 
           .card-data-description {
-            font-size: 2rem;
+            font-size: 1.7rem;
             width: 100%;
           }
         }
