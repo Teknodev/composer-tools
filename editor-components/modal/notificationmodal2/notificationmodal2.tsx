@@ -79,7 +79,7 @@ class NotificationModal2 extends BaseModal {
             {icon && (
               <div className={this.decorateCSS("icon")}>
                 <ComposerIcon
-                  propsIcon={{ className: this.decorateCSS("Icon") }}
+                  propsIcon={{ className: this.decorateCSS("exitIcon") }}
                   name={this.getPropValue("icon")}
                 />
               </div>
