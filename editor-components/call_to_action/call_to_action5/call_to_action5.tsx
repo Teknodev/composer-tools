@@ -1,96 +1,94 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action5.module.scss";
 
-type listedListItem = {
-  listedItem: string;
-};
+type Field = {
+  placeholder: JSX.Element;
+  isVisible: boolean;
+  isRequired: boolean;
+}
 
 class CallToAction5Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "image",
+      key: "background",
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb46cb3292c6002b23faeb?alt=media"
+    });
+
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "This is a Call To Action",
+      value: "NEWSLETTER SIGN UP",
     });
+
     this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://clarity.microsoft.com/blog/wp-content/uploads/2021/07/13.png",
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "JOIN FOR NEW UPDATES.",
     });
+
     this.addProp({
       type: "string",
       key: "buttonText",
       displayer: "Button Text",
-      value: "JOIN FOR FREE",
+      value: "SUBSCRIBE NOW",
     });
+
     this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Button Link",
-      value: "",
-    });
-    this.addProp({
-      type: "string",
-      key: "placeholder",
-      displayer: "Placeholder",
-      value: "Enter email to get started",
-    });
-    this.addProp({
-      type: "image",
-      key: "listImage",
-      displayer: "List Image",
-      value: "https://cdn-icons-png.flaticon.com/512/6520/6520110.png",
-    });
-    this.addProp({
-      type: "array",
-      key: "listedListItem",
-      displayer: "Listed Item",
+      type: "object",
+      key: "email",
+      displayer: "E-mail Field",
       value: [
         {
-          type: "object",
-          key: "listItem",
-          displayer: "List Item",
-          value: [
-            {
-              type: "string",
-              key: "listedItem",
-              value: "Join us now and be a part of the movement to create a better world for future generations to come.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-              displayer: "Item",
-            },
-          ],
+          type: "string",
+          key: "placeholder",
+          displayer: "Placeholder",
+          value: "Enter e-mail address"
         },
         {
-          type: "object",
-          key: "listItem",
-          displayer: "List Item",
-          value: [
-            {
-              type: "string",
-              key: "listedItem",
-              value: "Take the first step towards your dreams and start your journey with us.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-              displayer: "Item",
-            },
-          ],
+          type: "boolean",
+          key: "isVisible",
+          displayer: "Is visible?",
+          value: true
         },
-      ],
+        {
+          type: "boolean",
+          key: "isRequired",
+          displayer: "Is required?",
+          value: true
+        }
+      ]
     });
+
     this.addProp({
-      type: "string",
-      key: "warning",
-      displayer: "Warning Text",
-      value: "We don't share or sell your email address publicly",
-    });
-    this.addProp({
-      type: "image",
-      key: "warningImage",
-      displayer: "Warning Image",
-      value: "https://cdn-icons-png.flaticon.com/512/2889/2889676.png",
+      type: "object",
+      key: "phone",
+      displayer: "Phone Field",
+      value: [
+        {
+          type: "string",
+          key: "placeholder",
+          displayer: "Placeholder",
+          value: "Enter phone number"
+        },
+        {
+          type: "boolean",
+          key: "isVisible",
+          displayer: "Is visible?",
+          value: true
+        },
+        {
+          type: "boolean",
+          key: "isRequired",
+          displayer: "Is required?",
+          value: true
+        }
+      ]
     });
   }
 
@@ -99,63 +97,67 @@ class CallToAction5Page extends BaseCallToAction {
   }
 
   render() {
+
+    const titleExist = this.getPropValue("title", { as_string: true });
+    const subtitleExist = this.getPropValue("subtitle", { as_string: true });
+    const buttonTextExist = this.getPropValue("buttonText", { as_string: true });
+
+    const email = this.castToObject<Field>("email");
+    const phone = this.castToObject<Field>("phone");
+
+    const backgroundImage = this.getPropValue("background");
+
+    const insertBackground = backgroundImage
+      ? {
+        background: `url(${backgroundImage})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
+      }
+      : {};
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")}
+        style={insertBackground}
+      >
         <div className={this.decorateCSS("max-content")}>
-          <section className={this.decorateCSS("call-to-action5-container")}>
-            <div className={this.decorateCSS("image-background")}>
-              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt=""></img>
+          {(titleExist || subtitleExist) &&
+            <div className={this.decorateCSS("header")}>
+              {titleExist && (
+                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+              )}
+              {subtitleExist && (
+                <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
+              )}
             </div>
-            <div className={this.decorateCSS("call-to-action5")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-
-              <ul className={this.decorateCSS("list")}>
-                {this.castToObject<listedListItem[]>("listedListItem").map(
-                  (tableData: any, index: number) => {
-                    return (
-                      <li key={index}>
-                        <img
-                          alt=""
-                          width={15}
-                          height={15}
-                          src={this.getPropValue("listImage")}
-                        />
-                        {tableData.listedItem}
-                      </li>
-                    );
+          }
+          {(email.isVisible || phone.isVisible || buttonTextExist) &&
+            <div className={`${this.decorateCSS("newsletter")} 
+              ${email.isVisible && phone.isVisible ? this.decorateCSS("vertical") : ""}`}
+            >
+              {(email.isVisible || phone.isVisible) &&
+                <div className={this.decorateCSS("inputs")}>
+                  {email.isVisible &&
+                    <input className={this.decorateCSS("input")} type="email" placeholder={this.castToString(email.placeholder)} required={email.isRequired} />
                   }
-                )}
-              </ul>
-
-              <div className={this.decorateCSS("input-box")}>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder={this.getPropValue("placeholder")}
-                />
-                <ComposerLink path={this.getPropValue("link")}>
-                  <span className={this.decorateCSS("button")}>
-                    {this.getPropValue("buttonText")}
-                  </span>
-                </ComposerLink>
-              </div>
-                  
-              <p className={this.decorateCSS("image-p")}>
-                <img
-                  alt=""
-                  width={13}
-                  height={13}
-                  src={this.getPropValue("warningImage")}
-                />
-                {this.getPropValue("warning")}
-              </p>
+                  {phone.isVisible &&
+                    <input className={this.decorateCSS("input")} type="tel" placeholder={this.castToString(phone.placeholder)} required={phone.isRequired} />
+                  }
+                </div>
+              }
+              {buttonTextExist &&
+                <button
+                  className={this.decorateCSS("submit-button")}
+                  type="submit"
+                >
+                  {this.getPropValue("buttonText")}
+                </button>
+              }
             </div>
-          </section>
+          }
         </div>
       </div>
     );
   }
 }
-
 export default CallToAction5Page;
