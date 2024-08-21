@@ -39,6 +39,13 @@ class Slider10 extends BaseSlider {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "textAnimation",
+      displayer: "Text Animation",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "slider-items",
       displayer: "Slider",
@@ -341,6 +348,7 @@ class Slider10 extends BaseSlider {
     const sliderRef = this.getComponentState("slider-ref");
     const overlay: boolean = this.getPropValue("overlay");
     const hoverAnimation: boolean = this.getPropValue("hoverAnimation");
+    const textAnimation: boolean = this.getPropValue("textAnimation");
 
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
@@ -369,9 +377,11 @@ class Slider10 extends BaseSlider {
                                 className={`
                                 ${this.decorateCSS("slider-item-title")}
                                 ${
-                                  this.getComponentState("active") === index
-                                    ? this.decorateCSS("anim")
-                                    : ""
+                                  textAnimation
+                                    ? this.getComponentState("active") === index
+                                      ? this.decorateCSS("anim")
+                                      : ""
+                                    : this.decorateCSS("anim")
                                 }
                               `}
                               >
