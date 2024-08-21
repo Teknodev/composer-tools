@@ -3,14 +3,13 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type IMessages = {
+type Card = {
   title: JSX.Element;
-  description?: JSX.Element;
-  icon?: string;
-  backgroundColor: string;
+  description: JSX.Element;
+  icon: string;
 };
 
-type FirstItemType = {
+type FirstItem = {
   title: JSX.Element;
   button: JSX.Element;
   backgroundImage: string;
@@ -40,8 +39,8 @@ class Feature12 extends BaseFeature {
     });
     this.addProp({
       type: "object",
-      key: "message",
-      displayer: "Message",
+      key: "firstItem",
+      displayer: "First Card",
       value: [
         {
           type: "string",
@@ -72,13 +71,13 @@ class Feature12 extends BaseFeature {
     });
     this.addProp({
       type: "array",
-      key: "messageCard",
-      displayer: "Message Card",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -102,8 +101,8 @@ class Feature12 extends BaseFeature {
         },
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -127,8 +126,8 @@ class Feature12 extends BaseFeature {
         },
         {
           type: "object",
-          key: "message",
-          displayer: "Message",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -181,18 +180,22 @@ class Feature12 extends BaseFeature {
 
     const itemCount = this.getPropValue("itemCount");
 
-    const messageCards = this.castToObject<IMessages[]>("messageCard");
-    const firstItem = this.castToObject<FirstItemType>("message");
+    const cards = this.castToObject<Card[]>("cards");
+    const firstItem = this.castToObject<FirstItem>("firstItem");
 
     const firstCardTitleExist = this.castToString(firstItem.title);
     const buttonTextExist = this.castToString(firstItem.button);
 
     const firstItemBackgroundImage = firstItem.backgroundImage;
-    const overlay = firstItem.overlay;
+    const firstItemOverlay = firstItem.overlay;
+
+    const renderFirstItem =
+      firstCardTitleExist || buttonTextExist || firstItemBackgroundImage;
+    const renderHeader = behindTitleTextExist || titleExist;
 
     return (
       <div className={this.decorateCSS("container")}>
-        {(upperTitleExist || behindTitleTextExist || titleExist) && (
+        {renderHeader && (
           <header
             className={`
               ${this.decorateCSS("header")}
@@ -216,15 +219,13 @@ class Feature12 extends BaseFeature {
         )}
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(firstCardTitleExist ||
-              buttonTextExist ||
-              firstItemBackgroundImage) && (
+            {renderFirstItem && (
               <div
                 className={this.decorateCSS("card-item-first")}
                 style={{
                   width: `${100 / itemCount}%`,
                   backgroundImage: `${
-                    overlay
+                    firstItemOverlay
                       ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
                       : ""
                   } url(${firstItemBackgroundImage})`,
@@ -243,8 +244,8 @@ class Feature12 extends BaseFeature {
               </div>
             )}
 
-            {messageCards?.length > 0 &&
-              messageCards.map((message: IMessages, index: number) => {
+            {cards?.length > 0 &&
+              cards.map((message: Card, index: number) => {
                 const descExist = this.castToString(message.description);
                 const titleExist = this.castToString(message.title);
 
