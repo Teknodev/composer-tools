@@ -306,7 +306,7 @@ class Slider10 extends BaseSlider {
       dots: false,
       arrows: false,
       infinite: true,
-      autoplay: true,
+      autoplay: false,
       speed: 1500,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -373,20 +373,19 @@ class Slider10 extends BaseSlider {
                         >
                           <div className={this.decorateCSS("max-content")}>
                             {titleExist && (
-                              <h1
+                              <p
                                 className={`
                                 ${this.decorateCSS("slider-item-title")}
                                 ${
+                                  this.getComponentState("active") === index ||
                                   textAnimation
-                                    ? this.getComponentState("active") === index
-                                      ? this.decorateCSS("anim")
-                                      : ""
-                                    : this.decorateCSS("anim")
+                                    ? this.decorateCSS("show")
+                                    : ""
                                 }
                               `}
                               >
                                 {item.title}
-                              </h1>
+                              </p>
                             )}
                           </div>
                           {overlay && (

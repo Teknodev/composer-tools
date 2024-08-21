@@ -56,8 +56,19 @@
     margin-bottom: -200px;
     opacity: 0;
     text-align: center;
+    line-height: 1em;
+    font-weight: 700;
 
-    &.anim {
+    // this is necessary
+    > blinkpage {
+      display: -webkit-box !important;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &.show {
       margin-bottom: 0;
       opacity: 1;
     }
