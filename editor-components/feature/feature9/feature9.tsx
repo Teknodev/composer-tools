@@ -3,17 +3,18 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 type FeatureItem = {
   id: string;
   title: JSX.Element;
   description: JSX.Element;
-  icon: JSX.Element;
+  icon: string;
 };
 
-type LinkArray ={
-  linkText:JSX.Element;
-  link:string;
-}
+type LinkArray = {
+  linkText: JSX.Element;
+  link: string;
+};
 
 class Feature9 extends BaseFeature {
   private observers: { [key: string]: IntersectionObserver } = {};
@@ -29,9 +30,8 @@ class Feature9 extends BaseFeature {
       type: "boolean",
       key: "is-counter-visible",
       displayer: "Counter Visible",
-      value: true
+      value: true,
     });
-
 
     this.addProp({
       type: "array",
@@ -66,8 +66,7 @@ class Feature9 extends BaseFeature {
             {
               type: "icon",
               key: "icon",
-              value:
-                "RiCompassDiscoverLine",
+              value: "RiCompassDiscoverLine",
               displayer: "Icon",
             },
           ],
@@ -94,8 +93,7 @@ class Feature9 extends BaseFeature {
             {
               type: "icon",
               key: "icon",
-              value:
-                "MdFoundation",
+              value: "MdFoundation",
               displayer: "Icon",
             },
           ],
@@ -122,7 +120,7 @@ class Feature9 extends BaseFeature {
             {
               type: "icon",
               key: "icon",
-              value:"GrProjects",
+              value: "GrProjects",
               displayer: "Icon",
             },
           ],
@@ -149,8 +147,7 @@ class Feature9 extends BaseFeature {
             {
               type: "icon",
               key: "icon",
-              value:
-                "MdOutlineDesignServices",
+              value: "MdOutlineDesignServices",
               displayer: "Icon",
             },
           ],
@@ -177,37 +174,36 @@ class Feature9 extends BaseFeature {
             {
               type: "icon",
               key: "icon",
-              value:
-                "MdDeveloperMode",
+              value: "MdDeveloperMode",
               displayer: "Icon",
             },
           ],
         },
       ],
     });
-    
+
     this.addProp({
-      type:"array",
-      key:"linkArray",
-      displayer:"Link",
+      type: "array",
+      key: "linkArray",
+      displayer: "Link",
       value: [
         {
-          type:"object",
-          key:"links",
-          displayer:"Links",
-          value:[
+          type: "object",
+          key: "links",
+          displayer: "Links",
+          value: [
             {
-              type:"string",
-              key:"linkText",
-              displayer:"Link Text",
-              value:"View Our Services",
+              type: "string",
+              key: "linkText",
+              displayer: "Link Text",
+              value: "View Our Services",
             },
             {
-              type:"page",
-              key:"link",
-              displayer:"link",
-              value:""
-            }
+              type: "page",
+              key: "link",
+              displayer: "link",
+              value: "",
+            },
           ],
         },
       ],
@@ -220,17 +216,17 @@ class Feature9 extends BaseFeature {
   componentDidMount() {
     setTimeout(() => {
       this.setupObservers();
-    }, 1000); 
+    }, 1000);
   }
 
   setupObservers() {
     const featureItems = this.castToObject<FeatureItem[]>("feature-items");
     featureItems.forEach((item, index) => {
       const element = document.getElementById(`card-${index}`);
-      if (element) {   
+      if (element) {
         this.observers[index] = new IntersectionObserver(
           ([entry]) => this.handleIntersection(entry, index),
-          { threshold: 0.8 }
+          { threshold: 0.8 },
         );
         this.observers[index].observe(element);
       } else {
@@ -244,16 +240,16 @@ class Feature9 extends BaseFeature {
     const prevElement = document.getElementById(`card-${index - 1}`);
 
     if (entry.isIntersecting) {
-      currentElement.style.opacity = '1';
+      currentElement.style.opacity = "1";
       this.updateCounter(index + 1);
 
       if (nextElement) {
-        nextElement.style.opacity = '0';
+        nextElement.style.opacity = "0";
       }
       if (prevElement) {
-        prevElement.style.opacity = '0';
+        prevElement.style.opacity = "0";
       }
-    } 
+    }
   }
   updateCounter(id: number) {
     const counterElement = document.getElementById("counter");
@@ -263,32 +259,27 @@ class Feature9 extends BaseFeature {
   }
 
   renderCard(featureItem: FeatureItem, index: number) {
-    setTimeout(() => this.setupObservers(), 0); 
+    setTimeout(() => this.setupObservers(), 0);
     return (
-      
-      
-      <div 
-        key={index} 
-        id={`card-${index}`} 
-        className={this.decorateCSS("card-item")}>
-        {
-          featureItem.icon.toString().length!=0 &&(
-            <ComposerIcon name={featureItem.icon.toString()}
-             propsIcon={{ className: this.decorateCSS("icon")}}></ComposerIcon>
-          )
-        }
-        {
-          this.castToString(featureItem.title) &&(
-            <h4 className={this.decorateCSS("sub-title")}>{featureItem.title}</h4>
-          )
-        }
-        {
-          this.castToString(featureItem.description) &&(
-            <h5 className={this.decorateCSS("sub-title-description")}>
+      <div
+        key={index}
+        id={`card-${index}`}
+        className={this.decorateCSS("card-item")}
+      >
+        {featureItem.icon && (
+          <ComposerIcon
+            name={featureItem.icon}
+            propsIcon={{ className: this.decorateCSS("icon") }}
+          />
+        )}
+        {this.castToString(featureItem.title) && (
+          <h4 className={this.decorateCSS("sub-title")}>{featureItem.title}</h4>
+        )}
+        {this.castToString(featureItem.description) && (
+          <h5 className={this.decorateCSS("sub-title-description")}>
             {featureItem.description}
           </h5>
-          )
-        }
+        )}
       </div>
     );
   }
@@ -310,29 +301,36 @@ class Feature9 extends BaseFeature {
             )}
             {featureItems.length > 0 && (
               <div className={this.decorateCSS("sub-title-content")}>
-              {
-                this.getProp("is-counter-visible").value &&(
-                  <h4 id="counter" className={this.decorateCSS("counter")}>1</h4>
-                )
-              }
-              {this.castToObject<FeatureItem[]>("feature-items").map(
-                (featureItem: FeatureItem, index: number) =>
-                  this.renderCard(featureItem, index)
-              )}
+                {this.getProp("is-counter-visible").value && (
+                  <h4 id="counter" className={this.decorateCSS("counter")}>
+                    1
+                  </h4>
+                )}
+                {this.castToObject<FeatureItem[]>("feature-items").map(
+                  (featureItem: FeatureItem, index: number) =>
+                    this.renderCard(featureItem, index),
+                )}
               </div>
-          )}
-            {linkArray &&(
-          <div className={this.decorateCSS("link-text")}>
-            {linkArray.map((item:LinkArray, index:number) => (
-              <ComposerLink isFullWidth={true} path={this.getPropValue("link")}>
-                {this.castToString(item.linkText) &&(
-                  <div key={index} className={this.decorateCSS("link-Text")}>
-                  {item.linkText}
-                </div>
-              )}
-              </ComposerLink>
-            ))}  
-                </div>)}
+            )}
+            {linkArray && (
+              <div className={this.decorateCSS("link-text")}>
+                {linkArray.map((item: LinkArray, index: number) => (
+                  <ComposerLink
+                    isFullWidth={true}
+                    path={this.getPropValue("link")}
+                  >
+                    {this.castToString(item.linkText) && (
+                      <div
+                        key={index}
+                        className={this.decorateCSS("link-Text")}
+                      >
+                        {item.linkText}
+                      </div>
+                    )}
+                  </ComposerLink>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
