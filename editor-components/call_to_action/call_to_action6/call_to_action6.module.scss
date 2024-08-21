@@ -92,7 +92,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 15px 35px;
+          padding: 15px 20px;
           transition: 0.3s;
           color: var(--composer-font-color-secondary);
           background-color: var(--composer-secondary-color);
@@ -101,6 +101,7 @@
           cursor: pointer;
           gap: 4px;
           border-radius: 30px;
+          max-width: 300px;
 
           &:hover {
             background-color: transparent;
@@ -118,8 +119,8 @@
             justify-content: center;
             align-items: center;
             .icon {
-              width: 20px;
-              height: 20px;
+              width: 25px;
+              height: 25px;
             }
           }
         }
