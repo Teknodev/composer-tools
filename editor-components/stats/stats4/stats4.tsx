@@ -291,7 +291,7 @@ class Stats4Page extends BaseStats {
         return; // return to stop animate()
       }
       statItems.forEach((item: Stat, index: number) => {
-        const statNumber = this.getComponentState(`number-${index}`);
+        const statNumber = this.getComponentState(`number-${index}`) ?? 0;
 
         this.setComponentState(
           `number-${index}`,
