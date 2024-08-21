@@ -172,7 +172,6 @@ class Slider8 extends BaseSlider {
       },
     });
 
-    
     this.addProp({
       type: "boolean",
       key: "textAnim",
@@ -235,8 +234,11 @@ class Slider8 extends BaseSlider {
       afterChange: () => {
         this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
         this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
-      }
+        this.setComponentState(
+          "descriptionAnimationClass",
+          "animate__fadeInUp"
+        );
+      },
     };
     return (
       <div className={this.decorateCSS("container")}>
@@ -276,10 +278,13 @@ class Slider8 extends BaseSlider {
                               ></div>
                             </div>
                             {this.castToString(item.imagetitle) && (
-                              <h3 className={this.getComponentState("titleAnimationClass")}>
+                              <h3
+                                className={this.getComponentState(
+                                  "titleAnimationClass"
+                                )}
+                              >
                                 {item.imagetitle}
                               </h3>
-                              
                             )}
                             {this.castToObject<Button[]>("buttons").length >
                               0 && (
