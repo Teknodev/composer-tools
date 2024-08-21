@@ -50,9 +50,9 @@
 
           .button-group {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             margin-top: 10px;
-            gap: 10px;
+            gap: 20px;
             .button {
               font-size: 1.5rem;
               border: none;
@@ -62,6 +62,7 @@
               padding: 10px 30px;
               transition-duration: 0.3s easein-out;
               min-width: 180px;
+              text-align: center;
             }
             .button:hover {
               color: var(--composer-font-color-secondary);
@@ -87,7 +88,7 @@
             font-size: 6.5rem;
             position: absolute;
             color: var(--composer-font-color-secondary);
-            right: 50px;
+            right: 40px;
             bottom: -15px;
           }
 
@@ -96,6 +97,7 @@
             width: 75%;
             display: flex !important;
             justify-content: center;
+            margin-top: 10px;
 
             .img-div {
               z-index: 1;
@@ -166,7 +168,7 @@
               font-size: 1.5rem;
               background-color: var(--composer-html-background);
               padding: 25px 40px;
-              margin: 80px 0 0 -50px;
+              margin-bottom: 20px;
 
               .icons {
                 font-size: 3rem;
@@ -225,143 +227,142 @@
   .container {
     padding: 0;
     .max-content {
-      .testimonials10 {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        .left-content {
-          width: 100% !important;
-          padding: 0 30px !important;
+      .container2 {
+        width: 100%;
+        .testimonials10 {
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: center !important;
+          .left-content {
+            width: 100% !important;
+            padding: 0 30px !important;
 
-          .button-group {
-            .button {
-              font-size: 1.5rem !important;
-              min-width: 150px !important;
+            .button-group {
+              .button {
+                font-size: 1.5rem;
+                min-width: 150px !important;
+              }
             }
           }
-        }
 
-        .slider-style {
-          height: 100% !important;
-          width: 100% !important;
-          left: 0 !important;
-          gap: 20px !important;
-          align-items: center !important;
-          padding: 20px !important;
-          margin-top: 50px !important;
-
-          .hiliteTitle {
-            font-size: 3rem !important;
-            position: relative !important;
-            width: 100% !important;
-            text-align: end !important;
-            right: 0 !important;
-          }
-
-          .slider-inner-div-with-image {
+          .slider-style {
             height: 100% !important;
             width: 100% !important;
-            flex-direction: column !important;
-            justify-content: start !important;
-            padding: 0 20px !important;
-            .img-div {
-              width: 50%;
-              .img {
-                width: 50% !important;
-              }
-            }
-
-            .header-page {
-              width: 80% !important;
-              margin: -60px 0 0 120px !important;
-              height: 100% !important;
-              display: flex !important;
-              flex-direction: column !important;
-              justify-content: center !important;
-              .icons {
-                font-size: 2rem !important;
-                z-index: 2 !important;
-                margin-right: 25px !important;
-              }
-              .iconquote {
-                font-size: 5rem !important;
-                top: 30px !important;
-              }
-
-              .card {
-                .text {
-                  font-size: 1.5rem !important;
-                  padding-right: 0px !important;
-                }
-                .author {
-                  font-size: 2rem !important;
-                }
-                .position {
-                  font-size: 1.5rem !important;
-                }
-              }
-            }
-          }
-          .slider-inner-div {
-            height: 100% !important;
-            width: 100% !important;
-            flex-direction: row !important;
-            justify-content: center !important;
-            margin-top: 0 !important;
-            padding: 0 20px !important;
-            .img-div {
-              width: 40%;
-              height: 40%;
-              .img {
-                width: 100% !important;
-              }
-            }
-
-            .header-page {
-              width: 100% !important;
-              margin: 0 !important;
-              height: 100% !important;
-              display: flex !important;
-              flex-direction: column !important;
-              justify-content: center !important;
-              .icons {
-                font-size: 2rem !important;
-                z-index: 2 !important;
-                margin-right: 25px !important;
-              }
-              .iconquote {
-                font-size: 5rem !important;
-                top: 30px !important;
-              }
-
-              .card {
-                .text {
-                  font-size: 1.5rem !important;
-                  padding-right: 0px !important;
-                }
-                .author {
-                  font-size: 2rem !important;
-                }
-                .position {
-                  font-size: 1.5rem !important;
-                }
-              }
-            }
-          }
-          .slider {
-            max-width: var(--composer-content-width) !important;
-            width: 600px !important;
-            margin-top: 0 !important;
-            margin-right: 0 !important;
-            display: flex !important;
-            justify-content: center !important;
-            padding: 0 !important;
-          }
-
-          .slider > div > div {
-            display: flex !important;
+            left: 0 !important;
+            gap: 0 !important;
             align-items: center !important;
-            justify-content: center !important;
+            padding: 20px !important;
+            margin-top: 50px;
+
+            .hiliteTitle {
+              font-size: 3rem !important;
+              position: relative !important;
+              width: 100% !important;
+              text-align: end !important;
+              right: 0 !important;
+              bottom: -25px !important;
+            }
+
+            .slider-inner-div-with-image {
+              height: 100% !important;
+              width: 100% !important;
+              flex-direction: column !important;
+              justify-content: start !important;
+              padding: 0 20px !important;
+              .img-div {
+                width: 50%;
+                .img {
+                  width: 50%;
+                }
+              }
+
+              .header-page {
+                width: 80%;
+                margin: -60px 0 0 120px;
+                height: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                .icons {
+                  font-size: 2rem;
+                  z-index: 2;
+                }
+                .iconquote {
+                  font-size: 5rem;
+                  top: 30px;
+                }
+
+                .card {
+                  .text {
+                    font-size: 1.5rem;
+                    padding-right: 0px !important;
+                  }
+                  .author {
+                    font-size: 2rem;
+                  }
+                  .position {
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+            }
+
+            .slider-inner-div {
+              height: 100% !important;
+              width: 100% !important;
+              flex-direction: row !important;
+              justify-content: center !important;
+              margin-top: 0 !important;
+              padding: 0 20px !important;
+
+              .header-page {
+                width: 100% !important;
+                margin: 15px 0 0 0 !important;
+                height: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+
+                .icons {
+                  font-size: 2rem;
+                  z-index: 2;
+                  margin-right: 25px;
+                }
+                .iconquote {
+                  font-size: 5rem;
+                  top: 30px;
+                }
+
+                .card {
+                  .text {
+                    font-size: 1.5rem;
+                    padding-right: 0px !important;
+                  }
+                  .author {
+                    font-size: 2rem;
+                  }
+                  .position {
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+            }
+
+            .slider {
+              max-width: var(--composer-content-width) !important;
+              width: 600px !important;
+              margin-top: 0 !important;
+              margin-right: 0 !important;
+              display: flex !important;
+              justify-content: center !important;
+              padding: 0 !important;
+            }
+
+            .slider > div > div {
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+            }
           }
         }
       }
@@ -396,6 +397,7 @@
             margin-top: 0 !important;
           }
           .button-group {
+            gap: 10px !important;
             .button {
               font-size: 1rem !important;
               min-width: 120px !important;
@@ -425,11 +427,11 @@
               width: 100% !important;
               display: flex !important;
               justify-content: start !important;
-              margin-bottom: -170px;
+              margin-bottom: -150px;
               margin-top: 10px;
               .img {
                 width: 40% !important;
-                margin: 0 0 0 56px !important;
+                margin: 0 0 0 20px !important;
               }
             }
 
@@ -440,6 +442,7 @@
               flex-direction: column !important;
               justify-content: space-between !important;
               height: 100% !important;
+              width: 100% !important;
 
               .icons {
                 font-size: 2rem !important;
@@ -449,14 +452,15 @@
               .iconquote {
                 position: relative !important;
                 font-size: 3rem !important;
-                top: 125px !important;
+                top: 100px !important;
                 left: 0 !important;
               }
 
               .card {
-                margin-top: 110px;
+                margin-top: 95px;
                 .text {
                   font-size: 1rem !important;
+                  margin-top: 0 !important;
                 }
                 .author {
                   font-size: 1.5rem !important;
@@ -474,19 +478,9 @@
             align-items: start !important;
             margin-left: 0px !important;
             margin-top: 0px !important;
-            .img-div {
-              width: 300px !important;
-              display: flex !important;
-              justify-content: start !important;
-              top: 100px !important;
-              .img {
-                width: 40%;
-                margin: 0 0 !important;
-              }
-            }
 
             .header-page {
-              padding: 20px 0 20px 10px !important;
+              padding: 10px 0 20px 10px !important;
               margin: 30px 20px !important;
               width: 100% !important;
               height: 100% !important;
@@ -502,7 +496,7 @@
               .iconquote {
                 position: relative !important;
                 font-size: 3rem !important;
-                top: 20px !important;
+                top: 10px !important;
                 left: 0 !important;
               }
 
