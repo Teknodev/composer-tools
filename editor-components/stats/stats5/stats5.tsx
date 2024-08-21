@@ -8,8 +8,7 @@ type Card = {
 };
 
 class Stats5Page extends BaseStats {
-  stats: number[];
-  numbers: number[];
+  interval: any;
 
   constructor(props?: any) {
     super(props, styles);
@@ -116,25 +115,18 @@ class Stats5Page extends BaseStats {
       type: "number",
       key: "increment-value",
       displayer: "Stat Animation Increment Value",
-      value: 2,
+      value: 20,
     });
 
     this.init();
     this.animate();
-
-    const cards = this.castToObject<Card[]>("cards");
-
-    this.stats = cards.map((e) => e.stat);
-    this.numbers = cards
-      .map((e, index) => this.getComponentState(`number-${index}`))
-      .filter((e) => e !== undefined && e !== "");
   }
 
   getName(): string {
     return "Stats 5";
   }
 
-  x: NodeJS.Timeout;
+  x: any;
 
   init() {
     this.castToObject<Card[]>("cards").map((card, index) =>
@@ -142,33 +134,44 @@ class Stats5Page extends BaseStats {
     );
   }
 
+  getStats() {
+    const cards = this.castToObject<Card[]>("cards");
+    const stats = cards.map((card: any) => (card.stat === "" ? 0 : card.stat));
+    return stats;
+  }
+
+  getNumbers() {
+    const cards = this.castToObject<Card[]>("cards");
+    const numbers = cards.map((_, index) =>
+      this.getComponentState(`number-${index}`),
+    );
+    return numbers;
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
+  }
+
   animate() {
-    this.x = setInterval(() => {
+    const animationDuration = this.getPropValue("animation-duration");
+    const incrementValue = this.getPropValue("increment-value");
+
+    this.interval = setInterval(() => {
       const cards = this.castToObject<Card[]>("cards");
-      cards.forEach((card: Card, index: number) => {
-        let statNumber = this.getComponentState(`number-${index}`);
-        if (statNumber !== card.stat) {
-          this.setComponentState(
-            `number-${index}`,
-            Math.min(
-              card.stat,
-              statNumber + this.getPropValue("increment-value"),
-            ) || 0,
-          );
-        }
-      });
 
-      const stats = cards.map((card: any) =>
-        card.stat === "" ? 0 : card.stat,
-      );
-      const numbers = cards.map((_, index) =>
-        this.getComponentState(`number-${index}`),
-      );
-
-      if (JSON.stringify(stats) === JSON.stringify(numbers)) {
-        clearInterval(this.x);
+      if (this.isEqual(this.getStats(), this.getNumbers())) {
+        this.interval = clearInterval(this.interval);
+        return; // return to stop animate()
       }
-    }, this.getPropValue("animation-duration"));
+      cards.forEach((item: Card, index: number) => {
+        const statNumber = this.getComponentState(`number-${index}`) ?? 0;
+
+        this.setComponentState(
+          `number-${index}`,
+          Math.min(item.stat, statNumber + incrementValue),
+        );
+      });
+    }, animationDuration);
   }
 
   getCardClasses(index: number, itemCountInRow: number) {
@@ -184,7 +187,16 @@ class Stats5Page extends BaseStats {
 
     const cards = this.castToObject<Card[]>("cards");
 
-    if (JSON.stringify(this.stats) !== JSON.stringify(this.numbers)) {
+    console.log(this.getStats());
+    console.log(this.getNumbers());
+    /**
+     * Execute animate() only if:
+     *    it is executed and it's interval is cleared before
+     * AND,
+     *    prop values of stats and state values are not equal.
+     * (user may change it after animation. so we need to check that)
+     */
+    if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
     }
 
@@ -198,10 +210,15 @@ class Stats5Page extends BaseStats {
                 gridTemplateColumns: `repeat(${itemCountInRow}, 1fr)`,
               }}
             >
-              {cards.map((data: Card, index: number) => {
-                const titleExist = this.castToString(data.title);
+              {cards.map((item: Card, index: number) => {
+                const titleExist = this.castToString(item.title);
 
-                if (titleExist || data.stat)
+                const statValue =
+                  item.stat === this.getComponentState(`number-${index}`)
+                    ? item.stat
+                    : this.getComponentState(`number-${index}`);
+
+                if (titleExist || item.stat)
                   return (
                     <div
                       key={index}
@@ -210,19 +227,16 @@ class Stats5Page extends BaseStats {
                           ${this.getCardClasses(index, itemCountInRow)}
                         `}
                     >
-                      {data.stat && (
+                      {item.stat && (
                         <h4 className={this.decorateCSS("card-data-title")}>
-                          {this.getComponentState(`number-${index}`) ||
-                          this.getComponentState(`number-${index}`) === 0
-                            ? this.getComponentState(`number-${index}`)
-                            : data.stat}
+                          {statValue}
                         </h4>
                       )}
                       {titleExist && (
                         <p
                           className={this.decorateCSS("card-data-description")}
                         >
-                          {data.title}
+                          {item.title}
                         </p>
                       )}
                     </div>

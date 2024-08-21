@@ -10,7 +10,6 @@
     .bottom-child {
       display: grid;
       padding: 0 20px;
-      gap: 30px;
 
       .card {
         display: flex;
@@ -19,6 +18,7 @@
         text-align: center;
         min-height: 100px;
         position: relative;
+        padding: 20px;
 
         &.stick {
           &:not(:last-child)::after {
@@ -26,6 +26,7 @@
             position: absolute;
             right: 0;
             top: 35%;
+            // TODO: change later
             bottom: 35%;
             width: 1px;
             background-color: var(--composer-font-color-primary);
