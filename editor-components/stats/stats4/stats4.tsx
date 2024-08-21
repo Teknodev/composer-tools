@@ -15,8 +15,7 @@ type Stat = {
 };
 
 class Stats4Page extends BaseStats {
-  stats: number[];
-  numbers: number[];
+  interval: any;
 
   constructor(props?: any) {
     super(props, styles);
@@ -129,7 +128,7 @@ class Stats4Page extends BaseStats {
               type: "number",
               key: "stat",
               displayer: "Stat Value",
-              value: 3053,
+              value: 300,
             },
           ],
         },
@@ -154,7 +153,7 @@ class Stats4Page extends BaseStats {
               type: "number",
               key: "stat",
               displayer: "Stat Value",
-              value: 1750,
+              value: 500,
             },
           ],
         },
@@ -179,7 +178,7 @@ class Stats4Page extends BaseStats {
               type: "number",
               key: "stat",
               displayer: "Stat Value",
-              value: 50,
+              value: 750,
             },
           ],
         },
@@ -251,18 +250,11 @@ class Stats4Page extends BaseStats {
       type: "number",
       key: "increment-value",
       displayer: "Stat Animation Increment Value",
-      value: 2,
+      value: 20,
     });
 
     this.init();
     this.animate();
-
-    const cards = this.castToObject<Stat[]>("statItems");
-
-    this.stats = cards.map((e) => e.stat);
-    this.numbers = cards
-      .map((e, index) => this.getComponentState(`number-${index}`))
-      .filter((e) => e !== undefined && e !== "");
   }
 
   init() {
@@ -271,39 +263,50 @@ class Stats4Page extends BaseStats {
     );
   }
 
-  x: NodeJS.Timeout;
+  getStats() {
+    const statItems = this.castToObject<Stat[]>("statItems");
+    const stats = statItems.map((card: any) =>
+      card.stat === "" ? 0 : card.stat,
+    );
+    return stats;
+  }
+
+  getNumbers() {
+    const statItems = this.castToObject<Stat[]>("statItems");
+    const numbers = statItems.map((_, index) =>
+      this.getComponentState(`number-${index}`),
+    );
+    return numbers;
+  }
+
   animate() {
-    this.x = setInterval(() => {
+    const animationDuration = this.getPropValue("animation-duration");
+    const incrementValue = this.getPropValue("increment-value");
+
+    this.interval = setInterval(() => {
       const statItems = this.castToObject<Stat[]>("statItems");
-      statItems.forEach((item: Stat, index: number) => {
-        let statNumber = this.getComponentState(`number-${index}`);
-        if (statNumber !== item.stat) {
-          this.setComponentState(
-            `number-${index}`,
-            Math.min(
-              item.stat,
-              statNumber + this.getPropValue("increment-value"),
-            ) || 0,
-          );
-        }
-      });
 
-      const stats = statItems.map((card: any) =>
-        card.stat === "" ? 0 : card.stat,
-      );
-      const numbers = statItems.map((_, index) =>
-        this.getComponentState(`number-${index}`),
-      );
-
-      if (JSON.stringify(stats) === JSON.stringify(numbers)) {
-        clearInterval(this.x);
-        console.log("clear");
+      if (this.isEqual(this.getStats(), this.getNumbers())) {
+        this.interval = clearInterval(this.interval);
+        return; // return to stop animate()
       }
-    }, this.getPropValue("animation-duration"));
+      statItems.forEach((item: Stat, index: number) => {
+        const statNumber = this.getComponentState(`number-${index}`);
+
+        this.setComponentState(
+          `number-${index}`,
+          Math.min(item.stat, statNumber + incrementValue),
+        );
+      });
+    }, animationDuration);
   }
 
   getName(): string {
     return "Stats 4";
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
   }
 
   toggleFaqItem = (index: number) => {
@@ -322,19 +325,23 @@ class Stats4Page extends BaseStats {
       as_string: true,
     });
     const faqs = this.castToObject<Faq[]>("faqItems");
-    const stats = this.castToObject<Stat[]>("statItems");
+    const statItems = this.castToObject<Stat[]>("statItems");
 
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
     const statIcon = this.getPropValue("statIcon");
     const lineExist = this.getPropValue("lineExist");
 
-    console.log(this.stats);
-    console.log(this.numbers);
-
-    // if (JSON.stringify(this.stats) !== JSON.stringify(this.numbers)) {
-    //   this.animate();
-    // }
+    /**
+     * Execute animate() only if:
+     *    it is executed and it's interval is cleared before
+     * AND,
+     *    prop values of stats and state values are not equal.
+     * (user may change it after animation. so we need to check that)
+     */
+    if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
+      this.animate();
+    }
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -427,11 +434,16 @@ class Stats4Page extends BaseStats {
                 )}
               </div>
             )}
-            {stats?.length > 0 && (
+            {statItems?.length > 0 && (
               <section className={this.decorateCSS("stats")}>
-                {stats.map((item: Stat, index: number) => {
+                {statItems.map((item: Stat, index: number) => {
                   const titleExist = this.castToString(item.title);
                   const contentExist = this.castToString(item.content);
+
+                  const statValue =
+                    item.stat === this.getComponentState(`number-${index}`)
+                      ? item.stat
+                      : this.getComponentState(`number-${index}`);
 
                   if (titleExist || contentExist || item.stat)
                     return (
@@ -468,9 +480,7 @@ class Stats4Page extends BaseStats {
                           <h3
                             className={this.decorateCSS("stat-item-stat-value")}
                           >
-                            {this.getComponentState(`number-${index}`)
-                              ? this.getComponentState(`number-${index}`)
-                              : item.stat}
+                            {statValue}
                             {statIcon && (
                               <span
                                 className={this.decorateCSS("stat-value-icon")}
