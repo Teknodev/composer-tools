@@ -2,6 +2,8 @@
   width: 100%;
   padding: 30px 0;
   background-color: var(--composer-html-background);
+  container-name: parent-container;
+  container-type: inline-size;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -9,6 +11,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    container-type: inline-size;
 
     .header {
       display: flex;
@@ -27,7 +30,7 @@
           color: var(--composer-primary-color);
         }
         .first-text {
-          font-size: 28px;
+          font-size: 1.7rem;
           color: var(--composer-font-color-primary);
         }
       }
@@ -45,7 +48,7 @@
           position: relative;
 
           .link-text {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--composer-font-color-primary);
           }
 
@@ -109,8 +112,8 @@
 
           .image {
             width: 100%;
-            height: 40%;
-            max-height: 250px;
+            height: 100%;
+            max-height: 240px;
             object-fit: cover;
           }
 
@@ -124,8 +127,7 @@
             .date-time {
               display: flex;
               justify-content: space-between;
-              min-height: 20px;
-              font-size: 16px;
+              font-size: 1.1rem;
               color: var(--composer-font-color-secondary);
 
               .date {
@@ -142,13 +144,13 @@
             }
 
             .title {
-              font-size: 24px;
+              font-size: 1.4rem;
               font-weight: bold;
               color: var(--composer-font-color-secondary);
             }
 
             .description {
-              font-size: 20px;
+              font-size: 1.1rem;
               color: var(--composer-font-color-secondary);
               width: 90%;
             }
@@ -174,13 +176,12 @@
               justify-content: center;
               gap: 10px;
               height: 44px;
+              font-size: 1rem;
 
               .profile-description {
-                font-size: 14px;
                 color: var(--composer-font-color-secondary);
               }
               .fullname {
-                font-size: 14px;
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
               }
@@ -196,6 +197,7 @@
 
       .middle-content {
         width: 30%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -218,8 +220,7 @@
           .date-time {
             display: flex;
             justify-content: space-between;
-            min-height: 20px !important;
-            font-size: 16px;
+            font-size: 1.1rem;
             color: var(--composer-font-color-secondary);
 
             .date {
@@ -235,17 +236,16 @@
           }
 
           .title {
-            font-size: 24px;
+            font-size: 1.4rem;
             font-weight: bold;
             color: var(--composer-font-color-secondary);
             cursor: pointer;
           }
 
           .description {
-            font-size: 20px;
+            font-size: 1.1rem;
             color: var(--composer-font-color-secondary);
             width: 90%;
-            min-height: 30px;
           }
 
           .user-info {
@@ -268,13 +268,13 @@
               justify-content: center;
               gap: 5px;
               height: 34px;
+              font-size: 1rem;
+
               .profile-description {
-                font-size: 14px;
                 color: var(--composer-font-color-secondary);
               }
 
               .fullname {
-                font-size: 14px;
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
               }
@@ -327,8 +327,7 @@
             .date-time {
               display: flex;
               justify-content: space-between;
-              min-height: 20px;
-              font-size: 16px;
+              font-size: 1.1rem;
               color: var(--composer-font-color-secondary);
 
               .date {
@@ -344,13 +343,13 @@
             }
 
             .title {
-              font-size: 24px;
+              font-size: 1.4rem;
               font-weight: bold;
               color: var(--composer-font-color-secondary);
             }
 
             .description {
-              font-size: 20px;
+              font-size: 1.1rem;
               color: var(--composer-font-color-secondary);
               width: 90%;
             }
@@ -377,13 +376,13 @@
                 justify-content: center;
                 gap: 10px;
                 height: 44px;
+                font-size: 1rem;
+
                 .profile-description {
-                  font-size: 14px;
                   color: var(--composer-font-color-secondary);
                 }
 
                 .fullname {
-                  font-size: 14px;
                   font-weight: bold;
                   color: var(--composer-font-color-secondary);
                 }
@@ -417,10 +416,7 @@
           .date-time {
             display: flex;
             justify-content: space-between;
-            min-height: 20px !important;
-            margin-left: 1.5rem !important;
-            margin-right: 1.5rem !important;
-            font-size: 16px;
+            font-size: 1.1rem;
             color: var(--composer-font-color-secondary);
 
             .date {
@@ -436,21 +432,16 @@
           }
 
           .title {
-            font-size: 24px;
+            font-size: 1.4rem;
             font-weight: bold;
-            margin-left: 1.5rem;
-            margin-right: 1.5rem;
             color: var(--composer-font-color-secondary);
             cursor: pointer;
           }
 
           .description {
-            font-size: 20px;
+            font-size: 1.1rem;
             color: var(--composer-font-color-secondary);
-            width: 90%;
-            min-height: 30px;
-            margin-left: 1.5rem;
-            margin-right: 1.5rem;
+            width: 100%;
           }
 
           .user-info {
@@ -461,10 +452,6 @@
             align-items: end;
             text-align: left;
             gap: 10px;
-            margin-left: 1.5rem;
-            margin-right: 1.5rem;
-            margin-top: 20px;
-            margin-bottom: 20px;
 
             .profile-image {
               width: 34px;
@@ -477,13 +464,13 @@
               justify-content: center;
               gap: 5px;
               height: 34px;
+              font-size: 1rem;
+
               .profile-description {
-                font-size: 14px;
                 color: var(--composer-font-color-secondary);
               }
 
               .fullname {
-                font-size: 14px;
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
               }
@@ -514,13 +501,14 @@
           height: 16px !important;
         }
         .first-text {
-          font-size: 16px !important;
+          font-size: 1.4rem !important;
         }
       }
       .right-side {
         .link-container {
-          font-size: 16px !important;
-          text-decoration: underline !important;
+          .link-text {
+            font-size: 1.2rem !important;
+          }
         }
         .icon2 {
           width: 16px !important;
@@ -555,11 +543,11 @@
           }
 
           .title {
-            font-size: 20px !important;
+            font-size: 1.4rem !important;
           }
 
           .description {
-            font-size: 16px !important;
+            font-size: 1.1rem !important;
           }
 
           .user-info {
@@ -580,14 +568,10 @@
           display: flex !important;
           flex-direction: column !important;
           justify-content: space-between !important;
-          row-gap: 10px !important;
+          row-gap: 20px !important;
           width: 100% !important;
           height: 100% !important;
           max-width: 450px !important;
-
-          .date-time {
-            min-height: 20px !important;
-          }
 
           .user-info {
             align-items: end !important;
@@ -623,11 +607,11 @@
           }
 
           .title {
-            font-size: 20px !important;
+            font-size: 1.4rem !important;
           }
 
           .description {
-            font-size: 16px !important;
+            font-size: 1rem !important;
           }
 
           .user-info {
@@ -652,10 +636,6 @@
           width: 100% !important;
           height: 100% !important;
           max-width: 450px !important;
-
-          .date-time {
-            min-height: 20px !important;
-          }
 
           .user-info {
             align-items: end !important;
@@ -687,7 +667,7 @@
           height: 20px !important;
         }
         .first-text {
-          font-size: 16px !important;
+          font-size: 1rem !important;
         }
       }
       .right-side {
@@ -705,7 +685,7 @@
           width: auto !important;
           justify-content: center !important;
           .link-text {
-            font-size: 14px !important;
+            font-size: 0.8rem !important;
           }
         }
       }
@@ -726,18 +706,17 @@
       .card-column .card,
       .middle-content .card {
         width: 100% !important;
-        min-height: auto !important;
 
         .image {
           height: 200px !important;
         }
 
         .title {
-          font-size: 18px !important;
+          font-size: 1.2rem !important;
         }
 
         .description {
-          font-size: 14px !important;
+          font-size: 0.8rem !important;
         }
 
         .user-info {
@@ -748,10 +727,10 @@
 
           .user {
             .profile-description {
-              font-size: 12px !important;
+              font-size: 0.8rem !important;
             }
             .fullname {
-              font-size: 14px !important;
+              font-size: 0.8rem !important;
             }
           }
         }
@@ -782,18 +761,17 @@
       .card-column .card,
       .middle-content .card {
         width: 100% !important;
-        min-height: auto !important;
 
         .image {
           height: 200px !important;
         }
 
         .title {
-          font-size: 18px !important;
+          font-size: 1.2rem !important;
         }
 
         .description {
-          font-size: 14px !important;
+          font-size: 0.8rem !important;
         }
 
         .user-info {
@@ -804,10 +782,10 @@
 
           .user {
             .profile-description {
-              font-size: 12px !important;
+              font-size: 0.8rem !important;
             }
             .fullname {
-              font-size: 14px !important;
+              font-size: 0.8rem !important;
             }
           }
         }
