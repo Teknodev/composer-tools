@@ -149,7 +149,7 @@
         .icon {
           font-size: 4em;
           color: var(--composer-font-color-secondary);
-          background-color: rgba(var(--composer-primary-color-rgb), 0.4);
+          background-color: var(--composer-primary-color);
           width: 70px;
           height: 70px;
           border-radius: 50%;
@@ -204,7 +204,7 @@
 
 @media only screen and (max-width: 1024px) {
   .container {
-    padding: 50px 20px;
+    padding: 20px 20px;
 
     .max-content {
       .card-item-count {
