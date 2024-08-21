@@ -191,7 +191,12 @@ class Feature12 extends BaseFeature {
 
     const renderFirstItem =
       firstCardTitleExist || buttonTextExist || firstItemBackgroundImage;
-    const renderHeader = behindTitleTextExist || titleExist;
+    const renderHeader = upperTitleExist || behindTitleTextExist || titleExist;
+
+    const setMinHeight =
+      titleExist || !behindTitleTextExist
+        ? this.decorateCSS("min-height-unset")
+        : "";
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -199,7 +204,7 @@ class Feature12 extends BaseFeature {
           <header
             className={`
               ${this.decorateCSS("header")}
-              ${titleExist ? this.decorateCSS("min-height-unset") : ""}
+              ${setMinHeight}
             `}
           >
             {upperTitleExist && (
