@@ -187,7 +187,7 @@ class Feature12 extends BaseFeature {
     const firstCardTitleExist = this.castToString(firstItem.title);
     const buttonTextExist = this.castToString(firstItem.button);
 
-    const backgroundImage = firstItem.backgroundImage;
+    const firstItemBackgroundImage = firstItem.backgroundImage;
     const overlay = firstItem.overlay;
 
     return (
@@ -216,7 +216,9 @@ class Feature12 extends BaseFeature {
         )}
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(firstCardTitleExist || buttonTextExist) && (
+            {(firstCardTitleExist ||
+              buttonTextExist ||
+              firstItemBackgroundImage) && (
               <div
                 className={this.decorateCSS("card-item-first")}
                 style={{
@@ -225,7 +227,7 @@ class Feature12 extends BaseFeature {
                     overlay
                       ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
                       : ""
-                  } url(${backgroundImage})`,
+                  } url(${firstItemBackgroundImage})`,
                 }}
               >
                 {firstCardTitleExist && (
