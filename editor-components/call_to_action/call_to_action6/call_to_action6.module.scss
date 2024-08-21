@@ -10,16 +10,16 @@
   background-position: center;
   background-attachment: scroll;
   object-fit: cover;
+  padding: 20px 50px;
 
   .max-content {
     height: 100vh;
-    margin: auto;
+    margin: 0 auto;
     max-width: var(--composer-content-width);
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
 
     .call-to-action6-page {
       background-color: rgba(var(--composer-font-color-primary-rgb), 0.9);
@@ -68,7 +68,6 @@
         border: 1px solid var(--composer-font-color-secondary);
         width: 50%;
         margin-bottom: 40px;
-        //box-shadow: 0 2px 4px rgba(var(--composer-font-color-primary-rgb), 0.1);
       }
 
       .placeholder::placeholder {
@@ -131,9 +130,10 @@
 
 @media (max-width: 768px) {
   .container {
+    padding: 20px 20px;
+
     .max-content {
       .call-to-action6-page {
-        width: 70%;
         padding: 20px;
 
         .placeholder {
