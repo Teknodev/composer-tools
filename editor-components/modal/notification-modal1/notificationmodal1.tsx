@@ -101,6 +101,8 @@ class NotificationModal1 extends BaseModal {
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const buttonProps = this.castToObject<Button[]>("buttonprops");
     const validButtons = buttonProps.filter((item: Button) => this.castToString(item.buttonText));
+
+    console.log("backgroundImage  " + backgroundImage)
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -112,10 +114,8 @@ class NotificationModal1 extends BaseModal {
                 </a>
               </ComposerModalClose>
             </div>
-
             {(backgroundImage || firstTitle) && (
-              <div className={this.decorateCSS("image-container")}>
-
+              <div className={backgroundImage || overlay ? this.decorateCSS("image-container") : ""}>
                 {backgroundImage && (
                   <>
                     <img
@@ -127,9 +127,11 @@ class NotificationModal1 extends BaseModal {
                     </h2>
                   </>
                 )}
-                {overlay && (
+
+                {overlay && backgroundImage && (
                   <div className={this.decorateCSS("overlay")}></div>
                 )}
+
                 {!backgroundImage && overlay && (
                   <div className={this.decorateCSS("overlay2")}>
                     <h2 className={this.decorateCSS("first-header")}>
@@ -137,15 +139,15 @@ class NotificationModal1 extends BaseModal {
                     </h2>
                   </div>
                 )}
+
                 {!backgroundImage && !overlay && (
-                  <div className={this.decorateCSS("overlay3")}>
-                    <h2 className={this.decorateCSS("first-header")}>
-                      {this.getPropValue("firstTitle")}
-                    </h2>
-                  </div>
+                  <h2 className={this.decorateCSS("first-header2")}>
+                    {this.getPropValue("firstTitle")}
+                  </h2>
                 )}
               </div>
             )}
+
             <div>
               {isTitleExist &&
                 <h3 className={this.decorateCSS("second-header")}>
@@ -157,7 +159,7 @@ class NotificationModal1 extends BaseModal {
                 </p>}
             </div>
 
-            {validButtons.length > 0 && (  // Eğer geçerli düğmeler varsa button-background render edilir
+            {validButtons.length > 0 && (
               <div className={this.decorateCSS("button-background")}>
                 {validButtons.map((item: Button, index: number) => (
                   <ComposerModalClose key={index}>
