@@ -4,6 +4,10 @@ import { BaseContent } from "../../EditorComponent";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./content16.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { useRef } from "react";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type CardType = {
   title: JSX.Element;
@@ -15,6 +19,13 @@ type CardType = {
   image: string;
   url: string;
 };
+type RightTextItem = {
+  type: string;
+  key: string;
+  displayer: string;
+  value: string;
+};
+
 
 class Content16 extends BaseContent {
   constructor(props?: any) {
@@ -25,12 +36,38 @@ class Content16 extends BaseContent {
       displayer: "Title",
       value: "Latest News",
     });
+    this.addProp({
+      type: "object",
+      key: "rightText",
+      displayer: "Right Text",
+      value: [
+        {
+          type: "page",
+          key: "textUrl",
+          displayer: "URL",
+          value: "https://www.youtube.com/"
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "Latest News"
 
+        }
+
+      ]
+    });
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
       value: "\"Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.\"",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "faintLine",
+      displayer: "Faint Line",
+      value: true,
     });
 
     this.addProp({
@@ -202,23 +239,55 @@ class Content16 extends BaseContent {
       displayer: "Disable Animation",
       value: false,
     });
+    this.addProp({
+      type: "icon",
+      key: "prev-button-icon",
+      displayer: "Previous Slide Button",
+      value: "FaArrowLeft",
+    });
+    this.addProp({
+      type: "icon",
+      key: "next-button-icon",
+      displayer: "Next Slide Button",
+      value: "FaArrowRight",
+    });
 
     this.setComponentState(
       "prevSlide",
       this.castToObject<CardType[]>("items").length - 1
     );
-    this.setComponentState("activeSlide", 0);
-    this.setComponentState("nextSlide", 1);
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active", 0);
+    this.setComponentState("activeSlideIndex", 0);
+
+    this.setComponentState("disableAnimation", this.getPropValue("disableAnimation"));
+
   }
 
   getName(): string {
     return "Content 16";
   }
+  renderDots() {
+    const activeSlideIndex = this.getComponentState("activeSlideIndex");
+    const items = this.castToObject<CardType[]>("items");
+
+    return (
+      <ul className={this.decorateCSS("custom-dots")}>
+        {items.map((item, index) => (
+          <li key={index} className={index === activeSlideIndex ? this.decorateCSS("slick-active") : ""}>
+            <button>
+              <span></span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   render() {
     const settings = {
-      arrows: true,
-      dots: true,
+      arrows: false,
+      dots: false,
       infinite: true,
       speed: 725,
       autoplay: true,
@@ -227,40 +296,26 @@ class Content16 extends BaseContent {
       slidesToScroll: 1,
       responsive: [
         {
-          breakpoint: 1280,
+          breakpoint: 868,
           settings: {
             arrows: false,
-            slidesToShow: 3,
+            slidesToShow: 2,
             slidesToScroll: 1,
           },
         },
-        
+
         {
-          breakpoint: 600,
+          breakpoint: 500,
           settings: {
             arrows: false,
             slidesToShow: 1,
             slidesToScroll: 1,
           },
         },
-
-        
-        
       ],
       beforeChange: (current: number, next: number) => {
-        this.setComponentState(
-          "prevSlide",
-          next - 1 < 0
-            ? this.castToObject<CardType[]>("items").length - 1
-            : next - 1
-        );
-        this.setComponentState("activeSlide", next);
-        this.setComponentState(
-          "nextSlide",
-          next + 1 > this.castToObject<CardType[]>("items").length - 1
-            ? 0
-            : next + 1
-        );
+        this.setComponentState("active", next);
+        this.setComponentState("activeSlideIndex", next);
       },
     };
 
@@ -268,35 +323,61 @@ class Content16 extends BaseContent {
     const subtitle = this.getPropValue("subtitle");
     const isTitleExist = this.castToString(title);
     const isSubTitleExist = this.castToString(subtitle);
-    const disableAnimation = this.getPropValue("disableAnimation");
+
+    const rightText = this.getPropValue("rightText") as RightTextItem[];
+    const textUrl = rightText.find(item => item.key === "textUrl")?.value;
+    const text = rightText.find(item => item.key === "text")?.value;
+
     const items = this.castToObject<CardType[]>("items").filter(
       (item: CardType) => item.image || item.imageTitle || item.imageSubtitle || item.url
     );
+    const sliderRef = this.getComponentState("slider-ref");
+    const prevIcon: string = this.getPropValue("prev-button-icon");
+    const nextIcon: string = this.getPropValue("next-button-icon");
+
+    const faintLine = this.getPropValue("faintLine");
+    const disableAnimation = this.getPropValue("disableAnimation");
+
+    console.log(this.getComponentState("active"))
 
     return (
       <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("right-link")}>
+          <ComposerLink path={textUrl}>
+            <div className={this.decorateCSS("inner-right-link")}>
+              <div className={this.decorateCSS("inner-div")}>
+                {text}
+              </div>
+
+              <ComposerIcon name="PiArrowUpRightBold"
+                propsIcon={{
+                  className: this.decorateCSS("icon"),
+                }}
+              ></ComposerIcon>
+            </div>
+          </ComposerLink>
+        </div>
         <div className={this.decorateCSS("max-content")}>
-          
-            <header>
-              {isTitleExist && (
-                <h1 className={`${this.decorateCSS("title")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
-                  {title}
-                </h1>
-              )}
-              {isTitleExist && (
-                <hr className={this.decorateCSS("faint-line")} />
-              )}
-              {isSubTitleExist && (
-                <h2 className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </h2>
-              )}
-            </header>
-          
+          <header>
+            {isTitleExist && (
+              <h1 className={this.decorateCSS("title")}>
+                {title}
+              </h1>
+            )}
+            {isTitleExist && (
+              <hr className={`${this.decorateCSS("faint-line")} ${faintLine ? "" : this.decorateCSS("no-faint-line")}`} />
+            )}
+            {isSubTitleExist && (
+              <h2 className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </h2>
+            )}
+          </header>
+
           <main className={this.decorateCSS("wrapper")}>
             {items.length > 0 && (
               <div className={this.decorateCSS("slider-parent")}>
-                <Slider {...settings} className={this.decorateCSS("carousel")}>
+                <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
                   {items.map((item: CardType, index: number) => (
                     <article
                       className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index ? this.decorateCSS("prevSlide") : ""} ${this.getComponentState("nextSlide") === index ? this.decorateCSS("nextSlide") : ""}`}
@@ -305,13 +386,13 @@ class Content16 extends BaseContent {
                       <div className={this.decorateCSS("content-div")}>
                         {item.image && (
                           <div className={this.decorateCSS("img-div")}>
-                            <a href={item.url} target="_blank" rel="noopener noreferrer">
+                            <ComposerLink path={item.url}>
                               <img
                                 alt={this.castToString(item.imageTitle) || this.castToString(item.imageSubtitle)}
                                 src={item.image}
                                 className={this.decorateCSS("img")}
                               />
-                            </a>
+                            </ComposerLink>
                           </div>
                         )}
                         {(this.castToString(item.imageSubtitle) || this.castToString(item.imageTitle)) && (
@@ -322,7 +403,7 @@ class Content16 extends BaseContent {
                               </h3>
                             )}
                             {this.castToString(item.imageTitle) && (
-                              <h2 className={`${this.decorateCSS("item-title")} ${disableAnimation ? this.decorateCSS("no-animation") : ""}`}>
+                              <h2 className={`${this.decorateCSS("item-title")} ${disableAnimation ? this.decorateCSS("no-item-title") : ""}`}>
                                 {item.imageTitle}
                               </h2>
                             )}
@@ -331,9 +412,44 @@ class Content16 extends BaseContent {
                       </div>
                     </article>
                   ))}
-                </Slider>
+                </ComposerSlider>
+                {this.renderDots()}
+
+                {prevIcon && (
+                  <button
+                    onClick={() => {
+                      sliderRef.current.slickPrev();
+                    }}
+                    className={this.decorateCSS("slider-button-left")}
+                  >
+                    <ComposerIcon
+                      propsIcon={{
+                        className: this.decorateCSS("slider-arrow-icon"),
+                        size: "20px",
+                      }}
+                      name={prevIcon}
+                    />
+                  </button>
+                )}
+                {nextIcon && (
+                  <button
+                    onClick={() => {
+                      sliderRef.current.slickNext();
+                    }}
+                    className={this.decorateCSS("slider-button-right")}
+                  >
+                    <ComposerIcon
+                      propsIcon={{
+                        className: this.decorateCSS("slider-arrow-icon"),
+                        size: "20px",
+                      }}
+                      name={nextIcon}
+                    />
+                  </button>
+                )}
               </div>
             )}
+
           </main>
         </div>
       </div>
