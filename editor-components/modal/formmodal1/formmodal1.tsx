@@ -15,10 +15,6 @@ type Inputs = {
   type: string;
 };
 
-type CountryOption = {
-  value: string;
-  label: string;
-};
 
 class FormModal1 extends BaseModal {
   constructor(props?: any) {
@@ -83,6 +79,69 @@ class FormModal1 extends BaseModal {
                         selectItems: ["Text", "E-mail", "Number"],
                       },
                     },
+                    {
+                      type: "boolean",
+                      key: "countrySelection",
+                      displayer: "Country Selection",
+                      value: false,
+                    },
+                    {
+                      type: "array",
+                      key: "countryOptions",
+                      displayer: "Country Options",
+                      value: [
+                        {
+                          type: "object",
+                          key: "countryOption",
+                          displayer: "Country Option",
+                          value: [
+                            {
+                              type: "string",
+                              key: "value",
+                              displayer: "Country Code",
+                              value: "us",
+                            },
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Country Label",
+                              value: "US",
+                            },
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "+1(555) 000-0000",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "countryOption",
+                          displayer: "Country Option",
+                          value: [
+                            {
+                              type: "string",
+                              key: "value",
+                              displayer: "Country Code",
+                              value: "tr",
+                            },
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Country Label",
+                              value: "TR",
+                            },
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "+90(555) 000-0000",
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   ],
                 },
               ],
@@ -124,6 +183,69 @@ class FormModal1 extends BaseModal {
                       additionalParams: {
                         selectItems: ["Text", "E-mail", "Number"],
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "countrySelection",
+                      displayer: "Country Selection",
+                      value: false,
+                    },
+                    {
+                      type: "array",
+                      key: "countryOptions",
+                      displayer: "Country Options",
+                      value: [
+                        {
+                          type: "object",
+                          key: "countryOption",
+                          displayer: "Country Option",
+                          value: [
+                            {
+                              type: "string",
+                              key: "value",
+                              displayer: "Country Code",
+                              value: "us",
+                            },
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Country Label",
+                              value: "US",
+                            },
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "+1(555) 000-0000",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "countryOption",
+                          displayer: "Country Option",
+                          value: [
+                            {
+                              type: "string",
+                              key: "value",
+                              displayer: "Country Code",
+                              value: "tr",
+                            },
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Country Label",
+                              value: "TR",
+                            },
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "+90(555) 000-0000",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
@@ -167,6 +289,69 @@ class FormModal1 extends BaseModal {
                         selectItems: ["Text", "E-mail", "Number"],
                       },
                     },
+                    {
+                      type: "boolean",
+                      key: "countrySelection",
+                      displayer: "Country Selection",
+                      value: false,
+                    },
+                    {
+                      type: "array",
+                      key: "countryOptions",
+                      displayer: "Country Options",
+                      value: [
+                        {
+                          type: "object",
+                          key: "countryOption",
+                          displayer: "Country Option",
+                          value: [
+                            {
+                              type: "string",
+                              key: "value",
+                              displayer: "Country Code",
+                              value: "us",
+                            },
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Country Label",
+                              value: "US",
+                            },
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "+1(555) 000-0000",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "countryOption",
+                          displayer: "Country Option",
+                          value: [
+                            {
+                              type: "string",
+                              key: "value",
+                              displayer: "Country Code",
+                              value: "tr",
+                            },
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Country Label",
+                              value: "TR",
+                            },
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "+90(555) 000-0000",
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   ],
                 },
               ],
@@ -194,12 +379,6 @@ class FormModal1 extends BaseModal {
                   key: "input",
                   displayer: "Input",
                   value: [
-                    {
-                      type: "string",
-                      key: "placeholder",
-                      displayer: "Placeholder",
-                      value: "+1(555) 000-0000",
-                    },
                     {
                       type: "array",
                       key: "countryOptions",
@@ -266,6 +445,12 @@ class FormModal1 extends BaseModal {
                         selectItems: ["Text", "E-mail", "Number"],
                       },
                     },
+                    {
+                      type: "boolean",
+                      key: "countrySelection",
+                      displayer: "Country Selection",
+                      value: false,
+                    }
                   ],
                 },
               ],
@@ -287,11 +472,14 @@ class FormModal1 extends BaseModal {
       displayer: "ExitIcon",
       value: "IoCloseSharp",
     });
+
+    this.setComponentState("selected_country", this.getPropValue("inputItems")[0]);
   }
 
   getName(): string {
     return "FormModal1";
   }
+
 
   render() {
     const header = this.getPropValue("header", { as_string: true });
@@ -350,21 +538,29 @@ class FormModal1 extends BaseModal {
       return value;
     }
 
-    function handlePhoneNumberChange(e: React.ChangeEvent<HTMLSelectElement>, handleChange: any, setFieldValue: any) {
-      const selectedCountryCode = e.target.value;
-      let placeholder = "+1(555) 000-0000"; // Default US format
+    function handleInputChange(
+      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+      handleChange: any,
+      setFieldValue: any,
+      inputObj: any
+    ) {
+      const selectedCountryCode = (e.target as HTMLSelectElement).value;
+      let placeholder = "";
 
-      if (selectedCountryCode === "tr") {
-        placeholder = "+90(555) 000-0000";
-      } else if (selectedCountryCode === "us") {
-        placeholder = "+1(555) 000-0000";
+      const countryOption = inputObj.getPropValue("countryOptions")?.find((option: any) => {
+        const countryCode = option.value.find((item: any) => item.key === "value").value;
+        return countryCode === selectedCountryCode;
+      });
+
+      if (countryOption) {
+        placeholder = countryOption.value.find((item: any) => item.key === "placeholder").value;
       }
 
-      handleChange(e); // Update the form's state
-      setFieldValue("phonePlaceholder", placeholder); // Update the placeholder dynamically
+      handleChange(e);
     }
 
     return (
+
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
@@ -397,7 +593,7 @@ class FormModal1 extends BaseModal {
                   </div>
                   <div className={this.decorateCSS("form-content")}>
                     <Formik
-                      initialValues={{ ...getInitialValue(), phonePlaceholder: "+1(555) 000-0000" }}
+                      initialValues={{ ...getInitialValue() }}
                       onSubmit={(data, { resetForm }) => {
                         this.insertForm("Contact Us", data);
                         resetForm();
@@ -407,41 +603,39 @@ class FormModal1 extends BaseModal {
                         <Form className={this.decorateCSS("form")}>
                           {this.castToObject<InputItems[]>("inputItems").map((inputItem: InputItems, inputItemIndex: number) =>
                             inputItem.inputs.map((inputObj: any, inputIndex: number) => (
-                              inputObj.getPropValue("placeholder", { as_string: true }) === "+1(555) 000-0000" ? (
+                              inputObj.getPropValue("countryOptions") && inputObj.getPropValue("countryOptions").length > 0 &&
+                                inputObj.getPropValue("countrySelection") == true ? (
                                 <div className={this.decorateCSS("phone-input-container")} key={`${inputItemIndex}-${inputIndex}`}>
-                                  {inputObj.getPropValue("countryOptions") &&
-                                    inputObj.getPropValue("countryOptions").length > 0 ? (
-                                    <select
-                                      className={this.decorateCSS("country-dropdown")}
-                                      onChange={(e) =>
-                                        handlePhoneNumberChange(e, handleChange, setFieldValue)
+                                  <select
+                                    className={this.decorateCSS("country-dropdown")}
+                                    onChange={(e) =>
+                                      handleInputChange(e, handleChange, setFieldValue, inputObj)
+                                    }
+                                  >
+
+                                    {inputObj.getPropValue("countryOptions").map(
+                                      (option: any, idx: number) => {
+                                        const value = option.value.find((item: any) => item.key === "value").value;
+                                        const label = option.value.find((item: any) => item.key === "label").value;
+                                        return (
+                                          <option key={idx} value={value}>
+                                            {label}
+                                          </option>
+                                        );
                                       }
-                                    >
-                                      {inputObj.getPropValue("countryOptions").map(
-                                        (option: any, idx: number) => {
-                                          const value = option.value.find((item: any) => item.key === "value").value;
-                                          const label = option.value.find((item: any) => item.key === "label").value;
-                                          return (
-                                            <option key={idx} value={value}>
-                                              {label}
-                                            </option>
-                                          );
-                                        }
-                                      )}
-                                    </select>
-                                  ) : (
-                                    <select className={this.decorateCSS("country-dropdown")}>
-                                      <option value="">No options available</option>
-                                    </select>
-                                  )}
+                                    )}
+                                  </select>
 
                                   <input
-                                    placeholder={values.phonePlaceholder}
+                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                                     type={getInputType(inputObj.type)}
-                                    onChange={handleChange}
+                                    onChange={(e) =>
+                                      handleInputChange(e, handleChange, setFieldValue, inputObj)
+                                    }
                                     value={values[getInputName(inputItemIndex, inputItem.label, inputIndex)]}
                                     name={getInputName(inputItemIndex, inputItem.label, inputIndex)}
                                     className={this.decorateCSS("form-input")}
+
                                   />
                                 </div>
                               ) : (
@@ -449,7 +643,9 @@ class FormModal1 extends BaseModal {
                                   <input
                                     placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                                     type={getInputType(inputObj.type)}
-                                    onChange={handleChange}
+                                    onChange={(e) =>
+                                      handleInputChange(e, handleChange, setFieldValue, inputObj)
+                                    }
                                     value={values[getInputName(inputItemIndex, inputItem.label, inputIndex)]}
                                     name={getInputName(inputItemIndex, inputItem.label, inputIndex)}
                                     className={this.decorateCSS("form-input")}
