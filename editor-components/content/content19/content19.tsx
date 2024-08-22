@@ -44,7 +44,12 @@ class Content19 extends BaseContent {
       displayer: "Description",
       value: "Donec orci enim, vulputate et rutrum id, varius at nibh. Sed sagittis feugiat augue maximus hendrerit. Phasellus volutpat dictum sem, sed dignissim diam sodales eu. Suspendisse ut lorem posuere, tincidunt leo a, ultricies odio. Nulla porta sagittis turpis vel tristique. Curabitur ac maximus est. Proin placerat mauris eu eros varius imperdiet id at ligula."
     });
-
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Left Line",
+      value: true,
+    });
 
     this.addProp({
       type: "icon",
@@ -127,6 +132,7 @@ class Content19 extends BaseContent {
     const authorIcon = this.getPropValue("author-icon");
     const playIcon = this.getPropValue("play-icon");
     const description = this.getPropValue("description");
+    const line = this.getPropValue("line");
     const authorName = this.getPropValue("author-name");
     const authorDescription = this.getPropValue("author-description");
     const titleText = this.getPropValue("title-text");
@@ -161,11 +167,14 @@ class Content19 extends BaseContent {
                   {this.castToString(titleText) && (
                     <p className={this.decorateCSS("title-text")}>{titleText}</p>
                   )}
-                  {this.castToString(description) && (
+                  {(this.castToString(description)) &&
                     <div className={this.decorateCSS("description-div")}>
-                      <h2 className={this.decorateCSS("description")}>{description}</h2>
-                    </div>
-                  )}
+                      {this.castToString(description) && line && <hr className={this.decorateCSS("line")} />}
+                      {this.castToString(description) &&
+                        <h2 className={this.decorateCSS("description")}>{description}</h2>
+                      }
+                    </div>}
+
                   <div className={this.decorateCSS("description-author")}>
                     {authorIcon && (
                       <div className={this.decorateCSS("author-icon")}>
