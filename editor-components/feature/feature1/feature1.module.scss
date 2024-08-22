@@ -89,9 +89,9 @@
       justify-content: space-between;
       width: 100%;
       height: 100%;
-      padding: 20px 150px;
+      padding: 30px 150px 20px 150px;
       row-gap: 30px;
-      gap: 40px;
+      gap: 20px;
 
       .card-column {
         flex: 1;
@@ -113,7 +113,7 @@
           .image {
             width: 100%;
             height: 100%;
-            max-height: 240px;
+            max-height: 200px;
             object-fit: cover;
           }
 
@@ -121,7 +121,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 20px;
+            gap: 10px;
             padding: 20px;
             height: 100%;
             .date-time {
@@ -144,7 +144,7 @@
             }
 
             .title {
-              font-size: 1.4rem;
+              font-size: 1.6rem;
               font-weight: bold;
               color: var(--composer-font-color-secondary);
             }
@@ -166,8 +166,8 @@
             }
 
             .profile-image {
-              width: 44px;
-              height: 44px;
+              width: 42px;
+              height: 42px;
             }
 
             .user {
@@ -175,15 +175,16 @@
               flex-direction: column;
               justify-content: center;
               gap: 10px;
-              height: 44px;
-              font-size: 1rem;
+              height: 42px;
 
               .profile-description {
                 color: var(--composer-font-color-secondary);
+                font-size: 1rem;
               }
               .fullname {
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
+                font-size: 1rem;
               }
             }
           }
@@ -197,17 +198,18 @@
 
       .middle-content {
         width: 30%;
-        height: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 20px;
 
         .card {
           display: flex;
           flex-direction: column;
           justify-content: center;
           max-width: 500px;
+
           margin: 0;
           background-color: color-mix(
             in srgb,
@@ -215,7 +217,7 @@
             var(--composer-font-color-primary) 90%
           );
           padding: 20px;
-          gap: 20px;
+          gap: 10px;
 
           .date-time {
             display: flex;
@@ -236,7 +238,7 @@
           }
 
           .title {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
             color: var(--composer-font-color-secondary);
             cursor: pointer;
@@ -258,25 +260,27 @@
             gap: 10px;
 
             .profile-image {
-              width: 34px;
-              height: 34px;
+              width: 30px;
+              height: 30px;
             }
 
             .user {
               display: flex;
-              flex-direction: column;
+              flex-direction: row;
               justify-content: center;
-              gap: 5px;
-              height: 34px;
-              font-size: 1rem;
+              align-items: center;
+              gap: 10px;
+              height: 30px;
 
               .profile-description {
                 color: var(--composer-font-color-secondary);
+                font-size: 1rem;
               }
 
               .fullname {
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
+                font-size: 1rem;
               }
             }
           }
@@ -289,9 +293,9 @@
       justify-content: space-between;
       width: 100%;
       height: 100%;
-      padding: 20px 150px;
+      padding: 0px 150px 20px 150px;
       row-gap: 30px;
-      gap: 40px;
+      gap: 20px;
 
       .card-column {
         flex: 1;
@@ -313,7 +317,7 @@
           .image {
             width: 100%;
             height: 40%;
-            max-height: 250px;
+            max-height: 200px;
             object-fit: cover;
           }
 
@@ -343,7 +347,7 @@
             }
 
             .title {
-              font-size: 1.4rem;
+              font-size: 1.6rem;
               font-weight: bold;
               color: var(--composer-font-color-secondary);
             }
@@ -366,8 +370,8 @@
                 justify-content: flex-start;
               }
               .profile-image {
-                width: 44px;
-                height: 44px;
+                width: 42px;
+                height: 42px;
               }
 
               .user {
@@ -375,16 +379,17 @@
                 flex-direction: column;
                 justify-content: center;
                 gap: 10px;
-                height: 44px;
-                font-size: 1rem;
+                height: 42px;
 
                 .profile-description {
                   color: var(--composer-font-color-secondary);
+                  font-size: 1rem;
                 }
 
                 .fullname {
                   font-weight: bold;
                   color: var(--composer-font-color-secondary);
+                  font-size: 1rem;
                 }
               }
             }
@@ -396,8 +401,9 @@
         width: 30%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 20px;
 
         .card {
           display: flex;
@@ -432,7 +438,7 @@
           }
 
           .title {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
             color: var(--composer-font-color-secondary);
             cursor: pointer;
@@ -454,25 +460,27 @@
             gap: 10px;
 
             .profile-image {
-              width: 34px;
-              height: 34px;
+              width: 30px;
+              height: 30px;
             }
 
             .user {
               display: flex;
-              flex-direction: column;
+              flex-direction: row;
               justify-content: center;
-              gap: 5px;
-              height: 34px;
-              font-size: 1rem;
+              align-items: center;
+              gap: 10px;
+              height: 30px;
 
               .profile-description {
                 color: var(--composer-font-color-secondary);
+                font-size: 1rem;
               }
 
               .fullname {
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
+                font-size: 1rem;
               }
             }
           }
@@ -523,7 +531,7 @@
       justify-content: space-between !important;
       margin-left: 0rem !important;
       margin-right: 0rem !important;
-      padding: 0 70px 50px 70px !important;
+      padding: 0 70px 20px 70px !important;
       gap: 40px;
 
       .card-column {
@@ -543,7 +551,7 @@
           }
 
           .title {
-            font-size: 1.4rem !important;
+            font-size: 1.6rem !important;
           }
 
           .description {
@@ -563,7 +571,7 @@
         padding-right: 0 !important;
         margin: 0 !important;
         flex-direction: row !important;
-        gap: 40px !important;
+        gap: 20px !important;
         .card {
           display: flex !important;
           flex-direction: column !important;
@@ -571,7 +579,7 @@
           row-gap: 20px !important;
           width: 100% !important;
           height: 100% !important;
-          max-width: 450px !important;
+          max-width: 50% !important;
 
           .user-info {
             align-items: end !important;
@@ -607,7 +615,7 @@
           }
 
           .title {
-            font-size: 1.4rem !important;
+            font-size: 1.6rem !important;
           }
 
           .description {
@@ -635,7 +643,7 @@
           row-gap: 10px !important;
           width: 100% !important;
           height: 100% !important;
-          max-width: 450px !important;
+          max-width: 50% !important;
 
           .user-info {
             align-items: end !important;
@@ -693,8 +701,8 @@
 
     .features {
       flex-direction: column !important;
-      padding: 0 !important;
-      gap: 30px !important;
+      padding: 0 0 20px 0 !important;
+      gap: 20px !important;
 
       .card-column,
       .middle-content {
@@ -738,7 +746,7 @@
 
       .middle-content {
         flex-direction: column !important;
-        gap: 30px !important;
+        gap: 20px !important;
 
         .card {
           max-width: none !important;
@@ -749,7 +757,7 @@
     .additional-cards {
       flex-direction: column !important;
       padding: 0 !important;
-      gap: 30px !important;
+      gap: 20px !important;
 
       .card-column,
       .middle-content {
@@ -793,7 +801,7 @@
 
       .middle-content {
         flex-direction: column !important;
-        gap: 30px !important;
+        gap: 20px !important;
 
         .card {
           max-width: none !important;

@@ -133,14 +133,14 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Why the security engineers loves working",
+              value: "The Power of Visualization in the 21st century",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Working in cybersecurity means you’re constantly playing a game of catch-up. Every day you learn something new, but your work is also never finished.",
+                "While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel — the tech billionaire and rumored vampire — says Silicon Valley big brains have lost enthusiasm for AGI.",
             },
             {
               type: "image",
@@ -198,14 +198,14 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "title2",
               displayer: "Title",
-              value: "The nine-to-five Is Dead. Here’s What to Replace It With",
+              value: "Why the security engineers loves working in fosec",
             },
             {
               type: "string",
               key: "description2",
               displayer: "Description",
               value:
-                "Without even reducing the 40-hour work week. Time is money, right?",
+                "Working in cybersecurity means you’re constantly playing a game of catch-up. Every day you learn something new, but your work is also never finished.",
             },
             {
               type: "image",
@@ -224,7 +224,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "profileDescription2",
               displayer: "Profile Description",
-              value: "Written by",
+              value: "by",
             },
             {
               type: "page",
@@ -243,7 +243,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "date2",
               displayer: "date",
-              value: "21 Jun 2022",
+              value: "Apr 9, 2022",
             },
             {
               type: "string",
@@ -255,14 +255,14 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "title2",
               displayer: "Title",
-              value: "Why the security engineers loves working",
+              value: "There Are Zero Bridges Across The Amazon. Here Is Why",
             },
             {
               type: "string",
               key: "description2",
               displayer: "Description",
               value:
-                "Working in cybersecurity means you’re constantly playing a game of catch-up. Every day you learn something new, but your work is also never finished.",
+                "Here is a fun fact to stick in the back of your mind for trivia night or to use as an interesting ice breaker: the Amazon River has no bridges. None. Zero. Zilch. That is in spite of the fact that the Amazon is 4,345 miles long.",
             },
             {
               type: "image",
@@ -281,7 +281,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "profileDescription2",
               displayer: "Profile Description",
-              value: "Written by",
+              value: "by",
             },
             {
               type: "page",
@@ -371,14 +371,14 @@ class Feature1 extends BaseFeature {
       type: "number",
       key: "maxTitleLength",
       displayer: "Max Title Length",
-      value: 50,
+      value: 40,
     });
 
     this.addProp({
       type: "number",
       key: "maxDescriptionLength",
       displayer: "Max Description Length",
-      value: 100,
+      value: 60,
     });
   }
 
