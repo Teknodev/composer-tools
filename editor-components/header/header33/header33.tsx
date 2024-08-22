@@ -26,13 +26,20 @@ class Header33 extends BaseHeader {
       type: "icon",
       key: "prev_icon",
       displayer: "Prev icon",
-      value: "PiArrowLeftThin",
+      value: "FaLongArrowAltLeft",
     });
     this.addProp({
       type: "icon",
       key: "next_icon",
       displayer: "Next icon",
-      value: "PiArrowRightThin",
+      value: "FaLongArrowAltRight",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Content Animation",
+      value: true,
     });
 
     this.addProp({
@@ -199,21 +206,12 @@ class Header33 extends BaseHeader {
       ],
     });
 
-    this.setComponentState("prevIndex", 0);
-    this.setComponentState("currentIndex", 0);
-    this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-    this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
-    this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
+    this.setComponentState("activeSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
 
   getName(): string {
     return "Header-33";
-  }
-
-  changeCurrentSlide(slideIndex: number) {
-    this.setComponentState("prevIndex", this.getComponentState("currentIndex"));
-    this.setComponentState("currentIndex", slideIndex);
   }
 
   calculateManipulations(rotateText: string) {
@@ -230,13 +228,13 @@ class Header33 extends BaseHeader {
     let fontSize = 40;
 
     let letterSpacing = parseFloat(
-      (circlePerimeter / (textLength * circleScale * fontSize)).toFixed(2)
+      (circlePerimeter / (textLength * circleScale * fontSize)).toFixed(2),
     );
 
     if (letterSpacing < 1) {
       letterSpacing = 0;
       fontSize = parseFloat(
-        (circlePerimeter / ((textLength - 1) * circleScale)).toFixed(2)
+        (circlePerimeter / ((textLength - 1) * circleScale)).toFixed(2),
       );
       if (fontSize <= 24) {
         circleRadius = textLength * 2.2;
@@ -244,11 +242,11 @@ class Header33 extends BaseHeader {
         circleContainerW = Math.min(
           circleContainerMaxW,
           Math.round(2 * circleRadius * Math.cos(45)) *
-            parentCircleToInnerCircleScaleRatio
+          parentCircleToInnerCircleScaleRatio,
         );
         circleScale = parseFloat((circleContainerW / 300).toFixed(2));
         fontSize = parseFloat(
-          (circlePerimeter / ((textLength - 1) * circleScale)).toFixed(2)
+          (circlePerimeter / ((textLength - 1) * circleScale)).toFixed(2),
         );
       }
     }
@@ -271,21 +269,9 @@ class Header33 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: (oldIndex: number, newIndex: number) => {
-        this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
-        setTimeout(() => {
-          this.changeCurrentSlide(newIndex);
-        }, 1200);
-      },
-      afterChange: () => {
-        this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
-        this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-        this.setComponentState(
-          "descriptionAnimationClass",
-          "animate__fadeInUp"
-        );
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("activeSlide", next);
+        console.log(this.getComponentState("activeSlide"));
       },
     };
 
@@ -294,7 +280,7 @@ class Header33 extends BaseHeader {
     const nextArrowIcon: string = this.getPropValue("next_icon");
     const prevArrowIcon: string = this.getPropValue("prev_icon");
 
-    console.log("GELDI");
+    const animation: boolean = this.getPropValue("animation");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -316,9 +302,9 @@ class Header33 extends BaseHeader {
                   return (
                     <div
                       className={`${this.decorateCSS(
-                        "content"
+                        "content",
                       )} ${this.decorateCSS(
-                        index % 2 === 1 ? "secondary-slide" : ""
+                        index % 2 === 1 ? "secondary-slide" : "",
                       )}`}
                       key={index}
                     >
@@ -330,11 +316,20 @@ class Header33 extends BaseHeader {
                         />
                       )}
                       <div className={this.decorateCSS("carousel-content-div")}>
-                        <div className={this.decorateCSS("carousel-content")}>
+                        <div
+                          className={`
+                            ${this.decorateCSS("carousel-content")}
+                            ${this.getComponentState("activeSlide") ===
+                              index || animation
+                              ? this.decorateCSS("fix-location")
+                              : ""
+                            }
+                          `}
+                        >
                           {titleExist && (
                             <h1
                               className={this.getComponentState(
-                                "titleAnimationClass"
+                                "content-title",
                               )}
                             >
                               {item.title}
@@ -349,12 +344,7 @@ class Header33 extends BaseHeader {
                                   path={item.button_link}
                                 >
                                   <button
-                                    className={`
-                                    ${this.getComponentState(
-                                      "buttonAnimationClass"
-                                    )}
-                                    ${this.decorateCSS("button")}
-                                    `}
+                                    className={this.decorateCSS("button")}
                                   >
                                     {item.button_text}
                                   </button>
@@ -387,10 +377,6 @@ class Header33 extends BaseHeader {
                             <use xlinkHref="#circlePath" fill="none" />
                             <text fill="#000">
                               <textPath
-                                // TODO
-                                // style={{
-                                //   letterSpacing: `${Math.ceil(192 / rotateText.length)}px`,
-                                // }}
                                 xlinkHref="#circlePath"
                                 style={{
                                   fontSize: `${styleManipulations.fontSize}px`,
@@ -407,40 +393,36 @@ class Header33 extends BaseHeader {
                   );
                 })}
               </ComposerSlider>
-              {(prevArrowIcon || nextArrowIcon) && (
-                <div className={this.decorateCSS("page-bottom")}>
-                  {prevArrowIcon && (
-                    <ComposerIcon
-                      name={prevArrowIcon}
-                      propsIcon={{
-                        className: `${this.decorateCSS("prev-icon")} ${
-                          styles["arrow-prev"]
+              <div className={this.decorateCSS("arrows")}>
+                {prevArrowIcon && (
+                  <ComposerIcon
+                    name={prevArrowIcon}
+                    propsIcon={{
+                      className: `${this.decorateCSS("prev-icon")} ${styles["arrow-prev"]
                         }`,
-                        onClick: () => {
-                          this.getComponentState(
-                            "slider-ref"
-                          ).current.slickPrev();
-                        },
-                      }}
-                    />
-                  )}
-                  {nextArrowIcon && (
-                    <ComposerIcon
-                      name={nextArrowIcon}
-                      propsIcon={{
-                        className: `${this.decorateCSS("next-icon")} ${
-                          styles["arrow-next"]
+                      onClick: () => {
+                        this.getComponentState(
+                          "slider-ref",
+                        ).current.slickPrev();
+                      },
+                    }}
+                  />
+                )}
+                {nextArrowIcon && (
+                  <ComposerIcon
+                    name={nextArrowIcon}
+                    propsIcon={{
+                      className: `${this.decorateCSS("next-icon")} ${styles["arrow-next"]
                         }`,
-                        onClick: () => {
-                          this.getComponentState(
-                            "slider-ref"
-                          ).current.slickNext();
-                        },
-                      }}
-                    />
-                  )}
-                </div>
-              )}
+                      onClick: () => {
+                        this.getComponentState(
+                          "slider-ref",
+                        ).current.slickNext();
+                      },
+                    }}
+                  />
+                )}
+              </div>
             </>
           )}
         </div>
