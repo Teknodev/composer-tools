@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
-  padding: 50px;
+  padding: 20px 50px 20px 0px;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -14,12 +14,19 @@
   .image-container {
     width: 100%;
     padding-right: 40px;
+
+    .image {
+      width: 100%;
+      height: auto;
+    }
+
+    .no-text-container{
+      height: 500px !important;
+      object-fit: cover;
+    }
   }
 
-  .image {
-    width: 100%;
-    height: auto;
-  }
+  
 
   .textContainer {
     width: 100%;
@@ -117,85 +124,100 @@
     }
   }
 
-  @media screen and (max-width: 1024px) {
-    .max-content {
-      flex-direction: column;
-      align-items: center;
+ 
+}
+
+@media screen and (max-width: 1024px) {
+  .max-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .image-container {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+  .textContainer {
+    padding: 0px 0px 0px 50px;
+    width: 100%;
+    text-align: start;
+    margin: 0 !important;
+    .mainTitle {
+      font-size: 3rem;
     }
-    .image-container {
-      width: 100%;
-      padding-right: 0;
-      margin-bottom: 40px;
+    .description {
+      font-size: 1.5rem;
     }
-    .textContainer {
-      width: 100%;
-      text-align: start;
-      .mainTitle {
-        font-size: 3rem;
-      }
-      .description {
-        font-size: 1.5rem;
-      }
-      .featuresList {
-        .feature {
-          .featureTitle {
-            font-size: 1.8rem;
-          }
+    .featuresList {
+      .feature {
+        .featureTitle {
+          font-size: 1.8rem;
         }
       }
-      .linkList {
-        .link {
-          .linkText {
-            font-size: 1.8rem;
-          }
+    }
+    .linkList {
+      margin: 0 !important;
+      .link {
+        .linkText {
+          font-size: 1.8rem;
         }
       }
     }
   }
+}
 
-  @media screen and (max-width: 767px) {
-    padding-top: 50px;
-    .textContainer {
-      .title {
-        font-size: 1.5rem;
-      }
-      .mainTitle {
-        font-size: 2.5rem;
-      }
-      .description {
-        font-size: 1.5rem;
-      }
-      .featuresList {
-        .feature {
-          .featureTitle {
-            font-size: 1.6rem;
-          }
-          .iconFeature {
-            width: 16px;
-            height: 16px;
-          }
+
+@media screen and (max-width: 468px) {
+  .container{
+    padding: 0 !important;
+    margin: 0 !important;
+    padding: 20px 20px 0px 0px !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .textContainer {
+    padding: 0px 0px 0px 20px;
+
+    .title {
+      font-size: 1.5rem !important;
+    }
+    .mainTitle {
+      font-size: 2.2rem !important;
+    }
+    .description {
+      font-size: 1.4rem !important;
+    }
+    .featuresList {
+      .feature {
+        .featureTitle {
+          font-size: 1.5rem !important;
         }
-      }
-      .linkList {
-        .link {
-          .linkText {
-            font-size: 1.6rem;
-          }
-          .iconLink {
-            width: 16px;
-            height: 16px;
-          }
+        .iconFeature {
+          width: 16px !important;
+          height: 16px !important;
         }
       }
     }
-    .linkContainer {
-      .linkText {
-        font-size: 1.3rem;
+    .linkList {
+      .link {
+        .linkText {
+          font-size: 1.5rem !important;
+        }
+        .iconLink {
+          width: 16px !important;
+          height: 16px !important;
+        }
       }
-      .iconLink {
-        height: 16px;
-        width: 16px;
-      }
+    }
+  }
+  .linkContainer {
+    padding: 0 !important;
+    .linkText {
+      font-size: 1.3rem !important;
+    }
+    .iconLink {
+      height: 16px !important;
+      width: 16px !important;
     }
   }
 }

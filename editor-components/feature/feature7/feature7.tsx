@@ -3,6 +3,7 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature7.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { boolean } from "yup";
 
 type Feature = {
   title: string;
@@ -163,6 +164,7 @@ class Feature7 extends BaseFeature {
       hasMainTitle ||
       hasdescription ||
       hasLinks || hasFeatures;
+    console.log("hasTextContent: ", hasTextContent);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -171,11 +173,11 @@ class Feature7 extends BaseFeature {
             <div className={this.decorateCSS("image-container")}>
               <img
                 src={this.getPropValue("image")}
-                className={this.decorateCSS("image")}
+                className={`${this.decorateCSS("image")} ${(hasTextContent.length < 1) && this.decorateCSS("no-text-container")}`}
               />
             </div>
           )}
-          {hasTextContent && (
+          {hasTextContent.length > 0 && (
             <div className={this.decorateCSS("textContainer")}>
               {hasTitle && (
                 <h2 className={this.decorateCSS("title")}>
@@ -192,7 +194,7 @@ class Feature7 extends BaseFeature {
                   {this.getPropValue("description")}
                 </p>
               )}
-              {hasFeatures.lenght > 0 && (
+              {hasFeatures && (
                 <ul className={this.decorateCSS("featuresList")}>
                   {this.castToObject<Feature[]>("features").map(
                     (feature: Feature, index: number) => (
@@ -216,7 +218,7 @@ class Feature7 extends BaseFeature {
                 </ul>
               )}
 
-              {hasLinks.length > 0 && (
+              {hasLinks && (
                 <ul className={this.decorateCSS("linkList")}>
                   {this.castToObject<Link[]>("links").map(
                     (link: Link, index: number) => (
