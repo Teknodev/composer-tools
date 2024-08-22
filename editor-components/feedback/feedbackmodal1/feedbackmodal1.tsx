@@ -1,13 +1,13 @@
 import * as React from "react";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./feedbackmodal1.module.scss";
-import { object, string } from "yup";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { boolean } from "yup/lib/locale";
 
 type Emoji = {
   value: string;
-  label: string
+  label: string;
+  image?: string;
+  emoji?: string;
 };
 
 class FeedbackModal1 extends BaseModal {
@@ -72,10 +72,16 @@ class FeedbackModal1 extends BaseModal {
               value: "FaRegFrown",
             },
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723e1e0b009002c36f0e1?alt=media"
+            },
+            {
               type: "string",
               key: "label",
               displayer: "Label",
-              value: "Very Bad",
+              value: "Devastated",
             },
           ],
         },
@@ -91,10 +97,16 @@ class FeedbackModal1 extends BaseModal {
               value: "FaRegMeh",
             },
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723c6e0b009002c36f0cc?alt=media"
+            },
+            {
               type: "string",
               key: "label",
               displayer: "Label",
-              value: "Bad",
+              value: "Upset",
             },
           ],
         },
@@ -110,10 +122,16 @@ class FeedbackModal1 extends BaseModal {
               value: "FaRegSmile",
             },
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723b3e0b009002c36f0bd?alt=media"
+            },
+            {
               type: "string",
               key: "label",
               displayer: "Label",
-              value: "Neutral",
+              value: "Okay",
             },
           ],
         },
@@ -129,10 +147,16 @@ class FeedbackModal1 extends BaseModal {
               value: "FaRegSmile",
             },
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c7239ce0b009002c36f0ac?alt=media"
+            },
+            {
               type: "string",
               key: "label",
               displayer: "Label",
-              value: "Good",
+              value: "Happy",
             },
           ],
         },
@@ -148,10 +172,16 @@ class FeedbackModal1 extends BaseModal {
               value: "FaRegGrin",
             },
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c72379e0b009002c36f09b?alt=media"
+            },
+            {
               type: "string",
               key: "label",
               displayer: "Label",
-              value: "Very Good",
+              value: "Ecstatic",
             },
           ],
         },
@@ -195,20 +225,13 @@ class FeedbackModal1 extends BaseModal {
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isHeaderTitleExist = this.castToString(this.getPropValue("headerTitle"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
-    const emojiProps = this.getPropValue("emojis");
     const isFeedbackIconExist = this.getPropValue("feedback_icon");
     const inputPlaceholder = this.castToString(this.getPropValue("input_text"));
     const buttonval = this.castToString(this.getPropValue("buttonText"));
     const isDividerActive = this.getPropValue("divider");
-
-
     const emojis = this.castToObject<Emoji[]>("emojis");
     const emojiExist = emojis.length > 0;
-    // console.log("emojisProps: ", emojiProps);
-    // console.log("emojis: ", emojis);
-    // console.log("emoji var mı?",emojiExist);
-    // console.log("isDividerActive", isDividerActive);
-    console.log("isFeedbackIconExist: ", isFeedbackIconExist);
+
     return (
       <div className={this.decorateCSS("feedbackModal")}>
         <div className={this.decorateCSS("feedbackModalHeader")}>
@@ -219,7 +242,6 @@ class FeedbackModal1 extends BaseModal {
               className: `${this.decorateCSS("icon")}`,
             }}
           />}
-
 
           {isTitleExist &&
             <h1 className={this.decorateCSS("feedbackModalHeaderh1")}>
@@ -246,28 +268,40 @@ class FeedbackModal1 extends BaseModal {
             {this.getPropValue("headerTitle")}</h2>
         }
 
-
         {isDescriptionExist &&
           <p className={this.decorateCSS("descriptionContent")}>
             {this.getPropValue("description")}</p>
         }
 
-
         {emojis.length > 0 && (
           <div className={this.decorateCSS("feedbackModalEmojis")}>
-            {this.castToObject<Emoji[]>("emojis").map((item: any, index: number) => (
+            {this.castToObject<Emoji[]>("emojis").map((item: Emoji, index: number) => (
               <div className={this.decorateCSS("emojiWrapper")} key={index}>
                 <span
                   id={`emoji-${index + 1}`}
                   className={this.decorateCSS("feedbackModalEmoji")}
                   onClick={() => this.handleEmojiClick(index + 1)}
                 >
-                  <ComposerIcon
-                    name={item.emoji}
-                    propsIcon={{
-                      className: `${this.decorateCSS("feedbackModalEmojiIcon")}`,
-                    }}
-                  />
+                  {item.image ? (
+                    <div className={this.decorateCSS("emojiImageWrapper")}>
+                      <div className={this.decorateCSS("color-overlay")}>
+                        <img
+                          src={item.image}
+                          alt={item.label}
+                          className={this.decorateCSS("feedbackModalEmojiImage")}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className={this.decorateCSS("emoji-wrapper")}>
+                      <ComposerIcon
+                        name={item.emoji}
+                        propsIcon={{
+                          className: `${this.decorateCSS("feedbackModalEmojiIcon")}`,
+                        }}
+                      />
+                    </div>
+                  )}
                 </span>
                 <p className={this.decorateCSS("emojiLabel")}>{item.label}</p>
               </div>
@@ -295,7 +329,6 @@ class FeedbackModal1 extends BaseModal {
             </div>
           )
         }
-
       </div>
     );
   }

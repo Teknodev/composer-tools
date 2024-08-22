@@ -46,24 +46,20 @@
 
       .close_icon {
         color: var(--composer-font-color-primary);
-        ;
       }
     }
   }
-
-
-
 
   .headerContent {
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 10px;
-
+    color: var(--composer-font-color-primary);
+    
     h2 {
       margin: 0;
       font-size: 2rem;
       text-align: center;
-      color: var(--composer-font-color-primary);
     }
 
     p {
@@ -93,11 +89,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      //margin: 10px;
 
       .emojiLabel {
-        background-color: darkgray;
-        color: white;
+        background-color: var(--composer-font-color-primary);
+        color: var(--composer-font-color-secondary);
         padding: 10px 20px;
         border-radius: 25px;
         position: relative;
@@ -115,20 +110,17 @@
         transform: translateX(-50%);
         border-width: 10px;
         border-style: solid;
-        border-color: transparent transparent darkgray transparent;
+        border-color: transparent transparent var(--composer-font-color-primary) transparent;
       }
-
 
       .feedbackModalEmoji {
         position: relative;
         cursor: pointer;
         display: flex;
         align-items: center;
-        padding: 10px;
+        justify-content: center;
         border-radius: 50%;
         transition: background-color 0.3s, transform 0.3s;
-        // background-color: var(--secondary-text-color);
-        // filter: grayscale(100%);
         margin-bottom: 10px;
 
         &::after {
@@ -146,20 +138,43 @@
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
 
-
         &::after {
           width: 75px;
           height: 75px;
         }
 
+        .emoji-wrapper{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 80px;
+          height: 80px;
+        }
+
         .feedbackModalEmojiIcon {
           align-items: center;
           font-size: 2.5rem;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 30%); //var(--composer-font-color-primary) rgba(var(--composer-font-color-primary-rgb),0.5);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 30%); 
           transition: filter 0.3s;
-          width: 30px;
-          height: 30px;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
+        }
+
+        .emojiImageWrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+        
+        .feedbackModalEmojiImage {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          filter: grayscale(100%);
         }
 
         &.selected,
@@ -167,22 +182,22 @@
           background: radial-gradient(circle,
               rgba(var(--composer-secondary-color-rgb, 1), 0.80),
               rgba(var(--composer-html-background-rgb, 1), 1));
-
-          //background: var(--composer-font-color-secondary);
           transform: scale(1.2);
-
 
           &::after {
             opacity: 1;
           }
-
 
           .feedbackModalEmoji {
             filter: grayscale(0%);
           }
 
           .feedbackModalEmojiIcon {
-            background-color: rgba(var(--composer-secondary-color-rgb), 1); //var(--composer-font-color-primary)
+            background-color: rgba(var(--composer-secondary-color-rgb), 1);
+            filter: grayscale(0%);
+          }
+
+          .feedbackModalEmojiImage{
             filter: grayscale(0%);
           }
 
@@ -195,10 +210,8 @@
     }
   }
 
-
   .contact-form {
     margin-bottom: 20px;
-    //margin-top: 40px;
     transition: 1s;
     display: flex;
     width: 100%;
@@ -233,7 +246,6 @@
     width: 100%;
     height: 60px;
     border: 1px solid var(--composer-html-background);
-    ;
     border-radius: 5px;
     padding: 10px;
     font-size: 0.875rem;
@@ -250,8 +262,6 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s;
-
-
   }
 
   @media only screen and (max-width: 768px) {
@@ -265,7 +275,6 @@
 
       .feedbackModalCloseButton {
         font-size: 1.5rem;
-        //padding-left: 150px;
       }
     }
 
@@ -312,7 +321,6 @@
 
       .feedbackModalCloseButton {
         font-size: 1.25rem;
-        //padding-left: 100px;
       }
     }
 
