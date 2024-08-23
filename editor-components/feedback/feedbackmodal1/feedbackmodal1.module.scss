@@ -12,6 +12,13 @@
     width: 100%;
     margin-top: 15px;
     margin-bottom: 40px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .divider-unactive {
+    opacity: 0;
+    visibility: hidden;
   }
 
   .feedbackModalHeader {
@@ -19,10 +26,12 @@
     align-items: center;
     position: relative;
 
+
     .icon {
       width: 30px;
       height: 30px;
       color: var(--composer-font-color-primary);
+
     }
 
     .feedbackModalHeaderh1 {
@@ -38,11 +47,9 @@
       border: none;
       font-size: 2rem;
       cursor: pointer;
-      position: absolute;
-      right: 0%;
-      top: 30%;
-      transform: translateY(-50%);
+      display: flex;
       color: var(--composer-html-background);
+      align-items: center;
 
       .close_icon {
         color: var(--composer-font-color-primary);
@@ -55,7 +62,7 @@
     padding-right: 10px !important;
     padding-top: 10px;
     color: var(--composer-font-color-primary);
-    
+
     h2 {
       margin: 0;
       font-size: 2rem;
@@ -100,6 +107,7 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
+        word-break: break-all;
       }
 
       .emojiLabel::after {
@@ -143,7 +151,7 @@
           height: 75px;
         }
 
-        .emoji-wrapper{
+        .emoji-wrapper {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -154,7 +162,7 @@
         .feedbackModalEmojiIcon {
           align-items: center;
           font-size: 2.5rem;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 30%); 
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 30%);
           transition: filter 0.3s;
           width: 44px;
           height: 44px;
@@ -169,7 +177,7 @@
           height: 100%;
           width: 100%;
         }
-        
+
         .feedbackModalEmojiImage {
           width: 80px;
           height: 80px;
@@ -197,7 +205,7 @@
             filter: grayscale(0%);
           }
 
-          .feedbackModalEmojiImage{
+          .feedbackModalEmojiImage {
             filter: grayscale(0%);
           }
 
@@ -223,6 +231,7 @@
 
     .input {
       position: relative;
+      max-width: 100%;
       width: 450px;
       height: 95px;
       border-color: rgba(var(--composer-font-color-primary-rgb), 0.025);
@@ -231,6 +240,7 @@
       color: var(--composer-font-color-primary);
       padding-bottom: 55px;
       padding-left: 10px;
+      resize: none;
 
       &:focus {
         outline-color: var(--composer-secondary-color);
@@ -262,6 +272,12 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s;
+  }
+
+  .button:hover {
+    background: transparent;
+    color: var(--composer-secondary-color);
+    border: 1px solid var(--composer-secondary-color);
   }
 
   @media only screen and (max-width: 768px) {

@@ -5,7 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Emoji = {
   value: string;
-  label: string;
+  label: JSX.Element;
   image?: string;
   emoji?: string;
 };
@@ -58,6 +58,9 @@ class FeedbackModal1 extends BaseModal {
     this.addProp({
       type: "array",
       key: "emojis",
+      additionalParams: {
+        maxElementCount: 5,
+      },
       displayer: "Emojis",
       value: [
         {
@@ -81,7 +84,7 @@ class FeedbackModal1 extends BaseModal {
               type: "string",
               key: "label",
               displayer: "Label",
-              value: "Devastated",
+              value: "Broken",
             },
           ],
         },
@@ -257,9 +260,9 @@ class FeedbackModal1 extends BaseModal {
           </button>
         </div>
 
-        {isDividerActive && (isFeedbackIconExist || isTitleExist) && (
+        {(isFeedbackIconExist || isTitleExist) && (
           <>
-            <hr style={{ margin: 'none' }} className={this.decorateCSS("divider")} />
+            <hr style={{ margin: 'none' }} className={`${this.decorateCSS("divider")} ${!isDividerActive && this.decorateCSS("divider-unactive")}`} />
           </>
         )}
 
@@ -276,7 +279,13 @@ class FeedbackModal1 extends BaseModal {
         {emojis.length > 0 && (
           <div className={this.decorateCSS("feedbackModalEmojis")}>
             {this.castToObject<Emoji[]>("emojis").map((item: Emoji, index: number) => (
-              <div className={this.decorateCSS("emojiWrapper")} key={index}>
+              <div className={this.decorateCSS("emojiWrapper")}
+                style={
+                  {
+                    width: 100 / (emojis.length) + "%",
+                  }
+                }
+                key={index}>
                 <span
                   id={`emoji-${index + 1}`}
                   className={this.decorateCSS("feedbackModalEmoji")}
@@ -284,13 +293,11 @@ class FeedbackModal1 extends BaseModal {
                 >
                   {item.image ? (
                     <div className={this.decorateCSS("emojiImageWrapper")}>
-                      <div className={this.decorateCSS("color-overlay")}>
                         <img
                           src={item.image}
-                          alt={item.label}
+                          alt={this.castToString(item.label)}
                           className={this.decorateCSS("feedbackModalEmojiImage")}
                         />
-                      </div>
                     </div>
                   ) : (
                     <div className={this.decorateCSS("emoji-wrapper")}>
@@ -303,7 +310,13 @@ class FeedbackModal1 extends BaseModal {
                     </div>
                   )}
                 </span>
-                <p className={this.decorateCSS("emojiLabel")}>{item.label}</p>
+
+                {
+                  <>
+                    {this.castToString(item.label) && (
+                      <p className={this.decorateCSS("emojiLabel")}>{item.label}</p>)}
+                  </>
+                }
               </div>
             ))}
           </div>
@@ -314,9 +327,8 @@ class FeedbackModal1 extends BaseModal {
             <div className={this.decorateCSS("send-mail")}>
               {inputPlaceholder && (
                 <div className={`${this.decorateCSS("contact-form")} ${!emojiExist && this.decorateCSS("no-emojis")}`}>
-                  <input
+                  <textarea
                     placeholder={inputPlaceholder}
-                    type="text"
                     className={this.decorateCSS("input")}
                   />
                 </div>
