@@ -148,54 +148,6 @@
   }
 }
 
-@media only screen and (max-width: 1000px) {
-  .carousel-content-div {
-    width: 80% !important;
-
-    .carousel-content {
-      width: 100% !important;
-      margin-bottom: -40px !important;
-
-      h1 {
-        font-size: 40px !important;
-        line-height: 36px !important;
-        width: 100% !important;
-      }
-
-      .buttons-div {
-        width: 100% !important;
-        row-gap: 5px !important;
-
-        >div {
-          height: auto !important;
-        }
-
-        .button {
-          font-size: 14px !important;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .carousel-content-div {
-    width: 70% !important;
-
-    .carousel-content {
-      h1 {
-        font-size: 30px !important;
-        line-height: 32px !important;
-      }
-
-      .buttons-div {
-        .button {
-          font-size: 12px !important;
-        }
-      }
-    }
-  }
-}
 
 .arrows {
   display: block;
@@ -222,6 +174,74 @@ $arrow-offset: 1.4rem;
 .arrow-prev {
   left: $arrow-offset;
 }
+
+@media only screen and (max-width: 1000px) {
+  .content {
+    padding: 0 30px !important;
+  }
+
+  .container .circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .carousel-content-div {
+    width: 90% !important;
+
+    .carousel-content {
+      width: 100% !important;
+
+      h1 {
+        font-size: 40px !important;
+        line-height: 44px !important;
+        width: 100% !important;
+      }
+
+      .buttons-div {
+        width: 100% !important;
+        row-gap: 5px !important;
+
+        >div {
+          height: auto !important;
+        }
+
+        .button {
+          font-size: 18px !important;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+
+  .arrows {
+    display: none;
+  }
+
+  .container .circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .carousel-content-div {
+    width: 100% !important;
+
+    .carousel-content {
+      h1 {
+        font-size: 30px !important;
+        line-height: 32px !important;
+      }
+
+      .buttons-div {
+        .button {
+          font-size: 16px !important;
+        }
+      }
+    }
+  }
+}
+
 
 @keyframes rotate {
   from {
