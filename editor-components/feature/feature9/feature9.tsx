@@ -214,10 +214,6 @@ class Feature9 extends BaseFeature {
     cardElements.forEach((card) => {
       this.observer.observe(card);
     });
-
-    document.onscroll = () => {
-      document.write("slm");
-    };
   }
 
   render() {
