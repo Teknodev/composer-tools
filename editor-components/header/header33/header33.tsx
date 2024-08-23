@@ -6,6 +6,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Slide = {
+  backgroundImage: string;
   image: string;
   title: JSX.Element;
   rotate_icon: string;
@@ -54,10 +55,16 @@ class Header33 extends BaseHeader {
           value: [
             {
               type: "image",
-              key: "image",
-              displayer: "Image",
+              key: "backgroundImage",
+              displayer: "Background Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7a?alt=media&timestamp=1719502103059",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media"
             },
             {
               type: "string",
@@ -66,12 +73,6 @@ class Header33 extends BaseHeader {
               value: "Cloria by Wood",
             },
             {
-              type: "string",
-              key: "rotate_text",
-              displayer: "Rotate Text",
-              value: "Teknodev Composer",
-            },
-            {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
@@ -106,10 +107,16 @@ class Header33 extends BaseHeader {
           value: [
             {
               type: "image",
-              key: "image",
-              displayer: "Image",
+              key: "backgroundImage",
+              displayer: "Background Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7b?alt=media&timestamp=1719502103059",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media"
             },
             {
               type: "string",
@@ -118,12 +125,6 @@ class Header33 extends BaseHeader {
               value: "Kento - Chair",
             },
             {
-              type: "string",
-              key: "rotate_text",
-              displayer: "Rotate Text",
-              value: "Teknodev Composer",
-            },
-            {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
@@ -158,22 +159,22 @@ class Header33 extends BaseHeader {
           value: [
             {
               type: "image",
-              key: "image",
-              displayer: "Image",
+              key: "backgroundImage",
+              displayer: "Background Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7c?alt=media&timestamp=1719502103058",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media"
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
               value: "Wooden Floor Lamp",
-            },
-            {
-              type: "string",
-              key: "rotate_text",
-              displayer: "Rotate Text",
-              value: "Teknodev Composer",
             },
             {
               type: "array",
@@ -211,52 +212,7 @@ class Header33 extends BaseHeader {
   }
 
   getName(): string {
-    return "Header-33";
-  }
-
-  calculateManipulations(rotateText: string) {
-    let parentCircleToInnerCircleScaleRatio = 2.72;
-    let circleRadius = 52;
-    let circleContainerW =
-      Math.round(2 * circleRadius * Math.cos(45)) *
-      parentCircleToInnerCircleScaleRatio;
-    const circleContainerMaxW = 300;
-    let circlePerimeter = 2 * 3.14 * circleRadius;
-    let circleScale = parseFloat((circleContainerW / 300).toFixed(2));
-
-    const textLength = rotateText.length;
-    let fontSize = 40;
-
-    let letterSpacing = parseFloat(
-      (circlePerimeter / (textLength * circleScale * fontSize)).toFixed(2),
-    );
-
-    if (letterSpacing < 1) {
-      letterSpacing = 0;
-      fontSize = parseFloat(
-        (circlePerimeter / ((textLength - 1) * circleScale)).toFixed(2),
-      );
-      if (fontSize <= 24) {
-        circleRadius = textLength * 2.2;
-        circlePerimeter = 2 * 3.14 * circleRadius;
-        circleContainerW = Math.min(
-          circleContainerMaxW,
-          Math.round(2 * circleRadius * Math.cos(45)) *
-          parentCircleToInnerCircleScaleRatio,
-        );
-        circleScale = parseFloat((circleContainerW / 300).toFixed(2));
-        fontSize = parseFloat(
-          (circlePerimeter / ((textLength - 1) * circleScale)).toFixed(2),
-        );
-      }
-    }
-
-    return {
-      fontSize: fontSize,
-      letterSpacing: letterSpacing,
-      width: circleContainerW,
-      scale: parseFloat((circleContainerW / 300).toFixed(2)),
-    };
+    return "Header 33";
   }
 
   render() {
@@ -271,7 +227,6 @@ class Header33 extends BaseHeader {
       slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("activeSlide", next);
-        console.log(this.getComponentState("activeSlide"));
       },
     };
 
@@ -294,11 +249,10 @@ class Header33 extends BaseHeader {
               >
                 {slides.map((item: Slide, index: number) => {
                   const buttons = item.buttons;
-                  const rotateText = this.castToString(item.rotate_text);
                   const titleExist = this.castToString(item.title);
-                  const styleManipulations =
-                    this.calculateManipulations(rotateText);
+                  const render = buttons?.length > 0 || titleExist || item.image;
 
+                  if (!render) return null;
                   return (
                     <div
                       className={`${this.decorateCSS(
@@ -308,11 +262,11 @@ class Header33 extends BaseHeader {
                       )}`}
                       key={index}
                     >
-                      {item.image && (
+                      {item.backgroundImage && (
                         <img
-                          src={item.image}
+                          src={item.backgroundImage}
                           alt={this.castToString(item.title)}
-                          className={this.decorateCSS("image")}
+                          className={this.decorateCSS("background-image")}
                         />
                       )}
                       <div className={this.decorateCSS("carousel-content-div")}>
@@ -326,6 +280,13 @@ class Header33 extends BaseHeader {
                             }
                           `}
                         >
+                          {item.image && (
+                            <div
+                              className={this.decorateCSS("circle")}
+                            >
+                              <img src={item.image} className={this.decorateCSS("circle-image")} alt="circular" />
+                            </div>
+                          )}
                           {titleExist && (
                             <h1
                               className={this.getComponentState(
@@ -335,60 +296,27 @@ class Header33 extends BaseHeader {
                               {item.title}
                             </h1>
                           )}
-
                           {buttons?.length > 0 && (
                             <div className={this.decorateCSS("buttons-div")}>
-                              {buttons.map((item: Button, index: number) => (
-                                <ComposerLink
-                                  key={index}
-                                  path={item.button_link}
-                                >
-                                  <button
-                                    className={this.decorateCSS("button")}
+                              {buttons.map((item: Button, index: number) => {
+                                if (!this.castToString(item.button_text)) return null;
+                                return (
+                                  <ComposerLink
+                                    key={index}
+                                    path={item.button_link}
                                   >
-                                    {item.button_text}
-                                  </button>
-                                </ComposerLink>
-                              ))}
+                                    <button
+                                      className={this.decorateCSS("button")}
+                                    >
+                                      {item.button_text}
+                                    </button>
+                                  </ComposerLink>
+                                );
+                              })}
                             </div>
                           )}
                         </div>
                       </div>
-                      {rotateText && (
-                        <svg
-                          className={this.decorateCSS("circle")}
-                          style={{
-                            width: styleManipulations.width + "px",
-                            height: styleManipulations.width + "px",
-                          }}
-                        >
-                          <defs>
-                            <path
-                              id="circlePath"
-                              d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0"
-                            />
-                          </defs>
-                          <circle cx="150" cy="150" r="75" fill="none" />
-                          <g
-                            style={{
-                              transform: `scale(${styleManipulations.scale})`,
-                            }}
-                          >
-                            <use xlinkHref="#circlePath" fill="none" />
-                            <text fill="#000">
-                              <textPath
-                                xlinkHref="#circlePath"
-                                style={{
-                                  fontSize: `${styleManipulations.fontSize}px`,
-                                  letterSpacing: `${styleManipulations.letterSpacing}px`,
-                                }}
-                              >
-                                {rotateText}
-                              </textPath>
-                            </text>
-                          </g>
-                        </svg>
-                      )}
                     </div>
                   );
                 })}

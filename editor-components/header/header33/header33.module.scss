@@ -2,10 +2,10 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  background-color: var(--composer-html-background);
 
   .max-content {
     position: relative;
-    // max-width: var(--composer-content-width);
     margin: 0 auto;
     width: 100%;
     height: 100%;
@@ -23,8 +23,9 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto;
+      padding: 0 50px;
 
-      img {
+      .background-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -50,9 +51,9 @@
           display: flex;
           flex-direction: column;
           text-align: left;
-          color: black;
-          margin-bottom: -70px;
-          gap: 10px;
+          color: var(--composer-font-color-primary);
+          // margin-bottom: -70px;
+          gap: 20px;
           transform: translateX(-100px);
           opacity: 0;
           transition: 1500ms;
@@ -63,8 +64,7 @@
           }
 
           h1 {
-            // TODO: swap with classname later
-            color: black;
+            color: var(--composer-font-color-primary);
             font-size: 70px;
             line-height: 75px;
             font-weight: bold;
@@ -95,10 +95,10 @@
               font-size: 20px;
               font-weight: bold;
               border: none;
-              color: black;
+              color: var(--composer-font-color-primary);
               background-color: transparent;
               background: transparent;
-              border-bottom: 2px solid black;
+              border-bottom: 2px solid var(--composer-font-color-primary);
               padding-bottom: 5px;
               cursor: pointer;
               transition: transform 0.4s ease;
@@ -117,15 +117,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     animation: rotate 5s linear infinite;
     transform-origin: center;
-    top: 50px;
-    left: 50px;
-    z-index: 10;
+    width: 100px;
+    height: 100px;
 
-    text {
-      font-size: 18px;
+    .circle-image {
+      width: 100%;
+      height: 100%;
     }
   }
 
@@ -145,12 +144,6 @@
           justify-content: center;
         }
       }
-    }
-
-    .circle {
-      left: 50%;
-      transform: translateX(-50%);
-      animation: rotateSecondary 5s linear infinite;
     }
   }
 }
@@ -183,10 +176,6 @@
       }
     }
   }
-
-  .circle text {
-    font-size: 18px !important;
-  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -206,14 +195,11 @@
       }
     }
   }
-
-  .circle text {
-    font-size: 14px !important;
-  }
 }
 
 .arrows {
   display: block;
+  color: var(--composer-font-color-primary);
 }
 
 .arrow-next,
@@ -227,12 +213,14 @@
   border-radius: 100%;
 }
 
+$arrow-offset: 1.4rem;
+
 .arrow-next {
-  right: 1rem;
+  right: $arrow-offset;
 }
 
 .arrow-prev {
-  left: 1rem;
+  left: $arrow-offset;
 }
 
 @keyframes rotate {
@@ -242,49 +230,5 @@
 
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes rotateSecondary {
-  from {
-    transform: translateX(-50%) rotate(0deg);
-  }
-
-  to {
-    transform: translateX(-50%) rotate(360deg);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
   }
 }
