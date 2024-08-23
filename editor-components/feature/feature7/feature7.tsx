@@ -163,8 +163,8 @@ class Feature7 extends BaseFeature {
       hasTitle ||
       hasMainTitle ||
       hasdescription ||
-      hasLinks || hasFeatures;
-    console.log("hasTextContent: ", hasTextContent);
+      hasLinks ||
+      hasFeatures;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -178,7 +178,7 @@ class Feature7 extends BaseFeature {
             </div>
           )}
           {hasTextContent.length > 0 && (
-            <div className={this.decorateCSS("textContainer")}>
+            <div className={`${this.decorateCSS("textContainer")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}>
               {hasTitle && (
                 <h2 className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
@@ -194,7 +194,7 @@ class Feature7 extends BaseFeature {
                   {this.getPropValue("description")}
                 </p>
               )}
-              {hasFeatures && (
+              {hasFeatures.length > 0 && (
                 <ul className={this.decorateCSS("featuresList")}>
                   {this.castToObject<Feature[]>("features").map(
                     (feature: Feature, index: number) => (
@@ -218,7 +218,7 @@ class Feature7 extends BaseFeature {
                 </ul>
               )}
 
-              {hasLinks && (
+              {hasLinks.length > 0 && (
                 <ul className={this.decorateCSS("linkList")}>
                   {this.castToObject<Link[]>("links").map(
                     (link: Link, index: number) => (
@@ -226,9 +226,9 @@ class Feature7 extends BaseFeature {
                         <li key={index} className={this.decorateCSS("link")}>
                           {link.linkText && (
                             <ComposerLink path={link.url}>
-                                <span className={this.decorateCSS("linkText")}>
-                                  {link.linkText}
-                                </span>
+                              <span className={this.decorateCSS("linkText")}>
+                                {link.linkText}
+                              </span>
                             </ComposerLink>
                           )}
                           {link.iconLink && (
