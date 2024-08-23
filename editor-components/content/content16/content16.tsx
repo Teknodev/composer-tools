@@ -45,7 +45,7 @@ class Content16 extends BaseContent {
           type: "page",
           key: "textUrl",
           displayer: "URL",
-          value: "https://www.youtube.com/"
+          value: ""
         },
         {
           type: "string",
@@ -241,6 +241,12 @@ class Content16 extends BaseContent {
     });
     this.addProp({
       type: "icon",
+      key: "right-arrow",
+      displayer: "Right Text Arrow",
+      value: "PiArrowUpRightBold",
+    });
+    this.addProp({
+      type: "icon",
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
       value: "FaArrowLeft",
@@ -334,6 +340,7 @@ class Content16 extends BaseContent {
     const sliderRef = this.getComponentState("slider-ref");
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
+    const rightTextArrow: string = this.getPropValue("right-arrow");
 
     const faintLine = this.getPropValue("faintLine");
     const disableAnimation = this.getPropValue("disableAnimation");
@@ -345,13 +352,14 @@ class Content16 extends BaseContent {
         <div className={this.decorateCSS("right-link")}>
           <ComposerLink path={textUrl}>
             <div className={this.decorateCSS("inner-right-link")}>
-              <div className={this.decorateCSS("inner-div")}>
+              <div className={this.decorateCSS(disableAnimation ? "no-animation-inner-div" : "inner-div")}>
                 {text}
               </div>
 
-              <ComposerIcon name="PiArrowUpRightBold"
+
+              <ComposerIcon name={rightTextArrow}
                 propsIcon={{
-                  className: this.decorateCSS("icon"),
+                  className: disableAnimation ? this.decorateCSS("no-animation-ico") : this.decorateCSS("icon"),
                 }}
               ></ComposerIcon>
             </div>
