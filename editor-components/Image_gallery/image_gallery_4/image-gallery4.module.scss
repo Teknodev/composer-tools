@@ -109,27 +109,31 @@
   .fullscreen-container {
     width: 100%;
     height: 100%;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .focused-image {
+    .focused-image-container {
+      position: relative;
       width: 50%;
       height: 50%;
-      object-fit: cover;
+
+      .focused-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
     .close-button {
       position: absolute;
-      top: 0;
-      right: 0;
+      bottom: 100%;
+      left: 100%;
       background-color: transparent;
       border: none;
       color: white;
       font-weight: bold;
       font-size: 3em;
-      padding: 0.5em;
       cursor: pointer;
     }
   }
@@ -150,11 +154,12 @@
 
 @media only screen and (max-width: 1000px) {
   .fullscreen-container {
-    .focused-image {
+    .focused-image-container {
       width: 90% !important;
       height: 60% !important;
     }
   }
+
   .gallery-container,
   .gallery-wrapper,
   .max-content {
@@ -192,7 +197,7 @@
     }
   }
 
-  .focused-image {
+  .focused-image-container {
     width: 100%;
   }
 }

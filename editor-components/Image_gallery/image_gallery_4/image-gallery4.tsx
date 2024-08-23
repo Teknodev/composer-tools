@@ -5,7 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type NavItem = {
   title: JSX.Element;
-  hasSubnav: string;
+  hasSubnav: boolean;
   subnavItems: SubnavItem[];
   images: Image[];
 };
@@ -40,13 +40,10 @@ class ImageGallery4 extends BaseImageGallery {
               value: "Meat",
             },
             {
-              type: "select",
+              type: "boolean",
               key: "hasSubnav",
               displayer: "Show Sub Navs?",
-              value: "No",
-              additionalParams: {
-                selectItems: ["Yes", "No"],
-              },
+              value: true,
             },
             {
               type: "array",
@@ -234,13 +231,10 @@ class ImageGallery4 extends BaseImageGallery {
               value: "Seafood",
             },
             {
-              type: "select",
+              type: "boolean",
               key: "hasSubnav",
               displayer: "Show Sub Navs?",
-              value: "Yes",
-              additionalParams: {
-                selectItems: ["Yes", "No"],
-              },
+              value: true,
             },
             {
               type: "array",
@@ -387,7 +381,7 @@ class ImageGallery4 extends BaseImageGallery {
     });
 
     this.setComponentState("activeNav", 0);
-    this.setComponentState("activeSubnav", 0);
+    this.setComponentState("activeSubnav", null);
     this.setComponentState("focusedImage", 0);
     this.setComponentState("isFocused", false);
   }
@@ -398,7 +392,7 @@ class ImageGallery4 extends BaseImageGallery {
 
   switchNav(index: number) {
     this.setComponentState("activeNav", index);
-    this.setComponentState("activeSubnav", 0);
+    this.setComponentState("activeSubnav", null);
   }
 
   switchSubnav(index: number) {
@@ -416,7 +410,33 @@ class ImageGallery4 extends BaseImageGallery {
   }
 
   makeArrayPure(arr: any[]): Image[] {
+    if (!arr?.length) return [];
+
     return arr.filter((el) => el !== undefined);
+  }
+
+  getImages(): Image[] {
+    const activeNav: number = this.getComponentState("activeNav");
+    const activeSubnav: number = this.getComponentState("activeSubnav");
+
+    const navItems = this.castToObject<NavItem[]>("navItems");
+
+    if (!navItems || !navItems[activeNav]) return [];
+
+    let result: any[] = [];
+
+    result = navItems[activeNav]?.images;
+
+    if (typeof activeSubnav === "number") {
+      result = navItems[activeNav]?.subnavItems[activeSubnav]?.images;
+      return this.makeArrayPure(result);
+    }
+
+    navItems[activeNav].subnavItems.forEach((item) => {
+      result = result.concat(item.images);
+    });
+
+    return this.makeArrayPure(result);
   }
 
   render() {
@@ -428,18 +448,9 @@ class ImageGallery4 extends BaseImageGallery {
     const navItems = this.castToObject<NavItem[]>("navItems");
     const subnavItems = navItems[activeNav]?.subnavItems;
 
-    const mainNavGalleryItems = navItems[activeNav]?.images;
+    const showActiveNavSubnavs = navItems[activeNav]?.hasSubnav;
 
-    const doesActiveNavHasSubnav = navItems[activeNav]?.hasSubnav === "Yes";
-
-    // if main-nav has subnav then show subnav's images too, otherwise do not show.
-    const combinedImages = doesActiveNavHasSubnav
-      ? mainNavGalleryItems.concat(
-          navItems[activeNav]?.subnavItems[activeSubnav]?.images,
-        )
-      : mainNavGalleryItems;
-
-    const galleryItems = this.makeArrayPure(combinedImages);
+    const galleryItems = this.getImages();
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -475,7 +486,7 @@ class ImageGallery4 extends BaseImageGallery {
                     })}
                   </ul>
                 )}
-                {doesActiveNavHasSubnav && subnavItems?.length > 0 && (
+                {showActiveNavSubnavs && subnavItems?.length > 0 && (
                   <ul
                     className={`${this.decorateCSS("subnav-list")} ${this.decorateCSS("hide-scrollbar")}`}
                   >
@@ -518,11 +529,11 @@ class ImageGallery4 extends BaseImageGallery {
                     <div
                       key={index}
                       className={this.decorateCSS("gallery-item")}
+                      onClick={() => {
+                        this.focusImage(index);
+                      }}
                     >
                       <img
-                        onClick={() => {
-                          this.focusImage(index);
-                        }}
                         src={item.image}
                         alt="gallery item"
                       />
@@ -544,26 +555,28 @@ class ImageGallery4 extends BaseImageGallery {
               }}
             >
               <div className={this.decorateCSS("fullscreen-container")}>
-                {this.getPropValue("close-icon") && (
-                  <button
-                    onClick={() => {
-                      this.closeFocus();
-                    }}
-                    className={this.decorateCSS("close-button")}
-                  >
-                    <ComposerIcon
-                      propsIcon={{ className: this.decorateCSS("Icon") }}
-                      name={this.getPropValue("close-icon")}
-                    />
-                  </button>
-                )}
-                <img
-                  className={this.decorateCSS("focused-image")}
-                  src={
-                    galleryItems[this.getComponentState("focusedImage")].image
-                  }
-                  alt="gallery item"
-                />
+                <div className={this.decorateCSS("focused-image-container")}>
+                  <img
+                    className={this.decorateCSS("focused-image")}
+                    src={
+                      galleryItems[this.getComponentState("focusedImage")].image
+                    }
+                    alt="gallery item"
+                  />
+                  {this.getPropValue("close-icon") && (
+                    <button
+                      onClick={() => {
+                        this.closeFocus();
+                      }}
+                      className={this.decorateCSS("close-button")}
+                    >
+                      <ComposerIcon
+                        propsIcon={{ className: this.decorateCSS("Icon") }}
+                        name={this.getPropValue("close-icon")}
+                      />
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           )}
