@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import styles from "./feature13.module.scss";
+import { boolean } from "yup";
 
 type Tab = {
   title: JSX.Element;
@@ -28,6 +29,12 @@ class Feature13 extends BaseFeature {
       displayer: "Title",
       value: '"Discover Our Story"',
     });
+    this.addProp({
+      type: "boolean",
+      key: "divider",
+      displayer: "is Divider Active?",
+      value: true,
+    })
     this.addProp({
       type: "string",
       key: "description",
@@ -248,7 +255,6 @@ class Feature13 extends BaseFeature {
       ],
     });
 
-    // this should be infinite, so there is no clear function.
     let x = setInterval(() => {
       this.sliderNext();
     }, 3000);
@@ -326,8 +332,8 @@ class Feature13 extends BaseFeature {
 
     const sliderImages = this.castToObject<SliderImage[]>("slider-images");
     const titleExist = this.getPropValue("title", { as_string: true });
+    const dividerExist = this.getPropValue("divider");
     const descExist = this.getPropValue("description", { as_string: true });
-
     const tabList = this.castToObject<Tab[]>("tab-items");
     const progressList = this.castToObject<Progress[]>("progresses");
 
@@ -341,6 +347,10 @@ class Feature13 extends BaseFeature {
                   {this.getPropValue("title")}
                 </h1>
               )}
+              {dividerExist &&
+                <hr
+                  className={this.decorateCSS("divider")}
+                />}
               {descExist && (
                 <p className={this.decorateCSS("comp-header-description")}>
                   {this.getPropValue("description")}
