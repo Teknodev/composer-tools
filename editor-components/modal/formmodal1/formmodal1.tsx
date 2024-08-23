@@ -43,104 +43,75 @@ class FormModal1 extends BaseModal {
       key: "inputItems",
       displayer: "Input Items",
       value: [
+
         {
           type: "object",
-          key: "inputItem",
-          displayer: "Input Item",
+          key: "input",
+          displayer: "Input",
           value: [
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "placeholder",
+              displayer: "Placeholder",
               value: "Name",
             },
             {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Text",
+              additionalParams: {
+                selectItems: ["Text", "E-mail", "Number"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "countrySelection",
+              displayer: "Country Selection",
+              value: false,
+            },
+            {
               type: "array",
-              key: "inputs",
-              displayer: "Inputs",
+              key: "countryOptions",
+              displayer: "Country Options",
               value: [
                 {
                   type: "object",
-                  key: "input",
-                  displayer: "Input",
+                  key: "countryOption",
+                  displayer: "Country Option",
                   value: [
+
+                    {
+                      type: "string",
+                      key: "label",
+                      displayer: "Country Label",
+                      value: "US",
+                    },
                     {
                       type: "string",
                       key: "placeholder",
                       displayer: "Placeholder",
-                      value: "Name",
+                      value: "+1(555) 000-0000",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "countryOption",
+                  displayer: "Country Option",
+                  value: [
+
+                    {
+                      type: "string",
+                      key: "label",
+                      displayer: "Country Label",
+                      value: "TR",
                     },
                     {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number"],
-                      },
-                    },
-                    {
-                      type: "boolean",
-                      key: "countrySelection",
-                      displayer: "Country Selection",
-                      value: false,
-                    },
-                    {
-                      type: "array",
-                      key: "countryOptions",
-                      displayer: "Country Options",
-                      value: [
-                        {
-                          type: "object",
-                          key: "countryOption",
-                          displayer: "Country Option",
-                          value: [
-                            {
-                              type: "string",
-                              key: "value",
-                              displayer: "Country Code",
-                              value: "us",
-                            },
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Country Label",
-                              value: "US",
-                            },
-                            {
-                              type: "string",
-                              key: "placeholder",
-                              displayer: "Placeholder",
-                              value: "+1(555) 000-0000",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "countryOption",
-                          displayer: "Country Option",
-                          value: [
-                            {
-                              type: "string",
-                              key: "value",
-                              displayer: "Country Code",
-                              value: "tr",
-                            },
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Country Label",
-                              value: "TR",
-                            },
-                            {
-                              type: "string",
-                              key: "placeholder",
-                              displayer: "Placeholder",
-                              value: "+90(555) 000-0000",
-                            },
-                          ],
-                        },
-                      ],
+                      type: "string",
+                      key: "placeholder",
+                      displayer: "Placeholder",
+                      value: "+90(555) 000-0000",
                     },
                   ],
                 },
@@ -149,103 +120,74 @@ class FormModal1 extends BaseModal {
           ],
         },
         {
+
           type: "object",
-          key: "inputItem",
-          displayer: "Input Item",
+          key: "input",
+          displayer: "Input",
           value: [
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "placeholder",
+              displayer: "Placeholder",
               value: "Job Title",
             },
             {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Text",
+              additionalParams: {
+                selectItems: ["Text", "E-mail", "Number"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "countrySelection",
+              displayer: "Country Selection",
+              value: false,
+            },
+            {
               type: "array",
-              key: "inputs",
-              displayer: "Inputs",
+              key: "countryOptions",
+              displayer: "Country Options",
               value: [
                 {
                   type: "object",
-                  key: "input",
-                  displayer: "Input",
+                  key: "countryOption",
+                  displayer: "Country Option",
                   value: [
+
+                    {
+                      type: "string",
+                      key: "label",
+                      displayer: "Country Label",
+                      value: "US",
+                    },
                     {
                       type: "string",
                       key: "placeholder",
                       displayer: "Placeholder",
-                      value: "Job Title",
+                      value: "+1(555) 000-0000",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "countryOption",
+                  displayer: "Country Option",
+                  value: [
+
+                    {
+                      type: "string",
+                      key: "label",
+                      displayer: "Country Label",
+                      value: "TR",
                     },
                     {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number"],
-                      },
-                    },
-                    {
-                      type: "boolean",
-                      key: "countrySelection",
-                      displayer: "Country Selection",
-                      value: false,
-                    },
-                    {
-                      type: "array",
-                      key: "countryOptions",
-                      displayer: "Country Options",
-                      value: [
-                        {
-                          type: "object",
-                          key: "countryOption",
-                          displayer: "Country Option",
-                          value: [
-                            {
-                              type: "string",
-                              key: "value",
-                              displayer: "Country Code",
-                              value: "us",
-                            },
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Country Label",
-                              value: "US",
-                            },
-                            {
-                              type: "string",
-                              key: "placeholder",
-                              displayer: "Placeholder",
-                              value: "+1(555) 000-0000",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "countryOption",
-                          displayer: "Country Option",
-                          value: [
-                            {
-                              type: "string",
-                              key: "value",
-                              displayer: "Country Code",
-                              value: "tr",
-                            },
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Country Label",
-                              value: "TR",
-                            },
-                            {
-                              type: "string",
-                              key: "placeholder",
-                              displayer: "Placeholder",
-                              value: "+90(555) 000-0000",
-                            },
-                          ],
-                        },
-                      ],
+                      type: "string",
+                      key: "placeholder",
+                      displayer: "Placeholder",
+                      value: "+90(555) 000-0000",
                     },
                   ],
                 },
@@ -255,102 +197,71 @@ class FormModal1 extends BaseModal {
         },
         {
           type: "object",
-          key: "inputItem",
-          displayer: "Input Item",
+          key: "input",
+          displayer: "Input",
           value: [
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Email",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Work email",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "E-mail",
+              additionalParams: {
+                selectItems: ["Text", "E-mail", "Number"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "countrySelection",
+              displayer: "Country Selection",
+              value: false,
             },
             {
               type: "array",
-              key: "inputs",
-              displayer: "Inputs",
+              key: "countryOptions",
+              displayer: "Country Options",
               value: [
                 {
                   type: "object",
-                  key: "input",
-                  displayer: "Input",
+                  key: "countryOption",
+                  displayer: "Country Option",
                   value: [
+
+                    {
+                      type: "string",
+                      key: "label",
+                      displayer: "Country Label",
+                      value: "US",
+                    },
                     {
                       type: "string",
                       key: "placeholder",
                       displayer: "Placeholder",
-                      value: "Work email",
+                      value: "+1(555) 000-0000",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "countryOption",
+                  displayer: "Country Option",
+                  value: [
+                    {
+                      type: "string",
+                      key: "label",
+                      displayer: "Country Label",
+                      value: "TR",
                     },
                     {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "E-mail",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number"],
-                      },
-                    },
-                    {
-                      type: "boolean",
-                      key: "countrySelection",
-                      displayer: "Country Selection",
-                      value: false,
-                    },
-                    {
-                      type: "array",
-                      key: "countryOptions",
-                      displayer: "Country Options",
-                      value: [
-                        {
-                          type: "object",
-                          key: "countryOption",
-                          displayer: "Country Option",
-                          value: [
-                            {
-                              type: "string",
-                              key: "value",
-                              displayer: "Country Code",
-                              value: "us",
-                            },
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Country Label",
-                              value: "US",
-                            },
-                            {
-                              type: "string",
-                              key: "placeholder",
-                              displayer: "Placeholder",
-                              value: "+1(555) 000-0000",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "countryOption",
-                          displayer: "Country Option",
-                          value: [
-                            {
-                              type: "string",
-                              key: "value",
-                              displayer: "Country Code",
-                              value: "tr",
-                            },
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Country Label",
-                              value: "TR",
-                            },
-                            {
-                              type: "string",
-                              key: "placeholder",
-                              displayer: "Placeholder",
-                              value: "+90(555) 000-0000",
-                            },
-                          ],
-                        },
-                      ],
+                      type: "string",
+                      key: "placeholder",
+                      displayer: "Placeholder",
+                      value: "+90(555) 000-0000",
                     },
                   ],
                 },
@@ -360,101 +271,71 @@ class FormModal1 extends BaseModal {
         },
         {
           type: "object",
-          key: "inputItem",
-          displayer: "Input Item",
+          key: "input",
+          displayer: "Input",
           value: [
             {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Phone Number",
-            },
-            {
               type: "array",
-              key: "inputs",
-              displayer: "Inputs",
+              key: "countryOptions",
+              displayer: "Country Options",
               value: [
                 {
                   type: "object",
-                  key: "input",
-                  displayer: "Input",
+                  key: "countryOption",
+                  displayer: "Country Option",
                   value: [
+
                     {
-                      type: "array",
-                      key: "countryOptions",
-                      displayer: "Country Options",
-                      value: [
-                        {
-                          type: "object",
-                          key: "countryOption",
-                          displayer: "Country Option",
-                          value: [
-                            {
-                              type: "string",
-                              key: "value",
-                              displayer: "Country Code",
-                              value: "us",
-                            },
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Country Label",
-                              value: "US",
-                            },
-                            {
-                              type: "string",
-                              key: "placeholder",
-                              displayer: "Placeholder",
-                              value: "+1(555) 000-0000",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "countryOption",
-                          displayer: "Country Option",
-                          value: [
-                            {
-                              type: "string",
-                              key: "value",
-                              displayer: "Country Code",
-                              value: "tr",
-                            },
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Country Label",
-                              value: "TR",
-                            },
-                            {
-                              type: "string",
-                              key: "placeholder",
-                              displayer: "Placeholder",
-                              value: "+90(555) 000-0000",
-                            },
-                          ],
-                        },
-                      ],
+                      type: "string",
+                      key: "label",
+                      displayer: "Country Label",
+                      value: "US",
                     },
                     {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Number",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number"],
-                      },
+                      type: "string",
+                      key: "placeholder",
+                      displayer: "Placeholder",
+                      value: "+1(555) 000-0000",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "countryOption",
+                  displayer: "Country Option",
+                  value: [
+
+                    {
+                      type: "string",
+                      key: "label",
+                      displayer: "Country Label",
+                      value: "TR",
                     },
                     {
-                      type: "boolean",
-                      key: "countrySelection",
-                      displayer: "Country Selection",
-                      value: false,
-                    }
+                      type: "string",
+                      key: "placeholder",
+                      displayer: "Placeholder",
+                      value: "+90(555) 000-0000",
+                    },
                   ],
                 },
               ],
             },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Number",
+              additionalParams: {
+                selectItems: ["Text", "E-mail", "Number"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "countrySelection",
+              displayer: "Country Selection",
+              value: false,
+            }
           ],
         },
       ],
@@ -473,7 +354,6 @@ class FormModal1 extends BaseModal {
       value: "IoCloseSharp",
     });
 
-    this.setComponentState("selected_country", this.getPropValue("inputItems")[0]);
   }
 
   getName(): string {
@@ -488,6 +368,7 @@ class FormModal1 extends BaseModal {
     const imageVal = this.getPropValue("image");
     const buttonVal = this.getPropValue("buttonText", { as_string: true });
     const hasRightPageProps = header || context || inputItems.length > 0 || buttonVal;
+
 
     function getInputType(type: string): string {
       switch (type) {
@@ -504,60 +385,41 @@ class FormModal1 extends BaseModal {
       }
     }
 
-    function getInputName(
-      indexOfLabel: number,
-      inputLabel: string,
-      indexOfInput: number
-    ): string {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
-      return toObjectKey(name);
-    }
-
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
-      return str;
-    }
 
     function getInitialValue() {
       let value: any = {};
-      inputItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem
-          .getPropValue("inputs")
-          ?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
-            const key = getInputName(
-              indexOfItem,
-              inputItem.getPropValue("label"),
-              indexOfInput
-            );
-            value[key] = "";
-          });
-      });
+      inputItems.map((_: any, indexOfItem: number) => value["input_" + indexOfItem] = "");
       return value;
     }
 
     function handleInputChange(
       e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
       handleChange: any,
-      setFieldValue: any,
-      inputObj: any
     ) {
-      const selectedCountryCode = (e.target as HTMLSelectElement).value;
-      let placeholder = "";
-
-      const countryOption = inputObj.getPropValue("countryOptions")?.find((option: any) => {
-        const countryCode = option.value.find((item: any) => item.key === "value").value;
-        return countryCode === selectedCountryCode;
-      });
-
-      if (countryOption) {
-        placeholder = countryOption.value.find((item: any) => item.key === "placeholder").value;
-      }
-
       handleChange(e);
     }
+
+    const getSelectedItemPlaceholder = (input: any, indexOfInput: number): string => {
+      const selectOptions = input.getPropValue("countryOptions");
+      const stateKey = "input_placeholder_" + indexOfInput;
+      const selectedItemPlaceholder = this.getComponentState(stateKey);
+
+      if (!selectedItemPlaceholder) {
+        const placeholder = selectOptions[0]?.getPropValue("placeholder", { as_string: true }) || "";
+        this.setComponentState(stateKey, placeholder);
+      };
+
+      return selectedItemPlaceholder;
+    }
+
+    const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, index: number) => {
+      const selectOptions = inputItems[index].getPropValue("countryOptions");
+      const selectedOption = selectOptions.find((option: any) => option.getPropValue("label", { as_string: true }) == event.target.value);
+      const stateKey = "input_placeholder_" + index;
+      const placeholder = selectedOption.getPropValue("placeholder", { as_string: true }) || "";
+      this.setComponentState(stateKey, placeholder);
+    }
+
 
     return (
 
@@ -599,61 +461,58 @@ class FormModal1 extends BaseModal {
                         resetForm();
                       }}
                     >
-                      {({ handleChange, values, setFieldValue }) => (
+                      {({ handleChange, values }) => (
                         <Form className={this.decorateCSS("form")}>
-                          {this.castToObject<InputItems[]>("inputItems").map((inputItem: InputItems, inputItemIndex: number) =>
-                            inputItem.inputs.map((inputObj: any, inputIndex: number) => (
-                              inputObj.getPropValue("countryOptions") && inputObj.getPropValue("countryOptions").length > 0 &&
-                                inputObj.getPropValue("countrySelection") == true ? (
-                                <div className={this.decorateCSS("phone-input-container")} key={`${inputItemIndex}-${inputIndex}`}>
-                                  <select
-                                    className={this.decorateCSS("country-dropdown")}
-                                    onChange={(e) =>
-                                      handleInputChange(e, handleChange, setFieldValue, inputObj)
-                                    }
-                                  >
+                          {this.castToObject<InputItems[]>("inputItems").map((inputItem: any, inputItemIndex: number) =>
+                            inputItem.getPropValue("countryOptions") && inputItem.getPropValue("countryOptions").length > 0 &&
+                              inputItem.getPropValue("countrySelection") == true ? (
+                              <div className={this.decorateCSS("phone-input-container")} key={`${inputItemIndex}-${inputItemIndex}`}>
+                                <select
+                                  className={this.decorateCSS("country-dropdown")}
+                                  onChange={(e) =>
+                                    handleSelectChange(e, inputItemIndex)
+                                  }
+                                >
 
-                                    {inputObj.getPropValue("countryOptions").map(
-                                      (option: any, idx: number) => {
-                                        const value = option.value.find((item: any) => item.key === "value").value;
-                                        const label = option.value.find((item: any) => item.key === "label").value;
-                                        return (
-                                          <option key={idx} value={value}>
-                                            {label}
-                                          </option>
-                                        );
-                                      }
-                                    )}
-                                  </select>
-
-                                  <input
-                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                    type={getInputType(inputObj.type)}
-                                    onChange={(e) =>
-                                      handleInputChange(e, handleChange, setFieldValue, inputObj)
+                                  {inputItem.getPropValue("countryOptions").map(
+                                    (option: any, idx: number) => {
+                                      const label = option.getPropValue("label", { as_string: true });
+                                      return (
+                                        <option key={idx} value={label}>
+                                          {label}
+                                        </option>
+                                      );
                                     }
-                                    value={values[getInputName(inputItemIndex, inputItem.label, inputIndex)]}
-                                    name={getInputName(inputItemIndex, inputItem.label, inputIndex)}
-                                    className={this.decorateCSS("form-input")}
+                                  )}
+                                </select>
 
-                                  />
-                                </div>
-                              ) : (
-                                <div className={this.decorateCSS("input-box")} key={`${inputItemIndex}-${inputIndex}`}>
-                                  <input
-                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                    type={getInputType(inputObj.type)}
-                                    onChange={(e) =>
-                                      handleInputChange(e, handleChange, setFieldValue, inputObj)
-                                    }
-                                    value={values[getInputName(inputItemIndex, inputItem.label, inputIndex)]}
-                                    name={getInputName(inputItemIndex, inputItem.label, inputIndex)}
-                                    className={this.decorateCSS("form-input")}
-                                  />
-                                </div>
-                              )
-                            ))
-                          )}
+                                <input
+                                  placeholder={getSelectedItemPlaceholder(inputItem, inputItemIndex)}
+                                  type={getInputType(inputItem.type)}
+                                  onChange={(e) =>
+                                    handleInputChange(e, handleChange)
+                                  }
+                                  value={values["input_" + inputItemIndex]}
+                                  name={"input_" + inputItemIndex}
+                                  className={this.decorateCSS("form-input")}
+                                />
+                              </div>
+                            ) : (
+                              <div className={this.decorateCSS("input-box")} key={`${inputItemIndex}-${inputItemIndex}`}>
+                                <input
+                                  placeholder={inputItem.getPropValue("placeholder", { as_string: true })}
+                                  type={getInputType(inputItem.type)}
+                                  onChange={(e) =>
+                                    handleInputChange(e, handleChange)
+                                  }
+                                  value={values["input_" + inputItemIndex]}
+                                  name={"input_" + inputItemIndex}
+                                  className={this.decorateCSS("form-input")}
+                                />
+                              </div>
+                            )
+                          )
+                          }
                           {buttonVal && (
                             <button className={this.decorateCSS("form-button")} type="submit">
                               {buttonVal}
