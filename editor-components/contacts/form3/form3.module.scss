@@ -1,7 +1,7 @@
 .container{
     background-color: var(--composer-html-background);
     width: 100%;
-    padding: 60px;
+    padding: 20px 50px;
  .max-content{
     margin: auto;
     max-width: var(--composer-content-width);
@@ -17,7 +17,6 @@
       align-items: center;
       gap: 0px;
       .topSubtitle{
-        position: absolute;
         top: -30px;
         color: var(--composer-font-color-primary);
         font-size: 2rem;
