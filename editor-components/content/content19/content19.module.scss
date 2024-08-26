@@ -48,7 +48,7 @@
         .title-text {
           margin: 0 0 20px;
           color: var(--composer-font-color-primary);
-          font-size: clamp(24px, 5vw, 36px);
+          font-size: 3rem;
           font-weight: 600;
           line-height: 1.2;
           text-transform: capitalize;
@@ -73,7 +73,7 @@
           .description {
             width: 100%;
             margin-left: 20px;
-            font-size: clamp(16px, 3vw, 24px);
+            font-size: 2rem;
             font-weight: 300;
             line-height: 1.5;
             color: var(--composer-font-color-primary);
