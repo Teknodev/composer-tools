@@ -10,7 +10,11 @@ type Card = {
   icon: string;
   description: JSX.Element;
   image: string;
-  buttonText: JSX.Element;
+  buttons: Button[];
+};
+
+type Button = {
+  text: JSX.Element;
   link: string;
 };
 
@@ -22,7 +26,7 @@ class Feature4 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 3,
-      max: 4,
+      max: 3,
     });
     this.addProp({
       type: "image",
@@ -30,6 +34,12 @@ class Feature4 extends BaseFeature {
       displayer: "backgroundImage",
       value:
         "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/clear-02-1.jpg",
+    });
+    this.addProp({
+      type: "image",
+      key: "imageOverlay",
+      displayer: "image Overlay",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -99,16 +109,33 @@ class Feature4 extends BaseFeature {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a7acba6bbe002b63bb00?alt=media",
             },
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "More Info",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
+              type: "array",
+              additionalParams: {
+                maxElementCount: 2,
+              },
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "buttonItem",
+                  displayer: "Button Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Button Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -150,16 +177,33 @@ class Feature4 extends BaseFeature {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a820ba6bbe002b63bb80?alt=media",
             },
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "More Info",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
+              type: "array",
+              key: "buttons",
+              additionalParams: {
+                maxElementCount: 2,
+              },
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "buttonItem",
+                  displayer: "Button Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Button Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -201,16 +245,33 @@ class Feature4 extends BaseFeature {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a84aba6bbe002b63bb93?alt=media",
             },
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "More Info",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
+              type: "array",
+              key: "buttons",
+              additionalParams: {
+                maxElementCount: 2,
+              },
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "buttonItem",
+                  displayer: "Button Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Button Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -252,16 +313,33 @@ class Feature4 extends BaseFeature {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a86aba6bbe002b63bbb3?alt=media",
             },
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "More Info",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
+              type: "array",
+              key: "buttons",
+              additionalParams: {
+                maxElementCount: 2,
+              },
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "buttonItem",
+                  displayer: "Button Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Button Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -303,16 +381,33 @@ class Feature4 extends BaseFeature {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a887ba6bbe002b63bbcc?alt=media",
             },
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "More Info",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
+              type: "array",
+              key: "buttons",
+              additionalParams: {
+                maxElementCount: 2,
+              },
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "buttonItem",
+                  displayer: "Button Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Button Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Button Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -327,18 +422,21 @@ class Feature4 extends BaseFeature {
   render() {
     const featuredSubtitle = this.getPropValue("subtitle", { as_string: true });
     const featuredTitle = this.getPropValue("title", { as_string: true });
-    const featuredLink = this.getPropValue("link");
     const cards = this.castToObject<Card[]>("cards");
     const backgroundImage = this.getPropValue("backgroundImage");
+    const imageOverlay = this.getPropValue("imageOverlay");
+    const itemCount = this.getPropValue("itemCount");
+
+    console.log("cards:", cards);
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(featuredSubtitle || featuredTitle || featuredLink) && (
+            {(featuredSubtitle || featuredTitle) && (
               <div
                 className={this.decorateCSS("featured-card")}
-                style={{ width: "30%" }}
+                style={{ width: `${90 / itemCount}%` }}
               >
                 <div
                   style={{
@@ -349,13 +447,30 @@ class Feature4 extends BaseFeature {
                   }}
                   className={this.decorateCSS("container")}
                 ></div>
+                {imageOverlay && (
+                  <div
+                    className={this.decorateCSS("overlay")}
+                    style={{
+                      backgroundImage: `url(${imageOverlay})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      opacity: 0.5,
+                      zIndex: 1,
+                    }}
+                  ></div>
+                )}
 
                 <div className={this.decorateCSS("backgroundImage")}></div>
 
                 <div
                   className={this.decorateCSS("card-item-count")}
                   style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
+                    width: `${90 / itemCount}%`,
                   }}
                 ></div>
                 {featuredSubtitle && (
@@ -387,7 +502,9 @@ class Feature4 extends BaseFeature {
                 <div
                   key={index}
                   className={this.decorateCSS("card-item-count")}
-                  style={{ width: "30%" }}
+                  style={{
+                    width: `${90 / itemCount}%`,
+                  }}
                 >
                   <div className={this.decorateCSS("vertical")}>
                     <div className={this.decorateCSS("vertical-content")}>
@@ -423,12 +540,22 @@ class Feature4 extends BaseFeature {
                           {card.description}
                         </p>
                       )}
-                      <span className={this.decorateCSS("overlay-link")}>
-                        <ComposerLink
-                          children={card.buttonText}
-                          path={card.link}
-                        />
-                      </span>
+
+                      {card.buttons.length > 0 &&
+                        card.buttons.map(
+                          (item: Button, idx: number) =>
+                            this.castToString(item.text) && (
+                              <span
+                                className={this.decorateCSS("overlay-link")}
+                                key={idx}
+                              >
+                                <ComposerLink
+                                  children={item.text}
+                                  path={item.link}
+                                />
+                              </span>
+                            )
+                        )}
                     </div>
                   </div>
                 </div>

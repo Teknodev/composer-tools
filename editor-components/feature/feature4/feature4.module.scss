@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 30px 0;
   background-color: var(--composer-html-background);
   display: flex;
 
@@ -57,8 +57,8 @@
 
       .card-item-count {
         position: relative;
-        width: 30%;
         overflow: hidden;
+
       }
 
       /* overlay start */
