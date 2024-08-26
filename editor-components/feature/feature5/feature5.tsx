@@ -49,7 +49,7 @@ class Feature5 extends BaseFeature {
         {
           type: "object",
           key: "first_item",
-          displayer: "Description and Link",
+          displayer: "Description and Link 1",
           value: [
             {
               type: "string",
@@ -74,7 +74,7 @@ class Feature5 extends BaseFeature {
         {
           type: "object",
           key: "second_item",
-          displayer: "Description and Link",
+          displayer: "Description and Link 2",
           value: [
             {
               type: "string",
@@ -263,21 +263,21 @@ class Feature5 extends BaseFeature {
     const isRow2Visible =
       isFirstColumnVisible || isSecondColumnVisible || isThirdColumnVisible;
 
-      const subtitle1= this.castToString(row3.image_and_subtitle_1.sub_title)
-      const imageOrSubtitleExist1 = (row3.image_and_subtitle_1.image || subtitle1);
-  
-      const subtitle2= this.castToString(row3.image_and_subtitle_2.sub_title)
-      const imageOrSubtitleExist2 = (row3.image_and_subtitle_2.image || subtitle2);
-  
-      const subtitle3= this.castToString(row3.image_and_subtitle_3.sub_title)
-      const imageOrSubtitleExist3 = (row3.image_and_subtitle_3.image || subtitle3);
+    const subtitle1 = this.castToString(row3.image_and_subtitle_1.sub_title)
+    const imageOrSubtitleExist1 = (row3.image_and_subtitle_1.image || subtitle1);
+
+    const subtitle2 = this.castToString(row3.image_and_subtitle_2.sub_title)
+    const imageOrSubtitleExist2 = (row3.image_and_subtitle_2.image || subtitle2);
+
+    const subtitle3 = this.castToString(row3.image_and_subtitle_3.sub_title)
+    const imageOrSubtitleExist3 = (row3.image_and_subtitle_3.image || subtitle3);
 
     const isRow3Visible =
       row3.image_and_subtitle_1.image ||
       row3.image_and_subtitle_2.image ||
-      row3.image_and_subtitle_3.image || 
+      row3.image_and_subtitle_3.image ||
       subtitle1 ||
-      subtitle2 || 
+      subtitle2 ||
       subtitle3;
     const isFirstImageExist = row3.image_and_subtitle_1.image
     const isSecondImageExist = row3.image_and_subtitle_2.image
@@ -326,18 +326,22 @@ class Feature5 extends BaseFeature {
                     this.decorateCSS("row2-items-less")
                     }`}
                 >
-                  {this.castToString(row2.first_item.description) && (
-                    <span className={this.decorateCSS("description")}>
-                      {row2.first_item.description}
-                    </span>
-                  )}
-                  {this.castToString(row2.first_item.button_text) && (
-                    <span className={this.decorateCSS("button-text")}>
-                      <ComposerLink path={row2.first_item.link}>
-                        {this.castToString(row2.first_item.button_text)}
-                      </ComposerLink>
-                    </span>
-                  )}
+                  {(this.castToString(row2.first_item.description) ||
+                    this.castToString(row2.first_item.button_text)) &&
+                    <div className={this.decorateCSS("first-items-wrapper")}>
+                      {this.castToString(row2.first_item.description) && (
+                        <span className={this.decorateCSS("description")}>
+                          {row2.first_item.description}
+                        </span>
+                      )}
+                      {this.castToString(row2.first_item.button_text) && (
+                        <span className={this.decorateCSS("button-text")}>
+                          <ComposerLink path={row2.first_item.link}>
+                            {this.castToString(row2.first_item.button_text)}
+                          </ComposerLink>
+                        </span>
+                      )}
+                    </div>}
                 </div>
               )}
               {isSecondColumnVisible && (
@@ -377,8 +381,13 @@ class Feature5 extends BaseFeature {
             </div>
           )}
           {isRow3Visible && (
-            <div className={this.decorateCSS("row3")}
+            <div className={`${this.decorateCSS("row3")} ${(
+              !row3.image_and_subtitle_1.image &&
+              !row3.image_and_subtitle_2.image &&
+              !row3.image_and_subtitle_3.image) ?
+              this.decorateCSS("row3-no-image") : ""}`}
             >
+
 
               {(imageOrSubtitleExist1) && (
                 <ComposerLink
