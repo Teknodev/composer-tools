@@ -18,6 +18,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 40px;
     
     .inner-div{
       position: relative;
@@ -83,8 +84,8 @@
   padding-left: 30px;
   position: relative;
   margin-bottom: 20px;
-  overflow: hidden;
-  white-space: nowrap;
+  width: 100%;
+  word-break: break-all;
 }
 .slider-button-left,
 .slider-button-right {
@@ -92,7 +93,6 @@
   background-color: transparent;
   color: var(--composer-font-color-primary);
   width: 50px; 
-  height: 50px; 
   transition: 400ms;
   cursor: pointer;
   position: absolute; 
@@ -102,16 +102,16 @@
 }
 
 .slider-button-left {
-  top: 30%;
-  height: 50%;
+  height: 227px;
   position: absolute;
+  margin-top: 25px;
   left: 0;
 }
 
 .slider-button-right {
-  top: 30%;
-  height: 50%;
+  height: 227px;
   position: absolute;
+  margin-top: 25px;
   right: 0;
 }
 
@@ -345,6 +345,16 @@
   .wrapper {
     padding: 0;
   }
+  .slider-button-left {
+    height: 150px;
+    position: absolute;
+    margin-top: 8px;
+  }
+  .slider-button-right {
+    height: 150px;
+    position: absolute;
+    margin-top: 8px;
+  }
 
   .img-div img {
     height: 150px;
@@ -373,7 +383,7 @@
     margin-top: 30px;
   }
   .right-link{
-    font-size: 1rem;;
+    font-size: 1rem;
   }
   .icon{
     size:10px;
@@ -412,6 +422,19 @@
   .slider-parent {
     width: 100%; 
   }
+  .slider-button-left {
+    height: 180px;
+    position: absolute;
+    margin: 10px 0px;
+    padding-top: 0px;
+  }
+  .slider-button-right {
+    height: 180px;
+    position: absolute;
+    margin: 10px 0px;
+    padding-top: 0px;
+  }
+
 
   .carousel {
     width: 100%; 
@@ -448,6 +471,9 @@
     white-space: normal;
     word-wrap: break-word;
     overflow: hidden;
+  }
+  .custom-dots{
+    padding-bottom: 15px;
   }
 }
 

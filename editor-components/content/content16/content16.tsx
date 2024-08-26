@@ -58,6 +58,12 @@ class Content16 extends BaseContent {
       ]
     });
     this.addProp({
+      type: "icon",
+      key: "right-arrow",
+      displayer: "Right Text Arrow",
+      value: "PiArrowUpRightBold",
+    });
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -241,12 +247,6 @@ class Content16 extends BaseContent {
     });
     this.addProp({
       type: "icon",
-      key: "right-arrow",
-      displayer: "Right Text Arrow",
-      value: "PiArrowUpRightBold",
-    });
-    this.addProp({
-      type: "icon",
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
       value: "FaArrowLeft",
@@ -296,7 +296,7 @@ class Content16 extends BaseContent {
       dots: false,
       infinite: true,
       speed: 725,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 3,
       slidesToScroll: 1,
