@@ -80,7 +80,9 @@
       padding-left: 0;
       margin: 0;
       margin-top: 20px;
-
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       .link {
         display: flex;
         justify-content: start;
@@ -202,7 +204,7 @@
   }
 
   .textContainer {
-    padding: 0px 0px 0px 20px;
+    padding: 0px 20px 0px 20px;
 
     .title {
       font-size: 1.5rem !important;

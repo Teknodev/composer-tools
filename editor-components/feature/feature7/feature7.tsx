@@ -3,7 +3,6 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature7.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { boolean } from "yup";
 
 type Feature = {
   title: string;
