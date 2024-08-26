@@ -44,20 +44,20 @@
 .comp-header {
   margin-bottom: 2em;
   color: var(--composer-font-color-primary);
-  
+
 
   .comp-header-title {
     padding: 0;
     margin: 0;
     padding-bottom: 20px;
     font-size: 7em;
-      }
+  }
 
-  .divider{
+  .divider {
     width: 100%;
     height: 1px;
     background: rgba((var(--composer-font-color-primary-rgb)), 0.1);
-    
+
   }
 
   .comp-header-description {
@@ -168,6 +168,20 @@
   .comp-wrapper {
     flex-direction: column;
     gap: 50px !important;
+
+    .comp-body-wrapper {
+      .tabs {
+        display: flex;
+
+        .tabs-list {
+          list-style-type: none;
+          display: flex;
+          justify-content: start;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+      }
+    }
   }
 
   .comp-header-title {
@@ -187,11 +201,16 @@
 
 @media only screen and (max-width: 468px) {
 
+  .comp-wrapper {
+    flex-direction: column;
+    gap: 50px !important;
+  }
+
   .comp-header-title {
     font-size: 2em !important;
   }
 
-  .comp-header-description{
+  .comp-header-description {
     font-size: 1.5em !important;
   }
 }
