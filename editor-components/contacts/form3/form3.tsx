@@ -552,8 +552,6 @@ class Form3Page extends BaseContacts {
           return "text"
       }
     }
-    let index = 0;
-    let index2 = 0;
     function getInputValue(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
 
       const name = toObjectKey(`${indexOfLabel} ${indexOfInput}`);
@@ -706,10 +704,8 @@ class Form3Page extends BaseContacts {
                       initialValues={getInitialValue()}
                       validationSchema={getSchema()}
                       onSubmit={(data, { resetForm }) => {
-                        console.log("DATA: ", data)
                         const formData = getFormData(data)
-                        console.log("fromdata", formData)
-                        // this.insertForm("Contact Us", formData);
+                        this.insertForm("Contact Us", formData);
                         resetForm();
                       }}
                     >
