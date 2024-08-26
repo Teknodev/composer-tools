@@ -11,14 +11,14 @@ class Content10 extends BaseContent {
       type: "string",
       displayer: "Video",
       key: "video",
-      value: "https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188"
     });
 
     this.addProp({
       type: "image",
       displayer: "Cover image of video",
       key: "cover_image",
-      value: "https://images.pexels.com/photos/4448847/pexels-photo-4448847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9b7bd2970002c6286c7?alt=media&timestamp=1719561551671"
     });
 
     this.addProp({

@@ -33,7 +33,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://rukminim1.flixcart.com/image/612/612/xif0q/shoe/g/c/o/9-rockey-9-magnolia-white-original-imaggutpbvcczyhf.jpeg?q=70",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd30096?alt=media&timestamp=1719584962573",
             },
             {
               type: "string",
@@ -71,7 +71,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://media.kasperskydaily.com/wp-content/uploads/sites/91/2020/07/29175415/black-hat-2020-preview-featured.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd30099?alt=media&timestamp=1719584962573",
             },
             {
               type: "string",
@@ -109,7 +109,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://www.coats.com/-/media/Coats/End-Use/Apparel/Denim-jeans/Apparel---Denim-Leatherwear-Jeans.jpg?rev=-1&width=600&height=460&op=crop",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd30098?alt=media&timestamp=1719584962573",
             },
             {
               type: "string",
@@ -147,7 +147,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2Ff8%2F4e%2Ff84e2723ed2403d919da56c3b122cc5912775f7e.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd3009b?alt=media&timestamp=1719584962573",
             },
             {
               type: "string",
@@ -185,7 +185,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://m.media-amazon.com/images/I/A13usaonutL._AC_CLa%7C2140%2C2000%7C71hEk2CbglL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_UY1000_.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd30097?alt=media&timestamp=1719584962573",
             },
             {
               type: "string",
@@ -223,7 +223,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://cdna.artstation.com/p/marketplace/presentation_assets/000/453/366/large/file.jpg?1595068728",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd3009a?alt=media&timestamp=1719584962573",
             },
             {
               type: "string",

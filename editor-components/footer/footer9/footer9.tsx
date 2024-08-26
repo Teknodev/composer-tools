@@ -25,7 +25,7 @@ class Footer9Page extends BaseFooter {
       key: "background-img",
       displayer: "Background Image",
       value:
-        "https://static.tildacdn.com/tild3562-3363-4766-a530-646430633066/photo1461773518188b3e86f98242f.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ab05bd2970002c6274d2?alt=media&timestamp=1719483639151",
     });
     this.addProp({
         type: "string",

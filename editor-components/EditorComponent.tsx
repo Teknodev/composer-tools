@@ -53,7 +53,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[] };
+  additionalParams?: { selectItems?: string[], maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
@@ -126,9 +126,9 @@ export abstract class Component
     )[0] || this.getProp(propName));
   
     const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
-
+    
     return isStringMustBeElement
-      ? this.getPropValueAsElement(prop)
+      ? this.getPropValueAsElement(prop, properties)
       : prop?.value;
   }
 
@@ -298,19 +298,35 @@ export abstract class Component
           }
         });
       } else {
+        const value = this.getPropValue(clonedPropValue.key, { parent_object: object.value });
         clonedPropValue = {
-          key: clonedPropValue.key, value: this.getPropValue(clonedPropValue.key, {
-            parent_object: object.value
-          })
+          key: clonedPropValue.key, value
         };
       }
       return clonedPropValue;
     });
 
-    if(object.type == "object"){
+    if (object.type == "object") {
+      const isObjectContainsAnotherObject = object.value.some((val: TypeUsableComponentProps) => val.type == "object")
+
       let tmpCasted = [...casted];
       casted = {};
-      tmpCasted.forEach((manipulatedValue) => casted[manipulatedValue.key] = manipulatedValue.value);
+
+      tmpCasted.forEach((manipulatedValue) => {
+        const initialProp = manipulatedValue;
+        let value: any = {};
+
+
+        if (initialProp.type == "object" && isObjectContainsAnotherObject) {
+          initialProp.value.forEach((propVal: any) => {
+            value[propVal.key] = initialProp[propVal.key]
+          })
+        } else {
+          value = manipulatedValue.value;
+        }
+
+        casted[manipulatedValue.key] = value;
+      });
     }
 
     return casted;
@@ -365,6 +381,18 @@ export abstract class BaseDownload extends Component {
 
 export abstract class BaseCallToAction extends Component {
   protected category = CATEGORIES.CALLTOACTION;
+  insertForm(name: string, data: Object) {
+    const projectSettings = JSON.parse(getProjectHook().data);
+    const project = projectSettings._id;
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL
+        ? process.env.REACT_APP_API_URL
+        : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+    };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class BaseSlider extends Component {
@@ -421,6 +449,7 @@ export abstract class BaseContacts extends Component {
     return axios.request(config).then((r: any) => r.data);
   }
 }
+
 
 export abstract class BaseFeature extends Component {
   protected category = CATEGORIES.FEATURE;

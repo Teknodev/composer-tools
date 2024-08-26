@@ -272,70 +272,71 @@ class HeaderComponent20 extends BaseHeader {
   render() {
     let items: any = this.castToObject("items");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("background-image")}>
-              <img src={items[0].image} alt={items[0].title} />
-            </div>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("top")}>
-                <div className={this.decorateCSS("title")}>
-                  <h1 className={this.decorateCSS("items")}>{items[0].title}</h1>
-                </div>
-                <div className={this.decorateCSS("button-and-input")}>
-                  <input
-                    placeholder="Your email address"
-                    className={this.decorateCSS("input")}
-                    type="text"
-                  />
-                  <ComposerLink path={items[0].button[1].value}>
-                    <div className={this.decorateCSS("button")}>
-                      <button>{items[0].button[0].value}</button>
-                    </div>
-                  </ComposerLink>
-                </div>
-                <div className={this.decorateCSS("icons")}>
-                  <li>
-                    {this.castToObject<icons[]>("socialMedias").map(
-                      (icons: any, index: number) => (
-                        <ComposerLink key={index} path={icons.url}>
-                          <div className={this.decorateCSS("icon-div")}>
-                            <img
-                              src={icons.image}
-                              alt={`Small Image ${index + 1}`}
-                              key={index}
-                            />
-                          </div>
-                        </ComposerLink>
-                      )
-                    )}
-                  </li>
-                </div>
-              </div>
-              <div className={this.decorateCSS("bottom")}>
-                <li>
-                  <a href={items[1].direction1[1].value}>
-                    {items[1].direction1[0].value}
-                  </a>
-                  <a href={items[1].direction2[1].value}>
-                    {items[1].direction2[0].value}
-                  </a>
-                  <a href={items[1].direction3[1].value}>
-                    {items[1].direction3[0].value}
-                  </a>
-                  <a href={items[1].direction4[1].value}>
-                    {items[1].direction4[0].value}
-                  </a>
-                  <a href={items[1].direction5[1].value}>
-                    {items[1].direction5[0].value}
-                  </a>
-                </li>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <></>
+      // <div className={this.decorateCSS("container")}>
+      //   <div className={this.decorateCSS("max-content")}>
+      //     <div className={this.decorateCSS("wrapper")}>
+      //       <div className={this.decorateCSS("background-image")}>
+      //         <img src={items[0].image} alt={items[0].title} />
+      //       </div>
+      //       <div className={this.decorateCSS("left")}>
+      //         <div className={this.decorateCSS("top")}>
+      //           <div className={this.decorateCSS("title")}>
+      //             <h1 className={this.decorateCSS("items")}>{items[0].title}</h1>
+      //           </div>
+      //           <div className={this.decorateCSS("button-and-input")}>
+      //             <input
+      //               placeholder="Your email address"
+      //               className={this.decorateCSS("input")}
+      //               type="text"
+      //             />
+      //             <ComposerLink path={items[0].button[1].value}>
+      //               <div className={this.decorateCSS("button")}>
+      //                 <button>{items[0].button[0].value}</button>
+      //               </div>
+      //             </ComposerLink>
+      //           </div>
+      //           <div className={this.decorateCSS("icons")}>
+      //             <li>
+      //               {this.castToObject<icons[]>("socialMedias").map(
+      //                 (icons: any, index: number) => (
+      //                   <ComposerLink key={index} path={icons.url}>
+      //                     <div className={this.decorateCSS("icon-div")}>
+      //                       <img
+      //                         src={icons.image}
+      //                         alt={`Small Image ${index + 1}`}
+      //                         key={index}
+      //                       />
+      //                     </div>
+      //                   </ComposerLink>
+      //                 )
+      //               )}
+      //             </li>
+      //           </div>
+      //         </div>
+      //         <div className={this.decorateCSS("bottom")}>
+      //           <li>
+      //             <a href={items[1].direction1[1].value}>
+      //               {items[1].direction1[0].value}
+      //             </a>
+      //             <a href={items[1].direction2[1].value}>
+      //               {items[1].direction2[0].value}
+      //             </a>
+      //             <a href={items[1].direction3[1].value}>
+      //               {items[1].direction3[0].value}
+      //             </a>
+      //             <a href={items[1].direction4[1].value}>
+      //               {items[1].direction4[0].value}
+      //             </a>
+      //             <a href={items[1].direction5[1].value}>
+      //               {items[1].direction5[0].value}
+      //             </a>
+      //           </li>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
     );
   }
 }

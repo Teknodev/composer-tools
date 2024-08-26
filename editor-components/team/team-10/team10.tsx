@@ -108,7 +108,7 @@ class Team10 extends Team {
       type: "image",
       key: "background-image",
       displayer: "Background Image",
-      value: "https://necromancers.dan-fisher.dev/assets/img/page-heading-img-02.jpg"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841"
     })
 
     this.addProp({
@@ -125,7 +125,7 @@ class Team10 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://necromancers.dan-fisher.dev/assets/img/samples/staff-member-img-02.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628227?alt=media&timestamp=1719558632841",
             },
             {
               type: "string",
@@ -203,7 +203,7 @@ class Team10 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://necromancers.dan-fisher.dev/assets/img/samples/staff-member-img-02.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628227?alt=media&timestamp=1719558632841",
             },
             {
               type: "string",
@@ -281,7 +281,7 @@ class Team10 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://necromancers.dan-fisher.dev/assets/img/samples/staff-member-img-02.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628227?alt=media&timestamp=1719558632841",
             },
             {
               type: "string",
