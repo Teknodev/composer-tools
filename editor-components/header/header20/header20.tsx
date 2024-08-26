@@ -75,7 +75,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -132,7 +132,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -189,7 +189,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -246,7 +246,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -303,7 +303,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -360,7 +360,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -417,7 +417,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -474,7 +474,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -531,7 +531,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -588,7 +588,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -645,7 +645,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
             {
               type: "object",
@@ -697,7 +697,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
           ],
         },
@@ -716,7 +716,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
           ],
         },
@@ -735,7 +735,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
           ],
         },
@@ -754,7 +754,7 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
           ],
         },
@@ -773,16 +773,24 @@ class HeaderComponent20 extends BaseHeader {
               type: "page",
               key: "link",
               displayer: "Link",
-              value: "https://www.google.com.tr/",
+              value: "",
             },
           ],
         },
       ],
     });
+    this.setComponentState(
+      "prevSlide",
+      this.castToObject<[]>("items").length - 1
+    );
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active", 0);
+    this.setComponentState("activeSlideIndex", 0);
 
-    this.setComponentState("slider", 0);
-    this.setComponentState("titleSlider", 0);
-    this.setComponentState("commentSlider", 0);
+
+    // this.setComponentState("slider", 0);
+    // this.setComponentState("titleSlider", 0);
+    // this.setComponentState("commentSlider", 0);
   }
 
   handleWheel = (event: React.WheelEvent) => {
@@ -798,6 +806,8 @@ class HeaderComponent20 extends BaseHeader {
   }
 
   handleUpClick = () => {
+
+    console.log("tıklandı")
     const currentSlide = this.getComponentState("slider");
     const nextSlide = Math.max(currentSlide - 1, 0);
 
@@ -811,12 +821,14 @@ class HeaderComponent20 extends BaseHeader {
       this.commentSliderRef.current.slickGoTo(nextSlide);
     }
 
-    this.setComponentState("slider", nextSlide);
-    this.setComponentState("titleSlider", nextSlide);
-    this.setComponentState("commentSlider", nextSlide);
+    // this.setComponentState("slider", nextSlide);
+    // this.setComponentState("titleSlider", nextSlide);
+    // this.setComponentState("commentSlider", nextSlide);
   };
 
   handleDownClick = () => {
+
+    console.log("tıklandı")
     const currentSlide = this.getComponentState("slider");
     const nextSlide = Math.min(
       currentSlide + 1,
@@ -876,6 +888,8 @@ class HeaderComponent20 extends BaseHeader {
   render() {
     const currentSlide = this.getComponentState("slider");
 
+    const sliderRef = this.getComponentState("slider-ref");
+
     const settings = {
       dots: false,
       infinite: false,
@@ -884,9 +898,10 @@ class HeaderComponent20 extends BaseHeader {
       slidesToScroll: 1,
       arrows: false,
       verticalSwiping: true,
+      autoplay: true,
       beforeChange: (current: number, next: number) => {
-        this.setComponentState("titleSlider", next);
-        this.setComponentState("commentSlider", next);
+        this.setComponentState("active", next);
+        this.setComponentState("activeSlideIndex", next);
       },
     };
 
@@ -916,7 +931,7 @@ class HeaderComponent20 extends BaseHeader {
 
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel}>
-        <ComposerSlider ref={this.sliderRef} {...settings}>
+        <ComposerSlider ref={sliderRef} {...settings}>
           {slider.map((slide, index) => (
             <div
               className={this.decorateCSS("image-container")}
@@ -937,7 +952,7 @@ class HeaderComponent20 extends BaseHeader {
 
             <div className={this.decorateCSS("content-container")}>
               <div className={this.decorateCSS("title-container")}>
-                <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
+                <ComposerSlider ref={this.sliderRef}{...titleSettings}>
                   {this.getTitlesToShow(currentSlide).map((slide, index) => (
                     <div
                       key={`title-${index}`}
@@ -973,22 +988,27 @@ class HeaderComponent20 extends BaseHeader {
               <div className={this.decorateCSS("buttomRow")}>
                 <div className={this.decorateCSS("navigation")}>
                   {isUpandDownButtonVisible && (
-                    <ComposerIcon
-                      name={up_icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                        onClick: this.handleUpClick,
-                      }}
-                    />
+                    <button
+                      onClick={() => { sliderRef.current.slickPrev() }}>
+                      <ComposerIcon
+                        name={up_icon}
+                        propsIcon={{
+                          className: this.decorateCSS("icon")
+                        }}
+                      />
+
+                    </button>
                   )}
                   {isUpandDownButtonVisible && (
-                    <ComposerIcon
-                      name={down_icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                        onClick: this.handleDownClick,
-                      }}
-                    />
+                    <button
+                      onClick={() => { sliderRef.current.slickNext() }}>
+                      <ComposerIcon
+                        name={down_icon}
+                        propsIcon={{
+                          className: this.decorateCSS("icon"),
+                        }}
+                      />
+                    </button>
                   )}
                 </div>
                 <div
