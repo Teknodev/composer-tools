@@ -58,21 +58,33 @@
       .feature {
         display: flex;
         justify-content: start;
-        align-items: center;
+        align-items: start;
         margin: 10px 0;
         gap: 10px;
-
+        height: 100%;
+      
         .featureTitle {
           font-size: 2rem;
           text-align: start;
+          line-height: 1.2;
+          margin: 0;
+          padding: 0;
         }
-
-        .iconFeature {
-          flex-shrink: 0;
-          width: 20px;
-          height: 20px;
+      
+        .icon-wrapper {
+          display: flex;
+          align-items: start;
+          height: 100%;
+      
+          .iconFeature {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin-top: 0.25rem;
+          }
         }
       }
+      
     }
 
     .linkList {
@@ -83,6 +95,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+
       .link {
         display: flex;
         justify-content: start;

@@ -199,12 +199,14 @@ class Feature7 extends BaseFeature {
                     (feature: Feature, index: number) => (
                       <li key={index} className={this.decorateCSS("feature")}>
                         {feature.iconFeature && (
-                          <ComposerIcon
-                            name={feature.iconFeature}
-                            propsIcon={{
-                              className: this.decorateCSS("iconFeature"),
-                            }}
-                          />
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <ComposerIcon
+                              name={feature.iconFeature}
+                              propsIcon={{
+                                className: this.decorateCSS("iconFeature"),
+                              }}
+                            />
+                          </div>
                         )}
                         {feature.title && (
                           <span className={this.decorateCSS("featureTitle")}>
