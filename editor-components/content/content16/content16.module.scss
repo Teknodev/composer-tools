@@ -96,22 +96,19 @@
   transition: 400ms;
   cursor: pointer;
   position: absolute; 
-  top: 25%; 
-  transform: translateY(-50%); 
   z-index: 10; 
+  top:19px
 }
 
 .slider-button-left {
   height: 227px;
   position: absolute;
-  margin-top: 25px;
   left: 0;
 }
 
 .slider-button-right {
   height: 227px;
   position: absolute;
-  margin-top: 25px;
   right: 0;
 }
 
@@ -130,7 +127,23 @@
   padding: 0px 35px;
   height: 100%;
 }
+.prev-carousel{
+  width: 100%;
+  padding: 0px 0px 0px 35px;
+  height: 100%;
 
+}
+.next-carousel{
+  width: 100%;
+  padding: 0px 35px 0px 0px;
+  height: 100%;
+}
+.no-icon-carousel{
+  width: 100%;
+  padding: 0px ;
+  height: 100%;
+
+}
 .subtitle {
   text-align: left;
   color: var(--composer-font-color-primary);
@@ -181,6 +194,15 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 30px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  transition: filter 0.5s;
+}
+.notitle-content-div{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 20px 10px;
   box-sizing: border-box;
   transition: filter 0.5s;
@@ -345,17 +367,12 @@
   .wrapper {
     padding: 0;
   }
-  .slider-button-left {
+  .slider-button-left,.slider-button-right {
     height: 150px;
     position: absolute;
-    margin-top: 8px;
-  }
-  .slider-button-right {
-    height: 150px;
-    position: absolute;
-    margin-top: 8px;
-  }
+    top:20px;
 
+  }
   .img-div img {
     height: 150px;
     width: 100%; 
@@ -422,20 +439,10 @@
   .slider-parent {
     width: 100%; 
   }
-  .slider-button-left {
+  .slider-button-left, .slider-button-right {
     height: 180px;
     position: absolute;
-    margin: 10px 0px;
-    padding-top: 0px;
   }
-  .slider-button-right {
-    height: 180px;
-    position: absolute;
-    margin: 10px 0px;
-    padding-top: 0px;
-  }
-
-
   .carousel {
     width: 100%; 
     margin: 0 auto;
@@ -448,8 +455,8 @@
 
   .content-div {
     width: 100%;
-    margin: 0;
-    padding: 0 10px;
+    margin: 0px;
+    padding: 0px 10px;
   }
 
   .img-div img {
