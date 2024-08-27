@@ -2,7 +2,6 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import styles from "./feature13.module.scss";
-import { boolean } from "yup";
 
 type Tab = {
   title: JSX.Element;
@@ -12,6 +11,7 @@ type Tab = {
 type Progress = {
   title: JSX.Element;
   percentage: number;
+  utility: JSX.Element;
 };
 
 type SliderImage = {
@@ -207,6 +207,12 @@ class Feature13 extends BaseFeature {
               value: "Renovation",
             },
             {
+              type: "string",
+              key: "utility",
+              displayer: "Utility",
+              value: "75%",
+            },
+            {
               type: "number",
               key: "percentage",
               displayer: "Percentage",
@@ -224,6 +230,12 @@ class Feature13 extends BaseFeature {
               key: "title",
               displayer: "Title",
               value: "Architecture",
+            },
+            {
+              type: "string",
+              key: "utility",
+              displayer: "Utility",
+              value: "95%",
             },
             {
               type: "number",
@@ -245,6 +257,12 @@ class Feature13 extends BaseFeature {
               value: "Functional Spaces",
             },
             {
+              type: "string",
+              key: "utility",
+              displayer: "Utility",
+              value: "85%",
+            },
+            {
               type: "number",
               key: "percentage",
               displayer: "Percentage",
@@ -254,10 +272,6 @@ class Feature13 extends BaseFeature {
         },
       ],
     });
-
-    let x = setInterval(() => {
-      this.sliderNext();
-    }, 3000);
 
     this.addProp({
       type: "icon",
@@ -316,10 +330,11 @@ class Feature13 extends BaseFeature {
   };
 
   render() {
-    if (
-      JSON.stringify(this.getComponentState("slider-images-temp")) !==
-      JSON.stringify(this.castToObject<SliderImage[]>("slider-images"))
-    ) {
+    const sliderImagesChanged = JSON.stringify(this.getComponentState("slider-images-temp")) !==
+      JSON.stringify(this.castToObject<SliderImage[]>("slider-images"));
+
+
+    if (sliderImagesChanged) {
       this.setComponentState(
         "slider-images-temp",
         this.castToObject<SliderImage[]>("slider-images")
@@ -447,7 +462,8 @@ class Feature13 extends BaseFeature {
                     <footer className={this.decorateCSS("comp-progresses")}>
                       {progressList.map((item: Progress, index: number) => {
                         const titleExist = this.castToString(item.title);
-                        const percentage: number = item.percentage;
+                        const percentage: number = item.percentage
+                        const utility = item.utility;
 
                         if (titleExist)
                           return (
@@ -466,14 +482,7 @@ class Feature13 extends BaseFeature {
                                   className={this.decorateCSS(
                                     "progress-percent"
                                   )}
-                                >
-                                  {percentage >= 100
-                                    ? "100"
-                                    : !percentage || percentage == 0
-                                      ? "0"
-                                      : percentage}
-                                  %
-                                </span>)}
+                                >{utility}</span>)}
                               </div>
                               {percentage && (<div
                                 className={this.decorateCSS("progress-line")}
