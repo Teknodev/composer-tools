@@ -52,6 +52,7 @@ import SliderComponent6 from "./slider/slider6/slider6";
 import SliderComponent7 from "./slider/slider7/slider7";
 import SliderComponent8 from "./slider/slider8/slider8";
 import SliderComponent9 from "./slider/slider9/slider9";
+import SliderComponent10 from "./slider/slider10/slider10";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -206,6 +207,7 @@ import ImageGalleryCompanent1 from "./Image_gallery/image_gallery_1/image-galler
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
+import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -262,6 +264,7 @@ function Registerables(composer: ComponentsRegistery) {
     new SliderComponent7(),
     new SliderComponent8(),
     new SliderComponent9(),
+    new SliderComponent10(),
     new PricingComponent1(),
     new PricingComponent2(),
     new PricingComponent3(),
@@ -416,6 +419,7 @@ function Registerables(composer: ComponentsRegistery) {
     new TermsOfUseModal(),
     new SurveyModal(),
     new NoticeModal(),
+    new NotificationModal2(),
     new SubscriptionModal(),
     new LocationComponent1(),
   ]);
