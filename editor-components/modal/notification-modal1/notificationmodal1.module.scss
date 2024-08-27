@@ -45,12 +45,15 @@
           top:0px;
           .image {
             width: 100%;
-            height: 80px;
             z-index: 1;
             border-radius: 15px 15px 0px 0px;
             object-fit: cover;
+            position: absolute;
+            height: fit-content;
+            max-height: 100%;
+            left: 0px;
+            top:0px;
           }
-  
           .overlay {
             border-radius: 15px 15px 0px 0px;
             position: absolute;
@@ -63,59 +66,64 @@
   
           .overlay2 {
             border-radius: 15px 15px 0px 0px;
-            position: relative;
-            text-align: center;
-            left: 5;
+            position: absolute;
+            top: 0px;
             width: 100%;
-            height: 60px;
-            z-index: 2;
+            height:110%;
             background-color: rgba(var(--composer-font-color-secondary-rgb), 0.3);
-            bottom: -20px;
+            z-index: 2;
           }
           .overlay3 {
             border-radius: 15px 15px 0px 0px;
-            position: relative;
-            text-align: center;
-            left: 5;
+            position: absolute;
+            top: 0px;
             width: 100%;
-            height: 60px;
-            bottom: -20px;
+            height: fit-content;
             z-index: 2;
+            bottom: -20px;
           }
   
           .first-header {
-            position: absolute;
+            position: sticky;
             top: 50%;
             left: 50%;
             text-align: center;
             margin: auto;
-            transform: translate(-50%, -50%);
             color: var(--composer-font-color-primary);
             font-size: 1.2rem;
+            padding: 30px 20px;
             z-index: 3;
+            word-break: break-word;
           }
         }
           .first-header2 {
-            position: absolute;
+            position: sticky;
             top: 50%;
             left: 50%;
             text-align: center;
             margin: auto;
-            transform: translate(-50%, -50%);
             color: var(--composer-font-color-primary);
             font-size: 1.2rem;
+            padding: 30px 20px 0px 20px;
             z-index: 3;
+            word-break: break-word;
+            margin-bottom: -5px;
+            
           }
       }
 
 
       .second-div{
         padding: 30px 0px;
+        width: 100%;
         .second-header {
           text-align: center;
           font-size: 1.5rem;
           color: var(--composer-primary-color);
           margin-top: 10px;
+          max-width: 100%;
+          word-break: break-word;
+          padding: 0px 10px;
         }
         .notice-content {
           text-align: center;
@@ -123,9 +131,12 @@
           font-weight: bold;
           justify-content: center;
           color: var(--composer-font-color-primary);
-          margin-left: 50px;
-          margin-right: 50px;
           padding-bottom: 25px;
+          padding-right:50px;
+          padding-left: 50px;
+          max-width: 100%;
+          word-break: break-word;
+
         }
 
       }
@@ -141,7 +152,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      gap: 40px;
+      gap: 30px;
       display: flex;
       height: 100%;
 
@@ -157,9 +168,11 @@
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s;
-        height: 100%;
-        word-break: break-all;
-
+        height: auto;
+        white-space: normal; 
+        overflow-wrap: break-word; 
+        word-break: break-word; 
+        max-width: 200px; 
 
         &:hover {
           background-color: var(--composer-primary-color);

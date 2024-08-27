@@ -137,19 +137,27 @@ class NotificationModal1 extends BaseModal {
                   )}
 
                   {!backgroundImage && overlay && (
-                    <div className={this.decorateCSS("overlay2")}>
-                      <h2 className={this.decorateCSS("first-header")}>
-                        {this.getPropValue("firstTitle")}
-                      </h2>
-                    </div>
-                  )}
-
-                  {!backgroundImage && !overlay && (
-                    <div className={this.decorateCSS("overlay3")}>
+                    <div>
                       <h2 className={this.decorateCSS("first-header2")}>
                         {this.getPropValue("firstTitle")}
                       </h2>
+                      <div className={this.decorateCSS("overlay2")}>
+                      </div>
                     </div>
+
+                  )}
+
+                  {!backgroundImage && !overlay && (
+                    <div>
+                      <h2 className={this.decorateCSS("first-header2")}>
+                        {this.getPropValue("firstTitle")}
+                      </h2>
+                      <div className={this.decorateCSS("overlay3")}>
+
+                      </div>
+                    </div>
+
+
                   )}
                 </div>
               )}
