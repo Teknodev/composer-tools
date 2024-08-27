@@ -233,6 +233,9 @@ class Form3Page extends BaseContacts {
               type: "array",
               key: "inputs",
               displayer: "Inputs",
+              additionalParams: {
+                maxElementCount: 2,
+              },
               value: [
                 {
                   type: "object",
@@ -679,28 +682,29 @@ class Form3Page extends BaseContacts {
                           </div>
                         ))}
                       </div>)}
+                    {
+                      icons.length > 0 &&
+                      <div className={this.decorateCSS("socials")}>
+                        {icons.map((social: Social, index: number) => {
+
+                          if (social.icon)
+                            return (
+                              <div className={this.decorateCSS("icon-container")}>
+                                <ComposerLink key={index} path={social.url}>
+                                  <ComposerIcon
+                                    name={social.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon")
+                                    }} />
+                                </ComposerLink>
+                              </div>
+                            )
+                        })}
+                      </div>
+                    }
                   </div>
 
-                  {
-                    icons.length > 0 &&
-                    <div className={this.decorateCSS("socials")}>
-                      {icons.map((social: Social, index: number) => {
 
-                        if (social.icon)
-                          return (
-                            <div className={this.decorateCSS("icon-container")}>
-                              <ComposerLink key={index} path={social.url}>
-                                <ComposerIcon
-                                  name={social.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon")
-                                  }} />
-                              </ComposerLink>
-                            </div>
-                          )
-                      })}
-                    </div>
-                  }
                 </div>
               </div>}
             {((rightSubtitle || rightTitle) || button || inputItems).length > 0 &&
@@ -770,27 +774,30 @@ class Form3Page extends BaseContacts {
                                 </div>
 
                               )}</div>}
-                          {button.length > 0 && (
-                            button.map((buttonText: any, buttonIndex: number) => {
-                              console.log("buttontext ", buttonText.getPropValue("button_text", { as_string: true }));
-                              return (
-                                <div className={this.decorateCSS("buttonSide")}>
-                                  <button
-                                    className={this.decorateCSS("submit-button")}
-                                    type="submit"
-                                  >
-                                    {buttonText.getPropValue("button_text", { as_string: true })}
-                                  </button>
-                                </div>
-                              )
 
-                            })
-                          )
-                          }
                         </Form>
                       )}
                     </Formik>
                   </div>}
+                <div className={this.decorateCSS("form-button")}>
+                  {button.length > 0 && (
+                    button.map((buttonText: any, buttonIndex: number) => {
+                      console.log("buttontext ", buttonText.getPropValue("button_text", { as_string: true }));
+                      return (
+                        <div className={this.decorateCSS("buttonSide")}>
+                          <button
+                            className={this.decorateCSS("submit-button")}
+                            type="submit"
+                          >
+                            {buttonText.getPropValue("button_text", { as_string: true })}
+                          </button>
+                        </div>
+                      )
+
+                    })
+                  )
+                  }
+                </div>
               </div>}
           </div>
         </div>
