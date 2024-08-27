@@ -32,7 +32,7 @@ class Feature13 extends BaseFeature {
     this.addProp({
       type: "boolean",
       key: "divider",
-      displayer: "is Divider Active?",
+      displayer: "Line",
       value: true,
     })
     this.addProp({
