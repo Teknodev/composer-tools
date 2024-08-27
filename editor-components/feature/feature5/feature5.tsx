@@ -284,6 +284,9 @@ class Feature5 extends BaseFeature {
     const isThirdImageExist = row3.image_and_subtitle_3.image;
     const row3Status = (!isFirstImageExist || !isSecondImageExist || !isThirdImageExist)
 
+    const noSubtitleFirstImage = !this.castToString(row3.image_and_subtitle_1.sub_title);
+    const noSubtitleSecondImage = !this.castToString(row3.image_and_subtitle_2.sub_title);
+    const noSubtitleThirdImage = !this.castToString(row3.image_and_subtitle_3.sub_title);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -397,10 +400,12 @@ class Feature5 extends BaseFeature {
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
                     {row3.image_and_subtitle_1.image && <img
                       className={`${this.decorateCSS("image")} 
-                      ${row3Status && this.decorateCSS("row3-images-less")}
+                      ${row3Status && this.decorateCSS("row3-images-less")} 
+                      ${noSubtitleFirstImage && this.decorateCSS("row3-no-subtitle")}
                       `}
                       src={row3.image_and_subtitle_1.image}
                     />}
+
                     {this.castToString(row3.image_and_subtitle_1.sub_title) && (
                       <span className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
@@ -418,6 +423,7 @@ class Feature5 extends BaseFeature {
                     {row3.image_and_subtitle_2.image && <img
                       className={`${this.decorateCSS("image")} 
                       ${row3Status && this.decorateCSS("row3-images-less")}
+                      ${noSubtitleSecondImage && this.decorateCSS("row3-no-subtitle")}
                       `}
                       src={row3.image_and_subtitle_2.image}
                     />}
@@ -435,9 +441,11 @@ class Feature5 extends BaseFeature {
                   isFullWidth={true}
                 >
                   <div className={this.decorateCSS("image_and_subtitle_3")}>
-                    {row3.image_and_subtitle_3.image && <img
+                    {row3.image_and_subtitle_3.image && 
+                    <img
                       className={`${this.decorateCSS("image")} 
                       ${row3Status && this.decorateCSS("row3-images-less")}
+                      ${noSubtitleThirdImage && this.decorateCSS("row3-no-subtitle")}
                       `}
                       src={row3.image_and_subtitle_3.image}
                     />}
