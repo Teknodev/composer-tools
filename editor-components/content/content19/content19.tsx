@@ -137,6 +137,14 @@ class Content19 extends BaseContent {
     const authorDescription = this.getPropValue("author-description");
     const titleText = this.getPropValue("title-text");
 
+    const displayContent = (
+      this.castToString(titleText) ||
+      this.castToString(description) ||
+      this.castToString(authorDescription) ||
+      this.castToString(authorName) ||
+      this.castToObject<ButtonProps[]>("buttons").length > 0
+    );
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -145,7 +153,7 @@ class Content19 extends BaseContent {
               <div className={this.decorateCSS("video-part")}>
                 <img alt="video image" src={videoImage} className={this.decorateCSS("video-images")} />
                 <div className={this.decorateCSS("play-part")}>
-                  <span className="as-play" onClick={() => {
+                  <span className={this.decorateCSS("as-play")} onClick={() => {
                     this.setComponentState("is_video_visible", true);
                   }}>
                     {playIcon && (
@@ -162,7 +170,7 @@ class Content19 extends BaseContent {
               </div>
             )}
             {
-              (this.castToString(titleText) || this.castToString(description) || this.castToString(authorDescription) || this.castToString(authorName) || this.castToObject<ButtonProps[]>("buttons").length > 0) && (
+              displayContent && (
                 <div className={this.decorateCSS("text-side")}>
                   {this.castToString(titleText) && (
                     <p className={this.decorateCSS("title-text")}>{titleText}</p>
