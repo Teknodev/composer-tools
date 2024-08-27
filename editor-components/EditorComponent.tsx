@@ -10,6 +10,11 @@ type PreSufFix = {
   className: string;
 }
 
+type TypeLocation = {
+  lat: number;
+  lng: number;
+}
+
 type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
   as_string?: boolean;
@@ -41,7 +46,8 @@ type AvailablePropTypes =
   | { type: "video"; value: string }
   | { type: "select"; value: string }
   | { type: "color"; value: string }
-  | { type: "icon"; value: string };
+  | { type: "icon"; value: string }
+  | { type: "location"; value: TypeLocation };
 
 export type TypeReactComponent = {
   type: string;
