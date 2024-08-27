@@ -96,7 +96,7 @@ class Form3Page extends BaseContacts {
               type: "icon",
               key: "contactIcon",
               value: "FaPhoneAlt",
-              displayer: "phone Icon",
+              displayer: "phoneIcon",
             },
           ],
         },
@@ -114,7 +114,7 @@ class Form3Page extends BaseContacts {
             {
               type: "icon",
               key: "contactIcon",
-              value: "TbMailFilled",
+              value: "IoIosMail",
               displayer: "mailIcon",
             },
           ],
@@ -498,15 +498,30 @@ class Form3Page extends BaseContacts {
         }
       ]
     });
-
-
     this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "Contact Us",
-    });
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      additionalParams: {
+        maxElementCount: 2,
+      },
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "button",
+          value: [
+            {
+              type: "string",
+              key: "button_text",
+              displayer: "Button Text",
+              value: "Contact Us"
+            }
 
+          ]
+        }
+      ]
+    })
   }
 
   getName(): string {
@@ -514,10 +529,11 @@ class Form3Page extends BaseContacts {
   }
 
   render() {
-
-    const button_text = this.getPropValue("button_text", { as_string: true });
+    const button = this.getPropValue("buttons");
+    console.log("button value ", button);
 
     const topTitle = this.getPropValue("topTitle", { as_string: true });
+    console.log("topTitle ", topTitle)
     const topSubtitle = this.getPropValue("topSubtitle", { as_string: true });
     const leftTitle = this.getPropValue("leftTitle", { as_string: true });
     const leftSubtitle = this.getPropValue("leftSubtitle", { as_string: true });
@@ -529,6 +545,7 @@ class Form3Page extends BaseContacts {
     const contactIcon = this.getPropValue("contactIcon");
 
     const inputItems = this.getPropValue("input_items");
+    console.log("inputItems ", inputItems)
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -686,7 +703,7 @@ class Form3Page extends BaseContacts {
                   }
                 </div>
               </div>}
-            {((rightSubtitle || rightTitle) || button_text || inputItems).length > 0 &&
+            {((rightSubtitle || rightTitle) || button || inputItems).length > 0 &&
               <div className={this.decorateCSS("right-container")}>
                 {(rightTitle || rightSubtitle) && (
                   <div className={this.decorateCSS("title2")} >
@@ -698,7 +715,7 @@ class Form3Page extends BaseContacts {
                       <h3 className={this.decorateCSS("rightTitle")}> {this.getPropValue("no-rightTitle")} </h3>)}
                   </div>)}
 
-                {(button_text || inputItems).length > 0 &&
+                {(button || inputItems).length > 0 &&
                   <div className={this.decorateCSS("form-container")} >
                     <Formik
                       initialValues={getInitialValue()}
@@ -753,15 +770,23 @@ class Form3Page extends BaseContacts {
                                 </div>
 
                               )}</div>}
-                          {button_text && (
-                            <div className={this.decorateCSS("buttonSide")}>
-                              <button
-                                className={this.decorateCSS("submit-button")}
-                                type="submit"
-                              >
-                                {this.getPropValue("button_text")}
-                              </button>
-                            </div>)}
+                          {button.length > 0 && (
+                            button.map((buttonText: any, buttonIndex: number) => {
+                              console.log("buttontext ", buttonText.getPropValue("button_text", { as_string: true }));
+                              return (
+                                <div className={this.decorateCSS("buttonSide")}>
+                                  <button
+                                    className={this.decorateCSS("submit-button")}
+                                    type="submit"
+                                  >
+                                    {buttonText.getPropValue("button_text", { as_string: true })}
+                                  </button>
+                                </div>
+                              )
+
+                            })
+                          )
+                          }
                         </Form>
                       )}
                     </Formik>
