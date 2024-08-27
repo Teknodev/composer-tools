@@ -11,10 +11,10 @@ type PreSufFix = {
 }
 
 export type TypeLocation = {
-  position: {
+  markers: [{
     lat: number;
     lng: number;
-  };
+  }]
   zoom: number;
 }
 
