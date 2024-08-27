@@ -1,90 +1,106 @@
-import React, { useState, useCallback } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React from 'react';
+import { GoogleMap, LoadScript, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { Location } from '../../EditorComponent';
 import styles from './location1.module.scss';
-
 
 class LocationComponent1 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
-    // Bu kısımda özellik eklemeye devam edebilirsiniz.
     this.addProp({
       type: 'string',
       key: 'title',
       displayer: 'Title',
-      value: 'Logo Clouds',
+      value: 'See Our Location',
     });
-    // ...
 
-
-    // Google Haritalar için özellik ekleniyor.
     this.addProp({
-      type: 'object',
-      key: 'mapConfig',
-      displayer: 'Google Map Configuration',
-      value: [
-        {
-          key: "lat",
-          displayer: "Lat",
-          type: "number",
-          value:1
-        },
-        {
-          key: "lng",
-          displayer: "LNG",
-          type: "number",
-          value:2
-        }
-      ] ,
+      type: 'location',
+      key: 'location',
+      displayer: "Location",
+      value: {
+        markers: [
+          {
+            lat: 36.8968908,
+            lng: 30.7133233,
+          }
+        ],
+        zoom: 12
+      }
     });
   }
 
   getName(): string {
-    return 'Logo Compaa 1';
+    return 'Location 1';
   }
 
   render() {
-    const mapConfig = this.getPropValue('mapConfig');
-    // console.log(mapConfig)
+    console.log("LOCATION PROP : ", this.getPropValue('location'))
+    const { markers, zoom } = this.getPropValue('location');
 
     return (
       <div className={this.decorateCSS('container')}>
         <div className={this.decorateCSS('max-content')}>
-          <div className={this.decorateCSS('logo-comp1-page')}>
+          <div className={this.decorateCSS('wrapper')}>
             <h1 className={this.decorateCSS('title')}>{this.getPropValue('title')}</h1>
-            <section>
-              <center>
-                <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? ""}>
-                <GoogleMap
-                  mapContainerStyle={{
-                    width: "300px",
-                    height: "300px"
-                  }}
-                    center={{
-                      lat: mapConfig[0]?.value,
-                      lng: mapConfig[1]?.value
-                    }}
-                   zoom={mapConfig.zoom}
-                       >
-                      {mapConfig.center && (
-                      <Marker 
-                        position={{
-                        lat: mapConfig.center.lat,
-                        lng: mapConfig.center.lng,
-                      }}
-                      title="Logo Comp 1 Location"
-                    />
-                  )}
-                </GoogleMap>
-                </LoadScript>
-              </center>
+            <section className={this.decorateCSS("map-container")}>
+              <Map markers={markers} zoom={zoom} className={this.decorateCSS("map")} />
             </section>
           </div>
         </div>
       </div>
     );
   }
+}
+
+type MapProps = {
+  markers: { lat: number; lng: number; }[];
+  zoom: number;
+  className: string;
+};
+
+function Map({ markers, zoom, className }: MapProps) {
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+  });
+
+  if(!isLoaded) return null;
+
+  const getCenter = () => {
+    if(markers.length > 0) {
+      return {
+        lat: markers[0].lat,
+        lng: markers[0].lng
+      }
+    }
+
+    return {
+      lat: 36.8968908,
+      lng: 30.7133233,
+    }
+  }
+
+  return (
+    <GoogleMap
+      mapContainerClassName={className}
+      center={getCenter()}
+      zoom={zoom}
+      options={{
+        mapTypeControl: false,
+      }}
+    >
+      {markers.map((marker, index) => (
+        <Marker
+          key={index}
+          position={{
+            lat: marker.lat,
+            lng: marker.lng
+          }}
+          title="Location"
+        />
+      ))}
+    </GoogleMap>
+  );
 }
 
 export default LocationComponent1;
