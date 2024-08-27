@@ -544,7 +544,7 @@ class Team6 extends Team {
                     key={indexItems}
                     className={this.decorateCSS("all-card")}
                     style={{
-                      width: `calc((100% / ${this.getPropValue("itemCount")}) - 60px)`,
+                      width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`,
                     }}
                   >
                     <div className={this.decorateCSS("top")}>

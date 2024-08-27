@@ -3,9 +3,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 .container {
     display: flex;
     width: 100%;
-    padding: 20px 50px;
+    padding: 20px 50px 0px 50px;
     background-color: var(--composer-html-background);
     height: auto;
+
     .max-content {
         max-width: var(--composer-content-width);
         margin: auto;
@@ -21,8 +22,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             align-items: center;
             width: 100%;
             gap: 30px;
+
             .up-page {
-                margin-left: 90px;
+                margin-left: 20px;
+                padding-right: 20px;
                 width: 100%;
 
                 .text-group {
@@ -41,7 +44,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                         font-size: 3.6rem;
                         font-weight: 700;
                         color: var(--composer-font-color-primary);
-                        max-width: 500px;
                         margin: 0;
                     }
                 }
@@ -61,7 +63,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     height: 100%;
 
                     .top {
-                        height: 630px;
+                        height: 650px;
                         overflow: hidden;
 
                         .image-wrapper {
@@ -70,14 +72,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                             object-fit: cover;
                             position: relative;
 
-                            .image-icon{
-                              position: absolute;
-                              top: 5px;
-                              right: 5px;
-                              z-index: 1;
-                              font-size: 24px;
-                              color: var(--composer-font-color-primary);
-                              opacity: 0.6;
+                            .image-icon {
+                                position: absolute;
+                                top: 5px;
+                                right: 5px;
+                                z-index: 1;
+                                font-size: 24px;
+                                color: var(--composer-font-color-primary);
+                                opacity: 0.6;
                             }
 
                             .image {
@@ -153,7 +155,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             }
 
             h5 {
-                font-size: 2.4rem;
+                font-size: 2rem;
                 text-align: start;
                 display: flex;
             }
@@ -163,13 +165,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 border-radius: 15px;
                 width: fit-content;
                 box-shadow: 0 0 2px var(--font-color-primary);
-                font-size: 1.6rem;
+                font-size: 1.4rem;
                 color: var(--font-color-primary);
                 padding: 1px 10px;
                 opacity: 0.6;
             }
 
-            button{
+            button {
                 background-color: transparent;
                 border: none;
                 padding: 0;
@@ -182,19 +184,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     }
 }
 
-
-
-
 @media only screen and (max-width: 1024px) {
     .container {
         .up-page {
-            .text-group {
-
-                .title1,
-                .description {
-                    margin-left: 10px !important;
-                }
-            }
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .down-page {
@@ -251,15 +245,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     .container {
         padding: 20px !important;
 
+        .page {
+            gap: 10px !important;
+        }
+
         .up-page {
             .text-group {
-                .title1 {
-                    margin-left: 10px !important;
-
-                }
-
                 .description {
-                    margin-left: 10px !important;
                     font-size: 2.2rem !important;
                 }
             }
@@ -278,7 +270,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .all-card {
                 justify-content: center;
                 align-items: center;
-                height: 550px;
                 width: 100% !important;
 
                 .top {
