@@ -10,9 +10,12 @@ type PreSufFix = {
   className: string;
 }
 
-type TypeLocation = {
-  lat: number;
-  lng: number;
+export type TypeLocation = {
+  position: {
+    lat: number;
+    lng: number;
+  };
+  zoom: number;
 }
 
 type GetPropValueProperties = {
