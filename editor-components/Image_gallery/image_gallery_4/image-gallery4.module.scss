@@ -5,7 +5,7 @@
 
 .container {
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 50px;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -37,23 +37,23 @@
 
   .list-item {
     button {
-      background: transparent;
+      background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      width: 180px;;
       border: none;
       padding: 0.6em 2em;
       font-weight: bold;
-      color: #989898;
+      color: var(--composer-font-color-primary); 
       border-bottom: 2px solid transparent;
 
       &:hover {
         cursor: pointer;
-        color: black;
-        border-bottom-color: black;
+        color: var(--composer-primary-color);
+        border-bottom-color:var(--composer-primary-color);
       }
     }
-
     button.active {
-      color: black;
-      border-bottom: 2px solid black;
+      color: var(--composer-primary-color);
+      border-bottom: 2px solid var(--composer-primary-color);
     }
   }
 }
@@ -71,7 +71,6 @@
   gap: 30px;
   display: grid;
   place-items: center;
-  padding: 0 20px;
   width: 100%;
 
   .gallery-item {
@@ -123,18 +122,17 @@
         height: 100%;
         object-fit: cover;
       }
-    }
-
-    .close-button {
-      position: absolute;
-      bottom: 100%;
-      left: 100%;
-      background-color: transparent;
-      border: none;
-      color: white;
-      font-weight: bold;
-      font-size: 3em;
-      cursor: pointer;
+      .close-button {    
+        position: absolute;
+        top: 10px; 
+        right: 10px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-weight: bold;
+        font-size: 3em;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -189,7 +187,7 @@
   .subnav-list {
     width: 100%;
     gap: 5px;
-    padding: 0 2em;
+   
 
     .list-item {
       padding-left: 0.2em;
@@ -205,11 +203,15 @@
 @media only screen and (max-width: 500px) {
   .gallery-container {
     grid-template-columns: 1fr !important;
-
     .gallery-item {
       img {
         height: 100%;
       }
     }
+    
   }
+      .focused-image{
+          height: auto !important;
+          object-fit: contain !important; 
+      }
 }

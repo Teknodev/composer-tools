@@ -26,6 +26,7 @@ class ImageGallery4 extends BaseImageGallery {
     this.addProp({
       type: "array",
       key: "navItems",
+      additionalParams: { maxElementCount: 7 },
       displayer: "Nav Items",
       value: [
         {
