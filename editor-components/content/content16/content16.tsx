@@ -387,7 +387,6 @@ class Content16 extends BaseContent {
             {items.length > 0 && (
               <div className={this.decorateCSS("slider-parent")}>
                 {prevIcon && nextIcon ? (
-                  // Hem prevIcon hem de nextIcon varsa
                   <>
                     <button
                       onClick={() => {
