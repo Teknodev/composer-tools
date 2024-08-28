@@ -9,6 +9,7 @@ type Card = {
   icon: string;
   title: JSX.Element;
   description: JSX.Element;
+  num: JSX.Element;
 };
 
 type Button = {
@@ -41,6 +42,12 @@ class Feature9 extends BaseFeature {
           displayer: "Card",
           value: [
             {
+              type: "string",
+              key: "num",  
+              displayer: "Card Number",
+              value: "1"
+            },
+            {
               type: "icon",
               key: "icon",
               displayer: "Icon",
@@ -65,6 +72,12 @@ class Feature9 extends BaseFeature {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "num",  
+              displayer: "Card Number",
+              value: "2"
+            },
             {
               type: "icon",
               key: "icon",
@@ -91,6 +104,12 @@ class Feature9 extends BaseFeature {
           displayer: "Card",
           value: [
             {
+              type: "string",
+              key: "num",  
+              displayer: "Card Number",
+              value: "3"
+            },
+            {
               type: "icon",
               key: "icon",
               displayer: "Icon",
@@ -116,6 +135,12 @@ class Feature9 extends BaseFeature {
           displayer: "Card",
           value: [
             {
+              type: "string",
+              key: "num",  
+              displayer: "Card Number",
+              value: "4"
+            },
+            {
               type: "icon",
               key: "icon",
               displayer: "Icon",
@@ -140,6 +165,12 @@ class Feature9 extends BaseFeature {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "num",  
+              displayer: "Card Number",
+              value: "5"
+            },
             {
               type: "icon",
               key: "icon",
@@ -248,6 +279,8 @@ class Feature9 extends BaseFeature {
                 {cards.map((card: Card, index: number) => {
                   const titleExist = this.castToString(card.title);
                   const descExist = this.castToString(card.description);
+                  const numExist = this.castToString(card.num);
+                  
                   const render = titleExist || descExist || card.icon;
 
                   if (!render) return null;
@@ -256,12 +289,11 @@ class Feature9 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card")}
                     >
+                      {numExist && 
                       <div className={this.decorateCSS("card-number")}>
-                        {index.toString().length > 1
-                          ? index + 1
-                          : `0${index + 1}`
-                        }
+                        {card.num}
                       </div>
+                    }
                       {/* card header */}
                       {(card.icon || titleExist) &&
                         <header className={this.decorateCSS("card-header")}>
