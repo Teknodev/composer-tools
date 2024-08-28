@@ -19,7 +19,10 @@ type SliderImage = {
   imageIndex: number;
 };
 
+
 class Feature13 extends BaseFeature {
+  intervalId: any;
+  
   constructor(props?: any) {
     super(props, styles);
 
@@ -273,6 +276,10 @@ class Feature13 extends BaseFeature {
       ],
     });
 
+    this.intervalId = setInterval(() => {
+      this.sliderNext();
+    }, 3000);
+
     this.addProp({
       type: "icon",
       key: "sliderGoLeft",
@@ -298,7 +305,15 @@ class Feature13 extends BaseFeature {
     this.activeTab = tabIndex;
   }
 
+  resetSliderInterval = () => {
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(() => {
+      this.sliderNext();
+    }, 3000);
+  }
+
   sliderNext = () => {
+    this.resetSliderInterval();
     const updatedImages = this.getComponentState("slider-images").map(
       (image: SliderImage) => {
         const isLast =
@@ -315,6 +330,7 @@ class Feature13 extends BaseFeature {
   };
 
   sliderPrev = () => {
+    this.resetSliderInterval();
     const updatedImages = this.getComponentState("slider-images").map(
       (image: SliderImage) => {
         const isFirst = image.imageIndex === 0;
