@@ -1,84 +1,49 @@
-import React, { useState, useCallback } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React from 'react';
 import { Location } from '../../EditorComponent';
 import styles from './location1.module.scss';
-
+import ComposerMap from '../../../composer-base-components/map/map';
 
 class LocationComponent1 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
-    // Bu kısımda özellik eklemeye devam edebilirsiniz.
     this.addProp({
       type: 'string',
       key: 'title',
       displayer: 'Title',
-      value: 'Logo Clouds',
+      value: 'See Our Location',
     });
-    // ...
 
-
-    // Google Haritalar için özellik ekleniyor.
     this.addProp({
-      type: 'object',
-      key: 'mapConfig',
-      displayer: 'Google Map Configuration',
-      value: [
-        {
-          key: "lat",
-          displayer: "Lat",
-          type: "number",
-          value:1
-        },
-        {
-          key: "lng",
-          displayer: "LNG",
-          type: "number",
-          value:2
-        }
-      ] ,
+      type: 'location',
+      key: 'location',
+      displayer: "Location",
+      value: {
+        markers: [
+          {
+            lat: 36.8968908,
+            lng: 30.7133233,
+          }
+        ],
+        zoom: 12
+      }
     });
   }
 
   getName(): string {
-    return 'Logo Compaa 1';
+    return 'Location 1';
   }
 
   render() {
-    const mapConfig = this.getPropValue('mapConfig');
-    // console.log(mapConfig)
+    const { markers, zoom } = this.getPropValue('location');
 
     return (
       <div className={this.decorateCSS('container')}>
         <div className={this.decorateCSS('max-content')}>
-          <div className={this.decorateCSS('logo-comp1-page')}>
+          <div className={this.decorateCSS('wrapper')}>
             <h1 className={this.decorateCSS('title')}>{this.getPropValue('title')}</h1>
-            <section>
-              <center>
-                <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? ""}>
-                <GoogleMap
-                  mapContainerStyle={{
-                    width: "300px",
-                    height: "300px"
-                  }}
-                    center={{
-                      lat: mapConfig[0]?.value,
-                      lng: mapConfig[1]?.value
-                    }}
-                   zoom={mapConfig.zoom}
-                       >
-                      {mapConfig.center && (
-                      <Marker 
-                        position={{
-                        lat: mapConfig.center.lat,
-                        lng: mapConfig.center.lng,
-                      }}
-                      title="Logo Comp 1 Location"
-                    />
-                  )}
-                </GoogleMap>
-                </LoadScript>
-              </center>
+            <section className={this.decorateCSS("map-container")}>
+              <ComposerMap markers={markers} zoom={zoom} className={this.decorateCSS("map")} />
             </section>
           </div>
         </div>
