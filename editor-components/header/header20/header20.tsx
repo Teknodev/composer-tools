@@ -102,6 +102,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -158,7 +164,13 @@ class HeaderComponent20 extends BaseHeader {
                   value: "Follow Us",
                 },
               ],
-            },
+            }, {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
+
           ],
         },
         {
@@ -216,6 +228,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -273,6 +291,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -330,6 +354,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -387,6 +417,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -444,6 +480,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -501,6 +543,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -558,6 +606,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -615,6 +669,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
         {
@@ -672,6 +732,12 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: true,
+            }
           ],
         },
       ],
@@ -779,37 +845,54 @@ class HeaderComponent20 extends BaseHeader {
         },
       ],
     });
-    this.setComponentState(
-      "prevSlide",
-      this.castToObject<[]>("items").length - 1
-    );
-    this.setComponentState("slider-ref", React.createRef());
-    this.setComponentState("active", 0);
-    this.setComponentState("activeSlideIndex", 0);
 
-
-    // this.setComponentState("slider", 0);
-    // this.setComponentState("titleSlider", 0);
-    // this.setComponentState("commentSlider", 0);
+    this.setComponentState("slider", 0);
+    this.setComponentState("titleSlider", 0);
+    this.setComponentState("commentSlider", 0);
   }
+  throttle = <T extends (...args: any[]) => void>(func: T, limit: number): ((...args: Parameters<T>) => void) => {
+    let inThrottle: boolean;
+    return (...args: Parameters<T>) => {
+      if (!inThrottle) {
+        func(...args);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  };
 
-  handleWheel = (event: React.WheelEvent) => {
+
+
+  debounce = <T extends (...args: any[]) => void>(func: T, delay: number): ((...args: Parameters<T>) => void) => {
+    let timeoutId: NodeJS.Timeout;
+    return (...args: Parameters<T>) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  handleWheel = this.throttle((event: React.WheelEvent) => {
     if (event.deltaY < 0) {
+      console.log("yukarı");
       this.handleUpClick();
     } else if (event.deltaY > 0) {
+      console.log("aşağı");
       this.handleDownClick();
     }
-  };
+  }, 1200);
+
+
+
 
   getName(): string {
     return "Header-20";
   }
 
   handleUpClick = () => {
-
-    console.log("tıklandı")
+    console.log("up")
     const currentSlide = this.getComponentState("slider");
     const nextSlide = Math.max(currentSlide - 1, 0);
+    console.log("next slider", nextSlide)
 
     if (this.sliderRef.current) {
       this.sliderRef.current.slickGoTo(nextSlide);
@@ -821,14 +904,13 @@ class HeaderComponent20 extends BaseHeader {
       this.commentSliderRef.current.slickGoTo(nextSlide);
     }
 
-    // this.setComponentState("slider", nextSlide);
-    // this.setComponentState("titleSlider", nextSlide);
-    // this.setComponentState("commentSlider", nextSlide);
+    this.setComponentState("slider", nextSlide);
+    this.setComponentState("titleSlider", nextSlide);
+    this.setComponentState("commentSlider", nextSlide);
   };
 
   handleDownClick = () => {
-
-    console.log("tıklandı")
+    console.log("down")
     const currentSlide = this.getComponentState("slider");
     const nextSlide = Math.min(
       currentSlide + 1,
@@ -887,8 +969,7 @@ class HeaderComponent20 extends BaseHeader {
 
   render() {
     const currentSlide = this.getComponentState("slider");
-
-    const sliderRef = this.getComponentState("slider-ref");
+    const overlay = this.getPropValue("overlay");
 
     const settings = {
       dots: false,
@@ -898,10 +979,10 @@ class HeaderComponent20 extends BaseHeader {
       slidesToScroll: 1,
       arrows: false,
       verticalSwiping: true,
-      autoplay: true,
       beforeChange: (current: number, next: number) => {
-        this.setComponentState("active", next);
-        this.setComponentState("activeSlideIndex", next);
+        this.setComponentState("slider", next);
+        this.setComponentState("titleSlider", next);
+        this.setComponentState("commentSlider", next);
       },
     };
 
@@ -931,7 +1012,7 @@ class HeaderComponent20 extends BaseHeader {
 
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel}>
-        <ComposerSlider ref={sliderRef} {...settings}>
+        <ComposerSlider ref={this.sliderRef} {...settings} >
           {slider.map((slide, index) => (
             <div
               className={this.decorateCSS("image-container")}
@@ -944,15 +1025,19 @@ class HeaderComponent20 extends BaseHeader {
                   className={this.decorateCSS("image")}
                 />
               )}
+              {overlay && (
+                <div className={this.decorateCSS("overlay")}></div>
+              )}
             </div>
           ))}
         </ComposerSlider>
+
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("item")}>
 
             <div className={this.decorateCSS("content-container")}>
               <div className={this.decorateCSS("title-container")}>
-                <ComposerSlider ref={this.sliderRef}{...titleSettings}>
+                <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
                   {this.getTitlesToShow(currentSlide).map((slide, index) => (
                     <div
                       key={`title-${index}`}
@@ -988,27 +1073,22 @@ class HeaderComponent20 extends BaseHeader {
               <div className={this.decorateCSS("buttomRow")}>
                 <div className={this.decorateCSS("navigation")}>
                   {isUpandDownButtonVisible && (
-                    <button
-                      onClick={() => { sliderRef.current.slickPrev() }}>
-                      <ComposerIcon
-                        name={up_icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon")
-                        }}
-                      />
-
-                    </button>
+                    <ComposerIcon
+                      name={up_icon}
+                      propsIcon={{
+                        className: this.decorateCSS("icon"),
+                        onClick: this.handleUpClick,
+                      }}
+                    />
                   )}
                   {isUpandDownButtonVisible && (
-                    <button
-                      onClick={() => { sliderRef.current.slickNext() }}>
-                      <ComposerIcon
-                        name={down_icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                    </button>
+                    <ComposerIcon
+                      name={down_icon}
+                      propsIcon={{
+                        className: this.decorateCSS("icon"),
+                        onClick: this.handleDownClick,
+                      }}
+                    />
                   )}
                 </div>
                 <div
@@ -1037,6 +1117,17 @@ class HeaderComponent20 extends BaseHeader {
                           key={`social-icon-${i}`}
                           className={this.decorateCSS(`icon-${i + 1}`)}
                           href={icon.link}
+                          style={{
+                            transition: "transform 0.3s ease, color 0.3s ease",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = "scale(1.2)";
+                            e.currentTarget.style.fontWeight = "bold";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = "scale(1)";
+                            e.currentTarget.style.fontWeight = "normal";
+                          }}
                         >
                           {icon.icon_text}
                         </a>
@@ -1048,6 +1139,7 @@ class HeaderComponent20 extends BaseHeader {
             </div>
           </div>
         </div>
+
       </div>
     );
   }
