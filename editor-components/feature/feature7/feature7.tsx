@@ -153,17 +153,17 @@ class Feature7 extends BaseFeature {
   }
 
   render() {
-    const hasTitle = this.castToString(this.getPropValue("title"));
-    const hasMainTitle = this.castToString(this.getPropValue("mainTitle"));
-    const hasdescription = this.castToString(this.getPropValue("description"));
-    const hasFeatures = this.getPropValue("features");
-    const hasLinks = this.getPropValue("links");
+    const title = this.castToString(this.getPropValue("title"));
+    const mainTitle = this.castToString(this.getPropValue("mainTitle"));
+    const description = this.castToString(this.getPropValue("description"));
+    const features = this.getPropValue("features");
+    const links = this.getPropValue("links");
     const hasTextContent =
-      hasTitle ||
-      hasMainTitle ||
-      hasdescription ||
-      hasLinks ||
-      hasFeatures;
+      title ||
+      mainTitle ||
+      description ||
+      links ||
+      features;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -178,22 +178,22 @@ class Feature7 extends BaseFeature {
           )}
           {hasTextContent.length > 0 && (
             <div className={`${this.decorateCSS("textContainer")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}>
-              {hasTitle && (
+              {title && (
                 <h2 className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </h2>
               )}
-              {hasMainTitle && (
+              {mainTitle && (
                 <h1 className={this.decorateCSS("mainTitle")}>
                   {this.getPropValue("mainTitle")}
                 </h1>
               )}
-              {hasdescription && (
+              {description && (
                 <p className={this.decorateCSS("description")}>
                   {this.getPropValue("description")}
                 </p>
               )}
-              {hasFeatures.length > 0 && (
+              {features.length > 0 && (
                 <ul className={this.decorateCSS("featuresList")}>
                   {this.castToObject<Feature[]>("features").map(
                     (feature: Feature, index: number) => (
@@ -219,7 +219,7 @@ class Feature7 extends BaseFeature {
                 </ul>
               )}
 
-              {hasLinks.length > 0 && (
+              {links.length > 0 && (
                 <ul className={this.decorateCSS("linkList")}>
                   {this.castToObject<Link[]>("links").map(
                     (link: Link, index: number) => (
