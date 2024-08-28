@@ -341,7 +341,7 @@
 }
 @media only screen and (max-width: 1280px) {
   .container {
-    padding: 20px;
+    padding: 20px 30px;
   }
 
   .max-content {
@@ -396,8 +396,7 @@
 
 @media only screen and (max-width: 600px) {
   .container {
-    padding: 0;
-    margin-top: 30px;
+    padding: 20px 30px;
   }
   .right-link{
     font-size: 1rem;
