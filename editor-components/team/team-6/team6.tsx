@@ -40,7 +40,18 @@ class Team6 extends Team {
       displayer: "Description",
       value: "Building the future together.",
     });
-
+    this.addProp({
+      type: "icon",
+      key: "openingIcon",
+      displayer: "Opening Icon",
+      value: "IoAddCircleOutline"
+    });
+    this.addProp({
+      type: "icon",
+      key: "closingIcon",
+      displayer: "Closing Icon",
+      value: "IoRemoveCircleOutline"
+    });
     this.addProp({
       type: "array",
       key: "items",
@@ -556,9 +567,9 @@ class Team6 extends Team {
                         >
                           {card.features.length > 0 && (this.getComponentState("activeIndex") === indexItems
                             ?
-                            (<ComposerIcon name={"IoRemoveCircleOutline"} propsIcon={{ className: this.decorateCSS("image-icon") }} />)
+                            (<ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />)
                             :
-                            (<ComposerIcon name={"IoAddCircleOutline"} propsIcon={{ className: this.decorateCSS("image-icon") }} />))
+                            (<ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />))
                           }
                           {card.image && (
                             <img
