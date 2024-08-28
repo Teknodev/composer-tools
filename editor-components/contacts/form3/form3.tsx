@@ -665,23 +665,26 @@ class Form3Page extends BaseContacts {
                   />)}
                 <div className={this.decorateCSS("left")}>
                   <div className={this.decorateCSS("textSide")}>
-                    {(leftTitle || leftSubtitle) && (
-                      <div className={this.decorateCSS("title1")}>
-                        {leftTitle && (
-                          <h3 className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </h3>)}
-                        {leftSubtitle && (
-                          <h1 className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")}  </h1>)}
-                      </div>)}
-                    {(contactInfo || contactIcon) && (
-                      <div className={this.decorateCSS("contacts")}>
-                        {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
-                          <div className={this.decorateCSS("contact")}>
-                            <ComposerIcon name={contact.contactIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                            {(this.castToString(contact.contactName)) && (
-                              <div className={this.decorateCSS("contactName")}> {contact.contactName} </div>)}
-                          </div>
-                        ))}
-                      </div>)}
+                    <div className={this.decorateCSS("left-top")}>
+                      {(leftTitle || leftSubtitle) && (
+                        <div className={this.decorateCSS("title1")}>
+                          {leftTitle && (
+                            <h3 className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </h3>)}
+                          {leftSubtitle && (
+                            <h1 className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")}  </h1>)}
+                        </div>)}
+                      {(contactInfo || contactIcon) && (
+                        <div className={this.decorateCSS("contacts")}>
+                          {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
+                            <div className={this.decorateCSS("contact")}>
+                              <ComposerIcon name={contact.contactIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                              {(this.castToString(contact.contactName)) && (
+                                <div className={this.decorateCSS("contactName")}> {contact.contactName} </div>)}
+                            </div>
+                          ))}
+                        </div>)}
+
+                    </div>
                     {
                       icons.length > 0 &&
                       <div className={this.decorateCSS("socials")}>
