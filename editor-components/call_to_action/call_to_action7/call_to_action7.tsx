@@ -80,7 +80,9 @@ class CallToAction7Page extends BaseCallToAction {
     const noRightsideItems = !arrayItem.length && !input && !(this.castToString(title));
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")}
+      ${!image && this.decorateCSS("no-transparent-bg")}
+      `}>
         <div className={this.decorateCSS("max-content")}>
           {isCallToActionExist && (
             <section className={`${this.decorateCSS("call-to-action7-container")} ${disableAnimation ? this.decorateCSS("no-animation") : ""} ${!image && this.decorateCSS("no-image")}`}>
@@ -116,9 +118,7 @@ class CallToAction7Page extends BaseCallToAction {
                             <ComposerLink isFullWidth={true} path={item.link}>
                               {this.castToString(item.buttonText) && (
                                 <div key={index} className={this.decorateCSS("button")}>
-                                  <div className={this.decorateCSS("buttonText")}>
-                                    {item.buttonText}
-                                  </div>
+                                  <p className={this.decorateCSS("buttonText")}>{item.buttonText}</p>
                                 </div>)}
                             </ComposerLink>
                           ))}
