@@ -1,23 +1,22 @@
 .container {
     width: 100%;
-  
+
     .max-content {
       display: flex;
       max-width: var(--composer-content-width);
       margin: auto;
       justify-content: center;
       align-items: center;
-  
+      height: 100vh;
+
       .page {
         position: relative;
         display: flex;
         background: var(--composer-html-background);
         border-radius: 6px;
         overflow: hidden;
-        height: 600px;
-        width: 950px;
-        // height: 100%;
-        // width: 55%;
+        height: 60%;
+        width: 55%;
         justify-content: center;
         align-items: center;
         .exit-icon{
@@ -138,6 +137,26 @@
       max-width: 100%;
       .left-page{
         width: 50%;
+      }
+      .right-page{
+        height: 50% !important;
+      }
+      .right-page-content{
+        width: 100%;
+        padding: 2px !important;
+      }
+
+      .form{
+        .form-input{
+          font-size: 10px;
+        }
+        .country-dropdown{
+          height: 50% !important;
+          padding: 5px !important;
+          margin: 0px !important;
+        }
+
+
       }
     }
   }
