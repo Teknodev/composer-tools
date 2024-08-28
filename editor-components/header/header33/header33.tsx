@@ -273,8 +273,9 @@ class Header33 extends BaseHeader {
                         <div
                           className={`
                             ${this.decorateCSS("carousel-content")}
+                            ${animation ? this.decorateCSS("with-transition") : ""}
                             ${this.getComponentState("activeSlide") ===
-                              index || animation
+                              index
                               ? this.decorateCSS("fix-location")
                               : ""
                             }
