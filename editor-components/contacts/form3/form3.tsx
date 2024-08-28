@@ -641,6 +641,33 @@ class Form3Page extends BaseContacts {
       return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
     }
 
+    function updateLineNumbers(e: React.ChangeEvent<HTMLTextAreaElement>): void {
+      const textarea = e.target;
+      const lineNumbersContainer = document.querySelector('.line-numbers') as HTMLElement;
+      const lines = textarea.value.split('\n').length;
+
+      if (lineNumbersContainer) {
+        lineNumbersContainer.innerHTML = Array.from({ length: lines }, (_, i) => i + 1).join('<br>');
+      }
+    }
+
+    function updateTextareaHeight(el: HTMLTextAreaElement): void {
+      if (el) {
+        el.style.height = '20px';
+        const scrollHeight = el.scrollHeight;
+        if (scrollHeight < 50) {
+          el.style.height = scrollHeight + 'px';
+        } else {
+          el.style.height = '50px';
+          el.style.overflowY = 'scroll';
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const textarea = document.querySelector('.input') as HTMLTextAreaElement;
+      updateLineNumbers({ target: textarea } as React.ChangeEvent<HTMLTextAreaElement>);
+    });
+
     const icons = this.castToObject<Social[]>("socials");
     const background = this.getPropValue("background");
     return (
@@ -753,9 +780,10 @@ class Form3Page extends BaseContacts {
                                             value={values[getInputName(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)]}
                                             className={this.decorateCSS("input")}
                                             placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                            rows={3}
                                             onChange={handleChange}
+                                            rows={1}
                                             name={getInputValue(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)}
+                                            ref={(el) => updateTextareaHeight(el)}
                                           ></textarea>
                                         ) : (
                                           <input
@@ -804,7 +832,7 @@ class Form3Page extends BaseContacts {
               </div>}
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

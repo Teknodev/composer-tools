@@ -85,6 +85,9 @@
                   z-index: 1;
                   color: var(--composer-font-color-secondary);
                   word-wrap: break-word;
+                  display: flex;
+                  flex-direction: column;
+                  gap:40px;
                   .title1{
                     position: relative;
                     z-index: 1;
@@ -255,23 +258,33 @@
                     color: var(--composer-font-color-primary);
                     width: 100%;
                   }
-                  
                   .input {
                     color: var(--composer-font-color-primary);
                     padding: 2px 20px;
                     border: none;
                     border-bottom: 1px solid var(--composer-font-color-primary);
                     width: 100%;
-                    min-height: 2rem;
-                    height: 2rem;
                     font-family: inherit;
                     outline: none;
-                    resize: vertical;
+                    resize: none;
                     background-color: var(--composer-html-background);
+                    // height: 20px !important;
                     &::placeholder{
                       color: var(--composer-font-color-primary);
                       opacity: 0.7;
                     }
+                  }
+                  .line-numbers {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 30px;
+                    text-align: right;
+                    padding-right: 10px;
+                    color: var(--composer-font-color-primary);
+                    user-select: none;
+                    pointer-events: none;
+                    line-height: 0.5rem;
                   }
 
                   .input:focus {
@@ -335,7 +348,6 @@
       
       .max-content {
         .top{
-          width: 100%;
           .topSubtitle{
             font-size: 1.5rem !important;
             top: -8px;
@@ -343,7 +355,6 @@
 
           .topTitle{
             width: 100%;
-            padding: 5px 0 30px 0;
           }
         }
         
@@ -430,9 +441,19 @@
     flex-direction: column !important;
     width: 100% ;
   }
-  .topSubtitle{
-    width: 100%;
-    font-size: 1rem !important;
+  .left-top{
+    gap:20px !important;
+  }
+  .top{
+    .topSubtitle{
+      font-size: 1rem !important;
+      top: -8px;
+    }
+
+    .topTitle{
+      font-size: 2rem !important;
+      width: 100%;
+    }
   }
   .left-container{
     height: auto;
@@ -448,14 +469,10 @@
     width: 100%;
     overflow: auto;
   }
-  .topTitle{
-    padding: 5px 0 30px 0 !important;
-    font-size: 2rem !important;
-  }
+
 
   .right-container{
     width: 100% !important;
-    height: 500px !important;
   }
    .rightSubtitle{
       font-size: 2.7rem !important;
