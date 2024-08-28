@@ -39,7 +39,7 @@ class Header33 extends BaseHeader {
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Content Animation",
+      displayer: "Disable Animation",
       value: true,
     });
 
