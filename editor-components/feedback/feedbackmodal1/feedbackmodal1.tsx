@@ -37,7 +37,7 @@ class FeedbackModal1 extends BaseModal {
     this.addProp({
       type: "boolean",
       key: "divider",
-      displayer: "isDividerActive?",
+      displayer: "Line",
       value: true,
     })
 

@@ -79,9 +79,12 @@
     margin: 0 auto;
     width: 425px;
     margin-bottom: 30px;
+    text-align: center;
 
     p {
-      text-align: center;
+      text-align: justify;
+      display: flex;
+      justify-content: center;
       font-size: 1rem;
       color: var(--composer-font-color-primary);
     }
