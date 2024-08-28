@@ -1,7 +1,8 @@
-import React from 'react';
-import { GoogleMap, LoadScript, Marker, useJsApiLoader } from '@react-google-maps/api';
+import React, { useEffect, useRef } from 'react';
+
 import { Location } from '../../EditorComponent';
 import styles from './location1.module.scss';
+import { Map, Marker } from '@vis.gl/react-google-maps';
 
 class LocationComponent1 extends Location {
   constructor(props?: any) {
@@ -40,11 +41,12 @@ class LocationComponent1 extends Location {
 
     return (
       <div className={this.decorateCSS('container')}>
+        <h1>{JSON.stringify(markers)}</h1>
         <div className={this.decorateCSS('max-content')}>
           <div className={this.decorateCSS('wrapper')}>
             <h1 className={this.decorateCSS('title')}>{this.getPropValue('title')}</h1>
             <section className={this.decorateCSS("map-container")}>
-              <Map markers={markers} zoom={zoom} className={this.decorateCSS("map")} />
+              <ComposerMap markers={markers} zoom={zoom} className={this.decorateCSS("map")} />
             </section>
           </div>
         </div>
@@ -59,12 +61,8 @@ type MapProps = {
   className: string;
 };
 
-function Map({ markers, zoom, className }: MapProps) {
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-  });
+function ComposerMap({ markers, zoom, className }: MapProps) {
 
-  if(!isLoaded) return null;
 
   const getCenter = () => {
     if(markers.length > 0) {
@@ -81,13 +79,10 @@ function Map({ markers, zoom, className }: MapProps) {
   }
 
   return (
-    <GoogleMap
-      mapContainerClassName={className}
+    <Map
+      className={className}
       center={getCenter()}
       zoom={zoom}
-      options={{
-        mapTypeControl: false,
-      }}
     >
       {markers.map((marker, index) => (
         <Marker
@@ -99,7 +94,7 @@ function Map({ markers, zoom, className }: MapProps) {
           title="Location"
         />
       ))}
-    </GoogleMap>
+    </Map>
   );
 }
 
