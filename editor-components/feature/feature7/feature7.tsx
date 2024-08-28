@@ -172,7 +172,7 @@ class Feature7 extends BaseFeature {
             <div className={this.decorateCSS("image-container")}>
               <img
                 src={this.getPropValue("image")}
-                className={`${this.decorateCSS("image")} ${(hasTextContent.length < 1) && this.decorateCSS("no-text-container")}`}
+                className={`${this.decorateCSS("image")} ${hasTextContent && this.decorateCSS("no-text-container")}`}
               />
             </div>
           )}
