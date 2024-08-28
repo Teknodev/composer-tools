@@ -128,7 +128,7 @@
         right: 10px;
         background-color: transparent;
         border: none;
-        color: white;
+        color: var(--composer-font-color-primary);
         font-weight: bold;
         font-size: 3em;
         cursor: pointer;
@@ -201,17 +201,25 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .container {
+    padding: 20px 30px !important;
+  }
+
   .gallery-container {
     grid-template-columns: 1fr !important;
     .gallery-item {
       img {
         height: 100%;
       }
-    }
-    
+    }  
   }
-      .focused-image{
-          height: auto !important;
-          object-fit: contain !important; 
-      }
+
+  .focused-image{
+    height: auto !important;
+    object-fit: contain !important; 
+  }
+
+  .close-button {          
+    font-size: 2em !important;
+  }
 }
