@@ -12,6 +12,10 @@ type Emoji = {
   emoji?: string;
 };
 
+type ValidationItems = {
+  inputValidationText: string;
+}
+
 class FeedbackModal1 extends BaseModal {
   constructor(props?: any) {
     super(props, styles);
@@ -201,6 +205,27 @@ class FeedbackModal1 extends BaseModal {
     });
 
     this.addProp({
+      type: "number",
+      key: "minLength",
+      displayer: "Minimum Length",
+      value: 5,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "minLengthMessage",
+      displayer: "Minimum Length Message",
+      value: "Min 5 character!",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "requiredMessage",
+      displayer: "Required Message",
+      value: "Required",
+    });
+
+    this.addProp({
       type: "string",
       key: "buttonText",
       displayer: "Button Text",
@@ -222,9 +247,13 @@ class FeedbackModal1 extends BaseModal {
     }
   }
 
-  validationSchema = Yup.object().shape({
-    message: Yup.string().min(5, "Min 5 character!").required("Required"),
-  });
+  createValidationSchema(minLength: number, minLengthMessage: string, requiredMessage: string) {
+    return Yup.object().shape({
+      message: Yup.string()
+        .min(minLength, minLengthMessage)
+        .required(requiredMessage),
+    });
+  }
 
   getName(): string {
     return "FeedbackModal1";
@@ -240,6 +269,10 @@ class FeedbackModal1 extends BaseModal {
     const isDividerActive = this.getPropValue("divider");
     const emojis = this.castToObject<Emoji[]>("emojis");
     const emojiExist = emojis.length > 0;
+
+    const minLenght = this.getPropValue("minLength");
+    const minLengthMessage = this.castToString(this.getPropValue("minLengthMessage"));
+    const requiredMessage = this.castToString(this.getPropValue("requiredMessage"));
 
     return (
       <div className={this.decorateCSS("feedbackModal")}>
@@ -332,9 +365,11 @@ class FeedbackModal1 extends BaseModal {
           (<div className={this.decorateCSS("contact-form")}>
             <Formik
               initialValues={{ message: "" }}
-              validationSchema={this.validationSchema}
+              validationSchema={this.createValidationSchema(minLenght, minLengthMessage, requiredMessage)}
               onSubmit={(data, { resetForm }) => {
-                this.insertForm("Contact Us", data);
+                this.insertForm("Contact Us", {
+                  message: data.message
+                });
                 resetForm();
               }}
             >
