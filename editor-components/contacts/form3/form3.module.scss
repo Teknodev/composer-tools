@@ -147,6 +147,7 @@
                     gap: 20px;
                     align-self: center;
                     flex-wrap: wrap;
+                    justify-content: center;
                     
                 .icon-container{
                     align-content: center;
@@ -368,7 +369,7 @@
         }
         
           .leftTitle{
-              font-size: 1rem !important;
+              font-size: 1.5rem !important;
           }
           .leftSubtitle{
               font-size: 2rem !important;
@@ -462,6 +463,9 @@
   }
   .left{
     height: 75% !important;
+  }
+  .leftTitle{
+    font-size: 1.5rem !important;
   }
   .socials{
     gap: 10px !important;
