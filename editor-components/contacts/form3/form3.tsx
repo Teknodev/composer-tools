@@ -532,23 +532,16 @@ class Form3Page extends BaseContacts {
   }
 
   render() {
-    const button = this.getPropValue("buttons");
-    console.log("button value ", button);
-
+    const buttons = this.getPropValue("buttons");
     const topTitle = this.getPropValue("topTitle", { as_string: true });
-    console.log("topTitle ", topTitle)
     const topSubtitle = this.getPropValue("topSubtitle", { as_string: true });
     const leftTitle = this.getPropValue("leftTitle", { as_string: true });
     const leftSubtitle = this.getPropValue("leftSubtitle", { as_string: true });
-
     const rightTitle = this.getPropValue("rightTitle", { as_string: true });
     const rightSubtitle = this.getPropValue("rightSubtitle", { as_string: true });
-
     const contactInfo = this.getPropValue("contactInfo");
     const contactIcon = this.getPropValue("contactIcon");
-
     const inputItems = this.getPropValue("input_items");
-    console.log("inputItems ", inputItems)
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -641,16 +634,6 @@ class Form3Page extends BaseContacts {
       return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
     }
 
-    function updateLineNumbers(e: React.ChangeEvent<HTMLTextAreaElement>): void {
-      const textarea = e.target;
-      const lineNumbersContainer = document.querySelector('.line-numbers') as HTMLElement;
-      const lines = textarea.value.split('\n').length;
-
-      if (lineNumbersContainer) {
-        lineNumbersContainer.innerHTML = Array.from({ length: lines }, (_, i) => i + 1).join('<br>');
-      }
-    }
-
     function updateTextareaHeight(el: HTMLTextAreaElement): void {
       if (el) {
         el.style.height = '20px';
@@ -663,10 +646,6 @@ class Form3Page extends BaseContacts {
         }
       }
     }
-    document.addEventListener('DOMContentLoaded', () => {
-      const textarea = document.querySelector('.input') as HTMLTextAreaElement;
-      updateLineNumbers({ target: textarea } as React.ChangeEvent<HTMLTextAreaElement>);
-    });
 
     const icons = this.castToObject<Social[]>("socials");
     const background = this.getPropValue("background");
@@ -737,7 +716,7 @@ class Form3Page extends BaseContacts {
 
                 </div>
               </div>}
-            {((rightSubtitle || rightTitle) || button || inputItems).length > 0 &&
+            {((rightSubtitle || rightTitle) || buttons || inputItems).length > 0 &&
               <div className={this.decorateCSS("right-container")}>
                 {(rightTitle || rightSubtitle) && (
                   <div className={this.decorateCSS("title2")} >
@@ -749,7 +728,7 @@ class Form3Page extends BaseContacts {
                       <h3 className={this.decorateCSS("rightTitle")}> {this.getPropValue("no-rightTitle")} </h3>)}
                   </div>)}
 
-                {(button || inputItems).length > 0 &&
+                {(buttons || inputItems).length > 0 &&
                   <div className={this.decorateCSS("form-container")} >
                     <Formik
                       initialValues={getInitialValue()}
@@ -811,9 +790,8 @@ class Form3Page extends BaseContacts {
                     </Formik>
                   </div>}
                 <div className={this.decorateCSS("form-button")}>
-                  {button.length > 0 && (
-                    button.map((buttonText: any, buttonIndex: number) => {
-                      console.log("buttontext ", buttonText.getPropValue("button_text", { as_string: true }));
+                  {buttons.length > 0 && (
+                    buttons.map((buttonText: any, buttonIndex: number) => {
                       return (
                         <div className={this.decorateCSS("buttonSide")}>
                           <button
