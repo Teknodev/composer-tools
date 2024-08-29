@@ -6,19 +6,29 @@ interface ComposerMapProps {
   className: string;
 };
 
+type Coordinate = {
+  lat: number;
+  lng: number;
+}
+
 function ComposerMap({ markers, className }: ComposerMapProps) {
-  const [center, setCenter] = useState({ lat: 36.8968908, lng: 30.7133233 }); // Default center (Antalya)
-  const [restriction, setRestriction] = useState(null);
-  const [defaultBounds, setDefaultBounds] = useState(null);
+  const [center, setCenter] = useState<Coordinate>(
+    {
+      lat: markers[0].lat ?? 36.8968908, // default center (antalya)
+      lng: markers[0].lng ?? 30.7133233,
+    }
+  );
+  const [restriction, setRestriction] = useState<google.maps.MapRestriction>(null);
+  const [defaultBounds, setDefaultBounds] = useState<google.maps.LatLngBoundsLiteral>(null);
 
   useEffect(() => {
-    setCenter(null);
+    if(center !== null)
+      setCenter(null);
   }, [center]);
 
   useEffect(() => {
-    setTimeout(() => {
+    if(restriction !== null)
       setRestriction(null);
-    }, 100);
   }, [restriction]);
 
   useEffect(() => {
@@ -28,7 +38,10 @@ function ComposerMap({ markers, className }: ComposerMapProps) {
           lat: markers[0].lat,
           lng: markers[0].lng
         });
-        setRestriction(null);
+        const restrictions = getRestrictions();
+        setRestriction({
+          latLngBounds: restrictions
+        });
       } else {
         const restrictions = getRestrictions();
         const calculatedCenter = getCenter(restrictions);
@@ -37,9 +50,7 @@ function ComposerMap({ markers, className }: ComposerMapProps) {
         setRestriction({
           latLngBounds: restrictions
         });
-        setDefaultBounds({
-          latLngBounds: restrictions
-        });
+        setDefaultBounds(restrictions);
       }
     }
   }, [markers]);
