@@ -275,6 +275,12 @@ class FormModal1 extends BaseModal {
           displayer: "Input",
           value: [
             {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Phone Number",
+            },
+            {
               type: "array",
               key: "countryOptions",
               displayer: "Country Options",
