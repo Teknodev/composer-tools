@@ -1,65 +1,19 @@
-import { Map, Marker } from '@vis.gl/react-google-maps';
-import React, { useEffect, useState } from 'react';
-
-interface ComposerMapProps {
-  markers: { lat: number; lng: number; }[];
-  className: string;
-};
+import { Map, Marker, useMap } from '@vis.gl/react-google-maps';
+import React, { memo, useEffect } from 'react';
 
 type Coordinate = {
   lat: number;
   lng: number;
 };
+interface ComposerMapProps {
+  markers: Coordinate[];
+  className: string;
+};
 
-function ComposerMap({ markers, className }: ComposerMapProps) {
-  const [center, setCenter] = useState<Coordinate>(
-    {
-      lat: markers[0]?.lat ?? 36.8968908, // default center (antalya)
-      lng: markers[0]?.lng ?? 30.7133233,
-    }
-  );
-  const [restriction, setRestriction] = useState<google.maps.MapRestriction>(null);
-  const [defaultBounds, setDefaultBounds] = useState<google.maps.LatLngBoundsLiteral>(null);
-  const [zoom, setZoom] = useState<number>(null);
 
-  useEffect(() => {
-    if (center !== null)
-      setCenter(null);
-  }, [center]);
+const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
 
-  useEffect(() => {
-    if (restriction !== null)
-      setRestriction(null);
-  }, [restriction]);
-
-  useEffect(() => {
-    if (zoom !== null)
-      setZoom(null);
-  }, [zoom]);
-
-  useEffect(() => {
-    if (!markers.length) {
-      setZoom(3);
-      return;
-    }
-    if (markers.length === 1) {
-      setCenter({
-        lat: markers[0].lat,
-        lng: markers[0].lng
-      });
-      setZoom(14);
-      return;
-    }
-
-    const restrictions = getRestrictions();
-    const calculatedCenter = getCenter(restrictions);
-    setZoom(1);
-    setCenter(calculatedCenter);
-    setRestriction({
-      latLngBounds: restrictions
-    });
-    setDefaultBounds(restrictions);
-  }, [markers]);
+  const map = useMap(className);
 
   const getCenter = (bounds: { north: number; south: number; east: number; west: number; }) => {
     const lat = (bounds.north + bounds.south) / 2;
@@ -67,7 +21,7 @@ function ComposerMap({ markers, className }: ComposerMapProps) {
     return { lat, lng };
   };
 
-  const getRestrictions = () => {
+  const getBounds = () => {
     const lngs = markers.map(marker => marker.lng);
     const lats = markers.map(marker => marker.lat);
 
@@ -79,28 +33,45 @@ function ComposerMap({ markers, className }: ComposerMapProps) {
     return { north, south, east, west };
   };
 
+  useEffect(() => {
+    if (!map || !markers.length) return;
+
+    setTimeout(() => {
+      if (markers.length === 1) {
+        const center = {
+          lat: markers[0].lat,
+          lng: markers[0].lng
+        }
+        map.setCenter(center);
+        map.setZoom(14);
+        return;
+      }
+
+      const bounds = getBounds();
+      const calculatedCenter = getCenter(bounds);
+      map.fitBounds(bounds)
+      map.setCenter(calculatedCenter);
+      map.panTo(calculatedCenter)
+    }, 1)
+
+  }, [markers, map]);
+
   return (
     <Map
+      id={className}
       className={className}
-      zoom={zoom}
-      center={center}
-      restriction={restriction}
-      defaultBounds={defaultBounds}
     >
       {markers.length > 0 &&
         markers.map((marker, index) => (
           <Marker
             key={index}
-            position={{
-              lat: marker.lat,
-              lng: marker.lng
-            }}
+            position={marker}
             title="Location"
           />
         ))
       }
     </Map>
   );
-}
+});
 
 export default ComposerMap;
