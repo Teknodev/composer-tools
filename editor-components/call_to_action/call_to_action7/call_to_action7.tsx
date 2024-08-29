@@ -75,9 +75,11 @@ class CallToAction7Page extends BaseCallToAction {
     const arrayItem = this.castToObject<ButtonType[]>("arrayItem");
     const input = this.castToString(this.getPropValue("placeholder"));
     const disableAnimation = this.getPropValue("disableAnimation");
-    const isTitleTextExist = this.castToString(title);
-    const isCallToActionExist = arrayItem || image || isTitleTextExist;
+    const isTitleText = this.castToString(title);
+    const isCallToActionExist = arrayItem || image || isTitleText;
     const noRightsideItems = !arrayItem.length && !input && !(this.castToString(title));
+
+    console.log("isTitleTextExist:", isTitleText);
 
     return (
       <div className={`${this.decorateCSS("container")}
@@ -96,7 +98,8 @@ class CallToAction7Page extends BaseCallToAction {
                 (<div className={`${this.decorateCSS("call-to-action7")} ${!image && this.decorateCSS("no-image")}`}>
                   {this.castToString(title) && <h1 className={this.decorateCSS("title")}>{title}</h1>}
                   {(arrayItem.length > 0 || input) &&
-                    <div className={this.decorateCSS("input-button-wrapper")}>
+                    <div className={`${this.decorateCSS("input-button-wrapper")}
+                    ${!image && this.decorateCSS("ibw-no-image")}`}>
                       {input && arrayItem.length <= 1 &&
                         <div
                           className={this.decorateCSS("input-div")}>
@@ -113,7 +116,9 @@ class CallToAction7Page extends BaseCallToAction {
                         </div>}
 
                       {arrayItem.length && (
-                        <div className={this.decorateCSS("button-container")}>
+                        <div className={`${this.decorateCSS("button-container")}
+                        ${!image && this.decorateCSS("bc-no-image")}
+                        `}>
                           {arrayItem.map((item: ButtonType, index: number) => (
                             <ComposerLink isFullWidth={true} path={item.link}>
                               {this.castToString(item.buttonText) && (

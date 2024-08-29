@@ -104,7 +104,8 @@
 }
 
 .input-div {
-  width: 100%;
+  flex-grow: 1;
+  width: auto;
 }
 
 .multiple-bottoms {
@@ -132,7 +133,6 @@
 
 .button-container {
   height: auto;
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -193,12 +193,12 @@
 
   .call-to-action7 {
     align-items: center;
-    text-align: center;
+    text-align: left;
     width: 60%;
   }
 
   .call-to-action7 .title {
-    width: 90%;
+    width: 100%;
     text-align: left;
     font-size: 2.5em;
     max-width: none;
@@ -213,21 +213,33 @@
     flex-wrap: nowrap;
   }
 
+  .ibw-no-image{
+    flex-direction: row !important;
+  }
+
   .input {
     width: 100%;
     padding: 15px;
     font-size: 1.5rem;
   }
 
+  .input-div{
+    width: 100%;
+  }
+
   .button-container {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
   }
 
   .button-container >div {
     width: 100% !important;
+  }
+
+  .bc-no-image >div{
+    width: auto !important;
   }
 
   .button {
