@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./feedbackmodal1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { ErrorMessage, Formik, Form } from "formik";
+import * as Yup from "yup";
 
 type Emoji = {
   value: string;
@@ -220,6 +222,10 @@ class FeedbackModal1 extends BaseModal {
     }
   }
 
+  validationSchema = Yup.object().shape({
+    message: Yup.string().min(5, "Min 5 character!").required("Required"),
+  });
+
   getName(): string {
     return "FeedbackModal1";
   }
@@ -293,11 +299,11 @@ class FeedbackModal1 extends BaseModal {
                 >
                   {item.image ? (
                     <div className={this.decorateCSS("emojiImageWrapper")}>
-                        <img
-                          src={item.image}
-                          alt={this.castToString(item.label)}
-                          className={this.decorateCSS("feedbackModalEmojiImage")}
-                        />
+                      <img
+                        src={item.image}
+                        alt={this.castToString(item.label)}
+                        className={this.decorateCSS("feedbackModalEmojiImage")}
+                      />
                     </div>
                   ) : (
                     <div className={this.decorateCSS("emoji-wrapper")}>
@@ -322,25 +328,43 @@ class FeedbackModal1 extends BaseModal {
           </div>
         )}
 
-        {
-          (buttonval || inputPlaceholder) && (
-            <div className={this.decorateCSS("send-mail")}>
-              {inputPlaceholder && (
-                <div className={`${this.decorateCSS("contact-form")} ${!emojiExist && this.decorateCSS("no-emojis")}`}>
-                  <textarea
-                    placeholder={inputPlaceholder}
-                    className={this.decorateCSS("input")}
-                  />
-                </div>
+        {(buttonval || inputPlaceholder) &&
+          (<div className={this.decorateCSS("contact-form")}>
+            <Formik
+              initialValues={{ message: "" }}
+              validationSchema={this.validationSchema}
+              onSubmit={(data, { resetForm }) => {
+                this.insertForm("Contact Us", data);
+                resetForm();
+              }}
+            >
+              {({ handleChange, values }) => (
+                <Form className={`${this.decorateCSS("form")} ${!emojiExist && this.decorateCSS("no-emojis")}`}>
+                  {inputPlaceholder && (
+                    <textarea
+                      placeholder={inputPlaceholder}
+                      id="text"
+                      name="message"
+                      value={values.message}
+                      onChange={handleChange}
+                      className={this.decorateCSS("input")}
+                      rows={5}
+                    />)}
+                  {inputPlaceholder && <ErrorMessage
+                    className={this.decorateCSS("error-message")}
+                    name="message"
+                    component={"span"}
+                  />}
+                  {buttonval && (<button
+                    className={this.decorateCSS("button")}
+                    type="submit"
+                  >
+                    {buttonval}
+                  </button>)}
+                </Form>
               )}
-              {buttonval && (
-                <button className={this.decorateCSS("button")}>
-                  {buttonval}
-                </button>
-              )}
-            </div>
-          )
-        }
+            </Formik>
+          </div>)}
       </div>
     );
   }
