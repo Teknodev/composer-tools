@@ -1026,7 +1026,9 @@ class HeaderComponent20 extends BaseHeader {
                 />
               )}
               {overlay && (
-                <div className={this.decorateCSS("overlay")}></div>
+                <div className={this.decorateCSS("overlay")}
+                  key={`title-key-${index}`}
+                ></div>
               )}
             </div>
           ))}

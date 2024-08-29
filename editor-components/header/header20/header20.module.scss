@@ -23,7 +23,7 @@
       z-index: -1;
       height: 100%;
       width: 100%;
-      background-color: color-mix(in srgb, var(--composer-html-color) 95%, var(--composer-font-color-primary) 5%);
+      background-color: rgba(0,0,0,0.8);
     }
   }
 
@@ -57,7 +57,7 @@
           max-height: 50%;
           z-index: 3;
           padding: 8.33rem 8.33rem;
-          color: white;
+          color: var(--composer-font-color-primary);
           pointer-events: auto;
           text-align: center;
 
@@ -80,7 +80,7 @@
             &.previous,
             &.next {
               color: transparent;
-              -webkit-text-stroke: 1px white;
+              -webkit-text-stroke: 1px var(--composer-font-color-primary);
               font-weight: normal;
               opacity: 0.3;
             }
@@ -238,6 +238,7 @@
           }
 
           .buttomRow {
+            padding: 2rem 0;
             .comment-and-icon-text-container {
               .icon-text-container {
                 .icon_text {
