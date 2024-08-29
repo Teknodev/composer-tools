@@ -61,8 +61,8 @@ class NotificationModal1 extends BaseModal {
 
     this.addProp({
       type: "array",
-      key: "buttonprops",
-      displayer: "Button",
+      key: "buttons",
+      displayer: "Buttons",
       additionalParams: {
         maxElementCount: 2,
       },
@@ -97,13 +97,11 @@ class NotificationModal1 extends BaseModal {
   render() {
     const backgroundImage = this.getPropValue("background_image");
     const overlay = this.getPropValue("overlay");
-    const firstTitle = this.castToString(this.getPropValue("firstTitle"));
-    const isTitleExist = this.castToString(this.getPropValue("secondTitle"));
-    const isDescriptionExist = this.castToString(this.getPropValue("description"));
-    const buttonProps = this.castToObject<Button[]>("buttonprops");
-    const validButtons = buttonProps.filter((item: Button) => this.castToString(item.buttonText));
-
-    console.log("backgroundImage  " + backgroundImage)
+    const firstTitleExist = this.castToString(this.getPropValue("firstTitle"));
+    const secondTitleExist = this.castToString(this.getPropValue("secondTitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<Button[]>("buttons");
+    const validButtons = buttons.filter((item: Button) => this.castToString(item.buttonText));
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -111,54 +109,21 @@ class NotificationModal1 extends BaseModal {
             <div className={this.decorateCSS("top-wrapper")}>
               <div className={this.decorateCSS("exit-icon")}>
                 <ComposerModalClose>
-                  <a href={""} >
-                    <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon"), style: { width: "25px", height: "25px" } }} name={this.getPropValue("exitIcon")} />
-                  </a>
+                  <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
                 </ComposerModalClose>
 
               </div>
-              {(backgroundImage || firstTitle) && (
-                <div className={this.decorateCSS("image-container")}>
-                  {backgroundImage && (
-                    <>
-                      <img
-                        className={this.decorateCSS("image")}
-                        src={backgroundImage}
-                      />
-
-                      <h2 className={this.decorateCSS("first-header")}>
-                        {this.getPropValue("firstTitle")}
-                      </h2>
-                    </>
-                  )}
-
-                  {overlay && backgroundImage && (
-                    <div className={this.decorateCSS("overlay")}></div>
-                  )}
-
-                  {!backgroundImage && overlay && (
-                    <div>
-                      <h2 className={this.decorateCSS("first-header2")}>
-                        {this.getPropValue("firstTitle")}
-                      </h2>
-                      <div className={this.decorateCSS("overlay2")}>
-                      </div>
-                    </div>
-
-                  )}
-
-                  {!backgroundImage && !overlay && (
-                    <div>
-                      <h2 className={this.decorateCSS("first-header2")}>
-                        {this.getPropValue("firstTitle")}
-                      </h2>
-                      <div className={this.decorateCSS("overlay3")}>
-
-                      </div>
-                    </div>
-
-
-                  )}
+              {(backgroundImage || firstTitleExist) && (
+                <div className={`${this.decorateCSS("wrapper")} ${!backgroundImage && this.decorateCSS("without-image")}`}>
+                  {backgroundImage && <img
+                    className={this.decorateCSS("image")}
+                    src={backgroundImage}
+                  />}
+                  <h2 className={this.decorateCSS("first-header")}>
+                    {this.getPropValue("firstTitle")}
+                  </h2>
+                  {overlay && <div className={this.decorateCSS("overlay")}>
+                  </div>}
                 </div>
               )}
             </div>
@@ -166,11 +131,11 @@ class NotificationModal1 extends BaseModal {
 
 
             <div className={this.decorateCSS("second-div")}>
-              {isTitleExist &&
+              {secondTitleExist &&
                 <h3 className={this.decorateCSS("second-header")}>
                   {this.getPropValue("secondTitle")}
                 </h3>}
-              {isDescriptionExist &&
+              {descriptionExist &&
                 <p className={this.decorateCSS("notice-content")}>
                   {this.getPropValue("description")}
                 </p>}
@@ -179,13 +144,11 @@ class NotificationModal1 extends BaseModal {
             {validButtons.length > 0 && (
               <div className={this.decorateCSS("button-background")}>
                 {validButtons.map((item: Button, index: number) => (
-                  <div className={this.decorateCSS("deneme")}>
-                    <ComposerLink path={item.link} >
-                      <div className={this.decorateCSS("button")}>
-                        {item.buttonText}
-                      </div>
-                    </ComposerLink>
-                  </div>
+                  <ComposerLink path={item.link} >
+                    <div className={this.decorateCSS("button")}>
+                      {item.buttonText}
+                    </div>
+                  </ComposerLink>
 
                 ))}
               </div>
