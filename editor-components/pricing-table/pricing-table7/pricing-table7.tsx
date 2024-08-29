@@ -1016,7 +1016,7 @@ class PricingTable7 extends BasePricingTable {
                     {this.castToString(pricing.promoText) && <span className={this.decorateCSS("promoText")}>{pricing.promoText}</span>}
                     {[pricing.promoText, pricing.price, pricing.duration].some(this.castToString) && (
                       <>
-                        <hr style={{ margin: 'none' }} className="divider" />
+                        <hr className={this.decorateCSS("divider")} />
                       </>
                     )}
 
