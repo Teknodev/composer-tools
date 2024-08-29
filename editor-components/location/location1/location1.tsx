@@ -25,7 +25,6 @@ class LocationComponent1 extends Location {
             lng: 30.7133233,
           }
         ],
-        zoom: 12
       }
     });
   }
@@ -35,7 +34,7 @@ class LocationComponent1 extends Location {
   }
 
   render() {
-    const { markers, zoom } = this.getPropValue('location');
+    const { markers } = this.getPropValue('location');
 
     return (
       <div className={this.decorateCSS('container')}>
@@ -43,7 +42,7 @@ class LocationComponent1 extends Location {
           <div className={this.decorateCSS('wrapper')}>
             <h1 className={this.decorateCSS('title')}>{this.getPropValue('title')}</h1>
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap markers={markers} zoom={zoom} className={this.decorateCSS("map")} />
+              <ComposerMap markers={markers} className={this.decorateCSS("map")} />
             </section>
           </div>
         </div>
