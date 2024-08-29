@@ -15,7 +15,6 @@ export type TypeLocation = {
     lat: number;
     lng: number;
   }[];
-  zoom: number;
 }
 
 type GetPropValueProperties = {

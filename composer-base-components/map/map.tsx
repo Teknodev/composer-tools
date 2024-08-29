@@ -3,19 +3,13 @@ import React, { useEffect, useState } from 'react';
 
 interface ComposerMapProps {
   markers: { lat: number; lng: number; }[];
-  zoom: number;
   className: string;
 };
 
-function ComposerMap({ markers, zoom: zoomProp, className }: ComposerMapProps) {
-  // const [zoom, setZoom] = useState(null);
+function ComposerMap({ markers, className }: ComposerMapProps) {
   const [center, setCenter] = useState({ lat: 36.8968908, lng: 30.7133233 }); // Default center (Antalya)
   const [restriction, setRestriction] = useState(null);
   const [defaultBounds, setDefaultBounds] = useState(null);
-
-  // useEffect(() => {
-  //   setZoom(null);
-  // }, [zoom]);
 
   useEffect(() => {
     setCenter(null);
@@ -30,20 +24,15 @@ function ComposerMap({ markers, zoom: zoomProp, className }: ComposerMapProps) {
   useEffect(() => {
     if (markers.length > 0) {
       if (markers.length === 1) {
-        // setZoom(zoom);
         setCenter({
           lat: markers[0].lat,
           lng: markers[0].lng
         });
         setRestriction(null);
-        // setZoom(zoomProp);
       } else {
-        // setZoom(null);
         const restrictions = getRestrictions();
-        // const calculatedZoom = calculateZoom(restrictions);
         const calculatedCenter = getCenter(restrictions);
 
-        // setZoom(calculatedZoom);
         setCenter(calculatedCenter);
         setRestriction({
           latLngBounds: restrictions
@@ -61,20 +50,6 @@ function ComposerMap({ markers, zoom: zoomProp, className }: ComposerMapProps) {
     return { lat, lng };
   };
 
-  // const calculateZoom = (bounds: { north: number; south: number; east: number; west: number; }) => {
-  //   const latDiff = bounds.north - bounds.south;
-  //   const lngDiff = bounds.east - bounds.west;
-
-  //   const maxDiff = Math.max(latDiff, lngDiff);
-  //   if (maxDiff > 150) return 1;
-  //   if (maxDiff > 5) return 2;
-  //   if (maxDiff > 30) return 3;
-  //   if (maxDiff > 1) return 4;
-  //   if (maxDiff > 0.5) return 6;
-  //   if (maxDiff > 0.25) return 8;
-  //   return 8;
-  // };
-
   const getRestrictions = () => {
     const lngs = markers.map(marker => marker.lng);
     const lats = markers.map(marker => marker.lat);
@@ -91,7 +66,6 @@ function ComposerMap({ markers, zoom: zoomProp, className }: ComposerMapProps) {
     <Map
       className={className}
       center={center}
-      // zoom={zoom}
       restriction={restriction}
       defaultBounds={defaultBounds}
     >
