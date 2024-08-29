@@ -20,6 +20,12 @@ class Header12 extends BaseHeader {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+    this.addProp({
       type: "array",
       key: "leftSliderItems",
       displayer: "Left Slider",
@@ -257,7 +263,6 @@ class Header12 extends BaseHeader {
   }
 
   render() {
-
     const settings = {
       arrows: true,
       dots: false,
@@ -271,41 +276,46 @@ class Header12 extends BaseHeader {
       verticalSwiping: true,
     };
 
-    const decorateIcon = { className: this.decorateCSS("Icon") }
+    const decorateIcon = { className: this.decorateCSS("Icon") };
 
     const leftSliderSettings = {
       ...settings,
       prevArrow: <LeftSliderArrow
         givenClass={this.decorateCSS("left-slider-button")}
         customFunction={() => {
-          this.rightSliderRef.slickNext()
+          this.rightSliderRef.slickNext();
         }}
         decorateIcon={decorateIcon}
         icon={this.getPropValue("leftSliderIcon")}
       />
-    }
+    };
 
     const rightSliderSettings = {
       ...settings,
       nextArrow: <RightSliderArrow
         givenClass={this.decorateCSS("right-slider-button")}
         customFunction={() => {
-          this.leftSliderRef.slickPrev()
+          this.leftSliderRef.slickPrev();
         }}
         decorateIcon={decorateIcon}
         icon={this.getPropValue("rightSliderIcon")}
       />
-    }
+    };
 
-    const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems")
-    const rightSliderItems = this.castToObject<SliderItem[]>("rightSliderItems")
+    const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
+    const rightSliderItems = this.castToObject<SliderItem[]>("rightSliderItems");
+
+    console.log("leftSliderItems", leftSliderItems.length);
+    const showOverlay = this.getPropValue("overlay");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-container")}>
-            <ComposerSlider
-              className={this.decorateCSS("left-slider")}
+            {leftSliderItems.length > 0 && 
+            (<ComposerSlider
+              className={`${this.decorateCSS("left-slider")}
+              ${rightSliderItems.length < 1 && this.decorateCSS("no-slider-items")}`}
               ref={(slider: any) => this.leftSliderRef = slider}
               {...leftSliderSettings}
             >
@@ -314,40 +324,57 @@ class Header12 extends BaseHeader {
                   key={index}
                   className={this.decorateCSS("slider-item")}
                 >
-                  <img
-                    className={this.decorateCSS("slider-item-image")}
-                    src={item.image}
-                    alt={this.castToString(item.text)}
-                  />
-                  <h1 className={this.decorateCSS("slider-item-text")}>{item.text}</h1>
-                </div>
-              ))}
-            </ComposerSlider>
+                  {item.image && (
+                    <div className={this.decorateCSS("image-overlay-container")}>
+                      <img
+                        className={this.decorateCSS("slider-item-image")}
+                        src={item.image}
+                        alt={this.castToString(item.text)}
+                      />
+                      {showOverlay && (
+                        <div className={this.decorateCSS("image-overlay")} />
+                      )}
+                    </div>
+                  )}
 
-            <ComposerSlider
-              className={this.decorateCSS("right-slider")}
-              ref={(slider: any) => this.rightSliderRef = slider}
-              {...rightSliderSettings}
-            >
-              {rightSliderItems.map((item: SliderItem, index: number) => (
-                <div
-                  key={index}
-                  className={this.decorateCSS("slider-item")}
-                >
-                  <img
-                    className={this.decorateCSS("slider-item-image")}
-                    src={item.image}
-                    alt={this.castToString(item.text)}
-                  />
-                  <h1 className={this.decorateCSS("slider-item-text")}>{item.text}</h1>
                 </div>
               ))}
-            </ComposerSlider>
+            </ComposerSlider>)}
+
+            {rightSliderItems.length > 0 &&
+              (<ComposerSlider
+                className={`${this.decorateCSS("right-slider")}
+              ${leftSliderItems.length < 1 && this.decorateCSS("no-slider-items")}`}
+                ref={(slider: any) => this.rightSliderRef = slider}
+                {...rightSliderSettings}
+              >
+                {rightSliderItems.map((item: SliderItem, index: number) => (
+                  <div
+                    key={index}
+                    className={this.decorateCSS("slider-item")}
+                  >
+                    {item.image && (
+                      <div className={this.decorateCSS("image-overlay-container")}>
+                        <img
+                          className={this.decorateCSS("slider-item-image")}
+                          src={item.image}
+                          alt={this.castToString(item.text)}
+                        />
+                        {showOverlay && (
+                          <div className={this.decorateCSS("image-overlay")} />
+                        )}
+                      </div>
+                    )}
+
+                  </div>
+                ))}
+              </ComposerSlider>)}
           </div>
         </div>
       </div>
     );
   }
+
 }
 
 function LeftSliderArrow(props?: any) {
