@@ -14,13 +14,14 @@
       .page {
         position: relative;
         display: grid;
-        grid-template-columns: 1.2fr 1fr;
+        grid-template-columns: 1fr 1fr;
         background: var(--composer-html-background);
         border-radius: 6px;
         height: auto;
         width: auto;
         min-width: 50%;
         min-height: 40%;
+        max-width:60%;
         justify-content: center;
         align-items: center;
         gap: 20px;

@@ -434,12 +434,10 @@ class FormModal1 extends BaseModal {
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("exit-icon")}>
               <ComposerModalClose>
-                <a href={""}>
-                  <ComposerIcon
-                    propsIcon={{ className: this.decorateCSS("exit-icon"), style: { width: "25px", height: "25px" } }}
-                    name={this.getPropValue("exitIcon")}
-                  />
-                </a>
+                <ComposerIcon
+                  propsIcon={{ className: this.decorateCSS("exit-icon"), style: { width: "25px", height: "25px" } }}
+                  name={this.getPropValue("exitIcon")}
+                />
               </ComposerModalClose>
             </div>
 
@@ -521,7 +519,7 @@ class FormModal1 extends BaseModal {
                           }
                           {buttonVal && (
                             <button className={this.decorateCSS("form-button")} type="submit">
-                              {buttonVal}
+                              {this.getPropValue("buttonText")}
                             </button>
                           )}
                         </Form>
