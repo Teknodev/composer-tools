@@ -1,8 +1,8 @@
 import React from "react";
 
-import { BaseFeature } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
 
 type Card = {
@@ -245,18 +245,27 @@ class Feature9 extends BaseFeature {
     cardElements.forEach((card) => {
       this.observer.observe(card);
     });
+
+    this.setComponentState(`cardLength`, cardElements.length);
   }
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const buttons = this.castToObject<Button[]>("buttons");
-
+    const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
+  
     const titleExist = this.getPropValue("title", { as_string: true });
     const title = this.getPropValue("title");
 
+    const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
+
+    if(cardsLengthIsChanged) {
+     this.setupObserver();
+   }
+   
     return (
       <div
-        ref={this.setupObserver}
+        // ref={this.setupObserver}
         className={this.decorateCSS("container")}
       >
         <div className={this.decorateCSS("max-content")}>
