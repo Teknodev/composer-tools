@@ -79,7 +79,6 @@ class CallToAction7Page extends BaseCallToAction {
     const isCallToActionExist = arrayItem || image || isTitleText;
     const noRightsideItems = !arrayItem.length && !input && !(this.castToString(title));
 
-    console.log("isTitleTextExist:", isTitleText);
 
     return (
       <div className={`${this.decorateCSS("container")}
