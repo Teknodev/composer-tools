@@ -103,41 +103,52 @@ class Content13 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("title-container")}>
-            {isAboutTitleExist && <span className={this.decorateCSS("about-title")}>{this.getPropValue("aboutTitle")}</span>}
-            {isMainTitleExist && <h2 className={this.decorateCSS("maintitle")}>{this.getPropValue("mainTitle")}</h2>}
-            {isDescriptionExist && <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>}
+          <div className={this.decorateCSS("wrapper")}>
+            <div className={this.decorateCSS("title-container")}>
+              {isAboutTitleExist && <span className={this.decorateCSS("about-title")}>{this.getPropValue("aboutTitle")}</span>}
+              {isMainTitleExist && <h2 className={this.decorateCSS("maintitle")}>{this.getPropValue("mainTitle")}</h2>}
+              {isDescriptionExist && <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>}
 
-            <div className={this.decorateCSS("button-icon")} >
-              {isButtonTextExist &&
-                <button className={this.decorateCSS("about-button")}>
-                  <div className={this.decorateCSS("buttonText")}>{this.getPropValue("buttonText")}</div>
-                </button>}
+              <div className={this.decorateCSS("button-icon")} >
+                {isButtonTextExist &&
+                  <button className={this.decorateCSS("about-button")}>
+                    <div className={this.decorateCSS("buttonText")}>
+                      {this.getPropValue("buttonText")}
+                    </div>
+                  </button>}
 
-              {(this.getPropValue("phoneIcon") || isPhoneExist) &&
-                <div className={this.decorateCSS("phone-icon")}>
-                  <ComposerIcon
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-                    name={this.getPropValue("phoneIcon")}
-                  />
-                  {isPhoneExist && <h1 className={this.decorateCSS("phone")}>{this.getPropValue("phone")}</h1>}
-                </div>}
-            </div>
-          </div>
-
-
-          {showDiv && <div className={this.decorateCSS("right-page")}>
-              <div className={this.decorateCSS("image-container")}>
-                {isTextExist && <h1 className={this.decorateCSS("text")}>{this.getPropValue("text")}</h1>}
-                {isYearExist && <h2 className={this.decorateCSS("year")}>{this.getPropValue("year")}</h2>}
-                {isImage1Exist &&
-                  <img src={this.getPropValue("image1")} alt="Image 1" className={this.decorateCSS("image1")} />}
-                {isImage2Exist &&
-                  <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />}
+                {(this.getPropValue("phoneIcon") || isPhoneExist) &&
+                  <div className={this.decorateCSS("phone-icon")}>
+                    <ComposerIcon
+                      propsIcon={{ className: this.decorateCSS("icon") }}
+                      name={this.getPropValue("phoneIcon")}
+                    />
+                    {isPhoneExist && <h1 className={this.decorateCSS("phone")}>{this.getPropValue("phone")}</h1>}
+                  </div>}
               </div>
             </div>
-          }
 
+            {showDiv && <div className={this.decorateCSS("right-page")}>
+              <div className={this.decorateCSS("image-container")}>
+                <div className={this.decorateCSS("image-text")}>
+                  {isTextExist && <h1 className={this.decorateCSS("text")}>{this.getPropValue("text")}</h1>}
+                  {isYearExist && <h2 className={this.decorateCSS("year")}>{this.getPropValue("year")}</h2>}
+
+                </div>
+
+                <div className={this.decorateCSS("image1-container")}>
+                  {isImage1Exist &&
+                    <img src={this.getPropValue("image1")} alt="Image 1" className={this.decorateCSS("image1")} />}
+                </div>
+
+                {isImage2Exist &&
+                  <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />
+                }
+
+              </div>
+            </div>
+            }
+          </div>
         </div>
       </div>
     );
