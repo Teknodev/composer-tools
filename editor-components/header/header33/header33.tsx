@@ -327,7 +327,7 @@ class Header33 extends BaseHeader {
                   <ComposerIcon
                     name={prevArrowIcon}
                     propsIcon={{
-                      className: `${this.decorateCSS("prev-icon")} ${styles["arrow-prev"]
+                      className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow-prev")
                         }`,
                       onClick: () => {
                         this.getComponentState(
@@ -341,7 +341,7 @@ class Header33 extends BaseHeader {
                   <ComposerIcon
                     name={nextArrowIcon}
                     propsIcon={{
-                      className: `${this.decorateCSS("next-icon")} ${styles["arrow-next"]
+                      className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow-next")
                         }`,
                       onClick: () => {
                         this.getComponentState(
