@@ -10,6 +10,7 @@ type SliderItem = {
   number: string;
   image: string;
   link: string;
+  overlay: boolean;
   buttomRow: {
     comment: string;
     icon: string;
@@ -970,6 +971,7 @@ class HeaderComponent20 extends BaseHeader {
   render() {
     const currentSlide = this.getComponentState("slider");
     const overlay = this.getPropValue("overlay");
+    console.log("overlay", overlay)
 
     const settings = {
       dots: false,
@@ -1025,7 +1027,7 @@ class HeaderComponent20 extends BaseHeader {
                   className={this.decorateCSS("image")}
                 />
               )}
-              {overlay && (
+              {slide.overlay && (
                 <div className={this.decorateCSS("overlay")}
                   key={`title-key-${index}`}
                 ></div>
@@ -1093,14 +1095,15 @@ class HeaderComponent20 extends BaseHeader {
                     />
                   )}
                 </div>
+                <div className={this.decorateCSS("comment")}>
+                  {slider[currentSlide].buttomRow.comment}
+                </div>
                 <div
                   className={this.decorateCSS(
                     "comment-and-icon-text-container"
                   )}
                 >
-                  <div className={this.decorateCSS("comment")}>
-                    {slider[currentSlide].buttomRow.comment}
-                  </div>
+
                   <div className={this.decorateCSS("icon-text-container")}>
                     <div className={this.decorateCSS("icon_text")}>
                       {slider[currentSlide].buttomRow.icon_text}
