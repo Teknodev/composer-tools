@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { TypeUsableComponentProps } from "../../EditorComponent";
-import { Label } from "@mui/icons-material";
 
 type Left = {
   contactName: string;
