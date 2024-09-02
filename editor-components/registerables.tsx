@@ -230,7 +230,6 @@ function Registerables(composer: ComponentsRegistery) {
     new ListComponent6(),
     new ListComponent7(),
     new ListComponent8(),
-    new LocationComponent1(),
     new ContentComponent1(),
     new ContentComponent2(),
     new ContentComponent3(),
