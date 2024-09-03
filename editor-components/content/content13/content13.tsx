@@ -135,14 +135,16 @@ class Content13 extends BaseContent {
                   {isYearExist && <h2 className={this.decorateCSS("year")}>{this.getPropValue("year")}</h2>}
 
                 </div>
-
-                <div className={this.decorateCSS("image1-container")}>
-                  {isImage1Exist &&
-                    <img src={this.getPropValue("image1")} alt="Image 1" className={this.decorateCSS("image1")} />}
-                </div>
+                {isImage1Exist &&
+                  <div className={this.decorateCSS("image1-container")}>
+                    <img src={this.getPropValue("image1")} alt="Image 1" className={this.decorateCSS("image1")} />
+                  </div>}
 
                 {isImage2Exist &&
-                  <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />
+                  <div className={this.decorateCSS("image2-container")}>
+                    <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />
+                  </div>
+
                 }
 
               </div>
