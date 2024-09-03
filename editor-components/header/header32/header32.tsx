@@ -194,36 +194,71 @@ class Header32 extends BaseHeader {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "enableBackgroundImageOverlay",
+      displayer: "Enable Background Image Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "icon",
       key: "leftButtonIcon",
-      displayer: "Left Button",
+      displayer: "Previous Button",
       value: "FaArrowLeftLong",
     });
 
     this.addProp({
       type: "icon",
       key: "rightButtonIcon",
-      displayer: "Left Button",
+      displayer: "Next Button",
       value: "FaArrowRightLong",
     });
-
     this.setComponentState("slider-ref", React.createRef());
   }
 
   getName(): string {
     return "Header-32";
   }
+  
 
   render() {
+
+    const handleBeforeChange = () => {
+      const descriptions = document.querySelectorAll(`.${styles.description}`);
+      const slideShapes = document.querySelectorAll(`.${styles.slideShape}`);
+      const stick = document.querySelectorAll(`.${styles.stick}`);
+      const urlTitles = document.querySelectorAll(`.${styles.urlTitles}`);
+      const imageTitles = document.querySelectorAll(`.${styles.imageTitle}`);
+      
+      descriptions.forEach((description) => description.classList.remove(styles.animate));
+      slideShapes.forEach((slideShape) => slideShape.classList.remove(styles.shapeAnimate));
+      stick.forEach((stick) => stick.classList.remove(styles.animate));
+      urlTitles.forEach((urlTitles) => urlTitles.classList.remove(styles.urlTitleAnimation));
+      imageTitles.forEach((imageTitle) => imageTitle.classList.remove(styles.imageTitleAnimation));
+      
+      setTimeout(() => {
+        descriptions.forEach((description) => description.classList.add(styles.animate));
+        slideShapes.forEach((slideShape) => slideShape.classList.add(styles.shapeAnimate));
+        stick.forEach((stick) => stick.classList.add(styles.animate));
+        urlTitles.forEach((urlTitles) => urlTitles.classList.add(styles.urlTitleAnimation));
+        imageTitles.forEach((imageTitle) => imageTitle.classList.add(styles.imageTitleAnimation));
+      }, 100); 
+    };
+    
+    
+    
+
     const settings = {
       arrows: false,
       dots: true,
-      infinite: true,
+      infinite: this.castToObject<Card[]>("header").length > 1,
       speed: 1500,
       autoplay: true,
+      fade: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      beforeChange: handleBeforeChange,
       dotsClass: this.decorateCSS("dots"),
       customPaging: function (i: number) {
         return (
@@ -237,13 +272,17 @@ class Header32 extends BaseHeader {
 
     const hasleftButtonIcon = this.getPropValue("leftButtonIcon");
     const hasrightButtonIcon = this.getPropValue("rightButtonIcon");
-    const enableOverlay = this.getPropValue("enableOverlay");
+    const enableOverlay: boolean = this.getPropValue("enableOverlay");
+    const enableBackgroundImageOverlay = this.getPropValue("enableBackgroundImageOverlay");
+
+    
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("slider-parent")}>
+              
               <Slider
                 {...settings}
                 className={this.decorateCSS("carousel")}
@@ -258,62 +297,70 @@ class Header32 extends BaseHeader {
                       >
                         <div
                           className={this.decorateCSS("content")}
-                          style={{
-                            backgroundImage: `url(${item.backgroundImage})`,
-                          }}
+                          style={{ background: `url(${item.backgroundImage})` }}
                         >
-                          <div className={this.decorateCSS("content-inner")}>
+
+                          <div className={`
+                            ${this.decorateCSS("content-inner")}
+                            ${enableBackgroundImageOverlay
+                              ? this.decorateCSS("background-overlay")
+                              : ""
+                            }
+                            `}>
                             {enableOverlay && (
                               <div
-                                className={this.decorateCSS("slide-shape")}
+                                className={this.decorateCSS("slideShape")}
                               ></div>
                             )}
 
                             {this.castToString(item.imageTitle) && (
-                              <h2 className={this.decorateCSS("image-title")}>
+                              <h2 className={this.decorateCSS("imageTitle")}>
                                 {item.imageTitle}
                               </h2>
                             )}
 
                             {(this.castToString(item.imageDescription) ||
                               this.castToString(item.urlTitle)) && (
-                              <div
-                                className={this.decorateCSS("image-details")}
-                              >
-                                {this.castToString(item.imageDescription) && (
-                                  <p
-                                    className={this.decorateCSS("description")}
-                                  >
-                                    {item.imageDescription}
-                                  </p>
-                                )}
-
                                 <div
-                                  className={this.decorateCSS("stick")}
-                                ></div>
-
-                                {this.castToString(item.urlTitle) && (
-                                  <div
-                                    className={this.decorateCSS(
-                                      "url-container"
-                                    )}
-                                  >
-                                    <ComposerLink
-                                      key={`hdr-32-${index}`}
-                                      path={item.url}
+                                  className={this.decorateCSS("image-details")}
+                                >
+                                  {this.castToString(item.imageDescription) && (
+                                    <p
+                                      className={this.decorateCSS("description")}
                                     >
-                                      <p
-                                        className={this.decorateCSS(
-                                          "url-title"
-                                        )}
+                                      {item.imageDescription}
+                                    </p>
+                                  )}
+
+                                  {this.castToString(item.imageDescription) &&
+                                    this.castToString(item.urlTitle) &&
+                                    <div
+                                      className={this.decorateCSS("stick")}
+                                    ></div>
+                                  }
+
+                                  {this.castToString(item.urlTitle) && (
+                                    <div
+                                      className={this.decorateCSS(
+                                        "url-container"
+                                      )}
+                                    >
+                                      <ComposerLink
+                                        key={`hdr-32-${index}`}
+                                        path={item.url}
                                       >
-                                        {item.urlTitle}
-                                      </p>
-                                    </ComposerLink>
-                                  </div>
-                                )}
-                              </div>
-                            )}
+                                        <p
+                                          className={this.decorateCSS(
+                                            "urlTitles"
+                                          )}
+                                        >
+                                          {item.urlTitle}
+                                        </p>
+                                      </ComposerLink>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
 
                             {(hasleftButtonIcon || hasrightButtonIcon) && (
                               <div className={this.decorateCSS("nav-buttons")}>
