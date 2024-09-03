@@ -36,10 +36,10 @@ class Feature4 extends BaseFeature {
         "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/clear-02-1.jpg",
     });
     this.addProp({
-      type: "image",
+      type: "boolean",
       key: "imageOverlay",
       displayer: "image Overlay",
-      value: "",
+      value: true,
     });
     this.addProp({
       type: "string",
@@ -424,13 +424,18 @@ class Feature4 extends BaseFeature {
     const featuredTitle = this.getPropValue("title", { as_string: true });
     const cards = this.castToObject<Card[]>("cards");
     const backgroundImage = this.getPropValue("backgroundImage");
-    const imageOverlay = this.getPropValue("imageOverlay");
+    const imageOverlay: boolean = this.getPropValue("imageOverlay");
     const itemCount = this.getPropValue("itemCount");
 
     console.log("cards:", cards);
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+        }}
+        className={this.decorateCSS("container")}
+      >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(featuredSubtitle || featuredTitle) && (
@@ -438,22 +443,10 @@ class Feature4 extends BaseFeature {
                 className={this.decorateCSS("featured-card")}
                 style={{ width: `${90 / itemCount}%` }}
               >
-                <div
-                  style={{
-                    width: "100%",
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                  className={this.decorateCSS("container")}
-                ></div>
                 {imageOverlay && (
                   <div
                     className={this.decorateCSS("overlay")}
                     style={{
-                      backgroundImage: `url(${imageOverlay})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
                       position: "absolute",
                       top: 0,
                       left: 0,
@@ -534,7 +527,12 @@ class Feature4 extends BaseFeature {
                     className={this.decorateCSS("overlay")}
                     style={{ backgroundImage: `url(${card.image})` }}
                   >
-                    <div className={this.decorateCSS("overlay-content")}>
+                    <div
+                      className={`
+                        ${this.decorateCSS("overlay-content")}
+                        ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
+                        `}
+                    >
                       {descExist && (
                         <p className={this.decorateCSS("long-text")}>
                           {card.description}
