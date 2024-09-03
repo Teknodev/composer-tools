@@ -11,7 +11,7 @@
       justify-content: center;
       align-items: center;
       
-      .page {
+       .page {
         position: relative;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -29,6 +29,11 @@
         margin: 0 50px;
         padding: 20px;
 
+        &.single-page{
+          grid-template-columns: 1fr;
+        }
+
+
         .exit-icon{
           display: flex;
           top: 10px;
@@ -40,7 +45,6 @@
         
         
         .left-page{
-          flex: 1;
           height: 100%;
           position: relative;
           .image {
@@ -52,9 +56,10 @@
             border-radius: 10px;
           }
         }
+
+        
         .right-page {
           height: 100%;
-          flex: 1;
           justify-content: center;
           align-items: center;
           flex-direction: column;
@@ -147,6 +152,11 @@
 
         
       }
+    .singlepage{
+      width: 100%;
+      height: auto;
+
+    }
     }
   }
 

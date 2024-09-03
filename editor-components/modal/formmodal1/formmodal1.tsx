@@ -431,7 +431,7 @@ class FormModal1 extends BaseModal {
 
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
+          <div className={`${this.decorateCSS("page")} ${!imageVal && this.decorateCSS("single-page")}`}>
             <div className={this.decorateCSS("exit-icon")}>
               <ComposerModalClose>
                 <ComposerIcon
@@ -440,6 +440,7 @@ class FormModal1 extends BaseModal {
                 />
               </ComposerModalClose>
             </div>
+
 
             {imageVal && (
               <div className={this.decorateCSS("left-page")}>
@@ -450,6 +451,9 @@ class FormModal1 extends BaseModal {
                 />
               </div>
             )}
+
+
+
             {hasRightPageProps && (
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("right-page-content")}>
