@@ -293,7 +293,7 @@ class Content16 extends BaseContent {
     const settings = {
       arrows: false,
       dots: false,
-      infinite: true,
+      infinite: false,
       speed: 725,
       autoplay: true,
       autoplaySpeed: 3000,
