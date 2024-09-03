@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats2.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   amount: number;
@@ -37,6 +38,13 @@ class Stats2Page extends BaseStats {
       key: "contactButton",
       displayer: "Button Content",
       value: "LET'S TALK NOW",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "contactButtonIcon",
+      displayer: "Button Icon",
+      value: "MdMailOutline",
     });
 
     this.addProp({
@@ -132,36 +140,50 @@ class Stats2Page extends BaseStats {
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const animationDuration = this.getPropValue("animation-duration") as number;
-
+   const subHeader = this.castToString(this.getPropValue("subHeader"));
+   
+    const header = this.castToString(this.getPropValue("header"));
+    const contactButton = this.castToString(this.getPropValue("contactButton"));
+    const contactButtonIcon = this.getPropValue("contactButtonIcon");
+    const hasHeader = Boolean(header);
+  
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header-wrapper")}>
-            {this.getPropValue("header") && (
-              <div className={this.decorateCSS("header")}>{this.getPropValue("header")}</div>
+            {header && (
+              <div className={this.decorateCSS("header")}>{header}</div>
             )}
-
-            {this.getPropValue("subHeader") && (
+  
+            {subHeader && (
               <div className={this.decorateCSS("subHeader")}>
-                {this.getPropValue("subHeader")}
-                {this.getPropValue("contactButton") && (
+                {subHeader}
+                {(contactButton || contactButtonIcon) && (
                   <button className={this.decorateCSS("contact-button")}>
-                    {this.getPropValue("contactButton")}
+                    {contactButton}
+                    {contactButtonIcon && (
+                      <ComposerIcon
+                        propsIcon={{ className: this.decorateCSS("contact-button-icon") }}
+                        name={contactButtonIcon}
+                      />
+                    )}
                   </button>
                 )}
               </div>
             )}
           </div>
-
-          <div className={this.decorateCSS("cards-container")}>
-            {cards.map((card, index) => (
-              <AnimatedCard key={index} card={card} animationDuration={animationDuration} styles={styles} />
-            ))}
-          </div>
+  
+          {cards.length > 0 && (
+            <div className={this.decorateCSS("cards-container")} style={{ top: hasHeader ? '245px' : '0' }}>
+              {cards.map((card, index) => (
+                <AnimatedCard key={index} card={card} animationDuration={animationDuration} styles={styles} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
-  }
+  }  
 }
 
 type AnimatedCardProps = {

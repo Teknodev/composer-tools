@@ -31,8 +31,9 @@
           margin-top: 80px;
           width: 48%;
           font-size: 18px;
-          top: 0;
+          top: 100px;
           display: unset;
+          line-height: 1.5;
   
           .contact-button {
             display: flex;
@@ -44,7 +45,7 @@
             background: var(--composer-secondary-color);
             color: var(--composer-font-color-secondary);
             transition: transform 0.4s ease;
-            font-size: 22px;
+            font-size: 14px;
             cursor: pointer;
   
             &:hover {
@@ -53,12 +54,19 @@
               box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
               transform: translateY(-2px);
             }
+
+            .contact-button-icon {
+              margin-left: 8px;
+              font-size: 24px;
+              color: var(--composer-font-color-secondary);
+            }
           }
         }
       }
   
       .cards-container {
         position: relative;
+        align-content: baseline;
         justify-content: flex-start;
         align-items: flex-start;
         top: 245px;
@@ -85,26 +93,35 @@
         border-left: 1px solid #e4e4e4;
         border-right: 1px solid #e4e4e4;
         border-bottom: 1px solid #e4e4e4;
-  
+    
         .card-text {
-          position: relative;
-          width: 68%;
-          left: 30px;
-          font-size: 1.6rem;
-          text-align: left;
-          word-break: break-word;
-          white-space: normal;
-          text-overflow: ellipsis;
+            position: relative;
+            width: 68%;
+            left: 30px;
+            font-size: 1.6rem;
+            text-align: left;
+            word-break: break-word;
+            white-space: normal;
+            text-overflow: ellipsis;
+            line-height: 1.5;
         }
-  
+    
         .card-amount {
-          position: relative;
-          width: 28%;
-          left: 60px;
-          top: 20px;
-          font-size: 4rem;
-          font-weight: bold;
-          color: #333;
+            position: relative;
+            width: 28%;
+            left: 60px;
+            top: 20px;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        &:nth-last-child(-n+2) {
+          border-bottom: none;
+        }
+
+        &:nth-child(odd) {
+          border-right: none;
         }
       }
   
@@ -128,4 +145,3 @@
       }
     }
   }
-  
