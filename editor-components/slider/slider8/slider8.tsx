@@ -109,7 +109,7 @@ class Slider8 extends BaseSlider {
               type: "string",
               key: "imagetitle",
               displayer: "Image Title",
-              value: "The Light House",
+              value: "The Lighthouse",
             },
             {
               type: "page",
@@ -173,13 +173,6 @@ class Slider8 extends BaseSlider {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "textAnim",
-      displayer: "Text Animation",
-      value: true,
-    });
-
-    this.addProp({
       type: "icon",
       key: "leftNavButton",
       displayer: "Left Button",
@@ -193,24 +186,41 @@ class Slider8 extends BaseSlider {
       value: "FaArrowRightLong",
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "lines-container",
+      displayer: "Lines Container",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Content Animation",
+      value: true,
+    });
+
     this.setComponentState("slider-ref", React.createRef());
-    this.setComponentState("prevIndex", 0);
-    this.setComponentState("currentIndex", 0);
-    this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-    this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
-    this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
+
+    this.setComponentState("activeSlide", 0);
   }
 
   getName(): string {
     return "Slider 8";
   }
 
-  changeCurrentSlide(slideIndex: number) {
-    this.setComponentState("prevIndex", this.getComponentState("currentIndex"));
-    this.setComponentState("currentIndex", slideIndex);
-  }
-
   render() {
+    const overlay = this.getPropValue("overlay");
+    const linesContainer = this.getPropValue("lines-container");
+    const animation: boolean = this.getPropValue("animation");
+
     const settings = {
       arrows: false,
       dots: true,
@@ -224,22 +234,20 @@ class Slider8 extends BaseSlider {
       verticalSwiping: true,
       dotsClass: this.decorateCSS("dots"),
       beforeChange: (oldIndex: number, newIndex: number) => {
-        this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
-        setTimeout(() => {
-          this.changeCurrentSlide(newIndex);
-        }, 1200);
-      },
-      afterChange: () => {
-        this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
-        this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-        this.setComponentState(
-          "descriptionAnimationClass",
-          "animate__fadeInUp"
-        );
+        this.setComponentState("activeSlide", newIndex);
       },
     };
+
+    const shouldDisplayOverlay = (index: number): boolean => {
+      const shouldDisplay =
+        (!!this.castToObject<Card[]>("header")[index].backgroundImage ||
+          !!this.castToObject<Card[]>("header")[index].image) &&
+        overlay;
+      console.log("shouldDisplay: ", shouldDisplay);
+
+      return shouldDisplay;
+    };
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -263,8 +271,37 @@ class Slider8 extends BaseSlider {
                             backgroundImage: `url("${item.backgroundImage}")`,
                           }}
                         >
-                          <div className={this.decorateCSS("overlay")}></div>
-                          <div className={this.decorateCSS("content-div")}>
+                          {shouldDisplayOverlay(index) === true && (
+                            <div className={this.decorateCSS("overlay")}></div>
+                          )}
+
+                          <div
+                            className={`
+                          ${this.decorateCSS("content-div")}
+                           ${
+                             animation
+                               ? this.decorateCSS("with-transition")
+                               : ""
+                           }
+                             ${
+                               this.getComponentState("activeSlide") === index
+                                 ? this.decorateCSS("fix-location")
+                                 : ""
+                             }
+                          `}
+                          >
+                            {linesContainer && (
+                              <div
+                                className={this.decorateCSS("lines-container")}
+                              >
+                                <div
+                                  className={this.decorateCSS("line-1")}
+                                ></div>
+                                <div
+                                  className={this.decorateCSS("line-2")}
+                                ></div>
+                              </div>
+                            )}
                             <div
                               className={this.decorateCSS("image")}
                               style={{ backgroundImage: `url(${item.image})` }}

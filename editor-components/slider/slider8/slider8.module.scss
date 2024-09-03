@@ -69,13 +69,15 @@
             border-radius: 10px;
 
             .content {
+              position: relative;
+
               .overlay {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-color: rgba(0, 0, 0, 0.2);
+                background-color: rgba(0, 0, 0, 0.8);
                 z-index: 0;
               }
 
@@ -92,28 +94,37 @@
                 overflow: hidden;
                 object-fit: cover;
                 padding: 100px;
+                transform: translateY(-100px);
+                opacity: 0;
 
-                &::before,
-                &::after {
-                  content: "";
-                  position: absolute;
-                  background-color: white;
-                  border-radius: 20px;
+                &.with-transition {
+                  transition: 2500ms;
+                }
+
+                &.fix-location {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+
+                .lines-container {
                   z-index: 1;
-                }
-
-                &::before {
+                  top: 25%;
                   margin-left: 50px;
-                  top: 175px;
-                  height: 6px;
-                  width: 125px;
-                }
 
-                &::after {
-                  margin-left: 50px;
-                  top: 175px;
-                  height: 2px;
-                  width: 225px;
+
+                  .line-1 {
+                    height: 1px;
+                    width: 225px;
+                    background-color: white;
+                  }
+
+                  .line-2 {
+                    height: 8px;
+                    margin-top: -3px;
+                    border-radius: 20px;
+                    width: 125px;
+                    background-color: white;
+                  }
                 }
 
                 .image {
@@ -126,7 +137,7 @@
                   background-position: center;
                   object-fit: cover;
                   z-index: 0;
-                  background-color: rgba(0, 0, 0, 0.4);
+
                 }
 
                 h3 {
@@ -144,7 +155,6 @@
                 .buttons {
                   display: flex;
                   flex-wrap: wrap;
-                  gap: 10px;
                   width: 100%;
                   margin-left: 50px;
                   margin-bottom: 50px;
@@ -157,7 +167,7 @@
                     padding: 10px;
                     background-color: transparent;
                     border: none;
-                    border-radius: var(--button-radius);
+                    border-radius: 20px;
                     border: 1px solid white;
                     display: flex;
                     align-items: center;
@@ -295,9 +305,30 @@
                     height: 80%;
                   }
 
+                  h3 {
+                    margin: 30px !important;
+                    margin-top: 40px;
+                    font-size: 4rem;
+                    margin-left: 20px;
+                    margin-bottom: 40px;
+                  }
+
                   .item-title {
                     margin: 30px;
                     font-size: 4rem;
+                  }
+
+                  .lines-container {
+                    margin-left: 30px;
+                  }
+
+                  .line-1 {
+                    width: 140px !important;
+                  }
+
+                  .line-2 {
+                    width: 100px !important;
+
                   }
 
                   .buttons {
@@ -305,9 +336,14 @@
                     margin-left: 20px;
                     margin-bottom: 30px;
 
+
                     .button {
                       min-width: 150px;
-                      font-size: 1rem;
+                      font-size: 1.2rem;
+                      border-radius: 20px;
+                      text-align: center;
+                      padding-left: 15px;
+                      margin-left: 10px;
                     }
                   }
 
@@ -340,7 +376,7 @@
 
         .slider-parent {
           .dots {
-            margin-left: auto;
+            margin-left: 100px;
             rotate: 90deg;
             top: 80%;
             right: auto;
@@ -372,6 +408,27 @@
                     height: 80%;
                   }
 
+                  h3 {
+                    font-size: 4rem;
+                    line-height: 1.4;
+                    margin: 30px;
+                    margin-bottom: 10px !important;
+                  }
+
+
+                  .lines-container {
+                    margin-left: 30px;
+                  }
+
+                  .line-1 {
+                    width: 140px !important;
+                  }
+
+                  .line-2 {
+                    width: 80px !important;
+
+                  }
+
                   .item-title {
                     margin-top: 30px;
                     font-size: 3rem;
@@ -382,12 +439,18 @@
 
                     .button {
                       min-width: 100px;
-                      font-size: 0.8rem;
+                      font-size: 1.2rem;
+                      border-radius: 20px;
+                      text-align: center;
+                      padding-left: 15px;
+                      margin-left: 15px;
+
                     }
                   }
 
                   .nav-buttons {
                     display: none;
+
                   }
                 }
               }
