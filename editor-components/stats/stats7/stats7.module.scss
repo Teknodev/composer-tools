@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px 10px;
   
   .max-content {
     max-width: var(--composer-content-width);
@@ -15,7 +15,7 @@
       padding: 20px;
       margin: auto;
       max-width: var(--composer-content-width);
-
+       width: 100%;
       .subTitle {
         display: inline-block;
         font-size: 12px;
@@ -38,7 +38,7 @@
       .description {
         text-align: left;
         font-style: normal;
-        width: 60%;
+        width: 80%;
         margin: 0 0 0 70px;
         font-size: 16px;
         color: var(--composer-font-color-primary);
@@ -227,8 +227,7 @@
       }
 
       .progress-container {
-        margin-left: 20px;
-
+         margin: 20px 0 0 20px;
         .title {
           font-size: 8px;
         }
