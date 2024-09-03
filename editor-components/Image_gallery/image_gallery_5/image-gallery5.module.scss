@@ -4,21 +4,33 @@
 
   .max-content {
     width: var(--composer-content-width);
-    
+    margin: 0 auto;
+
     .images {
+      justify-content: center;
+      justify-items: center;
       width: 100%;
       padding: 20px;
       display: grid;
-      gap: 25px;
+      grid-gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      box-sizing: border-box;
       .image-container {
+        justify-content: center;
+        display: flex;
+        text-align: center;
         max-height: 559.975px;
         max-width: 470.388px;
         overflow: hidden;
         position: relative;
         cursor: pointer;
         .image {
+          display: grid;
+          margin: auto;
           height: 100%;
           width: 100%;
+          grid-gap: 20px;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
           object-fit: cover;
           transition: transform 0.3s ease-in-out;
           &:hover {
@@ -29,8 +41,9 @@
       }
     }
     .overlay {
-      position: absolute;
+      position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.9);
@@ -39,68 +52,71 @@
       align-items: center;
       overflow: auto;
       cursor: zoom-out;
-      
+      z-index: 10;
       .overlay-content {
-        position: absolute;
+        position: relative;
         display: flex;
         justify-content: center;
         width: 100%;
-        top: 0;
-        
-        .middle-content{
+        .middle-content {
           display: flex;
           flex-direction: column;
           position: relative;
           max-height: 100%;
-          display: block;
-          line-height: 0;
           margin: auto;
-          top: 0;
           padding-bottom: 20px;
           width: 482px;
-          .close-button{
-            color: white;
-            background-color: transparent;
+          text-align: center;
+          .image-close-button {
+            position: absolute;
+            margin-top:auto;
+            padding: 30px;
+            top: -33px; 
+            right: -33px; 
+            background: none;
             border: none;
-            font-size: 24px;
-            width: 100%;
-            text-align: end;
-            cursor: zoom-out;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10; 
           }
           .large-image {
             max-height: 580px;
+            position: relative;
             cursor: pointer;
-            width: auto; 
+            width: auto;
             max-width: 100%;
-          } 
-          .gallery-image{
+          }
+          .gallery-image {
             position: absolute;
             bottom: 0;
             left: 0;
             font-size: 16px;
-            color: #CCC;
+            color: #ccc;
             word-wrap: break-word;
             width: fit-content;
           }
-          
-          .image-caption{
+
+          .image-caption {
             position: absolute;
             bottom: 0;
             right: 0;
-            color: #CCC;
+            color: #ccc;
             font-size: 16px;
             white-space: nowrap;
             width: fit-content;
           }
         }
-        .prev-button, .next-button {
+        .prev-button,
+        .next-button {
           position: absolute;
-          top: 20px;
+          top: 50px;
           background: transparent;
           color: white;
           border: none;
           cursor: pointer;
           font-size: 24px;
+          transform: translateY(-50%);
         }
         .prev-button {
           left: 20px;
@@ -116,13 +132,14 @@
 }
 
 @media screen and (max-width: 780px) {
-  .images{
+  .images {
+    width: 50%;
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 @media screen and (max-width: 475px) {
-  .images{
+  .images {
     display: grid !important;
     grid-template-columns: repeat(1, 1fr) !important;
   }

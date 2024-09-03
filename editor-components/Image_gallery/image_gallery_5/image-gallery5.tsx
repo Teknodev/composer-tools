@@ -1,10 +1,11 @@
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class ImageGalleryComponent5 extends BaseImageGallery {
-  constructor(probs?: any) {
-    super(probs, styles);
+  constructor(props?: any) {
+    super(props, styles);
 
     this.addProp({
       type: "array",
@@ -64,6 +65,34 @@ class ImageGalleryComponent5 extends BaseImageGallery {
       max: 5,
     });
 
+    this.addProp({
+      type: "string",
+      key: "prevButtonText",
+      displayer: "Previous Button Text",
+      value: "<",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "nextButtonText",
+      displayer: "Next Button Text",
+      value: ">",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "imageCaptionText",
+      displayer: "Image Caption Text",
+      value: "Gallery Image",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      value: "fa-solid fa-times", 
+    });
+
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
   }
@@ -99,8 +128,10 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     const galleries = this.getPropValue("gallery");
     const isImageClicked = this.getComponentState("is_image_clicked");
     const clickedImageIndex = this.getComponentState("clicked_image_index");
-
-    console.log(galleries);
+    const prevButtonText = this.getPropValue("prevButtonText");
+    const nextButtonText = this.getPropValue("nextButtonText");
+    const imageCaptionText = this.getPropValue("imageCaptionText");
+    const closeIcon = this.getPropValue("closeIcon");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -130,13 +161,15 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               onClick={() => this.handleCloseClick()}
             >
               <div className={this.decorateCSS("overlay-content")}>
+                <button
+                  className={this.decorateCSS("close-button")}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    this.handleCloseClick();
+                  }}
+                >
+                </button>
                 <div className={this.decorateCSS("middle-content")}>
-                  <button
-                    className={this.decorateCSS("close-button")}
-                    onClick={() => this.handleCloseClick()}
-                  >
-                    ×
-                  </button>
                   <img
                     src={galleries[clickedImageIndex].value}
                     alt=""
@@ -146,11 +179,14 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                       this.handleNextImage();
                     }}
                   />
+                <button className={this.decorateCSS("image-close-button")}>
+                  <ComposerIcon name={closeIcon} />
+                </button>
                   <div className={this.decorateCSS("image-caption")}>
                     {clickedImageIndex + 1} of {galleries.length}
                   </div>
                   <div className={this.decorateCSS("gallery-image")}>
-                    Gallery Image
+                    {imageCaptionText}
                   </div>
                 </div>
                 <button
@@ -160,7 +196,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                     this.handlePrevImage();
                   }}
                 >
-                  &lt;
+                  {prevButtonText}
                 </button>
                 <button
                   className={this.decorateCSS("next-button")}
@@ -169,7 +205,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                     this.handleNextImage();
                   }}
                 >
-                  &gt;
+                  {nextButtonText}
                 </button>
               </div>
             </div>
