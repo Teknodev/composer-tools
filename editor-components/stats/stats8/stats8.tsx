@@ -48,6 +48,13 @@ class Stats8Page extends BaseStats {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showBackground",
+      displayer: "Show Background",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "stats",
       displayer: "Stats",
@@ -104,7 +111,7 @@ class Stats8Page extends BaseStats {
       type: "string",
       key: "overlayDescription",
       displayer: "Overlay Description",
-      value: "Years of Digital Experience",
+      value: "YEARS OF DIGITAL EXPERIENCE",
     });
 
     this.addProp({
@@ -155,7 +162,15 @@ class Stats8Page extends BaseStats {
   render() {
     const statsData = this.castToObject<ICard[]>("stats");
     const imageSrc = this.getPropValue("imageSrc");
-
+  
+    const title = this.castToString(this.getPropValue("title"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const description = this.castToString(this.getPropValue("description"));
+    const author = this.castToString(this.getPropValue("author"));
+    const authorRole = this.castToString(this.getPropValue("authorRole"));
+    const overlayNumber = this.getPropValue("overlayNumber");
+    const overlayDescription = this.castToString(this.getPropValue("overlayDescription"));
+  
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -165,40 +180,61 @@ class Stats8Page extends BaseStats {
                 this.decorateCSS("content") + (imageSrc ? "" : " full-width")
               }
             >
-              <h2
-                className={
-                  this.decorateCSS("title") +
-                  " " +
-                  this.decorateCSS("text-uppercase")
-                }
-              >
-                {this.getPropValue("title")}
-              </h2>
-              <h6 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h6>
-              <hr />
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-              <h5 className={this.decorateCSS("author")}>
-                {this.getPropValue("author")}
-              </h5>
+              {title && (
+                <h2
+                  className={
+                    this.decorateCSS("title") +
+                    " " +
+                    this.decorateCSS("text-uppercase")
+                  }
+                >
+                  {title}
+                </h2>
+              )}
+  
+              {subtitle && (
+                <h6 className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </h6>
+              )}
+  
+              {(title || subtitle) && <hr className={this.decorateCSS("inter")} />}
+  
+              {description && (
+                <p className={this.decorateCSS("description")}>
+                  {description}
+                </p>
+              )}
+  
+              {author && (
+                <h5 className={this.decorateCSS("author")}>
+                  {author}
+                </h5>
+              )}
+  
+              {authorRole && (
               <span className={this.decorateCSS("author-role")}>
-                {this.getPropValue("authorRole")}
+                {this.getPropValue("showBackground") && (
+                  <span className={this.decorateCSS("author-role-background")}></span>
+                )}
+                {authorRole}
               </span>
+              )}
+
               <div className={this.decorateCSS("stats")}>
                 {statsData.map(
                   (statData: ICard, indexStat: number) =>
                     statData.title &&
                     statData.description && (
-                      <div key={indexStat} className={this.decorateCSS("stat")}>
-                        <span className={this.decorateCSS("stat-title")}>
-                          {this.getComponentState(`number-${indexStat}`)}
-                        </span>
-                        <h5 className={this.decorateCSS("stat-description")}>
-                          {statData.description}
-                        </h5>
+                      <div className={this.decorateCSS("stat-border")}>
+                        <div key={indexStat} className={this.decorateCSS("stat")}>
+                          <span className={this.decorateCSS("stat-title")}>
+                            {this.getComponentState(`number-${indexStat}`)}
+                          </span>
+                          <h5 className={this.decorateCSS("stat-description")}>
+                            {statData.description}
+                          </h5>
+                        </div>
                       </div>
                     )
                 )}
@@ -208,14 +244,22 @@ class Stats8Page extends BaseStats {
           {imageSrc && (
             <div className={this.decorateCSS("stats2-page")}>
               <div className={this.decorateCSS("image-container")}>
-                <img src={imageSrc} alt="Digital Experience" />
-                <div className={this.decorateCSS("overlay")}>
-                  <span className={this.decorateCSS("number")}>
-                    {this.getPropValue("overlayNumber")}
-                  </span>
-                  <p className={this.decorateCSS("description")}>
-                    {this.getPropValue("overlayDescription")}
-                  </p>
+                <div className={this.decorateCSS("image-container-border")}>
+                  <img src={imageSrc} alt="Digital Experience" />
+                  {(overlayNumber || overlayDescription) && (
+                    <div className={this.decorateCSS("overlay")}>
+                      {overlayNumber && (
+                        <span className={this.decorateCSS("number")}>
+                          {overlayNumber}
+                        </span>
+                      )}
+                      {overlayDescription && (
+                        <p className={this.decorateCSS("description")}>
+                          {overlayDescription}
+                        </p>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -223,7 +267,7 @@ class Stats8Page extends BaseStats {
         </div>
       </div>
     );
-  }
+  }  
 }
 
 export default Stats8Page;
