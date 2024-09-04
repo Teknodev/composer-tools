@@ -290,21 +290,25 @@ class Content16 extends BaseContent {
   }
 
   render() {
+    const items = this.castToObject<CardType[]>("items").filter(
+      (item: CardType) => item.image || item.imageTitle || item.imageSubtitle || item.url
+    );
+    console.log("items", items.length)
     const settings = {
       arrows: false,
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 725,
       autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: 3,
+      slidesToShow: Math.min(items.length, 3),
       slidesToScroll: 1,
       responsive: [
         {
           breakpoint: 868,
           settings: {
             arrows: false,
-            slidesToShow: 2,
+            slidesToShow: Math.min(items.length, 2),
             slidesToScroll: 1,
           },
         },
@@ -314,7 +318,7 @@ class Content16 extends BaseContent {
           settings: {
             arrows: false,
             slidesToShow: 1,
-            slidesToScroll: 1,
+            slidesToScroll: Math.min(items.length, 1),
           },
         },
       ],
@@ -333,9 +337,7 @@ class Content16 extends BaseContent {
     const textUrl = rightText.find(item => item.key === "textUrl")?.value;
     const text = rightText.find(item => item.key === "text")?.value;
 
-    const items = this.castToObject<CardType[]>("items").filter(
-      (item: CardType) => item.image || item.imageTitle || item.imageSubtitle || item.url
-    );
+
     const sliderRef = this.getComponentState("slider-ref");
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
@@ -372,8 +374,8 @@ class Content16 extends BaseContent {
                 {title}
               </h1>
             )}
-            {isTitleExist && (
-              <hr className={`${this.decorateCSS("faint-line")} ${faintLine ? "" : this.decorateCSS("no-faint-line")}`} />
+            {faintLine && (
+              <hr className={this.decorateCSS("faint-line")} />
             )}
             {isSubTitleExist && (
               <h2 className={this.decorateCSS("subtitle")}>
@@ -381,10 +383,17 @@ class Content16 extends BaseContent {
               </h2>
             )}
           </header>
-
           <main className={this.decorateCSS("wrapper")}>
             {items.length > 0 && (
-              <div className={this.decorateCSS("slider-parent")}>
+              <div
+                className={
+                  items.length >= 3
+                    ? this.decorateCSS("slider-parent") // 3 veya daha fazla item varsa
+                    : items.length === 2
+                      ? this.decorateCSS("slider-parent-two") // 2 item varsa
+                      : this.decorateCSS("slider-parent-one") // 1 item varsa
+                }
+              >
                 {prevIcon && nextIcon ? (
                   <>
                     <button
@@ -415,38 +424,65 @@ class Content16 extends BaseContent {
                         name={nextIcon}
                       />
                     </button>
-                    <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
+                    <ComposerSlider
+                      ref={sliderRef}
+                      {...settings}
+                      className={this.decorateCSS("carousel")}
+                    >
                       {items.map((item: CardType, index: number) => (
                         <article
-                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index ? this.decorateCSS("prevSlide") : ""} ${this.getComponentState("nextSlide") === index ? this.decorateCSS("nextSlide") : ""}`}
+                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index
+                            ? this.decorateCSS("prevSlide")
+                            : ""
+                            } ${this.getComponentState("nextSlide") === index
+                              ? this.decorateCSS("nextSlide")
+                              : ""
+                            }`}
                           key={index}
                         >
-                          <div className={this.decorateCSS(this.castToString(item.imageTitle) ? "content-div" : "notitle-content-div")}>
+                          <div
+                            className={this.decorateCSS(
+                              this.castToString(item.imageTitle)
+                                ? "content-div"
+                                : "notitle-content-div"
+                            )}
+                          >
                             {item.image && (
                               <div className={this.decorateCSS("img-div")}>
                                 <ComposerLink path={item.url}>
                                   <img
-                                    alt={this.castToString(item.imageTitle) || this.castToString(item.imageSubtitle)}
+                                    alt={
+                                      this.castToString(item.imageTitle) ||
+                                      this.castToString(item.imageSubtitle)
+                                    }
                                     src={item.image}
                                     className={this.decorateCSS("img")}
                                   />
                                 </ComposerLink>
                               </div>
                             )}
-                            {(this.castToString(item.imageSubtitle) || this.castToString(item.imageTitle)) && (
-                              <div className={this.decorateCSS("item-page")}>
-                                {this.castToString(item.imageSubtitle) && (
-                                  <h3 className={this.decorateCSS("first-item")}>
-                                    {item.imageSubtitle}
-                                  </h3>
-                                )}
-                                {this.castToString(item.imageTitle) && (
-                                  <h2 className={`${this.decorateCSS("item-title")} ${disableAnimation ? this.decorateCSS("no-item-title") : ""}`}>
-                                    {item.imageTitle}
-                                  </h2>
-                                )}
-                              </div>
-                            )}
+                            {(this.castToString(item.imageSubtitle) ||
+                              this.castToString(item.imageTitle)) && (
+                                <div className={this.decorateCSS("item-page")}>
+                                  {this.castToString(item.imageSubtitle) && (
+                                    <h3 className={this.decorateCSS("first-item")}>
+                                      {item.imageSubtitle}
+                                    </h3>
+                                  )}
+                                  {this.castToString(item.imageTitle) && (
+                                    <h2
+                                      className={`${this.decorateCSS(
+                                        "item-title"
+                                      )} ${disableAnimation
+                                        ? this.decorateCSS("no-item-title")
+                                        : ""
+                                        }`}
+                                    >
+                                      {item.imageTitle}
+                                    </h2>
+                                  )}
+                                </div>
+                              )}
                           </div>
                         </article>
                       ))}
@@ -469,10 +505,20 @@ class Content16 extends BaseContent {
                         name={prevIcon}
                       />
                     </button>
-                    <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("prev-carousel")}>
+                    <ComposerSlider
+                      ref={sliderRef}
+                      {...settings}
+                      className={this.decorateCSS("prev-carousel")}
+                    >
                       {items.map((item: CardType, index: number) => (
                         <article
-                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index ? this.decorateCSS("prevSlide") : ""} ${this.getComponentState("nextSlide") === index ? this.decorateCSS("nextSlide") : ""}`}
+                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index
+                            ? this.decorateCSS("prevSlide")
+                            : ""
+                            } ${this.getComponentState("nextSlide") === index
+                              ? this.decorateCSS("nextSlide")
+                              : ""
+                            }`}
                           key={index}
                         >
                           <div className={this.decorateCSS("content-div")}>
@@ -480,27 +526,38 @@ class Content16 extends BaseContent {
                               <div className={this.decorateCSS("img-div")}>
                                 <ComposerLink path={item.url}>
                                   <img
-                                    alt={this.castToString(item.imageTitle) || this.castToString(item.imageSubtitle)}
+                                    alt={
+                                      this.castToString(item.imageTitle) ||
+                                      this.castToString(item.imageSubtitle)
+                                    }
                                     src={item.image}
                                     className={this.decorateCSS("img")}
                                   />
                                 </ComposerLink>
                               </div>
                             )}
-                            {(this.castToString(item.imageSubtitle) || this.castToString(item.imageTitle)) && (
-                              <div className={this.decorateCSS("item-page")}>
-                                {this.castToString(item.imageSubtitle) && (
-                                  <h3 className={this.decorateCSS("first-item")}>
-                                    {item.imageSubtitle}
-                                  </h3>
-                                )}
-                                {this.castToString(item.imageTitle) && (
-                                  <h2 className={`${this.decorateCSS("item-title")} ${disableAnimation ? this.decorateCSS("no-item-title") : ""}`}>
-                                    {item.imageTitle}
-                                  </h2>
-                                )}
-                              </div>
-                            )}
+                            {(this.castToString(item.imageSubtitle) ||
+                              this.castToString(item.imageTitle)) && (
+                                <div className={this.decorateCSS("item-page")}>
+                                  {this.castToString(item.imageSubtitle) && (
+                                    <h3 className={this.decorateCSS("first-item")}>
+                                      {item.imageSubtitle}
+                                    </h3>
+                                  )}
+                                  {this.castToString(item.imageTitle) && (
+                                    <h2
+                                      className={`${this.decorateCSS(
+                                        "item-title"
+                                      )} ${disableAnimation
+                                        ? this.decorateCSS("no-item-title")
+                                        : ""
+                                        }`}
+                                    >
+                                      {item.imageTitle}
+                                    </h2>
+                                  )}
+                                </div>
+                              )}
                           </div>
                         </article>
                       ))}
@@ -523,10 +580,20 @@ class Content16 extends BaseContent {
                         name={nextIcon}
                       />
                     </button>
-                    <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("next-carousel")}>
+                    <ComposerSlider
+                      ref={sliderRef}
+                      {...settings}
+                      className={this.decorateCSS("next-carousel")}
+                    >
                       {items.map((item: CardType, index: number) => (
                         <article
-                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index ? this.decorateCSS("prevSlide") : ""} ${this.getComponentState("nextSlide") === index ? this.decorateCSS("nextSlide") : ""}`}
+                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index
+                            ? this.decorateCSS("prevSlide")
+                            : ""
+                            } ${this.getComponentState("nextSlide") === index
+                              ? this.decorateCSS("nextSlide")
+                              : ""
+                            }`}
                           key={index}
                         >
                           <div className={this.decorateCSS("content-div")}>
@@ -534,90 +601,124 @@ class Content16 extends BaseContent {
                               <div className={this.decorateCSS("img-div")}>
                                 <ComposerLink path={item.url}>
                                   <img
-                                    alt={this.castToString(item.imageTitle) || this.castToString(item.imageSubtitle)}
+                                    alt={
+                                      this.castToString(item.imageTitle) ||
+                                      this.castToString(item.imageSubtitle)
+                                    }
                                     src={item.image}
                                     className={this.decorateCSS("img")}
                                   />
                                 </ComposerLink>
                               </div>
                             )}
-                            {(this.castToString(item.imageSubtitle) || this.castToString(item.imageTitle)) && (
-                              <div className={this.decorateCSS("item-page")}>
-                                {this.castToString(item.imageSubtitle) && (
-                                  <h3 className={this.decorateCSS("first-item")}>
-                                    {item.imageSubtitle}
-                                  </h3>
-                                )}
-                                {this.castToString(item.imageTitle) && (
-                                  <h2 className={`${this.decorateCSS("item-title")} ${disableAnimation ? this.decorateCSS("no-item-title") : ""}`}>
-                                    {item.imageTitle}
-                                  </h2>
-                                )}
-                              </div>
-                            )}
+                            {(this.castToString(item.imageSubtitle) ||
+                              this.castToString(item.imageTitle)) && (
+                                <div className={this.decorateCSS("item-page")}>
+                                  {this.castToString(item.imageSubtitle) && (
+                                    <h3 className={this.decorateCSS("first-item")}>
+                                      {item.imageSubtitle}
+                                    </h3>
+                                  )}
+                                  {this.castToString(item.imageTitle) && (
+                                    <h2
+                                      className={`${this.decorateCSS(
+                                        "item-title"
+                                      )} ${disableAnimation
+                                        ? this.decorateCSS("no-item-title")
+                                        : ""
+                                        }`}
+                                    >
+                                      {item.imageTitle}
+                                    </h2>
+                                  )}
+                                </div>
+                              )}
                           </div>
                         </article>
                       ))}
                     </ComposerSlider>
                     {this.renderDots()}
                   </>
-                ) : (<>
-                  <button
-                    onClick={() => {
-                      sliderRef.current.slickNext();
-                    }}
-                    className={this.decorateCSS("slider-button-right")}
-                  >
-                    <ComposerIcon
-                      propsIcon={{
-                        className: this.decorateCSS("slider-arrow-icon"),
-                        size: "20px",
+                ) : (
+                  <>
+                    <button
+                      onClick={() => {
+                        sliderRef.current.slickNext();
                       }}
-                      name={nextIcon}
-                    />
-                  </button>
-                  <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("no-icon-carousel")}>
-                    {items.map((item: CardType, index: number) => (
-                      <article
-                        className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index ? this.decorateCSS("prevSlide") : ""} ${this.getComponentState("nextSlide") === index ? this.decorateCSS("nextSlide") : ""}`}
-                        key={index}
-                      >
-                        <div className={this.decorateCSS("content-div")}>
-                          {item.image && (
-                            <div className={this.decorateCSS("img-div")}>
-                              <ComposerLink path={item.url}>
-                                <img
-                                  alt={this.castToString(item.imageTitle) || this.castToString(item.imageSubtitle)}
-                                  src={item.image}
-                                  className={this.decorateCSS("img")}
-                                />
-                              </ComposerLink>
-                            </div>
-                          )}
-                          {(this.castToString(item.imageSubtitle) || this.castToString(item.imageTitle)) && (
-                            <div className={this.decorateCSS("item-page")}>
-                              {this.castToString(item.imageSubtitle) && (
-                                <h3 className={this.decorateCSS("first-item")}>
-                                  {item.imageSubtitle}
-                                </h3>
+                      className={this.decorateCSS("slider-button-right")}
+                    >
+                      <ComposerIcon
+                        propsIcon={{
+                          className: this.decorateCSS("slider-arrow-icon"),
+                          size: "20px",
+                        }}
+                        name={nextIcon}
+                      />
+                    </button>
+                    <ComposerSlider
+                      ref={sliderRef}
+                      {...settings}
+                      className={this.decorateCSS("no-icon-carousel")}
+                    >
+                      {items.map((item: CardType, index: number) => (
+                        <article
+                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index
+                            ? this.decorateCSS("prevSlide")
+                            : ""
+                            } ${this.getComponentState("nextSlide") === index
+                              ? this.decorateCSS("nextSlide")
+                              : ""
+                            }`}
+                          key={index}
+                        >
+                          <div className={this.decorateCSS("content-div")}>
+                            {item.image && (
+                              <div className={this.decorateCSS("img-div")}>
+                                <ComposerLink path={item.url}>
+                                  <img
+                                    alt={
+                                      this.castToString(item.imageTitle) ||
+                                      this.castToString(item.imageSubtitle)
+                                    }
+                                    src={item.image}
+                                    className={this.decorateCSS("img")}
+                                  />
+                                </ComposerLink>
+                              </div>
+                            )}
+                            {(this.castToString(item.imageSubtitle) ||
+                              this.castToString(item.imageTitle)) && (
+                                <div className={this.decorateCSS("item-page")}>
+                                  {this.castToString(item.imageSubtitle) && (
+                                    <h3 className={this.decorateCSS("first-item")}>
+                                      {item.imageSubtitle}
+                                    </h3>
+                                  )}
+                                  {this.castToString(item.imageTitle) && (
+                                    <h2
+                                      className={`${this.decorateCSS(
+                                        "item-title"
+                                      )} ${disableAnimation
+                                        ? this.decorateCSS("no-item-title")
+                                        : ""
+                                        }`}
+                                    >
+                                      {item.imageTitle}
+                                    </h2>
+                                  )}
+                                </div>
                               )}
-                              {this.castToString(item.imageTitle) && (
-                                <h2 className={`${this.decorateCSS("item-title")} ${disableAnimation ? this.decorateCSS("no-item-title") : ""}`}>
-                                  {item.imageTitle}
-                                </h2>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      </article>
-                    ))}
-                  </ComposerSlider>
-                  {this.renderDots()}
-                </>
+                          </div>
+                        </article>
+                      ))}
+                    </ComposerSlider>
+                    {this.renderDots()}
+                  </>
                 )}
               </div>
             )}
           </main>
+
         </div>
       </div>
     );
