@@ -14,7 +14,7 @@ type Emoji = {
 
 type ValidationItems = {
   inputValidationText: string;
-}
+};
 
 class FeedbackModal1 extends BaseModal {
   constructor(props?: any) {
@@ -45,7 +45,7 @@ class FeedbackModal1 extends BaseModal {
       key: "divider",
       displayer: "Line",
       value: true,
-    })
+    });
 
     this.addProp({
       type: "string",
@@ -58,7 +58,8 @@ class FeedbackModal1 extends BaseModal {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Your input is valuable in helping us better understand your needs and tailor our service accordingly.",
+      value:
+        "Your input is valuable in helping us better understand your needs and tailor our service accordingly.",
     });
 
     this.addProp({
@@ -84,7 +85,8 @@ class FeedbackModal1 extends BaseModal {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723e1e0b009002c36f0e1?alt=media"
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723e1e0b009002c36f0e1?alt=media",
             },
             {
               type: "string",
@@ -109,7 +111,8 @@ class FeedbackModal1 extends BaseModal {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723c6e0b009002c36f0cc?alt=media"
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723c6e0b009002c36f0cc?alt=media",
             },
             {
               type: "string",
@@ -134,7 +137,8 @@ class FeedbackModal1 extends BaseModal {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723b3e0b009002c36f0bd?alt=media"
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c723b3e0b009002c36f0bd?alt=media",
             },
             {
               type: "string",
@@ -159,7 +163,8 @@ class FeedbackModal1 extends BaseModal {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c7239ce0b009002c36f0ac?alt=media"
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c7239ce0b009002c36f0ac?alt=media",
             },
             {
               type: "string",
@@ -184,7 +189,8 @@ class FeedbackModal1 extends BaseModal {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c72379e0b009002c36f09b?alt=media"
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c72379e0b009002c36f09b?alt=media",
             },
             {
               type: "string",
@@ -234,7 +240,9 @@ class FeedbackModal1 extends BaseModal {
   }
 
   handleEmojiClick(emojiId: number) {
-    const emojiElements = document.querySelectorAll(`.${styles.feedbackModalEmoji}`);
+    const emojiElements = document.querySelectorAll(
+      `.${styles.feedbackModalEmoji}`
+    );
     emojiElements.forEach((element) => {
       element.classList.remove(styles.selected);
     });
@@ -247,7 +255,11 @@ class FeedbackModal1 extends BaseModal {
     }
   }
 
-  createValidationSchema(minLength: number, minLengthMessage: string, requiredMessage: string) {
+  createValidationSchema(
+    minLength: number,
+    minLengthMessage: string,
+    requiredMessage: string
+  ) {
     return Yup.object().shape({
       message: Yup.string()
         .min(minLength, minLengthMessage)
@@ -261,8 +273,12 @@ class FeedbackModal1 extends BaseModal {
 
   render() {
     const isTitleExist = this.castToString(this.getPropValue("title"));
-    const isHeaderTitleExist = this.castToString(this.getPropValue("headerTitle"));
-    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const isHeaderTitleExist = this.castToString(
+      this.getPropValue("headerTitle")
+    );
+    const isDescriptionExist = this.castToString(
+      this.getPropValue("description")
+    );
     const isFeedbackIconExist = this.getPropValue("feedback_icon");
     const inputPlaceholder = this.castToString(this.getPropValue("input_text"));
     const buttonval = this.castToString(this.getPropValue("buttonText"));
@@ -271,24 +287,30 @@ class FeedbackModal1 extends BaseModal {
     const emojiExist = emojis.length > 0;
 
     const minLenght = this.getPropValue("minLength");
-    const minLengthMessage = this.castToString(this.getPropValue("minLengthMessage"));
-    const requiredMessage = this.castToString(this.getPropValue("requiredMessage"));
+    const minLengthMessage = this.castToString(
+      this.getPropValue("minLengthMessage")
+    );
+    const requiredMessage = this.castToString(
+      this.getPropValue("requiredMessage")
+    );
 
     return (
       <div className={this.decorateCSS("feedbackModal")}>
         <div className={this.decorateCSS("feedbackModalHeader")}>
+          {isFeedbackIconExist && (
+            <ComposerIcon
+              name={this.getPropValue("feedback_icon")}
+              propsIcon={{
+                className: `${this.decorateCSS("icon")}`,
+              }}
+            />
+          )}
 
-          {isFeedbackIconExist && <ComposerIcon
-            name={this.getPropValue("feedback_icon")}
-            propsIcon={{
-              className: `${this.decorateCSS("icon")}`,
-            }}
-          />}
-
-          {isTitleExist &&
+          {isTitleExist && (
             <h1 className={this.decorateCSS("feedbackModalHeaderh1")}>
               {this.getPropValue("title")}
-            </h1>}
+            </h1>
+          )}
           <button className={this.decorateCSS("feedbackModalCloseButton")}>
             <ComposerIcon
               name={this.getPropValue("close_icon")}
@@ -301,80 +323,104 @@ class FeedbackModal1 extends BaseModal {
 
         {(isFeedbackIconExist || isTitleExist) && (
           <>
-            <hr style={{ margin: 'none' }} className={`${this.decorateCSS("divider")} ${!isDividerActive && this.decorateCSS("divider-unactive")}`} />
+            <hr
+              style={{ margin: "none" }}
+              className={`${this.decorateCSS("divider")} ${
+                !isDividerActive && this.decorateCSS("divider-unactive")
+              }`}
+            />
           </>
         )}
 
-        {isHeaderTitleExist &&
+        {isHeaderTitleExist && (
           <h2 className={this.decorateCSS("headerContent")}>
-            {this.getPropValue("headerTitle")}</h2>
-        }
+            {this.getPropValue("headerTitle")}
+          </h2>
+        )}
 
-        {isDescriptionExist &&
+        {isDescriptionExist && (
           <p className={this.decorateCSS("descriptionContent")}>
-            {this.getPropValue("description")}</p>
-        }
+            {this.getPropValue("description")}
+          </p>
+        )}
 
         {emojis.length > 0 && (
           <div className={this.decorateCSS("feedbackModalEmojis")}>
-            {this.castToObject<Emoji[]>("emojis").map((item: Emoji, index: number) => (
-              <div className={this.decorateCSS("emojiWrapper")}
-                style={
-                  {
-                    width: 100 / (emojis.length) + "%",
-                  }
-                }
-                key={index}>
-                <span
-                  id={`emoji-${index + 1}`}
-                  className={this.decorateCSS("feedbackModalEmoji")}
-                  onClick={() => this.handleEmojiClick(index + 1)}
+            {this.castToObject<Emoji[]>("emojis").map(
+              (item: Emoji, index: number) => (
+                <div
+                  className={this.decorateCSS("emojiWrapper")}
+                  style={{
+                    width: 100 / emojis.length + "%",
+                  }}
+                  key={index}
                 >
-                  {item.image ? (
-                    <div className={this.decorateCSS("emojiImageWrapper")}>
-                      <img
-                        src={item.image}
-                        alt={this.castToString(item.label)}
-                        className={this.decorateCSS("feedbackModalEmojiImage")}
-                      />
-                    </div>
-                  ) : (
-                    <div className={this.decorateCSS("emoji-wrapper")}>
-                      <ComposerIcon
-                        name={item.emoji}
-                        propsIcon={{
-                          className: `${this.decorateCSS("feedbackModalEmojiIcon")}`,
-                        }}
-                      />
-                    </div>
-                  )}
-                </span>
+                  <span
+                    id={`emoji-${index + 1}`}
+                    className={this.decorateCSS("feedbackModalEmoji")}
+                    onClick={() => this.handleEmojiClick(index + 1)}
+                  >
+                    {item.image ? (
+                      <div className={this.decorateCSS("emojiImageWrapper")}>
+                        <img
+                          src={item.image}
+                          alt={this.castToString(item.label)}
+                          className={this.decorateCSS(
+                            "feedbackModalEmojiImage"
+                          )}
+                        />
+                      </div>
+                    ) : (
+                      <div className={this.decorateCSS("emoji-wrapper")}>
+                        <ComposerIcon
+                          name={item.emoji}
+                          propsIcon={{
+                            className: `${this.decorateCSS(
+                              "feedbackModalEmojiIcon"
+                            )}`,
+                          }}
+                        />
+                      </div>
+                    )}
+                  </span>
 
-                {
-                  <>
-                    {this.castToString(item.label) && (
-                      <p className={this.decorateCSS("emojiLabel")}>{item.label}</p>)}
-                  </>
-                }
-              </div>
-            ))}
+                  {
+                    <>
+                      {this.castToString(item.label) && (
+                        <p className={this.decorateCSS("emojiLabel")}>
+                          {item.label}
+                        </p>
+                      )}
+                    </>
+                  }
+                </div>
+              )
+            )}
           </div>
         )}
 
-        {(buttonval || inputPlaceholder) &&
-          (<div className={this.decorateCSS("contact-form")}>
+        {(buttonval || inputPlaceholder) && (
+          <div className={this.decorateCSS("contact-form")}>
             <Formik
               initialValues={{ message: "" }}
-              validationSchema={this.createValidationSchema(minLenght, minLengthMessage, requiredMessage)}
+              validationSchema={this.createValidationSchema(
+                minLenght,
+                minLengthMessage,
+                requiredMessage
+              )}
               onSubmit={(data, { resetForm }) => {
                 this.insertForm("Contact Us", {
-                  message: data.message
+                  input0: data.message,
                 });
                 resetForm();
               }}
             >
               {({ handleChange, values }) => (
-                <Form className={`${this.decorateCSS("form")} ${!emojiExist && this.decorateCSS("no-emojis")}`}>
+                <Form
+                  className={`${this.decorateCSS("form")} ${
+                    !emojiExist && this.decorateCSS("no-emojis")
+                  }`}
+                >
                   {inputPlaceholder && (
                     <textarea
                       placeholder={inputPlaceholder}
@@ -384,22 +430,28 @@ class FeedbackModal1 extends BaseModal {
                       onChange={handleChange}
                       className={this.decorateCSS("input")}
                       rows={5}
-                    />)}
-                  {inputPlaceholder && <ErrorMessage
-                    className={this.decorateCSS("error-message")}
-                    name="message"
-                    component={"span"}
-                  />}
-                  {buttonval && (<button
-                    className={this.decorateCSS("button")}
-                    type="submit"
-                  >
-                    {buttonval}
-                  </button>)}
+                    />
+                  )}
+                  {inputPlaceholder && (
+                    <ErrorMessage
+                      className={this.decorateCSS("error-message")}
+                      name="message"
+                      component={"span"}
+                    />
+                  )}
+                  {buttonval && (
+                    <button
+                      className={this.decorateCSS("button")}
+                      type="submit"
+                    >
+                      {buttonval}
+                    </button>
+                  )}
                 </Form>
               )}
             </Formik>
-          </div>)}
+          </div>
+        )}
       </div>
     );
   }
