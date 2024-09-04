@@ -36,22 +36,25 @@
     display: flex;
     word-break: break-word;
     max-width: 50%;
-    
-    .icon{
-      width: 30px;
-      margin: 10px;
-      height: 30px;
-      color: var(--composer-primary-color);
-      box-sizing: content-box; 
-      padding: 15px;
+
+    .icon-wrapper {
       &:hover{  
-        background-color: var(--hover-background-color) ;
-        color: var(--composer-primary-color);
         border-radius: 30px;
-        
+      }
+      .icon{
+        width: 30px;
+        margin: 10px;
+        height: 30px;
+        color: var(--composer-primary-color);
+        box-sizing: content-box; 
+        padding: 15px;
+        &:hover{  
+          background-color: var(--hover-background-color) ;
+          color: var(--composer-primary-color);
+          border-radius: 30px;
+        }
       }
     }
-
   }
 }
 
