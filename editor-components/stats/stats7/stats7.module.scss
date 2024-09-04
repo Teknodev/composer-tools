@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 50px 10px;
+  padding: 20px 50px;
   
   .max-content {
     max-width: var(--composer-content-width);
@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    padding: 10px;
     .title-child {
       display: block;
       justify-content: space-around;
@@ -19,8 +20,6 @@
       .subTitle {
         display: inline-block;
         font-size: 12px;
-        margin-left: 70px;
-        padding: 4px 5px;
         color: var(--composer-font-color-primary);
         text-transform: uppercase;
         font-weight: 600;
@@ -30,16 +29,12 @@
         font-size: 32px;
         font-weight: 600;
         color: var(--composer-font-color-primary);
-        margin: 0 0 0 70px;
-        margin-bottom: 25px;
-
       }
 
       .description {
         text-align: left;
         font-style: normal;
-        width: 80%;
-        margin: 0 0 0 70px;
+        width: 90%;
         font-size: 16px;
         color: var(--composer-font-color-primary);
       }
@@ -48,11 +43,11 @@
     .progress-container {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 35px;
       max-width: var(--composer-content-width);
       width: 100%;
       margin: auto;
-      margin-left: 40px;
+      padding:20px;
       align-items: center;
       justify-content: center; 
       .item {
@@ -70,8 +65,8 @@
           font-weight: bold;
           color: var(--composer-font-color-primary);
           margin-bottom: 5px;
-          margin: 0 50px 0 0;
         }
+
         .progress-percent {
           display: flex;
           font-weight: bold;
@@ -79,6 +74,7 @@
           color: (--composer-font-color-primary);
         }
       }
+
       .progress-active {
         background-color: #F7F7F7;
         margin: 0 50px 0 0;
@@ -94,26 +90,21 @@
           from {
             width: 0%;
           }
-
             to {
               width: progress;
             }
           }
         }
-      
     }
   }
-
 }
-
 
 
 @media only screen and (max-width: 1200px) and (min-width:769px) {
   .container {
+    padding: 20px 50px !important;
     .max-content {
       justify-content: space-between;
-
-      
         .title-child {
           gap: 20px;
           flex-direction: column;
@@ -135,38 +126,32 @@
         .progress-container {
 
           bottom: 0;
-
+          padding: 50px;
           .title {
             font-size: 17px;
           }
         }
       }
-      
-    
   }
 }
 
 
 @media only screen and (max-width: 768px) and (min-width: 481px) {
   .container {
+    padding: 20px 30px !important;
     .max-content {
       flex-direction: column;
-      
       justify-content: center;
-
-
+      
       .title-child {
         flex-direction: column;
         align-items: center;
-        margin-left: 10px;
 
         .subTitle {
-          margin-left: 0px;
           text-align: left;
         }
 
         .title {
-          margin-left: 0px;
           width: 100%;
           text-align: left;
         }
@@ -180,12 +165,7 @@
 
       .progress-container {
         margin-left: 0;
-        margin-top: 40px;
-
-        .item {
-          margin-left: 30px;
-
-        }
+        padding-top: 10px;
       }
     }
   }
@@ -194,6 +174,7 @@
 
 @media only screen and (max-width: 480px) {
   .container {
+    padding: 20px 30px !important;
     .max-content {
       display: flex;
       flex-direction: column;
@@ -227,7 +208,7 @@
       }
 
       .progress-container {
-         margin: 20px 0 0 20px;
+         
         .title {
           font-size: 8px;
         }
