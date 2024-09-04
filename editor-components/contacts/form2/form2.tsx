@@ -237,10 +237,11 @@ class Form2Page extends BaseContacts {
       const inputs = this.getPropValue("inputs");
 
       inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+        if(!input["getPropValue"]) return;
         const isRequired = input.getPropValue("is_required");
         const isEmail = getInputType(input.getPropValue("type")) == "email";
 
-        let fieldSchema = Yup.string();
+        let fieldSchema: Yup.StringSchema<string | null | undefined> = Yup.string();
 
         if (isRequired) {
           fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
