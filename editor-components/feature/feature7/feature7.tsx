@@ -1,167 +1,150 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature7.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type Card = {
-  image: string;
-  category: string;
+type Feature = {
   title: string;
-  description: string;
-  number: number;
-  text: string;
+  iconFeature: string;
 };
+
+type Link = {
+  linkText: string;
+  iconLink: string;
+  url: string;
+}
 
 class Feature7 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a25bdb2f8a5b002ce67862?alt=media",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "FEATURES",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "mainTitle",
+      displayer: "Main Title",
+      value: "Everything starts with a Marketing plan.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Turn your business into a sales machine today with lorem Things go wrong have questions.",
+    });
+
+    this.addProp({
       type: "array",
-      key: "cards",
-      displayer: "cards",
+      key: "features",
+      displayer: "Features",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "feature",
+          displayer: "Feature",
           value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a5360f72de2002caaa120?alt=media&timestamp=1682674276142",
-            },
-            {
-              type: "string",
-              key: "category",
-              displayer: "Category",
-              value: "Technology",
-            },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "Elon Musk claims to be working on ‘TruthGPT’ — a ‘maximum truth-seeking AI’",
+              displayer: "Feature 1",
+              value: "Amazing communication.",
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Elon Musk says he’s working on “TruthGPT,” a ChatGPT alternative that acts as a “maximum truth-seeking AI.” The billionaire laid out his vision for an AI rival during an interview with Fox News’s Tucker Carlson, saying an alternative approach to AI creation was needed to avoid the destruction of humanity.",
-            },
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 18,
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "APR",
+              type: "icon",
+              key: "iconFeature",
+              displayer: "Icon",
+              value: "FaCheck",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "feature",
+          displayer: "Feature",
           value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a5360f72de2002caaa121?alt=media&timestamp=1682674276142",
-            },
-            {
-              type: "string",
-              key: "category",
-              displayer: "Category",
-              value: "Football",
-            },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "What's expected of Lampard? | 'Chelsea board need time to plan'",
+              displayer: "Feature 2",
+              value: "Best trending designing experience.",
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Paul Gilmour discusses the latest from Stamford Bridge with Chelsea set to appoint Blues legend Frank Lampard as interim boss until the end of the season.",
-            },
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 16,
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "MAR",
+              type: "icon",
+              key: "iconFeature",
+              displayer: "Icon",
+              value: "FaCheck",
             },
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "card",
+          key: "feature",
+          displayer: "Feature",
           value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a5360f72de2002caaa11f?alt=media&timestamp=1682674276142"
-            },
-            {
-              type: "string",
-              key: "category",
-              displayer: "Category",
-              value: "Football",
-            },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
-              value: "Hong Kong security regulator to issue crypto license guidelines in May",
+              displayer: "Feature 3",
+              value: "Email & Live chat.",
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "The Hong Kong Securities Futures Commission (SFC) is reportedly set to release cryptocurrency exchange licensing guidelines next month.The plans were reported by Bloomberg on April 27, which cited comments from the SFC’s CEO, Julia Leung.",
-            },
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 27,
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "APR",
+              type: "icon",
+              key: "iconFeature",
+              displayer: "Icon",
+              value: "FaCheck",
             },
           ],
         },
       ],
     });
+
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
+      type: "array",
+      key: "links",
+      displayer: "Links",
+      value: [
+        {
+          type: "object",
+          key: "link",
+          displayer: "link",
+          value: [
+            {
+              type: "string",
+              key: "linkText",
+              displayer: "Link Text",
+              value: "Want to learn more? Click here",
+            },
+            {
+              type: "icon",
+              key: "iconLink",
+              displayer: "Icon",
+              value: "FaArrowRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            }
+          ],
+        },
+      ],
     });
   }
 
@@ -170,29 +153,101 @@ class Feature7 extends BaseFeature {
   }
 
   render() {
+    const title = this.castToString(this.getPropValue("title"));
+    const mainTitle = this.castToString(this.getPropValue("mainTitle"));
+    const description = this.castToString(this.getPropValue("description"));
+    const features = this.getPropValue("features");
+    const links = this.getPropValue("links");
+    const hasTextContent =
+      title ||
+      mainTitle ||
+      description ||
+      links ||
+      features;
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => (
-              <div className={this.decorateCSS("card-item-count")} style={{
-                width: 90 / this.getPropValue("itemCount") + "%",
-              }}>
-              <div key={indexCards} className={this.decorateCSS("listed")}>
-                <img className={this.decorateCSS("image")} src={card.image} alt=""></img>
-                <p className={this.decorateCSS("little-text")}>{card.category}</p>
-                <p className={this.decorateCSS("title")}>{card.title}</p>
-                <p className={this.decorateCSS("title-description")}>
-                  {card.description}
+          {this.getPropValue("image") && (
+            <div className={this.decorateCSS("image-container")}>
+              <img
+                src={this.getPropValue("image")}
+                className={`${this.decorateCSS("image")} ${hasTextContent && this.decorateCSS("no-text-container")}`}
+              />
+            </div>
+          )}
+          {hasTextContent.length > 0 && (
+            <div className={`${this.decorateCSS("textContainer")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}>
+              {title && (
+                <h2 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h2>
+              )}
+              {mainTitle && (
+                <h1 className={this.decorateCSS("mainTitle")}>
+                  {this.getPropValue("mainTitle")}
+                </h1>
+              )}
+              {description && (
+                <p className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
                 </p>
-                <div className={this.decorateCSS("little-box")}>
-                  <p className={this.decorateCSS("number")}>{card.number}</p>
-                  <p className={this.decorateCSS("text")}>{card.text}</p>
-                </div>
-              </div>
-              </div>
-            ))}
-          </div>
+              )}
+              {features.length > 0 && (
+                <ul className={this.decorateCSS("featuresList")}>
+                  {this.castToObject<Feature[]>("features").map(
+                    (feature: Feature, index: number) => (
+                      <li key={index} className={this.decorateCSS("feature")}>
+                        {feature.iconFeature && (
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <ComposerIcon
+                              name={feature.iconFeature}
+                              propsIcon={{
+                                className: this.decorateCSS("iconFeature"),
+                              }}
+                            />
+                          </div>
+                        )}
+                        {feature.title && (
+                          <span className={this.decorateCSS("featureTitle")}>
+                            {feature.title}
+                          </span>
+                        )}
+                      </li>
+                    )
+                  )}
+                </ul>
+              )}
+
+              {links.length > 0 && (
+                <ul className={this.decorateCSS("linkList")}>
+                  {this.castToObject<Link[]>("links").map(
+                    (link: Link, index: number) => (
+                      <div className={this.decorateCSS("linkContainer")}>
+                        <li key={index} className={this.decorateCSS("link")}>
+                          {link.linkText && (
+                            <ComposerLink path={link.url}>
+                              <span className={this.decorateCSS("linkText")}>
+                                {link.linkText}
+                              </span>
+                            </ComposerLink>
+                          )}
+                          {link.iconLink && (
+                            <ComposerIcon
+                              name={link.iconLink}
+                              propsIcon={{
+                                className: this.decorateCSS("iconLink"),
+                              }}
+                            />
+                          )}
+                        </li>
+                      </div>
+                    )
+                  )}
+                </ul>
+              )}
+            </div>
+          )}
         </div>
       </div>
     );

@@ -1,12 +1,22 @@
 import * as React from "react";
 import styles from "./download6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseDownload } from "../../EditorComponent";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type LeftCol = {
+  title: JSX.Element;
+  description: JSX.Element;
+};
 
 type Button = {
-  buttonText: string;
-  url: string;
-  isPrimary: boolean;
+  button_text: JSX.Element;
+  link: string;
+  icon: string;
+};
+
+type RightCol = {
+  image: string;
 };
 
 class Download6 extends BaseDownload {
@@ -14,58 +24,72 @@ class Download6 extends BaseDownload {
     super(props, styles);
 
     this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64511b1df72de2002caab85b?alt=media&timestamp=1692797752847",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Card Title",
-      value: "If you want to download it",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Download now by clicking the button",
-    });
-
-    let button: TypeUsableComponentProps = {
       type: "object",
-      key: "button",
-      displayer: "Displayer",
+      key: "left-column",
+      displayer: "Left Column",
       value: [
         {
           type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Download Now",
+          key: "title",
+          displayer: "Title",
+          value: "Create amazing posts and share with the world.",
         },
         {
-          type: "page",
-          key: "url",
-          displayer: "Button Link",
-          value: "",
-        },
-        {
-          type: "boolean",
-          key: "isPrimary",
-          displayer: "Is Primary",
-          value: true,
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value:
+            "Packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
         },
       ],
-    };
+    });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [JSON.parse(JSON.stringify(button))],
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "Button",
+          value: [
+            {
+              type: "string",
+              key: "button_text",
+              displayer: "Button Text",
+              value: "Download Now",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Button Link",
+              value: "",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Button Icon",
+              value: "IoIosArrowRoundForward",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "right-column",
+      displayer: "Right Column",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdb43307399d002cb4160b?alt=media",
+        },
+      ],
     });
   }
 
@@ -74,39 +98,83 @@ class Download6 extends BaseDownload {
   }
 
   render() {
+    const leftcolumn = this.castToObject<LeftCol>("left-column");
+    const rightcolumn = this.castToObject<RightCol>("right-column");
+    const buttons = this.castToObject<Button[]>("buttons");
+
+    const isLeftColumnVisible =
+      this.castToString(leftcolumn.title) ||
+      this.castToString(leftcolumn.description) ||
+      buttons?.length > 0;
+
+    const isRightColumnVisible = rightcolumn.image;
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("section")}>
-            <div className={this.decorateCSS("image-child")}>
+          {isLeftColumnVisible && (
+            <div className={this.decorateCSS("left-column")}>
+              {this.castToString(leftcolumn.title) && (
+                <h1 className={this.decorateCSS("title")}>
+                  {leftcolumn.title}
+                </h1>
+              )}
+
+              {this.castToString(leftcolumn.description) && (
+                <h3 className={this.decorateCSS("description")}>
+                  {leftcolumn.description}
+                </h3>
+              )}
+
+              {buttons?.length > 0 && (
+                <div className={this.decorateCSS("buttons-container")}>
+                  {buttons.map((button: Button, index: number) => {
+                    const buttonTextExist = this.castToString(
+                      button.button_text,
+                    );
+
+                    const buttonExist = button.icon || buttonTextExist;
+
+                    if (buttonExist)
+                      return (
+                        <ComposerLink
+                          key={index}
+                          path={button.link}
+                          isFullWidth={false}
+                        >
+                          <button className={this.decorateCSS("button")}>
+                            {buttonTextExist && (
+                              <div className={this.decorateCSS("button_text")}>
+                                {button.button_text}
+                              </div>
+                            )}
+                            {button.icon && (
+                              <ComposerIcon
+                                name={button.icon}
+                                propsIcon={{
+                                  className: this.decorateCSS("icon"),
+                                }}
+                              />
+                            )}
+                          </button>
+                        </ComposerLink>
+                      );
+                    return null;
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {isRightColumnVisible && (
+            <div className={this.decorateCSS("right-column")}>
               <img
                 className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-                alt="background"
+                src={rightcolumn.image}
+                alt={"download"}
               />
             </div>
-            <div className={this.decorateCSS("text-container")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-              <div className={this.decorateCSS("button-group")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (item: Button, index: number) => {
-                    return (
-                      <ComposerLink key={`dw-6-btn-${index}`} path={item.url}>
-                        <button
-                          className={`${this.decorateCSS("button")} ${
-                            item.isPrimary && this.decorateCSS("primary")
-                          }`}
-                        >
-                          {item.buttonText}
-                        </button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     );

@@ -1,136 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .page {
-            position: relative;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            .image-child {
-                overflow: hidden;
-                filter: brightness(0.5);
-                .background-image {
-                    filter: blur(2px);
-                    width: 100%;
-                    height: 500px;
-                    object-fit: cover;
-                }
-            }
-            .up-content {
-                width: 100%;
-                height: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                position: absolute;
-                top: 0;
-                border-bottom: 1px solid #ffffff4d;
-                transition: height 0.75s;
-                overflow: hidden;
-                cursor: pointer;
-                padding: 0 20px;
-                .unContentTitle {
-                    font-size: 2.2rem;
-                    color: #fff;
-                    opacity: 0;
-                    transition: opacity 0.5s;
-                }
-                .button-group {
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
-                    opacity: 0;
-                    transition: opacity 0.5s;
-                    .button {
-                        display: inline-block;
-                        padding: 10px 10px;
-                        color: #fff;
-                        font-size: 1.5rem;
-                        background-color: var(--composer-secondary-color);
-                        border: 1px solid transparent;
-                        border-radius: 6px;
-                        cursor: pointer;
-                        &:hover {
-                            background: transparent;
-                            border: 1px solid var(--composer-secondary-color);
-                            color: var(--composer-secondary-color);
-                        }
-                    }
-                }
-            }
-            .down-content {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                position: absolute;
-                bottom: 0;
-                transition: height 0.75s;
-                overflow: hidden;
-                padding: 0 20px;
-                .downContentTitle {
-                    color: #fff;
-                    font-size: 2rem;
-                    opacity: 1;
-                    transition: opacity 0.5s;
-                }
-                .description {
-                    color: #fff;
-                    font-size: 1.5rem;
-                    opacity: 0.8;
-                    transition: opacity 0.5s;
-                }
-            }
-            &:hover {
-                .down-content {
-                    height: 0;
-                    .downContentTitle {
-                        opacity: 0;
-                    }
-                    .description {
-                        opacity: 0;
-                    }
-                }
-                .up-content {
-                    height: 100%;
-                    .downContentTitle {
-                        opacity: 1;
-                    }
-                    .button-group {
-                        opacity: 1;
-                    }
-                }
-            }
-        }
-    }
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--composer--html-background);
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    padding: 20px;
+    margin: 0 auto;
+    height: 100%;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.content-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  gap: 40px;
+  min-height: 600px;
+}
+
+.title {
+  color: var(--composer-font-color-primary);
+  font-size: 2rem;
+  text-align: center;
+}
+.description {
+  color: var(--composer-font-color-primary);
+  text-align: center;
+  font-size: 4rem;
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--composer-font-color-primary);
+  color: var(--composer-font-color-secondary);
+  padding: 0.7em 1.4em;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  transition: 300ms;
+
+  &:hover {
+    scale: 1.05;
+  }
+
+  .button-icon {
+    width: 25px;
+    height: 25px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .container {
-        .max-content {
-            .page {
-                .up-content {
-                    h1 {
-                        font-size: 2rem;
-                        word-break: break-all;
-                        text-align: center;
-                    }
-                }
-                .down-content {
-                    p {
-                        word-break: break-all;
-                    }
-                }
-            }
-        }
+  .container {
+    height: auto !important;
+  }
+  .wrapper {
+    width: 100%;
+    max-width: unset;
+  }
+
+  .content-container {
+    padding: 50px 10px;
+    gap: 20px;
+    min-height: unset !important;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 3rem;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    > div {
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
     }
+
+    .button {
+      min-width: 250px;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .description {
+    font-size: 1.9rem;
+  }
 }

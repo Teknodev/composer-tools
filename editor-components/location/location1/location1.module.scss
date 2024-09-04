@@ -1,113 +1,36 @@
 .container {
   width: 100%;
-  padding: 50px;
+  padding: 20px 0;
+}
 
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
+.max-content {
+  max-width: var(--composer-content-width);
+  margin: 0 auto;
+}
 
-    .logo-comp1-page {
-      display: block;
-      width: 100%;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
-      .top_row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        padding-bottom: 5rem;
-        max-width: 80%;
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0 0 50px 0;
+  text-transform: uppercase;
+  color: var(--composer-primary-color);
+}
 
-        .title {
-          text-align: center;
-          font-size: 3rem;
-          color: var(--composer-primary-color);
-          margin: 0;
-        }
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-        .social-media {
-          display: flex;
-          flex-direction: row;
-          gap: 40%;
-
-          .icon {
-            font-size: 2rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            box-sizing: border-box;
-          }
-
-          .icon:hover {
-            color: white;
-            background: var(--composer-secondary-color);
-            border-radius: 50%;
-            padding: 10px;
-            box-sizing: border-box;
-          }
-        }
-      }
-
-      .card {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        transform: translate(-47%, -111%);
-        background: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        z-index: 1;
-        width: 15vw;
-        height: 25vh;
-
-        .title {
-          font-size: 2rem;
-          color: var(--composer-primary-color);
-        }
-
-        .description {
-          font-size: 1.5rem;
-          color: var(--composer-secondary-color);
-        }
-
-        .button_container {
-          .button_text {
-            background: black;
-            color: white;
-            padding: 20px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-          }
-
-          .arrow_square {
-            position: relative;
-            width: 10px;
-            height: 10px;
-            background-color: black;
-            transform: rotate(45deg);
-            margin-top: -5px;
-            right: -140px;
-          }
-        }
-
-      }
-
-      .buttom_row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 3%;
-        padding-top: 3rem;
-
-        .description {
-          font-size: 2rem;
-        }
-
-        .phone_number {
-          font-size: 2.5rem;
-          border-bottom: 1px solid black;
-        }
-      }
-    }
-  }
+.map {
+  width: 500px;
+  height: 500px;
 }

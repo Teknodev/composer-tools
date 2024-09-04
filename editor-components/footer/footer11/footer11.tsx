@@ -17,7 +17,7 @@ class Footer11Page extends BaseFooter {
       type: "string",
       key: "ref-text",
       displayer: "Referral Text",
-      value: "YELİZ SARIOGLU"
+      value: "Adam Smith"
     });
 
     this.addProp({
@@ -117,10 +117,10 @@ class Footer11Page extends BaseFooter {
       <div className={this.decorateCSS("container")} >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <span className={this.decorateCSS("text")}>
+            <div className={this.decorateCSS("text")}>
               {this.getPropValue("text")}
-              <span className={this.decorateCSS("ref-page")}>{this.getPropValue("ref-text")}</span>
-            </span>
+              <div className={this.decorateCSS("ref-page")}>{this.getPropValue("ref-text")}</div>
+            </div>
             <div className={this.decorateCSS("icons-div")}>
               {this.getPropValue("icons").map((icon: any, index: number) => {
                 return (

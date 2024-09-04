@@ -196,7 +196,7 @@ class Stats3Page extends BaseStats {
                             item.isPrimary && this.decorateCSS("button-color")
                           }`}
                         >
-                          {item.buttonText}
+                          <span className={this.decorateCSS("button-text")}>{item.buttonText}</span>
                         </button>
                       </ComposerLink>
                     );
