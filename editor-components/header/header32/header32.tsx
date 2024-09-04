@@ -186,6 +186,14 @@ class Header32 extends BaseHeader {
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Disable Animation",
+      value: true,
+    });
+
     this.addProp({
       type: "boolean",
       key: "enableOverlay",
@@ -213,6 +221,7 @@ class Header32 extends BaseHeader {
       displayer: "Next Button",
       value: "FaArrowRightLong",
     });
+    this.setComponentState("activeSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
 
@@ -222,31 +231,6 @@ class Header32 extends BaseHeader {
   
 
   render() {
-
-    const handleBeforeChange = () => {
-      const descriptions = document.querySelectorAll(`.${styles.description}`);
-      const slideShapes = document.querySelectorAll(`.${styles.slideShape}`);
-      const stick = document.querySelectorAll(`.${styles.stick}`);
-      const urlTitles = document.querySelectorAll(`.${styles.urlTitles}`);
-      const imageTitles = document.querySelectorAll(`.${styles.imageTitle}`);
-      
-      descriptions.forEach((description) => description.classList.remove(styles.animate));
-      slideShapes.forEach((slideShape) => slideShape.classList.remove(styles.shapeAnimate));
-      stick.forEach((stick) => stick.classList.remove(styles.animate));
-      urlTitles.forEach((urlTitles) => urlTitles.classList.remove(styles.urlTitleAnimation));
-      imageTitles.forEach((imageTitle) => imageTitle.classList.remove(styles.imageTitleAnimation));
-      
-      setTimeout(() => {
-        descriptions.forEach((description) => description.classList.add(styles.animate));
-        slideShapes.forEach((slideShape) => slideShape.classList.add(styles.shapeAnimate));
-        stick.forEach((stick) => stick.classList.add(styles.animate));
-        urlTitles.forEach((urlTitles) => urlTitles.classList.add(styles.urlTitleAnimation));
-        imageTitles.forEach((imageTitle) => imageTitle.classList.add(styles.imageTitleAnimation));
-      }, 100); 
-    };
-    
-    
-    
 
     const settings = {
       arrows: false,
@@ -258,7 +242,9 @@ class Header32 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: handleBeforeChange,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("activeSlide", next);
+      },
       dotsClass: this.decorateCSS("dots"),
       customPaging: function (i: number) {
         return (
@@ -274,6 +260,8 @@ class Header32 extends BaseHeader {
     const hasrightButtonIcon = this.getPropValue("rightButtonIcon");
     const enableOverlay: boolean = this.getPropValue("enableOverlay");
     const enableBackgroundImageOverlay = this.getPropValue("enableBackgroundImageOverlay");
+
+    const animation: boolean = this.getPropValue("animation");
 
     
 
@@ -309,12 +297,26 @@ class Header32 extends BaseHeader {
                             `}>
                             {enableOverlay && (
                               <div
-                                className={this.decorateCSS("slideShape")}
-                              ></div>
+                              className={`${this.decorateCSS("slideShape")} ${
+                                animation ? this.decorateCSS("shapeAnimate") : ""
+                              } ${
+                                this.getComponentState("activeSlide") === index
+                                  ? this.decorateCSS("shapeAnimate")
+                                  : ""
+                              }`}
+                            ></div>
                             )}
-
+                  
                             {this.castToString(item.imageTitle) && (
-                              <h2 className={this.decorateCSS("imageTitle")}>
+                              <h2
+                                className={`${this.decorateCSS("imageTitle")} ${
+                                  animation ? this.decorateCSS("imageTitleAnimation") : ""
+                                } ${
+                                  this.getComponentState("activeSlide") === index
+                                    ? this.decorateCSS("imageTitleAnimation")
+                                    : ""
+                                }`}
+                              >
                                 {item.imageTitle}
                               </h2>
                             )}
@@ -326,18 +328,31 @@ class Header32 extends BaseHeader {
                                 >
                                   {this.castToString(item.imageDescription) && (
                                     <p
-                                      className={this.decorateCSS("description")}
+                                      className={`${this.decorateCSS("description")} ${
+                                        animation ? this.decorateCSS("animate") : ""
+                                      } ${
+                                        this.getComponentState("activeSlide") === index
+                                          ? this.decorateCSS("animate")
+                                          : ""
+                                      }`}
                                     >
                                       {item.imageDescription}
                                     </p>
                                   )}
 
                                   {this.castToString(item.imageDescription) &&
-                                    this.castToString(item.urlTitle) &&
-                                    <div
-                                      className={this.decorateCSS("stick")}
-                                    ></div>
-                                  }
+                                    this.castToString(item.urlTitle) && (
+                                      <div
+                                        className={`${this.decorateCSS("stick")} ${
+                                          animation ? this.decorateCSS("animate") : ""
+                                        } ${
+                                          this.getComponentState("activeSlide") === index
+                                            ? this.decorateCSS("animate")
+                                            : ""
+                                        }`}
+                                      ></div>
+                                    )}
+
 
                                   {this.castToString(item.urlTitle) && (
                                     <div
@@ -350,12 +365,17 @@ class Header32 extends BaseHeader {
                                         path={item.url}
                                       >
                                         <p
-                                          className={this.decorateCSS(
-                                            "urlTitles"
-                                          )}
+                                          className={`${this.decorateCSS("urlTitles")} ${
+                                            animation ? this.decorateCSS("urlTitleAnimation") : ""
+                                          } ${
+                                            this.getComponentState("activeSlide") === index
+                                              ? this.decorateCSS("urlTitleAnimation")
+                                              : ""
+                                          }`}
                                         >
                                           {item.urlTitle}
                                         </p>
+
                                       </ComposerLink>
                                     </div>
                                   )}
