@@ -237,26 +237,22 @@
               }
             }
           }
-
-          .buttomRow {
-            padding: 2rem 0;
+          .buttomRow{
+            padding: 24px 0px;
             .comment-and-icon-text-container {
-              .icon-text-container {
-                .icon_text {
-                  display: none;
-                }
-
-                .social-icons {
-                  opacity: 1;
-                  padding-right: 2vw;
-                  transform: translate(-130%, -50%);
-                }
-
-                .icon-next-to-text {
-                  display: none;
-                }
+              width: 100%;
+              .icon_text{
+                display: none !important;
+              }
+              .social-icons{
+                padding-right: 215px;
+                opacity: 1 !important;
+              }
+              .icon-next-to-text{
+                display: none !important; 
               }
             }
+
           }
         }
       }
@@ -291,7 +287,7 @@
           .buttomRow {
             padding:0px;
             flex-direction: row-reverse;
-            gap: 55%;
+            justify-content: space-between;
             .navigation {
               margin-right: 0;
               gap: 30%;
@@ -305,9 +301,19 @@
                 font-size: 3rem;
               }
             }
+            .comment{
+              display: flex;
+              justify-content:center;
+              width: 100%;
+              height: 100%;
+              align-items: center;
+              text-align: start;
+              margin-left: -10px;
+            }
 
             .comment-and-icon-text-container {
               direction: ltr;
+              width: 0px;
 
               .icon-text-container {
                 display: none;
