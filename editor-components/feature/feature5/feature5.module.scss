@@ -155,6 +155,10 @@
         object-fit: cover;
         width: 100%;
         aspect-ratio: 1/1;
+        position: absolute;
+        top: 0;
+        left: 0;
+
       }
 
       .third {
@@ -288,11 +292,11 @@
       .row1 {
         flex-direction: row;
 
-        .image-wrapper{
+        .image-wrapper {
           min-height: 200px;
         }
 
-        .title{
+        .title {
           min-height: 200px;
         }
 
@@ -412,11 +416,11 @@
       .row1 {
         flex-direction: row;
 
-        .image-wrapper{
+        .image-wrapper {
           min-height: 170px;
         }
 
-        .title{
+        .title {
           min-height: 170px;
         }
 
