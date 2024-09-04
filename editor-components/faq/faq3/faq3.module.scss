@@ -3,17 +3,25 @@
     max-width: var(--composer-content-width);
     justify-content: center;
     margin: auto;
+    padding: 20px 50px;
 
     .containerTop {
       width: 100%;
       height: 100%;
       flex-direction: column;
 
+      .divider {
+        border: 0;
+        border-top: 1px solid var(--composer-primary-color);
+        height: 2px;
+        width: 45px;
+        border-radius: 99px;
+      }
+
       .contentContainer {
         justify-content: center;
-        align-items: center;
         display: flex;
-        width: 85%;
+        width: 100%;
         margin: 0 auto;
         gap: 70px;
 
@@ -30,7 +38,7 @@
 
           .card {
             color: var(--composer-font-color-primary);
-            border-bottom: 1px solid var(--composer-font-color-primary);
+            border-bottom: 1px solid var(--color-divider);
             cursor: pointer;
 
             .top-card {
@@ -61,18 +69,18 @@
         .text-box {
           overflow: hidden;
           max-height: 0px;
-          transition: max-height 0.6s;
+          transition: max-height 0.4s ease, padding 0.4s ease;
+          padding: 0 5px;
 
           .card-text {
             color: var(--composer-font-color-primary);
             opacity: 0.6;
-            margin: 20px;
-            margin-top: 0;
             font-size: 14px;
           }
         }
         .text-box.active {
-          max-height: 1000px;
+          max-height: 500px;
+          padding: 5px;
         }
 
         :last-child {
@@ -106,16 +114,17 @@
 
           .button-info {
             display: inline-block;
-            color: var(--composer-font-color-secondary);
-            background-color: var(--composer-font-color-primary);
+            color: var(--composer-primary-color);
             border: 2px solid var(--composer-primary-color);
             border-radius: 35px;
             font-size: 12px;
+            height: 44px;
             font-weight: bold;
-            padding: 15px;
+            // padding: 10px;
             padding-inline: 40px;
             transition: 300ms;
             transition-property: all;
+            line-height: 44px;
           }
 
           .button-info:hover {
@@ -134,7 +143,7 @@
     .caption {
       color: var(--composer-font-color-primary);
       margin-top: 20px;
-      margin-bottom: 50px;
+      margin-bottom: 15px;
       font-size: 35px;
       letter-spacing: -0.3px;
       text-decoration: underline;
@@ -142,6 +151,7 @@
 
     .subtitle {
       color: var(--composer-font-color-primary);
+      margin-top: 15px;
       margin-bottom: 50px;
       font-size: 15px;
       opacity: 0.6;
@@ -150,6 +160,10 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 964px) {
+  .max-content {
+    padding: 20px 30px !important;
+  }
+
   .contentContainer {
     margin: 0;
     padding: 0 10px;
@@ -171,11 +185,19 @@
 }
 
 @media screen and (max-width: 767px) {
+  .max-content {
+    padding: 20px 30px !important;
+  }
+  
   .contentContainer {
     width: 100% !important;
     padding: 0 10px;
     display: flex;
     flex-direction: column;
+
+    .content-right {
+      width: 100% !important;
+    }
   }
 
   .cardsubtitle {

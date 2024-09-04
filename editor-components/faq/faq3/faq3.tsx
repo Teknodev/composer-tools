@@ -273,6 +273,8 @@ class FaqContainerTwo extends BaseFAQ {
                   </div>
                 )}
 
+                {mainTitleExist && mainSubtitleExist && <hr className={this.decorateCSS("divider")} />}
+
                 {mainSubtitleExist && (
                   <div className={this.decorateCSS("subtitle")}>
                     {this.getPropValue("mainSubtitle")}
