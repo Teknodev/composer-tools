@@ -388,10 +388,10 @@ class Content16 extends BaseContent {
               <div
                 className={
                   items.length >= 3
-                    ? this.decorateCSS("slider-parent") // 3 veya daha fazla item varsa
+                    ? this.decorateCSS("slider-parent")
                     : items.length === 2
-                      ? this.decorateCSS("slider-parent-two") // 2 item varsa
-                      : this.decorateCSS("slider-parent-one") // 1 item varsa
+                      ? this.decorateCSS("slider-parent-two")
+                      : this.decorateCSS("slider-parent-one")
                 }
               >
                 {prevIcon && nextIcon ? (
