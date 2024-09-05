@@ -60,7 +60,7 @@ class Content16 extends BaseContent {
       type: "icon",
       key: "right-arrow",
       displayer: "Right Text Arrow",
-      value: "PiArrowUpRightBold",
+      value: "LuArrowUpRight",
     });
     this.addProp({
       type: "string",

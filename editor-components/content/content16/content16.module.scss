@@ -3,6 +3,10 @@
   padding: 20px 50px;
   background-color: var(--composer-html-background);
 }
+.max-content {
+  max-width: var(--composer-content-width);
+  margin:0px;
+}
 .right-link {
   display: inline-flex;
   float: right;
@@ -71,17 +75,10 @@
   }
 }
 
-.max-content {
-  max-width: var(--composer-content-width);
-  margin: auto;
-}
-
 .title {
   text-align: left;
   font-size: 7rem;
   color: var(--composer-font-color-primary);
-  margin: 20px 0;
-  padding-left: 30px;
   position: relative;
   margin-bottom: 20px;
   width: 100%;
@@ -92,7 +89,7 @@
   border: none;
   background-color: transparent;
   color: var(--composer-font-color-primary);
-  width: 50px; 
+  width: 20px; 
   transition: 400ms;
   cursor: pointer;
   position: absolute; 
@@ -148,27 +145,15 @@
   text-align: left;
   color: var(--composer-font-color-primary);
   font-size: 2.45rem;
-  margin: 20px 0 30px;
-  margin-top: 30px;
-  padding-left: 40px;
+  margin: 40px 0 30px;
   font-weight: lighter;
 }
-
 .faint-line {
   border: none;
   border-top: 1px solid var(--composer-font-color-primary);
-  margin: 0 30px;
 }
-
-.no-faint-line {
-  border: none;
-  border-top: 1px solid transparent;
-  margin: 0 30px;
-}
-
 .wrapper {
   width: 100%;
-  padding: 20px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -395,6 +380,9 @@
   .container {
     padding: 20px 30px;
   }
+  .right-link{
+    padding:0px 30px !important;
+  }
   .slider-parent-two{
     .content-div{
       width: 100% !important;
@@ -408,18 +396,11 @@
 
   .title {
     font-size: 4rem;
-    padding-left: 20px;
-    margin-bottom: 50px;
   }
 
   .subtitle {
     font-size: 1.5rem;
-    padding-left: 20px;
-    margin: 50px 0 10px;
-  }
-
-  .faint-line {
-    margin: 0 20px;
+    margin: 10px 0 10px;
   }
 
   .wrapper {
@@ -458,6 +439,7 @@
   }
   .right-link{
     font-size: 1rem;
+    padding: 0px 20px !important;
   }
   .icon{
     size:10px;
@@ -470,24 +452,16 @@
   .title, .subtitle {
     width: 100%;
     margin-left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 
   .title {
     font-size: 3rem;
-    margin-bottom: 40px;
   }
 
   .subtitle {
     font-size: 1.25rem;
-    margin: 40px 0 30px;
+    margin-bottom:30px ;
   }
-
-  .faint-line {
-    margin: 0 10px;
-  }
-
   .wrapper {
     padding: 0;
   }
@@ -567,9 +541,6 @@
     white-space: normal;
     word-wrap: break-word;
     overflow: hidden;
-  }
-  .custom-dots{
-    padding-bottom: 15px;
   }
 }
 
