@@ -11,8 +11,7 @@
       flex-direction: column;
 
       .divider {
-        border: 0;
-        border-top: 1px solid var(--composer-primary-color);
+        background-color: var(--composer-primary-color);
         height: 2px;
         width: 45px;
         border-radius: 99px;
@@ -61,6 +60,8 @@
 
               .icon {
                 color: var(--composer-primary-color);
+                font-size: 12px;
+                flex-shrink: 0;
               }
             }
           }
@@ -118,13 +119,11 @@
             border: 2px solid var(--composer-primary-color);
             border-radius: 35px;
             font-size: 12px;
-            height: 44px;
             font-weight: bold;
-            // padding: 10px;
             padding-inline: 40px;
             transition: 300ms;
             transition-property: all;
-            line-height: 44px;
+            padding: 8px 35px;
           }
 
           .button-info:hover {

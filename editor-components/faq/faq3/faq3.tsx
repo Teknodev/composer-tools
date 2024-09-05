@@ -28,6 +28,13 @@ class FaqContainerTwo extends BaseFAQ {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "mainSubtitle",
       displayer: "Subtitle",
@@ -261,6 +268,8 @@ class FaqContainerTwo extends BaseFAQ {
     });
     const infoArray = this.castToObject<InfoArrayItem[]>("infoArray");
     const faqItems = this.castToObject<Faq[]>("faqItems");
+    const showLine = this.getPropValue("showLine");
+
     return (
       <div className={this.decorateCSS("Main-container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -273,7 +282,7 @@ class FaqContainerTwo extends BaseFAQ {
                   </div>
                 )}
 
-                {mainTitleExist && mainSubtitleExist && <hr className={this.decorateCSS("divider")} />}
+                {mainTitleExist && mainSubtitleExist && showLine && <hr className={this.decorateCSS("divider")} />}
 
                 {mainSubtitleExist && (
                   <div className={this.decorateCSS("subtitle")}>
