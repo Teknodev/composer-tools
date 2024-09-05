@@ -288,8 +288,64 @@ If the array does not have any element, then do not render its wrapper container
 ```javascript
 render() {
 
-  const cardList = this.castToObject<ICard[]>("cardItems");
+  const cardList = this.castToObject<CardType[]>("cardItems");
 
   return (
     ...
 ```
+
+## How to Map Things?
+
+We should cast our arrays and its items to map. It will make our job easier to do.
+
+Let's assume we have a type named "Card". This Card will take props like: title, background image, button text, button link etc.
+```javascript
+type Card = {
+  title: JSX.Element;
+  backgroundImage: string;
+  buttonText: JSX.Element;
+  buttonLink: string;
+}
+```
+
+Why JSX.Element and not string? You can read [here](#why-jsxelement-for-a-string).<br>
+Then we need to map our array which contains so many "Card"s.
+
+**TIP:** It's better to reference our array between `render` and `return` statements. It will better for a much more cleaner code.
+
+```javascript
+render() {
+
+  const cards = this.castToObject<Card[]>("cards");
+  // ("cards") -> your props key.
+  // Card[] -> tells this is an array.
+
+  return (
+    ...
+    ...
+```
+
+Then we are finally ready to map our array.
+
+```javascript
+  cards.map((item: Card, index: number) => (
+    <div key={index}>
+      ...
+      ...
+  ))
+```
+
+<u>Don't forget to use key</u> for the element that you map. It may be a div or other stuff, it doesn't matter. You must use key. It doesn't mean that it should be the index, it can be one of your item's field. But it must be **unique**.
+
+```javascript
+  users.map((user: User) => (
+    <div key={user._id}>
+      // this works either.
+      ...
+      ...
+  ))
+```
+
+If you have questions, or you think there is something missing in this documentation, please tell.
+
+author: [@dogusmiuw](https://github.com/dogusmiuw)
