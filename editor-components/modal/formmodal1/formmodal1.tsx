@@ -435,7 +435,7 @@ class FormModal1 extends BaseModal {
             <div className={this.decorateCSS("exit-icon")}>
               <ComposerModalClose>
                 <ComposerIcon
-                  propsIcon={{ className: this.decorateCSS("exit-icon"), style: { width: "25px", height: "25px" } }}
+                  propsIcon={{ className: this.decorateCSS("exit-icon") }}
                   name={this.getPropValue("exitIcon")}
                 />
               </ComposerModalClose>
