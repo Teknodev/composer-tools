@@ -38,21 +38,40 @@
     max-width: 50%;
 
     .icon-wrapper {
-      &:hover{  
-        border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+      gap: 10px;
+      border-radius: 50%; 
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background-color: var(--hover-background-color);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 1s ease;
+        z-index: 0;
+      }
+    
+      &:hover:before {
+        transform: translate(-50%, -50%) scale(1); 
+      }
+      &:hover .icon {
+        color: white;
       }
       .icon{
         width: 30px;
-        margin: 10px;
         height: 30px;
         color: var(--composer-primary-color);
         box-sizing: content-box; 
-        padding: 15px;
-        &:hover{  
-          background-color: var(--hover-background-color) ;
-          color: var(--composer-primary-color);
-          border-radius: 30px;
-        }
+        z-index: 1;
       }
     }
   }

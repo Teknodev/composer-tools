@@ -206,18 +206,17 @@ class LocationComponent1 extends Location {
               <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
               <div className={this.decorateCSS("icon-container")}>
                 {icons.map((icon: any, i: number) => (
-                  <div className={this.decorateCSS("icon-wrapper")}>
+                  <div className={this.decorateCSS("icon-wrapper")}
+                    style={{
+                      '--hover-background-color': icon.getPropValue("color"),
+                      '--hover-color': "white"
+                    } as React.CSSProperties}>
                     <ComposerIcon
                       key={i}
                       name={icon.getPropValue("iconItem")}
                       propsIcon={{
-                        className: this.decorateCSS("icon"),
-                        style: {
-                          '--hover-background-color': icon.getPropValue("color"),
-                          '--hover-color': "black",
-                        } as React.CSSProperties,
-                      }
-                      }
+                        className: this.decorateCSS("icon")
+                      }}
                     />
                   </div>
                 ))}
