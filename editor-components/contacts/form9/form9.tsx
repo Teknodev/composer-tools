@@ -12,7 +12,7 @@ class Form9Page extends BaseContacts {
       key: "image",
       displayer: "Image",
       value:
-        "https://static.tildacdn.com/tild3762-3231-4233-b232-346564323461/dawid-sobolewski-359.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "string",

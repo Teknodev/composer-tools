@@ -10,11 +10,12 @@ type ISliderData = {
   image: string;
   flower_image: string;
   background_image: string;
-  button: IButton[];
-  button2: IButton[];
+  button: IButton;
+  button2: IButton;
 };
 type IButton = {
-  value: string;
+  buttonText: string;
+  buttonUrl: string;
 };
 
 class HeaderComponent24 extends BaseHeader {
@@ -48,21 +49,21 @@ class HeaderComponent24 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafb?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c2?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Flower Image",
               key: "flower_image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background Image",
               key: "background_image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafc?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c3?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -72,13 +73,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -91,13 +92,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "VIEW MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -127,21 +128,21 @@ class HeaderComponent24 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf7?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267be?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Flower Image",
               key: "flower_image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background Image",
               key: "background_image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf8?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bf?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -151,13 +152,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -170,13 +171,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "VIEW MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -205,21 +206,21 @@ class HeaderComponent24 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adaf9?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c0?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Flower Image",
               key: "flower_image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd4e057bdf002c2adb0d?alt=media&timestamp=1693310263566",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background Image",
               key: "background_image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64eddd06057bdf002c2adafa?alt=media&timestamp=1693310193039",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c1?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
@@ -229,13 +230,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "TO SHOP",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -248,13 +249,13 @@ class HeaderComponent24 extends BaseHeader {
                 {
                   type: "string",
                   displayer: "Button Text",
-                  key: "button-text",
+                  key: "buttonText",
                   value: "VIEW MORE",
                 },
                 {
                   type: "page",
                   displayer: "Button URL",
-                  key: "button-url",
+                  key: "buttonUrl",
                   value: "",
                 },
               ],
@@ -307,17 +308,17 @@ class HeaderComponent24 extends BaseHeader {
                         </div>
                         <div className={this.decorateCSS("buttons")}>
                           <ComposerLink
-                            path={item.button[1].value} className={this.decorateCSS("composer-link")}
+                            path={item.button.buttonUrl} className={this.decorateCSS("composer-link")}
                           >
                             <button className={this.decorateCSS("button")}>
-                              {item.button[0].value}
+                              {item.button.buttonText}
                             </button>
                           </ComposerLink>
                           <ComposerLink
-                            path={item.button2[1].value} className={this.decorateCSS("composer-link")}
+                            path={item.button2.buttonUrl} className={this.decorateCSS("composer-link")}
                           >
                             <button className={this.decorateCSS("button")}>
-                              {item.button2[0].value}
+                              {item.button2.buttonText}
                             </button>
                           </ComposerLink>
                         </div>

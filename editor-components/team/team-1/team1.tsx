@@ -129,7 +129,7 @@ class Team1 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30784?alt=media&timestamp=1719483639146",
             },
             {
               type: "string",
@@ -173,7 +173,7 @@ class Team1 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/716411/pexels-photo-716411.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30783?alt=media&timestamp=1719483639146",
             },
             {
               type: "string",
@@ -217,7 +217,7 @@ class Team1 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30782?alt=media&timestamp=1719483639146",
             },
             {
               type: "string",
@@ -261,7 +261,7 @@ class Team1 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://images.pexels.com/photos/1820934/pexels-photo-1820934.jpeg?auto=compress&cs=tinysrgb&w=1600",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30781?alt=media&timestamp=1719483639146",
             },
             {
               type: "string",

@@ -117,7 +117,7 @@ class Team15 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://delogiswp.pixydrops.com/wp-content/uploads/2023/05/team-1-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b2?alt=media&timestamp=1719558632841",
             },
             {
               type: "icon",
@@ -172,7 +172,7 @@ class Team15 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://delogiswp.pixydrops.com/wp-content/uploads/2023/05/team-1-3.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b3?alt=media&timestamp=1719558632841",
             },
             {
               type: "icon",
@@ -227,7 +227,7 @@ class Team15 extends Team {
               key: "image",
               displayer: "Image",
               value:
-                "https://delogiswp.pixydrops.com/wp-content/uploads/2023/05/team-1-5.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b4?alt=media&timestamp=1719558632841",
             },
             {
               type: "icon",

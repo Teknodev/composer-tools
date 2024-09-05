@@ -35,7 +35,7 @@ class LogoComp6Page extends LogoClouds {
               key: "item-image",
               displayer: "Item Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1683297977192",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ce6bbd2970002c6298cf?alt=media&timestamp=1719584962578",
             },
             {
               type: "string",
@@ -56,7 +56,7 @@ class LogoComp6Page extends LogoClouds {
               key: "item-image",
               displayer: "Item Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1683297977192",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ce6bbd2970002c6298d0?alt=media&timestamp=1719584962578",
             },
             {
               type: "string",
@@ -77,7 +77,7 @@ class LogoComp6Page extends LogoClouds {
               key: "item-image",
               displayer: "Item Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1683297977192",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ce6bbd2970002c6298d1?alt=media&timestamp=1719584962578",
             },
             {
               type: "string",
@@ -98,7 +98,7 @@ class LogoComp6Page extends LogoClouds {
               key: "item-image",
               displayer: "Item Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf053?alt=media&timestamp=1683297977192",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ce6bbd2970002c6298d2?alt=media&timestamp=1719584962578",
             },
             {
               type: "string",
