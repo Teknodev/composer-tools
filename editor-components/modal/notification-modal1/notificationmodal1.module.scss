@@ -101,7 +101,7 @@
         }
         .notice-content {
           width: 75%;
-          font-size: 0.9rem;
+          font-size: 1.1rem;
           font-weight: bold;
           color: var(--composer-font-color-primary);
           padding-bottom: 25px;
@@ -137,6 +137,7 @@
         overflow-wrap: break-word; 
         word-break: break-word;
         flex-shrink: 0; 
+        font-size: 1.1rem;
         
         &:hover {
           background-color: var(--composer-primary-color);
