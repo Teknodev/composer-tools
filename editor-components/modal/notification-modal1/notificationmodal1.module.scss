@@ -121,6 +121,7 @@
       text-align: center;
       gap: 20px;
       height: auto;
+      flex-wrap: wrap;
     
       .button {
         height: auto;
@@ -151,19 +152,23 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .max-content {
     width: 100%;
     padding: 10px;
 
     .content {
-      max-width: 100%;
+      max-width: 75% !important;
 
       .notice-content {
         margin-left: 20px;
         margin-right: 20px;
       }
     }
+  }
+
+  .button-background{
+    row-gap: 0 !important;
   }
 }
 
@@ -172,7 +177,7 @@
     padding: 5px;
 
     .content {
-      max-width: 100%;
+      max-width: 90% !important;
 
       .notice-content {
         margin-left: 10px;
