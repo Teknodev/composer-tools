@@ -1,8 +1,8 @@
 .container {
-
   width: 100%;
   position: relative;
-  
+  padding: 20px 50px;
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -10,120 +10,121 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     .carousel {
-      width: 95%;
-      height: 700px;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-      position: relative;
-      margin: auto;
-   
-      .centerSlide {   
-        transform: scale(1.0) !important; /* Adjust the scale for the centered slide */
+      width: 100%; 
+      .centerSlide {
+        transform: scale(1.0) !important;
         transition: transform 0.3s ease !important;
         z-index: 2 !important;
       }
-
+      .carousel--singleCard {
+        width: 100%; 
+      }
+      .carousel--multipleCards {
+        width: auto; 
+      }
       .card {
-        width: 360px !important; 
+        width: 100%;
         height: 360px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 0 15px; 
         transition: transform 0.3s;
         transform: scale(0.8);
         position: relative;
         z-index: 1;
 
         .imgContainer {
-          width: 100% ;
-          height: 100% ; 
+          width: 100%;
+          height: 100%;
           overflow: hidden;
           position: relative;
           z-index: 1;
 
           .img {
-            width: 100% ;
-            height: 100% ; 
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             transform: scale(1.1);
             transform-origin: center;
             position: relative;
             z-index: 1;
             transition: transform 0.5s ease, filter 0.5s ease;
+
             &:hover {
-                transform: scale(1.0);
-                filter: brightness(80%);
+              transform: scale(1.0);
+              filter: brightness(80%);
             }
-          
+
             &:not(:hover) {
-              transform: scale(1.1); 
+              transform: scale(1.1);
               filter: brightness(100%);
             }
-          } 
+          }
         }
       }
-    } 
+    }
   }
 }
 
-
-@media only screen and (max-width: 800px) {
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 0 20px 0;
-        .max-content {
-            align-items: center;
-            flex-direction: column;
-            .carousel {
-                width: 98%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .img {
-                    width: 20%;
-                    height: 100px;
-                    border-radius: 6px;
-                    
-                }  
-            }
-        }
+@media only screen and (min-width: 1024px) {
+  .container{
+    padding: 20px 50px;
+    .card {
+      width: 100% !important;
+      background-size: cover;
     }
+  }
+  
 }
 
+@media only screen and (max-width: 800px) {
+  .container {
+    padding: 20px 30px;
 
+    .max-content {
+      .carousel {
+        width: 95%; 
+        .card {
+          width: 220px;
+          height: 220px;
+          background-size: cover;
+        }
+
+        .img {
+          height: 100px;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: 400px) {
   .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0 20px 0;
-      .max-content {
+    padding: 20px 15px;
+
+    .max-content {
+      .carousel {
+        width: 90%;
+        display: flex;
+        justify-content: center;
         align-items: center;
-        flex-direction: column;
-          .carousel {
-            width: calc(100% + 190%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-              .card{
-              .img {
-                  height: 100px;
-                  border-radius: 6px;
-              }
-            }
-          }
+        .card {
+          width: 120px;
+          height: 280px;
+          background-size: cover;
+
+        }
+
+        .img {
+          height: 90px;
+          border-radius: 6px;
+        }
       }
+    }
   }
 }
-

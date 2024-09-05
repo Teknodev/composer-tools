@@ -4,8 +4,7 @@ import styles from "./slider7.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import leftArrow from './leftArrow.png';
-import rightArrow from './rightArrow.png';
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   image: string;
@@ -13,49 +12,37 @@ type Card = {
 };
 
 interface ArrowProps {
-  className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
+  iconName: string;
 }
 
 
 // Next Arrow Component
 const SampleNextArrow: React.FC<ArrowProps> = (props) => {
-  const { className, style, onClick } = props;
+  const {style, onClick, iconName } = props;
   return (
     <div
-      className={className}
-      style={{ ...style, display: "block", top: "50%", transform: "translateY(-50%)"}}
+      style={{ ...style, display: "block", position: "absolute", top: "50%", transform: "translateY(-50%)", zIndex: "10", color: "var(--composer-font-color-primary)", fontSize: "42px", right: "0"}}
       onClick={onClick}
     >
-      <img
-        src= {rightArrow}
-        alt="Next"
-        style={{ width: "60px", height: "60px", position: "absolute", right: "30px", zIndex: "10", opacity: "75%"}} 
-        
-        />
+      <ComposerIcon  name={iconName} /> 
     </div>
   );
 };
 
 // Prev Arrow Component
 const SamplePrevArrow: React.FC<ArrowProps> = (props) => {
-  const { className, style, onClick } = props;
+  const {style, onClick, iconName } = props;
   return (
     <div
-      className={className}
-      style={{ ...style, display: "block", position:"absolute", top: "50%", transform: "translateY(-50%)", zIndex: "10" }}
+      style={{ ...style, display: "block", position: "absolute", top: "50%", transform: "translateY(-50%)", zIndex: "10", color: "var(--composer-font-color-primary)", fontSize: "42px", left: "0"}}
       onClick={onClick}
     >
-      <img 
-        src={leftArrow} 
-        alt="Previous" 
-        style={{ width: "60px", height: "60px", position: "absolute", left: "30px", opacity: "75%"}} 
-      />
+      <ComposerIcon  name={iconName} /> 
     </div>
   );
 };
-
 
 
 
@@ -157,16 +144,48 @@ class Slider7 extends BaseSlider {
       ],
     }); 
 
+    this.addProp({
+      type: "number",
+      key: "cardNumber",
+      displayer: "Card Number",
+      value: 5,
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "previousArrow",
+      displayer: "Previous Arrow Icon",
+      value: "FaChevronLeft"
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "nextArrow",
+      displayer: "Next Arrow Icon",
+      value: "FaChevronRight"
+    });
     
     this.setComponentState("centerSlide", 0);
-
   }
+
   getName(): string {
     return "Slider 7";
   }
-
+  
   render() {
+    
+    const items = this.castToObject<Card[]>("slider").filter(
+      (item: Card) => item.image
+    );
+    const isCardExist = items.length > 0;
+    const nextArrow = this.getPropValue("nextArrow");
+    const isNextArrowExist = this.castToString(nextArrow);
+    const previousArrow = this.getPropValue("previousArrow");
+    const isPreviousArrowExist = this.castToString(previousArrow);
 
+    const cardNumber = this.getPropValue("cardNumber") as number;
+    const visibleItemCount = Math.min(items.length, cardNumber);
+    
     const settings = {
       dots: false,
       infinite: true,
@@ -174,32 +193,59 @@ class Slider7 extends BaseSlider {
       autoplay: true,
       centerMode: true,
       autoplaySpeed: 3000,
-      slidesToShow: window.innerWidth < 769 ? 1 : 3,
-      centerPadding: '150px',
+      slidesToShow: visibleItemCount,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: Math.min(visibleItemCount, 3),
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: Math.min(visibleItemCount, 2),
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: Math.min(visibleItemCount, 1),
+            slidesToScroll: 1
+          }
+        }
+      ],
+      
+      centerPadding: '0px',
       slidesToScroll: 1,
       swipe: true,
       swipeToSlide: true,
       arrows: true,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
+      nextArrow: (
+        <SampleNextArrow iconName={this.getPropValue("nextArrow") as string} />
+      ),
+      prevArrow: (
+        <SamplePrevArrow iconName={this.getPropValue("previousArrow") as string} />
+      ),
       beforeChange: (current: number, next: number) => {
-        
         this.setComponentState("centerSlide", next);
-        
       },
     };
-
-    
+    const carouselClass = cardNumber === 1 ? "carousel--singleCard" : "carousel--multipleCards";
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider
-            {...settings}
-            className={this.decorateCSS("carousel")}
-          > 
-            {this.castToObject<Card[]>("slider").map(
-              (item: Card, index: number) => (
-                
+          {isCardExist ? (
+            <ComposerSlider
+              {...settings}
+              className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`}
+            > 
+              {items.map((item: Card, index: number) => (
                 <div 
                   key={index} 
                   className={`${this.decorateCSS("card")} ${
@@ -214,13 +260,15 @@ class Slider7 extends BaseSlider {
                     />
                   </div>
                 </div>
-              )
-            )}
-          </ComposerSlider>
+              ))}
+            </ComposerSlider>
+          ) : undefined}
         </div>
       </div>
     );
+    
   }
+  
 }
 
 export default Slider7;
