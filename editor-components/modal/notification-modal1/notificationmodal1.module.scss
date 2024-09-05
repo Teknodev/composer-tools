@@ -2,9 +2,7 @@
   width: 100%;
 
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    width: var(--composer-content-width);
+    width: 100vw;
     display: flex;
     align-items: center;
     flex-direction: column;
