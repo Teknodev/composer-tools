@@ -236,7 +236,7 @@
                     overflow: hidden;
                     transition: color 0.3s ease;
 
-                    &::before {
+                    &.enable-before::before {
                       content: "";
                       position: absolute;
                       left: -100%;
@@ -252,7 +252,7 @@
                     &:hover {
                       color: black;
 
-                      &::before {
+                      &.enable-before::before {
                         left: 0;
                       }
                     }

@@ -190,7 +190,7 @@ class Header32 extends BaseHeader {
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Disable Animation",
+      displayer: "Enable Animation",
       value: true,
     });
 
@@ -232,13 +232,15 @@ class Header32 extends BaseHeader {
 
   render() {
 
+    const animation: boolean = this.getPropValue("animation");
+
     const settings = {
       arrows: false,
       dots: true,
       infinite: this.castToObject<Card[]>("header").length > 1,
       speed: 1500,
       autoplay: true,
-      fade: true,
+      fade: animation,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -261,7 +263,6 @@ class Header32 extends BaseHeader {
     const enableOverlay: boolean = this.getPropValue("enableOverlay");
     const enableBackgroundImageOverlay = this.getPropValue("enableBackgroundImageOverlay");
 
-    const animation: boolean = this.getPropValue("animation");
 
     
 
@@ -270,176 +271,144 @@ class Header32 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("slider-parent")}>
-              
               <Slider
                 {...settings}
                 className={this.decorateCSS("carousel")}
                 ref={this.getComponentState("slider-ref")}
               >
-                {this.castToObject<Card[]>("header").map(
-                  (item: Card, index: number) => {
-                    return (
+                {this.castToObject<Card[]>("header").map((item: Card, index: number) => {
+                  return (
+                    <div className={this.decorateCSS("slide-inner")} key={`hdr-32-${index}`}>
                       <div
-                        className={this.decorateCSS("slide-inner")}
-                        key={`hdr-32-${index}`}
+                        className={this.decorateCSS("content")}
+                        style={{ background: `url(${item.backgroundImage})` }}
                       >
                         <div
-                          className={this.decorateCSS("content")}
-                          style={{ background: `url(${item.backgroundImage})` }}
-                        >
-
-                          <div className={`
+                          className={`
                             ${this.decorateCSS("content-inner")}
                             ${enableBackgroundImageOverlay
                               ? this.decorateCSS("background-overlay")
                               : ""
                             }
-                            `}>
-                            {enableOverlay && (
-                              <div
+                          `}
+                        >
+                          {enableOverlay && (
+                            <div
                               className={`${this.decorateCSS("slideShape")} ${
-                                animation ? this.decorateCSS("shapeAnimate") : ""
-                              } ${
-                                this.getComponentState("activeSlide") === index
+                                animation && this.getComponentState("activeSlide") === index
                                   ? this.decorateCSS("shapeAnimate")
                                   : ""
                               }`}
                             ></div>
-                            )}
-                  
-                            {this.castToString(item.imageTitle) && (
-                              <h2
-                                className={`${this.decorateCSS("imageTitle")} ${
-                                  animation ? this.decorateCSS("imageTitleAnimation") : ""
-                                } ${
-                                  this.getComponentState("activeSlide") === index
-                                    ? this.decorateCSS("imageTitleAnimation")
-                                    : ""
-                                }`}
-                              >
-                                {item.imageTitle}
-                              </h2>
-                            )}
-
-                            {(this.castToString(item.imageDescription) ||
-                              this.castToString(item.urlTitle)) && (
-                                <div
-                                  className={this.decorateCSS("image-details")}
+                          )}
+    
+                          {this.castToString(item.imageTitle) && (
+                            <h2
+                              className={`${this.decorateCSS("imageTitle")} ${
+                                animation && this.getComponentState("activeSlide") === index
+                                  ? this.decorateCSS("imageTitleAnimation")
+                                  : ""
+                              }`}
+                            >
+                              {item.imageTitle}
+                            </h2>
+                          )}
+    
+                          {(this.castToString(item.imageDescription) || this.castToString(item.urlTitle)) && (
+                            <div className={this.decorateCSS("image-details")}>
+                              {this.castToString(item.imageDescription) && (
+                                <p
+                                  className={`${this.decorateCSS("description")} ${
+                                    animation && this.getComponentState("activeSlide") === index
+                                      ? this.decorateCSS("animate")
+                                      : ""
+                                  }`}
                                 >
-                                  {this.castToString(item.imageDescription) && (
+                                  {item.imageDescription}
+                                </p>
+                              )}
+    
+                              {this.castToString(item.imageDescription) &&
+                                this.castToString(item.urlTitle) && (
+                                  <div
+                                    className={`${this.decorateCSS("stick")} ${
+                                      animation && this.getComponentState("activeSlide") === index
+                                        ? this.decorateCSS("animate")
+                                        : ""
+                                    }`}
+                                  ></div>
+                                )}
+    
+                              {this.castToString(item.urlTitle) && (
+                                <div className={this.decorateCSS("url-container")}>
+                                  <ComposerLink key={`hdr-32-${index}`} path={item.url}>
                                     <p
-                                      className={`${this.decorateCSS("description")} ${
-                                        animation ? this.decorateCSS("animate") : ""
-                                      } ${
-                                        this.getComponentState("activeSlide") === index
-                                          ? this.decorateCSS("animate")
+                                      className={`${this.decorateCSS("urlTitles")} ${
+                                        animation && this.getComponentState("activeSlide") === index
+                                          ? this.decorateCSS("urlTitleAnimation")
                                           : ""
                                       }`}
                                     >
-                                      {item.imageDescription}
+                                      {item.urlTitle}
                                     </p>
-                                  )}
-
-                                  {this.castToString(item.imageDescription) &&
-                                    this.castToString(item.urlTitle) && (
-                                      <div
-                                        className={`${this.decorateCSS("stick")} ${
-                                          animation ? this.decorateCSS("animate") : ""
-                                        } ${
-                                          this.getComponentState("activeSlide") === index
-                                            ? this.decorateCSS("animate")
-                                            : ""
-                                        }`}
-                                      ></div>
-                                    )}
-
-
-                                  {this.castToString(item.urlTitle) && (
-                                    <div
-                                      className={this.decorateCSS(
-                                        "url-container"
-                                      )}
-                                    >
-                                      <ComposerLink
-                                        key={`hdr-32-${index}`}
-                                        path={item.url}
-                                      >
-                                        <p
-                                          className={`${this.decorateCSS("urlTitles")} ${
-                                            animation ? this.decorateCSS("urlTitleAnimation") : ""
-                                          } ${
-                                            this.getComponentState("activeSlide") === index
-                                              ? this.decorateCSS("urlTitleAnimation")
-                                              : ""
-                                          }`}
-                                        >
-                                          {item.urlTitle}
-                                        </p>
-
-                                      </ComposerLink>
-                                    </div>
-                                  )}
+                                  </ComposerLink>
                                 </div>
                               )}
-
+                            </div>
+                          )}
+    
                             {(hasleftButtonIcon || hasrightButtonIcon) && (
-                              <div className={this.decorateCSS("nav-buttons")}>
-                                {hasleftButtonIcon && (
-                                  <button
-                                    className={this.decorateCSS("nav-button")}
-                                    onClick={() => {
-                                      this.getComponentState(
-                                        "slider-ref"
-                                      ).current.slickPrev();
+                            <div className={this.decorateCSS("nav-buttons")}>
+                              {hasleftButtonIcon && (
+                                <button
+                                  className={`${this.decorateCSS("nav-button")} ${
+                                    animation ? this.decorateCSS("enable-before") : ""
+                                  }`}
+                                  onClick={() => {
+                                    this.getComponentState("slider-ref").current.slickPrev();
+                                  }}
+                                >
+                                  <ComposerIcon
+                                    name={this.getPropValue("leftButtonIcon")}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("Icon")}`,
+                                      size: 20,
                                     }}
-                                  >
-                                    <ComposerIcon
-                                      name={this.getPropValue("leftButtonIcon")}
-                                      propsIcon={{
-                                        className: `${this.decorateCSS(
-                                          "Icon"
-                                        )}`,
-                                        size: 20,
-                                      }}
-                                    />
-                                  </button>
-                                )}
-                                {hasrightButtonIcon && (
-                                  <button
-                                    className={this.decorateCSS("nav-button")}
-                                    onClick={() => {
-                                      this.getComponentState(
-                                        "slider-ref"
-                                      ).current.slickNext();
+                                  />
+                                </button>
+                              )}
+                              {hasrightButtonIcon && (
+                                <button
+                                  className={`${this.decorateCSS("nav-button")} ${
+                                    animation ? this.decorateCSS("enable-before") : ""
+                                  }`}
+                                  onClick={() => {
+                                    this.getComponentState("slider-ref").current.slickNext();
+                                  }}
+                                >
+                                  <ComposerIcon
+                                    name={this.getPropValue("rightButtonIcon")}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("Icon")}`,
+                                      size: 20,
                                     }}
-                                  >
-                                    <ComposerIcon
-                                      name={this.getPropValue(
-                                        "rightButtonIcon"
-                                      )}
-                                      propsIcon={{
-                                        className: `${this.decorateCSS(
-                                          "Icon"
-                                        )}`,
-                                        size: 20,
-                                      }}
-                                    />
-                                  </button>
-                                )}
-                              </div>
-                            )}
-                          </div>
+                                  />
+                                </button>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
-                    );
-                  }
-                )}
+                    </div>
+                  );
+                })}
               </Slider>
             </div>
           </div>
         </div>
       </div>
     );
+    
   }
 }
 
