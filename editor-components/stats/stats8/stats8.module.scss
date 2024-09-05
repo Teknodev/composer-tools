@@ -11,14 +11,17 @@
     color: var(--primary-text-color);
   }
 
+  .full-width {
+    width: 100%;
+    text-align: center;
+  }
+
   .max-content {
     display: flex;
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-around;
     max-width: var(--composer-content-width);
     margin: auto;
-    padding: 0 60px;
-    column-gap: 50px;
     width: 100%;
     flex: 1;
 
@@ -29,13 +32,11 @@
 
     .stats2-page {
       width: 100%;
-      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
       .content {
-        padding: 20px;
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -43,9 +44,9 @@
         flex: 1;
 
         .title {
-          font-size: 2.5rem;
-          color: var(--composer-primary-color);
-          margin: 7px;
+          font-size: 40px;
+          letter-spacing: 2px;
+          color: var(--composer-font-color-primary);
         }
 
         .text-uppercase {
@@ -56,22 +57,25 @@
           font-size: 20px;
           padding: 10px 0;
           margin: 30px 0 15px 0;
+          color: var(--composer-font-color-primary);
         }
 
         .inter {
           height: 1px;
           width: 100%;
-          color: var(--color-divider);
+          color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         }
 
         .description {
           font-size: 16px;
           margin: 20px 0;
+          color: var(--composer-font-color-primary);
         }
 
         .author {
           font-size: 16px;
           font-weight: 600;
+          color: var(--composer-font-color-primary);
         }
 
         .author-role {
@@ -79,6 +83,7 @@
           position: relative;
           padding-left: 20px;
           z-index: 1;
+          color: var(--composer-font-color-primary);
         }
         
         .author-role-background {
@@ -102,22 +107,35 @@
           gap: 30px;
 
           .stat-border {
-            border: 1px solid var(--color-divider);
+            border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
             .stat {
               display: flex;
               align-items: center;
               margin: 5%;
               background-color: var(--color-divider);
+
+              &.with-background {
+                background-color: var(--color-divider);
+              }
+            
+              &.no-background {
+                background-color: transparent;
+              }
   
               .stat-title {
                 font-size: 55px;
+                font-weight: 700;
                 text-align: center;
                 margin: 0 10px;
+                color: var(--composer-font-color-primary);
               }
   
               .stat-description {
-                font-size: 20px;
+                width: 30%;
+                font-size: 16px;
+                font-weight: 400;
+                letter-spacing: 2px;
                 color: var(--composer-font-color-primary);
               }
             }
@@ -130,11 +148,12 @@
         max-height: 750px;
 
         .image-container-border {
-          border: 1px solid var(--color-divider);
+          border: 1px solid;
+          border-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-right: none;
 
           img {
-            height: auto;
+            height: 650px;
             max-height: 750px;
             object-fit: cover;
             opacity: 0.85;
@@ -148,19 +167,29 @@
             display: grid;
             align-items: center;
             margin-left: 40px;
-            border: 1px solid var(--color-divider);
+            margin-bottom: 40px;
+            border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             padding: 30px;
+            overflow: hidden;
   
             .number {
               font-size: 110px;
               margin-right: 10px;
               font-weight: 600;
+              color: var(--composer-font-color-primary);
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
             }
   
             .description {
               font-size: 16px;
               letter-spacing: 2px;
               font-weight: 600;
+              color: var(--composer-font-color-primary);
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
             }
           }
         }
@@ -184,6 +213,8 @@
           margin: 0 auto;
 
           .overlay {
+            bottom: -390px !important;
+
             .number {
               font-size: 65px;
             }
@@ -198,6 +229,7 @@
   .container {
     flex-direction: column;
     gap: 60px;
+    padding: 20px 30px;
 
     .max-content {
       display: grid;
@@ -231,6 +263,7 @@
   .container {
     flex-direction: column;
     gap: 60px;
+    padding: 20px 30px;
 
     .max-content {
       grid-template-columns: 1fr;
@@ -247,6 +280,9 @@
             margin: 0 auto;
 
             .overlay {
+              margin-left: 28px !important;
+              margin-bottom: 30px !important;
+
               .number {
                 font-size: 45px;
               }

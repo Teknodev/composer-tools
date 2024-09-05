@@ -26,6 +26,13 @@ class Stats8Page extends BaseStats {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
@@ -162,85 +169,107 @@ class Stats8Page extends BaseStats {
   render() {
     const statsData = this.castToObject<ICard[]>("stats");
     const imageSrc = this.getPropValue("imageSrc");
-  
+
     const title = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const description = this.castToString(this.getPropValue("description"));
     const author = this.castToString(this.getPropValue("author"));
     const authorRole = this.castToString(this.getPropValue("authorRole"));
     const overlayNumber = this.getPropValue("overlayNumber");
-    const overlayDescription = this.castToString(this.getPropValue("overlayDescription"));
-  
+    const overlayDescription = this.castToString(
+      this.getPropValue("overlayDescription")
+    );
+
+    const isContentPresent =
+      title ||
+      subtitle ||
+      description ||
+      author ||
+      authorRole ||
+      statsData.length > 0;
+
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats2-page")}>
-            <div
-              className={
-                this.decorateCSS("content") + (imageSrc ? "" : " full-width")
-              }
-            >
-              {title && (
-                <h2
-                  className={
-                    this.decorateCSS("title") +
-                    " " +
-                    this.decorateCSS("text-uppercase")
-                  }
-                >
-                  {title}
-                </h2>
-              )}
-  
-              {subtitle && (
-                <h6 className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </h6>
-              )}
-  
-              {(title || subtitle) && <hr className={this.decorateCSS("inter")} />}
-  
-              {description && (
-                <p className={this.decorateCSS("description")}>
-                  {description}
-                </p>
-              )}
-  
-              {author && (
-                <h5 className={this.decorateCSS("author")}>
-                  {author}
-                </h5>
-              )}
-  
-              {authorRole && (
-              <span className={this.decorateCSS("author-role")}>
-                {this.getPropValue("showBackground") && (
-                  <span className={this.decorateCSS("author-role-background")}></span>
+        <div
+          className={
+            this.decorateCSS("max-content") +
+            (!isContentPresent ? " full-width" : "")
+          }
+        >
+          {isContentPresent && (
+            <div className={this.decorateCSS("stats2-page")}>
+              <div className={this.decorateCSS("content")}>
+                {title && (
+                  <h2
+                    className={
+                      this.decorateCSS("title") +
+                      " " +
+                      this.decorateCSS("text-uppercase")
+                    }
+                  >
+                    {title}
+                  </h2>
                 )}
-                {authorRole}
-              </span>
-              )}
 
-              <div className={this.decorateCSS("stats")}>
-                {statsData.map(
-                  (statData: ICard, indexStat: number) =>
-                    statData.title &&
-                    statData.description && (
-                      <div className={this.decorateCSS("stat-border")}>
-                        <div key={indexStat} className={this.decorateCSS("stat")}>
-                          <span className={this.decorateCSS("stat-title")}>
-                            {this.getComponentState(`number-${indexStat}`)}
-                          </span>
-                          <h5 className={this.decorateCSS("stat-description")}>
-                            {statData.description}
-                          </h5>
-                        </div>
-                      </div>
-                    )
+                {subtitle && (
+                  <h6 className={this.decorateCSS("subtitle")}>{subtitle}</h6>
                 )}
+
+                {(title || subtitle) && this.getPropValue("showLine") && (
+                  <hr className={this.decorateCSS("inter")} />
+                )}
+
+                {description && (
+                  <p className={this.decorateCSS("description")}>
+                    {description}
+                  </p>
+                )}
+
+                {author && (
+                  <h5 className={this.decorateCSS("author")}>{author}</h5>
+                )}
+
+                {authorRole && (
+                  <span className={this.decorateCSS("author-role")}>
+                    {this.getPropValue("showBackground") && (
+                      <span
+                        className={this.decorateCSS("author-role-background")}
+                      ></span>
+                    )}
+                    {authorRole}
+                  </span>
+                )}
+
+                <div className={this.decorateCSS("stats")}>
+                  {statsData.map(
+                    (statData: ICard, indexStat: number) =>
+                      statData.title &&
+                      statData.description && (
+                        <div className={this.decorateCSS("stat-border")}>
+                          <div
+                            key={indexStat}
+                            className={`${this.decorateCSS("stat")} ${
+                              this.getPropValue("showBackground")
+                                ? this.decorateCSS("with-background")
+                                : this.decorateCSS("no-background")
+                            }`}
+                          >
+                            <span className={this.decorateCSS("stat-title")}>
+                              {this.getComponentState(`number-${indexStat}`)}
+                            </span>
+                            <h5
+                              className={this.decorateCSS("stat-description")}
+                            >
+                              {statData.description}
+                            </h5>
+                          </div>
+                        </div>
+                      )
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
           {imageSrc && (
             <div className={this.decorateCSS("stats2-page")}>
               <div className={this.decorateCSS("image-container")}>
@@ -267,7 +296,7 @@ class Stats8Page extends BaseStats {
         </div>
       </div>
     );
-  }  
+  }
 }
 
 export default Stats8Page;
