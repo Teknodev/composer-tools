@@ -178,15 +178,16 @@
 
             .social-icons {
               position: absolute;
-              left: 0;
-              transform: translate(-50%, -15%);
               display: flex;
-              gap: 20%;
+              gap: 20px;
+              justify-content: flex-end;
               opacity: 0;
+              max-width: 200px;
               transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
               .icon {
                 font-size: 1.3rem;
                 z-index: 10;
+               
               }              
             }
 
@@ -245,7 +246,6 @@
                 display: none !important;
               }
               .social-icons{
-                padding-right: 215px;
                 opacity: 1 !important;
               }
               .icon-next-to-text{
