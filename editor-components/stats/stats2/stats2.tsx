@@ -154,7 +154,9 @@ class Stats2Page extends BaseStats {
             {header && (
               <div className={this.decorateCSS("header")}>{header}</div>
             )}
-  
+          </div>
+
+          <div className={this.decorateCSS("bottom-content")}>
             {subHeader && (
               <div className={this.decorateCSS("subHeader")}>
                 {subHeader}
@@ -171,15 +173,15 @@ class Stats2Page extends BaseStats {
                 )}
               </div>
             )}
+
+            {cards.length > 0 && (
+              <div className={this.decorateCSS("cards-container")} style={{ top: hasHeader ? '245px' : '0' }}>
+                {cards.map((card, index) => (
+                  <AnimatedCard key={index} card={card} animationDuration={animationDuration} styles={styles} />
+                ))}
+              </div>
+            )}
           </div>
-  
-          {cards.length > 0 && (
-            <div className={this.decorateCSS("cards-container")} style={{ top: hasHeader ? '245px' : '0' }}>
-              {cards.map((card, index) => (
-                <AnimatedCard key={index} card={card} animationDuration={animationDuration} styles={styles} />
-              ))}
-            </div>
-          )}
         </div>
       </div>
     );
