@@ -190,12 +190,21 @@
     justify-content: center;
     display: flex !important;
     .content-div{
-      width: 50%;
+      width: 75%;
       display: flex;
       align-items: center;
       justify-content: center;
 
+    }
   }
+  .slider-button-left{
+    display: none;
+      }
+  .slider-button-right{
+    display: none;
+  }
+  .custom-dots li button{
+    display: none;
   }
 }
 .slider-parent-one{
@@ -216,12 +225,15 @@
 
   }
   }
-  .slider-button-left{
-display: none;
-  }
-  .slider-button-right{
-display: none;
-  }
+    .slider-button-left{
+      display: none;
+    }
+    .slider-button-right{
+      display: none;
+    }
+    .custom-dots li button{
+      display: none;
+    }
 }
 
 
@@ -347,19 +359,14 @@ display: none;
   border: 0;
   outline: none;
   background-color:transparent;
+  padding: 0;
+  margin: 0;
 
 }
 .custom-dots li {
   list-style-type: none;
 }
 
-.custom-dots li button {
-  font-size: 0;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-}
 
 .custom-dots li button::before {
   content: '';
@@ -487,6 +494,28 @@ display: none;
   .slider-parent-two{
     .content-div{
       width: 100% !important;
+    }
+    .custom-dots li button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border: 0;
+      outline: none;
+      background-color:transparent;
+      padding: 0;
+      margin: 0;
+    
+    }
+    .slider-button-left{
+      display: inline !important;
+      top:0px;
+    }
+    .slider-button-right{
+      display: inline !important;
+      top:0px;
     }
 
   }
