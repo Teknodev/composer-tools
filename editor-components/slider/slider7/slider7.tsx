@@ -17,29 +17,50 @@ interface ArrowProps {
   iconName: string;
 }
 
-
 // Next Arrow Component
 const SampleNextArrow: React.FC<ArrowProps> = (props) => {
-  const {style, onClick, iconName } = props;
+  const { style, onClick, iconName } = props;
+
+  const arrowStyle: React.CSSProperties = {
+    ...style,
+    display: "block",
+    position: "absolute", 
+    top: "50%",
+    transform: "translateY(-50%)",
+    zIndex: 10,
+    color: "var(--composer-font-color-primary)",
+    fontSize: "42px",
+    right: window.innerWidth <= 768 ? (window.innerWidth <= 480 ? "0px" : "-20px") : "-30px",
+    padding: window.innerWidth <= 768 ? "20px 30px" : "20px 50px"
+  };
+
   return (
-    <div
-      style={{ ...style, display: "block", position: "absolute", top: "50%", transform: "translateY(-50%)", zIndex: "10", color: "var(--composer-font-color-primary)", fontSize: "42px", right: "0"}}
-      onClick={onClick}
-    >
-      <ComposerIcon  name={iconName} /> 
+    <div style={arrowStyle} onClick={onClick}>
+      <ComposerIcon name={iconName} />
     </div>
   );
 };
 
 // Prev Arrow Component
 const SamplePrevArrow: React.FC<ArrowProps> = (props) => {
-  const {style, onClick, iconName } = props;
+  const { style, onClick, iconName } = props;
+
+  const arrowStyle: React.CSSProperties = {
+    ...style,
+    display: "block",
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    zIndex: 10,
+    color: "var(--composer-font-color-primary)",
+    fontSize: "42px",
+    left: window.innerWidth <= 768 ? (window.innerWidth <= 480 ? "-20px" : "-20px") : "-30px",
+    padding: window.innerWidth <= 768 ? "20px 30px" : "20px 50px"
+  };
+
   return (
-    <div
-      style={{ ...style, display: "block", position: "absolute", top: "50%", transform: "translateY(-50%)", zIndex: "10", color: "var(--composer-font-color-primary)", fontSize: "42px", left: "0"}}
-      onClick={onClick}
-    >
-      <ComposerIcon  name={iconName} /> 
+    <div style={arrowStyle} onClick={onClick}>
+      <ComposerIcon name={iconName} />
     </div>
   );
 };
@@ -66,7 +87,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd30096?alt=media&timestamp=1719584962573",
+                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-D7nSqgT-_GE-unsplash.jpg",
             },
           ],
         },
@@ -80,7 +101,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd30099?alt=media&timestamp=1719584962573",
+                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/michael-demarco-oB0r-2a1QfE-unsplash-scaled.jpg",
             },
             
           ],
@@ -95,7 +116,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd30098?alt=media&timestamp=1719584962573",
+                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-xlGKy9UokjQ-unsplash-1.jpg",
             },
           ],
         },
@@ -109,7 +130,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd3009b?alt=media&timestamp=1719584962573",
+                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/messeplatz-cloudy-sky-basel-switzerland.jpg",
             },
           ],
         },
@@ -123,7 +144,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd30097?alt=media&timestamp=1719584962573",
+                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/metal-geometric-modern-building-scaled.jpg",
             },
           ],
         },
@@ -137,7 +158,35 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c37468c3c2002cd3009a?alt=media&timestamp=1719584962573",
+                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items1",
+          displayer: "Header",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/vertical-shot-high-rise-exotic-skyscraper-blue-sky.jpg",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items1",
+          displayer: "Header",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/joel-filipe-PkE6yQwE-6Y-unsplash.jpg",
             },
           ],
         },
@@ -148,21 +197,21 @@ class Slider7 extends BaseSlider {
       type: "number",
       key: "cardNumber",
       displayer: "Card Number",
-      value: 5,
+      value: 3,
     });
 
     this.addProp({
       type: "icon",
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
-      value: "FaChevronLeft"
+      value: "BsArrowLeft"
     });
 
     this.addProp({
       type: "icon",
       key: "nextArrow",
       displayer: "Next Arrow Icon",
-      value: "FaChevronRight"
+      value: "BsArrowRight"
     });
     
     this.setComponentState("centerSlide", 0);
@@ -189,7 +238,7 @@ class Slider7 extends BaseSlider {
     const settings = {
       dots: false,
       infinite: true,
-      speed: 1000,
+      speed: 500,
       autoplay: true,
       centerMode: true,
       autoplaySpeed: 3000,
@@ -200,28 +249,31 @@ class Slider7 extends BaseSlider {
           settings: {
             slidesToShow: Math.min(visibleItemCount, 3),
             slidesToScroll: 3,
+            centerPadding: "60px",
             infinite: true,
-            dots: true
           }
         },
         {
-          breakpoint: 600,
+          breakpoint: 768,
           settings: {
-            slidesToShow: Math.min(visibleItemCount, 2),
+            slidesToShow: Math.min(visibleItemCount, 1),
             slidesToScroll: 2,
-            initialSlide: 2
+            initialSlide: 2,
+            centerPadding: "180px",
+            infinite: true,
           }
         },
         {
           breakpoint: 480,
           settings: {
             slidesToShow: Math.min(visibleItemCount, 1),
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            infinite: true,
+            centerPadding: "0px",
           }
         }
       ],
-      
-      centerPadding: '0px',
+      centerPadding: "240px",
       slidesToScroll: 1,
       swipe: true,
       swipeToSlide: true,
