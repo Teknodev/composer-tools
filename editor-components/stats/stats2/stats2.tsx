@@ -23,14 +23,16 @@ class Stats2Page extends BaseStats {
       type: "string",
       key: "header",
       displayer: "Header Content",
-      value: "Intuition and strategy integrate the research methodology that we also apply to traditional media.",
+      value:
+        "Intuition and strategy integrate the research methodology that we also apply to traditional media.",
     });
 
     this.addProp({
       type: "string",
       key: "subHeader",
       displayer: "Sub Header Content",
-      value: "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
+      value:
+        "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
     });
 
     this.addProp({
@@ -38,6 +40,13 @@ class Stats2Page extends BaseStats {
       key: "contactButton",
       displayer: "Button Content",
       value: "LET'S TALK NOW",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "buttonAnimation",
+      displayer: "Enable Button Animation",
+      value: true,
     });
 
     this.addProp({
@@ -51,7 +60,7 @@ class Stats2Page extends BaseStats {
       type: "array",
       key: "cards",
       displayer: "cards",
-      additionalParams: { maxElementCount: 4 },
+      additionalParams: { maxElementCount: 10 },
       value: [
         {
           type: "object",
@@ -140,13 +149,14 @@ class Stats2Page extends BaseStats {
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const animationDuration = this.getPropValue("animation-duration") as number;
-   const subHeader = this.castToString(this.getPropValue("subHeader"));
-   
+    const subHeader = this.castToString(this.getPropValue("subHeader"));
+
     const header = this.castToString(this.getPropValue("header"));
     const contactButton = this.castToString(this.getPropValue("contactButton"));
     const contactButtonIcon = this.getPropValue("contactButtonIcon");
     const hasHeader = Boolean(header);
-  
+    const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -161,11 +171,17 @@ class Stats2Page extends BaseStats {
               <div className={this.decorateCSS("subHeader")}>
                 {subHeader}
                 {(contactButton || contactButtonIcon) && (
-                  <button className={this.decorateCSS("contact-button")}>
+                  <button
+                    className={`${this.decorateCSS("contact-button")} ${
+                      buttonAnimationEnabled ? this.decorateCSS("animated") : ""
+                    }`}
+                  >
                     {contactButton}
                     {contactButtonIcon && (
                       <ComposerIcon
-                        propsIcon={{ className: this.decorateCSS("contact-button-icon") }}
+                        propsIcon={{
+                          className: this.decorateCSS("contact-button-icon"),
+                        }}
                         name={contactButtonIcon}
                       />
                     )}
@@ -175,9 +191,17 @@ class Stats2Page extends BaseStats {
             )}
 
             {cards.length > 0 && (
-              <div className={this.decorateCSS("cards-container")} style={{ top: hasHeader ? '245px' : '0' }}>
+              <div
+                className={this.decorateCSS("cards-container")}
+                style={{ top: hasHeader ? "245px" : "0" }}
+              >
                 {cards.map((card, index) => (
-                  <AnimatedCard key={index} card={card} animationDuration={animationDuration} styles={styles} />
+                  <AnimatedCard
+                    key={index}
+                    card={card}
+                    animationDuration={animationDuration}
+                    styles={styles}
+                  />
                 ))}
               </div>
             )}
@@ -185,7 +209,7 @@ class Stats2Page extends BaseStats {
         </div>
       </div>
     );
-  }  
+  }
 }
 
 type AnimatedCardProps = {
@@ -194,7 +218,11 @@ type AnimatedCardProps = {
   styles: typeof styles;
 };
 
-const AnimatedCard: React.FC<AnimatedCardProps> = ({ card, animationDuration, styles }) => {
+const AnimatedCard: React.FC<AnimatedCardProps> = ({
+  card,
+  animationDuration,
+  styles,
+}) => {
   const [amount, setAmount] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
 
