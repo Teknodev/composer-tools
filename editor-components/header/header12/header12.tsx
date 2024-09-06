@@ -277,7 +277,6 @@ class Header12 extends BaseHeader {
     };
 
     const decorateIcon = { className: this.decorateCSS("Icon") };
-
     const leftSliderSettings = {
       ...settings,
       prevArrow: <LeftSliderArrow
@@ -331,12 +330,12 @@ class Header12 extends BaseHeader {
                         src={item.image}
                         alt={this.castToString(item.text)}
                       />
+                      <div className={this.decorateCSS("slider-item-text")}>{item.text}</div>
                       {showOverlay && (
                         <div className={this.decorateCSS("image-overlay")} />
                       )}
                     </div>
                   )}
-
                 </div>
               ))}
             </ComposerSlider>)}
@@ -360,6 +359,7 @@ class Header12 extends BaseHeader {
                           src={item.image}
                           alt={this.castToString(item.text)}
                         />
+                        <div className={this.decorateCSS("slider-item-text")}>{item.text}</div>
                         {showOverlay && (
                           <div className={this.decorateCSS("image-overlay")} />
                         )}
