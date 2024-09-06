@@ -216,7 +216,7 @@ class Stats8Page extends BaseStats {
                 )}
 
                 {(title || subtitle) && this.getPropValue("showLine") && (
-                  <hr className={this.decorateCSS("inter")} />
+                  <hr className={this.decorateCSS("line")} />
                 )}
 
                 {description && (

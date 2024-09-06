@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  // min-height: 100vh;
   background: var(--composer-html-background);
 
   p {
@@ -24,6 +24,7 @@
     margin: auto;
     width: 100%;
     flex: 1;
+    gap: 20px;
 
     &.image-absent {
       display: inline-block;
@@ -34,16 +35,17 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
 
       .content {
         display: flex;
         flex-direction: column;
         align-items: start;
-        justify-content: center;
+        justify-content: flex-start;
         flex: 1;
 
         .title {
+          margin: 0;
           font-size: 40px;
           letter-spacing: 2px;
           color: var(--composer-font-color-primary);
@@ -60,10 +62,11 @@
           color: var(--composer-font-color-primary);
         }
 
-        .inter {
+        .line {
           height: 1px;
           width: 100%;
           color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          opacity: .3;
         }
 
         .description {
@@ -88,7 +91,7 @@
         
         .author-role-background {
           width: 60px;
-          background-color: var(--color-divider);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           position: absolute;
           left: 0;
           top: 0;
@@ -107,16 +110,18 @@
           gap: 30px;
 
           .stat-border {
-            border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            border: 1px solid;
+            border-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            opacity: .3;
 
             .stat {
               display: flex;
               align-items: center;
               margin: 5%;
-              background-color: var(--color-divider);
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
               &.with-background {
-                background-color: var(--color-divider);
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               }
             
               &.no-background {
@@ -144,13 +149,13 @@
       }
 
       .image-container {
-        position: relative;
-        max-height: 750px;
 
         .image-container-border {
           border: 1px solid;
           border-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-right: none;
+          position: relative;
+          display: flex;
 
           img {
             height: 650px;
@@ -164,32 +169,31 @@
           .overlay {
             position: absolute;
             bottom: 1px;
-            display: grid;
-            align-items: center;
-            margin-left: 40px;
-            margin-bottom: 40px;
+            // left: 10px;
+            // display: flex;
+            // flex-direction: column;
+            // align-items: flex-start;
+            margin: 30px;
             border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             padding: 30px;
-            overflow: hidden;
+            width: 90%; // Genişlik tamamen kapsayıcıya yayılsın
+            overflow: hidden; // Taşmaları engelle
+            white-space: normal; // Metin bir sonraki satıra geçsin
+            word-wrap: break-word;
   
             .number {
               font-size: 110px;
               margin-right: 10px;
               font-weight: 600;
               color: var(--composer-font-color-primary);
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
             }
   
             .description {
               font-size: 16px;
-              letter-spacing: 2px;
+              letter-spacing: 1px;
+              line-height: 1.5;
               font-weight: 600;
               color: var(--composer-font-color-primary);
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
             }
           }
         }
@@ -213,7 +217,6 @@
           margin: 0 auto;
 
           .overlay {
-            bottom: -390px !important;
 
             .number {
               font-size: 65px;
@@ -255,6 +258,10 @@
           }
         }
       }
+
+      .number {
+        font-size: 75px !important;
+      }
     }
   }
 }
@@ -275,25 +282,25 @@
 
         .content {
           padding: 0;
-          .image-container {
-            padding: 0;
-            margin: 0 auto;
 
-            .overlay {
-              margin-left: 28px !important;
-              margin-bottom: 30px !important;
-
-              .number {
-                font-size: 45px;
-              }
-            }
-          }
           .stats {
             grid-template-columns: repeat(1, 1fr);
             .stat {
               margin-right: 0;
               margin-left: 0;
             }
+          }
+        }
+      }
+
+      .image-container {
+        padding: 0;
+        margin: 0 auto;
+
+        .overlay {
+
+          .number {
+            font-size: 45px !important;
           }
         }
       }
