@@ -421,11 +421,8 @@ function Registerables(composer: ComponentsRegistery) {
     new TermsOfUseModal(),
     new SurveyModal(),
     new NoticeModal(),
-<<<<<<< HEAD
     new ConfirmationModal(),
-=======
     new NotificationModal2(),
->>>>>>> 2465d01e39ea77c19ad393130412727a0c6f9e22
     new SubscriptionModal(),
     new LocationComponent1(),
   ]);
