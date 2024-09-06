@@ -55,14 +55,11 @@
         padding: 50px;
         z-index: 1;
         max-width: var(--composer-content-width);
-
         .title-container {
           height: 50%;
-          max-height: 50%;
           z-index: 3;
           padding: 8.33rem 8.33rem;
           color: white;
-          pointer-events: auto;
           text-align: center;
 
           .title {
@@ -73,16 +70,8 @@
             flex-direction: row;
             font-size: 6vw;
             font-weight: bolder;
-            max-width: fit-content;
             width: 100%;
-            .number {
-              flex: 3;
-              font-size: 0.8vw;
-              font-weight: bolder;
-              position: relative;
-              right: 0px;
-            }
-
+            max-width: fit-content;
             &.previous,
             &.next {
               color: transparent;
@@ -90,9 +79,7 @@
               font-weight: normal;
               opacity: 0.3;
               word-break: break-word;
-              flex:100;
             }
-
             &.current {
               font-weight: bolder;
               opacity: 1;
@@ -100,6 +87,13 @@
               word-break: break-word;
             }
           }
+          .number {
+            flex: 3;
+            font-size: 0.8vw;
+            font-weight: bolder;
+            word-break: normal;
+          }
+
 
           .previous-placeholder {
             width: 100%;
@@ -117,7 +111,7 @@
           font-size: 1.2rem;
           gap: 3.5%;
           color: white;
-          z-index: 10000;
+          z-index: 10;
           padding: 2rem 8.33rem;
           .navigation {
             display: flex;
@@ -208,61 +202,31 @@
   }
 }
 
-@media only screen and (max-width: 1300px) {
-  .container {
-    .max-content {
-      .item {
-        .content-container {
-          .title-container {
-            padding-left: 0;
-
-            .title {
-              .number {
-                font-size: 1.5vw;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 @media only screen and (max-width: 1024px) {
-  .container {
-    .max-content {
-      .item {
-        .content-container {
-          .title-container {
-            padding-left: 0;
-
-            .title {
-              font-size: 6vw;
-
-              .number {
-                font-size: 2vw;
-              }
-            }
-          }
-          .buttomRow{
-            padding: 24px 0px;
-            .comment-and-icon-text-container {
-              width: 100%;
-              .icon_text{
-                display: none !important;
-              }
-              .social-icons{
-                opacity: 1 !important;
-                width: 350px;
-              }
-              .icon-next-to-text{
-                display: none !important; 
-              }
-            }
-
-          }
-        }
-      }
+  .title-container {
+    padding-left: 0 !important;
+  }
+  .title {
+    font-size: 6vw !important;
+  }
+  .number {
+    font-size: 2vw !important;
+  }
+  .buttomRow{
+    padding: 24px 0px !important;
+  }
+  .comment-and-icon-text-container {
+    width: 100% !important;
+    .icon_text{
+      display: none !important;
+    }
+    .social-icons{
+      opacity: 1 !important;
+      width: 350px !important;
+      top:-7px !important;
+    }
+    .icon-next-to-text{
+      display: none !important; 
     }
   }
 }
@@ -288,9 +252,7 @@
                 font-size: 4vw;
               }
             }
-
           }
-
           .buttomRow {
             padding:0px;
             flex-direction: row-reverse;
@@ -298,12 +260,10 @@
             .navigation {
               margin-right: 0;
               gap: 30%;
-
               .up,
               .down {
                 margin: 0;
               }
-
               .icon {
                 font-size: 3rem;
               }
@@ -311,13 +271,11 @@
             .comment{
               display: flex;
               justify-content:center;
-              width: 100%;
-              height: 100%;
               align-items: center;
               text-align: start;
-              margin-left: -10px;
+              position: absolute;
+              left: 30px;
             }
-
             .comment-and-icon-text-container {
               direction: ltr;
               width: 0px;

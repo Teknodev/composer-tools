@@ -1051,10 +1051,10 @@ class HeaderComponent20 extends BaseHeader {
                         <ComposerLink path={slide.link} isFullWidth={true}>
                           <h2 className={this.decorateCSS("title")}>
                             {slide.title}
-                            <span className={this.decorateCSS("number")}>
-                              {slide.number}
-                            </span>
                           </h2>
+                          <span className={this.decorateCSS("number")}>
+                            {slide.number}
+                          </span>
                         </ComposerLink>
                       ) : slide.isPlaceholder ? (
                         <h2 className={this.decorateCSS("title")}>&nbsp;</h2>
