@@ -11,7 +11,8 @@
       flex-direction: column;
 
       .divider {
-        background-color: var(--composer-primary-color);
+        background-color: var(--composer-font-color-primary);
+        opacity: .3;
         height: 2px;
         width: 45px;
         border-radius: 99px;
@@ -27,9 +28,8 @@
         .content-left {
           width: 100%;
           justify-content: right;
-          padding: 0 20px 0 0;
+          padding: 0;
           line-height: 30px;
-          padding-left: 15px;
 
           > div:last-child {
             border-bottom: none;
@@ -45,6 +45,7 @@
               justify-content: space-between;
               gap: 10px;
               padding: 32px 0;
+              transition: padding 0.3s ease;
 
               .card-subtitle {
                 color: var(--composer-font-color-primary);
@@ -52,7 +53,7 @@
                 font-size: 16px;
                 transition: 0.3s;
 
-                &.card-subtitle:hover {
+                &:hover {
                   color: var(--composer-primary-color);
                   cursor: pointer;
                 }
@@ -64,32 +65,38 @@
                 flex-shrink: 0;
               }
             }
+
+            .text-box {
+              overflow: hidden;
+              max-height: 0px;
+              transition: max-height 0.4s ease, padding 0.4s ease;
+              padding: 0 5px;
+    
+              .card-text {
+                color: var(--composer-font-color-primary);
+                opacity: 0.6;
+                font-size: 14px;
+                margin-top: 0;
+                padding-top: 0;
+              }
+            }
+
+            .text-box.active {
+              max-height: 500px;
+              padding: 5px 5px 5px 0;
+            }
+
+            .top-card.active {
+              padding-bottom: 0;
+            }
+    
+            :last-child {
+              border: none;
+            }
           }
-        }
-
-        .text-box {
-          overflow: hidden;
-          max-height: 0px;
-          transition: max-height 0.4s ease, padding 0.4s ease;
-          padding: 0 5px;
-
-          .card-text {
-            color: var(--composer-font-color-primary);
-            opacity: 0.6;
-            font-size: 14px;
-          }
-        }
-        .text-box.active {
-          max-height: 500px;
-          padding: 5px;
-        }
-
-        :last-child {
-          border: none;
         }
 
         .content-right {
-          padding: 0 15px;
           line-height: 30px;
           width: 50%;
           .info-items {
@@ -141,7 +148,6 @@
 
     .caption {
       color: var(--composer-font-color-primary);
-      margin-top: 20px;
       margin-bottom: 15px;
       font-size: 35px;
       letter-spacing: -0.3px;
@@ -165,7 +171,7 @@
 
   .contentContainer {
     margin: 0;
-    padding: 0 10px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     width: 100% !important;
@@ -190,9 +196,12 @@
   
   .contentContainer {
     width: 100% !important;
-    padding: 0 10px;
     display: flex;
     flex-direction: column;
+
+    .content-left {
+      padding-right: 0 !important;
+    }
 
     .content-right {
       width: 100% !important;
