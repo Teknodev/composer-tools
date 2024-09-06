@@ -72,19 +72,31 @@
             font-weight: bolder;
             width: 100%;
             max-width: fit-content;
+
+              >blinkpage{
+                text-overflow: ellipsis;
+                >p{
+                  text-overflow: ellipsis;
+                }
+              }
             &.previous,
             &.next {
               color: transparent;
               -webkit-text-stroke: 1px white;
               font-weight: normal;
               opacity: 0.3;
-              word-break: break-word;
+              >blinkpage{
+                white-space: nowrap;  
+                text-overflow: ellipsis;
+              }
             }
             &.current {
               font-weight: bolder;
               opacity: 1;
               -webkit-text-stroke: none;
-              word-break: break-word;
+              white-space: nowrap; 
+              overflow: hidden;  
+              text-overflow: ellipsis;
             }
           }
           .number {
