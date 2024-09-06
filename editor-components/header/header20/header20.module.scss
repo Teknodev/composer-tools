@@ -74,11 +74,13 @@
             font-size: 6vw;
             font-weight: bolder;
             max-width: fit-content;
-
+            width: 100%;
             .number {
+              flex: 3;
               font-size: 0.8vw;
               font-weight: bolder;
-              margin-left: 1rem;
+              position: relative;
+              right: 0px;
             }
 
             &.previous,
@@ -87,12 +89,15 @@
               -webkit-text-stroke: 1px white;
               font-weight: normal;
               opacity: 0.3;
+              word-break: break-word;
+              flex:100;
             }
 
             &.current {
               font-weight: bolder;
               opacity: 1;
               -webkit-text-stroke: none;
+              word-break: break-word;
             }
           }
 
@@ -182,12 +187,13 @@
               gap: 20px;
               justify-content: flex-end;
               opacity: 0;
-              max-width: 200px;
+              width: 600px;
+              right: 0px;
               transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+              flex-wrap: wrap; 
               .icon {
                 font-size: 1.3rem;
                 z-index: 10;
-               
               }              
             }
 
@@ -247,6 +253,7 @@
               }
               .social-icons{
                 opacity: 1 !important;
+                width: 350px;
               }
               .icon-next-to-text{
                 display: none !important; 
@@ -276,7 +283,7 @@
 
             .title {
               font-size: 9vw;
-
+            
               .number {
                 font-size: 4vw;
               }
