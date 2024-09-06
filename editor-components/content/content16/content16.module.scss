@@ -37,7 +37,6 @@
     font-weight: 600;
     font-size: 1.5rem;
     text-decoration: none;
-    padding: 0 40px;
     align-items: center;
     overflow: visible;
     z-index: 10;
@@ -96,13 +95,11 @@
       font-weight: lighter;
     }
     .wrapper {
-      width: calc(100% - 40px);
-      flex: 1;
       display: flex;
-      justify-content: space-between;
       justify-content: center;
       .slider-parent, .slider-parent-one, .slider-parent-two {
-        width: 100%;
+        width: calc(100% - 40px);
+        flex: 1;
         position: relative;
         margin: auto;
         display: flex;
@@ -276,10 +273,6 @@
   .container {
     padding: 20px 30px;
   }
-
-  .right-link{
-    padding:0px 30px !important;
-  }
   .slider-parent-two{
     .content-div{
       width: 100% !important;
@@ -324,7 +317,6 @@
   }
   .right-link{
     font-size: 1rem !important;
-    padding: 0px 20px !important;
   }
   .icon{
     width: 10px !important;
