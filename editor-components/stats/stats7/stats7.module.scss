@@ -8,12 +8,10 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 10px;
     .title-child {
       display: block;
       justify-content: space-around;
       align-items: center;
-      padding: 20px;
       margin: auto;
       max-width: var(--composer-content-width);
        width: 100%;
@@ -43,11 +41,10 @@
     .progress-container {
       display: flex;
       flex-direction: column;
-      gap: 35px;
+      gap: 30px;
       max-width: var(--composer-content-width);
       width: 100%;
       margin: auto;
-      padding:20px;
       align-items: center;
       justify-content: center; 
       .item {
@@ -55,7 +52,6 @@
         width: 100%;
         margin-top: 30px;
         margin: auto;
-        gap: 20px;
         padding: 20;
 
         .progress-title {
@@ -77,13 +73,11 @@
 
       .progress-active {
         background-color: #F7F7F7;
-        margin: 0 50px 0 0;
 
         .progress-passive {
           animation: fillProgress 2s ease-in-out forwards;
           height: 3px;
           background-color: var(--composer-secondary-color);
-          margin: 0 50px 0 0;
         }
 
         @keyframes fillProgress {
@@ -124,9 +118,7 @@
         }
 
         .progress-container {
-
           bottom: 0;
-          padding: 50px;
           .title {
             font-size: 17px;
           }
@@ -181,7 +173,6 @@
       justify-content: center;
 
       .title-child {
-        gap: 15px;
         flex-direction: column;
         align-items: flex-start;
 
@@ -196,7 +187,6 @@
           width: 100%;
           text-align: left;
           margin-left: 0;
-
         }
 
         .description {
@@ -208,7 +198,7 @@
       }
 
       .progress-container {
-         
+         padding-top: 10px;
         .title {
           font-size: 8px;
         }
