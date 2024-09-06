@@ -100,7 +100,6 @@
 .buttons-container {
   background-color: var(--composer-font-color-primary);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 20px;
@@ -109,6 +108,7 @@
   padding: 20px 20px;
   border-radius: 0 0 10px 10px;
   word-break: break-word;
+  padding: 30px;
 
   > div {
     width: 85%;
@@ -120,7 +120,7 @@
       background: transparent;
       border: none;
       padding-bottom: 5px;
-      border-bottom: 1px solid var(--composer-font-color-secondary);
+       border-bottom: 1px solid var(--composer-font-color-secondary);
     }
   }
 }
@@ -164,12 +164,11 @@
   }
 
   .buttons-container {
-    flex-direction: column;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 20px;
+    padding: 20px 30px;
 
     > div {
-      width: 90% !important;
       display: flex;
       justify-content: center;
 
@@ -189,7 +188,7 @@
     padding: 10px 0 10px 0;
 
     .title-wrapper {
-      font-size: 26px;
+      font-size: 36px;
 
       .title {
         width: 85%;
