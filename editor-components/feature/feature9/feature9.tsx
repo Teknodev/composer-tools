@@ -265,7 +265,6 @@ class Feature9 extends BaseFeature {
    
     return (
       <div
-        // ref={this.setupObserver}
         className={this.decorateCSS("container")}
       >
         <div className={this.decorateCSS("max-content")}>
