@@ -423,11 +423,10 @@ class Content16 extends BaseContent {
                         key={index}
                       >
                         <div
-                          className={this.decorateCSS("content-div")}
-                          style={
-                            this.castToString(item.imageTitle) ? {} : { padding: "20px 10px" }
-                          }
+                          className={`${this.decorateCSS("content-div")} ${!this.castToString(item.imageTitle) ?
+                            this.decorateCSS("no-title-content-div ") : ""}`}
                         >
+
                           {item.image && (
                             <div className={this.decorateCSS("img-div")}>
                               <ComposerLink path={item.url}>
