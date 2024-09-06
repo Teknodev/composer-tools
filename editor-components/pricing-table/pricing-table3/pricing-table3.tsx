@@ -21,6 +21,7 @@ type TagSettings = {
 type Button = {
   text: JSX.Element;
   link: string;
+  icon: string;
 };
 
 class PricingTable3 extends BasePricingTable {
@@ -59,6 +60,12 @@ class PricingTable3 extends BasePricingTable {
           displayer: "Button Link",
           value: "",
         },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "FaArrowRight",
+        },
       ],
     });
 
@@ -67,7 +74,7 @@ class PricingTable3 extends BasePricingTable {
       key: "cards",
       displayer: "Cards",
       additionalParams: {
-        maxElementCount: 4
+        maxElementCount: 4,
       },
       value: [
         {
@@ -93,6 +100,18 @@ class PricingTable3 extends BasePricingTable {
                   value: false,
                 },
               ],
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaUsers",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "PERSONAL",
             },
             {
               type: "number",
@@ -147,18 +166,6 @@ class PricingTable3 extends BasePricingTable {
               ],
             },
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaUsers",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "PERSONAL",
-            },
-            {
               type: "object",
               key: "button",
               displayer: "Card Button",
@@ -174,6 +181,12 @@ class PricingTable3 extends BasePricingTable {
                   key: "link",
                   displayer: "Button Link",
                   value: "",
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaArrowRight",
                 },
               ],
             },
@@ -204,6 +217,18 @@ class PricingTable3 extends BasePricingTable {
               ],
             },
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaUsers",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "PERSONAL",
+            },
+            {
               type: "number",
               key: "price",
               displayer: "Price",
@@ -256,18 +281,6 @@ class PricingTable3 extends BasePricingTable {
               ],
             },
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdPersonOutline",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "PERSONAL",
-            },
-            {
               type: "object",
               key: "button",
               displayer: "Card Button",
@@ -283,6 +296,12 @@ class PricingTable3 extends BasePricingTable {
                   key: "link",
                   displayer: "Button Link",
                   value: "",
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaArrowRight",
                 },
               ],
             },
@@ -313,6 +332,18 @@ class PricingTable3 extends BasePricingTable {
               ],
             },
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaUsers",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "PERSONAL",
+            },
+            {
               type: "number",
               key: "price",
               displayer: "Price",
@@ -365,18 +396,6 @@ class PricingTable3 extends BasePricingTable {
               ],
             },
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaUsersGear",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "PERSONAL",
-            },
-            {
               type: "object",
               key: "button",
               displayer: "Card Button",
@@ -392,6 +411,12 @@ class PricingTable3 extends BasePricingTable {
                   key: "link",
                   displayer: "Button Link",
                   value: "",
+                },
+                {
+                  type: "icon",
+                  key: "icon",
+                  displayer: "Icon",
+                  value: "FaArrowRight",
                 },
               ],
             },
@@ -438,7 +463,15 @@ class PricingTable3 extends BasePricingTable {
                         event.preventDefault();
                       }}
                     >
-                      {featuredButton.text}
+                      <div className={this.decorateCSS("button-text")}>
+                        {featuredButton.text}
+                      </div>
+                      <ComposerIcon
+                        name={featuredButton.icon}
+                        propsIcon={{
+                          className: this.decorateCSS("button-icon"),
+                        }}
+                      />
                     </button>
                   </ComposerLink>
                 )}
@@ -503,11 +536,37 @@ class PricingTable3 extends BasePricingTable {
                         )}
                         {this.castToString(card.button.text) && (
                           <div className={this.decorateCSS("footer")}>
-                            <ComposerLink path={card.button.link}>
-                              <button className={this.decorateCSS("button")}>
-                                {card.button.text}
-                              </button>
-                            </ComposerLink>
+                            {this.castToString(card.button.text) && (
+                              <div className={this.decorateCSS("footer")}>
+                                <ComposerLink path={card.button.link}>
+                                  <button
+                                    className={`${this.decorateCSS("button")}
+                                       ${
+                                         card.button.icon
+                                           ? this.decorateCSS("has-icon")
+                                           : ""
+                                       }`}
+                                  >
+                                    <div
+                                      className={this.decorateCSS(
+                                        "button-text"
+                                      )}
+                                    >
+                                      {card.button.text}
+                                    </div>
+                                    {card.button.icon && (
+                                      <ComposerIcon
+                                        name={card.button.icon}
+                                        propsIcon={{
+                                          className:
+                                            this.decorateCSS("button-icon"),
+                                        }}
+                                      />
+                                    )}
+                                  </button>
+                                </ComposerLink>
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>
