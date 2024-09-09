@@ -1,98 +1,281 @@
 .container {
+  width: 100%;
+  background-color: var(--composer-html-background);
+  padding: 20px 50px 20px 0px;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-container {
     width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        display: flex;
-        justify-content: space-around;
-        .content {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 60px;
-            width: 100%;
-            .card-item-count {
-                .listed {
-                    position: relative;
-                    display: flex;
-                    flex-direction: column;
-                    height: max-content;
-                    padding: 0;
-                    flex: 1 1;
-                    .image {
-                        display: block;
-                        width: 60%;
-                        padding: 0;
-                        border-radius: 6px;
-                        object-fit: cover;
-                        text-align: center;
-                    }
-                    .little-text {
-                        color: var(--composer-font-color-primary);
-                        font-size: 1rem;
-                    }
-                    .title {
-                        display: block;
-                        font-weight: bold;
-                        max-width: 100%;
-                        font-size: 1.6rem;
-                        margin: 0;
-                        color: var(--composer-primary-color);
-                    }
-                    .title-description {
-                        display: block;
-                        color: var(--composer-font-color-primary);
-                        max-width: 100%;
-                        font-size: 1.1rem;
-                    }
-                    .little-box {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        width: 70px;
-                        height: 70px;
-                        background-color: #fff;
-                        position: absolute;
-                        top: -30px;
-                        padding: 10px;
-                        margin: 10px 0px 0px 10px;
-                        text-align: center;
-                    }
-                    .text {
-                        font-size: 1rem;
-                        position: absolute;
-                        top: 25px;
-                        text-align: center;
-                    }
-                    .number {
-                        font-size: 3rem;
-                        position: absolute;
-                        top: -35px;
-                    }
-                    p {
-                        width: 100%;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                    }
-                }
-            }
-        }
+    padding-right: 40px;
+
+    .image {
+      width: 100%;
+      height: auto;
     }
+
+    .no-text-container {
+      height: 500px !important;
+      object-fit: cover;
+    }
+  }
+
+  .textContainer {
+    width: 100%;
+    color: var(--composer-font-color-primary);
+
+    .title {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+
+    .mainTitle {
+      margin-top: 0px;
+      margin-bottom: 20px;
+      font-size: 4rem;
+    }
+
+    .description {
+      margin-top: 0px;
+      margin-bottom: 0;
+      font-size: 1.8rem;
+    }
+
+    .featuresList {
+      list-style-type: none;
+      margin-top: 0;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      padding-left: 0;
+
+      .feature {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        margin: 10px 0;
+        gap: 10px;
+        height: 100%;
+      
+        .featureTitle {
+          font-size: 2rem;
+          text-align: start;
+          line-height: 1.2;
+          margin: 0;
+          padding: 0;
+        }
+      
+        .icon-wrapper {
+          display: flex;
+          align-items: start;
+          height: 100%;
+      
+          .iconFeature {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin-top: 0.25rem;
+          }
+        }
+      }
+      
+    }
+
+    .linkList {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .link {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+
+        .linkText {
+          font-size: 2rem;
+          text-align: start;
+        }
+
+        .iconLink {
+          flex-shrink: 0;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+
+  .no-image {
+    padding-left: 50px;
+  }
+
+  .linkContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    color: var(--composer-font-color-primary);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--composer-secondary-color);
+
+      .linkText::after {
+        background-color: var(--composer-secondary-color);
+      }
+    }
+
+    .linkText {
+      font-size: 1.5rem;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 2px;
+        background-color: var(--composer-font-color-primary);
+      }
+    }
+
+    .iconLink {
+      margin-left: 5px;
+      height: 20px;
+      width: 20px;
+    }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .max-content {
-            .content {
-                gap: 80px !important;
-                .card-item-count {
-                    min-width: 100%;
-                }
-            }
-        }
+@media screen and (max-width: 1024px) {
+
+  .max-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-container {
+    width: 100%;
+    padding-right: 0 !important;
+    margin-bottom: 40px;
+  }
+
+  .textContainer {
+    padding: 0px 0px 0px 50px;
+    width: 100%;
+    text-align: start;
+    margin: 0 !important;
+
+    .mainTitle {
+      font-size: 3rem;
     }
+
+    .description {
+      font-size: 1.5rem;
+    }
+
+    .featuresList {
+      .feature {
+        .featureTitle {
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    .linkList {
+      margin: 0 !important;
+
+      .link {
+        margin: 0 !important;
+
+        .linkText {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 468px) {
+  .container {
+    padding: 0 !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .textContainer {
+    padding: 0px 20px 0px 20px;
+
+    .title {
+      font-size: 1.5rem !important;
+    }
+
+    .mainTitle {
+      font-size: 2.2rem !important;
+    }
+
+    .description {
+      font-size: 1.4rem !important;
+    }
+
+    .featuresList {
+      .feature {
+        .featureTitle {
+          font-size: 1.5rem !important;
+        }
+
+        .iconFeature {
+          width: 16px !important;
+          height: 16px !important;
+        }
+      }
+    }
+
+    .linkList {
+      .link {
+        .linkText {
+          font-size: 1.5rem !important;
+        }
+
+        .iconLink {
+          width: 16px !important;
+          height: 16px !important;
+        }
+      }
+    }
+  }
+
+  .no-image {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .linkContainer {
+    .link {
+      margin: 0 !important;
+
+      .linkText {
+        margin: 0 !important;
+        font-size: 1.3rem !important;
+      }
+
+      .iconLink {
+        height: 16px !important;
+        width: 16px !important;
+      }
+    }
+  }
 }
