@@ -108,14 +108,14 @@
           align-items: center;
           justify-content: center;
       
-          .content-div, .no-title-content-div {
+          .content-div {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 75%;
-          }
-          .no-title-content-div {
-            padding:20px 10px;
+            .no-title-content-div{
+              padding:20px 10px;
+            }
           }
         }
       
