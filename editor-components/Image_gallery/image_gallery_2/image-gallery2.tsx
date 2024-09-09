@@ -2,11 +2,13 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerModalClose from "../../../composer-base-components/close/close";
 
 type ImageType = {
   image: string;
   imageTitle: JSX.Element;
 };
+
 type sectionType = {
   title: string;
   imageGallery: ImageType[];
@@ -18,211 +20,19 @@ class ImageGallery2 extends BaseImageGallery {
     this.setComponentState("default", 0);
     this.setComponentState("modalOpen", false);
     this.setComponentState("currentImageIndex", 0);
+
+    this.addProp({
+      type: "boolean",
+      key: "showAll",
+      displayer: "Show All Category",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
       key: "gallery",
       displayer: "gallery",
       value: [
-        {
-          type: "object",
-          key: "section",
-          displayer: "Section",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "All",
-            },
-            {
-              type: "array",
-              key: "imageGallery",
-              displayer: "Image Gallery 1",
-              value: [
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcecf9e8fb8002c915408?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcf669e8fb8002c915437?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fd0079e8fb8002c91546b?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fd0079e8fb8002c91546b?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fd02b9e8fb8002c915477?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fd0579e8fb8002c91548b?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fd0799e8fb8002c9154a1?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "section",
-                  displayer: "Section",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fd0b59e8fb8002c9154ae?alt=media",
-                    },
-                    {
-                      type: "string",
-                      key: "imageTitle",
-                      displayer: "Image Title ",
-                      value: "Image Title Content",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
         {
           type: "object",
           key: "section",
@@ -249,7 +59,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db15cc343034002c4597b8?alt=media",
                     },
                     {
                       type: "string",
@@ -269,7 +79,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db161b343034002c4597d7?alt=media",
                     },
                     {
                       type: "string",
@@ -289,7 +99,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db1803343034002c459844?alt=media",
                     },
                     {
                       type: "string",
@@ -309,7 +119,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db1855343034002c459851?alt=media",
                     },
                     {
                       type: "string",
@@ -329,7 +139,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db1887343034002c459874?alt=media",
                     },
                     {
                       type: "string",
@@ -389,7 +199,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dec9e1343034002c45cd6b?alt=media",
                     },
                     {
                       type: "string",
@@ -409,7 +219,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66deca37343034002c45cd7a?alt=media",
                     },
                     {
                       type: "string",
@@ -429,7 +239,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66deca62343034002c45cd95?alt=media",
                     },
                     {
                       type: "string",
@@ -449,7 +259,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66deca84343034002c45cdad?alt=media",
                     },
                     {
                       type: "string",
@@ -469,7 +279,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decb45343034002c45ce26?alt=media",
                     },
                     {
                       type: "string",
@@ -489,7 +299,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decba8343034002c45ce6f?alt=media",
                     },
                     {
                       type: "string",
@@ -529,7 +339,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decbec343034002c45ced2?alt=media",
                     },
                     {
                       type: "string",
@@ -549,7 +359,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc22343034002c45cf43?alt=media",
                     },
                     {
                       type: "string",
@@ -569,7 +379,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc48343034002c45cf57?alt=media",
                     },
                     {
                       type: "string",
@@ -589,7 +399,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc61343034002c45cf65?alt=media",
                     },
                     {
                       type: "string",
@@ -609,7 +419,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc7c343034002c45cf7c?alt=media",
                     },
                     {
                       type: "string",
@@ -629,7 +439,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc96343034002c45cf93?alt=media",
                     },
                     {
                       type: "string",
@@ -669,7 +479,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db18f2343034002c459890?alt=media",
                     },
                     {
                       type: "string",
@@ -689,7 +499,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db191c343034002c45989c?alt=media",
                     },
                     {
                       type: "string",
@@ -709,7 +519,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db194c343034002c4598b3?alt=media",
                     },
                     {
                       type: "string",
@@ -729,7 +539,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db1977343034002c4598ce?alt=media",
                     },
                     {
                       type: "string",
@@ -749,7 +559,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db199f343034002c4598f3?alt=media",
                     },
                     {
                       type: "string",
@@ -769,7 +579,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db19d0343034002c45990a?alt=media",
                     },
                     {
                       type: "string",
@@ -799,12 +609,14 @@ class ImageGallery2 extends BaseImageGallery {
       displayer: "Next Image Icon",
       value: "PiArrowRight",
     });
+
     this.addProp({
       type: "icon",
       key: "previousImageIcon",
       displayer: "Previous Image Icon",
       value: "PiArrowLeft",
     });
+
     this.addProp({
       type: "icon",
       key: "closeModalIcon",
@@ -841,9 +653,11 @@ class ImageGallery2 extends BaseImageGallery {
     }
     this.setComponentState("currentImageIndex", newIndex);
   };
+
   prevImage = () => {
     this.changeImage("prev");
   };
+
   nextImage = () => {
     this.changeImage("next");
   };
@@ -852,8 +666,12 @@ class ImageGallery2 extends BaseImageGallery {
     const galleryCollection = this.castToObject<sectionType[]>("gallery");
     const currentIndex: number = this.getComponentState("default");
 
+    if (this.getPropValue("showAll") && currentIndex === -1) {
+      return galleryCollection.flatMap((section) => section.imageGallery) || [];
+    }
     return galleryCollection[currentIndex]?.imageGallery || [];
   }
+
   getName(): string {
     return "Image Gallery 2";
   }
@@ -864,22 +682,30 @@ class ImageGallery2 extends BaseImageGallery {
     const modalOpen = this.getComponentState("modalOpen");
     const currentImageIndex = this.getComponentState("currentImageIndex");
     const currentGallery = this.getCurrentGallery();
-
     const currentImage = currentGallery[currentImageIndex];
-
     const nextImageIcon = this.getPropValue("nextImageIcon");
     const previousImageIcon = this.getPropValue("previousImageIcon");
     const closeModalIcon = this.getPropValue("closeModalIcon");
     const imgCounter = this.getPropValue("imgCounter");
-    // const imageTitle = this.getPropValue("imageTitle", { as_string: true });
-
     const magnifierIcon = this.getPropValue("icon");
     const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
+    const showAll = this.getPropValue("showAll");
+
     return (
       <div className={this.decorateCSS("surface")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("section-selector-text")}>
+              {showAll && (
+                <h3
+                  className={`${this.decorateCSS("section-text")} ${
+                    currentIndex === -1 ? this.decorateCSS("active") : ""
+                  }`}
+                  onClick={() => this.setComponentState("default", -1)}
+                >
+                  All
+                </h3>
+              )}
               {galleryCollection.map((element: any, index: number) => (
                 <h3
                   className={`${this.decorateCSS("section-text")} ${
@@ -923,8 +749,14 @@ class ImageGallery2 extends BaseImageGallery {
             </div>
           </div>
           {modalOpen && (
-            <div className={this.decorateCSS("modal")}>
-              <div className={this.decorateCSS("modal-content")}>
+            <div
+              className={this.decorateCSS("modal")}
+              onClick={this.closeModal}
+            >
+              <div
+                className={this.decorateCSS("modal-content")}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div
                   className={this.decorateCSS("close")}
                   onClick={this.closeModal}
