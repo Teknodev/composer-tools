@@ -136,14 +136,11 @@ class Content13 extends BaseContent {
 
                 </div>
                 {isImage1Exist &&
-                  <div className={this.decorateCSS("image1-container")}>
-                    <img src={this.getPropValue("image1")} alt="Image 1" className={this.decorateCSS("image1")} />
-                  </div>}
+
+                  <img src={this.getPropValue("image1")} alt="Image 1" className={this.decorateCSS("image1")} />}
 
                 {isImage2Exist &&
-                  <div className={isImage1Exist ? this.decorateCSS("image2-container") : this.decorateCSS("image2-container-without-image1")}>
-                    <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />
-                  </div>
+                  <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />
                 }
 
               </div>
