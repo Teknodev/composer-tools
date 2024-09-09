@@ -423,8 +423,7 @@ class Content16 extends BaseContent {
                         key={index}
                       >
                         <div
-                          className={`${this.decorateCSS("content-div")} ${!this.castToString(item.imageTitle) ?
-                            this.decorateCSS("no-title-content-div") : ""}`}
+                          className={this.decorateCSS("content-div")}
                         >
 
                           {item.image && (
