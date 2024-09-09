@@ -4,12 +4,13 @@ import React, { memo, useEffect } from 'react';
 type Coordinate = {
   lat: number;
   lng: number;
+  icon?: string; 
 };
+
 interface ComposerMapProps {
   markers: Coordinate[];
   className: string;
 };
-
 
 const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
 
@@ -56,6 +57,8 @@ const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
 
   }, [markers, map]);
 
+  const defaultMarker = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png"
+
   return (
     <Map
       id={className}
@@ -67,6 +70,10 @@ const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
             key={index}
             position={marker}
             title="Location"
+            icon={{
+              url: marker.icon ||  defaultMarker,
+              scaledSize: new google.maps.Size(32, 32) 
+            }}
           />
         ))
       }

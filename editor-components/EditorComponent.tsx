@@ -14,6 +14,7 @@ export type TypeLocation = {
   markers: {
     lat: number;
     lng: number;
+    icon?:string;
   }[];
 }
 
