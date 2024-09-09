@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./header32.module.scss";
@@ -240,7 +239,7 @@ class Header32 extends BaseHeader {
       dots: true,
       infinite: itemsCount > 1,
       speed: 1500,
-      autoplay: false,
+      autoplay: true,
       fade: animation,
       autoplaySpeed: 3000,
       slidesToShow: 1,
