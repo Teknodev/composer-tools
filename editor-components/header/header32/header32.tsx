@@ -245,7 +245,9 @@ class Header32 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
-        this.setComponentState("activeSlide", next);
+        if (this.getComponentState("activeSlide") !== next) {
+          this.setComponentState("activeSlide", next);
+        }
       },
       dotsClass: this.decorateCSS("dots"),
       customPaging: function (i: number) {
