@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "./header32.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Card = {
   backgroundImage: string;
@@ -212,14 +213,14 @@ class Header32 extends BaseHeader {
       type: "icon",
       key: "leftButtonIcon",
       displayer: "Previous Button",
-      value: "FaArrowLeftLong",
+      value: "GrPrevious",
     });
 
     this.addProp({
       type: "icon",
       key: "rightButtonIcon",
       displayer: "Next Button",
-      value: "FaArrowRightLong",
+      value: "GrNext",
     });
     this.setComponentState("activeSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -231,15 +232,15 @@ class Header32 extends BaseHeader {
   
 
   render() {
-
     const animation: boolean = this.getPropValue("animation");
-
+    const itemsCount = this.castToObject<Card[]>("header").length;
+  
     const settings = {
       arrows: false,
       dots: true,
-      infinite: this.castToObject<Card[]>("header").length > 1,
+      infinite: itemsCount > 1,
       speed: 1500,
-      autoplay: true,
+      autoplay: false,
       fade: animation,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -257,21 +258,20 @@ class Header32 extends BaseHeader {
         );
       },
     };
-
+  
     const hasleftButtonIcon = this.getPropValue("leftButtonIcon");
     const hasrightButtonIcon = this.getPropValue("rightButtonIcon");
     const enableOverlay: boolean = this.getPropValue("enableOverlay");
     const enableBackgroundImageOverlay = this.getPropValue("enableBackgroundImageOverlay");
-
-
-    
-
+  
+    const showNavButtons = itemsCount > 1;
+  
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("slider-parent")}>
-              <Slider
+              <ComposerSlider
                 {...settings}
                 className={this.decorateCSS("carousel")}
                 ref={this.getComponentState("slider-ref")}
@@ -301,7 +301,7 @@ class Header32 extends BaseHeader {
                               }`}
                             ></div>
                           )}
-    
+  
                           {this.castToString(item.imageTitle) && (
                             <h2
                               className={`${this.decorateCSS("imageTitle")} ${
@@ -313,7 +313,7 @@ class Header32 extends BaseHeader {
                               {item.imageTitle}
                             </h2>
                           )}
-    
+  
                           {(this.castToString(item.imageDescription) || this.castToString(item.urlTitle)) && (
                             <div className={this.decorateCSS("image-details")}>
                               {this.castToString(item.imageDescription) && (
@@ -327,7 +327,7 @@ class Header32 extends BaseHeader {
                                   {item.imageDescription}
                                 </p>
                               )}
-    
+  
                               {this.castToString(item.imageDescription) &&
                                 this.castToString(item.urlTitle) && (
                                   <div
@@ -338,7 +338,7 @@ class Header32 extends BaseHeader {
                                     }`}
                                   ></div>
                                 )}
-    
+  
                               {this.castToString(item.urlTitle) && (
                                 <div className={this.decorateCSS("url-container")}>
                                   <ComposerLink key={`hdr-32-${index}`} path={item.url}>
@@ -356,8 +356,8 @@ class Header32 extends BaseHeader {
                               )}
                             </div>
                           )}
-    
-                            {(hasleftButtonIcon || hasrightButtonIcon) && (
+  
+                          {showNavButtons && (
                             <div className={this.decorateCSS("nav-buttons")}>
                               {hasleftButtonIcon && (
                                 <button
@@ -402,14 +402,13 @@ class Header32 extends BaseHeader {
                     </div>
                   );
                 })}
-              </Slider>
+              </ComposerSlider>
             </div>
           </div>
         </div>
       </div>
     );
-    
   }
-}
+}  
 
 export default Header32;
