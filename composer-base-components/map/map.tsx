@@ -5,7 +5,7 @@ type Coordinate = {
   lat: number;
   lng: number;
   icon?: {
-    url?: string;
+    url: string;
     width?: number;
     height?: number;
   };
