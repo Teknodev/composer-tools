@@ -4,9 +4,11 @@ import React, { memo, useEffect } from "react";
 type Coordinate = {
   lat: number;
   lng: number;
-  icon?: string;
-  width?: number;
-  height?: number;
+  icon?: {
+    url?: string;
+    width?: number;
+    height?: number;
+  };
 };
 
 interface ComposerMapProps {
@@ -68,8 +70,8 @@ const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
             position={marker}
             title="Location"
             icon={{
-              url: marker.icon || defaultMarker,
-              scaledSize: new google.maps.Size(marker.width || 32, marker.height || 32),
+              url: marker.icon.url || defaultMarker,
+              scaledSize: new google.maps.Size(marker.icon.width || 32, marker.icon.height || 32),
             }}
           />
         ))}
