@@ -132,9 +132,9 @@ export abstract class Component
     let prop = (properties?.parent_object?.filter(
       (prop: TypeUsableComponentProps) => prop.key === propName
     )[0] || this.getProp(propName));
-  
+
     const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
-    
+
     return isStringMustBeElement
       ? this.getPropValueAsElement(prop, properties)
       : prop?.value;
@@ -161,7 +161,7 @@ export abstract class Component
     const preSufFixToElement = (elem?: PreSufFix) => {
       if (!elem) return null;
 
-      return React.createElement("span", { className: `${elem.className} suffix-prefix-elem`,children: elem.label });
+      return React.createElement("span", { className: `${elem.className} suffix-prefix-elem`, children: elem.label });
     };
 
 
@@ -209,10 +209,10 @@ export abstract class Component
   }
   addProp(prop: TypeUsableComponentProps) {
     const attachPropId = (_prop: TypeUsableComponentProps) => {
-      if(_prop.type == "array" || _prop.type == "object"){
-        _prop.value = (_prop.value as TypeUsableComponentProps[]).map((v:TypeUsableComponentProps) => attachPropId(v));
-      }else{
-        _prop.id = _prop.key + "-" +Math.round(Math.random() * 1000000000).toString();
+      if (_prop.type == "array" || _prop.type == "object") {
+        _prop.value = (_prop.value as TypeUsableComponentProps[]).map((v: TypeUsableComponentProps) => attachPropId(v));
+      } else {
+        _prop.id = _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
       }
       return _prop
     }
@@ -270,7 +270,7 @@ export abstract class Component
         if (Array.isArray(propValueItem.value)) {
           propValueItem = this.attachValueGetter(propValueItem);
           propValueItem["getPropValue"] = (propName: string, properties?: GetPropValueProperties) => {
-            if(!properties) properties = {};
+            if (!properties) properties = {};
             properties.parent_object = propValueItem.value as TypeUsableComponentProps[];
             return this.getPropValue(propName, properties);
           };
@@ -286,7 +286,6 @@ export abstract class Component
     let i = this.state.componentProps.props
       .map((prop: any) => prop.key)
       .indexOf(propName);
-      
     let castedObject = this.castingProcess(this.state.componentProps.props[i]);
     return castedObject;
   }
@@ -296,8 +295,8 @@ export abstract class Component
   }
 
   private castingProcess(object: any) {
-    let casted = object.value.map((propValue: any) => {
-      let clonedPropValue = {...propValue};
+    let casted = object.value.map((propValue: any, index: number) => {
+      let clonedPropValue = { ...propValue };
       if (clonedPropValue.hasOwnProperty("getPropValue")) {
         clonedPropValue.value.forEach((nestedObject: any, index: number) => {
           clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(nestedObject.key);
@@ -306,7 +305,11 @@ export abstract class Component
           }
         });
       } else {
-        const value = this.getPropValue(clonedPropValue.key, { parent_object: object.value });
+        // We are checking the value at the specified index because object.value is an array,
+        // and we need to ensure we are accessing the correct element. If the value at the
+        // specified index is falsy, we fall back to getting the property value using getPropValue
+        // to ensure we have a valid value.
+        const value = object.value[index].value || this.getPropValue(clonedPropValue.key, { parent_object: object.value });
         clonedPropValue = {
           key: clonedPropValue.key, value
         };
