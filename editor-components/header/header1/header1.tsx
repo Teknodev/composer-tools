@@ -197,12 +197,14 @@ class Header1 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
       vertical: true,
+      centerMode: false,
       verticalSwiping: true,
+      adaptiveHeight: false,
     };
     return (
       <div className={this.decorateCSS("container")}>
