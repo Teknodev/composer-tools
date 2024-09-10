@@ -1,6 +1,9 @@
 .container {
   width: 100%;
   background-color: var(--composer-color-background);
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
 
   .max-content {
     width: var(--composer-content-width);
@@ -8,19 +11,23 @@
 
     .images {
       justify-content: center;
-      justify-items: center;
+      align-items: center;
+      //justify-items: center;
       width: 100%;
-      padding: 20px;
+      max-width: 100%;
       display: grid;
-      grid-gap: 20px;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-column-gap: 15px;
+      grid-row-gap:15px;
+      grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
       box-sizing: border-box;
       .image-container {
         justify-content: center;
         display: flex;
         text-align: center;
-        max-height: 559.975px;
-        max-width: 470.388px;
+        // max-height: 559.975px;
+        // max-width: 470.388px;
+        max-width: 100%;
+        max-height: 100%;
         overflow: hidden;
         position: relative;
         cursor: pointer;
@@ -69,16 +76,13 @@
           text-align: center;
           .image-close-button {
             position: absolute;
-            margin-top:auto;
-            padding: 30px;
-            top: -33px; 
-            right: -33px; 
+            top: -40px; 
+            right: -5px; 
             background: none;
             border: none;
             color: #ffffff;
-            font-size: 20px;
+            font-size: 15px;
             cursor: pointer;
-            z-index: 10; 
           }
           .large-image {
             max-height: 580px;
@@ -132,13 +136,23 @@
 }
 
 @media screen and (max-width: 780px) {
+  .container{
+    padding: 20px 30px;
+  }
+  .image-container{
+    max-width: 100%;
+    max-height: 100%;
+  }
   .images {
     width: 50%;
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(auto-fill,minmax(200px 1fr)) !important;
   }
 }
 @media screen and (max-width: 475px) {
+  .container{
+    padding: 20px 30px;
+  }
   .images {
     display: grid !important;
     grid-template-columns: repeat(1, 1fr) !important;

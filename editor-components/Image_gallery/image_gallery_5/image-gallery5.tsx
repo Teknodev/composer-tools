@@ -4,8 +4,11 @@ import styles from "./image-gallery5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class ImageGalleryComponent5 extends BaseImageGallery {
+  private imageGalleryRef: React.RefObject<HTMLDivElement>; 
   constructor(props?: any) {
     super(props, styles);
+    this.imageGalleryRef = React.createRef();
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 
     this.addProp({
       type: "array",
@@ -67,20 +70,6 @@ class ImageGalleryComponent5 extends BaseImageGallery {
 
     this.addProp({
       type: "string",
-      key: "prevButtonText",
-      displayer: "Previous Button Text",
-      value: "<",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "nextButtonText",
-      displayer: "Next Button Text",
-      value: ">",
-    });
-
-    this.addProp({
-      type: "string",
       key: "imageCaptionText",
       displayer: "Image Caption Text",
       value: "Gallery Image",
@@ -89,14 +78,55 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     this.addProp({
       type: "icon",
       key: "closeIcon",
-      displayer: "Close Icon",
-      value: "fa-solid fa-times", 
+      displayer: "Close Button Icon",
+      value: "RxCross1",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Next Button Icon",
+      value: "",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Previous Button Icon",
+      value: "",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "imageIndex",
+      displayer: "Image Index Enabled",
+      value: false,
     });
 
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
+    
   }
-
+  componentDidMount() {
+    window.addEventListener("keydown", this.handleKeyPress as EventListener);
+    if (this.imageGalleryRef.current) {
+      this.imageGalleryRef.current.focus();
+    }
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.handleKeyPress as EventListener);
+  }
+  
+  handleKeyPress(event: KeyboardEvent) {
+    console.log(`Key pressed: ${event.key}`);
+    if (event.key === "ArrowLeft") {
+      this.handlePrevImage();
+    } else if (event.key === "ArrowRight") {
+      this.handleNextImage();
+    }
+  }
+  
+  
   getName(): string {
     return "Image Gallery 5";
   }
@@ -123,15 +153,21 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     currentIndex = (currentIndex - 1 + galleries.length) % galleries.length;
     this.setComponentState("clicked_image_index", currentIndex);
   }
+  
+   
 
   render() {
     const galleries = this.getPropValue("gallery");
     const isImageClicked = this.getComponentState("is_image_clicked");
     const clickedImageIndex = this.getComponentState("clicked_image_index");
-    const prevButtonText = this.getPropValue("prevButtonText");
-    const nextButtonText = this.getPropValue("nextButtonText");
     const imageCaptionText = this.getPropValue("imageCaptionText");
-    const closeIcon = this.getPropValue("closeIcon");
+    const nextIcon = this.getPropValue("nextIcon");
+    const prevIcon = this.getPropValue("prevIcon");
+    const imageIndex = this.getPropValue("imageIndex");
+    const closeIcon = this.getPropValue("closeIcon") || "RxCross1"; 
+    
+   
+
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -159,17 +195,9 @@ class ImageGalleryComponent5 extends BaseImageGallery {
             <div
               className={this.decorateCSS("overlay")}
               onClick={() => this.handleCloseClick()}
-            >
+            >   
               <div className={this.decorateCSS("overlay-content")}>
-                <button
-                  className={this.decorateCSS("close-button")}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    this.handleCloseClick();
-                  }}
-                >
-                </button>
-                <div className={this.decorateCSS("middle-content")}>
+                <div className={this.decorateCSS("middle-content")}> 
                   <img
                     src={galleries[clickedImageIndex].value}
                     alt=""
@@ -179,12 +207,15 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                       this.handleNextImage();
                     }}
                   />
-                <button className={this.decorateCSS("image-close-button")}>
-                  <ComposerIcon name={closeIcon} />
-                </button>
-                  <div className={this.decorateCSS("image-caption")}>
-                    {clickedImageIndex + 1} of {galleries.length}
-                  </div>
+                  <button className={this.decorateCSS("image-close-button")}>
+                    <ComposerIcon name={closeIcon} />
+                  </button>
+                  {imageIndex && (
+                    <div className={this.decorateCSS("image-caption")}>
+                      {clickedImageIndex + 1} of {galleries.length}
+                    </div>
+                  )}
+
                   <div className={this.decorateCSS("gallery-image")}>
                     {imageCaptionText}
                   </div>
@@ -196,7 +227,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                     this.handlePrevImage();
                   }}
                 >
-                  {prevButtonText}
+                  <ComposerIcon name={prevIcon} />
                 </button>
                 <button
                   className={this.decorateCSS("next-button")}
@@ -205,7 +236,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                     this.handleNextImage();
                   }}
                 >
-                  {nextButtonText}
+                  <ComposerIcon name={nextIcon} />
                 </button>
               </div>
             </div>
