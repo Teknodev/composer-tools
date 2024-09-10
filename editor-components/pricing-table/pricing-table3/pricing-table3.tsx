@@ -458,7 +458,10 @@ class PricingTable3 extends BasePricingTable {
                 {this.castToString(featuredButton.text) && (
                   <ComposerLink path={featuredButton.link}>
                     <button
-                      className={this.decorateCSS("button")}
+                      className={`${this.decorateCSS("button")}
+                      ${
+                        featuredButton.icon ? this.decorateCSS("has-icon") : ""
+                      }`}
                       onClick={(event) => {
                         event.preventDefault();
                       }}
@@ -534,39 +537,34 @@ class PricingTable3 extends BasePricingTable {
                             </ul>
                           </div>
                         )}
+
                         {this.castToString(card.button.text) && (
                           <div className={this.decorateCSS("footer")}>
-                            {this.castToString(card.button.text) && (
-                              <div className={this.decorateCSS("footer")}>
-                                <ComposerLink path={card.button.link}>
-                                  <button
-                                    className={`${this.decorateCSS("button")}
+                            <ComposerLink path={card.button.link}>
+                              <button
+                                className={`${this.decorateCSS("button")}
                                        ${
                                          card.button.icon
                                            ? this.decorateCSS("has-icon")
                                            : ""
                                        }`}
-                                  >
-                                    <div
-                                      className={this.decorateCSS(
-                                        "button-text"
-                                      )}
-                                    >
-                                      {card.button.text}
-                                    </div>
-                                    {card.button.icon && (
-                                      <ComposerIcon
-                                        name={card.button.icon}
-                                        propsIcon={{
-                                          className:
-                                            this.decorateCSS("button-icon"),
-                                        }}
-                                      />
-                                    )}
-                                  </button>
-                                </ComposerLink>
-                              </div>
-                            )}
+                              >
+                                <div
+                                  className={this.decorateCSS("button-text")}
+                                >
+                                  {card.button.text}
+                                </div>
+                                {card.button.icon && (
+                                  <ComposerIcon
+                                    name={card.button.icon}
+                                    propsIcon={{
+                                      className:
+                                        this.decorateCSS("button-icon"),
+                                    }}
+                                  />
+                                )}
+                              </button>
+                            </ComposerLink>
                           </div>
                         )}
                       </div>

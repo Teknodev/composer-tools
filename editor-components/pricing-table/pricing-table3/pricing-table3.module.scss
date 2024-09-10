@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: var(--font-family);
 }
 
 ul {
@@ -9,7 +10,7 @@ ul {
 
 .container {
   width: 100%;
-  padding: 150px 75px;
+  padding: 60px 50px;
   background: var(--composer-html-background);
   color: var(--composer-font-color-primary);
 
@@ -23,7 +24,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 2em;
 }
 
 .featured {
@@ -31,13 +32,15 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 35%;
-  min-height: 350px;
-  padding: 4em 3em;
+  width: calc(100% / 3);
+  padding: 0 4em 4em 0;
 
   .title {
-    font-size: 3em;
+    font-weight: 600;
+    font-size: 3.5em;
+    line-height: 1.2;
     margin-bottom: 20px;
+    letter-spacing: -1px;
   }
 
   .description {
@@ -55,17 +58,18 @@ ul {
 }
 
 .card-container {
-  width: 32%;
+  width: calc(100% / 3);
   border: 1px solid var(--composer-font-color-primary);
-  min-height: 400px;
+  min-height: 25em;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--composer-html-background);
+  padding: 5%;
 }
 
 .card-container.active {
-  scale: 1.15;
+  scale: 1.1;
   position: relative;
 
   .tag {
@@ -77,6 +81,8 @@ ul {
     color: var(--composer-font-color-secondary);
     border: 1px solid var(--composer-primary-color);
     background-color: var(--composer-primary-color);
+    max-width: 100%;
+    word-break: break-word;
   }
 }
 
@@ -100,10 +106,13 @@ ul {
     }
     .title {
       font-size: 1.8em;
+      font-weight: 500;
       color: var(--composer-font-color-primary);
+      word-break: break-word;
     }
     .price {
       font-size: 3em;
+      font-weight: 600;
       color: var(--composer-font-color-primary);
     }
   }
@@ -118,6 +127,7 @@ ul {
         padding: 1em 0;
         border-bottom: 1px solid var(--composer-font-color-primary);
         text-align: center;
+        word-break: break-word;
       }
       > li:last-child {
         border-bottom: none;
@@ -131,34 +141,36 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  font-weight: 600;
   border-radius: 5px;
-  transition: 0.5s all;
+  transition: 0.5s ease;
   padding: 1em 2em;
   color: var(--composer-font-color-primary);
-  background-color: (--composer-font-color-secondary);
+  background-color: var(--composer-font-color-secondary);
   border: 1px solid var(--composer-font-color-primary);
+  word-break: break-word ;
 
   .button-text {
     position: relative;
-    transition: 1s ;
-    color: var(--composer-font-color-primary);
+    color: var(--composer-text-color-primary);
+    right: 0;
+    transition: 0.6s all;
   }
 
   .button-icon {
     position: absolute;
     right: 20px;
     opacity: 0;
-    transition: 0.6s ;
+    transition: 0.6s;
     color: var(--composer-font-color-primary);
   }
-  
+
   &:hover {
     transform: translateY(-5px);
   }
 
   &.has-icon:hover {
-    .button-text{
+    .button-text {
       right: 10px;
     }
 
@@ -171,37 +183,80 @@ ul {
 
 @media only screen and (max-width: 1000px) {
   .container {
-    padding: 0;
+    padding: 20px 30px 45px;
   }
+
   .wrapper {
     flex-direction: column;
 
     .featured {
-      width: 80%;
+      width: 100%;
+      gap: 2em;
+      padding-right: 0;
     }
 
     .cards-div {
       width: 100%;
-      flex-direction: column;
-      gap: 20px;
-      padding: 0 5em;
+      flex-direction: grid;
 
       .card-container {
         width: 100% !important;
-      }
-      .card-container.active {
-        scale: 1 !important;
       }
     }
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 20px 30px;
+  }
   .featured {
-    width: 100% !important;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+
+    .button {
+      justify-content: end;
+    }
   }
 
   .cards-div {
-    padding: 0 1em !important;
+    width: 90%;
+    flex-direction: column;
+
+    .card-container {
+      width: 100%;
+      margin-top: 2em;
+    }
+
+    .card-container.active {
+      scale: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    padding: 20px 20px;
+  }
+
+  .featured {
+    width: 100%;
+    padding-right: 0;
+    align-items: center;
+  }
+
+  .cards-div {
+    width: 90%;
+    flex-direction: column;
+
+    .card-container {
+      width: 100%;
+      margin-top: 2em;
+    }
+
+    .card-container.active {
+      scale: 1;
+    }
   }
 }
