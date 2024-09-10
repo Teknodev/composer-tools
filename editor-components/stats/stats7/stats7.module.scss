@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   width: 100%;
   padding: 20px 50px;
@@ -16,17 +21,22 @@
       max-width: var(--composer-content-width);
        width: 100%;
       .subTitle {
+        margin: 0px 0px 15px 0px;
+        background-color: #f2f2f2;
         display: inline-block;
-        font-size: 12px;
+        font-size: 1rem;
         color: var(--composer-font-color-primary);
         text-transform: uppercase;
         font-weight: 600;
+        padding: 4px 10px;
       }
 
       .title {
         font-size: 32px;
         font-weight: 600;
         color: var(--composer-font-color-primary);
+        margin-bottom: 18px;
+        width: 80%;
       }
 
       .description {
@@ -105,15 +115,15 @@
           align-items: flex-start;
 
           .subTitle {
-            width: 100%;
+            width: auto;
           }
 
           .title {
-            width: 100%;
+            width: 90%;
           }
 
           .description {
-            width: 100%;
+            width: 90%;
           }
         }
 
@@ -152,12 +162,13 @@
           margin-left: 0px;
           width: 100%;
           text-align: left;
+          margin-bottom: 20px;
+          padding-bottom: 30px;
         }
       }
 
       .progress-container {
         margin-left: 0;
-        padding-top: 10px;
       }
     }
   }
@@ -177,9 +188,7 @@
         align-items: flex-start;
 
         .subTitle {
-          width: 100%;
           text-align: left;
-          font-size: 1.2rem;
           margin-left: 0;
         }
 
@@ -187,18 +196,23 @@
           width: 100%;
           text-align: left;
           margin-left: 0;
+          font-size: 2.83333rem;
+          line-height: 1.35294;
+          margin-bottom: 18px;
         }
 
         .description {
           width: 100%;
           text-align: left;
-          font-size: 1rem;
+          font-size: 16px;
           margin-left: 0;
+          margin-bottom: 20px;
+          padding-bottom: 30px;
         }
       }
 
       .progress-container {
-         padding-top: 10px;
+         padding-top: 20px;
         .title {
           font-size: 8px;
         }
