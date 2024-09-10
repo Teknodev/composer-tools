@@ -235,14 +235,14 @@ class Header12 extends BaseHeader {
       type: "icon",
       key: "leftSliderIcon",
       displayer: "Left Slider Arrow Icon",
-      value: "FaChevronDown"
+      value: "HiOutlineChevronDown"
     });
 
     this.addProp({
       type: "icon",
       key: "rightSliderIcon",
       displayer: "Right Slider Arrow Icon",
-      value: "FaChevronUp"
+      value: "HiOutlineChevronUp"
     });
 
     this.leftSliderRef = React.createRef();
