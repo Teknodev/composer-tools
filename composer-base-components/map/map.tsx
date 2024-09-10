@@ -1,30 +1,31 @@
-import { Map, Marker, useMap } from '@vis.gl/react-google-maps';
-import React, { memo, useEffect } from 'react';
+import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
+import React, { memo, useEffect } from "react";
 
 type Coordinate = {
   lat: number;
   lng: number;
-  icon?: string; 
+  icon?: string;
+  width?: number;
+  height?: number;
 };
 
 interface ComposerMapProps {
   markers: Coordinate[];
   className: string;
-};
+}
 
 const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
-
   const map = useMap(className);
 
-  const getCenter = (bounds: { north: number; south: number; east: number; west: number; }) => {
+  const getCenter = (bounds: { north: number; south: number; east: number; west: number }) => {
     const lat = (bounds.north + bounds.south) / 2;
     const lng = (bounds.east + bounds.west) / 2;
     return { lat, lng };
   };
 
   const getBounds = () => {
-    const lngs = markers.map(marker => marker.lng);
-    const lats = markers.map(marker => marker.lat);
+    const lngs = markers.map((marker) => marker.lng);
+    const lats = markers.map((marker) => marker.lat);
 
     const north = Math.max(...lats);
     const south = Math.min(...lats);
@@ -41,8 +42,8 @@ const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
       if (markers.length === 1) {
         const center = {
           lat: markers[0].lat,
-          lng: markers[0].lng
-        }
+          lng: markers[0].lng,
+        };
         map.setCenter(center);
         map.setZoom(14);
         return;
@@ -50,20 +51,16 @@ const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
 
       const bounds = getBounds();
       const calculatedCenter = getCenter(bounds);
-      map.fitBounds(bounds)
+      map.fitBounds(bounds);
       map.setCenter(calculatedCenter);
-      map.panTo(calculatedCenter)
-    }, 1)
-
+      map.panTo(calculatedCenter);
+    }, 1);
   }, [markers, map]);
 
-  const defaultMarker = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png"
+  const defaultMarker = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
 
   return (
-    <Map
-      id={className}
-      className={className}
-    >
+    <Map id={className} className={className}>
       {markers.length > 0 &&
         markers.map((marker, index) => (
           <Marker
@@ -71,12 +68,11 @@ const ComposerMap = memo(({ markers, className }: ComposerMapProps) => {
             position={marker}
             title="Location"
             icon={{
-              url: marker.icon ||  defaultMarker,
-              scaledSize: new google.maps.Size(32, 32) 
+              url: marker.icon || defaultMarker,
+              scaledSize: new google.maps.Size(marker.width || 32, marker.height || 32),
             }}
           />
-        ))
-      }
+        ))}
     </Map>
   );
 });
