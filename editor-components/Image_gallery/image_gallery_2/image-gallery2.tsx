@@ -2,7 +2,6 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import ComposerModalClose from "../../../composer-base-components/close/close";
 
 type ImageType = {
   image: string;
@@ -99,7 +98,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db1803343034002c459844?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e060a8343034002c466d8f?alt=media",
                     },
                     {
                       type: "string",
@@ -119,7 +118,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db1855343034002c459851?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e060e1343034002c466db5?alt=media",
                     },
                     {
                       type: "string",
@@ -139,7 +138,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db1887343034002c459874?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e065c4343034002c46704f?alt=media",
                     },
                     {
                       type: "string",
@@ -239,7 +238,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66deca62343034002c45cd95?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e064db343034002c466fad?alt=media",
                     },
                     {
                       type: "string",
@@ -259,7 +258,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66deca84343034002c45cdad?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06518343034002c466fc5?alt=media",
                     },
                     {
                       type: "string",
@@ -299,7 +298,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decba8343034002c45ce6f?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06576343034002c466fff?alt=media",
                     },
                     {
                       type: "string",
@@ -359,7 +358,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc22343034002c45cf43?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e05f8e343034002c466d17?alt=media",
                     },
                     {
                       type: "string",
@@ -439,7 +438,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc96343034002c45cf93?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e05fc0343034002c466d32?alt=media",
                     },
                     {
                       type: "string",
@@ -479,7 +478,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db18f2343034002c459890?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e0624e343034002c466e5a?alt=media",
                     },
                     {
                       type: "string",
@@ -499,7 +498,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db191c343034002c45989c?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06274343034002c466e66?alt=media",
                     },
                     {
                       type: "string",
@@ -519,7 +518,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db194c343034002c4598b3?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e062b5343034002c466e83?alt=media",
                     },
                     {
                       type: "string",
@@ -539,7 +538,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db1977343034002c4598ce?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e062cf343034002c466ea6?alt=media",
                     },
                     {
                       type: "string",
@@ -559,7 +558,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db199f343034002c4598f3?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06383343034002c466f1f?alt=media",
                     },
                     {
                       type: "string",
@@ -579,7 +578,7 @@ class ImageGallery2 extends BaseImageGallery {
                       key: "image",
                       displayer: "Image",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db19d0343034002c45990a?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e0639b343034002c466f35?alt=media",
                     },
                     {
                       type: "string",
@@ -630,8 +629,21 @@ class ImageGallery2 extends BaseImageGallery {
       displayer: "Image Page Number",
       value: true,
     });
+
+    document.addEventListener("keydown", this.handleKeyDown);
+
   }
 
+  handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowLeft") {
+      this.prevImage();
+    } else if (event.key === "ArrowRight") {
+      this.nextImage();
+    } else if (event.key === "Escape") {
+      this.closeModal();
+    }
+  };
+  
   openModal = (index: number) => {
     this.setComponentState("modalOpen", true);
     this.setComponentState("currentImageIndex", index);
