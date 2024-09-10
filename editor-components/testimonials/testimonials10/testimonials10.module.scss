@@ -1,13 +1,14 @@
 .container {
   width: 100%;
   height: fit-content;
-  //padding: 20px;
+  padding: 20px 0 20px 50px;
   background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
     display: flex;
     margin: 0 auto;
+    min-height: 730px;
 
     .container2 {
       display: flex;
@@ -26,14 +27,29 @@
           display: flex;
           flex-direction: column;
           gap: 5px;
-          padding: 0 40px 0 80px;
-          justify-content: center;
+          padding: 0 40px 0 0;
+          justify-content: start;
           align-items: start;
 
-          .title {
-            margin-bottom: 5px;
-            color: var(--composer-font-color-primary);
-            font-size: 2rem;
+          .title-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .title {
+              margin-top: 0;
+              margin-bottom: 0;
+              color: var(--composer-font-color-primary);
+              font-size: 2rem;
+            }
+
+            .line {
+              background-color: var(--composer-font-color-primary);
+              width: 40px;
+              height: 3px;
+              margin-top: 0;
+              margin-bottom: 0;
+            }
           }
 
           .subtitle {
@@ -41,13 +57,15 @@
             color: var(--composer-font-color-primary);
             font-size: 3.5rem;
             text-align: start;
+            margin-bottom: 15px;
+            margin-top: 15px;
           }
 
           .description {
             color: var(--composer-font-color-primary);
             font-size: 1.5rem;
             margin-top: 5px;
-            margin-bottom: 0;
+            margin-bottom: 15px;
           }
 
           .button-group {
@@ -55,20 +73,17 @@
             flex-direction: row;
             margin-top: 10px;
             gap: 20px;
+
             .button {
-              font-size: 1.5rem;
+              font-size: 14px;
               border: none;
-              color: var(--composer-secondary-color);
-              border: 1px solid var(--composer-secondary-color);
-              background-color: transparent;
-              padding: 10px 30px;
-              transition-duration: 0.3s easein-out;
-              min-width: 180px;
-              text-align: center;
-            }
-            .button:hover {
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-secondary-color);
+              padding: 15px 40px;
+              transition-duration: 0.3s easein-out;
+              min-width: 167px;
+              text-align: center;
+              cursor: pointer;
             }
           }
         }
@@ -79,7 +94,7 @@
           flex-direction: column;
           justify-content: center;
           //padding: 50px;
-          align-items: center;
+          align-items: start;
           background: var(--composer-font-color-primary);
           width: 100%;
           height: 100%;
@@ -87,11 +102,11 @@
           //gap: 10px;
 
           .hiliteTitle {
-            font-size: 6.5rem;
+            font-size: 100px;
             color: var(--composer-font-color-secondary);
             width: 100%;
             text-align: end;
-            margin-right: 50px;
+            padding-right: 50px;
           }
 
           .slider-inner-div-with-image {
@@ -111,10 +126,10 @@
 
             .header-page {
               position: relative;
-              width: 60%;
+              width: 70%;
               font-size: 1.5rem;
               background-color: var(--composer-html-background);
-              padding: 25px 40px;
+              padding: 60px 35px 30px 40px;
               margin: 80px 0 0 -50px;
 
               .icons {
@@ -122,14 +137,24 @@
                 display: flex;
                 justify-content: flex-end;
                 gap: 15px;
+                z-index: 2;
                 color: var(--composer-font-color-primary);
+
+                svg {
+                  cursor: pointer;
+                  transition: 0.4s;
+
+                  &:hover {
+                    color: var(--composer-secondary-color);
+                  }
+                }
               }
 
               .iconquote {
                 position: absolute;
                 font-size: 7rem;
                 color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-                top: 20px;
+                top: 50px;
                 left: 40px;
               }
 
@@ -142,10 +167,12 @@
                 .author {
                   color: var(--composer-font-color-primary);
                   font-size: 2rem;
+                  margin-bottom: 0;
                 }
                 .position {
                   color: var(--composer-font-color-primary);
                   font-size: 1.5rem;
+                  margin-top: 5px;
                 }
               }
             }
@@ -189,6 +216,7 @@
                 .author {
                   color: var(--composer-font-color-primary);
                   font-size: 2rem;
+                  margin-bottom: 0;
                 }
                 .position {
                   color: var(--composer-font-color-primary);
@@ -203,7 +231,7 @@
             height: 100%;
             //margin-top: -30px;
             display: flex;
-            align-items: center;
+            // align-items: center;
             //padding: 30px 0;
           }
 
@@ -217,7 +245,7 @@
     }
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1300px) and (min-width: 768px) {
   .container {
     padding: 0;
     .max-content {
@@ -226,10 +254,11 @@
         .testimonials10 {
           display: flex !important;
           flex-direction: column !important;
-          justify-content: center !important;
+          margin-bottom: 20px;
+          // justify-content: center !important;
           .left-content {
             width: 100% !important;
-            padding: 0 30px !important;
+            padding: 20px 30px !important;
 
             .button-group {
               .button {
@@ -252,6 +281,7 @@
               font-size: 3rem !important;
               width: 100% !important;
               text-align: end !important;
+              padding-right: 30px !important;
             }
 
             .slider-inner-div-with-image {
@@ -369,13 +399,14 @@
       .testimonials10 {
         display: flex !important;
         flex-direction: column !important;
-        width: 360px !important;
+        // width: 360px !important;
+        margin-bottom: 20px;
 
         .left-content {
           order: 0 !important;
           width: 100% !important;
           min-width: auto !important;
-          margin: 30px 0 !important;
+          padding: 20px 30px !important;
           .title {
             font-size: 1.5rem !important;
             padding-right: 0px !important;
@@ -398,19 +429,23 @@
         }
 
         .slider-style {
-          width: 100% !important;
-          margin-top: 0px !important;
-          left: 0px !important;
-          height: auto !important;
-          padding: 20px 0 !important;
+          // width: 100% !important;
+          // margin-top: 0px !important;
+          // left: 0px !important;
+          // height: auto !important;
+          // padding: 20px 0 !important;
+          display: flex !important;
+          align-items: center !important;
 
           .hiliteTitle {
             display: none;
+            padding-right: 30px;
           }
 
           .slider-inner-div-with-image {
             width: 100% !important;
             padding: 0 !important;
+            flex-direction: column !important;
             justify-content: center !important;
             align-items: center !important;
             margin-left: 0px !important;
@@ -509,7 +544,7 @@
 
           .slider {
             max-width: var(--composer-content-width) !important;
-            width: 100% !important;
+            width: 300px !important;
             margin-right: 0 !important;
             height: auto !important;
           }

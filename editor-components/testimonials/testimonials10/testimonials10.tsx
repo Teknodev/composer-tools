@@ -47,6 +47,12 @@ class Testimonials10Page extends Testimonials {
       value: "What our client say",
     });
     this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });    
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -281,7 +287,7 @@ class Testimonials10Page extends Testimonials {
       infinite: true,
       speed: 700,
       autoplay: true,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 30000000,
       slidesToShow: 1,
       slidesToScroll: 1,
       className: this.decorateCSS("slider"),
@@ -292,6 +298,7 @@ class Testimonials10Page extends Testimonials {
     const description = this.castToString(this.getPropValue("description"));
     const hiliteTitle = this.castToString(this.getPropValue("hiliteTitle"));
     const hasButtons = this.castToObject<Button[]>("buttons").length > 0;
+    const showLine = this.getPropValue("showLine");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -300,11 +307,14 @@ class Testimonials10Page extends Testimonials {
             <div className={this.decorateCSS("testimonials10")}>
               {(title || subtitle || description || hasButtons) && (
                 <div className={this.decorateCSS("left-content")}>
+                  <div className={this.decorateCSS("title-line")}>
                   {title && (
                     <h3 className={this.decorateCSS("title")}>
                       {this.getPropValue("title")}
                     </h3>
                   )}
+                  {showLine && <hr className={this.decorateCSS("line")} />}
+                  </div>
                   {subtitle && (
                     <h5 className={this.decorateCSS("subtitle")}>
                       {this.getPropValue("subtitle")}
