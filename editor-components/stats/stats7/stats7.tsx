@@ -34,6 +34,12 @@ class Stats7Page extends BaseStats {
         "Fierent abhorreant intellegam nam no. Eam minim di neglegentur te, ei etiamas corpora eam disentiun sea. Ut aeterno invidunt sententiae vel, assum adipisci eu vix. Ea ferri cetero ceteros eos, mea ne cibo dis entiet."
     });
     this.addProp({
+      type: "boolean",
+      key: "enableSkillsBackground",
+      displayer: "Enable Skills Background",
+      value: true
+    });
+    this.addProp({
       type: "array",
       key: "items",
       displayer: "Items",
@@ -128,6 +134,7 @@ class Stats7Page extends BaseStats {
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist;
     const items = this.castToObject<Item[]>("items")
+    const enableSkillsBackground = this.getPropValue("enableSkillsBackground");
 
     return (
       <div className={this.decorateCSS("container")} >
@@ -147,7 +154,7 @@ class Stats7Page extends BaseStats {
             )}
           </div>}
 
-          {items.length > 0 && <div className={this.decorateCSS("progress-container")}>
+          {enableSkillsBackground && items.length > 0 && <div className={this.decorateCSS("progress-container")}>
             {items.map((item: Item, index: number) => {
               const { title, progress, progressText } = item;
               let percent = progress ;
