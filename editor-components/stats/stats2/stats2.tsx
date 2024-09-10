@@ -6,6 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 type Card = {
   amount: number;
   text: string;
+  icon?: string;
 };
 
 class Stats2Page extends BaseStats {
@@ -22,7 +23,7 @@ class Stats2Page extends BaseStats {
     this.addProp({
       type: "string",
       key: "header",
-      displayer: "Header Content",
+      displayer: "Title",
       value:
         "Intuition and strategy integrate the research methodology that we also apply to traditional media.",
     });
@@ -30,7 +31,7 @@ class Stats2Page extends BaseStats {
     this.addProp({
       type: "string",
       key: "subHeader",
-      displayer: "Sub Header Content",
+      displayer: "Description",
       value:
         "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
     });
@@ -79,6 +80,12 @@ class Stats2Page extends BaseStats {
               displayer: "Amount",
               value: 8500,
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdStar",
+            },
           ],
         },
         {
@@ -97,6 +104,12 @@ class Stats2Page extends BaseStats {
               key: "amount",
               displayer: "Amount",
               value: 660,
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdStar",
             },
           ],
         },
@@ -117,6 +130,12 @@ class Stats2Page extends BaseStats {
               displayer: "Amount",
               value: 6834,
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdStar",
+            },
           ],
         },
         {
@@ -135,6 +154,12 @@ class Stats2Page extends BaseStats {
               key: "amount",
               displayer: "Amount",
               value: 300,
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdStar",
             },
           ],
         },
@@ -269,7 +294,15 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   return (
     <div ref={ref} className={styles["listed"]}>
       <p className={styles["card-text"]}>{card.text}</p>
-      <p className={styles["card-amount"]}>{amount}</p>
+      <div className={styles["card-amount-container"]}>
+        {card.icon && (
+          <ComposerIcon
+            propsIcon={{ className: styles["card-icon"] }}
+            name={card.icon}
+          />
+        )}
+        <h2 className={styles["card-amount"]}>{amount}</h2>
+      </div>
     </div>
   );
 };
