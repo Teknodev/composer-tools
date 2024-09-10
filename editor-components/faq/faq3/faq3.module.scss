@@ -1,4 +1,6 @@
 .Main-container {
+  width: 100%;
+
   .max-content {
     max-width: var(--composer-content-width);
     justify-content: center;
@@ -30,28 +32,36 @@
           justify-content: right;
           padding: 0;
           line-height: 30px;
-
-          > div:last-child {
-            border-bottom: none;
-          }
+          counter-reset: question-counter;
 
           .card {
             color: var(--composer-font-color-primary);
-            border-bottom: 1px solid var(--color-divider);
+            border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
             cursor: pointer;
 
             .top-card {
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-start;
+              align-items: center;
               gap: 10px;
               padding: 32px 0;
               transition: padding 0.3s ease;
+              position: relative;
+
+              &::before {
+                counter-increment: question-counter;
+                content: counter(question-counter) ". ";
+                font-weight: bold;
+                font-size: 16px;
+                color: var(--composer-font-color-primary);
+              }
 
               .card-subtitle {
                 color: var(--composer-font-color-primary);
                 font-weight: 600;
                 font-size: 16px;
                 transition: 0.3s;
+                letter-spacing: .5px;
 
                 &:hover {
                   color: var(--composer-primary-color);
@@ -63,6 +73,7 @@
                 color: var(--composer-primary-color);
                 font-size: 12px;
                 flex-shrink: 0;
+                margin-left: auto;
               }
             }
 
