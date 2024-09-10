@@ -28,7 +28,7 @@
         .left-side-icon {
           width: 32px;
           height: 32px;
-          color: black;
+          color: var(--composer-font-color-primary);
         }
         .first-text {
           font-size: 1.7rem;
@@ -59,7 +59,7 @@
             margin-left: 5px;
             margin-bottom: -2px;
             cursor: pointer;
-            color: black;
+            color: var(--composer-font-color-primary);
           }
 
           &::after {
@@ -210,11 +210,10 @@
       }
 
       .middle-content {
-        width: 30%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
         max-width: 33%;
 
         .card {
@@ -261,7 +260,7 @@
 
           .description {
               font-size: 1.1rem;
-              color: white;
+              color: var(--composer-font-color-secondary);
               width: 100%;
               display: -webkit-box;
               -webkit-line-clamp: 2 !important;

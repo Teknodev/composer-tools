@@ -321,7 +321,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "right-side-text",
               displayer: "Right Side Text",
-              value: "Featured Posts 2",
+              value: "Featured Posts",
             },
             {
               type: "icon",
@@ -355,7 +355,7 @@ class Feature1 extends BaseFeature {
     this.addProp({
       type: "icon",
       key: "right_side_icon",
-      displayer: "Left Side Icon",
+      displayer: "Right Side Icon",
       value: "MdArrowOutward",
     });
     this.addProp({
@@ -438,7 +438,7 @@ class Feature1 extends BaseFeature {
                 {<ComposerIcon
                       name={this.getPropValue("left_side_icon")}
                       propsIcon={{
-                      className:this.decorateCSS("left_side_icon")
+                      className:this.decorateCSS("left-side-icon")
                   }} 
                 />}
                 {leftSideText && (
