@@ -39,7 +39,7 @@
                     color: var(--composer-font-color-primary);
                     word-break: break-word;
                     height: auto;
-                    font-size: 2rem;
+                    font-size: 1.8rem;
                     width: 100%;
                 }
     
@@ -222,18 +222,21 @@
         font-size:1.5rem !important;
     }
     .about-button{
-        width: 100% !important;
+        width: 90% !important;
     }
     .buttonText{
         font-size: 1.3rem !important;
         word-break: break-word !important;
         margin:10px !important;
     }
+    .button-icon{
+        gap:10px !important;
+    }
     .phone{
         font-size: 1.5rem !important;
     }
     .phone-icon{
-        gap: 5px !important;
+        gap: 3px !important;
     }
 
     .image-container{
