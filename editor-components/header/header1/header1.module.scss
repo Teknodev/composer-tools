@@ -26,11 +26,24 @@
     max-width: var(--composer-content-width);
     margin: auto;
     position: absolute;
-    left: 50%;
-    top: 50%;
+    top:10%;
+    left: 0px;
+    height: 100%;
+    // left: 50%;
+    // top: 50%;
     width: 100%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
+    // transform: translate(-50%, -50%);
+    z-index: 10;
+    overflow: hidden;
+    >div{
+      >div{
+        >div{
+          >div{
+            padding: 20px !important;
+          }
+        }
+      }
+    }
     .return-container {
       position: relative;
       height: 100%;
@@ -52,14 +65,31 @@
       max-width: 1200px;
       width: 60%;
       height: 100%;
+      align-items: center;
       .title {
         position: absolute;
         top: 30%;
         left: 60%;
         font-size: 10rem;
         color: #fff;
-        z-index: 1001;
+        z-index: 1001;        
+        opacity: 0; /* Başlangıçta tamamen görünmez */
+        animation: fadeInText 3s ease-in-out forwards; /* opacity animasyonu ekliyoruz */
       }
+      // .title {
+      //   display: inline-block;
+
+      // }
+      
+      @keyframes fadeInText {
+        0% {
+          opacity: 0; /* Başlangıçta görünmez */
+        }
+        100% {
+          opacity: 1; /* Tamamen görünür */
+        }
+      }
+
       .subtitle {
         color: #fff;
         position: absolute;
@@ -71,10 +101,18 @@
         z-index: 1001;
       }
       .image {
-        border-radius: 2rem;
+        border-radius: 1rem;
         margin: 0 auto;
         width: 100%;
-        height:auto;
+        height:fit-content;
+        object-fit: cover;
+        transition: transform 1s ease-in-out; 
+        transform: scale(0.5); 
+        opacity: 0; 
+      }
+      .active-image {
+        transform: scale(1); 
+        opacity: 1; 
       }
       .sliderNumber {
         color: #fff;

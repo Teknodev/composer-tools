@@ -137,7 +137,7 @@ class Content24 extends BaseContent {
     this.setComponentState("activeTab", activeTabIndex);
     setTimeout(() => {
       this.setComponentState("startedIndex", activeTabIndex);
-    },20)
+    }, 20)
   }
 
   getName(): string {
@@ -147,7 +147,7 @@ class Content24 extends BaseContent {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-        <div className={this.decorateCSS("sub-title")}>
+          <div className={this.decorateCSS("sub-title")}>
             {this.getPropValue("subtitle")}
           </div>
           <div className={this.decorateCSS("header")}>

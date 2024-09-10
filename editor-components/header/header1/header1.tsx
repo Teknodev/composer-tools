@@ -186,25 +186,36 @@ class Header1 extends BaseHeader {
         },
       ],
     });
+    this.setActiveTab(0);
+
   }
 
   getName(): string {
     return "Header 1";
   }
+  setActiveTab(activeTabIndex: number) {
+    this.setComponentState("activeTab", activeTabIndex);
+    setTimeout(() => {
+      this.setComponentState("startedIndex", activeTabIndex);
+    }, 20);
+  }
 
   render() {
     const settings = {
-      dots: false,
+      dots: true,
       infinite: true,
-      speed: 500,
-      autoplay: false,
-      autoplaySpeed: 3000,
+      speed: 1500,
+      autoplay: true,
+      autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      vertical: true,
       centerMode: false,
+      vertical: true,
       verticalSwiping: true,
-      adaptiveHeight: false,
+      adaptiveHeight: true,
+      beforeChange: (current: number, next: number) => {
+        this.setActiveTab(next);
+      },
     };
     return (
       <div className={this.decorateCSS("container")}>
@@ -235,7 +246,12 @@ class Header1 extends BaseHeader {
                     </div>
                     <div className={this.decorateCSS("content-container")}>
                       <img
-                        className={this.decorateCSS("image")}
+                        className={
+                          this.decorateCSS("image") +
+                          " " +
+                          (this.getComponentState("activeTab") == index &&
+                            this.decorateCSS("active-image"))
+                        }
                         src={item.image}
                         alt=""
                       />
