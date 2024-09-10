@@ -1,22 +1,23 @@
 .container {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     .max-content {
-        max-width: var(--composer-content-width);
         padding: 20px 50px;
         align-items: center;
         width: 100%;
         display: flex;
+       
         .wrapper{
             display: flex;
             gap:20px;
+            max-width: var(--composer-content-width);
+            margin: 0 auto;
             .title-container {
                 flex-grow: 1;
                 display: flex;
                 flex-direction: column;
                 width: 100%;
                 height: auto;
-                max-width: var(--composer-content-width);
                 word-break: break-word;
                 gap:20px;
                 min-height:100px;
@@ -161,8 +162,11 @@
     
                     .button-icon {
                         .about-button {
+                            width: 30%;
+                            max-width: 100%;
                             .buttonText{
-                                font-size: 2rem;
+                                padding: 5px;
+                                font-size: 1.5rem;
                                 margin: 15px;
                             }
                         }
@@ -192,10 +196,13 @@
                             }
                         }
                         .image1{
-                             padding-bottom: 30px;   
+                             padding-bottom: 40px;
+                             width: 70%;   
                         }
                         .image2 {
-                            padding-bottom: 20px;
+                            bottom:0px;
+                            width: 50%;
+                            left: 0px;
                         }
                     }
                 }
@@ -214,10 +221,16 @@
     .description{
         font-size:1.5rem !important;
     }
+    .about-button{
+        width: 100% !important;
+    }
     .buttonText{
-        font-size: 1.5rem !important;
+        font-size: 1.3rem !important;
         word-break: break-word !important;
         margin:10px !important;
+    }
+    .phone{
+        font-size: 1.5rem !important;
     }
     .phone-icon{
         gap: 5px !important;
@@ -236,13 +249,12 @@
         }
         .image1{
             width: 80% !important;
-            object-fit: cover;
+            object-fit: cover !important;
         }
         .image2{
             left: 0rem !important;
             width: 60% !important;
-            object-fit: cover;
-            padding-bottom: 20px;
+            object-fit: cover !important;
         }
     }
 }
