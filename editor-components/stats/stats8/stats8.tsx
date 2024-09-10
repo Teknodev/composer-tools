@@ -74,7 +74,7 @@ class Stats8Page extends BaseStats {
             {
               type: "number",
               key: "title",
-              displayer: "Title",
+              displayer: "Value",
               value: 37,
             },
             {
@@ -93,7 +93,7 @@ class Stats8Page extends BaseStats {
             {
               type: "number",
               key: "title",
-              displayer: "Title",
+              displayer: "Value",
               value: 19,
             },
             {
