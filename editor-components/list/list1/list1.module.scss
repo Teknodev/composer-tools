@@ -1,90 +1,133 @@
 .container {
   width: 100%;
-  padding: 50px 0;
+  height: 100%;
+  padding: 50px 0px;
   background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    place-items: center;
 
-    .badge-list {
-margin-top: 50px;
-      margin-bottom: 50px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--composer-box-shadow);
-      height: max-content;
-      min-width: 250px;
-      flex: 1 1;
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid var(--composer-secondary-color);
-transition: transform 0.3s ease; /* Transition stilini ekle */
+    .up-text {
+      text-align: center;
 
-&:hover {
-        transform: scale(1.05); /* Hover olduğunda zoom animasyonu */
+      .subtitle {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--composer-font-color-primary);
       }
 
       .title {
-        font-size: 2rem;
-        line-height: 2.5;
-        color: var(--composer-font-color-secondary);
-        display: block;
-        background-color: var(--composer-secondary-color);
-        font-weight: bold;
-        max-width: 100%;
-height: 80px;
-        margin: 0;
-        padding: 10px 20px;
-        .badge {
-margin-top: 13px;
-          float: right;
-          height: 32px;
-          min-width: 30px;
-          max-width: 100px;
-          padding: 8px 12px;
-          line-height: 0.9;
-          font-size: 1.4rem;
-          color: var(--composer-font-color-primary);
-          background-color: var(--composer-html-background);
-                    border-radius: 100%;
-        }
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 35px;
+        color: var(--composer-primary-color);
       }
-      .list-group {
-        display: block;
-        margin: 0;
-        list-style-type: none;
-        padding: 0;
-        .list-item {
-          padding: 20px;
-          cursor: pointer;
-          color: var(--composer-font-color-primary);
-          background-color: var(--composer-html-background);
-          transition: all 0.5s;
-          font-size: 17px;
-          border-bottom: 1px;
-          border: var(--composer-tertiary-color);
-          
-          .badge {
-            float: right;
-            height: 35px;
-            min-width: 75px;
-            max-width: 100px;
-            padding: 6px 9px;
-            line-height: 1.2;
-            font-size: 1.5rem;
-            color: var(--composer-font-color-secondary);
-            background-color: var(--composer-secondary-color);
-border: 1px solid var(--composer-secondary-color);
-            text-align: center;
-            border-radius: 5px;
-            margin-top: 50px;
-            margin-bottom: 20px;
-            text-align: center;
+    }
+
+    .carousel-div {
+      width: 80%;
+      gap: 50px;
+
+      .carousel {
+        .dots {
+          display: flex !important;
+          flex-direction: row;
+          margin: 0 auto;
+          width: fit-content;
+          gap: 10px;
+          list-style-type: none;
+          margin-top: -24px;
+          padding: 0;
+
+          li {
+            button {
+              border: none;
+              transition: 0.3s;
+              content-visibility: hidden;
+              width: 10px;
+              height: 10px;
+              background: var(--composer-font-color-primary);
+              border-radius: 100px;
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+
+        .dots :global(li.slick-active) button {
+          padding: 0 10px;
+        }
+
+        .card {
+          width: 100%;
+          height: 100%;
+          padding: 2.5rem 2rem;
+          position: relative;
+
+          &.active {
+            &::before {
+              content: "";
+              position: absolute;
+              width: calc(100% + 4rem);
+              height: 65%;
+              bottom: 5px;
+              left: -2rem;
+              background-color: var(--composer-primary-color);
+              z-index: -1;
+            }
+          }
+
+          .card-inner {
+            padding: 3rem;
+            background-color: color-mix(
+              in srgb,
+              var(--composer-font-color-primary),
+              var(--composer-html-background) 90%
+            );
+            display: flex;
+            flex-direction: column;
+            z-index: 0;
+            gap: 10px;
+            position: static;
+
+            .img {
+              border-radius: 999px;
+              width: 100%;
+              height: 100%;
+              max-width: 200px;
+              max-height: 200px;
+            }
+
+            .title {
+              font-size: 20px;
+              font-weight: 700;
+              color: var(--composer-font-color-primary);
+            }
+
+            .subtitle {
+              font-size: 14px;
+              color: var(--composer-font-color-primary);
+            }
+
+            .link {
+              margin: 20px 0 0;
+              color: var(--composer-font-color-primary);
+
+              &:hover {
+                color: var(--composer-secondary-color);
+              }
+
+              .text {
+                font-size: 14px;
+              }
+            }
           }
         }
       }
@@ -94,13 +137,68 @@ border: 1px solid var(--composer-secondary-color);
 
 @media only screen and (max-width: 768px) {
   .container {
-    padding: 50px 20px;
     .max-content {
+      display: flex !important;
+      flex-direction: column !important;
+      place-items: center;
+
+      .carousel {
+        width: 100%;
+
+        .dots {
+          margin-top: 0;
+        }
+
+        .card {
+          display: flex !important;
+          flex-direction: column !important;
+
+          &.active {
+            ::before {
+              width: calc(100% + 4rem);
+              left: -11rem !important;
+              content: "";
+              display: none;
+            }
+          }
+
+          .card-inner {
+            text-align: center;
+            img {
+              margin: 0 auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .container {
+    .max-content {
+      display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      .badge-list {
-        min-width: 100%;
-    }}
+      place-items: center;
+
+      .carousel {
+        width: 100%;
+
+        .dots {
+          margin-top: 0;
+        }
+
+        .card {
+          left: 0rem !important;
+          &.active {
+            ::before {
+              content: "";
+              display: none;
+              left: 0rem !important;
+            }
+          }
+        }
+      }
+    }
   }
 }
