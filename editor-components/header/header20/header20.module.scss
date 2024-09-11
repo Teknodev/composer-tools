@@ -126,50 +126,70 @@
           align-items: center;
           font-weight: 700;
           font-size: 1.2rem;
-          gap: 3.5%;
+          gap: 20%;
           color: white;
           z-index: 10;
           padding: 2rem 8.33rem;
-          .navigation {
+          .left{
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
-            gap: 30%;
-            .up,
-            .down {
-              margin: 1%;
+            gap: 10%;
+            width: 100%;
+            .navigation {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+              gap: 30%;
+              .up,
+              .down {
+                margin: 1%;
+              }
+  
+              .icon {
+                font-size: 4rem;
+                z-index: 10;
+              }
             }
-
-            .icon {
-              font-size: 4rem;
-              z-index: 10;
+            .comment {
+              font-size: 1.2rem;
+              display: flex;
+              word-break: break-word;
+              width: 100%;
+              >blinkpage{
+                height: 100%;
+                width: 100%;
+                >p{
+                  width: 100%;
+                  max-height: 100%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                }
+              }
             }
           }
-
 
           .comment-and-icon-text-container {
             display: flex;
             flex-direction: row;
             width: 100%;
            justify-content: flex-end;
-           .comment {
-            font-size: 1.2rem;
-            display: flex;
-            max-width: fit-content;
-          }
+
+
           }
           .icon-text-container {
             justify-content: center;
             display: flex;
             width: auto;
-            max-width: fit-content;
+            // max-width: fit-content;
             cursor: pointer;
             position: relative;
             width: auto;
             max-width: 100%;
-
-
             &:hover .icon_text {
               transform: translate(4rem, -4.5rem);
               transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
@@ -190,6 +210,17 @@
               transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
               font-weight: bolder;
               padding-right: 2rem;
+              >blinkpage{
+                height: 100%;
+                >p{
+                  max-height: 100%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                }
+              }
             }
 
             .social-icons {
@@ -201,16 +232,21 @@
               width: 600px;
               right: 0px;
               transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
-              flex-wrap: wrap; 
+              flex-wrap: wrap;
+              height: 100%;
+              align-items: center;
+
               .icon {
                 font-size: 1.3rem;
                 z-index: 10;
+                align-items: center;
               }              
             }
 
             .icon-next-to-text {
               font-size: 1.3rem;
               transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+              min-width:4%;
             }
           }
         }
@@ -231,6 +267,7 @@
   }
   .buttomRow{
     padding: 24px 0px !important;
+    gap:0px !important;
   }
   .comment-and-icon-text-container {
     width: 100% !important;
@@ -271,31 +308,44 @@
             }
           }
           .buttomRow {
-            padding:0px;
-            flex-direction: row-reverse;
-            justify-content: space-between;
-            .navigation {
-              margin-right: 0;
-              gap: 30%;
-              .up,
-              .down {
-                margin: 0;
-              }
-              .icon {
-                font-size: 3rem;
-              }
-            }
-            .comment{
+            padding:0px !important;
+            
+            gap:0px !important;
+            margin-right: 0;
+            margin:0px;
+            width: 100%;
+            .left{
+              width: 100%;
+              gap:0px !important;
               display: flex;
-              justify-content:center;
-              align-items: center;
-              text-align: start;
-              position: absolute;
-              left: 30px;
+              flex-direction: row-reverse;
+              width: 100%;
+              .comment{
+                width: 100%;
+                display: flex;
+                justify-content:center;
+                align-items: center;
+                text-align: start;
+                flex:2;
+              }
+              .navigation {
+                flex:1;
+                gap: 10%;
+                display: flex;
+                justify-content: flex-end;
+                .up,
+                .down {
+                  margin: 0;
+                }
+                .icon {
+                  font-size: 3rem;
+                }
+              }
             }
+
             .comment-and-icon-text-container {
               direction: ltr;
-              width: 0px;
+              width: 0px !important;
 
               .icon-text-container {
                 display: none;

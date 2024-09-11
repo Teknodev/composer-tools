@@ -971,8 +971,6 @@ class HeaderComponent20 extends BaseHeader {
   render() {
     const currentSlide = this.getComponentState("slider");
     const overlay = this.getPropValue("overlay");
-    console.log("overlay", overlay)
-
     const settings = {
       dots: false,
       infinite: false,
@@ -1075,28 +1073,34 @@ class HeaderComponent20 extends BaseHeader {
                 </ComposerSlider>
               </div>
               <div className={this.decorateCSS("buttomRow")}>
-                <div className={this.decorateCSS("navigation")}>
-                  {isUpandDownButtonVisible && (
-                    <ComposerIcon
-                      name={up_icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                        onClick: this.handleUpClick,
-                      }}
-                    />
-                  )}
-                  {isUpandDownButtonVisible && (
-                    <ComposerIcon
-                      name={down_icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                        onClick: this.handleDownClick,
-                      }}
-                    />
-                  )}
-                </div>
-                <div className={this.decorateCSS("comment")}>
-                  {slider[currentSlide].buttomRow.comment}
+                <div className={this.decorateCSS("left")}>
+                  {isUpandDownButtonVisible && isUpandDownButtonVisible && (
+                    <div className={this.decorateCSS("navigation")}>
+                      {isUpandDownButtonVisible && (
+                        <ComposerIcon
+                          name={up_icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                            onClick: this.handleUpClick,
+                          }}
+                        />
+                      )}
+                      {isUpandDownButtonVisible && (
+                        <ComposerIcon
+                          name={down_icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                            onClick: this.handleDownClick,
+                          }}
+                        />
+                      )}
+                    </div>
+                  )
+                  }
+
+                  <div className={this.decorateCSS("comment")}>
+                    {slider[currentSlide].buttomRow.comment}
+                  </div>
                 </div>
                 <div
                   className={this.decorateCSS(
