@@ -19,6 +19,7 @@ export type TypeLocation = {
       width?: number;
       height?: number;
     };
+    address?: string;
   }[];
 };
 
