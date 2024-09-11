@@ -2,6 +2,9 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+interface Item {
+  title: string | null;
+}
 class Header1 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -200,27 +203,27 @@ class Header1 extends BaseHeader {
     }, 20);
   }
 
-  renderTitleWithAnimation(title: string) {
-    return (
-      <span className={this.decorateCSS("animated-title")}>
-        {title.split("").map((char, index) => (
-          <span
-            key={index}
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            {char}
-          </span>
-        ))}
-      </span>
-    );
-  }
+  // renderTitleWithAnimation(title: string) {
+  //   return (
+  //     <span className={this.decorateCSS("animated-title")}>
+  //       {title.split("").map((char, index) => (
+  //         <span
+  //           key={index}
+  //           style={{ animationDelay: `${index * 0.1}s` }}
+  //         >
+  //           {char}
+  //         </span>
+  //       ))}
+  //     </span>
+  //   );
+  // }
 
   render() {
     const settings = {
       dots: true,
       infinite: true,
       speed: 1500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -228,6 +231,7 @@ class Header1 extends BaseHeader {
       vertical: true,
       verticalSwiping: true,
       adaptiveHeight: true,
+      dotsClass: this.decorateCSS("dots"),
       beforeChange: (current: number, next: number) => {
         this.setActiveTab(next);
       },
@@ -277,10 +281,10 @@ class Header1 extends BaseHeader {
                           " " +
                           (this.getComponentState("activeTab") == index &&
                             this.decorateCSS("active-title"))
-                        }
-                      >
+                        }>
                         {item.title}
                       </h1>
+
 
                       <h1 className={this.decorateCSS("subtitle")}>
                         {item.subtitle}
@@ -297,8 +301,8 @@ class Header1 extends BaseHeader {
               }
             )}
           </ComposerSlider>
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 }
