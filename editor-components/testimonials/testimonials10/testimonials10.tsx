@@ -329,7 +329,6 @@ class Testimonials10Page extends Testimonials {
                   <div className={this.decorateCSS("button-group")}>
                     {this.castToObject<Button[]>("buttons").map(
                       (button: Button, index: number) => {
-                        console.log(this.castToString(button.buttonText));
 
                         if (this.castToString(button.buttonText))
                           return (
