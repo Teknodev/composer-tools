@@ -34,7 +34,11 @@
         }
 
         .title {
-          color: var(--composer-font-color-primary);
+          color: color-mix(
+            in srgb,
+            var(--composer-font-color-primary),
+            var(--composer-font-color-secondary) 50%
+          );
           font-size: 3em;
           font-weight: 500;
           margin-top: 0;
@@ -44,15 +48,18 @@
         }
 
         .featured-card-link {
-          color: var(--composer-font-color-primary);
+          color: color-mix(
+            in srgb,
+            var(--composer-font-color-primary),
+            var(--composer-font-color-secondary) 50%
+          );
           font-size: 1.5em;
           font-weight: 400;
           margin-top: 10px;
           margin-left: 60px;
 
-          >div p {
+          > div p {
             text-decoration: underline;
-
           }
         }
       }
@@ -60,8 +67,11 @@
       .card-item-count {
         position: relative;
         overflow: hidden;
-
-
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
       }
 
       /* overlay start */
@@ -95,7 +105,11 @@
         color: var(--composer-font-color-secondary);
 
         &.apply-overlay {
-          background-color: color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.6), rgba(var(--composer-font-color-primary-rgb), 0.6) 95%);
+          background-color: color-mix(
+            in srgb,
+            rgba(var(--composer-html-background-rgb), 0.6),
+            rgba(var(--composer-font-color-primary-rgb), 0.6) 95%
+          );
         }
 
         .long-text {
@@ -106,13 +120,13 @@
           text-decoration: none;
           color: var(--composer-font-color-secondary);
           border: 1px solid var(--composer-font-color-secondary);
-          padding: .7em 2.1em;
+          padding: 0.7em 2.1em;
           text-transform: uppercase;
         }
       }
 
       .card-item-count:hover .overlay {
-        opacity: 1;
+        opacity: 0.6;
       }
 
       .card-item-count:hover .vertical {
@@ -155,7 +169,7 @@
         .icon {
           font-size: 4em;
           color: var(--composer-font-color-secondary);
-          background-color: var(--composer-primary-color);
+          background-color: rgba(var(--composer-primary-color-rgb), 0.7);
           width: 70px;
           height: 70px;
           border-radius: 50%;
@@ -235,6 +249,5 @@
         padding: inherit;
       }
     }
-
   }
 }
