@@ -84,7 +84,7 @@ class Stats2Page extends BaseStats {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdStar",
+              value: "IoMdArrowUp",
             },
           ],
         },
@@ -109,7 +109,7 @@ class Stats2Page extends BaseStats {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdStar",
+              value: "IoMdArrowUp",
             },
           ],
         },
@@ -134,7 +134,7 @@ class Stats2Page extends BaseStats {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdStar",
+              value: "IoMdArrowUp",
             },
           ],
         },
@@ -159,7 +159,7 @@ class Stats2Page extends BaseStats {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdStar",
+              value: "IoMdArrowUp",
             },
           ],
         },
@@ -248,8 +248,9 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   animationDuration,
   styles,
 }) => {
-  const [amount, setAmount] = React.useState(0);
+  const [amount, setAmount] = React.useState<number | null>(null);
   const ref = React.useRef<HTMLDivElement>(null);
+  const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -272,21 +273,38 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
       if (ref.current) {
         observer.unobserve(ref.current);
       }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
   }, [card.amount]);
 
   const animateDigits = () => {
-    const finalAmount = card.amount;
-    const steps = animationDuration / 30;
-    let currentAmount = 0;
-    const increment = finalAmount / steps;
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
 
-    const interval = setInterval(() => {
+    const finalAmount = card.amount;
+    if (finalAmount === null || finalAmount === undefined) {
+      setAmount(null);
+      return;
+    }
+
+    const steps = animationDuration / 30;
+    let currentAmount = amount ?? 0;
+    const increment = (finalAmount - currentAmount) / steps;
+
+    intervalRef.current = setInterval(() => {
       currentAmount += increment;
-      if (currentAmount >= finalAmount) {
+
+      if (
+        (increment > 0 && currentAmount >= finalAmount) ||
+        (increment < 0 && currentAmount <= finalAmount)
+      ) {
         currentAmount = finalAmount;
-        clearInterval(interval);
+        clearInterval(intervalRef.current);
       }
+
       setAmount(Math.ceil(currentAmount));
     }, 30);
   };
@@ -301,7 +319,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
             name={card.icon}
           />
         )}
-        <h2 className={styles["card-amount"]}>{amount}</h2>
+        {amount !== null && <h2 className={styles["card-amount"]}>{amount}</h2>}
       </div>
     </div>
   );
