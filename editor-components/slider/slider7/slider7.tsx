@@ -208,7 +208,22 @@
       });
       
       this.setComponentState("centerSlide", 0);
+      this.setComponentState("slider-ref", React.createRef());
+      window.addEventListener('keydown', this.handleKeyDown);
+
+      
     }
+
+    handleKeyDown = (event: KeyboardEvent) => {
+      const sliderRef = this.getComponentState("slider-ref"); 
+      if (sliderRef && sliderRef.current) { 
+        if (event.key === "ArrowLeft") {
+          sliderRef.current.slickPrev();
+        } else if (event.key === "ArrowRight") {
+          sliderRef.current.slickNext();
+        }
+      }
+    };
 
     getName(): string {
       return "Slider 7";
@@ -224,9 +239,10 @@
       const isNextArrowExist = this.castToString(nextArrow);
       const previousArrow = this.getPropValue("previousArrow");
       const isPreviousArrowExist = this.castToString(previousArrow);
-
       const cardNumber = String(3);
       const visibleItemCount = Math.min(items.length, 3);
+      const sliderRef = this.getComponentState("slider-ref");
+
       
       const settings = {
         dots: false,
@@ -290,6 +306,7 @@
               <ComposerSlider
                 {...settings}
                 className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`}
+                ref={sliderRef}
               > 
                 {items.map((item: Card, index: number) => (
                   <div 
