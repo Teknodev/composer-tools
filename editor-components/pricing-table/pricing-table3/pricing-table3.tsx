@@ -74,7 +74,7 @@ class PricingTable3 extends BasePricingTable {
       key: "cards",
       displayer: "Cards",
       additionalParams: {
-        maxElementCount: 4,
+        maxElementCount: 3,
       },
       value: [
         {

@@ -148,7 +148,7 @@ ul {
   color: var(--composer-font-color-primary);
   background-color: var(--composer-font-color-secondary);
   border: 1px solid var(--composer-font-color-primary);
-  word-break: break-word ;
+  word-break: break-word;
 
   .button-text {
     position: relative;
@@ -241,9 +241,7 @@ ul {
   }
 
   .featured {
-    width: 100%;
-    padding-right: 0;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .cards-div {
