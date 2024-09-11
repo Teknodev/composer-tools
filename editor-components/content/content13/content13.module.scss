@@ -1,17 +1,17 @@
 .container {
-    height: 100vh;
     width: 100%;
+    height: 100%;
     .max-content {
         padding: 20px 50px;
         align-items: center;
         width: 100%;
         display: flex;
-       
         .wrapper{
             display: flex;
             gap:20px;
             max-width: var(--composer-content-width);
             margin: 0 auto;
+            width: 100%;
             .title-container {
                 flex-grow: 1;
                 display: flex;
@@ -20,7 +20,7 @@
                 height: auto;
                 word-break: break-word;
                 gap:20px;
-                min-height:100px;
+                // min-height:100px;
                 .about-title {
                     font-size: 2rem;
                     width: 100%;
@@ -50,6 +50,7 @@
                     gap: 30px;
                     align-items: center;
                     .about-button {
+                        max-width: 50%;
                         flex-grow: 1;
                         align-items: center;
                         background-color:  var(--composer-secondary-color);
@@ -92,12 +93,13 @@
             .right-page {
                 display: flex;
                 flex-direction: column;
-                width: 100%;
                 height: auto;
                 max-height: 500px;
+                width: 100%;
                 .image-container {
                     position: relative;
                     height: 100%;
+                    min-height: 300px;
                   .image-text {
                     position: absolute;
                     z-index: 10;
@@ -107,10 +109,12 @@
                         text-transform: uppercase;
                         font-size: 1.5rem;
                         word-break: break-word;
+                        color: var(--composer-font-color-secondary);
                     }
                     .year{
                         font-size: 5.6rem;
                         word-break: break-word;
+                        color: var(--composer-font-color-secondary);
                     }
                   }
               
@@ -120,11 +124,12 @@
                     width: 60%;
                     max-height: 100%;
                     object-fit: cover; 
-                    padding-bottom: 40px;  
-                    .without-image2{
-                        bottom: 0px;
-                    }             
+                    padding-bottom: 40px; 
+                    min-height: 80%; 
                   }
+                  .without-image2{
+                    padding-bottom: 0px !important;
+                    } 
                   .image2{
                     position: absolute;
                     left:10rem;
@@ -132,6 +137,7 @@
                     max-height: 70%;
                     width: 50%;
                     object-fit: cover;
+                    min-height: 50%; 
                   }
 
                 }
@@ -168,6 +174,7 @@
                                 padding: 5px;
                                 font-size: 1.5rem;
                                 margin: 15px;
+                                color: var(--composer-font-color-secondary)
                             }
                         }
                         .phone-icon {
@@ -253,11 +260,13 @@
         .image1{
             width: 80% !important;
             object-fit: cover !important;
+            min-height: 80%;
         }
         .image2{
             left: 0rem !important;
             width: 60% !important;
             object-fit: cover !important;
+            min-height: 80%;
         }
     }
 }
