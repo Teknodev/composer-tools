@@ -86,14 +86,14 @@ class ImageGalleryComponent5 extends BaseImageGallery {
       type: "icon",
       key: "nextIcon",
       displayer: "Next Button Icon",
-      value: "",
+      value: "GrCaretNext",
     });
 
     this.addProp({
       type: "icon",
       key: "prevIcon",
       displayer: "Previous Button Icon",
-      value: "",
+      value: "GrCaretPrevious",
     });
     this.addProp({
       type: "boolean",
@@ -164,7 +164,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     const nextIcon = this.getPropValue("nextIcon");
     const prevIcon = this.getPropValue("prevIcon");
     const imageIndex = this.getPropValue("imageIndex");
-    const closeIcon = this.getPropValue("closeIcon") || "RxCross1"; 
+    const closeIcon = this.getPropValue("closeIcon"); 
     
    
 
@@ -248,3 +248,4 @@ class ImageGalleryComponent5 extends BaseImageGallery {
 }
 
 export default ImageGalleryComponent5;
+

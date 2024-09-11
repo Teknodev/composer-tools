@@ -12,7 +12,6 @@
     .images {
       justify-content: center;
       align-items: center;
-      //justify-items: center;
       width: 100%;
       max-width: 100%;
       display: grid;
@@ -24,8 +23,6 @@
         justify-content: center;
         display: flex;
         text-align: center;
-        // max-height: 559.975px;
-        // max-width: 470.388px;
         max-width: 100%;
         max-height: 100%;
         overflow: hidden;
@@ -35,6 +32,7 @@
           display: grid;
           margin: auto;
           height: 100%;
+          max-height: 100vh;
           width: 100%;
           grid-gap: 20px;
           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -85,7 +83,7 @@
             cursor: pointer;
           }
           .large-image {
-            max-height: 580px;
+            max-height: 100%;
             position: relative;
             cursor: pointer;
             width: auto;
