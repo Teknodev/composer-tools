@@ -24,7 +24,7 @@
     margin: auto;
     width: 100%;
     flex: 1;
-    gap: 20px;
+    gap: 50px;
 
     &.image-absent {
       display: inline-block;
@@ -49,6 +49,7 @@
           font-size: 40px;
           letter-spacing: 2px;
           color: var(--composer-font-color-primary);
+          padding-top: 20px;
         }
 
         .text-uppercase {
@@ -144,7 +145,12 @@
                 font-size: 16px;
                 font-weight: 400;
                 letter-spacing: 2px;
-                color: var(--composer-font-color-primary);
+
+                >blinkpage {
+                  p {
+                    color: var(--composer-font-color-primary);
+                  }
+                }
               }
             }
           }
@@ -161,7 +167,7 @@
           display: flex;
 
           img {
-            height: 650px;
+            height: 600px;
             max-height: 750px;
             object-fit: cover;
             opacity: 0.85;
@@ -172,16 +178,12 @@
           .overlay {
             position: absolute;
             bottom: 1px;
-            // left: 10px;
-            // display: flex;
-            // flex-direction: column;
-            // align-items: flex-start;
             margin: 30px;
             border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             padding: 30px;
-            width: 90%; // Genişlik tamamen kapsayıcıya yayılsın
-            overflow: hidden; // Taşmaları engelle
-            white-space: normal; // Metin bir sonraki satıra geçsin
+            max-width: 90%;
+            overflow: hidden;
+            white-space: normal;
             word-wrap: break-word;
   
             .number {
@@ -247,6 +249,11 @@
         margin: 0;
 
         .content {
+
+          .title {
+            padding-top: 0 !important;
+          }
+          
           .image-container {
             padding: 0;
             margin: 0 auto;
@@ -285,6 +292,10 @@
 
         .content {
           padding: 0;
+
+          .title {
+            padding-top: 0 !important;
+          }
 
           .stats {
             grid-template-columns: repeat(1, 1fr);
