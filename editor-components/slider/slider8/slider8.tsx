@@ -229,7 +229,7 @@ class Slider8 extends BaseSlider {
       dots: true,
       infinite: true,
       speed: 1500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,

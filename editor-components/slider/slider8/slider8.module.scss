@@ -155,6 +155,16 @@
                   color: var(--text-color-white);
                   z-index: 1;
                   animation: fadeInRight 1s forwards;
+                  > blinkpage {
+                    > p {
+                      display: -webkit-box;
+                      -webkit-line-clamp: 3;
+                      line-clamp: 3;
+                      overflow: hidden;
+                      -webkit-box-orient: vertical;
+                      text-overflow: ellipsis;
+                    }
+                  }
                 }
 
                 .buttons {
