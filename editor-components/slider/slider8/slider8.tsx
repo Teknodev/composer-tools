@@ -20,11 +20,6 @@ type Button = {
   buttonIcon: string;
 };
 
-type ButtonNav = {
-  prevIcon: string;
-  nextIcon: string;
-};
-
 class Slider8 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
@@ -188,8 +183,15 @@ class Slider8 extends BaseSlider {
 
     this.addProp({
       type: "boolean",
+      key: "foregroundOverlay",
+      displayer: "Foreground Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
       key: "overlay",
-      displayer: "Overlay",
+      displayer: " Background Overlay",
       value: true,
     });
 
@@ -217,6 +219,7 @@ class Slider8 extends BaseSlider {
   }
 
   render() {
+    const foregroundOverlay = this.getPropValue("foregroundOverlay");
     const overlay = this.getPropValue("overlay");
     const linesContainer = this.getPropValue("lines-container");
     const animation: boolean = this.getPropValue("animation");
@@ -240,11 +243,13 @@ class Slider8 extends BaseSlider {
 
     const shouldDisplayOverlay = (index: number): boolean => {
       const shouldDisplay =
-        (!!this.castToObject<Card[]>("header")[index].backgroundImage ||
-          !!this.castToObject<Card[]>("header")[index].image) &&
-        overlay;
-      console.log("shouldDisplay: ", shouldDisplay);
-
+        !!this.castToObject<Card[]>("header")[index].backgroundImage && overlay;
+      return shouldDisplay;
+    };
+    
+    const shouldDisplayForegroundOverlay = (index: number): boolean => {
+      const shouldDisplay =
+        !!this.castToObject<Card[]>("header")[index].image && foregroundOverlay;
       return shouldDisplay;
     };
 
@@ -306,13 +311,11 @@ class Slider8 extends BaseSlider {
                               className={this.decorateCSS("image")}
                               style={{ backgroundImage: `url(${item.image})` }}
                             >
-                              <div
-                                style={{
-                                  width: "100%",
-                                  height: "100%",
-                                  backgroundColor: "rgba(0, 0, 0, 0.5)",
-                                }}
-                              ></div>
+                              {shouldDisplayForegroundOverlay(index) === true && (
+                                <div
+                                  className={this.decorateCSS("image-overlay")}
+                                ></div>
+                              )}
                             </div>
                             {this.castToString(item.imagetitle) && (
                               <h3
@@ -328,10 +331,6 @@ class Slider8 extends BaseSlider {
                               <div className={this.decorateCSS("buttons")}>
                                 {this.castToObject<Button[]>("buttons").map(
                                   (button: Button, index: number) => {
-                                    console.log(
-                                      this.castToString(button.buttonText)
-                                    );
-
                                     if (this.castToString(button.buttonText))
                                       return (
                                         <ComposerLink
