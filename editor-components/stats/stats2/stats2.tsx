@@ -7,6 +7,7 @@ type Card = {
   amount: number;
   text: string;
   icon?: string;
+  secondIcon?: string
 };
 
 class Stats2Page extends BaseStats {
@@ -86,6 +87,12 @@ class Stats2Page extends BaseStats {
               displayer: "Icon",
               value: "IoMdArrowUp",
             },
+            {
+              type: "icon",
+              key: "secondIcon",
+              displayer: "Icon After Amount",
+              value: "FaPlus",
+            },
           ],
         },
         {
@@ -110,6 +117,12 @@ class Stats2Page extends BaseStats {
               key: "icon",
               displayer: "Icon",
               value: "IoMdArrowUp",
+            },
+            {
+              type: "icon",
+              key: "secondIcon",
+              displayer: "Icon After Amount",
+              value: "FaPlus",
             },
           ],
         },
@@ -136,6 +149,12 @@ class Stats2Page extends BaseStats {
               displayer: "Icon",
               value: "IoMdArrowUp",
             },
+            {
+              type: "icon",
+              key: "secondIcon",
+              displayer: "Icon After Amount",
+              value: "FaPlus",
+            },
           ],
         },
         {
@@ -160,6 +179,12 @@ class Stats2Page extends BaseStats {
               key: "icon",
               displayer: "Icon",
               value: "IoMdArrowUp",
+            },
+            {
+              type: "icon",
+              key: "secondIcon",
+              displayer: "Icon After Amount",
+              value: "FaPlus",
             },
           ],
         },
@@ -320,6 +345,12 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
           />
         )}
         {amount !== null && <h2 className={styles["card-amount"]}>{amount}</h2>}
+        {card.secondIcon && (
+        <ComposerIcon
+          propsIcon={{ className: styles["card-icon-after"] }}
+          name={card.secondIcon}
+        />
+      )}
       </div>
     </div>
   );
