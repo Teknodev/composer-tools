@@ -12,8 +12,8 @@ type HeaderItemType = {
 type ContentItemType = {
   contentIcon: string;
   contentTitle: JSX.Element;
-  contentDescription: string;
-  contentDescription2: string;
+  contentDescriptionArray: JSX.Element[];
+
 };
 
 type SocialMediaItemType = {
@@ -47,24 +47,6 @@ class LocationComponent2 extends Location {
                 displayer: "Header Description",
                 value:
                   "Each template in our ever growing studio library can be added and moved around within any page effortlessly with one click. Combine them, rearrange them and customize them further as much as you desire. Welcome to the future of building with WordPress.",
-              },
-              {
-                type: "icon",
-                key: "icon1",
-                displayer: "First Icon",
-                value: "FaFacebookF",
-              },
-              {
-                type: "icon",
-                key: "icon2",
-                displayer: "Second Icon",
-                value: "FaInstagram",
-              },
-              {
-                type: "icon",
-                key: "icon3",
-                displayer: "Third Icon",
-                value: "FaXTwitter",
               },
             ],
           },
@@ -142,11 +124,19 @@ class LocationComponent2 extends Location {
                   "Address",
               },
               {
-                type: "string",
-                key: "contentDescription",
-                displayer: "Address",
+                type: "array",
+                key: "contentDescriptionArray",
+                displayer: "Content Description",
                 value:
-                  "410-1122 Holmes Ave, Springfield, IL, V6B 5L1 ",
+                  [
+                    {
+                      type: "string",
+                      key: "contentDescription",
+                      displayer: "Address",
+                      value:
+                        "410-1122 Holmes Ave, Springfield, IL, V6B 5L1 ",
+                    },
+                  ],
               },
             ],
           },
@@ -169,18 +159,26 @@ class LocationComponent2 extends Location {
                   "Bussiness Hours",
               },
               {
-                type: "string",
-                key: "contentDescription",
-                displayer: "Days",
+                type: "array",
+                key: "contentDescriptionArray",
+                displayer: "Content Description",
                 value:
-                  "Monda - Friday",
-              },
-              {
-                type: "string",
-                key: "contentDescription2",
-                displayer: "Hours",
-                value:
-                  "8:30 AM - 5:00 PM",
+                  [
+                    {
+                      type: "string",
+                      key: "contentDescription",
+                      displayer: "Days",
+                      value:
+                        "Monda - Friday",
+                    },
+                    {
+                      type: "string",
+                      key: "contentDescription",
+                      displayer: "Hours",
+                      value:
+                        "8:30 AM - 5:00 PM",
+                    },
+                  ],
               },
             ],
           },
@@ -203,18 +201,26 @@ class LocationComponent2 extends Location {
                   "Phone",
               },
               {
-                type: "string",
-                key: "contentDescription",
-                displayer: "Phone",
+                type: "array",
+                key: "contentDescriptionArray",
+                displayer: "Content Description",
                 value:
-                  "T: 703-856-8468",
-              },
-              {
-                type: "string",
-                key: "contentDescription2",
-                displayer: "Second Phone",
-                value:
-                  "F: 703-856-8464",
+                  [
+                    {
+                      type: "string",
+                      key: "contentDescription",
+                      displayer: "Phone",
+                      value:
+                        "T: 703-856-8468",
+                    },
+                    {
+                      type: "string",
+                      key: "contentDescription",
+                      displayer: "Hours",
+                      value:
+                        "F: 703-856-8464",
+                    },
+                  ],
               },
             ],
           },
@@ -237,11 +243,19 @@ class LocationComponent2 extends Location {
                   "Email",
               },
               {
-                type: "string",
-                key: "contentDescription",
-                displayer: "E-mail",
+                type: "array",
+                key: "contentDescriptionArray",
+                displayer: "Content Description",
                 value:
-                  "info@godsmen.law",
+                  [
+                    {
+                      type: "string",
+                      key: "contentDescription",
+                      displayer: "E-mail",
+                      value:
+                        "info@godsmen.law",
+                    },
+                  ],
               },
             ],
           },
@@ -282,15 +296,21 @@ class LocationComponent2 extends Location {
       <div className={this.decorateCSS('container')}>
         <div className={this.decorateCSS('max-content')}>
           {this.castToObject<HeaderItemType[]>("items").map((item: HeaderItemType, index: number) => {
+            const isTitleExist = this.castToString(item.title);
+            const isDesExist = this.castToString(item.headerDescription);
           return(
             <div className={this.decorateCSS('header')}>
+              {isTitleExist &&
               <div className={this.decorateCSS('title-container')}>
                 <h3 className={this.decorateCSS('title')}>{item.title}</h3>
-              </div>  
+              </div> 
+              }  
               <div className={this.decorateCSS('header-content')}>
+              {isDesExist &&
                 <div className={this.decorateCSS('description')}>
                 <p className={this.decorateCSS('description-text')}>{item.headerDescription}</p>
                 </div>
+                }  
                 <div className={this.decorateCSS('socials')}>
                 {this.castToObject<SocialMediaItemType[]>("items1").map((item: SocialMediaItemType, index: number) => {
                   return(
@@ -309,19 +329,32 @@ class LocationComponent2 extends Location {
             <div className={this.decorateCSS('middle-content')}>
               <div className={this.decorateCSS('middle-content-container')}>
                 {this.castToObject<ContentItemType[]>("items2").map((item: ContentItemType, index: number) => {
+                  const isContTitleExist = this.castToString(item.contentTitle);
+                  const isContIconExist = item.contentIcon;
+
+                  console.log("description: " , item.contentDescriptionArray);
+                  
+
                   return (
                     <div className={this.decorateCSS('element-container')}>
-                      <ComposerIcon name={item.contentIcon} />
-                      <div className={this.decorateCSS('content-title-container')}>
+                      {isContIconExist && <ComposerIcon name={item.contentIcon} />}
+                      {isContTitleExist && (
+                        <div className={this.decorateCSS('content-title-container')}>
                           <h3 className={this.decorateCSS('content-title')}>{item.contentTitle}</h3>
-                      </div>
-                      <p className={this.decorateCSS('content-description')}>{item.contentDescription}</p>
-                      <p className={this.decorateCSS('content-description')}>{item.contentDescription2}</p>
+                        </div>
+                      )}
+                      {item.contentDescriptionArray.map((item: JSX.Element, index: number) => {
+                        return(
+                      // <p className={this.decorateCSS('content-description')}>{this.castToString(item)}</p>
+                            null
+                        );
+                      })}
                     </div>
-                      );
-                    })}
+                  );
+                })}
               </div>
             </div>
+
           <div className={this.decorateCSS("map-container")}>
           <section>
               <ComposerMap markers={markers} className={this.decorateCSS("map")} />
