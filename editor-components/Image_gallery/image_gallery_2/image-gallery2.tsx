@@ -606,14 +606,14 @@ class ImageGallery2 extends BaseImageGallery {
       type: "icon",
       key: "nextImageIcon",
       displayer: "Next Image Icon",
-      value: "PiArrowRight",
+      value: "FaArrowRight",
     });
 
     this.addProp({
       type: "icon",
       key: "previousImageIcon",
       displayer: "Previous Image Icon",
-      value: "PiArrowLeft",
+      value: "FaArrowLeft",
     });
 
     this.addProp({
