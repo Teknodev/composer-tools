@@ -121,34 +121,24 @@ const ComposerMap = memo(({ markers, className, renderPopupContent }: ComposerMa
   };
 
   useEffect(() => {
+    if (overlayRef.current) {
+      overlayRef.current.setMap(null);
+    }
     if (selectedMarker && map) {
-      if (overlayRef.current) {
-        overlayRef.current.setMap(null);
-      }
-
       const overlayClass = createOverlayView();
       overlayRef.current = new overlayClass(new google.maps.LatLng(selectedMarker.lat, selectedMarker.lng));
       overlayRef.current.setMap(map);
-
       map.setCenter({ lat: selectedMarker.lat, lng: selectedMarker.lng });
       map.setZoom(6);
-    } else {
-      if (overlayRef.current) {
-        overlayRef.current.setMap(null);
-      }
     }
   }, [selectedMarker, map]);
 
   const handleMarkerClick = (marker: Coordinate) => {
-    if (selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng) {
-      setSelectedMarker(null);
-    } else {
-      setSelectedMarker(marker);
-      if (map) {
-        map.setCenter({ lat: marker.lat, lng: marker.lng });
-        map.setZoom(6);
-      }
-    }
+    const shouldSetMarkerNull = selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng;
+    setSelectedMarker(shouldSetMarkerNull ? null : marker);
+
+    map.setCenter({ lat: marker.lat, lng: marker.lng });
+    map.setZoom(6);
   };
 
   return (

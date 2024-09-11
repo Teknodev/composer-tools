@@ -51,10 +51,10 @@ class LocationComponent1 extends Location {
 
   renderPopupContent = (marker: Coordinate) => {
     return (
-      <div style={{ backgroundColor: "lightblue", padding: "10px", borderRadius: "5px", width: "200px", border: "1px solid black", textAlign: "center" }}>
-        <h4 style={{ margin: 0 }}>Popup Title</h4>
-        <p style={{ margin: 0 }}>Popup Content: {marker.address || "No address"}</p>
-        <button style={{ backgroundColor: "black", color: "pink", padding: "3px", marginTop: "5px", cursor: "pointer", borderRadius: "4px" }}>Custom Button</button>
+      <div className={this.decorateCSS("popup")}>
+        <h4 className={this.decorateCSS("popup-title")}>Popup Title</h4>
+        <p className={this.decorateCSS("popup-content")}>Popup Content: {marker.address || "No address"}</p>
+        <button className={this.decorateCSS("popup-button")}>Custom Button</button>
       </div>
     );
   };

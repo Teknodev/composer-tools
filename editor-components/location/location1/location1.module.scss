@@ -34,3 +34,29 @@
   width: 500px;
   height: 500px;
 }
+
+.popup {
+  background-color: var(--composer-html-background);
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  border: 1px solid var(--composer-primary-color);
+  text-align: center;
+}
+
+.popup-title {
+  margin: 0;
+}
+
+.popup-content {
+  margin: 0;
+}
+
+.popup-button {
+  background-color: var(--composer-secondary-color);
+  color: var(--composer-font-color-primary);
+  padding: 3px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
