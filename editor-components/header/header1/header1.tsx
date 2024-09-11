@@ -148,7 +148,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-4",
               value:
-                "hhttps://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -180,7 +180,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-5",
               value:
-                "hhttps://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -198,6 +198,21 @@ class Header1 extends BaseHeader {
     setTimeout(() => {
       this.setComponentState("startedIndex", activeTabIndex);
     }, 20);
+  }
+
+  renderTitleWithAnimation(title: string) {
+    return (
+      <span className={this.decorateCSS("animated-title")}>
+        {title.split("").map((char, index) => (
+          <span
+            key={index}
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            {char}
+          </span>
+        ))}
+      </span>
+    );
   }
 
   render() {
@@ -255,9 +270,18 @@ class Header1 extends BaseHeader {
                         src={item.image}
                         alt=""
                       />
-                      <h1 className={this.decorateCSS("title")}>
+
+                      <h1
+                        className={
+                          this.decorateCSS("title") +
+                          " " +
+                          (this.getComponentState("activeTab") == index &&
+                            this.decorateCSS("active-title"))
+                        }
+                      >
                         {item.title}
                       </h1>
+
                       <h1 className={this.decorateCSS("subtitle")}>
                         {item.subtitle}
                       </h1>

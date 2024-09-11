@@ -73,23 +73,27 @@
         font-size: 10rem;
         color: #fff;
         z-index: 1001;        
-        opacity: 0; /* Başlangıçta tamamen görünmez */
-        animation: fadeInText 3s ease-in-out forwards; /* opacity animasyonu ekliyoruz */
+        opacity: 0; 
+        transition: opacity 2s ease-in-out;
+        
       }
-      // .title {
-      //   display: inline-block;
-
-      // }
+      .active-title{
+        opacity: 0; /* Harfler önce görünmez olacak */
+        display: inline-block;
+        transform: translateX(20px); /* Başlangıçta sağda */
+        animation: letterAnimation 0.3s forwards ease-in-out; /* Her harf için animasyon */
+      }
       
-      @keyframes fadeInText {
+      @keyframes letterAnimation {
         0% {
-          opacity: 0; /* Başlangıçta görünmez */
+          opacity: 0;
+          transform: translateX(20px); /* Sağda başla */
         }
         100% {
-          opacity: 1; /* Tamamen görünür */
+          opacity: 1;
+          transform: translateX(0); /* Yerine gel */
         }
       }
-
       .subtitle {
         color: #fff;
         position: absolute;
