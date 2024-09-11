@@ -7,6 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 type Faq = {
   title: JSX.Element;
   description: JSX.Element;
+  index?: number;
 };
 
 type InfoArrayItem = {
@@ -65,6 +66,12 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 1,
+            },
           ],
         },
         {
@@ -84,6 +91,12 @@ class FaqContainerTwo extends BaseFAQ {
               displayer: "Description",
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+            },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 2,
             },
           ],
         },
@@ -105,6 +118,12 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 3,
+            },
           ],
         },
         {
@@ -125,6 +144,12 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 4,
+            },
           ],
         },
         {
@@ -144,6 +169,12 @@ class FaqContainerTwo extends BaseFAQ {
               displayer: "Description",
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
+            },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 5,
             },
           ],
         },
@@ -303,6 +334,8 @@ class FaqContainerTwo extends BaseFAQ {
                       this.getComponentState("active_index") == index;
                     const titleExist = this.castToString(item.title);
                     const descExist = this.castToString(item.description);
+                    const questionIndex =
+                      item.index !== undefined ? item.index : null;
 
                     if (titleExist || descExist)
                       return (
@@ -313,6 +346,13 @@ class FaqContainerTwo extends BaseFAQ {
                         >
                           {titleExist && (
                             <div className={this.decorateCSS("top-card")}>
+                              {questionIndex !== null && (
+                                <span
+                                  className={this.decorateCSS("question-index")}
+                                >
+                                  {questionIndex}.
+                                </span>
+                              )}
                               <span
                                 className={this.decorateCSS("card-subtitle")}
                               >

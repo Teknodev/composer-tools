@@ -46,15 +46,14 @@
               gap: 10px;
               padding: 32px 0;
               transition: padding 0.3s ease;
-              position: relative;
 
-              &::before {
-                counter-increment: question-counter;
-                content: counter(question-counter) ". ";
+              .question-index {
                 font-weight: bold;
                 font-size: 16px;
                 color: var(--composer-font-color-primary);
+                margin-right: 10px;
               }
+              
 
               .card-subtitle {
                 color: var(--composer-font-color-primary);
@@ -129,6 +128,7 @@
             opacity: 0.6;
             font-size: 14px;
             margin-bottom: 15px;
+            text-align: justify;
           }
 
           .button-info {
