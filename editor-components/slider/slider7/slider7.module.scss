@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   position: relative;
+  overflow: hidden;
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
@@ -8,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     .carousel {
       width: 100%; 
       .centerSlide {
@@ -118,3 +120,40 @@
     }
   }
 }
+@mixin arrow {
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  color: var(--composer-font-color-primary);
+}
+.nextArrow {
+  @include arrow;
+  right: 0;
+  padding: 20px 50px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    padding: 20px 30px;
+  }
+
+  @media (min-width: 769px) {
+    font-size: 42px;
+  }
+}
+.prevArrow {
+  @include arrow;
+  left: 0;
+  padding: 20px 50px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    padding: 20px 30px;
+  }
+
+  @media (min-width: 769px) {
+    font-size: 42px;
+  }
+}
+
