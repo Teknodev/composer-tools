@@ -203,21 +203,6 @@ class Header1 extends BaseHeader {
     }, 20);
   }
 
-  // renderTitleWithAnimation(title: string) {
-  //   return (
-  //     <span className={this.decorateCSS("animated-title")}>
-  //       {title.split("").map((char, index) => (
-  //         <span
-  //           key={index}
-  //           style={{ animationDelay: `${index * 0.1}s` }}
-  //         >
-  //           {char}
-  //         </span>
-  //       ))}
-  //     </span>
-  //   );
-  // }
-
   render() {
     const settings = {
       dots: true,
