@@ -1,4 +1,4 @@
-@keyframes descriptionBottom {
+@keyframes textBottomToUp {
   from {
     transform: translateY(80%);
     opacity: 0;
@@ -22,16 +22,6 @@
     opacity: 1;
   }
 }
-@keyframes urlTitleRight {
-  from {
-    transform: translateX(80%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 0.7;
-  }
-}
 
 @keyframes imageTitleRight {
   from {
@@ -41,6 +31,16 @@
   to {
     transform: translate(-50%,-50%);
     opacity: 0.7;
+  }
+}
+
+@mixin blink-page{
+  >blinkpage {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -68,7 +68,7 @@
           bottom: 70px;
           left: 50px;
           li {
-            button {
+            .dot {
               transition: 0.3s;
               width: 5px;
               height: 5px;
@@ -85,14 +85,15 @@
               color: white;
               font-size: 1.1rem;
               margin-top: -30px;
-              transform: translateY(-10%);
+              transform: translateY(-20%);
               rotate: 270deg;
+              padding-left: 10px;
             }
           }
         }
 
         .dots :global(li.slick-active) {
-          button {
+          .dot {
             padding: 0 10px;
           }
           .dotIndex {
@@ -138,22 +139,10 @@
                 }
 
                 h2{
-                  >blinkpage {
-                    display: -webkit-box !important;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                  }
+                  @include blink-page;
                 }
                 p{
-                  >blinkpage {
-                    display: -webkit-box !important;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                  }
+                  @include blink-page;
                 }
 
                 .imageTitle {
@@ -192,7 +181,7 @@
                     opacity: 0.7;
                   }
                   .animate {
-                    animation: descriptionBottom 0.5s ease-out;
+                    animation: textBottomToUp 0.5s ease-out;
                   }
                   
                   .stick {
@@ -221,7 +210,7 @@
                     }
                     
                     .urlTitleAnimation{
-                      animation: urlTitleRight 0.5s ease-out;
+                      animation: textBottomToUp 0.5s ease-out;
                     }
                   }
                 }

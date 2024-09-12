@@ -253,7 +253,7 @@ class Header32 extends BaseHeader {
       customPaging: function (i: number) {
         return (
           <div>
-            <button></button>
+            <span className={styles.dot}></span>
             <span className={styles.dotIndex}>{`0${i + 1}`}</span>
           </div>
         );
