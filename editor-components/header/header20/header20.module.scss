@@ -237,17 +237,14 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
               height: 100%;
               align-items: center;
               @include smooth-transition($delay: 0.3s);
-
               .icon {
                 font-size: 1.3rem;
                 z-index: 10;
                 align-items: center;
                 @include smooth-transition();
-
-                &:hover {
+                &:hover{
+                  background-color: black;
                   transform: scale(1.2);
-                  color: var(--hover-color);
-                  cursor: pointer;
                 }
               }              
             }
