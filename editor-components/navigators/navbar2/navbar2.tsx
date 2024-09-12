@@ -12,7 +12,7 @@ class Navbar2 extends BaseNavigator {
       key: "icon",
       displayer: "Icon",
       value:
-        "GiHamburgerMenu",
+        "MdMenu",
     });
     this.addProp({
       type: "boolean",

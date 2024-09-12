@@ -2,13 +2,26 @@ import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
-import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 
 type PreSufFix = {
   label: string;
   className: string;
-}
+};
+
+export type TypeLocation = {
+  markers: {
+    lat: number;
+    lng: number;
+    icon?: {
+      url: string;
+      width?: number;
+      height?: number;
+    };
+    address?: string;
+  }[];
+};
 
 type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
@@ -41,7 +54,8 @@ type AvailablePropTypes =
   | { type: "video"; value: string }
   | { type: "select"; value: string }
   | { type: "color"; value: string }
-  | { type: "icon"; value: string };
+  | { type: "icon"; value: string }
+  | { type: "location"; value: TypeLocation };
 
 export type TypeReactComponent = {
   type: string;
@@ -53,11 +67,11 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[], maxElementCount?: number };
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-  getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-};
+    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
+  };
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -81,9 +95,7 @@ export enum CATEGORIES {
   LOCATION = "Location",
 }
 
-export abstract class Component
-  extends React.Component<{}, { states: any; componentProps: any }>
-  implements iComponent {
+export abstract class Component extends React.Component<{}, { states: any; componentProps: any }> implements iComponent {
   private styles: any;
   private _props: any;
   protected category: CATEGORIES;
@@ -113,50 +125,35 @@ export abstract class Component
     return this.state.componentProps.props;
   }
   getProp(key: string) {
-    let props: TypeUsableComponentProps[] = this.state.componentProps.props.filter(
-      (prop: TypeUsableComponentProps) => prop.key === key
-    );
+    let props: TypeUsableComponentProps[] = this.state.componentProps.props.filter((prop: TypeUsableComponentProps) => prop.key === key);
     let prop = props[0] || null;
     return prop;
   }
 
   getPropValue(propName: string, properties?: GetPropValueProperties): any {
-    let prop = (properties?.parent_object?.filter(
-      (prop: TypeUsableComponentProps) => prop.key === propName
-    )[0] || this.getProp(propName));
-  
+    let prop = properties?.parent_object?.filter((prop: TypeUsableComponentProps) => prop.key === propName)[0] || this.getProp(propName);
+
     const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
-    
-    return isStringMustBeElement
-      ? this.getPropValueAsElement(prop, properties)
-      : prop?.value;
+
+    return isStringMustBeElement ? this.getPropValueAsElement(prop, properties) : prop?.value;
   }
-
-
 
   getPropValueAsElement(prop: TypeUsableComponentProps, properties?: GetPropValueProperties) {
     const sanitize = (dirty: string, options: sanitizeHtml.IOptions) => ({
-      __html: sanitizeHtml(
-        dirty,
-        {
-          allowedAttributes: {
-            'a': ['href', 'name', 'target'],
-            '*': ['style', 'class']
-          },
-          parseStyleAttributes: false
-        }
-      )
+      __html: sanitizeHtml(dirty, {
+        allowedAttributes: {
+          a: ["href", "name", "target"],
+          "*": ["style", "class"],
+        },
+        parseStyleAttributes: false,
+      }),
     });
-
-
 
     const preSufFixToElement = (elem?: PreSufFix) => {
       if (!elem) return null;
 
-      return React.createElement("span", { className: `${elem.className} suffix-prefix-elem`,children: elem.label });
+      return React.createElement("span", { className: `${elem.className} suffix-prefix-elem`, children: elem.label });
     };
-
-
 
     const SanitizeHTML = ({ html, options }: any) => {
       const prefix = preSufFixToElement(properties?.prefix);
@@ -168,24 +165,18 @@ export abstract class Component
       const hasHtmlTag = html.includes("<");
 
       if (!hasHtmlTag) {
-        html = `<p> ${html} </p>`
+        html = `<p> ${html} </p>`;
       }
 
       const firstTagStartIndex = html.indexOf(">") + 1;
       const firstTagEndIndex = html.lastIndexOf("<");
 
-      const htmlWithPrefixAndSuffix =
-        html.substring(0, firstTagStartIndex) +
-        stringPrefix +
-        html.substring(firstTagStartIndex, firstTagEndIndex) +
-        stringSuffix +
-        html.substring(firstTagEndIndex);
-
+      const htmlWithPrefixAndSuffix = html.substring(0, firstTagStartIndex) + stringPrefix + html.substring(firstTagStartIndex, firstTagEndIndex) + stringSuffix + html.substring(firstTagEndIndex);
 
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
 
       //@ts-ignore
-      return <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%" }} dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>
+      return <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%" }} dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>;
     };
 
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
@@ -195,19 +186,17 @@ export abstract class Component
     return this.styles;
   }
   getCSSClasses(sectionName: string | null = null): string {
-    return sectionName
-      ? this.state.componentProps.cssClasses[sectionName]
-      : this.state.componentProps.cssClasses;
+    return sectionName ? this.state.componentProps.cssClasses[sectionName] : this.state.componentProps.cssClasses;
   }
   addProp(prop: TypeUsableComponentProps) {
     const attachPropId = (_prop: TypeUsableComponentProps) => {
-      if(_prop.type == "array" || _prop.type == "object"){
-        _prop.value = (_prop.value as TypeUsableComponentProps[]).map((v:TypeUsableComponentProps) => attachPropId(v));
-      }else{
-        _prop.id = _prop.key + "-" +Math.round(Math.random() * 1000000000).toString();
+      if (_prop.type == "array" || _prop.type == "object") {
+        _prop.value = (_prop.value as TypeUsableComponentProps[]).map((v: TypeUsableComponentProps) => attachPropId(v));
+      } else {
+        _prop.id = _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
       }
-      return _prop
-    }
+      return _prop;
+    };
     prop = attachPropId(prop);
     prop = this.attachValueGetter(prop);
 
@@ -220,9 +209,7 @@ export abstract class Component
     if (i == -1) return;
 
     this.state.componentProps.props[i].value = value;
-    this.state.componentProps.props[i] = this.attachValueGetter(
-      this.state.componentProps.props[i]
-    );
+    this.state.componentProps.props[i] = this.attachValueGetter(this.state.componentProps.props[i]);
     this.setState({ componentProps: { ...this.state.componentProps } });
   }
 
@@ -242,9 +229,7 @@ export abstract class Component
 
   decorateCSS(cssValue: string) {
     let cssClass = [this.styles[cssValue]];
-    let cssManuplations = Object.entries(this.getCSSClasses()).filter(
-      ([p, v]) => v.length > 0
-    );
+    let cssManuplations = Object.entries(this.getCSSClasses()).filter(([p, v]) => v.length > 0);
     cssManuplations.forEach(([key, value]: any) => {
       if (key === cssValue) {
         value.forEach((el: any) => {
@@ -262,7 +247,7 @@ export abstract class Component
         if (Array.isArray(propValueItem.value)) {
           propValueItem = this.attachValueGetter(propValueItem);
           propValueItem["getPropValue"] = (propName: string, properties?: GetPropValueProperties) => {
-            if(!properties) properties = {};
+            if (!properties) properties = {};
             properties.parent_object = propValueItem.value as TypeUsableComponentProps[];
             return this.getPropValue(propName, properties);
           };
@@ -275,10 +260,8 @@ export abstract class Component
   }
 
   castToObject<Type>(propName: string): Type {
-    let i = this.state.componentProps.props
-      .map((prop: any) => prop.key)
-      .indexOf(propName);
-      
+    let i = this.state.componentProps.props.map((prop: any) => prop.key).indexOf(propName);
+
     let castedObject = this.castingProcess(this.state.componentProps.props[i]);
     return castedObject;
   }
@@ -289,7 +272,7 @@ export abstract class Component
 
   private castingProcess(object: any) {
     let casted = object.value.map((propValue: any) => {
-      let clonedPropValue = {...propValue};
+      let clonedPropValue = { ...propValue };
       if (clonedPropValue.hasOwnProperty("getPropValue")) {
         clonedPropValue.value.forEach((nestedObject: any, index: number) => {
           clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(nestedObject.key);
@@ -300,14 +283,15 @@ export abstract class Component
       } else {
         const value = this.getPropValue(clonedPropValue.key, { parent_object: object.value });
         clonedPropValue = {
-          key: clonedPropValue.key, value
+          key: clonedPropValue.key,
+          value,
         };
       }
       return clonedPropValue;
     });
 
     if (object.type == "object") {
-      const isObjectContainsAnotherObject = object.value.some((val: TypeUsableComponentProps) => val.type == "object")
+      const isObjectContainsAnotherObject = object.value.some((val: TypeUsableComponentProps) => val.type == "object");
 
       let tmpCasted = [...casted];
       casted = {};
@@ -316,11 +300,10 @@ export abstract class Component
         const initialProp = manipulatedValue;
         let value: any = {};
 
-
         if (initialProp.type == "object" && isObjectContainsAnotherObject) {
           initialProp.value.forEach((propVal: any) => {
-            value[propVal.key] = initialProp[propVal.key]
-          })
+            value[propVal.key] = initialProp[propVal.key];
+          });
         } else {
           value = manipulatedValue.value;
         }
@@ -381,6 +364,16 @@ export abstract class BaseDownload extends Component {
 
 export abstract class BaseCallToAction extends Component {
   protected category = CATEGORIES.CALLTOACTION;
+  insertForm(name: string, data: Object) {
+    const projectSettings = JSON.parse(getProjectHook().data);
+    const project = projectSettings._id;
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+    };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class BaseSlider extends Component {
@@ -430,9 +423,7 @@ export abstract class BaseContacts extends Component {
     let config = {
       ...{ data: { name, data, project } },
       method: "post",
-      url: process.env.REACT_APP_API_URL
-        ? process.env.REACT_APP_API_URL
-        : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+      url: process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
     };
     return axios.request(config).then((r: any) => r.data);
   }
