@@ -103,6 +103,7 @@
         flex-direction: column;
         padding: 3em;
         color: var(--composer-font-color-secondary);
+        gap: 10px;
 
         &.apply-overlay {
           background-color: color-mix(
@@ -116,12 +117,21 @@
           font-size: 1.2em;
         }
 
+        .overlay-links-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+        }
+
         .overlay-link {
           text-decoration: none;
           color: var(--composer-font-color-secondary);
           border: 1px solid var(--composer-font-color-secondary);
           padding: 0.7em 2.1em;
           text-transform: uppercase;
+          word-break: break-word;
+          margin: 10px;
         }
       }
 

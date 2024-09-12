@@ -529,9 +529,9 @@ class Feature4 extends BaseFeature {
                   >
                     <div
                       className={`
-                        ${this.decorateCSS("overlay-content")}
-                        ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
-                        `}
+                      ${this.decorateCSS("overlay-content")}
+                      ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
+                      `}
                     >
                       {descExist && (
                         <p className={this.decorateCSS("long-text")}>
@@ -539,21 +539,28 @@ class Feature4 extends BaseFeature {
                         </p>
                       )}
 
-                      {card.buttons.length > 0 &&
-                        card.buttons.map(
-                          (item: Button, idx: number) =>
-                            this.castToString(item.text) && (
-                              <span
-                                className={this.decorateCSS("overlay-link")}
-                                key={idx}
-                              >
-                                <ComposerLink
-                                  children={item.text}
-                                  path={item.link}
-                                />
-                              </span>
-                            )
-                        )}
+                      {card.buttons.length > 0 && (
+                        <div
+                          className={this.decorateCSS(
+                            "overlay-links-container"
+                          )}
+                        >
+                          {card.buttons.map(
+                            (item: Button, idx: number) =>
+                              this.castToString(item.text) && (
+                                <span
+                                  className={this.decorateCSS("overlay-link")}
+                                  key={idx}
+                                >
+                                  <ComposerLink
+                                    children={item.text}
+                                    path={item.link}
+                                  />
+                                </span>
+                              )
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
