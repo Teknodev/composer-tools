@@ -204,7 +204,6 @@ class Stats2Page extends BaseStats {
     const header = this.castToString(this.getPropValue("header"));
     const contactButton = this.castToString(this.getPropValue("contactButton"));
     const contactButtonIcon = this.getPropValue("contactButtonIcon");
-    const hasHeader = Boolean(header);
     const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
 
     return (
