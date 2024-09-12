@@ -4,7 +4,7 @@ import styles from "./image-gallery5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class ImageGalleryComponent5 extends BaseImageGallery {
-  private imageGalleryRef: React.RefObject<HTMLDivElement>; 
+  private imageGalleryRef: React.RefObject<HTMLDivElement>;
   constructor(props?: any) {
     super(props, styles);
     this.imageGalleryRef = React.createRef();
@@ -104,29 +104,29 @@ class ImageGalleryComponent5 extends BaseImageGallery {
 
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
-    
   }
+
   componentDidMount() {
-    window.addEventListener("keydown", this.handleKeyPress as EventListener);
-    if (this.imageGalleryRef.current) {
-      this.imageGalleryRef.current.focus();
+    const element = this.imageGalleryRef.current;
+    if (element) {
+      element.addEventListener(
+        "keydown",
+        this.handleKeyPress as unknown as EventListener
+      );
+      element.focus();
     }
   }
-  
+
   componentWillUnmount() {
-    window.removeEventListener("keydown", this.handleKeyPress as EventListener);
-  }
-  
-  handleKeyPress(event: KeyboardEvent) {
-    console.log(`Key pressed: ${event.key}`);
-    if (event.key === "ArrowLeft") {
-      this.handlePrevImage();
-    } else if (event.key === "ArrowRight") {
-      this.handleNextImage();
+    const element = this.imageGalleryRef.current;
+    if (element) {
+      element.removeEventListener(
+        "keydown",
+        this.handleKeyPress as unknown as EventListener
+      );
     }
   }
-  
-  
+
   getName(): string {
     return "Image Gallery 5";
   }
@@ -153,8 +153,16 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     currentIndex = (currentIndex - 1 + galleries.length) % galleries.length;
     this.setComponentState("clicked_image_index", currentIndex);
   }
-  
-   
+
+  handleKeyPress(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      this.handlePrevImage();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      this.handleNextImage();
+    }
+  }
 
   render() {
     const galleries = this.getPropValue("gallery");
@@ -164,13 +172,15 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     const nextIcon = this.getPropValue("nextIcon");
     const prevIcon = this.getPropValue("prevIcon");
     const imageIndex = this.getPropValue("imageIndex");
-    const closeIcon = this.getPropValue("closeIcon"); 
-    
-   
-
+    const closeIcon = this.getPropValue("closeIcon");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div
+        className={this.decorateCSS("container")}
+        ref={this.imageGalleryRef}
+        tabIndex={0}
+        onKeyDown={this.handleKeyPress}
+      >
         <div className={this.decorateCSS("max-content")}>
           <div
             className={this.decorateCSS("images")}
@@ -195,9 +205,9 @@ class ImageGalleryComponent5 extends BaseImageGallery {
             <div
               className={this.decorateCSS("overlay")}
               onClick={() => this.handleCloseClick()}
-            >   
+            >
               <div className={this.decorateCSS("overlay-content")}>
-                <div className={this.decorateCSS("middle-content")}> 
+                <div className={this.decorateCSS("middle-content")}>
                   <img
                     src={galleries[clickedImageIndex].value}
                     alt=""
@@ -248,4 +258,3 @@ class ImageGalleryComponent5 extends BaseImageGallery {
 }
 
 export default ImageGalleryComponent5;
-
