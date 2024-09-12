@@ -6,11 +6,12 @@
         width: 100%;
         margin: auto 0;
         background-color: var(--composer-html-background);
-        padding: 20px 50px;
         .header{
+        padding: 20px 50px 0 50px;
+
             display: flex;
             flex-direction: column;
-            padding-left: 24px;
+            // padding-left: 24px;
             // justify-content: center;
             // align-items: center;
             width: auto !important;
@@ -95,7 +96,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100vw !important;
             background-color: var(--composer-font-color-primary) !important;
             .middle-content-container{
                 padding-top: 60px !important;
@@ -160,6 +160,8 @@
             left: 0px;
             top: 0px;
             .map {
+            padding: 0px 50px 20px 50px;
+
                 width: 100vw !important;
                 width: 437px;
                 height: 437px;
