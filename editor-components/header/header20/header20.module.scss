@@ -1,3 +1,8 @@
+@mixin smooth-transition($property: all, $duration: 0.3s, 
+$timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
+  transition: $property $duration $timing-function $delay;
+}
+
 .container {
   position: relative;
   height: 100vh;
@@ -185,29 +190,26 @@
             justify-content: center;
             display: flex;
             width: auto;
-            // max-width: fit-content;
             cursor: pointer;
             position: relative;
             width: auto;
             max-width: 100%;
             &:hover .icon_text {
               transform: translate(4rem, -4.5rem);
-              transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+              @include smooth-transition();
             }
-
             &:hover .social-icons {
               opacity: 1;
-              transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+              @include smooth-transition();
             }
-
             &:hover .icon-next-to-text {
               transform: translate(0, -4rem);
               opacity: 0;
-              transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+              @include smooth-transition();
             }
 
             .icon_text {
-              transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+              @include smooth-transition();
               font-weight: bolder;
               padding-right: 2rem;
               >blinkpage{
@@ -231,22 +233,29 @@
               opacity: 0;
               width: 600px;
               right: 0px;
-              transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
               flex-wrap: wrap;
               height: 100%;
               align-items: center;
+              @include smooth-transition($delay: 0.3s);
 
               .icon {
                 font-size: 1.3rem;
                 z-index: 10;
                 align-items: center;
+                @include smooth-transition();
+
+                &:hover {
+                  transform: scale(1.2);
+                  color: var(--hover-color);
+                  cursor: pointer;
+                }
               }              
             }
 
             .icon-next-to-text {
               font-size: 1.3rem;
-              transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
               min-width:4%;
+              @include smooth-transition($delay: 0.3s);
             }
           }
         }

@@ -862,39 +862,19 @@ class HeaderComponent20 extends BaseHeader {
     };
   };
 
-
-
-  debounce = <T extends (...args: any[]) => void>(func: T, delay: number): ((...args: Parameters<T>) => void) => {
-    let timeoutId: NodeJS.Timeout;
-    return (...args: Parameters<T>) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => func(...args), delay);
-    };
-  };
-
   handleWheel = this.throttle((event: React.WheelEvent) => {
     if (event.deltaY < 0) {
-      console.log("yukarı");
       this.handleUpClick();
     } else if (event.deltaY > 0) {
-      console.log("aşağı");
       this.handleDownClick();
     }
   }, 1200);
-
-
-
 
   getName(): string {
     return "Header-20";
   }
 
-  handleUpClick = () => {
-    console.log("up")
-    const currentSlide = this.getComponentState("slider");
-    const nextSlide = Math.max(currentSlide - 1, 0);
-    console.log("next slider", nextSlide)
-
+  goToSlide = (nextSlide: number) => {
     if (this.sliderRef.current) {
       this.sliderRef.current.slickGoTo(nextSlide);
     }
@@ -904,65 +884,37 @@ class HeaderComponent20 extends BaseHeader {
     if (this.commentSliderRef.current) {
       this.commentSliderRef.current.slickGoTo(nextSlide);
     }
-
     this.setComponentState("slider", nextSlide);
     this.setComponentState("titleSlider", nextSlide);
     this.setComponentState("commentSlider", nextSlide);
   };
 
-  handleDownClick = () => {
-    console.log("down")
+  handleUpClick = () => {
     const currentSlide = this.getComponentState("slider");
-    const nextSlide = Math.min(
-      currentSlide + 1,
-      this.castToObject<SliderItem[]>("slider").length - 1
-    );
+    const nextSlide = Math.max(currentSlide - 1, 0);
+    this.goToSlide(nextSlide);
+  };
 
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickGoTo(nextSlide);
-    }
-    if (this.titleSliderRef.current) {
-      this.titleSliderRef.current.slickGoTo(nextSlide);
-    }
-    if (this.commentSliderRef.current) {
-      this.commentSliderRef.current.slickGoTo(nextSlide);
-    }
-
-    this.setComponentState("slider", nextSlide);
-    this.setComponentState("titleSlider", nextSlide);
-    this.setComponentState("commentSlider", nextSlide);
+  handleDownClick = () => {
+    const currentSlide = this.getComponentState("slider");
+    const maxSlide = this.castToObject<SliderItem[]>("slider").length - 1;
+    const nextSlide = Math.min(currentSlide + 1, maxSlide);
+    this.goToSlide(nextSlide);
   };
 
   getTitlesToShow = (index: number) => {
     const slider = this.castToObject<SliderItem[]>("slider");
-    const titlesToShow = [];
+    const totalSlides = slider.length;
 
-    if (index === 0) {
-      titlesToShow.push({
-        title: "",
-        number: "",
-        position: "previous",
-        isPlaceholder: true,
-      });
-      titlesToShow.push({ ...slider[0], position: "current" });
-      if (slider[1]) titlesToShow.push({ ...slider[1], position: "next" });
-    } else if (index === slider.length - 1) {
-      if (slider[slider.length - 2])
-        titlesToShow.push({
-          ...slider[slider.length - 2],
-          position: "previous",
-        });
-      titlesToShow.push({ ...slider[slider.length - 1], position: "current" });
-      titlesToShow.push({ title: "", number: "", position: "next" });
-    } else {
-      if (slider[index - 1])
-        titlesToShow.push({ ...slider[index - 1], position: "previous" });
-      titlesToShow.push({ ...slider[index], position: "current" });
-      if (slider[index + 1])
-        titlesToShow.push({ ...slider[index + 1], position: "next" });
-    }
-
-    return titlesToShow.map((title) => ({
+    return [
+      index > 0
+        ? { ...slider[index - 1], position: "previous" }
+        : { title: "", number: "", position: "previous", isPlaceholder: true },
+      { ...slider[index], position: "current" },
+      index < totalSlides - 1
+        ? { ...slider[index + 1], position: "next" }
+        : { title: "", number: "", position: "next", isPlaceholder: true }
+    ].map((title) => ({
       ...title,
       link: "link" in title ? title.link : undefined,
     }));
@@ -1033,10 +985,8 @@ class HeaderComponent20 extends BaseHeader {
             </div>
           ))}
         </ComposerSlider>
-
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("item")}>
-
             <div className={this.decorateCSS("content-container")}>
               <div className={this.decorateCSS("title-container")}>
                 <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
@@ -1097,7 +1047,6 @@ class HeaderComponent20 extends BaseHeader {
                     </div>
                   )
                   }
-
                   <div className={this.decorateCSS("comment")}>
                     {slider[currentSlide].buttomRow.comment}
                   </div>
@@ -1107,7 +1056,6 @@ class HeaderComponent20 extends BaseHeader {
                     "comment-and-icon-text-container"
                   )}
                 >
-
                   <div className={this.decorateCSS("icon-text-container")}>
                     <div className={this.decorateCSS("icon_text")}>
                       {slider[currentSlide].buttomRow.icon_text}
@@ -1122,24 +1070,9 @@ class HeaderComponent20 extends BaseHeader {
                     )}
                     <div className={this.decorateCSS("social-icons")}>
                       {icons.map((icon, i) => (
-                        <a
-                          key={`social-icon-${i}`}
-                          className={this.decorateCSS(`icon-${i + 1}`)}
-                          href={icon.link}
-                          style={{
-                            transition: "transform 0.3s ease, color 0.3s ease",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = "scale(1.2)";
-                            e.currentTarget.style.fontWeight = "bold";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = "scale(1)";
-                            e.currentTarget.style.fontWeight = "normal";
-                          }}
-                        >
+                        <ComposerLink className={this.decorateCSS("icon")}>
                           {icon.icon_text}
-                        </a>
+                        </ComposerLink>
                       ))}
                     </div>
                   </div>
@@ -1148,7 +1081,6 @@ class HeaderComponent20 extends BaseHeader {
             </div>
           </div>
         </div>
-
       </div>
     );
   }
