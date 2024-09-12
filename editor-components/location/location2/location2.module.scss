@@ -1,27 +1,20 @@
 .container {
     width: 100%;
     position: relative;
+    overflow: hidden;
   .max-content {
         max-width: var(--composer-content-width);
         width: 100%;
         margin: auto 0;
         background-color: var(--composer-html-background);
         .header{
-        padding: 20px 50px 0 50px;
-
+            padding: 20px 50px 0 50px;
             display: flex;
             flex-direction: column;
-            // padding-left: 24px;
-            // justify-content: center;
-            // align-items: center;
             width: auto !important;
             color: var(--composer-font-color-primary);
-            // max-width: 80%;
             .title-container{
                 position: relative;
-                // left: 20px;
-                // width: 55%;
-                // margin-right: 20px;
                 margin-bottom: 26px;
                 margin-top: 10px;
                 padding-top: 1px !important;
@@ -36,18 +29,13 @@
             .header-content{
                 position: relative;
                 display: flex;
-                // justify-content: space-between;
                 align-items: flex-start;
-                // left: 20px;
-                // width: 55%;
-                // margin-right: 20px;
                 margin-bottom: 52px !important;
-                // gap: 20px;
+                gap: 20px;
                 .description{
                     display: block;
                     min-height: 1px;
                     float: left;
-                    // padding-right: 24px;
                     position: relative;
                     max-width: 55%;
                     
@@ -61,11 +49,10 @@
                 }
                 .socials{
                     display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    align-items: flex-start;
+                    justify-content: flex-start;
                     gap: 7px;
                     flex-wrap: wrap;
-                    // width: 100%;
                     .socials-container {
                         background-color: transparent;
                         min-width: 5%;
@@ -98,11 +85,12 @@
             justify-content: center;
             background-color: var(--composer-font-color-primary) !important;
             .middle-content-container{
+                padding: 0px 50px;
                 padding-top: 60px !important;
                 padding-bottom: 53px !important;
                 position: relative;
                 display: flex;
-                gap: 280px;
+                gap: 200px;
                 row-gap: 50px;
                 flex-wrap: wrap;
                 .element-container{
@@ -111,7 +99,7 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    // min-width: 12%;
+                    min-width: 10%;
                     >svg{
                         font-size: 50px;
                         text-align: center;
@@ -124,7 +112,6 @@
                         margin-top: 4px;
                         margin-bottom: 3px;
                         text-align: center;
-                        // max-width: min-content;
                         .content-title{
                             color: var(--composer-font-color-secondary);
                             margin-bottom: 7px;
@@ -145,7 +132,7 @@
                         text-align: center;
                         display: flex;
                         flex-direction: column;
-
+                        word-wrap: break-word;
                     }
                 }
             }
@@ -177,10 +164,12 @@
         .header {
           justify-content: flex-start; 
           align-items: flex-start; 
+          padding: 20px 30px 0 30px;
           .title-container {
             left: 10px; 
             width: 100%; 
             margin-right: 0;
+            max-width: 100%;
             .title{
                 font-size: 36px;
                 line-height: 42px;
@@ -194,7 +183,11 @@
             margin-right: 0;
             .description {
               text-align: left; 
-              padding-right: 0; 
+              padding-right: 0;
+            }
+            .socials{
+                justify-content: flex-start !important;
+                align-items: flex-start !important;
             }
           }
         }
@@ -202,16 +195,19 @@
             margin-right: 0;
             margin-left: 0;
             .middle-content-container{
+                padding: 0px 30px;
                 padding-top: 40px !important;
                 padding-bottom: 33px !important;
                 gap: 10px;
                 row-gap: 25px;
                 .element-container{
                     min-width: 20%;
-                    .content-description{
-                        max-width: 65%;
-                    }
                 }
+            }
+        }
+        .map-container{
+            .map{
+                padding: 0px 30px 20px 30px;
             }
         }
       }
@@ -224,12 +220,15 @@
         .header {
             justify-content: flex-start; 
             align-items: flex-start; 
+            padding: 20px 30px 0 30px;
           .title-container {
             width: 100%;
             margin-right: 0;
+            max-width: 100%;
             .title{
                 font-size: 39px;
                 line-height: 50px;
+                
             }
           }
           .header-content {
@@ -249,8 +248,8 @@
                 }
             }
             .socials{
-                justify-content: flex-start;
-                align-items: flex-start;
+                justify-content: flex-start !important;
+                align-items: flex-start !important;
             }
           }
         }
@@ -258,6 +257,7 @@
             margin-right: 0;
             margin-left: 0;
             .middle-content-container{
+                padding: 0px 30px;
                 padding-top: 38px !important;
                 padding-bottom: 43px !important;
                 row-gap: 35px;
@@ -269,6 +269,11 @@
                         max-width: 90%;
                     }
                 }
+            }
+        }
+        .map-container{
+            .map{
+                padding: 0px 30px 20px 30px;
             }
         }
       }
