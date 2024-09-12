@@ -16,10 +16,10 @@ type Coordinate = {
 interface ComposerMapProps {
   markers: Coordinate[];
   className: string;
-  renderPopupContent?: (marker: Coordinate) => React.ReactNode;
+  popupContent?: (marker: Coordinate) => React.ReactNode;
 }
 
-const ComposerMap = memo(({ markers, className, renderPopupContent }: ComposerMapProps) => {
+const ComposerMap = memo(({ markers, className, popupContent }: ComposerMapProps) => {
   const map = useMap(className);
   const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(null);
   const overlayRef = useRef<any>();
@@ -85,10 +85,8 @@ const ComposerMap = memo(({ markers, className, renderPopupContent }: ComposerMa
       onAdd() {
         this.div = document.createElement("div");
         Object.assign(this.div.style, customStyle);
-        this.div.style.position = "absolute";
-        this.div.style.pointerEvents = "none";
 
-        const content = renderPopupContent ? renderPopupContent(selectedMarker!) : <div></div>;
+        const content = popupContent ? popupContent(selectedMarker!) : <div></div>;
 
         if (this.div) {
           ReactDOM.render(content as React.ReactElement, this.div);

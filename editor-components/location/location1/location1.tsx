@@ -49,7 +49,7 @@ class LocationComponent1 extends Location {
     return "Location 1";
   }
 
-  renderPopupContent = (marker: Coordinate) => {
+  popupContent = (marker: Coordinate) => {
     return (
       <div className={this.decorateCSS("popup")}>
         <h4 className={this.decorateCSS("popup-title")}>Popup Title</h4>
@@ -68,7 +68,7 @@ class LocationComponent1 extends Location {
           <div className={this.decorateCSS("wrapper")}>
             <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap markers={markers} className={this.decorateCSS("map")} renderPopupContent={this.renderPopupContent} />
+              <ComposerMap markers={markers} className={this.decorateCSS("map")} popupContent={this.popupContent} />
             </section>
           </div>
         </div>
