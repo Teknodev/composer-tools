@@ -25,10 +25,12 @@
         column-gap: 5px;
         align-items: center;
         font-size: 24px;
+        max-width: 50%;
         .left-side-icon {
           width: 32px;
           height: 32px;
           color: var(--composer-font-color-primary);
+          flex-shrink: 0;
         }
         .first-text {
           font-size: 1.7rem;
@@ -40,12 +42,12 @@
           column-gap: 15px;
           align-items: center;
           text-align: end;
+          max-width: 50%;
         .link-container {
           background-color: transparent;
           cursor: pointer;
           display: flex;
           align-items: center;
-          gap: 5px;
           position: relative;
 
           .link-text {
@@ -60,6 +62,7 @@
             margin-bottom: -2px;
             cursor: pointer;
             color: var(--composer-font-color-primary);
+            flex-shrink: 0;
           }
 
           &::after {
@@ -100,7 +103,7 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
-        max-width: 33%;
+        max-width: 50%;
 
         .card {
           display: flex;
@@ -130,7 +133,7 @@
             .date-time {
               display: flex;
               justify-content: space-between;
-              font-size: 1.1rem;
+              font-size: 1.1rem !important;
               color: var(--composer-font-color-secondary);
               white-space: nowrap !important;
               overflow: hidden !important;
@@ -139,12 +142,22 @@
                 display: flex;
                 column-gap: 5px;
                 align-items: center;
+                white-space: normal;
+                max-width: 60% !important; 
+                >svg {
+                  flex-shrink: 0;
+                }
               }
 
               .time {
                 display: flex;
                 column-gap: 5px;
                 align-items: center;
+                white-space: normal;
+                max-width: 40% !important;
+                >svg {
+                  flex-shrink: 0;
+                }
               }
             }
 
@@ -193,11 +206,27 @@
               .profile-description {
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
+                blinkpage > p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  text-overflow: ellipsis;
+                  -webkit-box-orient: vertical;
+                  white-space: normal;
+                  overflow: hidden;
+                }
               }
               .fullname {
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
+                blinkpage > p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  text-overflow: ellipsis;
+                  -webkit-box-orient: vertical;
+                  white-space: normal;
+                  overflow: hidden;
+                }
               }
             }
           }
@@ -243,11 +272,22 @@
               display: flex;
               column-gap: 5px;
               align-items: center;
+              white-space: normal;
+              max-width: 60% !important; 
+              >svg {
+                flex-shrink: 0;
+              }
             }
+
             .time {
               display: flex;
               column-gap: 5px;
               align-items: center;
+              white-space: normal;
+              max-width: 40% !important;
+              >svg {
+                flex-shrink: 0;
+              }
             }
           }
 
@@ -295,12 +335,28 @@
               .profile-description {
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
+                >blinkpage > p{                    
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1; 
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: normal;
+                }
               }
 
               .fullname {
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
+                >blinkpage > p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  text-overflow: ellipsis;
+                  -webkit-box-orient: vertical;
+                  white-space: normal;
+                  overflow: hidden;
+                }
               }
             }
           }
@@ -313,7 +369,7 @@
       justify-content: space-between;
       width: 100%;
       height: 100%;
-      padding: 0px 150px 20px 150px;
+      margin-top: 20px;
       row-gap: 30px;
       gap: 20px;
 
@@ -322,12 +378,13 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
+        max-width: 50%;
+
         .card {
-          width: 100%;
-          height: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          width: 100%;
+          height: 100%;
           background-color: color-mix(
             in srgb,
             var(--composer-html-background),
@@ -336,7 +393,7 @@
 
           .image {
             width: 100%;
-            height: 40%;
+            height: 100%;
             max-height: 200px;
             object-fit: cover;
           }
@@ -345,24 +402,37 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 20px;
+            gap: 10px;
             padding: 20px;
             height: 100%;
             .date-time {
               display: flex;
               justify-content: space-between;
-              font-size: 1.1rem;
+              font-size: 1.1rem !important;
               color: var(--composer-font-color-secondary);
-
+              white-space: nowrap !important;
+              overflow: hidden !important;
+              
               .date {
                 display: flex;
                 column-gap: 5px;
                 align-items: center;
+                white-space: normal;
+                max-width: 60% !important; 
+                >svg {
+                  flex-shrink: 0;
+                }
               }
+
               .time {
                 display: flex;
                 column-gap: 5px;
                 align-items: center;
+                white-space: normal;
+                max-width: 40% !important;
+                >svg {
+                  flex-shrink: 0;
+                }
               }
             }
 
@@ -370,12 +440,20 @@
               font-size: 1.6rem;
               font-weight: bold;
               color: var(--composer-font-color-secondary);
+              margin-bottom: 2px;
             }
 
-            .description {
+            
+          .description {
               font-size: 1.1rem;
-              color: var(--composer-font-color-secondary);
-              width: 90%;
+              color: var(--composer-font-color-secondary) !important;
+              width: 100%;
+              display: -webkit-box;
+              -webkit-line-clamp: 2 !important;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              margin-bottom: 5px;
             }
 
             .user-info {
@@ -385,31 +463,44 @@
               align-items: end;
               text-align: left;
               gap: 10px;
+              width: 100%;
+            }
 
-              .no-profile {
-                justify-content: flex-start;
-              }
-              .profile-image {
-                width: 42px;
-                height: 42px;
-              }
+            .profile-image {
+              width: 42px;
+              height: 42px;
+            }
 
-              .user {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 10px;
-                height: 42px;
+            .user {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              gap: 10px;
+              height: 42px;
 
-                .profile-description {
-                  color: var(--composer-font-color-secondary);
-                  font-size: 1rem;
+              .profile-description {
+                color: var(--composer-font-color-secondary);
+                font-size: 1rem;
+                blinkpage > p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  text-overflow: ellipsis;
+                  -webkit-box-orient: vertical;
+                  white-space: normal;
+                  overflow: hidden;
                 }
-
-                .fullname {
-                  font-weight: bold;
-                  color: var(--composer-font-color-secondary);
-                  font-size: 1rem;
+              }
+              .fullname {
+                font-weight: bold;
+                color: var(--composer-font-color-secondary);
+                font-size: 1rem;
+                blinkpage > p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  text-overflow: ellipsis;
+                  -webkit-box-orient: vertical;
+                  white-space: normal;
+                  overflow: hidden;
                 }
               }
             }
@@ -417,19 +508,24 @@
         }
       }
 
+      .card-column .card .card-content .user-info.no-profile,
+      .middle-content .card .user-info.no-profile {
+        justify-content: flex-start;
+      }
+
       .middle-content {
-        width: 30%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         gap: 20px;
+        max-width: 33%;
 
         .card {
           display: flex;
           flex-direction: column;
           justify-content: center;
           max-width: 500px;
+          height: 100%;
           margin: 0;
           background-color: color-mix(
             in srgb,
@@ -437,23 +533,36 @@
             var(--composer-font-color-primary) 90%
           );
           padding: 20px;
-          gap: 20px;
+          gap: 10px;
 
           .date-time {
             display: flex;
             justify-content: space-between;
             font-size: 1.1rem;
             color: var(--composer-font-color-secondary);
+            white-space: nowrap !important;
+            overflow: hidden !important;
 
             .date {
               display: flex;
               column-gap: 5px;
               align-items: center;
+              white-space: normal;
+              max-width: 60% !important; 
+              >svg {
+                flex-shrink: 0;
+              }
             }
+
             .time {
               display: flex;
               column-gap: 5px;
               align-items: center;
+              white-space: normal;
+              max-width: 40% !important;
+              >svg {
+                flex-shrink: 0;
+              }
             }
           }
 
@@ -465,9 +574,15 @@
           }
 
           .description {
-            font-size: 1.1rem;
-            color: var(--composer-font-color-secondary);
-            width: 100%;
+              font-size: 1.1rem;
+              color: var(--composer-font-color-secondary);
+              width: 100%;
+              display: -webkit-box;
+              -webkit-line-clamp: 2 !important;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+
           }
 
           .user-info {
@@ -495,12 +610,28 @@
               .profile-description {
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
+                >blinkpage > p{                    
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1; 
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: normal;
+                }
               }
 
               .fullname {
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
+                >blinkpage > p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  text-overflow: ellipsis;
+                  -webkit-box-orient: vertical;
+                  white-space: normal;
+                  overflow: hidden;
+                }
               }
             }
           }

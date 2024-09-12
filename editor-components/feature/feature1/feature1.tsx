@@ -344,7 +344,7 @@ class Feature1 extends BaseFeature {
       type: "string",
       key: "right-side-text",
       displayer: "Right Side Text",
-      value: "Featured Posts 2",
+      value: "Featured Posts",
     });
     this.addProp({
       type: "icon",
@@ -431,9 +431,7 @@ class Feature1 extends BaseFeature {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {(leftSideIcon || leftSideIcon || rightSideIcon || rightSideText ) ?
            <div className={this.decorateCSS("header")}>
-            {(leftSideText || leftSideIcon) && (
               <div className={this.decorateCSS("left-side")}>
                 {<ComposerIcon
                       name={this.getPropValue("left_side_icon")}
@@ -446,8 +444,7 @@ class Feature1 extends BaseFeature {
                     {leftSideText}
                   </h1>
                 )}
-              </div>
-            )}
+              </div>  
 
             {links.length > 0 && (
               <div className={this.decorateCSS("right-side")}>
@@ -456,19 +453,14 @@ class Feature1 extends BaseFeature {
                     <ComposerLink path={link.url}>
                       <div className={this.decorateCSS("link-container")}>
                         <span className={this.decorateCSS("link-text")}>
-                          {rightSideText ? 
-                          <> 
-                            {rightSideText}
-                            {
-                              <ComposerIcon
+                          {rightSideText}
+                        </span>  
+                        <ComposerIcon
                                 name={this.getPropValue("right_side_icon")}
                                 propsIcon={{
                                   className: this.decorateCSS("right-side-icon"),
                                 }}
-                            />
-                          }
-                          </> : "" }
-                        </span>                        
+                            />                      
                       </div>
                     </ComposerLink>
                   );
@@ -476,8 +468,6 @@ class Feature1 extends BaseFeature {
               </div>
             )}
           </div> 
-          : ""}
-         
 
           <div className={this.decorateCSS("features")}>
             {cardContent.filter((_: any, index: number) => index % 2 === 0)
