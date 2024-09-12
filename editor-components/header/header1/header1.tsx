@@ -6,6 +6,8 @@ interface Item {
   title: string | null;
 }
 class Header1 extends BaseHeader {
+  sliderRef = React.createRef<any>();
+
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -190,18 +192,54 @@ class Header1 extends BaseHeader {
       ],
     });
     this.setActiveTab(0);
-
   }
 
   getName(): string {
     return "Header 1";
   }
   setActiveTab(activeTabIndex: number) {
+    console.log("activeTabIndex", activeTabIndex)
     this.setComponentState("activeTab", activeTabIndex);
     setTimeout(() => {
       this.setComponentState("startedIndex", activeTabIndex);
     }, 20);
   }
+  throttle = <T extends (...args: any[]) => void>(func: T, limit: number): ((...args: Parameters<T>) => void) => {
+    let inThrottle: boolean;
+    return (...args: Parameters<T>) => {
+      if (!inThrottle) {
+        func(...args);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  };
+  handleWheel = this.throttle((event: React.WheelEvent) => {
+    if (event.deltaY < 0) {
+      this.handleUpClick();
+    } else if (event.deltaY > 0) {
+      this.handleDownClick();
+    }
+  }, 2000);
+
+  handleUpClick = () => {
+    const currentIndex = this.getComponentState("activeTab");
+    const sliders = this.castToObject<[]>("sliders");
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : sliders.length - 1;
+
+    this.setActiveTab(newIndex);
+    this.sliderRef.current.slickGoTo(newIndex);
+  };
+
+  handleDownClick = () => {
+    const currentIndex = this.getComponentState("activeTab");
+    const sliders = this.castToObject<[]>("sliders");
+    const newIndex = currentIndex < sliders.length - 1 ? currentIndex + 1 : 0;
+
+    this.setActiveTab(newIndex);
+    this.sliderRef.current.slickGoTo(newIndex);
+  };
+
 
   render() {
     const settings = {
@@ -222,7 +260,7 @@ class Header1 extends BaseHeader {
       },
     };
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")} onWheel={this.handleWheel}>
         <div className={this.decorateCSS("image-container-1")}>
           <img
             className={this.decorateCSS("background-layout")}
@@ -237,15 +275,17 @@ class Header1 extends BaseHeader {
           <img src={this.getPropValue("sun")} alt="" />
         </div>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider {...settings}>
+          <ComposerSlider ref={this.sliderRef} {...settings}>
             {this.castToObject<[]>("sliders").map(
               (item: any, index: number) => {
+                const isActive = this.getComponentState("activeTab") === index;
                 return (
                   <div
                     className={this.decorateCSS("return-container")}
                     key={index}
                   >
-                    <div className={this.decorateCSS("background-text")}>
+                    <div className={this.decorateCSS("background-text") + " " +
+                      (isActive && this.decorateCSS("active-text"))}>
                       {item.title}
                     </div>
                     <div className={this.decorateCSS("content-container")}>
@@ -253,24 +293,14 @@ class Header1 extends BaseHeader {
                         className={
                           this.decorateCSS("image") +
                           " " +
-                          (this.getComponentState("activeTab") == index &&
-                            this.decorateCSS("active-image"))
+                          (isActive && this.decorateCSS("active-image"))
                         }
                         src={item.image}
                         alt=""
                       />
-
-                      <h1
-                        className={
-                          this.decorateCSS("title") +
-                          " " +
-                          (this.getComponentState("activeTab") == index &&
-                            this.decorateCSS("active-title"))
-                        }>
+                      <h1 className={this.decorateCSS("title")}>
                         {item.title}
                       </h1>
-
-
                       <h1 className={this.decorateCSS("subtitle")}>
                         {item.subtitle}
                       </h1>
