@@ -7,7 +7,7 @@ type Card = {
   amount: number;
   text: string;
   icon?: string;
-  secondIcon?: string
+  secondIcon?: string;
 };
 
 class Stats2Page extends BaseStats {
@@ -210,11 +210,11 @@ class Stats2Page extends BaseStats {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header-wrapper")}>
-            {header && (
+          {header && (
+            <div className={this.decorateCSS("header-wrapper")}>
               <div className={this.decorateCSS("header")}>{header}</div>
-            )}
-          </div>
+            </div>
+          )}
 
           <div className={this.decorateCSS("bottom-content")}>
             {subHeader && (
@@ -241,10 +241,7 @@ class Stats2Page extends BaseStats {
             )}
 
             {cards.length > 0 && (
-              <div
-                className={this.decorateCSS("cards-container")}
-                style={{ top: hasHeader ? "245px" : "0" }}
-              >
+              <div className={this.decorateCSS("cards-container")}>
                 {cards.map((card, index) => (
                   <AnimatedCard
                     key={index}
@@ -346,11 +343,11 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
         )}
         {amount !== null && <h2 className={styles["card-amount"]}>{amount}</h2>}
         {card.secondIcon && (
-        <ComposerIcon
-          propsIcon={{ className: styles["card-icon-after"] }}
-          name={card.secondIcon}
-        />
-      )}
+          <ComposerIcon
+            propsIcon={{ className: styles["card-icon-after"] }}
+            name={card.secondIcon}
+          />
+        )}
       </div>
     </div>
   );

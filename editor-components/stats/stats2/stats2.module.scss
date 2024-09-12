@@ -14,6 +14,7 @@
 
     .header-wrapper {
       width: 60%;
+      margin-bottom: 50px;
 
       .header {
         font-size: 50px;
@@ -25,7 +26,7 @@
       display: flex;
       width: 100%;
       justify-content: space-between;
-      margin-top: 50px;
+
       align-items: flex-start;
 
       .subHeader {
@@ -81,9 +82,8 @@
           justify-content: space-between;
           flex-grow: 1;
           padding: 40px 60px 30px 60px;
-          border-left: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-          border-right: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-          border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+          border-bottom: none;
           min-height: 28rem;
 
           .card-text {
