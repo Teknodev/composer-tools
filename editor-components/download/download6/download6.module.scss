@@ -1,159 +1,143 @@
 .container {
+  width: 100%;
+  padding: 0 50px;
+  background-color: var(--composer-html-backgorund);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .max-content {
+    max-width: var(--composer-content-width);
     width: 100%;
-    padding: 0px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .section {
-            width: 100%;
-            height: 600px;
-            position: relative;
-            background-size: cover;
-            .image-child {
-                overflow: hidden;
-                filter: brightness(0.5);
-                .image {
-                    object-fit: cover;
-                    width: 100%;
-                    height: 600px;
-                    position: relative;
-                }
-            }
-            .text-container {
-                padding: 0 5rem;
-                width: 100%;
-                position: absolute;
-                bottom: 0;
-                display: flex;
-                gap: 20px;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-overflow: ellipsis;
-                word-break: break-all;
-                white-space: pre-wrap;
-                height: 10%;
-                overflow: hidden;
-                transition: all 0.5s;
-                border: 1px solid #fff;
-                .title {
-                    margin: unset;
-                    font-size: 1.5rem;
-                    opacity: 0.9;
-                    font-weight: 300;
-                    color: #fff;
-                }
-                .description {
-                    font-size: 0.5rem;
-                    margin: unset;
-                    margin-bottom: 2rem;
-                    display: none;
-                    color: #fff;
-                }
-                .button-group {
-                    width: 100%;
-                    display: none;
-                    .button {
-                        width: 200px;
-                        display: inline-block;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        height: 35px;
-                        cursor: pointer;
-                        background-color: var(--composer-secondary-color);
-                        color: white;
-                        border: 1px solid var(--composer-secondary-color);
-                        border-radius: var(--composer-border-radius);
-                        transition: 0.3s;
-                        &:hover {
-                            background-color: transparent;
-                            border: 1px solid #fff;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-            &:hover {
-                .text-container {
-                    height: 100%;
-                    bottom: 0;
-                    transition: all 0.5s;
-                    .title {
-                        transition: font-size 0.5s;
-                        margin: unset;
-                        font-size: 3rem;
-                        opacity: 1;
-                        font-weight: 300;
-                    }
-                    .description {
-                        display: block;
-                        margin: unset;
-                        font-size: 1.8rem;
-                        margin-bottom: 2rem;
-                    }
-                    .button-group {
-                        width: 100%;
-                        gap: 30px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-                }
-            }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    height: 100%;
+
+    .left-column {
+      flex-direction: column;
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+
+      .title {
+        color: var(--composer-primary-color);
+        font-size: 4rem;
+      }
+
+      .description {
+        color: var(--composer-font-color-primary);
+        font-size: 1.7rem;
+      }
+
+      .buttons-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .button {
+        cursor: pointer;
+        padding: 0.5em 1.25em;
+        transition: 0.1s;
+        color: var(--composer-font-color-secondary);
+        background-color: var(--composer-secondary-color);
+        box-shadow: var(--composer-box-shadow);
+        border: 1px solid var(--composer-secondary-color);
+        border-radius: 30px;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+
+        &:hover {
+          background-color: transparent;
+          border: 1px solid var(--composer-secondary-color);
+          color: var(--composer-font-color-primary);
+          box-shadow: none;
         }
+      }
+
+      .button_text {
+        flex-direction: row;
+      }
+
+      .icon {
+        font-size: 2.5rem;
+      }
     }
+
+    .right-column {
+      width: 25%;
+      height: 100%;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        scale: 1.01;
+        object-fit: cover;
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        .max-content {
-            .section {
-                height: 300px;
-                .image-child {
-                    .image {
-                        height: 300px;
-                    }
-                }
-                .text-container {
-                    padding: 0 2rem;
-                    .title {
-                        margin: unset;
-                        font-weight: 300;
-                    }
-                    .description {
-                        margin: unset;
-                        margin-bottom: 2rem;
-                        display: none;
-                    }
-                    .button-group {
-                        width: 100%;
-                        display: none;
-                        .button {
-                            width: 150px;
-                        }
-                    }
-                }
-                &:hover {
-                    .text-container {
-                        transition: height 0.5s;
-                        height: 100%;
-                        bottom: 0;
-                        .title {
-                            font-size: 1.5rem;
-                        }
-                        .description {
-                            font-size: 1rem;
-                            margin-bottom: 10px;
-                        }
-                        .button-group {
-                            flex-direction: column;
-                            flex-wrap: wrap;
-                            gap: 10px;
-                        }
-                    }
-                }
-            }
+@media only screen and (max-width: 900px) {
+  .container {
+    .max-content {
+      .left-column {
+        gap: 15px;
+        .title {
+          font-size: 2rem;
         }
+
+        .description {
+          font-size: 1.5rem;
+        }
+
+        .button {
+          font-size: 1.1rem;
+          padding: 0.5em 1em;
+          min-height: unset;
+          height: 40px;
+        }
+      }
     }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    padding: 40px;
+    .max-content {
+      flex-direction: column;
+      gap: 25px;
+      .left-column {
+        padding: 0;
+        gap: 10px;
+        width: 100%;
+        .title {
+          font-size: 2rem;
+        }
+
+        .description {
+          font-size: 1.5rem;
+        }
+
+        .button {
+          font-size: 1.1rem;
+          padding: 0.5em 1em;
+          height: 30px;
+        }
+      }
+      .right-column {
+        width: 100%;
+      }
+    }
+  }
 }
