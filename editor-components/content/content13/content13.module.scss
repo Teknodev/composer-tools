@@ -1,3 +1,11 @@
+@mixin text-style($font-size, $color: var(--composer-font-color-primary), $width: 100%) {
+    font-size: $font-size;
+    width: $width;
+    color: $color;
+    word-break: break-word;
+    height: auto;
+  }
+  
 .container {
     width: 100%;
     height: 100%;
@@ -20,29 +28,19 @@
                 height: auto;
                 word-break: break-word;
                 gap:20px;
-                // min-height:100px;
+
                 .about-title {
-                    font-size: 2rem;
-                    width: 100%;
-                    color: var(--composer-font-color-primary);
-                    word-break: break-word;
-                    height: auto;
+                    @include text-style(2rem);
                 }
+
                 .maintitle {
-                    font-size: 4rem;
-                    width: 100%;
-                    color: var(--composer-font-color-primary);
-                    word-break: break-word;
-                    height: auto;
+                    @include text-style(4rem);
                 }
+
                 .description {
-                    color: var(--composer-font-color-primary);
-                    word-break: break-word;
-                    height: auto;
-                    font-size: 1.8rem;
-                    width: 100%;
+                    @include text-style(1.8rem);
                 }
-    
+
                 .button-icon {
                     width: 100%;
                     display: flex;
@@ -60,7 +58,7 @@
                         width: 50%;
                         cursor: pointer;
                         .buttonText{
-                            color: (--composer-font-color-secondary);
+                            color: var(--composer-font-color-secondary);
                             word-break: break-word;
                             width: auto;
                             font-size: 2rem;
@@ -109,12 +107,12 @@
                         text-transform: uppercase;
                         font-size: 1.5rem;
                         word-break: break-word;
-                        color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-primary);
                     }
                     .year{
                         font-size: 5.6rem;
                         word-break: break-word;
-                        color: var(--composer-font-color-secondary);
+                        color: var(--composer-font-color-primary);
                     }
                   }
               
