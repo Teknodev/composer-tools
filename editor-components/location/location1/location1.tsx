@@ -31,6 +31,7 @@ const popupContents: PopupContent = [
   </div>,
 ];
 
+
 class LocationComponent1 extends Location {
   constructor(props?: any) {
     super(props, styles);
@@ -69,6 +70,7 @@ class LocationComponent1 extends Location {
   popupContent = (marker: Coordinate, index: number) => {
     const content = popupContents[index];
     return content || null;
+
   };
 
   render() {
@@ -88,6 +90,7 @@ class LocationComponent1 extends Location {
                 className={this.decorateCSS("map")}
                 popupContent={(marker: any, index: number) => this.popupContent(marker, index)}
               />
+
             </section>
           </div>
         </div>

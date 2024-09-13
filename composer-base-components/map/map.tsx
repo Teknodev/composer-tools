@@ -11,6 +11,7 @@ type Coordinate = {
     height?: number;
   };
   address?: string;
+
   contentIndex?: number;
 };
 
@@ -18,6 +19,7 @@ interface ComposerMapProps {
   markers: Coordinate[];
   className: string;
   popupContent?: (marker: Coordinate, index: number) => React.ReactNode;
+
   styles?: google.maps.MapTypeStyle[];
 }
 
@@ -90,6 +92,7 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
 
         const content = popupContent ? popupContent(selectedMarker!, markers.findIndex((m) => m.lat === selectedMarker!.lat && m.lng === selectedMarker!.lng) || 0) : <div></div>;
 
+
         if (this.div) {
           ReactDOM.render(content as React.ReactElement, this.div);
         }
@@ -133,6 +136,7 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
     }
   }, [selectedMarker, map]);
 
+
   useEffect(() => {
     if (map) {
       map.setOptions({ styles });
@@ -157,6 +161,7 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
     }
   }, [markers, selectedMarker]);
 
+
   return (
     <Map id={className} className={className}>
       {markers.length > 0 &&
@@ -167,6 +172,7 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
               icon={{
                 url: marker.icon?.url || defaultMarker,
                 scaledSize: new google.maps.Size(marker.icon?.width || 32, marker.icon?.height || 32),
+
               }}
               onClick={() => handleMarkerClick(marker)}
             />
