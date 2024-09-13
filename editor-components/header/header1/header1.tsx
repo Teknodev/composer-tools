@@ -260,14 +260,8 @@ class Header1 extends BaseHeader {
       },
     };
     return (
-      <div className={this.decorateCSS("container")} onWheel={this.handleWheel}>
-        <div className={this.decorateCSS("image-container-1")}>
-          <img
-            className={this.decorateCSS("background-layout")}
-            src={this.getPropValue("background-layout")}
-            alt=""
-          />
-        </div>
+      <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
+
         <div className={this.decorateCSS("image-container-2")}>
           <img src={this.getPropValue("sun")} alt="" />
         </div>
@@ -275,47 +269,51 @@ class Header1 extends BaseHeader {
           <img src={this.getPropValue("sun")} alt="" />
         </div>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider ref={this.sliderRef} {...settings}>
-            {this.castToObject<[]>("sliders").map(
-              (item: any, index: number) => {
-                const isActive = this.getComponentState("activeTab") === index;
-                return (
-                  <div
-                    className={this.decorateCSS("return-container")}
-                    key={index}
-                  >
-                    <div className={this.decorateCSS("background-text") + " " +
-                      (isActive && this.decorateCSS("active-text"))}>
-                      {item.title}
-                    </div>
-                    <div className={this.decorateCSS("content-container")}>
-                      <img
-                        className={
-                          this.decorateCSS("image") +
-                          " " +
-                          (isActive && this.decorateCSS("active-image"))
-                        }
-                        src={item.image}
-                        alt=""
-                      />
-                      <h1 className={this.decorateCSS("title")}>
+          <div className={this.decorateCSS("wrapper")}>
+            <ComposerSlider ref={this.sliderRef} {...settings}>
+              {this.castToObject<[]>("sliders").map(
+                (item: any, index: number) => {
+                  const isActive = this.getComponentState("activeTab") === index;
+                  return (
+                    <div
+                      className={this.decorateCSS("return-container")}
+                      key={index}
+                    >
+                      <div className={this.decorateCSS("background-text") + " " +
+                        (isActive && this.decorateCSS("active-text"))}>
                         {item.title}
-                      </h1>
-                      <h1 className={this.decorateCSS("subtitle")}>
-                        {item.subtitle}
-                      </h1>
-                      <h1 className={this.decorateCSS("sliderNumber")}>
-                        <span className={this.decorateCSS("overlay")}></span>
-                        <span className={this.decorateCSS("slider-number")}>
-                          {item.sliderNumber}
-                        </span>
-                      </h1>
+                      </div>
+                      <div className={this.decorateCSS("content-container")}>
+                        <img
+                          className={
+                            this.decorateCSS("image") +
+                            " " +
+                            (isActive && this.decorateCSS("active-image"))
+                          }
+                          src={item.image}
+                          alt=""
+                        />
+                        <h1 className={this.decorateCSS("title")}>
+                          {item.title}
+                        </h1>
+                        <h1 className={this.decorateCSS("subtitle")}>
+                          {item.subtitle}
+                        </h1>
+                        <h1 className={this.decorateCSS("sliderNumber")}>
+                          <span className={this.decorateCSS("overlay")}></span>
+                          <span className={this.decorateCSS("slider-number")}>
+                            {item.sliderNumber}
+                          </span>
+                        </h1>
+                      </div>
                     </div>
-                  </div>
-                );
-              }
-            )}
-          </ComposerSlider>
+                  );
+                }
+              )}
+            </ComposerSlider>
+
+          </div>
+
         </div >
       </div >
     );
