@@ -148,8 +148,8 @@ const ComposerMap = memo(({ markers, className, popupContent }: ComposerMapProps
               position={marker}
               title="Location"
               icon={{
-                url: marker.icon.url || defaultMarker,
-                scaledSize: new google.maps.Size(marker.icon.width || 32, marker.icon.height || 32),
+                url: marker.icon?.url || defaultMarker,
+                scaledSize: new google.maps.Size(marker.icon?.width || 32, marker.icon?.height || 32),
               }}
               onClick={() => handleMarkerClick(marker)}
             />

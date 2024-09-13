@@ -4,11 +4,6 @@ import styles from './location2.module.scss';
 import ComposerMap from '../../../composer-base-components/map/map';
 import { ComposerIcon } from '../../../composer-base-components/icon/icon';
 
-type HeaderItemType = {
-    title: JSX.Element;
-    headerDescription: JSX.Element;
-};
-
 type ContentItemType = {
   contentIcon: string;
   contentTitle: JSX.Element;
@@ -27,33 +22,20 @@ class LocationComponent2 extends Location {
     super(props, styles);
   
     this.addProp({
-        type: "array",
-        key: "items",
-        displayer: "Header Items",
-        value: [
-          {
-            type: "object",
-            key: "header",
-            displayer: "Header Content",
-            value: [
-              {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value:
-                  "Connect with us",
-              },
-              {
-                type: "string",
-                key: "headerDescription",
-                displayer: "Header Description",
-                value:
-                  "Each template in our ever growing studio library can be added and moved around within any page effortlessly with one click. Combine them, rearrange them and customize them further as much as you desire. Welcome to the future of building with WordPress.",
-              },
-            ],
-          },
-        ],
-      });
+      type: "string",
+      key: "title",
+      displayer: "Header Title",
+      value:
+        "Connect with us",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "headerDescription",
+      displayer: "Header Description",
+      value:
+        "Each template in our ever growing studio library can be added and moved around within any page effortlessly with one click. Combine them, rearrange them and customize them further as much as you desire. Welcome to the future of building with WordPress.",
+    });
 
       this.addProp({
         type: "array",
@@ -115,7 +97,7 @@ class LocationComponent2 extends Location {
               {
                 type: "icon",
                 key: "contentIcon",
-                displayer: "Location Icon",
+                displayer: "Icon",
                 value: "SlLocationPin",
               },
               {
@@ -140,7 +122,7 @@ class LocationComponent2 extends Location {
                           {
                             type: "string",
                             key: "text",
-                            displayer: "Address",
+                            displayer: "Text",
                             value:
                               "410-1122 Holmes Ave, Springfield, IL, V6B 5L1 ",
                           },
@@ -158,7 +140,7 @@ class LocationComponent2 extends Location {
               {
                 type: "icon",
                 key: "contentIcon",
-                displayer: "Hours Icon",
+                displayer: "Icon",
                 value: "Ri24HoursLine",
               },
               {
@@ -183,7 +165,7 @@ class LocationComponent2 extends Location {
                           {
                             type: "string",
                             key: "text",
-                            displayer: "Days",
+                            displayer: "Text",
                             value:
                               "Monda - Friday",
                           },
@@ -198,7 +180,7 @@ class LocationComponent2 extends Location {
                           {
                             type: "string",
                             key: "text",
-                            displayer: "Hours",
+                            displayer: "Text",
                             value:
                               "8:30 AM - 5:00 PM",
                           },
@@ -216,7 +198,7 @@ class LocationComponent2 extends Location {
               {
                 type: "icon",
                 key: "contentIcon",
-                displayer: "Phone Icon",
+                displayer: "Icon",
                 value: "HiOutlinePhone",
               },
               {
@@ -240,7 +222,7 @@ class LocationComponent2 extends Location {
                         {
                           type: "string",
                           key: "text",
-                          displayer: "Phone",
+                          displayer: "Text",
                           value:
                             "T: 703-856-8468",
                         },
@@ -254,7 +236,7 @@ class LocationComponent2 extends Location {
                         {
                           type: "string",
                           key: "text",
-                          displayer: "Fax",
+                          displayer: "Text",
                           value:
                             "F: 703-856-8464",
                         },
@@ -272,7 +254,7 @@ class LocationComponent2 extends Location {
               {
                 type: "icon",
                 key: "contentIcon",
-                displayer: "E-mail Icon",
+                displayer: "Icon",
                 value: "SiMinutemailer",
               },
               {
@@ -297,7 +279,7 @@ class LocationComponent2 extends Location {
                           {
                             type: "string",
                             key: "text",
-                            displayer: "E-mail",
+                            displayer: "Text",
                             value:
                               "info@godsmen.law",
                           },
@@ -323,40 +305,32 @@ class LocationComponent2 extends Location {
           ],
         }
       });
-  
-      this.setComponentState("isCardVisible", true);
-
   }
 
   getName(): string {
     return 'Location 2';
   }
 
-  toggleCardVisible = () => {
-    const currentState = this.getComponentState("isCardVisible");
-    this.setComponentState("isCardVisible", !currentState);
-  };
-
   render() {
     const { markers } = this.getPropValue('location');
+    const headerTitle = this.getPropValue('title');
+    const headerDescription = this.getPropValue('headerDescription');
+    const isTitleExist = this.castToString(headerTitle);
+    const isDesExist = this.castToString(headerDescription);
     return (
        
       <div className={this.decorateCSS('container')}>
         <div className={this.decorateCSS('max-content')}>
-          {this.castToObject<HeaderItemType[]>("items").map((item: HeaderItemType, index: number) => {
-            const isTitleExist = this.castToString(item.title);
-            const isDesExist = this.castToString(item.headerDescription);
-          return(
             <div className={this.decorateCSS('header')}>
               {isTitleExist &&
               <div className={this.decorateCSS('title-container')}>
-                <h3 className={this.decorateCSS('title')}>{item.title}</h3>
+                <h3 className={this.decorateCSS('title')}>{headerTitle}</h3>
               </div> 
               }  
               <div className={this.decorateCSS('header-content')}>
               {isDesExist &&
                 <div className={this.decorateCSS('description')}>
-                <p className={this.decorateCSS('description-text')}>{item.headerDescription}</p>
+                <p className={this.decorateCSS('description-text')}>{headerDescription}</p>
                 </div>
                 }  
                 <div className={this.decorateCSS('socials')}>
@@ -372,8 +346,6 @@ class LocationComponent2 extends Location {
                 </div>
               </div>
             </div>
-            );
-          })}
             <div className={this.decorateCSS('middle-content')}>
               <div className={this.decorateCSS('middle-content-container')}>
                 {this.castToObject<ContentItemType[]>("items2").map((item: ContentItemType, index: number) => {
