@@ -20,6 +20,8 @@ export type TypeLocation = {
       height?: number;
     };
     address?: string;
+    content?: JSX.Element;
+
   }[];
 };
 
