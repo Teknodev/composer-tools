@@ -35,8 +35,14 @@ class Stats7Page extends BaseStats {
     });
     this.addProp({
       type: "boolean",
-      key: "enableSkillsBackground",
-      displayer: "Enable Skills Background",
+      key: "enableSubtitle",
+      displayer: "Enable Subtitle",
+      value: true
+    });
+    this.addProp({
+      type: "boolean",
+      key: "enableSubtitleBackground",
+      displayer: "Enable Subtitle Background",
       value: true
     });
     this.addProp({
@@ -133,16 +139,19 @@ class Stats7Page extends BaseStats {
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist;
-    const items = this.castToObject<Item[]>("items")
-    const enableSkillsBackground = this.getPropValue("enableSkillsBackground");
+    const items = this.castToObject<Item[]>("items");
+    const enableSubtitle = this.getPropValue("enableSubtitle");
+    const enableSubtitleBackground = this.getPropValue("enableSubtitleBackground");
 
     return (
       <div className={this.decorateCSS("container")} >
-        <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")} style={{display: `${isTitleExist || isDescriptionExist ?   "flex":  "unset"}`}}>
 
           {showDiv && <div className={this.decorateCSS("title-child")}>
-            {isSubtitleExist && (
-              <h1 className={this.decorateCSS("subTitle")}>{isSubtitleExist}</h1>
+            {enableSubtitle && isSubtitleExist && (
+              <h1 className={this.decorateCSS("subTitle")} style={{
+                backgroundColor: `${enableSubtitleBackground ? "" : 'transparent' }`
+              }}>{isSubtitleExist}</h1>
             )}
             {isTitleExist && (
               <h1 className={this.decorateCSS("title")}>{isTitleExist}</h1>
@@ -154,7 +163,7 @@ class Stats7Page extends BaseStats {
             )}
           </div>}
 
-          {enableSkillsBackground && items.length > 0 && <div className={this.decorateCSS("progress-container")}>
+          {items.length > 0 && <div className={this.decorateCSS("progress-container")}>
             {items.map((item: Item, index: number) => {
               const { title, progress, progressText } = item;
               let percent = progress ;

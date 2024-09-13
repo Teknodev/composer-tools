@@ -22,7 +22,7 @@
        width: 100%;
       .subTitle {
         margin: 0px 0px 15px 0px;
-        background-color: #f2f2f2;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         display: inline-block;
         font-size: 1rem;
         color: var(--composer-font-color-primary);
