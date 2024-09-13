@@ -1,0 +1,108 @@
+.container {
+  width: 100%;
+  padding: 20px 0;
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      .title {
+        text-align: center;
+        font-size: 2rem;
+        margin: 0 0 50px 0;
+        text-transform: uppercase;
+      }
+
+      .map-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .map {
+          width: 100%;
+          height: 100vh;
+        }
+      }
+    }
+  }
+}
+
+.popup {
+  background-color: var(--composer-html-background);
+  border-radius: 5px;
+  width: 200px;
+  border: 1px solid var(--composer-primary-color);
+  text-align: left;
+  position: relative;
+  transform: translate(0, 25%);
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--composer-primary-color);
+  }
+
+  .popup-image {
+    background-color: var(--composer-secondary-color);
+    width: 100%;
+    height: 100px;
+    position: relative;
+  }
+
+  .popup-close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    color: var(--composer-primary-color);
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 12px;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .popup-title {
+    margin: 10px 10px;
+    font-size: 15px;
+  }
+  
+  .popup-content {
+    margin: 5px 10px;
+    font-size: 12px;
+  }
+  
+  .popup-button {
+    background-color: var(--composer-secondary-color);
+    color: var(--composer-font-color-primary);
+    padding: 3px;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: .3;
+  }
+}
