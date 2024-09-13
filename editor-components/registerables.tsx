@@ -204,6 +204,7 @@ import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import NavbarComponent9 from "./navigators/navbar9/navbar9";
 import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
+import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
@@ -212,25 +213,26 @@ import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
-    // new DownloadComponent1(),
-    // new DownloadComponent2(),
-    // new DownloadComponent3(),
-    // new DownloadComponent4(),
-    // new DownloadComponent5(),
-    // new DownloadComponent6(),
-    // new DownloadComponent7(),
-    // new DownloadComponent8(),
-    // new DownloadComponent9(),
-    // new DownloadComponent10(),
-    // new DownloadComponent11(),
-    // new ListComponent1(),
-    // new ListComponent2(),
-    // new ListComponent3(),
-    // new ListComponent4(),
-    // new ListComponent5(),
-    // new ListComponent6(),
-    // new ListComponent7(),
-    // new ListComponent8(),
+    new NotificationModal1(),
+    new DownloadComponent1(),
+    new DownloadComponent2(),
+    new DownloadComponent3(),
+    new DownloadComponent4(),
+    new DownloadComponent5(),
+    new DownloadComponent6(),
+    new DownloadComponent7(),
+    new DownloadComponent8(),
+    new DownloadComponent9(),
+    new DownloadComponent10(),
+    new DownloadComponent11(),
+    new ListComponent1(),
+    new ListComponent2(),
+    new ListComponent3(),
+    new ListComponent4(),
+    new ListComponent5(),
+    new ListComponent6(),
+    new ListComponent7(),
+    new ListComponent8(),
     new ContentComponent1(),
     new ContentComponent2(),
     new ContentComponent3(),

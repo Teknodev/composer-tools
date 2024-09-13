@@ -29,7 +29,7 @@ class Navbar7 extends BaseNavigator {
       type: "icon",
       key: "hamburger",
       displayer: "Nav Bar",
-      value: "GiHamburgerMenu",
+      value: "MdMenu",
     });
     this.addProp({
       type: "array",
@@ -42,7 +42,7 @@ class Navbar7 extends BaseNavigator {
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Twitter",
               value: "CiTwitter",
@@ -61,7 +61,7 @@ class Navbar7 extends BaseNavigator {
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Facebook",
               value: "CiFacebook",
@@ -80,7 +80,7 @@ class Navbar7 extends BaseNavigator {
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Google",
               value: "FaGooglePlusG",
@@ -99,7 +99,7 @@ class Navbar7 extends BaseNavigator {
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Vk",
               value: "SlSocialVkontakte",
@@ -118,10 +118,10 @@ class Navbar7 extends BaseNavigator {
           displayer: "Items",
           value: [
             {
-              type: "string",
+              type: "icon",
               key: "icon",
               displayer: "Wifi",
-              value: "CiWifiOn",
+              value: "MdOutlineWifi",
             },
             {
               type: "page",
