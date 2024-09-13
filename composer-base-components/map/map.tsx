@@ -132,11 +132,13 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
     }
   }, [selectedMarker, map]);
 
+
   useEffect(() => {
     if (map) {
       map.setOptions({ styles });
     }
   }, [map, styles]);
+
 
   const handleMarkerClick = (marker: Coordinate) => {
     const shouldSetMarkerNull = selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng;
