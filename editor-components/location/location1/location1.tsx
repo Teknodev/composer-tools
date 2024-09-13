@@ -14,6 +14,23 @@ type Coordinate = {
   address?: string;
 };
 
+type PopupContent = {
+  [key: number]: React.ReactNode;
+};
+
+const popupContents: PopupContent = [
+  <div className={styles["first-marker"]}>
+    <h4>Marker 1 Title</h4>
+    <p>Custom content for the first marker.</p>
+    <button>Details</button>
+  </div>,
+  <div className={styles["second-marker"]}>
+    <h4>Marker 2 Title</h4>
+    <p>Custom content for the second marker.</p>
+    <button>More Info</button>
+  </div>,
+];
+
 class LocationComponent1 extends Location {
   constructor(props?: any) {
     super(props, styles);
@@ -49,14 +66,9 @@ class LocationComponent1 extends Location {
     return "Location 1";
   }
 
-  popupContent = (marker: Coordinate) => {
-    return (
-      <div className={this.decorateCSS("popup")}>
-        <h4 className={this.decorateCSS("popup-title")}>Popup Title</h4>
-        <p className={this.decorateCSS("popup-content")}>Popup Content: {marker.address || "No address"}</p>
-        <button className={this.decorateCSS("popup-button")}>Custom Button</button>
-      </div>
-    );
+  popupContent = (marker: Coordinate, index: number) => {
+    const content = popupContents[index];
+    return content || null;
   };
 
   render() {
@@ -68,7 +80,14 @@ class LocationComponent1 extends Location {
           <div className={this.decorateCSS("wrapper")}>
             <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap markers={markers} className={this.decorateCSS("map")} popupContent={this.popupContent} />
+              <ComposerMap
+                markers={markers.map((marker: any, index: number) => ({
+                  ...marker,
+                  contentIndex: index,
+                }))}
+                className={this.decorateCSS("map")}
+                popupContent={(marker: any, index: number) => this.popupContent(marker, index)}
+              />
             </section>
           </div>
         </div>

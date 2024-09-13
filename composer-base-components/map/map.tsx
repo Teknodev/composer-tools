@@ -1,6 +1,6 @@
-import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
 import React, { memo, useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
+import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
 
 type Coordinate = {
   lat: number;
@@ -11,12 +11,13 @@ type Coordinate = {
     height?: number;
   };
   address?: string;
+  contentIndex?: number;
 };
 
 interface ComposerMapProps {
   markers: Coordinate[];
   className: string;
-  popupContent?: (marker: Coordinate) => React.ReactNode;
+  popupContent?: (marker: Coordinate, index: number) => React.ReactNode;
   styles?: google.maps.MapTypeStyle[];
 }
 
@@ -87,7 +88,7 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
         this.div = document.createElement("div");
         Object.assign(this.div.style, customStyle);
 
-        const content = popupContent ? popupContent(selectedMarker!) : <div></div>;
+        const content = popupContent ? popupContent(selectedMarker!, markers.findIndex((m) => m.lat === selectedMarker!.lat && m.lng === selectedMarker!.lng) || 0) : <div></div>;
 
         if (this.div) {
           ReactDOM.render(content as React.ReactElement, this.div);
@@ -139,12 +140,22 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
   }, [map, styles]);
 
   const handleMarkerClick = (marker: Coordinate) => {
-    const shouldSetMarkerNull = selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng;
-    setSelectedMarker(shouldSetMarkerNull ? null : marker);
+    const isSelected = selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng;
+    setSelectedMarker(isSelected ? null : marker);
 
-    map.setCenter({ lat: marker.lat, lng: marker.lng });
-    map.setZoom(6);
+    if (isSelected) {
+      map.setZoom(10);
+    } else {
+      map.setCenter({ lat: marker.lat, lng: marker.lng });
+      map.setZoom(6);
+    }
   };
+
+  useEffect(() => {
+    if (selectedMarker && !markers.some((m) => m.lat === selectedMarker.lat && m.lng === selectedMarker.lng)) {
+      setSelectedMarker(null);
+    }
+  }, [markers, selectedMarker]);
 
   return (
     <Map id={className} className={className}>
@@ -152,11 +163,10 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
         markers.map((marker, index) => (
           <div key={index}>
             <Marker
-              position={marker}
-              title="Location"
+              position={{ lat: marker.lat, lng: marker.lng }}
               icon={{
-                url: marker.icon.url || defaultMarker,
-                scaledSize: new google.maps.Size(marker.icon.width || 32, marker.icon.height || 32),
+                url: marker.icon?.url || defaultMarker,
+                scaledSize: new google.maps.Size(marker.icon?.width || 32, marker.icon?.height || 32),
               }}
               onClick={() => handleMarkerClick(marker)}
             />
