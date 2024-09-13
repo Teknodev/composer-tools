@@ -98,6 +98,9 @@ class Header9 extends BaseHeader {
       type: "array",
       key: "tabs",
       displayer: "Tabs",
+      additionalParams: {
+        maxElementCount: 8,
+      },
       value: [
         {
           type: "object",
@@ -113,7 +116,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247df?alt=media&timestamp=1719483639150",
             },
@@ -139,7 +142,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e2?alt=media&timestamp=1719483639150",
             },
@@ -165,7 +168,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e3?alt=media&timestamp=1719483639150",
             },
@@ -191,7 +194,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e0?alt=media&timestamp=1719483639150",
             },
@@ -217,7 +220,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e4?alt=media&timestamp=1719483639150",
             },
@@ -243,7 +246,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e1?alt=media&timestamp=1719483639150",
             },
@@ -269,7 +272,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247de?alt=media&timestamp=1719483639150",
             },
@@ -295,7 +298,7 @@ class Header9 extends BaseHeader {
             {
               type: "image",
               key: "image",
-              displayer: "Image Title",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247dd?alt=media&timestamp=1719483639150",
             },
@@ -317,20 +320,11 @@ class Header9 extends BaseHeader {
       value: "Project",
     });
 
-    const tabs = this.castToObject<ITab[]>("tabs");
-
-    const firstImage: string = tabs[0].image;
-    this.setComponentState("image", firstImage);
     this.setComponentState("activeTab", 0);
   }
 
-  handleMouseEnter(index: number, imageUrl: string) {
+  handleMouseEnter(index: number) {
     this.setComponentState("activeTab", index);
-    this.setComponentState("image", imageUrl);
-  }
-
-  handleButtonClick(tabUrl: string) {
-    window.open(tabUrl, "_blank");
   }
 
   getName(): string {
@@ -338,17 +332,23 @@ class Header9 extends BaseHeader {
   }
 
   render() {
-    const textExist = this.getPropValue("text", { as_string: true });
+    const textExist: string = this.getPropValue("text", { as_string: true });
     const socials = this.castToObject<ISocial[]>("socials");
+    const featuredText: string = this.getPropValue("featuredText", {
+      as_string: true,
+    });
     const tabs = this.castToObject<ITab[]>("tabs");
-    const featuredText = this.getPropValue("featuredText", { as_string: true });
+    const activeTabIndex: number = this.getComponentState("activeTab");
+
+    // this prevents crash when tabs.length === 0
+    const currentImage = tabs[activeTabIndex]?.image ?? null;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("tabs")}>
-            {tabs.length > 0 && (
-              <div className={this.decorateCSS("left-content")}>
+            <div className={this.decorateCSS("left-content")}>
+              {tabs.length > 0 && (
                 <div className={this.decorateCSS("buttons")}>
                   {textExist && (
                     <span className={this.decorateCSS("text")}>
@@ -357,15 +357,17 @@ class Header9 extends BaseHeader {
                   )}
 
                   <span className={this.decorateCSS("active-number")}>
-                    {this.getComponentState("activeTab") + 1}
+                    {activeTabIndex + 1}
                   </span>
                   <span className={this.decorateCSS("slash")}>/</span>
                   <span className={this.decorateCSS("count")}>
-                    {this.getPropValue("tabs").length}
+                    {tabs.length}
                   </span>
                 </div>
-                <div className={this.decorateCSS("tab-buttons")}>
-                  {tabs.map((tab: ITab, index: number) => {
+              )}
+              <div className={this.decorateCSS("tab-buttons")}>
+                {tabs.length > 0 &&
+                  tabs.map((tab: ITab, index: number) => {
                     const url = tab.tabUrl;
                     return url ? (
                       <ComposerLink key={index} path={url}>
@@ -373,12 +375,10 @@ class Header9 extends BaseHeader {
                           className={
                             this.decorateCSS("tabText") +
                             " " +
-                            (this.getComponentState("activeTab") == index &&
+                            (this.getComponentState("activeTab") === index &&
                               this.decorateCSS("active"))
                           }
-                          onMouseEnter={() =>
-                            this.handleMouseEnter(index, tab.image)
-                          }
+                          onMouseEnter={() => this.handleMouseEnter(index)}
                         >
                           {this.castToString(tab.tabText)}
                         </div>
@@ -389,53 +389,50 @@ class Header9 extends BaseHeader {
                         className={
                           this.decorateCSS("tabText") +
                           " " +
-                          (this.getComponentState("activeTab") == index &&
+                          (this.getComponentState("activeTab") === index &&
                             this.decorateCSS("active"))
                         }
-                        onMouseEnter={() =>
-                          this.handleMouseEnter(index, tab.image)
-                        }
+                        onMouseEnter={() => this.handleMouseEnter(index)}
                       >
                         {this.castToString(tab.tabText)}
                       </div>
                     );
                   })}
-                  {featuredText && (
-                    <ComposerLink path={this.getPropValue("featuredLink")}>
-                      <h2 className={this.decorateCSS("linkText")}>
-                        {this.getPropValue("featuredText")}
-                      </h2>
-                    </ComposerLink>
-                  )}
-                </div>
+                {featuredText && (
+                  <ComposerLink path={this.getPropValue("featuredLink")}>
+                    <h2 className={this.decorateCSS("linkText")}>
+                      {this.getPropValue("featuredText")}
+                    </h2>
+                  </ComposerLink>
+                )}
               </div>
-            )}
-            {this.getComponentState("image") && (
+            </div>
+            {currentImage && (
               <div className={this.decorateCSS("right-content")}>
                 <img
-                  src={this.getComponentState("image")}
-                  alt="image"
+                  src={currentImage}
+                  alt="slider-image"
                   className={this.decorateCSS("image")}
                 />
               </div>
             )}
+            {socials.length > 0 && (
+              <div className={this.decorateCSS("social")}>
+                {socials.map((tab: ISocial, idx: number) => (
+                  <div
+                    style={{ width: `${100 / socials.length} %` }}
+                    className={this.decorateCSS("social-item")}
+                  >
+                    <ComposerLink key={idx} path={tab.socialUrl}>
+                      <div className={this.decorateCSS("social-link")}>
+                        {tab.socialLinkText}
+                      </div>
+                    </ComposerLink>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          {socials.length > 0 && (
-            <div className={this.decorateCSS("social")}>
-              {socials.map((tab: ISocial, idx: number) => (
-                <div
-                  style={{ width: `${100 / socials.length} %` }}
-                  className={this.decorateCSS("social-item")}
-                >
-                  <ComposerLink key={idx} path={tab.socialUrl}>
-                    <div className={this.decorateCSS("social-link")}>
-                      {tab.socialLinkText}
-                    </div>
-                  </ComposerLink>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     );
