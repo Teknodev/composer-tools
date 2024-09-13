@@ -17,9 +17,10 @@ interface ComposerMapProps {
   markers: Coordinate[];
   className: string;
   popupContent?: (marker: Coordinate) => React.ReactNode;
+  styles?: google.maps.MapTypeStyle[];
 }
 
-const ComposerMap = memo(({ markers, className, popupContent }: ComposerMapProps) => {
+const ComposerMap = memo(({ markers, className, popupContent, styles }: ComposerMapProps) => {
   const map = useMap(className);
   const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(null);
   const overlayRef = useRef<any>();
@@ -130,6 +131,12 @@ const ComposerMap = memo(({ markers, className, popupContent }: ComposerMapProps
       map.setZoom(6);
     }
   }, [selectedMarker, map]);
+
+  useEffect(() => {
+    if (map) {
+      map.setOptions({ styles });
+    }
+  }, [map, styles]);
 
   const handleMarkerClick = (marker: Coordinate) => {
     const shouldSetMarkerNull = selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng;
