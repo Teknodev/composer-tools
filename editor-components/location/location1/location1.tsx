@@ -69,78 +69,52 @@ class LocationComponent1 extends Location {
             },
           ]
 
+        },
+        {
+
+          type: 'object',
+          key: 'icon_item',
+          displayer: 'Icon',
+          value: [
+            {
+              type: 'icon',
+              key: 'icon',
+              displayer: 'Icon',
+              value: 'FaFacebookF'
+            },
+          ]
+
+        },
+        {
+
+          type: 'object',
+          key: 'icon_item',
+          displayer: 'Icon',
+          value: [
+            {
+              type: 'icon',
+              key: 'icon',
+              displayer: 'Icon',
+              value: 'IoBasketballOutline'
+            },
+          ]
+
+        },
+        {
+
+          type: 'object',
+          key: 'icon_item',
+          displayer: 'Icon',
+          value: [
+            {
+              type: 'icon',
+              key: 'icon',
+              displayer: 'Icon',
+              value: 'FaInstagram'
+            },
+          ]
+
         }
-        // {
-
-        //   type: 'object',
-        //   key: 'icon',
-        //   displayer: 'Icon',
-        //   value: [
-        //     {
-        //       type: 'icon',
-        //       key: 'facebook',
-        //       displayer: 'Icon',
-        //       value: 'b'
-        //     }
-        //   ]
-
-        // },
-        // {
-        //   type: 'object',
-        //   key: 'icon',
-        //   displayer: 'Icon',
-        //   value: [
-        //     {
-        //       type: 'icon',
-        //       key: 'twitter',
-        //       displayer: 'Icon',
-        //       value: 'u'
-        //     },
-        //   ]
-
-        // },
-        // {
-        //   type: 'object',
-        //   key: 'icon',
-        //   displayer: 'Icon',
-        //   value: [
-        //     {
-        //       type: 'icon',
-        //       key: 'linkedin',
-        //       displayer: 'Icon',
-        //       value: 'u'
-        //     },
-        //   ]
-
-        // },
-        // {
-        //   type: 'object',
-        //   key: 'icon',
-        //   displayer: 'Icon',
-        //   value: [
-        //     {
-        //       type: 'icon',
-        //       key: 'instagram',
-        //       displayer: 'Icon',
-        //       value: 'u'
-        //     },
-        //   ]
-
-        // },
-        // {
-        //   type: 'object',
-        //   key: 'icon',
-        //   displayer: 'Icon',
-        //   value: [
-        //     {
-        //       type: 'icon',
-        //       key: 'web',
-        //       displayer: 'Icon',
-        //       value: 'u'
-        //     },
-        //   ]
-
-        // },
       ]
 
     })
@@ -188,6 +162,26 @@ class LocationComponent1 extends Location {
         },
       ],
     });
+    this.addProp({
+      type: "object",
+      key: "popup",
+      displayer: "Popup",
+      value: [
+        {
+          type: "string",
+          key: "popup-title",
+          displayer: "Popup Title",
+          value: "Crafto Resort"
+        },
+        {
+          type: "string",
+          key: "popup-address",
+          displayer: "Popup Address",
+          value: ""
+        }
+      ]
+
+    });
 
     this.setComponentState("isCardVisible", true);
   }
@@ -195,6 +189,16 @@ class LocationComponent1 extends Location {
   getName(): string {
     return "Location 1";
   }
+
+  popupContent = (marker: Coordinate) => {
+    return (
+      <div className={this.decorateCSS("popup")}>
+        <h4 className={this.decorateCSS("popup-title")}>Popup Title</h4>
+        <p className={this.decorateCSS("popup-content")}>Popup Content: {marker.address || "No address"}</p>
+        <button className={this.decorateCSS("popup-button")}>Custom Button</button>
+      </div>
+    );
+  };
 
   render() {
     const { markers } = this.getPropValue('location');
@@ -206,20 +210,26 @@ class LocationComponent1 extends Location {
       <div className={this.decorateCSS('container')}>
         <div className={this.decorateCSS('max-content')}>
           <div className={this.decorateCSS('wrapper')}>
-            <h1 className={this.decorateCSS('title')}>
-              {title}
-            </h1>
-            <div className={this.decorateCSS("icon-container")}>
-              {icons.map((icon: any, index: number) => {
-                return <ComposerIcon key={index} propsIcon={{ size: "20px" }} name={icon.getPropValue("icon")} />
-                // console.log(icon.getPropValue("icon"))
-                // console.log(this.castToString(icon.icon))
-                // console.log(icon.icon)
-              })}
+            <div className={this.decorateCSS("connect")}>
+              <h1 className={this.decorateCSS('title')}>
+                {title}
+              </h1>
+              <div className={this.decorateCSS("icon-container")}>
+                {icons.map((icon: any, index: number) => {
+                  return (
+                    <div className={this.decorateCSS("icon-wrapper")}>
+                      <div className={this.decorateCSS("icon")}>
+                        <ComposerIcon key={index} propsIcon={{ size: "20px" }}
+                          name={icon.getPropValue("icon")} />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
-
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap markers={markers} className={this.decorateCSS("map")} popupContent={this.getPropValue("description")} />
+              <ComposerMap markers={markers} className={this.decorateCSS("map")}
+                popupContent={this.popupContent} />
             </section>
             <div className={this.decorateCSS("bottom-container")}>
               <div className={this.decorateCSS("bottom-title")}>
