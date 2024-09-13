@@ -2,6 +2,7 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location1.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
+import { ComposerIcon } from '../../../composer-base-components/icon/icon';
 
 type Coordinate = {
   lat: number;
@@ -13,7 +14,7 @@ type Coordinate = {
   };
   address?: string;
 };
-import { ComposerIcon } from '../../../composer-base-components/icon/icon';
+
 
 type ButtomType = {
   description: JSX.Element,
@@ -35,7 +36,114 @@ class LocationComponent1 extends Location {
       displayer: 'Title',
       value: 'See Our Location',
     });
+    this.addProp({
+      type: 'array',
+      key: 'icons',
+      displayer: 'Icons',
+      value: [
+        {
+          type: 'object',
+          key: 'icon_item',
+          displayer: 'Icon',
+          value: [
+            {
+              type: 'icon',
+              key: 'icon',
+              displayer: 'Icon',
+              value: 'FaLinkedinIn'
+            },
+          ]
 
+        },
+        {
+
+          type: 'object',
+          key: 'icon_item',
+          displayer: 'Icon',
+          value: [
+            {
+              type: 'icon',
+              key: 'icon',
+              displayer: 'Icon',
+              value: 'FaTwitter'
+            },
+          ]
+
+        }
+        // {
+
+        //   type: 'object',
+        //   key: 'icon',
+        //   displayer: 'Icon',
+        //   value: [
+        //     {
+        //       type: 'icon',
+        //       key: 'facebook',
+        //       displayer: 'Icon',
+        //       value: 'b'
+        //     }
+        //   ]
+
+        // },
+        // {
+        //   type: 'object',
+        //   key: 'icon',
+        //   displayer: 'Icon',
+        //   value: [
+        //     {
+        //       type: 'icon',
+        //       key: 'twitter',
+        //       displayer: 'Icon',
+        //       value: 'u'
+        //     },
+        //   ]
+
+        // },
+        // {
+        //   type: 'object',
+        //   key: 'icon',
+        //   displayer: 'Icon',
+        //   value: [
+        //     {
+        //       type: 'icon',
+        //       key: 'linkedin',
+        //       displayer: 'Icon',
+        //       value: 'u'
+        //     },
+        //   ]
+
+        // },
+        // {
+        //   type: 'object',
+        //   key: 'icon',
+        //   displayer: 'Icon',
+        //   value: [
+        //     {
+        //       type: 'icon',
+        //       key: 'instagram',
+        //       displayer: 'Icon',
+        //       value: 'u'
+        //     },
+        //   ]
+
+        // },
+        // {
+        //   type: 'object',
+        //   key: 'icon',
+        //   displayer: 'Icon',
+        //   value: [
+        //     {
+        //       type: 'icon',
+        //       key: 'web',
+        //       displayer: 'Icon',
+        //       value: 'u'
+        //     },
+        //   ]
+
+        // },
+      ]
+
+    })
     this.addProp({
       type: "location",
       key: "location",
@@ -90,21 +198,35 @@ class LocationComponent1 extends Location {
 
   render() {
     const { markers } = this.getPropValue('location');
+    const title = this.castToString(this.getPropValue('title'))
+    const buttom = this.castToObject<ButtomType>("buttom_row");
+    const icons = this.getPropValue("icons")
 
     return (
       <div className={this.decorateCSS('container')}>
         <div className={this.decorateCSS('max-content')}>
           <div className={this.decorateCSS('wrapper')}>
-            <h1 className={this.decorateCSS('title')}>{this.getPropValue('title')}</h1>
+            <h1 className={this.decorateCSS('title')}>
+              {title}
+            </h1>
+            <div className={this.decorateCSS("icon-container")}>
+              {icons.map((icon: any, index: number) => {
+                return <ComposerIcon key={index} propsIcon={{ size: "20px" }} name={icon.getPropValue("icon")} />
+                // console.log(icon.getPropValue("icon"))
+                // console.log(this.castToString(icon.icon))
+                // console.log(icon.icon)
+              })}
+            </div>
+
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap markers={markers} className={this.decorateCSS("map")} popupContent={this.popupContent} />
+              <ComposerMap markers={markers} className={this.decorateCSS("map")} popupContent={this.getPropValue("description")} />
             </section>
             <div className={this.decorateCSS("bottom-container")}>
               <div className={this.decorateCSS("bottom-title")}>
-                {description}
+                {buttom.description}
               </div>
               <div className={this.decorateCSS("phone")}>
-                {phoneNumber}
+                {buttom.phone_number}
               </div>
             </div>
 
