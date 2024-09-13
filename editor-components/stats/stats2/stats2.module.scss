@@ -108,6 +108,7 @@
             .card-icon {
               font-size: 40px;
               color: var(--composer-font-color-primary);
+              flex-shrink: 0;
             }
 
             .card-amount {
@@ -125,6 +126,7 @@
               font-size: 30px;
               margin-left: 6px;
               margin-top: 20px;
+              flex-shrink: 0;
             }
           }
 
@@ -145,7 +147,7 @@
   }
 }
 
-@media (max-width: 768px) and (min-width: 361px) {
+@media (max-width: 1068px) and (min-width: 361px) {
   .container {
     padding: 20px 30px;
 
