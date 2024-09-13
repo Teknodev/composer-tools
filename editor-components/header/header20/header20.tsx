@@ -1071,7 +1071,7 @@ class HeaderComponent20 extends BaseHeader {
                     <div className={this.decorateCSS("social-icons")}>
                       {icons.map((icon, i) => (
                         <div className={this.decorateCSS("icon")}>
-                          <ComposerLink>
+                          <ComposerLink path={icon.link}>
                             {icon.icon_text}
                           </ComposerLink>
                         </div>
