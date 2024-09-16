@@ -3,6 +3,8 @@ import { Location } from "../../EditorComponent";
 import styles from "./location1.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import { ComposerIcon } from '../../../composer-base-components/icon/icon';
+import { dividerClasses } from "@mui/material";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Coordinate = {
   lat: number;
@@ -14,11 +16,14 @@ type Coordinate = {
   };
   address?: string;
 };
+type PopupType = {
+  popupTitle: JSX.Element,
+  popupAddress: JSX.Element,
 
-
+}
 type ButtomType = {
   description: JSX.Element,
-  phone_number: JSX.Element,
+  phoneNumber: JSX.Element,
   phoneUrl: string,
 }
 interface ExtendedCSSProperties extends React.CSSProperties {
@@ -34,7 +39,7 @@ class LocationComponent1 extends Location {
       type: 'string',
       key: 'title',
       displayer: 'Title',
-      value: 'See Our Location',
+      value: 'Connect with socail media',
     });
     this.addProp({
       type: 'array',
@@ -52,8 +57,19 @@ class LocationComponent1 extends Location {
               displayer: 'Icon',
               value: 'FaLinkedinIn'
             },
+            {
+              type: 'color',
+              key: 'color',
+              displayer: 'color',
+              value: ''
+            },
+            {
+              type: 'page',
+              key: 'url',
+              displayer: 'URL',
+              value: ''
+            },
           ]
-
         },
         {
 
@@ -66,6 +82,18 @@ class LocationComponent1 extends Location {
               key: 'icon',
               displayer: 'Icon',
               value: 'FaTwitter'
+            },
+            {
+              type: 'color',
+              key: 'color',
+              displayer: 'color',
+              value: ''
+            },
+            {
+              type: 'page',
+              key: 'url',
+              displayer: 'URL',
+              value: ''
             },
           ]
 
@@ -82,6 +110,18 @@ class LocationComponent1 extends Location {
               displayer: 'Icon',
               value: 'FaFacebookF'
             },
+            {
+              type: 'color',
+              key: 'color',
+              displayer: 'color',
+              value: ''
+            },
+            {
+              type: 'page',
+              key: 'url',
+              displayer: 'URL',
+              value: ''
+            },
           ]
 
         },
@@ -97,6 +137,18 @@ class LocationComponent1 extends Location {
               displayer: 'Icon',
               value: 'IoBasketballOutline'
             },
+            {
+              type: 'color',
+              key: 'color',
+              displayer: 'color',
+              value: ''
+            },
+            {
+              type: 'page',
+              key: 'url',
+              displayer: 'URL',
+              value: ''
+            },
           ]
 
         },
@@ -111,6 +163,18 @@ class LocationComponent1 extends Location {
               key: 'icon',
               displayer: 'Icon',
               value: 'FaInstagram'
+            },
+            {
+              type: 'color',
+              key: 'color',
+              displayer: 'color',
+              value: ''
+            },
+            {
+              type: 'page',
+              key: 'url',
+              displayer: 'URL',
+              value: ''
             },
           ]
 
@@ -128,7 +192,7 @@ class LocationComponent1 extends Location {
             lat: 36.8968908,
             lng: 30.7133233,
             icon: {
-              url: "",
+              url: "https://example.com/path/to/black-marker.png",
               height: 50,
               width: 50,
             },
@@ -150,13 +214,13 @@ class LocationComponent1 extends Location {
         },
         {
           type: "string",
-          key: "phone_number",
+          key: "phoneNumber",
           displayer: "Phone Number",
           value: "+90 123 456 78 90",
         },
         {
           type: "page",
-          key: "number_url",
+          key: "phoneUrl",
           displayer: "Number Url",
           value: "",
         },
@@ -169,20 +233,18 @@ class LocationComponent1 extends Location {
       value: [
         {
           type: "string",
-          key: "popup-title",
+          key: "popupTitle",
           displayer: "Popup Title",
           value: "Crafto Resort"
         },
         {
           type: "string",
-          key: "popup-address",
+          key: "popupAddress",
           displayer: "Popup Address",
-          value: ""
+          value: "16122 Collins street, Melbourne, Australia"
         }
       ]
-
     });
-
     this.setComponentState("isCardVisible", true);
   }
 
@@ -190,59 +252,133 @@ class LocationComponent1 extends Location {
     return "Location 1";
   }
 
-  popupContent = (marker: Coordinate) => {
-    return (
-      <div className={this.decorateCSS("popup")}>
-        <h4 className={this.decorateCSS("popup-title")}>Popup Title</h4>
-        <p className={this.decorateCSS("popup-content")}>Popup Content: {marker.address || "No address"}</p>
-        <button className={this.decorateCSS("popup-button")}>Custom Button</button>
-      </div>
-    );
-  };
-
   render() {
     const { markers } = this.getPropValue('location');
-    const title = this.castToString(this.getPropValue('title'))
+    const title = this.getPropValue('title', { as_string: true });
     const buttom = this.castToObject<ButtomType>("buttom_row");
-    const icons = this.getPropValue("icons")
+    const icons = this.getPropValue("icons");
+    const popupData = this.castToObject<PopupType>("popup");
+    const popupTitle = popupData.popupTitle;
+    const popupAddress = popupData.popupAddress;
+    const stringAddress = this.castToString(popupAddress);
+    const description = this.castToString(buttom.description)
+    const phone = this.castToString(buttom.phoneNumber)
+
+    const mapStyles: google.maps.MapTypeStyle[] = [
+      {
+        elementType: "geometry",
+        stylers: [{ color: "#212121" }],
+      },
+      {
+        elementType: "labels.icon",
+        stylers: [{ visibility: "off" }],
+      },
+      {
+        featureType: "administrative",
+        elementType: "geometry",
+        stylers: [{ color: "#757575" }],
+      },
+      {
+        featureType: "administrative.country",
+        elementType: "geometry.stroke",
+        stylers: [{ color: "#bdbdbd" }],
+      },
+      {
+        featureType: "landscape",
+        elementType: "geometry",
+        stylers: [{ color: "#F9F9F9" }],
+      },
+      {
+        featureType: "poi",
+        elementType: "geometry",
+        stylers: [{ color: "#eeeeee" }],
+      },
+      {
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [{ color: "#ffffff" }],
+      },
+      {
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [{ color: "#F1F1F1" }],
+      },
+    ];
 
     return (
-      <div className={this.decorateCSS('container')}>
+      <div className={this.decorateCSS('container')} >
         <div className={this.decorateCSS('max-content')}>
           <div className={this.decorateCSS('wrapper')}>
-            <div className={this.decorateCSS("connect")}>
-              <h1 className={this.decorateCSS('title')}>
-                {title}
-              </h1>
-              <div className={this.decorateCSS("icon-container")}>
-                {icons.map((icon: any, index: number) => {
+            {(title || icons.length > 0) && (
+              <div className={this.decorateCSS("connect")}>
+                {title && (
+                  <h1 className={this.decorateCSS('title')}>
+                    {title}
+                  </h1>
+                )}
+                {icons.length > 0 && (
+                  <div className={this.decorateCSS("icon-container")}>
+                    {icons.map((icon: any, index: number) => {
+                      const iconColor = icon.getPropValue("color");
+                      return (
+                        <ComposerLink path={icon.getPropValue("url")}>
+                          <div
+                            className={this.decorateCSS("icon-wrapper")}
+                            key={index}
+                            style={{ '--hover-color': iconColor } as React.CSSProperties}
+                          >
+                            <div className={this.decorateCSS("icon")}>
+                              <ComposerIcon
+                                propsIcon={{ size: "25px" }}
+                                name={icon.getPropValue("icon")}
+                              />
+                            </div>
+                          </div>
+
+                        </ComposerLink>
+
+                      )
+                    })}
+                  </div>
+
+                )}
+              </div>
+            )}
+            <section className={this.decorateCSS("map-container")}>
+              <ComposerMap markers={markers} className={this.decorateCSS("map")} styles={mapStyles}
+                popupContent={(marker: Coordinate) => {
                   return (
-                    <div className={this.decorateCSS("icon-wrapper")}>
-                      <div className={this.decorateCSS("icon")}>
-                        <ComposerIcon key={index} propsIcon={{ size: "20px" }}
-                          name={icon.getPropValue("icon")} />
+                    <div className={this.decorateCSS("popup")}>
+                      <h4 className={this.decorateCSS("popup-title")}>{popupTitle}</h4>
+                      <p className={this.decorateCSS("popup-content")}> {stringAddress}</p>
+                      <button className={this.decorateCSS("popup-button")}>Custom Button</button>
+                    </div>
+                  );
+                }} />
+            </section>
+            {(description || phone) && (
+              <div className={this.decorateCSS("bottom-container")}>
+                {description && (
+                  <div className={this.decorateCSS("bottom-title")}>
+                    {buttom.description}
+                  </div>
+                )}
+                {phone && (
+                  <ComposerLink path={buttom.phoneUrl}>
+                    <div className={this.decorateCSS("phone-container")}>
+                      <div className={this.decorateCSS("phone")}>
+                        {buttom.phoneNumber}
                       </div>
                     </div>
-                  )
-                })}
-              </div>
-            </div>
-            <section className={this.decorateCSS("map-container")}>
-              <ComposerMap markers={markers} className={this.decorateCSS("map")}
-                popupContent={this.popupContent} />
-            </section>
-            <div className={this.decorateCSS("bottom-container")}>
-              <div className={this.decorateCSS("bottom-title")}>
-                {buttom.description}
-              </div>
-              <div className={this.decorateCSS("phone")}>
-                {buttom.phone_number}
-              </div>
-            </div>
+                  </ComposerLink>
 
+
+                )}
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
