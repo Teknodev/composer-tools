@@ -4,24 +4,29 @@ import styles from "./header27.module.scss";
 import Slider from "react-slick";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { array } from "yup/lib/locale";
 
-type ISliderData = {
+type SliderItemType = {
   background: string;
-  title1: string;
-  title2: string;
-  image: string;
-  image1: string;
-  image2: string;
-  image3: string;
-  image4: string;
-  itemNo: JSX.Element;
-  itemDesc: JSX.Element;
-  customerNo: JSX.Element;
-  customerDesc: JSX.Element;
-  leftDescription: string;
-  rightDescription: string;
-  button: any;
-  icon: string;
+  headerItemArray : {
+    upTitle: string;
+    downTitle: string;
+    upImage: string;
+    imageArray: {
+      downImage: string;
+    }[];
+  }[];
+  middleItemArray : {
+    itemNo: JSX.Element;
+    itemDesc: JSX.Element;
+    customerNo: JSX.Element;
+    customerDesc: JSX.Element;
+    leftDescription: string;
+    rightDescription: string;
+    buttonText: JSX.Element;
+    buttonLink: string;
+    buttonIcon: string;
+  }[];
 };
 
 interface IAnimationProps {
@@ -56,107 +61,167 @@ class Header27 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
             },
             {
-              type: "string",
-              displayer: "Title",
-              key: "title1",
-              value: "COFFEE",
-            },
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title2",
-              value: "VERSE",
-            },
-            {
-              type: "image",
-              displayer: "Image 1",
-              key: "image2",
-              value:
-                "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
-            },
-            {
-              type: "image",
-              displayer: "Image 2",
-              key: "image1",
-              value:
-                "https://media.istockphoto.com/id/1503772186/tr/foto%C4%9Fraf/cups-of-assorted-coffee-on-light-background.jpg?s=612x612&w=0&k=20&c=V9JNNlMkgAMZlAtNO6u4hGiydn8Y1oJUEiUWBXaNC_k=",
-            },
-            {
-              type: "image",
-              displayer: "Image 3",
-              key: "image3",
-              value:
-                "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3",
-            },
-            {
-              type: "image",
-              displayer: "Image 4",
-              key: "image4",
-              value:
-                "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-            },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "headerItemArray",
+              displayer: "Header Content Items",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Explore",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-                {
-                  type: "icon",
-                  key: "exploreIcon",
-                  displayer: "Explore Icon",
-                  value: "MdOutlineArrowOutward",
+                  type: "object",
+                  displayer: "Header Content Items",
+                  key: "headerContent",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Title",
+                      key: "upTitle",
+                      value: "COFFEE",
+                    },
+                    
+                    {
+                      type: "string",
+                      displayer: "Title",
+                      key: "downTitle",
+                      value: "VERSE",
+                    },
+                    {
+                      type: "image",
+                      displayer: "Up Image",
+                      key: "upImage",
+                      value:
+                        "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                    },
+                    {
+                      type: "array",
+                      key: "imageArray",
+                      displayer: "Down Images",
+                      value: [
+                          {
+                            type: "object",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                              {
+                                type: "image",
+                                displayer: "Down Image 1",
+                                key: "downImage",
+                                value:
+                                  "https://media.istockphoto.com/id/1503772186/tr/foto%C4%9Fraf/cups-of-assorted-coffee-on-light-background.jpg?s=612x612&w=0&k=20&c=V9JNNlMkgAMZlAtNO6u4hGiydn8Y1oJUEiUWBXaNC_k=",
+                              },
+                            ],
+                          },
+                          
+                          {
+                            type: "object",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                              {
+                                type: "image",
+                                displayer: "Down Image 2",
+                                key: "downImage",
+                                value:
+                                  "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3",
+                              },
+                            ],
+                          },
+                          {
+                            type: "object",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                             
+                            {
+                              type: "image",
+                              displayer: "Down Image 3",
+                              key: "downImage",
+                              value:
+                                "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+                            },
+                            ],
+                          },
+                      ],
+                    },
+                  ],
                 },
               ],
             },
+
             {
-              type: "string",
-              displayer: "Left Description",
-              key: "leftDescription",
-              value:
-                "Refresh yourself with our Cold Brew Cool, a smooth and invigorating option brewed to perfection for a chilled coffee experience.",
-            },
-            {
-              type: "string",
-              displayer: "Rate No. 1",
-              key: "itemNo",
-              value: "30+",
-            },
-            {
-              type: "string",
-              displayer: "Rate Desc. 1",
-              key: "itemDesc",
-              value: "Items Of Coffee",
-            },
-            {
-              type: "string",
-              displayer: "Rate No. 2",
-              key: "customerNo",
-              value: "3K+",
-            },
-            {
-              type: "string",
-              displayer: "Rate Desc. 2",
-              key: "customerDesc",
-              value: "Happy Customer",
-            },
-            {
-              type: "string",
-              displayer: "Right Description",
-              key: "rightDescription",
-              value:
-                "Experience the purity of our Organic Fair Trade coffee, ethically sourced and meticulously roasted to bring out the best in every bean.",
+              type: "array",
+              key: "middleItemArray",
+              displayer: "Middle Content Items",
+              value: [
+                {
+                  type: "object",
+                  displayer: "Middle Content Items",
+                  key: "middleContent",
+                  value: [
+                    {
+                      type: "object",
+                      key: "buttonObject",
+                      displayer: "Button Items",
+                      value: [
+                        {
+                          type: "string",
+                          key: "buttonText",
+                          displayer: "Button Text",
+                          value: "Explore",
+                        },
+                        {
+                          type: "page",
+                          key: "buttonLink",
+                          displayer: "Link",
+                          value: "",
+                        },
+                        {
+                          type: "icon",
+                          key: "buttonIcon",
+                          displayer: "Icon",
+                          value: "MdOutlineArrowOutward",
+                        },
+                      ],
+                    },
+                    {
+                      type: "string",
+                      displayer: "Left Description",
+                      key: "leftDescription",
+                      value:
+                        "Refresh yourself with our Cold Brew Cool, a smooth and invigorating option brewed to perfection for a chilled coffee experience.",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Rate No. 1",
+                      key: "itemNo",
+                      value: "30+",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Rate Desc. 1",
+                      key: "itemDesc",
+                      value: "Items Of Coffee",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Rate No. 2",
+                      key: "customerNo",
+                      value: "3K+",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Rate Desc. 2",
+                      key: "customerDesc",
+                      value: "Happy Customer",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Right Description",
+                      key: "rightDescription",
+                      value:
+                        "Experience the purity of our Organic Fair Trade coffee, ethically sourced and meticulously roasted to bring out the best in every bean.",
+                    },
+                  ],
+                },
+              ]
             },
           ],
         },
@@ -173,107 +238,165 @@ class Header27 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
             },
             {
-              type: "string",
-              displayer: "Title",
-              key: "title1",
-              value: "SPECIAL",
-            },
-            {
-              type: "string",
-              displayer: "Title",
-              key: "title2",
-              value: "TASTE",
-            },
-            {
-              type: "image",
-              displayer: "Image 1",
-              key: "image2",
-              value:
-                "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
-            },
-            {
-              type: "image",
-              displayer: "Image 2",
-              key: "image1",
-              value:
-                "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
-            },
-            {
-              type: "image",
-              displayer: "Image 3",
-              key: "image3",
-              value:
-                "https://images.unsplash.com/photo-1606791405792-1004f1718d0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
-            },
-            {
-              type: "image",
-              displayer: "Image 4",
-              key: "image4",
-              value:
-                "https://plus.unsplash.com/premium_photo-1669374537810-f88d8ad82818?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-            },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
+              type: "array",
+              key: "headerItemArray",
+              displayer: "Header Content Items",
               value: [
                 {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Read More",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-                {
-                  type: "icon",
-                  key: "exploreIcon",
-                  displayer: "Explore Icon",
-                  value: "MdOutlineArrowOutward",
+                  type: "object",
+                  displayer: "Header Content Items",
+                  key: "headerContent",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Title",
+                      key: "upTitle",
+                      value: "SPECIAL",
+                    },
+                    
+                    {
+                      type: "string",
+                      displayer: "Title",
+                      key: "downTitle",
+                      value: "TASTE",
+                    },
+                    {
+                      type: "image",
+                      displayer: "Up Image",
+                      key: "upImage",
+                      value:
+                        "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                    },
+                    {
+                      type: "array",
+                      key: "imageArray",
+                      displayer: "Down Images",
+                      value: [
+                          {
+                            type: "object",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                              {
+                                type: "image",
+                                displayer: "Down Image 1",
+                                key: "downImage",
+                                value:
+                                  "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                              },
+                            ],
+                          },
+                          {
+                            type: "object",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                              {
+                                type: "image",
+                                displayer: "Down Image 2",
+                                key: "downImage",
+                                value:
+                                  "https://images.unsplash.com/photo-1606791405792-1004f1718d0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                              },
+                            ],
+                          },
+                          {
+                            type: "object",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                              {
+                                type: "image",
+                                displayer: "Down Image 3",
+                                key: "downImage",
+                                value:
+                                  "https://plus.unsplash.com/premium_photo-1669374537810-f88d8ad82818?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+                              },
+                            ],
+                          },
+                      ],
+                    },
+                  ],
                 },
               ],
             },
+
             {
-              type: "string",
-              displayer: "Left Description",
-              key: "leftDescription",
-              value:
-                "Indulge in the bold, rich flavor of our Classic Espresso. Perfect for those who appreciate a traditional, robust coffee experience.",
-            },
-            {
-              type: "string",
-              displayer: "Rate No. 1",
-              key: "itemNo",
-              value: "100%",
-            },
-            {
-              type: "string",
-              displayer: "Rate Desc. 1",
-              key: "itemDesc",
-              value: "Fresh Coffee",
-            },
-            {
-              type: "string",
-              displayer: "Rate No. 2",
-              key: "customerNo",
-              value: "20+",
-            },
-            {
-              type: "string",
-              displayer: "Rate Desc. 2",
-              key: "customerDesc",
-              value: "Different Countries",
-            },
-            {
-              type: "string",
-              displayer: "Right Description",
-              key: "rightDescription",
-              value:
-                "Enjoy the balanced taste of our Smooth Medium Roast, offering a harmonious blend of mellow flavors with a subtle hint of sweetness.",
+              type: "array",
+              key: "middleItemArray",
+              displayer: "Middle Content Items",
+              value: [
+                {
+                  type: "object",
+                  displayer: "Middle Content Items",
+                  key: "middleContent",
+                  value: [
+                    {
+                      type: "object",
+                      key: "buttonObject",
+                      displayer: "Button Items",
+                      value: [
+                        {
+                          type: "string",
+                          key: "buttonText",
+                          displayer: "Button Text",
+                          value: "Read More",
+                        },
+                        {
+                          type: "page",
+                          key: "buttonLink",
+                          displayer: "Button Link",
+                          value: "",
+                        },
+                        {
+                          type: "icon",
+                          key: "buttonIcon",
+                          displayer: "Icon",
+                          value: "MdOutlineArrowOutward",
+                        },
+                      ],
+                    },
+                    {
+                      type: "string",
+                      displayer: "Left Description",
+                      key: "leftDescription",
+                      value:
+                        "Indulge in the bold, rich flavor of our Classic Espresso. Perfect for those who appreciate a traditional, robust coffee experience.",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Rate No. 1",
+                      key: "itemNo",
+                      value: "100%",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Rate Desc. 1",
+                      key: "itemDesc",
+                      value: "Fresh Coffee",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Rate No. 2",
+                      key: "customerNo",
+                      value: "20+",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Rate Desc. 2",
+                      key: "customerDesc",
+                      value: "Different Countries",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Right Description",
+                      key: "rightDescription",
+                      value:
+                        "Enjoy the balanced taste of our Smooth Medium Roast, offering a harmonious blend of mellow flavors with a subtle hint of sweetness.",
+                    },
+                  ],
+                },
+              ]
             },
           ],
         },
@@ -317,7 +440,7 @@ class Header27 extends BaseHeader {
       infinite: true,
       fade: true,
       speed: 700,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -332,148 +455,151 @@ class Header27 extends BaseHeader {
       },
     };
 
-    const slider = this.castToObject<ISliderData[]>("slider");
+    const slider = this.castToObject<SliderItemType[]>("slider");
     const sliderCount = slider.length;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div
           className={this.decorateCSS("content")}
-          style={{
-            backgroundImage: `url(${slider[this.getComponentState("active-index")].background})`,
-          }}
+          // style={{
+          //   backgroundImage: `url(${slider[this.getComponentState("active-index")].background})`,
+          // }}
         >
           <div className={this.decorateCSS("slider-parent")}>
             <Slider {...settings} className={this.decorateCSS("carousel")}>
-              {slider.map((item: ISliderData, index: number) => {
-                const itemNoExist = this.castToString(item.itemNo)
-                const itemDescExist = this.castToString(item.itemDesc)
-                const customerNo = this.castToString(item.customerNo)
-                const customerDesc = this.castToString(item.customerDesc)
-                return (
-                  <div key={index} className={this.decorateCSS("content")}>
+              {slider.map((item: SliderItemType, index: number) => {
+                          return (
+                  <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("max-content")}>
-                      <div className={this.decorateCSS("UpperDiv")}>
-                        <div className={this.decorateCSS("top-title")}>
-                          <div className={this.decorateCSS("title1")}>{item.title1}</div>
-
-                          {item.image2 && (
-                            <div className={this.decorateCSS("viewImage")}>
-                              <img className={this.decorateCSS("image1")} src={item.image2} />
+                    {item.headerItemArray.map((headerItem, index:number) => {
+                      return (
+                        <div className={this.decorateCSS("UpperDiv")}>
+                          <div className={this.decorateCSS("top-title")}>
+                            <div className={this.decorateCSS("title1-container")}>
+                              <h3 className={this.decorateCSS('title1')}>{headerItem.upTitle}</h3>
                             </div>
-                          )}
-                        </div>
-                          <div className={this.decorateCSS("title-div")}>
-                        <div className={this.decorateCSS("bottom-title")}>
-                          {item.image1 && (
-                            <div className={this.decorateCSS("viewImage")}>
-                              <img className={this.decorateCSS("image2")} src={item.image1} />
+                              <div className={this.decorateCSS("viewImage")}>
+                                <img className={this.decorateCSS("image1")} src={headerItem.upImage} />
+                              </div>
+                          </div>
+                            <div className={this.decorateCSS("title-div")}>
+                              <div className={this.decorateCSS("bottom-title")}>
+                              {headerItem.imageArray.map((imageItems, index: number) => {
+                                return (
+                                <div className={this.decorateCSS("viewImage")}>
+                                  <img className={this.decorateCSS("image")} src={imageItems.downImage} />
+                                </div>
+                                );
+                              })}
                             </div>
-                          )}
-                          {item.image3 && (
-                            <div className={this.decorateCSS("viewImage")}>
-                              <img className={this.decorateCSS("image3")} src={item.image3} />
-                            </div>
-                          )}
-                          {item.image4 && (
-                            <div className={this.decorateCSS("viewImage")}>
-                              <img className={this.decorateCSS("image4")} src={item.image4} />
-                            </div>
-                          )}
-                          
-                        </div>
-                        <div className={this.decorateCSS("title2")}>{item.title2}</div>
+                          <div className={this.decorateCSS("title2-container")}>
+                              <h3 className={this.decorateCSS('title2')}>{headerItem.downTitle}</h3>
+                          </div>
                         </div>
                       </div>
+                         );
+                    })}
+                     
 
+
+                     {item.middleItemArray.map((middleItem, index: number) => {
+                      console.log("text", middleItem.buttonIcon);
+                      console.log("link", middleItem.buttonLink);
+                      console.log("icon", middleItem.buttonIcon);
+                      
+                      
+                      
+                      
+                        return (
                       <div className={this.decorateCSS("LowerDiv")}>
-                        <div className={this.decorateCSS("button-container")}>
-                        <div className={this.decorateCSS("button-contain")}>
-                         {(item.button.exploreIcon || this.castToString(item.button.buttonText)) && (
-                            <ComposerLink path={item.button.link}>
+                        
+                            <div className={this.decorateCSS("button-container")}>
+                            
+                              <div className={this.decorateCSS("button-contain")}>
+                              
 
-                              <button
-                                className={`${this.decorateCSS("button")} ${buttonAnimationEnabled ?
-                                    "animate__animated" : ""} ${this.getComponentState(
-                                      "buttonAnimationClass"
-                                    )}`}
-                                onAnimationEnd={() => {
-                                  this.handleAnimationEnd({
-                                    animationState: "buttonAnimationClass",
-                                    startingAnimation: "animate__fadeInUp",
-                                    endingAnimation: "animate__fadeOutDown",
-                                  });
-                                }}
-                              >
-
-                                <span className={this.decorateCSS("button-text")}>
-                                  {item.button.buttonText}
-                                </span>
-                                {item.button.exploreIcon && 
-                                <ComposerIcon
-                                  name={item.button.exploreIcon}
-                                  propsIcon={{
-                                    className: ``,
-                                    size: 10,
+                                <ComposerLink path={middleItem.buttonLink}>
+                                <button
+                                  className={`${this.decorateCSS("button")} ${buttonAnimationEnabled ?
+                                      "animate__animated" : ""} ${this.getComponentState(
+                                        "buttonAnimationClass"
+                                      )}`}
+                                  onAnimationEnd={() => {
+                                    this.handleAnimationEnd({
+                                      animationState: "buttonAnimationClass",
+                                      startingAnimation: "animate__fadeInUp",
+                                      endingAnimation: "animate__fadeOutDown",
+                                    });
                                   }}
-                                />}
-                              </button>
-                            </ComposerLink>)}
-                          
-                          </div>
+                                  
+                                >
 
-                          <div className={this.decorateCSS("figure")}>
-                            {slider.length > 1 &&
-                            <div className={this.decorateCSS("pagination")}>
-                              <span className={this.decorateCSS("active-slide")}>
-                                {(this.getComponentState("active-index") + 1)
-                                  .toString()
-                                  .padStart(2, "0")}
-                              </span>
-                              <sup className={this.decorateCSS("slide-count-power")}>
-                                <span className={this.decorateCSS("divider")}>/ </span>
-                                <span className={this.decorateCSS("slide-count")}>
-                                  {sliderCount.toString().padStart(2, "0")}
-                                </span>
-                              </sup>
-                            </div>}
-                          </div>
-                          </div>
+                                  <span className={this.decorateCSS("button-text")}>
+                                    {middleItem.buttonText}
+                                  </span>
+                                  <ComposerIcon
+                                    name={middleItem.buttonIcon}
+                                    propsIcon={{
+                                      className: ``,
+                                      size: 10,
+                                    }}
+                                  />
+                                </button>
+                                </ComposerLink>
+                               
+                              </div>
+                                <div className={this.decorateCSS("figure")}>
+                                  {slider.length > 1 &&
+                                  <div className={this.decorateCSS("pagination")}>
+                                    <span className={this.decorateCSS("active-slide")}>
+                                      {(this.getComponentState("active-index") + 1)
+                                        .toString()
+                                        .padStart(2, "0")}
+                                    </span>
+                                    <sup className={this.decorateCSS("slide-count-power")}>
+                                      <span className={this.decorateCSS("divider")}>/ </span>
+                                      <span className={this.decorateCSS("slide-count")}>
+                                        {sliderCount.toString().padStart(2, "0")}
+                                      </span>
+                                    </sup>
+                                  </div>}
+                                </div>
+                            </div>
+                           
+
                         <div className={this.decorateCSS("desc-contain")}>
                           <div className={this.decorateCSS("leftDescription")}>
-                            {item.leftDescription}
+                            {/* {item.leftDescription} */}
                           </div>
                          
                           <div className={this.decorateCSS("count")}>
-                          {(this.castToString(item.itemNo) || this.castToString(item.itemDesc))&&
                               <div className={this.decorateCSS("items")}>
                                 <div className={this.decorateCSS("itemsNo")}>
-                                  {item.itemNo}
+                                  {/* {item.itemNo} */}
                                 </div>
                                 <div className={this.decorateCSS("itemDesc")}>
-                                  {item.itemDesc}
+                                  {/* {item.itemDesc} */}
                                 </div>
-                              </div>}
-                            {((this.castToString(item.itemNo) || this.castToString(item.itemDesc))
+                              </div>
                              
-                             && (this.castToString(item.customerNo) || this.castToString(item.customerDesc))) &&
                               <div className={this.decorateCSS("line")}></div>
-                            }
-                              {(this.castToString(item.customerNo) || this.castToString(item.customerDesc))&&
                               <div className={this.decorateCSS("customers")}>
                                 <div className={this.decorateCSS("customerNo")}>
-                                  {item.customerNo}
+                                  {/* {item.customerNo} */}
                                 </div>
                                 <div className={this.decorateCSS("customerDesc")}>
-                                  {item.customerDesc}
+                                  {/* {item.customerDesc} */}
                                 </div>
-                              </div>}
+                              </div>
                           </div>
                           <div className={this.decorateCSS("rightDescription")}>
-                            {item.rightDescription}
+                            {/* {item.rightDescription} */}
                           </div>
                         </div>
                       </div>
+                         );
+                        })}
                     </div>
                   </div>
                 );
