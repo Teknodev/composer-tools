@@ -1,10 +1,10 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header27.module.scss";
-import Slider from "react-slick";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { array } from "yup/lib/locale";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type SliderItemType = {
   background: string;
@@ -24,8 +24,8 @@ type SliderItemType = {
     leftDescription: string;
     rightDescription: string;
     buttonText: JSX.Element;
-    buttonLink: string;
-    buttonIcon: string;
+    buttonLink: JSX.Element;
+    buttonIcon: JSX.Element;
   }[];
 };
 
@@ -467,10 +467,9 @@ class Header27 extends BaseHeader {
           // }}
         >
           <div className={this.decorateCSS("slider-parent")}>
-            <Slider {...settings} className={this.decorateCSS("carousel")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {slider.map((item: SliderItemType, index: number) => {
                           return (
-                  <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("max-content")}>
                     {item.headerItemArray.map((headerItem, index:number) => {
                       return (
@@ -504,21 +503,18 @@ class Header27 extends BaseHeader {
 
 
                      {item.middleItemArray.map((middleItem, index: number) => {
-                      console.log("text", middleItem.buttonIcon);
-                      console.log("link", middleItem.buttonLink);
-                      console.log("icon", middleItem.buttonIcon);
-                      
-                      
-                      
+                      console.log("sad", middleItem);
+
+                      // console.log("text",this.castToString(middleItem.buttonLink));
+                      // console.log("link", this.castToString(middleItem.buttonLink));
+                      // console.log("icon", this.castToString(middleItem.buttonIcon));
+                      const buttonLink = middleItem.buttonText ? this.castToString(middleItem.buttonText) : "";
+                      console.log("ffmfmfm", buttonLink);
                       
                         return (
                       <div className={this.decorateCSS("LowerDiv")}>
-                        
                             <div className={this.decorateCSS("button-container")}>
-                            
                               <div className={this.decorateCSS("button-contain")}>
-                              
-
                                 <ComposerLink path={middleItem.buttonLink}>
                                 <button
                                   className={`${this.decorateCSS("button")} ${buttonAnimationEnabled ?
@@ -538,13 +534,13 @@ class Header27 extends BaseHeader {
                                   <span className={this.decorateCSS("button-text")}>
                                     {middleItem.buttonText}
                                   </span>
-                                  <ComposerIcon
-                                    name={middleItem.buttonIcon}
+                                  {/* <ComposerIcon
+                                    name={this.castToString(middleItem.buttonIcon)}
                                     propsIcon={{
                                       className: ``,
                                       size: 10,
                                     }}
-                                  />
+                                  /> */}
                                 </button>
                                 </ComposerLink>
                                
@@ -601,10 +597,9 @@ class Header27 extends BaseHeader {
                          );
                         })}
                     </div>
-                  </div>
                 );
               })}
-            </Slider>
+            </ComposerSlider>
           </div>
         </div>
       </div>

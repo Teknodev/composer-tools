@@ -14,16 +14,14 @@
     .carousel {
         max-width:var(--composer-content-width);
         width: 90%;
-        .content {
-          display: flex;
-          justify-content: center;
-          position: relative;
           .max-content {
             max-width: var(--composer-content-width);
             margin: auto;
             display: flex;
             align-items: center;
             flex-direction: column;
+            position: relative;
+
             .UpperDiv{
               width: 100%;
               display: flex;
@@ -245,7 +243,6 @@
             }
            }
          }
-       }
      }
    }
   }
