@@ -441,7 +441,7 @@ class Feature4 extends BaseFeature {
             {(featuredSubtitle || featuredTitle) && (
               <div
                 className={this.decorateCSS("featured-card")}
-                style={{ width: `${90 / itemCount}%` }}
+                style={{ width: `${95 / itemCount}%` }}
               >
                 {imageOverlay && (
                   <div
@@ -463,7 +463,7 @@ class Feature4 extends BaseFeature {
                 <div
                   className={this.decorateCSS("card-item-count")}
                   style={{
-                    width: `${90 / itemCount}%`,
+                    width: `${95 / itemCount}%`,
                   }}
                 ></div>
                 {featuredSubtitle && (
@@ -496,7 +496,7 @@ class Feature4 extends BaseFeature {
                   key={index}
                   className={this.decorateCSS("card-item-count")}
                   style={{
-                    width: `${90 / itemCount}%`,
+                    width: `${95 / itemCount}%`,
                   }}
                 >
                   <div className={this.decorateCSS("vertical")}>
