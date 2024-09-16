@@ -28,7 +28,7 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: calc(100% / 3);
+  width: calc(100% / 2);
   padding: 0 4em 4em 0;
 
   .title {
@@ -48,7 +48,7 @@ ul {
 .cards-div {
   width: 65%;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   gap: 0;
 }
