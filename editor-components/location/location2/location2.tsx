@@ -301,6 +301,11 @@ class LocationComponent2 extends Location {
             {
               lat: 36.8968908,
               lng: 30.7133233,
+              icon: {
+                url: "",
+                height: 50,
+                width: 50,
+              }
             }
           ],
         }
