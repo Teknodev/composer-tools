@@ -236,6 +236,7 @@ class Slider8 extends BaseSlider {
       vertical: true,
       verticalSwiping: true,
       dotsClass: this.decorateCSS("dots"),
+      adaptiveHeight: true,
       beforeChange: (oldIndex: number, newIndex: number) => {
         this.setComponentState("activeSlide", newIndex);
       },
