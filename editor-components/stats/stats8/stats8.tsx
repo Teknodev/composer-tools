@@ -12,7 +12,7 @@ class Stats8Page extends BaseStats {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "title",
+      key: "headerTitle",
       displayer: "Title",
       value: "Hello We are DSN Grid",
     });
@@ -169,23 +169,27 @@ class Stats8Page extends BaseStats {
   render() {
     const statsData = this.castToObject<ICard[]>("stats");
     const imageSrc = this.getPropValue("imageSrc");
-
-    const title = this.castToString(this.getPropValue("title"));
-    const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const description = this.castToString(this.getPropValue("description"));
-    const author = this.castToString(this.getPropValue("author"));
-    const authorRole = this.castToString(this.getPropValue("authorRole"));
+    const title = this.getPropValue("headerTitle");
+    const isTitleExist = this.castToString(title);
+    const subtitle = this.getPropValue("subtitle");
+    const isSubTitleExist = this.castToString(subtitle);
+    const description = this.getPropValue("description");
+    const isDesExist = this.castToString(description);
+    const author = this.getPropValue("author") ;
+    const isAuthorExist = this.castToString(author);
+    const authorRole = this.getPropValue("authorRole");
+    const isAuthorRoleExist = this.castToString(authorRole);
     const overlayNumber = this.getPropValue("overlayNumber");
     const overlayDescription = this.castToString(
       this.getPropValue("overlayDescription")
     );
 
     const isContentPresent =
-      title ||
-      subtitle ||
-      description ||
-      author ||
-      authorRole ||
+      isTitleExist ||
+      isSubTitleExist ||
+      isDesExist ||
+      isAuthorExist ||
+      isAuthorRoleExist ||
       statsData.length > 0;
 
     return (
@@ -197,9 +201,9 @@ class Stats8Page extends BaseStats {
           }
         >
           {isContentPresent && (
-            <div className={this.decorateCSS("stats2-page")}>
+            <div className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("content")}>
-                {title && (
+                {isTitleExist && (
                   <h2
                     className={
                       this.decorateCSS("title") +
@@ -211,25 +215,25 @@ class Stats8Page extends BaseStats {
                   </h2>
                 )}
 
-                {subtitle && (
+                {isSubTitleExist && (
                   <h6 className={this.decorateCSS("subtitle")}>{subtitle}</h6>
                 )}
 
-                {(title || subtitle) && this.getPropValue("showLine") && (
+                {(isTitleExist || isSubTitleExist) && this.getPropValue("showLine") && (
                   <hr className={this.decorateCSS("line")} />
                 )}
 
-                {description && (
+                {isDesExist && (
                   <p className={this.decorateCSS("description")}>
                     {description}
                   </p>
                 )}
 
-                {author && (
+                {isAuthorExist && (
                   <h5 className={this.decorateCSS("author")}>{author}</h5>
                 )}
 
-                {authorRole && (
+                {isAuthorRoleExist && (
                   <span className={this.decorateCSS("author-role")}>
                     {this.getPropValue("showBackground") && (
                       <span
@@ -271,7 +275,7 @@ class Stats8Page extends BaseStats {
             </div>
           )}
           {imageSrc && (
-            <div className={this.decorateCSS("stats2-page")}>
+            <div className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-container-border")}>
                   <img src={imageSrc} alt="Digital Experience" />
