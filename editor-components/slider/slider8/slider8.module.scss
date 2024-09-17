@@ -67,7 +67,10 @@
 
             .content {
               position: relative;
-
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+              
               .overlay {
                 position: absolute;
                 top: 0;
@@ -88,6 +91,7 @@
                 position: relative;
                 width: 100%;
                 background-size: cover;
+                background-repeat: no-repeat;
                 overflow: hidden;
                 object-fit: cover;
                 padding: 100px;
