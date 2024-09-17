@@ -13,7 +13,6 @@
       height: 100%;
       gap:30px;
       .connect{
-        width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -21,37 +20,27 @@
         gap: 160px;
         margin-bottom: 40px;
         position: relative;
-        &::before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          right: 50%;
-          width: 130px; 
-          height: 2px; 
-          background-color: var(--composer-primary-color); 
-          z-index: 0; 
-          color: black;
-          transform: translateX(-50%);
-          opacity: 0.3;
-        }
+        width: 100%;
         .title {
           margin:0px;
           flex:1;
           font-size: 2rem;
           font-weight: 500;
           word-break: break-word;
-          max-width: 50%;
+          max-width:100%;
           display: flex;
-          justify-content: flex-end;
           color: var(--composer-primary-color);
           letter-spacing: -0.5px;
+          justify-content:flex-end;
+        }
+        .title.no-icon{
+          justify-content: start !important;
         }
         .icon-container{
           flex:1;
           display: flex;
           word-break: break-word;
-          max-width: 50%;
+          max-width: 100%;
           align-items: center;
           flex-wrap: wrap;
           .icon-wrapper {
@@ -70,10 +59,10 @@
               left: 50%;
               width: 100%;
               height: 100%;
-              background-color: var(--hover-color,black);
+              background-color: var(--hover-color,--composer-secondary-color);
               border-radius: 50%;
               transform: translate(-50%, -50%) scale(0);
-              transition: transform 1s ease;
+              transition: transform 0.3s cubic-bezier(.12,0,.39,0);
               z-index: 0;
             }
           
@@ -91,6 +80,22 @@
           }
         }
       }
+      .connect.with-before::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        right: 50%;
+        width: 130px; 
+        height: 2px; 
+        background-color: var(--composer-primary-color); 
+        z-index: 0; 
+        color: black;
+        transform: translateX(-50%);
+        opacity: 0.3;
+      }
+      
+
       
       
       .map-container {
@@ -134,14 +139,14 @@
           letter-spacing: -0.5px;
           .phone{
             width: fit-content;
-            border-bottom: solid 2px black;
+            border-bottom: solid 2px var(--composer-primary-color);
           }
         }
 
       }
       
       .popup {
-        background-color: var(--composer-html-background);
+        background-color: var(--composer-secondary-color);
         padding: 10px;
         width: 200px;
         height: 150px;
@@ -154,16 +159,23 @@
       
       .popup-title {
         margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--composer-primary-color)
+        
       }
       
       .popup-content {
         margin: 0;
         padding-bottom: 20px;
+        font-size: 15px;
+        color: var(--composer-primary-color);
+        opacity: 0.7;
       }
       
       .popup-button {
-        background-color: black;
-        color: white;
+        background-color: var(--composer-primary-color);
+        color: var(--composer-secondary-color);
         cursor: pointer;
         position: absolute;
         bottom: 0px;
@@ -172,7 +184,8 @@
         border: none;
         padding: 15px;
         text-align: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        font-size: 12px;
+        font-weight: 400;
       }
       
       .popup-button::after {
@@ -185,16 +198,12 @@
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-top: 10px solid var(--composer-secondary-color);
+        border-top: 10px solid var(--composer-primary-color);
         background-color: transparent;
       }
     }
   }
 }
-
-
-
-
 
 @media only screen and (max-width: 900px) {
   .container{
@@ -203,12 +212,13 @@
       .wrapper{
         .connect{
           gap:80px;
+          margin-bottom: 20px;
           .title{
             justify-content: start;
           }
-          &::before{
-            display: none;
-          }
+        }
+        .connect.with-before::before{
+          display: none;
         }
         .map-container{
           width: 100%;

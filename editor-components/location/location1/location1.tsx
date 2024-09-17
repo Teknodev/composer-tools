@@ -5,6 +5,7 @@ import ComposerMap from "../../../composer-base-components/map/map";
 import { ComposerIcon } from '../../../composer-base-components/icon/icon';
 import { dividerClasses } from "@mui/material";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Visibility } from "@mui/icons-material";
 
 type Coordinate = {
   lat: number;
@@ -192,7 +193,7 @@ class LocationComponent1 extends Location {
             lat: 36.8968908,
             lng: 30.7133233,
             icon: {
-              url: "https://example.com/path/to/black-marker.png",
+              url: "",
               height: 50,
               width: 50,
             },
@@ -261,13 +262,14 @@ class LocationComponent1 extends Location {
     const popupTitle = popupData.popupTitle;
     const popupAddress = popupData.popupAddress;
     const stringAddress = this.castToString(popupAddress);
-    const description = this.castToString(buttom.description)
-    const phone = this.castToString(buttom.phoneNumber)
+    const description = this.castToString(buttom.description);
+    const phone = this.castToString(buttom.phoneNumber);
+    const markerIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij4KICA8cGF0aCBmaWxsPSJibGFjayIgZD0iTTEyIDJDOC4xMyAyIDUgNS4xMyA1IDljMCA1LjI1IDcgMTMgNyAxM3M3LTcuNzUgNy0xM2MwLTMuODctMy4xMy03LTctN3ptMCA5LjVjLTEuMzggMC0yLjUtMS4xMi0yLjUtMi41czEuMTItMi41IDIuNS0yLjUgMi41IDEuMTIgMi41IDIuNS0xLjEyIDIuNS0yLjUgMi41eiIvPgo8L3N2Zz4=";
 
     const mapStyles: google.maps.MapTypeStyle[] = [
       {
         elementType: "geometry",
-        stylers: [{ color: "#212121" }],
+        stylers: [{ color: "#FFFFFF" }],
       },
       {
         elementType: "labels.icon",
@@ -276,32 +278,57 @@ class LocationComponent1 extends Location {
       {
         featureType: "administrative",
         elementType: "geometry",
-        stylers: [{ color: "#757575" }],
+        stylers: [{ color: "#FFFFFF" }],
       },
       {
         featureType: "administrative.country",
         elementType: "geometry.stroke",
-        stylers: [{ color: "#bdbdbd" }],
+        stylers: [{ color: "#FFFFFF" }],
       },
       {
         featureType: "landscape",
         elementType: "geometry",
-        stylers: [{ color: "#F9F9F9" }],
+        stylers: [{ color: "#FFFFFF" }],
       },
       {
         featureType: "poi",
         elementType: "geometry",
-        stylers: [{ color: "#eeeeee" }],
+        stylers: [{ visibility: "off" }],
+      },
+      {
+        featureType: "poi.airport",
+        elementType: "geometry",
+        stylers: [{ color: "#f1f1f1" }],
       },
       {
         featureType: "road",
         elementType: "geometry",
-        stylers: [{ color: "#ffffff" }],
+        stylers: [{ color: " #D3D3D3" }],
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry",
+        stylers: [{ color: "#D3D3D3" }],
+      },
+      {
+        featureType: "road.arterial",
+        elementType: "geometry",
+        stylers: [{ color: "#D3D3D3" }],
+      },
+      {
+        featureType: "road.local",
+        elementType: "geometry",
+        stylers: [{ Visibility: "off" }],
+      },
+      {
+        featureType: "road",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#D3D3D3" }],
       },
       {
         featureType: "water",
         elementType: "geometry",
-        stylers: [{ color: "#F1F1F1" }],
+        stylers: [{ color: "#C0C0C0" }],
       },
     ];
 
@@ -310,9 +337,9 @@ class LocationComponent1 extends Location {
         <div className={this.decorateCSS('max-content')}>
           <div className={this.decorateCSS('wrapper')}>
             {(title || icons.length > 0) && (
-              <div className={this.decorateCSS("connect")}>
+              <div className={`${this.decorateCSS("connect")} ${(icons.length > 0 && title) ? this.decorateCSS('with-before') : ''}`}>
                 {title && (
-                  <h1 className={this.decorateCSS('title')}>
+                  <h1 className={`${this.decorateCSS('title')} ${(icons.length > 0) ? '' : this.decorateCSS("no-icon")}`}>
                     {title}
                   </h1>
                 )}
@@ -345,7 +372,7 @@ class LocationComponent1 extends Location {
               </div>
             )}
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap markers={markers} className={this.decorateCSS("map")} styles={mapStyles}
+              <ComposerMap defaultMarkerIcon={markerIcon} markers={markers} className={this.decorateCSS("map")} styles={mapStyles}
                 popupContent={(marker: Coordinate) => {
                   return (
                     <div className={this.decorateCSS("popup")}>

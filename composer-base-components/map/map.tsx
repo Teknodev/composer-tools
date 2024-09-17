@@ -17,10 +17,11 @@ interface ComposerMapProps {
   markers: Coordinate[];
   className: string;
   popupContent?: (marker: Coordinate) => React.ReactNode;
+  defaultMarkerIcon?: string;
   styles?: google.maps.MapTypeStyle[];
 }
 
-const ComposerMap = memo(({ markers, className, popupContent, styles }: ComposerMapProps) => {
+const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon, styles }: ComposerMapProps) => {
   const map = useMap(className);
   const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(null);
   const overlayRef = useRef<any>();
@@ -65,7 +66,7 @@ const ComposerMap = memo(({ markers, className, popupContent, styles }: Composer
     }, 1);
   }, [markers, map]);
 
-  const defaultMarker = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
+  const defaultMarker = defaultMarkerIcon ? defaultMarkerIcon : "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
 
   const createOverlayView = () => {
     const customStyle: React.CSSProperties = {
