@@ -20,6 +20,8 @@ type Coordinate = {
 type PopupType = {
   popupTitle: JSX.Element,
   popupAddress: JSX.Element,
+  popupButtonUrl: JSX.Element,
+  popupButtonText: JSX.Element,
 
 }
 type ButtomType = {
@@ -243,6 +245,18 @@ class LocationComponent1 extends Location {
           key: "popupAddress",
           displayer: "Popup Address",
           value: "16122 Collins street, Melbourne, Australia"
+        },
+        {
+          type: "page",
+          key: "popupButtonUrl",
+          displayer: "Popup Button Url",
+          value: ""
+        },
+        {
+          type: "string",
+          key: "popupButtonText",
+          displayer: "Popup Button Text",
+          value: "View Map"
         }
       ]
     });
@@ -260,12 +274,14 @@ class LocationComponent1 extends Location {
     const icons = this.getPropValue("icons");
     const popupData = this.castToObject<PopupType>("popup");
     const popupTitle = popupData.popupTitle;
+    const popupUrl = popupData.popupButtonUrl;
     const popupAddress = popupData.popupAddress;
+    const popupButtonText = popupData.popupButtonText;
     const stringAddress = this.castToString(popupAddress);
     const description = this.castToString(buttom.description);
     const phone = this.castToString(buttom.phoneNumber);
     const markerIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij4KICA8cGF0aCBmaWxsPSJibGFjayIgZD0iTTEyIDJDOC4xMyAyIDUgNS4xMyA1IDljMCA1LjI1IDcgMTMgNyAxM3M3LTcuNzUgNy0xM2MwLTMuODctMy4xMy03LTctN3ptMCA5LjVjLTEuMzggMC0yLjUtMS4xMi0yLjUtMi41czEuMTItMi41IDIuNS0yLjUgMi41IDEuMTIgMi41IDIuNS0xLjEyIDIuNS0yLjUgMi41eiIvPgo8L3N2Zz4=";
-
+    console.log("Text", popupButtonText)
     const mapStyles: google.maps.MapTypeStyle[] = [
       {
         elementType: "geometry",
@@ -378,7 +394,8 @@ class LocationComponent1 extends Location {
                     <div className={this.decorateCSS("popup")}>
                       <h4 className={this.decorateCSS("popup-title")}>{popupTitle}</h4>
                       <p className={this.decorateCSS("popup-content")}> {stringAddress}</p>
-                      <button className={this.decorateCSS("popup-button")}>Custom Button</button>
+                      <ComposerLink className={this.decorateCSS("popup-link")} path={popupUrl}><button className={this.decorateCSS("popup-button")}>{popupButtonText}</button> </ComposerLink>
+
                     </div>
                   );
                 }} />
