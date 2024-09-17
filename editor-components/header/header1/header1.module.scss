@@ -24,7 +24,6 @@
     height: 100vh;
     width: 100%;
     .wrapper{
-      padding: 20px 50px;
       position: absolute;
       top:0;
       left: 0px;
@@ -58,20 +57,17 @@
       }
       .return-container {
         position: relative;
-        // height:80vh !important;
         align-items: center;
         justify-content: center;
         display: flex !important;
-      }
-  
-      .background-text {
-        height: 100%;
-        position: absolute !important;
-        z-index: 0;
-        animation: moveText 20s linear infinite;
-        transition: opacity 0.5s ease;
-        opacity: 0;
-      }
+        .background-text {
+          height: 100%;
+          position: absolute !important;
+          z-index: 0;
+          animation: moveText 20s linear infinite;
+          transition: opacity 0.5s ease;
+          opacity: 0;
+        }
       .active-text {
         opacity: 0.4;
         display: flex;
@@ -91,7 +87,65 @@
           }
         }
       }
-  
+      .content-container {
+        margin: 0 auto;
+        width: 60%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .image {
+          border-radius: 1rem;
+          margin: 0 auto;
+          width: 100%;
+          object-fit: cover;
+          transition: transform 1s ease-in-out; 
+          transform: scale(0.5); 
+          opacity: 0; 
+        }
+        .active-image {
+          transform: scale(0.9); 
+          opacity: 1; 
+        }
+        .title {
+          position: absolute;
+          top: 25%;
+          left: 60%;
+          font-size: 11.75rem;
+          color: #fff;
+          z-index: 1001;        
+        }    
+        .subtitle {
+          color: #fff;
+          position: absolute;
+          left: 18%;
+          transform: rotateZ(-90deg);
+          font-size: 12px;
+          z-index: 10;
+        }
+
+        .sliderNumber {
+          color: #fff;
+          font-size: 15px;
+          position: absolute;
+          top: 10%;
+          right: 26%;
+          display: flex;
+          justify-content: space-between;
+          .overlay {
+            display: inline-block;
+            height: 1px;
+            width: 2rem;
+            position: absolute;
+            right: 1rem;
+            bottom: 40%;
+            background: white;
+          }
+          .slider-number {
+            font-size: 13px;
+          }
+        }
+      }
+      }
       .dots {
         position: absolute;
         top: 30%;
@@ -133,69 +187,7 @@
         border: 1px solid white;
         border-radius: 50%;
       }
-  
-  
-      .content-container {
-        margin: 0 auto;
-        width: 60%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        .title {
-          position: absolute;
-          top: 25%;
-          left: 60%;
-          font-size: 11.75rem;
-          color: #fff;
-          z-index: 1001;        
-        }    
-        .subtitle {
-          color: #fff;
-          position: absolute;
-          left: 18%;
-          transform: rotateZ(-90deg);
-          font-size: 12px;
-          z-index: 10;
-        }
-        .image {
-          border-radius: 1rem;
-          margin: 0 auto;
-          width: 100%;
-          object-fit: cover;
-          transition: transform 1s ease-in-out; 
-          transform: scale(0.5); 
-          opacity: 0; 
-        }
-        .active-image {
-          transform: scale(0.9); 
-          opacity: 1; 
-        }
-        .sliderNumber {
-          color: #fff;
-          font-size: 15px;
-          position: absolute;
-          top: 10%;
-          right: 26%;
-          display: flex;
-          justify-content: space-between;
-          .overlay {
-            display: inline-block;
-            height: 1px;
-            width: 2rem;
-            position: absolute;
-            right: 1rem;
-            bottom: 40%;
-            background: white;
-          }
-          .slider-number {
-            font-size: 13px;
-          }
-        }
-      }
     }
-   
-   
-
   }
 }
 
@@ -209,100 +201,110 @@
 }
 
 @media screen and (max-width: 800px) {
-  .max-content {
-    .wrapper{
-      padding: 20px 30px !important;
-    }
-    .background-text {
-      >blinkpage{
-        height: fit-content !important;
-        transform: translateY(40%) !important;
-        >p{
-          font-size: 35rem !important;
+  .container{
+    .max-content {
+      .wrapper{
+        .background-text {
+          >blinkpage{
+            height: fit-content ;
+            transform: translateY(40%) ;
+            >p{
+              font-size: 35rem ;
+            }
+          }
+        }
+        .return-container{
+          height:80vh ;
+          .content-container{
+            display: flex;
+            align-items: center;
+            width: 100% ;
+            .image{
+              display: flex ;
+              justify-content: center ;
+              width: 90% ;
+              margin: 0px ;
+            }
+            .subtitle{
+              height: fit-content ;
+              top:15% ;
+              left: -40% ;
+              width: 100% ;
+              transform: translateX(-80px) rotateZ(-90deg) ;
+            }
+            .title {
+              font-size: 8.75rem ;
+              left: 10% ;
+              margin:0px ;
+              top:auto ;    
+             }
+             .sliderNumber{
+              top:27%;
+              right: 20% ;
+            }
+          }
         }
       }
-    }
-    .title {
-      font-size: 8.75rem !important;
-      left: 10% !important;
-      margin:0px !important;
-      top:auto !important;    
-  }
-    .return-container{
-      height:80vh !important;
-      .content-container{
-        display: flex;
-        align-items: center;
-        width: 100% !important;
-        .image{
-          display: flex !important;
-          justify-content: center !important;
-          width: 90% !important;
-          margin: 0px !important;
+      .dots{
+        height: 100% ;
+        margin:0px ;
+        top:40% ;
+        display: block ;
+        >li{
+          display: flex ;
+          align-items: center ;
+          justify-content: center ;
         }
       }
-      .subtitle{
-        height: fit-content !important;
-        top:15% !important;
-        left: -40% !important;
-        width: 100% !important;
-        transform: translateX(-80px) rotateZ(-90deg) !important;
-      }
-    }
-    .dots{
-      height: 100% !important;
-      margin:0px !important;
-      top:40% !important;
-      display: block !important;
-      >li{
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-    }
-    .sliderNumber{
-      top:27%!important;
-      right: 20% !important;
+
     }
   }
 }
 @media screen and (max-width: 400px) {
-  .max-content {
-    .content-container{
-      width: 100% !important;
-      .image{
-        width: 100% !important;
-      }
-    }
-    .sliderNumber{
-      top: 21rem !important;
-      right: 5rem !important;
-    }
+  .container{
+    .max-content {
+      .wrapper{
+        .return-container{
+          .background-text {
+            opacity: 0 !important;
+          }
+          .content-container{
+            width: 100% !important;
+            .image{
+              transform: scale(1) !important;
+              width: 100% !important;
+            }
+            .title {
+              font-size: 4rem !important;
+              left: auto !important;
+              width: 100% !important;
+              max-width: 100% !important;
+              text-align: center !important;
+        
+            }
+            .subtitle {
+              font-size: 0.5rem !important;
+              left: -6rem !important;
+            }
+            .sliderNumber{
+              top: 21rem !important;
+              right: 5rem !important;
+            }
+        
+          }
 
-    .background-text {
-      opacity: 0 !important;
+        }
+      }  
     }
-    .title {
-      font-size: 4rem !important;
-      left: auto !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      text-align: center !important;
-
-    }
-    .subtitle {
-      font-size: 0.5rem !important;
-      left: -6rem !important;
-    }
-    .dots{
-      display: flex !important;
-      top:auto !important;
-      bottom:0px !important;
-      right: 15% !important;
-      height: fit-content !important;
-    }
-    .dots :global(li.slick-active) button {
-      transform-origin: left !important; 
-    }
+  }
+  .dots{
+    display: flex !important;
+    top:auto !important;
+    bottom:0px !important;
+    right: 15% !important;
+    height: fit-content !important;
+  }
+  .dots :global(li.slick-active) button {
+    transform-origin: left !important; 
   }
 }
