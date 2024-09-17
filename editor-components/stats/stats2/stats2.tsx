@@ -5,7 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   amount: number;
-  text?: string;
+  text: JSX.Element;
   icon?: string;
   secondIcon?: string;
 };
@@ -241,12 +241,14 @@ class Stats2Page extends BaseStats {
             {cards.length > 0 && (
               <div className={this.decorateCSS("cards-container")}>
                 {cards.map((card, index) => {
+                  const isTextExist = this.castToString(card.text);
                   return(
                   <AnimatedCard
                     key={index}
                     card={card}
                     animationDuration={animationDuration}
                     styles={styles}
+                    isTextExist={isTextExist}
                   />
                 );
                 })}
@@ -263,12 +265,14 @@ type AnimatedCardProps = {
   card: Card;
   animationDuration: number;
   styles: typeof styles;
+  isTextExist: string;
 };
 
 const AnimatedCard: React.FC<AnimatedCardProps> = ({
   card,
   animationDuration,
   styles,
+  isTextExist,
 }) => {
   const [amount, setAmount] = React.useState<number | null>(null);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -332,35 +336,38 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   
 
   return (
+    (isTextExist || amount || card.icon || card.secondIcon) && (
       <div ref={ref} className={styles["listed"]}>
-      {card.text && (
-      <div className={styles["card-text"]}>{card.text}</div>
-      )}
-      {(amount || card.icon || card.secondIcon) && (
-        <div className={styles["card-amount-container"]}>
-        {card.icon && (
-          <ComposerIcon
-            propsIcon={{ className: styles["card-icon"] }}
-            name={card.icon}
-          />
+        {isTextExist && (
+          <div className={styles["card-text"]}>{card.text}</div>
         )}
-        {(amount || card.secondIcon) && (
-          <div className={styles["card-amount-contain"]}>
-          <h2 className={styles["card-amount"]}>
-            {amount > 10000000 ? amount.toString().slice(0, 10) + '...' : amount}
-          </h2>
-          {card.secondIcon && (
-            <ComposerIcon
-              propsIcon={{ className: styles["card-icon-after"] }}
-              name={card.secondIcon}
-            />
-          )}
-        </div>
+        {(amount || card.icon || card.secondIcon) && (
+          <div className={styles["card-amount-container"]}>
+            {card.icon && (
+              <ComposerIcon
+                propsIcon={{ className: styles["card-icon"] }}
+                name={card.icon}
+              />
+            )}
+            {(amount || card.secondIcon) && (
+              <div className={styles["card-amount-contain"]}>
+                <h2 className={styles["card-amount"]}>
+                  {amount}
+                </h2>
+                {card.secondIcon && (
+                  <ComposerIcon
+                    propsIcon={{ className: styles["card-icon-after"] }}
+                    name={card.secondIcon}
+                  />
+                )}
+              </div>
+            )}
+          </div>
         )}
       </div>
-      )}
-    </div>
-  );
+    )
+);
+
 };
 
 export default Stats2Page;
