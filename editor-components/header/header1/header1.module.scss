@@ -1,3 +1,15 @@
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
@@ -10,13 +22,16 @@
     position: absolute;
     top: 10rem;
     right: 10rem;
+    width: 12%;
     z-index: 0;
+    animation: moveUpDown 3s ease-in-out infinite;
   }
   .image-container-3 {
     position: absolute;
-    bottom: 1rem;
+    top: 30rem;
     left: -20rem;
     z-index: 0;
+    animation: moveUpDown 3s ease-in-out infinite;
   }
   .max-content {
     max-width: var(--composer-content-width);
@@ -24,9 +39,6 @@
     height: 100vh;
     width: 100%;
     .wrapper{
-      position: absolute;
-      top:0;
-      left: 0px;
       height: 100%;
       width: 100%;
       z-index: 10;
@@ -39,7 +51,6 @@
               align-items: center;
               justify-content: center;
               height: 100vh;
-  
               div {
                 width: 100%;
               }
@@ -60,6 +71,9 @@
         align-items: center;
         justify-content: center;
         display: flex !important;
+        padding: 0px 20px;
+        max-width: var(--composer-content-width);
+        margin: 0 auto;
         .background-text {
           height: 100%;
           position: absolute !important;
@@ -70,20 +84,19 @@
         }
       .active-text {
         opacity: 0.4;
-        display: flex;
-        align-items: center;
-        height: 100%;
-        font-size: 75rem;
+        height: 100vh;
         >blinkpage{
           display: flex;
           align-items: center;
+          justify-content: center;
           height: 100%;
-          font-size: 75rem;
+          font-size: 80rem;
           >p{
             display: flex;
             align-items: center;
+            justify-content: center;
             height: 100%;
-            font-size: 75rem;
+            font-size: 90rem;
           }
         }
       }
@@ -93,66 +106,100 @@
         height: 100%;
         display: flex;
         align-items: center;
-        .image {
-          border-radius: 1rem;
-          margin: 0 auto;
-          width: 100%;
-          object-fit: cover;
-          transition: transform 1s ease-in-out; 
-          transform: scale(0.5); 
-          opacity: 0; 
-        }
-        .active-image {
-          transform: scale(0.9); 
-          opacity: 1; 
+        position: relative;
+        .image-wrapper{
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-end;
+          position: relative;
+          width: 90%;
+
+          .subtitle {
+            position: absolute;
+            color: #fff;
+            transform: rotateZ(-90deg);
+            font-size: 12px;
+            z-index: 10;
+            left: -300px;
+            top:50%;
+            font-weight: 400;
+            width:50%;
+            margin:0px;
+            max-width: 70%;
+            word-break: break-word;
+            >blinkpage{
+              >p{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+          .image {
+            border-radius: 1rem;
+            margin: 0 auto;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 1s ease-in-out; 
+            transform: scale(0.5); 
+            opacity: 0; 
+            max-height: 10%;
+          }
+          .active-image {
+            transform: scale(1); 
+            opacity: 1; 
+            width: 100%;
+          }
+          .sliderNumber {
+            position: absolute;
+            top: 0px;
+            right: 20px;
+            display: flex;
+            height: fit-content;
+            align-items: center;
+            justify-content: center;
+            gap:10px;
+            .overlay {
+              height: 1px;
+              width: 2rem;
+              background: white;
+            }
+            .slider-number {
+              font-size: 13px;
+              color: white;
+            }
+          }
+
         }
         .title {
           position: absolute;
-          top: 25%;
-          left: 60%;
-          font-size: 11.75rem;
+          font-size: 11.25rem;
+          font-weight: 400;
           color: #fff;
-          z-index: 1001;        
-        }    
-        .subtitle {
-          color: #fff;
-          position: absolute;
-          left: 18%;
-          transform: rotateZ(-90deg);
-          font-size: 12px;
           z-index: 10;
-        }
-
-        .sliderNumber {
-          color: #fff;
-          font-size: 15px;
-          position: absolute;
-          top: 10%;
-          right: 26%;
-          display: flex;
-          justify-content: space-between;
-          .overlay {
-            display: inline-block;
-            height: 1px;
-            width: 2rem;
-            position: absolute;
-            right: 1rem;
-            bottom: 40%;
-            background: white;
-          }
-          .slider-number {
-            font-size: 13px;
-          }
-        }
+          height: fit-content;
+          right: 0px;
+          >blinkpage{
+            >p{
+              word-break: break-word;
+            }
+          }      
+        }   
       }
       }
       .dots {
         position: absolute;
-        top: 30%;
+        top:0px;
         list-style: none;
         right: 0;
         padding-right: 20px;
         padding-left: 0px;
+        height: 100vh;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         li {
           button {
             color: transparent;
@@ -168,11 +215,9 @@
               content: "•";
               color: white;
               position: absolute;
-              top: 50%;
-              left: 50%;
               transform: translate(-50%, -50%);
               transition: 0.3s;
-              font-size: 1rem;
+              font-size: 2rem;
               width: 100%;
               height: 100%;
               display: flex;
@@ -207,41 +252,44 @@
         .background-text {
           >blinkpage{
             height: fit-content ;
-            transform: translateY(40%) ;
+            transform: translateY(20%) ;
             >p{
-              font-size: 35rem ;
+              font-size: 35rem !important;
             }
           }
         }
         .return-container{
-          height:80vh ;
           .content-container{
             display: flex;
             align-items: center;
-            width: 100% ;
-            .image{
-              display: flex ;
-              justify-content: center ;
-              width: 90% ;
-              margin: 0px ;
-            }
-            .subtitle{
-              height: fit-content ;
-              top:15% ;
-              left: -40% ;
-              width: 100% ;
-              transform: translateX(-80px) rotateZ(-90deg) ;
+            width: 80%;
+            .image-wrapper{
+              width: 100%;
+              .image{
+                display: flex ;
+                justify-content: center ;
+                width: 100% ;
+                margin: 0px ;
+              }
+              .sliderNumber{
+                .overlay{
+                  width: 1.5rem;
+                }
+              }
+              .subtitle{
+              }
             }
             .title {
-              font-size: 8.75rem ;
-              left: 10% ;
-              margin:0px ;
-              top:auto ;    
+              font-size: 8.75rem;
+              width: 100%;
+              >blinkpage{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
              }
-             .sliderNumber{
-              top:27%;
-              right: 20% ;
-            }
+
           }
         }
       }
@@ -261,6 +309,13 @@
   }
 }
 @media screen and (max-width: 400px) {
+  .image-container-2 {
+    width: 50% !important;
+  }
+  .image-container-3 {
+    left: -70px !important;
+    width: 50%;
+  }
   .container{
     .max-content {
       .wrapper{
@@ -272,10 +327,9 @@
             width: 100% !important;
             .image{
               transform: scale(1) !important;
-              width: 100% !important;
             }
             .title {
-              font-size: 4rem !important;
+              font-size: 5rem !important;
               left: auto !important;
               width: 100% !important;
               max-width: 100% !important;
@@ -283,12 +337,12 @@
         
             }
             .subtitle {
-              font-size: 0.5rem !important;
-              left: -6rem !important;
+              display: none;
             }
             .sliderNumber{
-              top: 21rem !important;
-              right: 5rem !important;
+              .overlay{
+                width: 1rem;
+              }
             }
         
           }
@@ -300,9 +354,11 @@
   .dots{
     display: flex !important;
     top:auto !important;
-    bottom:0px !important;
-    right: 15% !important;
+    bottom:30px !important;
+    right: 50% !important;
+    left: 50% !important;
     height: fit-content !important;
+    flex-direction: row !important;
   }
   .dots :global(li.slick-active) button {
     transform-origin: left !important; 

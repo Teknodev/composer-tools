@@ -261,13 +261,8 @@ class Header1 extends BaseHeader {
     };
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
-
-        <div className={this.decorateCSS("image-container-2")}>
-          <img src={this.getPropValue("sun")} alt="" />
-        </div>
-        <div className={this.decorateCSS("image-container-3")}>
-          <img src={this.getPropValue("sun")} alt="" />
-        </div>
+        <img className={this.decorateCSS("image-container-2")} src={this.getPropValue("sun")} alt="" />
+        <img className={this.decorateCSS("image-container-3")} src={this.getPropValue("sun")} alt="" />
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <ComposerSlider ref={this.sliderRef} {...settings}>
@@ -284,27 +279,33 @@ class Header1 extends BaseHeader {
                         {item.title}
                       </div>
                       <div className={this.decorateCSS("content-container")}>
-                        <img
-                          className={
-                            this.decorateCSS("image") +
-                            " " +
-                            (isActive && this.decorateCSS("active-image"))
-                          }
-                          src={item.image}
-                          alt=""
-                        />
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <h1 className={this.decorateCSS("subtitle")}>
+                            {item.subtitle}
+                          </h1>
+                          <img
+                            className={
+                              this.decorateCSS("image") +
+                              " " +
+                              (isActive && this.decorateCSS("active-image"))
+                            }
+                            src={item.image}
+                            alt=""
+                          />
+
+                          <h1 className={this.decorateCSS("sliderNumber")}>
+                            <span className={this.decorateCSS("overlay")}></span>
+                            <span className={this.decorateCSS("slider-number")}>
+                              {item.sliderNumber}
+                            </span>
+                          </h1>
+                        </div>
+
                         <h1 className={this.decorateCSS("title")}>
                           {item.title}
                         </h1>
-                        <h1 className={this.decorateCSS("subtitle")}>
-                          {item.subtitle}
-                        </h1>
-                        <h1 className={this.decorateCSS("sliderNumber")}>
-                          <span className={this.decorateCSS("overlay")}></span>
-                          <span className={this.decorateCSS("slider-number")}>
-                            {item.sliderNumber}
-                          </span>
-                        </h1>
+
+
                       </div>
                     </div>
                   );
