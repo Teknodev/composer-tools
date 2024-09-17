@@ -5,7 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   amount: number;
-  text: string;
+  text?: string;
   icon?: string;
   secondIcon?: string;
 };
@@ -195,7 +195,7 @@ class Stats2Page extends BaseStats {
   getName(): string {
     return "Stats 2";
   }
-
+  
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const animationDuration = this.getPropValue("animation-duration") as number;
@@ -205,7 +205,6 @@ class Stats2Page extends BaseStats {
     const contactButton = this.castToString(this.getPropValue("contactButton"));
     const contactButtonIcon = this.getPropValue("contactButtonIcon");
     const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -241,14 +240,16 @@ class Stats2Page extends BaseStats {
 
             {cards.length > 0 && (
               <div className={this.decorateCSS("cards-container")}>
-                {cards.map((card, index) => (
+                {cards.map((card, index) => {
+                  return(
                   <AnimatedCard
                     key={index}
                     card={card}
                     animationDuration={animationDuration}
                     styles={styles}
                   />
-                ))}
+                );
+                })}
               </div>
             )}
           </div>
@@ -272,7 +273,6 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   const [amount, setAmount] = React.useState<number | null>(null);
   const ref = React.useRef<HTMLDivElement>(null);
   const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
-
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -329,25 +329,36 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
       setAmount(Math.ceil(currentAmount));
     }, 30);
   };
+  
 
   return (
-    <div ref={ref} className={styles["listed"]}>
-      <p className={styles["card-text"]}>{card.text}</p>
-      <div className={styles["card-amount-container"]}>
+      <div ref={ref} className={styles["listed"]}>
+      {card.text && (
+      <div className={styles["card-text"]}>{card.text}</div>
+      )}
+      {(amount || card.icon || card.secondIcon) && (
+        <div className={styles["card-amount-container"]}>
         {card.icon && (
           <ComposerIcon
             propsIcon={{ className: styles["card-icon"] }}
             name={card.icon}
           />
         )}
-        {amount !== null && <h2 className={styles["card-amount"]}>{amount}</h2>}
-        {card.secondIcon && (
-          <ComposerIcon
-            propsIcon={{ className: styles["card-icon-after"] }}
-            name={card.secondIcon}
-          />
+        {(amount || card.secondIcon) && (
+          <div className={styles["card-amount-contain"]}>
+          <h2 className={styles["card-amount"]}>
+            {amount > 10000000 ? amount.toString().slice(0, 10) + '...' : amount}
+          </h2>
+          {card.secondIcon && (
+            <ComposerIcon
+              propsIcon={{ className: styles["card-icon-after"] }}
+              name={card.secondIcon}
+            />
+          )}
+        </div>
         )}
       </div>
+      )}
     </div>
   );
 };
