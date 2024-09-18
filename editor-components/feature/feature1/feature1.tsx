@@ -177,6 +177,7 @@ class Feature1 extends BaseFeature {
       type: "array",
       key: "miniCard",
       displayer: "Mini Card",
+      max: 2,
       value: [
         {
           type: "object",
@@ -421,9 +422,13 @@ class Feature1 extends BaseFeature {
 
   render() {
     const leftSideText = this.castToString(this.getPropValue("left-side-text"));
-    const rightSideText = this.castToString(this.getPropValue("right-side-text"));
+    const rightSideText = this.castToString(
+      this.getPropValue("right-side-text")
+    );
     const leftSideIcon = this.castToString(this.getPropValue("left_side_icon"));
-    const rightSideIcon = this.castToString(this.getPropValue("right_side_icon"));
+    const rightSideIcon = this.castToString(
+      this.getPropValue("right_side_icon")
+    );
     const cardContent = this.castToObject<CardComponent[]>("card");
     const middleContent = this.castToObject<MiniCardComponent[]>("miniCard");
     const links = this.castToObject<Link[]>("links");
@@ -431,53 +436,60 @@ class Feature1 extends BaseFeature {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {(leftSideIcon || leftSideIcon || rightSideIcon || rightSideText ) ?
-           <div className={this.decorateCSS("header")}>
-            {(leftSideText || leftSideIcon) && (
-              <div className={this.decorateCSS("left-side")}>
-                {<ComposerIcon
+          {leftSideIcon || leftSideText || rightSideIcon || rightSideText ? (
+            <div className={this.decorateCSS("header")}>
+              {(leftSideText || leftSideIcon) && (
+                <div className={this.decorateCSS("left-side")}>
+                  {
+                    <ComposerIcon
                       name={this.getPropValue("left_side_icon")}
                       propsIcon={{
-                      className:this.decorateCSS("left-side-icon")
-                  }} 
-                />}
-                {leftSideText && (
-                  <h1 className={this.decorateCSS("first-text")}>
-                    {leftSideText}
-                  </h1>
-                )}
-              </div>
-            )}
+                        className: this.decorateCSS("left-side-icon"),
+                      }}
+                    />
+                  }
+                  {leftSideText && (
+                    <h1 className={this.decorateCSS("first-text")}>
+                      {leftSideText}
+                    </h1>
+                  )}
+                </div>
+              )}
 
-            {links.length > 0 && (
-              <div className={this.decorateCSS("right-side")}>
-                {links.map((link: Link, index: number) => {
-                  return (
-                    <ComposerLink path={link.url}>
-                      <div className={this.decorateCSS("link-container")}>
-                        <span className={this.decorateCSS("link-text")}>
-                          {rightSideText ? 
-                          <> 
-                            {rightSideText}
-                            {
-                              <ComposerIcon
-                                name={this.getPropValue("right_side_icon")}
-                                propsIcon={{
-                                  className: this.decorateCSS("right-side-icon"),
-                                }}
-                            />
-                          }
-                          </> : "" }
-                        </span>                        
-                      </div>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
-          </div> 
-          : ""}
-         
+              {links.length > 0 && (
+                <div className={this.decorateCSS("right-side")}>
+                  {links.map((link: Link, index: number) => {
+                    return (
+                      <ComposerLink path={link.url}>
+                        <div className={this.decorateCSS("link-container")}>
+                          <span className={this.decorateCSS("link-text")}>
+                            {rightSideText ? (
+                              <>
+                                {rightSideText}
+                                {
+                                  <ComposerIcon
+                                    name={this.getPropValue("right_side_icon")}
+                                    propsIcon={{
+                                      className:
+                                        this.decorateCSS("right-side-icon"),
+                                    }}
+                                  />
+                                }
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </span>
+                        </div>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          ) : (
+            ""
+          )}
 
           <div className={this.decorateCSS("features")}>
             {cardContent.filter((_: any, index: number) => index % 2 === 0)
@@ -551,7 +563,7 @@ class Feature1 extends BaseFeature {
                           <div
                             className={
                               this.decorateCSS("user-info") +
-                              (card_info.profile_image ? "" : " no-profile")
+                              (card_info.profile_image ? "" : "no-profile")
                             }
                           >
                             {card_info.profile_image && (
