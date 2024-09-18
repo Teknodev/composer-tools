@@ -427,8 +427,6 @@ class Feature4 extends BaseFeature {
     const imageOverlay: boolean = this.getPropValue("imageOverlay");
     const itemCount = this.getPropValue("itemCount");
 
-    console.log("cards:", cards);
-
     return (
       <div
         style={{
@@ -443,21 +441,6 @@ class Feature4 extends BaseFeature {
                 className={this.decorateCSS("featured-card")}
                 style={{ width: `${95 / itemCount}%` }}
               >
-                {imageOverlay && (
-                  <div
-                    className={this.decorateCSS("overlay")}
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      opacity: 0.5,
-                      zIndex: 1,
-                    }}
-                  ></div>
-                )}
-
                 <div className={this.decorateCSS("backgroundImage")}></div>
 
                 <div
