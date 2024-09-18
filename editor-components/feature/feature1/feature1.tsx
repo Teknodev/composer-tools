@@ -3,7 +3,6 @@ import { BaseFeature, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { FaStarOfLife } from "react-icons/fa";
 
 type CardComponent = {
   image: string;
@@ -345,7 +344,7 @@ class Feature1 extends BaseFeature {
       type: "string",
       key: "right-side-text",
       displayer: "Right Side Text",
-      value: "Featured Posts 2",
+      value: "Featured Posts",
     });
     this.addProp({
       type: "icon",
