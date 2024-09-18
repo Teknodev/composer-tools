@@ -117,16 +117,20 @@
           overflow: hidden;
           box-sizing: border-box;
 
-          .image {
+          .image-container {
+            display: flex;
             width: 100%;
-            height: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            cursor: pointer;
+            height: auto;
+            overflow: hidden;
 
+            .image {
+              width: 100%;
+              height: auto;
+              transition: transform 0.3s ease;
+              cursor: pointer;
+            }
 
-            &:hover {
+            &:hover img {
               transform: scale(1.1);
               filter: brightness(1.1);
             }
@@ -152,8 +156,8 @@
                 column-gap: 5px;
                 align-items: center;
                 white-space: normal;
-                max-width: 60% !important; 
-                >svg {
+                max-width: 60% !important;
+                > svg {
                   flex-shrink: 0;
                 }
               }
@@ -164,7 +168,7 @@
                 align-items: center;
                 white-space: normal;
                 max-width: 40% !important;
-                >svg {
+                > svg {
                   flex-shrink: 0;
                 }
               }
@@ -284,8 +288,8 @@
               column-gap: 5px;
               align-items: center;
               white-space: normal;
-              max-width: 60% !important; 
-              >svg {
+              max-width: 60% !important;
+              > svg {
                 flex-shrink: 0;
               }
             }
@@ -296,7 +300,7 @@
               align-items: center;
               white-space: normal;
               max-width: 40% !important;
-              >svg {
+              > svg {
                 flex-shrink: 0;
               }
             }
@@ -346,9 +350,9 @@
               .profile-description {
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
-                >blinkpage > p{                    
+                > blinkpage > p {
                   display: -webkit-box;
-                  -webkit-line-clamp: 1; 
+                  -webkit-line-clamp: 1;
                   line-clamp: 1;
                   -webkit-box-orient: vertical;
                   overflow: hidden;
@@ -361,7 +365,7 @@
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
-                >blinkpage > p {
+                > blinkpage > p {
                   display: -webkit-box;
                   -webkit-line-clamp: 1;
                   line-clamp: 1;
@@ -404,10 +408,9 @@
             var(--composer-font-color-primary) 90%
           );
 
-          .image {
+          .image-container {
             width: 100%;
             height: 100%;
-            max-height: 200px;
             object-fit: cover;
           }
 
@@ -425,14 +428,14 @@
               color: var(--composer-font-color-secondary);
               white-space: nowrap !important;
               overflow: hidden !important;
-              
+
               .date {
                 display: flex;
                 column-gap: 5px;
                 align-items: center;
                 white-space: normal;
-                max-width: 60% !important; 
-                >svg {
+                max-width: 60% !important;
+                > svg {
                   flex-shrink: 0;
                 }
               }
@@ -443,7 +446,7 @@
                 align-items: center;
                 white-space: normal;
                 max-width: 40% !important;
-                >svg {
+                > svg {
                   flex-shrink: 0;
                 }
               }
@@ -456,8 +459,7 @@
               margin-bottom: 2px;
             }
 
-            
-          .description {
+            .description {
               font-size: 1.1rem;
               color: var(--composer-font-color-secondary) !important;
               width: 100%;
@@ -564,8 +566,8 @@
               column-gap: 5px;
               align-items: center;
               white-space: normal;
-              max-width: 60% !important; 
-              >svg {
+              max-width: 60% !important;
+              > svg {
                 flex-shrink: 0;
               }
             }
@@ -576,7 +578,7 @@
               align-items: center;
               white-space: normal;
               max-width: 40% !important;
-              >svg {
+              > svg {
                 flex-shrink: 0;
               }
             }
@@ -590,16 +592,15 @@
           }
 
           .description {
-              font-size: 1.1rem;
-              color: var(--composer-font-color-secondary);
-              width: 100%;
-              display: -webkit-box;
-              -webkit-line-clamp: 2 !important;
-              line-clamp: 2 !important;
-              -webkit-box-orient: vertical;
-              overflow: hidden;
-              text-overflow: ellipsis;
-
+            font-size: 1.1rem;
+            color: var(--composer-font-color-secondary);
+            width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 2 !important;
+            line-clamp: 2 !important;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
 
           .user-info {
@@ -627,9 +628,9 @@
               .profile-description {
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
-                >blinkpage > p{                    
+                > blinkpage > p {
                   display: -webkit-box;
-                  -webkit-line-clamp: 1; 
+                  -webkit-line-clamp: 1;
                   line-clamp: 1;
                   -webkit-box-orient: vertical;
                   overflow: hidden;
@@ -642,7 +643,7 @@
                 font-weight: bold;
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
-                >blinkpage > p {
+                > blinkpage > p {
                   display: -webkit-box;
                   -webkit-line-clamp: 1;
                   line-clamp: 1;
@@ -713,7 +714,7 @@
         .card {
           flex: 1 !important;
 
-          .image {
+          .image-container {
             height: 200px !important;
           }
 
@@ -777,7 +778,7 @@
         .card {
           order: 0 !important;
 
-          .image {
+          .image-container {
             height: 200px !important;
           }
 
@@ -887,7 +888,7 @@
       .middle-content .card {
         width: 100% !important;
 
-        .image {
+        .image-container {
           height: 200px !important;
         }
 
@@ -942,7 +943,7 @@
       .middle-content .card {
         width: 100% !important;
 
-        .image {
+        .image-container {
           height: 200px !important;
         }
 

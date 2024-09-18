@@ -4,6 +4,11 @@ import styles from "./feature1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type cardInfo = {
+  cardComponent: CardComponent;
+  miniCardComponent: MiniCardComponent;
+};
+
 type CardComponent = {
   image: string;
   date: JSX.Element;
@@ -499,11 +504,13 @@ class Feature1 extends BaseFeature {
                   .map((card_info: CardComponent, index: number) => (
                     <div className={this.decorateCSS("card")}>
                       {card_info.image && (
-                        <img
-                          className={this.decorateCSS("image")}
-                          src={card_info.image}
-                          alt=""
-                        />
+                        <div className={this.decorateCSS("image-container")}>
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={card_info.image}
+                            alt=""
+                          />
+                        </div>
                       )}
                       <div className={this.decorateCSS("card-content")}>
                         {(this.castToString(card_info.date) ||
@@ -562,7 +569,7 @@ class Feature1 extends BaseFeature {
                           <div
                             className={
                               this.decorateCSS("user-info") +
-                              (card_info.profile_image ? "" : "no-profile")
+                              (card_info.profile_image ? "" : " no-profile")
                             }
                           >
                             {card_info.profile_image && (
@@ -708,11 +715,13 @@ class Feature1 extends BaseFeature {
                   .map((card_info: CardComponent, index: number) => (
                     <div className={this.decorateCSS("card")}>
                       {card_info.image && (
-                        <img
-                          className={this.decorateCSS("image")}
-                          src={card_info.image}
-                          alt=""
-                        />
+                        <div className={this.decorateCSS("image-container")}>
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={card_info.image}
+                            alt=""
+                          />
+                        </div>
                       )}
                       <div className={this.decorateCSS("card-content")}>
                         {(this.castToString(card_info.date) ||
@@ -819,11 +828,13 @@ class Feature1 extends BaseFeature {
                   .map((card_info: CardComponent, index: number) => (
                     <div className={this.decorateCSS("card")}>
                       {card_info.image && (
-                        <img
-                          className={this.decorateCSS("image")}
-                          src={card_info.image}
-                          alt=""
-                        />
+                        <div className={this.decorateCSS("image-container")}>
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={card_info.image}
+                            alt=""
+                          />
+                        </div>
                       )}
                       <div className={this.decorateCSS("card-content")}>
                         {(this.castToString(card_info.date) ||
