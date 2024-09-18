@@ -1,116 +1,300 @@
 import * as React from "react";
 import styles from "./header26.module.scss";
 import { BaseHeader } from "../../EditorComponent";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type Slide = {
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  url: string;
+  image: string;
+};
+
 class HeaderComponent26 extends BaseHeader {
+  private sliderRef: React.RefObject<any>;
+
   constructor(props?: any) {
     super(props, styles);
 
+    this.sliderRef = React.createRef();
+
     this.addProp({
-      type: "object",
-      displayer: "Items",
-      key: "items",
+      type: "array",
+      key: "sliders",
+      displayer: "Sliders",
       value: [
         {
           type: "object",
-          displayer: "Item Left Top",
-          key: "left-top-item",
+          key: "slider",
+          displayer: "Slider",
           value: [
             {
               type: "string",
-              displayer: "Title",
               key: "title",
-              value: "We Teach to Be Active and Creative",
+              displayer: "Title",
+              value: "FOR THE ROAD",
             },
             {
               type: "string",
-              displayer: "Description",
-              key: "description",
-              value:
-                "Anyway, you still use Lorem Ipsum and rightly so, as it will always have a place in the web workers toolbox, as things happen, not always.",
-            },
-            {
-              type: "image",
-              displayer: "Image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edde21057bdf002c2adb30?alt=media&timestamp=1693310475090",
-            },
-          ],
-        },
-
-        {
-          type: "image",
-          displayer: "Right Image",
-          key: "rightImage",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edde21057bdf002c2adb2f?alt=media&timestamp=1693310475090",
-        },
-      ],
-    });
-    this.addProp(
-        {
-          type: "object",
-          displayer: "Button",
-          key: "button",
-          value: [
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "text",
-              value: "VIEW MORE",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "3D Visualization",
             },
             {
               type: "page",
-              displayer: "Button URL",
               key: "url",
+              displayer: "URL",
               value: "",
             },
-          ]
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f611?alt=media&timestamp=1719412135932",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "FALLING IN LOVE",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "New illustrations",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f612?alt=media&timestamp=1719412135932",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "ROCK ON ROCK",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "Design trends",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f613?alt=media&timestamp=1719412135932",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "JUST ONE MORE",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "SubTitle",
+              value: "Photography",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "URL",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f614?alt=media&timestamp=1719412135932",
+            },
+          ],
+        },
+      ],
     });
+
+    this.addProp({
+      type: "icon",
+      key: "up_icon",
+      displayer: "Up icon",
+      value: "IoIosArrowUp",
+    });
+    this.addProp({
+      type: "icon",
+      key: "down_icon",
+      displayer: "Down icon",
+      value: "IoIosArrowDown",
+    });
+
+    this.setComponentState("next", null);
   }
 
   getName(): string {
     return "Header-26";
   }
 
+  handlePrevClick = () => {
+    const slider = this.sliderRef.current;
+    if (slider) slider.slickPrev();
+  };
+
+  handleNextClick = () => {
+    const slider = this.sliderRef.current;
+    if (slider) slider.slickNext();
+  };
+
   render() {
-    let items: any = this.castToObject("items");
-    const button = this.castToObject<any>("button")    
+    const settings = {
+      dots: false,
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      draggable: true,
+      vertical: true,
+      verticalSwiping: true,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("old", current);
+        this.setComponentState("next", next);
+      },
+      afterChange: (current: number, next: number) => {
+        this.setComponentState("old", null);
+        this.setComponentState("next", null);
+      },
+    };
+
+    const slides = this.castToObject<Slide[]>("sliders");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("background-image")}>
-              <img src={items["left-top-item"].image} alt={items["left-top-item"].title} />
-            </div>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("title")}>
-                <h1 className={this.decorateCSS("items")}>{items["left-top-item"].title}</h1>
-              </div>
-              <div className={this.decorateCSS("description")}>
-                <h3 className={this.decorateCSS("items-description")}>{items["left-top-item"].description}</h3>
-              </div>
+          {slides?.length > 0 && (
+            <ComposerSlider {...settings} ref={this.sliderRef}>
+              {slides.map((item: Slide, index: number) => {
+                const titleExist = this.castToString(item.title);
+                const subtitleExist = this.castToString(item.subtitle);
 
-              
-                  <ComposerLink path={button.url}>
-                    <div className={this.decorateCSS("button-wrapper")}>
-                      <a
-                        className={this.decorateCSS("button")}
+                // stick arrows to the bottom of the screen on mobile and tablet
+                const stickToBottomCondition =
+                  (item.image && !(titleExist || subtitleExist)) ||
+                  (!item.image && (titleExist || subtitleExist))
+                    ? this.decorateCSS("stick-to-bottom")
+                    : "";
+
+                return (
+                  <div
+                    className={`${this.decorateCSS("sliders")}
+                      ${this.decorateCSS(
+                        this.getComponentState("next") === index ||
+                          this.getComponentState("old") === index
+                          ? "shrink"
+                          : "",
+                      )}`}
+                    key={index}
+                  >
+                    <div className={this.decorateCSS("slider")}>
+                      {(titleExist || subtitleExist) && (
+                        <div className={this.decorateCSS("left-side")}>
+                          <div
+                            className={this.decorateCSS("left-side-content")}
+                          >
+                            {titleExist && (
+                              <ComposerLink path={item.url}>
+                                <h1 className={this.decorateCSS("title")}>
+                                  {item.title}
+                                </h1>
+                              </ComposerLink>
+                            )}
+                            {titleExist && subtitleExist && (
+                              <span className={this.decorateCSS("line")} />
+                            )}
+                            {subtitleExist && (
+                              <h1 className={this.decorateCSS("subtitle")}>
+                                {item.subtitle}
+                              </h1>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {item.image && (
+                        <div className={this.decorateCSS("right-side")}>
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={item.image}
+                            alt="Slide"
+                          />
+                        </div>
+                      )}
+                      <div
+                        className={`${this.decorateCSS("arrows")}
+                        ${stickToBottomCondition}`}
                       >
-                        {button.text}
-                      </a>
+                        <div
+                          className={this.decorateCSS("up-arrow")}
+                          onClick={this.handlePrevClick}
+                        >
+                          <ComposerIcon name={this.getPropValue("up_icon")} />
+                        </div>
+                        <div
+                          className={this.decorateCSS("down-arrow")}
+                          onClick={this.handleNextClick}
+                        >
+                          <ComposerIcon name={this.getPropValue("down_icon")} />
+                        </div>
+                      </div>
                     </div>
-                  </ComposerLink>
-
-
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <img src={items.rightImage} />
-            </div>
-          </div>
+                  </div>
+                );
+              })}
+            </ComposerSlider>
+          )}
         </div>
       </div>
     );
