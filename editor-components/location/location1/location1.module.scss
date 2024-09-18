@@ -26,21 +26,21 @@
           flex:1;
           font-size: 2rem;
           font-weight: 500;
+          max-width: 50%;
           word-break: break-word;
-          max-width:100%;
           display: flex;
+          justify-content: end;
           color: var(--composer-primary-color);
           letter-spacing: -0.5px;
-          justify-content:flex-end;
         }
-        .title.no-icon{
-          justify-content: start !important;
-        }
+        // .title.no-icon{
+        //   justify-content: start !important;
+        // }
         .icon-container{
           flex:1;
           display: flex;
           word-break: break-word;
-          max-width: 100%;
+          max-width: 50%;
           align-items: center;
           flex-wrap: wrap;
           .icon-wrapper {
@@ -94,8 +94,6 @@
         transform: translateX(-50%);
         opacity: 0.3;
       }
-      
-
       
       
       .map-container {
@@ -272,9 +270,8 @@
               width: fit-content;
             }
           }
-          >div{
-            width: 100% !important;
-            max-width: none;
+          >a{
+            max-width: 100%;
           }
 
         }
