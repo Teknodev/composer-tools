@@ -2,9 +2,6 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-interface Item {
-  title: string | null;
-}
 class Header1 extends BaseHeader {
   sliderRef = React.createRef<any>();
 
@@ -304,17 +301,13 @@ class Header1 extends BaseHeader {
                         <h1 className={this.decorateCSS("title")}>
                           {item.title}
                         </h1>
-
-
                       </div>
                     </div>
                   );
                 }
               )}
             </ComposerSlider>
-
           </div>
-
         </div >
       </div >
     );
