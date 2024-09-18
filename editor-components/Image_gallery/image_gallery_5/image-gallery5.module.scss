@@ -70,7 +70,8 @@
           max-height: 100%;
           margin: auto;
           padding-bottom: 20px;
-          width: 482px;
+          width: 35%;
+          max-width: 100%;
           text-align: center;
           .image-close-button {
             position: absolute;
@@ -133,26 +134,49 @@
   }
 }
 
-@media screen and (max-width: 780px) {
-  .container{
+@media screen and (max-width: 768px) {
+  .container{ 
     padding: 20px 30px;
-  }
-  .image-container{
-    max-width: 100%;
-    max-height: 100%;
-  }
-  .images {
-    width: 50%;
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill,minmax(200px 1fr)) !important;
+    .max-content{
+      .images{
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill,minmax(200px 1fr)) !important;
+        .image-container{
+          max-width: 100%;
+          max-height: 100%;
+          }
+      }
+      .overlay {
+        .overlay-content {
+          .middle-content {
+            flex-direction: column;
+            padding-bottom: 20px;
+            width: 60%;
+            max-width: 100%;
+          }
+        }
+      }
+    }
   }
 }
-@media screen and (max-width: 475px) {
-  .container{
+@media screen and (max-width: 430px) {
+  .container{ 
     padding: 20px 30px;
-  }
-  .images {
-    display: grid !important;
-    grid-template-columns: repeat(1, 1fr) !important;
+    .max-content{
+      .images{
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr) !important;
+      }
+      .overlay {
+        .overlay-content {
+          .middle-content {
+            flex-direction: column;
+            padding-bottom: 20px;
+            width: auto;
+            max-width: 90%;
+          }
+        }
+      }
+    }
   }
 }

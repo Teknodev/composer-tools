@@ -106,26 +106,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     this.setComponentState("clicked_image_index", 0);
   }
 
-  componentDidMount() {
-    const element = this.imageGalleryRef.current;
-    if (element) {
-      element.addEventListener(
-        "keydown",
-        this.handleKeyPress as unknown as EventListener
-      );
-      element.focus();
-    }
-  }
 
-  componentWillUnmount() {
-    const element = this.imageGalleryRef.current;
-    if (element) {
-      element.removeEventListener(
-        "keydown",
-        this.handleKeyPress as unknown as EventListener
-      );
-    }
-  }
 
   getName(): string {
     return "Image Gallery 5";
