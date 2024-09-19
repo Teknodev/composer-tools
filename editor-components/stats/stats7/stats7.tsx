@@ -35,12 +35,6 @@ class Stats7Page extends BaseStats {
     });
     this.addProp({
       type: "boolean",
-      key: "enableSubtitle",
-      displayer: "Enable Subtitle",
-      value: true
-    });
-    this.addProp({
-      type: "boolean",
       key: "enableSubtitleBackground",
       displayer: "Enable Subtitle Background",
       value: true
@@ -140,7 +134,6 @@ class Stats7Page extends BaseStats {
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist;
     const items = this.castToObject<Item[]>("items");
-    const enableSubtitle = this.getPropValue("enableSubtitle");
     const enableSubtitleBackground = this.getPropValue("enableSubtitleBackground");
 
     return (
@@ -148,7 +141,7 @@ class Stats7Page extends BaseStats {
         <div className={this.decorateCSS("max-content")} style={{display: `${isTitleExist || isDescriptionExist ?   "flex":  "unset"}`}}>
 
           {showDiv && <div className={this.decorateCSS("title-child")}>
-            {enableSubtitle && isSubtitleExist && (
+            {isSubtitleExist && (
               <h1 className={this.decorateCSS("subTitle")} style={{
                 backgroundColor: `${enableSubtitleBackground ? "" : 'transparent' }`
               }}>{isSubtitleExist}</h1>
