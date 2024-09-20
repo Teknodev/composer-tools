@@ -1,100 +1,99 @@
 .container {
   width: 100%;
-  background-color: var(--composer-html-background);
+  // background-color: var(--composer-html-background);
+  // height: 100vh;
   .content {
-    margin: auto;
-
+    // margin: auto;
+    width: 100%;
+    // height: 100vh;
   .slider-parent {
-    display: flex;
-    justify-content: center;
-    margin: auto;
+    // display: flex !important;
+    // justify-content: center;
+    // // margin: auto;
+    // height: 100vh;
+    width: 100%;
     .carousel {
-        max-width:var(--composer-content-width);
-        width: 90%;
+        // max-width:var(--composer-content-width);
+        // width: 90%;
+        // height: 100%;
+        width: 100%;
           .max-content {
-            max-width: var(--composer-content-width);
-            margin: auto;
+            // max-width: var(--composer-content-width);
+            // // margin: auto;
             display: flex;
             align-items: center;
-            // flex-direction: column;
-            height: 100%;
-            .UpperDiv{
+            justify-content: center;
+            // // flex-direction: column;
+            // height: 100%;
+            width: 100%;
+            .upperDiv{
               width: 100%;
               display: flex;
-              flex-direction: column;
-              .top-title{
+              align-items: center;
+              justify-content: center;
+              .uppderDiv-content{
+                width: 80%;
                 display: flex;
-                flex-direction: row;
                 align-items: center;
                 justify-content: center;
-                column-gap: 50px;
-                .title1-container {
-                  word-wrap: break-word;
-                  .title1{
-                    width: 100%;
-                    letter-spacing: 10px;
-                    font-size: 15rem;
+                gap: 10px;
+                .upTitle-container {
+                  width: 80%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-end;
+                  .upTitle{
+                    word-wrap: break-word;
+                    font-size: 3rem;
                     font-weight: bold;
-                    align-items: center;
                     color: black;
                   }
                 }
-
-                .viewImage{
-                  width: 30%;
-                  height: 100%;
-                  align-content: center;
-                .image1{
+                .upImage-container{
                   width: 100%;
-                  max-height: 135px;
-                  border-radius: 100px;
-                  object-fit: cover;
-                }
+                  .upImage{
+                    width: 40%;
+                    max-height: 135px;
+                    border-radius: 100px;
+                    object-fit: cover;
+                  }
                }
               }
-              .title-div{
-                // gap: 10px;
+            }
+
+            .middleDiv{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              .middleDiv-content {
+                width: 80%;
                 display: flex;
-                flex-direction: row;
                 align-items: center;
                 justify-content: center;
-                .title2-container {
+                gap: 10px;
+                .middleImages-container{
                   display: flex;
                   align-items: center;
-                  // justify-content:flex-end;
-                  color: black;
-                  .title2{
-                    word-wrap: break-word;
-                    font-size: 15rem;
-                    font-weight: bold;
-
+                  justify-content: center;
+                  flex-direction: row;
+                  gap: 10px;
+                  width: 60%;
+                  .middleImages {
+                    width: 100%;
+                    max-height: 185px;
+                    border-radius: 90px;
+                    object-fit: cover;
                   }
                 }
-                .bottom-title{
+                .middleTitle-container{
                   display: flex;
-                  flex-direction: row;
                   align-items: center;
-                  gap: 15px;
-                  .bottom-img{
-                    gap: 15px;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                  }
-                  
-                  .viewImage{
-                    display: flex;
-                    flex-direction: row;
-                    flex: 1;
-                    .image{
-                      width: 100%;
-                      height: 100%;
-                      max-height: 185px;
-                      border-radius: 90px;
-                      object-fit: cover;
-                    }
-                    
+                  .middleTitle{
+                    word-wrap: break-word;
+                    font-size: 4rem;
+                    font-weight: bold;
+                    height: 100%;
                   }
                 }
               }
@@ -102,139 +101,142 @@
 
             .LowerDiv{
               width: 100%;
-              display: flex;
-              flex-direction: column;
-              gap: 20px;
               .button-container {
+                width: 100%;
+                display: flex;
                 align-items: center;
-                margin-top: 30px;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-             
-                .button {
-                  padding: 15px 30px;
-                  border-radius: 50px;
-                  border: none;
-                  outline: none;
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  font-weight: 400;
-                  background: black;
-                  color: var(--composer-font-color-secondary);
-                  transition: 0.3s all;
-                  margin-top: 10px;
-                  max-width: 15vw;
-                  border: 1px solid black;
-                  --animate-duration: 0.2s;
-                  
-
-                  &:hover {
-                    background: transparent;
-                    color: var(--composer-font-color-primary);
-                    transition: 0.3s all;
-                    cursor: pointer;
-                    border: 1px solid black;
-                  }
-                }
-                .figure {
-                  position: relative;
-                  width: 30%;
-                  height: 30%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  z-index: 1;
-                  .pagination {
-                    position: relative;
-                    font-size: 20px;
-                    width: 100%;
-                    .active-slide {
-                      color: black;
-                      font-size: 4rem;
-                    }
-                    .slide-count-power {
-                      color: black;
-                      .divider{
-                        font-size: 30px;
-                        margin-left: 10px;
-                        margin-right: -5px;
-                      }
-                      .slide-count {
-                        font-size: 2rem;
-                      }
-                    }
-                  }
-                }
-              }
-              .desc-contain{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-
-              
-              .leftDescription {
-                font-size: 1.2rem;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 250px;
-                width: 30%;
-                color: var(--composer-font-color-primary);
-              }
-              .count{
-                display: flex;
-                flex-direction: row;
                 justify-content: center;
-                width: 40%;
-                gap: 20px;
+                .button-content{
+                  display: flex;
+                  flex-direction: row;
+                  width: 80%;
+                  justify-content: space-between;
+                  .button {
+                    padding: 0px 40px;
+                    border-radius: 50px;
+                    border: none;
+                    outline: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-weight: 400;
+                    background: black;
+                    color: var(--composer-font-color-secondary);
+                    transition: 0.3s all;
+                    max-width: 15vw;
+                    border: 1px solid black;
+                    --animate-duration: 0.2s;
+                    height: 100%;
+                    font-size: 20px;
+  
+                    &:hover {
+                      background: transparent;
+                      color: var(--composer-font-color-primary);
+                      transition: 0.3s all;
+                      cursor: pointer;
+                      border: 1px solid black;
+                    }
+                  }
+                  .figure {
+                    width: 30%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .pagination {
+                      font-size: 20px;
+                      width: 100%;
+                      .active-slide {
+                        color: black;
+                        font-size: 4rem;
+                      }
+                      .slide-count-power {
+                        color: black;
+                        .divider{
+                          font-size: 30px;
+                          margin-left: 10px;
+                          margin-right: -5px;
+                          height: 100%;
+                        }
+                        .slide-count {
+                          font-size: 2rem;
+                          height: 100%;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .desc-container{
+                width: 100%;
+                display: flex;
                 align-items: center;
-                .items{
-                  padding-left: 30px;
+                justify-content: center;
+                .desc-content{
+                  width: 80%;
                   display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                  width: 150px;
-                  .itemsNo{
-                    font-size: 2rem;
-                    font-weight: bold;
-                    color: black;
-                  }
-                  .itemDesc{
-                    font-size: 1.3rem;
+                  // justify-content: space-between;
+                  gap: 15%;
+                  .leftDescription {
+                    font-size: 1.2rem;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     color: var(--composer-font-color-primary);
+                    max-width: 20%;
                   }
-                }
-                .line {
-                  height: 14vh;
-                  opacity: 0.4;
-                  width: 1px;
-                  background: var(--composer-font-color-primary);
-                }
-                .customers{
-                  padding-left: 15px;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                  width: 150px;
-                  .customerNo{
-                    font-size: 2rem;
-                    font-weight: bold;
-                    color: black;
+                  .count{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 30px;
+                    .count-items{
+                      padding-left: 30px;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 10px;
+                      .itemsNo{
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: black;
+                      }
+                      .itemDesc{
+                        font-size: 1.3rem;
+                        color: var(--composer-font-color-primary);
+                      }
+                    }
+                    .line {
+                      opacity: 0.4;
+                      width: 1px;
+                      background: var(--composer-font-color-primary);
+                      height: 100%;
+                    }
+                    .customers{
+                      padding-left: 15px;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 10px;
+                      width: 150px;
+                      height: 100%;
+                      .customerNo{
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: black;
+                        height: 100%;
+                      }
+                      .customerDesc{
+                        font-size: 1.3rem;
+                        color: var(--composer-font-color-primary);
+                        height: 100%;
+                      }
+                    }
                   }
-                  .customerDesc{
-                    font-size: 1.3rem;
+                  .rightDescription {
+                    font-size: 1.2rem;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     color: var(--composer-font-color-primary);
+                    // max-width: 20%;
                   }
                 }
-              }
-              .rightDescription {
-                font-size: 1.2rem;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                width: 30%;
-                color: var(--composer-font-color-primary);
-              }
             }
            }
          }
@@ -250,7 +252,6 @@
       .carousel {
         width: 100%;
         // max-width: 900px !important;
-          .content{
             .max-content{
               gap: 0px;
 
@@ -364,7 +365,6 @@
                 }
               }
             }
-          }
       }
     }
   }
@@ -379,7 +379,6 @@
       .carousel {
         width: 100%;
         max-width: 700px !important;
-          .content{
             .max-content{
               gap: 0px;
 
@@ -488,7 +487,6 @@
                 }
               }
             }
-          }
       }
     }
   }
@@ -502,7 +500,6 @@
       .carousel {
         width: 100%;
         max-width: 280px !important;
-          .content{
             .max-content{
               gap: 0px;
               .UpperDiv{
@@ -568,7 +565,6 @@
                     height: 30%;
                     display: flex;
                     align-items: center;
-                    z-index: 1;
                     .pagination {
                       font-size: 20px;
                       left: -81%;
@@ -623,7 +619,6 @@
                 }
               }
             }
-          }
       }
     }
   }
