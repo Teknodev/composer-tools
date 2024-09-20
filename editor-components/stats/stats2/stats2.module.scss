@@ -61,7 +61,6 @@
         }
       }
       .cards-container {
-        width: 65%;
         display: flex;
         flex-wrap: wrap;
         .listed {
@@ -70,10 +69,10 @@
           flex-direction: column;
           justify-content: space-between;
           flex-grow: 1;
-          padding: 40px 60px 30px 60px;
+          padding: 10px 10px 10px 20px;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
           border-bottom: none;
-          min-height: 28rem;
+          min-height: 20rem;
           .card-text {
             position: relative;
             flex: 1;

@@ -215,28 +215,34 @@ class Stats2Page extends BaseStats {
           )}
 
           <div className={this.decorateCSS("bottom-content")}>
-            {subHeader && (
-              <div className={this.decorateCSS("subHeader")}>
-                {subHeader}
-                {(contactButton || contactButtonIcon) && (
-                  <button
-                    className={`${this.decorateCSS("contact-button")} ${
-                      buttonAnimationEnabled ? this.decorateCSS("animated") : ""
-                    }`}
-                  >
-                    {contactButton}
-                    {contactButtonIcon && (
-                      <ComposerIcon
-                        propsIcon={{
-                          className: this.decorateCSS("contact-button-icon"),
-                        }}
-                        name={contactButtonIcon}
-                      />
-                    )}
-                  </button>
-                )}
-              </div>
+            {(subHeader || contactButton || contactButtonIcon) && (
+               <div className={this.decorateCSS("subHeader")}>
+               {subHeader && (
+                 <div className={this.decorateCSS('description')}>
+                 {subHeader}
+                 </div>
+               )}
+               {(contactButton || contactButtonIcon) && (
+                 <button
+                   className={`${this.decorateCSS("contact-button")} ${
+                     buttonAnimationEnabled ? this.decorateCSS("animated") : ""
+                   }`}
+                 >
+                   {contactButton}
+                   {contactButtonIcon && (
+                     <ComposerIcon
+                       propsIcon={{
+                         className: this.decorateCSS("contact-button-icon"),
+                       }}
+                       name={contactButtonIcon}
+                     />
+                   )}
+                 </button>
+               )}
+             </div>
             )}
+             
+            
 
             {cards.length > 0 && (
               <div className={this.decorateCSS("cards-container")}>
