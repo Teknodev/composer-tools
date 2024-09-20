@@ -52,6 +52,7 @@ $font-color-primary: var(--composer-font-color-primary);
           letter-spacing: 2px;
           color: $font-color-primary;
           padding-top: 20px;
+          word-break: break-word;
         }
         .text-uppercase {
           text-transform: uppercase;
@@ -61,6 +62,7 @@ $font-color-primary: var(--composer-font-color-primary);
           padding: 10px 0;
           margin: 30px 0 15px 0;
           color: $font-color-primary;
+          word-break: break-word;
         }
         .line {
           height: 1px;
@@ -74,11 +76,13 @@ $font-color-primary: var(--composer-font-color-primary);
           margin: 20px 0;
           color: $font-color-primary;
           margin-top: 0;
+          word-break: break-word;
         }
         .author {
           font-size: 16px;
           font-weight: 600;
           color: $font-color-primary;
+          word-break: break-word;
         }
         .author-role {
           font-size: 16px;
@@ -86,6 +90,7 @@ $font-color-primary: var(--composer-font-color-primary);
           padding-left: 20px;
           z-index: 1;
           color: $font-color-primary;
+          word-break: break-word;
         }
         .author-role-background {
           width: 60px;
@@ -131,13 +136,15 @@ $font-color-primary: var(--composer-font-color-primary);
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+                word-break: break-word;
               }
               .stat-description {
-                width: 30%;
+                width: 70%;
                 font-size: 16px;
                 font-weight: 400;
                 letter-spacing: 2px;
                 @include blinkpageColor;
+                word-break: break-word;
               }
             }
           }
@@ -150,11 +157,10 @@ $font-color-primary: var(--composer-font-color-primary);
           position: relative;
           display: flex;
           img {
-            height: 600px;
             max-height: 750px;
             object-fit: cover;
             opacity: 0.85;
-            width: 95%;
+            width: 100%;
             margin: 20px;
           }
           .overlay {
@@ -179,6 +185,7 @@ $font-color-primary: var(--composer-font-color-primary);
               line-height: 1.5;
               font-weight: 600;
               color: $font-color-primary;
+              word-break: break-word;
             }
           }
         }
