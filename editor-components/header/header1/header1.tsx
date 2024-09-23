@@ -44,6 +44,12 @@ class Header1 extends BaseHeader {
               value: "BRANDING AND IDENTITY",
             },
             {
+              type: "boolean",
+              key: "numberLine",
+              displayer: "Number Line",
+              value: true,
+            },
+            {
               type: "number",
               key: "sliderNumber",
               displayer: "Slider Number",
@@ -291,7 +297,10 @@ class Header1 extends BaseHeader {
                           />
 
                           <h1 className={this.decorateCSS("sliderNumber")}>
-                            <span className={this.decorateCSS("overlay")}></span>
+                            {item.numberLine && (
+                              <span className={this.decorateCSS("overlay")}></span>
+                            )
+                            }
                             <span className={this.decorateCSS("slider-number")}>
                               {item.sliderNumber}
                             </span>
