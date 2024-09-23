@@ -24,13 +24,17 @@
       justify-content: space-between;
       align-items: flex-start;
       .subHeader {
-        width: 35%;
+        width: 65%;
         margin-right: 80px;
         position: sticky;
         top: 80px;
         font-size: 18px;
         display: unset;
         line-height: 1.5;
+        .description{
+          max-width: 90%;
+          word-break: break-word;
+        }
         .contact-button {
           display: flex;
           align-items: center;
@@ -69,21 +73,21 @@
           flex-direction: column;
           justify-content: space-between;
           flex-grow: 1;
-          padding: 10px 10px 10px 20px;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
           border-bottom: none;
-          min-height: 20rem;
+          padding: 20px 60px 30px 60px;
           .card-text {
             position: relative;
             flex: 1;
-            width: 100%;
-            font-size: 1.6rem;
+            width: 85%;
+            font-size: 19px;
             text-align: left;
             word-break: break-word;
             white-space: normal;
             text-overflow: ellipsis;
             line-height: 1.5;
             overflow: hidden;
+            margin-bottom: 20%;
           }
           .card-amount-container {
             display: flex;
