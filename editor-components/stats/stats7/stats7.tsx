@@ -138,20 +138,18 @@ class Stats7Page extends BaseStats {
 
     return (
       <div className={this.decorateCSS("container")} >
-        <div className={this.decorateCSS("max-content")} style={{display: `${isTitleExist || isDescriptionExist ?   "flex":  "unset"}`}}>
+        <div className={(isTitleExist || isDescriptionExist ? this.decorateCSS("max-content"): this.decorateCSS("max-content-is-disable"))}>
 
           {showDiv && <div className={this.decorateCSS("title-child")}>
             {isSubtitleExist && (
-              <h1 className={this.decorateCSS("subTitle")} style={{
-                backgroundColor: `${enableSubtitleBackground ? "" : 'transparent' }`
-              }}>{isSubtitleExist}</h1>
+              <h1 className={enableSubtitleBackground ? this.decorateCSS("subTitle") :this.decorateCSS("subTitle-background-is-disable") }>{this.getPropValue("subTitle")}</h1>
             )}
             {isTitleExist && (
-              <h1 className={this.decorateCSS("title")}>{isTitleExist}</h1>
+              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             )}
             {isDescriptionExist && (
               <p className={this.decorateCSS("description")}>
-                {isDescriptionExist}
+                {this.getPropValue("description")}
               </p>
             )}
           </div>}
@@ -160,11 +158,11 @@ class Stats7Page extends BaseStats {
             {items.map((item: Item, index: number) => {
               const { title, progress, progressText } = item;
               let percent = progress ;
-              let text = progressText ?? `${percent}%`;
+              let text = progressText ?? <>`${percent}%`</>;
 
               if (percent === 0 ) {
                 percent = 1;
-                text = "0%";
+                text = <>"0%"</>;
               } else if (percent >= 100) {
                 percent = 100;
               }
@@ -173,16 +171,16 @@ class Stats7Page extends BaseStats {
                 return (
                   <div className={this.decorateCSS("item")} key={index}>
 
-                    {(title || text) && (
+                    {(
                       <div className={this.decorateCSS("progress-title")}>
-                        {title}
-                        {text && (
+                        {this.castToString(title) && title}
+                        {
                           <div className={this.decorateCSS("progress-percent")}>
                             <div className={this.decorateCSS("progress-text")}>
-                              {text}
+                              {this.castToString(text) && text}
                             </div>
                           </div>
-                        )}
+                        }
                       </div>
                     )}
                     {percent !== null && percent !== undefined && (
