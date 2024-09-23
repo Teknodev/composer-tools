@@ -302,6 +302,12 @@ class List1 extends BaseList {
         },
       ],
     });
+    this.addProp({
+      type: "boolean",
+      key: "backgroundColor",
+      displayer: "Colored Area",
+      value: true
+    });
 
     this.setComponentState("active-index", 1)
   }
@@ -312,13 +318,15 @@ class List1 extends BaseList {
   }
 
   render() {
+    const sliderItems = this.castToObject<Card[]>("slider");
+    const backgroundColor = this.getPropValue("backgroundColor");
+    const title = this.getPropValue("title");
     const settings = {
       dots: true,
-      infinite: true,
-      speed: 200,
-      autoplay: false,
+      infinite: sliderItems.length > 1,
+      autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: window.innerWidth < 769 ? (window.innerWidth < 500 ? 1 : 1) : 3,
+      slidesToShow: window.innerWidth < 475 ? 1 : window.innerWidth < 775 ? 2 : Math.min(3, sliderItems.length),  // En fazla 3 öğe göster
       slidesToScroll: 1,
       initialSlide: 1,
       arrows: false,
@@ -326,7 +334,7 @@ class List1 extends BaseList {
       dotsClass: this.decorateCSS("dots"),
       centerPadding: '0px',
       beforeChange: (previndex: number, currindex: number) => {
-        this.setComponentState("active-index", currindex)
+        this.setComponentState("active-index", currindex);
       },
     };
     return (
@@ -334,31 +342,37 @@ class List1 extends BaseList {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-text")}>
             <h4 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h4>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+
+            {title && (
+              <h1 className={this.decorateCSS("title")}>{title}</h1>
+            )}
+
           </div>
           <div className={this.decorateCSS("carousel-div")}>
             <ComposerSlider
               {...settings}
               className={this.decorateCSS("carousel")}
             >
-              {this.castToObject<Card[]>("slider").map(
-               (item: Card, indexSlider: number) => (
-                  <div key={indexSlider} className={`${this.decorateCSS("card")} ${this.getComponentState("active-index") == indexSlider ? this.decorateCSS("active") : ""}`}>
+              {sliderItems.map(
+                (item: Card, indexSlider: number) => (
+                  <div key={indexSlider}
+                    className={`${this.decorateCSS("card")}
+                   ${backgroundColor && this.getComponentState("active-index") == indexSlider ? this.decorateCSS("active") : ""}`}>
                     <div className={this.decorateCSS("card-inner")}>
-                      
-                    {item.image && <div className={this.decorateCSS("img-div")}>
-                      <img
-                        className={this.decorateCSS("img")}
-                        src={item.image}
-                        alt=""
-                      /></div>}
 
-                      <span className={this.decorateCSS("title")}>
-                        {item.title}
-                      </span>
-                      <span className={this.decorateCSS("subtitle")}>
-                        {item.subtitle}
-                      </span>
+                      {item.image && <div className={this.decorateCSS("img-div")}>
+                        <img
+                          className={this.decorateCSS("img")}
+                          src={item.image}
+                          alt=""
+                        /></div>}
+
+                          <span className={this.decorateCSS("title")}>
+                            {item.title}
+                          </span>
+                          <span className={this.decorateCSS("subtitle")}>
+                            {item.subtitle}
+                          </span>
                       <ComposerLink path={item.url}>
                         <div className={this.decorateCSS("link")}>
                           <span className={this.decorateCSS("text")}>{item.text}</span>
