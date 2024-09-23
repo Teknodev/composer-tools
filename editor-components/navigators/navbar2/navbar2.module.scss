@@ -2,12 +2,17 @@
   width: 100%;
   background-color: var(--composer-html-background);
   .navbar-child {
-    background-color: var(--composer-html-background);
     margin-top: 30px;
+    background-color: var(--composer-html-background);
+
     .mobile-item {
-      padding: 5px 0;
+      padding: 10px 0;
       color: var(--composer-font-color-primary);
+      z-index: 5;
+      position: relative;
+      background-color:var(--composer-html-background);
     }
+
   }
   &.sticky {
     position: sticky;
@@ -28,46 +33,68 @@
       justify-content: space-between;
       padding: 50px 50px;
       background-color: var(--composer-html-backgrounds);
-
+      gap:10px;
+      
       .title {
         font-size: 35px;
         font-weight: bold;
         color: var(--composer-primary-color);
+        max-width: 50%;
+        word-break: break-word;
       }
-
-      .items {
+      .image-container {
+        color: var(--composer-primary-color);
+        width: 100%;
+        max-width: 50%;
+        max-height: 66px;
+        object-fit: cover;
         display: flex;
-        gap: 40px;
-
-        &.middle {
-          width: 80%;
-          justify-content: center;
-          margin-right: 150px;
-
-          h3 {
-            font-size: 20px;
-            font-weight: 200;
-            width: 100px;
+        align-items: center;
+        justify-content: start;
+        .image{
+          max-width: 30%;
+        }
+      }
+      .item-conatiner{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        max-width: 50%;
+        .items {
+          display: flex;
+          gap: 40px;
+  
+          &.middle {
+            width: 80%;
+            justify-content: center;
+            margin-right: 150px;
+  
+            h3 {
+              font-size: 20px;
+              font-weight: 200;
+              width: 100px;
+            }
           }
-        }
-
-        &.right {
-          width: 70%;
-          justify-content: flex-end;
-        }
-
-        h3 {
-          cursor: pointer;
-          transition: all 0.5s;
-          font-weight: 200;
-          font-size: 16px;
-          color: var(--composer-font-color-primary);
-
-          &:hover {
-            opacity: 0.6;
+  
+          &.right {
+            width: 70%;
+            justify-content: flex-end;
+          }
+  
+          h3 {
+            cursor: pointer;
+            transition: all 0.5s;
+            font-weight: 200;
+            font-size: 16px;
+            color: var(--composer-font-color-primary);
+  
+            &:hover {
+              opacity: 0.6;
+            }
           }
         }
       }
+
 
       .button-child {
         display: flex;
@@ -124,16 +151,15 @@
       max-width: 100%;
 
       nav {
-        display: flex;
         text-align: center;
         padding: 50px 0;
+        width: 100%;
 
         .title {
           font-weight: bold;
           font-size: 30px;
           margin-left: 20px;
         }
-
         .items {
           width: max-content;
           margin: 0 auto;
@@ -142,7 +168,40 @@
     }
   }
 
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   @media only screen and (max-width: 870px) {
+    .navbar-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 40px !important;
+      background-color: var(--composer-html-background);
+      position: absolute;
+      z-index: 20;
+      max-height: fit-content;
+      .mobile-item {
+        padding: 10px 0;
+        color: var(--composer-font-color-primary);
+        z-index: 5;
+        position: relative;
+        background-color: var(--composer-html-background);
+        opacity: 0;
+        &.open {
+          animation: slideIn 3s ease-out forwards;
+        }
+      }
+    }
+  
     .max-content {
       nav {
         display: none;
@@ -176,25 +235,8 @@
               }
             }
           }
-
-          .navbar-hidden {
-            display: block;
-            visibility: visible;
-          }
-
-          .navbar-child {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.5s;
-            height: 200px;
-            width: 100%;
-            margin-top: 40px;
-            background-color: var(--composer-secondary-color);
-            color: var(--composer-font-color-secondary);
-            position: absolute;
-            z-index: 200;
+          .image{
+            max-width: 80% !important;
           }
         }
       }
