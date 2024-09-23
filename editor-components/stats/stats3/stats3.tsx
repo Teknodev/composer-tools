@@ -91,14 +91,14 @@ class Stats3Page extends BaseStats {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "number",
+              displayer: "Number",
               value: "12 th",
             },
             {
               type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
+              key: "text",
+              displayer: "Text",
               value: "Years Experience",
             },
           ],
@@ -116,14 +116,14 @@ class Stats3Page extends BaseStats {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "number",
+              displayer: "Number",
               value: "800 +",
             },
             {
               type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
+              key: "text",
+              displayer: "Text",
               value: "Happy Clients",
             },
           ],
@@ -137,18 +137,18 @@ class Stats3Page extends BaseStats {
               type: "icon",
               key: "icon",
               displayer: "icon",
-              value: "TbHeartPlus",
+              value: "BsHeartPulse",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "100 +",
             },
             {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "100 +",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
               value: "Psycologist",
             },
           ],
@@ -166,78 +166,108 @@ class Stats3Page extends BaseStats {
     return "Stats 3";
   }
   render() {
+    const subtitle = this.castToString(this.getPropValue("subTitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"))
+    const descriptionMore = this.castToString(this.getPropValue("descriptionMore"))
+    const buttons = this.getPropValue("buttons");
+    const image = this.getPropValue("backgroundImage");
+    const cardContent = this.getPropValue("card-content")
+    const isBoxVisible = this.getPropValue("is_box_visible");
+    console.log(isBoxVisible)
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats3-page")}>
-            <div className={this.decorateCSS("bottom-child")}>
+          <div className={this.decorateCSS("page")}>
+            {(subtitle || title || description || descriptionMore || buttons.length > 0) && (
               <div className={this.decorateCSS("text")}>
-                <h1 className={this.decorateCSS("subTitle")}>
-                  {this.getPropValue("subTitle")}
-                </h1>
-                <h1 className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </h1>
-                <h1 className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </h1>
-                {this.getPropValue("descriptionMore") !== "" && (
+                {subtitle && (
+                  <h1 className={this.decorateCSS("subTitle")}>
+                    {this.getPropValue("subTitle")}
+                  </h1>
+                )
+                }
+                {title && (
+                  <h1 className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </h1>
+                )
+                }
+                {description && (
+                  <h1 className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </h1>
+                )
+                }
+                {descriptionMore && (
                   <h3 className={this.decorateCSS("descriptionMore")}>
                     {this.getPropValue("descriptionMore")}
                   </h3>
-                )}
-
-                <div className={this.decorateCSS("box")}>
-                  {this.castToObject<any>("buttons").map((item: any, index: number) => {
-                    return (
-                      <ComposerLink key={`stats-${index}`} path={item.url}>
-                        <button
-                          className={`${this.decorateCSS("button")} ${
-                            item.isPrimary && this.decorateCSS("button-color")
-                          }`}
-                        >
-                          <span className={this.decorateCSS("button-text")}>{item.buttonText}</span>
-                        </button>
-                      </ComposerLink>
-                    );
-                  })}
-                </div>
+                )
+                }
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {this.castToObject<any>("buttons").map((item: any, index: number) => {
+                      return (
+                        <ComposerLink key={`stats-${index}`} path={item.url}>
+                          <button
+                            className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")
+                              }`}
+                          >
+                            <span className={this.decorateCSS("button-text")}>{item.buttonText}</span>
+                          </button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )
+                }
               </div>
-
-              <div className={this.decorateCSS("card")}>
-                <img
-                  src={this.getPropValue("backgroundImage")}
-                  alt="image"
-                  className={this.decorateCSS("image")}
-                />
-                {this.getPropValue("is_box_visible") && (
-                  <div className={this.decorateCSS("boxs")}>
+            )
+            }
+            {(image || cardContent.length > 0) && (
+              <div className={this.decorateCSS("right-container")}>
+                {image && (
+                  <img
+                    src={this.getPropValue("backgroundImage")}
+                    alt="image"
+                    className={this.decorateCSS("image")}
+                  />
+                )}
+                {(isBoxVisible) && (
+                  <div className={this.decorateCSS("card")}>
                     {this.castToObject<any>("card-content").map(
                       (item: any, index: number) => {
                         return (
-                          <ComposerLink key={`stats-${index}`} path={item.url}>
-                            <button>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{ className: this.decorateCSS("icon") }}
-                              />
-                              <div className={this.decorateCSS("text")}>
-                                <span className={this.decorateCSS("button-text")}>
-                                  {item.text}
-                                </span>
-                                <span className={this.decorateCSS("button-text")}>
-                                  {item.buttonText}
-                                </span>
+                          <div className={this.decorateCSS("content")}>
+                            <div className={this.decorateCSS("inner-content")}>
+                              <div className={this.decorateCSS("firstline")}>
+                                <ComposerIcon
+                                  name={item.icon}
+                                  propsIcon={{ className: this.decorateCSS("icon") }}
+                                />
+                                <div className={this.decorateCSS("number")}>
+                                  {item.number}
+                                </div>
                               </div>
-                            </button>
-                          </ComposerLink>
+                              <div className={this.decorateCSS("text")}>
+                                {item.text}
+                              </div>
+                            </div>
+
+                          </div>
+
                         );
                       }
                     )}
                   </div>
-                )}
+                )
+                }
               </div>
-            </div>
+            )
+
+            }
+
           </div>
         </div>
       </div>
