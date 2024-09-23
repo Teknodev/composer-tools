@@ -516,7 +516,7 @@ class PricingTable3 extends BasePricingTable {
                             </h1>
                           )}
                           <h3 className={this.decorateCSS("price")}>
-                            {card.price}$
+                            ${card.price}
                           </h3>
                         </div>
                         {card.items.length > 0 && (
