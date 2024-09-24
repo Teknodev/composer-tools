@@ -82,6 +82,12 @@ class Header1 extends BaseHeader {
               value: "WEB AND APPLICATION",
             },
             {
+              type: "boolean",
+              key: "numberLine",
+              displayer: "Number Line",
+              value: true,
+            },
+            {
               type: "number",
               key: "sliderNumber",
               displayer: "Slider Number",
@@ -112,6 +118,12 @@ class Header1 extends BaseHeader {
               key: "subtitle",
               displayer: "SubTitle",
               value: "GRAPHICS AND IDENTITY",
+            },
+            {
+              type: "boolean",
+              key: "numberLine",
+              displayer: "Number Line",
+              value: true,
             },
             {
               type: "number",
@@ -146,6 +158,12 @@ class Header1 extends BaseHeader {
               value: "PACKAGING AND WEB",
             },
             {
+              type: "boolean",
+              key: "numberLine",
+              displayer: "Number Line",
+              value: true,
+            },
+            {
               type: "number",
               key: "sliderNumber",
               displayer: "Slider Number",
@@ -176,6 +194,12 @@ class Header1 extends BaseHeader {
               key: "subtitle",
               displayer: "SubTitle",
               value: "DESIGN AND IDENTITY",
+            },
+            {
+              type: "boolean",
+              key: "numberLine",
+              displayer: "Number Line",
+              value: true,
             },
             {
               type: "number",
