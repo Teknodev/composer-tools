@@ -12,29 +12,28 @@
       width: 100%;
       height: 100%;
       display: flex;
-      align-items: center;
-      max-width: var(--composer-content-width);
-      margin: 0 auto;
-        .text {
+        .left-page {
           height: 100%;
           width: 100%;
           flex:1;
           .subTitle {
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
+            font-size:1.5rem;
+            padding-bottom: 10px;            
           }
           .title {
             font-size: 3.5rem;
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
           }
           .description {
             font-weight: 100;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             opacity: 0.8;
             color: var(--composer-font-color-primary);
           }
           .descriptionMore {
             font-weight: 100;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             opacity: 0.8;
             color: var(--composer-font-color-primary);
           }
@@ -42,23 +41,21 @@
             display: flex;
             gap: 10px;
             align-items: center;
+            padding-top:30px;
             .button {
-              font-size: 20px;
-              border: var(--composer-secondary-color);
+              font-size: 1.1rem;
               border-radius: 6px;
               cursor: pointer;
-              border: 2px solid;
+              border: 2px solid var(--composer-primary-color);
               padding: 15px 30px;
               background-color: transparent;
               .button-text{
-                color: var(--composer-font-color-primary);
+                color: var(--composer-primary-color);
               }
+              transition: transform 0.3s ease;
               &:hover {
-                background-color: var(--composer-secondary-color);
-                border: 2px solid var(--composer-secondary-color);
-                transform: scale(1.05);
+                transform: scale(1.1);
                 .button-text{
-                  color: var(--composer-font-color-secondary);
                 }
               }
             }
@@ -67,59 +64,64 @@
         .right-container{
           display: flex;
           align-items: center;
-          justify-content: flex-end;
           flex-direction: column;
           flex:1;
+          height: fit-content;
+          position: relative;
+          align-items: flex-end;
           .image {
             border-radius: 20px;
-            width: 70%;
+            width: 85%;
             object-fit: cover;
+            display: flex;
+            margin-bottom: 5rem ;
           }
           .card {
             display: flex;
-            background-color: var(--composer-secondary-color);
             border-radius: 10px;
             outline: 10px solid var(--composer-html-background);
-            transform: translate(-10%, -20%);
-            padding: 10px;
+            padding: 30px;
+            gap:10px;
+            position: absolute;
+            left: 30px;
+            max-width: 90%;
+            bottom: 0px;
+            background-color: color-mix(in srgb , var(--composer-primary-color), var(--composer-html-background) 95%);
             .content {
+              flex-grow: 1;
               display: flex;
               gap: 10px;
-              padding: 20px;
               border: none;
-              background-color: var(--composer-secondary-color);
-              color: var(--composer-font-color-secondary);
+              // background-color: var(--composer-secondary-color);
+              color: var(--composer-font-color-primary);
               flex-direction: row;    
               .inner-content{
                 display: flex;
-                flex-direction: column;
-                .firstline{
-                  display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  justify-content: start;
-                  gap:10px;
-                  .icon {
-                    width: 30px;
-                    height: 30px;
-                  }
+                flex-direction: row;
+                gap:10px;
+                .icon {
+                  margin-top: 10px;
+                  width: 30px;
+                  height: 30px;
+                  min-width: 30px;
+                }
+                .text-container{
+                  margin-right: 10px;
                   .number{
-                    font-size: 40px;
+                    font-size: 30px;
+                  }
+                  .right-text {
+                    font-size:20px
                   }
                 }
-                .text {
-                  font-size:20px
-                }
-
               }
 
               &::after {
                 content: "";
                 display: block;
                 width: 1px;
-                height: 175%; 
+                height: 100%;
                 background-color: var(--composer-html-background);
-                margin-top:-20px;
               }
               &:last-child::after {
                 display: none;
@@ -133,35 +135,70 @@
   }
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1000px) {
   .container {
-    height: 300%;
-    gap: 90px;
     .max-content {
-      flex-direction: column;
-      .stats3-page {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        .bottom-child {
-          display: block;
-          margin: 0 auto;
-          padding: 20px;
-          .text {
-            width: 100%;
+      padding :20px 30px;
+      .page {
+        display: flex;
+        flex-direction: column;
+         gap:20px;
+          .left-page {
+            flex:1;
+            .subTitle {
+              font-size:1.3rem;
+              padding-bottom: 10px;            
+            }
+            .title {
+              font-size: 3.2rem;
+            }
+            .description {
+              font-size: 1.4rem;
+            }
+            .descriptionMore {
+              font-size: 1.4rem;
+            }
+            .button-container {
+              gap: 10px;
+              padding-top:30px;
+              .button {
+                font-size: 1.5rem;
+                border: var(--composer-secondary-color);
+                border-radius: 6px;
+                cursor: pointer;
+                border: 2px solid;
+                padding: 15px 30px;
+                background-color: transparent;
+                .button-text{
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
           }
-          .box {
-            display: flex;
-            flex-direction: column;
-            position: static;
+          .right-container{
+            .image {
+              width: 100%;
+            }
+            .card {
+              left:0px;
+              margin:10px;
+              padding: 30px 20px;
+              width: 100%;
+              max-width: 97%;
+              .content { 
+                .inner-content{
+                  .icon {
+                  }
+                  .text-container{
+                    .number{
+                    }
+                    .right-text {
+                    }
+                  }
+                }
+              }
+            }
           }
-          .card {
-            width: 67%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
-        }
       }
     }
   }
@@ -169,40 +206,89 @@
 
 @media only screen and (max-width: 400px) {
   .container {
-    height: 1600px;
     .max-content {
-      flex-direction: column;
-      .stats3-page {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        .bottom-child {
-          display: block;
-          margin: 0 auto;
-          padding: 20px;
-          .box {
-            position: relative;
-            top: auto;
-            display: flex;
-            flex-direction: column;
-          }
-          .card {
-            flex-direction: column;
-            align-items: center;
-            .image {
-              height: 50%;
-              width: 120%;
+      padding :20px 30px;
+      .page {
+        display: flex;
+        flex-direction: column;
+
+          .left-page {
+            flex:1;
+            .subTitle {
+              font-size:1.1rem;
+              padding-bottom: 10px;            
             }
-            .boxs {
-              flex-direction: column;
-              margin: 0 -30px -190px 0;
-              .cards {
-                border: none;
+            .title {
+              font-size: 3rem;
+            }
+            .description {
+              font-weight: 100;
+              font-size: 1rem;
+            }
+            .descriptionMore {
+              font-weight: 100;
+              font-size: 1rem;
+            }
+            .button-container {
+              gap: 10px;
+              padding-top:30px;
+              .button {
+                font-size: 1.3rem;
+                border: var(--composer-secondary-color);
+                border-radius: 6px;
+                cursor: pointer;
+                border: 2px solid;
+                padding: 10px 20px;
+                background-color: transparent;
+                .button-text{
+                  color: var(--composer-font-color-primary);
+                }
               }
             }
           }
-        }
+          .right-container{
+            .image {
+              width: 100%;
+              margin: 0px;
+            }
+            .card {
+              position: relative;
+              flex-direction: column;
+              gap:0px;
+              flex:1;
+              max-width: 100%;
+              .content { 
+                flex-direction: column;
+                width: 100%;
+                .inner-content{
+                  flex-direction: column;
+                  width: 100%;
+                  align-items: center;
+                  .icon {
+                    width: 20px;
+                    height: 20px;
+                    max-width: 20px;
+                  }
+                  .text-container{
+                    width: 100%;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+                    margin:0px;
+                    .number{
+                      font-size: 1rem;
+                    }
+                    .right-text {
+                      font-size: 1rem;
+                      margin-right: 0px;
+                    }
+                  }
+                }
+              }
+            }
+          }
       }
     }
   }
+
 }

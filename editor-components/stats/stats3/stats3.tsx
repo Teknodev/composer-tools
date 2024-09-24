@@ -47,7 +47,7 @@ class Stats3Page extends BaseStats {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "Read More",
+              value: "READ MORE",
             },
             {
               type: "page",
@@ -71,7 +71,7 @@ class Stats3Page extends BaseStats {
       key: "backgroundImage",
       displayer: "Card Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ced0bd2970002c6298e9?alt=media&timestamp=1719584962578",
+        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/group-therapy-support-or-mental-health-community-2023-11-27-05-33-38-utc.jpg",
     });
     this.addProp({
       type: "array",
@@ -180,7 +180,7 @@ class Stats3Page extends BaseStats {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             {(subtitle || title || description || descriptionMore || buttons.length > 0) && (
-              <div className={this.decorateCSS("text")}>
+              <div className={this.decorateCSS("left-page")}>
                 {subtitle && (
                   <h1 className={this.decorateCSS("subTitle")}>
                     {this.getPropValue("subTitle")}
@@ -241,20 +241,19 @@ class Stats3Page extends BaseStats {
                         return (
                           <div className={this.decorateCSS("content")}>
                             <div className={this.decorateCSS("inner-content")}>
-                              <div className={this.decorateCSS("firstline")}>
-                                <ComposerIcon
-                                  name={item.icon}
-                                  propsIcon={{ className: this.decorateCSS("icon") }}
-                                />
+                              <ComposerIcon
+                                name={item.icon}
+                                propsIcon={{ className: this.decorateCSS("icon") }}
+                              />
+                              <div className={this.decorateCSS("text-container")}>
                                 <div className={this.decorateCSS("number")}>
                                   {item.number}
                                 </div>
-                              </div>
-                              <div className={this.decorateCSS("text")}>
-                                {item.text}
+                                <div className={this.decorateCSS("right-text")}>
+                                  {item.text}
+                                </div>
                               </div>
                             </div>
-
                           </div>
 
                         );
