@@ -15,6 +15,7 @@ $font-color-primary: var(--composer-font-color-primary);
   flex-direction: column;
   align-items: center;
   background: var(--composer-html-background);
+  height: 100%;
   p {
     color: $font-color-primary;
   }
@@ -29,8 +30,8 @@ $font-color-primary: var(--composer-font-color-primary);
     max-width: var(--composer-content-width);
     margin: auto;
     width: 100%;
-    flex: 1;
     gap: 50px;
+    height: 100%;
     &.image-absent {
       display: inline-block;
       width: 100%;
@@ -43,15 +44,13 @@ $font-color-primary: var(--composer-font-color-primary);
       .content {
         display: flex;
         flex-direction: column;
-        align-items: start;
-        justify-content: flex-start;
-        flex: 1;
+        justify-content: center;
+        height: 100%;
         .title {
           margin: 0;
           font-size: 40px;
           letter-spacing: 2px;
           color: $font-color-primary;
-          padding-top: 20px;
           word-break: break-word;
         }
         .text-uppercase {
@@ -59,8 +58,6 @@ $font-color-primary: var(--composer-font-color-primary);
         }
         .subtitle {
           font-size: 20px;
-          padding: 10px 0;
-          margin: 30px 0 15px 0;
           color: $font-color-primary;
           word-break: break-word;
         }
@@ -69,11 +66,9 @@ $font-color-primary: var(--composer-font-color-primary);
           width: 100%;
           color: $font-color-primary;
           opacity: 1;
-          margin-bottom: 20px;
         }
         .description {
           font-size: 16px;
-          margin: 20px 0;
           color: $font-color-primary;
           margin-top: 0;
           word-break: break-word;
@@ -101,23 +96,30 @@ $font-color-primary: var(--composer-font-color-primary);
           height: 100%;
           z-index: -1;
           transform: skew(-10deg);
-        }        
+        }
         .stats {
           display: grid;
           flex-wrap: wrap;
-          justify-content: space-between;
           width: 100%;
-          margin-top: 40px;
+          gap: 50px;
+          padding-top: 70px;
           grid-template-columns: repeat(2, 1fr);
-          gap: 30px;
+
+          &.full-width { 
+            display: flex;
+            grid-template-columns: 1fr; 
+            flex-direction: row;
+          }
           .stat-border {
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
             background-color: transparent;
+            max-width: 400px;
             .stat {
               opacity: 1;
               display: flex;
-              align-items: baseline;
+              align-items: center;
               background-color: $color-mix;
+              gap: 15px;
               &.with-background {
                 background-color: $color-mix;
                 margin: 15px;
@@ -130,21 +132,19 @@ $font-color-primary: var(--composer-font-color-primary);
                 font-size: 55px;
                 font-weight: 700;
                 text-align: center;
-                margin: 0 10px;
                 color: $font-color-primary;
-                max-width: 60%;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 word-break: break-word;
               }
               .stat-description {
-                width: 70%;
                 font-size: 16px;
                 font-weight: 400;
                 letter-spacing: 2px;
                 @include blinkpageColor;
                 word-break: break-word;
+                max-width: 50%;
               }
             }
           }
@@ -159,7 +159,7 @@ $font-color-primary: var(--composer-font-color-primary);
           img {
             max-height: 750px;
             object-fit: cover;
-            opacity: 0.85;
+            filter: brightness(70%);
             width: 100%;
             margin: 20px;
           }
@@ -239,10 +239,13 @@ $font-color-primary: var(--composer-font-color-primary);
           }
           .stats{
             max-width: 100%;
-            display: flex !important;
             .stat-border{
-              flex:1 !important;
               min-width: 45% !important;
+              .stat{
+                .stat-description{
+                  max-width: 40% !important;
+                }
+              }
             }
           }
         }
@@ -274,12 +277,17 @@ $font-color-primary: var(--composer-font-color-primary);
         text-align: start;
         margin: 0;
         .content {
+          justify-content: flex-start;
           padding: 0;
           .title {
             padding-top: 0 !important;
           }
           .stats{
             grid-template-columns: repeat(1, 1fr);
+            &.full-width { 
+              display: grid;
+              grid-template-columns: 1fr; 
+            }
             .stat-border {
               .stat {
                 margin-right: 0;
@@ -298,7 +306,6 @@ $font-color-primary: var(--composer-font-color-primary);
         .image-container-border{
           img{
             width: 90% !important;
-            
           }
           .overlay {
             .number {

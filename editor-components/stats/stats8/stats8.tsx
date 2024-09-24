@@ -244,7 +244,9 @@ class Stats8Page extends BaseStats {
                   </span>
                 )}
 
-                <div className={this.decorateCSS("stats")}>
+                <div className={`${this.decorateCSS("stats")} ${
+                    !imageSrc ? this.decorateCSS("full-width") : ""
+                  }`}>
                   {statsData.map(
                     (statData: ICard, indexStat: number) =>
                       statData.title &&
