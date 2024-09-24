@@ -173,9 +173,7 @@ class Navbar2 extends BaseNavigator {
           <nav className={this.decorateCSS("navigator-mobile")}>
             <div className={this.decorateCSS("navbar")}>
               {image ? (
-                <div className={this.decorateCSS("image-container")}>
-                  <img src={image} className={this.decorateCSS("image")} alt="Image" />
-                </div>
+                <img src={image} className={this.decorateCSS("image")} alt="Image" />
               ) : (
                 title && (
                   <h2 className={this.decorateCSS("title")}>
