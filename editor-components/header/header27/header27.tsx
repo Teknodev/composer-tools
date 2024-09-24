@@ -173,7 +173,7 @@ class Header27 extends BaseHeader {
                           type: "page",
                           key: "buttonLink",
                           displayer: "Link",
-                          value: "explore.com",
+                          value: "",
                         },
                         {
                           type: "icon",
@@ -348,7 +348,7 @@ class Header27 extends BaseHeader {
                           type: "page",
                           key: "buttonLink",
                           displayer: "Button Link",
-                          value: "explore.com",
+                          value: "",
                         },
                         {
                           type: "icon",
@@ -433,21 +433,22 @@ class Header27 extends BaseHeader {
   };
 
   render() {
-
+    const slider = this.castToObject<SliderItemType[]>("slider");
+    const sliderCount = slider.length;
     const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
 
     const settings = {
       dots: true,
       arrows: false,
-      infinite: true,
-      fade: true,
+      infinite: sliderCount > 1,
+      fade: sliderCount > 1,
       speed: 700,
       autoplay: false,
       autoplaySpeed: 3000,
-      slidesToShow: 1,
+      slidesToShow: Math.min(sliderCount, 1),
       slidesToScroll: 1,
-      vertical:true,
-      verticalSwap:true,
+      vertical: sliderCount > 1,
+      verticalSwap: sliderCount > 1,
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
@@ -458,9 +459,7 @@ class Header27 extends BaseHeader {
         }, 100);
       },
     };
-
-    const slider = this.castToObject<SliderItemType[]>("slider");
-    const sliderCount = slider.length;
+    
 
     return (
       <div 
@@ -468,7 +467,6 @@ class Header27 extends BaseHeader {
       style={{
         backgroundImage: `url(${slider[this.getComponentState("active-index")].background})`,
       }}
-      
       >
         <div className={this.decorateCSS("content")}>
           <div className={this.decorateCSS("slider-parent")}>
