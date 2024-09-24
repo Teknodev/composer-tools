@@ -79,12 +79,12 @@
           .card {
             display: flex;
             border-radius: 10px;
-            outline: 10px solid var(--composer-html-background);
+            border: 10px solid var(--composer-html-background); 
             padding: 30px;
             gap:10px;
             position: absolute;
             left: 30px;
-            max-width: 90%;
+            max-width: 100%;
             bottom: 0px;
             background-color: color-mix(in srgb , var(--composer-primary-color), var(--composer-html-background) 95%);
             .content {
@@ -92,7 +92,6 @@
               display: flex;
               gap: 10px;
               border: none;
-              // background-color: var(--composer-secondary-color);
               color: var(--composer-font-color-primary);
               flex-direction: row;    
               .inner-content{
@@ -176,15 +175,15 @@
             }
           }
           .right-container{
+
             .image {
               width: 100%;
+              max-width: 100%;
             }
             .card {
               left:0px;
-              margin:10px;
               padding: 30px 20px;
               width: 100%;
-              max-width: 97%;
               .content { 
                 .inner-content{
                   .icon {
@@ -247,6 +246,7 @@
             }
           }
           .right-container{
+            gap:20px;
             .image {
               width: 100%;
               margin: 0px;

@@ -77,6 +77,9 @@ class Stats3Page extends BaseStats {
       type: "array",
       key: "card-content",
       displayer: "Card Content",
+      additionalParams: {
+        maxElementCount: 3,
+      },
       value: [
         {
           type: "object",
