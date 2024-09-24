@@ -439,15 +439,15 @@ class Header27 extends BaseHeader {
     const settings = {
       dots: true,
       arrows: false,
-      infinite: false,
+      infinite: true,
       fade: true,
       speed: 700,
       autoplay: false,
       autoplaySpeed: 3000,
-      vertical: true,
-      verticalSwiping: true,
       slidesToShow: 1,
       slidesToScroll: 1,
+      vertical:true,
+      verticalSwap:true,
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
@@ -463,13 +463,14 @@ class Header27 extends BaseHeader {
     const sliderCount = slider.length;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div
-          className={this.decorateCSS("content")}
-          style={{
-            backgroundImage: `url(${slider[this.getComponentState("active-index")].background})`,
-          }}
-        >
+      <div 
+      className={this.decorateCSS("container")}
+      style={{
+        backgroundImage: `url(${slider[this.getComponentState("active-index")].background})`,
+      }}
+      
+      >
+        <div className={this.decorateCSS("content")}>
           <div className={this.decorateCSS("slider-parent")}>
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {slider.map((item: SliderItemType, sliderIndex: number) => {

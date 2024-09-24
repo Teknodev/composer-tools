@@ -1,5 +1,5 @@
 import ComponentsRegistery from "./ComponentRegistery";
-// import DownloadComponent1 from "./download/download1/download1";
+import DownloadComponent1 from "./download/download1/download1";
 // import DownloadComponent2 from "./download/download2/download2";
 // import DownloadComponent3 from "./download/download3/download3";
 // import DownloadComponent4 from "./download/download4/download4";
@@ -214,7 +214,7 @@ import HeaderComponent27 from "./header/header27/header27";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
 //     new NotificationModal1(),
-//     new DownloadComponent1(),
+    new DownloadComponent1(),
 //     new DownloadComponent2(),
 //     new DownloadComponent3(),
 //     new DownloadComponent4(),
