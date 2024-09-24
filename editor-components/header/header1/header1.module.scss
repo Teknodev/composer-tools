@@ -45,7 +45,7 @@
     animation: moveUpDown 3s ease-in-out infinite;
   }
   .max-content {
-    max-width: white(--composer-content-width);
+    max-width: var(--composer-content-width);
     margin: 0 auto;
     height: 100vh;
     width: 100%;
