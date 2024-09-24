@@ -1,3 +1,4 @@
+
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
@@ -5,6 +6,19 @@
   justify-content: center;
   align-items: center;
   position: relative;
+
+  .slider {
+    width: 250px;
+    background-color: aqua;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh; /* Ekranın tüm yüksekliğini kaplar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+  }
 
   .max-content {
     padding: 0px 50px;
@@ -24,7 +38,7 @@
 
     .content-left {
       img {
-        height: 50px;
+        height: 80px;
       }
     }
 
@@ -76,7 +90,7 @@
           // border: 1px solid var(--composer-html-background);
           padding: 5px 10px;
           z-index: 1;
-          transition: max-height 0.4s ease, opacity 0.4s ease;
+          transition: max-height 0.0s ease, opacity 0.4s ease;
         }
 
         .extendable:hover .dropdown-content {
@@ -113,7 +127,7 @@
 
             .text-overlay {
               position: absolute;
-              bottom: -20px;
+              bottom: 40%;
               left: 50%;
               transform: translateX(-50%);
               color: var(--composer-primary-color);
@@ -121,7 +135,7 @@
               text-align: center;
               border-radius: 5px;
               opacity: 0;
-              transition: all 0.5s ease;
+              transition: all 0.2s ease;
 
               display: -webkit-box;
               -webkit-box-orient: vertical;
@@ -132,7 +146,7 @@
             }
 
             &:hover .image {
-              filter: brightness(20%);
+              filter: brightness(10%);
             }
 
             &:hover .text-overlay {
@@ -156,11 +170,12 @@
 
       .hamburger-container {
         cursor: pointer;
+        z-index: 4;
 
         .hamburger {
           position: relative;
-          width: 35px;
-          height: 24px;
+          width: 24px;
+          height: 19.2px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -174,7 +189,7 @@
           }
 
           &.open span:nth-child(1) {
-            transform: translateY(10px) rotate(45deg);
+            transform: translateY(5px) rotate(45deg);
           }
 
           &.open span:nth-child(2) {
@@ -204,19 +219,19 @@
         padding: 25px 50px 25px 25px !important;
 
         margin-left: 70% !important;
-        position: absolute !important;
+        position: fixed !important;
         display: flex;
         flex-direction: column;
+        background-color: aqua !important;
 
-
-        top: 20% !important;
-        ;
+        padding-top: 45px !important;
+        top: 0% !important;
         right: 0 !important;
         width: 30% !important;
         // align-items: end !important;
 
         &.active {
-          display: none;
+          height: 100vh !important;
         }
 
         ul {
@@ -225,7 +240,6 @@
         }
 
         ul>li {
-
           font-size: 18px !important;
         }
 
@@ -234,6 +248,10 @@
           display: block;
         }
 
+        .extendable svg {
+          margin-left: 10px;
+          flex-shrink: 0;
+        }
 
         .extendable::selection .dropdown-content {
           max-height: 300px !important;
@@ -254,8 +272,6 @@
       cursor: pointer;
       transition: color 0.3s ease;
     }
-
-    .navbar-child h3:hover {}
 
     +.hamburger-container {
       z-index: 2;
@@ -305,16 +321,22 @@
       height: 100% !important;
 
       .navbar-child {
-        padding: 25px 50px 25px 25px !important;
-
-        margin-left: 50% !important;
-        position: absolute !important;
+        // padding: 25px 50px 25px 25px !important;
+        
+        width: 250px;
+        background-color: aqua !important;
+        position: fixed;
+        top: 0 !important;
+        right: 0;
+        height: 100vh; /* Ekranın tüm yüksekliğini kaplar */
         display: flex;
-        flex-direction: column;
-        top: 20% !important;
-        ;
-        right: 0 !important;
-        width: 50% !important;
+        justify-content: center;
+        // align-items: center;
+        z-index: -1;
+        margin-left: 55% !important;
+        padding-top: 12% !important;
+        text-align: left !important;
+        width: 45% !important;
         // align-items: end !important;
 
         &.active {
@@ -338,11 +360,7 @@
           overflow: hidden;
         }
 
-        ul>li {
-          // display: none;
-          // padding-left: 10px !important;
-          font-size: 18px !important;
-        }
+
 
         .rightSlider {
           // padding-left: 10px !important;
@@ -376,7 +394,7 @@
     }
 
     .hamburger {
-      width: 20px !important;
+      font-size: smaller;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
