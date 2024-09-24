@@ -23,6 +23,10 @@
   width: 100%;
   background-color: white(--composer-html-background);
   height: 100%;
+  max-width: var(--composer-content-width);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
   .background-layout {
     width: 100%;
     height: 100%;
@@ -187,8 +191,8 @@
         }
         .title {
           position: absolute;
-          font-size: 11.25rem;
           font-weight: 400;
+          font-size: clamp(16px, 2vw, 400px);
           color: white;
           z-index: 10;
           height: fit-content;
