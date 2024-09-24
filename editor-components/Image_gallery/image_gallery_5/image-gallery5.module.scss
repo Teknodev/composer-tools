@@ -97,7 +97,10 @@
             font-size: 16px;
             color: #ccc;
             word-wrap: break-word;
+            max-width: 85%;
             width: fit-content;
+            overflow: hidden;
+            white-space: nowrap;
           }
 
           .image-caption {
@@ -106,8 +109,6 @@
             right: 0;
             color: #ccc;
             font-size: 16px;
-            white-space: nowrap;
-            width: fit-content;
           }
         }
         .prev-button,
