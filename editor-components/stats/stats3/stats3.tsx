@@ -37,6 +37,9 @@ class Stats3Page extends BaseStats {
       type: "array",
       key: "buttons",
       displayer: "Button",
+      additionalParams: {
+        maxElementCount: 2,
+      },
       value: [
         {
           type: "object",
@@ -244,10 +247,12 @@ class Stats3Page extends BaseStats {
                         return (
                           <div className={this.decorateCSS("content")}>
                             <div className={this.decorateCSS("inner-content")}>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{ className: this.decorateCSS("icon") }}
-                              />
+                              <div className={this.decorateCSS("icon-container")}>
+                                <ComposerIcon
+                                  name={item.icon}
+                                  propsIcon={{ className: this.decorateCSS("icon") }}
+                                />
+                              </div>
                               <div className={this.decorateCSS("text-container")}>
                                 <div className={this.decorateCSS("number")}>
                                   {item.number}

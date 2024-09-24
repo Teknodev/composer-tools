@@ -13,37 +13,46 @@
       height: 100%;
       display: flex;
         .left-page {
+          display: flex;
+          flex-direction: column;
           height: 100%;
           width: 100%;
           flex:1;
+          gap:20px;
           .subTitle {
             color: var(--composer-font-color-primary);
-            font-size:1.5rem;
-            padding-bottom: 10px;            
+            font-size:2rem;
+            margin:0px;
+            padding-bottom: 10px ;       
           }
           .title {
             font-size: 3.5rem;
             color: var(--composer-font-color-primary);
+            margin:0px;
           }
           .description {
             font-weight: 100;
-            font-size: 1.6rem;
-            opacity: 0.8;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
+            margin:0px;
+            font-weight: 100;
+            opacity: 0.5;
           }
           .descriptionMore {
             font-weight: 100;
-            font-size: 1.6rem;
-            opacity: 0.8;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
+            margin:0px;
+            padding-bottom: 10px;
+            font-weight: 100;
+            opacity: 0.5;
           }
           .button-container {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             align-items: center;
-            padding-top:30px;
             .button {
-              font-size: 1.1rem;
+              font-size: 1.6rem;
               border-radius: 6px;
               cursor: pointer;
               border: 2px solid var(--composer-primary-color);
@@ -69,12 +78,14 @@
           height: fit-content;
           position: relative;
           align-items: flex-end;
+          min-height: 200px;
           .image {
             border-radius: 20px;
             width: 85%;
             object-fit: cover;
             display: flex;
-            margin-bottom: 5rem ;
+            margin-bottom: 5rem;
+            max-height: 700px;
           }
           .card {
             display: flex;
@@ -98,19 +109,33 @@
                 display: flex;
                 flex-direction: row;
                 gap:10px;
-                .icon {
-                  margin-top: 10px;
-                  width: 30px;
-                  height: 30px;
-                  min-width: 30px;
+                .icon-container{
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  .icon {
+                    width: 35px;
+                    height: 35px;
+                    min-width: 35px;
+                    color: var(--composer-font-color-primary);
+                  }
                 }
+
                 .text-container{
                   margin-right: 10px;
+                  height: 100%;
+                  justify-content: center;
+                  display: flex;
+                  flex-direction: column;
+                  gap:5px;
                   .number{
-                    font-size: 30px;
+                    font-size: 2rem;
+                    color: var(--composer-font-color-primary);
                   }
                   .right-text {
-                    font-size:20px
+                    font-size:1.5rem;
+                    color: var(--composer-font-color-primary);
                   }
                 }
               }
@@ -119,8 +144,9 @@
                 content: "";
                 display: block;
                 width: 1px;
-                height: 100%;
-                background-color: var(--composer-html-background);
+                height: calc(100% + 20px);
+                background-color: var(--composer-font-color-primary);
+                margin: -10px 0px;
               }
               &:last-child::after {
                 display: none;
@@ -128,8 +154,6 @@
             }
           }
         }
-
-
     }
   }
 }
@@ -141,48 +165,37 @@
       .page {
         display: flex;
         flex-direction: column;
-         gap:20px;
+         gap:40px;
           .left-page {
             flex:1;
             .subTitle {
-              font-size:1.3rem;
-              padding-bottom: 10px;            
+              font-size:1.8rem;
+              padding-bottom: 10px; 
+          
             }
             .title {
-              font-size: 3.2rem;
+              font-size: 3rem;
             }
             .description {
-              font-size: 1.4rem;
+              font-size: 1.5rem;
             }
             .descriptionMore {
-              font-size: 1.4rem;
+              font-size: 1.5rem;
             }
             .button-container {
-              gap: 10px;
-              padding-top:30px;
               .button {
-                font-size: 1.5rem;
-                border: var(--composer-secondary-color);
-                border-radius: 6px;
-                cursor: pointer;
-                border: 2px solid;
-                padding: 15px 30px;
-                background-color: transparent;
-                .button-text{
-                  color: var(--composer-font-color-primary);
-                }
+                font-size: 1.4rem;
               }
             }
           }
           .right-container{
-
+            flex:auto;
             .image {
               width: 100%;
               max-width: 100%;
             }
             .card {
               left:0px;
-              padding: 30px 20px;
               width: 100%;
               .content { 
                 .inner-content{
@@ -190,8 +203,10 @@
                   }
                   .text-container{
                     .number{
+                      font-size: 1.8rem;
                     }
                     .right-text {
+                      font-size: 1.4rem;
                     }
                   }
                 }
@@ -203,45 +218,40 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
   .container {
     .max-content {
       padding :20px 30px;
       .page {
         display: flex;
         flex-direction: column;
-
+        gap:30px;
           .left-page {
             flex:1;
+            gap:10px;
             .subTitle {
-              font-size:1.1rem;
+              font-size:1.5rem;
               padding-bottom: 10px;            
             }
             .title {
-              font-size: 3rem;
+              font-size: 2.5rem;
             }
             .description {
               font-weight: 100;
-              font-size: 1rem;
+              font-size: 1.3rem;
             }
             .descriptionMore {
               font-weight: 100;
-              font-size: 1rem;
+              font-size: 1.3rem;
             }
             .button-container {
-              gap: 10px;
-              padding-top:30px;
+              flex-direction: column;
+              >div{
+                width: 100% !important;
+              }        
               .button {
-                font-size: 1.3rem;
-                border: var(--composer-secondary-color);
-                border-radius: 6px;
-                cursor: pointer;
-                border: 2px solid;
-                padding: 10px 20px;
-                background-color: transparent;
-                .button-text{
-                  color: var(--composer-font-color-primary);
-                }
+                font-size: 1.2rem;
+                width: 100%;
               }
             }
           }
@@ -260,14 +270,12 @@
               .content { 
                 flex-direction: column;
                 width: 100%;
+                gap:30px;
                 .inner-content{
                   flex-direction: column;
                   width: 100%;
                   align-items: center;
                   .icon {
-                    width: 20px;
-                    height: 20px;
-                    max-width: 20px;
                   }
                   .text-container{
                     width: 100%;
@@ -275,11 +283,13 @@
                     display: flex;
                     flex-direction: column;
                     margin:0px;
+                    gap:10px;
                     .number{
-                      font-size: 1rem;
+                      font-size:1.5;
+                    
                     }
                     .right-text {
-                      font-size: 1rem;
+                      font-size: 1.2;
                       margin-right: 0px;
                     }
                   }
