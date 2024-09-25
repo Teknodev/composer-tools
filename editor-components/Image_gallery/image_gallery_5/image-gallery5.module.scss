@@ -75,7 +75,7 @@
           text-align: center;
           .image-close-button {
             position: absolute;
-            top: -40px; 
+            top: -30px; 
             right: -5px; 
             background: none;
             border: none;
@@ -89,27 +89,29 @@
             cursor: pointer;
             width: auto;
             max-width: 100%;
-          }
-          .gallery-image {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            font-size: 16px;
-            color: #ccc;
-            word-wrap: break-word;
-            max-width: 85%;
-            width: fit-content;
-            overflow: hidden;
-            white-space: nowrap;
-          }
 
-          .image-caption {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            color: #ccc;
-            font-size: 16px;
           }
+          .caption-container{
+            display: flex;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ccc;
+            max-width: 100%;
+            .gallery-image {
+              flex: 1;
+              text-align: left; 
+              position: absolute;
+              width: 80%;
+            }
+            .image-caption {
+              flex: 1;
+              text-align: right; 
+              width: 20%;
+            }
+          }
+      
+          }
+ 
         }
         .prev-button,
         .next-button {
@@ -133,7 +135,7 @@
       }
     }
   }
-}
+
 
 @media screen and (max-width: 768px) {
   .container{ 

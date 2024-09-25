@@ -270,6 +270,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                   <button className={this.decorateCSS("image-close-button")}>
                     <ComposerIcon name={closeIcon} />
                   </button>
+                  <div className={this.decorateCSS("caption-container")}>
                   {imageIndex && (
                     <div className={this.decorateCSS("image-caption")}>
                       {clickedImageIndex + 1} of {galleries.length}
@@ -277,6 +278,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                   )}
                   <div className={this.decorateCSS("gallery-image")}>
                     {galleries[clickedImageIndex].value.find((item: any) => item.type === "string").value}
+                  </div>
                   </div>
                 </div>
                 <button
