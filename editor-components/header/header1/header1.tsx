@@ -22,6 +22,12 @@ class Header1 extends BaseHeader {
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d6?alt=media&timestamp=1719483639150",
     });
     this.addProp({
+      type: "boolean",
+      key: "numberLine",
+      displayer: "Number Line",
+      value: true,
+    });
+    this.addProp({
       type: "array",
       key: "sliders",
       displayer: "Sliders",
@@ -43,12 +49,7 @@ class Header1 extends BaseHeader {
               displayer: "SubTitle",
               value: "BRANDING AND IDENTITY",
             },
-            {
-              type: "boolean",
-              key: "numberLine",
-              displayer: "Number Line",
-              value: true,
-            },
+
             {
               type: "number",
               key: "sliderNumber",
@@ -80,12 +81,6 @@ class Header1 extends BaseHeader {
               key: "subtitle",
               displayer: "SubTitle",
               value: "WEB AND APPLICATION",
-            },
-            {
-              type: "boolean",
-              key: "numberLine",
-              displayer: "Number Line",
-              value: true,
             },
             {
               type: "number",
@@ -120,12 +115,6 @@ class Header1 extends BaseHeader {
               value: "GRAPHICS AND IDENTITY",
             },
             {
-              type: "boolean",
-              key: "numberLine",
-              displayer: "Number Line",
-              value: true,
-            },
-            {
               type: "number",
               key: "sliderNumber",
               displayer: "Slider Number",
@@ -158,12 +147,6 @@ class Header1 extends BaseHeader {
               value: "PACKAGING AND WEB",
             },
             {
-              type: "boolean",
-              key: "numberLine",
-              displayer: "Number Line",
-              value: true,
-            },
-            {
               type: "number",
               key: "sliderNumber",
               displayer: "Slider Number",
@@ -194,12 +177,6 @@ class Header1 extends BaseHeader {
               key: "subtitle",
               displayer: "SubTitle",
               value: "DESIGN AND IDENTITY",
-            },
-            {
-              type: "boolean",
-              key: "numberLine",
-              displayer: "Number Line",
-              value: true,
             },
             {
               type: "number",
@@ -286,6 +263,7 @@ class Header1 extends BaseHeader {
         this.setActiveTab(next);
       },
     };
+    const isLineActive = this.getPropValue("numberLine");
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
         <img className={this.decorateCSS("image-container-2")} src={this.getPropValue("sun")} alt="" />
@@ -321,7 +299,7 @@ class Header1 extends BaseHeader {
                           />
 
                           <h1 className={this.decorateCSS("sliderNumber")}>
-                            {item.numberLine && (
+                            {isLineActive && (
                               <span className={this.decorateCSS("overlay")}></span>
                             )
                             }
