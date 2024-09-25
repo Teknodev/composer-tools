@@ -36,11 +36,15 @@
       gap:10px;
       
       .title {
+        flex:1;
         font-size: 35px;
         font-weight: bold;
         color: var(--composer-primary-color);
         width: fit-content;
         margin: 0px;
+        max-width: 100%;
+        word-break: break-word;
+
       }
 
         .image{
@@ -53,9 +57,11 @@
           justify-content: start;;
         }
       .item-conatiner{
+        flex:10;
         width: 100%;
         display: flex;
         justify-content: end;
+        max-width: 100%;
         .items {
           display: flex;
           gap: 40px;
