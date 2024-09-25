@@ -198,6 +198,7 @@ class Stats2Page extends BaseStats {
   
   render() {
     const cards = this.castToObject<Card[]>("cards");
+    const cardLength = cards.length;
     const animationDuration = this.getPropValue("animation-duration") as number;
     const subHeader = this.castToString(this.getPropValue("subHeader"));
 
@@ -209,16 +210,22 @@ class Stats2Page extends BaseStats {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {header && (
-            <div className={this.decorateCSS("header-wrapper")}>
+            <div className={`${this.decorateCSS("header-wrapper")} ${
+              cardLength <= 0 ? this.decorateCSS("full-width") : ""
+            }`}>
               <div className={this.decorateCSS("header")}>{header}</div>
             </div>
           )}
 
           <div className={this.decorateCSS("bottom-content")}>
             {(subHeader || contactButton || contactButtonIcon) && (
-               <div className={this.decorateCSS("subHeader")}>
+               <div className={`${this.decorateCSS("subHeader")} ${
+                cardLength <= 0 ? this.decorateCSS("full-width") : ""
+              }`}>
                {subHeader && (
-                 <div className={this.decorateCSS('description')}>
+                 <div className={`${this.decorateCSS("description")} ${
+                  cardLength <= 0 ? this.decorateCSS("full-width") : ""
+                }`}>
                  {subHeader}
                  </div>
                )}
@@ -226,7 +233,8 @@ class Stats2Page extends BaseStats {
                  <button
                    className={`${this.decorateCSS("contact-button")} ${
                      buttonAnimationEnabled ? this.decorateCSS("animated") : ""
-                   }`}
+                   } ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""
+                  }`}
                  >
                    {contactButton}
                    {contactButtonIcon && (

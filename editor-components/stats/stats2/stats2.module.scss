@@ -13,9 +13,13 @@
     .header-wrapper {
       width: 60%;
       margin-bottom: 50px;
+      &.full-width{
+        min-width: 100%;
+      }
       .header {
         font-size: 50px;
         font-weight: 600;
+        word-break: break-word;
       }
     }
     .bottom-content {
@@ -31,9 +35,15 @@
         font-size: 18px;
         display: unset;
         line-height: 1.5;
+        &.full-width{
+          min-width: 100%;
+        }
         .description{
           max-width: 90%;
           word-break: break-word;
+          &.full-width{
+            min-width: 100%;
+          }
         }
         .contact-button {
           display: flex;
@@ -49,6 +59,7 @@
           color: var(--composer-font-color-secondary);
           border: 1px solid var(--composer-secondary-color);
           transition: none;
+          word-break: break-word;
           cursor: pointer;
           &.animated {
             transition: transform 0.4s ease !important;
@@ -61,6 +72,9 @@
             margin-left: 8px;
             font-size: 20px;
             color: var(--composer-font-color-secondary);
+          }
+          &.button-full-width{
+            max-width: 30% !important;
           }
         }
       }
@@ -136,44 +150,62 @@
   }
 }
 
-@media (max-width: 1175px) and (min-width: 361px) {
+@media only screen and (min-width: 400px) and (max-width: 768px)  {
   .container {
     padding: 20px 30px;
-    .header-wrapper {
-      width: 100% !important;
-      .header {
-        font-size: 40px !important;
-        font-weight: 600 !important;
-      }
-    }
-    .bottom-content {
-      flex-direction: column !important;
-      .subHeader {
+    .max-content{
+      .header-wrapper {
         width: 100% !important;
-        margin-right: 0 !important;
-        position: static !important;
+        &.full-width{
+          min-width: 100%;
+        }
+        .header {
+          font-size: 40px !important;
+          font-weight: 600 !important;
+        }
       }
-      .cards-container {
-        width: 100% !important;
-        .listed {
-          width: 50% !important;
-          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2) !important;
-          border-bottom: none !important;
-          padding: 30px 40px !important;
-          max-width: 100% !important;
-          &:first-child {
-            border-top: none !important;
+      .bottom-content {
+        flex-direction: column !important;
+        .subHeader {
+          width: 100% !important;
+          margin-right: 0 !important;
+          position: static !important;
+          .description{
+            &.full-width{
+              min-width: 100%;
+            }
           }
-          &:nth-child(2) {
-            border-top: none !important;
+          &.full-width{
+            min-width: 100%;
           }
-          .card-amount-container {
-            .card-amount-contain{
-              .card-amount{
-                max-width: 80% !important;
-              }
-              .card-icon {
-                font-size: 30px !important;
+          .contact-button{
+            &.button-full-width{
+              max-width: 60% !important;
+            }
+          }
+        }
+        .cards-container {
+          width: 100% !important;
+          .listed {
+            width: 50% !important;
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2) !important;
+            border-bottom: none !important;
+            padding: 30px 40px !important;
+            max-width: 100% !important;
+            &:first-child {
+              border-top: none !important;
+            }
+            &:nth-child(2) {
+              border-top: none !important;
+            }
+            .card-amount-container {
+              .card-amount-contain{
+                .card-amount{
+                  max-width: 80% !important;
+                }
+                .card-icon {
+                  font-size: 30px !important;
+                }
               }
             }
           }
@@ -183,48 +215,66 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 399px) {
   .container {
     padding: 20px 30px;
-    .header-wrapper {
-      width: 100% !important;
-      .header {
-        font-size: 30px !important;
-      }
-    }
-    .bottom-content {
-      flex-direction: column !important;
-      .subHeader {
+    .max-content{
+      .header-wrapper {
         width: 100% !important;
-        margin-right: 0 !important;
-        position: static !important;
+        &.full-width{
+          min-width: 100%;
+        }
+        .header {
+          font-size: 30px !important;
+        }
       }
-      .cards-container {
-        width: 100% !important;
-        .listed {
+      .bottom-content {
+        flex-direction: column !important;
+        .subHeader {
           width: 100% !important;
-          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2) !important;
-          border-bottom: none !important;
-          padding: 30px 40px !important;
-          &:first-child {
-            border-top: none !important;
+          margin-right: 0 !important;
+          position: static !important;
+          .description{
+            &.full-width{
+              min-width: 100%;
+            }
           }
-          .card-amount-container {
-            .card-amount-contain{
-              .card-icon {
-                font-size: 30px !important;
-              }
-              .card-amount {
-                font-size: 4rem !important;
-                max-width: 70% !important;
-              }
-              .card-icon-after {
-                margin-top: 15px !important;
+          &.full-width{
+            min-width: 100%;
+          }
+          .contact-button{
+            &.button-full-width{
+              max-width: 80% !important;
+            }
+          }
+        }
+        .cards-container {
+          width: 100% !important;
+          .listed {
+            width: 100% !important;
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2) !important;
+            border-bottom: none !important;
+            padding: 30px 40px !important;
+            &:first-child {
+              border-top: none !important;
+            }
+            .card-amount-container {
+              .card-amount-contain{
+                .card-icon {
+                  font-size: 30px !important;
+                }
+                .card-amount {
+                  font-size: 4rem !important;
+                  max-width: 70% !important;
+                }
+                .card-icon-after {
+                  margin-top: 15px !important;
+                }
               }
             }
           }
         }
       }
-    }
+    } 
   }
 }
