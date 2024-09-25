@@ -11,44 +11,67 @@
       gap: 100px;
       .left-page {
         flex:1.5;
-        height: 100%;
+        height: fit-content;
         width: 100%;
         position: relative;
         .up-image {
           .image1 {
-            width:100%;
+            width:90%;
             height: 100%;
             object-fit: cover;
           }
         }
         .down-image {
-          height: 100%;
-          width: 50%;
+          height: fit-content;
+          width: 40%;
           position: absolute;
           right: 0px;
-          top:30%;
+          top: 60%;
+          border-radius: 10px;
           .image2 {
             width: 100%;
+            border: 10px solid var(--composer-html-background);
+            border-radius: 10px;
+            object-fit: cover;
           }
+          .player{
+            position: absolute;
+            top:0px;
+            width: 100%;
+            height: 100%;
+          }
+
+        }
+        .icon{
+          position: absolute;
+          right: 50%;
+          top:10%;
+          width: 50px;
+          height: 50px;
+          cursor: pointer;
         }
       }
       .right-page {
         flex:1;
+        gap:10px;
+        display: flex;
+        flex-direction: column;
         .badge {
-          font-size: 14px;
+          font-size: 1.2rem;
+          font-weight: 500;
           opacity: 0.8;
           font-weight: bold;
           color: var(--composer-font-color-primary);
           padding-bottom: 5px;
         }
         .title {
-          font-size: 50px;
-          font-weight: 700;
+          font-size: 1.8rem;
+          font-weight: 600;
           color: var(--composer-primary-color);
         }
         .description {
-          font-size: 13px;
-          font-weight: bold;
+          font-size: 1rem;
+          font-weight: 500;
           opacity: 0.6;
           color: var(--composer-font-color-primary);
         }
@@ -63,7 +86,7 @@
             .progress-title-container {
               display: flex;
               gap: 10px;
-              font-size: 16px;
+              font-size: 1rem;
               font-weight: bold;
               color: var(--composer-primary-color);
               margin-bottom: 10px;
@@ -109,20 +132,32 @@
 @media screen and (max-width: 1000px) {
   .container {
     .max-content {
-      padding: 50px 30px;
-
+      padding: 20px 30px;
       .page {
         flex-direction: column !important;
-
-        .left-page {
-          width: 91%;
-        }
-
+        flex-direction: column-reverse !important;
+        gap:50px;
         .right-page {
-          padding: 0px 30px;
-          width: 100%;
-          position: relative;
-          bottom: 115px;
+          flex: auto !important;
+          position: static !important;
+
+        }
+        .left-page {
+          flex: auto !important;
+          .down-image{
+            height: 100% !important;
+            width: 80% !important;
+            top:0px ;
+          }
+          .up-image{
+            width: 100% !important;
+            height: 100% !important;
+            .image1{
+              height: 70% !important;
+              transform: translateY(40%) !important;
+              object-fit: cover;
+            }
+          }
         }
       }
     }
@@ -132,11 +167,8 @@
 @media screen and (max-width: 400px) {
   .container {
     height: 100%;
-
     .max-content {
-      padding-left: 0;
-      padding-right: 0;
-
+      padding: 20px 30px;
       .page {
         flex-direction: column;
         width: 100%;
@@ -148,37 +180,29 @@
           gap: 0;
 
           .up-image {
-            padding: 0;
             .image1 {
               width: 100% !important;
-              height: 212px;
-              position: relative;
-              left: 0;
+              height: 100% !important;
             }
           }
-
           .down-image {
-            top: 0;
-            left: 0;
-            position: relative;
-            width: 89% !important;
-            align-items: center;
-
+            right: 10%;
             .image2 {
-              height: 200px;
-              width: 100%;
-              bottom: 40%;
-              right: 0;
+              height: 100%;
             }
           }
         }
 
         .right-page {
-          padding: 0px 20px;
-          bottom: 0;
-
+          width: 100% !important;
+          align-items: center !important;
+          display: flex !important;
+          justify-content: center !important;
           .title {
             font-size: 30px;
+          }
+          .progress-container{
+            width: 100% !important;
           }
         }
       }
