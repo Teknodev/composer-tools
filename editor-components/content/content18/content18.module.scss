@@ -1,47 +1,39 @@
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
-
   .max-content {
     display: flex;
     max-width: var(--composer-content-width);
     margin: auto;
-    padding: 50px 100px;
-
+    padding: 20px 50px;
     .page {
       display: flex;
       gap: 100px;
-
       .left-page {
-        width: 50%;
-        .down-image {
-          position: static;
-          display: flex;
-          flex-direction: row-reverse;
-
-          .image2 {
-            width: 75%;
-            border-radius: 22px !important;
-            border: 10px solid var(--composer-html-background);
-            position: relative;
-            bottom: 138px;
-            left: 53px;
+        flex:1.5;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        .up-image {
+          .image1 {
+            width:100%;
+            height: 100%;
             object-fit: cover;
           }
         }
-        .up-image {
-          padding: 0 0 0 20px;
-          .image1 {
-            width: 83% !important;
-            height: 346px;
-            border-radius: 16px;
-            object-fit: cover;
+        .down-image {
+          height: 100%;
+          width: 50%;
+          position: absolute;
+          right: 0px;
+          top:30%;
+          .image2 {
+            width: 100%;
           }
         }
       }
-
       .right-page {
-        width: 50%;
+        flex:1;
         .badge {
           font-size: 14px;
           opacity: 0.8;
