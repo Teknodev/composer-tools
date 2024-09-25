@@ -107,7 +107,7 @@
         .slider-item-text {
           position: absolute;
           bottom: 1em;
-          left: 2em; 
+          left: calc( 1050px - var(--composer-content-width) ); 
           color: white;
           z-index: 2;
           width: auto;
@@ -116,7 +116,6 @@
           word-wrap: break-word;
           text-align: end;
           width: auto !important;
-          max-width: var(--composer-content-width);
         }
 
       }
@@ -163,7 +162,7 @@
         .slider-item-text {
           position: absolute;
           bottom: 1em;
-          padding-right: 2em;
+          right: calc(1050px - var(--composer-content-width));
           color: white;
           z-index: 2;
           width: auto;
@@ -171,9 +170,6 @@
           font-size: 3vw;
           word-wrap: break-word;
           text-align: end;
-          width: 100% !important;
-          max-width: var(--composer-content-width);
-
         }
       }
     }
