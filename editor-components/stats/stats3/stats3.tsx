@@ -240,41 +240,42 @@ class Stats3Page extends BaseStats {
                     className={this.decorateCSS("image")}
                   />
                 )}
-                {(isBoxVisible) && (
-                  <div className={this.decorateCSS("card")}>
-                    {this.castToObject<any>("card-content").map(
-                      (item: any, index: number) => {
-                        return (
-                          <div className={this.decorateCSS("content")}>
-                            <div className={this.decorateCSS("inner-content")}>
-                              <div className={this.decorateCSS("icon-container")}>
-                                <ComposerIcon
-                                  name={item.icon}
-                                  propsIcon={{ className: this.decorateCSS("icon") }}
-                                />
-                              </div>
-                              <div className={this.decorateCSS("text-container")}>
-                                <div className={this.decorateCSS("number")}>
-                                  {item.number}
-                                </div>
-                                <div className={this.decorateCSS("right-text")}>
-                                  {item.text}
+                {(isBoxVisible && cardContent.length > 0) && (
+                  <div className={this.decorateCSS("card-container")}>
+                    <div className={this.decorateCSS("card")}>
+                      {this.castToObject<any>("card-content").map(
+                        (item: any, index: number) => {
+                          return (
+                            <div className={this.decorateCSS("content")}>
+                              <div className={this.decorateCSS("inner-content")}>
+                                <div className={this.decorateCSS("text-container")}>
+                                  <div className={this.decorateCSS("first-container")}>
+                                    <ComposerIcon
+                                      name={item.icon}
+                                      propsIcon={{ className: this.decorateCSS("icon") }}
+                                    />
+                                    <div className={this.decorateCSS("text")}>
+                                      <div className={this.decorateCSS("number")}>
+                                        {item.number}
+                                      </div>
+
+                                      <div className={this.decorateCSS("right-text")}>
+                                        {item.text}
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-
-                        );
-                      }
-                    )}
+                          );
+                        }
+                      )}
+                    </div>
                   </div>
                 )
                 }
               </div>
-            )
-
-            }
-
+            )}
           </div>
         </div>
       </div>
