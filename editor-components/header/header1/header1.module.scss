@@ -11,10 +11,10 @@
 }
 @keyframes moveText {
   0% {
-    transform: translateX(100%);
+    transform: translateX(180%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-180%);
   }
 }
 
@@ -23,25 +23,9 @@
   width: 100%;
   background-color: white(--composer-html-background);
   height: 100%;
-  max-width: var(--composer-content-width);
-  margin: 0 auto;
   position: relative;
   overflow: hidden;
-  container-name: my-container;
-  container-type: inline-size;
-  
-  @container my-container (max-width: 1000px) {
-    .title {
-      font-size:8rem !important;
-    }
-    .active-text {
-      >blinkpage{
-        >p{
-          font-size: 60rem !important;
-        }
-      }
-    }
-  }
+
   .background-layout {
     width: 100%;
     height: 100%;
@@ -64,10 +48,9 @@
     animation: moveUpDown 3s ease-in-out infinite;
   }
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
     height: 100vh;
     width: 100%;
+
     .wrapper{
       height: 100%;
       width: 100%;
@@ -101,30 +84,44 @@
         justify-content: center;
         display: flex !important;
         padding: 0px 20px;
-        .background-text {
-          height: 100%;
+        .background-container{
+          width: 100%;
+          height: 100vh;
           position: absolute !important;
-          z-index: 0;
-          animation: moveText 20s linear infinite;
-          transition: opacity 0.5s ease;
-          opacity: 0;
-          color:black
-        }
-      .active-text {
-        opacity: 0.4;
-        height: 100vh;
-        >blinkpage{
-          height: 100%;
-          >p{
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          white-space: nowrap;
+          overflow: hidden;
+          .background-text {
+            position: absolute;
             height: 100%;
-            font-size: 80rem;
-            white-space: nowrap;
+            z-index: 0;
+            display: inline-block;
+            animation: moveText 10s linear infinite;
+            transition: transform 3s ease-in-out;
+            transform: scale(0.5);
+            opacity: 0;
+            color:black;
+           
           }
+          .active-text {
+            opacity: 0.4;
+            height: 100vh;
+            transform: scale(1);
+            >blinkpage{
+              height: 100%;
+              >p{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                font-size: 80rem;
+                white-space: nowrap;
+              }
+            }
+          }
+
         }
-      }
+
+
       .content-container {
         width: 60%;
         height: 100%;

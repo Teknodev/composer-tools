@@ -49,7 +49,12 @@ class Header1 extends BaseHeader {
               displayer: "SubTitle",
               value: "BRANDING AND IDENTITY",
             },
-
+            {
+              type: "string",
+              key: "backgroundTitle",
+              displayer: "Background Title",
+              value: "FORWARD",
+            },
             {
               type: "number",
               key: "sliderNumber",
@@ -81,6 +86,12 @@ class Header1 extends BaseHeader {
               key: "subtitle",
               displayer: "SubTitle",
               value: "WEB AND APPLICATION",
+            },
+            {
+              type: "string",
+              key: "backgroundTitle",
+              displayer: "Background Title",
+              value: "PIXFLOW",
             },
             {
               type: "number",
@@ -115,6 +126,12 @@ class Header1 extends BaseHeader {
               value: "GRAPHICS AND IDENTITY",
             },
             {
+              type: "string",
+              key: "backgroundTitle",
+              displayer: "Background Title",
+              value: "HARDDOT",
+            },
+            {
               type: "number",
               key: "sliderNumber",
               displayer: "Slider Number",
@@ -145,6 +162,12 @@ class Header1 extends BaseHeader {
               key: "subtitle",
               displayer: "SubTitle",
               value: "PACKAGING AND WEB",
+            },
+            {
+              type: "string",
+              key: "backgroundTitle",
+              displayer: "Background Title",
+              value: "TRAVELIO",
             },
             {
               type: "number",
@@ -179,6 +202,12 @@ class Header1 extends BaseHeader {
               value: "DESIGN AND IDENTITY",
             },
             {
+              type: "string",
+              key: "backgroundTitle",
+              displayer: "Background Title",
+              value: "CROPOES",
+            },
+            {
               type: "number",
               key: "sliderNumber",
               displayer: "Slider Number",
@@ -202,7 +231,6 @@ class Header1 extends BaseHeader {
     return "Header 1";
   }
   setActiveTab(activeTabIndex: number) {
-    console.log("activeTabIndex", activeTabIndex)
     this.setComponentState("activeTab", activeTabIndex);
     setTimeout(() => {
       this.setComponentState("startedIndex", activeTabIndex);
@@ -279,10 +307,13 @@ class Header1 extends BaseHeader {
                       className={this.decorateCSS("return-container")}
                       key={index}
                     >
-                      <div className={this.decorateCSS("background-text") + " " +
-                        (isActive && this.decorateCSS("active-text"))}>
-                        {item.title}
+                      <div className={this.decorateCSS("background-container")}>
+                        <div className={this.decorateCSS("background-text") + " " +
+                          (isActive && this.decorateCSS("active-text"))}>
+                          {item.backgroundTitle}
+                        </div>
                       </div>
+
                       <div className={this.decorateCSS("content-container")}>
                         <div className={this.decorateCSS("image-wrapper")}>
                           <h1 className={this.decorateCSS("subtitle")}>
