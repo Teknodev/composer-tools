@@ -1,128 +1,222 @@
 .container {
   width: 100%;
-  min-height: calc(100vh - 80px);
-  background-color: var(--composer-html-background);
-  display: flex;
-  align-items: center;
-  padding: 50px 0px;
-  
-  .max-content {
+  .full-width {
+    padding: 20px 50px;
+  }
+}
+.slider {
+  height: 100vh;
+  overflow: hidden;
+  div {
+    height: 100%;
+    > ul {
+      margin-bottom: 50px;
+    }
+  }
+}
+.slider-item-inner-container {
+  background-position: center;
+  background-size: cover;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  height: auto !important;
+  bottom: 50px;
+  width: 100%;
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  max-width: 30%;
+  padding: 35px 25px;
+  max-height: fit-content;
+
+  h3 {
+    > blinkpage {
+      p {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1 !important;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+
+  h1 {
+    > blinkpage {
+      p {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+
+  div {
+    height: auto !important;
+  }
+
+  p {
+    > blinkpage {
+      p {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 5 !important;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+  .category {
+    background-color: var(--composer-primary-color);
+    color: var(--composer-font-color-secondary);
+    position: absolute;
+    top: -15px;
+    left: 25px;
+    padding: 0.8em 1em;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 10px;
+    max-width: 90%;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    max-width: 100%;
+    margin-bottom: 5px;
+    display: -webkit-box;
+    line-height: 1.4em;
+  }
+  .description {
+    width: 100%;
+    color: #4b4b4b;
+    margin-bottom: 20px;
+    max-width: 100%;
+    font-size: 14px;
+    display: -webkit-box;
+    line-height: 1.8em;
+  }
+
+  .date-author {
     display: flex;
-    max-width: var(--composer-content-width);
-    margin: auto;
-
-    .wide-text-container {
-      border-radius: 6px;
-      width: 100%;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    .author {
       display: flex;
-      padding: 20px;
-      gap: 60px;
-
-      .wide-text {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        .wide-text1 {
-          line-height: 1.4;
-          color: var(--composer-primary-color);
-          width: 100%;
-          font-size: 1.5em;
-        }
-        .wide-text2 {
-          line-height: 1.4;
-          font-size: 4em;
-          width: 100%;
-          margin: 0;
-          color: var(--composer-font-color-primary);
-        }
-        .wide-text3 {
-          color: rgb(80, 80, 80);
-          font-size: 1.1em;
-          margin: 18px 0;
-          color: var(--composer-font-color-primary);
-        }
-        .button {
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          transition: 0.3s;
-          display: block;
-          color: var(--composer-font-color-secondary);
-          background-color: var(--composer-secondary-color);
-          padding: 15px 30px;
-          border-radius: 6px;
-          border: 1px solid transparent;
-          width: 200px;
-          &:hover {
-            color: var(--composer-font-color-primary);
-            background-color: transparent;
-            border: 1px solid var(--composer-secondary-color);
-          }
-        }
-      }
-      .image {
-        min-width: 250px;
-        width: 90%;
-        border-radius: 6px;
-        object-fit: cover;
+      gap: 8px;
+      color: #989898;
+      > span {
+        text-transform: uppercase;
       }
     }
+  
+    .date {
+      color: #989898;
+      text-transform: uppercase;
+    }
+  }
+
+  .link-container {
+    font-style: italic !important;
+    display: block !important;
+    height: auto !important;
+    margin-top: 30px;
   }
 }
 
-@media only screen and (max-width: 1510px) {
+.content-max-width {
+  max-width: var(--composer-content-width) !important;
+  position: relative;
+}
+
+@media screen and (max-width: 1024px) {
   .container {
-    .max-content{
-      .image{
-        height: 100%;
-        padding: 0 100px;
-      }
-      .wide-text-container {
-        gap: 20px !important;
-        flex-direction: column !important;
-
-        .wide-text {
-          text-align: center;
-          align-items: center;
-
-          .wide-text1 {
-            margin-top: 0;
-          }
-        .wide-text2 {
-            font-size: 2rem !important;
-          }
-        }
-      }
+    width: 100%;
+    .full-width {
+      padding: 20px 50px;
     }
+  }
+
+  .card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    max-width: 40%;
+    max-height: fit-content;
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .container {
-    .max-content{
-      .image{
-        width: 100% !important;
-        height: 100%;
-        padding: 0 30px;
+    width: 100%;
+    .full-width {
+      padding: 20px 30px;
+    }
+  }
+  .slider {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    div {
+      height: 100%;
+      width: 100%;
+      > ul {
+        margin-bottom: 10%;
       }
-      .wide-text-container {
-        gap: 20px !important;
-        flex-direction: column !important;
+    }
+    .slider-item-inner-container {
+      background-position: center;
+      background-size: cover;
+    }
 
-        .wide-text {
-          text-align: center;
-          align-items: center;
-
-          .wide-text1 {
-            margin-top: 0;
-          }
-        .wide-text2 {
-            font-size: 2rem !important;
-          }
-        }
-      }
+    .card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.9);
+      max-width: 45%;
     }
   }
 }
+
+@media screen and (max-width: 430px) {
+  .container {
+    width: 100%;
+    .full-width {
+      padding: 20px 30px;
+    }
+  }
+  .slider {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    div {
+      height: 100%;
+      width: 100%;
+      > ul {
+        margin-bottom: 30%;
+      }
+    }
+    .slider-item-inner-container {
+      background-position: center;
+      background-size: cover;
+    }
+
+    .card {
+      position: sticky;
+      background: rgba(255, 255, 255, 0.9);
+      max-width: 80%;
+      transform: translate(12%, -50%);
+    }
+  }
+}
+
