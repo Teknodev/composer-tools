@@ -24,14 +24,7 @@ class Stats3Page extends BaseStats {
       key: "description",
       displayer: "Description",
       value:
-        "Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero.",
-    });
-    this.addProp({
-      type: "string",
-      key: "descriptionMore",
-      displayer: "DescriptionMore",
-      value:
-        "Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.",
+        "Nullam fermentum ullamcorper, diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero.Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero.Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero. Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero.Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero.",
     });
     this.addProp({
       type: "array",
@@ -174,8 +167,7 @@ class Stats3Page extends BaseStats {
   render() {
     const subtitle = this.castToString(this.getPropValue("subTitle"));
     const title = this.castToString(this.getPropValue("title"));
-    const description = this.castToString(this.getPropValue("description"))
-    const descriptionMore = this.castToString(this.getPropValue("descriptionMore"))
+    const description = this.castToString(this.getPropValue("description"));
     const buttons = this.getPropValue("buttons");
     const image = this.getPropValue("backgroundImage");
     const cardContent = this.getPropValue("card-content")
@@ -185,32 +177,27 @@ class Stats3Page extends BaseStats {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(subtitle || title || description || descriptionMore || buttons.length > 0) && (
-              <div className={this.decorateCSS("left-page")}>
-                {subtitle && (
-                  <h1 className={this.decorateCSS("subTitle")}>
-                    {this.getPropValue("subTitle")}
-                  </h1>
-                )
+            {(subtitle || title || description || buttons.length > 0) && (
+              <div className={this.decorateCSS(image ? "left-page" : "left-page-without-image")}>
+                {
+                  subtitle && (
+                    <h1
+                      className={this.decorateCSS("subTitle")}
+                    >
+                      {this.getPropValue("subTitle")}
+                    </h1>
+                  )
                 }
                 {title && (
                   <h1 className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
                   </h1>
-                )
-                }
+                )}
                 {description && (
                   <h1 className={this.decorateCSS("description")}>
                     {this.getPropValue("description")}
                   </h1>
-                )
-                }
-                {descriptionMore && (
-                  <h3 className={this.decorateCSS("descriptionMore")}>
-                    {this.getPropValue("descriptionMore")}
-                  </h3>
-                )
-                }
+                )}
                 {buttons.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
                     {this.castToObject<any>("buttons").map((item: any, index: number) => {
@@ -232,7 +219,7 @@ class Stats3Page extends BaseStats {
             )
             }
             {(image || cardContent.length > 0) && (
-              <div className={this.decorateCSS("right-container")}>
+              <div className={this.decorateCSS(image ? "right-container" : "right-container-without-image")}>
                 {image && (
                   <img
                     src={this.getPropValue("backgroundImage")}
@@ -241,7 +228,7 @@ class Stats3Page extends BaseStats {
                   />
                 )}
                 {(isBoxVisible && cardContent.length > 0) && (
-                  <div className={this.decorateCSS("card-container")}>
+                  <div className={this.decorateCSS(image ? "card-container" : "card-container-without-image")}>
                     <div className={this.decorateCSS("card")}>
                       {this.castToObject<any>("card-content").map(
                         (item: any, index: number) => {

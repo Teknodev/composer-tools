@@ -13,18 +13,20 @@
       height: 100%;
       display: flex;
       height: auto;
-        .left-page {
+      gap:20px;
+        .left-page,.left-page-without-image {
           display: flex;
           flex-direction: column;
           height: auto;
           width: 100%;
           flex:1;
-          gap:10px;
+          gap:20px;
+          padding-top: 50px; 
           .subTitle {
             color: var(--composer-font-color-primary);
             font-size:1.6rem;
             margin:0px;
-            padding-bottom: 10px ;       
+            padding-bottom: 10px ;   
           }
           .title {
             font-size: 3.5rem;
@@ -33,20 +35,12 @@
           }
           .description {
             font-weight: 100;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--composer-font-color-primary);
             margin:0px;
             font-weight: 100;
             opacity: 0.5;
-          }
-          .descriptionMore {
-            font-weight: 100;
-            font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
-            margin:0px;
-            padding-bottom: 10px;
-            font-weight: 100;
-            opacity: 0.5;
+            padding-bottom: 20px;
           }
           .button-container {
             display: flex;
@@ -76,7 +70,10 @@
             }
           }
         }
-        .right-container{
+        .left-page-without-image {
+          padding-top: 0px;
+        }
+        .right-container, .right-container-without-image{
           display: flex;
           align-items: center;
           flex-direction: column;
@@ -92,12 +89,12 @@
             display: flex;
             max-height: 700px;
           }
-          .card-container{
+          .card-container , .card-container-without-image {
             width: 100%;
             height: 100%;
             position: relative;
             min-height: 150px;
-            margin-top:-5rem;
+            margin-top:-50px;
             .card {
               position: absolute;
               bottom:0px;
@@ -181,6 +178,19 @@
             }
           }
 
+          .card-container-without-image {
+            margin-top: 0;
+            height: 100%;
+            align-items: center;
+            display: flex;
+            .card{
+              bottom:auto !important;
+              width: 100%;
+            }
+          }          
+        }
+        .right-container-without-image{
+          height: 100% !important;
         }
     }
   }
@@ -194,20 +204,18 @@
         display: flex;
         flex-direction: column;
          gap:40px;
-          .left-page {
+          .left-page,.left-page-without-image {
             flex:auto;
+            padding-top: 0px;
             .subTitle {
               font-size:1.6rem;
               padding-bottom: 10px; 
-          
+              padding-top: 0px !important; 
             }
             .title {
               font-size: 3rem;
             }
             .description {
-              font-size: 1.5rem;
-            }
-            .descriptionMore {
               font-size: 1.5rem;
             }
             .button-container {
@@ -216,12 +224,12 @@
               }
             }
           }
-          .right-container{
+          .right-container, .right-container-without-image{
             flex:auto;
             .image {
               width: 100%;
             }
-            .card-container{
+            .card-container, .card-container-without-image{
               .card {
                 width: 100%;
                 .content {
@@ -234,7 +242,15 @@
                 }
               }
             }
+            .card-container-without-image{
+              .card{
+                bottom:0px !important;
+              }
+            }
   
+          }
+          .right-container-without-image{
+            min-height: fit-content !important;
           }
       }
     }
@@ -255,16 +271,12 @@
             height: fit-content !important;
             .subTitle {
               font-size:1.4rem;
-              padding-bottom: 10px;            
+              padding-bottom: 10px;           
             }
             .title {
               font-size: 2.5rem;
             }
             .description {
-              font-weight: 100;
-              font-size: 1.3rem;
-            }
-            .descriptionMore {
               font-weight: 100;
               font-size: 1.3rem;
             }
@@ -280,14 +292,15 @@
             }
           }
 
-          .right-container{
+          .right-container, .right-container-without-image{
             gap:20px;
             flex: auto;
             .image {
               width: 100%;
               margin: 0px;
             }
-            .card-container{
+            .card-container, .card-container-without-image{
+              margin-top: 0px;
               .card {
                 position: relative;
                 flex-direction: column;
