@@ -158,14 +158,8 @@ class Navbar6 extends BaseNavigator {
               {
                 type: "string",
                 key: "label",
-                value: "ABOUT",
+                value: "BLOG",
                 displayer: "Text",
-              },
-              {
-                type: "page",
-                key: "link",
-                value: "",
-                displayer: "Navigate To",
               },
               {
                 type: "select",
@@ -179,6 +173,12 @@ class Navbar6 extends BaseNavigator {
                 key: "icon",
                 displayer: "Dropdown Icon",
                 value: "FaChevronDown",
+              },
+              {
+                type: "page",
+                key: "link",
+                value: "",
+                displayer: "Navigate To",
               },
               {
                 type: "array",
@@ -264,7 +264,6 @@ class Navbar6 extends BaseNavigator {
               },
             ],
           },
-          ,
           {
             type: "object",
             key: "item",
@@ -273,7 +272,7 @@ class Navbar6 extends BaseNavigator {
               {
                 type: "string",
                 key: "label",
-                value: "BLOG",
+                value: "CONTACT",
                 displayer: "Text",
               },
               {
@@ -394,8 +393,9 @@ class Navbar6 extends BaseNavigator {
     this.setComponentState("navActive", !value);
   }
 
-  dropdownClick() {
+  dropdownClick(index: number) {
     let value: boolean = this.getComponentState("dropdownActive");
+    this.setComponentState("activeDropdownIndex", index);
     this.setComponentState("dropdownActive", !value);
   }
 
@@ -404,8 +404,9 @@ class Navbar6 extends BaseNavigator {
     // const rightItems = this.getPropValue("right-items");
     const navActive = this.getComponentState("navActive");
     const dropdownActive = this.getComponentState("dropdownActive");
+    const activeDropdownIndex = this.getComponentState("activeDropdownIndex");
 
-    console.log("window", extendable);
+    // console.log("window", extendable);
     return (
       <>
         <div
@@ -435,32 +436,32 @@ class Navbar6 extends BaseNavigator {
                                 <>
                                   {window.innerWidth < 769 ?
                                     <>
-                                      <h3 className={this.decorateCSS("extendable")}>
-                                        <ComposerLink key={index}>
-                                          <div onClick={() => this.dropdownClick()} >
-                                            {window.innerWidth < 469
-                                              ? item?.value?.[0]?.value.length > 5
-                                                ? `${item.value[0].value.slice(0, 5)}...`
-                                                : item?.value?.[0]?.value
-                                              : item?.value?.[0]?.value.length > 9
-                                                ? `${item.value[0].value.slice(0, 9)}...`
-                                                : item?.value?.[0]?.value}<ComposerIcon name={item?.value[2].value} />
-                                          </div>
-
-                                        </ComposerLink>
-                                      </h3>
+                                      <div className={this.decorateCSS("right-section")}>
+                                        <h3 className={this.decorateCSS("extendable")} >
+                                          <ComposerLink key={index}>
+                                            <div className={this.decorateCSS("dropdown-content-tablet-telephone")} >
+                                              {item?.value?.[0]?.value}
+                                            </div>
+                                          </ComposerLink>
+                                        </h3>
+                                        <div className={dropdownActive ? this.decorateCSS("rotate"): ""} onClick={() => this.dropdownClick(index)}>
+                                          <ComposerIcon name={item?.value[2].value} />
+                                        </div>
+                                      </div>
                                       {item?.value?.[4]?.value?.length > 0 && (
-                                        <ul style={{ display: `${dropdownActive ? "" : "none"}` }}>
-                                          {item?.value?.[4]?.value?.map((dropdownItem: any, index: number) => {
+                                        <ul className={this.decorateCSS(`${dropdownActive ? "" : "ul-none"}`)} >
+                                          {item?.value?.[4]?.value?.map((dropdownItem: any, dropdownIndex: number) => {
                                             const text = dropdownItem?.value?.[0]?.value;
                                             const url = dropdownItem?.value?.[1]?.value;
+
+                                            console.log(dropdownActive);
                                             return (
-                                              <div className={`${this.decorateCSS("rightSlider")} ${dropdownActive ? this.decorateCSS("active") : this.decorateCSS("inactive")
+                                              <div className={`${this.decorateCSS("rightSlider")} ${dropdownActive ? this.decorateCSS("activeChild") : this.decorateCSS("inactive")
                                                 }`}>
-                                                {dropdownActive &&
-                                                  <li key={index} style={{ listStyleType: "none", margin: "5px " }}>
+                                                {dropdownActive && activeDropdownIndex === index &&
+                                                  <li key={index}>
                                                     <a href={url}>
-                                                      {text.length > 15 ? `${text.slice(0, 13)}...` : text}
+                                                      {text}
                                                     </a>
                                                   </li>
                                                 }
@@ -485,7 +486,7 @@ class Navbar6 extends BaseNavigator {
                                                   const url = dropdownItem?.value?.[1]?.value;
                                                   const image = dropdownItem?.value?.[2]?.value;
 
-                                                  console.log("image", image)
+                                                  // console.log("image", image)
                                                   if (image || text) {
                                                     return (
                                                       <>

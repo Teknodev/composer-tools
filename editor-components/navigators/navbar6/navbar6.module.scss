@@ -1,4 +1,3 @@
-
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
@@ -9,11 +8,11 @@
 
   .slider {
     width: 250px;
-    background-color: aqua;
+    background-color: var(--composer-html-background);
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh; /* Ekranın tüm yüksekliğini kaplar */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,7 +44,7 @@
     .content-right {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 35px;
 
       .navbar-child {
         position: absolute;
@@ -85,9 +84,8 @@
           overflow: hidden;
           position: absolute;
           top: 80%;
-          left: 10px;
+          margin-left: -10px;
           background-color: var(--composer-html-background);
-          // border: 1px solid var(--composer-html-background);
           padding: 5px 10px;
           z-index: 1;
           transition: max-height 0.0s ease, opacity 0.4s ease;
@@ -205,72 +203,126 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .container {
     .max-content {
-      padding: 0px 30px !important;
+      padding: 0 30px !important;
     }
+
     .content-right {
       margin: 0 !important;
       padding: 0 !important;
       height: 100% !important;
 
       .navbar-child {
-        padding: 25px 50px 25px 25px !important;
-
-        margin-left: 70% !important;
+        padding: 25px 30px 25px 25px !important;
+        margin-left: 60% !important;
         position: fixed !important;
         display: flex;
         flex-direction: column;
-        background-color: aqua !important;
-
-        padding-top: 45px !important;
+        background-color: var(--composer-html-background) !important;
+        padding-top: 55px !important;
         top: 0% !important;
         right: 0 !important;
-        width: 30% !important;
-        // align-items: end !important;
+        width: 40% !important;
+        gap: 0px !important;
 
         &.active {
           height: 100vh !important;
+          padding-top: 80px !important;
         }
 
+        // Style for the dropdown
         ul {
           padding: 0 !important;
+          /* Remove default padding */
+          margin: 0 !important;
+          /* Remove default margin */
           overflow: hidden;
+          display: flex;
+          /* Use flex to arrange items properly */
+          flex-direction: column;
+          /* Stack the items vertically */
         }
 
-        ul>li {
-          font-size: 18px !important;
+        .ul-none {
+          display: none;
+          /* Hide the ul when needed */
+        }
+
+        li {
+          font-size: 14px !important;
+          /* Style for li */
+          margin: 5px 5px;
+          /* Add some margin between items */
+          list-style-type: none !important;
         }
 
         .rightSlider {
-          // padding-left: 10px !important;
           display: block;
+          /* Make sure it is displayed correctly */
         }
 
-        .extendable svg {
-          margin-left: 10px;
-          flex-shrink: 0;
-        }
-
-        .extendable::selection .dropdown-content {
-          max-height: 300px !important;
+        &.activeChild {
           opacity: 1;
+          display: flex;
+          position: relative;
+        }
+
+        .right-section {
+          display: flex;
+          width: 100%;
+          justify-content: space-between !important;
+          flex-shrink: 0 !important;
+          align-items: center !important;
+
+          .extendable {
+            .dropdown-content-tablet-telephone {
+              display: flex !important;
+            }
+          }
+
+          div {
+            transition: transform 1s ease; /* Animasyon süresi */
+          }
+          
+          .rotate {
+            transform: rotate(180deg); /* 720 derece dönüşüm */
+          }
+
+          svg {
+            flex-shrink: 0 !important;
+            /* Prevent svg from shrinking */
+            width: 18px !important;
+            /* Ensure SVG maintains its own width */
+            height: auto !important;
+            // margin-top: 10px !important;
+            align-self: center;
+            /* Center-align the SVG vertically if needed */
+            // padding-left: 10px !important;
+          }
+
+          .extendable::selection .dropdown-content {
+            max-height: 300px !important;
+            opacity: 1;
+          }
         }
       }
     }
 
     .navbar-child.active {
       display: none;
+      /* Hide navbar when active */
     }
 
     .navbar-child h3 {
-      margin: 0px !important;
-      padding: 0px !important;
+      margin-top: 5px !important;
+      padding: 0 !important;
       font-size: 16px;
       color: var(--composer-font-color-primary);
       cursor: pointer;
       transition: color 0.3s ease;
+      margin-bottom: 5px !important;
     }
 
     +.hamburger-container {
@@ -308,6 +360,7 @@
 }
 
 
+
 @media (max-width: 468px) {
 
   .container {
@@ -315,62 +368,104 @@
       padding: 0px 30px !important;
     }
 
+    .content-left {
+      img {
+        height: 60px !important;
+      }
+    }
+
+
     .content-right {
       margin: 0 !important;
       padding: 0 !important;
       height: 100% !important;
 
       .navbar-child {
-        // padding: 25px 50px 25px 25px !important;
-        
-        width: 250px;
-        background-color: aqua !important;
-        position: fixed;
-        top: 0 !important;
-        right: 0;
-        height: 100vh; /* Ekranın tüm yüksekliğini kaplar */
+        padding: 25px 30px 25px 25px !important;
+        margin-left: 50% !important;
+        position: fixed !important;
         display: flex;
-        justify-content: center;
-        // align-items: center;
-        z-index: -1;
-        margin-left: 55% !important;
-        padding-top: 12% !important;
-        text-align: left !important;
-        width: 45% !important;
-        // align-items: end !important;
+        flex-direction: column;
+        background-color: var(--composer-html-background) !important;
+        padding-top: 55px !important;
+        top: 0% !important;
+        right: 0 !important;
+        width: 50% !important;
+        gap: 0px !important;
 
         &.active {
-          display: none;
+          height: 100vh !important;
+          padding-top: 80px !important;
         }
 
-        .dropdown-content {
-
-          .image-container {
-
-
-            .image {}
-
-            .text-overlay {}
-          }
-        }
-
-
+        // Style for the dropdown
         ul {
           padding: 0 !important;
+          /* Remove default padding */
+          margin: 0 !important;
+          /* Remove default margin */
           overflow: hidden;
+          display: flex;
+          /* Use flex to arrange items properly */
+          flex-direction: column;
+          /* Stack the items vertically */
         }
 
+        .ul-none {
+          display: none;
+          /* Hide the ul when needed */
+        }
 
+        li {
+          font-size: 12px !important;
+          /* Style for li */
+          margin: 5px 5px;
+          /* Add some margin between items */
+          list-style-type: none !important;
+        }
 
         .rightSlider {
-          // padding-left: 10px !important;
           display: block;
+          /* Make sure it is displayed correctly */
         }
 
-
-        .extendable::selection .dropdown-content {
-          max-height: 300px !important;
+        &.activeChild {
           opacity: 1;
+          display: flex;
+          position: relative;
+        }
+
+        .right-section {
+          display: flex;
+          width: 100%;
+          justify-content: space-between !important;
+          flex-shrink: 0 !important;
+          align-items: center !important;
+
+          .extendable {
+            .dropdown-content-tablet-telephone {
+              display: flex !important;
+              font-size: 12px !important;
+              padding-right: 5px;
+            }
+          }
+
+          svg {
+            flex-shrink: 0 !important;
+            /* Prevent svg from shrinking */
+            width: auto !important;
+            /* Ensure SVG maintains its own width */
+            height: auto !important;
+            // margin-top: 10px !important;
+            align-self: center;
+            /* Center-align the SVG vertically if needed */
+            // padding-left: 10px !important;
+          }
+
+          .extendable::selection .dropdown-content {
+            max-height: 300px !important;
+            opacity: 1;
+          }
         }
       }
     }
@@ -380,12 +475,13 @@
     }
 
     .navbar-child h3 {
-      margin: 0px !important;
+      // margin-top: 5px !important;
       padding: 0px !important;
       font-size: 12px !important;
       color: var(--composer-font-color-primary);
       cursor: pointer;
       transition: color 0.3s ease;
+      margin-bottom: 5px !important;
     }
 
     .hamburger-container {
