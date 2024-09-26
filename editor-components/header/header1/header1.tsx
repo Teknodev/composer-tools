@@ -278,7 +278,7 @@ class Header1 extends BaseHeader {
       dots: true,
       infinite: true,
       speed: 1500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,

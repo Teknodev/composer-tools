@@ -92,20 +92,14 @@
           overflow: hidden;
           .background-text {
             position: absolute;
-            height: 100%;
+            height: 100vh;
             z-index: 0;
             display: inline-block;
             animation: moveText 10s linear infinite;
-            transition: transform 3s ease-in-out;
-            transform: scale(0.5);
+            font-size: 50rem;
+            transition: font-size 1s ease-in-out;
             opacity: 0;
             color:black;
-           
-          }
-          .active-text {
-            opacity: 0.4;
-            height: 100vh;
-            transform: scale(1);
             >blinkpage{
               height: 100%;
               >p{
@@ -113,7 +107,25 @@
                 align-items: center;
                 justify-content: center;
                 height: 100%;
-                font-size: 80rem;
+                white-space: nowrap;
+
+              }
+            }
+           
+          }
+          .active-text {
+            opacity: 0.4;
+            height: 100vh;
+            font-size: 80rem;
+            >blinkpage{
+              height: 100vh;
+              display: flex !important;
+              >p{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                
                 white-space: nowrap;
               }
             }
