@@ -122,14 +122,29 @@ class Navbar2 extends BaseNavigator {
         },
       ],
     });
-    this.state["componentProps"]["navActive"] = true;
+    this.setComponentState("navActive", true);
+    this.setComponentState("isAnimating", false);
+    this.setComponentState("isVisible", true);
   }
   getName(): string {
     return "Navbar 2";
   }
   navClick() {
-    this.setComponentState("navActive", !this.getComponentState("navActive"));
+    const isActive = this.getComponentState("navActive");
+    this.setComponentState("navActive", !isActive);
+
+    if (!isActive) {
+      this.setComponentState("isAnimating", true);
+      this.setComponentState("isVisible", true);
+    } else {
+      this.setComponentState("isAnimating", false);
+      setTimeout(() => {
+        this.setComponentState("isVisible", false);
+      }, 1000);
+    }
   }
+
+
   render() {
     const title = this.castToString(this.getPropValue("title"));
     const image = this.getPropValue("image");
@@ -195,21 +210,26 @@ class Navbar2 extends BaseNavigator {
                 name={this.getPropValue("icon")}
               />
             </div>
-            {this.getComponentState("navActive") && (
+            {this.getComponentState("isVisible") && (
               <div className={this.decorateCSS("navbar-child")}>
-                {this.castToObject<[]>("itemList").map(
-                  (data: any, indexItemList: number) => {
-                    return (
-                      <div className={`${styles["mobile-item"]} ${active && styles.open}`}>
-                        <ComposerLink key={indexItemList} path={data.value[1].value}>
-                          <h3 key={indexItemList}>{data.value[0].value}</h3>
-                        </ComposerLink>
-                      </div>
-                    );
-                  }
-                )}
+                {this.castToObject<[]>("itemList").map((data: any, indexItemList: number) => {
+                  return (
+                    <div
+                      className={`${this.decorateCSS("mobile-item")} ${this.getComponentState("isAnimating")
+                        ? this.decorateCSS("open")
+                        : this.decorateCSS("close")
+                        }`}
+                      key={indexItemList}
+                    >
+                      <ComposerLink path={data.value[1].value}>
+                        <h3>{data.value[0].value}</h3>
+                      </ComposerLink>
+                    </div>
+                  );
+                })}
               </div>
             )}
+
 
           </nav>
         </div>
