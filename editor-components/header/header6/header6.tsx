@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header6.module.scss";
@@ -17,7 +16,7 @@ class Header6 extends BaseHeader {
     this.addProp({
       type: "string",
       key: "title2",
-      displayer: "title2",
+      displayer: "Title2",
       value: "Brand 2020",
     });
     this.addProp({
@@ -30,7 +29,7 @@ class Header6 extends BaseHeader {
     this.addProp({
       type: "image",
       key: "image1",
-      displayer: "Image",
+      displayer: " Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
     });
     this.addProp({
@@ -114,7 +113,6 @@ class Header6 extends BaseHeader {
               <img src={this.getPropValue("image2")} 
               alt="img2" 
               className={this.decorateCSS("image2")} />
-
             </div>
           </section>
         </div>
@@ -122,13 +120,5 @@ class Header6 extends BaseHeader {
     );
   }
   }
-
-  
-
-
-
-                    
-
-
+                  
 export default Header6;
-
