@@ -325,7 +325,7 @@ class List1 extends BaseList {
     const settings = {
       dots: true,
       infinite: sliderItems.length > 1,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: window.innerWidth < 475 ? 1 : window.innerWidth < 775 ? 2 : Math.min(3, sliderItems.length),  // En fazla 3 öğe göster
       slidesToScroll: 1,
