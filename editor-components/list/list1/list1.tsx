@@ -7,9 +7,9 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   image: string;
-  title: string;
-  subtitle: string;
-  text: string;
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  text: JSX.Element;
   url: string;
   icon: string;
 };
@@ -320,11 +320,12 @@ class List1 extends BaseList {
   render() {
     const sliderItems = this.castToObject<Card[]>("slider");
     const backgroundColor = this.getPropValue("backgroundColor");
-    const title = this.getPropValue("title");
+    const title: JSX.Element = this.getPropValue("title");
+    const subTitle: JSX.Element = this.getPropValue("subtitle");
     const settings = {
       dots: true,
       infinite: sliderItems.length > 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: window.innerWidth < 475 ? 1 : window.innerWidth < 775 ? 2 : Math.min(3, sliderItems.length),  // En fazla 3 öğe göster
       slidesToScroll: 1,
@@ -341,12 +342,14 @@ class List1 extends BaseList {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-text")}>
-            <h4 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h4>
-
-            {title && (
-              <h1 className={this.decorateCSS("title")}>{title}</h1>
+            {this.castToString(subTitle) && <h4 className={this.decorateCSS("subtitle")}>
+              {this.castToString(subTitle)}
+            </h4>}
+            {this.castToString(title) && (
+              <h1 className={this.decorateCSS("title")}>
+                {this.castToString(title)}
+              </h1>
             )}
-
           </div>
           <div className={this.decorateCSS("carousel-div")}>
             <ComposerSlider
@@ -357,7 +360,10 @@ class List1 extends BaseList {
                 (item: Card, indexSlider: number) => (
                   <div key={indexSlider}
                     className={`${this.decorateCSS("card")}
-                   ${backgroundColor && this.getComponentState("active-index") == indexSlider ? this.decorateCSS("active") : ""}`}>
+                   ${backgroundColor && this.getComponentState("active-index") == indexSlider ? this.decorateCSS("active") : ""}
+                   ${indexSlider % 2 == 0 ? this.decorateCSS("left-card-padding") : this.decorateCSS("right-card-padding")}
+                   `}
+                  >
                     <div className={this.decorateCSS("card-inner")}>
 
                       {item.image && <div className={this.decorateCSS("img-div")}>
@@ -367,18 +373,22 @@ class List1 extends BaseList {
                           alt=""
                         /></div>}
 
-                          <span className={this.decorateCSS("title")}>
-                            {item.title}
-                          </span>
-                          <span className={this.decorateCSS("subtitle")}>
-                            {item.subtitle}
-                          </span>
-                      <ComposerLink path={item.url}>
-                        <div className={this.decorateCSS("link")}>
-                          <span className={this.decorateCSS("text")}>{item.text}</span>
-                          <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                        </div>
-                      </ComposerLink>
+                      {this.castToString(item.title) && <span className={this.decorateCSS("title")}>
+                        {item.title}
+                      </span>}
+
+                      {this.castToString(item.subtitle) && <span className={this.decorateCSS("subtitle")}>
+                        {item.subtitle}
+                      </span>}
+
+                      {this.castToString(item.text) && <>
+                        <ComposerLink path={item.url}>
+                          <div className={this.decorateCSS("link")}>
+                            <span className={this.decorateCSS("text")}>{item.text}</span>
+                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          </div>
+                        </ComposerLink>
+                      </>}
                     </div>
                   </div>
                 )
