@@ -113,20 +113,23 @@
         }
 
         .overlay-links-container {
+          width: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: row;
+          flex-wrap: nowrap;
+          gap: 10px;
         }
 
         .overlay-link {
+          max-width: 50%;
+          flex: 1 1;
           text-decoration: none;
           color: var(--composer-font-color-secondary);
           border: 1px solid var(--composer-font-color-secondary);
-          padding: 0.7em 2.1em;
+          padding: 0.7em 1em;
           text-transform: uppercase;
-          word-break: break-word;
-          margin: 10px;
         }
       }
 
