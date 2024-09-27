@@ -12,6 +12,17 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+@mixin threeDotsBlinkPage {
+  >blinkpage {
+    p{
+      display: -webkit-box !important;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
 $color-mix: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 $font-color-primary: var(--composer-font-color-primary);
 
@@ -23,10 +34,6 @@ $font-color-primary: var(--composer-font-color-primary);
   align-items: center;
   background: var(--composer-html-background);
   height: 100%;
-
-  
-  
- 
   p {
     color: $font-color-primary;
   }
@@ -36,22 +43,20 @@ $font-color-primary: var(--composer-font-color-primary);
   }
   .max-content {
     display: flex;
-    grid-template-columns: repeat(2, 1fr);
     justify-content: space-around;
     max-width: var(--composer-content-width);
-    margin: auto;
+    margin: 0px auto;
     width: 100%;
     gap: 50px;
     height: 100%;
-
     container-name: my-max-content;
     container-type: inline-size;
-    @container my-max-content (max-width: 1025px) {
-      .max-content{
+    @container my-max-content (min-width: 900px) and (max-width: 1025px) {
+      
         .stat {
-          &.h5 {
+          h5 {
             blinkpage > p {
-              font-size: 60rem !important;
+              font-size: 15px !important;
             }
           }
         }
@@ -59,13 +64,28 @@ $font-color-primary: var(--composer-font-color-primary);
           .image-container{
             .image-container-border{
               img{
-                width: 90%;
+                width: 90% !important;
+                max-height: 100% !important;
               }
             }
           }
         }
+        .stats{
+          flex: 1 !important;
+          .stat-border{
+            min-width: 200px !important;
+          }
+        }
+    }
+   @container my-max-content (min-width: 1026px) and (max-width: 1749px){
+    .stats{
+      .stat-border{
+        min-width: 300px !important;
       }
     }
+   }
+    
+
     &.image-absent {
       display: inline-block;
       width: 100%;
@@ -86,6 +106,7 @@ $font-color-primary: var(--composer-font-color-primary);
           letter-spacing: 2px;
           color: $font-color-primary;
           word-break: break-word;
+          padding-bottom: 40px;
         }
         .text-uppercase {
           text-transform: uppercase;
@@ -94,6 +115,9 @@ $font-color-primary: var(--composer-font-color-primary);
           font-size: 20px;
           color: $font-color-primary;
           word-break: break-word;
+          margin: 0;
+          padding-bottom: 30px;
+          letter-spacing: 1.5px;
         }
         .line {
           height: 1px;
@@ -106,48 +130,57 @@ $font-color-primary: var(--composer-font-color-primary);
           color: $font-color-primary;
           margin-top: 0;
           word-break: break-word;
+          padding-bottom: 20px;
         }
         .author {
           font-size: 16px;
           font-weight: 600;
           color: $font-color-primary;
           word-break: break-word;
+          margin: 0;
+          text-transform: uppercase;
+          padding-bottom: 15px;
         }
-        .author-role {
-          font-size: 16px;
-          position: relative;
-          padding-left: 20px;
-          z-index: 1;
-          color: $font-color-primary;
-          word-break: break-word;
+        .author-role-container{
+          padding-bottom: 70px;
+          .author-role {
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+            color: $font-color-primary;
+            word-break: break-word;
+            letter-spacing: 1.5px;
+          }
+          .author-role-background {
+            width: 60px;
+            background-color: $color-mix;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            z-index: -1;
+            transform: skew(-10deg);
+          }
         }
-        .author-role-background {
-          width: 60px;
-          background-color: $color-mix;
-          position: absolute;
-          left: 0;
-          top: 0;
-          height: 100%;
-          z-index: -1;
-          transform: skew(-10deg);
-        }
+     
         .stats {
-          display: grid;
+          display: flex;
           flex-wrap: wrap;
           width: 100%;
-          gap: 50px;
-          padding-top: 70px;
-          grid-template-columns: repeat(2, 1fr);
-
+          gap: 30px;
+          height: fit-content;
           &.full-width {
             display: flex;
-            grid-template-columns: 1fr;
             flex-direction: row;
           }
           .stat-border {
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
             background-color: transparent;
-            max-width: 400px;
+            height: fit-content;
+            flex: 1;
+            &.stat-border-full-width{
+              max-width: 400px;
+            }
             .stat {
               opacity: 1;
               display: flex;
@@ -167,17 +200,14 @@ $font-color-primary: var(--composer-font-color-primary);
                 font-weight: 700;
                 text-align: center;
                 color: $font-color-primary;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                word-break: break-word;
               }
               .stat-description {
                 font-size: 16px;
                 font-weight: 400;
                 letter-spacing: 1px;
                 @include blinkpageColor;
-                word-break: break-word;
+                @include threeDotsBlinkPage;
+                margin: 0;
                 max-width: 50%;
               }
             }
@@ -231,27 +261,6 @@ $font-color-primary: var(--composer-font-color-primary);
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 992px) {
-  .container {
-    flex-direction: column;
-    gap: 60px;
-    .max-content {
-      .stats8-page {
-        text-align: start;
-        margin: 0;
-        .image-container {
-          padding: 0;
-          margin: 0 auto;
-          .overlay {
-            .number {
-              font-size: 65px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 @media only screen and (min-width: 480px) and (max-width: 800px) {
   .container {
@@ -276,7 +285,7 @@ $font-color-primary: var(--composer-font-color-primary);
           .stats{
             max-width: 100%;
             .stat-border{
-              min-width: 45% !important;
+              // min-width: 40% !important;
               .stat{
                 .stat-description{
                   max-width: 40% !important;
@@ -325,6 +334,7 @@ $font-color-primary: var(--composer-font-color-primary);
               grid-template-columns: 1fr;
             }
             .stat-border {
+              min-width: 100% !important;
               .stat {
                 margin-right: 0;
                 margin-left: 0;

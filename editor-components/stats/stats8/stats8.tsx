@@ -183,7 +183,7 @@ class Stats8Page extends BaseStats {
     const overlayDescription = this.castToString(
       this.getPropValue("overlayDescription")
     );
-
+    const showBackground = this.getPropValue("showBackground");
     const isContentPresent =
       isTitleExist ||
       isSubTitleExist ||
@@ -232,16 +232,17 @@ class Stats8Page extends BaseStats {
                 {isAuthorExist && (
                   <h5 className={this.decorateCSS("author")}>{author}</h5>
                 )}
-
                 {isAuthorRoleExist && (
+                  <div className={this.decorateCSS("author-role-container")}>
                   <span className={this.decorateCSS("author-role")}>
-                    {this.getPropValue("showBackground") && (
+                    { showBackground && (
                       <span
                         className={this.decorateCSS("author-role-background")}
                       ></span>
                     )}
                     {authorRole}
                   </span>
+                  </div>
                 )}
 
                 <div className={`${this.decorateCSS("stats")} ${
@@ -251,11 +252,13 @@ class Stats8Page extends BaseStats {
                     (statData: ICard, indexStat: number) =>
                       statData.title &&
                       statData.description && (
-                        <div className={this.decorateCSS("stat-border")}>
+                        <div className={`${this.decorateCSS("stat-border")} ${
+                          !imageSrc ? this.decorateCSS("stat-border-full-width") : ""
+                        }`}>
                           <div
                             key={indexStat}
                             className={`${this.decorateCSS("stat")} ${
-                              this.getPropValue("showBackground")
+                              showBackground
                                 ? this.decorateCSS("with-background")
                                 : this.decorateCSS("no-background")
                             }`}
