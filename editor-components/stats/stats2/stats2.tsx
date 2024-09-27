@@ -200,16 +200,18 @@ class Stats2Page extends BaseStats {
     const cards = this.castToObject<Card[]>("cards");
     const cardLength = cards.length;
     const animationDuration = this.getPropValue("animation-duration") as number;
-    const subHeader = this.castToString(this.getPropValue("subHeader"));
-
-    const header = this.castToString(this.getPropValue("header"));
-    const contactButton = this.castToString(this.getPropValue("contactButton"));
+    const header = this.getPropValue("header");
+    const isHeaderExist = this.castToString(header);
+    const subHeader = this.getPropValue("subHeader");
+    const isSubHeader = this.castToString(subHeader);
+    const contactButton = this.getPropValue("contactButton");
+    const isContactButtonExist = this.castToString(contactButton);
     const contactButtonIcon = this.getPropValue("contactButtonIcon");
     const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {header && (
+          {isHeaderExist && (
             <div className={`${this.decorateCSS("header-wrapper")} ${
               cardLength <= 0 ? this.decorateCSS("full-width") : ""
             }`}>
@@ -218,25 +220,25 @@ class Stats2Page extends BaseStats {
           )}
 
           <div className={this.decorateCSS("bottom-content")}>
-            {(subHeader || contactButton || contactButtonIcon) && (
+            {(isSubHeader || isContactButtonExist || contactButtonIcon) && (
                <div className={`${this.decorateCSS("subHeader")} ${
                 cardLength <= 0 ? this.decorateCSS("full-width") : ""
               }`}>
-               {subHeader && (
+               {isSubHeader && (
                  <div className={`${this.decorateCSS("description")} ${
                   cardLength <= 0 ? this.decorateCSS("full-width") : ""
                 }`}>
                  {subHeader}
                  </div>
                )}
-               {(contactButton || contactButtonIcon) && (
+               {(isContactButtonExist || contactButtonIcon) && (
                  <button
                    className={`${this.decorateCSS("contact-button")} ${
                      buttonAnimationEnabled ? this.decorateCSS("animated") : ""
                    } ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""
                   }`}
                  >
-                   {contactButton}
+                   {isContactButtonExist}
                    {contactButtonIcon && (
                      <ComposerIcon
                        propsIcon={{
