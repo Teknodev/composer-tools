@@ -5,6 +5,10 @@ import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+export type Button = {
+  buttonText?: string;
+}
+
 class Form2Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
@@ -14,7 +18,7 @@ class Form2Page extends BaseContacts {
       key: "background-img",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c4d3bd2970002c629028?alt=media&timestamp=1719564433797",
+        "https://telaviv.intercontinental.com/wp-content/uploads/sites/3/2023/07/InterContinental-David-Tel-Aviv-Reception.webp",
     });
     this.addProp({
       type: "string",
@@ -190,10 +194,23 @@ class Form2Page extends BaseContacts {
       ],
     });
     this.addProp({
-      type: "string",
-      key: "button_text",
+      type: "array",
+      key: "button_array",
       displayer: "Button Text",
-      value: "Send Email",
+      value: [
+        {
+          type: "string",
+          key: "button_object",
+          displayer: "Button",
+          value: "Save"
+        },
+        {
+          type: "string",
+          key: "button_object",
+          displayer: "Button",
+          value: "Send"
+        }
+      ],
     });
   }
 
@@ -204,6 +221,8 @@ class Form2Page extends BaseContacts {
   render() {
     const inputs = this.getPropValue("inputs");
     const initialValue = getInitialValue();
+    const title: JSX.Element = this.getPropValue("title");
+    const buttons = this.getPropValue("button_array");
 
     function getInputType(type: string): string {
       switch (type) {
@@ -237,7 +256,7 @@ class Form2Page extends BaseContacts {
       const inputs = this.getPropValue("inputs");
 
       inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
-        if(!input["getPropValue"]) return;
+        if (!input["getPropValue"]) return;
         const isRequired = input.getPropValue("is_required");
         const isEmail = getInputType(input.getPropValue("type")) == "email";
 
@@ -280,8 +299,8 @@ class Form2Page extends BaseContacts {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("input-items")}>
-            <div className={this.decorateCSS("input-item")}>
-              <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
+            {(inputs.length > 0 || title && buttons.length > 0) && <div className={this.decorateCSS("input-item")}>
+              {this.castToString(title) && <span className={this.decorateCSS("title")}>{title}</span>}
               <Formik
                 initialValues={initialValue}
                 validationSchema={getSchema()}
@@ -329,13 +348,21 @@ class Form2Page extends BaseContacts {
                         </div>
                       </>
                     ))}
-                    <button className={this.decorateCSS("submit-button")} type="submit">
-                      {this.getPropValue("button_text")}
-                    </button>
+                    {buttons.length > 0 && <div className={this.decorateCSS("button-div")}>
+                      {buttons.map((button: any, index: number) => (
+                        button.value && <button key={index} className={this.decorateCSS("submit-button")} type="submit">
+                          {button?.value}
+                        </button>
+                      ))}
+                    </div>}
+
                   </Form>
                 )}
               </Formik>
             </div>
+
+            }
+
             {this.getPropValue("background-img") && (
               <div className={this.decorateCSS("background-image")}>
                 <img
