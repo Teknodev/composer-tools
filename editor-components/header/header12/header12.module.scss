@@ -16,8 +16,6 @@
     width: 100%;
     min-height: 503.2px;
     overflow: hidden;
-    
-    
 
     .no-slider-items {
       width: 100% !important;
@@ -27,7 +25,6 @@
 
     .left-slider,
     .right-slider {
-      // min-height: 500px;
       position: relative;
       box-sizing: border-box;
       max-height: 503.2px;
@@ -36,7 +33,7 @@
         width: 100%;
 
         .image-overlay-container {
-          // position: relative;
+          position: relative;
           display: inline-block;
           width: 100%;
 
@@ -51,13 +48,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: color-mix(in srgb, var(--composer-html-background) 5%, var(--composer-font-color-primary) 5%);
+            background: rgba(0, 0, 0, 0.3);
           }
         }
       }
 
       >div>div>div {
-        // height: 500px;
+        // height: 503.2px;
 
         >div {
           height: 100%;
@@ -110,7 +107,7 @@
         .slider-item-text {
           position: absolute;
           bottom: 1em;
-          left: calc( 1050px - var(--composer-content-width) ); 
+          left: 50px; 
           color: white;
           z-index: 2;
           width: auto;
@@ -165,7 +162,7 @@
         .slider-item-text {
           position: absolute;
           bottom: 1em;
-          right: calc(1050px - var(--composer-content-width));
+          right: 50px;
           color: white;
           z-index: 2;
           width: auto;
@@ -205,7 +202,7 @@
     .left-slider {
       .slider-item {
         .slider-item-text {
-          bottom: 40px !important;
+          bottom: 20px !important;
           left: 50px !important;
           font-size: 8vw !important;
         }
@@ -215,7 +212,7 @@
     .right-slider {
       .slider-item {
         .slider-item-text {
-          bottom: 40px !important;
+          bottom: 20px !important;
           right: 50px !important;
           font-size: 8vw !important;
           text-align: end;
@@ -253,7 +250,7 @@
 
       .slider-item-image {
         // width: 100%; 
-        height: 51vh !important;
+        height: 50vh !important;
         object-fit: cover !important;
         box-sizing: border-box !important;
       }
@@ -304,11 +301,9 @@
     }
 
     .left-slider {
-      position: absolute;
-      top: 0;
       .slider-item {
         .slider-item-text {
-          bottom: 30px !important;
+          bottom: 20px !important;
           left: 50px !important;
           font-size: 5vw !important;
         }
@@ -316,11 +311,9 @@
     }
 
     .right-slider {
-      position: absolute;
-      top: 0;
       .slider-item {
         .slider-item-text {
-          bottom: 30px !important;
+          bottom: 20px !important;
           right: 50px !important;
           font-size: 5vw !important;
           text-align: end;
@@ -333,11 +326,13 @@
   .left-slider,
   .right-slider {
     width: 100% !important;
-    // height: 100%; 
+    height: 50vh !important;
     padding: 0;
     margin: 0;
     position: relative;
     box-sizing: border-box;
+    max-height: 1542px !important;
+
 
     .slider-item {
       width: 100%;
@@ -356,7 +351,7 @@
 
       .slider-item-image {
         // width: 100%; 
-        height: 51vh !important;
+        height: 50vh !important;
         object-fit: cover !important;
         box-sizing: border-box !important;
       }
@@ -368,21 +363,20 @@
   }
 
   .left-slider-button {
-    top: calc(100%) !important;
+    top: calc(100% - 5px) !important;
     bottom: -12.5px;
     width: 25px;
     height: 25px;
-    right: 30px !important;
+    right: 25px !important;
     transform: rotate(-90deg) !important;
-    font-size: 50px !important;
   }
 
   .right-slider-button {
-    top: 0px !important;
-    left: 5px !important;
+    top: -5px !important;
+    left: 10px !important;
     width: 25px;
     height: 25px;
     transform: rotate(-90deg) !important;
-    font-size: 50px !important;
   }
 }
+
