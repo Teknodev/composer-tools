@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 503.2px;
+    min-height: 500px;
     overflow: hidden;
 
     .no-slider-items {
@@ -27,7 +27,7 @@
     .right-slider {
       position: relative;
       box-sizing: border-box;
-      max-height: 503.2px;
+      max-height: 500px;
 
       .slider-item {
         width: 100%;
@@ -38,7 +38,7 @@
           width: 100%;
 
           .slider-item-image {
-            height: 503.2px;
+            height: 500px;
             width: 100%;
           }
 
