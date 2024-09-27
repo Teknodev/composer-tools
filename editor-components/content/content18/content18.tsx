@@ -19,14 +19,14 @@ class Content18 extends BaseContent {
       key: "image1",
       displayer: "1st Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890e?alt=media&timestamp=1719564433797",
+        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
     });
     this.addProp({
       type: "image",
       key: "image2",
       displayer: "2nd Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bc49bd2970002c62890f?alt=media&timestamp=1719564433797",
+        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychology-mental-health-and-support-with-a-woman-2023-11-27-05-29-05-utc.jpg",
     });
     this.addProp({
       type: "icon",
@@ -194,12 +194,6 @@ class Content18 extends BaseContent {
         },
       ],
     });
-    this.addProp({
-      type: "boolean",
-      key: "progress-text-is-primary",
-      displayer: "progress-text-is-primary",
-      value: true,
-    });
     this.setComponentState("is_video_visible", false);
   }
   getName(): string {
@@ -211,99 +205,118 @@ class Content18 extends BaseContent {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const itemsLength = this.getPropValue("items").length;
+    const image1 = this.getPropValue("image1");
+    const image2 = this.getPropValue("image2");
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("left-page")}>
-              <div className={this.decorateCSS("up-image")}>
-                <img
-                  className={this.decorateCSS("image1")}
-                  src={this.getPropValue("image1")}
-                  alt=""
-                />
-              </div>
-              <div className={this.decorateCSS("down-image")}>
-                <img
-                  className={this.decorateCSS("image2")}
-                  src={this.getPropValue("image2")}
-                  alt=""
-                />
-                <div onClick={() => {
-                  this.setComponentState("is_video_visible", true)
-                }}>
-                  <ComposerIcon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
-                </div>
-                {this.getComponentState("is_video_visible") && <div className={this.decorateCSS("player")} onClick={() => this.setComponentState("is_video_visible", false)}>
-                  <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("image2")} src={this.getPropValue("video")}></video>
-                </div>}
-              </div>
-            </div>
-            <div className={this.decorateCSS("right-page")}>
-              {badge && (
-                <div className={this.decorateCSS("badge")}>
-                  {this.getPropValue("badge")}
-                </div>
-              )}
-              {title && (
-                <div className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </div>
-              )}
-              {description && (
-                <p className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </p>
-              )}
-
-              {itemsLength > 0 && (
-                <div className={this.decorateCSS("progress-container")}>
-                  {this.castToObject<ProgressItem[]>("items").map(
-                    (item: ProgressItem, index: number) => (
-                      <div className={this.decorateCSS("item")} key={index}>
-                        <div
-                          className={this.decorateCSS("progress-title-container")}
-                        >
-                          <div
-                            className={this.decorateCSS("progress-title-icon")}
-                          >
-                            <ComposerIcon
-                              name={item.icon}
-                              propsIcon={{ className: this.decorateCSS("icon") }}
-                            />
-                          </div>
-                          <div className={this.decorateCSS("progress-title")}>
-                            {item.progressTitle}
-                          </div>
-                        </div>
-                        {this.castToString(item.progressText) && (
-                          <div
-                            className={this.decorateCSS("progress-bar-container")}
-                          >
-                            <div className={this.decorateCSS("progress-bar")}>
-                              <div
-                                className={this.decorateCSS("progress")}
-                                style={{
-                                  width: `${item.progress}%`,
-                                }}
-                              />
-                            </div>
-                            <span className={this.decorateCSS("progress-text")}>
-                              {item.progressText}
-                            </span>
-                          </div>
-                        )}
+            {(image1 || image2) && (
+              <div className={this.decorateCSS("left-page")}>
+                {image1 && (
+                  <div className={image2 ? this.decorateCSS("up-image") : this.decorateCSS("without-image2")}>
+                    <img
+                      className={this.decorateCSS("image1")}
+                      src={this.getPropValue("image1")}
+                      alt=""
+                    />
+                  </div>
+                )}
+                {image2 && (
+                  <div className={image1 ? this.decorateCSS("down-image") : this.decorateCSS("without-image1")}>
+                    <img
+                      className={this.decorateCSS("image2")}
+                      style={{ borderRadius: "10px" }}
+                      src={this.getPropValue("image2")}
+                      alt=""
+                    />
+                    <div onClick={() => {
+                      this.setComponentState("is_video_visible", true)
+                    }}>
+                      <div className={this.decorateCSS("icon-container")}>
+                        <ComposerIcon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </div>
-                    )
-                  )}
-                </div>
+                    </div>
+                    {this.getComponentState("is_video_visible") && <div className={this.decorateCSS("player")} onClick={() => this.setComponentState("is_video_visible", false)}>
+                      <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("image2")} src={this.getPropValue("video")}></video>
+                    </div>}
+                  </div>
+                )}
+              </div>
+            )}
 
-              )
+            {(badge || title || description || (itemsLength > 0)) && (
+              <div className={this.decorateCSS("right-page")}>
+                {badge && (
+                  <div className={this.decorateCSS("badge")}>
+                    {this.getPropValue("badge")}
+                  </div>
+                )}
+                {title && (
+                  <div className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </div>
+                )}
+                {description && (
+                  <p className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </p>
+                )}
 
-              }
+                {itemsLength > 0 && (
+                  <div className={this.decorateCSS("progress-container")}>
+                    {this.castToObject<ProgressItem[]>("items").map(
+                      (item: ProgressItem, index: number) => (
+                        <div className={this.decorateCSS("item")} key={index}>
+                          <div className={this.decorateCSS("progress-content")}>
+                            <div
+                              className={this.decorateCSS("progress-title-container")}
+                            >
+                              <div
+                                className={this.decorateCSS("progress-title-icon")}
+                              >
+                                <ComposerIcon
+                                  name={item.icon}
+                                  propsIcon={{ className: this.decorateCSS("icon") }}
+                                />
+                              </div>
+                              <div className={this.decorateCSS("progress-title")}>
+                                {item.progressTitle}
+                              </div>
+
+                            </div>
+                            <div className={this.decorateCSS("progress-text-container")}>
+                              <div className={this.decorateCSS("progress-text")}>
+                                {item.progressText}
+                              </div>
+                            </div>
+                          </div>
 
 
-            </div>
+
+                          {this.castToString(item.progressText) && (
+                            <div
+                              className={this.decorateCSS("progress-bar-container")}
+                            >
+                              <div className={this.decorateCSS("progress-bar")}>
+                                <div
+                                  className={this.decorateCSS("progress")}
+                                  style={{
+                                    width: `${item.progress}%`,
+                                  }}
+                                />
+                              </div>
+
+                            </div>
+                          )}
+                        </div>
+                      )
+                    )}
+                  </div>
+
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
