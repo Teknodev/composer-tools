@@ -8,6 +8,7 @@
         margin: auto;
 
         .input-items {
+
             .background-image {
                 width: 100%;
                 height: max-content;
@@ -32,12 +33,11 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background: rgba(255, 255, 255, 0.352);
+                background: rgba(var(--composer-html-background-rgb), 0.2);
                 border-radius: 16px;
-                opacity: 0.9;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
                 backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(20px);
                 border: 1px solid rgba(255, 255, 255, 0.3);
                 padding: 40px 60px 40px 60px;
                 border-radius: 10px;
@@ -55,10 +55,16 @@
                 .form {
                     display: flex;
                     flex-direction: column;
-                    gap: 25px;
+                    gap: 15px;
 
                     .input-container {
                         position: relative;
+
+                       .error-message {
+                            blinkpage p {
+                                color: red;
+                            }
+                        }
 
                         .placeholder {
                             font-size: 15px;
@@ -132,19 +138,17 @@
                     padding: 0 25px;
                     min-height: 50px;
                     background: transparent;
-                    color: var(--composer-font-color-secondary);
+                    color: var(--composer-primary-color);
                     border-radius: 4px;
-                    border: 1px solid var(--composer-font-color-primary);
+                    border: 1px solid var(--composer-primary-color);
                     font-size: 14px;
                     position: relative;
                     overflow: hidden;
 
                     &:hover {
-                        background: var(--composer-secondary-color);
-                        color: var(--composer-font-color-primary);
-                        
+                        background: var(--composer-primary-color);
+                        color: var(--composer-font-color-secondary);
                     }
-
                 }
             }
         }
@@ -159,7 +163,8 @@
             .input-items {
                 .input-item {
                     width: 100%;
-                    max-width: 320px;
+                    max-width: 300px;
+                    padding: 20px;
                 }
             }
         }
