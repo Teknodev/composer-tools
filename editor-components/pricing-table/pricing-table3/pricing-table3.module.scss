@@ -6,7 +6,7 @@ ul {
 
 .container {
   width: 100%;
-  padding: 60px 50px;
+  padding: 20px 50px;
   background: var(--composer-html-background);
   color: var(--composer-font-color-primary);
 
@@ -14,6 +14,24 @@ ul {
     max-width: var(--composer-content-width);
     margin: 0 auto;
   }
+}
+.container-alternate {
+  width: 100%;
+  padding: 57px 50px 42px;
+  background: var(--composer-html-background);
+  color: var(--composer-font-color-primary);
+
+  .max-content {
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+  }
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
 
 .wrapper {
@@ -45,10 +63,41 @@ ul {
   }
 }
 
+.featured-alternate {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  .title {
+    font-weight: 600;
+    font-size: 3.5em;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+
+  .description {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  .featured-button-container {
+    margin-bottom: 0;
+  }
+}
+
 .cards-div {
   width: 65%;
   display: flex;
   justify-content: end;
+  align-items: center;
+  gap: 0;
+}
+.cards-div-alternate {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
   gap: 0;
 }
@@ -83,6 +132,7 @@ ul {
 }
 
 .card {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -106,13 +156,11 @@ ul {
       font-weight: 500;
       color: var(--composer-font-color-primary);
       word-break: break-word;
-      margin: 0;
     }
     .price {
       font-size: 3.4em;
       font-weight: 600;
       color: var(--composer-font-color-primary);
-      margin: 0;
     }
   }
 
@@ -120,6 +168,7 @@ ul {
     margin-bottom: 20px;
     width: 100%;
     .items {
+      width: 100%;
       display: flex;
       flex-direction: column;
       .item {
@@ -139,7 +188,12 @@ ul {
   }
 }
 
+.featured-button-container {
+  margin-bottom: 20px;
+}
+
 .button {
+  max-width: 200px;
   position: relative;
   display: flex;
   align-items: center;
@@ -186,7 +240,15 @@ ul {
 
 @media only screen and (max-width: 1000px) {
   .container {
-    padding: 20px 30px 45px;
+    padding: 20px 30px;
+  }
+
+  .container-alternate {
+    padding: 20px 30px 43px;
+  }
+
+  .card {
+    width: 85%;
   }
 
   .wrapper {
@@ -198,7 +260,22 @@ ul {
       padding-right: 0;
     }
 
+    .featured-alternate {
+      width: 100%;
+      gap: 2em;
+      padding-right: 0;
+    }
+
     .cards-div {
+      width: 100%;
+      flex-direction: grid;
+
+      .card-container {
+        width: 100% !important;
+      }
+    }
+
+    .cards-div-alternate {
       width: 100%;
       flex-direction: grid;
 
@@ -213,7 +290,20 @@ ul {
   .container {
     padding: 20px 30px;
   }
+  .container-alternate {
+    padding: 20px 30px;
+  }
   .featured {
+    width: 100%;
+    padding: 0;
+    align-items: center;
+
+    .button {
+      justify-content: end;
+    }
+  }
+
+  .featured-alternate {
     width: 100%;
     padding: 0;
     align-items: center;
@@ -226,10 +316,24 @@ ul {
   .cards-div {
     width: 90%;
     flex-direction: column;
+    gap: 2em;
 
     .card-container {
       width: 100%;
-      margin-top: 2em;
+    }
+
+    .card-container.active {
+      scale: 1;
+    }
+  }
+
+  .cards-div-alternate {
+    width: 90%;
+    flex-direction: column;
+    gap: 2em;
+
+    .card-container {
+      width: 100%;
     }
 
     .card-container.active {
@@ -240,20 +344,27 @@ ul {
 
 @media only screen and (max-width: 500px) {
   .container {
-    padding: 20px 20px;
+    padding: 20px 30px;
+  }
+  .container-alternate {
+    padding: 20px 30px;
   }
 
   .featured {
     align-items: flex-start;
   }
 
+  .featured-alternate {
+    align-items: flex-start;
+  }
+
   .cards-div {
     width: 90%;
     flex-direction: column;
+    gap: 2em;
 
     .card-container {
       width: 100%;
-      margin-top: 2em;
     }
 
     .card-container.active {
