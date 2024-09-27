@@ -5,6 +5,13 @@
     }
   }
 }
+@mixin threeDots{
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 $color-mix: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 $font-color-primary: var(--composer-font-color-primary);
 
@@ -16,6 +23,10 @@ $font-color-primary: var(--composer-font-color-primary);
   align-items: center;
   background: var(--composer-html-background);
   height: 100%;
+
+  
+  
+ 
   p {
     color: $font-color-primary;
   }
@@ -32,6 +43,29 @@ $font-color-primary: var(--composer-font-color-primary);
     width: 100%;
     gap: 50px;
     height: 100%;
+
+    container-name: my-max-content;
+    container-type: inline-size;
+    @container my-max-content (max-width: 1025px) {
+      .max-content{
+        .stat {
+          &.h5 {
+            blinkpage > p {
+              font-size: 60rem !important;
+            }
+          }
+        }
+        .stats8-page{
+          .image-container{
+            .image-container-border{
+              img{
+                width: 90%;
+              }
+            }
+          }
+        }
+      }
+    }
     &.image-absent {
       display: inline-block;
       width: 100%;
@@ -105,9 +139,9 @@ $font-color-primary: var(--composer-font-color-primary);
           padding-top: 70px;
           grid-template-columns: repeat(2, 1fr);
 
-          &.full-width { 
+          &.full-width {
             display: flex;
-            grid-template-columns: 1fr; 
+            grid-template-columns: 1fr;
             flex-direction: row;
           }
           .stat-border {
@@ -141,7 +175,7 @@ $font-color-primary: var(--composer-font-color-primary);
               .stat-description {
                 font-size: 16px;
                 font-weight: 400;
-                letter-spacing: 2px;
+                letter-spacing: 1px;
                 @include blinkpageColor;
                 word-break: break-word;
                 max-width: 50%;
@@ -172,6 +206,7 @@ $font-color-primary: var(--composer-font-color-primary);
             overflow: hidden;
             white-space: normal;
             word-wrap: break-word;
+            max-height: 50%;
             .number {
               font-size: 110px;
               margin-right: 10px;
@@ -187,6 +222,7 @@ $font-color-primary: var(--composer-font-color-primary);
               font-weight: 600;
               color: $font-color-primary;
               word-break: break-word;
+              @include threeDots;
             }
           }
         }
@@ -217,7 +253,7 @@ $font-color-primary: var(--composer-font-color-primary);
   }
 }
 
-@media only screen and (min-width: 480px) and (max-width: 768px) {
+@media only screen and (min-width: 480px) and (max-width: 800px) {
   .container {
     flex-direction: column;
     gap: 60px;
@@ -284,9 +320,9 @@ $font-color-primary: var(--composer-font-color-primary);
           }
           .stats{
             grid-template-columns: repeat(1, 1fr);
-            &.full-width { 
+            &.full-width {
               display: grid;
-              grid-template-columns: 1fr; 
+              grid-template-columns: 1fr;
             }
             .stat-border {
               .stat {
@@ -309,7 +345,7 @@ $font-color-primary: var(--composer-font-color-primary);
           }
           .overlay {
             .number {
-              font-size: 45px !important;
+              font-size: 30px !important;
             }
           }
         }
