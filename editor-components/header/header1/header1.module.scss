@@ -11,13 +11,12 @@
 }
 @keyframes moveText {
   0% {
-    transform: translateX(180%);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(-180%);
+    transform: translateX(-100%);
   }
 }
-
 
 .container {
   width: 100%;
@@ -95,7 +94,7 @@
             height: 100vh;
             z-index: 0;
             display: inline-block;
-            animation: moveText 10s linear infinite;
+            // animation: moveText 20s linear infinite;
             font-size: 50rem;
             transition: font-size 1s ease-in-out;
             opacity: 0;
@@ -111,6 +110,13 @@
 
               }
             }
+            // &.animating {
+            //   animation: moveText 10s linear infinite; // Animasyon burada sadece "animating" sınıfı eklenirse çalışacak
+            // }
+            // &.active-text{
+
+            // }
+          
            
           }
           .active-text {

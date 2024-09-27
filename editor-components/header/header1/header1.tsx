@@ -4,6 +4,7 @@ import styles from "./header1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 class Header1 extends BaseHeader {
   sliderRef = React.createRef<any>();
+  textRef = React.createRef<HTMLDivElement>();
 
   constructor(props?: any) {
     super(props, styles);
@@ -225,6 +226,7 @@ class Header1 extends BaseHeader {
       ],
     });
     this.setActiveTab(0);
+    // this.setComponentState("resetAnimation", false)
   }
 
   getName(): string {
@@ -253,6 +255,16 @@ class Header1 extends BaseHeader {
       this.handleDownClick();
     }
   }, 2000);
+  // resetAnimation = () => {
+  //   console.log("reset");
+  //   this.setComponentState("resetAnimation", true);
+  //   if (this.textRef.current) {
+  //     void this.textRef.current.offsetWidth; // Reflow tetikleyici
+  //   };
+  //   setTimeout(() => {
+  //     this.setComponentState("resetAnimation", false); // 50ms sonra animasyonu yeniden başlat
+  //   }, 100);
+  // };
 
   handleUpClick = () => {
     const currentIndex = this.getComponentState("activeTab");
@@ -261,6 +273,7 @@ class Header1 extends BaseHeader {
 
     this.setActiveTab(newIndex);
     this.sliderRef.current.slickGoTo(newIndex);
+    // this.resetAnimation();
   };
 
   handleDownClick = () => {
@@ -270,6 +283,7 @@ class Header1 extends BaseHeader {
 
     this.setActiveTab(newIndex);
     this.sliderRef.current.slickGoTo(newIndex);
+    // this.resetAnimation();
   };
 
 
@@ -278,7 +292,7 @@ class Header1 extends BaseHeader {
       dots: true,
       infinite: true,
       speed: 1500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -292,6 +306,9 @@ class Header1 extends BaseHeader {
       },
     };
     const isLineActive = this.getPropValue("numberLine");
+    // const { resetAnimation } = this.getComponentState("resetAnimation");
+    // const animationClass = resetAnimation ? '' : this.decorateCSS("animating");
+
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
         <img className={this.decorateCSS("image-container-2")} src={this.getPropValue("sun")} alt="" />
@@ -302,6 +319,7 @@ class Header1 extends BaseHeader {
               {this.castToObject<[]>("sliders").map(
                 (item: any, index: number) => {
                   const isActive = this.getComponentState("activeTab") === index;
+                  const backgroundTitleLength = item.backgroundTitle ? item.backgroundTitle.length : 0;
                   return (
                     <div
                       className={this.decorateCSS("return-container")}
@@ -311,6 +329,7 @@ class Header1 extends BaseHeader {
                         <div className={this.decorateCSS("background-text") + " " +
                           (isActive && this.decorateCSS("active-text"))}>
                           {item.backgroundTitle}
+                          <p>Length: {backgroundTitleLength}</p>
                         </div>
                       </div>
 
