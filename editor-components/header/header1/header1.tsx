@@ -2,9 +2,18 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+interface Slider {
+  title: string;
+  subtitle: string;
+  backgroundTitle: JSX.Element;
+  sliderNumber: number;
+  image: string;
+}
 class Header1 extends BaseHeader {
   sliderRef = React.createRef<any>();
-  textRef = React.createRef<HTMLDivElement>();
+  backgroundTextRef = React.createRef<HTMLDivElement>();
+  transformX: number = -100;
+
 
   constructor(props?: any) {
     super(props, styles);
@@ -226,7 +235,7 @@ class Header1 extends BaseHeader {
       ],
     });
     this.setActiveTab(0);
-    // this.setComponentState("animationDuration", 20);
+    this.setComponentState("animationDuration", 20);
   }
 
   getName(): string {
@@ -274,12 +283,30 @@ class Header1 extends BaseHeader {
     this.sliderRef.current.slickGoTo(newIndex);
   };
 
-  // calculateAnimationDuration = (text: string) => {
-  //   const baseDuration = 20;
-  //   const lengthFactor = 0.5;
-  //   this.setComponentState("animationDuration", baseDuration + text.length * lengthFactor);
-  //   return this.getComponentState("animationDuration");
-  // };
+  calculateTranslateX = () => {
+    if (this.backgroundTextRef.current) {
+      console.log(this.backgroundTextRef.current)
+      const textWidth = this.backgroundTextRef.current.offsetWidth;
+      console.log("textWidth", textWidth)
+      const containerWidth = window.innerWidth;
+      console.log("containerWidth", containerWidth)
+      const translateXPercentage = (textWidth - containerWidth) / containerWidth * 100;
+      console.log("translateXPercentage", translateXPercentage)
+      return translateXPercentage;
+    }
+    return 100;
+  };
+  handleBeforeChange = (currentIndex: number, nextIndex: number) => {
+    this.setActiveTab(nextIndex);
+    const sliders = this.castToObject<Slider[]>("sliders");
+    const nextSlider = sliders[nextIndex];
+    if (nextSlider && nextSlider.backgroundTitle) {
+      setTimeout(() => {
+        this.calculateTranslateX();
+      }, 0);
+    }
+  };
+
   render() {
     const settings = {
       dots: true,
@@ -296,9 +323,11 @@ class Header1 extends BaseHeader {
       dotsClass: this.decorateCSS("dots"),
       beforeChange: (current: number, next: number) => {
         this.setActiveTab(next);
+        this.handleBeforeChange(current, next);
       },
     };
     const isLineActive = this.getPropValue("numberLine");
+    const translateX = this.calculateTranslateX();
 
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
@@ -318,19 +347,19 @@ class Header1 extends BaseHeader {
                     >
                       <div className={this.decorateCSS("background-container")}>
                         <div
+                          ref={this.backgroundTextRef}
                           className={
                             this.decorateCSS("background-text") +
                             " " +
                             (isActive && this.decorateCSS("active-text"))
                           }
-                        // style={{
-                        //   animationDuration: isActive
-                        //     ? `${this.calculateAnimationDuration(this.castToString(item.backgroundTitle))}s`
-                        //     : "20s",
-                        // }}
+                          style={{
+                            transform: isActive
+                              ? `translateX(-${translateX}%)`
+                              : "translateX(0)",
+                          }}
                         >
                           {item.backgroundTitle}
-                          {/* <p>Length: {this.castToString(item.backgroundTitle).length}</p> */}
                         </div>
                       </div>
 
