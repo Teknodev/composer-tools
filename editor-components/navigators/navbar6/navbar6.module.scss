@@ -27,6 +27,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    max-width: var(--composer-content-width);
   }
 
   .content {
@@ -435,7 +436,7 @@
         }
 
         li {
-          font-size: 12px !important;
+          font-size: 14px !important;
           margin: 10px 5px;
           list-style-type: none !important;
         }
@@ -460,7 +461,7 @@
           .extendable {
             .dropdown-content-tablet-telephone {
               display: flex !important;
-              font-size: 14px !important;
+              font-size: 16px !important;
               padding-right: 5px;
             }
           }
@@ -492,7 +493,7 @@
     .navbar-child h3 {
       // margin-top: 5px !important;
       padding: 0px !important;
-      font-size: 12px !important;
+      font-size: 16px !important;
       color: var(--composer-font-color-primary);
       cursor: pointer;
       transition: color 0.3s ease;
