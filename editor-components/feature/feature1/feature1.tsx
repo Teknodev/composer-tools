@@ -71,8 +71,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "Without even reducing the 40-hour work week. Time is money, right?",
+              value: "Without even reducing the 40-hour work week. Time is money, right?",
             },
             {
               type: "image",
@@ -416,11 +415,7 @@ class Feature1 extends BaseFeature {
     return "Feature 1";
   }
 
-  truncateText(
-    text: string,
-    maxLength: number,
-    isTitle: boolean = false
-  ): string {
+  truncateText(text: string, maxLength: number, isTitle: boolean = false): string {
     if (!text) return "";
     const shouldTruncate = isTitle
       ? this.getPropValue("enableEllipsisTitle")
@@ -439,13 +434,11 @@ class Feature1 extends BaseFeature {
     const cardContent = this.castToObject<CardComponent[]>("card");
     const links = this.castToObject<Link[]>("links");
 
-    const leftContent = cardContent.filter(
-      (card, index: number) => index % 2 === 0 && !card.mini
-    );
-    const rightContent = cardContent.filter(
-      (card, index: number) => index % 2 === 1 && !card.mini
-    );
+    const sideContent = cardContent.filter((card) => !card.mini);
     const middleContent = cardContent.filter((card) => card.mini);
+
+    const leftContent = sideContent.filter((_, index: number) => index % 2 === 0);
+    const rightContent = sideContent.filter((_, index: number) => index % 2 === 1);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -463,9 +456,7 @@ class Feature1 extends BaseFeature {
                     />
                   }
                   {leftSideText && (
-                    <h1 className={this.decorateCSS("first-text")}>
-                      {leftSideText}
-                    </h1>
+                    <h1 className={this.decorateCSS("first-text")}>{leftSideText}</h1>
                   )}
                 </div>
               )}
@@ -484,8 +475,7 @@ class Feature1 extends BaseFeature {
                                   <ComposerIcon
                                     name={this.getPropValue("rightSideIcon")}
                                     propsIcon={{
-                                      className:
-                                        this.decorateCSS("right-side-icon"),
+                                      className: this.decorateCSS("right-side-icon"),
                                     }}
                                   />
                                 }
@@ -504,8 +494,7 @@ class Feature1 extends BaseFeature {
           ) : (
             ""
           )}
-
-          <div className={this.decorateCSS("features")}>
+          <div  className={this.decorateCSS("features")}>
             {leftContent.length > 0 && (
               <div className={this.decorateCSS("card-column")}>
                 {leftContent.slice(0, 1).map((cardInfo: CardComponent) => (
@@ -531,9 +520,7 @@ class Feature1 extends BaseFeature {
                                   className: this.decorateCSS("date_icon"),
                                 }}
                               />
-                              <h5 className={this.decorateCSS("date-text")}>
-                                {cardInfo.date}
-                              </h5>
+                              <h5 className={this.decorateCSS("date-text")}>{cardInfo.date}</h5>
                             </div>
                           )}
                           {this.castToString(cardInfo.readTime) && (
@@ -544,9 +531,7 @@ class Feature1 extends BaseFeature {
                                   className: this.decorateCSS("time_icon"),
                                 }}
                               />
-                              <h5 className={this.decorateCSS("time-text")}>
-                                {cardInfo.readTime}
-                              </h5>
+                              <h5 className={this.decorateCSS("time-text")}>{cardInfo.readTime}</h5>
                             </div>
                           )}
                         </div>
@@ -577,8 +562,7 @@ class Feature1 extends BaseFeature {
                           className={
                             this.decorateCSS("user-info") +
                             (cardInfo.profileImage ? "" : " no-profile")
-                          }
-                        >
+                          }>
                           {cardInfo.profileImage && (
                             <img
                               className={this.decorateCSS("profile-image")}
@@ -589,14 +573,8 @@ class Feature1 extends BaseFeature {
                           {(this.castToString(cardInfo.profileDescription) ||
                             this.castToString(cardInfo.fullname)) && (
                             <div className={this.decorateCSS("user")}>
-                              {this.castToString(
-                                cardInfo.profileDescription
-                              ) && (
-                                <h3
-                                  className={this.decorateCSS(
-                                    "profile-description"
-                                  )}
-                                >
+                              {this.castToString(cardInfo.profileDescription) && (
+                                <h3 className={this.decorateCSS("profile-description")}>
                                   {cardInfo.profileDescription}
                                 </h3>
                               )}
@@ -619,8 +597,7 @@ class Feature1 extends BaseFeature {
               <div className={this.decorateCSS("middle-content")}>
                 {middleContent.slice(0, 2).map((cardInfo: CardComponent) => (
                   <div className={this.decorateCSS("card")}>
-                    {(this.castToString(cardInfo.date) ||
-                      this.castToString(cardInfo.readTime)) && (
+                    {(this.castToString(cardInfo.date) || this.castToString(cardInfo.readTime)) && (
                       <div className={this.decorateCSS("date-time")}>
                         {this.castToString(cardInfo.date) && (
                           <div className={this.decorateCSS("date")}>
@@ -630,9 +607,7 @@ class Feature1 extends BaseFeature {
                                 className: this.decorateCSS("date_icon"),
                               }}
                             />
-                            <h5 className={this.decorateCSS("date-text")}>
-                              {cardInfo.date}
-                            </h5>
+                            <h5 className={this.decorateCSS("date-text")}>{cardInfo.date}</h5>
                           </div>
                         )}
                         {this.castToString(cardInfo.readTime) && (
@@ -643,9 +618,7 @@ class Feature1 extends BaseFeature {
                                 className: this.decorateCSS("time_icon"),
                               }}
                             />
-                            <h5 className={this.decorateCSS("time-text")}>
-                              {cardInfo.readTime}
-                            </h5>
+                            <h5 className={this.decorateCSS("time-text")}>{cardInfo.readTime}</h5>
                           </div>
                         )}
                       </div>
@@ -671,10 +644,8 @@ class Feature1 extends BaseFeature {
                     )}
                     <div
                       className={
-                        this.decorateCSS("user-info") +
-                        (cardInfo.profileImage ? "" : " no-profile")
-                      }
-                    >
+                        this.decorateCSS("user-info") + (cardInfo.profileImage ? "" : " no-profile")
+                      }>
                       {cardInfo.profileImage && (
                         <img
                           className={this.decorateCSS("profile-image")}
@@ -686,18 +657,12 @@ class Feature1 extends BaseFeature {
                         this.castToString(cardInfo.fullname)) && (
                         <div className={this.decorateCSS("user")}>
                           {this.castToString(cardInfo.profileDescription) && (
-                            <h3
-                              className={this.decorateCSS(
-                                "profile-description"
-                              )}
-                            >
+                            <h3 className={this.decorateCSS("profile-description")}>
                               {cardInfo.profileDescription}
                             </h3>
                           )}
                           {this.castToString(cardInfo.fullname) && (
-                            <h3 className={this.decorateCSS("fullname")}>
-                              {cardInfo.fullname}
-                            </h3>
+                            <h3 className={this.decorateCSS("fullname")}>{cardInfo.fullname}</h3>
                           )}
                         </div>
                       )}
@@ -732,9 +697,7 @@ class Feature1 extends BaseFeature {
                                   className: this.decorateCSS("date_icon"),
                                 }}
                               />
-                              <h5 className={this.decorateCSS("date-text")}>
-                                {cardInfo.date}
-                              </h5>
+                              <h5 className={this.decorateCSS("date-text")}>{cardInfo.date}</h5>
                             </div>
                           )}
                           {this.castToString(cardInfo.readTime) && (
@@ -745,9 +708,7 @@ class Feature1 extends BaseFeature {
                                   className: this.decorateCSS("time_icon"),
                                 }}
                               />
-                              <h5 className={this.decorateCSS("time-text")}>
-                                {cardInfo.readTime}
-                              </h5>
+                              <h5 className={this.decorateCSS("time-text")}>{cardInfo.readTime}</h5>
                             </div>
                           )}
                         </div>
@@ -778,8 +739,7 @@ class Feature1 extends BaseFeature {
                           className={
                             this.decorateCSS("user-info") +
                             (cardInfo.profileImage ? "" : " no-profile")
-                          }
-                        >
+                          }>
                           {cardInfo.profileImage && (
                             <img
                               className={this.decorateCSS("profile-image")}
@@ -790,14 +750,8 @@ class Feature1 extends BaseFeature {
                           {(this.castToString(cardInfo.profileDescription) ||
                             this.castToString(cardInfo.fullname)) && (
                             <div className={this.decorateCSS("user")}>
-                              {this.castToString(
-                                cardInfo.profileDescription
-                              ) && (
-                                <h3
-                                  className={this.decorateCSS(
-                                    "profile-description"
-                                  )}
-                                >
+                              {this.castToString(cardInfo.profileDescription) && (
+                                <h3 className={this.decorateCSS("profile-description")}>
                                   {cardInfo.profileDescription}
                                 </h3>
                               )}
@@ -817,26 +771,115 @@ class Feature1 extends BaseFeature {
             )}
           </div>
 
-          {(leftContent.length + rightContent.length > 2 ||
-            middleContent.length > 2) && (
-            <div className={this.decorateCSS("additional-cards")}>
-              <div className={this.decorateCSS("card-column")}>
-                {leftContent.slice(1, 2).map((cardInfo: CardComponent) => (
-                  <div className={this.decorateCSS("card")}>
-                    {cardInfo.image && (
-                      <div className={this.decorateCSS("image-container")}>
-                        <img
-                          className={this.decorateCSS("image")}
-                          src={cardInfo.image}
-                          alt=""
-                        />
+          {(leftContent.length + rightContent.length > 2 || middleContent.length > 2) && (
+            <>
+              <div className={this.decorateCSS("features-space")}></div>
+              <div className={this.decorateCSS("features")}>
+                <div className={this.decorateCSS("card-column")}>
+                  {leftContent.slice(1, 2).map((cardInfo: CardComponent) => (
+                    <div className={this.decorateCSS("card")}>
+                      {cardInfo.image && (
+                        <div className={this.decorateCSS("image-container")}>
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={cardInfo.image}
+                            alt=""
+                          />
+                        </div>
+                      )}
+                      <div className={this.decorateCSS("card-content")}>
+                        {(this.castToString(cardInfo.date) ||
+                          this.castToString(cardInfo.readTime)) && (
+                          <div className={this.decorateCSS("date-time")}>
+                            {this.castToString(cardInfo.date) && (
+                              <div className={this.decorateCSS("date")}>
+                                <ComposerIcon
+                                  name={this.getPropValue("date_icon")}
+                                  propsIcon={{
+                                    className: this.decorateCSS("date_icon"),
+                                  }}
+                                />
+                                <h5 className={this.decorateCSS("date-text")}>{cardInfo.date}</h5>
+                              </div>
+                            )}
+                            {this.castToString(cardInfo.readTime) && (
+                              <div className={this.decorateCSS("time")}>
+                                <ComposerIcon
+                                  name={this.getPropValue("time_icon")}
+                                  propsIcon={{
+                                    className: this.decorateCSS("time_icon"),
+                                  }}
+                                />
+                                <h5 className={this.decorateCSS("time-text")}>
+                                  {cardInfo.readTime}
+                                </h5>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        {this.castToString(cardInfo.title) && (
+                          <ComposerLink path={cardInfo.url}>
+                            <h1 className={this.decorateCSS("title")}>
+                              {this.truncateText(
+                                this.castToString(cardInfo.title),
+                                this.getPropValue("maxTitleLength"),
+                                true
+                              )}
+                            </h1>
+                          </ComposerLink>
+                        )}
+                        {this.castToString(cardInfo.description) && (
+                          <p className={this.decorateCSS("description")}>
+                            {this.truncateText(
+                              this.castToString(cardInfo.description) || "",
+                              this.getPropValue("maxDescriptionLength")
+                            )}
+                          </p>
+                        )}
+                        {(cardInfo.profileImage ||
+                          this.castToString(cardInfo.profileDescription) ||
+                          this.castToString(cardInfo.fullname)) && (
+                          <div
+                            className={
+                              this.decorateCSS("user-info") +
+                              (cardInfo.profileImage ? "" : " no-profile")
+                            }>
+                            {cardInfo.profileImage && (
+                              <img
+                                className={this.decorateCSS("profile-image")}
+                                src={cardInfo.profileImage}
+                                alt="profile image"
+                              />
+                            )}
+                            {(this.castToString(cardInfo.profileDescription) ||
+                              this.castToString(cardInfo.fullname)) && (
+                              <div className={this.decorateCSS("user")}>
+                                {this.castToString(cardInfo.profileDescription) && (
+                                  <h3 className={this.decorateCSS("profile-description")}>
+                                    {cardInfo.profileDescription}
+                                  </h3>
+                                )}
+                                {this.castToString(cardInfo.fullname) && (
+                                  <h3 className={this.decorateCSS("fullname")}>
+                                    {cardInfo.fullname}
+                                  </h3>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
-                    )}
-                    <div className={this.decorateCSS("card-content")}>
-                      {(this.castToString(cardInfo.date) ||
-                        this.castToString(cardInfo.readTime)) && (
+                    </div>
+                  ))}
+                </div>
+
+                <div className={this.decorateCSS("middle-content")}>
+                  {middleContent.slice(2, 4).map((bottomCard: CardComponent) => (
+                    <div className={this.decorateCSS("card")}>
+                      {(this.castToString(bottomCard.date) ||
+                        this.castToString(bottomCard.readTime)) && (
                         <div className={this.decorateCSS("date-time")}>
-                          {this.castToString(cardInfo.date) && (
+                          {this.castToString(bottomCard.date) && (
                             <div className={this.decorateCSS("date")}>
                               <ComposerIcon
                                 name={this.getPropValue("date_icon")}
@@ -844,12 +887,10 @@ class Feature1 extends BaseFeature {
                                   className: this.decorateCSS("date_icon"),
                                 }}
                               />
-                              <h5 className={this.decorateCSS("date-text")}>
-                                {cardInfo.date}
-                              </h5>
+                              <h5 className={this.decorateCSS("date-text")}>{bottomCard.date}</h5>
                             </div>
                           )}
-                          {this.castToString(cardInfo.readTime) && (
+                          {this.castToString(bottomCard.readTime) && (
                             <div className={this.decorateCSS("time")}>
                               <ComposerIcon
                                 name={this.getPropValue("time_icon")}
@@ -858,270 +899,162 @@ class Feature1 extends BaseFeature {
                                 }}
                               />
                               <h5 className={this.decorateCSS("time-text")}>
-                                {cardInfo.readTime}
+                                {bottomCard.readTime}
                               </h5>
                             </div>
                           )}
                         </div>
                       )}
-                      {this.castToString(cardInfo.title) && (
-                        <ComposerLink path={cardInfo.url}>
+                      {this.castToString(bottomCard.title) && (
+                        <ComposerLink path={bottomCard.url}>
                           <h1 className={this.decorateCSS("title")}>
                             {this.truncateText(
-                              this.castToString(cardInfo.title),
+                              this.castToString(bottomCard.title),
                               this.getPropValue("maxTitleLength"),
                               true
                             )}
                           </h1>
                         </ComposerLink>
                       )}
-                      {this.castToString(cardInfo.description) && (
+                      {this.castToString(bottomCard.description) && (
                         <p className={this.decorateCSS("description")}>
                           {this.truncateText(
-                            this.castToString(cardInfo.description) || "",
+                            this.castToString(bottomCard.description) || "",
                             this.getPropValue("maxDescriptionLength")
                           )}
                         </p>
                       )}
-                      {(cardInfo.profileImage ||
-                        this.castToString(cardInfo.profileDescription) ||
-                        this.castToString(cardInfo.fullname)) && (
-                        <div
-                          className={
-                            this.decorateCSS("user-info") +
-                            (cardInfo.profileImage ? "" : " no-profile")
-                          }
-                        >
-                          {cardInfo.profileImage && (
-                            <img
-                              className={this.decorateCSS("profile-image")}
-                              src={cardInfo.profileImage}
-                              alt="profile image"
-                            />
-                          )}
-                          {(this.castToString(cardInfo.profileDescription) ||
-                            this.castToString(cardInfo.fullname)) && (
-                            <div className={this.decorateCSS("user")}>
-                              {this.castToString(
-                                cardInfo.profileDescription
-                              ) && (
-                                <h3
-                                  className={this.decorateCSS(
-                                    "profile-description"
-                                  )}
-                                >
-                                  {cardInfo.profileDescription}
-                                </h3>
-                              )}
-                              {this.castToString(cardInfo.fullname) && (
-                                <h3 className={this.decorateCSS("fullname")}>
-                                  {cardInfo.fullname}
-                                </h3>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className={this.decorateCSS("middle-content")}>
-                {middleContent.slice(2, 3).map((bottomCard: CardComponent) => (
-                  <div className={this.decorateCSS("card")}>
-                    {(this.castToString(bottomCard.date) ||
-                      this.castToString(bottomCard.readTime)) && (
-                      <div className={this.decorateCSS("date-time")}>
-                        {this.castToString(bottomCard.date) && (
-                          <div className={this.decorateCSS("date")}>
-                            <ComposerIcon
-                              name={this.getPropValue("date_icon")}
-                              propsIcon={{
-                                className: this.decorateCSS("date_icon"),
-                              }}
-                            />
-                            <h5 className={this.decorateCSS("date-text")}>
-                              {bottomCard.date}
-                            </h5>
-                          </div>
+                      <div
+                        className={
+                          this.decorateCSS("user-info") +
+                          (bottomCard.profileImage ? "" : " no-profile")
+                        }>
+                        {bottomCard.profileImage && (
+                          <img
+                            className={this.decorateCSS("profile-image")}
+                            src={bottomCard.profileImage}
+                            alt="profile image"
+                          />
                         )}
-                        {this.castToString(bottomCard.readTime) && (
-                          <div className={this.decorateCSS("time")}>
-                            <ComposerIcon
-                              name={this.getPropValue("time_icon")}
-                              propsIcon={{
-                                className: this.decorateCSS("time_icon"),
-                              }}
-                            />
-                            <h5 className={this.decorateCSS("time-text")}>
-                              {bottomCard.readTime}
-                            </h5>
+                        {(this.castToString(bottomCard.profileDescription) ||
+                          this.castToString(bottomCard.fullname)) && (
+                          <div className={this.decorateCSS("user")}>
+                            {this.castToString(bottomCard.profileDescription) && (
+                              <h3 className={this.decorateCSS("profile-description")}>
+                                {bottomCard.profileDescription}
+                              </h3>
+                            )}
+                            {this.castToString(bottomCard.fullname) && (
+                              <h3 className={this.decorateCSS("fullname")}>
+                                {bottomCard.fullname}
+                              </h3>
+                            )}
                           </div>
                         )}
                       </div>
-                    )}
-                    {this.castToString(bottomCard.title) && (
-                      <ComposerLink path={bottomCard.url}>
-                        <h1 className={this.decorateCSS("title")}>
-                          {this.truncateText(
-                            this.castToString(bottomCard.title),
-                            this.getPropValue("maxTitleLength"),
-                            true
-                          )}
-                        </h1>
-                      </ComposerLink>
-                    )}
-                    {this.castToString(bottomCard.description) && (
-                      <p className={this.decorateCSS("description")}>
-                        {this.truncateText(
-                          this.castToString(bottomCard.description) || "",
-                          this.getPropValue("maxDescriptionLength")
-                        )}
-                      </p>
-                    )}
-                    <div
-                      className={
-                        this.decorateCSS("user-info") +
-                        (bottomCard.profileImage ? "" : " no-profile")
-                      }
-                    >
-                      {bottomCard.profileImage && (
-                        <img
-                          className={this.decorateCSS("profile-image")}
-                          src={bottomCard.profileImage}
-                          alt="profile image"
-                        />
-                      )}
-                      {(this.castToString(bottomCard.profileDescription) ||
-                        this.castToString(bottomCard.fullname)) && (
-                        <div className={this.decorateCSS("user")}>
-                          {this.castToString(bottomCard.profileDescription) && (
-                            <h3
-                              className={this.decorateCSS(
-                                "profile-description"
-                              )}
-                            >
-                              {bottomCard.profileDescription}
-                            </h3>
-                          )}
-                          {this.castToString(bottomCard.fullname) && (
-                            <h3 className={this.decorateCSS("fullname")}>
-                              {bottomCard.fullname}
-                            </h3>
-                          )}
-                        </div>
-                      )}
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              <div className={this.decorateCSS("card-column")}>
-                {rightContent.slice(1, 2).map((cardInfo: CardComponent) => (
-                  <div className={this.decorateCSS("card")}>
-                    {cardInfo.image && (
-                      <img
-                        className={this.decorateCSS("image")}
-                        src={cardInfo.image}
-                        alt=""
-                      />
-                    )}
-                    <div className={this.decorateCSS("card-content")}>
-                      {(this.castToString(cardInfo.date) ||
-                        this.castToString(cardInfo.readTime)) && (
-                        <div className={this.decorateCSS("date-time")}>
-                          {this.castToString(cardInfo.date) && (
-                            <div className={this.decorateCSS("date")}>
-                              <ComposerIcon
-                                name={this.getPropValue("date_icon")}
-                                propsIcon={{
-                                  className: this.decorateCSS("date_icon"),
-                                }}
-                              />
-                              <h5 className={this.decorateCSS("date-text")}>
-                                {cardInfo.date}
-                              </h5>
-                            </div>
-                          )}
-                          {this.castToString(cardInfo.readTime) && (
-                            <div className={this.decorateCSS("time")}>
-                              <ComposerIcon
-                                name={this.getPropValue("time_icon")}
-                                propsIcon={{
-                                  className: this.decorateCSS("time_icon"),
-                                }}
-                              />
-                              <h5 className={this.decorateCSS("time-text")}>
-                                {cardInfo.readTime}
-                              </h5>
-                            </div>
-                          )}
-                        </div>
+                <div className={this.decorateCSS("card-column")}>
+                  {rightContent.slice(1, 2).map((cardInfo: CardComponent) => (
+                    <div className={this.decorateCSS("card")}>
+                      {cardInfo.image && (
+                       <div className={this.decorateCSS("image-container")}>
+                       <img
+                         className={this.decorateCSS("image")}
+                         src={cardInfo.image}
+                         alt=""
+                       />
+                     </div>
                       )}
-                      {this.castToString(cardInfo.title) && (
-                        <ComposerLink path={cardInfo.url}>
-                          <h1 className={this.decorateCSS("title")}>
-                            {this.truncateText(
-                              this.castToString(cardInfo.title),
-                              this.getPropValue("maxTitleLength"),
-                              true
+                      <div className={this.decorateCSS("card-content")}>
+                        {(this.castToString(cardInfo.date) ||
+                          this.castToString(cardInfo.readTime)) && (
+                          <div className={this.decorateCSS("date-time")}>
+                            {this.castToString(cardInfo.date) && (
+                              <div className={this.decorateCSS("date")}>
+                                <ComposerIcon
+                                  name={this.getPropValue("date_icon")}
+                                  propsIcon={{
+                                    className: this.decorateCSS("date_icon"),
+                                  }}
+                                />
+                                <h5 className={this.decorateCSS("date-text")}>{cardInfo.date}</h5>
+                              </div>
                             )}
-                          </h1>
-                        </ComposerLink>
-                      )}
-                      {this.castToString(cardInfo.description) && (
-                        <p className={this.decorateCSS("description")}>
-                          {this.truncateText(
-                            this.castToString(cardInfo.description) || "",
-                            this.getPropValue("maxDescriptionLength")
-                          )}
-                        </p>
-                      )}
-                      {(cardInfo.profileImage ||
-                        this.castToString(cardInfo.profileDescription) ||
-                        this.castToString(cardInfo.fullname)) && (
-                        <div
-                          className={
-                            this.decorateCSS("user-info") +
-                            (cardInfo.profileImage ? "" : " no-profile")
-                          }
-                        >
-                          {cardInfo.profileImage && (
-                            <img
-                              className={this.decorateCSS("profile-image")}
-                              src={cardInfo.profileImage}
-                              alt="profile image"
-                            />
-                          )}
-                          {(this.castToString(cardInfo.profileDescription) ||
-                            this.castToString(cardInfo.fullname)) && (
-                            <div className={this.decorateCSS("user")}>
-                              {this.castToString(
-                                cardInfo.profileDescription
-                              ) && (
-                                <h3
-                                  className={this.decorateCSS(
-                                    "profile-description"
-                                  )}
-                                >
-                                  {cardInfo.profileDescription}
-                                </h3>
+                            {this.castToString(cardInfo.readTime) && (
+                              <div className={this.decorateCSS("time")}>
+                                <ComposerIcon
+                                  name={this.getPropValue("time_icon")}
+                                  propsIcon={{
+                                    className: this.decorateCSS("time_icon"),
+                                  }}
+                                />
+                                <h5 className={this.decorateCSS("time-text")}>
+                                  {cardInfo.readTime}
+                                </h5>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        {this.castToString(cardInfo.title) && (
+                          <ComposerLink path={cardInfo.url}>
+                            <h1 className={this.decorateCSS("title")}>
+                              {this.truncateText(
+                                this.castToString(cardInfo.title),
+                                this.getPropValue("maxTitleLength"),
+                                true
                               )}
-                              {this.castToString(cardInfo.fullname) && (
-                                <h3 className={this.decorateCSS("fullname")}>
-                                  {cardInfo.fullname}
-                                </h3>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      )}
+                            </h1>
+                          </ComposerLink>
+                        )}
+                        {this.castToString(cardInfo.description) && (
+                          <p className={this.decorateCSS("description")}>
+                            {this.truncateText(
+                              this.castToString(cardInfo.description) || "",
+                              this.getPropValue("maxDescriptionLength")
+                            )}
+                          </p>
+                        )}
+                        {(cardInfo.profileImage ||
+                          this.castToString(cardInfo.profileDescription) ||
+                          this.castToString(cardInfo.fullname)) && (
+                          <div
+                            className={
+                              this.decorateCSS("user-info") +
+                              (cardInfo.profileImage ? "" : " no-profile")
+                            }>
+                            {cardInfo.profileImage && (
+                              <img
+                                className={this.decorateCSS("profile-image")}
+                                src={cardInfo.profileImage}
+                                alt="profile image"
+                              />
+                            )}
+                            {(this.castToString(cardInfo.profileDescription) ||
+                              this.castToString(cardInfo.fullname)) && (
+                              <div className={this.decorateCSS("user")}>
+                                {this.castToString(cardInfo.profileDescription) && (
+                                  <h3 className={this.decorateCSS("profile-description")}>
+                                    {cardInfo.profileDescription}
+                                  </h3>
+                                )}
+                                {this.castToString(cardInfo.fullname) && (
+                                  <h3 className={this.decorateCSS("fullname")}>
+                                    {cardInfo.fullname}
+                                  </h3>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       </div>

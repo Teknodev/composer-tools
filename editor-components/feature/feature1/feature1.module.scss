@@ -120,6 +120,12 @@
       }
     }
 
+    .features-space {
+      display: flex;
+      height: 30px;
+      width: 100%;
+    }
+
     .features {
       display: flex;
       justify-content: space-between;
@@ -133,7 +139,7 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
-        max-width: 33%;
+        max-width: 50%;
 
         .card {
           @include common-card;
@@ -366,234 +372,6 @@
         }
       }
     }
-
-    .additional-cards {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-      margin-top: 20px;
-      row-gap: 30px;
-      gap: 20px;
-
-      .card-column {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-        max-width: 50%;
-
-        .card {
-          @include common-card;
-          width: 100%;
-          overflow: hidden;
-          box-sizing: border-box;
-          .image-container {
-            display: flex;
-            width: 100%;
-            min-height: 200px;
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-
-            .image {
-              width: 100%;
-              height: auto;
-              transition: transform 0.3s ease;
-              cursor: pointer;
-            }
-
-            &:hover img {
-              transform: scale(1.1);
-              filter: brightness(1.2);
-            }
-          }
-
-          .card-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 20px;
-            height: 100%;
-            .date-time {
-              @include common-date-time;
-              font-size: 1.1rem !important;
-              color: var(--composer-font-color-secondary);
-              white-space: nowrap !important;
-              overflow: hidden !important;
-
-              .date {
-                display: flex;
-                column-gap: 5px;
-                align-items: center;
-                white-space: normal;
-                max-width: 60% !important;
-                > svg {
-                  flex-shrink: 0;
-                }
-              }
-
-              .time {
-                display: flex;
-                column-gap: 5px;
-                align-items: center;
-                white-space: normal;
-                max-width: 40% !important;
-                > svg {
-                  flex-shrink: 0;
-                }
-              }
-            }
-
-            .title {
-              position: relative;
-              font-size: 1.6rem;
-              font-weight: bold;
-              color: var(--composer-font-color-secondary);
-              margin-bottom: 2px;
-            }
-
-            .description {
-              font-size: 1.1rem;
-              color: var(--composer-font-color-secondary) !important;
-              width: 100%;
-              margin-bottom: 5px;
-            }
-
-            .user-info {
-              display: flex;
-              flex: 1;
-              flex-direction: row;
-              align-items: end;
-              text-align: left;
-              gap: 10px;
-              width: 100%;
-            }
-
-            .profile-image {
-              width: 42px;
-              height: 42px;
-            }
-
-            .user {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              gap: 10px;
-              height: 42px;
-
-              .profile-description {
-                color: var(--composer-font-color-secondary);
-                font-size: 1rem;
-              }
-              .fullname {
-                font-weight: bold;
-                color: var(--composer-font-color-secondary);
-                font-size: 1rem;
-              }
-            }
-          }
-        }
-      }
-
-      .card-column .card .card-content .user-info.no-profile,
-      .middle-content .card .user-info.no-profile {
-        justify-content: flex-start;
-      }
-
-      .middle-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 20px;
-        max-width: 33%;
-
-        .card {
-          @include common-card;
-          padding: 20px;
-          gap: 10px;
-
-          .date-time {
-            @include common-date-time;
-            font-size: 1.1rem;
-            color: var(--composer-font-color-secondary);
-            white-space: nowrap !important;
-            overflow: hidden !important;
-
-            .date {
-              display: flex;
-              column-gap: 5px;
-              align-items: center;
-              white-space: normal;
-              max-width: 60% !important;
-              > svg {
-                flex-shrink: 0;
-              }
-            }
-
-            .time {
-              display: flex;
-              column-gap: 5px;
-              align-items: center;
-              white-space: normal;
-              max-width: 40% !important;
-              > svg {
-                flex-shrink: 0;
-              }
-            }
-          }
-
-          .title {
-            position: relative;
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: var(--composer-font-color-secondary);
-            cursor: pointer;
-          }
-
-          .description {
-            font-size: 1.1rem;
-            color: var(--composer-font-color-secondary);
-            width: 100%;
-          }
-
-          .user-info {
-            display: flex;
-            flex: 1;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: end;
-            text-align: left;
-            gap: 10px;
-
-            .profile-image {
-              width: 30px;
-              height: 30px;
-            }
-
-            .user {
-              display: flex;
-              flex-direction: row;
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-              height: 30px;
-
-              .profile-description {
-                color: var(--composer-font-color-secondary);
-                font-size: 1rem;
-              }
-
-              .fullname {
-                font-weight: bold;
-                color: var(--composer-font-color-secondary);
-                font-size: 1rem;
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }
 
@@ -672,71 +450,12 @@
         padding-right: 0 !important;
         margin: 0 !important;
         flex-direction: row !important;
-        gap: 20px !important;
         max-width: none !important;
         .card {
           display: flex !important;
           flex-direction: column !important;
           justify-content: space-between !important;
           row-gap: 20px !important;
-          width: 100% !important;
-          height: 100% !important;
-          max-width: 50% !important;
-
-          .user-info {
-            align-items: end !important;
-            justify-content: flex-start !important;
-          }
-        }
-      }
-    }
-
-    .additional-cards {
-      flex-direction: row !important;
-      flex-wrap: wrap !important;
-      justify-content: space-between !important;
-      margin-left: 0rem !important;
-      margin-right: 0rem !important;
-      gap: 40px;
-
-      .card-column {
-        flex-direction: row !important;
-
-        .card {
-          order: 0 !important;
-
-          .image-container {
-            height: 200px !important;
-          }
-
-          .title {
-            font-size: 1.6rem !important;
-          }
-
-          .description {
-            font-size: 1rem !important;
-          }
-
-          .user-info {
-            text-align: left !important;
-            justify-content: flex-start !important;
-          }
-        }
-      }
-
-      .middle-content {
-        width: 100% !important;
-        order: 1 !important;
-        padding-right: 0 !important;
-        margin: 0 !important;
-        flex-direction: row !important;
-        gap: 40px !important;
-        max-width: none !important;
-        .card {
-          display: flex !important;
-          flex-direction: column !important;
-          justify-content: space-between !important;
-          row-gap: 10px !important;
           width: 100% !important;
           height: 100% !important;
           max-width: 50% !important;
@@ -807,61 +526,6 @@
       .card-column .card,
       .middle-content .card {
         width: 100% !important;
-
-        .title {
-          font-size: 1.2rem !important;
-        }
-
-        .description {
-          font-size: 0.8rem !important;
-        }
-
-        .user-info {
-          .profile-image {
-            width: 40px !important;
-            height: 40px !important;
-          }
-
-          .user {
-            .profile-description {
-              font-size: 0.8rem !important;
-            }
-            .fullname {
-              font-size: 0.8rem !important;
-            }
-          }
-        }
-      }
-
-      .middle-content {
-        flex-direction: column !important;
-        gap: 20px !important;
-
-        .card {
-          max-width: none !important;
-        }
-      }
-    }
-
-    .additional-cards {
-      flex-direction: column !important;
-      padding: 0 !important;
-      gap: 20px !important;
-
-      .card-column,
-      .middle-content {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-
-      .card-column .card,
-      .middle-content .card {
-        width: 100% !important;
-
-        .image-container {
-          height: 200px !important;
-        }
 
         .title {
           font-size: 1.2rem !important;
