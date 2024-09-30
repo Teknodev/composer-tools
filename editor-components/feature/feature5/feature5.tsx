@@ -1,105 +1,203 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature5.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type IBasicCard = {
-  title: string;
-  description: string;
-  image: string;
-};
 class Feature5 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "array",
-      key: "basic-card",
-      displayer: "Basic Card",
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Life Hacks",
+    });
+
+    this.addProp({
+      type: "object",
+      key: "row1",
+      displayer: "first-row",
+      value: [
+        {
+          type: "image",
+          key: "left_image",
+          displayer: "Left Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2642f8a5b002ce6c032?alt=media",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "The 10 Best Apps for Planning Your Next Trip",
+        },
+        {
+          type: "page",
+          key: "link",
+          displayer: "link",
+          value: "",
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "row2",
+      displayer: "second-row",
       value: [
         {
           type: "object",
-          key: "basic",
-          displayer: "Basic",
+          key: "first_item",
+          displayer: "Description and Link 1",
           value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://images01.nicepage.com/c461c07a441a5d220e8feb1a/a17abde8d83650a582a28432/users-with-speech-bubbles-vector_53876-82250.jpg",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Discover the Best Restaurants in Town",
-            },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Our website features a curated selection of the top-rated restaurants in your area. Browse our cards to find the perfect dining spot for any occasion, whether it's a romantic date night or a family-friendly brunch.",
+                "Newspaper is not only convenient to use, but it also uses very low resources and loads extremely fast. Welcome to the future!",
+            },
+            {
+              type: "string",
+              displayer: "Button Text",
+              key: "button_text",
+              value: "EXPLORE",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "basic",
-          displayer: "Basic",
+          key: "second_item",
+          displayer: "Description and Link 2",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://images01.nicepage.com/c461c07a441a5d220e8feb1a/3b242447f922540fbe750cab/fdf.jpg",
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Don't Let Your Summer Hard Work Go to Waste",
             },
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "The Benefits of Regular Exercise for a Healthy Lifestyle",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                " Discover the many advantages of incorporating regular exercise into your daily routine. From boosting your mood and energy levels to improving heart health and reducing the risk of chronic diseases, find out why exercise is crucial for a healthy lifestyle.",
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "basic",
-          displayer: "Basic",
+          key: "third_item",
+          displayer: "Additional Content",
           value: [
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value: "https://images01.nicepage.com/c461c07a441a5d220e8feb1a/8cc47b39e719570b996d9879/dsds.jpg",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "How to Build a Successful E-Commerce Business from Scratch",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
+              displayer: "Additional Image",
               value:
-                "Ready to start your own online store but not sure where to begin? Learn the essential steps to building a successful e-commerce business from scratch. From choosing the right products and platform to marketing strategies and customer service, we've got you covered.",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2a22f8a5b002ce6c03e?alt=media",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "Link",
+              value: "",
             },
           ],
         },
       ],
     });
+
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
+      type: "object",
+      key: "row3",
+      displayer: "third-row",
+      value: [
+        {
+          type: "object",
+          key: "image_and_subtitle_1",
+          displayer: "Image and Subtitle 1",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Left Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2cc2f8a5b002ce6c04a?alt=media",
+            },
+            {
+              type: "string",
+              key: "sub_title",
+              displayer: "Sub-Title",
+              value: "Girl's Guide: Tricks to Save Time in the Morning",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image_and_subtitle_2",
+          displayer: "Image and Subtitle 2",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Middle Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2ea2f8a5b002ce6c056?alt=media",
+            },
+            {
+              type: "string",
+              key: "sub_title",
+              displayer: "Sub-Title",
+              value: "Motivation Monday: Only 3 Days Left of Summer",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image_and_subtitle_3",
+          displayer: "Image and Subtitle 3",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Right Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c3032f8a5b002ce6c062?alt=media",
+            },
+            {
+              type: "string",
+              key: "sub_title",
+              displayer: "Sub-Title",
+              value: "Five Rules For a Long, Healthy and Happy Life",
+            },
+            {
+              type: "page",
+              key: "link",
+              displayer: "link",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
   }
 
@@ -108,24 +206,273 @@ class Feature5 extends BaseFeature {
   }
 
   render() {
+    const title = this.getPropValue("title", { as_string: true });
+    const row1 = this.castToObject<{
+      left_image: string;
+      title: JSX.Element;
+      link: string;
+    }>("row1");
+    const row2 = this.castToObject<{
+      first_item: {
+        description: JSX.Element;
+        button_text: JSX.Element;
+        link: string;
+      };
+      second_item: {
+        text: JSX.Element;
+        link: string;
+      };
+      third_item: {
+        image: string;
+        link: string;
+      };
+    }>("row2");
+
+    const row3 = this.castToObject<{
+      image_and_subtitle_1: {
+        image: string;
+        sub_title: JSX.Element;
+        link: string;
+      };
+      image_and_subtitle_2: {
+        image: string;
+        sub_title: JSX.Element;
+        link: string;
+      };
+      image_and_subtitle_3: {
+        image: string;
+        sub_title: JSX.Element;
+        link: string;
+      };
+    }>("row3");
+
+    const isRow1Visible = row1.left_image || this.castToString(row1.title);
+
+    const isFirstColumnVisible =
+      this.castToString(row2.first_item.description) ||
+      this.castToString(row2.first_item.button_text) ||
+      row2.first_item.link;
+    const isSecondColumnVisible = this.castToString(row2.second_item.text);
+    const isThirdColumnVisible = row2.third_item.image;
+
+    const isRow2Visible =
+      isFirstColumnVisible || isSecondColumnVisible || isThirdColumnVisible;
+
+    const subtitle1 = this.castToString(row3.image_and_subtitle_1.sub_title);
+    const imageOrSubtitleExist1 = row3.image_and_subtitle_1.image || subtitle1;
+
+    const subtitle2 = this.castToString(row3.image_and_subtitle_2.sub_title);
+    const imageOrSubtitleExist2 = row3.image_and_subtitle_2.image || subtitle2;
+
+    const subtitle3 = this.castToString(row3.image_and_subtitle_3.sub_title);
+    const imageOrSubtitleExist3 = row3.image_and_subtitle_3.image || subtitle3;
+
+    const isRow3Visible =
+      row3.image_and_subtitle_1.image ||
+      row3.image_and_subtitle_2.image ||
+      row3.image_and_subtitle_3.image ||
+      subtitle1 ||
+      subtitle2 ||
+      subtitle3;
+    const isFirstImageExist = row3.image_and_subtitle_1.image;
+    const isSecondImageExist = row3.image_and_subtitle_2.image;
+    const isThirdImageExist = row3.image_and_subtitle_3.image;
+    const row3Status =
+      !isFirstImageExist || !isSecondImageExist || !isThirdImageExist;
+
+    const noSubtitleFirstImage = !this.castToString(
+      row3.image_and_subtitle_1.sub_title
+    );
+    const noSubtitleSecondImage = !this.castToString(
+      row3.image_and_subtitle_2.sub_title
+    );
+    const noSubtitleThirdImage = !this.castToString(
+      row3.image_and_subtitle_3.sub_title
+    );
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            {this.castToObject<IBasicCard[]>("basic-card").map(
-              (basic: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div className={this.decorateCSS("basic")} key={index}>
-                  <img src={basic.image} alt="" />
-                  <h3 className={this.decorateCSS("title")}>{basic.title}</h3>
-                  <p className={this.decorateCSS("long-text")}>{basic.description}</p>
+          {title && (
+            <h1 className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </h1>
+          )}
+          {isRow1Visible && (
+            <ComposerLink path={row1.link} isFullWidth={true}>
+              <div className={this.decorateCSS("row1")}>
+                {row1.left_image && (
+                  <div
+                    className={`${this.decorateCSS("image-wrapper")} ${
+                      !this.castToString(row1.title) &&
+                      this.decorateCSS("row1-image-only")
+                    }`}
+                  >
+                    <img
+                      className={this.decorateCSS("left-image")}
+                      src={row1.left_image}
+                    />
+                  </div>
+                )}
+                {this.castToString(row1.title) && (
+                  <h1
+                    className={`${this.decorateCSS("title")} ${
+                      !row1.left_image && this.decorateCSS("row1-title-only")
+                    } 
+                        }`}
+                  >
+                    {row1.title}
+                  </h1>
+                )}
+              </div>
+            </ComposerLink>
+          )}
+
+          {isRow2Visible && (
+            <div className={this.decorateCSS("row2")}>
+              {isFirstColumnVisible && (
+                <div className={this.decorateCSS("first")}>
+                  {(this.castToString(row2.first_item.description) ||
+                    this.castToString(row2.first_item.button_text)) && (
+                    <div className={this.decorateCSS("first-items-wrapper")}>
+                      {this.castToString(row2.first_item.description) && (
+                        <span className={this.decorateCSS("description")}>
+                          {row2.first_item.description}
+                        </span>
+                      )}
+                      {this.castToString(row2.first_item.button_text) && (
+                        <span className={this.decorateCSS("button-text")}>
+                          <ComposerLink path={row2.first_item.link}>
+                            {this.castToString(row2.first_item.button_text)}
+                          </ComposerLink>
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
+              )}
+              {isSecondColumnVisible && (
+                <div className={this.decorateCSS("second")}>
+                  {this.castToString(row2.second_item.text) && (
+                    <span className={this.decorateCSS("text")}>
+                      <ComposerLink path={row2.second_item.link}>
+                        {this.castToString(row2.second_item.text)}
+                      </ComposerLink>
+                    </span>
+                  )}
                 </div>
-              )
-            )}
-          </div>
+              )}
+              {isThirdColumnVisible && (
+                <div
+                  className={this.decorateCSS("third")}
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                  }}
+                >
+                  {row2.third_item.image && (
+                    <ComposerLink path={row2.third_item.link}>
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={row2.third_item.image}
+                        alt="Third Column Image"
+                      />
+                    </ComposerLink>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+          {isRow3Visible && (
+            <div
+              className={`${this.decorateCSS("row3")} ${
+                !row3.image_and_subtitle_1.image &&
+                !row3.image_and_subtitle_2.image &&
+                !row3.image_and_subtitle_3.image
+                  ? this.decorateCSS("row3-no-image")
+                  : ""
+              }`}
+            >
+              {imageOrSubtitleExist1 && (
+                <ComposerLink
+                  path={row3.image_and_subtitle_1.link}
+                  isFullWidth={true}
+                >
+                  <div className={this.decorateCSS("image_and_subtitle_1")}>
+                    {row3.image_and_subtitle_1.image && (
+                      <img
+                        className={`${this.decorateCSS("image")} 
+                      ${row3Status && this.decorateCSS("row3-images-less")} 
+                      ${
+                        noSubtitleFirstImage &&
+                        this.decorateCSS("row3-no-subtitle")
+                      }
+                      `}
+                        src={row3.image_and_subtitle_1.image}
+                      />
+                    )}
+
+                    {this.castToString(row3.image_and_subtitle_1.sub_title) && (
+                      <span className={this.decorateCSS("subtitle")}>
+                        {row3.image_and_subtitle_1.sub_title}
+                      </span>
+                    )}
+                  </div>
+                </ComposerLink>
+              )}
+              {imageOrSubtitleExist2 && (
+                <ComposerLink
+                  path={row3.image_and_subtitle_2.link}
+                  isFullWidth={true}
+                >
+                  <div className={this.decorateCSS("image_and_subtitle_2")}>
+                    {row3.image_and_subtitle_2.image && (
+                      <img
+                        className={`${this.decorateCSS("image")} 
+                      ${row3Status && this.decorateCSS("row3-images-less")}
+                      ${
+                        noSubtitleSecondImage &&
+                        this.decorateCSS("row3-no-subtitle")
+                      }
+                      `}
+                        src={row3.image_and_subtitle_2.image}
+                      />
+                    )}
+                    {this.castToString(row3.image_and_subtitle_2.sub_title) && (
+                      <span className={this.decorateCSS("subtitle")}>
+                        {row3.image_and_subtitle_2.sub_title}
+                      </span>
+                    )}
+                  </div>
+                </ComposerLink>
+              )}
+              {imageOrSubtitleExist3 && (
+                <ComposerLink
+                  path={row3.image_and_subtitle_3.link}
+                  isFullWidth={true}
+                >
+                  <div className={this.decorateCSS("image_and_subtitle_3")}>
+                    {row3.image_and_subtitle_3.image && (
+                      <img
+                        className={`${this.decorateCSS("image")} 
+                      ${row3Status && this.decorateCSS("row3-images-less")}
+                      ${
+                        noSubtitleThirdImage &&
+                        this.decorateCSS("row3-no-subtitle")
+                      }
+                      `}
+                        src={row3.image_and_subtitle_3.image}
+                      />
+                    )}
+                    {this.castToString(row3.image_and_subtitle_3.sub_title) && (
+                      <span className={this.decorateCSS("subtitle")}>
+                        {row3.image_and_subtitle_3.sub_title}
+                      </span>
+                    )}
+                  </div>
+                </ComposerLink>
+              )}
+            </div>
+          )}
         </div>
       </div>
     );
