@@ -57,7 +57,6 @@
     width: 100%;
     margin-top: 30px;
     margin: auto;
-    padding: 20;
 
     .progress-title {
       display: flex;
@@ -66,6 +65,7 @@
       font-weight: bold;
       color: var(--composer-font-color-primary);
       margin-bottom: 5px;
+      gap: 30px;
     }
 
     .progress-percent {
@@ -245,6 +245,12 @@
 
       .progress-container {
          padding-top: 20px;
+         .item {
+          .progress-title{
+            gap: 20px !important;
+          }
+          
+         }
         .title {
           font-size: 8px;
         }
