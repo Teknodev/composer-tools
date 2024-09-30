@@ -226,7 +226,7 @@ class Header1 extends BaseHeader {
       ],
     });
     this.setActiveTab(0);
-    // this.setComponentState("resetAnimation", false)
+    // this.setComponentState("animationDuration", 20);
   }
 
   getName(): string {
@@ -255,16 +255,6 @@ class Header1 extends BaseHeader {
       this.handleDownClick();
     }
   }, 2000);
-  // resetAnimation = () => {
-  //   console.log("reset");
-  //   this.setComponentState("resetAnimation", true);
-  //   if (this.textRef.current) {
-  //     void this.textRef.current.offsetWidth; // Reflow tetikleyici
-  //   };
-  //   setTimeout(() => {
-  //     this.setComponentState("resetAnimation", false); // 50ms sonra animasyonu yeniden başlat
-  //   }, 100);
-  // };
 
   handleUpClick = () => {
     const currentIndex = this.getComponentState("activeTab");
@@ -273,7 +263,6 @@ class Header1 extends BaseHeader {
 
     this.setActiveTab(newIndex);
     this.sliderRef.current.slickGoTo(newIndex);
-    // this.resetAnimation();
   };
 
   handleDownClick = () => {
@@ -283,10 +272,14 @@ class Header1 extends BaseHeader {
 
     this.setActiveTab(newIndex);
     this.sliderRef.current.slickGoTo(newIndex);
-    // this.resetAnimation();
   };
 
-
+  // calculateAnimationDuration = (text: string) => {
+  //   const baseDuration = 20;
+  //   const lengthFactor = 0.5;
+  //   this.setComponentState("animationDuration", baseDuration + text.length * lengthFactor);
+  //   return this.getComponentState("animationDuration");
+  // };
   render() {
     const settings = {
       dots: true,
@@ -306,8 +299,6 @@ class Header1 extends BaseHeader {
       },
     };
     const isLineActive = this.getPropValue("numberLine");
-    // const { resetAnimation } = this.getComponentState("resetAnimation");
-    // const animationClass = resetAnimation ? '' : this.decorateCSS("animating");
 
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
@@ -326,10 +317,20 @@ class Header1 extends BaseHeader {
                       key={index}
                     >
                       <div className={this.decorateCSS("background-container")}>
-                        <div className={this.decorateCSS("background-text") + " " +
-                          (isActive && this.decorateCSS("active-text"))}>
+                        <div
+                          className={
+                            this.decorateCSS("background-text") +
+                            " " +
+                            (isActive && this.decorateCSS("active-text"))
+                          }
+                        // style={{
+                        //   animationDuration: isActive
+                        //     ? `${this.calculateAnimationDuration(this.castToString(item.backgroundTitle))}s`
+                        //     : "20s",
+                        // }}
+                        >
                           {item.backgroundTitle}
-                          <p>Length: {backgroundTitleLength}</p>
+                          {/* <p>Length: {this.castToString(item.backgroundTitle).length}</p> */}
                         </div>
                       </div>
 
