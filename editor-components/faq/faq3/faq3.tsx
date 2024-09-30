@@ -1,11 +1,20 @@
 import * as React from "react";
 import styles from "./faq3.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Faq = {
-  number: number;
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
+  index?: number;
+};
+
+type InfoArrayItem = {
+  buttonText: JSX.Element;
+  buttonLink: string;
+  title: JSX.Element;
+  description: JSX.Element;
 };
 
 class FaqContainerTwo extends BaseFAQ {
@@ -20,6 +29,13 @@ class FaqContainerTwo extends BaseFAQ {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "mainSubtitle",
       displayer: "Subtitle",
@@ -29,20 +45,14 @@ class FaqContainerTwo extends BaseFAQ {
 
     this.addProp({
       type: "array",
-      key: "faqList",
-      displayer: "FAQ",
+      key: "faqItems",
+      displayer: "Card",
       value: [
         {
           type: "object",
-          key: "faq",
-          displayer: "Frequently Asked Questions",
+          key: "faqItem",
+          displayer: "Card",
           value: [
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 1,
-            },
             {
               type: "string",
               key: "title",
@@ -56,19 +66,19 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 1,
+            },
           ],
         },
         {
           type: "object",
-          key: "faq",
-          displayer: "Frequently Asked Questions",
+          key: "faqItem",
+          displayer: "Card",
           value: [
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 2,
-            },
             {
               type: "string",
               key: "title",
@@ -82,19 +92,19 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 2,
+            },
           ],
         },
         {
           type: "object",
-          key: "faq",
-          displayer: "Frequently Asked Questions",
+          key: "faqItem",
+          displayer: "Card",
           value: [
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 3,
-            },
             {
               type: "string",
               key: "title",
@@ -108,19 +118,19 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 3,
+            },
           ],
         },
         {
           type: "object",
-          key: "faq",
-          displayer: "Frequently Asked Questions",
+          key: "faqItem",
+          displayer: "Card",
           value: [
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 4,
-            },
             {
               type: "string",
               key: "title",
@@ -134,19 +144,19 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 4,
+            },
           ],
         },
         {
           type: "object",
-          key: "faq",
-          displayer: "Frequently Asked Questions",
+          key: "faqItem",
+          displayer: "Card",
           value: [
-            {
-              type: "number",
-              key: "number",
-              displayer: "Number",
-              value: 5,
-            },
             {
               type: "string",
               key: "title",
@@ -160,9 +170,29 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
+            {
+              type: "number",
+              key: "index",
+              displayer: "Index",
+              value: 5,
+            },
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "icon",
+      displayer: "Active Icon",
+      key: "active_icon",
+      value: "FaPlus",
+    });
+
+    this.addProp({
+      type: "icon",
+      displayer: "Inactive Icon",
+      key: "inactive_icon",
+      value: "FaMinus",
     });
 
     this.addProp({
@@ -190,9 +220,15 @@ class FaqContainerTwo extends BaseFAQ {
             },
             {
               type: "string",
-              key: "buttonItem",
-              displayer: "Button Writing",
+              key: "buttonText",
+              displayer: "Button Text",
               value: "CONTACT US",
+            },
+            {
+              type: "page",
+              key: "buttonLink",
+              displayer: "Button Link",
+              value: "",
             },
           ],
         },
@@ -216,19 +252,19 @@ class FaqContainerTwo extends BaseFAQ {
             },
             {
               type: "string",
-              key: "buttonItem",
-              displayer: "Button Writing",
+              key: "buttonText",
+              displayer: "Button Text",
               value: "LEARN MORE",
+            },
+            {
+              type: "page",
+              key: "buttonLink",
+              displayer: "Button Link",
+              value: "",
             },
           ],
         },
       ],
-    });
-    this.addProp({
-      type: "string",
-      key: "image",
-      displayer: "Image",
-      value: "https://www.svgrepo.com/show/80156/down-arrow.svg",
     });
 
     this.state["componentProps"]["selectCardIndex"] = null;
@@ -246,73 +282,135 @@ class FaqContainerTwo extends BaseFAQ {
     }
   }
 
+  onItemClick(index: number) {
+    const active_index = this.getComponentState("active_index");
+
+    if (active_index == index) {
+      this.setComponentState("active_index", -1);
+    } else {
+      this.setComponentState("active_index", index);
+    }
+  }
+
   render() {
+    const mainTitleExist = this.getPropValue("mainTitle", { as_string: true });
+    const mainSubtitleExist = this.getPropValue("mainSubtitle", {
+      as_string: true,
+    });
+    const infoArray = this.castToObject<InfoArrayItem[]>("infoArray");
+    const faqItems = this.castToObject<Faq[]>("faqItems");
+    const showLine = this.getPropValue("showLine");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("Main-container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("containerTop")}>
-            <div className={this.decorateCSS("header")}>
-              <div className={this.decorateCSS("caption")}>
-                {this.getPropValue("mainTitle")}
+            {(mainTitleExist || mainSubtitleExist) && (
+              <div className={this.decorateCSS("header")}>
+                {mainTitleExist && (
+                  <div className={this.decorateCSS("caption")}>
+                    {this.getPropValue("mainTitle")}
+                  </div>
+                )}
+
+                <div>
+                  {mainTitleExist && mainSubtitleExist && showLine && (
+                    <hr className={this.decorateCSS("divider")} />
+                  )}
+                </div>
+
+                {mainSubtitleExist && (
+                  <div className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("mainSubtitle")}
+                  </div>
+                )}
               </div>
-              <p className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("mainSubtitle")}
-              </p>
-            </div>
+            )}
             <div className={this.decorateCSS("contentContainer")}>
-              <div className={this.decorateCSS("content-left")}>
-                {this.castToObject<Faq[]>("faqList").map(
-                  (item: Faq, index: number) => (
-                    <div
-                      key={index}
-                      className={this.decorateCSS("faq-items")}
-                      onClick={() => {
-                        this.lineClicked(index);
-                      }}
-                    >
-                      <h3 className={this.decorateCSS("title-item")}>
-                        {item.number}.{item.title}
-                      </h3>
-                      <img
-                        src={this.getPropValue("image")}
-                        alt=""
-                        className={`${
-                          this.getComponentState("selectCardIndex") === index
-                            ? this.decorateCSS("rotate")
-                            : ""
-                        }`}
-                      />
-                      <div
-                        className={`${this.decorateCSS("description-item")} ${
-                          this.getComponentState("selectCardIndex") === index
-                            ? this.decorateCSS("active")
-                            : ""
-                        }`}
-                      >
-                        {item.description}
-                      </div>
-                      <hr />
-                    </div>
-                  )
-                )}
-              </div>
-              <div className={this.decorateCSS("content-right")}>
-                {this.getPropValue("infoArray").map(
-                  (item: any, index: number) => (
+              {faqItems?.length > 0 && (
+                <div className={this.decorateCSS("content-left")}>
+                  {faqItems.map((item: Faq, index: number) => {
+                    const is_active =
+                      this.getComponentState("active_index") == index;
+                    const titleExist = this.castToString(item.title);
+                    const descExist = this.castToString(item.description);
+                    const questionIndex =
+                      item.index !== undefined ? item.index : null;
+
+                    if (titleExist || descExist)
+                      return (
+                        <div
+                          key={index}
+                          className={this.decorateCSS("card")}
+                          onClick={() => this.onItemClick(index)}
+                        >
+                          {titleExist && (
+                            <div className={this.decorateCSS("top-card")}>
+                              {questionIndex !== null && (
+                                <span
+                                  className={this.decorateCSS("question-index")}
+                                >
+                                  {questionIndex}.
+                                </span>
+                              )}
+                              <span
+                                className={this.decorateCSS("card-subtitle")}
+                              >
+                                {item.title}
+                              </span>
+                              <ComposerIcon
+                                propsIcon={{
+                                  className: this.decorateCSS("icon"),
+                                }}
+                                name={
+                                  is_active
+                                    ? this.getPropValue("inactive_icon")
+                                    : this.getPropValue("active_icon")
+                                }
+                              />
+                            </div>
+                          )}
+                          {descExist && (
+                            <div
+                              className={`${this.decorateCSS("text-box")} ${
+                                is_active && this.decorateCSS("active")
+                              }`}
+                            >
+                              <p className={this.decorateCSS("card-text")}>
+                                {item.description}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                  })}
+                </div>
+              )}
+              {infoArray?.length > 0 && (
+                <div className={this.decorateCSS("content-right")}>
+                  {infoArray.map((item: InfoArrayItem, index: number) => (
                     <div key={index} className={this.decorateCSS("info-items")}>
-                      <h3 className={this.decorateCSS("title-info")}>
-                        {item.value[0].value}
-                      </h3>
-                      <div className={this.decorateCSS("description-info")}>
-                        {item.value[1].value}
-                      </div>
-                      <button className={this.decorateCSS("button-info")}>
-                        {item.value[2].value}
-                      </button>
+                      {this.castToString(item.title) && (
+                        <h2 className={this.decorateCSS("title-info")}>
+                          {item.title}
+                        </h2>
+                      )}
+                      {this.castToString(item.description) && (
+                        <p className={this.decorateCSS("description-info")}>
+                          {item.description}
+                        </p>
+                      )}
+                      {this.castToString(item.buttonText) && (
+                        <div className={this.decorateCSS("button-info")}>
+                          <ComposerLink path={item.buttonLink}>
+                            {item.buttonText}
+                          </ComposerLink>
+                        </div>
+                      )}
                     </div>
-                  )
-                )}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
