@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  z-index: 100 !important;
 
   .slider {
     width: 250px;
@@ -113,6 +114,8 @@
             position: relative;
             width: 100%;
             height: 150px;
+            background-color: transparent;
+            transition: all 1s ease;
 
             .image {
               width: 150px;
@@ -125,15 +128,15 @@
 
             .text-overlay {
               position: absolute;
-              bottom: 40%;
+              bottom: 0%;
               left: 50%;
               transform: translateX(-50%);
-              color: var(--composer-primary-color);
+              color: var(--composer-font-color-secondary);
               font-size: 14px;
               text-align: center;
               border-radius: 5px;
               opacity: 0;
-              transition: all 0.2s ease;
+              transition: all 0.5s ease-in;
 
               display: -webkit-box;
               -webkit-box-orient: vertical;
@@ -143,8 +146,12 @@
               word-break: break-word;
             }
 
+            &:hover {
+              background-color: var(--composer-font-color-primary );
+            }
+
             &:hover .image {
-              filter: brightness(10%);
+              mix-blend-mode: multiply;
             }
 
             &:hover .text-overlay {
@@ -178,6 +185,8 @@
           flex-direction: column;
           justify-content: space-between;
           transition: transform 0.4s ease;
+          color: var(--composer-font-color-primary) !important ;
+
 
           span {
             display: block;
@@ -235,32 +244,25 @@
         // Style for the dropdown
         ul {
           padding: 0 !important;
-          /* Remove default padding */
           margin: 0 !important;
-          /* Remove default margin */
           overflow: hidden;
           display: flex;
-          /* Use flex to arrange items properly */
           flex-direction: column;
-          /* Stack the items vertically */
         }
 
         .ul-none {
           display: none;
-          /* Hide the ul when needed */
         }
 
         li {
           font-size: 14px !important;
-          /* Style for li */
-          margin: 5px 5px;
-          /* Add some margin between items */
+          color: var(--composer-font-color-primary) !important;
+          margin: 10px 5px;
           list-style-type: none !important;
         }
 
         .rightSlider {
           display: block;
-          /* Make sure it is displayed correctly */
         }
 
         &.activeChild {
@@ -283,23 +285,24 @@
           }
 
           div {
-            transition: transform 1s ease; /* Animasyon süresi */
+            height: 18px;
+            transition: transform 0.4s ease; 
+            align-items: center;
           }
           
           .rotate {
-            transform: rotate(180deg); /* 720 derece dönüşüm */
+            transform: rotate(180deg);
+            transform-origin: center;
           }
 
           svg {
             flex-shrink: 0 !important;
-            /* Prevent svg from shrinking */
+            color: var(--composer-font-color-primary) !important;
+
             width: 18px !important;
-            /* Ensure SVG maintains its own width */
             height: auto !important;
-            // margin-top: 10px !important;
-            align-self: center;
-            /* Center-align the SVG vertically if needed */
-            // padding-left: 10px !important;
+            align-items: center;
+
           }
 
           .extendable::selection .dropdown-content {
@@ -312,17 +315,17 @@
 
     .navbar-child.active {
       display: none;
-      /* Hide navbar when active */
     }
 
     .navbar-child h3 {
-      margin-top: 5px !important;
+      // margin-top: 5px !important;
+      margin: 10px 0px !important;
       padding: 0 !important;
       font-size: 16px;
       color: var(--composer-font-color-primary);
       cursor: pointer;
       transition: color 0.3s ease;
-      margin-bottom: 5px !important;
+      // margin-bottom: 5px !important;
     }
 
     +.hamburger-container {
@@ -401,32 +404,24 @@
         // Style for the dropdown
         ul {
           padding: 0 !important;
-          /* Remove default padding */
           margin: 0 !important;
-          /* Remove default margin */
           overflow: hidden;
           display: flex;
-          /* Use flex to arrange items properly */
           flex-direction: column;
-          /* Stack the items vertically */
         }
 
         .ul-none {
           display: none;
-          /* Hide the ul when needed */
         }
 
         li {
           font-size: 12px !important;
-          /* Style for li */
-          margin: 5px 5px;
-          /* Add some margin between items */
+          margin: 10px 5px;
           list-style-type: none !important;
         }
 
         .rightSlider {
           display: block;
-          /* Make sure it is displayed correctly */
         }
 
         &.activeChild {
@@ -436,7 +431,7 @@
         }
 
         .right-section {
-          display: flex;
+          display: flex !important;
           width: 100%;
           justify-content: space-between !important;
           flex-shrink: 0 !important;
@@ -450,16 +445,16 @@
             }
           }
 
+          div {
+            height: 12px !important;
+            transition: transform 0.4s ease; 
+          }
+
           svg {
             flex-shrink: 0 !important;
-            /* Prevent svg from shrinking */
             width: auto !important;
-            /* Ensure SVG maintains its own width */
             height: auto !important;
-            // margin-top: 10px !important;
             align-self: center;
-            /* Center-align the SVG vertically if needed */
-            // padding-left: 10px !important;
           }
 
           .extendable::selection .dropdown-content {
@@ -481,7 +476,7 @@
       color: var(--composer-font-color-primary);
       cursor: pointer;
       transition: color 0.3s ease;
-      margin-bottom: 5px !important;
+      // margin-bottom: 5px !important;
     }
 
     .hamburger-container {
