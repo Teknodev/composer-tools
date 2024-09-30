@@ -63,7 +63,7 @@
         h3 {
           margin: 14px 0;
           padding: 14px 20px;
-          font-size: 17px;
+          font-size: 18px;
           cursor: pointer;
           color: var(--composer-font-color-primary);
           transition: 0.4s;
@@ -92,6 +92,22 @@
           transition: max-height 0.0s ease, opacity 0.4s ease;
         }
 
+        .extendable .extendable-title-content {
+          display: flex;
+          gap: 10px;
+          transition: all 0.0s ease; 
+        
+          svg {
+            transition: transform 0.4s ease;
+          }
+        
+          &:hover svg {
+            transform: rotate(180deg);
+            transform-origin: center; 
+          }
+        }
+        
+
         .extendable:hover .dropdown-content {
           max-height: 1000px;
           opacity: 1;
@@ -117,13 +133,17 @@
             background-color: transparent;
             transition: all 1s ease;
 
-            .image {
-              width: 150px;
-              min-height: 150px;
-              height: auto;
-              transition: all 1s ease;
-              z-index: 1;
-              box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            .image-overlay {
+              background-color: var(--composer-font-color-primary) !important;
+              max-height:150px !important;
+              .image {
+                width: 150px;
+                max-height: 150px;
+                height: auto;
+                transition: all 1s ease;
+                z-index: 1;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+              }
             }
 
             .text-overlay {
@@ -147,15 +167,15 @@
             }
 
             &:hover {
-              background-color: var(--composer-font-color-primary );
+              background-color: var(--composer-font-color-primary);
             }
 
             &:hover .image {
-              mix-blend-mode: multiply;
+              mix-blend-mode: color;
             }
 
             &:hover .text-overlay {
-              bottom: 50%;
+              bottom: 45%;
               opacity: 1;
               transform: translateX(-50%);
             }
@@ -234,7 +254,7 @@
         top: 0% !important;
         right: 0 !important;
         width: 40% !important;
-        gap: 0px !important;
+        gap: 10px !important;
 
         &.active {
           height: 100vh !important;
@@ -321,7 +341,7 @@
       // margin-top: 5px !important;
       margin: 10px 0px !important;
       padding: 0 !important;
-      font-size: 16px;
+      font-size: 18px !important;
       color: var(--composer-font-color-primary);
       cursor: pointer;
       transition: color 0.3s ease;
@@ -394,7 +414,7 @@
         top: 0% !important;
         right: 0 !important;
         width: 50% !important;
-        gap: 0px !important;
+        gap: 10px !important;
 
         &.active {
           height: 100vh !important;
@@ -440,7 +460,7 @@
           .extendable {
             .dropdown-content-tablet-telephone {
               display: flex !important;
-              font-size: 12px !important;
+              font-size: 14px !important;
               padding-right: 5px;
             }
           }
@@ -452,7 +472,7 @@
 
           svg {
             flex-shrink: 0 !important;
-            width: auto !important;
+            width: 12px !important;
             height: auto !important;
             align-self: center;
           }
@@ -490,16 +510,19 @@
       flex-direction: column;
       justify-content: space-between;
       z-index: 2;
+      width: 18px !important;
+      height: 18px !important;
+
     }
 
     .hamburger span {
-      height: 4px;
+      height: 3px !important;
       background-color: var(--composer-font-color-primary);
       transition: all 0.3s ease;
     }
 
     .hamburger.open span:nth-child(1) {
-      transform: translateY(10px) rotate(45deg);
+      transform: translateY(7px) rotate(45deg) !important; /* Çarpı işareti için ayar */
     }
 
     .hamburger.open span:nth-child(2) {
@@ -507,7 +530,7 @@
     }
 
     .hamburger.open span:nth-child(3) {
-      transform: translateY(-10px) rotate(-45deg);
+      transform: translateY(-7px) rotate(-45deg) !important; /* Çarpı işareti için ayar */
     }
   }
 }

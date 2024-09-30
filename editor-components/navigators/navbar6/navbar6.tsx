@@ -444,7 +444,7 @@ class Navbar6 extends BaseNavigator {
                                             </div>
                                           </ComposerLink>
                                         </h3>
-                                        <div className={dropdownActive ? this.decorateCSS("rotate"): ""} onClick={() => this.dropdownClick(index)}>
+                                        <div className={dropdownActive ? this.decorateCSS("rotate") : ""} onClick={() => this.dropdownClick(index)}>
                                           <ComposerIcon name={item?.value[2].value} />
                                         </div>
                                       </div>
@@ -474,7 +474,12 @@ class Navbar6 extends BaseNavigator {
 
                                     <>
                                       <h3 className={this.decorateCSS("extendable")}>
-                                        <div>{item?.value?.[0]?.value}</div>
+                                        <div className={this.decorateCSS("extendable-title-content")}>
+                                          <div>{item?.value?.[0]?.value}</div>
+                                          <ComposerIcon name={item?.value[2].value} />
+
+                                        </div>
+
                                         {item?.value?.[4]?.value?.length > 0 && (
                                           <div className={this.decorateCSS("dropdown-content")}>
 
@@ -501,9 +506,11 @@ class Navbar6 extends BaseNavigator {
                                                         }
                                                         <a href={url || "#"} key={index}>
                                                           <div className={this.decorateCSS("image-container")}>
-                                                            {image && <img src={image} alt="" className={this.decorateCSS("image")} />}
-                                                            <div className={this.decorateCSS("text-overlay")}>
-                                                              {text}
+                                                            <div className={this.decorateCSS("image-overlay")}>
+                                                              {image && <img src={image} alt="" className={this.decorateCSS("image")} />}
+                                                              <div className={this.decorateCSS("text-overlay")}>
+                                                                {text}
+                                                              </div>
                                                             </div>
                                                           </div>
                                                         </a>
