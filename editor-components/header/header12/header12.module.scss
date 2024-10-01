@@ -27,7 +27,7 @@
     .right-slider {
       position: relative;
       box-sizing: border-box;
-      max-height: 500px;
+      height: 500px;
 
       .slider-item {
         width: 100%;
@@ -54,7 +54,7 @@
       }
 
       >div>div>div {
-        // height: 503.2px;
+        height: 500px;
 
         >div {
           height: 100%;
@@ -85,7 +85,7 @@
         cursor: pointer;
         z-index: 100;
         -webkit-text-stroke: 1px background-color;
-        color: white;
+        color: var(--composer-font-color-primary);
         font-size: 40px;
         transition: 300ms;
         transition-property: scale;
@@ -97,6 +97,7 @@
 
       .slider-item {
         position: relative;
+        height: 500px;
 
         .slider-item-image {
           width: 100%;
@@ -109,6 +110,20 @@
           bottom: 1em;
           left: 50px; 
           color: white;
+          z-index: 2;
+          width: auto;
+          box-sizing: border-box;
+          font-size: 3vw;
+          word-wrap: break-word;
+          text-align: end;
+          width: auto !important;
+        }
+
+        .no-image-text {
+          position: absolute;
+          bottom: 1em;
+          left: 50px; 
+          color: var(--composer-font-color-primary);
           z-index: 2;
           width: auto;
           box-sizing: border-box;
@@ -140,7 +155,7 @@
         cursor: pointer;
         z-index: 100;
         font-size: 40px;
-        color: white;
+        color: var(--composer-font-color-primary);
         -webkit-text-stroke: 1px background-color;
         transition: 300ms;
         transition-property: scale;
@@ -163,7 +178,20 @@
           position: absolute;
           bottom: 1em;
           right: 50px;
-          color: white;
+          color: var(--composer-font-color-secondary);
+          z-index: 2;
+          width: auto;
+          box-sizing: border-box;
+          font-size: 3vw;
+          word-wrap: break-word;
+          text-align: end;
+        }
+
+        .no-image-text {
+          position: absolute;
+          bottom: 1em;
+          right: 50px;
+          color: var(--composer-font-color-primary);
           z-index: 2;
           width: auto;
           box-sizing: border-box;
@@ -206,6 +234,13 @@
           left: 50px !important;
           font-size: 8vw !important;
         }
+
+        .no-image-text {
+          bottom: 20px !important;
+          left: 50px !important;
+          font-size: 8vw !important;
+          color: var(--composer-font-color-primary);
+        }
       }
     }
 
@@ -216,6 +251,13 @@
           right: 50px !important;
           font-size: 8vw !important;
           text-align: end;
+        }
+        .no-image-text {
+          bottom: 20px !important;
+          right: 50px !important;
+          font-size: 8vw !important;
+          text-align: end;
+          color: var(--composer-font-color-primary);
         }
       }
     }
@@ -307,6 +349,13 @@
           left: 50px !important;
           font-size: 5vw !important;
         }
+
+        .no-image-text {
+          bottom: 20px !important;
+          left: 50px !important;
+          font-size: 5vw !important;
+          color: var(--composer-font-color-primary);
+        }
       }
     }
 
@@ -317,6 +366,14 @@
           right: 50px !important;
           font-size: 5vw !important;
           text-align: end;
+        }
+
+        .no-image-text {
+          bottom: 20px !important;
+          right: 50px !important;
+          font-size: 5vw !important;
+          text-align: end;
+          color: var(--composer-font-color-primary);
         }
       }
     }

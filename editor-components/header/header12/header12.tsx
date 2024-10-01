@@ -311,43 +311,14 @@ class Header12 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-container")}>
-            {leftSliderItems.length > 0 && 
-            (<ComposerSlider
-              className={`${this.decorateCSS("left-slider")}
-              ${rightSliderItems.length < 1 && this.decorateCSS("no-slider-items")}`}
-              ref={(slider: any) => this.leftSliderRef = slider}
-              {...leftSliderSettings}
-            >
-              {leftSliderItems.map((item: SliderItem, index: number) => (
-                <div
-                  key={index}
-                  className={this.decorateCSS("slider-item")}
-                >
-                  {item.image && (
-                    <div className={this.decorateCSS("image-overlay-container")}>
-                      <img
-                        className={this.decorateCSS("slider-item-image")}
-                        src={item.image}
-                        alt={this.castToString(item.text)}
-                      />
-                      <div className={this.decorateCSS("slider-item-text")}>{item.text}</div>
-                      {showOverlay && (
-                        <div className={this.decorateCSS("image-overlay")} />
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </ComposerSlider>)}
-
-            {rightSliderItems.length > 0 &&
+            {leftSliderItems.length > 0 &&
               (<ComposerSlider
-                className={`${this.decorateCSS("right-slider")}
-              ${leftSliderItems.length < 1 && this.decorateCSS("no-slider-items")}`}
-                ref={(slider: any) => this.rightSliderRef = slider}
-                {...rightSliderSettings}
+                className={`${this.decorateCSS("left-slider")}
+              ${rightSliderItems.length < 1 && this.decorateCSS("no-slider-items")}`}
+                ref={(slider: any) => this.leftSliderRef = slider}
+                {...leftSliderSettings}
               >
-                {rightSliderItems.map((item: SliderItem, index: number) => (
+                {leftSliderItems.map((item: SliderItem, index: number) => (
                   <div
                     key={index}
                     className={this.decorateCSS("slider-item")}
@@ -359,15 +330,43 @@ class Header12 extends BaseHeader {
                           src={item.image}
                           alt={this.castToString(item.text)}
                         />
-                        <div className={this.decorateCSS("slider-item-text")}>{item.text}</div>
                         {showOverlay && (
                           <div className={this.decorateCSS("image-overlay")} />
                         )}
                       </div>
                     )}
+                    <div className={`${item.image ? this.decorateCSS("slider-item-text") : this.decorateCSS("no-image-text")}`}>{item.text}</div>
 
                   </div>
                 ))}
+              </ComposerSlider>)}
+
+            {rightSliderItems.length > 0 &&
+              (<ComposerSlider
+                className={`${this.decorateCSS("right-slider")}
+              ${leftSliderItems.length < 1 && this.decorateCSS("no-slider-items")}`}
+                ref={(slider: any) => this.rightSliderRef = slider}
+                {...rightSliderSettings}
+              >
+                {rightSliderItems.map((item: SliderItem, index: number) => (
+                  <div key={index} className={this.decorateCSS("slider-item")}>
+                    {item.image && (
+                      <div className={this.decorateCSS("image-overlay-container")}>
+                        <img
+                          className={this.decorateCSS("slider-item-image")}
+                          src={item.image}
+                          alt={this.castToString(item.text)}
+                        />
+                        {showOverlay && (
+                          <div className={this.decorateCSS("image-overlay")} />
+                        )}
+                      </div>
+                    )}
+                    <div className={`${item.image ? this.decorateCSS("slider-item-text") : this.decorateCSS("no-image-text")}`}>{item.text}</div>
+                  </div>
+
+                ))}
+
               </ComposerSlider>)}
           </div>
         </div>
