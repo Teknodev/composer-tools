@@ -159,9 +159,9 @@ class Navbar2 extends BaseNavigator {
               </div>
             ) : (
               title && (
-                <h2 className={this.decorateCSS("title")}>
+                <div className={this.decorateCSS("title")}>
                   {title}
-                </h2>
+                </div>
               )
             )}
 

@@ -36,28 +36,26 @@
       gap:10px;
       
       .title {
-        flex:1;
         font-size: 35px;
         font-weight: bold;
         color: var(--composer-primary-color);
         width: fit-content;
         margin: 0px;
         max-width: 100%;
-        word-break: break-word;
 
       }
+      .image-container{}
 
-        .image{
-          color: var(--composer-primary-color);
-          width: fit-content;
-          max-height: 66px;
-          object-fit: cover;
-          display: flex;
-          align-items: center;
-          justify-content: start;;
-        }
+      .image{
+        color: var(--composer-primary-color);
+        width: fit-content;
+        max-height: 66px;
+        object-fit: cover;
+        display: flex;
+        align-items: center;
+        justify-content: start;;
+      }
       .item-conatiner{
-        flex:10;
         width: 100%;
         display: flex;
         justify-content: end;
