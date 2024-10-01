@@ -1,3 +1,19 @@
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
@@ -11,6 +27,11 @@
       z-index: 5;
       position: relative;
       background-color:var(--composer-html-background);
+      &.open {
+      }
+      &.colse {
+      }
+
     }
 
   }
@@ -34,28 +55,32 @@
       padding: 50px 50px;
       background-color: var(--composer-html-backgrounds);
       gap:10px;
-      
+
       .title {
-        font-size: 35px;
+        font-size: 2.7rem;
         font-weight: bold;
         color: var(--composer-primary-color);
-        width: fit-content;
+        width: 100%;
         margin: 0px;
-        max-width: 100%;
+        max-width: 200px;
+        overflow: hidden;
 
       }
-      .image-container{}
-
-      .image{
-        color: var(--composer-primary-color);
-        width: fit-content;
-        max-height: 66px;
-        object-fit: cover;
-        display: flex;
-        align-items: center;
-        justify-content: start;;
+      .image-container{
+        max-width: 200px;
+        .image{
+          color: var(--composer-primary-color);
+          width: fit-content;
+          max-height: 66px;
+          object-fit: cover;
+          display: flex;
+          align-items: center;
+          justify-content: start;;
+        }
       }
-      .item-conatiner{
+
+
+      .item-container{
         width: 100%;
         display: flex;
         justify-content: end;
@@ -63,7 +88,7 @@
         .items {
           display: flex;
           gap: 40px;
-  
+
           &.middle {
             position: absolute;
             width: 100%;
@@ -75,19 +100,19 @@
             padding-right: 50px;
             padding-left: 50px;
           }
-  
+
           &.right {
             width: 70%;
             justify-content: flex-end;
           }
-  
+
           h3 {
             cursor: pointer;
             transition: all 0.5s;
             font-weight: 200;
             font-size: 16px;
             color: var(--composer-font-color-primary);
-  
+
             &:hover {
               opacity: 0.6;
             }
@@ -136,111 +161,89 @@
     z-index: 10;
   }
 
-  @media only screen and (max-width: 1100px) {
-    .max-content {
-      max-width: 100%;
-
-      nav {
-        text-align: center;
-        padding: 50px 0;
-        width: 100%;
-
-        .title {
-          font-weight: bold;
-          font-size: 30px;
-          margin-left: 20px;
-        }
-        .items {
-          width: max-content;
-          margin: 0 auto;
-        }
-      }
-    }
-  }
-
-  @keyframes slideIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @keyframes slideOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
+}
 
   @media only screen and (max-width: 870px) {
     .navbar-child {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
       margin-top: 40px !important;
-      background-color: var(--composer-html-background);
-      position: absolute;
-      z-index: 20;
-      max-height: fit-content;
+      background-color: var(--composer-html-background) !important;
+      position: absolute !important;
+      z-index: 20 !important;
+      max-height: fit-content !important;
       .mobile-item {
-        padding: 10px 0;
-        color: var(--composer-font-color-primary);
-        z-index: 5;
-        position: relative;
-        background-color: var(--composer-html-background);
-        opacity: 1;
+        padding: 10px 0 !important;
+        color: var(--composer-font-color-primary) !important;
+        z-index: 5 !important;
+        position: relative !important;
+        background-color: var(--composer-html-background) !important;
+        opacity: 1 !important;
         &.open {
-          animation: slideIn 3s ease-out forwards;
+          >div{
+            >h3{
+              animation: slideIn 3s ease-out forwards !important;
+            }
+          }
         }
         &.close {
-          animation: slideOut 1s ease-out forwards;
+          >div{
+            >h3{
+              animation: slideOut 1s ease-out forwards !important;
+            }
+          }
         }
       }
     }
-  
+
     .max-content {
       nav {
-        display: none;
-        visibility: hidden;
+        display: none !important;
+        visibility: hidden !important;
       }
 
       .navigator-mobile {
-        display: block;
-        visibility: visible;
+        display: block !important;
+        visibility: visible !important;
+        padding: 0px !important;
 
         .navbar {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          height: 100%;
-          padding: 0 20px 0 5px;
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+          height: 100% !important;
+          padding: 0 30px !important;
 
           .img-hamburger {
-            pointer-events: all;
-            cursor: pointer;
-            transition: 0.4s;
-            font-weight: 100;
-            font-size: 30px;
-            width: 25px;
-            height: 25px;
-            color: var(--composer-font-color-primary);
+            pointer-events: all !important;
+            cursor: pointer !important;
+            transition: 0.4s !important;
+            font-weight: 100 !important;
+            font-size: 30px !important;
+            width: 25px !important;
+            height: 25px !important;
+            color: var(--composer-font-color-primary) !important;
 
             &.rotate {
               &:hover {
-                transform: rotate(90deg);
+                transform: rotate(90deg) !important;
               }
             }
-          }
-          .image{
-            max-width: 80% !important;
           }
         }
       }
     }
   }
-}
+  @media only screen and (max-width: 400px) {
+    .image-container{
+      max-width: 100px !important ;
+    }
+    .title{
+      max-width: 100px !important;
+      font-size: 2.3rem !important;
+    }
+  }
+

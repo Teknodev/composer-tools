@@ -122,9 +122,9 @@ class Navbar2 extends BaseNavigator {
         },
       ],
     });
-    this.setComponentState("navActive", true);
+    this.setComponentState("navActive", false);
     this.setComponentState("isAnimating", false);
-    this.setComponentState("isVisible", true);
+    this.setComponentState("isVisible", false);
   }
   getName(): string {
     return "Navbar 2";
@@ -165,7 +165,7 @@ class Navbar2 extends BaseNavigator {
               )
             )}
 
-            <div className={this.decorateCSS("item-conatiner")}>
+            <div className={this.decorateCSS("item-container")}>
               <div
                 className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""
                   }`}
@@ -174,7 +174,6 @@ class Navbar2 extends BaseNavigator {
                   (data: any, indexItemList: number) => {
                     return (
                       <ComposerLink
-                        key={indexItemList}
                         path={data.value[1].value}
                       >
                         <h3 key={indexItemList}>{data.value[0].value}</h3>
@@ -188,12 +187,14 @@ class Navbar2 extends BaseNavigator {
           <nav className={this.decorateCSS("navigator-mobile")}>
             <div className={this.decorateCSS("navbar")}>
               {image ? (
-                <img src={image} className={this.decorateCSS("image")} alt="Image" />
+                <div className={this.decorateCSS("image-container")}>
+                  <img src={image} className={this.decorateCSS("image")} alt="Image" />
+                </div>
               ) : (
                 title && (
-                  <h2 className={this.decorateCSS("title")}>
+                  <div className={this.decorateCSS("title")}>
                     {title}
-                  </h2>
+                  </div>
                 )
               )}
               <ComposerIcon
