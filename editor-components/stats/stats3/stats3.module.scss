@@ -25,15 +25,19 @@
           .card{
             width: 100% !important;
             position: static !important;
-            .icon{
-              width: 20px !important;
-              height: 20px !important;
-            }
-            .number{
-              font-size:1.5rem !important;
-            }
-            .right-text{
-              font-size: 1.2rem !important;
+            border:none !important;
+            .content{
+              align-items: flex-start !important;
+              .icon{
+                width: 20px !important;
+                height: 20px !important;
+              }
+              .number{
+                font-size:1.5rem !important;
+              }
+              .right-text{
+                font-size: 1.2rem !important;
+              }
             }
           }
         }
