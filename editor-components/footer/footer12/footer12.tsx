@@ -2,6 +2,13 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer12.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type ImageOrEmoji = {
+  image?: string;
+  icon?: string;
+  url?: JSX.Element;
+};
 
 class Footer12Page extends BaseFooter {
   constructor(props?: any) {
@@ -33,6 +40,9 @@ class Footer12Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "link-list",
+      additionalParams: {
+        maxElementCount: 10,
+      },
       displayer: "Link List",
       value: [
         {
@@ -63,7 +73,45 @@ class Footer12Page extends BaseFooter {
               type: "string",
               key: "refText",
               displayer: "Referral Text",
-              value: "Terms of Service",
+              value: "Distance sales contract",
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Path",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-text",
+          displayer: "Text Values",
+          value: [
+            {
+              type: "string",
+              key: "refText",
+              displayer: "Referral Text",
+              value: "Terms of use and membership agreement",
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Path",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-text",
+          displayer: "Text Values",
+          value: [
+            {
+              type: "string",
+              key: "refText",
+              displayer: "Referral Text",
+              value: "Consumer rights, withdrawal, cancellation, return conditions",
             },
             {
               type: "page",
@@ -76,12 +124,73 @@ class Footer12Page extends BaseFooter {
       ],
     });
     this.addProp({
+      type: "array",
+      key: "image-emoji-list",
+      additionalParams: {
+        maxElementCount: 5,
+      },
+      displayer: "İmage List",
+      value: [
+        {
+          type: "object",
+          key: "imageOrEmojiItem",
+          displayer: "Emoji Item",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaCcVisa",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media"
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "İmage Url",
+              value: "",
+            }
+          ],
+        },
+        {
+          type: "object",
+          key: "imageOrEmojiItem",
+          displayer: "Emoji Item",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaCcMastercard",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media"
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "İmage Url",
+              value: "",
+            }
+          ],
+        },
+      ]
+    });
+    this.addProp({
       type: "string",
       key: "text",
       displayer: "Text",
       value: "Copyright © 2023 Teknodev LTD.All rights reserved.",
-    });
+    })
   }
+
   getName(): string {
     return "Footer 12";
   }
@@ -90,39 +199,94 @@ class Footer12Page extends BaseFooter {
     const logoText = this.getPropValue("logo-text");
     const imageUrl = this.getPropValue("logo-url");
     const textUrl = this.getPropValue("logo-text-url");
+    const linkList = this.castToObject<any[]>("link-list");
+    const imagesAndEmojis = this.castToObject<ImageOrEmoji[]>("image-emoji-list");
+    const downText = this.getPropValue("text");
+
+    const childCount = [
+      logoImage || this.castToString(logoText),
+      linkList.length > 0,
+      imagesAndEmojis.length > 0
+    ].filter(Boolean).length;
+
+    const widthPercentage = childCount > 0 ? 100 / childCount : 100;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section")}>
-            {logoImage ? (
-              <ComposerLink path={imageUrl}>
-                <img src={logoImage} className={this.decorateCSS("img")} alt="" />
-              </ComposerLink>
-            ) : (
-              <ComposerLink path={textUrl}>
-                <span className={this.decorateCSS("logo-text")}>{logoText}</span>
-              </ComposerLink>
-            )}
-            <div className={this.decorateCSS("right-content")}>
-              <div className={this.decorateCSS("up-text")}>
-                {this.castToObject<any[]>("link-list").map((item: any, index) => {
-                  return (
-                    <ComposerLink key={index} path={item.path}>
-                      <span className={this.decorateCSS("ref-text")}>{item.refText}</span>
+            <div className={this.decorateCSS("main-content")}>
+              {(logoImage || this.castToString(logoText)) &&
+                <div className={this.decorateCSS("image-wrapper")}
+                  style={{
+                    width: `calc(${widthPercentage}% - 20px)`,
+                  }}
+                >
+                  {logoImage ? (
+                    <ComposerLink path={imageUrl}>
+                      <img src={logoImage} className={this.decorateCSS("img")} alt="" />
                     </ComposerLink>
-                  )
-                })}
-              </div>
-              <div className={this.decorateCSS("down-text")}>
-                <span className={this.decorateCSS("text")}>{this.getPropValue("text")}</span>
-              </div>
+                  ) : (
+                    <ComposerLink path={textUrl}>
+                      <span className={this.decorateCSS("logo-text")}>{logoText}</span>
+                    </ComposerLink>
+                  )}
+                </div>}
+              {linkList.length > 0 && <div className={this.decorateCSS("content")} >
+                <div className={this.decorateCSS("up-text")}>
+                  {linkList.map((item: any, index) => {
+                    return (
+                      <ComposerLink
+                        key={index}
+                        path={item.path}
+                      >
+                        <span className={this.decorateCSS("ref-text")}>{item.refText}</span>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              </div>}
+              {imagesAndEmojis.length > 0 && <div
+                className={this.decorateCSS("image-emoji-wrapper")}
+                style={{
+                  width: `calc(${widthPercentage}% - 20px)`,
+                }}
+              >
+                {imagesAndEmojis.map((value: ImageOrEmoji, index: number) => (
+                  <>
+                    {
+                      value.image ? (
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <img
+                            src={value.image}
+                            alt={this.castToString(value.url)}
+                            className={this.decorateCSS("image")}
+                          />
+                        </div>
+                      ) : (
+                        <div className={this.decorateCSS("icon-wrapper")}>
+                          <ComposerIcon
+                            name={value.icon}
+                            propsIcon={{
+                              className: `${this.decorateCSS("icon")}`,
+                            }}
+                          />
+                        </div>
+                      )
+                    }
+                  </>
+                ))}
+              </div>}
             </div>
+            {this.castToString(downText) &&
+              <div className={this.decorateCSS("down-text")}>
+                <span className={this.decorateCSS("text")}>{downText}</span>
+              </div>}
           </div>
         </div>
       </div>
     );
   }
 }
-
 export default Footer12Page;
+
