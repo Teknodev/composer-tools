@@ -226,7 +226,6 @@ class Content18 extends BaseContent {
                   <div className={image1 ? this.decorateCSS("down-image") : this.decorateCSS("without-image1")}>
                     <img
                       className={this.decorateCSS("image2")}
-                      style={{ borderRadius: "10px" }}
                       src={this.getPropValue("image2")}
                       alt=""
                     />
@@ -237,9 +236,23 @@ class Content18 extends BaseContent {
                         <ComposerIcon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </div>
                     </div>
-                    {this.getComponentState("is_video_visible") && <div className={this.decorateCSS("player")} onClick={() => this.setComponentState("is_video_visible", false)}>
-                      <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("image2")} src={this.getPropValue("video")}></video>
-                    </div>}
+                    {this.getComponentState("is_video_visible") && (
+                      <div
+                        className={this.decorateCSS(this.getPropValue("image1") ? "down-image-video" : "without-image1")}
+                        onClick={() => this.setComponentState("is_video_visible", false)}
+                      >
+                        <div className={this.decorateCSS("player")}>
+                          <video
+                            onClick={(event) => event.stopPropagation()}
+                            controls
+                            className={this.decorateCSS("image2")}
+                            src={this.getPropValue("video")}
+                          ></video>
+                        </div>
+
+                      </div>
+                    )}
+
                   </div>
                 )}
               </div>

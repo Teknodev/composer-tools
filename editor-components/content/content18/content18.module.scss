@@ -60,10 +60,16 @@
           bottom: 0px;
           .image2{
             width: 100%;
-            height: 80%;
-            border: 10px solid var(--composer-html-background);
-            border-radius: 20px;
+            height: 100%;
+            border: none !important;
+            border-radius: 20px !important;
             object-fit: cover;
+          }
+          .player{
+            position: absolute;
+            top:0px;
+            width: 100%;
+            height: 100%;
           }
         }
         .icon-container{
@@ -185,6 +191,7 @@
           display: flex;
           flex-direction: column;
           align-items: center;
+          min-height: 400px !important;
           .up-image{
             width: 100% !important;
             height: 70% !important;
@@ -203,6 +210,7 @@
           }
           .without-image1{
             margin-top: 0px !important;
+            width: 100% !important;
           }
         }
       }
@@ -224,6 +232,7 @@
           flex-direction: column;
           width: 100%;
           gap: 10px;
+          min-height: 300px !important;
           .up-image {
             .image1 {
             }
@@ -231,6 +240,7 @@
           .down-image {
             margin-top: 0px !important;
             width: 100% !important;
+            position:  relative !important;
             .image2 {
               border:none !important;
               border-radius: 10px !important;
@@ -241,6 +251,9 @@
                 height: 30px;
               }
             }
+          }
+          .without-image1{
+            width: 100% !important;
           }
         }
 
