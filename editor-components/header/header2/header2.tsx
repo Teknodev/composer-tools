@@ -244,6 +244,14 @@ class Header2 extends BaseHeader {
                   const isDescExist = this.castToString(item.description);
                   const isLinkTextExist = this.castToString(item.linkText);
 
+                  const cardValues =
+                    isLinkTextExist ||
+                    isDescExist ||
+                    isDateExist ||
+                    isAuthorExist ||
+                    isTitleExist ||
+                    isCategoryExist;
+
                   return (
                     <div className={this.decorateCSS("slider-item")} key={idx}>
                       <div
@@ -255,55 +263,61 @@ class Header2 extends BaseHeader {
                         }}
                       >
                         <div className={this.decorateCSS("content-max-width")}>
-                          <div className={this.decorateCSS("card")}>
-                            {isCategoryExist && (
-                              <h3 className={this.decorateCSS("category")}>
-                                {item.category}
-                              </h3>
-                            )}
-                            {isTitleExist && (
-                              <h1 className={this.decorateCSS("title")}>
-                                {item.title}
-                              </h1>
-                            )}
-                            {(isAuthorExist || isDateExist) && (
-                              <div className={this.decorateCSS("date-author")}>
-                                {isAuthorExist && (
-                                  <span className={this.decorateCSS("author")}>
-                                    {item.author}
-                                  </span>
-                                )}
-                                {isAuthorExist && isDateExist && (
-                                  <span
-                                    className={this.decorateCSS("dot")}
-                                  >•</span>
-                                )}
-                                {isDateExist && (
-                                  <span className={this.decorateCSS("date")}>
-                                    {item.date}
-                                  </span>
-                                )}
-                              </div>
-                            )}
-                            {isDescExist && (
-                              <p className={this.decorateCSS("description")}>
-                                {item.description}
-                              </p>
-                            )}
-                            {isLinkTextExist && (
-                              <div
-                                className={this.decorateCSS("link-container")}
-                              >
-                                <ComposerLink path={item.link}>
-                                  <span
-                                    className={this.decorateCSS("link-text")}
-                                  >
-                                    {item.linkText}
-                                  </span>
-                                </ComposerLink>
-                              </div>
-                            )}
-                          </div>
+                          {cardValues && (
+                            <div className={this.decorateCSS("card")}>
+                              {isCategoryExist && (
+                                <h3 className={this.decorateCSS("category")}>
+                                  {item.category}
+                                </h3>
+                              )}
+                              {isTitleExist && (
+                                <h1 className={this.decorateCSS("title")}>
+                                  {item.title}
+                                </h1>
+                              )}
+                              {(isAuthorExist || isDateExist) && (
+                                <div
+                                  className={this.decorateCSS("date-author")}
+                                >
+                                  {isAuthorExist && (
+                                    <span
+                                      className={this.decorateCSS("author")}
+                                    >
+                                      {item.author}
+                                    </span>
+                                  )}
+                                  {isAuthorExist && isDateExist && (
+                                    <span className={this.decorateCSS("dot")}>
+                                      •
+                                    </span>
+                                  )}
+                                  {isDateExist && (
+                                    <span className={this.decorateCSS("date")}>
+                                      {item.date}
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+                              {isDescExist && (
+                                <p className={this.decorateCSS("description")}>
+                                  {item.description}
+                                </p>
+                              )}
+                              {isLinkTextExist && (
+                                <div
+                                  className={this.decorateCSS("link-container")}
+                                >
+                                  <ComposerLink path={item.link}>
+                                    <span
+                                      className={this.decorateCSS("link-text")}
+                                    >
+                                      {item.linkText}
+                                    </span>
+                                  </ComposerLink>
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -319,4 +333,3 @@ class Header2 extends BaseHeader {
 }
 
 export default Header2;
-

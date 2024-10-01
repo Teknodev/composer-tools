@@ -125,6 +125,7 @@
     .date {
       color: #989898;
       text-transform: uppercase;
+      white-space: nowrap;
     }
   }
 
@@ -137,7 +138,6 @@
 }
 
 .content-max-width {
-  max-width: var(--composer-content-width) !important;
   position: relative;
 }
 
