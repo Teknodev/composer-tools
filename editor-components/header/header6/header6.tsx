@@ -4,7 +4,6 @@ import styles from "./header6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Header6 extends BaseHeader {
-
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -30,15 +29,17 @@ class Header6 extends BaseHeader {
       type: "image",
       key: "image1",
       displayer: " Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "image",
       key: "image2",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
     });
-    
+
     this.addProp({
       type: "array",
       key: "buttons",
@@ -66,9 +67,9 @@ class Header6 extends BaseHeader {
         },
       ],
     });
-   }
+  }
 
-   getName(): string {
+  getName(): string {
     return "Header 6";
   }
 
@@ -78,7 +79,7 @@ class Header6 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <section className={this.decorateCSS("child-container")}>
             <div className={this.decorateCSS("left-content")}>
-            <h2 className={this.decorateCSS("title")}>
+              <h2 className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
               </h2>
               <p className={this.decorateCSS("title2")}>
@@ -88,37 +89,40 @@ class Header6 extends BaseHeader {
                 {this.getPropValue("description")}
               </p>
               <div className={this.decorateCSS("buttondiv")}>
-              {this.getPropValue("buttons").map(
+                {this.getPropValue("buttons").map(
                   (item: any, indexButtons: number) => {
-                    return (
+                    const buttonText = item.value[0].value;
+                    return buttonText ? (
                       <ComposerLink
                         key={indexButtons}
                         path={item.value[1].value}
                       >
-                        <button
-                          className={`${this.decorateCSS("button")}`}
-                        >
-                          {item.value[0].value}
+                        <button className={`${this.decorateCSS("button")}`}>
+                          {buttonText}
                         </button>
                       </ComposerLink>
-                    );
+                    ) : null; 
                   }
                 )}
               </div>
             </div>
             <div className={this.decorateCSS("right-content")}>
-              <img src={this.getPropValue("image1")} 
-              alt="img1" 
-              className={this.decorateCSS("image1")}/>
-              <img src={this.getPropValue("image2")} 
-              alt="img2" 
-              className={this.decorateCSS("image2")} />
+              <img
+                src={this.getPropValue("image1")}
+                alt=""
+                className={this.decorateCSS("image1")}
+              />
+              <img
+                src={this.getPropValue("image2")}
+                alt=""
+                className={this.decorateCSS("image2")}
+              />
             </div>
           </section>
         </div>
       </div>
     );
   }
-  }
-                  
+}
+
 export default Header6;
