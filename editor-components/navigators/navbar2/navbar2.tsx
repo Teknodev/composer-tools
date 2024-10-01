@@ -152,7 +152,7 @@ class Navbar2 extends BaseNavigator {
     return (
       <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
-          <nav>
+          <div className={this.decorateCSS("nav")}>
             {image ? (
               <div className={this.decorateCSS("image-container")}>
                 <img src={image} className={this.decorateCSS("image")} alt="Image" />
@@ -176,15 +176,15 @@ class Navbar2 extends BaseNavigator {
                       <ComposerLink
                         path={data.value[1].value}
                       >
-                        <h3 key={indexItemList}>{data.value[0].value}</h3>
+                        <div className={this.decorateCSS("item-title")} key={indexItemList}>{data.value[0].value}</div>
                       </ComposerLink>
                     );
                   }
                 )}
               </div>
             </div>
-          </nav>
-          <nav className={this.decorateCSS("navigator-mobile")}>
+          </div>
+          <div className={this.decorateCSS("navigator-mobile")}>
             <div className={this.decorateCSS("navbar")}>
               {image ? (
                 <div className={this.decorateCSS("image-container")}>
@@ -214,6 +214,7 @@ class Navbar2 extends BaseNavigator {
             {this.getComponentState("isVisible") && (
               <div className={this.decorateCSS("navbar-child")}>
                 {this.castToObject<[]>("itemList").map((data: any, indexItemList: number) => {
+                  const delay = indexItemList * 0.3;
                   return (
                     <div
                       className={`${this.decorateCSS("mobile-item")} ${this.getComponentState("isAnimating")
@@ -223,7 +224,7 @@ class Navbar2 extends BaseNavigator {
                       key={indexItemList}
                     >
                       <ComposerLink path={data.value[1].value}>
-                        <h3>{data.value[0].value}</h3>
+                        <div className={this.decorateCSS("mobile-item-text")} style={{ animationDelay: `${delay}s` }}>{data.value[0].value}</div>
                       </ComposerLink>
                     </div>
                   );
@@ -232,7 +233,7 @@ class Navbar2 extends BaseNavigator {
             )}
 
 
-          </nav>
+          </div>
         </div>
       </div>
     );
