@@ -58,7 +58,7 @@ class Form2Page extends BaseContacts {
               type: "string",
               key: "required_error_message",
               displayer: "Required error message",
-              value: "Required",
+              value: "*Required",
             },
             {
               type: "select",
@@ -98,7 +98,7 @@ class Form2Page extends BaseContacts {
               type: "string",
               key: "required_error_message",
               displayer: "Required error message",
-              value: "Required",
+              value: "*Required",
             },
             {
               type: "select",
@@ -138,7 +138,7 @@ class Form2Page extends BaseContacts {
               type: "string",
               key: "required_error_message",
               displayer: "Required error message",
-              value: "Required",
+              value: "*Required",
             },
             {
               type: "select",
@@ -178,7 +178,7 @@ class Form2Page extends BaseContacts {
               type: "string",
               key: "required_error_message",
               displayer: "Required error message",
-              value: "Required",
+              value: "*Required",
             },
             {
               type: "select",
@@ -202,13 +202,7 @@ class Form2Page extends BaseContacts {
           type: "string",
           key: "button_object",
           displayer: "Button",
-          value: "Save"
-        },
-        {
-          type: "string",
-          key: "button_object",
-          displayer: "Button",
-          value: "Send"
+          value: "Contact Us"
         }
       ],
     });
