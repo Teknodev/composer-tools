@@ -15,12 +15,12 @@
       .image{
         width: 100% !important;
       }
-      .left-page{
+      .left-page,.left-page-without-image{
         padding-top: 0px !important;
       }
-      .right-container{
+      .right-container, .right-container-without-image{
         gap:10px !important;
-        .card-container{
+        .card-container,.card-container-without-image{
           margin-top:0px !important;
           position: static !important;
           .card{
