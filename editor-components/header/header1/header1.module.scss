@@ -11,10 +11,10 @@
 }
 @keyframes moveText {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-500%);
+    transform: translateX(-100%);
   }
 }
 
@@ -90,15 +90,17 @@
           white-space: nowrap;
           overflow: hidden;
           .background-text {
+            width: fit-content;
             position: absolute;
             height: 100vh;
             z-index: 0;
             display: inline-block;
-            animation: moveText linear infinite;
+            -webkit-animation: moveText 10s linear infinite;
             font-size: 50rem;
             transition: font-size 1s ease-in-out;
             opacity: 0;
             color:black;
+            padding-left: 100%;
             >blinkpage{
               height: 100%;
               >p{

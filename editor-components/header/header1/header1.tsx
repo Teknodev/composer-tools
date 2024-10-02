@@ -296,6 +296,7 @@ class Header1 extends BaseHeader {
     }
     return 100;
   };
+
   handleBeforeChange = (currentIndex: number, nextIndex: number) => {
     this.setActiveTab(nextIndex);
     const sliders = this.castToObject<Slider[]>("sliders");
@@ -339,7 +340,6 @@ class Header1 extends BaseHeader {
               {this.castToObject<[]>("sliders").map(
                 (item: any, index: number) => {
                   const isActive = this.getComponentState("activeTab") === index;
-                  const backgroundTitleLength = item.backgroundTitle ? item.backgroundTitle.length : 0;
                   return (
                     <div
                       className={this.decorateCSS("return-container")}
@@ -347,16 +347,24 @@ class Header1 extends BaseHeader {
                     >
                       <div className={this.decorateCSS("background-container")}>
                         <div
-                          ref={this.backgroundTextRef}
                           className={
                             this.decorateCSS("background-text") +
                             " " +
-                            (isActive && this.decorateCSS("active-text"))
+                            (isActive ? this.decorateCSS("active-text") : "")
                           }
-                          style={{
-                            transform: isActive
-                              ? `translateX(-${translateX}%)`
-                              : "translateX(0)",
+                          ref={(el) => {
+                            if (isActive && el) {
+                              const textWidth = el.offsetWidth;
+                              const containerWidth = window.innerWidth;
+                              const speedFactor = 5;
+                              const duration = (textWidth / containerWidth) * speedFactor;
+                              el.style.animation = "none";
+                              setTimeout(() => {
+                                el.style.animation = "";
+                                el.style.setProperty("-webkit-animation-duration", `${duration}s`);
+                                console.log("duration", duration);
+                              }, 50);
+                            }
                           }}
                         >
                           {item.backgroundTitle}
