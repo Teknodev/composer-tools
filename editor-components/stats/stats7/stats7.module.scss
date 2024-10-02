@@ -1,11 +1,11 @@
-
 @mixin title-child {
   display: block;
   justify-content: space-around;
   align-items: center;
   margin: auto;
   max-width: var(--composer-content-width);
-   width: 100%;
+  width: 100%;
+
   .subTitle {
     margin: 0px 0px 15px 0px;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -16,6 +16,7 @@
     font-weight: 600;
     padding: 4px 10px;
   }
+
   .subTitle-background-is-disable {
     margin: 0px 0px 15px 0px;
     display: inline-block;
@@ -51,7 +52,8 @@
   width: 100%;
   margin: auto;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
+
   .item {
     transition: 0.3s;
     width: 100%;
@@ -65,7 +67,7 @@
       font-weight: bold;
       color: var(--composer-font-color-primary);
       margin-bottom: 5px;
-      gap: 30px;
+      // gap: 25px;
     }
 
     .progress-percent {
@@ -73,6 +75,10 @@
       font-weight: bold;
       margin-bottom: 5px;
       color: (--composer-font-color-primary);
+      width: 15%;
+      justify-content: end;
+      align-items: end;
+
     }
   }
 
@@ -89,24 +95,26 @@
       from {
         width: 0%;
       }
-        to {
-          width: progress;
-        }
+
+      to {
+        width: progress;
       }
     }
+  }
 }
 
 .container {
   width: 100%;
   padding: 20px 50px;
-  
+
   .max-content-is-disable {
     max-width: var(--composer-content-width);
     margin: auto;
     display: unset;
     justify-content: center;
     width: 100%;
-     .title-child {
+
+    .title-child {
       @include title-child;
     }
 
@@ -137,33 +145,36 @@
 @media only screen and (max-width: 1200px) and (min-width:769px) {
   .container {
     padding: 20px 50px !important;
+
     .max-content {
       justify-content: space-between;
-        .title-child {
-          gap: 20px;
-          flex-direction: column;
-          align-items: flex-start;
 
-          .subTitle {
-            width: auto;
-          }
+      .title-child {
+        // gap: 20px;
+        flex-direction: column;
+        align-items: flex-start;
 
-          .title {
-            width: 100%;
-          }
-
-          .description {
-            width: 100%;
-          }
+        .subTitle {
+          width: auto;
         }
 
-        .progress-container {
-          bottom: 0;
-          .title {
-            font-size: 17px;
-          }
+        .title {
+          width: 100%;
+        }
+
+        .description {
+          width: 100%;
         }
       }
+
+      .progress-container {
+        bottom: 0;
+
+        .title {
+          font-size: 17px;
+        }
+      }
+    }
   }
 }
 
@@ -171,17 +182,19 @@
 @media only screen and (max-width: 768px) and (min-width: 481px) {
   .container {
     padding: 20px 30px !important;
+
     .max-content {
       flex-direction: column;
       justify-content: center;
       gap: 0px !important;
-      
+
       .title-child {
         flex-direction: column;
         align-items: center;
 
         .subTitle {
           text-align: left;
+          margin: 0 !important;
         }
 
         .title {
@@ -193,8 +206,8 @@
           margin-left: 0px;
           width: 100%;
           text-align: left;
-          margin-bottom: 20px;
-          padding-bottom: 30px;
+          margin-bottom: 40px;
+          // padding-bottom: 30px;
         }
       }
 
@@ -209,6 +222,7 @@
 @media only screen and (max-width: 480px) {
   .container {
     padding: 20px 30px !important;
+
     .max-content {
       display: flex;
       flex-direction: column;
@@ -221,14 +235,15 @@
 
         .subTitle {
           text-align: left;
-          margin-left: 0;
+          margin: 0px 0px 5px 0px;
+          
         }
 
         .title {
           width: 100%;
           text-align: left;
           margin-left: 0;
-          font-size: 2.83333rem;
+          font-size: 24px !important;
           line-height: 1.35294;
           margin-bottom: 18px;
         }
@@ -244,13 +259,15 @@
       }
 
       .progress-container {
-         padding-top: 20px;
-         .item {
-          .progress-title{
-            gap: 20px !important;
+        // padding-top: 20px;
+
+        .item {
+          .progress-title {
+            // gap: 10px !important;
           }
-          
-         }
+
+        }
+
         .title {
           font-size: 8px;
         }
