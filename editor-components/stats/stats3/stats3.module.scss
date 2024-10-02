@@ -10,6 +10,7 @@
     padding :20px 50px;
     container-name: max-content;
     container-type: inline-size;
+
     @container max-content (max-width: 1000px){
       .image{
         width: 100% !important;
@@ -27,7 +28,6 @@
             position: static !important;
             border:none !important;
             .content{
-              align-items: flex-start !important;
               .icon{
                 width: 20px !important;
                 height: 20px !important;
@@ -148,6 +148,7 @@
                 flex-direction: row;  
                 position: relative;
                 justify-content: center;
+                align-items: flex-start !important;
                 padding: 10px;
                 .inner-content{
                   display: flex;
