@@ -195,7 +195,7 @@ class Stats2Page extends BaseStats {
   getName(): string {
     return "Stats 2";
   }
-  
+
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const cardLength = cards.length;
@@ -212,61 +212,57 @@ class Stats2Page extends BaseStats {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {isHeaderExist && (
-            <div className={`${this.decorateCSS("header-wrapper")} ${
-              cardLength <= 0 ? this.decorateCSS("full-width") : ""
-            }`}>
+            <div className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""
+              }`}>
               <div className={this.decorateCSS("header")}>{header}</div>
             </div>
           )}
 
           <div className={this.decorateCSS("bottom-content")}>
             {(isSubHeader || isContactButtonExist || contactButtonIcon) && (
-               <div className={`${this.decorateCSS("subHeader")} ${
-                cardLength <= 0 ? this.decorateCSS("full-width") : ""
-              }`}>
-               {isSubHeader && (
-                 <div className={`${this.decorateCSS("description")} ${
-                  cardLength <= 0 ? this.decorateCSS("full-width") : ""
+              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""
                 }`}>
-                 {subHeader}
-                 </div>
-               )}
-               {(isContactButtonExist || contactButtonIcon) && (
-                 <button
-                   className={`${this.decorateCSS("contact-button")} ${
-                     buttonAnimationEnabled ? this.decorateCSS("animated") : ""
-                   } ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""
-                  }`}
-                 >
-                   {isContactButtonExist}
-                   {contactButtonIcon && (
-                     <ComposerIcon
-                       propsIcon={{
-                         className: this.decorateCSS("contact-button-icon"),
-                       }}
-                       name={contactButtonIcon}
-                     />
-                   )}
-                 </button>
-               )}
-             </div>
+                {isSubHeader && (
+                  <div className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""
+                    }`}>
+                    {subHeader}
+                  </div>
+                )}
+                {(isContactButtonExist || contactButtonIcon) && (
+                  <button
+                    className={`${this.decorateCSS("contact-button")} ${buttonAnimationEnabled ? this.decorateCSS("animated") : ""
+                      } ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""
+                      }`}
+                  >
+                    {isContactButtonExist}
+                    {contactButtonIcon && (
+                      <ComposerIcon
+                        propsIcon={{
+                          className: this.decorateCSS("contact-button-icon"),
+                        }}
+                        name={contactButtonIcon}
+                      />
+                    )}
+                  </button>
+                )}
+              </div>
             )}
-             
-            
+
+
 
             {cards.length > 0 && (
               <div className={this.decorateCSS("cards-container")}>
                 {cards.map((card, index) => {
                   const isTextExist = this.castToString(card.text);
-                  return(
-                  <AnimatedCard
-                    key={index}
-                    card={card}
-                    animationDuration={animationDuration}
-                    styles={styles}
-                    isTextExist={isTextExist}
-                  />
-                );
+                  return (
+                    <AnimatedCard
+                      key={index}
+                      card={card}
+                      animationDuration={animationDuration}
+                      styles={styles}
+                      isTextExist={isTextExist}
+                    />
+                  );
                 })}
               </div>
             )}
@@ -290,9 +286,11 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   styles,
   isTextExist,
 }) => {
-  const [amount, setAmount] = React.useState<number | null>(null);
+  const [amount, setAmount] = React.useState<string | null>(null);
+  const [showDecimals, setShowDecimals] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
+
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -325,39 +323,42 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
       clearInterval(intervalRef.current);
     }
 
-    const finalAmount = card.amount;
+    const finalAmount = card.amount?.toString();
     if (finalAmount === null || finalAmount === undefined) {
       setAmount(null);
       return;
     }
 
     const steps = animationDuration / 30;
-    let currentAmount = amount ?? 0;
-    const increment = (finalAmount - currentAmount) / steps;
+    let currentAmount = amount ? parseFloat(amount) : 0;
+    const increment = (parseFloat(finalAmount) - currentAmount) / steps;
 
     intervalRef.current = setInterval(() => {
       currentAmount += increment;
 
       if (
-        (increment > 0 && currentAmount >= finalAmount) ||
-        (increment < 0 && currentAmount <= finalAmount)
+        (increment > 0 && currentAmount >= parseFloat(finalAmount)) ||
+        (increment < 0 && currentAmount <= parseFloat(finalAmount))
       ) {
-        currentAmount = finalAmount;
+        currentAmount = parseFloat(finalAmount);
         clearInterval(intervalRef.current);
+        setShowDecimals(true);
       }
 
-      setAmount(Math.ceil(currentAmount));
+      setAmount(currentAmount.toString());
     }, 30);
   };
-  
+
+  const integerPart = amount ? Math.floor(parseFloat(amount)) : null;
+  const decimalPart = amount ? amount.split(".")[1] || "" : "";
 
   return (
-    (isTextExist || amount || card.icon || card.secondIcon) && (
+    (isTextExist || amount !== null || card.icon || card.secondIcon) && (
       <div ref={ref} className={styles["listed"]}>
         {isTextExist && (
           <div className={styles["card-text"]}>{card.text}</div>
         )}
-        {(amount || card.icon || card.secondIcon) && (
+        {(amount !== null || card.icon || card.secondIcon) && (
           <div className={styles["card-amount-container"]}>
             {card.icon && (
               <ComposerIcon
@@ -365,25 +366,23 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
                 name={card.icon}
               />
             )}
-            {(amount || card.secondIcon) && (
-              <div className={styles["card-amount-contain"]}>
-                <h2 className={styles["card-amount"]}>
-                  {amount}
-                </h2>
-                {card.secondIcon && (
-                  <ComposerIcon
-                    propsIcon={{ className: styles["card-icon-after"] }}
-                    name={card.secondIcon}
-                  />
-                )}
-              </div>
+            {amount !== null && (
+              <h2 className={styles["card-amount"]}>
+                {integerPart}
+                {showDecimals && decimalPart && <span>.{decimalPart}</span>}
+              </h2>
+            )}
+            {card.secondIcon && (
+              <ComposerIcon
+                propsIcon={{ className: styles["card-icon-after"] }}
+                name={card.secondIcon}
+              />
             )}
           </div>
         )}
       </div>
     )
-);
-
+  );
 };
 
 export default Stats2Page;
