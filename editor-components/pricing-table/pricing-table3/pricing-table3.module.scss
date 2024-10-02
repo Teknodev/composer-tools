@@ -158,9 +158,10 @@ p {
       word-break: break-word;
     }
     .price {
-      font-size: 3.4em;
+      font-size: 3.3em;
       font-weight: 600;
       color: var(--composer-font-color-primary);
+      text-wrap: nowrap;
     }
   }
 
