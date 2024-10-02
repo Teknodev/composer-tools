@@ -185,7 +185,7 @@ class Navbar2 extends BaseNavigator {
             </div>
           </div>
           <div className={this.decorateCSS("navigator-mobile")}>
-            <div className={this.decorateCSS("navbar")}>
+            <div className={image ? this.decorateCSS("navbar") : this.decorateCSS("navbar-without-logo")}>
               {image ? (
                 <div className={this.decorateCSS("image-container")}>
                   <img src={image} className={this.decorateCSS("image")} alt="Image" />
@@ -214,7 +214,7 @@ class Navbar2 extends BaseNavigator {
             {this.getComponentState("isVisible") && (
               <div className={this.decorateCSS("navbar-child")}>
                 {this.castToObject<[]>("itemList").map((data: any, indexItemList: number) => {
-                  const delay = indexItemList * 0.3;
+                  const delay = indexItemList * 0.1;
                   return (
                     <div
                       className={`${this.decorateCSS("mobile-item")} ${this.getComponentState("isAnimating")
