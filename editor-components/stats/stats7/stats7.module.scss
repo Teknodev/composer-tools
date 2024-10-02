@@ -7,7 +7,7 @@
   width: 100%;
 
   .subTitle {
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 10px 0px;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     display: inline-block;
     font-size: 1rem;
@@ -18,7 +18,7 @@
   }
 
   .subTitle-background-is-disable {
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 10px 0px;
     display: inline-block;
     font-size: 1rem;
     color: var(--composer-font-color-primary);
@@ -67,7 +67,8 @@
       font-weight: bold;
       color: var(--composer-font-color-primary);
       margin-bottom: 5px;
-      // gap: 25px;
+      gap: 25px;
+      align-items: end;
     }
 
     .progress-percent {
@@ -75,9 +76,11 @@
       font-weight: bold;
       margin-bottom: 5px;
       color: (--composer-font-color-primary);
-      width: 15%;
-      justify-content: end;
+      // width: 15%;
+      // justify-content: end;
       align-items: end;
+      text-align: end;
+      max-width: 100px;
 
     }
   }
