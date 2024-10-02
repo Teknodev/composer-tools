@@ -91,7 +91,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -116,7 +116,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -141,7 +141,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -205,7 +205,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -230,7 +230,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -255,7 +255,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -319,7 +319,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -344,7 +344,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -369,7 +369,7 @@ class Navbar6 extends BaseNavigator {
                       {
                         type: "image",
                         key: "image",
-                        value: "https://picsum.photos/200/200",
+                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         displayer: "Image",
                       },
                     ],
@@ -391,6 +391,7 @@ class Navbar6 extends BaseNavigator {
   navClick() {
     let value: boolean = this.getComponentState("navActive");
     this.setComponentState("navActive", !value);
+    this.setComponentState("navClosing", value);
   }
 
   dropdownClick(index: number) {
@@ -403,10 +404,11 @@ class Navbar6 extends BaseNavigator {
     const extendable = this.getPropValue("extendable") ?? [];
     // const rightItems = this.getPropValue("right-items");
     const navActive = this.getComponentState("navActive");
+    const navClosing = this.getComponentState("navClosing");
+
     const dropdownActive = this.getComponentState("dropdownActive");
     const activeDropdownIndex = this.getComponentState("activeDropdownIndex");
 
-    // console.log("window", extendable);
     return (
       <>
         <div
@@ -420,9 +422,9 @@ class Navbar6 extends BaseNavigator {
               </div>
 
               <div className={this.decorateCSS("content-right")}>
-                {navActive && (
+                {(
                   <div
-                    className={`${this.decorateCSS("navbar-child")} ${navActive ? this.decorateCSS("active") : this.decorateCSS("inactive")
+                    className={`${this.decorateCSS("navbar-child")} ${navActive ? this.decorateCSS("active") : this.decorateCSS("closing")
                       }`}
                   >
                     {extendable.map((item: any, index: number) => {
@@ -452,17 +454,16 @@ class Navbar6 extends BaseNavigator {
                                         <ul className={this.decorateCSS(`${dropdownActive ? "" : "ul-none"}`)} >
                                           {item?.value?.[4]?.value?.map((dropdownItem: any, dropdownIndex: number) => {
                                             const text = dropdownItem?.value?.[0]?.value;
-                                            const url = dropdownItem?.value?.[1]?.value;
+                                            const url = dropdownItem?.value?.[1].value;
 
-                                            console.log(dropdownActive);
                                             return (
                                               <div className={`${this.decorateCSS("rightSlider")} ${dropdownActive ? this.decorateCSS("activeChild") : this.decorateCSS("inactive")
                                                 }`}>
                                                 {dropdownActive && activeDropdownIndex === index &&
                                                   <li key={index}>
-                                                    <a href={url}>
+                                                    <ComposerLink path={url} isFullWidth={true}>
                                                       {text}
-                                                    </a>
+                                                    </ComposerLink>
                                                   </li>
                                                 }
                                               </div>
@@ -475,53 +476,44 @@ class Navbar6 extends BaseNavigator {
                                     <>
                                       <h3 className={this.decorateCSS("extendable")}>
                                         <div className={this.decorateCSS("extendable-title-content")}>
-                                          <div>{item?.value?.[0]?.value}</div>
+                                          <ComposerLink path={item?.value[3].value}>{item?.value?.[0]?.value}</ComposerLink>
                                           <ComposerIcon name={item?.value[2].value} />
 
                                         </div>
 
                                         {item?.value?.[4]?.value?.length > 0 && (
                                           <div className={this.decorateCSS("dropdown-content")}>
+                                            {item?.value?.[4]?.value?.map((dropdownItem: any, index: number) => {
+                                              const text = dropdownItem?.value?.[0]?.value;
+                                              const url = dropdownItem?.value?.[1]?.value;
+                                              const image = dropdownItem?.value?.[2]?.value;
 
-                                            {item?.value?.[4]?.value?.some((dropdownItem: any) =>
-                                              true
-                                            ) && (
-                                                item?.value?.[4]?.value?.map((dropdownItem: any, index: number) => {
-                                                  const text = dropdownItem?.value?.[0]?.value;
-                                                  const url = dropdownItem?.value?.[1]?.value;
-                                                  const image = dropdownItem?.value?.[2]?.value;
-
-                                                  // console.log("image", image)
-                                                  if (image || text) {
-                                                    return (
-                                                      <>
-                                                        {image ? "" :
-                                                          <a href={url || "#"}>
-                                                            <div style={{
-                                                              textAlign: "center",
-                                                              marginBottom: "5px",
-                                                              fontSize: "14px"
-                                                            }}>{text}</div>
-                                                          </a>
-                                                        }
-                                                        <a href={url || "#"} key={index}>
-                                                          <div className={this.decorateCSS("image-container")}>
-                                                            <div className={this.decorateCSS("image-overlay")}>
-                                                              {image && <img src={image} alt="" className={this.decorateCSS("image")} />}
-                                                              <div className={this.decorateCSS("text-overlay")}>
-                                                                {text}
-                                                              </div>
-                                                            </div>
+                                              if (image || text) {
+                                                return (
+                                                  <>
+                                                    {image ? "" :
+                                                      <ComposerLink href={url}>
+                                                        <div className={this.decorateCSS("no-image-text")}>{text}</div>
+                                                      </ComposerLink>
+                                                    }
+                                                    <ComposerLink path={url} key={index}>
+                                                      <div className={this.decorateCSS("image-container")}>
+                                                        <div className={this.decorateCSS("image-overlay")}>
+                                                          {image && <img src={image} alt="" className={this.decorateCSS("image")} />}
+                                                          <div className={this.decorateCSS("text-overlay")}>
+                                                            {text}
                                                           </div>
-                                                        </a>
-                                                      </>
+                                                        </div>
+                                                      </div>
+                                                    </ComposerLink>
+                                                  </>
+                                                );
+                                              }
 
-                                                    );
-                                                  }
+                                              return null;
+                                            })}
 
-                                                  return null;
-                                                })
-                                              )}
+
                                           </div>
                                         )}
                                       </h3>
