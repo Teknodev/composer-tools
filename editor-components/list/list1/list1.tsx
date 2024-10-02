@@ -361,7 +361,6 @@ class List1 extends BaseList {
                   <div key={indexSlider}
                     className={`${this.decorateCSS("card")}
                    ${backgroundColor && this.getComponentState("active-index") == indexSlider ? this.decorateCSS("active") : ""}
-                   ${indexSlider % 2 == 0 ? this.decorateCSS("left-card-padding") : this.decorateCSS("right-card-padding")}
                    `}
                   >
                     <div className={this.decorateCSS("card-inner")}>
