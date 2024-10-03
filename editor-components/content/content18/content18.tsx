@@ -218,7 +218,7 @@ class Content18 extends BaseContent {
                     <img
                       className={this.decorateCSS("image1")}
                       src={this.getPropValue("image1")}
-                      alt=""
+                      alt={this.getPropValue("image1")}
                     />
                   </div>
                 )}
@@ -227,9 +227,9 @@ class Content18 extends BaseContent {
                     <img
                       className={this.decorateCSS("image2")}
                       src={this.getPropValue("image2")}
-                      alt=""
+                      alt={this.getPropValue("image2")}
                     />
-                    <div onClick={() => {
+                    <div className={this.decorateCSS("player-container")} onClick={() => {
                       this.setComponentState("is_video_visible", true)
                     }}>
                       <div className={this.decorateCSS("icon-container")}>
