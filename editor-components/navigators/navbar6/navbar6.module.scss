@@ -305,9 +305,10 @@
           margin: 10px 5px;
           list-style-type: none !important;
 
-          a {
+          a, div{
             text-decoration: none;
             color: initial;
+            cursor: pointer;
 
             &:hover {
               color: var(--composer-primary-color) !important;
@@ -428,7 +429,7 @@
 
     .content-left {
       img {
-        height: 60px !important;
+        height: 50px !important;
       }
     }
 

@@ -440,7 +440,7 @@ class Navbar6 extends BaseNavigator {
                                     <>
                                       <div className={this.decorateCSS("right-section")}>
                                         <h3 className={this.decorateCSS("extendable")} >
-                                          <ComposerLink key={index}>
+                                          <ComposerLink path={item?.value[3].value} key={index}>
                                             <div className={this.decorateCSS("dropdown-content-tablet-telephone")} >
                                               {item?.value?.[0]?.value}
                                             </div>
@@ -492,7 +492,7 @@ class Navbar6 extends BaseNavigator {
                                                 return (
                                                   <>
                                                     {image ? "" :
-                                                      <ComposerLink href={url}>
+                                                      <ComposerLink path={url}>
                                                         <div className={this.decorateCSS("no-image-text")}>{text}</div>
                                                       </ComposerLink>
                                                     }
