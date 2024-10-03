@@ -220,8 +220,7 @@ class Footer12Page extends BaseFooter {
                 <div className={this.decorateCSS("image-wrapper")}
                   style={{
                     width: `calc(${widthPercentage}% - 20px)`,
-                  }}
-                >
+                  }}>
                   {logoImage ? (
                     <ComposerLink path={imageUrl}>
                       <img src={logoImage} className={this.decorateCSS("img")} alt="" />
