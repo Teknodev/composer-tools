@@ -116,7 +116,7 @@
           .active-text {
             opacity: 0.4;
             height: 100vh;
-            font-size: 80rem;
+            font-size: calc(60rem + 25vh);
             >blinkpage{
               height: 100vh;
               display: flex !important;
@@ -125,7 +125,6 @@
                 align-items: center;
                 justify-content: center;
                 height: 100%;
-                
                 white-space: nowrap;
               }
             }
@@ -215,11 +214,10 @@
 
         }
         .title {
-          max-width: var(--composer-content-width);
-          margin: 0 auto;
           position: absolute;
           font-weight: 400;
-          font-size:11.25rem; 
+          font-size:calc(9rem + 3vh); 
+          // font-size: 11.25rem;
           color: white;
           z-index: 10;
           height: fit-content;
@@ -312,7 +310,7 @@
             height: fit-content ;
             transform: translateY(20%) ;
             >p{
-              font-size: 35rem !important;
+              font-size: 40rem !important;
             }
           }
         }
