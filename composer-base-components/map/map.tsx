@@ -116,8 +116,6 @@ const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon,
         if (this.div && this.div.parentNode) {
           const root = createRoot(this.div);
           root.unmount();
-          this.div.parentNode.removeChild(this.div);
-          this.div = null;
         }
       }
     }
