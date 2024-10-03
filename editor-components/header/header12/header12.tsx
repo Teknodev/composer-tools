@@ -304,7 +304,7 @@ class Header12 extends BaseHeader {
     const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
     const rightSliderItems = this.castToObject<SliderItem[]>("rightSliderItems");
 
-    console.log("leftSliderItems", leftSliderItems.length);
+    // console.log("leftSliderItems", leftSliderItems.length);
     const showOverlay = this.getPropValue("overlay");
 
     return (
