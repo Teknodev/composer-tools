@@ -1,5 +1,5 @@
 import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
-import React, { memo, useEffect, useState, useRef } from "react";
+import React, { memo, useEffect, useState, useRef, useMemo } from "react";
 import { createRoot } from "react-dom/client";
 
 type Coordinate = {
@@ -23,7 +23,9 @@ interface ComposerMapProps {
 }
 
 const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon, styles, mapId }: ComposerMapProps) => {
-  const map = useMap(mapId || "defaultId");
+  const uniqueMapIdRef = useRef<string>(mapId ? `${mapId}_${Math.random()}` : `${Math.random()}`);
+  const uniqueMapId = uniqueMapIdRef.current;
+  const map = useMap(uniqueMapId);
   const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(null);
   const overlayRef = useRef<any>(null);
 
@@ -152,7 +154,7 @@ const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon,
   };
 
   return (
-    <Map id={mapId || "defaultId"} className={className}>
+    <Map id={uniqueMapId} className={className}>
       {markers.length > 0
         ? markers.map((marker, index) => (
             <div key={index}>
