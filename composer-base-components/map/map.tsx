@@ -19,11 +19,10 @@ interface ComposerMapProps {
   popupContent?: (marker: Coordinate) => React.ReactNode;
   defaultMarkerIcon?: string;
   styles?: google.maps.MapTypeStyle[];
-  mapId?: string;
 }
 
-const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon, styles, mapId }: ComposerMapProps) => {
-  const uniqueMapIdRef = useRef<string>(mapId ? `${mapId}_${Math.random()}` : `${Math.random()}`);
+const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon, styles }: ComposerMapProps) => {
+  const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
   const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(null);
