@@ -38,38 +38,57 @@
     .card {
       position: absolute;
       bottom: 20px;
-      background: black;
-      color: white;
+      background: var(--composer-font-color-secondary);
       right: 80px;
       width: 40%;
 
       .box {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-        padding-left: 3rem;
+        padding: 3rem;
 
         .heading {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           margin-bottom: 30px;
-
-          .sub-title {
+          gap: 10px;
+          .sub-heading {
             letter-spacing: 3px;
             font-size: 16px;
-            line-height: 1.6;
-            padding-left: 7rem;
+            margin: 0;
+            color: var(--composer-font-color-primary);
+
+            .sub-title {
+              padding-right: 15px;
+              position: relative;
+              z-index: 1;
+              display: inline-block;
+              word-break: break-word;
+              color: var(--composer-font-color-primary);
+            }
+          }
+
+          .sub-heading.has-before::before {
+            content: "";
+            margin-right: 15px;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            width: 4vw;
+            height: 1px;
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
           }
 
           .title {
-            margin-top: 10px;
+            margin-top: 0;
             font-size: 40px;
             letter-spacing: 2px;
+            margin-bottom: 0;
+            word-break: break-word;
+            color: var(--composer-font-color-primary);
           }
         }
 
-        .desc1,
-        .desc2 {
+        .desc {
           margin-bottom: 10px;
           line-height: 1.6;
           display: block;
@@ -79,23 +98,42 @@
           margin-inline-end: 0px;
           font-size: 14px;
           width: 80%;
+          word-break: break-word;
+          color: var(--composer-font-color-primary);
         }
 
-        .btn {
+
+        .button-content {
+          display: flex;
+          align-items: center;
+          gap: 8px;
           position: relative;
           padding: 20px 30px;
-          font-size: 13px;
-          line-height: 16px;
-          letter-spacing: 3px;
-          text-transform: uppercase;
-          color: #fff;
-          background: #000;
-          border: 1.5px white solid;
+          color: var(--composer-font-color-primary);
+          background: var(--composer-font-color-secondary);
+          border: 1.5px solid var(--composer-font-color-primary);
           transition: transform 0.3s ease-in-out;
           cursor: pointer;
+          word-break: break-word;
+          width: fit-content;
+          margin-top: 2.5rem;
 
           &:hover {
             transform: scale(1.05);
+          }
+
+          .buttonText {
+            font-size: 13px;
+            line-height: 16px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+          }
+
+          .button-icon {
+            height: auto;
+            min-width: 15px;
+            margin: 0;
           }
         }
 
@@ -103,7 +141,8 @@
           margin-top: 15px;
           font-size: 14px;
           letter-spacing: 1.5px;
-          color: #14bfb5;
+          color: var(--composer-primary-color);
+          word-break: break-word;
         }
       }
     }
@@ -126,7 +165,6 @@
           letter-spacing: 3px;
           font-size: 13px !important;
           line-height: 1.6;
-          padding-left: 7rem;
         }
 
         .title {
@@ -136,15 +174,11 @@
         }
       }
 
-      .desc1 {
-        font-size: 13px !important;
+      .desc {
+        font-size: 13.5px !important;
       }
 
-      .desc2 {
-        font-size: 13px !important;
-      }
-
-      .btn {
+      .buttonText {
         font-size: 11px !important;
       }
 
@@ -167,9 +201,19 @@
     padding-top: 0;
     padding-bottom: 0;
     width: auto !important;
+    .box{
 
-    .sub-title {
-      padding-left: 0 !important;
+      .desc {
+        font-size: 14px !important;
+      }
+
+      .buttonText {
+        font-size: 12px !important;
+      }
+
+      .note {
+        font-size: 13px !important;
+      }
     }
   }
 

@@ -1,6 +1,8 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header4.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Header4 extends BaseHeader {
   constructor(props?: any) {
@@ -11,6 +13,12 @@ class Header4 extends BaseHeader {
       key: "card",
       displayer: "Card",
       value: [
+        {
+          type: "boolean",
+          key: "subtitle_line",
+          displayer: "Subtitle Line",
+          value: true
+        },
         {
           type: "string",
           key: "subtitle",
@@ -25,23 +33,28 @@ class Header4 extends BaseHeader {
         },
         {
           type: "string",
-          key: "desc1",
+          key: "desc",
           displayer: "Description",
           value:
-            "Most of our writings have centered on implementing strategies for business units, with their unique",
+            "Most of our writings have centered on implementing strategies for business units, with their unique <br /><br /> geeza arse it’s your round grub sloshed burke, my good sir chancer he legged it he lost his bottle pear shaped bugger all mate",
         },
         {
           type: "string",
-          key: "desc2",
-          displayer: "Description",
-          value:
-            "Most of our writings have centered on implementing strategies for business units, with their unique",
-        },
-        {
-          type: "string",
-          key: "btn",
-          displayer: "Button",
+          key: "buttonText",
+          displayer: "Button Text",
           value: "More Projects",
+        },
+        {
+          type: "page",
+          key: "buttonLink",
+          displayer: "Button Link",
+          value: "",
+        },
+        {
+          type: "icon",
+          key: "buttonIcon",
+          displayer: "Button Icon",
+          value: "FaArrowRight",
         },
         {
           type: "string",
@@ -80,10 +93,7 @@ class Header4 extends BaseHeader {
     const containerHeight = container.scrollHeight;
 
     this.setComponentState("scrollY", scrollY);
-    console.log("Container Scroll Position:", scrollY);
-    console.log("Container Height:", containerHeight);
   };
-
 
 
   getName(): string {
@@ -94,6 +104,7 @@ class Header4 extends BaseHeader {
     let card: any = this.castToObject("card");
     const imageAnm = this.getPropValue("image-anm");
     const cardAnm = this.getPropValue("card-anm");
+    const buttonIcon = this.getPropValue("buttonIcon");
 
     return (
       <div className={this.decorateCSS("container")} onScroll={this.handleScroll}>
@@ -115,31 +126,46 @@ class Header4 extends BaseHeader {
 
           {(this.castToString(card.subtitle) ||
             this.castToString(card.title) ||
-            this.castToString(card.desc1) ||
-            this.castToString(card.desc2) ||
-            this.castToString(card.btn) ||
+            this.castToString(card.desc) ||
+            this.castToString(card.buttonText) ||
             this.castToString(card.note)) && (
               <div className={this.decorateCSS("card")}
                 style={
                   cardAnm ? {
-                    transform: `translate(0%, ${this.getComponentState("scrollY") / 25}%) translate3d(0px, 0px, 0px)`
+                    transform: `translate(0%, -${this.getComponentState("scrollY") / 50}%) translate3d(0px, 0px, 0px)`
                   } : {}
                 }>
                 <div className={this.decorateCSS("box")}>
                   {(this.castToString(card.subtitle) || this.castToString(card.title)) && (
                     <div className={this.decorateCSS("heading")}>
-                      {this.castToString(card.subtitle) && <p className={this.decorateCSS("sub-title")}>{card.subtitle}</p>}
+                      {this.castToString(card.subtitle) &&
+                        (
+                          <>
+                            <p className={`${this.decorateCSS("sub-heading")} ${card.subtitle_line && this.decorateCSS("has-before")}`}>
+                              <span className={this.decorateCSS("sub-title")}>{card.subtitle}</span>
+                            </p>
+                          </>
+                        )
+                      }
                       {this.castToString(card.title) && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
                     </div>
                   )}
-                  {this.castToString(card.desc1) && <p className={this.decorateCSS("desc1")}>{card.desc1}</p>}
-                  {this.castToString(card.desc2) && <p className={this.decorateCSS("desc2")}>{card.desc2}</p>}
-                  {this.castToString(card.btn) && <button className={this.decorateCSS("btn")}>{card.btn}</button>}
+                  {this.castToString(card.desc) && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
+                  {this.castToString(card.buttonText) && (
+                    <ComposerLink path={card.buttonLink}>
+                      <div className={this.decorateCSS("button-content")}>
+                        <p className={this.decorateCSS("buttonText")}>{card.buttonText}</p>
+                        <ComposerIcon
+                          name={card.buttonIcon}
+                          propsIcon={{ className: `${this.decorateCSS("button-icon")}` }}
+                        />
+                      </div>
+                    </ComposerLink>
+                  )}
                   {this.castToString(card.note) && <p className={this.decorateCSS("note")}>{card.note}</p>}
                 </div>
               </div>
             )}
-
         </div>
       </div>
     );
