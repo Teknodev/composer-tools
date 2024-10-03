@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   amount: number;
@@ -42,6 +43,13 @@ class Stats2Page extends BaseStats {
       key: "contactButton",
       displayer: "Button Content",
       value: "LET'S TALK NOW",
+    });
+
+    this.addProp({
+      type: "page",
+      key: "contactButtonLink",
+      displayer: "Button Link",
+      value: "",
     });
 
     this.addProp({
@@ -208,6 +216,8 @@ class Stats2Page extends BaseStats {
     const isContactButtonExist = this.castToString(contactButton);
     const contactButtonIcon = this.getPropValue("contactButtonIcon");
     const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
+    const contactButtonLink = this.getPropValue("contactButtonLink");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -228,26 +238,24 @@ class Stats2Page extends BaseStats {
                     {subHeader}
                   </div>
                 )}
+
                 {(isContactButtonExist || contactButtonIcon) && (
-                  <button
-                    className={`${this.decorateCSS("contact-button")} ${buttonAnimationEnabled ? this.decorateCSS("animated") : ""
-                      } ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""
-                      }`}
-                  >
-                    {isContactButtonExist}
-                    {contactButtonIcon && (
-                      <ComposerIcon
+                  <ComposerLink path={contactButtonLink}>
+                    <div className={this.decorateCSS("button-content")}>
+                      <p className={`${this.decorateCSS("contact-button")} ${buttonAnimationEnabled ? this.decorateCSS("animated") : ""
+                        } ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""
+                        }`}>{isContactButtonExist}<ComposerIcon
+                        name={contactButtonIcon}
                         propsIcon={{
                           className: this.decorateCSS("contact-button-icon"),
-                        }}
-                        name={contactButtonIcon}
-                      />
-                    )}
-                  </button>
+                        }} /></p>
+                      
+                    </div>
+                  </ComposerLink>
                 )}
+
               </div>
             )}
-
 
 
             {cards.length > 0 && (
