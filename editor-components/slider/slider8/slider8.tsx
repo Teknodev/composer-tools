@@ -293,6 +293,8 @@ class Slider8 extends BaseSlider {
     const linesContainer = this.getPropValue("lines-container");
     const animation = this.getPropValue("animation");
     const cards = this.castToObject<Card[]>("slider");
+    const item = cards[this.getComponentState("activeSlide")];
+    const noImages = item.image || item.backgroundImage;
 
     const settings = {
       fade: true,
@@ -301,23 +303,21 @@ class Slider8 extends BaseSlider {
       dots: true,
       infinite: cards.length > 1,
       speed: 3000,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      dotsClass: this.decorateCSS("dots"),
+      dotsClass: this.decorateCSS(noImages ? "dots" : "dots-2"),
       beforeChange: (_: number, newIndex: number) => {
         if (this.getComponentState("activeSlide") !== newIndex) {
           this.setComponentState("activeSlide", newIndex);
         }
       },
     };
-
     const shouldDisplayOverlay = (index: number): boolean => {
       const shouldDisplay = !!this.castToObject<Card[]>("slider")[index].backgroundImage && overlay;
       return shouldDisplay;
     };
-
     const shouldDisplayForegroundOverlay = (index: number): boolean => {
       const shouldDisplay = !!this.castToObject<Card[]>("slider")[index].image && foregroundOverlay;
       return shouldDisplay;
@@ -360,7 +360,10 @@ class Slider8 extends BaseSlider {
                              }
                           `}>
                             {linesContainer && (
-                              <div className={this.decorateCSS("lines-container")}>
+                              <div
+                                className={this.decorateCSS(
+                                  noImages ? "lines-container" : "lines-container2"
+                                )}>
                                 <div className={this.decorateCSS("line-1")}></div>
                                 <div className={this.decorateCSS("line-2")}></div>
                               </div>
@@ -376,7 +379,9 @@ class Slider8 extends BaseSlider {
 
                             {titleExists && (
                               <h3
-                                className={`${this.decorateCSS("imageTitle")} ${
+                                className={`${this.decorateCSS(
+                                  noImages ? "imageTitle" : "imageTitle2"
+                                )} ${
                                   animation && this.getComponentState("activeSlide") === index
                                     ? this.decorateCSS("imageTitleAnimation")
                                     : ""
@@ -387,7 +392,9 @@ class Slider8 extends BaseSlider {
 
                             {buttons?.length > 0 && (
                               <div
-                                className={`${this.decorateCSS("buttons")} ${
+                                className={`${this.decorateCSS(
+                                  noImages ? "buttons" : "buttons2"
+                                )} ${
                                   animation && this.getComponentState("activeSlide") === index
                                     ? this.decorateCSS("animateButtons")
                                     : ""
@@ -419,7 +426,10 @@ class Slider8 extends BaseSlider {
                                 })}
                               </div>
                             )}
-                            <div className={this.decorateCSS("nav-buttons")}>
+                            <div
+                              className={this.decorateCSS(
+                                noImages ? "nav-buttons" : "nav-buttons2"
+                              )}>
                               {this.getPropValue("leftNavButton") && (
                                 <button
                                   className={this.decorateCSS("nav-button")}
