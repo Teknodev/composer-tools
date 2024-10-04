@@ -11,10 +11,6 @@ interface Slider {
 }
 class Header1 extends BaseHeader {
   sliderRef = React.createRef<any>();
-  backgroundTextRef = React.createRef<HTMLDivElement>();
-  transformX: number = -100;
-
-
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -283,30 +279,24 @@ class Header1 extends BaseHeader {
     this.sliderRef.current.slickGoTo(newIndex);
   };
 
-  calculateTranslateX = () => {
-    if (this.backgroundTextRef.current) {
-      console.log(this.backgroundTextRef.current)
-      const textWidth = this.backgroundTextRef.current.offsetWidth;
-      console.log("textWidth", textWidth)
-      const containerWidth = window.innerWidth;
-      console.log("containerWidth", containerWidth)
-      const translateXPercentage = (textWidth - containerWidth) / containerWidth * 100;
-      console.log("translateXPercentage", translateXPercentage)
-      return translateXPercentage;
-    }
-    return 100;
-  };
+  getStyle = (text: string, active: boolean) => {
 
-  handleBeforeChange = (currentIndex: number, nextIndex: number) => {
-    this.setActiveTab(nextIndex);
-    const sliders = this.castToObject<Slider[]>("sliders");
-    const nextSlider = sliders[nextIndex];
-    if (nextSlider && nextSlider.backgroundTitle) {
-      setTimeout(() => {
-        this.calculateTranslateX();
-      }, 0);
+    if (!active) {
+      return {
+        animation: "none"
+      }
     }
-  };
+    const widthOfText = text.length * 700;
+    const containerWidth = window.innerWidth;
+    const speedFactor = 5;
+    const duration = ((widthOfText / containerWidth) * speedFactor) + "s";
+
+    let style: React.CSSProperties = {
+      animationDuration: duration
+    };
+
+    return style;
+  }
 
   render() {
     const settings = {
@@ -324,11 +314,9 @@ class Header1 extends BaseHeader {
       dotsClass: this.decorateCSS("dots"),
       beforeChange: (current: number, next: number) => {
         this.setActiveTab(next);
-        this.handleBeforeChange(current, next);
       },
     };
     const isLineActive = this.getPropValue("numberLine");
-    const translateX = this.calculateTranslateX();
 
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
@@ -352,20 +340,7 @@ class Header1 extends BaseHeader {
                             " " +
                             (isActive ? this.decorateCSS("active-text") : "")
                           }
-                          ref={(el) => {
-                            if (isActive && el) {
-                              const textWidth = el.offsetWidth;
-                              const containerWidth = window.innerWidth;
-                              const speedFactor = 5;
-                              const duration = (textWidth / containerWidth) * speedFactor;
-                              el.style.animation = "none";
-                              setTimeout(() => {
-                                el.style.animation = "";
-                                el.style.setProperty("-webkit-animation-duration", `${duration}s`);
-                                console.log("duration", duration);
-                              }, 50);
-                            }
-                          }}
+                          style={this.getStyle(this.castToString(item.backgroundTitle), isActive)}
                         >
                           {item.backgroundTitle}
                         </div>
