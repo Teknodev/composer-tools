@@ -2,12 +2,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 .container {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 50px;
+  max-width: 100%;
+  padding: 20px 50px;
 
   .max-content {
+    padding: 0;
     max-width: var(--composer-content-width);
 
     .page {
@@ -15,21 +14,26 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       display: flex;
       flex-direction: column;
       justify-content: center;
-
+      padding: 0;
+      align-items: center;
       .plan-items {
         display: flex;
-        background: color-mix(in srgb, var(--composer-html-background), #fff 10%);
-        box-shadow: var(--composer-box-shadow);
-        margin-bottom: 30px;
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-secondary) 5%
+        );
+        color: var(--composer-font-color-primary);
+        box-shadow: 2px 2px 5px 0 var(--composer-html-background),
+          2px 2px 5px 0 var(--composer-font-color-primary);
+        margin-bottom: 20px;
         width: fit-content;
         border-radius: 8px;
+        align-self: flex-start;
 
         .plan-items::before,
         .plan-items::after {
           content: "";
-          flex-grow: 1;
-          height: 100%;
-          top: 0;
         }
 
         .activeTab:first-child {
@@ -48,6 +52,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .plan-title {
           padding: 11px 30px;
+          border-bottom: 1px solid
+            rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
       }
 
@@ -63,27 +69,42 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           font-size: 1.7rem;
           letter-spacing: 0.02em;
           margin: unset;
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
           opacity: 0.9;
+          max-width: 30%;
+          text-align: center;
+          font-size: 2.5rem;
         }
 
         .badge {
           color: var(--composer-font-color-primary);
           font-size: 1rem;
           margin-bottom: 2rem;
+          background-color: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
+          border: #fff;
+          border-radius: 50px;
+          display: flex;
+          text-align: center;
+          width: 15%;
+          padding: 10px;
+        }
+        .badge:empty {
+          border: none;
         }
       }
 
       .down-page {
         width: 100%;
         display: flex;
-        margin-bottom: 50px;
         gap: 50px;
         justify-content: center;
 
         .left-page {
-          width: 100%;
-          max-width: 700px;
+          flex: 1;
           display: flex;
           flex-wrap: wrap;
           gap: 20px;
@@ -91,20 +112,57 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           .listArray {
             width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            background: color-mix(in srgb, var(--composer-html-background), #fff 10%);
-            box-shadow: var(--composer-box-shadow);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-secondary) 5%
+            );
+            color: var(--composer-font-color-primary);
+            box-shadow: 2px 2px 5px 0 var(--composer-html-background),
+              2px 2px 5px 0 var(--composer-font-color-primary);
             border-radius: 6px;
+            gap: 10px;
 
             &.active {
-              background: var(--composer-secondary-color);
+              background-color: var(--composer-secondary-color);
+              color: var(--composer-font-color-secondary);
+              .plan-icons,
+              .tag,
+              .item-price,
+              .per {
+                color: var(--composer-font-color-secondary);
+              }
+
+              .plan-icons .plan,
+              .plan-icons .icons,
+              .item-price h5 {
+                color: var(--composer-font-color-secondary);
+              }
+            }
+            &:not(.active):hover {
+              background-color: var(--composer-secondary-color);
+              .plan-icons,
+              .tag,
+              .item-price,
+              .per {
+                color: var(--composer-font-color-secondary);
+              }
+
+              .plan-icons .plan,
+              .plan-icons .icons,
+              .item-price h5 {
+                color: var(--composer-font-color-secondary);
+              }
             }
 
             .plan-icons {
               display: flex;
               align-items: center;
               gap: 10px;
+              margin-left: 50px;
+              color: var(--composer-font-color-primary);
 
               .icons {
                 font-size: 25px;
@@ -122,89 +180,133 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .tag {
               color: var(--composer-font-color-primary);
-              border: 1px solid var(--composer-tertiary-color);
               border-radius: 15px;
               font-size: 1rem;
               padding: 3px 15px;
-              display: inline-block;
+              border: 1px solid;
             }
 
             .item-price {
               display: flex;
               align-items: center;
-              font-size: 1.2rem;
+              font-size: 1.9rem;
               font-weight: 700;
-
-              .per {
-                opacity: 0.7;
-                font-size: 1rem;
-                color: var(--composer-font-color-primary);
+              justify-content: flex-end;
+              flex-grow: 1;
+              color: var(--composer-font-color-primary);
+              h5 {
+                display: flex;
+                padding: 5px;
               }
-
-              // .item-price {
-              //   width: 100%;
-              //   display: flex;
-              //   justify-content: flex-end;
-              //   gap: 4%;
-              //   position: relative;
-              //   color: var(--composer-font-color-primary);
-              //   padding-right: 30px;
-              // }
+            }
+            .per {
+              opacity: 0.7;
+              font-size: 1.2rem;
+              color: var(--composer-font-color-primary);
+              margin-right: 50px;
             }
           }
         }
-
         .right-page {
-          width: 100%;
-          max-width: 400px;
-          height: 100%;
-          background: color-mix(in srgb, var(--composer-html-background), #fff 10%);
-          box-shadow: var(--composer-box-shadow);
-          padding: 90px 0px 60px 30px;
-          position: relative;
+          width: 40%;
+          background: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-secondary) 5%
+          );
+          box-shadow: 2px 2px 5px 0 var(--composer-html-background),
+            2px 2px 5px 0 var(--composer-font-color-primary);
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
           border-radius: 4px;
+          position: relative;
 
-          .badge {
-            border: 1px solid var(--composer-tertiary-color);
-            border-radius: 5px;
-            padding: 4px 30px;
-            font-weight: 800;
-            position: absolute;
-            top: 55px;
-            right: 25px;
-            color: var(--composer-primary-color);
-          }
+          .content {
+            padding: 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
 
-          .title {
-            font-size: 1rem;
-            color: var(--composer-primary-color);
-            padding-bottom: 20px;
-          }
-
-          .body-bottom {
-            .button {
+            .badge {
+              background-color: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              );
+              padding: 10px;
+              font-weight: 800;
+              max-width: 100%;
+              align-self: flex-end;
+              margin: 20px 20px 0 20px;
               color: var(--composer-font-color-primary);
-              background: var(--composer-secondary-color);
-              border-radius: 20px;
-              padding: 8px 20px;
-              border: var(--composer-tertiary-color);
-              font-size: 1rem;
-              margin-top: 30px;
+              border-radius: 4px;
             }
-          }
-
-          .list-body {
-            .li {
-              width: 100%;
-              list-style-type: none;
-              display: flex;
-              flex-wrap: wrap;
-              align-items: center;
-              gap: 12px;
-              font-size: 1rem;
-              opacity: 0.9;
+            .title {
+              font-size: 2.3rem;
               color: var(--composer-font-color-primary);
-              padding-bottom: 15px;
+              padding: 0 0 20px 20px;
+              margin-bottom: 20px;
+            }
+
+            .list-body {
+              flex-grow: 1;
+              display: grid;
+              margin-bottom: 0;
+
+              .li {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 0 20px 20px;
+                border-bottom: 1px solid
+                  rgba(var(--composer-font-color-primary-rgb), 0.2);
+                font-size: 1.3rem;
+                color: var(--composer-font-color-primary);
+
+                .dash_icon {
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-primary);
+                  flex-shrink: 0;
+                }
+              }
+            }
+
+            .body-bottom {
+              background-color: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              );
+              padding: 20px;
+
+              .buttons {
+                display: flex;
+                width: 100%;
+                margin: 10px 0 10px 10px;
+
+                .button {
+                  background-color: var(--composer-secondary-color);
+                  color: var(--composer-font-color-primary);
+                  padding: 10px 20px;
+                  border-radius: 20px;
+                  font-size: 1.5rem;
+                  border: none;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+
+                  &:hover {
+                    transform: translateY(-5px);
+                  }
+                }
+                .disabled {
+                  transform: none;
+                  &:hover {
+                    transform: none;
+                  }
+                }
+              }
             }
           }
         }
@@ -215,31 +317,40 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 @media only screen and (max-width: 768px) {
   .container {
-    padding: 50px 20px;
+    padding: 20px 30px;
 
     .max-content {
       align-items: center;
       flex-direction: column;
-
       .page {
+        width: 100%;
         .up-page {
+          .badge {
+            width: 20%;
+          }
           .title {
+            max-width: 50%;
             font-size: 2.5rem;
           }
         }
 
         .down-page {
           width: 100%;
-          display: block;
-          padding: unset;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 50px;
+          gap: 50px;
+          align-items: center;
 
           .left-page {
             padding-bottom: 50px;
+            max-width: 100%;
+            width: 100%;
           }
 
           .right-page {
-            max-width: 700px;
-            padding-left: 70px;
+            max-width: 100%;
+            width: 100%;
 
             .badge {
               right: 50px;
@@ -268,70 +379,141 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 450px) {
   .container {
-    padding: 50px 20px;
+    padding: 20px 30px;
 
     .max-content {
       align-items: center;
       flex-direction: column;
 
       .page {
+        .plan-items {
+          margin-bottom: 0;
+        }
         .up-page {
+          .badge {
+            width: 40%;
+            text-align: center;
+            margin: 10px;
+          }
           .title {
-            font-size: 1.5rem;
+            max-width: 80%;
+            font-size: 2.2rem;
+            text-align: center;
           }
         }
 
         .down-page {
           width: 100%;
-          display: block;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
           .left-page {
-            padding-bottom: 50px;
+            max-width: 100%;
+            width: 100%;
+            padding-bottom: 0;
+            gap: 0px;
 
-            .pricing {
+            .listArray {
+              width: 100%;
+              display: flex;
               flex-direction: column;
-              padding: 20px !important;
+              align-items: center;
+              border-radius: 10px;
+              padding: 20px;
+              margin: 10px 0;
+              height: auto;
 
               .plan-icons {
-                padding-bottom: 20px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-left: 0;
+                margin-bottom: 5px;
 
                 .icons {
-                  font-size: 20px;
+                  font-size: 25px;
                 }
 
                 .plan {
-                  margin-top: -5px !important;
+                  font-size: 1.5rem;
+                  font-weight: 700;
                 }
+              }
+
+              .tag {
+                font-size: 1rem;
+                border-radius: 15px;
+                padding: 5px 15px;
+              }
+
+              .item-price {
+                display: flex;
+                align-items: center;
+                font-size: 2rem;
+                font-weight: 700;
+                height: 50px;
+              }
+
+              .per {
+                opacity: 0.7;
+                font-size: 1.2rem;
+                margin-right: 0;
               }
             }
           }
 
           .right-page {
-            padding-left: 15px;
+            width: 100%;
+            border-radius: 10px;
 
-            .badge {
-              font-size: 1rem;
-              right: 25px;
-            }
+            .content {
+              display: flex;
+              flex-direction: column;
 
-            .title {
-              font-size: 1rem;
-            }
+              .badge {
+                padding: 8px;
+                font-weight: 700;
+                font-size: 1.2rem;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                border-radius: 5px;
+              }
 
-            .list-body {
-              .li {
-                font-size: 1rem;
+              .title {
+                font-size: 2rem;
+                padding: 40px 0 0 20px;
+                margin-bottom: 0;
+              }
+
+              .list-body {
+                display: flex;
+                flex-direction: column;
+                margin: 20px 0 0 0px;
+
+                .li {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  padding: 20px 0;
+                  font-size: 1.2rem;
+                  svg {
+                    margin-left: 20px;
+                  }
+
+                  .dash_icon {
+                    font-size: 1.5rem;
+                  }
+                }
               }
             }
-
             .body-bottom {
-              padding: unset;
-
               .button {
-                padding: 12px 20px;
-                font-size: 1rem;
+                font-size: 1.3rem;
               }
             }
           }
