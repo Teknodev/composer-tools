@@ -6,6 +6,7 @@
         max-width: var(--composer-content-width);
         margin: auto;
         height: 100%;
+
         .section {
             padding: 20px 50px;
             display: flex;
@@ -13,23 +14,26 @@
             width: 100%;
             gap: 20px;
             height: 100%;
+
             .main-content {
                 display: flex;
                 align-items: start;
                 justify-content: center;
                 width: 100%;
                 height: 100%;
+                gap: 20px;
+
                 .image-wrapper {
                     display: flex;
                     height: 100%;
-                    align-items: center;
+                    align-items: start;
 
                     >div {
                         justify-self: start;
                     }
 
                     .img {
-                        width: 100px;
+                        width: 150px;
                         height: auto;
                     }
 
@@ -42,43 +46,56 @@
                     }
                 }
 
-                .content {
+                .text-contents {
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
                     height: 100%;
-                    width: 100%;
-
-                    .up-text {
+                    .link-container {
                         display: flex;
                         flex-wrap: wrap;
-                        gap: 10px;
                         justify-content: center;
-                        width: object-fit;
-                        height: 100%;
-                        
-                        >div {
-                            flex: 1 1 45%;
-                            max-width: 45%;
-                            text-align:justify;
-                            align-self: center;
-                            width: fit-content;
+                        align-items: flex-start;
+                        gap: 20px;
+
+                        .link-item {
+                            flex: 1;
+                            display: flex;
+                            gap: 20px;
+                            flex-direction: column;
+                            word-break: break-word;
+                            min-width: 150px;
                         }
 
-                        &:nth-child(odd):last-child {
-                            flex-basis: 100%;
-                            max-width: 100%;
+                        .sub-item-list {
+                            display: flex;
+                            gap: 20px;
+                            flex-direction: column;
+                        }
+
+                        .sub-item {
+                            font-size: 14px;
+                        }
+
+                        .link-item,
+                        .sub-item {
+                            font-size: 1.2rem;
                         }
 
                     }
 
-                    .ref-text {
-                        display: grid;
-                        font-size: 1.2rem;
-                        word-break: break-word;
+                    .link-container:only-child {
+                        justify-content: center;
+                    }
+
+                    .down-text {
                         color: var(--composer-font-color-primary);
+                        text-align: center;
+                        width: 100%;
+                        word-break: break-word;
+                        padding: 20px 0px;
                     }
                 }
+
 
                 .image-emoji-wrapper {
                     display: flex;
@@ -89,7 +106,7 @@
 
                     .image-wrapper {
                         display: flex;
-                        align-items: center;
+                        align-items: start;
                         justify-content: center;
                         height: 100%;
 
@@ -113,20 +130,16 @@
                     }
                 }
 
-                > :first-child{
+                > :first-child {
                     justify-content: start;
                 }
+
                 > :last-child {
                     justify-content: end;
                 }
             }
 
-            .down-text {
-                color: var(--composer-font-color-primary);
-                text-align: center;
-                width: 100%;
-                word-break: break-word;
-            }
+
         }
     }
 }
@@ -152,7 +165,8 @@
                     flex-direction: column !important;
                     justify-content: center !important;
                     align-items: center !important;
-                    .image-wrapper{
+
+                    .image-wrapper {
                         justify-content: center !important;
                     }
                 }
@@ -168,12 +182,15 @@
                     }
                 }
             }
-            .image-emoji-wrapper{
+
+            .image-emoji-wrapper {
                 justify-content: center !important;
             }
-            > :first-child{
+
+            > :first-child {
                 justify-content: center !important;
             }
+
             > :last-child {
                 justify-content: center !important;
             }

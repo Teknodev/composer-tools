@@ -41,7 +41,7 @@ class Footer12Page extends BaseFooter {
       type: "array",
       key: "link-list",
       additionalParams: {
-        maxElementCount: 10,
+        maxElementCount: 6,
       },
       displayer: "Link List",
       value: [
@@ -62,6 +62,32 @@ class Footer12Page extends BaseFooter {
               displayer: "Path",
               value: "",
             },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "refText",
+                      displayer: "Referral Text",
+                      value: "Privacy Policy",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                }
+              ],
+            },
           ],
         },
         {
@@ -80,6 +106,32 @@ class Footer12Page extends BaseFooter {
               key: "path",
               displayer: "Path",
               value: "",
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "refText",
+                      displayer: "Referral Text",
+                      value: "Privacy Policy",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                }
+              ],
             },
           ],
         },
@@ -100,6 +152,32 @@ class Footer12Page extends BaseFooter {
               displayer: "Path",
               value: "",
             },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "refText",
+                      displayer: "Referral Text",
+                      value: "Privacy Policy",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                }
+              ],
+            },
           ],
         },
         {
@@ -118,6 +196,32 @@ class Footer12Page extends BaseFooter {
               key: "path",
               displayer: "Path",
               value: "",
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "refText",
+                      displayer: "Referral Text",
+                      value: "Privacy Policy",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                }
+              ],
             },
           ],
         },
@@ -189,6 +293,8 @@ class Footer12Page extends BaseFooter {
       displayer: "Text",
       value: "Copyright © 2023 Teknodev LTD.All rights reserved.",
     })
+
+
   }
 
   getName(): string {
@@ -202,6 +308,9 @@ class Footer12Page extends BaseFooter {
     const linkList = this.castToObject<any[]>("link-list");
     const imagesAndEmojis = this.castToObject<ImageOrEmoji[]>("image-emoji-list");
     const downText = this.getPropValue("text");
+    let subItemList: []
+
+    console.log(linkList);
 
     const childCount = [
       logoImage || this.castToString(logoText),
@@ -231,20 +340,38 @@ class Footer12Page extends BaseFooter {
                     </ComposerLink>
                   )}
                 </div>}
-              {linkList.length > 0 && <div className={this.decorateCSS("content")} >
-                <div className={this.decorateCSS("up-text")}>
-                  {linkList.map((item: any, index) => {
-                    return (
-                      <ComposerLink
-                        key={index}
-                        path={item.path}
-                      >
-                        <span className={this.decorateCSS("ref-text")}>{item.refText}</span>
-                      </ComposerLink>
-                    );
-                  })}
-                </div>
-              </div>}
+
+              <div className={this.decorateCSS("text-contents")}>
+
+                {linkList.length > 0 && (
+                  <div className={this.decorateCSS("link-container")}>
+                    {linkList.map((item: any, index) => (
+                      <div key={item.key || index} className={this.decorateCSS("link-item")}>
+                        <ComposerLink path={item.path}>
+                          <span className={this.decorateCSS("ref-text")}>{item.refText}</span>
+                        </ComposerLink>
+
+                        {/* Eğer sub_items mevcutsa, alt öğeleri göster */}
+                        {item.sub_items && item.sub_items.length > 0 && (
+                          <div className={this.decorateCSS("sub-item-list")}>
+                            {item.sub_items.map((subItem: any, subIndex: number) => (
+                              <div key={subItem.key || subIndex} className={this.decorateCSS("sub-item")}>
+                                <ComposerLink path={subItem.path}>
+                                  <span className={this.decorateCSS("ref-text")}>{subItem.refText}</span>
+                                </ComposerLink>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {this.castToString(downText) &&
+                  <div className={this.decorateCSS("down-text")}>
+                    <span className={this.decorateCSS("text")}>{downText}</span>
+                  </div>}
+              </div>
               {imagesAndEmojis.length > 0 && <div
                 className={this.decorateCSS("image-emoji-wrapper")}
                 style={{
@@ -277,10 +404,7 @@ class Footer12Page extends BaseFooter {
                 ))}
               </div>}
             </div>
-            {this.castToString(downText) &&
-              <div className={this.decorateCSS("down-text")}>
-                <span className={this.decorateCSS("text")}>{downText}</span>
-              </div>}
+
           </div>
         </div>
       </div>
