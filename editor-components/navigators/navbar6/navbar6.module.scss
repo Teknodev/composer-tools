@@ -109,6 +109,7 @@
           transition: all 0.0s ease;
 
           svg {
+            flex-shrink: 0;
             transition: transform 0.4s ease;
           }
 
