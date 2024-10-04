@@ -15,6 +15,7 @@ type SliderItemType = {
   description: JSX.Element;
   linkText: JSX.Element;
   link: string;
+  dot:boolean;
 };
 
 class Header2 extends BaseHeader {
@@ -55,6 +56,12 @@ class Header2 extends BaseHeader {
               key: "author",
               value: "by John Doe",
               displayer: "Author",
+            },
+            {
+              type:"boolean",
+              key:"dot",
+              value:true,
+              displayer:"Dot Enabled",
             },
             {
               type: "string",
@@ -114,6 +121,12 @@ class Header2 extends BaseHeader {
               displayer: "Author",
             },
             {
+              type:"boolean",
+              key:"dot",
+              value:true,
+              displayer:"Dot Enabled",
+            },
+            {
               type: "string",
               key: "date",
               value: "22 December",
@@ -171,6 +184,12 @@ class Header2 extends BaseHeader {
               displayer: "Author",
             },
             {
+              type:"boolean",
+              key:"dot",
+              value:true,
+              displayer:"Dot Enabled",
+            },
+            {
               type: "string",
               key: "date",
               value: "22 December",
@@ -200,12 +219,7 @@ class Header2 extends BaseHeader {
       ],
     });
 
-    this.addProp({
-      type: "boolean",
-      displayer: "Full Width",
-      key: "hasPadding",
-      value: true,
-    });
+
   }
 
   getName(): string {
@@ -217,22 +231,19 @@ class Header2 extends BaseHeader {
       dots: true,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
     };
 
     const sliderItems = this.castToObject<SliderItemType[]>("slider");
-    const hasPadding = this.getPropValue("hasPadding");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("slider")} ${
-              hasPadding ? "0" : this.decorateCSS("full-width")
-            }`}
+            className={this.decorateCSS("slider")} 
           >
             {sliderItems.length > 0 && (
               <ComposerSlider {...settings}>
@@ -243,6 +254,7 @@ class Header2 extends BaseHeader {
                   const isDateExist = this.castToString(item.date);
                   const isDescExist = this.castToString(item.description);
                   const isLinkTextExist = this.castToString(item.linkText);
+              
 
                   const cardValues =
                     isLinkTextExist ||
@@ -286,9 +298,10 @@ class Header2 extends BaseHeader {
                                       {item.author}
                                     </span>
                                   )}
-                                  {isAuthorExist && isDateExist && (
-                                    <span className={this.decorateCSS("dot")}>
-                                      •
+                                  {isAuthorExist && isDateExist && item.dot &&(
+                                    <span className={this.decorateCSS("dot")}
+                                    >
+                                      {item.dot}
                                     </span>
                                   )}
                                   {isDateExist && (
