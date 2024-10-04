@@ -3,6 +3,17 @@ import { Location } from "../../EditorComponent";
 import styles from "./location1.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 
+type Coordinate = {
+  lat: number;
+  lng: number;
+  icon?: {
+    url: string;
+    width?: number;
+    height?: number;
+  };
+  address?: string;
+};
+
 class LocationComponent1 extends Location {
   constructor(props?: any) {
     super(props, styles);
@@ -38,6 +49,16 @@ class LocationComponent1 extends Location {
     return "Location 1";
   }
 
+  popupContent = (marker: Coordinate) => {
+    return (
+      <div className={this.decorateCSS("popup")}>
+        <h4 className={this.decorateCSS("popup-title")}>Popup Title</h4>
+        <p className={this.decorateCSS("popup-content")}>Popup Content: {marker.address || "No address"}</p>
+        <button className={this.decorateCSS("popup-button")}>Custom Button</button>
+      </div>
+    );
+  };
+
   render() {
     const { markers } = this.getPropValue("location");
 
@@ -47,7 +68,7 @@ class LocationComponent1 extends Location {
           <div className={this.decorateCSS("wrapper")}>
             <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap markers={markers} className={this.decorateCSS("map")} />
+              <ComposerMap markers={markers} className={this.decorateCSS("map")} popupContent={this.popupContent} />
             </section>
           </div>
         </div>

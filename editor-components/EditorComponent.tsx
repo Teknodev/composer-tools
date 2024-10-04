@@ -12,6 +12,16 @@ type PreSufFix = {
 
 export type TypeLocation = {
   markers: {
+    customIcon?: {
+      url: string;
+    };
+    button?: {
+      text: string;
+      url: string;
+    };
+    photo?: string;
+    title?: string;
+    content?: string;
     lat: number;
     lng: number;
     icon?: {
@@ -19,6 +29,7 @@ export type TypeLocation = {
       width?: number;
       height?: number;
     };
+    address?: string;
   }[];
 };
 
