@@ -111,19 +111,8 @@
   padding: 20px 50px;
 
   .max-content-is-disable {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: unset;
-    justify-content: center;
-    width: 100%;
-
-    .title-child {
-      @include title-child;
-    }
-
-    .progress-container {
-      @include progress-container;
-    }
+    display: unset !important;
+    
   }
 
   .max-content {
@@ -210,7 +199,6 @@
           width: 100%;
           text-align: left;
           margin-bottom: 40px;
-          // padding-bottom: 30px;
         }
       }
 
@@ -262,15 +250,6 @@
       }
 
       .progress-container {
-        // padding-top: 20px;
-
-        .item {
-          .progress-title {
-            // gap: 10px !important;
-          }
-
-        }
-
         .title {
           font-size: 8px;
         }
