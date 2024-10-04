@@ -475,7 +475,7 @@ class PricingTable3 extends BasePricingTable {
                 )}
               </div>
             )}
-            {cards?.length > 0 && (
+            {hasCards && (
               <div
                 className={this.decorateCSS(
                   titleExist || descExist || buttonExist ? "cards-div" : "cards-div-alternate"
