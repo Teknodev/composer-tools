@@ -5,10 +5,12 @@
 
   .carousel {
     .slider-image {
+      max-width: 100%;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
       z-index: 1;
+      overflow: hidden;
     }
   }
   .item {
@@ -25,8 +27,8 @@
       height: 100%;
 
       .top-figure {
-        width: 20%;
-        height: 30%;
+        width: 30rem;
+        height: 30rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -99,9 +101,6 @@
       top: 0;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-
-      padding: 0 12rem;
 
       .layout {
         width: 100%;
@@ -109,14 +108,19 @@
         align-items: start;
         justify-content: space-between;
         position: relative;
-
+        padding-left: calc(10% + 10px);
+        padding-right: 50px;
+        gap:50px;
         .arrows {
           display: flex;
           gap: 20px;
           z-index: 99;
+          width: 30%;
+          max-width: 50%;
           div {
             display: flex;
             align-items: center;
+            max-width: 50%;
 
             &:hover {
               .arrow {
@@ -128,6 +132,8 @@
 
           .arrow-text {
             color: white;
+            max-width: 100%;
+            word-break: break-word;
           }
         }
 
@@ -137,6 +143,7 @@
           align-items: end;
           color: white;
           overflow: hidden;
+          width: 70%;
 
           .title-container {
             overflow: hidden;
@@ -186,12 +193,26 @@
         color: white;
         opacity: 0.5;
         transition: 0.2s all;
+        min-width: fit-content;
       }
       .arrow:nth-child(1) {
         margin-right: 10px;
       }
       .arrow:nth-child(2) {
         margin-left: 10px;
+      }
+      &.black-theme {
+        .arrow, .arrow-text, .description, .title, .button {
+          color: var(--composer-font-color-primary) !important;
+        }
+    
+        .button {
+          background: black;
+    
+          &:hover {
+            background: grey;
+          }
+        }
       }
     }
   }
