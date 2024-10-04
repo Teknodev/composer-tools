@@ -80,7 +80,6 @@ $font-color-primary: var(--composer-font-color-primary);
    @container my-max-content (min-width: 1026px) and (max-width: 1749px){
     .stats{
       .stat-border{
-        min-width: 300px !important;
       }
     }
    }
@@ -177,7 +176,6 @@ $font-color-primary: var(--composer-font-color-primary);
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
             background-color: transparent;
             height: fit-content;
-            flex: 1;
             &.stat-border-full-width{
               max-width: 400px;
             }
@@ -208,7 +206,9 @@ $font-color-primary: var(--composer-font-color-primary);
                 @include blinkpageColor;
                 @include threeDotsBlinkPage;
                 margin: 0;
-                max-width: 50%;
+                padding: 0 1rem;
+                word-break: break-word;
+                text-overflow: clip !important;
               }
             }
           }
@@ -285,10 +285,9 @@ $font-color-primary: var(--composer-font-color-primary);
           .stats{
             max-width: 100%;
             .stat-border{
-              // min-width: 40% !important;
+              width: 100%;
               .stat{
                 .stat-description{
-                  max-width: 40% !important;
                 }
               }
             }
