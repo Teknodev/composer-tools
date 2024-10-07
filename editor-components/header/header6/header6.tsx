@@ -72,57 +72,82 @@ class Header6 extends BaseHeader {
   getName(): string {
     return "Header 6";
   }
+render() {
+  const showLeftContent =
+    this.castToString(this.getPropValue("title")) ||
+    this.castToString(this.getPropValue("title2")) ||
+    this.castToString(this.getPropValue("description")) ||
+    (this.getPropValue("buttons") && this.getPropValue("buttons").length > 0);
 
-  render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <section className={this.decorateCSS("child-container")}>
+  const showRightContent =
+    this.getPropValue("image1") || this.getPropValue("image2");
+
+  return (
+    <div className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("max-content")}>
+        <section className={this.decorateCSS("child-container")}>
+          {showLeftContent ? (
             <div className={this.decorateCSS("left-content")}>
-              <h2 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h2>
-              <p className={this.decorateCSS("title2")}>
-                {this.getPropValue("title2")}
-              </p>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-              <div className={this.decorateCSS("buttondiv")}>
-                {this.getPropValue("buttons").map(
-                  (item: any, indexButtons: number) => {
-                    const buttonText = item.value[0].value;
-                    return buttonText ? (
-                      <ComposerLink
-                        key={indexButtons}
-                        path={item.value[1].value}
-                      >
-                        <button className={`${this.decorateCSS("button")}`}>
-                          {buttonText}
-                        </button>
-                      </ComposerLink>
-                    ) : null; 
-                  }
-                )}
-              </div>
+              {this.getPropValue("title") && (
+                <h2 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h2>
+              )}
+              {this.getPropValue("title2") && (
+                <p className={this.decorateCSS("title2")}>
+                  {this.getPropValue("title2")}
+                </p>
+              )}
+              {this.getPropValue("description") && (
+                <p className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </p>
+              )}
+              {this.getPropValue("buttons") && (
+                <div className={this.decorateCSS("buttondiv")}>
+                  {this.getPropValue("buttons").map(
+                    (item: any, indexButtons: number) => {
+                      const buttonText = item.value[0].value;
+                      return buttonText ? (
+                        <ComposerLink
+                          key={indexButtons}
+                          path={item.value[1].value}
+                        >
+                          <button className={`${this.decorateCSS("button")}`}>
+                            {buttonText}
+                          </button>
+                        </ComposerLink>
+                      ) : null;
+                    }
+                  )}
+                </div>
+              )}
             </div>
+          ) : null}
+          
+          {showRightContent ? (
             <div className={this.decorateCSS("right-content")}>
-              <img
-                src={this.getPropValue("image1")}
-                alt=""
-                className={this.decorateCSS("image1")}
-              />
-              <img
-                src={this.getPropValue("image2")}
-                alt=""
-                className={this.decorateCSS("image2")}
-              />
+              {this.getPropValue("image1") && (
+                <img
+                  src={this.getPropValue("image1")}
+                  alt=""
+                  className={this.decorateCSS("image1")}
+                />
+              )}
+              {this.getPropValue("image2") && (
+                <img
+                  src={this.getPropValue("image2")}
+                  alt=""
+                  className={this.decorateCSS("image2")}
+                />
+              )}
             </div>
-          </section>
-        </div>
+          ) : null}
+        </section>
       </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 export default Header6;
