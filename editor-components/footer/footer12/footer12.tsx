@@ -308,9 +308,6 @@ class Footer12Page extends BaseFooter {
     const linkList = this.castToObject<any[]>("link-list");
     const imagesAndEmojis = this.castToObject<ImageOrEmoji[]>("image-emoji-list");
     const downText = this.getPropValue("text");
-    let subItemList: []
-
-    console.log(linkList);
 
     const childCount = [
       logoImage || this.castToString(logoText),
@@ -351,7 +348,6 @@ class Footer12Page extends BaseFooter {
                           <span className={this.decorateCSS("ref-text")}>{item.refText}</span>
                         </ComposerLink>
 
-                        {/* Eğer sub_items mevcutsa, alt öğeleri göster */}
                         {item.sub_items && item.sub_items.length > 0 && (
                           <div className={this.decorateCSS("sub-item-list")}>
                             {item.sub_items.map((subItem: any, subIndex: number) => (
