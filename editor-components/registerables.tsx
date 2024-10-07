@@ -18,7 +18,7 @@ import DownloadComponent1 from "./download/download1/download1";
 // import ListComponent6 from "./list/list6/list6";
 // import ListComponent7 from "./list/list7/list7";
 // import ListComponent8 from "./list/list8/list8";
-// import LocationComponent1 from "./location/location1/location1";
+ import LocationComponent1 from "./location/location1/location1";
 // import ContentComponent1 from "./content/content1/content1";
 // import ContentComponent2 from "./content/content2/content2";
 // import ContentComponent3 from "./content/content3/content3";
@@ -113,104 +113,104 @@ import DownloadComponent1 from "./download/download1/download1";
 // import HeaderComponent25 from "./header/header25/header25";
 // import HeaderComponent26 from "./header/header26/header26";
 import HeaderComponent27 from "./header/header27/header27";
-// import HeaderComponent28 from "./header/header28/header28";
-// import HeaderComponent29 from "./header/header29/header29";
-// import HeaderComponent30 from "./header/header30/header30";
-// import HeaderComponent31 from "./header/header31/header31";
-// import HeaderComponent32 from "./header/header32/header32";
-// import HeaderComponent33 from "./header/header33/header33";
-// import HeaderComponent34 from "./header/header34/header34";
-// import FeatureComponent1 from "./feature/feature1/feature1";
-// import FeatureComponent2 from "./feature/feature2/feature2";
-// import FeatureComponent3 from "./feature/feature3/feature3";
-// import FeatureComponent4 from "./feature/feature4/feature4";
-// import FeatureComponent5 from "./feature/feature5/feature5";
-// import FeatureComponent6 from "./feature/feature6/feature6";
-// import FeatureComponent7 from "./feature/feature7/feature7";
-// import FeatureComponent8 from "./feature/feature8/feature8";
-// import FeatureComponent9 from "./feature/feature9/feature9";
-// import FeatureComponent10 from "./feature/feature10/feature10";
-// import FeatureComponent11 from "./feature/feature11/feature11";
-// import FeatureComponent12 from "./feature/feature12/feature12";
-// import FeatureComponent13 from "./feature/feature13/feature13";
-// import FeatureComponent14 from "./feature/feature14/feature14";
-// import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
-// import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
-// import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
-// import CallToAction4 from "./call_to_action/call_to_action4/call_to_action4";
-// import CallToAction5 from "./call_to_action/call_to_action5/call_to_action5";
-// import CallToAction6 from "./call_to_action/call_to_action6/call_to_action6";
-// import CallToAction7 from "./call_to_action/call_to_action7/call_to_action7";
-// import CallToAction8 from "./call_to_action/call_to_action8/call_to_action8";
-// import CallToAction9 from "./call_to_action/call_to_action9/call_to_action9";
-// import CallToAction10 from "./call_to_action/call_to_action10/call_to_action10";
-// import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
-// import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
-// import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
-// import LogoComponent4 from "./logo-clouds/logo-comp4/logo-comp4";
-// import LogoComponent5 from "./logo-clouds/logo-comp5/logo-comp5";
-// import LogoComponent6 from "./logo-clouds/logo-comp6/logo-comp6";
-// import TestimonialsComponent1 from "./testimonials/testimonials1/testimonials1";
-// import TestimonialsComponent2 from "./testimonials/testimonials2/testimonials2";
-// import TestimonialsComponent3 from "./testimonials/testimonials3/testimonials3";
-// import TestimonialsComponent4 from "./testimonials/testimonials4/testimonials4";
-// import TestimonialsComponent5 from "./testimonials/testimonials5/testimonials5";
-// import TestimonialsComponent6 from "./testimonials/testimonials6/testimonials6";
-// import TestimonialsComponent7 from "./testimonials/testimonials7/testimonials7";
-// import TestimonialsComponent8 from "./testimonials/testimonials8/testimonials8";
-// import TestimonialsComponent9 from "./testimonials/testimonials9/testimonials9";
-// import TestimonialsComponent10 from "./testimonials/testimonials10/testimonials10";
-// import TestimonialsComponent11 from "./testimonials/testimonials11/testimonials11";
-// import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials12";
-// import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
-// import StatsComponent1 from "./stats/stats1/stats1";
-// import StatsComponent2 from "./stats/stats2/stats2";
-// import StatsComponent3 from "./stats/stats3/stats3";
-// import StatsComponent4 from "./stats/stats4/stats4";
-// import StatsComponent5 from "./stats/stats5/stats5";
-// import StatsComponent6 from "./stats/stats6/stats6";
-// import StatsComponent7 from "./stats/stats7/stats7";
-// import StatsComponent8 from "./stats/stats8/stats8";
-// import ContactsComponent1 from "./contacts/form1/form1";
-// import ContactsComponent2 from "./contacts/form2/form2";
-// import ContactsComponent3 from "./contacts/form3/form3";
-// import ContactsComponent4 from "./contacts/form4/form4";
-// import ContactsComponent5 from "./contacts/form5/form5";
-// import ContactsComponent6 from "./contacts/form6/form6";
-// import ContactsComponent8 from "./contacts/form7/form7";
-// import ContactsComponent9 from "./contacts/form8/form8";
-// import ContactsComponent10 from "./contacts/form9/form9";
-// import ContactsComponent11 from "./contacts/form10/form10";
-// import ContactsComponent12 from "./contacts/form11/form11";
-// import FooterComponent1 from "./footer/footer1/footer1";
-// import FooterComponent2 from "./footer/footer2/footer2";
-// import FooterComponent3 from "./footer/footer3/footer3";
-// import FooterComponent4 from "./footer/footer4/footer4";
-// import FooterComponent5 from "./footer/footer5/footer5";
-// import FooterComponent6 from "./footer/footer6/footer6";
-// import FooterComponent7 from "./footer/footer7/footer7";
-// import FooterComponent8 from "./footer/footer8/footer8";
-// import FooterComponent9 from "./footer/footer9/footer9";
-// import FooterComponent10 from "./footer/footer10/footer10";
-// import FooterComponent11 from "./footer/footer11/footer11";
-// import FooterComponent12 from "./footer/footer12/footer12";
-// import NavbarComponent1 from "./navigators/navbar1/navbar1";
-// import NavbarComponent2 from "./navigators/navbar2/navbar2";
-// import NavbarComponent3 from "./navigators/navbar3/navbar3";
-// import NavbarComponent4 from "./navigators/navbar4/navbar4";
-// import NavbarComponent5 from "./navigators/navbar5/navbar5";
-// import NavbarComponent6 from "./navigators/navbar6/navbar6";
-// import NavbarComponent7 from "./navigators/navbar7/navbar7";
-// import NavbarComponent8 from "./navigators/navbar8/navbar8";
-// import NavbarComponent9 from "./navigators/navbar9/navbar9";
-// import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
-// import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
-// import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
-// import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
-// import SurveyModal from "./modal/survey-modal/survey-modal";
-// import NoticeModal from "./modal/notice-modal/notice";
-// import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
-// import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
+import HeaderComponent28 from "./header/header28/header28";
+import HeaderComponent29 from "./header/header29/header29";
+import HeaderComponent30 from "./header/header30/header30";
+import HeaderComponent31 from "./header/header31/header31";
+import HeaderComponent32 from "./header/header32/header32";
+import HeaderComponent33 from "./header/header33/header33";
+import HeaderComponent34 from "./header/header34/header34";
+import FeatureComponent1 from "./feature/feature1/feature1";
+import FeatureComponent2 from "./feature/feature2/feature2";
+import FeatureComponent3 from "./feature/feature3/feature3";
+import FeatureComponent4 from "./feature/feature4/feature4";
+import FeatureComponent5 from "./feature/feature5/feature5";
+import FeatureComponent6 from "./feature/feature6/feature6";
+import FeatureComponent7 from "./feature/feature7/feature7";
+import FeatureComponent8 from "./feature/feature8/feature8";
+import FeatureComponent9 from "./feature/feature9/feature9";
+import FeatureComponent10 from "./feature/feature10/feature10";
+import FeatureComponent11 from "./feature/feature11/feature11";
+import FeatureComponent12 from "./feature/feature12/feature12";
+import FeatureComponent13 from "./feature/feature13/feature13";
+import FeatureComponent14 from "./feature/feature14/feature14";
+import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
+import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
+import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
+import CallToAction4 from "./call_to_action/call_to_action4/call_to_action4";
+import CallToAction5 from "./call_to_action/call_to_action5/call_to_action5";
+import CallToAction6 from "./call_to_action/call_to_action6/call_to_action6";
+import CallToAction7 from "./call_to_action/call_to_action7/call_to_action7";
+import CallToAction8 from "./call_to_action/call_to_action8/call_to_action8";
+import CallToAction9 from "./call_to_action/call_to_action9/call_to_action9";
+import CallToAction10 from "./call_to_action/call_to_action10/call_to_action10";
+import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
+import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
+import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
+import LogoComponent4 from "./logo-clouds/logo-comp4/logo-comp4";
+import LogoComponent5 from "./logo-clouds/logo-comp5/logo-comp5";
+import LogoComponent6 from "./logo-clouds/logo-comp6/logo-comp6";
+import TestimonialsComponent1 from "./testimonials/testimonials1/testimonials1";
+import TestimonialsComponent2 from "./testimonials/testimonials2/testimonials2";
+import TestimonialsComponent3 from "./testimonials/testimonials3/testimonials3";
+import TestimonialsComponent4 from "./testimonials/testimonials4/testimonials4";
+import TestimonialsComponent5 from "./testimonials/testimonials5/testimonials5";
+import TestimonialsComponent6 from "./testimonials/testimonials6/testimonials6";
+import TestimonialsComponent7 from "./testimonials/testimonials7/testimonials7";
+import TestimonialsComponent8 from "./testimonials/testimonials8/testimonials8";
+import TestimonialsComponent9 from "./testimonials/testimonials9/testimonials9";
+import TestimonialsComponent10 from "./testimonials/testimonials10/testimonials10";
+import TestimonialsComponent11 from "./testimonials/testimonials11/testimonials11";
+import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials12";
+import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
+import StatsComponent1 from "./stats/stats1/stats1";
+import StatsComponent2 from "./stats/stats2/stats2";
+import StatsComponent3 from "./stats/stats3/stats3";
+import StatsComponent4 from "./stats/stats4/stats4";
+import StatsComponent5 from "./stats/stats5/stats5";
+import StatsComponent6 from "./stats/stats6/stats6";
+import StatsComponent7 from "./stats/stats7/stats7";
+import StatsComponent8 from "./stats/stats8/stats8";
+import ContactsComponent1 from "./contacts/form1/form1";
+import ContactsComponent2 from "./contacts/form2/form2";
+import ContactsComponent3 from "./contacts/form3/form3";
+import ContactsComponent4 from "./contacts/form4/form4";
+import ContactsComponent5 from "./contacts/form5/form5";
+import ContactsComponent6 from "./contacts/form6/form6";
+import ContactsComponent8 from "./contacts/form7/form7";
+import ContactsComponent9 from "./contacts/form8/form8";
+import ContactsComponent10 from "./contacts/form9/form9";
+import ContactsComponent11 from "./contacts/form10/form10";
+import ContactsComponent12 from "./contacts/form11/form11";
+import FooterComponent1 from "./footer/footer1/footer1";
+import FooterComponent2 from "./footer/footer2/footer2";
+import FooterComponent3 from "./footer/footer3/footer3";
+import FooterComponent4 from "./footer/footer4/footer4";
+import FooterComponent5 from "./footer/footer5/footer5";
+import FooterComponent6 from "./footer/footer6/footer6";
+import FooterComponent7 from "./footer/footer7/footer7";
+import FooterComponent8 from "./footer/footer8/footer8";
+import FooterComponent9 from "./footer/footer9/footer9";
+import FooterComponent10 from "./footer/footer10/footer10";
+import FooterComponent11 from "./footer/footer11/footer11";
+import FooterComponent12 from "./footer/footer12/footer12";
+import NavbarComponent1 from "./navigators/navbar1/navbar1";
+import NavbarComponent2 from "./navigators/navbar2/navbar2";
+import NavbarComponent3 from "./navigators/navbar3/navbar3";
+import NavbarComponent4 from "./navigators/navbar4/navbar4";
+import NavbarComponent5 from "./navigators/navbar5/navbar5";
+import NavbarComponent6 from "./navigators/navbar6/navbar6";
+import NavbarComponent7 from "./navigators/navbar7/navbar7";
+import NavbarComponent8 from "./navigators/navbar8/navbar8";
+import NavbarComponent9 from "./navigators/navbar9/navbar9";
+import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
+import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
+import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
+import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
+import SurveyModal from "./modal/survey-modal/survey-modal";
+import NoticeModal from "./modal/notice-modal/notice";
+import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
+import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
 //     new NotificationModal1(),
@@ -327,104 +327,104 @@ function Registerables(composer: ComponentsRegistery) {
 //     new HeaderComponent25(),
 //     new HeaderComponent26(),
     new HeaderComponent27(),
-//     new HeaderComponent28(),
-//     new HeaderComponent29(),
-//     new HeaderComponent30(),
-//     new HeaderComponent31(),
-//     new HeaderComponent32(),
-//     new HeaderComponent33(),
-//     new HeaderComponent34(),
-//     new NavbarComponent1(),
-//     new NavbarComponent2(),
-//     new NavbarComponent3(),
-//     new NavbarComponent4(),
-//     new NavbarComponent5(),
-//     new NavbarComponent6(),
-//     new NavbarComponent7(),
-//     new NavbarComponent8(),
-//     new NavbarComponent9(),
-//     new ImageGalleryComponent1(),
-//     new ImageGalleryComponent4(),
-//     new FeatureComponent1(),
-//     new FeatureComponent2(),
-//     new FeatureComponent3(),
-//     new FeatureComponent4(),
-//     new FeatureComponent5(),
-//     new FeatureComponent6(),
-//     new FeatureComponent7(),
-//     new FeatureComponent8(),
-//     new FeatureComponent9(),
-//     new FeatureComponent10(),
-//     new FeatureComponent11(),
-//     new FeatureComponent12(),
-//     new FeatureComponent13(),
-//     new FeatureComponent14(),
-//     new CallToAction1(),
-//     new CallToAction2(),
-//     new CallToAction3(),
-//     new CallToAction4(),
-//     new CallToAction5(),
-//     new CallToAction6(),
-//     new CallToAction7(),
-//     new CallToAction8(),
-//     new CallToAction9(),
-//     new CallToAction10(),
-//     new LogoComponent1(),
-//     new LogoComponent2(),
-//     new LogoComponent3(),
-//     new LogoComponent4(),
-//     new LogoComponent5(),
-//     new LogoComponent6(),
-//     new TestimonialsComponent1(),
-//     new TestimonialsComponent2(),
-//     new TestimonialsComponent3(),
-//     new TestimonialsComponent4(),
-//     new TestimonialsComponent5(),
-//     new TestimonialsComponent6(),
-//     new TestimonialsComponent7(),
-//     new TestimonialsComponent8(),
-//     new TestimonialsComponent9(),
-//     new TestimonialsComponent10(),
-//     new TestimonialsComponent11(),
-//     new TestimonialsComponent12(),
-//     new TestimonialsComponent13(),
-//     new StatsComponent1(),
-//     new StatsComponent2(),
-//     new StatsComponent3(),
-//     new StatsComponent4(),
-//     new StatsComponent5(),
-//     new StatsComponent6(),
-//     new StatsComponent7(),
-//     new StatsComponent8(),
-//     new ContactsComponent1(),
-//     new ContactsComponent2(),
-//     new ContactsComponent3(),
-//     new ContactsComponent4(),
-//     new ContactsComponent5(),
-//     new ContactsComponent6(),
-//     new ContactsComponent8(),
-//     new ContactsComponent9(),
-//     new ContactsComponent10(),
-//     new ContactsComponent11(),
-//     new ContactsComponent12(),
-//     new FooterComponent1(),
-//     new FooterComponent2(),
-//     new FooterComponent3(),
-//     new FooterComponent4(),
-//     new FooterComponent5(),
-//     new FooterComponent6(),
-//     new FooterComponent7(),
-//     new FooterComponent8(),
-//     new FooterComponent9(),
-//     new FooterComponent10(),
-//     new FooterComponent11(),
-//     new FooterComponent12(),
-//     new TermsOfUseModal(),
-//     new SurveyModal(),
-//     new NoticeModal(),
-//     new NotificationModal2(),
-//     new SubscriptionModal(),
-//     new LocationComponent1(),
+    new HeaderComponent28(),
+    new HeaderComponent29(),
+    new HeaderComponent30(),
+    new HeaderComponent31(),
+    new HeaderComponent32(),
+    new HeaderComponent33(),
+    new HeaderComponent34(),
+    new NavbarComponent1(),
+    new NavbarComponent2(),
+    new NavbarComponent3(),
+    new NavbarComponent4(),
+    new NavbarComponent5(),
+    new NavbarComponent6(),
+    new NavbarComponent7(),
+    new NavbarComponent8(),
+    new NavbarComponent9(),
+    new ImageGalleryComponent1(),
+    new ImageGalleryComponent4(),
+    new FeatureComponent1(),
+    new FeatureComponent2(),
+    new FeatureComponent3(),
+    new FeatureComponent4(),
+    new FeatureComponent5(),
+    new FeatureComponent6(),
+    new FeatureComponent7(),
+    new FeatureComponent8(),
+    new FeatureComponent9(),
+    new FeatureComponent10(),
+    new FeatureComponent11(),
+    new FeatureComponent12(),
+    new FeatureComponent13(),
+    new FeatureComponent14(),
+    new CallToAction1(),
+    new CallToAction2(),
+    new CallToAction3(),
+    new CallToAction4(),
+    new CallToAction5(),
+    new CallToAction6(),
+    new CallToAction7(),
+    new CallToAction8(),
+    new CallToAction9(),
+    new CallToAction10(),
+    new LogoComponent1(),
+    new LogoComponent2(),
+    new LogoComponent3(),
+    new LogoComponent4(),
+    new LogoComponent5(),
+    new LogoComponent6(),
+    new TestimonialsComponent1(),
+    new TestimonialsComponent2(),
+    new TestimonialsComponent3(),
+    new TestimonialsComponent4(),
+    new TestimonialsComponent5(),
+    new TestimonialsComponent6(),
+    new TestimonialsComponent7(),
+    new TestimonialsComponent8(),
+    new TestimonialsComponent9(),
+    new TestimonialsComponent10(),
+    new TestimonialsComponent11(),
+    new TestimonialsComponent12(),
+    new TestimonialsComponent13(),
+    new StatsComponent1(),
+    new StatsComponent2(),
+    new StatsComponent3(),
+    new StatsComponent4(),
+    new StatsComponent5(),
+    new StatsComponent6(),
+    new StatsComponent7(),
+    new StatsComponent8(),
+    new ContactsComponent1(),
+    new ContactsComponent2(),
+    new ContactsComponent3(),
+    new ContactsComponent4(),
+    new ContactsComponent5(),
+    new ContactsComponent6(),
+    new ContactsComponent8(),
+    new ContactsComponent9(),
+    new ContactsComponent10(),
+    new ContactsComponent11(),
+    new ContactsComponent12(),
+    new FooterComponent1(),
+    new FooterComponent2(),
+    new FooterComponent3(),
+    new FooterComponent4(),
+    new FooterComponent5(),
+    new FooterComponent6(),
+    new FooterComponent7(),
+    new FooterComponent8(),
+    new FooterComponent9(),
+    new FooterComponent10(),
+    new FooterComponent11(),
+    new FooterComponent12(),
+    new TermsOfUseModal(),
+    new SurveyModal(),
+    new NoticeModal(),
+    new NotificationModal2(),
+    new SubscriptionModal(),
+    new LocationComponent1(),
   ]);
 }
 
