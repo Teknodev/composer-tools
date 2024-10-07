@@ -118,7 +118,9 @@ class Header4 extends BaseHeader {
                 style={
                   imageAnm ? {
                     transform: `translate(0%, ${this.getComponentState("scrollY") / 25}%) translate3d(0px, 0px, 0px)`
-                  } : {}
+                  } : {
+                    height: "100%"
+                  }
                 }
               />
             </div>

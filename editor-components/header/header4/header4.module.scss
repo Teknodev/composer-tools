@@ -97,11 +97,9 @@
           margin-inline-start: 0px;
           margin-inline-end: 0px;
           font-size: 14px;
-          width: 80%;
           word-break: break-word;
           color: var(--composer-font-color-primary);
         }
-
 
         .button-content {
           display: flex;
@@ -192,6 +190,12 @@
 @media screen and (max-width: 800px) {
   .container {
     padding: 0 0 !important;
+  }
+
+  .image-container {
+    .image {
+      transform: none !important;
+    }
   }
 
   .card {
