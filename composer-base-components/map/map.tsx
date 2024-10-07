@@ -1,27 +1,22 @@
 import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
-import React, { memo, useEffect, useState, useRef, useMemo } from "react";
+import React, { memo, useEffect, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
 
 type Coordinate = {
+  icon: any;
+  content?: any;
   lat: number;
   lng: number;
-  icon?: {
-    url: string;
-    width?: number;
-    height?: number;
-  };
-  address?: string;
 };
 
 interface ComposerMapProps {
   markers: Coordinate[];
   className: string;
-  popupContent?: (marker: Coordinate) => React.ReactNode;
   defaultMarkerIcon?: string;
   styles?: google.maps.MapTypeStyle[];
 }
 
-const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon, styles }: ComposerMapProps) => {
+const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: ComposerMapProps) => {
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
@@ -50,14 +45,11 @@ const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon,
     if (!map) return;
 
     setTimeout(() => {
-      if (markers.length === 0) return;
+      if (!markers || markers.length === 0) return;
 
-      if (markers.length === 1) {
-        const center = { lat: markers[0].lat, lng: markers[0].lng };
-        map.setCenter(center);
-        map.setZoom(14);
-        return;
-      }
+      const center = { lat: markers[0].lat, lng: markers[0].lng };
+      map.setCenter(center);
+      map.setZoom(14);
 
       const bounds = getBounds();
       const calculatedCenter = getCenter(bounds);
@@ -73,7 +65,6 @@ const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon,
     const customStyle: React.CSSProperties = {
       position: "absolute",
       zIndex: 1000,
-
       pointerEvents: "auto",
     };
 
@@ -90,7 +81,7 @@ const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon,
         this.div = document.createElement("div");
         Object.assign(this.div.style, customStyle);
 
-        const content = <div>{popupContent ? popupContent(selectedMarker!) : <div></div>}</div>;
+        const content = <div>{selectedMarker?.content ? selectedMarker.content : <div></div>}</div>;
 
         const root = createRoot(this.div);
         root.render(content);
@@ -152,21 +143,19 @@ const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon,
 
   return (
     <Map id={uniqueMapId} className={className}>
-      {markers.length > 0
-        ? markers.map((marker, index) => (
-            <div key={index}>
-              <Marker
-                position={marker}
-                title="Location"
-                icon={{
-                  url: marker.icon?.url || defaultMarker,
-                  scaledSize: new google.maps.Size(marker.icon?.width || 32, marker.icon?.height || 32),
-                }}
-                onClick={() => handleMarkerClick(marker)}
-              />
-            </div>
-          ))
-        : null}
+      {markers.map((marker, index) => (
+        <div key={index}>
+          <Marker
+            position={{ lat: marker.lat, lng: marker.lng }}
+            title="Location"
+            icon={{
+              url: marker.icon?.url || defaultMarker,
+              scaledSize: new google.maps.Size(marker.icon?.width || 32, marker.icon?.height || 32),
+            }}
+            onClick={() => handleMarkerClick(marker)}
+          />
+        </div>
+      ))}
     </Map>
   );
 });
