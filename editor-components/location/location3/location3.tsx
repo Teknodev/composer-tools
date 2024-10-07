@@ -252,7 +252,7 @@ class LocationComponent3 extends Location {
       if (marker.photo || marker.title || marker.content || marker.button?.text || marker.customIcon?.url) {
         return (
           <div className={styles["popup-content"]}>
-            <div onClick={() => console.log("zaaa")} style={{ position: "absolute", right: 20, cursor: "pointer" }}>
+            <div style={{ position: "absolute", right: 20, cursor: "pointer" }}>
               <a href={"www.google.com"} target="_blank" rel="noopener noreferrer">
                 <ComposerIcon name={marker.customIcon?.url} />
               </a>
