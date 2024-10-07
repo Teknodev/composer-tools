@@ -200,6 +200,7 @@ class HeaderComponent26 extends BaseHeader {
       draggable: true,
       vertical: true,
       verticalSwiping: true,
+      centerPadding: '0px',
       beforeChange: (current: number, next: number) => {
         this.setComponentState("old", current);
         this.setComponentState("next", next);
