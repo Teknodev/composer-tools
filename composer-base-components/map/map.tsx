@@ -73,8 +73,10 @@ const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon,
     const customStyle: React.CSSProperties = {
       position: "absolute",
       zIndex: 1000,
-
       pointerEvents: "auto",
+      maxWidth: "300px",
+      wordWrap: "break-word",
+      wordBreak: "break-word",
     };
 
     class CustomOverlay extends google.maps.OverlayView {
@@ -159,7 +161,7 @@ const ComposerMap = memo(({ markers, className, popupContent, defaultMarkerIcon,
                 position={marker}
                 title="Location"
                 icon={{
-                  url: marker.icon?.url || defaultMarker,
+                  url: defaultMarker || marker.icon?.url,
                   scaledSize: new google.maps.Size(marker.icon?.width || 32, marker.icon?.height || 32),
                 }}
                 onClick={() => handleMarkerClick(marker)}
