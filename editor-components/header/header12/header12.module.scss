@@ -134,17 +134,7 @@
         }
 
         .no-image-text {
-          position: absolute;
-          bottom: 1em;
-          left: 50px;
           color: var(--composer-font-color-primary);
-          z-index: 2;
-          width: auto;
-          box-sizing: border-box;
-          font-size: 3vw;
-          word-wrap: break-word;
-          text-align: end;
-          width: auto !important;
         }
 
       }
@@ -211,16 +201,7 @@
         }
 
         .no-image-text {
-          position: absolute;
-          bottom: 1em;
-          right: 50px;
           color: var(--composer-font-color-primary);
-          z-index: 2;
-          width: auto;
-          box-sizing: border-box;
-          font-size: 3vw;
-          word-wrap: break-word;
-          text-align: end;
         }
       }
     }

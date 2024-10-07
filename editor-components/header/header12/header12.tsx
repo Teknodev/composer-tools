@@ -335,7 +335,7 @@ class Header12 extends BaseHeader {
                         )}
                       </div>
                     )}
-                    <div className={`${item.image ? this.decorateCSS("slider-item-text") : this.decorateCSS("no-image-text")}`}>{item.text}</div>
+                    <div className={`${this.decorateCSS("slider-item-text")} ${!item.image && this.decorateCSS("no-image-text")}`}>{item.text}</div>
 
                   </div>
                 ))}
@@ -362,8 +362,8 @@ class Header12 extends BaseHeader {
                         )}
                       </div>
                     )}
-                    <div className={`${item.image ? this.decorateCSS("slider-item-text") : this.decorateCSS("no-image-text")}`}>{item.text}</div>
-                  </div>
+                    <div className={`${this.decorateCSS("slider-item-text")} ${!item.image && this.decorateCSS("no-image-text")}`}>{item.text}</div>
+                    </div>
 
                 ))}
 
