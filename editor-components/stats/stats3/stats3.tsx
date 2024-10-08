@@ -172,7 +172,9 @@ class Stats3Page extends BaseStats {
     const image = this.getPropValue("backgroundImage");
     const cardContent = this.getPropValue("card-content")
     const isBoxVisible = this.getPropValue("is_box_visible");
-    console.log(isBoxVisible)
+    console.log("image", image)
+    console.log("boxvisible", isBoxVisible)
+    console.log("card", cardContent.length > 0)
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -218,7 +220,7 @@ class Stats3Page extends BaseStats {
               </div>
             )
             }
-            {(image || cardContent.length > 0) && (
+            {(image || (cardContent.length > 0 && isBoxVisible)) && (
               <div className={this.decorateCSS(image ? "right-container" : "right-container-without-image")}>
                 {image && (
                   <img
@@ -259,8 +261,7 @@ class Stats3Page extends BaseStats {
                       )}
                     </div>
                   </div>
-                )
-                }
+                )}
               </div>
             )}
           </div>
