@@ -396,44 +396,44 @@ class Header25 extends BaseHeader {
               : ""
               }`}
           >
-            <div className={this.decorateCSS("layout")}>
-              <div className={this.decorateCSS("arrows")}>
-                <div
-                  className={this.decorateCSS("prev-arrow")}
-                  onClick={() => {
-                    this.getComponentState("slider-ref").current.slickPrev();
+            <div className={this.decorateCSS("arrows")}>
+              <div
+                className={this.decorateCSS("prev-arrow")}
+                onClick={() => {
+                  this.getComponentState("slider-ref").current.slickPrev();
+                }}
+              >
+                <ComposerIcon
+                  name={this.getPropValue("prev_icon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS("arrow")}`,
+                    size: 20,
                   }}
-                >
-                  <ComposerIcon
-                    name={this.getPropValue("prev_icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS("arrow")}`,
-                      size: 20,
-                    }}
-                  />
-                  <span className={this.decorateCSS("arrow-text")}>
-                    {this.getPropValue("prev-arrow-text")}
-                  </span>
-                </div>
-
-                <div
-                  className={this.decorateCSS("next-arrow")}
-                  onClick={() => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  }}
-                >
-                  <span className={this.decorateCSS("arrow-text")}>
-                    {this.getPropValue("next-arrow-text")}
-                  </span>
-                  <ComposerIcon
-                    name={this.getPropValue("next_icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS("arrow")}`,
-                      size: 20,
-                    }}
-                  />
-                </div>
+                />
+                <span className={this.decorateCSS("arrow-text")}>
+                  {this.getPropValue("prev-arrow-text")}
+                </span>
               </div>
+
+              <div
+                className={this.decorateCSS("next-arrow")}
+                onClick={() => {
+                  this.getComponentState("slider-ref").current.slickNext();
+                }}
+              >
+                <span className={this.decorateCSS("arrow-text")}>
+                  {this.getPropValue("next-arrow-text")}
+                </span>
+                <ComposerIcon
+                  name={this.getPropValue("next_icon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS("arrow")}`,
+                    size: 20,
+                  }}
+                />
+              </div>
+            </div>
+            <div className={this.decorateCSS("layout")}>
               <div className={this.decorateCSS("content")}>
                 <div className={this.decorateCSS("title-container")}>
                   <h1

@@ -1,3 +1,4 @@
+
 .container {
   width: 100%;
   background: var(--composer-html-background);
@@ -100,43 +101,40 @@
       position: absolute;
       top: 0;
       display: flex;
-      align-items: center;
+      .arrows {
+        display: flex;
+        gap: 20px;
+        z-index: 99;
+        position: relative;
+        left: 10%;
+        top:30rem;
+        height: fit-content;
+        max-width: 30%;
+        div {
+          display: flex;
+          align-items: center;
+          &:hover {
+            .arrow {
+              opacity: 1;
+              transition: 0.2s all;
+            }
+          }
+        }
+
+        .arrow-text {
+          color: white;
+          max-width: 100%;
+        }
+      }
 
       .layout {
         width: 100%;
         display: flex;
-        align-items: start;
-        justify-content: space-between;
         position: relative;
-        padding-left: calc(10% + 10px);
         padding-right: 50px;
-        gap:50px;
-        .arrows {
-          display: flex;
-          gap: 20px;
-          z-index: 99;
-          width: 30%;
-          max-width: 50%;
-          div {
-            display: flex;
-            align-items: center;
-            max-width: 50%;
-
-            &:hover {
-              .arrow {
-                opacity: 1;
-                transition: 0.2s all;
-              }
-            }
-          }
-
-          .arrow-text {
-            color: white;
-            max-width: 100%;
-            word-break: break-word;
-          }
-        }
-
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
         .content {
           display: flex;
           flex-direction: column;
@@ -144,8 +142,12 @@
           color: white;
           overflow: hidden;
           width: 70%;
+          height: 100%;
+          justify-content: center;
 
           .title-container {
+            overflow: hidden;
+            max-height: 20%;
             overflow: hidden;
             .title {
               font-size: 4rem;
@@ -159,10 +161,18 @@
             align-items: end;
           }
           .description {
-            width: 50%;
-            max-width: 50%;
+            width: 100%;
             text-align: end;
             font-size: 18px;
+            >blinkpage{
+              display: -webkit-box !important;
+              -webkit-line-clamp: 5;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              >p{
+
+              }
+            }
           }
 
           .button {
