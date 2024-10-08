@@ -34,15 +34,21 @@ class Header17 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Year",
-              key: "year",
-              value: "2023",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "WORLD BESTSELLERS",
             },
             {
               type: "string",
               displayer: "Title",
               key: "title",
               value: "Scandinavian Style House",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
             },
             {
               type: "image",
@@ -52,6 +58,12 @@ class Header17 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
             },
             {
+              type: "image",
+              displayer: "Cover",
+              key: "cover-image",
+              value: "https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s1-img.png"
+            },
+            {
               type: "string",
               displayer: "Button Text",
               key: "button-text",
@@ -72,15 +84,21 @@ class Header17 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Year",
-              key: "year",
-              value: "2021",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "WORLD BESTSELLERS",
             },
             {
               type: "string",
               displayer: "Title",
               key: "title",
               value: "Contemporary Style House",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
             },
             {
               type: "image",
@@ -90,6 +108,12 @@ class Header17 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
             },
             {
+              type: "image",
+              displayer: "Cover",
+              key: "cover-image",
+              value:"https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s3-img.png"
+            },
+            {
               type: "string",
               displayer: "Button Text",
               key: "button-text",
@@ -110,9 +134,9 @@ class Header17 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Year",
-              key: "year",
-              value: "2019",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "WORLD BESTSELLERS",
             },
             {
               type: "string",
@@ -121,11 +145,23 @@ class Header17 extends BaseHeader {
               value: "Metal Facade Coatings",
             },
             {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
+            },
+            {
               type: "image",
               displayer: "Image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "image",
+              displayer: "Cover",
+              key: "cover-image",
+              value:"https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s2-img.png"
             },
             {
               type: "string",
@@ -156,7 +192,7 @@ class Header17 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 440,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -181,19 +217,48 @@ class Header17 extends BaseHeader {
               )}
 
               <div className={this.decorateCSS("slider-item-container")}>
+
+
                 <div className={this.decorateCSS("slider-item-content")}>
-                  <div className={this.decorateCSS("title-box")}>
-                    <span className={this.decorateCSS("year")}>{item.getPropValue("year")}</span>
-                    <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
-                    <div className={this.decorateCSS("view-button")}>
-                      <ComposerLink path={item.getPropValue("button-url")}>
-                        <span className={this.decorateCSS("view-button-text")}>
-                          {item.getPropValue("button-text")}
-                        </span>
-                      </ComposerLink>
+
+                  <div className={this.decorateCSS("left-side")}>
+
+                    {item.getPropValue("cover-image") && (
+                      <img
+                        src={item.getPropValue("cover-image")}
+                        alt=""
+                        className={this.decorateCSS("cover-image")}
+                      />
+                    )}
+                    
+                    <div className={this.decorateCSS("vertical-shadow-line")} />
+                  </div>
+
+                  <div className={this.decorateCSS("right-side")}>
+
+
+
+                    <div className={this.decorateCSS("title-box")}>
+                      <span className={this.decorateCSS("subtitle")}>{item.getPropValue("subtitle")}</span>
+                      <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
+                      <h3 className={this.decorateCSS("description")}>{item.getPropValue("description")}</h3>
+
+                      <div className={this.decorateCSS("view-button")}>
+                        <ComposerLink path={item.getPropValue("button-url")}>
+                          <span className={this.decorateCSS("view-button-text")}>
+                            {item.getPropValue("button-text")}
+                          </span>
+                        </ComposerLink>
+                      </div>
+
                     </div>
                   </div>
+                  <div className={this.decorateCSS("text-overlay")} />
+
+                  <div className={this.decorateCSS("left-side")}></div>
+
                 </div>
+
               </div>
               <ComposerIcon
                 name={this.getPropValue("next_icon")}
