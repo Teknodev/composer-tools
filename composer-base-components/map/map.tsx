@@ -81,7 +81,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
         this.div = document.createElement("div");
         Object.assign(this.div.style, customStyle);
 
-        const content = <div>{selectedMarker?.content ? selectedMarker.content : <div></div>}</div>;
+        const content = selectedMarker?.content || null;
 
         const root = createRoot(this.div);
         root.render(content);
