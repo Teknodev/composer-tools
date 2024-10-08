@@ -3,8 +3,14 @@ import React, { memo, useEffect, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
 
 type Coordinate = {
-  icon: any;
-  content?: any;
+  icon: {
+    url: string;
+    scaledSize: {
+      width: number;
+      height: number;
+    };
+  };
+  content?: React.ReactNode;
   lat: number;
   lng: number;
 };
@@ -22,6 +28,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
   const map = useMap(uniqueMapId);
   const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(null);
   const overlayRef = useRef<any>(null);
+  const prevMarkersRef = useRef<Coordinate[]>([]); 
 
   const getCenter = (bounds: { north: number; south: number; east: number; west: number }) => {
     const lat = (bounds.north + bounds.south) / 2;
@@ -44,20 +51,18 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
   useEffect(() => {
     if (!map) return;
 
-    setTimeout(() => {
-      if (!markers || markers.length === 0) return;
+    const isNewMarkerAdded = markers.length > prevMarkersRef.current.length;
 
-      const center = { lat: markers[0].lat, lng: markers[0].lng };
-      map.setCenter(center);
-      map.setZoom(14);
-
+    if (isNewMarkerAdded) {
       const bounds = getBounds();
       const calculatedCenter = getCenter(bounds);
       map.fitBounds(bounds);
       map.setCenter(calculatedCenter);
       map.panTo(calculatedCenter);
-    }, 1);
-  }, [markers, map]);
+    }
+
+    prevMarkersRef.current = markers;
+  }, [map, markers]);
 
   const defaultMarker = defaultMarkerIcon || "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
 
@@ -66,6 +71,9 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
       position: "absolute",
       zIndex: 1000,
       pointerEvents: "auto",
+      maxWidth: "500px", 
+      wordWrap: "break-word", 
+      whiteSpace: "normal",
     };
 
     class CustomOverlay extends google.maps.OverlayView {
@@ -81,10 +89,11 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
         this.div = document.createElement("div");
         Object.assign(this.div.style, customStyle);
 
-        const content = <div>{selectedMarker?.content ? selectedMarker.content : <div></div>}</div>;
-
         const root = createRoot(this.div);
-        root.render(content);
+        if (selectedMarker?.content) {
+          root.render(selectedMarker.content);
+        }
+
         const panes = this.getPanes();
         if (panes) panes.overlayMouseTarget.appendChild(this.div);
       }
@@ -104,6 +113,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
 
       onRemove() {
         if (this.div && this.div.parentNode) {
+          this.div.parentNode.removeChild(this.div);
           const root = createRoot(this.div);
           root.unmount();
         }
@@ -137,24 +147,25 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
     const shouldSetMarkerNull = selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng;
     setSelectedMarker(shouldSetMarkerNull ? null : marker);
 
-    map.setCenter({ lat: marker.lat, lng: marker.lng });
-    map.setZoom(6);
+    if (!shouldSetMarkerNull) {
+      map.setCenter({ lat: marker.lat, lng: marker.lng });
+      map.setZoom(6);
+    }
   };
 
   return (
     <Map id={uniqueMapId} className={className}>
       {markers.map((marker, index) => (
-        <div key={index}>
-          <Marker
-            position={{ lat: marker.lat, lng: marker.lng }}
-            title="Location"
-            icon={{
-              url: marker.icon?.url || defaultMarker,
-              scaledSize: new google.maps.Size(marker.icon?.width || 32, marker.icon?.height || 32),
-            }}
-            onClick={() => handleMarkerClick(marker)}
-          />
-        </div>
+        <Marker
+          key={index}
+          position={{ lat: marker.lat, lng: marker.lng }}
+          title="Location"
+          icon={{
+            url: marker.icon?.url || defaultMarker,
+            scaledSize: new google.maps.Size(marker.icon?.scaledSize.width || 32, marker.icon?.scaledSize.height || 32),
+          }}
+          onClick={() => handleMarkerClick(marker)}
+        />
       ))}
     </Map>
   );
