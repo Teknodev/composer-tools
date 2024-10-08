@@ -285,8 +285,12 @@ class Header8 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
           {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
-            <div className={this.decorateCSS("slide") + " " + (currentSlide == index + 1 && this.decorateCSS("active"))}>
-              <img src={item.image} alt={item.title} className={this.decorateCSS("image")} />
+            <div
+              className={
+                this.getPropValue("disabled") ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") + " " + (currentSlide == index + 1 && this.decorateCSS("disabled") ? this.decorateCSS("active-disabled") : this.decorateCSS("active"))
+              }
+            >
+              <img src={item.image} alt={item.title} className={this.getPropValue("disabled") ? this.decorateCSS("image-disabled-animate") : this.decorateCSS("image")} />
             </div>
           ))}
         </ComposerSlider>
@@ -299,16 +303,19 @@ class Header8 extends BaseHeader {
           {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
             <div className={this.decorateCSS("info-box") + " " + (currentSlide == index + 1 && this.decorateCSS("active"))}>
               {item.topWriting && <div className={this.getPropValue("disabled") ? this.decorateCSS("tag-disabled-animate") : this.decorateCSS("tag")}>{item.topWriting}</div>}
-              <div className={this.getPropValue("disabled") ? this.decorateCSS("title") : this.decorateCSS("title-disabled-animate")}>
-                {this.getPropValue("disabled") ? (
-                  <div>{this.castToString(item.title as any)}</div>
-                ) : (
-                  <AnimatedText mode={this.getComponentState("prevIndex") <= this.getComponentState("currentIndex") ? "to_right" : "to_left"} animationStarted={currentSlide == index + 1}>
-                    {this.castToString(item.title as any)}
-                  </AnimatedText>
-                )}
-              </div>
-              <div className={this.getPropValue("disabled") ? this.decorateCSS("description-disabled-animate") : this.decorateCSS("description")}>{item.description}</div>
+              {this.castToString(item.title as any) && (
+                <div className={this.getPropValue("disabled") ? this.decorateCSS("title") : this.decorateCSS("title-disabled-animate")}>
+                  {this.getPropValue("disabled") ? (
+                    <div>{this.castToString(item.title as any)}</div>
+                  ) : (
+                    <AnimatedText mode={this.getComponentState("prevIndex") <= this.getComponentState("currentIndex") ? "to_right" : "to_left"} animationStarted={currentSlide === index + 1}>
+                      {this.castToString(item.title as any)}
+                    </AnimatedText>
+                  )}
+                </div>
+              )}
+
+              {item.description && <div className={this.getPropValue("disabled") ? this.decorateCSS("description-disabled-animate") : this.decorateCSS("description")}>{item.description}</div>}
             </div>
           ))}
         </div>
