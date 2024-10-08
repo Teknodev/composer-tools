@@ -236,6 +236,8 @@
     .item {
       .left-figure-container {
         .top-figure {
+          width: 25rem;
+          height: 25rem;
           .pagination {
             span {
             }
@@ -246,6 +248,7 @@
           }
         }
         .bottom-figure {
+          width: 15%;
           .side-text {
           }
 
@@ -262,8 +265,9 @@
       }
 
       .content-container {
-        padding: 0 2rem 0 7rem;
         .layout {
+          padding-right: 30px;
+          padding-left: calc(15% + 10px);
           .arrows {
             div {
               &:hover {
@@ -310,8 +314,9 @@
       }
     }
     .low-op-text {
-      left: -2%;
+      left: 5%;
       top: 18%;
+      font-size: 3rem;
     }
   }
 }
