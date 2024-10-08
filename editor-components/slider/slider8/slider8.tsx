@@ -51,15 +51,13 @@ class Slider8 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
             },
             {
               type: "array",
@@ -119,15 +117,13 @@ class Slider8 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
             },
             {
               type: "array",
@@ -187,15 +183,13 @@ class Slider8 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
             },
             {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
             },
             {
               type: "array",
@@ -347,23 +341,14 @@ class Slider8 extends BaseSlider {
                           style={{
                             backgroundImage: `url("${item.backgroundImage}")`,
                           }}>
-                          {shouldDisplayOverlay(index) === true && (
-                            <div className={this.decorateCSS("overlay")}></div>
-                          )}
+                          {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
                           <div
                             className={`
                           ${this.decorateCSS("content-div")}
-                             ${
-                               this.getComponentState("activeSlide") === index
-                                 ? this.decorateCSS("fix-location")
-                                 : ""
-                             }
+                             ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}
                           `}>
                             {linesContainer && (
-                              <div
-                                className={this.decorateCSS(
-                                  noImages ? "lines-container" : "lines-container2"
-                                )}>
+                              <div className={this.decorateCSS(noImages ? "lines-container" : "lines-container2")}>
                                 <div className={this.decorateCSS("line-1")}></div>
                                 <div className={this.decorateCSS("line-2")}></div>
                               </div>
@@ -372,19 +357,13 @@ class Slider8 extends BaseSlider {
                             <div
                               className={this.decorateCSS("image")}
                               style={{ backgroundImage: `url(${item.image})` }}>
-                              {shouldDisplayForegroundOverlay(index) === true && (
-                                <div className={this.decorateCSS("image-overlay")}></div>
-                              )}
+                              {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
                             </div>
 
                             {titleExists && (
                               <h3
-                                className={`${this.decorateCSS(
-                                  noImages ? "imageTitle" : "imageTitle2"
-                                )} ${
-                                  animation && this.getComponentState("activeSlide") === index
-                                    ? this.decorateCSS("imageTitleAnimation")
-                                    : ""
+                                className={`${this.decorateCSS(noImages ? "imageTitle" : "imageTitle2")} ${
+                                  animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""
                                 }`}>
                                 {item.imageTitle}
                               </h3>
@@ -392,12 +371,8 @@ class Slider8 extends BaseSlider {
 
                             {buttons?.length > 0 && (
                               <div
-                                className={`${this.decorateCSS(
-                                  noImages ? "buttons" : "buttons2"
-                                )} ${
-                                  animation && this.getComponentState("activeSlide") === index
-                                    ? this.decorateCSS("animateButtons")
-                                    : ""
+                                className={`${this.decorateCSS(noImages ? "buttons" : "buttons2")} ${
+                                  animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""
                                 }`}>
                                 {buttons.map((item: Button, buttonIndex: number) => {
                                   if (!this.castToString(item.buttonText)) return null;
@@ -407,12 +382,7 @@ class Slider8 extends BaseSlider {
                                       path={item.buttonUrl}>
                                       <button
                                         className={`${this.decorateCSS("button")}
-                                        ${
-                                          animation &&
-                                          this.getComponentState("activeSlide") === index
-                                            ? this.decorateCSS("animateButtons")
-                                            : ""
-                                        }`}>
+                                        ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
                                         {item.buttonText}
                                         <ComposerIcon
                                           propsIcon={{
@@ -426,10 +396,7 @@ class Slider8 extends BaseSlider {
                                 })}
                               </div>
                             )}
-                            <div
-                              className={this.decorateCSS(
-                                noImages ? "nav-buttons" : "nav-buttons2"
-                              )}>
+                            <div className={this.decorateCSS(noImages ? "nav-buttons" : "nav-buttons2")}>
                               {this.getPropValue("leftNavButton") && (
                                 <button
                                   className={this.decorateCSS("nav-button")}
