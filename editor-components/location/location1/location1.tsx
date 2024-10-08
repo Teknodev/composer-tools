@@ -63,7 +63,6 @@ class LocationComponent1 extends Location {
             {
               type: "image",
               key: "marker-image",
-              key: "marker-image",
               displayer: "Marker Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
             },
@@ -91,7 +90,6 @@ class LocationComponent1 extends Location {
               type: "location",
               displayer: "Coordinate",
               key: "coordinate",
-              key: "coordinate",
               value: {
                 lat: 37.1234,
                 lng: -76.9876,
@@ -100,7 +98,6 @@ class LocationComponent1 extends Location {
             {
               type: "image",
               key: "marker-image",
-              key: "marker-image",
               displayer: "Marker Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
             },
@@ -108,13 +105,11 @@ class LocationComponent1 extends Location {
               type: "string",
               displayer: "Description",
               key: "description",
-              key: "description",
               value: "Bu, ikinci lokasyonun açıklamasıdır.",
             },
             {
               type: "string",
               displayer: "Popup Title",
-              key: "popupTitle",
               key: "popupTitle",
               value: "İkinci Lokasyon",
             },
