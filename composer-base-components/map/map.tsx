@@ -1,5 +1,6 @@
 import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
 import React, { memo, useEffect, useState, useRef } from "react";
+
 import { createRoot } from "react-dom/client";
 
 type Coordinate = {
@@ -23,6 +24,7 @@ interface ComposerMapProps {
 }
 
 const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: ComposerMapProps) => {
+
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
@@ -167,6 +169,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
           onClick={() => handleMarkerClick(marker)}
         />
       ))}
+
     </Map>
   );
 });
