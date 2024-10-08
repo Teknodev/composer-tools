@@ -1,5 +1,6 @@
 import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
 import React, { memo, useEffect, useState, useRef } from "react";
+
 import { createRoot } from "react-dom/client";
 
 type Coordinate = {
@@ -23,6 +24,7 @@ interface ComposerMapProps {
 }
 
 const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: ComposerMapProps) => {
+
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
@@ -51,6 +53,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
     if (!map) return;
 
     if (!markers || markers.length === 0) return;
+
 
     const bounds = getBounds();
     const calculatedCenter = getCenter(bounds);
@@ -86,6 +89,9 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
           root.render(selectedMarker.content);
         }
 
+
+        const root = createRoot(this.div);
+        root.render(content);
         const panes = this.getPanes();
         if (panes) panes.overlayMouseTarget.appendChild(this.div);
       }
@@ -106,6 +112,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
       onRemove() {
         if (this.div && this.div.parentNode) {
           this.div.parentNode.removeChild(this.div);
+
           const root = createRoot(this.div);
           root.unmount();
         }
@@ -159,6 +166,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
           onClick={() => handleMarkerClick(marker)}
         />
       ))}
+
     </Map>
   );
 });
