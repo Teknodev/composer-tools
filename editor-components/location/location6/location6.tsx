@@ -54,6 +54,13 @@ class LocationComponent6 extends Location {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "disabled",
+      displayer: "Background Enabled",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
@@ -477,7 +484,7 @@ class LocationComponent6 extends Location {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div style={{ display: "flex" }} className={this.decorateCSS("left-side")}>
-              {this.getPropValue("badge") && <h1 className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</h1>}
+              {this.getPropValue("badge") && <h1 className={this.getPropValue("disabled") ? this.decorateCSS("disabled-badge") : this.decorateCSS("badge")}>{this.getPropValue("badge")}</h1>}
               {this.getPropValue("title") && <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>}
 
               <div>
