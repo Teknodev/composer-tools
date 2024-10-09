@@ -374,7 +374,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
                 name={card.icon}
               />
             )}
-            {amount !== null && (
+            {(amount !== null && amount !== "NaN") && (
               <h2 className={styles["card-amount"]}>
                 {integerPart}
                 {showDecimals && decimalPart && <span>.{decimalPart}</span>}
