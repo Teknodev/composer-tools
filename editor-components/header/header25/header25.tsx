@@ -355,7 +355,9 @@ class Header25 extends BaseHeader {
     };
 
     const sliderItemObject = this.castToObject<SliderItem[]>("slider");
-    console.log("sliderItemObject", this.castToString(sliderItemObject[0].title))
+    // console.log("sliderItemObject", this.castToString(sliderItemObject[0].title))
+
+
 
     return (
 
@@ -472,7 +474,7 @@ class Header25 extends BaseHeader {
 
                   <div className={this.decorateCSS("layout")}>
                     <div className={this.decorateCSS("content")}>
-                      <div className={this.decorateCSS("title-container")}>
+                      {/* <div className={this.decorateCSS("title-container")}>
                         <h1
                           className={`${this.decorateCSS("title")} animate__animated ${this.getComponentState("titleAnimationClass")
                             }`}
@@ -486,9 +488,9 @@ class Header25 extends BaseHeader {
                         >
                           {this.castToString(sliderItem.title)}
                         </h1>
-                      </div>
+                      </div> */}
 
-                      <p
+                      {/* <p
                         className={`${this.decorateCSS("description")} animate__animated ${this.getComponentState("descriptionAnimationClass")
                           }`}
                         onAnimationEnd={() => {
@@ -500,7 +502,7 @@ class Header25 extends BaseHeader {
                         }}
                       >
                         {this.castToString(sliderItem.description)}
-                      </p>
+                      </p> */}
                       <ComposerLink path={sliderItem.button.link}>
                         <button
                           className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
@@ -515,15 +517,15 @@ class Header25 extends BaseHeader {
                           }}
                         >
                           <span className={this.decorateCSS("button-text")}>
-                            {this.castToString(sliderItem.button.buttonText)}
+                            {sliderItem.button.buttonText}
                           </span>
-                          <ComposerIcon
-                            name={this.castToString(sliderItem.button.next_icon)}
+                          {/* <ComposerIcon
+                            name={sliderItem.button.next_icon}
                             propsIcon={{
                               className: ``,
                               size: 10,
                             }}
-                          />
+                          /> */}
                         </button>
                       </ComposerLink>
                     </div>
@@ -532,7 +534,8 @@ class Header25 extends BaseHeader {
               );
             }
             return null;
-          })}
+          }
+          )}
         </div>
       </div>
     );
