@@ -4,9 +4,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   width: 100%;
   max-width: 100%;
   padding: 20px 50px;
-
   .max-content {
     padding: 0;
+    margin: 0 auto;
     max-width: var(--composer-content-width);
 
     .page {
@@ -18,23 +18,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       align-items: center;
       .plan-items {
         display: flex;
-        background-color: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-secondary) 5%
-        );
+        box-shadow: rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px
+            3px -1px,
+          rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px;
         color: var(--composer-font-color-primary);
-        box-shadow: 2px 2px 5px 0 var(--composer-html-background),
-          2px 2px 5px 0 var(--composer-font-color-primary);
+
         margin-bottom: 20px;
         width: fit-content;
         border-radius: 8px;
         align-self: flex-start;
-
-        .plan-items::before,
-        .plan-items::after {
-          content: "";
-        }
 
         .activeTab:first-child {
           border-top-left-radius: 8px;
@@ -48,6 +40,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .activeTab {
           background: var(--composer-secondary-color);
+          color: var(--composer-font-color-secondary);
         }
 
         .plan-title {
@@ -92,9 +85,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           width: 15%;
           padding: 10px;
         }
-        .badge:empty {
-          border: none;
-        }
       }
 
       .down-page {
@@ -110,18 +100,19 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           gap: 20px;
 
           .listArray {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             background-color: color-mix(
               in srgb,
               var(--composer-html-background),
               var(--composer-font-color-secondary) 5%
             );
             color: var(--composer-font-color-primary);
-            box-shadow: 2px 2px 5px 0 var(--composer-html-background),
-              2px 2px 5px 0 var(--composer-font-color-primary);
+            box-shadow: rgba(var(--composer-font-color-primary-rgb), 0.3) 0px
+                1px 3px -1px,
+              rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-radius: 6px;
             gap: 10px;
 
@@ -214,20 +205,19 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             var(--composer-html-background),
             var(--composer-font-color-secondary) 5%
           );
-          box-shadow: 2px 2px 5px 0 var(--composer-html-background),
-            2px 2px 5px 0 var(--composer-font-color-primary);
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
+          box-shadow: rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px
+              3px -1px,
+            rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px;
+          padding: 30px 0px 0px 0px;
           border-radius: 4px;
-          position: relative;
+          display: flex;
 
           .content {
-            padding: 0;
             flex-grow: 1;
+            padding: 0;
             display: flex;
             flex-direction: column;
+            max-width: 100%;
 
             .badge {
               background-color: color-mix(
@@ -235,13 +225,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 var(--composer-html-background),
                 var(--composer-font-color-primary) 5%
               );
+              color: var(--composer-font-color-primary);
               padding: 10px;
               font-weight: 800;
               max-width: 100%;
               align-self: flex-end;
-              margin: 20px 20px 0 20px;
-              color: var(--composer-font-color-primary);
               border-radius: 4px;
+              margin-right: 50px;
             }
             .title {
               font-size: 2.3rem;
@@ -249,13 +239,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               padding: 0 0 20px 20px;
               margin-bottom: 20px;
             }
-
             .list-body {
               flex-grow: 1;
               display: grid;
               margin-bottom: 0;
 
-              .li {
+              .list-item {
                 display: flex;
                 align-items: center;
                 gap: 10px;
@@ -270,6 +259,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   color: var(--composer-font-color-primary);
                   flex-shrink: 0;
                 }
+                .property {
+                  color: var(--composer-font-color-primary);
+                }
               }
             }
 
@@ -280,15 +272,18 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 var(--composer-font-color-primary) 5%
               );
               padding: 20px;
+              display: flex;
 
               .buttons {
                 display: flex;
                 width: 100%;
                 margin: 10px 0 10px 10px;
+                gap: 10px;
+                flex-wrap: wrap;
 
                 .button {
                   background-color: var(--composer-secondary-color);
-                  color: var(--composer-font-color-primary);
+                  color: var(--composer-font-color-secondary);
                   padding: 10px 20px;
                   border-radius: 20px;
                   font-size: 1.5rem;
@@ -475,18 +470,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               flex-direction: column;
 
               .badge {
-                padding: 8px;
-                font-weight: 700;
-                font-size: 1.2rem;
-                position: absolute;
-                top: 15px;
-                right: 15px;
                 border-radius: 5px;
+                margin-right: 20px;
               }
 
               .title {
                 font-size: 2rem;
-                padding: 40px 0 0 20px;
+                padding: 0px 20px;
                 margin-bottom: 0;
               }
 
