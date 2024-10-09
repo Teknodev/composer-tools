@@ -1,0 +1,376 @@
+.feedbackModal {
+  width: 480px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(var(--composer-font-color-primary-rgb), 0.1);
+  background-color: var(--composer-html-background);
+  transition: background-color 0.3s ease;
+
+  .divider {
+    border: 1px solid rgba((var(--composer-font-color-primary-rgb)), 0.1);
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .divider-unactive {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .feedbackModalHeader {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      color: var(--composer-font-color-primary);
+
+    }
+
+    .feedbackModalHeaderh1 {
+      margin: 0;
+      font-size: 1.5rem;
+      padding-left: 7px;
+      flex-grow: 1;
+      color: var(--composer-font-color-primary);
+    }
+
+    .feedbackModalCloseButton {
+      background-color: var(--composer-html-background);
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      display: flex;
+      color: var(--composer-html-background);
+      align-items: center;
+
+      .close_icon {
+        color: var(--composer-font-color-primary);
+      }
+    }
+  }
+
+  .headerContent {
+    padding: 10px 10px 0 10px;
+    color: var(--composer-font-color-primary);
+
+    h2 {
+      margin: 0;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    p {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .descriptionContent {
+    margin: 0 auto;
+    width: 425px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+
+    p {
+      text-align: justify;
+      display: flex;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--composer-font-color-primary);
+    }
+  }
+
+  .feedbackModalEmojis {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .emojiWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .emojiLabel {
+        background-color: var(--composer-font-color-primary);
+        color: var(--composer-font-color-secondary);
+        padding: 10px 20px;
+        border-radius: 25px;
+        position: relative;
+        display: inline-block;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        word-wrap: break-word;
+      }
+
+      .emojiLabel::after {
+        content: "";
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent var(--composer-font-color-primary) transparent;
+      }
+
+      .feedbackModalEmoji {
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background-color 0.3s, transform 0.3s;
+        margin-bottom: 10px;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.3s;
+          border-style: solid;
+          border-width: 1px 3px;
+          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+        }
+
+        &::after {
+          width: 75px;
+          height: 75px;
+        }
+
+        .emoji-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 80px;
+          height: 80px;
+        }
+
+        .feedbackModalEmojiIcon {
+          align-items: center;
+          font-size: 2.5rem;
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 30%);
+          transition: filter 0.3s;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+        }
+
+        .emojiImageWrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+
+        .feedbackModalEmojiImage {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          filter: grayscale(100%);
+        }
+
+        &.selected,
+        &:hover {
+          background: radial-gradient(circle,
+              rgba(var(--composer-secondary-color-rgb, 1), 0.80),
+              rgba(var(--composer-html-background-rgb, 1), 1));
+          transform: scale(1.2);
+
+          &::after {
+            opacity: 1;
+          }
+
+          .feedbackModalEmoji {
+            filter: grayscale(0%);
+          }
+
+          .feedbackModalEmojiIcon {
+            background-color: rgba(var(--composer-secondary-color-rgb), 1);
+            filter: grayscale(0%);
+          }
+
+          .feedbackModalEmojiImage {
+            filter: grayscale(0%);
+          }
+
+          ~.emojiLabel {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+
+  .contact-form {
+    margin-bottom: 20px;
+    transition: 1s;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .input {
+      position: relative;
+      max-width: 100%;
+      width: 450px;
+      height: 95px;
+      border-color: rgba(var(--composer-font-color-primary-rgb), 0.025);
+      border-radius: var(--composer-border-radius);
+      background: var(--composer-html-background);
+      color: var(--composer-font-color-primary);
+      padding-bottom: 55px;
+      padding-left: 10px;
+      resize: none;
+
+      &:focus {
+        outline-color: var(--composer-secondary-color);
+      }
+    }
+  }
+
+  .no-emojis {
+    margin-top: 0px !important;
+  }
+
+  .feedbackModalComment {
+    width: 100%;
+    height: 60px;
+    border: 1px solid var(--composer-html-background);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+  }
+
+  .button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--composer-secondary-color);
+    color: var(--composer-font-color-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .button:hover {
+    background: transparent;
+    color: var(--composer-secondary-color);
+    border: 1px solid var(--composer-secondary-color);
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+    padding: 15px;
+
+    .feedbackModalHeader {
+      .feedbackModalHeaderh1 {
+        font-size: 1.25rem;
+      }
+
+      .feedbackModalCloseButton {
+        font-size: 1.5rem;
+      }
+    }
+
+    .headerContent h2 {
+      font-size: 1.75rem;
+    }
+
+    .descriptionContent {
+      width: 100%;
+
+      p {
+        font-size: 0.875rem;
+      }
+    }
+
+    .feedbackModalEmojis {
+      .feedbackModalEmoji {
+        .feedbackModalEmojiIcon {
+          font-size: 2rem;
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    .contact-form {
+      padding: 15px 0;
+    }
+
+    .feedbackModalSubmit {
+      font-size: 0.875rem;
+      padding: 8px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    width: 95%;
+    padding: 10px;
+
+    .feedbackModalHeader {
+      .feedbackModalHeaderh1 {
+        font-size: 1rem;
+      }
+
+      .feedbackModalCloseButton {
+        font-size: 1.25rem;
+      }
+    }
+
+    .headerContent h2 {
+      font-size: 1.5rem;
+    }
+
+    .descriptionContent {
+      width: 100%;
+
+      p {
+        font-size: 0.75rem;
+      }
+    }
+
+    .feedbackModalEmojis {
+      .feedbackModalEmoji {
+        .feedbackModalEmojiIcon {
+          font-size: 1.5rem;
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+
+    .contact-form {
+      padding: 10px 0;
+    }
+
+    .feedbackModalSubmit {
+      font-size: 0.75rem;
+      padding: 6px;
+    }
+  }
+}
