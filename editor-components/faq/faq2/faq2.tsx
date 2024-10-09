@@ -2,10 +2,24 @@ import * as React from "react";
 import styles from "./faq2.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
-  cardTitle: string;
-  description: string;
+  cardTitle: JSX.Element;
+  description: JSX.Element;
+  icon: string;
+};
+
+type DownContainer = {
+  title2: JSX.Element;
+  description: JSX.Element;
+  buttonGroup: Button[];
+};
+
+type Button = {
+  text: JSX.Element;
+  link: string;
+  isPrimary: boolean;
 };
 
 class FaqContainer extends BaseFAQ {
@@ -57,6 +71,12 @@ class FaqContainer extends BaseFAQ {
               value:
                 "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
+            },
           ],
         },
         {
@@ -76,6 +96,12 @@ class FaqContainer extends BaseFAQ {
               displayer: "Answer",
               value:
                 "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
             },
           ],
         },
@@ -97,6 +123,12 @@ class FaqContainer extends BaseFAQ {
               value:
                 " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
+            },
           ],
         },
         {
@@ -116,6 +148,12 @@ class FaqContainer extends BaseFAQ {
               displayer: "Answer",
               value:
                 "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
             },
           ],
         },
@@ -137,6 +175,12 @@ class FaqContainer extends BaseFAQ {
               value:
                 "Yes, we offer discounts and promotions from time to time. You can sign up for our newsletter to receive updates on our latest promotions.",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
+            },
           ],
         },
         {
@@ -156,6 +200,12 @@ class FaqContainer extends BaseFAQ {
               displayer: "Answer",
               value:
                 "We accept credit/debit cards, PayPal, and other digital payment methods. You can select your preferred payment method during checkout.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "MdOutlineQuestionMark",
             },
           ],
         },
@@ -195,7 +245,7 @@ class FaqContainer extends BaseFAQ {
             },
             {
               type: "array",
-              key: "button",
+              key: "buttonGroup",
               displayer: "Button",
               value: [
                 {
@@ -232,7 +282,7 @@ class FaqContainer extends BaseFAQ {
   }
 
   getName(): string {
-    return "FAQ-02";
+    return "FAQ-2";
   }
 
   render() {
@@ -257,89 +307,128 @@ class FaqContainer extends BaseFAQ {
       }
     };
 
+    const isBadgeExist = this.castToString(this.getPropValue("badge"));
+    const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </div>
-              <h1 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h1>
-              <p className={this.decorateCSS("title-p")}>
-                {this.getPropValue("title")}
-              </p>
+              {isBadgeExist && (
+                <div className={this.decorateCSS("badge")}>
+                  {this.getPropValue("badge")}
+                </div>
+              )}
+              {isSubtitleExist && (
+                <h1 className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </h1>
+              )}
+              {isTitleExist && (
+                <p className={this.decorateCSS("title-p")}>
+                  {this.getPropValue("title")}
+                </p>
+              )}
             </div>
             <div className={this.decorateCSS("card-page")}>
               {this.castToObject<Card[]>("card").map(
                 (item: Card, indexCard: number) => {
-                  return (
-                    <div
-                      key={indexCard}
-                      style={style()}
-                      className={this.decorateCSS("card-item-count")}
-                    >
-                      <div className={this.decorateCSS("card")}>
-                        <div className={this.decorateCSS("icon")}>
-                          <div>?</div>
-                        </div>
-                        <div className={this.decorateCSS("title")}>
-                          <h2 className={this.decorateCSS("item-cardTitle")}>
-                            {item.cardTitle}
-                          </h2>
-                        </div>
-                        <div className={this.decorateCSS("description")}>
-                          <p className={this.decorateCSS("item-description")}>
-                            {item.description}
-                          </p>
+                  const isTitleExist = this.castToString(item.cardTitle);
+                  const isDescExist = this.castToString(item.description);
+                  const icon = item.icon;
+
+                  if (isTitleExist || isDescExist)
+                    return (
+                      <div
+                        key={indexCard}
+                        style={style()}
+                        className={this.decorateCSS("card-item-count")}
+                      >
+                        <div className={this.decorateCSS("card")}>
+                          {icon && (
+                            <div className={this.decorateCSS("icon")}>
+                              <ComposerIcon name={icon} />
+                            </div>
+                          )}
+                          {isTitleExist && (
+                            <div className={this.decorateCSS("title")}>
+                              <h2
+                                className={this.decorateCSS("item-cardTitle")}
+                              >
+                                {item.cardTitle}
+                              </h2>
+                            </div>
+                          )}
+                          {isDescExist && (
+                            <div className={this.decorateCSS("description")}>
+                              <p
+                                className={this.decorateCSS("item-description")}
+                              >
+                                {item.description}
+                              </p>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                  );
+                    );
                 }
               )}
             </div>
           </div>
         </div>
-        {this.castToObject<[]>("downContainer").map(
-          (item: any, index: number) => (
-            <div className={this.decorateCSS("down-container")}>
-              <div key={index} className={this.decorateCSS("child-container")}>
-                <h1 className={this.decorateCSS("title2")}>
-                  {item.value[0].value}
-                </h1>
-                <p className={this.decorateCSS("description")}>
-                  {item.value[1].value}
-                </p>
-                <div className={this.decorateCSS("button-group")}>
-                  {item.value[2].value.map(
-                    (button: any, buttonIndex: number) => {
-                      return (
-                        <ComposerLink
-                          key={buttonIndex}
-                          path={button.value[1].value}
-                        >
-                          <button
-                            className={
-                              this.decorateCSS("button") +
-                              " " +
-                              (button.value[2].value
-                                ? this.decorateCSS("primary")
-                                : this.decorateCSS("secondary"))
-                            }
-                          >
-                            {button.value[0].value}
-                          </button>
-                        </ComposerLink>
-                      );
-                    }
+        {this.castToObject<DownContainer[]>("downContainer").map(
+          (item: DownContainer, index: number) => {
+            const isTitleExist = this.castToString(item.title2);
+            const isDescExist = this.castToString(item.description);
+
+            return (
+              <div className={this.decorateCSS("down-container")}>
+                <div
+                  key={index}
+                  className={this.decorateCSS("child-container")}
+                >
+                  {isTitleExist && (
+                    <h1 className={this.decorateCSS("title2")}>
+                      {item.title2}
+                    </h1>
                   )}
+                  {isDescExist && (
+                    <p className={this.decorateCSS("description")}>
+                      {item.description}
+                    </p>
+                  )}
+                  <div className={this.decorateCSS("button-group")}>
+                    {item.buttonGroup?.map(
+                      (button: Button, buttonIndex: number) => {
+                        const isButtonTextExist = this.castToString(
+                          button.text
+                        );
+
+                        if (isButtonTextExist)
+                          return (
+                            <ComposerLink key={buttonIndex} path={button.link}>
+                              <button
+                                className={
+                                  this.decorateCSS("button") +
+                                  " " +
+                                  (button.isPrimary
+                                    ? this.decorateCSS("primary")
+                                    : this.decorateCSS("secondary"))
+                                }
+                              >
+                                {button.text}
+                              </button>
+                            </ComposerLink>
+                          );
+                      }
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          )
+            );
+          }
         )}
       </div>
     );
