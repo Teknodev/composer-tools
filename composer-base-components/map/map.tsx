@@ -24,13 +24,12 @@ interface ComposerMapProps {
 }
 
 const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: ComposerMapProps) => {
-
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
   const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(null);
   const overlayRef = useRef<any>(null);
-  const prevMarkersRef = useRef<Coordinate[]>([]); 
+  const prevMarkersRef = useRef<Coordinate[]>([]);
 
   const getCenter = (bounds: { north: number; south: number; east: number; west: number }) => {
     const lat = (bounds.north + bounds.south) / 2;
@@ -73,9 +72,6 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
       position: "absolute",
       zIndex: 1000,
       pointerEvents: "auto",
-      maxWidth: "500px", 
-      wordWrap: "break-word", 
-      whiteSpace: "normal",
     };
 
     class CustomOverlay extends google.maps.OverlayView {
@@ -169,7 +165,6 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
           onClick={() => handleMarkerClick(marker)}
         />
       ))}
-
     </Map>
   );
 });
