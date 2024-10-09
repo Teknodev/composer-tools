@@ -21,13 +21,14 @@ interface ComposerMapProps {
   className: string;
   defaultMarkerIcon?: string;
   styles?: google.maps.MapTypeStyle[];
+  customSelectedMarker?: Coordinate;
 }
 
-const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: ComposerMapProps) => {
+const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles, customSelectedMarker }: ComposerMapProps) => {
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
-  const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<Coordinate | null>(customSelectedMarker || null);
   const overlayRef = useRef<any>(null);
   const prevMarkersRef = useRef<Coordinate[]>([]);
 
@@ -140,6 +141,12 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
       map.setOptions({ styles });
     }
   }, [map, styles]);
+
+  useEffect(() => {
+    if (customSelectedMarker) {
+      setSelectedMarker(customSelectedMarker);
+    }
+  }, [customSelectedMarker]);
 
   const handleMarkerClick = (marker: Coordinate) => {
     const shouldSetMarkerNull = selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng;
