@@ -169,6 +169,20 @@ class HeaderComponent26 extends BaseHeader {
       value: "IoIosArrowDown",
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "enable_line",
+      displayer: "Enable Line",
+      value: true
+    })
+
+    this.addProp({
+      type: "boolean",
+      key: "enable_slider_animation",
+      displayer: "Enable Slider Animation",
+      value: true
+    })
+
     this.setComponentState("next", null);
   }
 
@@ -212,6 +226,10 @@ class HeaderComponent26 extends BaseHeader {
     };
 
     const slides = this.castToObject<Slide[]>("sliders");
+    const enableLine = this.getPropValue("enable_line");
+    const enableSliderAnimation = this.getPropValue("enable_slider_animation");
+    
+    const slidesLength = slides.length;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -235,7 +253,7 @@ class HeaderComponent26 extends BaseHeader {
                       ${this.decorateCSS(
                         this.getComponentState("next") === index ||
                           this.getComponentState("old") === index
-                          ? "shrink"
+                          ?  (enableSliderAnimation && "shrink")
                           : "",
                       )}`}
                     key={index}
@@ -253,7 +271,7 @@ class HeaderComponent26 extends BaseHeader {
                                 </h1>
                               </ComposerLink>
                             )}
-                            {titleExist && subtitleExist && (
+                            {enableLine && titleExist && subtitleExist && (
                               <span className={this.decorateCSS("line")} />
                             )}
                             {subtitleExist && (
@@ -273,7 +291,8 @@ class HeaderComponent26 extends BaseHeader {
                           />
                         </div>
                       )}
-                      <div
+                      {
+                        slidesLength > 1 && <div
                         className={`${this.decorateCSS("arrows")}
                         ${stickToBottomCondition}`}
                       >
@@ -290,6 +309,7 @@ class HeaderComponent26 extends BaseHeader {
                           <ComposerIcon name={this.getPropValue("down_icon")} />
                         </div>
                       </div>
+                      }       
                     </div>
                   </div>
                 );
