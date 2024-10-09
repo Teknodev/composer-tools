@@ -34,6 +34,12 @@ class Navbar2 extends BaseNavigator {
       value: "Title",
     });
     this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
+    });
+    this.addProp({
       type: "array",
       key: "itemList",
       displayer: "Item List",
@@ -116,45 +122,81 @@ class Navbar2 extends BaseNavigator {
         },
       ],
     });
-    this.state["componentProps"]["navActive"] = true;
+    this.setComponentState("navActive", false);
+    this.setComponentState("isAnimating", false);
+    this.setComponentState("isVisible", false);
   }
   getName(): string {
     return "Navbar 2";
   }
   navClick() {
-    this.setComponentState("navActive", !this.getComponentState("navActive"));
+    const isActive = this.getComponentState("navActive");
+    this.setComponentState("navActive", !isActive);
+
+    if (!isActive) {
+      this.setComponentState("isAnimating", true);
+      this.setComponentState("isVisible", true);
+    } else {
+      this.setComponentState("isAnimating", false);
+      setTimeout(() => {
+        this.setComponentState("isVisible", false);
+      }, 1000);
+    }
   }
+
+
   render() {
+    const title = this.castToString(this.getPropValue("title"));
+    const image = this.getPropValue("image");
+    const active = this.getComponentState("navActive");
     return (
       <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
-          <nav>
-            <h2 className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </h2>
-            <div
-              className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""
-                }`}
-            >
-              {this.castToObject<[]>("itemList").map(
-                (data: any, indexItemList: number) => {
-                  return (
-                    <ComposerLink
-                      key={indexItemList}
-                      path={data.value[1].value}
-                    >
-                      <h3 key={indexItemList}>{data.value[0].value}</h3>
-                    </ComposerLink>
-                  );
-                }
-              )}
+          <div className={this.decorateCSS("nav")}>
+            {image ? (
+              <div className={this.decorateCSS("image-container")}>
+                <img src={image} className={this.decorateCSS("image")} alt="Image" />
+              </div>
+            ) : (
+              title && (
+                <div className={this.decorateCSS("title")}>
+                  {title}
+                </div>
+              )
+            )}
+
+            <div className={this.decorateCSS("item-container")}>
+              <div
+                className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""
+                  }`}
+              >
+                {this.castToObject<[]>("itemList").map(
+                  (data: any, indexItemList: number) => {
+                    return (
+                      <ComposerLink
+                        path={data.value[1].value}
+                      >
+                        <div className={this.decorateCSS("item-title")} key={indexItemList}>{data.value[0].value}</div>
+                      </ComposerLink>
+                    );
+                  }
+                )}
+              </div>
             </div>
-          </nav>
-          <nav className={this.decorateCSS("navigator-mobile")}>
-            <div className={this.decorateCSS("navbar")}>
-              <h2 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h2>
+          </div>
+          <div className={this.decorateCSS("navigator-mobile")}>
+            <div className={image ? this.decorateCSS("navbar") : this.decorateCSS("navbar-without-logo")}>
+              {image ? (
+                <div className={this.decorateCSS("image-container")}>
+                  <img src={image} className={this.decorateCSS("image")} alt="Image" />
+                </div>
+              ) : (
+                title && (
+                  <div className={this.decorateCSS("title")}>
+                    {title}
+                  </div>
+                )
+              )}
               <ComposerIcon
 
                 propsIcon={{
@@ -169,27 +211,29 @@ class Navbar2 extends BaseNavigator {
                 name={this.getPropValue("icon")}
               />
             </div>
-            {this.getComponentState("navActive") && (
+            {this.getComponentState("isVisible") && (
               <div className={this.decorateCSS("navbar-child")}>
-                {this.castToObject<[]>("itemList").map(
-                  (data: any, indexItemList: number) => {
-                    return (
-                      <div className={this.decorateCSS("mobile-item")}>
-                        <ComposerLink
-                          key={indexItemList}
-                          path={data.value[1].value}
-
-                        >
-                          <h3 key={indexItemList}>{data.value[0].value}</h3>
-                        </ComposerLink>
-                      </div>
-
-                    );
-                  }
-                )}
+                {this.castToObject<[]>("itemList").map((data: any, indexItemList: number) => {
+                  const delay = indexItemList * 0.1;
+                  return (
+                    <div
+                      className={`${this.decorateCSS("mobile-item")} ${this.getComponentState("isAnimating")
+                        ? this.decorateCSS("open")
+                        : this.decorateCSS("close")
+                        }`}
+                      key={indexItemList}
+                    >
+                      <ComposerLink path={data.value[1].value}>
+                        <div className={this.decorateCSS("mobile-item-text")} style={{ animationDelay: `${delay}s` }}>{data.value[0].value}</div>
+                      </ComposerLink>
+                    </div>
+                  );
+                })}
               </div>
             )}
-          </nav>
+
+
+          </div>
         </div>
       </div>
     );
