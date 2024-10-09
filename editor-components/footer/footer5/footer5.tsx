@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Footer5Page extends BaseFooter {
   constructor(props?: any) {
@@ -9,9 +10,10 @@ class Footer5Page extends BaseFooter {
     this.addProp({
       type: "image",
       key: "footer-logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4b552057bdf002c29938a?alt=media&timestamp=1692710207706",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4b552057bdf002c29938a?alt=media&timestamp=1692710207706",
       displayer: "Footer Logo",
-    })
+    });
     this.addProp({
       type: "array",
       key: "footerInfos",
@@ -21,34 +23,34 @@ class Footer5Page extends BaseFooter {
           type: "string",
           key: "footerInfoTitle",
           displayer: "Footer Info Title",
-          value: "Office: (623) 680-4899"
+          value: "Office: (623) 680-4899",
         },
         {
           type: "string",
           key: "footerInfoTitle",
           displayer: "Footer Info Title",
-          value: "Fax: (623) 680-4899"
+          value: "Fax: (623) 680-4899",
         },
         {
           type: "string",
           key: "footerInfoTitle",
           displayer: "Footer Info Title",
-          value: "1606 W. Whispering Wind Dr. Suite 2"
+          value: "1606 W. Whispering Wind Dr. Suite 2",
         },
         {
           type: "string",
           key: "footerInfoTitle",
           displayer: "Footer Info Title",
-          value: "ROC B-3 242965"
+          value: "ROC B-3 242965",
         },
         {
           type: "string",
           key: "footerInfoTitle",
           displayer: "Footer Info Title",
-          value: "ROC KA 291558"
+          value: "ROC KA 291558",
         },
-      ]
-    })
+      ],
+    });
     this.addProp({
       type: "array",
       key: "footerSocials",
@@ -63,15 +65,15 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerSocialIconLink",
               displayer: "Footer Social Icon Link",
-              value: ""
+              value: "",
             },
             {
-              type: "image",
+              type: "icon",
               key: "footerInfoSocialIcon",
               displayer: "Footer Info Social Icon",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299694?alt=media&timestamp=1692713363046"
+              value: "BsLinkedin",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -82,15 +84,15 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerSocialIconLink",
               displayer: "Footer Social Icon Link",
-              value: ""
+              value: "",
             },
             {
-              type: "image",
+              type: "icon",
               key: "footerInfoSocialIcon",
               displayer: "Footer Info Social Icon",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299693?alt=media&timestamp=1692713363046"
+              value: "FaInstagramSquare",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -101,31 +103,30 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerSocialIconLink",
               displayer: "Footer Social Icon Link",
-              value: ""
+              value: "",
             },
             {
-              type: "image",
+              type: "icon",
               key: "footerInfoSocialIcon",
               displayer: "Footer Info Social Icon",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e4c1a6057bdf002c299692?alt=media&timestamp=1692713363046"
+              value: "FaFacebookSquare",
             },
-          ]
+          ],
         },
-      ]
-    })
+      ],
+    });
 
     this.addProp({
       type: "string",
       key: "footerLinkSubTitle",
       displayer: "Footer Link Subtitle",
-      value: "Quick Links"
-    },)
+      value: "Quick Links",
+    });
     this.addProp({
       type: "array",
       key: "footerLinks",
       displayer: "Footer Links",
       value: [
-
         {
           type: "object",
           key: "footerLinkBox",
@@ -135,15 +136,15 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerLink",
               displayer: "Footer Link",
-              value: ""
+              value: "",
             },
             {
               type: "string",
               key: "footerLinkTitle",
               displayer: "Footer Link Title",
-              value: "Markets We Serve"
+              value: "Markets We Serve",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -154,15 +155,15 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerLink",
               displayer: "Footer Link",
-              value: ""
+              value: "",
             },
             {
               type: "string",
               key: "footerLinkTitle",
               displayer: "Footer Link Title",
-              value: "Subcontractors"
+              value: "Subcontractors",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -173,15 +174,15 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerLink",
               displayer: "Footer Link",
-              value: ""
+              value: "",
             },
             {
               type: "string",
               key: "footerLinkTitle",
               displayer: "Footer Link Title",
-              value: "Warrenty"
+              value: "Warrenty",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -192,15 +193,15 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerLink",
               displayer: "Footer Link",
-              value: ""
+              value: "",
             },
             {
               type: "string",
               key: "footerLinkTitle",
               displayer: "Footer Link Title",
-              value: "Testimonials"
+              value: "Testimonials",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -211,15 +212,15 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerLink",
               displayer: "Footer Link",
-              value: ""
+              value: "",
             },
             {
               type: "string",
               key: "footerLinkTitle",
               displayer: "Footer Link Title",
-              value: "Latest News"
+              value: "Latest News",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -230,19 +231,18 @@ class Footer5Page extends BaseFooter {
               type: "page",
               key: "footerLink",
               displayer: "Footer Link",
-              value: ""
+              value: "",
             },
             {
               type: "string",
               key: "footerLinkTitle",
               displayer: "Footer Link Title",
-              value: "Contact Us"
+              value: "Contact Us",
             },
-          ]
-
-        }
-      ]
-    })
+          ],
+        },
+      ],
+    });
     this.addProp({
       type: "object",
       key: "footerForm",
@@ -252,28 +252,28 @@ class Footer5Page extends BaseFooter {
           type: "string",
           key: "footerFormTitle",
           displayer: "Footer Form Title",
-          value: "Stay Connected"
+          value: "Stay Connected",
         },
         {
           type: "string",
           key: "footerFormPlaceholder",
           displayer: "Footer Form Placeholder",
-          value: "Type your email here"
+          value: "Type your email here",
         },
         {
           type: "string",
           key: "footerFormButton",
           displayer: "Footer Form Button",
-          value: "Join"
+          value: "Join",
         },
         {
           type: "page",
           key: "footerFormPage",
           displayer: "Footer Form Page",
-          value: ""
-        }
-      ]
-    })
+          value: "",
+        },
+      ],
+    });
     this.addProp({
       type: "object",
       key: "footerAboutUs",
@@ -283,30 +283,30 @@ class Footer5Page extends BaseFooter {
           type: "string",
           key: "footerAboutUsTitle",
           displayer: "Footer About Us Title",
-          value: "About Us"
+          value: "About Us",
         },
         {
           type: "string",
           key: "footerAboutUsText",
           displayer: "Footer About Us Text",
-          value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod eu lorem et ultricies. In porta lorem at dui semper porttitor. Nullam quis cursus dui. Cras tincidunt vehicula tellus eu facilisis. Donec nisi turpis, iaculis et arcu a, aliquet ultrices nisl. Nam in pharetra odio, ac blandit metus. Suspendisse potenti. Praesent elementum diam non orci cursus rutrum. Pellentesque condimentum ultrices dignissim. Sed a tempor ligula, vel luctus sapien. Mauris vehicula rutrum massa. Duis condimentum, ex quis ullamcorper rhoncus, erat libero tempor arcu, condimentum facilisis tellus lectus ut nunc. Pellentesque vitae faucibus diam. Vestibulum eu erat ex. Ut justo neque, varius aliquet erat vel, scelerisque convallis lacus. Mauris semper lorem mauris, sed dignissim eros consectetur nec."
-        }
-      ]
-    })
+          value:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod eu lorem et ultricies. In porta lorem at dui semper porttitor. Nullam quis cursus dui. Cras tincidunt vehicula tellus eu facilisis. Donec nisi turpis, iaculis et arcu a, aliquet ultrices nisl. Nam in pharetra odio, ac blandit metus. Suspendisse potenti. Praesent elementum diam non orci cursus rutrum. Pellentesque condimentum ultrices dignissim. Sed a tempor ligula, vel luctus sapien. Mauris vehicula rutrum massa. Duis condimentum, ex quis ullamcorper rhoncus, erat libero tempor arcu, condimentum facilisis tellus lectus ut nunc. Pellentesque vitae faucibus diam. Vestibulum eu erat ex. Ut justo neque, varius aliquet erat vel, scelerisque convallis lacus. Mauris semper lorem mauris, sed dignissim eros consectetur nec.",
+        },
+      ],
+    });
     this.addProp({
       type: "string",
       key: "footer-bottom-text",
       value: "© 2021 HQ Construction LLC. All Rights Reserved.",
       displayer: "Footer Text",
     });
-
   }
 
   getName(): string {
     return "Footer 5";
   }
 
-  render() {    
+  render() {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -316,32 +316,62 @@ class Footer5Page extends BaseFooter {
                 <img src={this.getPropValue("footer-logo")} alt="logo" />
               </div>
               <div className={this.decorateCSS("footer-infos")}>
-                {this.castToObject<[]>("footerInfos").map((info: any, index: number) => (
-                  <div className={this.decorateCSS("footer-info-row")} key={index}>
-                    <p className={this.decorateCSS("info.value")}>{info.value}</p>
-                  </div>
-                ))}
+                {this.castToObject<[]>("footerInfos").map(
+                  (info: any, index: number) => (
+                    <div
+                      className={this.decorateCSS("footer-info-row")}
+                      key={index}
+                    >
+                      <p className={this.decorateCSS("info.value")}>
+                        {info.value}
+                      </p>
+                    </div>
+                  )
+                )}
               </div>
               <div className={this.decorateCSS("social-icons")}>
-                {this.castToObject<[]>("footerSocials").map((social: any, index: number) => (
-                  <div className={this.decorateCSS("social-icon-row")} key={index}>
-                    <ComposerLink path={social.footerSocialIconLink}>
-                      <img src={social.footerInfoSocialIcon} alt="social-icon" />
-                    </ComposerLink>
-                  </div>
-                ))}
+                {this.castToObject<[]>("footerSocials").map(
+                  (social: any, index: number) => (
+                    <div
+                      className={this.decorateCSS("social-icon-row")}
+                      key={index}
+                    >
+                      <ComposerLink path={social.footerSocialIconLink}>
+                        <ComposerIcon
+                          propsIcon={{
+                            className: this.decorateCSS("footerSocialIconBox"),
+                          }}
+                          name={social.footerInfoSocialIcon}
+                        />
+                        {/* <img
+                          src={social.footerInfoSocialIcon}
+                          alt="social-icon"
+                        /> */}
+                      </ComposerLink>
+                    </div>
+                  )
+                )}
               </div>
             </div>
             <div className={this.decorateCSS("footer-center")}>
               <div className={this.decorateCSS("footer-links")}>
-                <h2 className={this.decorateCSS("footerLinks")}>{this.getPropValue("footerLinkSubTitle")}</h2>
-                {this.castToObject<any>("footerLinks").map((link: any, index: number) => (
-                  <div className={this.decorateCSS("footer-link-row")} key={index}>
-                    <ComposerLink path={link.footerLink}>
-                      <p className={this.decorateCSS("link-value1")}>{link.footerLinkTitle}</p>
-                    </ComposerLink>
-                  </div>
-                ))}
+                <h2 className={this.decorateCSS("footerLinks")}>
+                  {this.getPropValue("footerLinkSubTitle")}
+                </h2>
+                {this.castToObject<any>("footerLinks").map(
+                  (link: any, index: number) => (
+                    <div
+                      className={this.decorateCSS("footer-link-row")}
+                      key={index}
+                    >
+                      <ComposerLink path={link.footerLink}>
+                        <p className={this.decorateCSS("link-value1")}>
+                          {link.footerLinkTitle}
+                        </p>
+                      </ComposerLink>
+                    </div>
+                  )
+                )}
               </div>
             </div>
             <div className={this.decorateCSS("footer-right")}>
@@ -350,11 +380,18 @@ class Footer5Page extends BaseFooter {
                   {this.castToObject<any>("footerForm").footerFormTitle}
                 </h2>
                 <div className={this.decorateCSS("input-box")}>
-                  <input type="text" placeholder={this.castToString(this.castToObject<any>("footerForm").footerFormPlaceholder)} />
-                  <ComposerLink path={
-                    this.castToObject<any>("footerForm").footerFormPage
-                  }>
-                    <button>{this.castToObject<any>("footerForm").footerFormButton}</button>
+                  <input
+                    type="text"
+                    placeholder={this.castToString(
+                      this.castToObject<any>("footerForm").footerFormPlaceholder
+                    )}
+                  />
+                  <ComposerLink
+                    path={this.castToObject<any>("footerForm").footerFormPage}
+                  >
+                    <button>
+                      {this.castToObject<any>("footerForm").footerFormButton}
+                    </button>
                   </ComposerLink>
                 </div>
               </div>
@@ -369,7 +406,9 @@ class Footer5Page extends BaseFooter {
             </div>
           </div>
           <div className={this.decorateCSS("bottom")}>
-            <p className={this.decorateCSS("footer-bottom-text")}>{this.getPropValue("footer-bottom-text")}</p>
+            <p className={this.decorateCSS("footer-bottom-text")}>
+              {this.getPropValue("footer-bottom-text")}
+            </p>
           </div>
         </div>
       </div>

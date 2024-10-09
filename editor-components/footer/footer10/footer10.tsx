@@ -2,6 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer10.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Footer10Page extends BaseFooter {
   constructor(props?: any) {
@@ -13,10 +14,10 @@ class Footer10Page extends BaseFooter {
       value: "© 2022 Dental Excellence Turkey | ",
     });
     this.addProp({
-        type: "page",
-        key: "ref-page",
-        displayer: "Referral Url",
-        value: "https://www.google.com/"
+      type: "page",
+      key: "ref-page",
+      displayer: "Referral Url",
+      value: "https://www.google.com/",
     });
     this.addProp({
       type: "color",
@@ -25,16 +26,17 @@ class Footer10Page extends BaseFooter {
       value: "#212832",
     });
     this.addProp({
-        type: "string",
-        key: "ref-text",
-        displayer: "Referral Text",
-        value: "Privacy Policy"
+      type: "string",
+      key: "ref-text",
+      displayer: "Referral Text",
+      value: "Privacy Policy",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "The information contained in the site is for providing support. It is not a substitute for the doctors to examine the patient for medical purposes, to make a diagnosis. This information should not be used in the diagnosis and treatment of disease.",
+      value:
+        "The information contained in the site is for providing support. It is not a substitute for the doctors to examine the patient for medical purposes, to make a diagnosis. This information should not be used in the diagnosis and treatment of disease.",
     });
 
     this.addProp({
@@ -48,10 +50,9 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
-              value:
-                "https://totalpng.com//public/uploads/preview/facebook-grey-logo-png-hd-copy-11656657462jfylzawrgd.png",
+              value: "FaFacebook",
               displayer: "Icon",
             },
             {
@@ -68,10 +69,9 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
-              value:
-                "https://totalpng.com//public/uploads/preview/youtube-grey-logo-png-hd-copy-11656657528pafryryqkv.png",
+              value: "TfiYoutube",
               displayer: "Icon",
             },
             {
@@ -88,10 +88,9 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
-              value:
-                "https://totalpng.com//public/uploads/preview/vimeo-grey-logo-png-hd-copy-11656657514xbjrlcikez.png",
+              value: "FaTwitter",
               displayer: "Icon",
             },
             {
@@ -108,10 +107,9 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
-              value:
-                "https://totalpng.com//public/uploads/preview/instagram-grey-logo-png-hd-copy-11656657483bsurpsft3i.png",
+              value: "FaInstagram",
               displayer: "Icon",
             },
             {
@@ -130,8 +128,8 @@ class Footer10Page extends BaseFooter {
   }
   render() {
     const styling = {
-      backgroundColor: this.getPropValue("backgroundColor")
-    }
+      backgroundColor: this.getPropValue("backgroundColor"),
+    };
     return (
       <div className={this.decorateCSS("container")} style={styling}>
         <div className={this.decorateCSS("max-content")}>
@@ -139,18 +137,24 @@ class Footer10Page extends BaseFooter {
             <div className={this.decorateCSS("top-content")}>
               <span className={this.decorateCSS("top-text")}>
                 {this.getPropValue("top-text")}
-                <a href={this.getPropValue("ref-page")}>{this.getPropValue("ref-text")}</a>
+                <a href={this.getPropValue("ref-page")}>
+                  {this.getPropValue("ref-text")}
+                </a>
               </span>
               <div className={this.decorateCSS("icons-div")}>
                 {this.getPropValue("icons").map((icon: any, index: number) => {
                   return (
                     <ComposerLink path={icon.value[1].value}>
-                      <img
+                      <ComposerIcon
+                        propsIcon={{ className: this.decorateCSS("item") }}
+                        name={icon.value[0].value}
+                      />
+                      {/* <img
                         src={icon.value[0].value}
                         width={50}
                         height={50}
                         alt="icon-svg"
-                      />
+                      /> */}
                     </ComposerLink>
                   );
                 })}

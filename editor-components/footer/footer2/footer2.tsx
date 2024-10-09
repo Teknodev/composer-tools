@@ -2,6 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer2.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type IconsValues = {
   socialIcon: string;
@@ -52,10 +53,10 @@ class Footer2Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/87/87390.png",
+              value: "FaInstagram",
             },
             {
               type: "page",
@@ -71,10 +72,10 @@ class Footer2Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/44/44646.png",
+              value: "FaFacebook",
             },
             {
               type: "page",
@@ -90,10 +91,10 @@ class Footer2Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/733/733635.png",
+              value: "FaTwitter",
             },
             {
               type: "page",
@@ -289,7 +290,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value:"Pricing",
+                      value: "Pricing",
                     },
                     {
                       type: "page",
@@ -413,13 +414,25 @@ class Footer2Page extends BaseFooter {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("subscribe")}>
-              <img src={this.getPropValue("logo")} width={200} height={100} alt=""/>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
+              <img
+                src={this.getPropValue("logo")}
+                width={200}
+                height={100}
+                alt=""
+              />
+              <p className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </p>
               <div className={this.decorateCSS("social")}>
                 {this.castToObject<any[]>("social").map(
                   (item: IconsValues, indexSocial: number) => (
                     <ComposerLink key={indexSocial} path={item.socialLink}>
-                      <img src={item.socialIcon} width={20} height={20} alt=""/>
+                      <ComposerIcon
+                        propsIcon={{
+                          className: this.decorateCSS("socialIcon"),
+                        }}
+                        name={item.socialIcon}
+                      />
                     </ComposerLink>
                   )
                 )}
@@ -430,7 +443,9 @@ class Footer2Page extends BaseFooter {
                 (item: FooterValues, indexFooter: number) => (
                   <ul key={indexFooter} className={this.decorateCSS("list")}>
                     <li className={this.decorateCSS("title")}>
-                      <h2 className={this.decorateCSS("item-footerTitle")}>{item.footerTitle}</h2>
+                      <h2 className={this.decorateCSS("item-footerTitle")}>
+                        {item.footerTitle}
+                      </h2>
                     </li>
                     {item.footerText.map(
                       (v: FooterTextValues, indexFooterText: number) => (
@@ -447,7 +462,9 @@ class Footer2Page extends BaseFooter {
             </div>
           </div>
           <div className={this.decorateCSS("footer-bottom")}>
-            <h2 className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</h2>
+            <h2 className={this.decorateCSS("footerDescription")}>
+              {this.getPropValue("footerDescription")}
+            </h2>
           </div>
         </div>
       </div>

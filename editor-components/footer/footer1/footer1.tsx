@@ -5,6 +5,7 @@ import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer1.module.scss";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type IconsValues = {
   socialIcon: string;
@@ -79,10 +80,10 @@ class Footer1Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/87/87390.png",
+              value: "IoLogoInstagram",
             },
             {
               type: "page",
@@ -98,10 +99,10 @@ class Footer1Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/44/44646.png",
+              value: "FaFacebook",
             },
             {
               type: "page",
@@ -117,10 +118,10 @@ class Footer1Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/733/733635.png",
+              value: "FaTwitter",
             },
             {
               type: "page",
@@ -543,7 +544,9 @@ class Footer1Page extends BaseFooter {
               (item: FooterValues, indexFooter: number) => (
                 <ul key={indexFooter} className={this.decorateCSS("list")}>
                   <li className={this.decorateCSS("title")}>
-                    <h2 className={this.decorateCSS("item-footerTitle")}>{item.footerTitle}</h2>
+                    <h2 className={this.decorateCSS("item-footerTitle")}>
+                      {item.footerTitle}
+                    </h2>
                   </li>
                   {item.footerText.map(
                     (v: FooterTextValues, indexFooterText: number) => (
@@ -558,8 +561,12 @@ class Footer1Page extends BaseFooter {
               )
             )}
             <div className={this.decorateCSS("subscribe")}>
-              <h1 className={this.decorateCSS("subscriptionTitle")}>{this.getPropValue("subscriptionTitle")}</h1>
-              <p className={this.decorateCSS("subscription-description")}>{this.getPropValue("subscriptionDescription")}</p>
+              <h1 className={this.decorateCSS("subscriptionTitle")}>
+                {this.getPropValue("subscriptionTitle")}
+              </h1>
+              <p className={this.decorateCSS("subscription-description")}>
+                {this.getPropValue("subscriptionDescription")}
+              </p>
               <div className={this.decorateCSS("input")}>
                 <Formik
                   initialValues={{ message: "" }}
@@ -598,12 +605,18 @@ class Footer1Page extends BaseFooter {
               width={200}
               height={100}
             />
-            <h2 className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</h2>
+            <h2 className={this.decorateCSS("footerDescription")}>
+              {this.getPropValue("footerDescription")}
+            </h2>
             <div className={this.decorateCSS("social")}>
               {this.castToObject<any[]>("social").map(
                 (item: IconsValues, indexSocial: number) => (
                   <ComposerLink key={indexSocial} path={item.socialLink}>
-                    <img src={item.socialIcon} width={20} height={20} alt=""/>
+                    <ComposerIcon
+                      propsIcon={{ className: this.decorateCSS("socialIcon") }}
+                      name={item.socialIcon}
+                    />
+                    {/* <img src={item.socialIcon} width={20} height={20} alt=""/> */}
                   </ComposerLink>
                 )
               )}
