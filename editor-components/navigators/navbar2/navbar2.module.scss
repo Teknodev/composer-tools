@@ -170,6 +170,17 @@
       z-index: 20 !important;
       max-height: fit-content !important;
       padding-bottom:20px;
+      transition: all 3s ease-in-out; 
+      &.open {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      &.close {
+        opacity: 0;
+        transform: translateY(-100px);
+        transition: opacity 2s ease-in-out, transform 2s ease-in-out 2s;
+        animation-delay: 1s;
+      }
       .mobile-item {
         padding: 10px 0 !important;
         color: var(--composer-font-color-primary) !important;
@@ -231,6 +242,12 @@
           }
           .title{
             font-size: 1.8rem ;
+            font-weight: bold;
+            color: var(--composer-primary-color);
+            width: 100%;
+            margin: 0px;
+            max-width: 200px;
+            overflow: hidden;
           }
 
           .img-hamburger {
@@ -250,15 +267,15 @@
             }
           }
         }
-        .navbar-without-logo{
-          justify-content:flex-end;
-        }
       }
     }
   }
   @media only screen and (max-width: 400px) {
     .image-container{
       max-width: 100px !important ;
+      .image{
+        max-width: 100px !important;
+      }
     }
     .title{
       max-width: 100px !important;
