@@ -5,8 +5,8 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ISliderData = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
   image: string;
   flower_image: string;
   background_image: string;
@@ -14,7 +14,7 @@ type ISliderData = {
   button2: IButton;
 };
 type IButton = {
-  buttonText: string;
+  buttonText: JSX.Element;
   buttonUrl: string;
 };
 
@@ -264,78 +264,111 @@ class HeaderComponent24 extends BaseHeader {
         },
       ],
     });
+    this.setComponentState("previousIndex", -1);
+    this.setComponentState("currentIndex", 0);
   }
   getName(): string {
     return "Header-24";
   }
+
   render() {
+
     const settings = {
       dots: true,
       infinite: true,
-      speed: 500,
+      speed: 250,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+
+      beforeChange: (previous: number, current: number) => {
+        this.setComponentState("previousChange", previous);
+        this.setComponentState("currentChange", current);
+      },
+      afterChange: (previous: number, current: number) => {
+        setTimeout(() => {
+          this.setComponentState("previousChange", -1);
+          this.setComponentState("currentChange", -1);
+        }, 1000);
+      },
     };
 
     return (
       <div className={this.decorateCSS("container")}>
-          <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")}>
 
-        <div className={this.decorateCSS("wrapper")}>
-          <ComposerSlider
-            {...settings}
-            className={this.decorateCSS("carousel")}
-          >
-            {this.castToObject<ISliderData[]>("slider").map(
-              (item: ISliderData, index: number) => (
-                <div className={this.decorateCSS("item")} key={`key${index}`}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={item.background_image} alt={item.title} />
-                  </div>
-                  <div className={this.decorateCSS("max-contentt")}>
-                    <div className={this.decorateCSS("left")}>
-                      <div className={this.decorateCSS("content")}>
-                        <div className={this.decorateCSS("flower")}>
-                          <img src={item.flower_image} alt={item.title} />
+          <div className={this.decorateCSS("wrapper")}>
+            <ComposerSlider
+              {...settings}
+              className={this.decorateCSS("carousel")}>
+              {this.castToObject<ISliderData[]>("slider").map(
+                (item: ISliderData, index: number) => (
+
+                  <div className={this.decorateCSS("item")} key={`key${index}`}>
+                    {
+                      <>{console.log("index: ", index)}</>
+                    }
+                    {item.background_image && <div className={this.decorateCSS("background-image")}>
+                      <img src={item.background_image} alt={this.castToString(item.title)} />
+                    </div>}
+                    <div className={this.decorateCSS("main-content")}>
+                      {(item.flower_image ||
+                        this.castToString(item.title) ||
+                        this.castToString(item.description) ||
+                        this.castToString(item.button.buttonText) ||
+                        this.castToString(item.button2.buttonText)) &&
+                        <div className={this.decorateCSS("left")}>
+                          <div className={this.decorateCSS("content")}>
+                            {item.flower_image && <div className={`${this.decorateCSS("flower")}
+                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up")
+                              }`}>
+                              <img src={item.flower_image} alt={this.castToString(item.title)} />
+                            </div>}
+                            {this.castToString(item.title) && <div className={`${this.decorateCSS("title")}
+                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-2")}
+                            `}>
+                              {item.title}
+                            </div>}
+                            {this.castToString(item.description) && <div className={`${this.decorateCSS("description")} 
+                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-3")}`}>
+                              {item.description}
+                            </div>}
+                            {(this.castToString(item.button2.buttonText) || this.castToString(item.button.buttonText)) &&
+                              <div className={`${this.decorateCSS("buttons")}
+                              ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-4")}
+                              `}>
+                                {this.castToString(item.button.buttonText) &&
+                                  <ComposerLink
+                                    path={item.button.buttonUrl} className={this.decorateCSS("composer-link")}
+                                  >
+                                    <button className={this.decorateCSS("button")}>
+                                      {item.button.buttonText}
+                                    </button>
+                                  </ComposerLink>}
+                                {this.castToString(item.button2.buttonText) &&
+                                  <ComposerLink
+                                    path={item.button2.buttonUrl} className={this.decorateCSS("composer-link")}
+                                  >
+                                    <button className={this.decorateCSS("button")}>
+                                      {item.button2.buttonText}
+                                    </button>
+                                  </ComposerLink>}
+                              </div>}
+                          </div>
+                        </div>}
+                      {item.image && <div className={this.decorateCSS("right")}>
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <img src={item.image} alt={this.castToString(item.title)} className={this.decorateCSS("image")} />
                         </div>
-                        <div className={this.decorateCSS("title")}>
-                          {item.title}
-                        </div>
-                        <div className={this.decorateCSS("description")}>
-                          {item.description}
-                        </div>
-                        <div className={this.decorateCSS("buttons")}>
-                          <ComposerLink
-                            path={item.button.buttonUrl} className={this.decorateCSS("composer-link")}
-                          >
-                            <button className={this.decorateCSS("button")}>
-                              {item.button.buttonText}
-                            </button>
-                          </ComposerLink>
-                          <ComposerLink
-                            path={item.button2.buttonUrl} className={this.decorateCSS("composer-link")}
-                          >
-                            <button className={this.decorateCSS("button")}>
-                              {item.button2.buttonText}
-                            </button>
-                          </ComposerLink>
-                        </div>
-                      </div>
+                      </div>}
                     </div>
-                    <div className={this.decorateCSS("right")}>
-                      <div className={this.decorateCSS("image")}>
-                        <img src={item.image} alt={item.title} />
-                      </div>
-                    </div>
                   </div>
-                </div>
-              )
-            )}
-          </ComposerSlider>
+                )
+              )}
+            </ComposerSlider>
+          </div>
         </div>
-      </div>
       </div>
     );
   }
