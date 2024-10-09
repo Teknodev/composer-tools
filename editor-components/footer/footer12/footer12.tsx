@@ -230,9 +230,6 @@ class Footer12Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "image-emoji-list",
-      additionalParams: {
-        maxElementCount: 5,
-      },
       displayer: "İmage List",
       value: [
         {
@@ -323,10 +320,7 @@ class Footer12Page extends BaseFooter {
           <div className={this.decorateCSS("section")}>
             <div className={this.decorateCSS("main-content")}>
               {(logoImage || this.castToString(logoText)) &&
-                <div className={this.decorateCSS("image-wrapper")}
-                  style={{
-                    width: `calc(${widthPercentage}% - 20px)`,
-                  }}>
+                <div className={this.decorateCSS("image-wrapper")}>
                   {logoImage ? (
                     <ComposerLink path={imageUrl}>
                       <img src={logoImage} className={this.decorateCSS("img")} alt="" />
@@ -369,11 +363,7 @@ class Footer12Page extends BaseFooter {
                   </div>}
               </div>
               {imagesAndEmojis.length > 0 && <div
-                className={this.decorateCSS("image-emoji-wrapper")}
-                style={{
-                  width: `calc(${widthPercentage}% - 20px)`,
-                }}
-              >
+                className={this.decorateCSS("image-emoji-wrapper")}>
                 {imagesAndEmojis.map((value: ImageOrEmoji, index: number) => (
                   <>
                     {
