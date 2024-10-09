@@ -11,16 +11,9 @@ type PreSufFix = {
 };
 
 export type TypeLocation = {
-  markers: {
-    lat: number;
-    lng: number;
-    icon?: {
-      url: string;
-      width?: number;
-      height?: number;
-    };
-    address?: string;
-  }[];
+  lat: number;
+  lng: number;
+
 };
 
 type GetPropValueProperties = {
