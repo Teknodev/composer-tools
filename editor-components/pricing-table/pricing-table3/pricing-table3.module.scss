@@ -1,24 +1,19 @@
-.container {
+.container,
+.container-alternate {
   width: 100%;
-  padding: 20px 50px;
   background: var(--composer-html-background);
   color: var(--composer-font-color-primary);
-
   .max-content {
     max-width: var(--composer-content-width);
     margin: 0 auto;
   }
 }
-.container-alternate {
-  width: 100%;
-  padding: 57px 50px 42px;
-  background: var(--composer-html-background);
-  color: var(--composer-font-color-primary);
 
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
-  }
+.container {
+  padding: 20px 50px;
+}
+.container-alternate {
+  padding: 57px 50px 42px;
 }
 
 .wrapper {
@@ -28,18 +23,16 @@
   gap: 2em;
 }
 
-.featured {
+.featured,
+.featured-alternate {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: calc(100% / 2);
-  padding: 0 4em 4em 0;
   > h1,
   p {
     margin: 0;
   }
-
   .title {
     font-weight: 600;
     font-size: 3.5em;
@@ -47,54 +40,33 @@
     margin-bottom: 20px;
     letter-spacing: -1px;
   }
-
   .description {
     font-size: 1.5em;
     margin-bottom: 20px;
   }
 }
-
+.featured {
+  width: calc(100% / 2);
+  padding: 0 4em 4em 0;
+}
 .featured-alternate {
   width: 100%;
+}
+
+.cards-div,
+.cards-div-alternate {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  > h1,
-  p {
-    margin: 0;
-  }
-
-  .title {
-    font-weight: 600;
-    font-size: 3.5em;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
-  }
-
-  .description {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-  }
-  .featured-button-container {
-    margin-bottom: 0;
-  }
+  align-items: center;
+  gap: 0;
 }
 
 .cards-div {
   width: 65%;
-  display: flex;
   justify-content: end;
-  align-items: center;
-  gap: 0;
 }
 .cards-div-alternate {
   width: 100%;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 0;
 }
 
 .card-container {
@@ -259,26 +231,14 @@
   .wrapper {
     flex-direction: column;
 
-    .featured {
-      width: 100%;
-      gap: 2em;
-      padding-right: 0;
-    }
-
+    .featured,
     .featured-alternate {
       width: 100%;
       gap: 2em;
       padding-right: 0;
     }
 
-    .cards-div {
-      width: 100%;
-
-      .card-container {
-        width: 100% !important;
-      }
-    }
-
+    .cards-div,
     .cards-div-alternate {
       width: 100%;
 
@@ -290,22 +250,12 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    padding: 20px 30px;
-  }
+  .container,
   .container-alternate {
     padding: 20px 30px;
   }
-  .featured {
-    width: 100%;
-    padding: 0;
-    align-items: center;
 
-    .button {
-      justify-content: end;
-    }
-  }
-
+  .featured,
   .featured-alternate {
     width: 100%;
     padding: 0;
@@ -316,20 +266,7 @@
     }
   }
 
-  .cards-div {
-    width: 90%;
-    flex-direction: column;
-    gap: 2em;
-
-    .card-container {
-      width: 100%;
-    }
-
-    .card-container.active {
-      scale: 1;
-    }
-  }
-
+  .cards-div,
   .cards-div-alternate {
     width: 90%;
     flex-direction: column;
@@ -346,22 +283,18 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .container {
-    padding: 20px 30px;
-  }
+  .container,
   .container-alternate {
     padding: 20px 30px;
   }
 
-  .featured {
-    align-items: flex-start;
-  }
-
+  .featured,
   .featured-alternate {
     align-items: flex-start;
   }
 
-  .cards-div {
+  .cards-div,
+  .cards-div-alternate {
     width: 90%;
     flex-direction: column;
     gap: 2em;
