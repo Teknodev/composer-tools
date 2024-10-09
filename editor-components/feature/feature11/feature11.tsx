@@ -3,10 +3,10 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature11.module.scss";
 
 type IMessages = {
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
   image: string;
-  buttonText: string;
+  buttonText: JSX.Element;
 };
 class Feature11 extends BaseFeature {
   constructor(props?: any) {
@@ -78,11 +78,11 @@ class Feature11 extends BaseFeature {
     });
 
     this.addProp({
-      type : "boolean",
-      key : "borderThickness",
-      displayer : "Border Thickness",
-      value : false,
-    })
+      type: "boolean",
+      key: "borderThickness",
+      displayer: "Border Thickness",
+      value: false,
+    });
 
     this.addProp({
       type: "number",
@@ -97,26 +97,44 @@ class Feature11 extends BaseFeature {
   }
 
   render() {
+
+    const list = this.castToObject<IMessages[]>("message-bar-card");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {this.castToObject<IMessages[]>("message-bar-card").map(
-              (message: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div
-                className={`${this.decorateCSS("message")} ${this.getPropValue("borderThickness") == true ? this.decorateCSS("setBorderThickness") : ""}`}
-                key={index}>
-                  <div className={this.decorateCSS("title")}>
-                    <h3 className={this.decorateCSS("message-title")}>{message.title}</h3>
-                  </div>
-                  <p className={this.decorateCSS("long-text")}>{message.description}</p>
-                </div>
-                </div>
-              )
-            )}
+            {list.length > 0 &&
+              list.map(
+                (message: IMessages, index: number) => {
+
+                  const isTitleExist = this.castToString(message.title);
+                  const isDescExist = this.castToString(message.description);
+
+                  if (isTitleExist || isDescExist)
+                    return (
+                      <div
+                        key={index}
+                        className={this.decorateCSS("card-item-count")} style={{
+                          width: 90 / this.getPropValue("itemCount") + "%",
+                        }}
+                      >
+                        <div
+                          className={`${this.decorateCSS("message")} ${this.getPropValue("borderThickness") == true ? this.decorateCSS("setBorderThickness") : ""}`}
+                        >
+                          {isTitleExist &&
+                            <div className={this.decorateCSS("title")}>
+                              <h3 className={this.decorateCSS("message-title")}>{message.title}</h3>
+                            </div>
+                          }
+                          {isDescExist &&
+                            <p className={this.decorateCSS("long-text")}>{message.description}</p>
+                          }
+                        </div>
+                      </div>
+                    );
+                }
+              )}
           </div>
         </div>
       </div>
