@@ -280,17 +280,14 @@ class Header1 extends BaseHeader {
   };
 
   getStyle = (text: string, active: boolean) => {
-
     if (!active) {
       return {
         animation: "none"
       }
     }
-    const widthOfText = text.length * 700;
-    const containerWidth = window.innerWidth;
-    const speedFactor = 5;
-    const duration = ((widthOfText / containerWidth) * speedFactor) + "s";
-
+    const widthOfText = text.length;
+    const speedFactor = 1.5;
+    const duration = ((widthOfText) * speedFactor) + "s";
     let style: React.CSSProperties = {
       animationDuration: duration
     };
@@ -347,7 +344,7 @@ class Header1 extends BaseHeader {
                       </div>
 
                       <div className={this.decorateCSS("content-container")}>
-                        <div className={this.decorateCSS("image-wrapper")}>
+                        <div className={item.image ? this.decorateCSS("image-wrapper") : this.decorateCSS("without-image-wrapper")}>
                           <h1 className={this.decorateCSS("subtitle")}>
                             {item.subtitle}
                           </h1>
@@ -372,7 +369,7 @@ class Header1 extends BaseHeader {
                           </h1>
                         </div>
 
-                        <h1 className={this.decorateCSS("title")}>
+                        <h1 className={item.image ? this.decorateCSS("title") : this.decorateCSS("without-image-title")}>
                           {item.title}
                         </h1>
                       </div>

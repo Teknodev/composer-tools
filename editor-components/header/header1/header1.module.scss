@@ -139,12 +139,13 @@
         display: flex;
         align-items: center;
         position: relative;
-        .image-wrapper{
+        .image-wrapper,.without-image-wrapper{
           display: flex;
           align-items: flex-start;
           justify-content: flex-end;
           position: relative;
           width: 90%;
+          min-height: 40vh;
           .subtitle {
             position: absolute;
             color:white;
@@ -213,7 +214,13 @@
           }
 
         }
-        .title {
+        .without-image-wrapper{
+          min-height: 50vh;
+          .subtitle {
+            width: 50%;
+          }
+        }
+        .title, .without-image-title {
           position: absolute;
           font-weight: 400;
           font-size:calc(9rem + 3vh); 
@@ -232,6 +239,16 @@
             }
           }      
         }   
+        .without-image-title{
+          >blinkpage{
+            >p{
+              display: flex;
+              overflow: visible; 
+              text-overflow: none; 
+              flex-wrap: wrap;
+            }
+          }  
+        }
       }
       }
       .dots {
@@ -283,12 +300,6 @@
     }
   }
 }
-@media screen and (max-width: 1000px) {
-  .title{
-    font-size: 9rem !important;
-  }
-
-}
 @media screen and (max-width: 800px) {
   .container{
     .image-container-2{
@@ -318,7 +329,7 @@
             display: flex;
             align-items: center;
             width: 80%;
-            .image-wrapper{
+            .image-wrapper, .without-image-wrapper{
               width: 100%;
               .image{
                 display: flex ;
@@ -335,7 +346,13 @@
                 left:-170px;
               }
             }
-            .title {
+            .without-image-wrapper{
+              .subtitle{
+                left: -3rem !important;
+                width: 50vw !important;
+              }
+            }
+            .title, .without-image-title {
               font-size: 8.75rem;
               width: 100%;
               max-height: 80%;
@@ -386,7 +403,7 @@
             .image{
               transform: scale(1) !important;
             }
-            .title {
+            .title, .without-image-title {
               font-size: 5rem !important;
               left: auto !important;
               width: 100% !important;
