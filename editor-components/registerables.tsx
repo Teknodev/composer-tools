@@ -203,7 +203,10 @@ import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import NavbarComponent9 from "./navigators/navbar9/navbar9";
-import ImageGalleryCompanent1 from "./Image_gallery/image_gallery_1/image-gallery1";
+import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
+import ImageGalleryCompanent5 from "./Image_gallery/image_gallery_5/image-gallery5";
+import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
+import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
@@ -211,6 +214,7 @@ import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
+    new NotificationModal1(),
     new DownloadComponent1(),
     new DownloadComponent2(),
     new DownloadComponent3(),
@@ -340,7 +344,9 @@ function Registerables(composer: ComponentsRegistery) {
     new NavbarComponent7(),
     new NavbarComponent8(),
     new NavbarComponent9(),
-    new ImageGalleryCompanent1(),
+    new ImageGalleryComponent1(),
+    new ImageGalleryCompanent5(),
+    new ImageGalleryComponent4(),
     new FeatureComponent1(),
     new FeatureComponent2(),
     new FeatureComponent3(),
