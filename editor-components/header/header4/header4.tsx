@@ -65,12 +65,6 @@ class Header4 extends BaseHeader {
       ],
     });
     this.addProp({
-      type: "boolean",
-      key: "card-anm",
-      displayer: "Card Animation",
-      value: true
-    });
-    this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
@@ -103,8 +97,6 @@ class Header4 extends BaseHeader {
   render() {
     let card: any = this.castToObject("card");
     const imageAnm = this.getPropValue("image-anm");
-    const cardAnm = this.getPropValue("card-anm");
-    const buttonIcon = this.getPropValue("buttonIcon");
 
     return (
       <div className={this.decorateCSS("container")} onScroll={this.handleScroll}>
@@ -133,7 +125,7 @@ class Header4 extends BaseHeader {
             this.castToString(card.note)) && (
               <div className={this.decorateCSS("card")}
                 style={
-                  cardAnm ? {
+                  imageAnm ? {
                     transform: `translate(0%, -${this.getComponentState("scrollY") / 50}%) translate3d(0px, 0px, 0px)`
                   } : {}
                 }>
