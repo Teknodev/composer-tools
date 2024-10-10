@@ -56,7 +56,7 @@ class LocationComponent6 extends Location {
     this.addProp({
       type: "boolean",
       key: "disabled",
-      displayer: "Background Enabled",
+      displayer: "Badge Background Disabled",
       value: false,
     });
 
