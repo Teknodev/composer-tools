@@ -203,6 +203,7 @@ import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import NavbarComponent9 from "./navigators/navbar9/navbar9";
+import HTTP_CODES1 from "./http_codes/http_codes1/http_codes1";
 import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import ImageGalleryCompanent5 from "./Image_gallery/image_gallery_5/image-gallery5";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
@@ -212,6 +213,7 @@ import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
 import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
+
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     new NotificationModal1(),
@@ -427,6 +429,7 @@ function Registerables(composer: ComponentsRegistery) {
     new NotificationModal2(),
     new SubscriptionModal(),
     new LocationComponent1(),
+    new HTTP_CODES1(),
   ]);
 }
 
