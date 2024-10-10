@@ -15,7 +15,13 @@ interface SliderItem {
   description: JSX.Element;
   image: string;
   button: ButtonItem;
+
 };
+
+interface Item {
+  item: Item[];
+
+}
 
 interface ButtonItem {
   buttonText: JSX.Element;
@@ -59,168 +65,162 @@ class Header25 extends BaseHeader {
       value: [
         {
           type: "object",
-          displayer: "Slider Item",
-          key: "sliderItem",
+          displayer: "Item",
+          key: "item",
           value: [
             {
-              type: "object",
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "CONCERT HALL IN NEWYORK",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Modern Hotel is the architecture of a new generation, a building that exists not only in the dimension of space, but also in the dimension of time and communication",
+            },
+            {
+              type: "image",
               displayer: "Item",
-              key: "item",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Title",
-                  key: "title",
-                  value: "CONCERT HALL IN NEWYORK",
-                },
-                {
-                  type: "string",
-                  displayer: "Description",
-                  key: "description",
-                  value:
-                    "Modern Hotel is the architecture of a new generation, a building that exists not only in the dimension of space, but also in the dimension of time and communication",
-                },
-                {
-                  type: "image",
-                  displayer: "Item",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b0?alt=media&timestamp=1719483639150",
-                },
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "LOOK MORE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "next_icon",
-                      displayer: "Next icon",
-                      value: "FaArrowRightLong",
-                    }
-                  ],
-                },
-              ],
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b0?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
-              displayer: "Item",
-              key: "item",
+              key: "button",
+              displayer: "Button",
               value: [
                 {
                   type: "string",
-                  displayer: "Title",
-                  key: "title",
-                  value: "EXHIBITION CENTER IN BOSTON",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "LOOK MORE",
                 },
                 {
-                  type: "string",
-                  displayer: "Description",
-                  key: "description",
-                  value:
-                    "Modern Hotel is the architecture of a new generation, a building  that exists not only in the dimension of space, but also in the dimension of time and communication.",
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
                 },
                 {
-                  type: "image",
-                  displayer: "Item",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150",
-                },
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "Read More",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "next_icon",
-                      displayer: "Next icon",
-                      value: "FaArrowRightLong",
-                    }
-                  ],
-                },
+                  type: "icon",
+                  key: "next_icon",
+                  displayer: "Next icon",
+                  value: "FaArrowRightLong",
+                }
               ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "EXHIBITION CENTER IN BOSTON",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Modern Hotel is the architecture of a new generation, a building  that exists not only in the dimension of space, but also in the dimension of time and communication.",
+            },
+            {
+              type: "image",
+              displayer: "Item",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150",
             },
             {
               type: "object",
-              displayer: "Item",
-              key: "item",
+              key: "button",
+              displayer: "Button",
               value: [
                 {
                   type: "string",
-                  displayer: "Title",
-                  key: "title",
-                  value: "MODERN HOTEL IN LONDON",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Read More",
                 },
                 {
-                  type: "string",
-                  displayer: "Description",
-                  key: "description",
-                  value:
-                    "Exhibition Center is the architecture of a new generation, a building that exists not only in the dimension of space, but also in the dimension of time and communication.  ",
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
                 },
                 {
-                  type: "image",
-                  displayer: "Item",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b2?alt=media&timestamp=1719483639150",
-                },
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "Read More",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "next_icon",
-                      displayer: "Next icon",
-                      value: "FaArrowRightLong",
-                    }
-                  ],
-                },
+                  type: "icon",
+                  key: "next_icon",
+                  displayer: "Next icon",
+                  value: "FaArrowRightLong",
+                }
               ],
             },
-          ]
-        }
-      ],
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "MODERN HOTEL IN LONDON",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value:
+                "Exhibition Center is the architecture of a new generation, a building that exists not only in the dimension of space, but also in the dimension of time and communication.  ",
+            },
+            {
+              type: "image",
+              displayer: "Item",
+              key: "image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b2?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "object",
+              key: "button",
+              displayer: "Button",
+              value: [
+                {
+                  type: "string",
+                  key: "buttonText",
+                  displayer: "Button Text",
+                  value: "Read More",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+                {
+                  type: "icon",
+                  key: "next_icon",
+                  displayer: "Next icon",
+                  value: "FaArrowRightLong",
+                }
+              ],
+            },
+          ],
+        },
+      ]
+
     });
 
     this.addProp({
@@ -353,191 +353,189 @@ class Header25 extends BaseHeader {
         }, 1200);
       },
     };
-
     const sliderItemObject = this.castToObject<SliderItem[]>("slider");
-    // console.log("sliderItemObject", this.castToString(sliderItemObject[0].title))
-
-
-
+    console.log("sliderItemObject", this.castToString(sliderItemObject[0].description))
     return (
+      <div>
 
-      <div className={this.decorateCSS("container")}>
-        {sliderItemObject && (
-          <ComposerSlider
-            {...settings}
-            className={this.decorateCSS("carousel")}
-            ref={this.getComponentState("slider-ref")}
-          >
-            {sliderItemObject.map((item: SliderItem, indexSlider: number) => (
-              <div className={this.decorateCSS("slider-images")} key={indexSlider}>
-                <img
-                  className={this.decorateCSS("slider-image")}
-                  src={item.image}
-                  alt=""
-                />
-              </div>
-            ))}
-          </ComposerSlider>
-        )}
-
-        <div className={this.decorateCSS("item")}>
-          <div className={this.decorateCSS("left-figure-container")}>
-            <div className={this.decorateCSS("top-figure")}>
-              <div className={this.decorateCSS("pagination")}>
-                <span className={this.decorateCSS("active-slide")}>
-                  {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
-                </span>
-                <sup className={this.decorateCSS("slide-count-power")}>
-                  <span className={this.decorateCSS("divider")}>/ </span>
-                  <span className={this.decorateCSS("slide-count")}>
-                    {sliderItemObject.length.toString().padStart(2, "0")}
-                  </span>
-                </sup>
-              </div>
-              <div className={this.decorateCSS("low-op-text")}>
-                <h1 className={this.decorateCSS("background-op-text")}>
-                  {this.getPropValue("background-text")}
-                </h1>
-              </div>
-            </div>
-            <div className={this.decorateCSS("bottom-figure")}>
-              <div className={this.decorateCSS("side-text")}>
-                <span className={this.decorateCSS("side-text-content")}>
-                  {this.getPropValue("side-text")}
-                </span>
-              </div>
-              {this.getPropValue("lineIsActive") && (
-                <div className={this.decorateCSS("line")}></div>
-              )}
-              <div className={this.decorateCSS("icons")}>
-                {this.getPropValue("icons").map((item: any, iconIndex: number) => (
-                  <ComposerLink path={item.getPropValue("navigate_icon")} key={iconIndex}>
-                    <ComposerIcon
-                      name={item.getPropValue("icon_name")}
-                      propsIcon={{
-                        className: `${this.decorateCSS("icon")}`,
-                        size: 20,
-                      }}
-                    />
-                  </ComposerLink>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {sliderItemObject.map((sliderItem: SliderItem, index: number) => {
-            const isActive = this.getComponentState("active-index") === index;
-            if (isActive && sliderItem) {
-              return (
-                <div
-                  className={`${this.decorateCSS("content-container")} ${!sliderItem.image ? this.decorateCSS("black-theme") : ""
-                    }`}
-                  key={index}
-                >
-                  <div className={this.decorateCSS("arrows")}>
-                    <div
-                      className={this.decorateCSS("prev-arrow")}
-                      onClick={() => {
-                        this.getComponentState("slider-ref").current.slickPrev();
-                      }}
-                    >
-                      <ComposerIcon
-                        name={this.getPropValue("prev_icon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS("arrow")}`,
-                          size: 20,
-                        }}
-                      />
-                      <span className={this.decorateCSS("arrow-text")}>
-                        {this.getPropValue("prev-arrow-text")}
-                      </span>
-                    </div>
-
-                    <div
-                      className={this.decorateCSS("next-arrow")}
-                      onClick={() => {
-                        this.getComponentState("slider-ref").current.slickNext();
-                      }}
-                    >
-                      <span className={this.decorateCSS("arrow-text")}>
-                        {this.getPropValue("next-arrow-text")}
-                      </span>
-                      <ComposerIcon
-                        name={this.getPropValue("next_icon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS("arrow")}`,
-                          size: 20,
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className={this.decorateCSS("layout")}>
-                    <div className={this.decorateCSS("content")}>
-                      {/* <div className={this.decorateCSS("title-container")}>
-                        <h1
-                          className={`${this.decorateCSS("title")} animate__animated ${this.getComponentState("titleAnimationClass")
-                            }`}
-                          onAnimationEnd={() => {
-                            this.handleAnimationEnd({
-                              animationState: "titleAnimationClass",
-                              startingAnimation: "animate__fadeInRight",
-                              endingAnimation: "animate__fadeOutDown",
-                            });
-                          }}
-                        >
-                          {this.castToString(sliderItem.title)}
-                        </h1>
-                      </div> */}
-
-                      {/* <p
-                        className={`${this.decorateCSS("description")} animate__animated ${this.getComponentState("descriptionAnimationClass")
-                          }`}
-                        onAnimationEnd={() => {
-                          this.handleAnimationEnd({
-                            animationState: "descriptionAnimationClass",
-                            startingAnimation: "animate__fadeInUp",
-                            endingAnimation: "animate__fadeOut",
-                          });
-                        }}
-                      >
-                        {this.castToString(sliderItem.description)}
-                      </p> */}
-                      <ComposerLink path={sliderItem.button.link}>
-                        <button
-                          className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
-                            "buttonAnimationClass"
-                          )}`}
-                          onAnimationEnd={() => {
-                            this.handleAnimationEnd({
-                              animationState: "buttonAnimationClass",
-                              startingAnimation: "animate__fadeInUp",
-                              endingAnimation: "animate__fadeOutDown",
-                            });
-                          }}
-                        >
-                          <span className={this.decorateCSS("button-text")}>
-                            {sliderItem.button.buttonText}
-                          </span>
-                          {/* <ComposerIcon
-                            name={sliderItem.button.next_icon}
-                            propsIcon={{
-                              className: ``,
-                              size: 10,
-                            }}
-                          /> */}
-                        </button>
-                      </ComposerLink>
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-            return null;
-          }
-          )}
-        </div>
       </div>
+      // <div className={this.decorateCSS("container")}>
+      //   {sliderItemObject && (
+      //     <ComposerSlider
+      //       {...settings}
+      //       className={this.decorateCSS("carousel")}
+      //       ref={this.getComponentState("slider-ref")}
+      //     >
+      //       {sliderItemObject.map((sliderItem: SliderItem, indexSlider: number) => (
+      //         <div className={this.decorateCSS("slider-images")} key={indexSlider}>
+      //           <img
+      //             className={this.decorateCSS("slider-image")}
+      //             src={sliderItem.item.image}
+      //             alt=""
+      //           />
+      //         </div>
+      //       ))}
+      //     </ComposerSlider>
+      //   )}
+
+      //   <div className={this.decorateCSS("item")}>
+      //     <div className={this.decorateCSS("left-figure-container")}>
+      //       <div className={this.decorateCSS("top-figure")}>
+      //         <div className={this.decorateCSS("pagination")}>
+      //           <span className={this.decorateCSS("active-slide")}>
+      //             {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
+      //           </span>
+      //           <sup className={this.decorateCSS("slide-count-power")}>
+      //             <span className={this.decorateCSS("divider")}>/ </span>
+      //             <span className={this.decorateCSS("slide-count")}>
+      //               {sliderItemObject.length.toString().padStart(2, "0")}
+      //             </span>
+      //           </sup>
+      //         </div>
+      //         <div className={this.decorateCSS("low-op-text")}>
+      //           <h1 className={this.decorateCSS("background-op-text")}>
+      //             {this.getPropValue("background-text")}
+      //           </h1>
+      //         </div>
+      //       </div>
+      //       <div className={this.decorateCSS("bottom-figure")}>
+      //         <div className={this.decorateCSS("side-text")}>
+      //           <span className={this.decorateCSS("side-text-content")}>
+      //             {this.getPropValue("side-text")}
+      //           </span>
+      //         </div>
+      //         {this.getPropValue("lineIsActive") && (
+      //           <div className={this.decorateCSS("line")}></div>
+      //         )}
+      //         <div className={this.decorateCSS("icons")}>
+      //           {this.getPropValue("icons").map((item: any, iconIndex: number) => (
+      //             <ComposerLink path={item.getPropValue("navigate_icon")} key={iconIndex}>
+      //               <ComposerIcon
+      //                 name={item.getPropValue("icon_name")}
+      //                 propsIcon={{
+      //                   className: `${this.decorateCSS("icon")}`,
+      //                   size: 20,
+      //                 }}
+      //               />
+      //             </ComposerLink>
+      //           ))}
+      //         </div>
+      //       </div>
+      //     </div>
+
+      //     {sliderItemObject.map((sliderItem: SliderItem, index: number) => {
+      //       const isActive = this.getComponentState("active-index") === index;
+      //       if (isActive && sliderItem) {
+      //         return (
+      // //           <div
+      // //             className={`${this.decorateCSS("content-container")} ${!sliderItem.item.image ? this.decorateCSS("black-theme") : ""
+      // //               }`}
+      // //             key={index}
+      // //           >
+      // //             <div className={this.decorateCSS("arrows")}>
+      // //               <div
+      // //                 className={this.decorateCSS("prev-arrow")}
+      // //                 onClick={() => {
+      // //                   this.getComponentState("slider-ref").current.slickPrev();
+      // //                 }}
+      // //               >
+      // //                 <ComposerIcon
+      // //                   name={this.getPropValue("prev_icon")}
+      // //                   propsIcon={{
+      // //                     className: `${this.decorateCSS("arrow")}`,
+      // //                     size: 20,
+      // //                   }}
+      // //                 />
+      // //                 <span className={this.decorateCSS("arrow-text")}>
+      // //                   {this.getPropValue("prev-arrow-text")}
+      // //                 </span>
+      // //               </div>
+
+      // //               <div
+      // //                 className={this.decorateCSS("next-arrow")}
+      // //                 onClick={() => {
+      // //                   this.getComponentState("slider-ref").current.slickNext();
+      // //                 }}
+      // //               >
+      // //                 <span className={this.decorateCSS("arrow-text")}>
+      // //                   {this.getPropValue("next-arrow-text")}
+      // //                 </span>
+      // //                 <ComposerIcon
+      // //                   name={this.getPropValue("next_icon")}
+      // //                   propsIcon={{
+      // //                     className: `${this.decorateCSS("arrow")}`,
+      // //                     size: 20,
+      // //                   }}
+      // //                 />
+      // //               </div>
+      // //             </div>
+
+      // //             <div className={this.decorateCSS("layout")}>
+      // //               <div className={this.decorateCSS("content")}>
+      // //                 <div className={this.decorateCSS("title-container")}>
+      // //                   <h1
+      // //                     className={`${this.decorateCSS("title")} animate__animated ${this.getComponentState("titleAnimationClass")
+      // //                       }`}
+      // //                     onAnimationEnd={() => {
+      // //                       this.handleAnimationEnd({
+      // //                         animationState: "titleAnimationClass",
+      // //                         startingAnimation: "animate__fadeInRight",
+      // //                         endingAnimation: "animate__fadeOutDown",
+      // //                       });
+      // //                     }}
+      // //                   >
+      // //                     {this.castToString(sliderItem.item.title)}
+      // //                   </h1>
+      // //                 </div>
+
+      // //                 <p
+      // //                   className={`${this.decorateCSS("description")} animate__animated ${this.getComponentState("descriptionAnimationClass")
+      // //                     }`}
+      // //                   onAnimationEnd={() => {
+      // //                     this.handleAnimationEnd({
+      // //                       animationState: "descriptionAnimationClass",
+      // //                       startingAnimation: "animate__fadeInUp",
+      // //                       endingAnimation: "animate__fadeOut",
+      // //                     });
+      // //                   }}
+      // //                 >
+      // //                   {this.castToString(sliderItem.item.description)}
+      // //                 </p>
+      // //                 <ComposerLink path={""}>
+      // //                   <button
+      // //                     className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
+      // //                       "buttonAnimationClass"
+      // //                     )}`}
+      // //                     onAnimationEnd={() => {
+      // //                       this.handleAnimationEnd({
+      // //                         animationState: "buttonAnimationClass",
+      // //                         startingAnimation: "animate__fadeInUp",
+      // //                         endingAnimation: "animate__fadeOutDown",
+      // //                       });
+      // //                     }}
+      // //                   >
+      // //                     <span className={this.decorateCSS("button-text")}>
+      // //                       {""}
+      // //                     </span>
+      // //                     <ComposerIcon
+      // //                       name={this.castToString(sliderItem.item.button.next_icon)}
+      // //                       propsIcon={{
+      // //                         className: ``,
+      // //                         size: 10,
+      // //                       }}
+      // //                     />
+      // //                   </button>
+      // //                 </ComposerLink>
+      // //               </div>
+      // //             </div>
+      // //           </div>
+      // //         );
+      // //       }
+      // //       return null;
+      // //     }
+      // //     )}
+      // //   </div>
+      // // </div>
     );
   }
 
