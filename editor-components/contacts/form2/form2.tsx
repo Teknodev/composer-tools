@@ -345,7 +345,7 @@ class Form2Page extends BaseContacts {
                     {buttons.length > 0 && <div className={this.decorateCSS("button-div")}>
                       {buttons.map((button: any, index: number) => (
                         button.value && <button key={index} className={this.decorateCSS("submit-button")} type="submit">
-                          {button?.value}
+                          {button.value}
                         </button>
                       ))}
                     </div>}
