@@ -205,7 +205,7 @@ class Header27 extends BaseHeader {
                       type: "string",
                       displayer: "Rate No. 2",
                       key: "customerNo",
-                      value: "3K+",
+                      value: "3k+",
                     },
                     {
                       type: "string",
@@ -310,8 +310,8 @@ class Header27 extends BaseHeader {
                               type: "image",
                               displayer: "Down Image 3",
                               key: "downImage",
-                              value:
-                                "https://plus.unsplash.com/premium_photo-1669374537810-f88d8ad82818?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+                              value: 
+                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670792d497fe08002c74f4a3?alt=media",
                             },
                           ],
                         },

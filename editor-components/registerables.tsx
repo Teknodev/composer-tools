@@ -1,117 +1,117 @@
 import ComponentsRegistery from "./ComponentRegistery";
 import DownloadComponent1 from "./download/download1/download1";
-// import DownloadComponent2 from "./download/download2/download2";
-// import DownloadComponent3 from "./download/download3/download3";
-// import DownloadComponent4 from "./download/download4/download4";
-// import DownloadComponent5 from "./download/download5/download5";
-// import DownloadComponent6 from "./download/download6/download6";
-// import DownloadComponent7 from "./download/download7/download7";
-// import DownloadComponent8 from "./download/download8/download8";
-// import DownloadComponent9 from "./download/download9/download9";
-// import DownloadComponent10 from "./download/download10/download10";
-// import DownloadComponent11 from "./download/download11/download11";
-// import ListComponent1 from "./list/list1/list1";
-// import ListComponent2 from "./list/list2/list2";
-// import ListComponent3 from "./list/list3/list3";
-// import ListComponent4 from "./list/list4/list4";
-// import ListComponent5 from "./list/list5/list5";
-// import ListComponent6 from "./list/list6/list6";
-// import ListComponent7 from "./list/list7/list7";
-// import ListComponent8 from "./list/list8/list8";
+import DownloadComponent2 from "./download/download2/download2";
+import DownloadComponent3 from "./download/download3/download3";
+import DownloadComponent4 from "./download/download4/download4";
+import DownloadComponent5 from "./download/download5/download5";
+import DownloadComponent6 from "./download/download6/download6";
+import DownloadComponent7 from "./download/download7/download7";
+import DownloadComponent8 from "./download/download8/download8";
+import DownloadComponent9 from "./download/download9/download9";
+import DownloadComponent10 from "./download/download10/download10";
+import DownloadComponent11 from "./download/download11/download11";
+import ListComponent1 from "./list/list1/list1";
+import ListComponent2 from "./list/list2/list2";
+import ListComponent3 from "./list/list3/list3";
+import ListComponent4 from "./list/list4/list4";
+import ListComponent5 from "./list/list5/list5";
+import ListComponent6 from "./list/list6/list6";
+import ListComponent7 from "./list/list7/list7";
+import ListComponent8 from "./list/list8/list8";
  import LocationComponent1 from "./location/location1/location1";
-// import ContentComponent1 from "./content/content1/content1";
-// import ContentComponent2 from "./content/content2/content2";
-// import ContentComponent3 from "./content/content3/content3";
-// import ContentComponent4 from "./content/content4/content4";
-// import ContentComponent5 from "./content/content5/content5";
-// import ContentComponent6 from "./content/content6/content6";
-// import ContentComponent7 from "./content/content7/content7";
-// import ContentComponent8 from "./content/content8/content8";
-// import ContentComponent9 from "./content/content9/content9";
-// import ContentComponent10 from "./content/content10/content10";
-// import ContentComponent11 from "./content/content11/content11";
-// import ContentComponent12 from "./content/content12/content12";
-// import ContentComponent13 from "./content/content13/content13";
-// import ContentComponent18 from "./content/content18/content18";
-// import ContentComponent19 from "./content/content19/content19";
-// import ContentComponent14 from "./content/content14/content14";
-// import ContentComponent15 from "./content/content15/content15";
-// import ContentComponent16 from "./content/content16/content16";
-// import ContentComponent17 from "./content/content17/content17";
-// import ContentComponent20 from "./content/content20/content20";
-// import ContentComponent21 from "./content/content21/content21";
-// import ContentComponent22 from "./content/content22/content22";
-// import ContentComponent23 from "./content/content23/content23";
-// import ContentComponent24 from "./content/content24/content24";
-// import SliderComponent1 from "./slider/slider1/slider1";
-// import SliderComponent2 from "./slider/slider2/slider2";
-// import SliderComponent3 from "./slider/slider3/slider3";
-// import SliderComponent4 from "./slider/slider4/slider4";
-// import SliderComponent5 from "./slider/slider5/slider5";
-// import SliderComponent6 from "./slider/slider6/slider6";
-// import SliderComponent7 from "./slider/slider7/slider7";
-// import SliderComponent8 from "./slider/slider8/slider8";
-// import SliderComponent9 from "./slider/slider9/slider9";
-// import SliderComponent10 from "./slider/slider10/slider10";
-// import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
-// import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
-// import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
-// import PricingComponent4 from "./pricing-table/pricing-table4/pricing-table4";
-// import PricingComponent5 from "./pricing-table/pricing-table5/pricing-table5";
-// import PricingComponent6 from "./pricing-table/pricing-table6/pricing-table6";
-// import PricingComponent7 from "./pricing-table/pricing-table7/pricing-table7";
-// import PricingComponent8 from "./pricing-table/pricing-table8/pricing-table8";
-// import PricingComponent9 from "./pricing-table/pricing-table9/pricing-table9";
-// import FaqComponent1 from "./faq/faq1/faq1";
-// import FaqComponent2 from "./faq/faq2/faq2";
-// import FaqComponent3 from "./faq/faq3/faq3";
-// import FaqComponent4 from "./faq/faq4/faq4";
-// import FaqComponent5 from "./faq/faq5/faq5";
-// import FaqComponent6 from "./faq/faq6/faq6";
-// import FaqComponent7 from "./faq/faq7/faq7";
-// import FaqComponent8 from "./faq/faq8/faq8";
-// import TeamComponent1 from "./team/team-1/team1";
-// import TeamComponent2 from "./team/team-2/team2";
-// import TeamComponent3 from "./team/team-3/team3";
-// import TeamComponent4 from "./team/team-4/team4";
-// import TeamComponent5 from "./team/team-5/team5";
-// import TeamComponent6 from "./team/team-6/team6";
-// import TeamComponent7 from "./team/team-7/team7";
-// import TeamComponent8 from "./team/team-8/team8";
-// import TeamComponent9 from "./team/team-9/team9";
-// import TeamComponent10 from "./team/team-10/team10";
-// import TeamComponent11 from "./team/team-11/team11";
-// import TeamComponent12 from "./team/team-12/team12";
-// import TeamComponent13 from "./team/team-13/team13";
-// import TeamComponent14 from "./team/team-14/team14";
-// import TeamComponent15 from "./team/team-15/team15";
-// import TeamComponent16 from "./team/team-16/team16";
-// import HeaderComponent1 from "./header/header1/header1";
-// import HeaderComponent2 from "./header/header2/header2";
-// import HeaderComponent3 from "./header/header3/header3";
-// import HeaderComponent4 from "./header/header4/header4";
-// import HeaderComponent5 from "./header/header5/header5";
-// import HeaderComponent6 from "./header/header6/header6";
-// import HeaderComponent7 from "./header/header7/header7";
-// import HeaderComponent8 from "./header/header8/header8";
-// import HeaderComponent9 from "./header/header9/header9";
-// import HeaderComponent10 from "./header/header10/header10";
-// import HeaderComponent11 from "./header/header11/header11";
-// import HeaderComponent12 from "./header/header12/header12";
-// import HeaderComponent13 from "./header/header13/header13";
-// import HeaderComponent14 from "./header/header14/header14";
-// import HeaderComponent15 from "./header/header15/header15";
-// import HeaderComponent16 from "./header/header16/header16";
-// import HeaderComponent17 from "./header/header17/header17";
-// import HeaderComponent18 from "./header/header18/header18";
-// import HeaderComponent19 from "./header/header19/header19";
-// import HeaderComponent20 from "./header/header20/header20";
-// import HeaderComponent21 from "./header/header21/header21";
-// import HeaderComponent22 from "./header/header22/header22";
-// import HeaderComponent23 from "./header/header23/header23";
-// import HeaderComponent24 from "./header/header24/header24";
-// import HeaderComponent25 from "./header/header25/header25";
-// import HeaderComponent26 from "./header/header26/header26";
+import ContentComponent1 from "./content/content1/content1";
+import ContentComponent2 from "./content/content2/content2";
+import ContentComponent3 from "./content/content3/content3";
+import ContentComponent4 from "./content/content4/content4";
+import ContentComponent5 from "./content/content5/content5";
+import ContentComponent6 from "./content/content6/content6";
+import ContentComponent7 from "./content/content7/content7";
+import ContentComponent8 from "./content/content8/content8";
+import ContentComponent9 from "./content/content9/content9";
+import ContentComponent10 from "./content/content10/content10";
+import ContentComponent11 from "./content/content11/content11";
+import ContentComponent12 from "./content/content12/content12";
+import ContentComponent13 from "./content/content13/content13";
+import ContentComponent18 from "./content/content18/content18";
+import ContentComponent19 from "./content/content19/content19";
+import ContentComponent14 from "./content/content14/content14";
+import ContentComponent15 from "./content/content15/content15";
+import ContentComponent16 from "./content/content16/content16";
+import ContentComponent17 from "./content/content17/content17";
+import ContentComponent20 from "./content/content20/content20";
+import ContentComponent21 from "./content/content21/content21";
+import ContentComponent22 from "./content/content22/content22";
+import ContentComponent23 from "./content/content23/content23";
+import ContentComponent24 from "./content/content24/content24";
+import SliderComponent1 from "./slider/slider1/slider1";
+import SliderComponent2 from "./slider/slider2/slider2";
+import SliderComponent3 from "./slider/slider3/slider3";
+import SliderComponent4 from "./slider/slider4/slider4";
+import SliderComponent5 from "./slider/slider5/slider5";
+import SliderComponent6 from "./slider/slider6/slider6";
+import SliderComponent7 from "./slider/slider7/slider7";
+import SliderComponent8 from "./slider/slider8/slider8";
+import SliderComponent9 from "./slider/slider9/slider9";
+import SliderComponent10 from "./slider/slider10/slider10";
+import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
+import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
+import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
+import PricingComponent4 from "./pricing-table/pricing-table4/pricing-table4";
+import PricingComponent5 from "./pricing-table/pricing-table5/pricing-table5";
+import PricingComponent6 from "./pricing-table/pricing-table6/pricing-table6";
+import PricingComponent7 from "./pricing-table/pricing-table7/pricing-table7";
+import PricingComponent8 from "./pricing-table/pricing-table8/pricing-table8";
+import PricingComponent9 from "./pricing-table/pricing-table9/pricing-table9";
+import FaqComponent1 from "./faq/faq1/faq1";
+import FaqComponent2 from "./faq/faq2/faq2";
+import FaqComponent3 from "./faq/faq3/faq3";
+import FaqComponent4 from "./faq/faq4/faq4";
+import FaqComponent5 from "./faq/faq5/faq5";
+import FaqComponent6 from "./faq/faq6/faq6";
+import FaqComponent7 from "./faq/faq7/faq7";
+import FaqComponent8 from "./faq/faq8/faq8";
+import TeamComponent1 from "./team/team-1/team1";
+import TeamComponent2 from "./team/team-2/team2";
+import TeamComponent3 from "./team/team-3/team3";
+import TeamComponent4 from "./team/team-4/team4";
+import TeamComponent5 from "./team/team-5/team5";
+import TeamComponent6 from "./team/team-6/team6";
+import TeamComponent7 from "./team/team-7/team7";
+import TeamComponent8 from "./team/team-8/team8";
+import TeamComponent9 from "./team/team-9/team9";
+import TeamComponent10 from "./team/team-10/team10";
+import TeamComponent11 from "./team/team-11/team11";
+import TeamComponent12 from "./team/team-12/team12";
+import TeamComponent13 from "./team/team-13/team13";
+import TeamComponent14 from "./team/team-14/team14";
+import TeamComponent15 from "./team/team-15/team15";
+import TeamComponent16 from "./team/team-16/team16";
+import HeaderComponent1 from "./header/header1/header1";
+import HeaderComponent2 from "./header/header2/header2";
+import HeaderComponent3 from "./header/header3/header3";
+import HeaderComponent4 from "./header/header4/header4";
+import HeaderComponent5 from "./header/header5/header5";
+import HeaderComponent6 from "./header/header6/header6";
+import HeaderComponent7 from "./header/header7/header7";
+import HeaderComponent8 from "./header/header8/header8";
+import HeaderComponent9 from "./header/header9/header9";
+import HeaderComponent10 from "./header/header10/header10";
+import HeaderComponent11 from "./header/header11/header11";
+import HeaderComponent12 from "./header/header12/header12";
+import HeaderComponent13 from "./header/header13/header13";
+import HeaderComponent14 from "./header/header14/header14";
+import HeaderComponent15 from "./header/header15/header15";
+import HeaderComponent16 from "./header/header16/header16";
+import HeaderComponent17 from "./header/header17/header17";
+import HeaderComponent18 from "./header/header18/header18";
+import HeaderComponent19 from "./header/header19/header19";
+import HeaderComponent20 from "./header/header20/header20";
+import HeaderComponent21 from "./header/header21/header21";
+import HeaderComponent22 from "./header/header22/header22";
+import HeaderComponent23 from "./header/header23/header23";
+import HeaderComponent24 from "./header/header24/header24";
+import HeaderComponent25 from "./header/header25/header25";
+import HeaderComponent26 from "./header/header26/header26";
 import HeaderComponent27 from "./header/header27/header27";
 import HeaderComponent28 from "./header/header28/header28";
 import HeaderComponent29 from "./header/header29/header29";
@@ -213,119 +213,119 @@ import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
-//     new NotificationModal1(),
+    new NotificationModal1(),
     new DownloadComponent1(),
-//     new DownloadComponent2(),
-//     new DownloadComponent3(),
-//     new DownloadComponent4(),
-//     new DownloadComponent5(),
-//     new DownloadComponent6(),
-//     new DownloadComponent7(),
-//     new DownloadComponent8(),
-//     new DownloadComponent9(),
-//     new DownloadComponent10(),
-//     new DownloadComponent11(),
-//     new ListComponent1(),
-//     new ListComponent2(),
-//     new ListComponent3(),
-//     new ListComponent4(),
-//     new ListComponent5(),
-//     new ListComponent6(),
-//     new ListComponent7(),
-//     new ListComponent8(),
-//     new ContentComponent1(),
-//     new ContentComponent2(),
-//     new ContentComponent3(),
-//     new ContentComponent4(),
-//     new ContentComponent5(),
-//     new ContentComponent6(),
-//     new ContentComponent7(),
-//     new ContentComponent8(),
-//     new ContentComponent9(),
-//     new ContentComponent10(),
-//     new ContentComponent11(),
-//     new ContentComponent12(),
-//     new ContentComponent13(),
-//     new ContentComponent14(),
-//     new ContentComponent15(),
-//     new ContentComponent16(),
-//     new ContentComponent17(),
-//     new ContentComponent18(),
-//     new ContentComponent19(),
-//     new ContentComponent20(),
-//     new ContentComponent21(),
-//     new ContentComponent22(),
-//     new ContentComponent23(),
-//     new ContentComponent24(),
-//     new SliderComponent1(),
-//     new SliderComponent2(),
-//     new SliderComponent3(),
-//     new SliderComponent4(),
-//     new SliderComponent5(),
-//     new SliderComponent6(),
-//     new SliderComponent7(),
-//     new SliderComponent8(),
-//     new SliderComponent9(),
-//     new SliderComponent10(),
-//     new PricingComponent1(),
-//     new PricingComponent2(),
-//     new PricingComponent3(),
-//     new PricingComponent4(),
-//     new PricingComponent5(),
-//     new PricingComponent6(),
-//     new PricingComponent7(),
-//     new PricingComponent8(),
-//     new PricingComponent9(),
-//     new FaqComponent1(),
-//     new FaqComponent2(),
-//     new FaqComponent3(),
-//     new FaqComponent4(),
-//     new FaqComponent5(),
-//     new FaqComponent6(),
-//     new FaqComponent7(),
-//     new FaqComponent8(),
-//     new TeamComponent1(),
-//     new TeamComponent2(),
-//     new TeamComponent3(),
-//     new TeamComponent4(),
-//     new TeamComponent5(),
-//     new TeamComponent6(),
-//     new TeamComponent7(),
-//     new TeamComponent8(),
-//     new TeamComponent9(),
-//     new TeamComponent10(),
-//     new TeamComponent11(),
-//     new TeamComponent12(),
-//     new TeamComponent13(),
-//     new TeamComponent14(),
-//     new TeamComponent15(),
-//     new TeamComponent16(),
-//     new HeaderComponent1(),
-//     new HeaderComponent2(),
-//     new HeaderComponent3(),
-//     new HeaderComponent4(),
-//     new HeaderComponent5(),
-//     new HeaderComponent6(),
-//     new HeaderComponent7(),
-//     new HeaderComponent8(),
-//     new HeaderComponent9(),
-//     new HeaderComponent10(),
-//     new HeaderComponent11(),
-//     new HeaderComponent12(),
-//     new HeaderComponent13(),
-//     new HeaderComponent14(),
-//     new HeaderComponent15(),
-//     new HeaderComponent16(),
-//     new HeaderComponent17(),
-//     new HeaderComponent18(),
-//     new HeaderComponent19(),
-//     new HeaderComponent20(),
-//     new HeaderComponent21(),
-//     new HeaderComponent22(),
-//     new HeaderComponent23(),
-//     new HeaderComponent24(),
-//     new HeaderComponent25(),
-//     new HeaderComponent26(),
+    new DownloadComponent2(),
+    new DownloadComponent3(),
+    new DownloadComponent4(),
+    new DownloadComponent5(),
+    new DownloadComponent6(),
+    new DownloadComponent7(),
+    new DownloadComponent8(),
+    new DownloadComponent9(),
+    new DownloadComponent10(),
+    new DownloadComponent11(),
+    new ListComponent1(),
+    new ListComponent2(),
+    new ListComponent3(),
+    new ListComponent4(),
+    new ListComponent5(),
+    new ListComponent6(),
+    new ListComponent7(),
+    new ListComponent8(),
+    new ContentComponent1(),
+    new ContentComponent2(),
+    new ContentComponent3(),
+    new ContentComponent4(),
+    new ContentComponent5(),
+    new ContentComponent6(),
+    new ContentComponent7(),
+    new ContentComponent8(),
+    new ContentComponent9(),
+    new ContentComponent10(),
+    new ContentComponent11(),
+    new ContentComponent12(),
+    new ContentComponent13(),
+    new ContentComponent14(),
+    new ContentComponent15(),
+    new ContentComponent16(),
+    new ContentComponent17(),
+    new ContentComponent18(),
+    new ContentComponent19(),
+    new ContentComponent20(),
+    new ContentComponent21(),
+    new ContentComponent22(),
+    new ContentComponent23(),
+    new ContentComponent24(),
+    new SliderComponent1(),
+    new SliderComponent2(),
+    new SliderComponent3(),
+    new SliderComponent4(),
+    new SliderComponent5(),
+    new SliderComponent6(),
+    new SliderComponent7(),
+    new SliderComponent8(),
+    new SliderComponent9(),
+    new SliderComponent10(),
+    new PricingComponent1(),
+    new PricingComponent2(),
+    new PricingComponent3(),
+    new PricingComponent4(),
+    new PricingComponent5(),
+    new PricingComponent6(),
+    new PricingComponent7(),
+    new PricingComponent8(),
+    new PricingComponent9(),
+    new FaqComponent1(),
+    new FaqComponent2(),
+    new FaqComponent3(),
+    new FaqComponent4(),
+    new FaqComponent5(),
+    new FaqComponent6(),
+    new FaqComponent7(),
+    new FaqComponent8(),
+    new TeamComponent1(),
+    new TeamComponent2(),
+    new TeamComponent3(),
+    new TeamComponent4(),
+    new TeamComponent5(),
+    new TeamComponent6(),
+    new TeamComponent7(),
+    new TeamComponent8(),
+    new TeamComponent9(),
+    new TeamComponent10(),
+    new TeamComponent11(),
+    new TeamComponent12(),
+    new TeamComponent13(),
+    new TeamComponent14(),
+    new TeamComponent15(),
+    new TeamComponent16(),
+    new HeaderComponent1(),
+    new HeaderComponent2(),
+    new HeaderComponent3(),
+    new HeaderComponent4(),
+    new HeaderComponent5(),
+    new HeaderComponent6(),
+    new HeaderComponent7(),
+    new HeaderComponent8(),
+    new HeaderComponent9(),
+    new HeaderComponent10(),
+    new HeaderComponent11(),
+    new HeaderComponent12(),
+    new HeaderComponent13(),
+    new HeaderComponent14(),
+    new HeaderComponent15(),
+    new HeaderComponent16(),
+    new HeaderComponent17(),
+    new HeaderComponent18(),
+    new HeaderComponent19(),
+    new HeaderComponent20(),
+    new HeaderComponent21(),
+    new HeaderComponent22(),
+    new HeaderComponent23(),
+    new HeaderComponent24(),
+    new HeaderComponent25(),
+    new HeaderComponent26(),
     new HeaderComponent27(),
     new HeaderComponent28(),
     new HeaderComponent29(),
