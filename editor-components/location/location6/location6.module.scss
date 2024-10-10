@@ -18,8 +18,8 @@
 
 .badge {
   padding: 10px;
-  background-color: var(--composer-font-color-primary);
-  color: var(--composer-font-color-secondary);
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  color: var(--composer-font-color-primary);
   width: 200px;
 }
 
@@ -32,7 +32,7 @@
 .left-side {
   display: flex;
   flex-direction: column;
-  padding: 20px 50px;
+  padding: 0px 50px;
 }
 
 .title {
@@ -49,8 +49,8 @@
 }
 
 .button {
-  background-color: var(--composer-font-color-primary);
-  color: var(--composer-font-color-secondary);
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  color: var(--composer-font-color-primary);
   padding: 20px;
   font-size: 2rem;
   width: 82%;
@@ -67,16 +67,17 @@
   align-items: center;
   flex-grow: 1;
   margin-top: 150px;
+  width: 50%;
 }
 
 .map {
-  //   width: 1000px;
-  width: 40vw;
+  width: 1000px;
   height: 100%;
 }
 
 .popup {
   background: var(--composer-font-color-primary);
+  color: var(--composer-font-color-secondary);
   padding: 5px;
   border-radius: 50px;
   width: 200px;
@@ -104,7 +105,7 @@
 @media (max-width: 768px) {
   .container {
     width: 100%;
-    padding: 0px 0px !important;
+    padding: 20px 0px !important;
   }
 
   .wrapper {
@@ -113,13 +114,13 @@
   }
 
   .left-side {
-    padding: 20px 30px !important;
+    padding: 0px 30px !important;
     margin: 0px !important;
   }
 
   .title {
     font-size: 2.5rem !important;
-    margin-bottom: 25px !important;
+    margin-bottom: 35px !important;
   }
 
   .button-container {
@@ -127,20 +128,22 @@
     column-gap: 10px !important;
     flex-wrap: wrap !important;
     justify-content: space-between !important;
+    margin-bottom: 10px !important;
   }
 
   .button {
     padding: 15px !important;
     font-size: 1rem !important;
-    width: 160px !important;
+    width: 200px !important;
 
     .info {
-      font-size: 10px !important;
+      font-size: 16px !important;
     }
   }
 
   .map-container {
     margin-top: 0px !important;
+    width: 100% !important;
   }
 
   .map {
@@ -156,7 +159,7 @@
   }
 
   .left-side {
-    padding: 20px 30px !important;
+    padding: 0px 30px !important;
     width: 100% !important;
     margin-top: 0px !important;
   }
@@ -164,6 +167,7 @@
   .title {
     font-size: 1.5rem !important;
     width: 100% !important;
+    margin-bottom: 25px !important;
   }
 
   .button-container {
@@ -190,6 +194,7 @@
 
   .map-container {
     margin-top: 0px !important;
+    width: 100% !important;
   }
 
   .map {
