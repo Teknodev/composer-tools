@@ -1,6 +1,7 @@
 .container {
   position: relative;
   background-color: var(--composer-html-background);
+  overflow: hidden;
 
   .carousel {
     width: 100vw;
@@ -38,12 +39,12 @@
       .slider-item-container {
         position: absolute;
         top: 0;
-        left: 50;
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
 
         .slider-item-content {
           width: 100%;
@@ -56,55 +57,95 @@
             display: flex;
             align-items: center;
             position: absolute;
+            max-width: 600px;
             height: 100%;
-            left: 15%;
+            left: 160px;
             z-index: 10;
+            opacity: 0; // Başlangıçta görünmez yapıyoruz
+            transform: translateX(-100%); // Başlangıçta ekranın dışında solda
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 
             .cover-image {
-              width: 500px;
+              width: 100%;
+              height: auto;
+              pointer-events: none;
+            }
+
+            &.left-side-slide-animation {
+              opacity: 1; // Opaklık artarak görünür olacak
+              transform: translateX(0); // Soldan sağa ekrana gelecek
             }
           }
 
           .right-side {
             display: flex;
             align-items: center;
-            justify-self: center;
             position: absolute;
             height: 100%;
-            left: 50%;
+            width: 70%;
+            left: 30%;
+            z-index: 10;
+            opacity: 0; 
+            transform: translateX(100%);
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+
+            &.right-side-slide-animation {
+              opacity: 1 !important; 
+              transform: translateX(0) !important; 
+            }
 
             .title-box {
               z-index: 1;
-              min-width: 30vw;
-              height: 30vh;
-              padding: 2rem;
+              // height: 30vh;
+              // padding: 2rem;
               display: flex;
               flex-direction: column;
               justify-content: center;
               position: absolute;
-              left: 50%;
-
+              left: 28%;
+              width: 500px;
 
               .subtitle {
                 font-size: 24px;
                 color: var(--composer-primary-color);
+
+                blinkpage > p {
+                  display: -webkit-box; /* Flexbox yerine kullanılan eski bir yöntem */
+                  -webkit-box-orient: vertical; /* Flexbox ekseni dikey olarak ayarlanır */
+                  overflow: hidden; /* Fazla metnin gizlenmesi */
+                  -webkit-line-clamp: 3; /* Gösterilecek satır sayısı */
+                  text-overflow: ellipsis; /* Metin taşarsa üç nokta ile kesilmesini sağlar */
+                }
               }
 
               .title {
                 margin: 0;
                 font-size: 48px;
                 color: var(--composer-primary-color);
+
+                blinkpage > p {
+                  display: -webkit-box; /* Flexbox yerine kullanılan eski bir yöntem */
+                  -webkit-box-orient: vertical; /* Flexbox ekseni dikey olarak ayarlanır */
+                  overflow: hidden; /* Fazla metnin gizlenmesi */
+                  -webkit-line-clamp: 4; /* Gösterilecek satır sayısı */
+                  text-overflow: ellipsis; /* Metin taşarsa üç nokta ile kesilmesini sağlar */
+                }
               }
 
               .description {
                 color: var(--composer-primary-color);
                 font-size: 20px;
                 margin: 5px 0px;
+
+                blinkpage > p {
+                  display: -webkit-box; /* Flexbox yerine kullanılan eski bir yöntem */
+                  -webkit-box-orient: vertical; /* Flexbox ekseni dikey olarak ayarlanır */
+                  overflow: hidden; /* Fazla metnin gizlenmesi */
+                  -webkit-line-clamp: 10; /* Gösterilecek satır sayısı */
+                  text-overflow: ellipsis; /* Metin taşarsa üç nokta ile kesilmesini sağlar */
+                }
               }
             }
-
-
-
           }
 
           .text-overlay {
@@ -115,6 +156,14 @@
             background-color: rgba(255, 255, 255, 0.5); // %50 saydam beyaz
             backdrop-filter: blur(5px); // Hafif bulanıklık efekti
             top: 0;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            transform: translateX(100%);
+            opacity: 0;
+
+            &.text-overlay-slide-animation {
+              transform: translateX(0);
+              opacity: 1;
+            }
           }
         }
 
@@ -141,19 +190,185 @@
 
 @media only screen and (max-width: 1024px) {
   .container {
-    .carousel {
-      .content {
-        .slider-item-container {
-          .slider-item-content {
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
+    position: relative;
+    background-color: var(--composer-html-background);
+    overflow: hidden;
 
-            .title-box {
-              max-width: 100%;
+    .carousel {
+      width: 100vw;
+      height: 100vh;
+
+      .content {
+        position: relative;
+        z-index: 99;
+        height: 100vh;
+
+        .bg-img {
+          width: 100%;
+          height: 100vh;
+          object-fit: cover;
+        }
+
+        .arrow {
+          position: absolute;
+          top: 0;
+          z-index: 999;
+          color: white;
+          cursor: pointer;
+          bottom: 0;
+          margin: auto 0;
+
+          &.prev-icon {
+            left: 0;
+          }
+
+          &.next-icon {
+            right: 0;
+          }
+        }
+
+        .slider-item-container {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+
+          .slider-item-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+            .left-side {
+              display: flex;
+              align-items: baseline !important;
+              justify-content: center !important;
+              position: absolute;
+              max-width: none !important;
               width: 100%;
+              height: 60%;
+              left: 0% !important;
+              top: 0 !important;
+              z-index: 10;
+              opacity: 0;
+              transform: translateX(-100%);
+              transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+
+              .cover-image {
+                width: auto !important;
+                height: 400px !important;
+                pointer-events: none;
+                margin: 0 auto !important;
+              }
+
+              &.left-side-slide-animation {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+
+            .right-side {
+              display: flex;
               align-items: center;
+              justify-content: center;
+              position: absolute;
+              height: 50% !important;
+              width: 100%;
+              left: 0% !important;
+              z-index: 10;
+              opacity: 0; // Başlangıçta görünmez yapıyoruz
+              transform: translateX(100%); // Başlangıçta ekranın dışında solda
+              transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+
+              &.right-side-slide-animation {
+                opacity: 1 !important; // Opaklık artarak görünür olacak
+                transform: translateX(
+                  0
+                ) !important; // Soldan sağa ekrana gelecek
+              }
+
+              .title-box {
+                z-index: 1;
+                height: 10vh;
+                // padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+                position: absolute;
+                left: 50%; /* Ortalamak için */
+                transform: translateX(
+                  -50%
+                ); /* Ekranın tam ortasında olması için */
+                width: 100%; /* Genişliği ekran boyunca yap */
+                padding: 0px 30px !important;
+                top: 40%;
+
+                .subtitle {
+                  font-size: 24px;
+                  color: var(--composer-primary-color);
+
+                  blinkpage > p {
+                    -webkit-line-clamp: 2 !important;
+                  }
+                }
+
+                .title {
+                  margin: 0;
+                  font-size: 48px;
+                  color: var(--composer-primary-color);
+
+                  blinkpage > p {
+                    -webkit-line-clamp: 2 !important;
+                  }
+                }
+
+                .description {
+                  display: none !important;
+                }
+              }
+            }
+
+            .text-overlay {
+              position: absolute;
+              height: 60%;
+              width: 100%;
+              left: 0%;
+              top: 40%;
+
+              background-color: rgba(255, 255, 255, 0.5); // %50 saydam beyaz
+              backdrop-filter: blur(5px); // Hafif bulanıklık efekti
+              transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+              transform: translateX(100%);
+              opacity: 0;
+
+              &.text-overlay-slide-animation {
+                transform: translateX(0);
+                opacity: 1;
+              }
+            }
+          }
+
+          .view-button {
+            width: max-content;
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid var(--composer-primary-color);
+            padding: 1rem;
+            margin-top: 20px;
+
+            .view-button-text {
+              font-size: 1.2rem;
+              color: var(--composer-primary-color);
             }
           }
         }
@@ -162,26 +377,157 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 500px) {
   .container {
+    position: relative;
+    background-color: var(--composer-html-background);
+    overflow: hidden;
+
     .carousel {
+      width: 100vw;
+      height: 100vh;
+
       .content {
+        position: relative;
+        z-index: 99;
+        height: 100vh;
+
+        .bg-img {
+          width: 100%;
+          height: 100vh;
+          object-fit: cover;
+        }
+
+        .arrow {
+          position: absolute;
+          top: 0;
+          z-index: 999;
+          color: white;
+          cursor: pointer;
+          bottom: 0;
+          margin: auto 0;
+
+          &.prev-icon {
+            left: 0;
+          }
+
+          &.next-icon {
+            right: 0;
+          }
+        }
+
         .slider-item-container {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+
           .slider-item-content {
-            .title-box {
-              padding: 1rem;
-              height: 25vh;
-              margin-top: 3.75rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
 
-              .year {
-                font-size: 3rem;
-                margin-bottom: 1rem;
+            .left-side {
+              display: flex;
+              align-items: baseline !important;
+              justify-content: center !important;
+              position: absolute;
+              max-width: none !important;
+              width: 100%;
+              height: 60%;
+              left: 0% !important;
+              top: 20% !important;
+              z-index: 10;
+              opacity: 0;
+              transform: translateX(-100%);
+              transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+
+              .cover-image {
+                width: auto !important;
+                height: 250px !important;
+                pointer-events: none;
+                margin: 0 auto !important;
               }
 
-              .title {
-                font-size: 1.5rem;
+              &.left-side-slide-animation {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+
+            .right-side {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              height: 50% !important;
+              width: 100%;
+              left: 0% !important;
+              z-index: 10;
+              opacity: 0; // Başlangıçta görünmez yapıyoruz
+              transform: translateX(100%); // Başlangıçta ekranın dışında solda
+              transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+
+              &.right-side-slide-animation {
+                opacity: 1 !important; // Opaklık artarak görünür olacak
+                transform: translateX(
+                  0
+                ) !important; // Soldan sağa ekrana gelecek
+              }
+
+              .title-box {
+                z-index: 1;
+                height: 15vh;
+                // padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
                 text-align: center;
+                align-items: center;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%); /* Ekranın tam ortasında olması için */
+                width: 100%; /* Genişliği ekran boyunca yap */
+                max-width: 500px; /* İsteğe göre maks genişlik */
+
+                .subtitle {
+                  font-size: 24px;
+                  color: var(--composer-primary-color);
+                }
+
+                .title {
+                  margin: 0;
+                  font-size: 48px;
+                  color: var(--composer-primary-color);
+                }
+
+                .description {
+                  display: none !important;
+                }
               }
+            }
+          }
+
+          .view-button {
+            width: max-content;
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid var(--composer-primary-color);
+            padding: 1rem;
+            margin-top: 20px;
+
+            .view-button-text {
+              font-size: 1.2rem;
+              color: var(--composer-primary-color);
             }
           }
         }

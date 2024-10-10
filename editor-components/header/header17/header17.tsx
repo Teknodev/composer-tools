@@ -48,20 +48,22 @@ class Header17 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
+              value:
+                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+                "https://plus.unsplash.com/premium_photo-1677048147164-66c2b4111e91?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             },
             {
               type: "image",
               displayer: "Cover",
               key: "cover-image",
-              value: "https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s1-img.png"
+              value:
+                "https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s1-img.png",
             },
             {
               type: "string",
@@ -98,20 +100,22 @@ class Header17 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
+              value:
+                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
+                "https://images.unsplash.com/photo-1484291470158-b8f8d608850d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             },
             {
               type: "image",
               displayer: "Cover",
               key: "cover-image",
-              value:"https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s3-img.png"
+              value:
+                "https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s3-img.png",
             },
             {
               type: "string",
@@ -148,20 +152,22 @@ class Header17 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
+              value:
+                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
+                "https://images.unsplash.com/photo-1719344870842-d1d46896c9fa?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             },
             {
               type: "image",
               displayer: "Cover",
               key: "cover-image",
-              value:"https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s2-img.png"
+              value:
+                "https://websiteseller.net/books-demo-theme/wp-content/uploads/sites/8/revslider/books/book-slider-s2-img.png",
             },
             {
               type: "string",
@@ -181,7 +187,23 @@ class Header17 extends BaseHeader {
     });
 
     this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("activeSlide", 0);
+    this.setComponentState("mouseX", 0); // Mouse X pozisyonunu tutmak için
+    this.setComponentState("mouseY", 0); // Mouse Y pozisyonunu tutmak için
   }
+
+  handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    // Mouse pozisyonunu al
+    const { clientX, clientY } = event;
+
+    // Mouse hareketini tersine uygulamak için hesapla
+    const movementX = (clientX - window.innerWidth / 2) * -0.03;
+    const movementY = (clientY - window.innerHeight / 2) * -0.03;
+
+    // Mouse pozisyonlarını güncelle
+    this.setComponentState("mouseX", movementX);
+    this.setComponentState("mouseY", movementY);
+  };
 
   getName(): string {
     return "Header-17";
@@ -197,91 +219,147 @@ class Header17 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
+      beforeChange: (_: number, newIndex: number) => {
+        if (this.getComponentState("activeSlide") !== newIndex) {
+          this.setComponentState("activeSlide", newIndex);
+        }
+      },
     };
 
+    const movementX = this.getComponentState("mouseX");
+    const movementY = this.getComponentState("mouseY");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div
+        className={this.decorateCSS("container")}
+        onMouseMove={this.handleMouseMove}
+      >
         <ComposerSlider
           {...settings}
           ref={this.getComponentState("slider-ref")}
           className={this.decorateCSS("carousel")}
         >
-          {this.getPropValue("slider").map((item: any, index: number) => (
-            <div className={this.decorateCSS("content")} key={`key${index}`}>
-              {item.getPropValue("image") && (
-                <img
-                  src={item.getPropValue("image")}
-                  alt=""
-                  className={this.decorateCSS("bg-img")}
-                />
-              )}
+          {this.getPropValue("slider").map((item: any, index: number) => {
+            const isActive = this.getComponentState("activeSlide") === index;
 
-              <div className={this.decorateCSS("slider-item-container")}>
+            return (
+              <div className={this.decorateCSS("content")} key={`key${index}`}>
+                {item.getPropValue("image") && (
+                  <img
+                    src={item.getPropValue("image")}
+                    alt=""
+                    className={this.decorateCSS("bg-img")}
+                  />
+                )}
 
+                <div className={this.decorateCSS("slider-item-container")}>
+                  <div className={this.decorateCSS("slider-item-content")}>
+                    <div
+                      className={`${this.decorateCSS("left-side")} ${
+                        isActive
+                          ? this.decorateCSS("left-side-slide-animation")
+                          : ""
+                      }`}
+                    >
+                      {item.getPropValue("cover-image") && (
+                        <img
+                          src={item.getPropValue("cover-image")}
+                          alt=""
+                          className={this.decorateCSS("cover-image")}
+                          style={{
+                            transform: `translate(${movementX}px, ${movementY}px)`,
+                          }}
+                        />
+                      )}
 
-                <div className={this.decorateCSS("slider-item-content")}>
-
-                  <div className={this.decorateCSS("left-side")}>
-
-                    {item.getPropValue("cover-image") && (
-                      <img
-                        src={item.getPropValue("cover-image")}
-                        alt=""
-                        className={this.decorateCSS("cover-image")}
+                      <div
+                        className={this.decorateCSS("vertical-shadow-line")}
                       />
-                    )}
-                    
-                    <div className={this.decorateCSS("vertical-shadow-line")} />
-                  </div>
-
-                  <div className={this.decorateCSS("right-side")}>
-
-
-
-                    <div className={this.decorateCSS("title-box")}>
-                      <span className={this.decorateCSS("subtitle")}>{item.getPropValue("subtitle")}</span>
-                      <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
-                      <h3 className={this.decorateCSS("description")}>{item.getPropValue("description")}</h3>
-
-                      <div className={this.decorateCSS("view-button")}>
-                        <ComposerLink path={item.getPropValue("button-url")}>
-                          <span className={this.decorateCSS("view-button-text")}>
-                            {item.getPropValue("button-text")}
-                          </span>
-                        </ComposerLink>
-                      </div>
-
                     </div>
+
+                    <div
+                      className={`${this.decorateCSS("right-side")}  ${
+                        isActive
+                          ? this.decorateCSS("right-side-slide-animation")
+                          : ""
+                      }`}
+                    >
+                      <div className={`${this.decorateCSS("title-box")}`}>
+                        {this.castToString(item.getPropValue("subtitle")) && (
+                          <div className={this.decorateCSS("subtitle")}>
+                            {item.getPropValue("subtitle")}
+                          </div>
+                        )}
+
+                        {this.castToString(item.getPropValue("title")) && (
+                          <h1 className={this.decorateCSS("title")}>
+                            {item.getPropValue("title")}
+                          </h1>
+                        )}
+
+                        {this.castToString(
+                          item.getPropValue("description")
+                        ) && (
+                          <h3 className={this.decorateCSS("description")}>
+                            {item.getPropValue("description")}
+                          </h3>
+                        )}
+
+                        {this.castToString(
+                          item.getPropValue("button-text")
+                        ) && (
+                          <div className={this.decorateCSS("view-button")}>
+                            <ComposerLink
+                              path={item.getPropValue("button-url")}
+                            >
+                              <div
+                                className={this.decorateCSS("view-button-text")}
+                              >
+                                {item.getPropValue("button-text")}
+                              </div>
+                            </ComposerLink>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div
+                      className={`${this.decorateCSS("text-overlay")} ${
+                        isActive
+                          ? this.decorateCSS("text-overlay-slide-animation")
+                          : ""
+                      }`}
+                    />
+
+                    <div className={this.decorateCSS("left-side")}></div>
                   </div>
-                  <div className={this.decorateCSS("text-overlay")} />
-
-                  <div className={this.decorateCSS("left-side")}></div>
-
                 </div>
-
+                <ComposerIcon
+                  name={this.getPropValue("next_icon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS(
+                      "next-icon"
+                    )} ${this.decorateCSS("arrow")} `,
+                    size: 40,
+                    onClick: () => {
+                      this.getComponentState("slider-ref").current.slickNext();
+                    },
+                  }}
+                />
+                <ComposerIcon
+                  name={this.getPropValue("prev_icon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS(
+                      "prev-icon"
+                    )} ${this.decorateCSS("arrow")}`,
+                    size: 40,
+                    onClick: () => {
+                      this.getComponentState("slider-ref").current.slickPrev();
+                    },
+                  }}
+                />
               </div>
-              <ComposerIcon
-                name={this.getPropValue("next_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow")} `,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  },
-                }}
-              />
-              <ComposerIcon
-                name={this.getPropValue("prev_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow")}`,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  },
-                }}
-              />
-            </div>
-          ))}
+            );
+          })}
         </ComposerSlider>
       </div>
     );
