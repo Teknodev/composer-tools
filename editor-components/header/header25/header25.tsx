@@ -227,6 +227,9 @@ class Header25 extends BaseHeader {
       type: "array",
       key: "icons",
       displayer: "Social Medias",
+      additionalParams: {
+        maxElementCount: 5,
+      },
       value: [
         {
           type: "object",
