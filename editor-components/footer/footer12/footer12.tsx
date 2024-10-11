@@ -7,7 +7,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 type ImageOrEmoji = {
   image?: string;
   icon?: string;
-  url?: JSX.Element;
+  url?: string;
 };
 
 class Footer12Page extends BaseFooter {
