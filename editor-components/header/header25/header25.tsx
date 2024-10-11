@@ -350,7 +350,10 @@ class Header25 extends BaseHeader {
         this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
         setTimeout(() => {
           this.setComponentState("active-index", newIndex);
-        }, 1200);
+          this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
+          this.setComponentState("titleAnimationClass", "animate__fadeInRight");
+          this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
+        }, 1000);
       },
     };
     const sliderItemObject = this.castToObject<SliderItem[]>("slider");
