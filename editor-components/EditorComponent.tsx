@@ -13,7 +13,6 @@ type PreSufFix = {
 export type TypeLocation = {
   lat: number;
   lng: number;
-
 };
 
 type GetPropValueProperties = {
@@ -86,6 +85,7 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "Location",
+  HTTP_CODES = "HTTPCodes",
 }
 
 export abstract class Component extends React.Component<{}, { states: any; componentProps: any }> implements iComponent {
@@ -375,6 +375,9 @@ export abstract class BaseSlider extends Component {
 
 export abstract class BaseFAQ extends Component {
   protected category = CATEGORIES.FAQ;
+}
+export abstract class BaseHTTPCodes extends Component {
+  protected category = CATEGORIES.HTTP_CODES;
 }
 
 export abstract class BaseImageGallery extends Component {
