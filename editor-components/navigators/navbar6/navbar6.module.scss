@@ -76,7 +76,7 @@
         }
 
         &.closing {
-          animation: slideOut 0.5s forwards; 
+          animation: slideOut 0.5s forwards;
 
           display: flex;
           position: relative;
@@ -84,7 +84,7 @@
         }
 
         &.active {
-          animation: slideIn 0.5s forwards; 
+          animation: slideIn 0.5s forwards;
           opacity: 1;
           display: flex;
           position: relative;
@@ -100,13 +100,13 @@
           background-color: var(--composer-html-background);
           padding: 5px 10px;
           z-index: 1;
-          transition: max-height 0.0s ease, opacity 0.4s ease;
+          transition: max-height 0s ease, opacity 0.4s ease;
         }
 
         .extendable .extendable-title-content {
           display: flex;
           gap: 10px;
-          transition: all 0.0s ease;
+          transition: all 0s ease;
 
           svg {
             flex-shrink: 0;
@@ -118,7 +118,6 @@
             transform-origin: center;
           }
         }
-
 
         .extendable:hover .dropdown-content {
           max-height: 1000px;
@@ -140,7 +139,7 @@
           .no-image-text {
             text-align: center;
             font-size: 14px;
-            margin-bottom: 5px;
+            margin: 10px 0px;
           }
 
           .image-container {
@@ -230,6 +229,7 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          cursor: pointer;
           transition: transform 0.4s ease;
           color: var(--composer-font-color-primary) !important;
 
@@ -305,7 +305,8 @@
           margin: 10px 5px;
           list-style-type: none !important;
 
-          a, div{
+          a,
+          div {
             text-decoration: none;
             color: initial;
             cursor: pointer;
@@ -358,7 +359,6 @@
             width: 18px !important;
             height: auto !important;
             align-items: center;
-
           }
 
           .extendable::selection .dropdown-content {
@@ -382,7 +382,7 @@
       transition: color 0.3s ease;
     }
 
-    +.hamburger-container {
+    + .hamburger-container {
       z-index: 2;
       cursor: pointer;
     }
@@ -403,7 +403,8 @@
     }
 
     .hamburger.open span:nth-child(1) {
-      transform: translateY(10px) rotate(45deg);
+      transform: translateY(0) rotate(45deg) !important;
+      transform-origin: top left;
     }
 
     .hamburger.open span:nth-child(2) {
@@ -411,15 +412,13 @@
     }
 
     .hamburger.open span:nth-child(3) {
-      transform: translateY(-10px) rotate(-45deg);
+      transform: translateY(0) rotate(-45deg) !important;
+      transform-origin: bottom left;
     }
   }
 }
 
-
-
 @media (max-width: 468px) {
-
   .container {
     .max-content {
       padding: 0px 30px !important;
@@ -430,7 +429,6 @@
         height: 50px !important;
       }
     }
-
 
     .content-right {
       margin: 0 !important;
@@ -543,8 +541,7 @@
       justify-content: space-between;
       z-index: 2;
       width: 18px !important;
-      height: 18px !important;
-
+      height: 15px !important;
     }
 
     .hamburger span {
@@ -554,7 +551,7 @@
     }
 
     .hamburger.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg) !important;
+      transform: rotate(45deg) !important;
     }
 
     .hamburger.open span:nth-child(2) {
@@ -562,7 +559,7 @@
     }
 
     .hamburger.open span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg) !important;
+      transform: rotate(-45deg) !important;
     }
   }
 }
