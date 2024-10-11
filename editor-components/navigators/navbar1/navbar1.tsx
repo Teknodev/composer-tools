@@ -12,7 +12,7 @@ interface Item {
 }
 interface ButtonType {
   text: JSX.Element;
-  link: JSX.Element;
+  link: string;
 
 }
 const menuType = {
