@@ -271,7 +271,7 @@ class HeaderComponent26 extends BaseHeader {
                                 </h1>
                               </ComposerLink>
                             )}
-                            {enableLine && titleExist && subtitleExist && (
+                            {enableLine && (
                               <span className={this.decorateCSS("line")} />
                             )}
                             {subtitleExist && (
