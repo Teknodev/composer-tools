@@ -121,9 +121,6 @@
                 >a{
                   width:100% !important;
                 }
-                >div{
-                  width:100% !important;
-                }
                 .sub-item-text {
                   display: flex;
                   align-items: start;
@@ -147,7 +144,7 @@
                     min-width: 150px;
                     padding: 10px;
                     transition: all 1s;
-                    width: fit-content;
+                    width: 100%;
                     &:hover {
                       background: var(--composer-primary-color);
                       color: var(--composer-font-color-secondary);
@@ -174,7 +171,6 @@
       display: flex;
       align-items: center;
       >div{
-        height: 100% !important;
         display: flex;
         align-items: center;
       }
