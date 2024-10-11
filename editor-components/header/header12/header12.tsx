@@ -272,8 +272,8 @@ class Header12 extends BaseHeader {
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      vertical: this.screenWidth >= 1000 ? true : false,
-      verticalSwiping: true,
+      vertical: this.screenWidth > 1220 ? true : false,
+      verticalSwiping: this.screenWidth > 1220 ? true : false,
     };
 
     const decorateIcon = { className: this.decorateCSS("Icon") };
