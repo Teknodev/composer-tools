@@ -10,7 +10,11 @@ interface Item {
   sub_items: Array<Item>;
   menu_type: string;
 }
+interface ButtonType {
+  text: JSX.Element;
+  link: JSX.Element;
 
+}
 const menuType = {
   selectItems: ["Dropdown", "Normal"],
 };
@@ -744,11 +748,11 @@ class Navbar1 extends BaseNavigator {
           </div>
           <div className={this.decorateCSS("right")}>
             <div className={this.decorateCSS("button-child")}>
-              {this.castToObject<[]>("buttonList").map(
+              {this.castToObject<ButtonType[]>("buttonList").map(
                 (data: any, indexButtonList: number) => {
                   return (
-                    <ComposerLink path={data.value[1].value}>
-                      <button className={this.decorateCSS("button")}>{data.value[0].value}</button>
+                    <ComposerLink path={data.link}>
+                      <button className={this.decorateCSS("button")}>{this.castToString(data.text)}</button>
                     </ComposerLink>
                   );
                 }
