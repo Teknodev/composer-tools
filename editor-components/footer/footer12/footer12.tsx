@@ -371,7 +371,6 @@ class Footer12Page extends BaseFooter {
                         <div className={this.decorateCSS("image-wrapper")}>
                           <img
                             src={value.image}
-                            alt={this.castToString(value.url)}
                             className={this.decorateCSS("image")}
                           />
                         </div>
