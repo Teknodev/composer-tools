@@ -15,8 +15,7 @@ type Pricing = {
     subtitle: string;
     product: {
       per: string;
-      price: number;
-      currency: string;
+      price: string;
       plan: string;
       tag: JSX.Element;
       check_icon: string;
@@ -108,18 +107,11 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 10%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 3000,
+                      value: "3000$",
                     },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
-                    },
-
                     {
                       type: "string",
                       key: "per",
@@ -274,18 +266,11 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 20%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 5000,
+                      value: "5000$",
                     },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
-                    },
-
                     {
                       type: "string",
                       key: "per",
@@ -440,16 +425,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 30%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 6000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "6000$",
                     },
                     {
                       type: "string",
@@ -605,16 +584,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 40%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 20000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "20000$",
                     },
                     {
                       type: "string",
@@ -790,18 +763,11 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 10%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 30000,
+                      value: "30000$",
                     },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
-                    },
-
                     {
                       type: "string",
                       key: "per",
@@ -956,16 +922,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 20%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 50000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "50000$",
                     },
 
                     {
@@ -1122,16 +1082,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 30%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 60000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "60000$",
                     },
                     {
                       type: "string",
@@ -1287,16 +1241,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 40%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 80000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "80000$",
                     },
                     {
                       type: "string",
@@ -1462,9 +1410,11 @@ class PricingMultipleTwo extends BasePricingTable {
                   {this.getPropValue("badge")}
                 </div>
               )}
-              <h1 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h1>
+              {this.castToString(this.getPropValue("title")) && (
+                <h1 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h1>
+              )}
             </div>
             {hasPlans && (
               <div className={this.decorateCSS("plan-items")}>
@@ -1525,7 +1475,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           )}
                           <div className={this.decorateCSS("item-price")}>
                             <h5 className={this.decorateCSS("price")}>
-                              {tab.price?.toLocaleString()} {tab.currency}
+                              {tab.price}
                             </h5>
                             <h5 className={this.decorateCSS("per")}>
                               {" "}
@@ -1610,7 +1560,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                           )} ${
                                             isDisabled
                                               ? ""
-                                              : this.decorateCSS("disabled") 
+                                              : this.decorateCSS("disabled")
                                           }`}
                                           disabled={!isDisabled}
                                         >

@@ -1,11 +1,7 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
-
 .container {
-  width: 100%;
-  max-width: 100%;
   padding: 20px 50px;
   .max-content {
-    padding: 0;
     margin: 0 auto;
     max-width: var(--composer-content-width);
 
@@ -14,20 +10,21 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0;
       align-items: center;
+      
+      
       .plan-items {
         display: flex;
         box-shadow: rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px
             3px -1px,
           rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px;
         color: var(--composer-font-color-primary);
-
         margin-bottom: 20px;
         width: fit-content;
         border-radius: 8px;
         align-self: flex-start;
-
+        max-width: 20%;
+      
         .activeTab:first-child {
           border-top-left-radius: 8px;
           border-bottom-left-radius: 8px;
@@ -35,7 +32,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .activeTab:last-child {
           border-top-right-radius: 8px;
-          border-bottom-right-radius: 8px;
+          border-bottom-right-radius: 8px;       
         }
 
         .activeTab {
@@ -44,10 +41,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         }
 
         .plan-title {
-          padding: 11px 30px;
-          border-bottom: 1px solid
-            rgba(var(--composer-font-color-primary-rgb), 0.2);
-        }
+          padding: 10px 20px;    
+        };
       }
 
       .up-page {
@@ -184,7 +179,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               font-weight: 700;
               justify-content: flex-end;
               flex-grow: 1;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-font-color-primary);  
               h5 {
                 display: flex;
                 padding: 5px;
@@ -231,7 +226,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               max-width: 100%;
               align-self: flex-end;
               border-radius: 4px;
-              margin-right: 50px;
+              margin-right: 20px;
+              margin-left: 20px;
             }
             .title {
               font-size: 2.3rem;
@@ -319,6 +315,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       flex-direction: column;
       .page {
         width: 100%;
+        .plan-items {
+          max-width: 50%;
+        }
         .up-page {
           .badge {
             width: 20%;
@@ -385,6 +384,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .page {
         .plan-items {
           margin-bottom: 0;
+          max-width: 100%;
         }
         .up-page {
           .badge {
