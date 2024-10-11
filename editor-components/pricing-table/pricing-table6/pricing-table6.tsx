@@ -1536,33 +1536,17 @@ class PricingMultipleTwo extends BasePricingTable {
                             <div className={this.decorateCSS("buttons")}>
                               {plan[planIndex]?.right_items?.buttons.map(
                                 (button: any, buttonIndex: number) => {
-                                  const buttonText = button.value.find(
-                                    (item: any) => item.key === "buttonText"
-                                  ).value;
-
-                                  const isDisabled = button.value.find(
-                                    (item: any) => item.key === "disabled"
-                                  ).value;
+                                  const buttonText = this.castToString(button.getPropValue("buttonText"));
+                                  const buttonUrl = button.getPropValue("url");
+                                  const isDisabled = button.getPropValue("disabled");
 
                                   return (
                                     buttonText && (
-                                      <ComposerLink
-                                        key={buttonIndex}
-                                        url={
-                                          button.value.find(
-                                            (item: any) => item.key === "url"
-                                          ).value
-                                        }
-                                      >
+                                      <ComposerLink key={buttonIndex} path={buttonUrl}>
                                         <button
-                                          className={`${this.decorateCSS(
-                                            "button"
-                                          )} ${
-                                            isDisabled
-                                              ? ""
-                                              : this.decorateCSS("disabled")
+                                          className={`${this.decorateCSS("button")} ${
+                                            !isDisabled ? this.decorateCSS("disabled") : ""
                                           }`}
-                                          disabled={!isDisabled}
                                         >
                                           {buttonText}
                                         </button>
