@@ -100,7 +100,7 @@ class Header6 extends BaseHeader {
       displayer: "Image2 Item",
       value: [
         {
-          type: "page",
+          type: "image",
           key: "image2",
           displayer: "Image2",
           value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
