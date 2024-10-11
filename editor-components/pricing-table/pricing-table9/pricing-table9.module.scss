@@ -1,3 +1,5 @@
+$bg: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 90%);
+
 .container {
   width: 100%;
 
@@ -7,9 +9,6 @@
   }
 }
 
-:root {
-  --bg: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 90%);
-}
 
 .main-title {
   margin-top: 20px;
@@ -34,7 +33,7 @@
   padding: 20px;
   margin: 20px 0;
   border-radius: 10px;
-  background-color: var(--bg);
+  background-color: $bg;
 }
 
 .grid-container {
@@ -213,7 +212,7 @@
     width: 50%;
     margin-bottom: 30px;
     margin-left: 0;
-    background-color: var(--bg);
+    background-color: $bg;
 
     div.benefit {
       height: 30px;
