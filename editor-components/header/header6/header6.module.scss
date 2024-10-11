@@ -84,6 +84,7 @@
             border: none;
             cursor: pointer;
             padding: 20px 40px;
+            overflow: hidden;
 
             &:hover {
               color: var(--composer-secondary-color);
@@ -229,7 +230,7 @@
             line-height: 40px;
           }
           .description {
-            font-size: 1rem;
+            font-size: 1.1rem;
             width: 85%;
             line-height: 20px;
             z-index: 2;
