@@ -147,6 +147,7 @@
                     min-width: 150px;
                     padding: 10px;
                     transition: all 1s;
+                    width: fit-content;
                     &:hover {
                       background: var(--composer-primary-color);
                       color: var(--composer-font-color-secondary);
@@ -359,7 +360,7 @@
                   background: var(--composer-html-background);
                   display: flex;
                   justify-content: flex-start;
-                  width: 100%;
+                  width: fit-content;
                   flex-direction: column;
                   @include after-line;
                 }
