@@ -50,7 +50,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
   };
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || !markers.length) return;
 
     const isNewMarkerAdded = markers.length > prevMarkersRef.current.length;
 
@@ -65,7 +65,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
     prevMarkersRef.current = markers;
   }, [map, markers]);
 
-  const defaultMarker = defaultMarkerIcon || "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
+  const defaultMarker = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
 
   const createOverlayView = () => {
     const customStyle: React.CSSProperties = {
@@ -93,18 +93,15 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
         }
 
         const panes = this.getPanes();
-        if (panes) panes.overlayMouseTarget.appendChild(this.div);
+        if (panes) panes.overlayLayer.appendChild(this.div);
       }
 
       draw() {
         if (this.div) {
-          const projection = this.getProjection();
-          if (projection) {
-            const point = projection.fromLatLngToDivPixel(this.position);
-            if (point) {
-              this.div.style.left = `${point.x - this.div.clientWidth / 2}px`;
-              this.div.style.top = `${point.y - this.div.clientHeight - 30}px`;
-            }
+          const point = this.getProjection().fromLatLngToDivPixel(this.position);
+          if (point) {
+            this.div.style.left = `${point.x}px`;
+            this.div.style.top = `${point.y}px`;
           }
         }
       }
@@ -129,17 +126,18 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, styles }: Com
       const overlayClass = createOverlayView();
       overlayRef.current = new overlayClass(new google.maps.LatLng(selectedMarker.lat, selectedMarker.lng));
       overlayRef.current.setMap(map);
-
       map.setCenter({ lat: selectedMarker.lat, lng: selectedMarker.lng });
       map.setZoom(6);
     }
   }, [selectedMarker, map]);
+
 
   useEffect(() => {
     if (map) {
       map.setOptions({ styles });
     }
   }, [map, styles]);
+
 
   const handleMarkerClick = (marker: Coordinate) => {
     const shouldSetMarkerNull = selectedMarker && selectedMarker.lat === marker.lat && selectedMarker.lng === marker.lng;
