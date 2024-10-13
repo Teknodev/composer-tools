@@ -24,14 +24,14 @@ class HTTP_CODES2 extends BaseHTTPCodes {
     this.addProp({
       type: "string",
       key: "home",
-      displayer: "home",
+      displayer: "Button Text",
       value: "TAKE ME HOME",
     });
 
     this.addProp({
       type: "string",
       key: "404",
-      displayer: "404",
+      displayer: "Error Code",
       value: "404",
     });
   }

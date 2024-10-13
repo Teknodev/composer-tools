@@ -16,7 +16,7 @@
   display: flex;
   padding: 20px 50px;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0 auto;
 
@@ -34,12 +34,14 @@
       column-gap: 10px;
       max-width: 100%;
       word-wrap: break-word;
+      align-items: center;
     }
 
     .title {
       font-size: 17rem;
       word-spacing: 10px;
       word-wrap: break-word;
+      width: 100%;
     }
 
     .label-404 {
@@ -49,6 +51,7 @@
       border-radius: 10rem;
       text-align: center;
       padding: 10px;
+      word-wrap: break-word;
     }
   }
 
