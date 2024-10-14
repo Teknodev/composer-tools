@@ -45,7 +45,6 @@
     width: 100%;
     justify-content: center;
     display: flex;
-
     .wrapper {
       width: 100%;
       height: 100%;
@@ -162,6 +161,7 @@
             display: flex;
             height: 100%;
             z-index: 1;
+            padding: 20px 50px;
 
             .left {
               z-index: 1;
@@ -197,6 +197,11 @@
                   overflow: hidden;
                   text-overflow: ellipsis;
                   padding: 0 20%;
+                }
+
+                .no-image{
+                  padding: 0 !important;
+                  width: 100% !important;
                 }
 
                 .buttons {
@@ -283,16 +288,13 @@
             }
 
             .main-content {
+              padding: 20px 30px !important;
               flex-direction: column;
 
               .left,
               .right {
                 width: 100%;
                 flex: none;
-              }
-
-              .left {
-                padding: 20px 30px;
               }
 
               .left .content {

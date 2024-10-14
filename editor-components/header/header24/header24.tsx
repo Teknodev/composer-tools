@@ -306,9 +306,6 @@ class HeaderComponent24 extends BaseHeader {
                 (item: ISliderData, index: number) => (
 
                   <div className={this.decorateCSS("item")} key={`key${index}`}>
-                    {
-                      <>{console.log("index: ", index)}</>
-                    }
                     {item.background_image && <div className={this.decorateCSS("background-image")}>
                       <img src={item.background_image} alt={this.castToString(item.title)} />
                     </div>}
@@ -327,11 +324,14 @@ class HeaderComponent24 extends BaseHeader {
                             </div>}
                             {this.castToString(item.title) && <div className={`${this.decorateCSS("title")}
                             ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-2")}
+                             ${!item.image && this.decorateCSS("no-image")}
                             `}>
                               {item.title}
                             </div>}
                             {this.castToString(item.description) && <div className={`${this.decorateCSS("description")} 
-                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-3")}`}>
+                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-3")}
+                            ${!item.image && this.decorateCSS("no-image")}
+                            `}>
                               {item.description}
                             </div>}
                             {(this.castToString(item.button2.buttonText) || this.castToString(item.button.buttonText)) &&
