@@ -26,6 +26,14 @@ class ConfirmationModal2 extends BaseModal {
   constructor(props?: any) {
     super(props, styles);
 
+
+    this.addProp({
+      type: "icon",
+      key: "exitIcon",
+      displayer: "ExitIcon",
+      value:
+        "IoCloseSharp"
+    });
     this.addProp({
       type: "string",
       key: "year",
@@ -304,7 +312,13 @@ class ConfirmationModal2 extends BaseModal {
                   )}
                 </h2>
               </div>
-              )}
+            )}
+
+            <div className={this.decorateCSS("exit-icon-container")}>
+              <ComposerModalClose>
+                <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+              </ComposerModalClose>
+            </div>
 
             {backgroundImage && <div className={this.decorateCSS("background-image")}>
               <img src={backgroundImage} alt={backgroundImage} className={this.decorateCSS("image")} />

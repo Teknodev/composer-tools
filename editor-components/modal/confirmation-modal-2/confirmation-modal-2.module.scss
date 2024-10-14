@@ -16,8 +16,9 @@
         padding: 40px 30px 0 30px !important;
 
         .year-text {
-          font-size: 3.6rem !important;
+          font-size: 4.5rem !important;
           left: 40px !important;
+          top: -3.5% !important;
         }
 
         .header {
@@ -29,6 +30,7 @@
 
         .background-image {
           top: -15% !important;
+          right: -10% !important;
         }
 
         .event-content {
@@ -71,11 +73,12 @@
     @container (max-width: 508px) {
 
       .content {
-        padding: 20px 20px !important;
+        padding: 30px 20px !important;
 
         .year-text {
-          font-size: 2.8rem !important;
+          font-size: 3.7rem !important;
           left: 30px !important;
+          top: -3% !important;
         }
 
         .header {
@@ -87,7 +90,12 @@
         }
 
         .background-image {
-          top: -15% !important;
+          top: -10% !important;
+        }
+
+        .exit-icon{
+          width: 23px !important;
+          height: 23px !important;
         }
 
         .event-content {
@@ -153,9 +161,9 @@
         color: var(--composer-font-color-primary);
         opacity: 0.3;
         position: absolute;
-        top: -1%;
+        top: -5%;
         left: 50px;
-        font-size: 5rem;
+        font-size: 6.5rem;
         margin: 0;
       }
 
@@ -185,6 +193,19 @@
           background-repeat: no-repeat;
           word-break: break-word;
         }
+      }
+
+      .exit-icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        z-index: 10;
+        right: 20px;
+        top: 20px;
+        margin: 5px 5px 0px 0px;
+        color: var(--composer-font-color-primary);
       }
 
       .background-image {
@@ -298,6 +319,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
+
             .divider {
               width: 2px;
               height: 0.9vw;
@@ -344,6 +366,7 @@
         align-items: center;
         gap: 5px;
         flex: 1;
+
         .contact-icon {
           color: var(--composer-secondary-color);
           font-size: 1.5rem;
