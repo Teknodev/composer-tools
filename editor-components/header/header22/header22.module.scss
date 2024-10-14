@@ -255,10 +255,14 @@
     }
   }
 }
+@container (max-width: 1024px) {
+  .container {
+    padding: 20px 30px 20px 0 !important;
+  }
+}
 
 @container header22 (max-width: 1024px) {
   .container {
-    padding: 20px 30px 20px 0;
     .max-content {
       .left-content {
         min-width: 50%;
