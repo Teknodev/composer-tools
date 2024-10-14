@@ -9,13 +9,11 @@
 
 @keyframes rightToLeft {
   0% {
-    visibility: 0;
-    transform: translatex(50px);
+    transform: translateX(25%);
   }
 
   100% {
-    visibility: 1;
-    transform: translatex(0);
+    transform: translateX(0);
   }
 }
 
@@ -23,23 +21,50 @@
   width: 100%;
   height: 100%;
   background-color: var(--composer-html-background);
-  padding: 20px 50px;
-  overflow: hidden;
-  position: relative;
-  flex-direction: column;
   display: flex;
+  position: relative;
   justify-content: center;
+  align-items: center;
+  padding: 20px 50px 20px 0;
+
   container-type: inline-size;
-  container-name: header;
+  container-name: header22;
+  contain: layout inline-size;
 
   .max-content {
     width: 100%;
-    height: 100%;
+    height: auto;
     margin: 0 auto;
     overflow: hidden;
 
+    > div {
+      > div {
+        > div {
+          //! .slick-track
+          display: flex !important;
+          > div {
+            //! .slick-slide
+            height: inherit !important;
+            display: inherit;
+            > div {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .left-animation {
+      animation: scaleUpDown 1s ease-in-out;
+    }
+
+    .mid-right-animation {
+      animation: rightToLeft 2s ease;
+    }
+
     .sliders {
       display: flex;
+      height: 100%;
       justify-content: space-between;
       align-items: center;
       height: 100%;
@@ -60,7 +85,9 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      max-width: calc(100% / 3);
     }
+
     .right-content {
       flex: 1;
       display: flex;
@@ -74,31 +101,29 @@
       width: 100%;
       object-fit: cover;
       background: transparent;
-      animation: scaleUpDown 1s ease-in;
     }
 
     .right-image {
       height: 80%;
       width: 80%;
-      right: 0;
-      top: 0;
       object-fit: cover;
       background: transparent;
     }
 
-    .middle-content {
-      flex: 1;
+    .middle-content,
+    .middle-content2,
+    .middle-content3 {
       flex: 1;
       width: 100%;
-      top: 35%;
-      right: 30px;
+      height: auto;
+      right: 20px;
       gap: 1.8rem;
       display: flex;
       position: relative;
       flex-wrap: wrap;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: start;
       overflow: hidden;
       text-overflow: ellipsis;
 
@@ -118,13 +143,18 @@
         color: black;
         margin-top: 10px;
         line-height: 50px;
+        > blinkpage {
+          p {
+            line-clamp: 5;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+        }
       }
 
       .link-button-container {
-        display: flex;
-        justify-content: start;
-        width: 100%;
-
         .button {
           border: 0;
           font-weight: bold;
@@ -132,39 +162,49 @@
           background-color: transparent;
           padding-bottom: 2px;
           padding: 0;
+          font-size: 1.2rem;
         }
       }
     }
 
+    .middle-content2 {
+      right: 0;
+      padding-left: 100px;
+    }
+
+    .middle-content3 {
+      right: 0;
+      padding-left: 50px;
+    }
     .nav-controls {
       position: absolute;
       right: 50px;
-      bottom: 60px;
+      bottom: 20px;
       display: flex;
       gap: 2rem;
-      z-index: 2;
+      z-index: 1;
+      padding: 0;
       .nav-buttons {
+        padding: 0;
         background-color: transparent;
         border: none;
         color: black;
-        &:hover {
-          background-color: grey;
-        }
+        font-size: 3rem;
       }
     }
-    .dots,
-    .dots-2 {
+    .dots {
       position: absolute;
-      top: 30%;
+      top: 50%;
       display: block;
       padding: 0;
-      margin-right: 50px;
+      margin-left: 50px;
       list-style: none;
       text-align: center;
-      right: 0;
+      left: 0;
       transform: translateY(-50%);
       bottom: auto;
       width: auto;
+      opacity: 0.6;
 
       li {
         button {
@@ -172,21 +212,20 @@
           position: relative;
           background: none;
           border: none;
-          margin: 10px;
-          padding: 10px;
-          width: 20px;
-          height: 20px;
+          padding: 7px;
+          width: 10px;
+          height: 10px;
           margin-right: 0;
 
           &::before {
             content: "•";
-            color: white;
+            color: transparent;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             transition: 0.3s;
-            font-size: 1rem;
+            font-size: 1.6rem;
             width: 100%;
             height: 100%;
             display: flex;
@@ -195,104 +234,156 @@
           }
         }
       }
+
+      :global(.slick-active) button,
+      li button:hover {
+        opacity: 1;
+        &::before {
+          border: 2px solid black;
+          border-radius: 50%;
+          color: black;
+        }
+      }
+
+      :global(:not(.slick-active)) button {
+        opacity: 0.3;
+        &::before {
+          border: 2px solid black;
+          border-radius: 50%;
+        }
+      }
     }
-    .dots-2 {
-      li {
-        button {
-          &::before {
-            color: var(--composer-font-color-primary) !important;
+  }
+}
+
+@container header22 (max-width: 1024px) {
+  .container {
+    padding: 20px 30px 20px 0;
+    .max-content {
+      .left-content {
+        min-width: 50%;
+      }
+      .middle-content,
+      .middle-content2,
+      .middle-content3 {
+        gap: 1.5rem;
+        .title {
+          font-size: 2.5rem;
+        }
+        .divider {
+          width: 65px;
+        }
+        .link-button-container {
+          .button {
+            font-size: 1.1rem;
           }
         }
       }
-    }
 
-    .dots,
-    .dots-2 :global(li) {
-      button {
-        border: 1px solid transparent;
-        border-radius: 50%;
-        transition: 0.3s;
+      .middle-content2 {
+        padding-left: 60px;
       }
-    }
-  }
-}
+      .middle-content3 {
+        padding-left: 30px;
+      }
 
-@container header (max-width: 1024px) {
-  .container {
-    .max-content {
-      .middle-content {
-        .title {
+      .right-content {
+        display: none;
+      }
+
+      .dots {
+        margin-left: 30px;
+        li {
+          button {
+            padding: 6px;
+            &::before {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+
+      .nav-controls {
+        right: 30px;
+        .nav-buttons {
           font-size: 2rem;
         }
-        .button {
-          font-size: 1rem;
+      }
+    }
+  }
+}
+
+@container header22 (max-width: 778px) {
+  .container {
+    .max-content {
+      .middle-content,
+      .middle-content2,
+      .middle-content3 {
+        right: 15px;
+        gap: 1.2rem;
+        .title {
+          line-height: 40px;
+          font-size: 2rem;
         }
         .divider {
-          width: 50px;
+          width: 55px;
+        }
+        .link-button-container {
+          .button {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .dots li button {
+        padding: 5px;
+        &::before {
+          font-size: 0.8rem;
+        }
+      }
+
+      .nav-controls {
+        .nav-buttons {
+          font-size: 1.8rem;
         }
       }
     }
   }
 }
 
-// @media only screen and (max-width: 778px) {
-//   .container {
-//     .max-content {
-//       .wrapper {
-//         height: max-content;
-//         .middle-content {
-//           top: 25%;
-//           width: 70%;
-//           .title {
-//             font-size: 3rem;
-//           }
-//           .button {
-//             font-size: 1rem;
-//           }
-//           .divider-underline {
-//             margin-left: 4px;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+@container header22 (max-width: 480px) {
+  .container {
+    .max-content {
+      .middle-content,
+      .middle-content2,
+      .middle-content3 {
+        right: 10px;
+        gap: 0.8rem;
+        .title {
+          font-size: 1.5rem;
+          line-height: 30px;
+        }
+        .divider {
+          width: 45px;
+        }
+        .link-button-container {
+          .button {
+            font-size: 0.8rem;
+          }
+        }
+      }
+      .dots li button {
+        padding: 4px;
+        &::before {
+          font-size: 1rem;
+        }
+      }
 
-// @media only screen and (max-width: 400px) {
-//   .container {
-//     .max-content {
-//       .wrapper {
-//         padding: 0 0 20vh 0;
-//         height: max-content;
-//         .middle {
-//           .content {
-//             top: 25%;
-//             width: 80%;
-//             .title {
-//               font-size: 1.8rem;
-//               line-height: 30px;
-//               margin-top: 8px;
-//               margin-bottom: 8px;
-//             }
-//             .button {
-//               font-size: 0.8rem;
-//               padding: 1px 0px;
-//             }
-//             .divider-underline {
-//               margin-top: 0px;
-//               margin-left: 2px;
-//               background-color: black;
-//               width: 52px;
-//               height: 1px;
-//             }
-//             .divider {
-//               background-color: black;
-//               width: 72px;
-//               height: 1px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+      .nav-controls {
+        .nav-buttons {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
