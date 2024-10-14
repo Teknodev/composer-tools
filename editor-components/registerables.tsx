@@ -212,6 +212,8 @@ import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
 import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
+import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
+
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     new NotificationModal1(),
@@ -427,6 +429,7 @@ function Registerables(composer: ComponentsRegistery) {
     new NotificationModal2(),
     new SubscriptionModal(),
     new LocationComponent1(),
+    new ConfirmationModal2(),
   ]);
 }
 
