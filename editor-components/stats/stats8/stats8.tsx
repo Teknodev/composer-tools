@@ -3,7 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats8.module.scss";
 
 type ICard = {
-  title: number;
+  title: string | number;
   description: string;
 };
 
@@ -139,27 +139,44 @@ class Stats8Page extends BaseStats {
     this.castToObject<ICard[]>("stats").map((statsData, index) =>
       this.setComponentState(`number-${index}`, 0)
     );
-
     let interval = setInterval(() => {
-      this.castToObject<ICard[]>("stats").map(
-        (statData: ICard, index: number) => {
-          let currentNumber = this.getComponentState(`number-${index}`);
-          if (currentNumber != statData.title) {
-            this.setComponentState(
-              `number-${index}`,
-              Math.min(
-                statData.title,
-                currentNumber +
-                  Math.ceil(
-                    statData.title /
-                      Math.round(this.getPropValue("animationDuration") / 30)
-                  )
-              ) || 0
-            );
-          }
+      this.castToObject<ICard[]>("stats").map((statData: ICard, index: number) => {
+        let currentNumber = this.getComponentState(`number-${index}`);
+    
+        currentNumber =
+          typeof currentNumber === "string"
+            ? parseInt(currentNumber.replace(/\./g, ""), 10) || 0
+            : currentNumber || 0;
+    
+        let targetNumber =
+          typeof statData.title === "string"
+            ? parseInt(statData.title.replace(/\./g, ""), 10) || 0
+            : statData.title || 0;
+    
+        if (currentNumber !== targetNumber) {
+          let nextValue = Math.min(
+            targetNumber,
+            currentNumber +
+              Math.ceil(targetNumber / Math.round(this.getPropValue("animationDuration") / 30))
+          );
+    
+          let formattedNextValue = nextValue ? nextValue.toLocaleString("de-DE") : "";
+    
+          this.setComponentState(`number-${index}`, formattedNextValue);
         }
-      );
+    
+        const overlayNumber = this.getPropValue("overlayNumber");
+        let formattedOverlayNumber = "";
+    
+        if (overlayNumber !== null && overlayNumber !== undefined) {
+          formattedOverlayNumber = Number(overlayNumber).toLocaleString("de-DE");
+        }
+    
+        this.setComponentState("overlayNumberDisplay", formattedOverlayNumber);
+      });
     }, 30);
+
+
   }
 
   getName(): string {
@@ -175,11 +192,11 @@ class Stats8Page extends BaseStats {
     const isSubTitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const isDesExist = this.castToString(description);
-    const author = this.getPropValue("author") ;
+    const author = this.getPropValue("author");
     const isAuthorExist = this.castToString(author);
     const authorRole = this.getPropValue("authorRole");
     const isAuthorRoleExist = this.castToString(authorRole);
-    const overlayNumber = this.getPropValue("overlayNumber");
+    //const overlayNumber = this.getPropValue("overlayNumber");
     const overlayDescription = this.castToString(
       this.getPropValue("overlayDescription")
     );
@@ -234,34 +251,31 @@ class Stats8Page extends BaseStats {
                 )}
                 {isAuthorRoleExist && (
                   <div className={this.decorateCSS("author-role-container")}>
-                  <span className={this.decorateCSS("author-role")}>
-                    { showBackground && (
-                      <span
-                        className={this.decorateCSS("author-role-background")}
-                      ></span>
-                    )}
-                    {authorRole}
-                  </span>
+                    <span className={this.decorateCSS("author-role")}>
+                      {showBackground && (
+                        <span
+                          className={this.decorateCSS("author-role-background")}
+                        ></span>
+                      )}
+                      {authorRole}
+                    </span>
                   </div>
                 )}
 
-                <div className={`${this.decorateCSS("stats")} ${
-                    !imageSrc ? this.decorateCSS("full-width") : ""
+                <div className={`${this.decorateCSS("stats")} ${!imageSrc ? this.decorateCSS("full-width") : ""
                   }`}>
                   {statsData.map(
                     (statData: ICard, indexStat: number) =>
                       statData.title &&
                       statData.description && (
-                        <div className={`${this.decorateCSS("stat-border")} ${
-                          !imageSrc ? this.decorateCSS("stat-border-full-width") : ""
-                        }`}>
+                        <div className={`${this.decorateCSS("stat-border")} ${!imageSrc ? this.decorateCSS("stat-border-full-width") : ""
+                          }`}>
                           <div
                             key={indexStat}
-                            className={`${this.decorateCSS("stat")} ${
-                              showBackground
-                                ? this.decorateCSS("with-background")
-                                : this.decorateCSS("no-background")
-                            }`}
+                            className={`${this.decorateCSS("stat")} ${showBackground
+                              ? this.decorateCSS("with-background")
+                              : this.decorateCSS("no-background")
+                              }`}
                           >
                             <span className={this.decorateCSS("stat-title")}>
                               {this.getComponentState(`number-${indexStat}`)}
@@ -284,20 +298,23 @@ class Stats8Page extends BaseStats {
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-container-border")}>
                   <img src={imageSrc} alt="Digital Experience" />
-                  {(overlayNumber || overlayDescription) && (
-                    <div className={this.decorateCSS("overlay")}>
-                      {overlayNumber && (
-                        <span className={this.decorateCSS("number")}>
-                          {overlayNumber}
-                        </span>
-                      )}
-                      {overlayDescription && (
-                        <p className={this.decorateCSS("description")}>
-                          {overlayDescription}
-                        </p>
-                      )}
-                    </div>
-                  )}
+                  {(this.getComponentState('overlayNumberDisplay')
+                    || overlayDescription) && (
+                      <div className={this.decorateCSS("overlay")}>
+                        {this.getComponentState('overlayNumberDisplay')
+                          && (
+                            <span className={this.decorateCSS("number")}>
+                              {this.getComponentState('overlayNumberDisplay')
+                              }
+                            </span>
+                          )}
+                        {overlayDescription && (
+                          <p className={this.decorateCSS("description")}>
+                            {overlayDescription}
+                          </p>
+                        )}
+                      </div>
+                    )}
                 </div>
               </div>
             </div>
