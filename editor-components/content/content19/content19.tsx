@@ -3,7 +3,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content19.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { Button } from "@mui/material";
 
 type ButtonProps = {
   buttonText: JSX.Element;
@@ -211,9 +210,9 @@ class Content19 extends BaseContent {
                       if (buttonText.trim() !== "") {
                         return (
                           <ComposerLink key={index} path={url}>
-                            <Button className={this.decorateCSS("button")}>
+                            <button className={this.decorateCSS("button")}>
                               {buttonText}
-                            </Button>
+                            </button>
                           </ComposerLink>
                         );
                       }

@@ -144,7 +144,7 @@
       }
       
       .popup {
-        background-color: var(--composer-secondary-color);
+        // background-color: var(--composer-secondary-color);
         padding: 10px;
         width: 200px;
         height: 150px;
@@ -153,6 +153,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        background-color: white;
       }
       
       .popup-title {
@@ -172,6 +173,7 @@
       }
       .popup-link{
         z-index: 10;
+        cursor: pointer;
       }
       
       .popup-button {

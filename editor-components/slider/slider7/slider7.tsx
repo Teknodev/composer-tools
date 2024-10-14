@@ -201,7 +201,7 @@ class Slider7 extends BaseSlider {
     
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
-    window.addEventListener('keydown', this.handleKeyDown);
+    // window.addEventListener('keydown', this.handleKeyDown);
 
     
   }

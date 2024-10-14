@@ -7,6 +7,30 @@ import { dividerClasses } from "@mui/material";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Visibility } from "@mui/icons-material";
 
+type Address = {
+  type: string;
+  key: string;
+  value: Array<Marker>;
+};
+
+type Marker = {
+  type: string;
+  key: string;
+  value: any;
+};
+
+type MarkerObject = {
+  content: React.ReactNode;
+  lat: number;
+  lng: number;
+  icon: {
+    url: string;
+    scaledSize: google.maps.Size;
+    width: number;
+    height: number;
+  };
+};
+
 type Coordinate = {
   lat: number;
   lng: number;
@@ -186,22 +210,59 @@ class LocationComponent1 extends Location {
 
     })
     this.addProp({
-      type: "location",
-      key: "location",
-      displayer: "Location",
-      value: {
-        markers: [
-          {
-            lat: 36.8968908,
-            lng: 30.7133233,
-            icon: {
-              url: "",
-              height: 50,
-              width: 50,
+      type: "array",
+      displayer: "addresses",
+      key: "addresses",
+      value: [
+        {
+          type: "object",
+          key: "marker",
+          displayer: "Marker",
+          value: [
+
+            {
+              type: "location",
+              displayer: "Coordinate",
+              key: "coordinate",
+              value: {
+                lat: 36.8529,
+                lng: -75.978,
+              },
             },
-          },
-        ],
-      },
+            {
+              type: "string",
+              displayer: "Popup Title",
+              key: "popupTitle",
+              value: "Crafto Resort",
+            },
+
+            {
+              type: "image",
+              key: "marker-image",
+              displayer: "Marker Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
+            },
+            {
+              type: "string",
+              displayer: "Description",
+              key: "description",
+              value: "16122 Collins street, Melbourne, Australia",
+            },
+            {
+              type: "string",
+              key: "popupButtonText",
+              displayer: "Popup Button Text",
+              value: "View Map"
+            },
+            {
+              type: "page",
+              key: "popupButtonUrl",
+              displayer: "Popup Button Url",
+              value: ""
+            },
+          ],
+        }
+      ],
     });
 
     this.addProp({
@@ -229,37 +290,6 @@ class LocationComponent1 extends Location {
         },
       ],
     });
-    this.addProp({
-      type: "object",
-      key: "popup",
-      displayer: "Popup",
-      value: [
-        {
-          type: "string",
-          key: "popupTitle",
-          displayer: "Popup Title",
-          value: "Crafto Resort"
-        },
-        {
-          type: "string",
-          key: "popupAddress",
-          displayer: "Popup Address",
-          value: "16122 Collins street, Melbourne, Australia"
-        },
-        {
-          type: "page",
-          key: "popupButtonUrl",
-          displayer: "Popup Button Url",
-          value: ""
-        },
-        {
-          type: "string",
-          key: "popupButtonText",
-          displayer: "Popup Button Text",
-          value: "View Map"
-        }
-      ]
-    });
     this.setComponentState("isCardVisible", true);
   }
 
@@ -268,20 +298,56 @@ class LocationComponent1 extends Location {
   }
 
   render() {
-    const { markers } = this.getPropValue('location');
+    const addresses: Address[] = this.getPropValue("addresses");
+
+    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
+      if (address.type === "object" && Array.isArray(address.value)) {
+        const markerData = address.value.find((addr) => addr.type === "location");
+        const lat = markerData?.value.lat;
+        const lng = markerData?.value.lng;
+        const description = address.value.find((a) => a.key.startsWith("description"))?.value || "";
+        const popupTitle = address.value.find((a) => a.key.startsWith("popupTitle"))?.value || "";
+        const popupButtonText = address.value.find((a) => a.key.startsWith("popupButtonText"))?.value || "";
+        const popupButtonUrl = address.value.find((a) => a.key.startsWith("popupButtonUrl"))?.value || "";
+        const markerImage = address.value.find((a) => a.key.startsWith("marker-image"))?.value;
+        const width = address.value.find((a) => a.key.startsWith("marker-width"))?.value || 32;
+        const height = address.value.find((a) => a.key.startsWith("marker-height"))?.value || 32;
+
+        if (lat !== undefined && lng !== undefined) {
+          const content =
+            description || popupTitle ? (
+              <div className={this.decorateCSS("popup")}>
+                {popupTitle && <h1 className={this.decorateCSS("popup-title")}>{popupTitle} </h1>}
+                {description && <p className={this.decorateCSS("popup-content")}>{description}</p>}
+                {popupButtonText && <ComposerLink path={popupButtonUrl} className={this.decorateCSS("popup-link")}>
+                  <div className={this.decorateCSS("popup-button")}>
+                    {popupButtonText}
+                  </div>
+                </ComposerLink>}
+              </div>
+            ) : null;
+
+          acc.push({
+            content,
+            lat,
+            lng,
+            icon: {
+              url: markerImage,
+              scaledSize: new google.maps.Size(width, height),
+              width,
+              height,
+            },
+          });
+        }
+      }
+      return acc;
+    }, []);
+
     const title = this.getPropValue('title', { as_string: true });
     const buttom = this.castToObject<ButtomType>("buttom_row");
     const icons = this.getPropValue("icons");
-    const popupData = this.castToObject<PopupType>("popup");
-    const popupTitle = popupData.popupTitle;
-    const popupUrl = popupData.popupButtonUrl;
-    const popupAddress = popupData.popupAddress;
-    const popupButtonText = popupData.popupButtonText;
-    const stringAddress = this.castToString(popupAddress);
     const description = this.castToString(buttom.description);
     const phone = this.castToString(buttom.phoneNumber);
-    const markerIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij4KICA8cGF0aCBmaWxsPSJibGFjayIgZD0iTTEyIDJDOC4xMyAyIDUgNS4xMyA1IDljMCA1LjI1IDcgMTMgNyAxM3M3LTcuNzUgNy0xM2MwLTMuODctMy4xMy03LTctN3ptMCA5LjVjLTEuMzggMC0yLjUtMS4xMi0yLjUtMi41czEuMTItMi41IDIuNS0yLjUgMi41IDEuMTIgMi41IDIuNS0xLjEyIDIuNS0yLjUgMi41eiIvPgo8L3N2Zz4=";
-    console.log("Text", popupButtonText)
     const mapStyles: google.maps.MapTypeStyle[] = [
       {
         elementType: "geometry",
@@ -388,17 +454,7 @@ class LocationComponent1 extends Location {
               </div>
             )}
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap defaultMarkerIcon={markerIcon} markers={markers} className={this.decorateCSS("map")} styles={mapStyles}
-                popupContent={(marker: Coordinate) => {
-                  return (
-                    <div className={this.decorateCSS("popup")}>
-                      <h4 className={this.decorateCSS("popup-title")}>{popupTitle}</h4>
-                      <p className={this.decorateCSS("popup-content")}> {stringAddress}</p>
-                      <ComposerLink className={this.decorateCSS("popup-link")} path={popupUrl}><button className={this.decorateCSS("popup-button")}>{popupButtonText}</button> </ComposerLink>
-
-                    </div>
-                  );
-                }} />
+              <ComposerMap markers={markers} className={this.decorateCSS("map")} styles={mapStyles} />
             </section>
             {(description || phone) && (
               <div className={this.decorateCSS("bottom-container")}>
@@ -415,8 +471,6 @@ class LocationComponent1 extends Location {
                       </div>
                     </div>
                   </ComposerLink>
-
-
                 )}
               </div>
             )}
