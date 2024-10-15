@@ -3,6 +3,7 @@ import styles from "./header29.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { ErrorMessage, Formik, Form } from "formik";
 
 interface InputType {
   placeholder: JSX.Element,
@@ -153,12 +154,24 @@ class Header29 extends BaseHeader {
     return "Header-29";
   }
 
+
   render() {
     const inputs = this.castToObject<InputType[]>("inputs");
     const card = this.castToObject<CardType[]>("cards");
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const image = this.getPropValue("image");
+
+
+    function getInitialValue() {
+    }
+    function getFormData(obj: any) {
+      const newObj: any = {};
+      Object.values(obj).forEach((value, index) => {
+        newObj["input_" + index] = value;
+      })
+      return newObj;
+    }
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -184,6 +197,26 @@ class Header29 extends BaseHeader {
                       </div>
                     ))
                   )}
+                  {/* {(inputs.length > 0) && (
+                    inputs.map((inputsItem: InputType, index: number) => (
+                      <Formik
+                        initialValues={getInitialValue()}
+                        onSubmit={(data, { resetForm }) => {
+                          const formData = getFormData(data)
+                          this.insertForm("Contact Us", formData);
+                          resetForm();
+                        }}
+                      >
+                        {({ handleChange, values }) => (
+                          <Form className={this.decorateCSS("form")}>
+                            <input placeholder={this.castToString(inputsItem.placeholder)} className={this.decorateCSS("input")} type="text" />
+                          </Form>
+                          
+                        )}
+                      </Formik>
+                      
+                    ))
+                  )} */}
                 </div>
                 {(card.length > 0) && (
                   <div className={this.decorateCSS("down")}>

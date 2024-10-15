@@ -116,7 +116,7 @@
 }
 @container (max-width: 850px) {
   .container{
-    padding: 20px 30px !important;
+    padding: 20px 30px ;
   }
 }
 @container header29 (max-width: 850px) {
@@ -171,10 +171,9 @@
           }
         }
         .image-container{
-          max-height: 50vh;
           .image {
-            max-height: 100%;
-            object-fit:contain;
+            max-height:50vh;
+            object-fit: cover;
           }
         }
       }
