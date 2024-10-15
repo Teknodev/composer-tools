@@ -21,13 +21,13 @@ class List1 extends BaseList {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Delicious Taste of"
+      value: "Delicious Taste of",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "TODAY RECIPES"
+      value: "TODAY RECIPES",
     });
     this.addProp({
       type: "array",
@@ -74,8 +74,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
-
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -119,7 +118,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -163,7 +162,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -207,7 +206,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -251,8 +250,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
-
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -296,7 +294,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -306,12 +304,11 @@ class List1 extends BaseList {
       type: "boolean",
       key: "backgroundColor",
       displayer: "Colored Area",
-      value: true
+      value: true,
     });
 
-    this.setComponentState("active-index", 1)
+    this.setComponentState("active-index", 1);
   }
-
 
   getName(): string {
     return "List 1";
@@ -327,13 +324,18 @@ class List1 extends BaseList {
       infinite: sliderItems.length > 1,
       autoplay: false,
       autoplaySpeed: 3000,
-      slidesToShow: window.innerWidth < 475 ? 1 : window.innerWidth < 775 ? 2 : Math.min(3, sliderItems.length),  // En fazla 3 öğe göster
+      slidesToShow:
+        window.innerWidth < 475
+          ? 1
+          : window.innerWidth < 775
+          ? 2
+          : Math.min(3, sliderItems.length),
       slidesToScroll: 1,
       initialSlide: 1,
       arrows: false,
       centerMode: true,
       dotsClass: this.decorateCSS("dots"),
-      centerPadding: '0px',
+      centerPadding: "0px",
       beforeChange: (previndex: number, currindex: number) => {
         this.setComponentState("active-index", currindex);
       },
@@ -342,9 +344,11 @@ class List1 extends BaseList {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-text")}>
-            {this.castToString(subTitle) && <h4 className={this.decorateCSS("subtitle")}>
-              {this.castToString(subTitle)}
-            </h4>}
+            {this.castToString(subTitle) && (
+              <h4 className={this.decorateCSS("subtitle")}>
+                {this.castToString(subTitle)}
+              </h4>
+            )}
             {this.castToString(title) && (
               <h1 className={this.decorateCSS("title")}>
                 {this.castToString(title)}
@@ -356,42 +360,78 @@ class List1 extends BaseList {
               {...settings}
               className={this.decorateCSS("carousel")}
             >
-              {sliderItems.map(
-                (item: Card, indexSlider: number) => (
-                  <div key={indexSlider}
+              {sliderItems.map((item: Card, indexSlider: number) => {
+                const activeIndex = this.getComponentState("active-index");
+                const rightCardIndex = (activeIndex + 1) % sliderItems.length;
+                const leftCardIndex = activeIndex === 0 ? sliderItems.length - 1 : activeIndex - 1;
+                console.log(activeIndex, leftCardIndex, rightCardIndex);
+
+                return (
+                  <div
+                    key={indexSlider}
                     className={`${this.decorateCSS("card")}
-                   ${backgroundColor && this.getComponentState("active-index") == indexSlider ? this.decorateCSS("active") : ""}
+                    ${
+                      indexSlider == rightCardIndex
+                        ? this.decorateCSS("right-card-padding")
+                        : ""
+                    }
+                    ${
+                      indexSlider == leftCardIndex
+                        ? this.decorateCSS("left-card-padding")
+                        : ""
+                    }
+                   ${
+                     backgroundColor &&
+                     this.getComponentState("active-index") == indexSlider
+                       ? this.decorateCSS("active")
+                       : ""
+                   }
                    `}
                   >
                     <div className={this.decorateCSS("card-inner")}>
+                      {item.image && (
+                        <div className={this.decorateCSS("img-div")}>
+                          <img
+                            className={this.decorateCSS("img")}
+                            src={item.image}
+                            alt=""
+                          />
+                        </div>
+                      )}
 
-                      {item.image && <div className={this.decorateCSS("img-div")}>
-                        <img
-                          className={this.decorateCSS("img")}
-                          src={item.image}
-                          alt=""
-                        /></div>}
+                      {this.castToString(item.title) && (
+                        <span className={this.decorateCSS("title")}>
+                          {item.title}
+                        </span>
+                      )}
 
-                      {this.castToString(item.title) && <span className={this.decorateCSS("title")}>
-                        {item.title}
-                      </span>}
+                      {this.castToString(item.subtitle) && (
+                        <span className={this.decorateCSS("subtitle")}>
+                          {item.subtitle}
+                        </span>
+                      )}
 
-                      {this.castToString(item.subtitle) && <span className={this.decorateCSS("subtitle")}>
-                        {item.subtitle}
-                      </span>}
-
-                      {this.castToString(item.text) && <>
-                        <ComposerLink path={item.url}>
-                          <div className={this.decorateCSS("link")}>
-                            <span className={this.decorateCSS("text")}>{item.text}</span>
-                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                          </div>
-                        </ComposerLink>
-                      </>}
+                      {this.castToString(item.text) && (
+                        <>
+                          <ComposerLink path={item.url}>
+                            <div className={this.decorateCSS("link")}>
+                              <span className={this.decorateCSS("text")}>
+                                {item.text}
+                              </span>
+                              <ComposerIcon
+                                name={item.icon}
+                                propsIcon={{
+                                  className: this.decorateCSS("icon"),
+                                }}
+                              />
+                            </div>
+                          </ComposerLink>
+                        </>
+                      )}
                     </div>
                   </div>
-                )
-              )}
+                );
+              })}
             </ComposerSlider>
           </div>
         </div>

@@ -29,11 +29,12 @@
     }
 
     .carousel-div {
-
       width: 100%;
       gap: 50px;
 
       .carousel {
+        overflow: hidden;
+
         .dots {
           display: flex !important;
           flex-direction: row;
@@ -52,7 +53,11 @@
               border: none;
               transition: 0.3s;
               content-visibility: hidden;
-              background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) !important;
+              background: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              ) !important;
               width: 10px;
               height: 10px;
               border-radius: 100px;
@@ -64,10 +69,20 @@
           padding: 0 10px;
         }
 
+        .right-card-padding {
+          padding-right: 0px !important;
+          padding-left: 20px !important;
+        }
+
+        .left-card-padding {
+          padding-left: 0px !important;
+          padding-right: 20px !important;
+        }
+
         .card {
           width: 100%;
           height: 100%;
-          padding: 0px 20px 50px 20px;
+          padding: 0px 10px 50px 10px;
           position: relative;
 
           &.active {
@@ -84,7 +99,11 @@
           }
 
           .card-inner {
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
             z-index: 0;
             position: static;
             display: flex;
@@ -92,7 +111,6 @@
             padding: 3rem;
             height: 400px;
             justify-content: space-between;
-            // margin-left:20px;
 
             .img-div {
               .img {
@@ -102,7 +120,6 @@
                 max-width: 200px;
                 max-height: 200px;
               }
-
             }
 
             .title {
@@ -123,7 +140,7 @@
               align-items: center;
               gap: 5px;
 
-              >svg {
+              > svg {
                 font-size: 14px;
                 display: flex;
                 flex-shrink: 0;
@@ -136,7 +153,7 @@
               .text {
                 font-size: 14px;
 
-                >blinkpage p {
+                > blinkpage p {
                   display: -webkit-box;
                   -webkit-line-clamp: 1;
                   -webkit-box-orient: vertical;
@@ -152,7 +169,6 @@
   }
 }
 
-
 @media only screen and (min-width: 769px) and (max-width: 1440px) {
   .container {
     padding: 20px 30px;
@@ -164,12 +180,12 @@
       place-items: center;
 
       .carousel-div {
-
         width: 100%;
         gap: 50px;
 
         .carousel {
           width: 100%;
+
 
           .dots {
             display: flex !important;
@@ -180,6 +196,10 @@
             list-style-type: none;
             margin-top: 15px !important;
             padding: 0;
+          }
+
+          .left-card-padding {
+            padding: 0 !important;
           }
 
           .card {
@@ -219,8 +239,6 @@
 @media only screen and (min-width: 476px) and (max-width: 768px) {
   .container {
     padding: 20px 30px;
-    margin-bottom: 20px !important;
-
 
     .max-content {
       display: flex !important;
@@ -229,18 +247,19 @@
 
       .up-text {
         text-align: center;
-  
+
         .title {
-          margin-bottom: 30px !important;
+          margin-bottom: 20px !important;
         }
       }
 
       .carousel-div {
-
         width: 100%;
+        height: 100%;
 
         .carousel {
           width: 100%;
+          overflow: unset !important;
 
           .dots {
             display: flex !important;
@@ -254,17 +273,20 @@
 
             bottom: -20px;
             left: 50%;
-            transform: translateX(-50%);
-            position: absolute;
+            transform: unset !important;
+            position: unset !important;
+          }
+
+          .left-card-padding {
+            padding: 0 !important;
+            padding-right: 10px !important;
           }
 
           .card {
             display: flex !important;
             flex-direction: column !important;
-            gap:10px !important;
-            // margin-top: 10px;
-            padding: 0px;
-
+            gap: 10px !important;
+            padding: 0 0 0 10px;
 
             &.active {
               &::before {
@@ -283,7 +305,6 @@
             .card-inner {
               text-align: center;
               height: 400px !important;
-              margin: 10px;
 
               img {
                 margin: 0 auto;
@@ -299,7 +320,6 @@
 @media only screen and (max-width: 475px) {
   .container {
     padding: 20px 30px;
-    margin-bottom: 20px !important;
 
     .max-content {
       display: flex;
@@ -308,30 +328,29 @@
 
       .up-text {
         text-align: center;
-  
+
         .title {
           margin-bottom: 20px !important;
         }
       }
 
       .carousel-div {
-
         width: 100%;
         gap: 50px;
 
         .carousel {
           width: 100%;
+          overflow: unset !important;
 
           .dots {
-            
             bottom: -20px;
             left: 50%;
-            transform: translateX(-50%);
-            position: absolute;
+            margin-top: 10px;
+            transform: unset !important;
+            position: unset !important;
           }
 
           .card {
-            // left: 0rem !important;
             margin-top: 10px;
             padding: 0 !important;
 
@@ -358,7 +377,6 @@
                 margin: 0 auto;
               }
             }
-
           }
         }
       }
