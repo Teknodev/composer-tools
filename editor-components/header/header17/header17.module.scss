@@ -61,8 +61,8 @@
             height: 100%;
             left: 160px;
             z-index: 10;
-            opacity: 0; // Başlangıçta görünmez yapıyoruz
-            transform: translateX(-100%); // Başlangıçta ekranın dışında solda
+            opacity: 0;
+            transform: translateX(-100%);
             transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 
             .cover-image {
@@ -72,8 +72,8 @@
             }
 
             &.left-side-slide-animation {
-              opacity: 1; // Opaklık artarak görünür olacak
-              transform: translateX(0); // Soldan sağa ekrana gelecek
+              opacity: 1;
+              transform: translateX(0);
             }
           }
 
@@ -82,16 +82,16 @@
             align-items: center;
             position: absolute;
             height: 100%;
-            width: 70%;
-            left: 30%;
+            width: 50%;
+            left: 50%;
             z-index: 10;
-            opacity: 0; 
+            opacity: 0;
             transform: translateX(100%);
             transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 
             &.right-side-slide-animation {
-              opacity: 1 !important; 
-              transform: translateX(0) !important; 
+              opacity: 1 !important;
+              transform: translateX(0) !important;
             }
 
             .title-box {
@@ -102,7 +102,7 @@
               flex-direction: column;
               justify-content: center;
               position: absolute;
-              left: 28%;
+              left: 0%;
               width: 500px;
 
               .subtitle {
@@ -110,11 +110,11 @@
                 color: var(--composer-primary-color);
 
                 blinkpage > p {
-                  display: -webkit-box; /* Flexbox yerine kullanılan eski bir yöntem */
-                  -webkit-box-orient: vertical; /* Flexbox ekseni dikey olarak ayarlanır */
-                  overflow: hidden; /* Fazla metnin gizlenmesi */
-                  -webkit-line-clamp: 3; /* Gösterilecek satır sayısı */
-                  text-overflow: ellipsis; /* Metin taşarsa üç nokta ile kesilmesini sağlar */
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  -webkit-line-clamp: 3;
+                  text-overflow: ellipsis;
                 }
               }
 
@@ -124,11 +124,11 @@
                 color: var(--composer-primary-color);
 
                 blinkpage > p {
-                  display: -webkit-box; /* Flexbox yerine kullanılan eski bir yöntem */
-                  -webkit-box-orient: vertical; /* Flexbox ekseni dikey olarak ayarlanır */
-                  overflow: hidden; /* Fazla metnin gizlenmesi */
-                  -webkit-line-clamp: 4; /* Gösterilecek satır sayısı */
-                  text-overflow: ellipsis; /* Metin taşarsa üç nokta ile kesilmesini sağlar */
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  -webkit-line-clamp: 3;
+                  text-overflow: ellipsis;
                 }
               }
 
@@ -138,11 +138,11 @@
                 margin: 5px 0px;
 
                 blinkpage > p {
-                  display: -webkit-box; /* Flexbox yerine kullanılan eski bir yöntem */
-                  -webkit-box-orient: vertical; /* Flexbox ekseni dikey olarak ayarlanır */
-                  overflow: hidden; /* Fazla metnin gizlenmesi */
-                  -webkit-line-clamp: 10; /* Gösterilecek satır sayısı */
-                  text-overflow: ellipsis; /* Metin taşarsa üç nokta ile kesilmesini sağlar */
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  -webkit-line-clamp: 10;
+                  text-overflow: ellipsis;
                 }
               }
             }
@@ -153,8 +153,8 @@
             height: 100%;
             width: 70%;
             left: 30%;
-            background-color: rgba(255, 255, 255, 0.5); // %50 saydam beyaz
-            backdrop-filter: blur(5px); // Hafif bulanıklık efekti
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px); 
             top: 0;
             transition: transform 1s ease-in-out, opacity 1s ease-in-out;
             transform: translateX(100%);
@@ -281,15 +281,13 @@
               width: 100%;
               left: 0% !important;
               z-index: 10;
-              opacity: 0; // Başlangıçta görünmez yapıyoruz
-              transform: translateX(100%); // Başlangıçta ekranın dışında solda
+              opacity: 0;
+              transform: translateX(100%);
               transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 
               &.right-side-slide-animation {
-                opacity: 1 !important; // Opaklık artarak görünür olacak
-                transform: translateX(
-                  0
-                ) !important; // Soldan sağa ekrana gelecek
+                opacity: 1 !important;
+                transform: translateX(0) !important;
               }
 
               .title-box {
@@ -302,11 +300,9 @@
                 text-align: center;
                 align-items: center;
                 position: absolute;
-                left: 50%; /* Ortalamak için */
-                transform: translateX(
-                  -50%
-                ); /* Ekranın tam ortasında olması için */
-                width: 100%; /* Genişliği ekran boyunca yap */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
                 padding: 0px 30px !important;
                 top: 40%;
 
@@ -342,8 +338,8 @@
               left: 0%;
               top: 40%;
 
-              background-color: rgba(255, 255, 255, 0.5); // %50 saydam beyaz
-              backdrop-filter: blur(5px); // Hafif bulanıklık efekti
+              background-color: rgba(255, 255, 255, 0.5);
+              backdrop-filter: blur(5px);
               transition: transform 1s ease-in-out, opacity 1s ease-in-out;
               transform: translateX(100%);
               opacity: 0;
@@ -470,15 +466,13 @@
               width: 100%;
               left: 0% !important;
               z-index: 10;
-              opacity: 0; // Başlangıçta görünmez yapıyoruz
-              transform: translateX(100%); // Başlangıçta ekranın dışında solda
+              opacity: 0;
+              transform: translateX(100%);
               transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 
               &.right-side-slide-animation {
-                opacity: 1 !important; // Opaklık artarak görünür olacak
-                transform: translateX(
-                  0
-                ) !important; // Soldan sağa ekrana gelecek
+                opacity: 1 !important;
+                transform: translateX(0) !important;
               }
 
               .title-box {
@@ -492,9 +486,9 @@
                 align-items: center;
                 position: absolute;
                 left: 50%;
-                transform: translateX(-50%); /* Ekranın tam ortasında olması için */
-                width: 100%; /* Genişliği ekran boyunca yap */
-                max-width: 500px; /* İsteğe göre maks genişlik */
+                transform: translateX(-50%);
+                width: 100%;
+                max-width: 500px;
 
                 .subtitle {
                   font-size: 24px;
