@@ -162,21 +162,8 @@ class Header29 extends BaseHeader {
     const description = this.getPropValue("description");
     const image = this.getPropValue("image");
 
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
-      return str;
-    }
-    function getInputValue(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`${indexOfLabel} ${indexOfInput}`);
-      return toObjectKey(name);
-    }
-
     function getInitialValue() {
       let value: any = {};
-      const key = "header29s";
       return value;
     }
     function getFormData(obj: any) {
@@ -200,16 +187,6 @@ class Header29 extends BaseHeader {
                   {this.castToString(description) && (
                     <div className={this.decorateCSS("description")}>{description}</div>
                   )}
-                  {/* {(inputs.length > 0) && (
-                    inputs.map((inputsItem: InputType, index: number) => (
-                      <div className={this.decorateCSS("button-and-input")}>
-                        <input placeholder={this.castToString(inputsItem.placeholder)} className={this.decorateCSS("input")} type="text" />
-                        <ComposerLink path={inputsItem.button.url}>
-                          <button className={this.decorateCSS("button")}>{this.castToString(inputsItem.button.buttonText)}</button>
-                        </ComposerLink>
-                      </div>
-                    ))
-                  )} */}
                   {input && (
                     <div className={this.decorateCSS("form-container")}>
                       {input.isInput ? (
