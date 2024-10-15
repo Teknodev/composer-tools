@@ -10,18 +10,13 @@ interface IAnimationProps {
   startingAnimation: string;
   endingAnimation: string;
 }
+
 interface SliderItem {
   title: JSX.Element;
   description: JSX.Element;
   image: string;
   button: ButtonItem;
-
 };
-
-interface Item {
-  item: Item[];
-
-}
 
 interface ButtonItem {
   buttonText: JSX.Element;
@@ -29,10 +24,33 @@ interface ButtonItem {
   next_icon: string;
 }
 
+interface TopContentItem {
+  background_text: JSX.Element;
+  page_show: boolean;
+}
+
 class Header25 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
+    this.addProp({
+      type: "object",
+      key: "top_content",
+      displayer: "Top Content",
+      value: [
+        {
+          type: "string",
+          key: "background_text",
+          displayer: "Background Text",
+          value: "Composer",
+        },
+        {
+          type: "boolean",
+          key: "page_show",
+          displayer: "Page Show",
+          value: true,
+        },
+      ]
+    });
     this.addProp({
       type: "icon",
       key: "prev_icon",
@@ -297,12 +315,6 @@ class Header25 extends BaseHeader {
 
     this.addProp({
       type: "string",
-      key: "background-text",
-      displayer: "Background Text",
-      value: "Composer",
-    });
-    this.addProp({
-      type: "string",
       key: "side-text",
       displayer: "Side Text",
       value: "ARCHITECTURE BURO",
@@ -360,7 +372,7 @@ class Header25 extends BaseHeader {
       },
     };
     const sliderItemObject = this.castToObject<SliderItem[]>("slider");
-    console.log("sliderItemObject", this.castToString(sliderItemObject[0].button.buttonText))
+    const topContent = this.castToObject<TopContentItem>("top_content");
     return (
 
       <div className={this.decorateCSS("container")}>
@@ -398,7 +410,7 @@ class Header25 extends BaseHeader {
               </div>
               <div className={this.decorateCSS("low-op-text")}>
                 <h1 className={this.decorateCSS("background-op-text")}>
-                  {this.getPropValue("background-text")}
+                  {topContent.background_text}
                 </h1>
               </div>
             </div>
