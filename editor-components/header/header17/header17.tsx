@@ -188,19 +188,16 @@ class Header17 extends BaseHeader {
 
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("activeSlide", 0);
-    this.setComponentState("mouseX", 0); // Mouse X pozisyonunu tutmak için
-    this.setComponentState("mouseY", 0); // Mouse Y pozisyonunu tutmak için
+    this.setComponentState("mouseX", 0);
+    this.setComponentState("mouseY", 0);
   }
 
   handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    // Mouse pozisyonunu al
     const { clientX, clientY } = event;
 
-    // Mouse hareketini tersine uygulamak için hesapla
     const movementX = (clientX - window.innerWidth / 2) * -0.03;
     const movementY = (clientY - window.innerHeight / 2) * -0.03;
 
-    // Mouse pozisyonlarını güncelle
     this.setComponentState("mouseX", movementX);
     this.setComponentState("mouseY", movementY);
   };
