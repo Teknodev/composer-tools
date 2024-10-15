@@ -59,6 +59,16 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
   useEffect(() => {
     if (!map) return;
 
+    if (markers.length === 1) {
+      google.maps.event.addListenerOnce(map, "bounds_changed", () => {
+        map.setZoom(defaultZoom || 10);
+      });
+    }
+  }, [map]);
+
+  useEffect(() => {
+    if (!map) return;
+
     const isNewMarkerAdded = markers.length > prevMarkersRef.current.length;
 
     if (isNewMarkerAdded) {
