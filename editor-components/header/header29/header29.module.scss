@@ -25,7 +25,7 @@
         width: 100%;
         justify-content: center;
         gap: 40px;
-        flex:3;
+        flex:2;
         .up {
           display: flex;
           flex-direction: column;
@@ -39,23 +39,29 @@
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
-          .button-and-input {
-            display: flex;
-            gap: 20px;
-            width: 50%;
+          .form-container{
+            width: 100%;
             height: 100%;
-            align-items: stretch;
-            .input {
-              flex:2;
-              border: var(--composer-font-color-primary) solid 2px;
-              border-radius: 1rem;
-              padding: 1rem;
-            }
-            >div{
-              flex:1;
-              .button {
+            .button-and-input {
+              display: flex;
+              gap: 20px;
+              width: 50%;
+              height: 100%;
+              align-items: stretch;
+              .form {
+                flex:2;
+                border: var(--composer-font-color-primary) solid 2px;
+                border-radius: 1rem;
+                padding: 1rem;
+                .input{
+                  border:none;
+                  width: 100%;
+                }
+              }
+              .input-button{
+                flex:1;
                 width: 100%;
-                height: 100%;
+                min-height: 100%;
                 background-color:var(--composer-primary-color) ;
                 color: var(--composer-font-color-secondary);
                 border:none;
@@ -64,6 +70,17 @@
                 cursor: pointer;
                 border-radius: 1rem;
                 padding: 1rem;
+              }
+              >div{
+                width: 100% !important;
+                .button{
+                  background-color:var(--composer-primary-color) ;
+                  color: var(--composer-font-color-secondary);
+                  width: 40%;
+                  padding: 1rem;
+                  font-size: 1rem;
+                  border-radius: 1rem;
+                }
               }
             }
           }
@@ -106,9 +123,11 @@
       .image-container{
         flex:1;
         max-height: 100%;
+        max-width: 100%;
         .image {
           object-fit: cover;
           height: 100%;
+          max-width: 100%;
         }
       }
     }
@@ -124,7 +143,7 @@
     .max-content {
       .wrapper{
         flex-direction: column !important;
-        gap:5rem !important;
+        gap:3rem !important;
         &.wrapper-reverse {
           flex-direction: column-reverse !important;
         }  
@@ -138,21 +157,31 @@
             .description {
               font-size: 1.5rem !important;
             }
-            .button-and-input {
-              gap: 1rem;
-              width: 80%;
-              .input {
-                flex:2;
-                padding: 0.5rem;
-              }
-              >div{
-                flex:1;
-                .button {
-                  font-size: 0.7em;
-                  width: 100%;
+            .form-container{
+              .button-and-input {
+                gap: 1rem;
+                width: 80%;
+                .form{
+                  padding: 0.5rem;
+                  display: flex;
+                  align-items: center;
+                  .input {
+                    width: 100%;
+                  }
+                }
+  
+                .input-button{
+  
+                }
+                >div{
+                  .button {
+                    font-size: 0.7em;
+                    width: 30%;
+                  }
                 }
               }
             }
+
           }
           .down {
             .card {
@@ -196,19 +225,24 @@
             .description {
               font-size: 1em !important;
             }
-            .button-and-input {
-              flex-direction: column;
-              gap: 1rem;
-              width: 100%;
-              .input {
-                flex:1;
-                padding: 0.5rem;
-              }
-              >div{
-                flex:1;
-                .button {
-                  font-size: 0.7em;
-                  width: 100%;
+            .form-container{
+              .button-and-input {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                .form{
+                  .input {
+                  }
+                }
+                .input-button{
+                  padding:0.5rem;
+                }
+                >div{
+                  flex:1;
+                  .button {
+                    font-size: 0.7em;
+                    width: 100%;
+                  }
                 }
               }
             }
