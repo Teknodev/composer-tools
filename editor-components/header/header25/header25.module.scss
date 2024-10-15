@@ -36,14 +36,13 @@
         z-index: 1;
         flex-direction: column;
         .pagination {
-          color: white;
           font-size: 20px;
           .active-slide {
-            color: white;
+            color: var(--composer-font-color-primary);
             font-size: 6rem;
           }
           .slide-count-power {
-            color: greenyellow;
+            color: var(--composer-primary-color);
             vertical-align: top;
             .slide-count {
               font-size: 1.5rem;
@@ -53,7 +52,7 @@
         .low-op-text {
           font-size: 4rem;
           opacity: 0.1;
-          color: white;
+          color: var(--composer-font-color-primary);
           z-index: 4;
           margin-left: 50%;
           h1 {
@@ -79,7 +78,8 @@
           text-align: center;
           word-spacing: 6px;
           letter-spacing: 4px;
-          color: white;
+          color: var(--composer-font-color-primary);
+          opacity: 0.5;
           .side-text-content{
             display: flex;
           }
@@ -88,7 +88,8 @@
         .line {
           height: 5vh;
           width: 1px;
-          background: #646464;
+          background: var(--composer-font-color-primary);
+          opacity: 0.4;
         }
         .icons {
           z-index: 3;
@@ -97,13 +98,14 @@
           gap: 20px;
 
           .icon {
-            color: #606060;
+            color: var(--composer-font-color-primary);
+            opacity: 0.5;
           }
         }
       }
       .top-figure,
       .bottom-figure {
-        background: #2b2b2b;
+        background: var(--composer-html-background);
         position: absolute;
         top: 0;
         left: 0;
@@ -200,20 +202,21 @@
           .button {
             padding: 15px 30px;
             border-radius: 50px;
-            border: none;
+            border: solid 1px white;
             outline: none;
             display: flex;
             align-items: center;
             gap: 10px;
             font-weight: 400;
-            background: #c5a47e;
+            background: transparent;
             color: white;
             transition: 0.3s all;
             margin-top: 10px;
             max-width: 15vw;
 
             &:hover {
-              background: #323232;
+              background: var(--composer-html-background);
+              color: var(--composer-font-color-primary);
               transition: 0.3s all;
               cursor: pointer;
             }

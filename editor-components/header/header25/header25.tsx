@@ -396,6 +396,7 @@ class Header25 extends BaseHeader {
 
         <div className={this.decorateCSS("item")}>
           <div className={this.decorateCSS("left-figure-container")}>
+
             <div className={this.decorateCSS("top-figure")}>
               <div className={this.decorateCSS("pagination")}>
                 <span className={this.decorateCSS("active-slide")}>
