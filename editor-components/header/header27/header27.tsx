@@ -448,6 +448,7 @@ class Header27 extends BaseHeader {
       slidesToScroll: 1,
       vertical: sliderCount > 1,
       verticalSwap: sliderCount > 1,
+      adaptiveHeight: true,
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
