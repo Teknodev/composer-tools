@@ -14,6 +14,7 @@
       display: flex;
       justify-content: space-between;
       gap:10rem;
+      align-items: center;
       &.wrapper-reverse {
         flex-flow: row-reverse;
       }   
@@ -41,7 +42,7 @@
           .button-and-input {
             display: flex;
             gap: 20px;
-            width: 100%;
+            width: 50%;
             height: 100%;
             align-items: stretch;
             .input {
@@ -95,8 +96,8 @@
               max-width: 100%;
             }
             .icon{
-              width: 5rem;
-              height: 5rem;
+              width: 3rem;
+              height: 3rem;
               color:var(--composer-font-color-primary);
             }
           }
@@ -139,8 +140,9 @@
             }
             .button-and-input {
               gap: 1rem;
+              width: 80%;
               .input {
-                flex:1;
+                flex:2;
                 padding: 0.5rem;
               }
               >div{
@@ -169,9 +171,10 @@
           }
         }
         .image-container{
-          max-height: fit-content !important;
+          max-height: 50vh;
           .image {
-            width: 100%;
+            max-height: 100%;
+            object-fit:contain;
           }
         }
       }
@@ -197,6 +200,7 @@
             .button-and-input {
               flex-direction: column;
               gap: 1rem;
+              width: 100%;
               .input {
                 flex:1;
                 padding: 0.5rem;
@@ -225,13 +229,14 @@
               .icon{
                 width: 2rem;
                 height: 2rem;
-
               }
             }
           }
         }
         .image-container{
+          display: inline;
           .image {
+            width: 100%;
           }
         }
       }
