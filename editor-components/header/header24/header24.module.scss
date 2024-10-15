@@ -156,6 +156,11 @@
             object-fit: cover;
           }
 
+          .no-image{
+            width: auto !important;
+            height: auto !important;
+          }
+
           .main-content {
             margin: auto;
             display: flex;
@@ -299,20 +304,23 @@
 
               .left .content {
                 .title {
-                  font-size: 5vw;
+                  font-size: 2.3rem !important;
                   padding: 0;
                 }
 
                 .description {
-                  font-size: 3vw;
+                  font-size: 1.2rem !important;
                   padding: 0;
                 }
 
                 .buttons {
                   flex-direction: column;
                   align-items: center;
+                  flex-direction: row !important;
+                  gap: 10px !important;
 
                   .button {
+                    padding: 8px 16px !important;
                     width: 100%;
                     margin: 8px 0;
                     max-width: none;
@@ -334,6 +342,10 @@
                   }
                 }
               }
+            }
+
+            .no-image-content{
+              padding-bottom: 40px !important;
             }
 
             .background-image {
@@ -396,13 +408,25 @@
 
               .left .content {
 
+                .title{
+                  font-size: 1.7rem !important;
+                }
+
+                .description{
+                  font-size: 1rem !important;
+
+                }
+
                 .buttons {
                   .button {
+                    padding: 6px 14px !important;
                     font-size: 9px;
                   }
                 }
               }
-
+            }
+            .no-image-content{
+              padding-bottom: 30px !important;
             }
           }
         }

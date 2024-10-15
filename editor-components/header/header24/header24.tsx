@@ -306,10 +306,10 @@ class HeaderComponent24 extends BaseHeader {
                 (item: ISliderData, index: number) => (
 
                   <div className={this.decorateCSS("item")} key={`key${index}`}>
-                    {item.background_image && <div className={this.decorateCSS("background-image")}>
+                    {item.background_image && <div className={`${this.decorateCSS("background-image")} ${!item.image && this.decorateCSS("no-image")}`}>
                       <img src={item.background_image} alt={this.castToString(item.title)} />
                     </div>}
-                    <div className={this.decorateCSS("main-content")}>
+                    <div className={`${this.decorateCSS("main-content")} ${!item.image && this.decorateCSS("no-image-content")}`}>
                       {(item.flower_image ||
                         this.castToString(item.title) ||
                         this.castToString(item.description) ||
