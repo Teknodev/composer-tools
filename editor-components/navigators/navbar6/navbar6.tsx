@@ -30,362 +30,367 @@ class Navbar6 extends BaseNavigator {
       value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
 
-    this.addProp(
-      {
-        type: "array",
-        key: "extendable",
-        displayer: "Extendable",
-        value: [
-          {
-            type: "object",
-            key: "item",
-            displayer: "Main Text",
-            value: [
-              {
-                type: "string",
-                key: "label",
-                value: "HOME",
-                displayer: "Text",
-              },
-              {
-                type: "select",
-                key: "menu_type",
-                displayer: "Type",
-                value: "Dropdown",
-                additionalParams: menuType,
-              },
-              {
-                type: "icon",
-                key: "icon",
-                displayer: "Dropdown Icon",
-                value: "FaChevronDown",
-              },
-              {
-                type: "page",
-                key: "link",
-                value: "",
-                displayer: "Navigate To",
-              },
-              {
-                type: "array",
-                key: "section",
-                displayer: "Extendable Section",
-                value: [
-                  {
-                    type: "object",
-                    key: "item1",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 01",
-                        displayer: "Info Text 1",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item2",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 02",
-                        displayer: "Info Text 2",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item3",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 03",
-                        displayer: "Info Text 3",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "item",
-            displayer: "Main Text",
-            value: [
-              {
-                type: "string",
-                key: "label",
-                value: "BLOG",
-                displayer: "Text",
-              },
-              {
-                type: "select",
-                key: "menu_type",
-                displayer: "Type",
-                value: "Normal",
-                additionalParams: menuType,
-              },
-              {
-                type: "icon",
-                key: "icon",
-                displayer: "Dropdown Icon",
-                value: "FaChevronDown",
-              },
-              {
-                type: "page",
-                key: "link",
-                value: "",
-                displayer: "Navigate To",
-              },
-              {
-                type: "array",
-                key: "section",
-                displayer: "Extendable Section",
-                value: [
-                  {
-                    type: "object",
-                    key: "item1",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 01",
-                        displayer: "Info Text 1",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item2",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 02",
-                        displayer: "Info Text 2",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item3",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 03",
-                        displayer: "Info Text 3",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "item",
-            displayer: "Main Text",
-            value: [
-              {
-                type: "string",
-                key: "label",
-                value: "CONTACT",
-                displayer: "Text",
-              },
-              {
-                type: "select",
-                key: "menu_type",
-                displayer: "Type",
-                value: "Normal",
-                additionalParams: menuType,
-              },
-              {
-                type: "icon",
-                key: "icon",
-                displayer: "Dropdown Icon",
-                value: "FaChevronDown",
-              },
-              {
-                type: "page",
-                key: "link",
-                value: "",
-                displayer: "Navigate To",
-              },
-              {
-                type: "array",
-                key: "section",
-                displayer: "Extendable Section",
-                value: [
-                  {
-                    type: "object",
-                    key: "item1",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 01",
-                        displayer: "Info Text 1",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item2",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 02",
-                        displayer: "Info Text 2",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item3",
-                    displayer: "Extendable Section Item",
-                    value: [
-                      {
-                        type: "string",
-                        key: "text",
-                        value: "Creative 03",
-                        displayer: "Info Text 3",
-                      },
-                      {
-                        type: "page",
-                        key: "link",
-                        value: "",
-                        displayer: "Navigate To",
-                      },
-                      {
-                        type: "image",
-                        key: "image",
-                        value: "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        displayer: "Image",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      }
-
-    )
+    this.addProp({
+      type: "array",
+      key: "extendable",
+      displayer: "Extendable",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Main Text",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              value: "HOME",
+              displayer: "Text",
+            },
+            {
+              type: "select",
+              key: "menu_type",
+              displayer: "Type",
+              value: "Dropdown",
+              additionalParams: menuType,
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Dropdown Icon",
+              value: "FaChevronDown",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+            {
+              type: "array",
+              key: "section",
+              displayer: "Extendable Section",
+              value: [
+                {
+                  type: "object",
+                  key: "item1",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 01",
+                      displayer: "Info Text 1",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item2",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 02",
+                      displayer: "Info Text 2",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item3",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 03",
+                      displayer: "Info Text 3",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Main Text",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              value: "BLOG",
+              displayer: "Text",
+            },
+            {
+              type: "select",
+              key: "menu_type",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: menuType,
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Dropdown Icon",
+              value: "FaChevronDown",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+            {
+              type: "array",
+              key: "section",
+              displayer: "Extendable Section",
+              value: [
+                {
+                  type: "object",
+                  key: "item1",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 01",
+                      displayer: "Info Text 1",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item2",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 02",
+                      displayer: "Info Text 2",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item3",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 03",
+                      displayer: "Info Text 3",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Main Text",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              value: "CONTACT",
+              displayer: "Text",
+            },
+            {
+              type: "select",
+              key: "menu_type",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: menuType,
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Dropdown Icon",
+              value: "FaChevronDown",
+            },
+            {
+              type: "page",
+              key: "link",
+              value: "",
+              displayer: "Navigate To",
+            },
+            {
+              type: "array",
+              key: "section",
+              displayer: "Extendable Section",
+              value: [
+                {
+                  type: "object",
+                  key: "item1",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 01",
+                      displayer: "Info Text 1",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item2",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 02",
+                      displayer: "Info Text 2",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item3",
+                  displayer: "Extendable Section Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "Creative 03",
+                      displayer: "Info Text 3",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      value: "",
+                      displayer: "Navigate To",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      value:
+                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      displayer: "Image",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
 
     this.state["componentProps"]["navActive"] = false;
     this.state["componentProps"]["dropdownActive"] = false;
-
   }
 
   navClick() {
@@ -410,8 +415,9 @@ class Navbar6 extends BaseNavigator {
     return (
       <>
         <div
-          className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
-            }`}
+          className={`${this.decorateCSS("container")} ${
+            this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+          }`}
         >
           <div className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("content")}>
@@ -420,10 +426,13 @@ class Navbar6 extends BaseNavigator {
               </div>
 
               <div className={this.decorateCSS("content-right")}>
-                {(
+                {
                   <div
-                    className={`${this.decorateCSS("navbar-child")} ${navActive ? this.decorateCSS("active") : this.decorateCSS("closing")
-                      }`}
+                    className={`${this.decorateCSS("navbar-child")} ${
+                      navActive
+                        ? this.decorateCSS("active")
+                        : this.decorateCSS("closing")
+                    }`}
                   >
                     {extendable.map((item: any, index: number) => {
                       const hasValue = item?.value?.[0]?.value;
@@ -434,93 +443,214 @@ class Navbar6 extends BaseNavigator {
                             <>
                               {item?.value?.[1]?.value === "Dropdown" ? (
                                 <>
-                                  {window.innerWidth < 769 ?
+                                  {window.innerWidth < 769 ? (
                                     <>
-                                      <div className={this.decorateCSS("right-section")}>
-                                        <h3 className={this.decorateCSS("extendable")} >
-                                          <ComposerLink path={item?.value[3].value} key={index}>
-                                            <div className={this.decorateCSS("dropdown-content-tablet-telephone")} >
+                                      <div
+                                        className={this.decorateCSS(
+                                          "right-section"
+                                        )}
+                                      >
+                                        <h3
+                                          className={this.decorateCSS(
+                                            "extendable"
+                                          )}
+                                        >
+                                          <ComposerLink
+                                            path={item?.value[3].value}
+                                            key={index}
+                                          >
+                                            <div
+                                              className={this.decorateCSS(
+                                                "dropdown-content-tablet-telephone"
+                                              )}
+                                            >
                                               {item?.value?.[0]?.value}
                                             </div>
                                           </ComposerLink>
                                         </h3>
-                                        <div className={dropdownActive ? this.decorateCSS("rotate") : ""} onClick={() => this.dropdownClick(index)}>
-                                          <ComposerIcon name={item?.value[2].value} />
+                                        <div
+                                          className={
+                                            dropdownActive
+                                              ? this.decorateCSS("rotate")
+                                              : ""
+                                          }
+                                          onClick={() =>
+                                            this.dropdownClick(index)
+                                          }
+                                        >
+                                          <ComposerIcon
+                                            name={item?.value[2].value}
+                                          />
                                         </div>
                                       </div>
                                       {item?.value?.[4]?.value?.length > 0 && (
-                                        <ul className={this.decorateCSS(`${dropdownActive ? "" : "ul-none"}`)} >
-                                          {item?.value?.[4]?.value?.map((dropdownItem: any, dropdownIndex: number) => {
-                                            const text = dropdownItem?.value?.[0]?.value;
-                                            const url = dropdownItem?.value?.[1].value;
+                                        <ul
+                                          className={this.decorateCSS(
+                                            `${dropdownActive ? "" : "ul-none"}`
+                                          )}
+                                        >
+                                          {item?.value?.[4]?.value?.map(
+                                            (
+                                              dropdownItem: any,
+                                              dropdownIndex: number
+                                            ) => {
+                                              const text =
+                                                dropdownItem?.value?.[0]?.value;
+                                              const url =
+                                                dropdownItem?.value?.[1].value;
 
-                                            return (
-                                              <div className={`${this.decorateCSS("rightSlider")} ${dropdownActive ? this.decorateCSS("activeChild") : this.decorateCSS("inactive")
-                                                }`}>
-                                                {dropdownActive && activeDropdownIndex === index &&
-                                                  <li key={index}>
-                                                    <ComposerLink path={url} isFullWidth={true}>
-                                                      {text}
-                                                    </ComposerLink>
-                                                  </li>
-                                                }
-                                              </div>
-                                            );
-                                          })}
+                                              return (
+                                                <div
+                                                  className={`${this.decorateCSS(
+                                                    "rightSlider"
+                                                  )} ${
+                                                    dropdownActive
+                                                      ? this.decorateCSS(
+                                                          "activeChild"
+                                                        )
+                                                      : this.decorateCSS(
+                                                          "inactive"
+                                                        )
+                                                  }`}
+                                                >
+                                                  {dropdownActive &&
+                                                    activeDropdownIndex ===
+                                                      index && (
+                                                      <li key={index}>
+                                                        <ComposerLink
+                                                          path={url}
+                                                          isFullWidth={true}
+                                                        >
+                                                          {text}
+                                                        </ComposerLink>
+                                                      </li>
+                                                    )}
+                                                </div>
+                                              );
+                                            }
+                                          )}
                                         </ul>
                                       )}
-                                    </> :
-
+                                    </>
+                                  ) : (
                                     <>
-                                      <h3 className={this.decorateCSS("extendable")}>
-                                        <div className={this.decorateCSS("extendable-title-content")}>
-                                          <ComposerLink path={item?.value[3].value}>{item?.value?.[0]?.value}</ComposerLink>
-                                          <ComposerIcon name={item?.value[2].value} />
-
+                                      <h3
+                                        className={this.decorateCSS(
+                                          "extendable"
+                                        )}
+                                      >
+                                        <div
+                                          className={this.decorateCSS(
+                                            "extendable-title-content"
+                                          )}
+                                        >
+                                          <ComposerLink
+                                            path={item?.value[3].value}
+                                          >
+                                            {item?.value?.[0]?.value}
+                                          </ComposerLink>
+                                          <ComposerIcon
+                                            name={item?.value[2].value}
+                                          />
                                         </div>
 
-                                        {item?.value?.[4]?.value?.length > 0 && (
-                                          <div className={this.decorateCSS("dropdown-content")}>
-                                            {item?.value?.[4]?.value?.map((dropdownItem: any, index: number) => {
-                                              const text = dropdownItem?.value?.[0]?.value;
-                                              const url = dropdownItem?.value?.[1]?.value;
-                                              const image = dropdownItem?.value?.[2]?.value;
+                                        {item?.value?.[4]?.value?.length >
+                                          0 && (
+                                          <div
+                                            className={this.decorateCSS(
+                                              "dropdown-content"
+                                            )}
+                                          >
+                                            <div
+                                              className={this.decorateCSS(
+                                                "container-border"
+                                              )}
+                                            >
+                                              {item?.value?.[4]?.value?.map(
+                                                (
+                                                  dropdownItem: any,
+                                                  index: number
+                                                ) => {
+                                                  const text =
+                                                    dropdownItem?.value?.[0]
+                                                      ?.value;
+                                                  const url =
+                                                    dropdownItem?.value?.[1]
+                                                      ?.value;
+                                                  const image =
+                                                    dropdownItem?.value?.[2]
+                                                      ?.value;
 
-                                              if (image || text) {
-                                                return (
-                                                  <>
-                                                    {image ? "" :
-                                                      <ComposerLink path={url}>
-                                                        <div className={this.decorateCSS("no-image-text")}>{text}</div>
-                                                      </ComposerLink>
-                                                    }
-                                                    <ComposerLink path={url} key={index}>
-                                                      <div className={this.decorateCSS("image-container")}>
-                                                        <div className={this.decorateCSS("image-overlay")}>
-                                                          {image && <img src={image} alt="" className={this.decorateCSS("image")} />}
-                                                          <div className={this.decorateCSS("text-overlay")}>
-                                                            {text}
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </ComposerLink>
-                                                  </>
-                                                );
-                                              }
+                                                  if (image || text) {
+                                                    return (
+                                                      <>
+                                                        {image ? (
+                                                          <ComposerLink
+                                                            path={url}
+                                                            key={index}
+                                                          >
+                                                            <div
+                                                              className={this.decorateCSS(
+                                                                "image-container"
+                                                              )}
+                                                            >
+                                                              <div
+                                                                className={this.decorateCSS(
+                                                                  "image-overlay"
+                                                                )}
+                                                              >
+                                                                {image && (
+                                                                  <img
+                                                                    src={image}
+                                                                    alt=""
+                                                                    className={this.decorateCSS(
+                                                                      "image"
+                                                                    )}
+                                                                  />
+                                                                )}
+                                                                <div
+                                                                  className={this.decorateCSS(
+                                                                    "text-overlay"
+                                                                  )}
+                                                                >
+                                                                  {text}
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </ComposerLink>
+                                                        ) : (
+                                                          <ComposerLink
+                                                            path={url}
+                                                          >
+                                                            <div
+                                                              className={this.decorateCSS(
+                                                                "no-image-text"
+                                                              )}
+                                                            >
+                                                              {text}
+                                                            </div>
+                                                          </ComposerLink>
+                                                        )}
+                                                      </>
+                                                    );
+                                                  }
 
-                                              return null;
-                                            })}
-
-
+                                                  return null;
+                                                }
+                                              )}
+                                            </div>
                                           </div>
                                         )}
                                       </h3>
                                     </>
-                                  }
+                                  )}
                                 </>
                               ) : (
                                 <h3>
-                                  <ComposerLink key={index} path={item?.value?.[1]?.value}>
+                                  <ComposerLink
+                                    key={index}
+                                    path={item?.value?.[1]?.value}
+                                  >
                                     <div>{item?.value?.[0]?.value}</div>
                                   </ComposerLink>
                                 </h3>
@@ -530,18 +660,17 @@ class Navbar6 extends BaseNavigator {
                         </>
                       );
                     })}
-
                   </div>
-
-                )}
+                }
 
                 <div
                   className={this.decorateCSS("hamburger-container")}
                   onClick={() => this.navClick()}
                 >
                   <span
-                    className={`${this.decorateCSS("hamburger")} ${navActive ? this.decorateCSS("open") : ""
-                      }`}
+                    className={`${this.decorateCSS("hamburger")} ${
+                      navActive ? this.decorateCSS("open") : ""
+                    }`}
                   >
                     <span></span>
                     <span></span>
@@ -552,7 +681,6 @@ class Navbar6 extends BaseNavigator {
             </div>
           </div>
         </div>
-
       </>
     );
   }
