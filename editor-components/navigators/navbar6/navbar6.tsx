@@ -402,9 +402,7 @@ class Navbar6 extends BaseNavigator {
 
   render() {
     const extendable = this.getPropValue("extendable") ?? [];
-    // const rightItems = this.getPropValue("right-items");
     const navActive = this.getComponentState("navActive");
-    const navClosing = this.getComponentState("navClosing");
 
     const dropdownActive = this.getComponentState("dropdownActive");
     const activeDropdownIndex = this.getComponentState("activeDropdownIndex");

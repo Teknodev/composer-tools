@@ -382,38 +382,40 @@
       transition: color 0.3s ease;
     }
 
-    + .hamburger-container {
-      z-index: 2;
+    .hamburger-container {
       cursor: pointer;
-    }
+      z-index: 4;
 
-    .hamburger {
-      width: 35px;
-      height: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 2;
-    }
+      .hamburger {
+        position: relative;
+        width: 24px;
+        height: 19.2px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: transform 0.4s ease;
+        color: var(--composer-font-color-primary) !important;
 
-    .hamburger span {
-      height: 4px;
-      background-color: var(--composer-font-color-primary);
-      transition: all 0.3s ease;
-    }
+        span {
+          display: block;
+          height: 4px;
+          background-color: var(--composer-font-color-primary);
+          transition: all 0.3s ease;
+        }
 
-    .hamburger.open span:nth-child(1) {
-      transform: translateY(0) rotate(45deg) !important;
-      transform-origin: top left;
-    }
+        &.open span:nth-child(1) {
+          transform: translateY(5px) rotate(45deg);
+        }
 
-    .hamburger.open span:nth-child(2) {
-      opacity: 0;
-    }
+        &.open span:nth-child(2) {
+          opacity: 0;
+        }
 
-    .hamburger.open span:nth-child(3) {
-      transform: translateY(0) rotate(-45deg) !important;
-      transform-origin: bottom left;
+        &.open span:nth-child(3) {
+          transform: translateY(-10px) rotate(-45deg);
+        }
+      }
     }
   }
 }
@@ -551,7 +553,8 @@
     }
 
     .hamburger.open span:nth-child(1) {
-      transform: rotate(45deg) !important;
+      transform: translateY(0) rotate(45deg) !important;
+      transform-origin: top left;
     }
 
     .hamburger.open span:nth-child(2) {
@@ -559,7 +562,8 @@
     }
 
     .hamburger.open span:nth-child(3) {
-      transform: rotate(-45deg) !important;
+      transform: translateY(0) rotate(-45deg) !important;
+      transform-origin: bottom left;
     }
   }
 }
