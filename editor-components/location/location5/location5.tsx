@@ -45,7 +45,7 @@ class LocationComponent5 extends Location {
               type: "string",
               key: "adress",
               displayer: "Enter the address",
-              value: "Rua Fernando Palha, 47, 1950-130"
+              value: "Rua Fernando Palha, 47A, 1950-130"
             },
             {
               type: "string",
@@ -76,9 +76,10 @@ class LocationComponent5 extends Location {
                       type: "image",
                       key: "marker-image",
                       displayer: "Marker Image",
-                      value: "",
+                      value: "https://cdn3.iconfinder.com/data/icons/flat-pro-basic-set-1-1/32/location-gray-1024.png",
                     },
                   ],
+                  
                 },
               ],
             },
@@ -136,7 +137,7 @@ class LocationComponent5 extends Location {
                       type: "image",
                       key: "marker-image",
                       displayer: "Marker Image",
-                      value: "",
+                      value: "https://cdn3.iconfinder.com/data/icons/flat-pro-basic-set-1-1/32/location-gray-1024.png",
                     },
                   ],
                 },
@@ -158,7 +159,7 @@ class LocationComponent5 extends Location {
     const mapStyles: google.maps.MapTypeStyle[] = [
         {
           elementType: "geometry",
-          stylers: [{ color: "#E0E0E0" }], 
+          stylers: [{ color: "#bfbfbf" }], 
         },
         {
           elementType: "labels.text.fill",
@@ -180,13 +181,13 @@ class LocationComponent5 extends Location {
         },
         {
           featureType: "landscape",
-          elementType: "geometry",
-          stylers: [{ color: "#E0E0E0" }], 
+          elementType: "geometry.fill",
+          stylers: [{ color: "#e0e0e0" }],
         },
         {
           featureType: "poi",
           elementType: "geometry",
-          stylers: [{ color: "#bdbdbd" }], 
+          stylers: [{ color: "#D0E4F7" }], 
         },
         {
           featureType: "road",
@@ -217,7 +218,7 @@ class LocationComponent5 extends Location {
           )?.value;
           const markerImage = loc.value.find(
             (a: any) => a.key === "marker-image"
-          )?.value;
+          )?.value || "https://cdn3.iconfinder.com/data/icons/flat-pro-basic-set-1-1/32/location-gray-1024.png"; 
 
           const lat = coordinateData?.lat;
           const lng = coordinateData?.lng;
