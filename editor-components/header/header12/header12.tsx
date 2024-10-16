@@ -9,7 +9,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 type SliderItem = {
   text: JSX.Element;
   image: string;
-}
+};
 
 class Header12 extends BaseHeader {
   leftSliderRef: any;
@@ -39,7 +39,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625904?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625904?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -47,7 +48,7 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Autumn Stuff",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -58,7 +59,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -66,7 +68,7 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Breakfast",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -77,7 +79,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fe?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fe?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -85,7 +88,7 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "The Notebook",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -96,7 +99,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625901?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625901?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -104,7 +108,7 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Little Pumpkin",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -115,7 +119,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -123,10 +128,10 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Autumn Evening",
             },
-          ]
+          ],
         },
-      ]
-    })
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -142,7 +147,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625900?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625900?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -150,7 +156,7 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Pumpkin Pie",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -161,7 +167,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -169,7 +176,7 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Coffee Time",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -180,7 +187,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fd?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fd?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -188,7 +196,7 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Autumn Stories",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -199,7 +207,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625902?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625902?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -207,7 +216,7 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Still Life",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -218,7 +227,8 @@ class Header12 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -226,23 +236,23 @@ class Header12 extends BaseHeader {
               displayer: "Text",
               value: "Boooo!",
             },
-          ]
+          ],
         },
-      ]
+      ],
     });
 
     this.addProp({
       type: "icon",
       key: "leftSliderIcon",
       displayer: "Left Slider Arrow Icon",
-      value: "HiOutlineChevronDown"
+      value: "HiOutlineChevronDown",
     });
 
     this.addProp({
       type: "icon",
       key: "rightSliderIcon",
       displayer: "Right Slider Arrow Icon",
-      value: "HiOutlineChevronUp"
+      value: "HiOutlineChevronUp",
     });
 
     this.leftSliderRef = React.createRef();
@@ -253,8 +263,8 @@ class Header12 extends BaseHeader {
      */
     this.screenWidth = window.innerWidth;
 
-    window.addEventListener('resize', () => {
-      this.screenWidth = window.innerWidth
+    window.addEventListener("resize", () => {
+      this.screenWidth = window.innerWidth;
     });
   }
 
@@ -274,35 +284,48 @@ class Header12 extends BaseHeader {
       slidesToScroll: 1,
       vertical: this.screenWidth > 1220 ? true : false,
       verticalSwiping: this.screenWidth > 1220 ? true : false,
+      swipe: true,
+      switeToSlide: true,
     };
 
     const decorateIcon = { className: this.decorateCSS("Icon") };
     const leftSliderSettings = {
       ...settings,
-      prevArrow: <LeftSliderArrow
-        givenClass={this.decorateCSS("left-slider-button")}
-        customFunction={() => {
-          this.rightSliderRef.slickNext();
-        }}
-        decorateIcon={decorateIcon}
-        icon={this.getPropValue("leftSliderIcon")}
-      />
+      beforeChange: (oldIndex: number, newIndex: number) => {
+        this.rightSliderRef.slickPrev();
+      },
+      prevArrow: (
+        <LeftSliderArrow
+          givenClass={this.decorateCSS("left-slider-button")}
+          customFunction={() => {
+            this.rightSliderRef.slickNext();
+          }}
+          decorateIcon={decorateIcon}
+          icon={this.getPropValue("leftSliderIcon")}
+        />
+      ),
     };
 
     const rightSliderSettings = {
       ...settings,
-      nextArrow: <RightSliderArrow
-        givenClass={this.decorateCSS("right-slider-button")}
-        customFunction={() => {
-          this.leftSliderRef.slickPrev();
-        }}
-        decorateIcon={decorateIcon}
-        icon={this.getPropValue("rightSliderIcon")}
-      />
+      beforeChange: (oldIndex: number, newIndex: number) => {
+        this.leftSliderRef.slickPrev();
+      },
+      nextArrow: (
+        <RightSliderArrow
+          givenClass={this.decorateCSS("right-slider-button")}
+          customFunction={() => {
+            this.leftSliderRef.slickPrev();
+          }}
+          decorateIcon={decorateIcon}
+          icon={this.getPropValue("rightSliderIcon")}
+        />
+      ),
     };
 
     const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
-    const rightSliderItems = this.castToObject<SliderItem[]>("rightSliderItems");
+    const rightSliderItems =
+      this.castToObject<SliderItem[]>("rightSliderItems");
 
     const showOverlay = this.getPropValue("overlay");
 
@@ -310,20 +333,22 @@ class Header12 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-container")}>
-            {leftSliderItems.length > 0 &&
-              (<ComposerSlider
+            {leftSliderItems.length > 0 && (
+              <ComposerSlider
                 className={`${this.decorateCSS("left-slider")}
-              ${rightSliderItems.length < 1 && this.decorateCSS("no-slider-items")}`}
-                ref={(slider: any) => this.leftSliderRef = slider}
+              ${
+                rightSliderItems.length < 1 &&
+                this.decorateCSS("no-slider-items")
+              }`}
+                ref={(slider: any) => (this.leftSliderRef = slider)}
                 {...leftSliderSettings}
               >
                 {leftSliderItems.map((item: SliderItem, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("slider-item")}
-                  >
+                  <div key={index} className={this.decorateCSS("slider-item")}>
                     {item.image && (
-                      <div className={this.decorateCSS("image-overlay-container")}>
+                      <div
+                        className={this.decorateCSS("image-overlay-container")}
+                      >
                         <img
                           className={this.decorateCSS("slider-item-image")}
                           src={item.image}
@@ -334,23 +359,34 @@ class Header12 extends BaseHeader {
                         )}
                       </div>
                     )}
-                    <div className={`${this.decorateCSS("slider-item-text")} ${!item.image && this.decorateCSS("no-image-text")}`}>{item.text}</div>
-
+                    <div
+                      className={`${this.decorateCSS("slider-item-text")} ${
+                        !item.image && this.decorateCSS("no-image-text")
+                      }`}
+                    >
+                      {item.text}
+                    </div>
                   </div>
                 ))}
-              </ComposerSlider>)}
+              </ComposerSlider>
+            )}
 
-            {rightSliderItems.length > 0 &&
-              (<ComposerSlider
+            {rightSliderItems.length > 0 && (
+              <ComposerSlider
                 className={`${this.decorateCSS("right-slider")}
-              ${leftSliderItems.length < 1 && this.decorateCSS("no-slider-items")}`}
-                ref={(slider: any) => this.rightSliderRef = slider}
+              ${
+                leftSliderItems.length < 1 &&
+                this.decorateCSS("no-slider-items")
+              }`}
+                ref={(slider: any) => (this.rightSliderRef = slider)}
                 {...rightSliderSettings}
               >
                 {rightSliderItems.map((item: SliderItem, index: number) => (
                   <div key={index} className={this.decorateCSS("slider-item")}>
                     {item.image && (
-                      <div className={this.decorateCSS("image-overlay-container")}>
+                      <div
+                        className={this.decorateCSS("image-overlay-container")}
+                      >
                         <img
                           className={this.decorateCSS("slider-item-image")}
                           src={item.image}
@@ -361,18 +397,22 @@ class Header12 extends BaseHeader {
                         )}
                       </div>
                     )}
-                    <div className={`${this.decorateCSS("slider-item-text")} ${!item.image && this.decorateCSS("no-image-text")}`}>{item.text}</div>
+                    <div
+                      className={`${this.decorateCSS("slider-item-text")} ${
+                        !item.image && this.decorateCSS("no-image-text")
+                      }`}
+                    >
+                      {item.text}
                     </div>
-
+                  </div>
                 ))}
-
-              </ComposerSlider>)}
+              </ComposerSlider>
+            )}
           </div>
         </div>
       </div>
     );
   }
-
 }
 
 function LeftSliderArrow(props?: any) {
@@ -386,12 +426,9 @@ function LeftSliderArrow(props?: any) {
         customFunction();
       }}
     >
-      <ComposerIcon
-        propsIcon={props.decorateIcon}
-        name={icon}
-      />
+      <ComposerIcon propsIcon={props.decorateIcon} name={icon} />
     </div>
-  )
+  );
 }
 
 function RightSliderArrow(props?: any) {
@@ -405,12 +442,9 @@ function RightSliderArrow(props?: any) {
         customFunction();
       }}
     >
-      <ComposerIcon
-        propsIcon={props.decorateIcon}
-        name={icon}
-      />
+      <ComposerIcon propsIcon={props.decorateIcon} name={icon} />
     </div>
-  )
+  );
 }
 
 export default Header12;
