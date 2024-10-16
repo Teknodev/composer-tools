@@ -56,6 +56,18 @@ class LocationComponent4 extends Location {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "number",
+      key: "zoom",
+      displayer: "Zoom",
+      value: 1
+    })
+    this.addProp({
+      type: "number",
+      key: "marker-zoom",
+      displayer: "Marker Zoom",
+      value: 1
+    })
+    this.addProp({
       type: "array",
       displayer: "addresses",
       key: "addresses",
@@ -71,8 +83,8 @@ class LocationComponent4 extends Location {
               displayer: "Coordinate",
               key: "coordinate",
               value: {
-                lat: 36.8529,
-                lng: -75.978,
+                lat: 41.9028,
+                lng: 12.4964,
               },
             },
 
@@ -134,8 +146,8 @@ class LocationComponent4 extends Location {
               displayer: "Coordinate",
               key: "coordinate",
               value: {
-                lat: 37.1234,
-                lng: -76.9876,
+                lat: 44.4268,
+                lng: 26.1025,
               },
             },
             {
@@ -240,11 +252,12 @@ class LocationComponent4 extends Location {
         if (lat !== undefined && lng !== undefined) {
           const content =
             description || title ? (
-              <div style={{ backgroundColor: "white", padding: "10px", maxWidth: "400px" }}>
-                {title && <p>{title} </p>}
-                {description && <p>{description}</p>}
-                {date && <div>{date}</div>}
-                {popupImage && <img src={popupImage}></img>}
+              <div className={this.decorateCSS("popup")}>
+                {title && <h1 className={this.decorateCSS("popup-title")}>{title} </h1>}
+                {date && <div className={this.decorateCSS("popup-date")}>{date}</div>}
+                {description && <p className={this.decorateCSS("popup-content")}>{description}</p>}
+
+                {/* {popupImage && <img className={this.decorateCSS("image")} src={popupImage}></img>} */}
 
               </div>
             ) : null;
@@ -266,17 +279,11 @@ class LocationComponent4 extends Location {
     }, []);
 
     const bottom = this.castToObject<BottomType>("bottom");
-    const title = this.castToString(bottom.title);
-    const content = this.castToString(bottom.content);
+    const title = bottom.title;
+    const content = bottom.content;
     const isLineActive = bottom.isLineActive;
 
     const mapStyles: google.maps.MapTypeStyle[] = [
-      {
-        featureType: "all",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }],
-      },
-
       {
         featureType: "administrative",
         elementType: "geometry.stroke",
@@ -295,7 +302,12 @@ class LocationComponent4 extends Location {
       {
         featureType: "administrative.locality",
         elementType: "labels.text",
-        stylers: [{ visibility: "on" }, { color: "#4d4d4d" }],
+        stylers: [{ visibility: "off" }],
+      },
+      {
+        featureType: "administrative.neighborhood",
+        elementType: "labels.text",
+        stylers: [{ visibility: "on" }, { color: "#4d4d4d" }, { weight: 1 }],
       },
       {
         featureType: "landscape",
@@ -313,6 +325,11 @@ class LocationComponent4 extends Location {
         stylers: [{ visibility: "off" }],
       },
       {
+        featureType: "road.highway",
+        elementType: "labels.icon",
+        stylers: [{ visibility: "off" }],
+      },
+      {
         featureType: "transit",
         elementType: "geometry",
         stylers: [{ visibility: "off" }],
@@ -320,7 +337,12 @@ class LocationComponent4 extends Location {
       {
         featureType: "water",
         elementType: "geometry",
-        stylers: [{ visibility: "on" }, { color: "#f2f2f2" }],
+        stylers: [{ visibility: "on" }, { color: "#dcdcdc" }],
+      },
+      {
+        featureType: "water",
+        elementType: "labels.text.fill",
+        stylers: [{ visibility: "on" }, { color: "#000000" }],
       },
       {
         featureType: "administrative.country",
@@ -333,7 +355,7 @@ class LocationComponent4 extends Location {
         ],
       },
       {
-        featureType: "administrative.locality",
+        featureType: "administrative.neighborhood",
         elementType: "labels.text",
         stylers: [
           { visibility: "on" },
@@ -353,6 +375,8 @@ class LocationComponent4 extends Location {
                 markers={markers}
                 className={this.decorateCSS("map")}
                 styles={mapStyles}
+                defaultZoom={this.getPropValue("zoom")}
+                handleMarkerZoom={this.getPropValue("marker-zoom")}
               />
             </div>
             <div className={this.decorateCSS("bottom-container")}>
@@ -360,7 +384,9 @@ class LocationComponent4 extends Location {
                 {title}
               </div>
               <div className={this.decorateCSS("content")}>
-                {content}
+                <div className={this.decorateCSS("content-text")}>
+                  {content}
+                </div>
               </div>
             </div>
           </div>

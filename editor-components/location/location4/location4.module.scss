@@ -41,7 +41,7 @@
             display: block;
             width: 100%;
             height: 2px; 
-            background-color: #000; 
+            background-color: var(--composer-font-color-primary); 
             margin-top: 5px;
             opacity: 0.5;
           }
@@ -49,7 +49,13 @@
         .content{
           font-size: 22px;
           font-weight: 300;
-          color:var(--composer-font-color-primary)
+          color:var(--composer-font-color-primary);
+          max-width: 50%;
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
         }
       }
     }
@@ -66,29 +72,31 @@
   width: 300px;
   display: flex;
   flex-direction: column;
-  .top-container{
+  .image{
+    max-height: 150px;
+    width: 100%;
+    object-fit: cover;
+    top:0px;
     flex:3;
-    .image{
-      max-height: 150px;
-      width: 100%;
-      object-fit: cover;
-      top:0px;
-    }
-    .popup-close-button {
-      position: absolute;
-      top:0px;
-      right: 0px;
-      background-color: white;
-      border:none;
-      padding: 10px;
-      z-index: 3;
-      .icon{
-        display: flex;
-        justify-content: flex-end;
-
-      }
-    }
   }
+  // .top-container{
+   
+
+  //   .popup-close-button {
+  //     position: absolute;
+  //     top:0px;
+  //     right: 0px;
+  //     background-color: white;
+  //     border:none;
+  //     padding: 10px;
+  //     z-index: 3;
+  //     .icon{
+  //       display: flex;
+  //       justify-content: flex-end;
+
+  //     }
+  //   }
+  // }
     .popup-title {
       flex:1;
       @include padding(20px 10px, 15px, 20px);
