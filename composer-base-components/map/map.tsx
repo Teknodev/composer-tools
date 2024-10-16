@@ -20,11 +20,12 @@ interface ComposerMapProps {
   className: string;
   defaultMarkerIcon?: string;
   defaultZoom?: number;
+  handleMarkerZoom?: number;
   allContentShow?: boolean;
   styles?: google.maps.MapTypeStyle[];
 }
 
-const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, allContentShow, styles }: ComposerMapProps) => {
+const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, allContentShow, handleMarkerZoom, styles }: ComposerMapProps) => {
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
@@ -53,18 +54,41 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
   useEffect(() => {
     if (allContentShow) {
       setSelectedMarkers(markers);
+    } else {
+      setSelectedMarkers([]);
     }
-  }, []);
+  }, [allContentShow]);
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || markers.length === 0) return;
 
-    if (markers.length === 1) {
-      google.maps.event.addListenerOnce(map, "bounds_changed", () => {
-        map.setZoom(defaultZoom || 10);
+    const fitMapToMarkers = () => {
+      const bounds = new google.maps.LatLngBounds();
+      markers.forEach((marker) => bounds.extend(new google.maps.LatLng(marker.lat, marker.lng)));
+
+      map.fitBounds(bounds);
+
+      google.maps.event.addListenerOnce(map, "idle", () => {
+        const currentZoom = map.getZoom();
+        map.setZoom(defaultZoom ?? currentZoom);
       });
-    }
+    };
+
+    fitMapToMarkers();
+
+    return () => {
+      google.maps.event.clearListeners(map, "idle");
+    };
   }, [map]);
+
+  useEffect(() => {
+    if (map && defaultZoom !== undefined) {
+      const currentZoom = map.getZoom();
+      if (defaultZoom !== currentZoom) {
+        map.setZoom(defaultZoom || 5);
+      }
+    }
+  }, [map, defaultZoom]);
 
   useEffect(() => {
     if (!map) return;
@@ -89,6 +113,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
       position: "absolute",
       zIndex: 1000,
       pointerEvents: "auto",
+      transform: "translate(-50%, -140%)",
     };
 
     class CustomOverlay extends google.maps.OverlayView {
@@ -119,8 +144,8 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
           if (projection) {
             const point = projection.fromLatLngToDivPixel(this.position);
             if (point) {
-              this.div.style.left = `${point.x - this.div.clientWidth / 2}px`;
-              this.div.style.top = `${point.y - this.div.clientHeight - 30}px`;
+              this.div.style.left = `${point.x}px`;
+              this.div.style.top = `${point.y}px`;
             }
           }
         }
@@ -141,6 +166,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
   useEffect(() => {
     if (map) {
       map.setOptions({ styles });
+
       overlayRefs.current.forEach((overlay) => overlay && overlay.setMap(null));
       overlayRefs.current = [];
 
@@ -154,6 +180,12 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     }
   }, [selectedMarkers, map, styles]);
 
+  useEffect(() => {
+    const activeMarkers = new Set(markers.map((m) => `${m.lat},${m.lng}`));
+
+    setSelectedMarkers((prev) => prev.filter((marker) => activeMarkers.has(`${marker.lat},${marker.lng}`)));
+  }, [markers]);
+
   const handleMarkerClick = (marker: Coordinate) => {
     setSelectedMarkers((prevSelectedMarkers) => {
       const isMarkerSelected = prevSelectedMarkers.some((m) => m.lat === marker.lat && m.lng === marker.lng);
@@ -165,7 +197,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     });
 
     map.setCenter({ lat: marker.lat, lng: marker.lng });
-    map.setZoom(6);
+    map.setZoom(handleMarkerZoom || 15);
   };
 
   return (
