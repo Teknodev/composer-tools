@@ -140,7 +140,7 @@
         }
 
         .arrow-text {
-          color: white;
+          color: var(--composer-font-color-primary);
           max-width: 100%;
         }
       }
@@ -158,7 +158,7 @@
           display: flex;
           flex-direction: column;
           align-items: end;
-          color: white;
+          color: var(--composer-font-color-primary);
           overflow: hidden;
           width: 100%;
           height: 100%;
@@ -210,14 +210,14 @@
             font-weight: 400;
             background: transparent;
             color: white;
-            transition: 0.3s all;
+            transition: 0.5s all ease;
             margin-top: 10px;
             max-width: 15vw;
 
             &:hover {
               background: var(--composer-html-background);
               color: var(--composer-font-color-primary);
-              transition: 0.3s all;
+              transition: 0.5s all ease;
               cursor: pointer;
             }
             .button-icon{
@@ -230,8 +230,8 @@
       }
 
       .arrow {
-        color: white;
-        opacity: 0.5;
+        color: var(--composer-font-color-primary);
+        // opacity: 0.5;
         transition: 0.2s all;
         min-width: fit-content;
       }
@@ -265,14 +265,6 @@
       .left-figure-container {
         .top-figure {
           width: 25rem;
-          .pagination {
-            .active-slide  {
-            }
-            sup {
-              span {
-              }
-            }
-          }
           .low-op-text {
             font-size: 3rem;
             margin-left: 25% !important;
@@ -280,18 +272,6 @@
         }
         .bottom-figure {
           width: 15%;
-          .side-text {
-          }
-
-          .line {
-          }
-          .icons {
-            .icon {
-            }
-          }
-        }
-        .top-figure,
-        .bottom-figure {
         }
       }
 
@@ -299,15 +279,6 @@
         .arrows {
           top:calc(35% + 10px);
           left: calc(15% + 20px);
-          div {
-            &:hover {
-              .arrow {
-              }
-            }
-          }
-
-          .arrow-text {
-          }
         }
         .layout {
           padding-right: 30px;
@@ -320,9 +291,6 @@
               .title {
                 font-size: 3rem;
               }
-            }
-
-            .description-and-button {
             }
             .description {
               width: unset;
@@ -338,16 +306,8 @@
             }
           }
         }
-
-        .arrow {
-        }
-        .arrow:nth-child(1) {
-        }
-        .arrow:nth-child(2) {
-        }
       }
     }
-
   }
 }
 
@@ -377,11 +337,6 @@
           width: 20%;
           height: 80%;
           top:20% !important;
-          .side-text {
-          }
-
-          .line {
-          }
           .icons {
             gap: 15px;
             .icon {
@@ -389,11 +344,7 @@
             }
           }
         }
-        .top-figure,
-        .bottom-figure {
-        }
       }
-
       .content-container {
         .arrows {
           position: absolute;
@@ -427,9 +378,6 @@
                 font-size: 2rem;
               }
             }
-
-            .description-and-button {
-            }
             .description {
               text-align: end;
               max-width: 100%;
@@ -445,13 +393,8 @@
             }
           }
         }
-
         .arrow {
           width: 15px;
-        }
-        .arrow:nth-child(1) {
-        }
-        .arrow:nth-child(2) {
         }
       }
     }

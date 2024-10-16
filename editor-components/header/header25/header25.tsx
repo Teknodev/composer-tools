@@ -398,17 +398,19 @@ class Header25 extends BaseHeader {
           <div className={this.decorateCSS("left-figure-container")}>
 
             <div className={this.decorateCSS("top-figure")}>
-              <div className={this.decorateCSS("pagination")}>
-                <span className={this.decorateCSS("active-slide")}>
-                  {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
-                </span>
-                <sup className={this.decorateCSS("slide-count-power")}>
-                  <span className={this.decorateCSS("divider")}>/ </span>
-                  <span className={this.decorateCSS("slide-count")}>
-                    {sliderItemObject.length.toString().padStart(2, "0")}
+              {topContent.page_show && (
+                <div className={this.decorateCSS("pagination")}>
+                  <span className={this.decorateCSS("active-slide")}>
+                    {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
                   </span>
-                </sup>
-              </div>
+                  <sup className={this.decorateCSS("slide-count-power")}>
+                    <span className={this.decorateCSS("divider")}>/ </span>
+                    <span className={this.decorateCSS("slide-count")}>
+                      {sliderItemObject.length.toString().padStart(2, "0")}
+                    </span>
+                  </sup>
+                </div>
+              )}
               <div className={this.decorateCSS("low-op-text")}>
                 <h1 className={this.decorateCSS("background-op-text")}>
                   {topContent.background_text}
@@ -449,44 +451,45 @@ class Header25 extends BaseHeader {
                     }`}
                   key={index}
                 >
-                  <div className={this.decorateCSS("arrows")}>
-                    <div
-                      className={this.decorateCSS("prev-arrow")}
-                      onClick={() => {
-                        this.getComponentState("slider-ref").current.slickPrev();
-                      }}
-                    >
-                      <ComposerIcon
-                        name={this.getPropValue("prev_icon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS("arrow")}`,
-                          size: 20,
+                  {(sliderItemObject.length > 1) && (
+                    <div className={this.decorateCSS("arrows")}>
+                      <div
+                        className={this.decorateCSS("prev-arrow")}
+                        onClick={() => {
+                          this.getComponentState("slider-ref").current.slickPrev();
                         }}
-                      />
-                      <span className={this.decorateCSS("arrow-text")}>
-                        {this.getPropValue("prev-arrow-text")}
-                      </span>
-                    </div>
+                      >
+                        <ComposerIcon
+                          name={this.getPropValue("prev_icon")}
+                          propsIcon={{
+                            className: `${this.decorateCSS("arrow")}`,
+                            size: 20,
+                          }}
+                        />
+                        <span className={this.decorateCSS("arrow-text")}>
+                          {this.getPropValue("prev-arrow-text")}
+                        </span>
+                      </div>
 
-                    <div
-                      className={this.decorateCSS("next-arrow")}
-                      onClick={() => {
-                        this.getComponentState("slider-ref").current.slickNext();
-                      }}
-                    >
-                      <span className={this.decorateCSS("arrow-text")}>
-                        {this.getPropValue("next-arrow-text")}
-                      </span>
-                      <ComposerIcon
-                        name={this.getPropValue("next_icon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS("arrow")}`,
-                          size: 20,
+                      <div
+                        className={this.decorateCSS("next-arrow")}
+                        onClick={() => {
+                          this.getComponentState("slider-ref").current.slickNext();
                         }}
-                      />
+                      >
+                        <span className={this.decorateCSS("arrow-text")}>
+                          {this.getPropValue("next-arrow-text")}
+                        </span>
+                        <ComposerIcon
+                          name={this.getPropValue("next_icon")}
+                          propsIcon={{
+                            className: `${this.decorateCSS("arrow")}`,
+                            size: 20,
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-
+                  )}
                   <div className={this.decorateCSS("layout")}>
                     <div className={this.decorateCSS("content")}>
                       <div className={this.decorateCSS("title-container")}>
@@ -551,7 +554,7 @@ class Header25 extends BaseHeader {
           }
           )}
         </div>
-      </div>
+      </div >
     );
   }
 
