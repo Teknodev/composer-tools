@@ -14,119 +14,6 @@
     max-width: 100%;
     display: flex;
     justify-content: center;
-    container-name: my-max-content;
-    container-type: inline-size;
-
-    @container my-max-content (min-width: 960px) and (max-width:1260px) {
-
-      .slider-parent {
-
-        .carousel {
-
-          .max-content {
-            .upperDiv {
-              .uppderDiv-content {
-                .upTitle-container {
-
-                  .upTitle {
-                    font-size: 11vw !important;
-                  }
-                }
-
-                .upImage-container {
-                  .upImage {
-                    max-height: 9vw !important;
-                  }
-                }
-              }
-            }
-
-            .middleDiv {
-              .middleDiv-content {
-                .middleImages-container {
-                  .image-wrapper {
-                    .middleImages {
-                      max-height: 9vw !important;
-                    }
-                  }
-                }
-
-                .middleTitle-container {
-                  .middleTitle {
-                    font-size: 11vw !important;
-                  }
-                }
-              }
-            }
-
-            .LowerDiv {
-              .button-container {
-                .button-content {
-
-                  .button {
-                    font-size: 14px;
-
-
-                  }
-
-                  .figure {
-                    .pagination {
-                      font-size: 16px;
-
-                      .active-slide {
-                        font-size: 2rem;
-                      }
-
-                      .slide-count-power {
-                        .divider {
-                          font-size: 1.5rem;
-                        }
-
-                        .slide-count {
-                          font-size: 1.5rem;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-
-              .desc-container {
-                .desc-content {
-
-                  .leftDescription,
-                  .rightDescription {
-                    font-size: 1rem;
-                  }
-
-                  .count {
-                    .count-items {
-                      .itemsNo {
-                        font-size: 2rem;
-                      }
-
-                      .itemDesc {
-                        font-size: 1rem;
-                      }
-                    }
-
-                    .customers {
-                      .customerNo {
-                        font-size: 2rem;
-                      }
-
-                      .customerDesc {
-                        font-size: 1rem;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
 
     .slider-parent {
       height: 100%;
@@ -135,15 +22,13 @@
       .carousel {
         width: 100%;
 
-        :global(.slick-dots){
+        :global(.slick-dots) {
           position: static !important;
         }
-        :global(.slick-list){
+
+        :global(.slick-list) {
           margin-bottom: 3.2vw;
         }
-
-        
-
 
         .max-content {
           @include flexCenter;
@@ -156,18 +41,21 @@
             .uppderDiv-content {
               width: 100%;
               @include flexCenter;
+              gap: 20px;
 
               .upTitle-container {
-                @include flexCenter;
+                display: flex;
+                align-items: center;
+                max-width: 80%;
 
                 .upTitle {
-                  word-wrap: break-word;
                   font-size: 13vw;
                   font-weight: bold;
-                  color: black;
+                  color: var(--composer-font-color-primary);
                   margin: 0;
                   padding: 0;
                   letter-spacing: 10px;
+                  overflow: hidden;
 
                   > {
                     height: 100%;
@@ -230,14 +118,15 @@
               .middleTitle-container {
                 display: flex;
                 align-items: center;
+                max-width: 80%;
 
                 .middleTitle {
-                  word-wrap: break-word;
                   font-size: 13vw;
                   font-weight: bold;
                   margin: 0;
                   padding: 0;
                   letter-spacing: 10px;
+                  color: var(--composer-font-color-primary);
                 }
               }
             }
@@ -261,7 +150,7 @@
                 height: 100%;
 
                 .button {
-                  padding: 0px 1vw;
+                  padding: 1vw 1vw;
                   border-radius: 50px;
                   border: none;
                   outline: none;
@@ -269,11 +158,11 @@
                   align-items: center;
                   gap: 0.25vw;
                   font-weight: 400;
-                  background: black;
+                  background: var(--composer-font-color-primary);
                   color: var(--composer-font-color-secondary);
                   transition: 0.3s all;
                   max-width: 15vw;
-                  border: 1px solid black;
+                  border: 1px solid var(--composer-font-color-primary);
                   --animate-duration: 0.2s;
                   height: 100%;
                   font-size: 16px;
@@ -283,7 +172,8 @@
                     color: var(--composer-font-color-primary);
                     transition: 0.3s all;
                     cursor: pointer;
-                    border: 1px solid black;
+                    border: 1px solid var(--composer-font-color-primary);
+                    ;
                   }
 
                   .button-text {
@@ -304,16 +194,16 @@
                     width: 100%;
 
                     .active-slide {
-                      color: black;
+                      color: var(--composer-font-color-primary);
                       font-size: 4rem;
                       padding-right: 15px;
                     }
 
                     .slide-count-power {
-                      color: black;
+                      color: var(--composer-font-color-primary);
 
                       .divider {
-                        font-size: 30px;
+                        font-size: 2.7rem;
                         margin-right: -10px;
                       }
 
@@ -348,6 +238,7 @@
                 .count {
                   @include flexCenter;
                   gap: 15px;
+                  word-break: break-word;
 
                   .count-items {
                     display: flex;
@@ -358,7 +249,7 @@
                     .itemsNo {
                       font-size: 2.8rem;
                       font-weight: bold;
-                      color: black;
+                      color: var(--composer-font-color-primary);
                       padding: 0;
                       margin: 0;
                     }
@@ -383,14 +274,13 @@
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
-                    width: 150px;
 
                     .customerNo {
                       margin: 0;
                       padding: 0;
                       font-size: 2.8rem;
                       font-weight: bold;
-                      color: black;
+                      color: var(--composer-font-color-primary);
                     }
 
                     .customerDesc {
@@ -417,197 +307,336 @@
   }
 }
 
+@container (max-width:1100px) {
 
+  .slider-parent {
+    .carousel {
+      .max-content {
+        .upperDiv {
+          margin-bottom: 10px !important;
 
-@media only screen and (max-width: 700px) {
+          .uppderDiv-content {
+            gap: 10px !important;
 
-  .container {
-    padding: 20px 30px;
+            .upTitle-container {
 
-    .content {
+              .upTitle {
+                font-size: 11vw !important;
+                letter-spacing: 5px !important;
+              }
+            }
 
-      .slider-parent {
-
-        .carousel {
-          :global(.slick-list){
-            margin-bottom: 30px;
+            .upImage-container {
+              .upImage {
+                max-height: 9vw !important;
+                min-height: 80px !important;
+              }
+            }
           }
-          .max-content {
-            flex-direction: column;
+        }
 
-            .upperDiv {
-              flex-direction: column;
-
-              .uppderDiv-content {
-                flex-direction: column;
-                align-items: start;
-                .upTitle-container {
-
-                  .upTitle {
-                    font-size: 12vw;
-                    letter-spacing: 5px;
-                  }
-                }
-
-                .upImage-container {
-                  .upImage {
-                    max-height: 15vw;
-                  }
+        .middleDiv {
+          .middleDiv-content {
+            gap: 10px !important;
+            .middleImages-container {
+              .image-wrapper {
+                .middleImages {
+                  max-height: 9vw !important;
                 }
               }
             }
 
-            .middleDiv {
-              padding-bottom: 30px;
+            .middleTitle-container {
+              .middleTitle {
+                font-size: 11vw !important;
+                letter-spacing: 5px !important;
+              }
+            }
+          }
+        }
 
-              .middleDiv-content {
-                gap: 10px;
-                flex-direction: column-reverse;
-                align-items: end;
-                .middleImages-container {
-                  gap: 10px;
+        .LowerDiv {
+          .button-container {
+            .button-content {
 
-                  .image-wrapper {
-                    .middleImages {
-                      max-height: 80px;
-                      border-radius: 90px;
-                    }
+              .button {
+                font-size: 0.9rem !important;
+              }
+
+              .figure {
+                .pagination {
+                  font-size: 1rem !important;
+
+                  .active-slide {
+                    font-size: 2rem !important;
+                    padding-right: 5px !important;
                   }
-                }
 
-                .middleTitle-container {
-                  .middleTitle {
-                    font-size: 12vw;
-                    letter-spacing: 5px;
+                  .slide-count-power {
+                    .divider {
+                      margin-right: -5px !important;
+                      font-size: 1.5rem !important;
+                    }
+
+                    .slide-count {
+                      font-size: 1.5rem !important;
+                    }
                   }
                 }
               }
             }
+          }
 
-            .LowerDiv {
+          .desc-container {
+            .desc-content {
+              display: flex !important;
+              gap: 5% !important;
 
-              .button-container {
-                padding-bottom: 20px;
+              .leftDescription,
+              .rightDescription {
+                font-size: 1rem !important;
+                text-align: justify !important;
+              }
 
-                .button-content {
-                  gap: 5px;
-                  width: 100%;
-                  :first-child {
-                    display: flex;
-                    align-items: center;
+              .leftDescription,
+              .rightDescription,
+              .count {
+                flex: 1 !important;
+                max-width: none !important;
+              }
+
+
+
+
+              .count {
+                .count-items {
+                  padding: 0 !important;
+                  flex: 1 !important;
+                  text-align: end !important;
+
+                  .itemsNo {
+                    font-size: 2rem !important;
+                    text-align: end !important;
                   }
 
-                  .button {
-                    padding: 1vw 4vw;
-                    border-radius: 50px;
-                    gap: 0.5vw;
-                    font-weight: 400;
-                    max-width: fit-content;
-                    height: auto;
-                    font-size: 14px;
+                  .itemDesc {
+                    font-size: 1rem !important;
+                  }
+                }
 
-                    .button-text{
-                      word-break: normal;
-                    }
+                .customers {
+                  padding: 0 !important;
+                  flex: 1 !important;
 
-                    .button-icon {
-                      height: 15px;
-                      width: 15px;
-                    }
+                  .customerNo {
+                    font-size: 2rem !important;
                   }
 
-                  .figure {
+                  .customerDesc {
+                    font-size: 1rem !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
-                    .pagination {
-                      font-size: 16px;
+@container (max-width: 604px) {
+  .container {
+    padding: 20px 30px !important;
+  }
 
-                      .active-slide {
-                        font-size: 2rem;
-                      }
+  .slider-parent {
+    .carousel {
+      :global(.slick-list) {}
 
-                      .slide-count-power {
-                        display: inline-flex;
-                        gap: 10px;
-                        align-items: center;
-                        vertical-align: text-bottom;
+      .max-content {
+        flex-direction: column !important;
 
-                        .divider {
-                          font-size: 1.5rem;
-                        }
+        .upperDiv {
+          flex-direction: column !important;
 
-                        .slide-count {
-                          font-size: 1.5rem;
-                        }
-                      }
+          .uppderDiv-content {
+            flex-direction: column !important;
+            align-items: start !important;
+
+            .upTitle-container {
+              max-width: 100% !important;
+
+              .upTitle {
+                font-size: 12vw !important;
+                letter-spacing: 5px !important;
+              }
+            }
+
+            .upImage-container {
+              .upImage {
+                max-height: 15vw !important;
+              }
+            }
+          }
+        }
+
+        .middleDiv {
+          padding-bottom: 30px !important;
+          max-width: 100% !important;
+
+          .middleDiv-content {
+            gap: 10px !important;
+            flex-direction: column-reverse !important;
+            align-items: end !important;
+
+            .middleImages-container {
+              gap: 10px !important;
+
+              .image-wrapper {
+                .middleImages {
+                  max-height: 80px !important;
+                  border-radius: 90px !important;
+                }
+              }
+            }
+
+            .middleTitle-container {
+              max-width: 100% !important;
+              .middleTitle {
+                font-size: 12vw !important;
+                letter-spacing: 5px !important;
+              }
+            }
+          }
+        }
+
+        .LowerDiv {
+
+          .button-container {
+            padding-bottom: 20px !important;
+
+            .button-content {
+              gap: 5px !important;
+              width: 100% !important;
+
+              :first-child {
+                display: flex !important;
+                align-items: center !important;
+              }
+
+              .button {
+                padding: 1vw 4vw !important;
+                border-radius: 50px !important;
+                gap: 0.5vw !important;
+                font-weight: 400 !important;
+                max-width: fit-content !important;
+                height: auto !important;
+                font-size: 1.1rem !important;
+
+                .button-text {
+                  word-break: normal !important;
+                }
+
+                .button-icon {
+                  height: 15px !important;
+                  width: 15px !important;
+                }
+              }
+
+              .figure {
+
+                .pagination {
+                  font-size: 16px !important;
+
+                  .active-slide {
+                    font-size: 2rem !important;
+                  }
+
+                  .slide-count-power {
+                    display: inline-flex !important;
+                    gap: 10px !important;
+                    align-items: center !important;
+                    vertical-align: text-bottom !important;
+
+                    .divider {
+                      font-size: 1.5rem !important;
+                    }
+
+                    .slide-count {
+                      font-size: 1.5rem !important;
                     }
                   }
                 }
               }
+            }
+          }
 
-              .desc-container {
-                .desc-content {
-                  flex-direction: column;
-                  gap: 20px;
-                  width: 100%;
+          .desc-container {
+            .desc-content {
+              flex-direction: column !important;
+              gap: 20px !important;
+              width: 100% !important;
 
-                  .leftDescription,
-                  .rightDescription {
-                    font-size: 1rem;
-                    max-width: 100%;
+              .leftDescription,
+              .rightDescription {
+                font-size: 1rem !important;
+                max-width: 100% !important;
+              }
+
+              .count {
+                gap: 10px !important;
+                justify-content: space-between !important;
+
+                .count-items {
+                  gap: 5px !important;
+                  text-align: start !important;
+
+                  .itemsNo {
+                    font-size: 2rem !important;
+                    font-weight: bold !important;
+                    color: var(--composer-font-color-primary) !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    text-align: start !important;
                   }
 
-                  .count {
-                    gap: 10px;
-                    justify-content: space-between;
+                  .itemDesc {
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    font-size: 1rem !important;
+                    color: var(--composer-font-color-primary) !important;
+                  }
+                }
 
-                    .count-items {
-                      gap: 5px;
+                .line {
+                  opacity: 0.4 !important;
+                  width: 1px !important;
+                  background: var(--composer-font-color-primary) !important;
+                  align-self: stretch !important;
+                  height: auto !important;
+                }
 
-                      .itemsNo {
-                        font-size: 2rem;
-                        font-weight: bold;
-                        color: black;
-                        padding: 0;
-                        margin: 0;
-                        text-align: start;
-                      }
+                .customers {
+                  padding-left: 0 !important;
+                  display: flex !important;
+                  flex-direction: column !important;
+                  gap: 5px !important;
+                  width: auto !important;
+                  text-align: end !important;
 
-                      .itemDesc {
-                        padding: 0;
-                        margin: 0;
-                        font-size: 1rem;
-                        color: var(--composer-font-color-primary);
-                      }
-                    }
+                  .customerNo {
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    font-size: 2rem !important;
+                    font-weight: bold !important;
+                    color: var(--composer-font-color-primary) !important;
+                    text-align: end !important;
+                  }
 
-                    .line {
-                      opacity: 0.4;
-                      width: 1px;
-                      background: var(--composer-font-color-primary);
-                      height: 100%;
-                    }
-
-                    .customers {
-                      padding-left: 0;
-                      display: flex;
-                      flex-direction: column;
-                      gap: 5px;
-                      width: auto;
-
-                      .customerNo {
-                        margin: 0;
-                        padding: 0;
-                        font-size: 2rem;
-                        font-weight: bold;
-                        color: black;
-                        text-align: end;
-                      }
-
-                      .customerDesc {
-                        font-size: 1rem;
-                        color: var(--composer-font-color-primary);
-                      }
-                    }
+                  .customerDesc {
+                    font-size: 1rem !important;
+                    color: var(--composer-font-color-primary) !important;
                   }
                 }
               }
