@@ -28,28 +28,164 @@ type PopupType = {
   popupImage: string;
 
 }
+type Address = {
+  type: string;
+  key: string;
+  value: Array<Marker>;
+};
+
+type Marker = {
+  type: string;
+  key: string;
+  value: any;
+};
+
+type MarkerObject = {
+  content: React.ReactNode;
+  lat: number;
+  lng: number;
+  icon: {
+    url: string;
+    scaledSize: google.maps.Size;
+    width: number;
+    height: number;
+  };
+};
 
 class LocationComponent4 extends Location {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
-      type: "location",
-      key: "location",
-      displayer: "Location",
-      value: {
-        markers: [
-          {
-            lat: 36.8968908,
-            lng: 30.7133233,
-            icon: {
-              url: "",
-              height: 50,
-              width: 50,
+      type: "array",
+      displayer: "addresses",
+      key: "addresses",
+      value: [
+        {
+          type: "object",
+          key: "marker",
+          displayer: "Marker",
+          value: [
+
+            {
+              type: "location",
+              displayer: "Coordinate",
+              key: "coordinate",
+              value: {
+                lat: 36.8529,
+                lng: -75.978,
+              },
             },
-          },
-        ],
-      },
+
+            {
+              type: "image",
+              key: "marker-image",
+              displayer: "Marker Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
+            },
+            {
+              type: "boolean",
+              key: "isPopupActive",
+              displayer: "Popup Active",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "5 REASONS YOU NEED TO VISIT BUDAPEST",
+
+            },
+            {
+              type: "string",
+              key: "date",
+              displayer: "Date",
+              value: "JULY 6, 2017",
+
+            },
+            {
+              type: "string",
+              key: "content",
+              displayer: "Content",
+              value: "Phasellus rhoncus metus sed neque efficitur vestibulum. Suspendisse lacinia lacus vel ante scelerisqu.",
+
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "IoCloseSharp",
+            },
+            {
+              type: "image",
+              key: "popupImage",
+              displayer: "Image",
+              value: "https://wpvoyager.purethe.me/wp-content/uploads/2015/06/photo-1437747941115-61870b18ede5-420x400.jpg",
+            }
+          ],
+        },
+        {
+          type: "object",
+          key: "marker",
+          displayer: "Marker",
+          value: [
+
+            {
+              type: "location",
+              displayer: "Coordinate",
+              key: "coordinate",
+              value: {
+                lat: 37.1234,
+                lng: -76.9876,
+              },
+            },
+            {
+              type: "image",
+              key: "marker-image",
+              displayer: "Marker Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
+            },
+            {
+              type: "boolean",
+              key: "isPopupActive",
+              displayer: "Popup Active",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "5 REASONS YOU NEED TO VISIT BUDAPEST",
+
+            },
+            {
+              type: "string",
+              key: "date",
+              displayer: "Date",
+              value: "JULY 6, 2017",
+
+            },
+            {
+              type: "string",
+              key: "content",
+              displayer: "Content",
+              value: "Phasellus rhoncus metus sed neque efficitur vestibulum. Suspendisse lacinia lacus vel ante scelerisqu.",
+
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "IoCloseSharp",
+            },
+            {
+              type: "image",
+              key: "popupImage",
+              displayer: "Image",
+              value: "https://wpvoyager.purethe.me/wp-content/uploads/2015/06/photo-1437747941115-61870b18ede5-420x400.jpg",
+            }
+          ],
+        },
+      ],
     });
     this.addProp({
       type: "object",
@@ -79,52 +215,6 @@ class LocationComponent4 extends Location {
         }
       ]
     })
-    this.addProp({
-      type: "object",
-      key: "popup",
-      displayer: "Popup",
-      value: [
-        {
-          type: "boolean",
-          key: "isPopupActive",
-          displayer: "Popup Active",
-          value: true,
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "5 REASONS YOU NEED TO VISIT BUDAPEST",
-
-        },
-        {
-          type: "string",
-          key: "date",
-          displayer: "Date",
-          value: "JULY 6, 2017",
-
-        },
-        {
-          type: "string",
-          key: "content",
-          displayer: "Content",
-          value: "Phasellus rhoncus metus sed neque efficitur vestibulum. Suspendisse lacinia lacus vel ante scelerisqu.",
-
-        },
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Icon",
-          value: "IoCloseSharp",
-        },
-        {
-          type: "image",
-          key: "popupImage",
-          displayer: "Image",
-          value: "https://wpvoyager.purethe.me/wp-content/uploads/2015/06/photo-1437747941115-61870b18ede5-420x400.jpg",
-        }
-      ]
-    })
   }
 
   getName(): string {
@@ -132,18 +222,53 @@ class LocationComponent4 extends Location {
   }
 
   render() {
-    const { markers } = this.getPropValue("location");
+    const addresses: Address[] = this.getPropValue("addresses");
+
+    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
+      if (address.type === "object" && Array.isArray(address.value)) {
+        const markerData = address.value.find((addr) => addr.type === "location");
+        const lat = markerData?.value.lat;
+        const lng = markerData?.value.lng;
+        const description = address.value.find((a) => a.key.startsWith("content"))?.value || "";
+        const title = address.value.find((a) => a.key.startsWith("title"))?.value || "";
+        const date = address.value.find((a) => a.key.startsWith("date"))?.value || "";
+        const popupImage = address.value.find((a) => a.key.startsWith("popupImage"))?.value || "";
+        const markerImage = address.value.find((a) => a.key.startsWith("marker-image"))?.value;
+        const width = address.value.find((a) => a.key.startsWith("marker-width"))?.value || 32;
+        const height = address.value.find((a) => a.key.startsWith("marker-height"))?.value || 32;
+
+        if (lat !== undefined && lng !== undefined) {
+          const content =
+            description || title ? (
+              <div style={{ backgroundColor: "white", padding: "10px", maxWidth: "400px" }}>
+                {title && <p>{title} </p>}
+                {description && <p>{description}</p>}
+                {date && <div>{date}</div>}
+                {popupImage && <img src={popupImage}></img>}
+
+              </div>
+            ) : null;
+
+          acc.push({
+            content,
+            lat,
+            lng,
+            icon: {
+              url: markerImage,
+              scaledSize: new google.maps.Size(width, height),
+              width,
+              height,
+            },
+          });
+        }
+      }
+      return acc;
+    }, []);
+
     const bottom = this.castToObject<BottomType>("bottom");
     const title = this.castToString(bottom.title);
     const content = this.castToString(bottom.content);
     const isLineActive = bottom.isLineActive;
-    const popup = this.castToObject<PopupType>("popup");
-    const popupTitle = this.castToString(popup.title);
-    const popupContent = this.castToString(popup.content);
-    const popupDate = this.castToString(popup.date);
-    const closeIcon = popup.icon;
-    const isPopupActive = popup.isPopupActive;
-    console.log(popup.popupImage)
 
     const mapStyles: google.maps.MapTypeStyle[] = [
       {
@@ -225,32 +350,10 @@ class LocationComponent4 extends Location {
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("map-container")}>
               <ComposerMap
-                zoomValue={4}
                 markers={markers}
                 className={this.decorateCSS("map")}
                 styles={mapStyles}
-                popupContent={isPopupActive ? (
-                  (marker: Coordinate) => (
-                    <div className={this.decorateCSS("popup")}>
-                      <div className={this.decorateCSS("top-container")}>
-                        <img src={popup.popupImage} className={this.decorateCSS("image")}></img>
-                        <button className={this.decorateCSS("popup-close-button")}>
-                          <ComposerIcon
-                            propsIcon={{
-                              className: this.decorateCSS("icon")
-                            }}
-                            name={closeIcon}
-                          />
-                        </button>
-                      </div>
-                      <h4 className={this.decorateCSS("popup-title")}>{popupTitle}</h4>
-                      <div className={this.decorateCSS("popup-date")}>{popupDate}</div>
-                      <p className={this.decorateCSS("popup-content")}>{popupContent}</p>
-                    </div>
-                  )
-                ) : null}
               />
-
             </div>
             <div className={this.decorateCSS("bottom-container")}>
               <div className={`${this.decorateCSS("title")} ${isLineActive ? this.decorateCSS("line-title") : ""}`}>
@@ -259,7 +362,6 @@ class LocationComponent4 extends Location {
               <div className={this.decorateCSS("content")}>
                 {content}
               </div>
-
             </div>
           </div>
         </div>

@@ -428,6 +428,7 @@ function Registerables(composer: ComponentsRegistery) {
     new NotificationModal2(),
     new SubscriptionModal(),
     new LocationComponent1(),
+    new LocationComponent4(),
   ]);
 }
 
