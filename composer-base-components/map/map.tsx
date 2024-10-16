@@ -93,11 +93,21 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
   useEffect(() => {
     if (!map) return;
 
-    const isNewMarkerAdded = markers.length > prevMarkersRef.current.length;
+    const bounds = getBounds();
+    const calculatedCenter = getCenter(bounds);
 
-    if (isNewMarkerAdded) {
-      const bounds = getBounds();
-      const calculatedCenter = getCenter(bounds);
+    const hasMarkersChanged = (markers: Coordinate[], prevMarkers: Coordinate[]) => {
+      if (markers.length !== prevMarkers.length) {
+        return true;
+      }
+
+      return markers.some((marker, index) => {
+        const prevMarker = prevMarkers[index];
+        return prevMarker && (marker.lat !== prevMarker.lat || marker.lng !== prevMarker.lng);
+      });
+    };
+
+    if (hasMarkersChanged(markers, prevMarkersRef.current)) {
       map.fitBounds(bounds);
       map.setCenter(calculatedCenter);
       map.panTo(calculatedCenter);
@@ -113,7 +123,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
       position: "absolute",
       zIndex: 1000,
       pointerEvents: "auto",
-      transform: "translate(-50%, -140%)",
+      transform: "translate(-50%, -100%)",
     };
 
     class CustomOverlay extends google.maps.OverlayView {
@@ -145,7 +155,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
             const point = projection.fromLatLngToDivPixel(this.position);
             if (point) {
               this.div.style.left = `${point.x}px`;
-              this.div.style.top = `${point.y}px`;
+              this.div.style.top = `${point.y - 35}px`;
             }
           }
         }
@@ -163,20 +173,25 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     return CustomOverlay;
   };
 
+  const prevSelectedMarkersCountRef = useRef<number>(0);
+
   useEffect(() => {
     if (map) {
       map.setOptions({ styles });
 
-      overlayRefs.current.forEach((overlay) => overlay && overlay.setMap(null));
-      overlayRefs.current = [];
+      if (selectedMarkers.length !== prevSelectedMarkersCountRef.current) {
+        overlayRefs.current.forEach((overlay) => overlay && overlay.setMap(null));
+        overlayRefs.current = [];
 
-      selectedMarkers.forEach((marker) => {
-        const overlayClass = createOverlayView(marker);
-        const overlay = new overlayClass(new google.maps.LatLng(marker.lat, marker.lng));
-        overlay.setMap(map);
+        selectedMarkers.forEach((marker) => {
+          const overlayClass = createOverlayView(marker);
+          const overlay = new overlayClass(new google.maps.LatLng(marker.lat, marker.lng));
+          overlay.setMap(map);
+          overlayRefs.current.push(overlay);
+        });
 
-        overlayRefs.current.push(overlay);
-      });
+        prevSelectedMarkersCountRef.current = selectedMarkers.length;
+      }
     }
   }, [selectedMarkers, map, styles]);
 
