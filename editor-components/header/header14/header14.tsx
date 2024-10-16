@@ -357,7 +357,7 @@ class HeaderComponent14 extends BaseHeader {
                             return (
                               buttonText && (
                                 <div
-                                  key={indexButton} 
+                                  key={indexButton}
                                   className={`${this.decorateCSS("button")} ${
                                     buttonItem.primary
                                       ? this.decorateCSS("primary-button")
@@ -377,32 +377,37 @@ class HeaderComponent14 extends BaseHeader {
                       </div>
                     )}
                   </div>
-                  <ComposerIcon
-                    name={this.getPropValue("prevIcon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS(
-                        "arrow"
-                      )} ${this.decorateCSS("prev-icon")}`,
-                      onClick: () => {
-                        this.getComponentState(
-                          "slider-ref"
-                        ).current.slickPrev();
-                      },
-                    }}
-                  />
-                  <ComposerIcon
-                    name={this.getPropValue("nextIcon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS(
-                        "arrow"
-                      )} ${this.decorateCSS("next-icon")}`,
-                      onClick: () => {
-                        this.getComponentState(
-                          "slider-ref"
-                        ).current.slickNext();
-                      },
-                    }}
-                  />
+                  {slides.length > 1 && (
+                    <>
+                      {" "}
+                      <ComposerIcon
+                        name={this.getPropValue("prevIcon")}
+                        propsIcon={{
+                          className: `${this.decorateCSS(
+                            "arrow"
+                          )} ${this.decorateCSS("prev-icon")}`,
+                          onClick: () => {
+                            this.getComponentState(
+                              "slider-ref"
+                            ).current.slickPrev();
+                          },
+                        }}
+                      />
+                      <ComposerIcon
+                        name={this.getPropValue("nextIcon")}
+                        propsIcon={{
+                          className: `${this.decorateCSS(
+                            "arrow"
+                          )} ${this.decorateCSS("next-icon")}`,
+                          onClick: () => {
+                            this.getComponentState(
+                              "slider-ref"
+                            ).current.slickNext();
+                          },
+                        }}
+                      />
+                    </>
+                  )}
                 </div>
               );
             })}
