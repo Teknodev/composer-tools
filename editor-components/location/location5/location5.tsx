@@ -76,7 +76,7 @@ class LocationComponent5 extends Location {
                       type: "image",
                       key: "marker-image",
                       displayer: "Marker Image",
-                      value: "https://cdn3.iconfinder.com/data/icons/flat-pro-basic-set-1-1/32/location-gray-1024.png",
+                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
                     },
                   ],
                   
@@ -137,7 +137,7 @@ class LocationComponent5 extends Location {
                       type: "image",
                       key: "marker-image",
                       displayer: "Marker Image",
-                      value: "https://cdn3.iconfinder.com/data/icons/flat-pro-basic-set-1-1/32/location-gray-1024.png",
+                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
                     },
                   ],
                 },
@@ -218,7 +218,7 @@ class LocationComponent5 extends Location {
           )?.value;
           const markerImage = loc.value.find(
             (a: any) => a.key === "marker-image"
-          )?.value || "https://cdn3.iconfinder.com/data/icons/flat-pro-basic-set-1-1/32/location-gray-1024.png"; 
+          )?.value || "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media"; 
 
           const lat = coordinateData?.lat;
           const lng = coordinateData?.lng;
