@@ -1,183 +1,186 @@
 .container {
   width: 100%;
-}
-.slider {
-  height: 100vh;
-  overflow: hidden;
-  div {
-    height: 100%;
-    > ul {
-      margin-bottom: 50px;
-    }
-  }
-}
-.slider-item-inner-container {
-  background-position: center;
-  background-size: cover;
-}
+  .max-content {
+    .slider {
+      height: 100vh;
+      overflow: hidden;
+      div {
+        height: 100%;
+        > ul {
+          margin-bottom: 50px;
+        }
+      }
+      .slider-item {
+        .slider-item-inner-container {
+          background-position: center;
+          background-size: cover;
+        }
+      }
+      .content-max-width {
+        position: relative;
+        .card {
+          height: auto !important;
+          bottom: 50px;
+          width: 100%;
+          position: absolute;
+          right: 100px;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: var(--composer-font-color-primary);
+          opacity: 0.8;
+          max-width: 30%;
+          padding: 35px 25px;
+          max-height: fit-content;
 
-.card {
-  height: auto !important;
-  bottom: 50px;
-  width: 100%;
-  position: absolute;
-  right: 100px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--composer-font-color-primary);
-  opacity: 0.8;
-  max-width: 30%;
-  padding: 35px 25px;
-  max-height: fit-content;
+          h3 {
+            > blinkpage {
+              p {
+                display: -webkit-box;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-line-clamp: 1 !important;
+                -webkit-box-orient: vertical;
+              }
+            }
+          }
 
-  h3 {
-    > blinkpage {
-      p {
-        display: -webkit-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 1 !important;
-        -webkit-box-orient: vertical;
+          h1 {
+            > blinkpage {
+              p {
+                display: -webkit-box;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-line-clamp: 2 !important;
+                -webkit-box-orient: vertical;
+              }
+            }
+          }
+
+          div {
+            height: auto !important;
+          }
+
+          p {
+            > blinkpage {
+              p {
+                display: -webkit-box;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-line-clamp: 5 !important;
+                -webkit-box-orient: vertical;
+              }
+            }
+          }
+          .category {
+            background-color: var(--composer-primary-color);
+            color: var(--composer-font-color-secondary);
+            position: absolute;
+            top: -20px;
+            left: 25px;
+            padding: 0.8em 1em;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 10px;
+            max-width: 90%;
+          }
+          .title {
+            font-weight: 600;
+            font-size: 1.5rem;
+            max-width: 100%;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            line-height: 1.4em;
+            color: var(--composer-font-color-secondary);
+          }
+          .description {
+            width: 100%;
+            color: var(--composer-font-color-secondary);
+            margin-bottom: 20px;
+            max-width: 100%;
+            font-size: 14px;
+            display: -webkit-box;
+            line-height: 1.8em;
+          }
+          .date-author {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            .author {
+              display: flex;
+              gap: 8px;
+              color: var(--composer-font-color-secondary);
+              max-width: 50%;
+            }
+            .dot::before {
+              content: "•";
+              color: var(--composer-font-color-secondary);
+              font-size: 1.5rem;
+            }
+            .date {
+              color: var(--composer-font-color-secondary);
+              text-transform: uppercase;
+              max-width: 50%;
+            }
+          }
+          .link-container {
+            font-style: italic !important;
+            display: block !important;
+            height: auto !important;
+            margin-top: 30px;
+            color: var(--composer-font-color-secondary);
+          }
+        }
       }
     }
   }
-
-  h1 {
-    > blinkpage {
-      p {
-        display: -webkit-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 2 !important;
-        -webkit-box-orient: vertical;
-      }
-    }
-  }
-
-  div {
-    height: auto !important;
-  }
-
-  p {
-    > blinkpage {
-      p {
-        display: -webkit-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 5 !important;
-        -webkit-box-orient: vertical;
-      }
-    }
-  }
-  .category {
-    background-color: var(--composer-primary-color);
-    color: var(--composer-font-color-secondary);
-    position: absolute;
-    top: -20px;
-    left: 25px;
-    padding: 0.8em 1em;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 10px;
-    max-width: 90%;
-  }
-  .title {
-    font-weight: 600;
-    font-size: 1.5rem;
-    max-width: 100%;
-    margin-bottom: 5px;
-    display: -webkit-box;
-    line-height: 1.4em;
-    color: var(--composer-font-color-secondary);
-  }
-  .description {
-    width: 100%;
-    color: var(--composer-font-color-secondary);
-    margin-bottom: 20px;
-    max-width: 100%;
-    font-size: 14px;
-    display: -webkit-box;
-    line-height: 1.8em;
-  }
-  .date-author {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    .author {
-      display: flex;
-      gap: 8px;
-      color: var(--composer-font-color-secondary);
-      max-width: 50%;
-    }
-    .dot::before{
-      content: "•";
-      color: var(--composer-font-color-secondary);
-      font-size: 1.5rem;
-    }
-    .date {
-      color: var(--composer-font-color-secondary);
-      text-transform: uppercase;
-      max-width: 50%;
-    }
-  }
-  .link-container {
-    font-style: italic !important;
-    display: block !important;
-    height: auto !important;
-    margin-top: 30px;
-    color: var(--composer-font-color-secondary);
-  }
 }
-.content-max-width {
-  position: relative;
-}
-@media screen and (max-width: 768px) {
-  .slider {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    div {
-      height: 100%;
-      width: 100%;
-      > ul {
-        margin-bottom: 10%;
+
+@media screen and(min-width: 768px) and (max-width: 1024px) {
+  .container{
+    .max-content{
+      .slider {
+        width: 100%;
+        div {
+          width: 100%;
+          > ul {
+            margin-bottom: 10%;
+          }
+        }
+        .content-max-width{
+          .card {
+            max-width: 45%;
+          }
+        }
+  
       }
     }
-    .slider-item-inner-container {
-      background-position: center;
-      background-size: cover;
-    }
-
-    .card {
-      position: absolute;
-      max-width: 45%;
-    }
-  }
+  } 
 }
 @media screen and (max-width: 430px) {
-  .slider {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    div {
-      height: 100%;
+.container{
+  .max-content{
+    .slider {
       width: 100%;
-      > ul {
-        margin-bottom: 30%;
+      div {
+        width: 100%;
+        > ul {
+          margin-bottom: 30%;
+        }
       }
-    }
-    .slider-item-inner-container {
-      background-position: center;
-      background-size: cover;
-    }
+      .content-max-width{
+        .card {
+          position: absolute;
+          max-width: 80%;
+          transform: translate(25%, -50%);
+        }
+      }
 
-    .card {
-      position: absolute;
-      max-width: 80%;
-      transform: translate(25%, -50%);
     }
   }
+} 
+ 
+
 }
