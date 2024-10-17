@@ -61,6 +61,7 @@
                   border-radius: 1rem;
                   padding: 1rem;
                   max-width: calc((100% / 3 * 2) - 22px);
+                  color:var(--composer-font-color-primary);
                   &::placeholder {
                     color:var(--composer-font-color-primary);
                     opacity: 0.3;
