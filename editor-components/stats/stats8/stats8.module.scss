@@ -206,28 +206,29 @@ $font-color-primary: var(--composer-font-color-primary);
 
       .image-container {
         .image-container-border {
-          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
           position: relative;
           display: flex;
+          padding: 20px;
+          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
 
           img {
             max-height: 750px;
             object-fit: cover;
             filter: brightness(70%);
             width: 100%;
-            margin: 20px;
           }
 
           .overlay {
             position: absolute;
-            bottom: 1px;
-            margin: 30px;
+            bottom: 0;
+            left: 0;
             border: 1px solid $color-mix;
-            padding: 30px;
             overflow: hidden;
             white-space: normal;
             word-wrap: break-word;
             max-height: 50%;
+            margin: 30px;
+            padding: 30px;
 
             .number {
               font-size: 110px;
@@ -245,6 +246,7 @@ $font-color-primary: var(--composer-font-color-primary);
               font-weight: 600;
               color: $color-mix;
               word-break: break-word;
+              margin: 0;
               @include threeDots;
             }
           }
@@ -254,6 +256,42 @@ $font-color-primary: var(--composer-font-color-primary);
   }
 }
 
+@container (min-width: 800px) and (max-width: 1025px) {
+
+  .stat {
+    h5 {
+      blinkpage>p {
+        font-size: 15px !important;
+      }
+    }
+  }
+
+  .stats8-page {
+    .image-container {
+      .image-container-border {
+        img {
+          max-height: 100% !important;
+        }
+        .overlay{
+          .number{
+            font-size: 80px !important;
+          }
+          .description{
+            font-size: 14px !important;
+          }
+        }
+      }
+    }
+  }
+
+  .stats {
+    flex: 1 !important;
+
+    .stat-border {
+      min-width: 200px !important;
+    }
+  }
+}
 
 @container (min-width: 480px) and (max-width: 800px) {
   .container {
@@ -359,47 +397,19 @@ $font-color-primary: var(--composer-font-color-primary);
         margin: 0 auto;
 
         .image-container-border {
-          img {
-            width: 90% !important;
-          }
 
           .overlay {
+            padding: 20px !important;
+
             .number {
-              font-size: 30px !important;
+              font-size: 60px !important;
+            }
+            .description{
+              font-size: 13px !important;
             }
           }
         }
       }
-    }
-  }
-}
-
-@container (min-width: 900px) and (max-width: 1025px) {
-
-  .stat {
-    h5 {
-      blinkpage>p {
-        font-size: 15px !important;
-      }
-    }
-  }
-
-  .stats8-page {
-    .image-container {
-      .image-container-border {
-        img {
-          width: 90% !important;
-          max-height: 100% !important;
-        }
-      }
-    }
-  }
-
-  .stats {
-    flex: 1 !important;
-
-    .stat-border {
-      min-width: 200px !important;
     }
   }
 }

@@ -108,10 +108,10 @@ class Stats8Page extends BaseStats {
     });
 
     this.addProp({
-      type: "number",
+      type: "string",
       key: "overlayNumber",
       displayer: "Overlay Number",
-      value: 25,
+      value: "25",
     });
 
     this.addProp({
@@ -170,7 +170,7 @@ class Stats8Page extends BaseStats {
             );
 
             let formattedNextValue = nextValue
-              ? nextValue.toLocaleString("de-DE")
+              ? nextValue.toString()
               : "";
 
             const updatedValue = currentNumber > 0
@@ -183,16 +183,31 @@ class Stats8Page extends BaseStats {
             );
           }
         }
-
-        const overlayNumber = this.getPropValue("overlayNumber");
-        let formattedOverlayNumber = "";
-
-        if (overlayNumber !== null && overlayNumber !== undefined) {
-          formattedOverlayNumber = Number(overlayNumber).toLocaleString("de-DE");
-        }
-
-        this.setComponentState("overlayNumberDisplay", formattedOverlayNumber);
       });
+
+      const overlayNumberState = this.getComponentState("overlayNumberDisplay");
+      const overlayString = typeof overlayNumberState === "string" ? overlayNumberState : "";
+
+      const currentOverlayPrefix = overlayString.match(/^\D+/)?.[0] || "";
+      const currentOverlaySuffix = overlayString.match(/\D+$/)?.[0] || "";
+      const currentOverlayNumber = parseInt(overlayString.replace(/\D+/g, ""), 10) || 0;
+
+      const overlayNumberProp = this.castToString(this.getPropValue("overlayNumber"));
+      const overlayNumericPart = parseInt(overlayNumberProp.replace(/[^\d]/g, ""), 10) || 0;
+      let targetOverlayNumber = overlayNumericPart;
+
+      if (currentOverlayNumber !== targetOverlayNumber) {
+        let nextOverlayValue = Math.min(
+          targetOverlayNumber,
+          currentOverlayNumber + Math.ceil(targetOverlayNumber / Math.round(this.getPropValue("animationDuration") / 30))
+        );
+
+        let formattedOverlayValue = nextOverlayValue ? nextOverlayValue.toString() : "";
+
+        formattedOverlayValue = currentOverlayPrefix + formattedOverlayValue + currentOverlaySuffix;
+
+        this.setComponentState("overlayNumberDisplay", formattedOverlayValue);
+      }
     }, 30);
 
   }
