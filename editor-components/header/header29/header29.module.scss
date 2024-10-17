@@ -1,23 +1,20 @@
- .container {
+.container {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  height: 100%;
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
+  padding: 20px 50px;
   display: flex;
   align-items: center;
-  
+  container-name: header29;
+  container-type: inline-size;
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-  
+    width: 100%;
     .wrapper{
       width: 100%;
-      height: 800px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      gap:10rem;
       align-items: center;
-      background-color: #fff;
-      overflow-wrap: break-word;
       &.wrapper-reverse {
         flex-flow: row-reverse;
       }   
@@ -25,245 +22,291 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        width: 40%;
-        padding: 10px;
+        width: 100%;
         justify-content: center;
         gap: 40px;
-        margin-left: 50px;
+        flex:2;
         .up {
           display: flex;
           flex-direction: column;
           gap: 40px;
-          
           .title {
             font-weight: bold;
-            font-size: 7em;
-          }
-          @media screen and (max-width: 1100px){
-            .title{
-              font-size: 5em;
-            }
+            font-size: 7rem;
+            color: var(--composer-font-color-primary);
           }
           .description {
-            font-size: 1.5em;
-            color: #535252;
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
           }
-          .button-and-input {
-            display: flex;
-            gap: 20px;
-            .input {
-              border-radius: 5%;
-              height: 45px;
-              width: 45%;
-              border: #acacac solid 2px;
-            }
-            .button {
-              padding: auto;
-              background-color:blue ;
+          .form-container{
+            width: 100%;
+            height: 100%;
+            .button-and-input {
               width: 100%;
-              height: 45px;
-              border-radius: 7%;
-              margin-left: 1%;
-              color: white;
-              border: transparent;
-              font-weight: bold;
-              font-size: 0.8em;
+              height: 100%;
+              .form {
+                display: flex;
+                gap: 20px;
+                width: 50%;
+                height: 100%;
+                align-items: stretch;
+                .input{
+                  flex:2;
+                  border:none;
+                  width: 100%;
+                  background-color: transparent;
+                  display: flex;
+                  border: var(--composer-font-color-primary) solid 2px;
+                  border-radius: 1rem;
+                  padding: 1rem;
+                  max-width: calc((100% / 3 * 2) - 22px);
+                  &::placeholder {
+                    color:var(--composer-font-color-primary);
+                    opacity: 0.3;
+                  }
+                }
+                .input-button{
+                  flex:1;
+                  width: 100%;
+                  min-height: 100%;
+                  background-color:var(--composer-primary-color) ;
+                  color: var(--composer-font-color-secondary);
+                  border:none;
+                  font-weight: bold;
+                  font-size: 1rem;
+                  cursor: pointer;
+                  border-radius: 1rem;
+                  padding: 1rem;
+                  transition: all 0.3s ease;
+                  border: 2px solid transparent;
+                  &:hover{
+                    background-color: transparent;
+                    color:var(--composer-font-color-primary);
+                    border: 2px solid var(--composer-primary-color);
+                  }
+                }
+              }
+              >div{
+                width: 50% !important;
+                .button{
+                  background-color:var(--composer-primary-color) ;
+                  color: var(--composer-font-color-secondary);
+                  width: 40%;
+                  padding: 1rem;
+                  font-size: 1rem;
+                  border-radius: 1rem;
+                }
+              }
             }
           }
         }
         .down {
           display: flex;
           flex-direction: row;
-          .card1 {
-            gap: 20px;
-            display: flex;
-            flex-direction: column;
-            .title1 {
-              font-weight: bold;
-              font-size: 1.5em;
-            }
-            .description1 {
-              font-size: 1.4em;
-              color: #535252;
-            }
-          }
-          .card2 {
-            gap: 20px;
-            display: flex;
-            flex-direction: column;
-            .title2 {
-              font-weight: bold;
-              font-size: 1.5em;
-            }
-            .description2 {
-              font-size: 1.4em;
-              color: #535252;
-            }
-          }
-          .card1,.card2 {
-            width: 40%;
-          }
-        }
-      }
-      .image {
-        height: 700px;
-        width: 100%;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-  
-    .max-content {
-      max-width: var(--composer-content-width);
-      margin: auto;
-      
-    
-      .wrapper{
-        .first {
-          width: 55%;
-          
-          .up {
-            gap: 40px;
-            .title {
-              font-size: 4em;
-            }
-            .description {
-              font-size: 1.3em;
-            }
-            .button-and-input {
-              gap: 15px;
-              .input {
-                height: 35px;
-                width: 72%;
-              }
-              .button {
-                width: 100%;
-                height: 35px;
-                font-size: 0.7em;
-                font-weight: bold;
-              }
-            }
-          }
-          .down {
-            flex-direction: column;
-            gap: 10px;
-            .card1 {
-              gap: 10px;
-              .title1 {
-                font-size: 1.2em;
-              }
-              .description1 {
-                font-size: 1em;
-              }
-            }
-            .card2 {
-              gap: 10px;
-              .title2 {
-                font-size: 1.2em;
-              }
-              .description2 {
-                font-size: 1em;
-              }
-            }
-            .card1,.card2 {
-              width: 100%;
-            }
-          }
-        }
-        .image {
-          height: 470px;
-          width: 90%;
-          margin-left: 7% ;
-        }
-      }
-    }
-  }
-}
-@media only screen and (max-width: 400px) {
-  .container {
-  
-    .max-content {
-      max-width: var(--composer-content-width);
-      margin: auto;
-      
-    
-      .wrapper{
-        flex-direction: column;
-        height: max-content;
-        justify-content: start;
-        align-items: flex-start;
-        padding: 0;
-
-        &.wrapper-reverse {
-          flex-flow: column-reverse;
-        }
-        .first {
+          flex:1;
           width: 100%;
-          padding: 18px;
-          margin-left: 0;
-          .up {
-            gap: 15px;
-            .title {
-              font-size: 4em;
-              justify-content: flex-start;
-            }
-            .description {
-              width: 100%;
-              font-size: 1.2em;
-            }
-            .button-and-input {
-              gap: 15px;
-              flex-direction: column;
-              .input {
-                height: 37px;
-                width: 100%;
-                font-size: 1em;
-                border: #acacacb2 solid 2.7px;
-                border-radius: 6%;
-              }
-              .button {
-                width: 35%;
-                height: 37px;
-                font-size: 0.8em;
-                margin: 0;
-              }
-            }
-          }
-          .down {
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap:2rem;
+          .card{
+            gap: 20px;
+            display: flex;
             flex-direction: column;
-            gap: 15px;
-            .card1 {
-              gap: 6px;
-              .title1 {
-                font-size: 1.4em;
-              }
-              .description1 {
-                font-size: 1.2em;
-              }
+            overflow: hidden;
+            flex:1;
+            min-width: 45%;
+            .title{
+              font-weight: bold;
+              font-size: 1.5em;
+              word-break: break-word;
+              max-width: 100%;
+              color:var(--composer-font-color-primary);
             }
-            .card2 {
-              gap: 6px;
-              .title2 {
-                font-size: 1.4em;
-              }
-              .description2 {
-                font-size: 1.2em;
-              }
+            .description{
+              font-size: 1.4em;
+              color:var(--composer-font-color-primary);
+              word-break: break-word;
+              max-width: 100%;
             }
-            .card1,.card2 {
-              width: 100%;
+            .icon{
+              width: 3rem;
+              height: 3rem;
+              color:var(--composer-font-color-primary);
             }
           }
         }
+      }
+      .image-container{
+        flex:1;
+        max-height: 100%;
+        max-width: 100%;
         .image {
-          height: 350px;
+          object-fit: cover;
+          height: 100%;
+          max-width: 100%;
         }
       }
     }
   }
 }
+@container (max-width: 850px) {
+  .container{
+    padding: 20px 30px ;
+  }
+}
+@container header29 (max-width: 850px) {
+  .container{
+    .max-content {
+      .wrapper{
+        flex-direction: column !important;
+        gap:3rem !important;
+        &.wrapper-reverse {
+          flex-direction: column-reverse !important;
+        }  
+        .first {
+          gap:3rem;
+          .up {
+            gap: 2rem;
+            .title {
+              font-size: 4rem !important;
+            }
+            .description {
+              font-size: 1.5rem !important;
+            }
+            .form-container{
+              .button-and-input {
+                width: 80%;
+                .form{
+                  display: flex;
+                  align-items: center;
+                  width: 100%;
+                  .input {
+                    
+                  }
+                    
+                .input-button{
+  
+                }
+                }
 
+                >div{
+                  width: 100% !important;
+                  .button {
+                    font-size: 0.7em;
+                    width: 30%;
+                  }
+                }
+              }
+            }
 
+          }
+          .down {
+            .card {
+              gap:1rem;
+              .title {
+                font-size: 2rem;
+              }
+              .description{
+                font-size: 1.3rem;
+              }
+              .icon{
+                width: 3rem;
+                height: 3rem;
+              }
+            }
+          }
+        }
+        .image-container{
+          .image {
+            max-height:50vh;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width: 400px) {
+  .container {
+    .max-content {
+      .wrapper{
+        &.wrapper-reverse {
+        }
+        .first {
+          gap:3rem;
+          .up {
+            gap: 2rem;
+            .title {
+              font-size: 3em !important;
+            }
+            .description {
+              font-size: 1em !important;
+            }
+            .form-container{
+              .button-and-input {
+                width: 100%;
+                .form{
+                  flex-direction: column;
+                  gap: 1rem;
+                  width: 100%;
+                  align-items: stretch;
+                  height: 100%;
+                  .input {
+                    flex:1;
+                    max-width: 100%;
+                    padding:0.5rem;
+                  }
+                  .input-button{
+                    flex:1;
+                    padding: 0.5rem;
+                    align-items: center;
+                    display: flex;
+                    >blinkpage{
+                      min-height: 15px;
+                      align-items: center;
+                      display: flex !important;
+                      justify-content: center;
+                    }
+                  }
+                }
+
+                >div{
+                  flex:1;
+                  .button {
+                    font-size: 0.7em;
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+          .down {
+            flex-direction: column;
+            gap:2rem;
+            .card {
+              gap:1rem;
+              width: 100%;
+              .title {
+                font-size: 1.2em;
+              }
+              .description {
+                font-size: 1em;
+              }
+              .icon{
+                width: 2rem;
+                height: 2rem;
+              }
+            }
+          }
+        }
+        .image-container{
+          display: inline;
+          .image {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

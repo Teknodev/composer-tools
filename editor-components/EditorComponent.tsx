@@ -63,8 +63,8 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-  };
+  getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -323,6 +323,16 @@ export abstract class BaseList extends Component {
 
 export abstract class BaseHeader extends Component {
   protected category = CATEGORIES.HEADER;
+  insertForm(name: string, data: Object) {
+    const projectSettings = JSON.parse(getProjectHook().data);
+    const project = projectSettings._id;
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+    };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class BasePricingTable extends Component {
