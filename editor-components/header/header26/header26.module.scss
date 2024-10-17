@@ -9,7 +9,7 @@
   margin: 0 auto;
   height: 100%;
 
-  >div > div > div > div {
+  > div > div > div > div {
     border: none !important;
   }
 }
@@ -43,7 +43,7 @@
 }
 
 .left-side-content {
-  width: 100%; 
+  width: 100%;
 }
 
 .title {
@@ -54,10 +54,10 @@
   cursor: pointer;
 
   blinkpage p {
-    display: -webkit-box; 
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; 
-  overflow: hidden; 
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &:hover {
@@ -79,10 +79,10 @@
   margin-top: 25px;
 
   blinkpage p {
-    display: -webkit-box; 
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical; 
-  overflow: hidden; 
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
@@ -125,9 +125,8 @@
     font-size: 4rem;
     margin-bottom: 0 !important;
 
-
     blinkpage p {
-    -webkit-line-clamp: 3 !important;
+      -webkit-line-clamp: 3 !important;
     }
   }
 
@@ -198,7 +197,7 @@
     margin: 0 auto;
     width: 100%;
   }
-  
+
   .right-side {
     display: flex;
     justify-content: center;
@@ -208,7 +207,6 @@
   }
 
   .image {
-    padding: 0px 30px !important;
     margin: 0 !important;
   }
 
