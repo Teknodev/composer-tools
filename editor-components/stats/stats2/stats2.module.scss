@@ -174,7 +174,7 @@
   }
 }
 
-@media only screen and (min-width: 400px) and (max-width: 768px) {
+@container (min-width: 400px) and (max-width: 768px) {
   .container {
     padding: 20px 30px;
 
@@ -202,6 +202,7 @@
 
           .description {
             max-width: 100% !important;
+
             &.full-width {
               min-width: 100%;
             }
@@ -213,8 +214,10 @@
 
           .button-content {
             display: inherit;
+
             .contact-button {
               max-width: 100% !important;
+
               &.button-full-width {
                 max-width: 60% !important;
               }
@@ -256,7 +259,7 @@
   }
 }
 
-@media (max-width: 399px) {
+@container (max-width: 399px) {
   .container {
     padding: 20px 30px;
 
@@ -283,6 +286,7 @@
 
           .description {
             max-width: 100% !important;
+
             &.full-width {
               min-width: 100%;
             }
@@ -294,8 +298,10 @@
 
           .button-content {
             display: inherit;
+
             .contact-button {
               max-width: 100% !important;
+
               &.button-full-width {
                 max-width: 80% !important;
               }

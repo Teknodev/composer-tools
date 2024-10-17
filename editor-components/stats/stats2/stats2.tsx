@@ -218,23 +218,128 @@ class Stats2Page extends BaseStats {
     const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
     const contactButtonLink = this.getPropValue("contactButtonLink");
 
+    const AnimatedCard = ({
+      card,
+      animationDuration,
+      isTextExist,
+    }: {
+      card: Card;
+      animationDuration: number;
+      isTextExist: string;
+    }) => {
+      const [amount, setAmount] = React.useState<string | null>(null);
+      const [showDecimals, setShowDecimals] = React.useState(false);
+      const ref = React.useRef<HTMLDivElement>(null);
+      const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
+
+      React.useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateDigits();
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        if (ref.current) {
+          observer.observe(ref.current);
+        }
+
+        return () => {
+          if (ref.current) {
+            observer.unobserve(ref.current);
+          }
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+          }
+        };
+      }, [card.amount]);
+
+      const animateDigits = () => {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+
+        const finalAmount = card.amount?.toString();
+        if (finalAmount === null || finalAmount === undefined) {
+          setAmount(null);
+          return;
+        }
+
+        const steps = animationDuration / 30;
+        let currentAmount = amount ? parseFloat(amount) : 0;
+        const increment = (parseFloat(finalAmount) - currentAmount) / steps;
+
+        intervalRef.current = setInterval(() => {
+          currentAmount += increment;
+
+          if (
+            (increment > 0 && currentAmount >= parseFloat(finalAmount)) ||
+            (increment < 0 && currentAmount <= parseFloat(finalAmount))
+          ) {
+            currentAmount = parseFloat(finalAmount);
+            clearInterval(intervalRef.current);
+            setShowDecimals(true);
+          }
+
+          setAmount(currentAmount.toString());
+        }, 30);
+      };
+
+      const integerPart = amount ? Math.floor(parseFloat(amount)) : null;
+      const decimalPart = amount ? amount.split(".")[1] || "" : "";
+
+      return (
+        (isTextExist || amount !== null || card.icon || card.secondIcon) && (
+          <div ref={ref} className={this.decorateCSS("listed")}>
+            {isTextExist && (
+              <div className={this.decorateCSS("card-text")}>{card.text}</div>
+            )}
+            {(amount !== null || card.icon || card.secondIcon) && (
+              <div className={this.decorateCSS("card-amount-container")}>
+                {card.icon && (
+                  <ComposerIcon
+                    propsIcon={{ className: this.decorateCSS("card-icon") }}
+                    name={card.icon}
+                  />
+                )}
+                {(amount !== null && amount !== "NaN") && (
+                  <h2 className={this.decorateCSS("card-amount")}>
+                    {integerPart}
+                    {showDecimals && decimalPart && <span>.{decimalPart}</span>}
+                  </h2>
+                )}
+                {card.secondIcon && (
+                  <ComposerIcon
+                    propsIcon={{ className: this.decorateCSS("card-icon-after") }}
+                    name={card.secondIcon}
+                  />
+                )}
+              </div>
+            )}
+          </div>
+        )
+      );
+    };
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {isHeaderExist && (
-            <div className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""
-              }`}>
+            <div className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
               <div className={this.decorateCSS("header")}>{header}</div>
             </div>
           )}
 
           <div className={this.decorateCSS("bottom-content")}>
             {(isSubHeader || isContactButtonExist || contactButtonIcon) && (
-              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""
-                }`}>
+              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
                 {isSubHeader && (
-                  <div className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""
-                    }`}>
+                  <div className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
                     {subHeader}
                   </div>
                 )}
@@ -242,21 +347,15 @@ class Stats2Page extends BaseStats {
                 {(isContactButtonExist || contactButtonIcon) && (
                   <ComposerLink path={contactButtonLink}>
                     <div className={this.decorateCSS("button-content")}>
-                      <p className={`${this.decorateCSS("contact-button")} ${buttonAnimationEnabled ? this.decorateCSS("animated") : ""
-                        } ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""
-                        }`}>{isContactButtonExist}<ComposerIcon
-                        name={contactButtonIcon}
-                        propsIcon={{
-                          className: this.decorateCSS("contact-button-icon"),
-                        }} /></p>
-                      
+                      <p className={`${this.decorateCSS("contact-button")} ${buttonAnimationEnabled ? this.decorateCSS("animated") : ""} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
+                        {isContactButtonExist}
+                        <ComposerIcon name={contactButtonIcon} propsIcon={{ className: this.decorateCSS("contact-button-icon") }} />
+                      </p>
                     </div>
                   </ComposerLink>
                 )}
-
               </div>
             )}
-
 
             {cards.length > 0 && (
               <div className={this.decorateCSS("cards-container")}>
@@ -267,7 +366,6 @@ class Stats2Page extends BaseStats {
                       key={index}
                       card={card}
                       animationDuration={animationDuration}
-                      styles={styles}
                       isTextExist={isTextExist}
                     />
                   );
@@ -280,117 +378,5 @@ class Stats2Page extends BaseStats {
     );
   }
 }
-
-type AnimatedCardProps = {
-  card: Card;
-  animationDuration: number;
-  styles: typeof styles;
-  isTextExist: string;
-};
-
-const AnimatedCard: React.FC<AnimatedCardProps> = ({
-  card,
-  animationDuration,
-  styles,
-  isTextExist,
-}) => {
-  const [amount, setAmount] = React.useState<string | null>(null);
-  const [showDecimals, setShowDecimals] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
-  const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateDigits();
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [card.amount]);
-
-  const animateDigits = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    const finalAmount = card.amount?.toString();
-    if (finalAmount === null || finalAmount === undefined) {
-      setAmount(null);
-      return;
-    }
-
-    const steps = animationDuration / 30;
-    let currentAmount = amount ? parseFloat(amount) : 0;
-    const increment = (parseFloat(finalAmount) - currentAmount) / steps;
-
-    intervalRef.current = setInterval(() => {
-      currentAmount += increment;
-
-      if (
-        (increment > 0 && currentAmount >= parseFloat(finalAmount)) ||
-        (increment < 0 && currentAmount <= parseFloat(finalAmount))
-      ) {
-        currentAmount = parseFloat(finalAmount);
-        clearInterval(intervalRef.current);
-        setShowDecimals(true);
-      }
-
-      setAmount(currentAmount.toString());
-    }, 30);
-  };
-
-  const integerPart = amount ? Math.floor(parseFloat(amount)) : null;
-  const decimalPart = amount ? amount.split(".")[1] || "" : "";
-
-  return (
-    (isTextExist || amount !== null || card.icon || card.secondIcon) && (
-      <div ref={ref} className={styles["listed"]}>
-        {isTextExist && (
-          <div className={styles["card-text"]}>{card.text}</div>
-        )}
-        {(amount !== null || card.icon || card.secondIcon) && (
-          <div className={styles["card-amount-container"]}>
-            {card.icon && (
-              <ComposerIcon
-                propsIcon={{ className: styles["card-icon"] }}
-                name={card.icon}
-              />
-            )}
-            {(amount !== null && amount !== "NaN") && (
-              <h2 className={styles["card-amount"]}>
-                {integerPart}
-                {showDecimals && decimalPart && <span>.{decimalPart}</span>}
-              </h2>
-            )}
-            {card.secondIcon && (
-              <ComposerIcon
-                propsIcon={{ className: styles["card-icon-after"] }}
-                name={card.secondIcon}
-              />
-            )}
-          </div>
-        )}
-      </div>
-    )
-  );
-};
 
 export default Stats2Page;
