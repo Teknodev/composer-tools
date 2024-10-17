@@ -68,15 +68,16 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
       const bounds = new google.maps.LatLngBounds();
       markers.forEach((marker) => bounds.extend(new google.maps.LatLng(marker.lat, marker.lng)));
 
-      if (markers.length > 1) {
-        map.fitBounds(bounds);
-        google.maps.event.addListenerOnce(map, "idle", () => {
-          const currentZoom = map.getZoom();
-          map.setZoom(defaultZoom ?? currentZoom);
-        });
-      } else {
-        map.setZoom(defaultZoom || 10);
-      }
+      map.fitBounds(bounds);
+
+      google.maps.event.addListenerOnce(map, "idle", () => {
+        const currentZoom = map.getZoom();
+        if (markers.length > 1) {
+          map.setZoom(defaultZoom !== undefined ? defaultZoom : currentZoom);
+        } else {
+          map.setZoom(defaultZoom !== undefined ? defaultZoom : 5);
+        }
+      });
     };
 
     fitMapToMarkers();
@@ -84,7 +85,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     return () => {
       google.maps.event.clearListeners(map, "idle");
     };
-  }, [map, markers]);
+  }, [map, defaultZoom, JSON.stringify(markers.map((marker) => ({ lat: marker.lat, lng: marker.lng })))]);
 
   useEffect(() => {
     if (map) {
