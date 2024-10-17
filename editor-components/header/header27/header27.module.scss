@@ -145,7 +145,7 @@
               .button-content {
                 display: flex;
                 flex-direction: row;
-                width: 90%;
+                width: 100%;
                 justify-content: space-between;
                 height: 100%;
 
@@ -181,8 +181,9 @@
                   }
 
                   .button-icon {
-                    min-width: 15px;
-                    min-height: 15px;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    flex-shrink: 0;
                   }
                 }
 
@@ -222,16 +223,20 @@
               @include flexCenter;
 
               .desc-content {
-                width: 90%;
+                width: 100%;
                 display: flex;
                 justify-content: space-between;
+                gap: 10%;
 
-                .leftDescription {
+                .leftDescription,
+                .rightDescription {
+                  font-size: 1rem !important;
+                  text-align: justify !important;
+                  flex: 1;
                   font-size: 1.2rem;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   color: var(--composer-font-color-primary);
-                  max-width: 20%;
                   word-break: break-word;
                 }
 
@@ -239,12 +244,14 @@
                   @include flexCenter;
                   gap: 15px;
                   word-break: break-word;
+                  flex: 1;
 
                   .count-items {
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
-                    padding-right: 15px;
+                    flex: 1;
+                    text-align: end;
+                    gap: 0.6rem;
 
                     .itemsNo {
                       font-size: 2.8rem;
@@ -270,10 +277,11 @@
                   }
 
                   .customers {
-                    padding-left: 15px;
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
+                    gap: 0.6rem;
+                    flex: 1;
+                    text-align: start;
 
                     .customerNo {
                       margin: 0;
@@ -289,15 +297,6 @@
                     }
                   }
                 }
-
-                .rightDescription {
-                  font-size: 1.2rem;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  color: var(--composer-font-color-primary);
-                  max-width: 20%;
-                  word-break: break-word;
-                }
               }
             }
           }
@@ -308,6 +307,9 @@
 }
 
 @container (max-width:1100px) {
+  .container {
+    padding: 20px 30px !important;
+  }
 
   .slider-parent {
     .carousel {
@@ -338,6 +340,7 @@
         .middleDiv {
           .middleDiv-content {
             gap: 10px !important;
+
             .middleImages-container {
               .image-wrapper {
                 .middleImages {
@@ -389,31 +392,10 @@
 
           .desc-container {
             .desc-content {
-              display: flex !important;
               gap: 5% !important;
-
-              .leftDescription,
-              .rightDescription {
-                font-size: 1rem !important;
-                text-align: justify !important;
-              }
-
-              .leftDescription,
-              .rightDescription,
-              .count {
-                flex: 1 !important;
-                max-width: none !important;
-              }
-
-
-
 
               .count {
                 .count-items {
-                  padding: 0 !important;
-                  flex: 1 !important;
-                  text-align: end !important;
-
                   .itemsNo {
                     font-size: 2rem !important;
                     text-align: end !important;
@@ -425,9 +407,6 @@
                 }
 
                 .customers {
-                  padding: 0 !important;
-                  flex: 1 !important;
-
                   .customerNo {
                     font-size: 2rem !important;
                   }
@@ -452,8 +431,6 @@
 
   .slider-parent {
     .carousel {
-      :global(.slick-list) {}
-
       .max-content {
         flex-direction: column !important;
 
@@ -503,6 +480,7 @@
 
             .middleTitle-container {
               max-width: 100% !important;
+
               .middleTitle {
                 font-size: 12vw !important;
                 letter-spacing: 5px !important;
@@ -539,8 +517,8 @@
                 }
 
                 .button-icon {
-                  height: 15px !important;
-                  width: 15px !important;
+                  height: 1.4rem !important;
+                  width: 1.4rem !important;
                 }
               }
 
@@ -575,7 +553,7 @@
           .desc-container {
             .desc-content {
               flex-direction: column !important;
-              gap: 20px !important;
+              gap: 1.2rem !important;
               width: 100% !important;
 
               .leftDescription,
@@ -585,11 +563,11 @@
               }
 
               .count {
-                gap: 10px !important;
+                gap: 0.6rem !important;
                 justify-content: space-between !important;
 
                 .count-items {
-                  gap: 5px !important;
+                  gap: 0.3rem !important;
                   text-align: start !important;
 
                   .itemsNo {
@@ -621,7 +599,7 @@
                   padding-left: 0 !important;
                   display: flex !important;
                   flex-direction: column !important;
-                  gap: 5px !important;
+                  gap: 0.3rem !important;
                   width: auto !important;
                   text-align: end !important;
 
