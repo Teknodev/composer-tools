@@ -8,6 +8,20 @@ const menuType = {
   selectItems: ["Dropdown", "Normal"],
 };
 
+type NavbarSubSection = {
+  text: JSX.Element;
+  link: string;
+  image: string;
+};
+
+type Navbar = {
+  label: JSX.Element;
+  menu_type: any;
+  icon: string;
+  link: string;
+  section: NavbarSubSection[];
+};
+
 class Navbar6 extends BaseNavigator {
   getName(): string {
     return "Navbar 6";
@@ -98,7 +112,7 @@ class Navbar6 extends BaseNavigator {
                 },
                 {
                   type: "object",
-                  key: "item2",
+                  key: "item1",
                   displayer: "Extendable Section Item",
                   value: [
                     {
@@ -124,7 +138,7 @@ class Navbar6 extends BaseNavigator {
                 },
                 {
                   type: "object",
-                  key: "item3",
+                  key: "item1",
                   displayer: "Extendable Section Item",
                   value: [
                     {
@@ -399,14 +413,28 @@ class Navbar6 extends BaseNavigator {
     this.setComponentState("navClosing", value);
   }
 
-  dropdownClick(index: number) {
+  dropdownClick(index: number, activeValue: boolean) {
     let value: boolean = this.getComponentState("dropdownActive");
     this.setComponentState("activeDropdownIndex", index);
-    this.setComponentState("dropdownActive", !value);
+    if (activeValue) {
+      this.setComponentState("dropdownActive", !value);
+    } else {
+      this.setComponentState("dropdownActive", true);
+    }
+  }
+
+  handleMouseEnter(index: number) {
+    this.setComponentState("is-dropdown-open", true);
+    this.setComponentState("dropdown-active-index", index);
+  }
+
+  handleMouseLeave() {
+    this.setComponentState("is-dropdown-open", false);
+    this.setComponentState("dropdown-active-index", null);
   }
 
   render() {
-    const extendable = this.getPropValue("extendable") ?? [];
+    const extendable = this.castToObject<Navbar[]>("extendable") ?? [];
     const navActive = this.getComponentState("navActive");
 
     const dropdownActive = this.getComponentState("dropdownActive");
@@ -434,14 +462,14 @@ class Navbar6 extends BaseNavigator {
                         : this.decorateCSS("closing")
                     }`}
                   >
-                    {extendable.map((item: any, index: number) => {
-                      const hasValue = item?.value?.[0]?.value;
+                    {extendable.map((item: Navbar, index: number) => {
+                      const hasValue = this.castToString(item.label);
 
                       return (
                         <>
                           {hasValue && (
                             <>
-                              {item?.value?.[1]?.value === "Dropdown" ? (
+                              {item?.menu_type === "Dropdown" ? (
                                 <>
                                   {window.innerWidth < 769 ? (
                                     <>
@@ -456,7 +484,7 @@ class Navbar6 extends BaseNavigator {
                                           )}
                                         >
                                           <ComposerLink
-                                            path={item?.value[3].value}
+                                            path={item?.link}
                                             key={index}
                                           >
                                             <div
@@ -464,47 +492,56 @@ class Navbar6 extends BaseNavigator {
                                                 "dropdown-content-tablet-telephone"
                                               )}
                                             >
-                                              {item?.value?.[0]?.value}
+                                              {item?.label}
                                             </div>
                                           </ComposerLink>
                                         </h3>
                                         <div
                                           className={
-                                            dropdownActive
+                                            dropdownActive &&
+                                            activeDropdownIndex === index
                                               ? this.decorateCSS("rotate")
                                               : ""
                                           }
                                           onClick={() =>
-                                            this.dropdownClick(index)
+                                            this.dropdownClick(
+                                              index,
+                                              activeDropdownIndex === index
+                                            )
                                           }
                                         >
-                                          <ComposerIcon
-                                            name={item?.value[2].value}
-                                          />
+                                          <ComposerIcon name={item?.icon} />
                                         </div>
                                       </div>
-                                      {item?.value?.[4]?.value?.length > 0 && (
+                                      {item?.section.length > 0 && (
                                         <ul
                                           className={this.decorateCSS(
-                                            `${dropdownActive ? "" : "ul-none"}`
+                                            `${
+                                              dropdownActive &&
+                                              activeDropdownIndex === index
+                                                ? ""
+                                                : "ul-none"
+                                            }`
                                           )}
                                         >
-                                          {item?.value?.[4]?.value?.map(
+                                          {item?.section.map(
                                             (
-                                              dropdownItem: any,
+                                              dropdownItem: NavbarSubSection,
                                               dropdownIndex: number
                                             ) => {
-                                              const text =
-                                                dropdownItem?.value?.[0]?.value;
-                                              const url =
-                                                dropdownItem?.value?.[1].value;
+                                              const text = this.castToString(
+                                                dropdownItem?.text
+                                              );
+                                              const url = dropdownItem?.link;
 
                                               return (
                                                 <div
                                                   className={`${this.decorateCSS(
                                                     "rightSlider"
                                                   )} ${
-                                                    dropdownActive
+                                                    dropdownActive &&
+                                                    activeDropdownIndex ===
+                                                      index
                                                       ? this.decorateCSS(
                                                           "activeChild"
                                                         )
@@ -513,7 +550,8 @@ class Navbar6 extends BaseNavigator {
                                                         )
                                                   }`}
                                                 >
-                                                  {dropdownActive &&
+                                                  {text &&
+                                                    dropdownActive &&
                                                     activeDropdownIndex ===
                                                       index && (
                                                       <li key={index}>
@@ -534,124 +572,143 @@ class Navbar6 extends BaseNavigator {
                                     </>
                                   ) : (
                                     <>
-                                      <h3
-                                        className={this.decorateCSS(
-                                          "extendable"
-                                        )}
-                                      >
-                                        <div
+                                      {item?.label && (
+                                        <h3
                                           className={this.decorateCSS(
-                                            "extendable-title-content"
+                                            "extendable"
                                           )}
+                                          onMouseEnter={() =>
+                                            this.handleMouseEnter(index)
+                                          }
+                                          onMouseLeave={() =>
+                                            this.handleMouseLeave()
+                                          }
                                         >
-                                          <ComposerLink
-                                            path={item?.value[3].value}
-                                          >
-                                            {item?.value?.[0]?.value}
-                                          </ComposerLink>
-                                          <ComposerIcon
-                                            name={item?.value[2].value}
-                                          />
-                                        </div>
-
-                                        {item?.value?.[4]?.value?.length >
-                                          0 && (
                                           <div
-                                            className={this.decorateCSS(
-                                              "dropdown-content"
+                                            className={`${this.decorateCSS(
+                                              "extendable-title-content"
                                             )}
+                                            ${
+                                              this.getComponentState(
+                                                "is-dropdown-open"
+                                              ) &&
+                                              this.getComponentState(
+                                                "dropdown-active-index"
+                                              ) === index &&
+                                              this.decorateCSS("active")
+                                            }`}
                                           >
-                                            <div
-                                              className={this.decorateCSS(
-                                                "container-border"
-                                              )}
-                                            >
-                                              {item?.value?.[4]?.value?.map(
-                                                (
-                                                  dropdownItem: any,
-                                                  index: number
-                                                ) => {
-                                                  const text =
-                                                    dropdownItem?.value?.[0]
-                                                      ?.value;
-                                                  const url =
-                                                    dropdownItem?.value?.[1]
-                                                      ?.value;
-                                                  const image =
-                                                    dropdownItem?.value?.[2]
-                                                      ?.value;
+                                            <ComposerLink path={item?.link}>
+                                              {item?.label}
+                                            </ComposerLink>
+                                            {item?.section.length > 0 && (
+                                              <ComposerIcon name={item?.icon} />
+                                            )}
+                                          </div>
 
-                                                  if (image || text) {
-                                                    return (
-                                                      <>
-                                                        {image ? (
-                                                          <ComposerLink
-                                                            path={url}
-                                                            key={index}
-                                                          >
-                                                            <div
-                                                              className={this.decorateCSS(
-                                                                "image-container"
-                                                              )}
-                                                            >
-                                                              <div
-                                                                className={this.decorateCSS(
-                                                                  "image-overlay"
-                                                                )}
+                                          {item?.section.length > 0 &&
+                                            this.getComponentState(
+                                              "dropdown-active-index"
+                                            ) === index && (
+                                              <div
+                                                className={this.decorateCSS(
+                                                  "dropdown-content"
+                                                )}
+                                              >
+                                                <div
+                                                  className={this.decorateCSS(
+                                                    "container-border"
+                                                  )}
+                                                >
+                                                  {item?.section?.map(
+                                                    (
+                                                      dropdownItem: NavbarSubSection,
+                                                      index: number
+                                                    ) => {
+                                                      const text =
+                                                        dropdownItem?.text;
+                                                      const url =
+                                                        dropdownItem?.link;
+                                                      const image =
+                                                        dropdownItem?.image;
+
+                                                      if (image || text) {
+                                                        return (
+                                                          <>
+                                                            {image ? (
+                                                              <ComposerLink
+                                                                path={url}
+                                                                key={index}
                                                               >
-                                                                {image && (
-                                                                  <img
-                                                                    src={image}
-                                                                    alt=""
-                                                                    className={this.decorateCSS(
-                                                                      "image"
-                                                                    )}
-                                                                  />
-                                                                )}
                                                                 <div
                                                                   className={this.decorateCSS(
-                                                                    "text-overlay"
+                                                                    "image-container"
                                                                   )}
                                                                 >
-                                                                  {text}
+                                                                  <div
+                                                                    className={this.decorateCSS(
+                                                                      "image-overlay"
+                                                                    )}
+                                                                  >
+                                                                    {image && (
+                                                                      <img
+                                                                        src={
+                                                                          image
+                                                                        }
+                                                                        alt=""
+                                                                        className={this.decorateCSS(
+                                                                          "image"
+                                                                        )}
+                                                                      />
+                                                                    )}
+                                                                    <div
+                                                                      className={this.decorateCSS(
+                                                                        "text-overlay"
+                                                                      )}
+                                                                    >
+                                                                      {text}
+                                                                    </div>
+                                                                  </div>
                                                                 </div>
-                                                              </div>
-                                                            </div>
-                                                          </ComposerLink>
-                                                        ) : (
-                                                          <ComposerLink
-                                                            path={url}
-                                                          >
-                                                            <div
-                                                              className={this.decorateCSS(
-                                                                "no-image-text"
-                                                              )}
-                                                            >
-                                                              {text}
-                                                            </div>
-                                                          </ComposerLink>
-                                                        )}
-                                                      </>
-                                                    );
-                                                  }
+                                                              </ComposerLink>
+                                                            ) : (
+                                                              <>
+                                                                {this.castToString(
+                                                                  text
+                                                                ) && (
+                                                                  <ComposerLink
+                                                                    path={url}
+                                                                  >
+                                                                    <div
+                                                                      className={this.decorateCSS(
+                                                                        "no-image-text"
+                                                                      )}
+                                                                    >
+                                                                      {text}
+                                                                    </div>
+                                                                  </ComposerLink>
+                                                                )}
+                                                              </>
+                                                            )}
+                                                          </>
+                                                        );
+                                                      }
 
-                                                  return null;
-                                                }
-                                              )}
-                                            </div>
-                                          </div>
-                                        )}
-                                      </h3>
+                                                      return null;
+                                                    }
+                                                  )}
+                                                </div>
+                                              </div>
+                                            )}
+                                        </h3>
+                                      )}
                                     </>
                                   )}
                                 </>
                               ) : (
                                 <h3>
-                                  <ComposerLink
-                                    key={index}
-                                    path={item?.value?.[1]?.value}
-                                  >
-                                    <div>{item?.value?.[0]?.value}</div>
+                                  <ComposerLink key={index} path={item?.link}>
+                                    <div>{item?.label}</div>
                                   </ComposerLink>
                                 </h3>
                               )}
