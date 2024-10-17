@@ -253,12 +253,12 @@ class LocationComponent4 extends Location {
           const content =
             description || title ? (
               <div className={this.decorateCSS("popup")}>
-                {title && <h1 className={this.decorateCSS("popup-title")}>{title} </h1>}
-                {date && <div className={this.decorateCSS("popup-date")}>{date}</div>}
-                {description && <p className={this.decorateCSS("popup-content")}>{description}</p>}
-
-                {/* {popupImage && <img className={this.decorateCSS("image")} src={popupImage}></img>} */}
-
+                {popupImage && <img className={this.decorateCSS("image")} src={popupImage}></img>}
+                <div className={this.decorateCSS("text-container")}>
+                  {title && <h1 className={this.decorateCSS("popup-title")}>{title} </h1>}
+                  {date && <div className={this.decorateCSS("popup-date")}>{date}</div>}
+                  {description && <p className={this.decorateCSS("popup-content")}>{description}</p>}
+                </div>
               </div>
             ) : null;
 
@@ -287,6 +287,11 @@ class LocationComponent4 extends Location {
       {
         featureType: "administrative",
         elementType: "geometry.stroke",
+        stylers: [{ visibility: "off" }],
+      },
+      {
+        featureType: "administrative",
+        elementType: "geometry.fill",
         stylers: [{ visibility: "off" }],
       },
       {

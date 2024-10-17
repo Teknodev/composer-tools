@@ -69,7 +69,7 @@
 .popup {
   background-color: var(--composer-html-background);
   border-radius: 2px;
-  width: 300px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   .image{
@@ -79,41 +79,37 @@
     top:0px;
     flex:3;
   }
-  // .top-container{
-   
-
-  //   .popup-close-button {
-  //     position: absolute;
-  //     top:0px;
-  //     right: 0px;
-  //     background-color: white;
-  //     border:none;
-  //     padding: 10px;
-  //     z-index: 3;
-  //     .icon{
-  //       display: flex;
-  //       justify-content: flex-end;
-
-  //     }
-  //   }
-  // }
+  .text-container{
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    gap:0.3rem;
+    display: flex;
+    flex-direction: column;
     .popup-title {
       flex:1;
-      @include padding(20px 10px, 15px, 20px);
+      font-size: 1rem;
+      margin:0px;
+      // @include padding(20px 10px, 15px, 20px);
     }
     .popup-date{
       flex:1;
-      @include padding(10px 10px, 15px, 50px);
+      margin:0px;
+      // @include padding(10px 10px, 15px, 50px);
       opacity: 0.5;
     }
 
     .popup-content {
       flex:1;
-      @include padding(5px 10px 5px 10px, 12px, 100px);
+      margin:0px;
+      padding-top: 0.5rem;
+      // @include padding(5px 10px 5px 10px, 12px, 100px);
       opacity: 0.5;
     }
+  }
+
 }
-@media only screen and (max-width: 900) {
+@container (max-width: 900) {
   .container{
     padding: 20px 30px !important;
   }
