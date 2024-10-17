@@ -173,6 +173,7 @@ class Header29 extends BaseHeader {
       })
       return newObj;
     }
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -187,7 +188,7 @@ class Header29 extends BaseHeader {
                   {this.castToString(description) && (
                     <div className={this.decorateCSS("description")}>{description}</div>
                   )}
-                  {input && (
+                  {(input.isInput || this.castToString(input.button.buttonText)) && (
                     <div className={this.decorateCSS("form-container")}>
                       {input.isInput ? (
                         <div className={this.decorateCSS("button-and-input")}>
@@ -195,7 +196,7 @@ class Header29 extends BaseHeader {
                             initialValues={getInitialValue()}
                             onSubmit={(data, { resetForm }) => {
                               const formData = getFormData(data)
-                              this.insertForm("Contact Us", formData);
+                              this.insertForm("Header29", formData);
                               resetForm();
                             }}
                           >
@@ -214,16 +215,20 @@ class Header29 extends BaseHeader {
                                   name={this.castToString(input.placeholder)}
                                   component={"span"}
                                 />
+                                {this.castToString(input.button.buttonText) && (
+                                  <button className={this.decorateCSS("input-button")} type="submit">{input.button.buttonText}</button>
+                                )}
                               </Form>
                             )}
                           </Formik>
-                          <button className={this.decorateCSS("input-button")} type="submit">{input.button.buttonText}</button>
                         </div>
                       ) : (
                         <div className={this.decorateCSS("button-and-input")}>
-                          <ComposerLink path={input.button.url}>
-                            <button className={this.decorateCSS("button")}>{input.button.buttonText}</button>
-                          </ComposerLink>
+                          {this.castToString(input.button.buttonText) && (
+                            <ComposerLink path={input.button.url}>
+                              <button className={this.decorateCSS("button")}>{input.button.buttonText}</button>
+                            </ComposerLink>
+                          )}
                         </div>
                       )}
                     </div>

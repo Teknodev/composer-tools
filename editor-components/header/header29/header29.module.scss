@@ -43,38 +43,52 @@
             width: 100%;
             height: 100%;
             .button-and-input {
-              display: flex;
-              gap: 20px;
-              width: 50%;
+              width: 100%;
               height: 100%;
-              align-items: stretch;
               .form {
-                flex:2;
-                border: var(--composer-font-color-primary) solid 2px;
-                border-radius: 1rem;
-                padding: 1rem;
+                display: flex;
+                gap: 20px;
+                width: 50%;
+                height: 100%;
+                align-items: stretch;
                 .input{
+                  flex:2;
                   border:none;
                   width: 100%;
                   background-color: transparent;
-                  opacity: 0.3;
+                  display: flex;
+                  border: var(--composer-font-color-primary) solid 2px;
+                  border-radius: 1rem;
+                  padding: 1rem;
+                  max-width: calc((100% / 3 * 2) - 22px);
+                  &::placeholder {
+                    color:var(--composer-font-color-primary);
+                    opacity: 0.3;
+                  }
+                }
+                .input-button{
+                  flex:1;
+                  width: 100%;
+                  min-height: 100%;
+                  background-color:var(--composer-primary-color) ;
+                  color: var(--composer-font-color-secondary);
+                  border:none;
+                  font-weight: bold;
+                  font-size: 1rem;
+                  cursor: pointer;
+                  border-radius: 1rem;
+                  padding: 1rem;
+                  transition: all 0.3s ease;
+                  border: 2px solid transparent;
+                  &:hover{
+                    background-color: transparent;
+                    color:var(--composer-font-color-primary);
+                    border: 2px solid var(--composer-primary-color);
+                  }
                 }
               }
-              .input-button{
-                flex:1;
-                width: 100%;
-                min-height: 100%;
-                background-color:var(--composer-primary-color) ;
-                color: var(--composer-font-color-secondary);
-                border:none;
-                font-weight: bold;
-                font-size: 1rem;
-                cursor: pointer;
-                border-radius: 1rem;
-                padding: 1rem;
-              }
               >div{
-                width: 100% !important;
+                width: 50% !important;
                 .button{
                   background-color:var(--composer-primary-color) ;
                   color: var(--composer-font-color-secondary);
@@ -99,8 +113,9 @@
             gap: 20px;
             display: flex;
             flex-direction: column;
-            width: 45%;
             overflow: hidden;
+            flex:1;
+            min-width: 45%;
             .title{
               font-weight: bold;
               font-size: 1.5em;
@@ -161,21 +176,22 @@
             }
             .form-container{
               .button-and-input {
-                gap: 1rem;
                 width: 80%;
                 .form{
-                  padding: 0.5rem;
                   display: flex;
                   align-items: center;
+                  width: 100%;
                   .input {
-                    width: 100%;
+                    
                   }
-                }
-  
+                    
                 .input-button{
   
                 }
+                }
+
                 >div{
+                  width: 100% !important;
                   .button {
                     font-size: 0.7em;
                     width: 30%;
@@ -229,16 +245,32 @@
             }
             .form-container{
               .button-and-input {
-                flex-direction: column;
-                gap: 1rem;
                 width: 100%;
                 .form{
+                  flex-direction: column;
+                  gap: 1rem;
+                  width: 100%;
+                  align-items: stretch;
+                  height: 100%;
                   .input {
+                    flex:1;
+                    max-width: 100%;
+                    padding:0.5rem;
+                  }
+                  .input-button{
+                    flex:1;
+                    padding: 0.5rem;
+                    align-items: center;
+                    display: flex;
+                    >blinkpage{
+                      min-height: 15px;
+                      align-items: center;
+                      display: flex !important;
+                      justify-content: center;
+                    }
                   }
                 }
-                .input-button{
-                  padding:0.5rem;
-                }
+
                 >div{
                   flex:1;
                   .button {
