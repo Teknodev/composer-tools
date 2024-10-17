@@ -3,8 +3,8 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats8.module.scss";
 
 type ICard = {
-  title: string | number;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
 };
 
 class Stats8Page extends BaseStats {
@@ -72,10 +72,10 @@ class Stats8Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "number",
+              type: "string",
               key: "title",
               displayer: "Value",
-              value: 37,
+              value: "37",
             },
             {
               type: "string",
@@ -91,10 +91,10 @@ class Stats8Page extends BaseStats {
           displayer: "Stat",
           value: [
             {
-              type: "number",
+              type: "string",
               key: "title",
               displayer: "Value",
-              value: 19,
+              value: "19",
             },
             {
               type: "string",
@@ -139,43 +139,61 @@ class Stats8Page extends BaseStats {
     this.castToObject<ICard[]>("stats").map((statsData, index) =>
       this.setComponentState(`number-${index}`, 0)
     );
+
     let interval = setInterval(() => {
       this.castToObject<ICard[]>("stats").map((statData: ICard, index: number) => {
-        let currentNumber = this.getComponentState(`number-${index}`);
-    
-        currentNumber =
-          typeof currentNumber === "string"
-            ? parseInt(currentNumber.replace(/\./g, ""), 10) || 0
-            : currentNumber || 0;
-    
-        let targetNumber =
-          typeof statData.title === "string"
-            ? parseInt(statData.title.replace(/\./g, ""), 10) || 0
-            : statData.title || 0;
-    
-        if (currentNumber !== targetNumber) {
-          let nextValue = Math.min(
-            targetNumber,
-            currentNumber +
+        let currentNumberState = this.getComponentState(`number-${index}`);
+
+        const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
+        const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
+        const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
+        const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
+
+        if (statData.title) {
+          const titleString = this.castToString(statData.title);
+
+          const newNonNumericPrefix = titleString.match(/^\D+/)?.[0] || "";
+          const newNonNumericSuffix = titleString.match(/\D+$/)?.[0] || "";
+
+          const numericPart = parseInt(titleString.replace(/[^\d]/g, ""), 10) || 0;
+          let targetNumber = numericPart;
+
+          if (
+            currentNumber !== targetNumber ||
+            currentNonNumericPrefix !== newNonNumericPrefix ||
+            currentNonNumericSuffix !== newNonNumericSuffix
+          ) {
+            let nextValue = Math.min(
+              targetNumber,
+              currentNumber +
               Math.ceil(targetNumber / Math.round(this.getPropValue("animationDuration") / 30))
-          );
-    
-          let formattedNextValue = nextValue ? nextValue.toLocaleString("de-DE") : "";
-    
-          this.setComponentState(`number-${index}`, formattedNextValue);
+            );
+
+            let formattedNextValue = nextValue
+              ? nextValue.toLocaleString("de-DE")
+              : "";
+
+            const updatedValue = currentNumber > 0
+              ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
+              : newNonNumericPrefix + formattedNextValue;
+
+            this.setComponentState(
+              `number-${index}`,
+              updatedValue
+            );
+          }
         }
-    
+
         const overlayNumber = this.getPropValue("overlayNumber");
         let formattedOverlayNumber = "";
-    
+
         if (overlayNumber !== null && overlayNumber !== undefined) {
           formattedOverlayNumber = Number(overlayNumber).toLocaleString("de-DE");
         }
-    
+
         this.setComponentState("overlayNumberDisplay", formattedOverlayNumber);
       });
     }, 30);
-
 
   }
 
@@ -196,7 +214,6 @@ class Stats8Page extends BaseStats {
     const isAuthorExist = this.castToString(author);
     const authorRole = this.getPropValue("authorRole");
     const isAuthorRoleExist = this.castToString(authorRole);
-    //const overlayNumber = this.getPropValue("overlayNumber");
     const overlayDescription = this.castToString(
       this.getPropValue("overlayDescription")
     );
@@ -265,29 +282,31 @@ class Stats8Page extends BaseStats {
                 <div className={`${this.decorateCSS("stats")} ${!imageSrc ? this.decorateCSS("full-width") : ""
                   }`}>
                   {statsData.map(
-                    (statData: ICard, indexStat: number) =>
-                      statData.title &&
-                      statData.description && (
-                        <div className={`${this.decorateCSS("stat-border")} ${!imageSrc ? this.decorateCSS("stat-border-full-width") : ""
-                          }`}>
-                          <div
-                            key={indexStat}
-                            className={`${this.decorateCSS("stat")} ${showBackground
-                              ? this.decorateCSS("with-background")
-                              : this.decorateCSS("no-background")
-                              }`}
-                          >
-                            <span className={this.decorateCSS("stat-title")}>
-                              {this.getComponentState(`number-${indexStat}`)}
-                            </span>
-                            <h5
-                              className={this.decorateCSS("stat-description")}
+                    (statData: ICard, indexStat: number) => {
+                      return ((this.castToString(statData.title) ||
+                        this.castToString(statData.description)) && (
+                          <div className={`${this.decorateCSS("stat-border")} ${!imageSrc ? this.decorateCSS("stat-border-full-width") : ""
+                            }`}>
+                            <div
+                              key={indexStat}
+                              className={`${this.decorateCSS("stat")} ${showBackground
+                                ? this.decorateCSS("with-background")
+                                : this.decorateCSS("no-background")
+                                }`}
                             >
-                              {statData.description}
-                            </h5>
+                              {(this.getComponentState(`number-${indexStat}`) !== 0) &&
+                                <span className={this.decorateCSS("stat-title")}>
+                                  {this.getComponentState(`number-${indexStat}`)}
+                                </span>}
+                              <h5
+                                className={this.decorateCSS("stat-description")}
+                              >
+                                {statData.description}
+                              </h5>
+                            </div>
                           </div>
-                        </div>
-                      )
+                        ))
+                    }
                   )}
                 </div>
               </div>
