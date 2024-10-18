@@ -464,6 +464,7 @@ class Navbar6 extends BaseNavigator {
                   >
                     {extendable.map((item: Navbar, index: number) => {
                       const hasValue = this.castToString(item.label);
+                      const isActive = activeDropdownIndex === index;
 
                       return (
                         <>
@@ -498,16 +499,12 @@ class Navbar6 extends BaseNavigator {
                                         </h3>
                                         <div
                                           className={
-                                            dropdownActive &&
-                                            activeDropdownIndex === index
+                                            dropdownActive && isActive
                                               ? this.decorateCSS("rotate")
                                               : ""
                                           }
                                           onClick={() =>
-                                            this.dropdownClick(
-                                              index,
-                                              activeDropdownIndex === index
-                                            )
+                                            this.dropdownClick(index, isActive)
                                           }
                                         >
                                           <ComposerIcon name={item?.icon} />
@@ -517,8 +514,7 @@ class Navbar6 extends BaseNavigator {
                                         <ul
                                           className={this.decorateCSS(
                                             `${
-                                              dropdownActive &&
-                                              activeDropdownIndex === index
+                                              dropdownActive && isActive
                                                 ? ""
                                                 : "ul-none"
                                             }`
@@ -537,23 +533,16 @@ class Navbar6 extends BaseNavigator {
                                               return (
                                                 <div
                                                   className={`${this.decorateCSS(
-                                                    "rightSlider"
-                                                  )} ${
-                                                    dropdownActive &&
-                                                    activeDropdownIndex ===
-                                                      index
-                                                      ? this.decorateCSS(
-                                                          "activeChild"
-                                                        )
-                                                      : this.decorateCSS(
-                                                          "inactive"
-                                                        )
-                                                  }`}
+                                                    "right-slider"
+                                                  )} ${this.decorateCSS(
+                                                    dropdownActive && isActive
+                                                      ? "active-child"
+                                                      : "inactive"
+                                                  )}`}
                                                 >
                                                   {text &&
                                                     dropdownActive &&
-                                                    activeDropdownIndex ===
-                                                      index && (
+                                                    isActive && (
                                                       <li key={index}>
                                                         <ComposerLink
                                                           path={url}

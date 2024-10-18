@@ -255,7 +255,7 @@
   
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .container {
     .max-content {
       padding: 0 30px !important;
@@ -314,12 +314,12 @@
           }
         }
 
-        .rightSlider {
+        .right-slider {
           display: block;
           pointer-events: auto;
         }
 
-        &.activeChild {
+        &.active-child {
           opacity: 1;
           display: flex;
           position: relative;
