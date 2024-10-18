@@ -196,7 +196,7 @@ class Header29 extends BaseHeader {
                             initialValues={getInitialValue()}
                             onSubmit={(data, { resetForm }) => {
                               const formData = getFormData(data)
-                              this.insertForm("Header29", formData);
+                              this.insertForm("Header", formData);
                               resetForm();
                             }}
                           >
