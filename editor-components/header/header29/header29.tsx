@@ -250,7 +250,7 @@ class Header29 extends BaseHeader {
             )}
             {image && (
               <div className={this.decorateCSS("image-container")}>
-                <img className={this.decorateCSS("image")} src={image} alt="" />
+                <img className={this.decorateCSS("image")} src={image} alt={image} />
               </div>
             )}
 
