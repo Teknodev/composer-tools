@@ -195,6 +195,7 @@ class Content18 extends BaseContent {
       ],
     });
     this.setComponentState("is_video_visible", false);
+    this.setComponentState("isVideoPlayerDone", false);
   }
   getName(): string {
     return "Content 18";
@@ -207,7 +208,7 @@ class Content18 extends BaseContent {
     const itemsLength = this.getPropValue("items").length;
     const image1 = this.getPropValue("image1");
     const image2 = this.getPropValue("image2");
-    console.log("state", this.getComponentState("is_video_visible"))
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -255,11 +256,14 @@ class Content18 extends BaseContent {
                               </iframe>
                               <div
                                 className={this.decorateCSS("click-overlay")}
-                                onClick={() => {
-                                  console.log("Overlay clicked!");
-                                  this.setComponentState("is_video_visible", false);
-                                }}
-                              ></div>
+                              >
+                                <div
+                                  onClick={() => {
+                                    this.setComponentState("is_video_visible", false);
+                                  }}>
+                                  <ComposerIcon name={"IoClose"} propsIcon={{ className: this.decorateCSS("close-icon") }} ></ComposerIcon>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         )}
