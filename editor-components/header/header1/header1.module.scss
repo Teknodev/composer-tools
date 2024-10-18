@@ -146,7 +146,7 @@
           position: relative;
           width: 90%;
           min-height: 40vh;
-          .subtitle {
+          .subtitle, .subtitle-dark {
             position: absolute;
             color:white;
             transform: rotateZ(-90deg) translateX(-100%);
@@ -159,7 +159,8 @@
             margin:0px;
             max-width: 100%;
             word-break: break-word;
-            transform-origin: top left; 
+            transform-origin: top left;
+            padding-left: 15px; 
             >blinkpage{
               width: 100%;
               display: flex !important;
@@ -176,6 +177,9 @@
                 text-overflow: ellipsis;
               }
             }
+          }
+          .subtitle-dark{
+            color: var(--composer-font-color-primary) !important;
           }
           .image {
             border-radius: 1rem;
@@ -202,14 +206,20 @@
             align-items: center;
             justify-content: center;
             gap:10px;
-            .overlay {
+            .overlay,.dark-overlay {
               height: 1px;
               width: 2rem;
               background: white;
             }
-            .slider-number {
+            .dark-overlay{
+              background-color: var(--composer-font-color-primary) !important;
+            }
+            .slider-number, .dark-slider-number {
               font-size: 13px;
               color: white;
+            }
+            .dark-slider-number{
+              color: var(--composer-font-color-primary) !important;
             }
           }
 
@@ -220,7 +230,7 @@
             width: 50%;
           }
         }
-        .title, .without-image-title {
+        .title, .without-image-title, .dark-title, .dark-without-image-title {
           position: absolute;
           font-weight: 400;
           font-size:calc(9rem + 3vh); 
@@ -238,8 +248,11 @@
               text-overflow: ellipsis; 
             }
           }      
+        }
+        .dark-title, .dark-without-image-title{
+          color: var(--composer-font-color-primary) !important;
         }   
-        .without-image-title{
+        .without-image-title, .dark-without-image-title{
           >blinkpage{
             >p{
               display: flex;
@@ -251,7 +264,7 @@
         }
       }
       }
-      .dots {
+      .dots , .dark-dots{
         position: absolute;
         top:0px;
         list-style: none;
@@ -289,13 +302,25 @@
           }
         }
       }
-      .dots :global(li.slick-active) button {
+      .dark-dots{
+        li {
+          button {
+            &::before {
+              color: var(--composer-font-color-primary) !important;
+            }
+          }
+        }
+      }
+      .dots :global(li.slick-active) button, .dark-dots :global(li.slick-active) button {
         border: 1px solid white;
         border-radius: 50%;
        
         &::before {
           opacity: 1;
         }
+      }
+      .dark-dots :global(li.slick-active) button{
+        border: 1px solid var(--composer-font-color-primary) !important;
       }
     }
   }
@@ -342,9 +367,6 @@
                   width: 1.5rem;
                 }
               }
-              .subtitle{
-                left:-170px;
-              }
             }
             .without-image-wrapper{
               .subtitle{
@@ -352,7 +374,7 @@
                 width: 50vw !important;
               }
             }
-            .title, .without-image-title {
+            .title, .without-image-title, .dark-title, .dark-without-image-title  {
               font-size: 8.75rem;
               width: 100%;
               max-height: 80%;
@@ -400,10 +422,24 @@
           }
           .content-container{
             width: 100% !important;
-            .image{
-              transform: scale(1) !important;
+            .image-wrapper{
+              min-height: 20vh !important;
+              .image{
+                transform: scale(1) !important;
+              }
+  
+              .subtitle, .subtitle-dark {
+                display: none;
+              }
+              .sliderNumber{
+                top:0px !important;
+                .overlay{
+                  width: 1rem;
+                }
+              }
+
             }
-            .title, .without-image-title {
+            .title, .without-image-title, .dark-title, .dark-without-image-title  {
               font-size: 5rem !important;
               left: auto !important;
               width: 100% !important;
@@ -411,22 +447,13 @@
               text-align: center !important;
         
             }
-            .subtitle {
-              display: none;
-            }
-            .sliderNumber{
-              .overlay{
-                width: 1rem;
-              }
-            }
-        
           }
 
         }
       }  
     }
   }
-  .dots{
+  .dots, .dark-dots{
     display: flex !important;
     flex-direction: row !important;
     width: 100%;
@@ -435,7 +462,7 @@
     padding-bottom: 30px !important;
     max-height: 950px !important;
   }
-  .dots :global(li.slick-active) button {
+  .dots :global(li.slick-active) button , .dark-dots :global(li.slick-active) button {
     transform-origin: left !important; 
   }
 }

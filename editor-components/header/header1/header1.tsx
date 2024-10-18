@@ -308,12 +308,13 @@ class Header1 extends BaseHeader {
       vertical: true,
       verticalSwiping: true,
       adaptiveHeight: true,
-      dotsClass: this.decorateCSS("dots"),
+      dotsClass: this.getPropValue("background-layout") ? this.decorateCSS("dots") : this.decorateCSS("dark-dots"),
       beforeChange: (current: number, next: number) => {
         this.setActiveTab(next);
       },
     };
     const isLineActive = this.getPropValue("numberLine");
+    const backgroundLayout = this.getPropValue("background-layout");
 
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
@@ -345,7 +346,7 @@ class Header1 extends BaseHeader {
 
                       <div className={this.decorateCSS("content-container")}>
                         <div className={item.image ? this.decorateCSS("image-wrapper") : this.decorateCSS("without-image-wrapper")}>
-                          <h1 className={this.decorateCSS("subtitle")}>
+                          <h1 className={backgroundLayout ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-dark")}>
                             {item.subtitle}
                           </h1>
                           <img
@@ -360,16 +361,20 @@ class Header1 extends BaseHeader {
 
                           <h1 className={this.decorateCSS("sliderNumber")}>
                             {isLineActive && (
-                              <span className={this.decorateCSS("overlay")}></span>
+                              <span className={backgroundLayout ? this.decorateCSS("overlay") : this.decorateCSS("dark-overlay")}></span>
                             )
                             }
-                            <span className={this.decorateCSS("slider-number")}>
+                            <span className={backgroundLayout ? this.decorateCSS("slider-number") : this.decorateCSS("dark-slider-number")}>
                               {item.sliderNumber}
                             </span>
                           </h1>
                         </div>
 
-                        <h1 className={item.image ? this.decorateCSS("title") : this.decorateCSS("without-image-title")}>
+                        <h1 className={
+                          backgroundLayout
+                            ? (item.image ? this.decorateCSS("title") : this.decorateCSS("without-image-title"))
+                            : (item.image ? this.decorateCSS("dark-title") : this.decorateCSS("dark-without-image-title"))
+                        }>
                           {item.title}
                         </h1>
                       </div>
