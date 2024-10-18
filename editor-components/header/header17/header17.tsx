@@ -312,7 +312,9 @@ class Header17 extends BaseHeader {
                               <div
                                 className={this.decorateCSS("view-button-text")}
                               >
-                                {item.getPropValue("button-text")}
+                                {this.castToString(
+                                  item.getPropValue("button-text")
+                                )}
                               </div>
                             </ComposerLink>
                           </div>
