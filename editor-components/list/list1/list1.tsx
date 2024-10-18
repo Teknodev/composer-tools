@@ -364,25 +364,24 @@ class List1 extends BaseList {
                 const activeIndex = this.getComponentState("active-index");
                 const rightCardIndex = (activeIndex + 1) % sliderItems.length;
                 const leftCardIndex = activeIndex === 0 ? sliderItems.length - 1 : activeIndex - 1;
-                console.log(activeIndex, leftCardIndex, rightCardIndex);
 
                 return (
                   <div
                     key={indexSlider}
                     className={`${this.decorateCSS("card")}
                     ${
-                      indexSlider == rightCardIndex
+                      indexSlider === rightCardIndex
                         ? this.decorateCSS("right-card-padding")
                         : ""
                     }
                     ${
-                      indexSlider == leftCardIndex
+                      indexSlider === leftCardIndex
                         ? this.decorateCSS("left-card-padding")
                         : ""
                     }
                    ${
                      backgroundColor &&
-                     this.getComponentState("active-index") == indexSlider
+                     this.getComponentState("active-index") === indexSlider
                        ? this.decorateCSS("active")
                        : ""
                    }
