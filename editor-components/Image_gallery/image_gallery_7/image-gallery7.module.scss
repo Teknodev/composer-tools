@@ -4,8 +4,8 @@
   gap: 10px;
   height: calc(100% - 60px);
   padding: 0 10%;
-  overflow-y: auto;
-
+  overflow-y: scroll;
+  
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -50,7 +50,6 @@
     }
 
     .text-container {
-      padding: 10px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -79,6 +78,8 @@
 
 .column-even {
   grid-column: span 1;
+  transition: transform 0.3s ease-out;
+  overflow-y: scroll;
 }
 
 .column-odd {
@@ -86,5 +87,10 @@
   @media (min-width: 900px) {
     margin-top: -320px;
   }
+}
+
+.scroll-up {
+  transform: translateY(-50px); /* Yukarı doğru kaydır */
+  transition: transform 0.3s ease-out;
 }
 
