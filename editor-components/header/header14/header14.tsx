@@ -286,15 +286,18 @@ class HeaderComponent14 extends BaseHeader {
   }
 
   render() {
+    const slides = this.castToObject<Slides[]>("slides");
+    const activeSlideIndex = this.getComponentState("activeSlide");
+    const isImagePresent = slides[activeSlideIndex]?.image ? true : false;
     const settings = {
       dots: true,
       arrows: false,
       infinite: true,
       autoplay: true,
-      speed: 5000,
+      speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")} ${!isImagePresent ? this.decorateCSS("noDots-img") : ""}`,
       beforeChange: (_: number, newIndex: number) => {
         if (this.getComponentState("activeSlide") !== newIndex) {
           this.setComponentState("activeSlide", newIndex);
@@ -303,7 +306,6 @@ class HeaderComponent14 extends BaseHeader {
       },
     };
 
-    const slides = this.castToObject<Slides[]>("slides");
     const isAnimation = this.getPropValue("animation");
 
     return (
@@ -334,6 +336,8 @@ class HeaderComponent14 extends BaseHeader {
                   )}
                   <div
                     className={`${this.decorateCSS("content")} ${
+                      !image ? this.decorateCSS("no-bg") : ""
+                    } ${
                       isActive && isAnimation ? this.decorateCSS("fade-in") : ""
                     }`}
                   >
@@ -347,6 +351,7 @@ class HeaderComponent14 extends BaseHeader {
                         {item.description}
                       </h3>
                     )}
+                    
                     {item.buttons.length > 0 && (
                       <div className={this.decorateCSS("buttons-container")}>
                         {item.buttons.map(
@@ -385,7 +390,9 @@ class HeaderComponent14 extends BaseHeader {
                         propsIcon={{
                           className: `${this.decorateCSS(
                             "arrow"
-                          )} ${this.decorateCSS("prev-icon")}`,
+                          )} ${
+                            !image ? this.decorateCSS("no-bg") : ""
+                          } ${this.decorateCSS("prev-icon")}`,
                           onClick: () => {
                             this.getComponentState(
                               "slider-ref"
@@ -398,7 +405,9 @@ class HeaderComponent14 extends BaseHeader {
                         propsIcon={{
                           className: `${this.decorateCSS(
                             "arrow"
-                          )} ${this.decorateCSS("next-icon")}`,
+                          )} ${!image ? this.decorateCSS(
+                            "no-bg"
+                          ):""} ${this.decorateCSS("next-icon")}`,
                           onClick: () => {
                             this.getComponentState(
                               "slider-ref"
