@@ -20,7 +20,6 @@ class Content18 extends BaseContent {
       displayer: "1st Image",
       value:
         "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
-      "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
     });
     this.addProp({
       type: "image",
@@ -46,7 +45,6 @@ class Content18 extends BaseContent {
       type: "string",
       key: "badge",
       displayer: "Badge",
-      value: "WHY CHOOSE US",
       value: "WHY CHOOSE US",
     });
     this.addProp({
@@ -197,7 +195,6 @@ class Content18 extends BaseContent {
       ],
     });
     this.setComponentState("is_video_visible", false);
-    this.setComponentState("is_video_visible", false);
   }
   getName(): string {
     return "Content 18";
@@ -291,82 +288,63 @@ class Content18 extends BaseContent {
                     {this.getPropValue("description")}
                   </p>
                 )}
-            )}
 
-                {(badge || title || description || (itemsLength > 0)) && (
-                  <div className={this.decorateCSS("right-page")}>
-                    {badge && (
-                      <div className={this.decorateCSS("badge")}>
-                        {this.getPropValue("badge")}
-                      </div>
-                    )}
-                    {title && (
-                      <div className={this.decorateCSS("title")}>
-                        {this.getPropValue("title")}
-                      </div>
-                    )}
-                    {description && (
-                      <p className={this.decorateCSS("description")}>
-                        {this.getPropValue("description")}
-                      </p>
-                    )}
-
-                    {itemsLength > 0 && (
-                      <div className={this.decorateCSS("progress-container")}>
-                        {this.castToObject<ProgressItem[]>("items").map(
-                          (item: ProgressItem, index: number) => (
-                            <div className={this.decorateCSS("item")} key={index}>
-                              <div className={this.decorateCSS("progress-content")}>
-                                <div
-                                  className={this.decorateCSS("progress-title-container")}
-                                >
-                                  <div
-                                    className={this.decorateCSS("progress-title-icon")}
-                                  >
-                                    <ComposerIcon
-                                      name={item.icon}
-                                      propsIcon={{ className: this.decorateCSS("icon") }}
-                                    />
-                                  </div>
-                                  <div className={this.decorateCSS("progress-title")}>
-                                    {item.progressTitle}
-                                  </div>
-
-                                </div>
-                                <div className={this.decorateCSS("progress-text-container")}>
-                                  <div className={this.decorateCSS("progress-text")}>
-                                    {item.progressText}
-                                  </div>
-                                </div>
+                {itemsLength > 0 && (
+                  <div className={this.decorateCSS("progress-container")}>
+                    {this.castToObject<ProgressItem[]>("items").map(
+                      (item: ProgressItem, index: number) => (
+                        <div className={this.decorateCSS("item")} key={index}>
+                          <div className={this.decorateCSS("progress-content")}>
+                            <div
+                              className={this.decorateCSS("progress-title-container")}
+                            >
+                              <div
+                                className={this.decorateCSS("progress-title-icon")}
+                              >
+                                <ComposerIcon
+                                  name={item.icon}
+                                  propsIcon={{ className: this.decorateCSS("icon") }}
+                                />
                               </div>
-                              {this.castToString(item.progressText) && (
-                                <div
-                                  className={this.decorateCSS("progress-bar-container")}
-                                >
-                                  <div className={this.decorateCSS("progress-bar")}>
-                                    <div
-                                      className={this.decorateCSS("progress")}
-                                      style={{
-                                        width: `${item.progress}%`,
-                                      }}
-                                    />
-                                  </div>
+                              <div className={this.decorateCSS("progress-title")}>
+                                {item.progressTitle}
+                              </div>
 
-                                </div>
-                              )}
                             </div>
-                          )
-                        )}
-                      </div>
+                            <div className={this.decorateCSS("progress-text-container")}>
+                              <div className={this.decorateCSS("progress-text")}>
+                                {item.progressText}
+                              </div>
+                            </div>
+                          </div>
+                          {this.castToString(item.progressText) && (
+                            <div
+                              className={this.decorateCSS("progress-bar-container")}
+                            >
+                              <div className={this.decorateCSS("progress-bar")}>
+                                <div
+                                  className={this.decorateCSS("progress")}
+                                  style={{
+                                    width: `${item.progress}%`,
+                                  }}
+                                />
+                              </div>
 
+                            </div>
+                          )}
+                        </div>
+                      )
                     )}
                   </div>
+
                 )}
               </div>
+            )}
+          </div>
         </div>
-        </div >
-        );
+      </div >
+    );
   }
 }
 
-        export default Content18;
+export default Content18;
