@@ -1,8 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .container {
   background-color: var(--composer-html-background);
   width: 100%;
@@ -69,14 +64,14 @@
 }
 
 .input {
-  padding: .8em 1em;
+  padding: 0.8em 1em;
   width: 100%;
   outline: none;
   border: 1px solid transparent;
 }
 
 .submit-button {
-  padding: .8em 1em;
+  padding: 0.8em 1em;
   border: 1px solid var(--composer-primary-color);
   background-color: var(--composer-primary-color);
   color: var(--composer-font-color-secondary);
@@ -93,7 +88,6 @@
 }
 
 @media only screen and (max-width: 450px) {
-
   .title {
     font-size: 24px;
   }
