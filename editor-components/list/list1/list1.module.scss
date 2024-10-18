@@ -1,17 +1,14 @@
 .container {
+  background-color: var(--composer-html-background);
+  padding: 20px 50px;
   width: 100%;
   height: 100%;
-  padding: 50px 0px;
-  background-color: var(--composer-html-background);
 
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    place-items: center;
 
     .up-text {
       text-align: center;
@@ -19,23 +16,25 @@
       .subtitle {
         font-size: 18px;
         margin-top: 0;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         color: var(--composer-font-color-primary);
       }
 
       .title {
         margin-top: 0;
-        margin-bottom: 0;
+        margin-bottom: 40px;
         font-size: 35px;
         color: var(--composer-primary-color);
       }
     }
 
     .carousel-div {
-      width: 80%;
+      width: 100%;
       gap: 50px;
 
       .carousel {
+        overflow: hidden;
+
         .dots {
           display: flex !important;
           flex-direction: row;
@@ -43,20 +42,25 @@
           width: fit-content;
           gap: 10px;
           list-style-type: none;
-          margin-top: -24px;
           padding: 0;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          position: absolute;
 
           li {
             button {
               border: none;
               transition: 0.3s;
               content-visibility: hidden;
+              background: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              ) !important;
               width: 10px;
               height: 10px;
-              background: var(--composer-font-color-primary);
               border-radius: 100px;
-              margin: 0;
-              padding: 0;
             }
           }
         }
@@ -65,44 +69,57 @@
           padding: 0 10px;
         }
 
+        .right-card-padding {
+          padding-right: 0px !important;
+          padding-left: 20px !important;
+        }
+
+        .left-card-padding {
+          padding-left: 0px !important;
+          padding-right: 20px !important;
+        }
+
         .card {
           width: 100%;
           height: 100%;
-          padding: 2.5rem 2rem;
+          padding: 0px 10px 50px 10px;
           position: relative;
 
           &.active {
             &::before {
               content: "";
               position: absolute;
-              width: calc(100% + 4rem);
+              width: calc(100% + 40px);
               height: 65%;
-              bottom: 5px;
-              left: -2rem;
+              bottom: 0px;
+              left: -20px;
               background-color: var(--composer-primary-color);
               z-index: -1;
             }
           }
 
           .card-inner {
-            padding: 3rem;
             background-color: color-mix(
               in srgb,
-              var(--composer-font-color-primary),
-              var(--composer-html-background) 90%
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
             );
+            z-index: 0;
+            position: static;
             display: flex;
             flex-direction: column;
-            z-index: 0;
-            gap: 10px;
-            position: static;
+            padding: 3rem;
+            height: 400px;
+            justify-content: space-between;
 
-            .img {
-              border-radius: 999px;
-              width: 100%;
-              height: 100%;
-              max-width: 200px;
-              max-height: 200px;
+            .img-div {
+              .img {
+                border-radius: 999px;
+                width: 100%;
+                height: 100%;
+                max-width: 200px;
+                max-height: 200px;
+              }
             }
 
             .title {
@@ -119,6 +136,15 @@
             .link {
               margin: 20px 0 0;
               color: var(--composer-font-color-primary);
+              display: flex;
+              align-items: center;
+              gap: 5px;
+
+              > svg {
+                font-size: 14px;
+                display: flex;
+                flex-shrink: 0;
+              }
 
               &:hover {
                 color: var(--composer-secondary-color);
@@ -126,6 +152,14 @@
 
               .text {
                 font-size: 14px;
+
+                > blinkpage p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
               }
             }
           }
@@ -135,37 +169,65 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 769px) and (max-width: 1440px) {
   .container {
+    padding: 20px 30px;
+    margin-bottom: 0px;
+
     .max-content {
       display: flex !important;
       flex-direction: column !important;
       place-items: center;
 
-      .carousel {
+      .carousel-div {
         width: 100%;
+        gap: 50px;
 
-        .dots {
-          margin-top: 0;
-        }
+        .carousel {
+          width: 100%;
 
-        .card {
-          display: flex !important;
-          flex-direction: column !important;
 
-          &.active {
-            ::before {
-              width: calc(100% + 4rem);
-              left: -11rem !important;
-              content: "";
-              display: none;
-            }
+          .dots {
+            display: flex !important;
+            flex-direction: row;
+            margin: 0 auto;
+            width: fit-content;
+            gap: 10px;
+            list-style-type: none;
+            margin-top: 15px !important;
+            padding: 0;
           }
 
-          .card-inner {
-            text-align: center;
-            img {
-              margin: 0 auto;
+          .left-card-padding {
+            padding: 0 !important;
+          }
+
+          .card {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0px 10px 40px 20px;
+
+            &.active {
+              &::before {
+                content: "";
+                position: absolute;
+                width: calc(100% + 20px);
+                height: 75%;
+                bottom: 0px;
+                left: -20px;
+                background-color: var(--composer-primary-color);
+                z-index: -1;
+              }
+            }
+
+            .card-inner {
+              text-align: center;
+              height: 400px !important;
+              margin-left: 10px;
+
+              img {
+                margin: 0 auto;
+              }
             }
           }
         }
@@ -174,27 +236,146 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (min-width: 476px) and (max-width: 768px) {
   .container {
+    padding: 20px 30px;
+
+    .max-content {
+      display: flex !important;
+      flex-direction: column !important;
+      place-items: center;
+
+      .up-text {
+        text-align: center;
+
+        .title {
+          margin-bottom: 20px !important;
+        }
+      }
+
+      .carousel-div {
+        width: 100%;
+        height: 100%;
+
+        .carousel {
+          width: 100%;
+          overflow: unset !important;
+
+          .dots {
+            display: flex !important;
+            flex-direction: row;
+            margin: 0 auto;
+            width: fit-content;
+            gap: 10px;
+            list-style-type: none;
+            margin-top: 20px !important;
+            padding: 0;
+
+            bottom: -20px;
+            left: 50%;
+            transform: unset !important;
+            position: unset !important;
+          }
+
+          .left-card-padding {
+            padding: 0 !important;
+            padding-right: 10px !important;
+          }
+
+          .card {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px !important;
+            padding: 0 0 0 10px;
+
+            &.active {
+              &::before {
+                content: "";
+                position: absolute;
+                width: calc(100% + 40px);
+                height: 65%;
+                bottom: 0px;
+                left: -20px;
+                background-color: var(--composer-primary-color);
+                z-index: -1;
+                display: none !important;
+              }
+            }
+
+            .card-inner {
+              text-align: center;
+              height: 400px !important;
+
+              img {
+                margin: 0 auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .container {
+    padding: 20px 30px;
+
     .max-content {
       display: flex;
       flex-direction: column;
       place-items: center;
 
-      .carousel {
-        width: 100%;
+      .up-text {
+        text-align: center;
 
-        .dots {
-          margin-top: 0;
+        .title {
+          margin-bottom: 20px !important;
         }
+      }
 
-        .card {
-          left: 0rem !important;
-          &.active {
-            ::before {
-              content: "";
-              display: none;
-              left: 0rem !important;
+      .carousel-div {
+        width: 100%;
+        gap: 50px;
+
+        .carousel {
+          width: 100%;
+          overflow: unset !important;
+
+          .dots {
+            bottom: -20px;
+            left: 50%;
+            margin-top: 10px;
+            transform: unset !important;
+            position: unset !important;
+          }
+
+          .card {
+            margin-top: 10px;
+            padding: 0 !important;
+
+            &.active {
+              ::before {
+                content: "";
+                position: absolute;
+                width: calc(100% + 40px);
+                height: 65%;
+                bottom: 0px;
+                left: -20px;
+                background-color: var(--composer-primary-color);
+                z-index: -1;
+                display: none !important;
+              }
+            }
+
+            .card-inner {
+              text-align: center;
+              height: 400px !important;
+              margin-left: 0px !important;
+
+              img {
+                margin: 0 auto;
+              }
             }
           }
         }
