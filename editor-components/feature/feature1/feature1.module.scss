@@ -18,20 +18,19 @@
   background-color: var(--composer-html-background);
   container-name: parent-container;
   container-type: inline-size;
+  display: grid;
+  grid-template-columns: auto auto;
 
   .max-content {
     max-width: var(--composer-content-width);
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    container-name: max-content;
-    container-type: inline-size;
+    gap: 20px;
 
     .header {
       display: flex;
       justify-content: space-between;
-      padding-bottom: 20px;
       align-items: center;
       width: 100%;
 
@@ -116,55 +115,56 @@
     }
 
     .features {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-      row-gap: 30px;
-      gap: 30px;
-
+      //! ---FEATURES CONTAINER---EMPTY SPACE BETWEEN HEADER AND CARDS  (FOR BETTER VISUALIZATION)  ---
+      .mini-pair {
+        display: grid;
+        gap: 30px;
+        // grid-template-rows: repeat(2, 1fr);
+        // grid-column: span 1;
+      }
       //* ---ALL CARDS---
       .card-column {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         gap: 30px;
-        width: 100%;
-        max-width: 100%;
+        grid-column: span 1;
+        grid-row: span 2;
 
         //* ---CARD CONTAINER---
         .card {
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          height: 100%;
-          margin: 0;
-          background-color: color-mix(
-            in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-primary) 90%
-          );
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 95%);
           overflow: hidden;
-          box-sizing: border-box;
 
           &.mini {
-            grid-column: span 2;
+            grid-column: span 1;
+            grid-row: span 1;
             display: flex;
+            flex-direction: column;
+            height: 50%;
+
             .image-container {
               display: none;
             }
+          }
+          &.full {
+            grid-column: span 1;
           }
 
           //* ---IMAGE CONTAINER---
           .image-container {
             display: flex;
+            align-items: center;
             width: 100%;
+            height: 100%;
             overflow: hidden;
-            min-height: 200px;
             box-shadow: var(--box-shadow);
 
             .image {
               width: 100%;
-              height: auto;
+              height: 250px;
               transition: transform 0.3s ease;
               cursor: pointer;
               object-fit: cover;
@@ -180,13 +180,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 10px;
-            padding: 20px;
+            padding: 30px 20px;
             height: 100%;
             .date-time {
               display: flex;
               justify-content: space-between;
-              align-items: space-between;
               font-size: 1.1rem !important;
               color: var(--composer-font-color-secondary);
               white-space: nowrap !important;
@@ -197,9 +195,19 @@
                 column-gap: 5px;
                 align-items: center;
                 white-space: normal;
-                max-width: 60% !important;
+                max-width: 50% !important;
                 > svg {
                   flex-shrink: 0;
+                }
+                > h5 {
+                  margin: 0;
+                  > blinkpage p {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                  }
                 }
               }
 
@@ -208,46 +216,48 @@
                 column-gap: 5px;
                 align-items: center;
                 white-space: normal;
-                max-width: 40% !important;
+                max-width: 50% !important;
                 > svg {
                   flex-shrink: 0;
                 }
+                > h5 {
+                  margin: 0;
+                  > blinkpage p {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                  }
+                }
               }
             }
-
             .title {
               position: relative;
               font-size: 1.6rem;
               font-weight: bold;
               color: var(--composer-font-color-secondary);
-              margin-bottom: 2px;
-
+              margin: 0;
               &::after {
                 @include itemTitleAfter(hidden, 0, transform 0 ease);
               }
-
               &:hover::after {
                 @include itemTitleAfter(visible, 100%, transform 0.5s ease);
               }
             }
-
             .description {
               font-size: 1.1rem;
               color: var(--composer-font-color-secondary) !important;
               width: 100%;
-              margin-bottom: 5px;
+              margin: 0;
             }
-
             .user-info {
               display: flex;
-              flex: 1;
               flex-direction: row;
               align-items: end;
-              text-align: left;
               gap: 10px;
               width: 100%;
             }
-
             .profile-image {
               width: 42px;
               height: 42px;
@@ -256,17 +266,22 @@
                 filter: brightness(1.2);
               }
             }
-
             .user {
               display: flex;
               flex-direction: column;
-              justify-content: center;
-              gap: 10px;
+              justify-content: end;
+              gap: 5px;
               height: 42px;
               > h3 {
                 margin: 0;
+                > blinkpage p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                }
               }
-
               .profile-description {
                 color: var(--composer-font-color-secondary);
                 font-size: 1rem;
@@ -279,11 +294,6 @@
             }
           }
         }
-      }
-
-      .card-column .card .card-content .user-info.no-profile,
-      .middle-content .card .user-info.no-profile {
-        justify-content: flex-start;
       }
     }
   }
