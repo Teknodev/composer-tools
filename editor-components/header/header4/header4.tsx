@@ -84,8 +84,6 @@ class Header4 extends BaseHeader {
   handleScroll = (e: any) => {
     const container = e.target;
     const scrollY = container.scrollTop;
-    const containerHeight = container.scrollHeight;
-
     this.setComponentState("scrollY", scrollY);
   };
 
@@ -99,20 +97,18 @@ class Header4 extends BaseHeader {
     const imageAnm = this.getPropValue("image-anm");
 
     return (
-      <div className={this.decorateCSS("container")} onScroll={this.handleScroll}>
+      <div className={`${this.decorateCSS("container")} ${!imageAnm && this.decorateCSS("no-image-anm")}`} onScroll={this.handleScroll}>
         <div className={this.decorateCSS("max-content")}>
           {this.getPropValue("image") && (
             <div className={this.decorateCSS("image-container")}>
               <img
                 alt=""
-                className={this.decorateCSS("image")}
+                className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
                 src={this.getPropValue("image")}
                 style={
                   imageAnm ? {
                     transform: `translate(0%, ${this.getComponentState("scrollY") / 25}%) translate3d(0px, 0px, 0px)`
-                  } : {
-                    height: "100%"
-                  }
+                  } : {}
                 }
               />
             </div>
@@ -134,11 +130,10 @@ class Header4 extends BaseHeader {
                     <div className={this.decorateCSS("heading")}>
                       {this.castToString(card.subtitle) &&
                         (
-                          <>
-                            <p className={`${this.decorateCSS("sub-heading")} ${card.subtitle_line && this.decorateCSS("has-before")}`}>
-                              <span className={this.decorateCSS("sub-title")}>{card.subtitle}</span>
-                            </p>
-                          </>
+                          <div className={this.decorateCSS("sub-heading-container")}>
+                            {card.subtitle_line && <hr className={this.decorateCSS("sub-heading-line")} />}
+                            <span className={this.decorateCSS("sub-heading-title")}>{card.subtitle}</span>
+                          </div>
                         )
                       }
                       {this.castToString(card.title) && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
@@ -161,7 +156,7 @@ class Header4 extends BaseHeader {
               </div>
             )}
         </div>
-      </div>
+      </div >
     );
   }
 }

@@ -1,3 +1,7 @@
+.no-image-anm {
+  overflow-y: hidden !important;
+}
+
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
@@ -33,6 +37,11 @@
         object-fit: cover;
         transition: transform 0.2s ease;
       }
+
+      .no-img-anm {
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+      }
     }
 
     .card {
@@ -44,58 +53,53 @@
 
       .box {
         padding: 3rem;
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
 
         .heading {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          margin-bottom: 30px;
           gap: 10px;
-          .sub-heading {
+
+          .sub-heading-container {
             letter-spacing: 3px;
             font-size: 16px;
             margin: 0;
             color: var(--composer-font-color-primary);
+            display: flex;
+            gap: 10px;
+            flex-wrap: nowrap;
 
-            .sub-title {
-              padding-right: 15px;
-              position: relative;
-              z-index: 1;
-              display: inline-block;
+            .sub-heading-line {
+              height: 1px;
+              background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
+              vertical-align: middle;
+              width: 4rem;
+            }
+
+            .sub-heading-title {
+              flex: 1;
+              font-size: 16px;
               word-break: break-word;
               color: var(--composer-font-color-primary);
             }
           }
 
-          .sub-heading.has-before::before {
-            content: "";
-            margin-right: 15px;
-            position: relative;
-            display: inline-block;
-            vertical-align: middle;
-            width: 4vw;
-            height: 1px;
-            background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
-          }
-
           .title {
-            margin-top: 0;
             font-size: 40px;
             letter-spacing: 2px;
-            margin-bottom: 0;
+            margin: 0;
             word-break: break-word;
             color: var(--composer-font-color-primary);
           }
         }
 
         .desc {
-          margin-bottom: 10px;
           line-height: 1.6;
           display: block;
-          margin-block-start: 1em;
-          margin-block-end: 1em;
-          margin-inline-start: 0px;
-          margin-inline-end: 0px;
+          margin: 0;
           font-size: 14px;
           word-break: break-word;
           color: var(--composer-font-color-primary);
@@ -114,7 +118,6 @@
           cursor: pointer;
           word-break: break-word;
           width: fit-content;
-          margin-top: 2.5rem;
 
           &:hover {
             transform: scale(1.05);
@@ -136,18 +139,18 @@
         }
 
         .note {
-          margin-top: 15px;
           font-size: 14px;
           letter-spacing: 1.5px;
           color: var(--composer-primary-color);
           word-break: break-word;
+          margin: 0;
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 1000px) {
+@container (max-width: 1000px) {
   .card {
     width: 45% !important;
 
@@ -157,16 +160,17 @@
       padding-left: 3rem;
 
       .heading {
-        margin-bottom: 15px !important;
+        .sub-heading-container {
+          .sub-heading-line {
+            width: 3rem !important;
+          }
 
-        .sub-title {
-          letter-spacing: 3px;
-          font-size: 13px !important;
-          line-height: 1.6;
+          .sub-heading-title {
+            font-size: 13px !important;
+          }
         }
 
         .title {
-          margin-top: 10px;
           font-size: 30px !important;
           letter-spacing: 2px;
         }
@@ -187,9 +191,10 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@container (max-width: 800px) {
   .container {
     padding: 0 0 !important;
+    height: fit-content;
   }
 
   .image-container {
@@ -199,13 +204,16 @@
   }
 
   .card {
+    bottom: 0 !important;
     position: relative !important;
     transform: none !important;
     right: 0px !important;
     padding-top: 0;
     padding-bottom: 0;
     width: auto !important;
-    .box{
+
+    .box {
+      padding: 20px 30px !important;
 
       .desc {
         font-size: 14px !important;
