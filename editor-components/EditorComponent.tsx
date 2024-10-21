@@ -413,7 +413,17 @@ export abstract class BaseStats extends Component {
 export abstract class BaseContacts extends Component {
   protected category = CATEGORIES.FORM;
 
+  getFormData(obj: any) {
+    const newObj: any = {};
+    Object.values(obj).forEach((value, index) => {
+      newObj["input_" + index] = value;
+    })
+    return newObj;
+  }
+
   insertForm(name: string, data: Object) {
+    data = this.getFormData(data);
+
     const projectSettings = JSON.parse(getProjectHook().data);
     const project = projectSettings._id;
     let config = {
