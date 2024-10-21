@@ -1,32 +1,22 @@
+.imageGallery7{
+  overflow-y: scroll;
+  height:100vh;
+  background-color: var(--composer-html-background);
+
+}
 .content {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  height: calc(100% - 60px);
-  padding: 0 10%;
+  gap: 5rem;
+  padding: 20px 50px;
   overflow-y: scroll;
-  
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .column {
   height: 100%;
-  padding: 20px;
   box-sizing: border-box;
   place-items: center;
   place-content: center;
-
-  transform-style: preserve-3d;
   overflow: hidden;
 
   .card {
@@ -34,39 +24,46 @@
     width: 100%;
     cursor: pointer;
     overflow: hidden;
-    margin: 20% 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .image {
       width: 100%;
-      height: 115%;
-      transition: filter 0.3s ease;
+      height: 80%;
+      transition: opacity 0.3s ease;
+      opacity: 1;
+      object-fit: cover;
 
       &:hover {
-        filter: brightness(1.03);
+        opacity: 0.8;
       }
     }
 
     .text-container {
-      height: 100%;
+      height: 20%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+     
 
       .title {
-        color: var(--composer-font-color-secondary);
+        color: var(--composer-font-color-primary);
         font-size: 1.7em;
         font-weight: bold;
         letter-spacing: 0.6px;
         text-align: center;
         margin-top: 5px;
+        &:hover{
+          color: var(--composer-primary-color);
+        }
       }
 
       .subtitle {
-        color: var(--composer-font-color-secondary);
+        color: var(--composer-font-color-primary);
         font-size: 1.2em;
         text-align: center;
         font-weight: lighter;
@@ -84,13 +81,30 @@
 
 .column-odd {
   grid-column: span 1;
-  @media (min-width: 900px) {
-    margin-top: -320px;
+  margin-top: -250px;
+
+}
+
+  @media screen and (max-width: 900px) {
+    .imageGallery7{
+      overflow-y:unset;
+      width: 100%;
+      height: 100%;
+    }
+    .content{
+      grid-template-columns: 1fr;
+      padding: 20px 30px;
+    }
+    .column-even {
+      grid-column: span 1;
+      transform: translateY(0px) !important;
+      overflow-y: unset;
+    }
+    .column-odd {
+      grid-column: span 1;
+      margin-top:0px;
+    } 
   }
-}
 
-.scroll-up {
-  transform: translateY(-50px); /* Yukarı doğru kaydır */
-  transition: transform 0.3s ease-out;
-}
-
+  @media screen and (max-width: 400px) {
+  }
