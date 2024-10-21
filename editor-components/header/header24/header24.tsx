@@ -281,6 +281,7 @@ class HeaderComponent24 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      adaptiveHeight: 1,
 
       beforeChange: (previous: number, current: number) => {
         this.setComponentState("previousChange", previous);

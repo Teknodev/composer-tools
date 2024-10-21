@@ -45,6 +45,7 @@
     width: 100%;
     justify-content: center;
     display: flex;
+
     .wrapper {
       width: 100%;
       height: 100%;
@@ -70,8 +71,8 @@
         >button:first-of-type {
           &:before {
             transform: rotateZ(-45deg);
-            border-top: 3px solid white;
-            border-left: 3px solid white;
+            border-top: 3px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+            border-left: 3px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
             left: 25px;
           }
         }
@@ -79,8 +80,8 @@
         >button:last-of-type {
           &:before {
             transform: rotateZ(135deg);
-            border-top: 3px solid white;
-            border-left: 3px solid white;
+            border-top: 3px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+            border-left: 3px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
             right: 25px;
           }
         }
@@ -103,7 +104,7 @@
             counter-increment: list-counter;
             white-space: nowrap;
             position: relative;
-            color: #fff;
+            color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
 
             ::before {
               margin-inline-end: 5px;
@@ -116,7 +117,7 @@
               content: "";
               width: 15px;
               height: 2px;
-              background-color: white;
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
               transition: width .3s ease;
               display: inline-block;
               vertical-align: middle;
@@ -129,7 +130,7 @@
             button {
               &:before {
                 font-size: 20px;
-                color: white;
+                color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
                 opacity: 0.75;
               }
             }
@@ -148,17 +149,14 @@
 
         .item {
           width: 100%;
-          height: 730px;
+          height: 100vh;
           position: relative;
 
           .background-image {
             position: absolute;
             object-fit: cover;
-          }
-
-          .no-image{
-            width: auto !important;
-            height: auto !important;
+            width: 100%;
+            overflow: hidden;
           }
 
           .main-content {
@@ -166,11 +164,11 @@
             display: flex;
             height: 100%;
             z-index: 1;
-            padding: 20px 50px;
 
             .left {
               z-index: 1;
               flex: 1;
+              padding: 20px 50px;
 
               .content {
                 height: 100%;
@@ -188,7 +186,7 @@
                 .title {
                   z-index: 2;
                   font-size: 3vw;
-                  color: #b09782;
+                  color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
                   font-style: italic;
                   overflow: hidden;
                   text-overflow: ellipsis;
@@ -198,13 +196,13 @@
                 .description {
                   z-index: 2;
                   font-size: 1.2vw;
-                  color: #8c7b6e;
+                  color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
                   overflow: hidden;
                   text-overflow: ellipsis;
                   padding: 0 20%;
                 }
 
-                .no-image{
+                .no-image {
                   padding: 0 !important;
                   width: 100% !important;
                 }
@@ -218,7 +216,7 @@
                     border-radius: 24px;
                     background: var(--composer-primary-color);
                     border: 0px;
-                    color: white;
+                    color: var(--composer-font-color-secondary);
                     margin: 12px;
                     font-weight: bold;
                     max-width: 200px;
@@ -226,15 +224,15 @@
                     text-overflow: ellipsis;
 
                     &:last-child {
-                      border: 2px solid #b09782;
-                      border-color: #b09782;
+                      border: 2px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+                      border-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
                       background: transparent;
-                      color: #8c7b6e;
+                      color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
                     }
 
                     &:hover:last-child {
-                      background: #b09782;
-                      color: white;
+                      background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+                      color: var(--composer-font-color-secondary);
                     }
                   }
                 }
@@ -255,7 +253,7 @@
                 height: 100%;
                 width: 60%;
                 display: flex;
-                align-items: center;
+                align-items: end;
                 justify-content: start;
 
                 .image {
@@ -274,32 +272,26 @@
   }
 }
 
-@media (max-width: 1100px) {
+@container (max-width: 1100px) {
   .container {
     flex-direction: column;
-    align-items: flex-start;
 
     .max-content {
       flex-direction: column;
 
       .wrapper {
         .carousel {
-
           .item {
-            height: auto;
-
-            .background-image {
-              position: fixed;
-            }
-
             .main-content {
-              padding: 20px 30px !important;
               flex-direction: column;
+
+              .left {
+                padding: 20px 30px !important;
+              }
 
               .left,
               .right {
                 width: 100%;
-                flex: none;
               }
 
               .left .content {
@@ -344,7 +336,7 @@
               }
             }
 
-            .no-image-content{
+            .no-image-content {
               padding-bottom: 40px !important;
             }
 
@@ -363,7 +355,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@container (max-width: 600px) {
   .container {
     .max-content {
       .wrapper {
@@ -408,11 +400,11 @@
 
               .left .content {
 
-                .title{
+                .title {
                   font-size: 1.7rem !important;
                 }
 
-                .description{
+                .description {
                   font-size: 1rem !important;
 
                 }
@@ -424,8 +416,15 @@
                   }
                 }
               }
+
+              .right {
+                .image-wrapper {
+                  width: 75% !important;
+                }
+              }
             }
-            .no-image-content{
+
+            .no-image-content {
               padding-bottom: 30px !important;
             }
           }
