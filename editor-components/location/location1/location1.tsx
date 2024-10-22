@@ -13,7 +13,7 @@ type Address = {
 type Marker = {
   type: string;
   key: string;
-  value: any; 
+  value: any;
 };
 
 type MarkerObject = {
@@ -49,7 +49,7 @@ class LocationComponent1 extends Location {
           key: "marker",
           displayer: "Marker",
           value: [
-          
+
             {
               type: "location",
               displayer: "Coordinate",
@@ -59,7 +59,7 @@ class LocationComponent1 extends Location {
                 lng: -75.978,
               },
             },
-          
+
             {
               type: "image",
               key: "marker-image",
@@ -85,7 +85,7 @@ class LocationComponent1 extends Location {
           key: "marker",
           displayer: "Marker",
           value: [
-            
+
             {
               type: "location",
               displayer: "Coordinate",
@@ -140,7 +140,7 @@ class LocationComponent1 extends Location {
         if (lat !== undefined && lng !== undefined) {
           const content =
             description || popupTitle ? (
-              <div style={{ backgroundColor: "white", padding: "10px", maxWidth:"400px" }}>
+              <div style={{ backgroundColor: "white", padding: "10px", maxWidth: "400px" }}>
                 {popupTitle && <p>{popupTitle} </p>}
                 {description && <p>{description}</p>}
               </div>
@@ -169,6 +169,7 @@ class LocationComponent1 extends Location {
           <div className={this.decorateCSS("wrapper")}>
             <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
             <section className={this.decorateCSS("map-container")}>
+              <ComposerMap markers={markers} className={this.decorateCSS("map")} />
               <ComposerMap markers={markers} className={this.decorateCSS("map")} />
             </section>
           </div>

@@ -64,8 +64,8 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-  };
+  getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -158,9 +158,9 @@ export abstract class Component extends React.Component<{}, { states: any; compo
       const stringPrefix = renderToString(prefix || <></>);
       const stringSuffix = renderToString(suffix || <></>);
 
-      const hasHtmlTag = html.includes("<");
+      const hasHtmlTag = html.indexOf("<");
 
-      if (!hasHtmlTag) {
+      if (hasHtmlTag != 0 && hasHtmlTag != -1) {
         html = `<p> ${html} </p>`;
       }
 
