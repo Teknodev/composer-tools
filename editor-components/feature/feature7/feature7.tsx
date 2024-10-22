@@ -3,6 +3,7 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature7.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Feature = {
   title: string;
@@ -166,8 +167,8 @@ class Feature7 extends BaseFeature {
       features;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {this.getPropValue("image") && (
             <div className={this.decorateCSS("image-container")}>
               <img
@@ -177,21 +178,21 @@ class Feature7 extends BaseFeature {
             </div>
           )}
           {hasTextContent.length > 0 && (
-            <div className={`${this.decorateCSS("textContainer")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("textContainer")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}>
               {title && (
-                <h2 className={this.decorateCSS("title")}>
+                <Base.SectionSubTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
-                </h2>
+                </Base.SectionSubTitle>
               )}
               {mainTitle && (
-                <h1 className={this.decorateCSS("mainTitle")}>
+                <Base.SectionTitle className={this.decorateCSS("mainTitle")}>
                   {this.getPropValue("mainTitle")}
-                </h1>
+                </Base.SectionTitle>
               )}
               {description && (
-                <p className={this.decorateCSS("description")}>
+                <Base.SectionDescription className={this.decorateCSS("description")}>
                   {this.getPropValue("description")}
-                </p>
+                </Base.SectionDescription>
               )}
               {features.length > 0 && (
                 <ul className={this.decorateCSS("featuresList")}>
@@ -209,9 +210,9 @@ class Feature7 extends BaseFeature {
                           </div>
                         )}
                         {feature.title && (
-                          <span className={this.decorateCSS("featureTitle")}>
+                          <Base.H2 className={this.decorateCSS("featureTitle")}>
                             {feature.title}
-                          </span>
+                          </Base.H2>
                         )}
                       </li>
                     )
@@ -246,10 +247,10 @@ class Feature7 extends BaseFeature {
                   )}
                 </ul>
               )}
-            </div>
+            </Base.VerticalContent>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
