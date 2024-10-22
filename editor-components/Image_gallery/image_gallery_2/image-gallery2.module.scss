@@ -177,6 +177,15 @@
       .content .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .image-container {
+        .modal-image {
+          min-width: 500px;
+          min-height: 500px;
+          max-width: 500px;
+          max-height: 500px;
+        }
+      }
     }
   }
 }
