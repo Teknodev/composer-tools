@@ -1,110 +1,84 @@
-.imageGallery7{
+.container{
   overflow-y: scroll;
   height:100vh;
-  background-color: var(--composer-html-background);
-
-}
-.content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5rem;
-  padding: 20px 50px;
-  overflow-y: scroll;
-}
-
-.column {
-  height: 100%;
-  box-sizing: border-box;
-  place-items: center;
-  place-content: center;
-  overflow: hidden;
-
-  .card {
-    height: 425px;
-    width: 100%;
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .image {
-      width: 100%;
-      height: 80%;
-      transition: opacity 0.3s ease;
-      opacity: 1;
-      object-fit: cover;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .text-container {
-      height: 20%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-     
-
-      .title {
-        color: var(--composer-font-color-primary);
-        font-size: 1.7em;
-        font-weight: bold;
-        letter-spacing: 0.6px;
-        text-align: center;
-        margin-top: 5px;
-        &:hover{
-          color: var(--composer-primary-color);
+  .maxContent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--composer-gap-xl);
+    overflow-y: scroll;
+    .column {
+      height: 100%;
+      overflow: hidden;
+      .wrapper{
+        .card {
+          height: 425px;
+          width: 100%;
+          cursor: pointer;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .image {
+            width: 100%;
+            height: 80%;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+            object-fit: cover;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+          .textContainer {
+            display: flex;
+            flex-direction: column;
+            height: 20%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            gap:var(--composer-gap-xs);
+            .title {
+              color: var(--composer-font-color-primary);
+              text-align: center;
+              font-size: 1.5rem;
+              &:hover{
+                color: var(--composer-primary-color);
+              }
+            }
+            .subtitle {
+              color: var(--composer-font-color-primary);
+              font-size: 1rem;
+            }
+          }
         }
       }
-
-      .subtitle {
-        color: var(--composer-font-color-primary);
-        font-size: 1.2em;
-        text-align: center;
-        font-weight: lighter;
-        margin-top: 2px;
-      }
+    }
+    .columnOdd {
+      grid-column: span 1;
+      transition: transform 0.3s ease-out;
+    }
+    .columnEven {
+      grid-column: span 1;
+      transform: translateY(-250px);
     }
   }
-}
-
-.column-even {
-  grid-column: span 1;
-  transition: transform 0.3s ease-out;
-  overflow-y: scroll;
-}
-
-.column-odd {
-  grid-column: span 1;
-  margin-top: -250px;
-
 }
 
   @media screen and (max-width: 900px) {
-    .imageGallery7{
+    .container{
       overflow-y:unset;
-      width: 100%;
       height: 100%;
+      .maxContent{
+        grid-template-columns: 1fr;
+        .columnEven {
+          grid-column: span 1;
+          transform: translateY(0px) !important;
+          overflow-y: unset;
+        }
+        .columnOdd {
+          grid-column: span 1;
+          margin-top:0px;
+        } 
+      }
     }
-    .content{
-      grid-template-columns: 1fr;
-      padding: 20px 30px;
-    }
-    .column-even {
-      grid-column: span 1;
-      transform: translateY(0px) !important;
-      overflow-y: unset;
-    }
-    .column-odd {
-      grid-column: span 1;
-      margin-top:0px;
-    } 
-  }
-
-  @media screen and (max-width: 400px) {
   }

@@ -3,31 +3,6 @@ import { Location } from "../../EditorComponent";
 import styles from "./location1.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 
-
-type Address = {
-  type: string;
-  key: string;
-  value: Array<Marker>;
-};
-
-type Marker = {
-  type: string;
-  key: string;
-  value: any; 
-};
-
-type MarkerObject = {
-  content: React.ReactNode;
-  lat: number;
-  lng: number;
-  icon: {
-    url: string;
-    scaledSize: google.maps.Size;
-    width: number;
-    height: number;
-  };
-};
-
 class LocationComponent1 extends Location {
   constructor(props?: any) {
     super(props, styles);
@@ -49,7 +24,12 @@ class LocationComponent1 extends Location {
           key: "marker",
           displayer: "Marker",
           value: [
-          
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "First Location",
+            },
             {
               type: "location",
               displayer: "Coordinate",
@@ -59,10 +39,15 @@ class LocationComponent1 extends Location {
                 lng: -75.978,
               },
             },
-          
+            {
+              type: "string",
+              displayer: "Office",
+              key: "office",
+              value: "Arapsuyu 600 Sokak",
+            },
             {
               type: "image",
-              key: "marker-image",
+              key: "marker-image1",
               displayer: "Marker Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
             },
@@ -85,32 +70,43 @@ class LocationComponent1 extends Location {
           key: "marker",
           displayer: "Marker",
           value: [
-            
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title2",
+              value: "Second Location",
+            },
             {
               type: "location",
               displayer: "Coordinate",
-              key: "coordinate",
+              key: "coordinate2",
               value: {
                 lat: 37.1234,
                 lng: -76.9876,
               },
             },
             {
+              type: "string",
+              displayer: "Office",
+              key: "office2",
+              value: "Arapsuyu 601 Sokak",
+            },
+            {
               type: "image",
-              key: "marker-image",
+              key: "marker-image2",
               displayer: "Marker Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
             },
             {
               type: "string",
               displayer: "Description",
-              key: "description",
+              key: "description2",
               value: "Bu, ikinci lokasyonun açıklamasıdır.",
             },
             {
               type: "string",
               displayer: "Popup Title",
-              key: "popupTitle",
+              key: "popupTitle2",
               value: "İkinci Lokasyon",
             },
           ],
@@ -124,44 +120,45 @@ class LocationComponent1 extends Location {
   }
 
   render() {
-    const addresses: Address[] = this.getPropValue("addresses");
+    const addresses = this.getPropValue("addresses");
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
+    const markers = addresses.reduce((acc: any[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.value.find((addr) => addr.type === "location");
-        const lat = markerData?.value.lat;
-        const lng = markerData?.value.lng;
-        const description = address.value.find((a) => a.key.startsWith("description"))?.value || "";
-        const popupTitle = address.value.find((a) => a.key.startsWith("popupTitle"))?.value || "";
-        const markerImage = address.value.find((a) => a.key.startsWith("marker-image"))?.value;
-        const width = address.value.find((a) => a.key.startsWith("marker-width"))?.value || 32;
-        const height = address.value.find((a) => a.key.startsWith("marker-height"))?.value || 32;
+        address.value.forEach((addr: any) => {
+          if (addr.key.startsWith("title")) {
+            const lat = addr.key.includes("2") ? address.value.find((a: any) => a.key === "coordinate2")?.value.lat : address.value.find((a: any) => a.key === "coordinate")?.value.lat;
 
-        if (lat !== undefined && lng !== undefined) {
-          const content =
-            description || popupTitle ? (
-              <div style={{ backgroundColor: "white", padding: "10px", maxWidth:"400px" }}>
-                {popupTitle && <p>{popupTitle} </p>}
-                {description && <p>{description}</p>}
-              </div>
-            ) : null;
+            const lng = addr.key.includes("2") ? address.value.find((a: any) => a.key === "coordinate2")?.value.lng : address.value.find((a: any) => a.key === "coordinate")?.value.lng;
 
-          acc.push({
-            content,
-            lat,
-            lng,
-            icon: {
-              url: markerImage,
-              scaledSize: new google.maps.Size(width, height),
-              width,
-              height,
-            },
-          });
-        }
+            const officeAddress = addr.key.includes("2") ? address.value.find((a: any) => a.key === "office2")?.value || "" : address.value.find((a: any) => a.key === "office")?.value || "";
+            const description = addr.key.includes("2") ? address.value.find((a: any) => a.key === "description2")?.value || "" : address.value.find((a: any) => a.key === "description")?.value || "";
+            const popupTitle = addr.key.includes("2") ? address.value.find((a: any) => a.key === "popupTitle2")?.value || "" : address.value.find((a: any) => a.key === "popupTitle")?.value || "";
+
+            const markerImage = addr.key.includes("2") ? address.value.find((a: any) => a.key === "marker-image2")?.value : address.value.find((a: any) => a.key === "marker-image1")?.value;
+
+            if (lat !== undefined && lng !== undefined) {
+              acc.push({
+                content: (
+                  <div style={{ backgroundColor: "white", padding: "10px" }}>
+                    <p>{officeAddress}</p>
+                    <p>{description}</p>
+                    <p>{popupTitle}</p>
+                  </div>
+                ),
+                lat,
+                lng,
+                icon: {
+                  url: markerImage,
+                  scaledSize: new google.maps.Size(32, 32),
+                  anchor: new google.maps.Point(16, 32),
+                },
+              });
+            }
+          }
+        });
       }
       return acc;
     }, []);
-
 
     return (
       <div className={this.decorateCSS("container")}>

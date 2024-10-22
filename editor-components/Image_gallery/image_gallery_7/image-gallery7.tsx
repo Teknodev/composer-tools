@@ -2,21 +2,16 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery7.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type CardItemType = {
     image: string;
     title: JSX.Element;
     subtitle: JSX.Element;
 };
-
-
-
 class ImageGallery7 extends BaseImageGallery {
-
-
     constructor(props?: any) {
         super(props, styles);
-
         this.addProp({
             type: "array",
             key: "gallery",
@@ -24,7 +19,6 @@ class ImageGallery7 extends BaseImageGallery {
             value:
                 [
                     {
-
                         type: "object",
                         key: "card",
                         displayer: "Card",
@@ -366,9 +360,9 @@ class ImageGallery7 extends BaseImageGallery {
 
     handleScroll = (event: any): void => {
         const currentScrollY = event.target.scrollTop;
-        const contentClass = this.decorateCSS("column-even");
+        const contentClass = this.decorateCSS("columnOdd");
         const columns = document.querySelectorAll(`.${contentClass}`);
-        console.log(`Scroll event triggered, columns moved by ${this.scrollOffset}px!`);
+
         if (currentScrollY === 0) {
             this.scrollOffset = 0;
         } else if (currentScrollY > this.previousScrollY) {
@@ -387,32 +381,26 @@ class ImageGallery7 extends BaseImageGallery {
 
     render() {
         const gallery = this.castToObject<CardItemType[]>("gallery");
-        const scrollY = this.getComponentState("scroll");
         return (
-            <div className={this.decorateCSS("imageGallery7")} onScroll={this.debouncedHandleScroll}>
-                <div className={this.decorateCSS("content")}>
+            <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
+                <Base.MaxContent className={this.decorateCSS("maxContent")}>
                     {gallery.map((cards: CardItemType, columnIndex: number) => {
-                        const isOdd = columnIndex % 2 !== 0;
-                        const columnClass = isOdd ? "column-odd" : "column-even";
-                        const image = cards.image;
-                        const title = this.castToString(cards.title);
-                        const subtitle = this.castToString(cards.subtitle);
-                        const translateY = (columnIndex === 1 || columnIndex === 3) ? -scrollY * 0.5 : 0;
+                        const isEven = (columnIndex) % 2 !== 0;
+                        const columnClass = isEven ? "columnEven" : "columnOdd";
+                        const style = isEven ? null : { transform: `translateY(-${this.scrollOffset}px)` };
                         return (
                             <div
                                 key={columnIndex}
                                 className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
-                                style={{ transform: `translateY(${translateY}px)` }}
+                                style={style}
                             >
                                 <div key={columnIndex} className={this.decorateCSS("wrapper")}>
-                                    {(title || subtitle) &&
-                                        <div
-                                            className={this.decorateCSS("card")}
-                                        >
-                                            <img src={image} alt={title} className={this.decorateCSS("image")} />
-                                            <div className={this.decorateCSS("text-container")}>
-                                                <div className={this.decorateCSS("title")}>{title}</div>
-                                                <div className={this.decorateCSS("subtitle")}>{subtitle}</div>
+                                    {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
+                                        <div className={this.decorateCSS("card")}>
+                                            <img src={cards.image} alt={this.castToString(cards.subtitle)} className={this.decorateCSS("image")} />
+                                            <div className={this.decorateCSS("textContainer")}>
+                                                <div className={this.decorateCSS("title")}>{cards.title}</div>
+                                                <div className={this.decorateCSS("subtitle")}>{cards.subtitle}</div>
                                             </div>
                                         </div>
                                     }
@@ -420,8 +408,8 @@ class ImageGallery7 extends BaseImageGallery {
                             </div>
                         );
                     })}
-                </div>
-            </div>
+                </Base.MaxContent>
+            </Base.Container>
         );
     }
 }
