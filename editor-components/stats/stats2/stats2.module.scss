@@ -1,12 +1,8 @@
 .container {
-  width: 100%;
-  padding: 20px 50px;
   color: var(--composer-font-color-primary);
   display: flex;
-  justify-content: center;
 
   .max-content {
-    max-width: var(--composer-content-width);
     display: flex;
     justify-content: center;
     align-items: start;
@@ -14,15 +10,12 @@
 
     .header-wrapper {
       width: 60%;
-      margin-bottom: 50px;
 
       &.full-width {
         min-width: 100%;
       }
 
       .header {
-        font-size: 50px;
-        font-weight: 600;
         word-break: break-word;
       }
     }
@@ -36,8 +29,7 @@
       .subHeader {
         width: 65%;
         position: sticky;
-        top: 80px;
-        font-size: 18px;
+        top: 5rem;
         display: unset;
         line-height: 1.5;
 
@@ -61,11 +53,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 30px 0 60px 0;
-            padding: 18px 34px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            padding: 1rem 2rem;
             text-transform: uppercase;
             background-color: var(--composer-secondary-color);
             color: var(--composer-font-color-secondary);
@@ -73,33 +61,36 @@
             word-break: break-word;
             cursor: pointer;
             max-width: 90%;
+            border-radius: var(--composer-border-radius-xs);
 
             &.animated {
-              transition: transform 0.4s ease !important;
+              transition: transform 0.4s ease;
             }
 
             &.animated:hover {
-              transform: translateY(-2px) !important;
+              transform: translateY(-2px);
             }
 
             .contact-button-icon {
               flex-shrink: 0;
-              margin-left: 8px;
-              font-size: 20px;
+              margin-left: .5rem;
+              font-size: 1rem;
               color: var(--composer-font-color-secondary);
             }
 
             &.button-full-width {
-              max-width: 30% !important;
+              max-width: 30%;
             }
           }
         }
       }
 
+      .no-title{
+        top: 0;
+      }
+
       .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
+        gap: 0;
 
         .listed {
           display: flex;
@@ -109,20 +100,19 @@
           flex-grow: 1;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
           border-bottom: none;
-          padding: 20px 60px 30px 60px;
+          padding: 1rem 3rem 1.5rem 3rem;
+          gap: var(--composer-gap-xl);
 
           .card-text {
             position: relative;
             flex: 1;
             width: 85%;
-            font-size: 19px;
             text-align: left;
             word-break: break-word;
             white-space: normal;
             text-overflow: ellipsis;
             line-height: 1.5;
             overflow: hidden;
-            margin-bottom: 20%;
           }
 
           .card-amount-container {
@@ -130,7 +120,7 @@
             align-items: flex-start;
 
             .card-icon {
-              font-size: 40px;
+              font-size: 2.5rem;
               color: var(--composer-font-color-primary);
               flex-shrink: 0;
             }
@@ -139,11 +129,10 @@
               position: relative;
               flex-shrink: 0;
               text-align: left;
-              font-size: 5rem;
+              font-size: 4rem;
               font-weight: bold;
               color: var(--composer-font-color-primary);
               margin: 0;
-              margin-bottom: 30px;
               max-width: 85%;
               overflow: hidden;
               white-space: nowrap;
@@ -151,8 +140,9 @@
             }
 
             .card-icon-after {
-              font-size: 30px;
-              margin-top: 20px;
+              font-size: 2rem;
+              margin-top: auto;
+              margin-bottom: auto;
               flex-shrink: 0;
             }
           }
@@ -174,34 +164,27 @@
   }
 }
 
-@container (min-width: 400px) and (max-width: 768px) {
+@container (max-width: 768px) {
   .container {
-    padding: 20px 30px;
-
     .max-content {
       .header-wrapper {
-        width: 100% !important;
+        width: 100%;
 
         &.full-width {
           min-width: 100%;
         }
-
-        .header {
-          font-size: 40px !important;
-          font-weight: 600 !important;
-        }
       }
 
       .bottom-content {
-        flex-direction: column !important;
+        flex-direction: column;
 
         .subHeader {
-          width: 100% !important;
-          margin-right: 0 !important;
-          position: static !important;
+          width: 100%;
+          margin-right: 0;
+          position: static;
 
           .description {
-            max-width: 100% !important;
+            max-width: 100%;
 
             &.full-width {
               min-width: 100%;
@@ -216,40 +199,41 @@
             display: inherit;
 
             .contact-button {
-              max-width: 100% !important;
+              max-width: 100%;
 
               &.button-full-width {
-                max-width: 60% !important;
+                max-width: 60%;
               }
             }
           }
         }
 
         .cards-container {
-          width: 100% !important;
-
           .listed {
-            width: 50% !important;
-            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2) !important;
-            border-bottom: none !important;
-            padding: 30px 40px !important;
-            max-width: 100% !important;
+            width: 100%;
+            padding: 2rem 2.5rem;
+            max-width: 100%;
 
             &:first-child {
-              border-top: none !important;
+              border-top: none;
             }
 
             &:nth-child(2) {
-              border-top: none !important;
+              border-top: none;
             }
 
             .card-amount-container {
               .card-amount {
-                max-width: 80% !important;
+                max-width: 80%;
+                font-size: 3.5rem;
               }
 
               .card-icon {
-                font-size: 30px !important;
+                font-size: 2rem;
+              }
+
+              .card-amoun::after {
+                font-size: 1.5rem;
               }
             }
           }
@@ -259,81 +243,40 @@
   }
 }
 
-@container (max-width: 399px) {
+@container (max-width: 480px) {
   .container {
-    padding: 20px 30px;
-
     .max-content {
-      .header-wrapper {
-        width: 100% !important;
-
-        &.full-width {
-          min-width: 100%;
-        }
-
-        .header {
-          font-size: 30px !important;
-        }
-      }
-
       .bottom-content {
-        flex-direction: column !important;
-
         .subHeader {
-          width: 100% !important;
-          margin-right: 0 !important;
-          position: static !important;
-
-          .description {
-            max-width: 100% !important;
-
-            &.full-width {
-              min-width: 100%;
-            }
-          }
-
-          &.full-width {
-            min-width: 100%;
-          }
-
           .button-content {
-            display: inherit;
-
             .contact-button {
-              max-width: 100% !important;
-
               &.button-full-width {
-                max-width: 80% !important;
+                max-width: 80%;
               }
             }
           }
         }
 
         .cards-container {
-          width: 100% !important;
-
           .listed {
-            width: 100% !important;
-            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2) !important;
-            border-bottom: none !important;
-            padding: 30px 40px !important;
+            padding: 1.5rem 2rem;
 
             &:first-child {
-              border-top: none !important;
+              border-top: none;
             }
 
             .card-amount-container {
               .card-icon {
-                font-size: 30px !important;
+                font-size: 1.5rem;
               }
 
               .card-amount {
-                font-size: 4rem !important;
-                max-width: 70% !important;
+                font-size: 3rem;
+                max-width: 70%;
               }
 
               .card-icon-after {
-                margin-top: 15px !important;
+                font-size: 1.5rem;
               }
             }
           }

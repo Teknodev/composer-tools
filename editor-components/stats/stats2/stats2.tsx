@@ -3,6 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   amount: number;
@@ -297,7 +298,7 @@ class Stats2Page extends BaseStats {
         (isTextExist || amount !== null || card.icon || card.secondIcon) && (
           <div ref={ref} className={this.decorateCSS("listed")}>
             {isTextExist && (
-              <div className={this.decorateCSS("card-text")}>{card.text}</div>
+              <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>
             )}
             {(amount !== null || card.icon || card.secondIcon) && (
               <div className={this.decorateCSS("card-amount-container")}>
@@ -308,10 +309,10 @@ class Stats2Page extends BaseStats {
                   />
                 )}
                 {(amount !== null && amount !== "NaN") && (
-                  <h2 className={this.decorateCSS("card-amount")}>
+                  <div className={this.decorateCSS("card-amount")}>
                     {integerPart}
                     {showDecimals && decimalPart && <span>.{decimalPart}</span>}
-                  </h2>
+                  </div>
                 )}
                 {card.secondIcon && (
                   <ComposerIcon
@@ -327,30 +328,30 @@ class Stats2Page extends BaseStats {
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isHeaderExist && (
-            <div className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
-              <div className={this.decorateCSS("header")}>{header}</div>
-            </div>
+            <Base.VerticalContent className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
+              <Base.SectionTitle className={this.decorateCSS("header")}>{header}</Base.SectionTitle>
+            </Base.VerticalContent>
           )}
 
           <div className={this.decorateCSS("bottom-content")}>
             {(isSubHeader || isContactButtonExist || contactButtonIcon) && (
-              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
+              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!isHeaderExist && this.decorateCSS("no-title")}`}>
                 {isSubHeader && (
-                  <div className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
                     {subHeader}
-                  </div>
+                  </Base.SectionDescription>
                 )}
 
                 {(isContactButtonExist || contactButtonIcon) && (
                   <ComposerLink path={contactButtonLink}>
                     <div className={this.decorateCSS("button-content")}>
-                      <p className={`${this.decorateCSS("contact-button")} ${buttonAnimationEnabled ? this.decorateCSS("animated") : ""} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
+                      <Base.P className={`${this.decorateCSS("contact-button")} ${buttonAnimationEnabled ? this.decorateCSS("animated") : ""} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
                         {isContactButtonExist}
                         <ComposerIcon name={contactButtonIcon} propsIcon={{ className: this.decorateCSS("contact-button-icon") }} />
-                      </p>
+                      </Base.P>
                     </div>
                   </ComposerLink>
                 )}
@@ -358,7 +359,7 @@ class Stats2Page extends BaseStats {
             )}
 
             {cards.length > 0 && (
-              <div className={this.decorateCSS("cards-container")}>
+              <Base.ContainerGrid className={this.decorateCSS("cards-container")}>
                 {cards.map((card, index) => {
                   const isTextExist = this.castToString(card.text);
                   return (
@@ -370,11 +371,11 @@ class Stats2Page extends BaseStats {
                     />
                   );
                 })}
-              </div>
+              </Base.ContainerGrid>
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
