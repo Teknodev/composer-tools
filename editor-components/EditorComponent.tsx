@@ -11,15 +11,8 @@ type PreSufFix = {
 };
 
 export type TypeLocation = {
-  markers: {
-    lat: number;
-    lng: number;
-    icon?: {
-      url: string;
-      width?: number;
-      height?: number;
-    };
-  }[];
+  lat: number;
+  lng: number;
 };
 
 type GetPropValueProperties = {
@@ -161,9 +154,9 @@ export abstract class Component extends React.Component<{}, { states: any; compo
       const stringPrefix = renderToString(prefix || <></>);
       const stringSuffix = renderToString(suffix || <></>);
 
-      const hasHtmlTag = html.includes("<");
+      const hasHtmlTag = html.indexOf("<");
 
-      if (!hasHtmlTag) {
+      if (hasHtmlTag != 0 && hasHtmlTag != -1) {
         html = `<p> ${html} </p>`;
       }
 
