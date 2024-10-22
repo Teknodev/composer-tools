@@ -213,6 +213,7 @@ import NoticeModal from "./modal/notice-modal/notice";
 import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 import FormModal1 from "./modal/formmodal1/formmodal1";
+import ImageGalleryComponent6 from "./Image_gallery/image_gallery_6/image-gallery6";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     new NotificationModal1(),
@@ -348,6 +349,7 @@ function Registerables(composer: ComponentsRegistery) {
     new ImageGalleryComponent1(),
     new ImageGalleryCompanent5(),
     new ImageGalleryComponent4(),
+    new ImageGalleryComponent6(),
     new FeatureComponent1(),
     new FeatureComponent2(),
     new FeatureComponent3(),
