@@ -710,23 +710,23 @@ class ImageGallery2 extends BaseImageGallery {
           <Base.VerticalContent className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("section-selector-text")}>
               {showAll && (
-                <Base.P
+                <Base.H4
                   className={`${this.decorateCSS("section-text")} ${currentIndex === -1 ? this.decorateCSS("active") : ""
                     }`}
                   onClick={() => this.setComponentState("default", -1)}
                 >
                   All
-                </Base.P>
+                </Base.H4>
               )}
               {galleryCollection.map((element: any, index: number) => (
-                <Base.P
+                <Base.H4
                   className={`${this.decorateCSS("section-text")} ${index === currentIndex ? this.decorateCSS("active") : ""
                     }`}
                   key={index}
                   onClick={() => this.setComponentState("default", index)}
                 >
                   {element.getPropValue("title")}
-                </Base.P>
+                </Base.H4>
               ))}
             </div>
             <div className={this.decorateCSS("gallery-grid")}>
