@@ -2,6 +2,14 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery6.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+interface GalleryItem {
+  image: string,
+  badge: JSX.Element,
+  title: JSX.Element,
+  description: JSX.Element,
+  buttonText: JSX.Element,
+  url: string
+}
 
 class ImageGalleryComponent6 extends BaseImageGallery {
   constructor(props?: any) {
@@ -9,18 +17,18 @@ class ImageGalleryComponent6 extends BaseImageGallery {
 
     this.addProp({
       type: "array",
-      key: "gallery",
-      displayer: "Gallery",
+      key: "galleries",
+      displayer: "Galleries",
       value: [
         {
           type: "object",
-          key: "imageGallery",
-          displayer: "Image1",
+          key: "gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image1",
+              key: "image",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/671618cab4a116002cfc6451?alt=media",
             },
@@ -58,13 +66,13 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         },
         {
           type: "object",
-          key: "imageGallery",
-          displayer: "Image2",
+          key: "gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image2",
+              key: "image",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161927b4a116002cfc6483?alt=media",
             },
@@ -102,13 +110,13 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         },
         {
           type: "object",
-          key: "imageGallery",
-          displayer: "Image3",
+          key: "gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image3",
+              key: "image",
+              displayer: "Image",
               value:
 
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161e2bb4a116002cfc66fd?alt=media",
@@ -147,13 +155,13 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         },
         {
           type: "object",
-          key: "imageGallery",
-          displayer: "Image4",
+          key: "gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image4",
+              key: "image",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6716195ab4a116002cfc64c8?alt=media",
             },
@@ -191,13 +199,13 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         },
         {
           type: "object",
-          key: "imageGallery",
-          displayer: "Image5",
+          key: "gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image5",
+              key: "Image",
+              displayer: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161e87b4a116002cfc671a?alt=media",
             },
@@ -235,13 +243,13 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         },
         {
           type: "object",
-          key: "imageGallery",
-          displayer: "Image6",
+          key: "gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image6",
+              key: "image",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161ea2b4a116002cfc6726?alt=media",
             },
@@ -279,13 +287,13 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         },
         {
           type: "object",
-          key: "imageGallery",
-          displayer: "Image7",
+          key: "gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image7",
+              key: "image",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161ebeb4a116002cfc6733?alt=media",
             },
@@ -323,13 +331,13 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         },
         {
           type: "object",
-          key: "imageGallery",
-          displayer: "Image8",
+          key: "gallery",
+          displayer: "Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image8",
+              key: "image",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67164553b4a116002cfc7280?alt=media",
             },
@@ -374,37 +382,60 @@ class ImageGalleryComponent6 extends BaseImageGallery {
   }
 
   render() {
-    const galleries = this.getPropValue("gallery");
-    console.log("galleries", galleries)
+    const galleries = this.castToObject<GalleryItem[]>("galleries");
+    console.log("galleries", galleries[0].title)
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("left-content")}>
-            {galleries
-              .filter((_: unknown, index: number) => index % 2 === 0)
-              .map((item: any, index: number) => (
-                <div key={index} className={`${this.decorateCSS("images")} ${index % 2 === 0 ? this.decorateCSS("large-image") : this.decorateCSS("small-image")}`}>
-                  <div className={this.decorateCSS("image-wrapper")}>
-                    <img src={item.value[0].value} alt={`Gallery Image ${index + 1}`} />
-                    <div className={this.decorateCSS("badge")}>
-                      {item.value[1]?.value}
+          <div className={this.decorateCSS("content")}>
+            {galleries.map((item: GalleryItem, index: number) => {
+              const position = (index % 4) + 1;
+              const smallCard = position === 2 || position === 3;
+              const left = (index % 2) === 0;
+              return (
+                <div className={left ? this.decorateCSS("left-container") : this.decorateCSS("right-container")}>
+                  <div className={`${this.decorateCSS("images")} ${smallCard ? this.decorateCSS("small-image") : this.decorateCSS("large-image")}`}>
+                    <div className={this.decorateCSS("image-wrapper")}>
+                      <img src={item.image} alt={item.image} />
                     </div>
                   </div>
-                  <div className={this.decorateCSS("title")}>
-                    {item.value[2]?.value}
-                  </div>
-                  <div className={this.decorateCSS("description")}>
-                    {item.value[3]?.value}
-                  </div>
-                  <div className={this.decorateCSS("button")}>
-                    {item.value[4]?.value}
-                  </div>
                 </div>
-              ))}
+
+              )
+
+            })}
+            {/* {galleries.map((item: any, index: number) => {
+              const position = (index % 4) + 1;
+              const smallCard = position === 2 || position === 3;
+              <img src={item.value[0]} className={this.decorateCSS("image")}>
+              </img>
+            })
+              // galleries
+              //   .filter((_: unknown, index: number) => index % 2 === 0)
+              //   .map((item: any, index: number) => (
+              // <div key={index} className={`${this.decorateCSS("images")} ${index % 2 === 0 ? this.decorateCSS("large-image") : this.decorateCSS("small-image")}`}>
+              //   <div className={this.decorateCSS("image-wrapper")}>
+              //     <img src={item.value[0].value} alt={`Gallery Image ${index + 1}`} />
+              //     <div className={this.decorateCSS("badge")}>
+              //       {item.value[1]?.value}
+              //     </div>
+              //   </div>
+              //   <div className={this.decorateCSS("title")}>
+              //     {item.value[2]?.value}
+              //   </div>
+              //   <div className={this.decorateCSS("description")}>
+              //     {item.value[3]?.value}
+              //   </div>
+              //   <div className={this.decorateCSS("button")}>
+              //     {item.value[4]?.value}
+              //   </div>
+              // </div>
+              // ))
+            } */}
           </div>
 
-          <div className={this.decorateCSS("right-content")}>
+          {/* <div className={this.decorateCSS("right-content")}>
             {galleries
               .filter((_: unknown, index: number) => index % 2 === 1)
               .map((item: any, index: number) => (
@@ -426,7 +457,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                   </div>
                 </div>
               ))}
-          </div>
+          </div> */}
         </div>
       </div>
     );
