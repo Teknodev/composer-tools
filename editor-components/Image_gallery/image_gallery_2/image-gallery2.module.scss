@@ -1,69 +1,45 @@
-.surface {
-  display: flex;
-  flex-direction: column;
-  padding: 20px 50px;
-  background-color: var(--composer-html-background);
-
+.container {
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
-
     .content {
       align-items: center;
-      font-weight: 400;
-
       .section-selector-text {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
-        font-size: 1.25rem;
-        font-weight: 500;
-        padding-bottom: 1.5em;
-
+        width: 100%;
+        gap:var(--composer-gap-md);
         .section-text {
           display: flex;
-          padding: 10px 20px;
-          margin: 5px 0;
-          font-weight: 500;
           background: transparent;
           color: var(--composer-font-color-primary);
           cursor: pointer;
           transition: color 0.3s ease;
-
           &:hover,
           &.active {
             color: var(--composer-primary-color);
             text-decoration: underline;
-            text-underline-offset: 6.5px;
+            text-underline-offset: var(--composer-gap-xs);
           }
         }
       }
 
       .gallery-grid {
         display: grid;
-        padding-bottom: 4%;
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
         transition: transform 1s ease;
+        gap:var(--composer-gap-md);
 
         .gallery-item {
-          position: relative;
           cursor: pointer;
           overflow: hidden;
-          border-radius: 8px;
           transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
           opacity: 1;
-
+          border-radius: var(--composer-border-radius-md);
           .image-container {
             width: 100%;
-            aspect-ratio: 4 / 3;
             position: relative;
-            overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: center;
-
             .gallery-image {
               width: 100%;
               height: 100%;
@@ -87,7 +63,7 @@
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-font-color-primary);
               border-radius: 50%;
-              padding: 10px;
+              padding: var(--composer-gap-sm);
               position: absolute;
               top: 60%;
               left: 50%;
@@ -116,37 +92,70 @@
         }
       }
     }
-
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(var(--composer-html-background-rgb), 0.6);
+      z-index: 10;
+      .modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+        .close,
+        .prev,
+        .next {
+          position: absolute;
+          color: var(--composer-font-color-primary);
+          font-size: 2.5rem;
+          user-select: none;
+          cursor: pointer;
+          z-index: 10;
+        }
+        .close {
+          top: 10px;
+          right: 10px;
+          font-size: 3rem;
+        }
+        .prev {
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        .next {
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
     .image-container {
       width: 100%;
       height: 100%;
       aspect-ratio: 4 / 3;
-      position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
       .modal-image {
-        width: 100%;
-        height: 100%;
         object-fit: cover;
-        min-width: 600px;
-        min-height: 450px;
+        width: 600px;
+        height: 450px;
         max-width: 600px;
         max-height: 450px;
       }
     }
-
     .image-info {
       font-weight: bold;
       position: absolute;
       display: flex;
       justify-content: space-between;
-      padding: 16px 0;
       color: var(--composer-font-color-primary);
       font-size: 1rem;
       width: 100%;
+      padding: var(--composer-gap-xs) 0px;
 
       .image-title {
         text-align: left;
@@ -159,60 +168,11 @@
         width: 50%;
       }
     }
-
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(var(--composer-html-background-rgb), 0.6);
-      z-index: 1000;
-    }
-
-    .modal-content {
-      position: relative;
-      margin: auto;
-      max-width: 90%;
-      max-height: 90%;
-    }
-
-    .close,
-    .prev,
-    .next {
-      position: absolute;
-      color: var(--composer-font-color-primary);
-      font-size: 2.5rem;
-      user-select: none;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .close {
-      top: 10px;
-      right: 10px;
-      font-size: 3rem;
-    }
-
-    .prev {
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .next {
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
   }
 }
 
-@media only screen and (max-width: 1000px) {
-  .surface {
+@container (max-width: 1000px) {
+  .container {
     .max-content {
       .content .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -221,33 +181,33 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
-  .surface {
-    padding: 20px 20px;
-
-    .gallery-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    .section-selector-text {
-      flex-direction: column !important;
-      align-items: center !important;
-    }
-
-    .section-text {
-      padding: 0 50px !important;
-    }
-
-    .prev,
-    .next,
-    .close {
-      font-size: 1.5rem !important;
-      padding: 5px !important;
-    }
-
-    .max-content .image-container .modal-image {
-      min-width: 325px;
-      min-height: 0;
+@container (max-width: 500px) {
+  .container {
+    .max-content {
+      .content{
+        .section-selector-text {
+          flex-direction: column !important;
+          align-items: center ;
+          .section-text {
+            padding: 0 50px;
+          }
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .modal{
+        .prev,
+        .next,
+        .close {
+          font-size: 1.5rem !important;
+          padding: 5px !important;
+        }
+      }
+      .max-content .image-container .modal-image {
+        min-width: 325px !important;
+        min-height: 0 !important;
+      }
     }
   }
 }

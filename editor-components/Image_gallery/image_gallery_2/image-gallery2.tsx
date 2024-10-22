@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ImageType = {
   image: string;
@@ -643,7 +644,7 @@ class ImageGallery2 extends BaseImageGallery {
       this.closeModal();
     }
   };
-  
+
   openModal = (index: number) => {
     this.setComponentState("modalOpen", true);
     this.setComponentState("currentImageIndex", index);
@@ -704,30 +705,28 @@ class ImageGallery2 extends BaseImageGallery {
     const showAll = this.getPropValue("showAll");
 
     return (
-      <div className={this.decorateCSS("surface")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("section-selector-text")}>
               {showAll && (
-                <h3
-                  className={`${this.decorateCSS("section-text")} ${
-                    currentIndex === -1 ? this.decorateCSS("active") : ""
-                  }`}
+                <Base.P
+                  className={`${this.decorateCSS("section-text")} ${currentIndex === -1 ? this.decorateCSS("active") : ""
+                    }`}
                   onClick={() => this.setComponentState("default", -1)}
                 >
                   All
-                </h3>
+                </Base.P>
               )}
               {galleryCollection.map((element: any, index: number) => (
-                <h3
-                  className={`${this.decorateCSS("section-text")} ${
-                    index === currentIndex ? this.decorateCSS("active") : ""
-                  }`}
+                <Base.P
+                  className={`${this.decorateCSS("section-text")} ${index === currentIndex ? this.decorateCSS("active") : ""
+                    }`}
                   key={index}
                   onClick={() => this.setComponentState("default", index)}
                 >
                   {element.getPropValue("title")}
-                </h3>
+                </Base.P>
               ))}
             </div>
             <div className={this.decorateCSS("gallery-grid")}>
@@ -746,20 +745,18 @@ class ImageGallery2 extends BaseImageGallery {
                         className={this.decorateCSS("gallery-image")}
                       />
                       <div className={this.decorateCSS("overlay")} />
-                      <div className={this.decorateCSS("zoom-icon")}>
-                        <ComposerIcon
-                          propsIcon={{
-                            className: this.decorateCSS("magnifier-icon"),
-                          }}
-                          name={magnifierIcon}
-                        />
-                      </div>
+                      <ComposerIcon
+                        propsIcon={{
+                          className: this.decorateCSS("magnifier-icon"),
+                        }}
+                        name={magnifierIcon}
+                      />
                     </div>
                   </div>
                 );
               })}
             </div>
-          </div>
+          </Base.VerticalContent>
           {modalOpen && (
             <div
               className={this.decorateCSS("modal")}
@@ -815,8 +812,8 @@ class ImageGallery2 extends BaseImageGallery {
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

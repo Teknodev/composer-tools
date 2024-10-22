@@ -13,6 +13,7 @@ type PreSufFix = {
 export type TypeLocation = {
   lat: number;
   lng: number;
+
 };
 
 type GetPropValueProperties = {
@@ -34,6 +35,7 @@ export type iComponent = {
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
+  id: number
 };
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -62,8 +64,8 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-  };
+  getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -90,6 +92,7 @@ export enum CATEGORIES {
 export abstract class Component extends React.Component<{}, { states: any; componentProps: any }> implements iComponent {
   private styles: any;
   private _props: any;
+  public id: number;
   protected category: CATEGORIES;
   abstract getName(): string;
 
@@ -97,6 +100,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     super(props);
     this._props = props;
     this.styles = styles;
+    this.id = Math.random();
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = (props && props[key]) || [];
