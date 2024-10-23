@@ -290,7 +290,6 @@
   .container {
     .max-content {
       padding: 20px 30px;
-      padding: 20px 30px;
       .page {
         flex-direction: column !important;
         flex-direction: column-reverse !important;
@@ -298,8 +297,7 @@
         .right-page {
           flex: auto !important;
           position: static !important;
-        flex-direction: column-reverse !important;
-        gap:50px;
+          gap:10px;
         .right-page {
           flex: auto !important;
           position: static !important;
