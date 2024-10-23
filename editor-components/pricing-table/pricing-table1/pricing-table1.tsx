@@ -699,8 +699,8 @@ class PricingTable1 extends BasePricingTable {
                         className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular && this.decorateCSS("active")}`}>
                         <span className={this.decorateCSS("popular-text")}>{table.popular_settings.text}</span>
                       </div>
-                      <h3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</h3>
-                      <h3 className={this.decorateCSS("card-title")}>{table.cardTitle}</h3>
+                      <Base.H3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</Base.H3>
+                      <Base.H3 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H3>
                       <div className={this.decorateCSS("card-list")}>
                         {table.cardList.map((listItem: any, index: number) => {
                           return (

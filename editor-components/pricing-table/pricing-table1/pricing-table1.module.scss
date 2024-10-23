@@ -90,7 +90,7 @@
             .card-list-item {
               display: flex;
               align-items: center;
-              gap: 6px;
+              gap: var(--composer-gap-xs);
               padding: var(--composer-gap-sm) var(--composer-gap-lg);
               border-top: 1px solid var(--composer-tertiary-color);
               color: var(--composer-font-color-primary);
@@ -122,7 +122,7 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              gap: 6px;
+              gap: var(--composer-gap-xs);
               .price {
                 font-size: 2.5rem;
                 font-weight: 600;
@@ -155,13 +155,13 @@
         align-items: center;
         margin: var(--composer-gap-lg) 0;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: var(--composer-gap-md);
         color: var(--composer-font-color-primary);
 
         .title-bottom {
           display: flex;
           align-items: center;
-          gap: 5px;
+          gap: var(--composer-gap-xs);
         }
       }
     }
