@@ -4,6 +4,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   image: string;
@@ -341,21 +342,21 @@ class List1 extends BaseList {
       },
     };
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-text")}>
             {this.castToString(subTitle) && (
-              <h4 className={this.decorateCSS("subtitle")}>
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {this.castToString(subTitle)}
-              </h4>
+              </Base.SectionSubTitle>
             )}
             {this.castToString(title) && (
-              <h1 className={this.decorateCSS("title")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.castToString(title)}
-              </h1>
+              </Base.SectionTitle>
             )}
           </div>
-          <div className={this.decorateCSS("carousel-div")}>
+          <Base.ListGrid className={this.decorateCSS("carousel-div")}>
             <ComposerSlider
               {...settings}
               className={this.decorateCSS("carousel")}
@@ -366,7 +367,7 @@ class List1 extends BaseList {
                 const leftCardIndex = activeIndex === 0 ? sliderItems.length - 1 : activeIndex - 1;
 
                 return (
-                  <div
+                  <Base.VerticalContent
                     key={indexSlider}
                     className={`${this.decorateCSS("card")}
                     ${
@@ -399,24 +400,24 @@ class List1 extends BaseList {
                       )}
 
                       {this.castToString(item.title) && (
-                        <span className={this.decorateCSS("title")}>
+                        <Base.H2 className={this.decorateCSS("title")}>
                           {item.title}
-                        </span>
+                        </Base.H2 >
                       )}
 
                       {this.castToString(item.subtitle) && (
-                        <span className={this.decorateCSS("subtitle")}>
+                        <Base.P  className={this.decorateCSS("subtitle")}>
                           {item.subtitle}
-                        </span>
+                        </Base.P >
                       )}
 
                       {this.castToString(item.text) && (
                         <>
                           <ComposerLink path={item.url}>
                             <div className={this.decorateCSS("link")}>
-                              <span className={this.decorateCSS("text")}>
+                              <Base.H3  className={this.decorateCSS("text")}>
                                 {item.text}
-                              </span>
+                              </Base.H3 >
                               <ComposerIcon
                                 name={item.icon}
                                 propsIcon={{
@@ -428,13 +429,13 @@ class List1 extends BaseList {
                         </>
                       )}
                     </div>
-                  </div>
+                  </Base.VerticalContent>
                 );
               })}
             </ComposerSlider>
-          </div>
-        </div>
-      </div>
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
