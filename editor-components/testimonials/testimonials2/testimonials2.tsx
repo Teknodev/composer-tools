@@ -241,7 +241,7 @@ class Testimonials2Page extends Testimonials {
       autoplaySpeed: 3000,
       slidesToShow: 4,
       slidesToScroll: 1,
-      arrow: false,
+      arrows: false,
     };
 
     return (
@@ -263,17 +263,17 @@ class Testimonials2Page extends Testimonials {
             >
               {this.castToObject<Item[]>("card-items").map(
                 (item: Item, index: number) => (
-                  <div key={`tsm-2-${index}`}>
+                  <div key={`tsm-2-${index}`} className={this.decorateCSS("card-wrapper")}>
                     <div
-                    // style={{
-                    //   width: 100 / this.getPropValue("itemCount") + "%",
-                    //   display: "flex",
-                    //   justifyContent: "center",
-                    //   flexWrap: "wrap",
-                    //   minWidth: "20px",
-                    // }}
+                      style={{
+                        width: 100 / this.getPropValue("itemCount") + "%",
+                        display: "flex",
+                        justifyContent: "center",
+                        flexWrap: "wrap",
+                        minWidth: "20px",
+                      }}
                     >
-                      <Base.ContainerGrid key={index} className={this.decorateCSS("card")}>
+                      <div key={index} className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("icon")}>
                           <span className={this.decorateCSS("item-star")}>
                             {[...Array(Number(item.star))].map(
@@ -292,7 +292,7 @@ class Testimonials2Page extends Testimonials {
                         <h5 className={this.decorateCSS("item-subtitle")}>
                           {item.subtitle}{" "}
                         </h5>
-                      </Base.ContainerGrid>
+                      </div>
                     </div>
                   </div>
                 )

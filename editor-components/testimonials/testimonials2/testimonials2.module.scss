@@ -1,8 +1,9 @@
 .container {
     .max-content {
         .testimonials2{
-            justify-content: center;
-
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
             .top-content{
                 width: 100%;
                 .badge{
@@ -15,47 +16,52 @@
 
             .slider-style{
                 width: 100%;
-                .gridcell{
-                    display: flex !important;
+                >div{
+                    >div{
+                        display: flex;
+                        gap: var(--composer-gap-xl);
+                    }
                 }
+
             }
 
-
-            .card {
-                padding: 30px;
-                min-width: 380px;
-                border-radius: 6px;
-                background-color: var(--composer-html-background);
-                flex: 1 1;
-                border: 1px solid var(--composer-tertiary-color);
-                font-size: 20px;
-                margin-right: 100px;
-                .icon{
-                    width: 36%;
-                    color: var(--composer-tertiary-color);
-                    margin-bottom: 20px
-
-                }
-
-                .item-description{
-                    color: var(--composer-font-color-primary);
-                    opacity: 2px;
-
-                }
-
-                .item-name{
-                    color: var(--composer-primary-color);
+            .card-wrapper{
+                .card {
+                    border-radius: 6px;
+                    background-color: var(--composer-html-background);
+                    flex: 1 1;
+                    border: 1px solid var(--composer-tertiary-color);
                     font-size: 20px;
-
-
+                    padding: var(--composer-gap-md);
+                    .icon{
+                        width: 36%;
+                        color: var(--composer-tertiary-color);
+                        margin-bottom: 20px
+    
+                    }
+    
+                    .item-description{
+                        color: var(--composer-font-color-primary);
+                        opacity: 2px;
+    
+                    }
+    
+                    .item-name{
+                        color: var(--composer-primary-color);
+                        font-size: 20px;
+    
+    
+                    }
+    
+                    .item-subtitle{
+                        font-size: 20px;
+                        font-weight: inherit;
+                        color: var(--composer-tertiary-color);
+                    }
                 }
 
-                .item-subtitle{
-                    font-size: 20px;
-                    font-weight: inherit;
-                    color: var(--composer-tertiary-color);
-                }
             }
+
         }
     }
 }
