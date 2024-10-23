@@ -4,6 +4,7 @@ import styles from "./feedbackmodal1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Emoji = {
   value: string;
@@ -269,7 +270,7 @@ class FeedbackModal1 extends BaseModal {
     const requiredMessage = this.castToString(this.getPropValue("requiredMessage"));
 
     return (
-      <div className={this.decorateCSS("feedback-modal")}>
+      <Base.Container className={this.decorateCSS("feedback-modal")}>
         <div className={this.decorateCSS("header-container")}>
           <div className={this.decorateCSS("header-content")}>
             <div className={this.decorateCSS("feedback-modal-header")}>
@@ -281,7 +282,7 @@ class FeedbackModal1 extends BaseModal {
                   }}
                 />
               )}
-              {isTitleExist && <h1 className={this.decorateCSS("feedback-modal-header-h1")}>{this.getPropValue("title")}</h1>}
+              {isTitleExist && <Base.H2 className={this.decorateCSS("feedback-modal-header-h1")}>{this.getPropValue("title")}</Base.H2>}
             </div>
             <button className={this.decorateCSS("feedback-modal-close-button")}>
               <ComposerIcon
@@ -301,9 +302,15 @@ class FeedbackModal1 extends BaseModal {
         {isHeaderTitleExist || isDescriptionExist ? (
           <>
             <div className={this.decorateCSS("modal-content-wrapper")}>
-              {isHeaderTitleExist && <h2 className={this.decorateCSS("modalContent")}>{this.getPropValue("headerTitle")}</h2>}
+              {isHeaderTitleExist && (
+                <Base.SectionTitle className={this.decorateCSS("modalContent")}>{this.getPropValue("headerTitle")}</Base.SectionTitle>
+              )}
 
-              {isDescriptionExist && <p className={this.decorateCSS("descriptionContent")}>{this.getPropValue("description")}</p>}
+              {isDescriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("descriptionContent")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
             </div>
           </>
         ) : (
@@ -333,7 +340,7 @@ class FeedbackModal1 extends BaseModal {
                         width: 100 / emojis.length + "%",
                       }}
                       key={index}>
-                      <span
+                      <div
                         id={`emoji-${index + 1}`}
                         className={`${this.decorateCSS("feedbackModalEmoji")} ${index === 2 && this.decorateCSS("selected")}`}
                         onClick={() => {
@@ -358,9 +365,9 @@ class FeedbackModal1 extends BaseModal {
                             />
                           </div>
                         )}
-                      </span>
+                      </div>
 
-                      {<>{this.castToString(item.label) && <p className={this.decorateCSS("emojiLabel")}>{item.label}</p>}</>}
+                      {<>{this.castToString(item.label) && <Base.P className={this.decorateCSS("emojiLabel")}>{item.label}</Base.P>}</>}
                     </div>
                   ))}
                 </div>
@@ -397,7 +404,7 @@ class FeedbackModal1 extends BaseModal {
             )}
           </Formik>
         )}
-      </div>
+      </Base.Container>
     );
   }
 }

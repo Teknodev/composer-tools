@@ -1,18 +1,17 @@
 .feedback-modal {
   max-width: 480px;
-  padding: 30px 20px;
-  border-radius: 10px;
+
+  border-radius: var(--composer-border-radius-lg);
   box-shadow: 0 4px 6px rgba(var(--composer-font-color-primary-rgb), 0.1);
-  background-color: var(--composer-html-background);
   transition: background-color 0.3s ease;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: var(--composer-gap-md);
 
   .header-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--composer-border-radius-lg);
 
     .header-content {
       display: flex;
@@ -21,18 +20,15 @@
         display: flex;
         align-items: center;
         position: relative;
-        gap: 10px;
-
+        gap: var(--composer-gap-sm);
         .icon {
-          width: 30px;
-          height: 30px;
+          width: 2rem;
+          height: 2rem;
           color: var(--composer-font-color-primary);
         }
 
         .feedback-modal-header-h1 {
           margin: 0;
-          font-size: 1.5rem;
-          flex-grow: 1;
           color: var(--composer-font-color-primary);
         }
       }
@@ -52,7 +48,7 @@
     }
     .divider {
       border: 1px solid rgba((var(--composer-font-color-primary-rgb)), 0.1);
-      border-radius: 10px;
+      border-radius: var(--composer-border-radius-sm);
       width: 100%;
       opacity: 1;
       visibility: visible;
@@ -67,41 +63,35 @@
   .modal-content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
-
+    gap: var(--composer-gap-md);
     .modalContent {
-      color: var(--composer-font-color-primary);
       margin: 0;
       text-align: center;
-      font-size: 2rem;
     }
 
     .descriptionContent {
       margin: 0;
       text-align: center;
-      font-size: 1rem;
       color: var(--composer-font-color-primary);
     }
   }
 
   .feedbackModalEmojis {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
 
     .emojiWrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: var(--composer-gap-md);
 
       .emojiLabel {
         background-color: var(--composer-font-color-primary);
         color: var(--composer-font-color-secondary);
         margin: 0;
         padding: 10px 20px;
-        border-radius: 25px;
+        border-radius: var(--composer-border-radius-xl);
         position: relative;
         display: inline-block;
         opacity: 0;
@@ -113,7 +103,7 @@
       .emojiLabel::after {
         content: "";
         position: absolute;
-        top: -13px;
+        top: -15px;
         left: 50%;
         transform: translateX(-50%);
         border-width: 10px;
@@ -129,12 +119,15 @@
         justify-content: center;
         border-radius: 50%;
         transition: background-color 0.3s, transform 0.3s;
+        background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
 
         &::after {
           content: "";
           position: absolute;
           top: 50%;
           left: 50%;
+          width: 4.5rem;
+          height: 4.5rem;
           transform: translate(-50%, -50%);
           border-radius: 50%;
           z-index: -1;
@@ -145,25 +138,19 @@
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
 
-        &::after {
-          width: 75px;
-          height: 75px;
-        }
-
         .emoji-wrapper {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 65px;
-          height: 65px;
+          width: 4rem;
+          height: 4rem;
         }
 
         .feedbackModalEmojiIcon {
           position: relative;
-          width: 40px;
-          height: 40px;
-          margin: auto;
-          border-radius: 50%;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: var(--composer-border-radius-xl);
           transition: background-color 0.3s, transform 0.3s;
         }
 
@@ -177,8 +164,8 @@
         }
 
         .feedbackModalEmojiImage {
-          width: 65px;
-          height: 65px;
+          width: 4rem;
+          height: 4rem;
           object-fit: cover;
           filter: grayscale(100%);
         }
@@ -226,7 +213,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: var(--composer-gap-md);
     }
 
     .input {
@@ -236,8 +223,8 @@
       border-radius: var(--composer-border-radius);
       background: rgba(var(--composer-font-color-primary-rgb), 0.1);
       color: var(--composer-font-color-primary);
-      padding-bottom: 55px;
-      padding-left: 10px;
+      padding-bottom: 3rem;
+      padding-left: 1rem;
       resize: none;
 
       &:focus {
@@ -263,78 +250,5 @@
     background: transparent;
     color: var(--composer-secondary-color);
     border: 1px solid var(--composer-secondary-color);
-  }
-}
-@media only screen and (max-width: 500px) {
-  .feedback-modal {
-    width: 90%;
-    .header-container {
-      gap: 20px;
-      .header-content {
-        .feedback-modal-header {
-          gap: 10px;
-          .icon {
-            width: 30px;
-            height: 30px;
-          }
-          .feedback-modal-header-h1 {
-            font-size: 1.25rem;
-          }
-        }
-      }
-      .feedback-modal-close-button {
-        font-size: 1.5rem;
-      }
-    }
-    .modal-content-wrapper {
-      gap: 10px;
-      margin-bottom: 10px;
-      .modalContent {
-        font-size: 1.75rem;
-      }
-      .descriptionContent {
-        font-size: 0.875rem;
-      }
-    }
-    .feedbackModalEmojis {
-      .emojiWrapper {
-        gap: 15px;
-        .emojiLabel {
-          padding: 10px 20px;
-          border-radius: 25px;
-        }
-
-        .feedbackModalEmoji {
-          &::after {
-            width: 65px;
-            height: 65px;
-          }
-          .emoji-wrapper {
-            width: 65px;
-            height: 65px;
-          }
-          .feedbackModalEmojiIcon {
-            width: 30px;
-            height: 30px;
-          }
-          .feedbackModalEmojiImage {
-            width: 55px;
-            height: 55px;
-          }
-        }
-      }
-    }
-    .contact-form {
-      .form-container {
-        gap: 20px;
-      }
-      .input {
-        padding-bottom: 40px;
-      }
-    }
-    .button {
-      padding: 10px;
-      font-size: 1rem;
-    }
   }
 }
