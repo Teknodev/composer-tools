@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats8.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ICard = {
   title: JSX.Element;
@@ -151,22 +152,19 @@ class Stats8Page extends BaseStats {
 
         if (statData.title) {
           const titleString = this.castToString(statData.title);
-
           const newNonNumericPrefix = titleString.match(/^\D+/)?.[0] || "";
           const newNonNumericSuffix = titleString.match(/\D+$/)?.[0] || "";
-
           const numericPart = parseInt(titleString.replace(/[^\d]/g, ""), 10) || 0;
-          let targetNumber = numericPart;
 
           if (
-            currentNumber !== targetNumber ||
+            currentNumber !== numericPart ||
             currentNonNumericPrefix !== newNonNumericPrefix ||
             currentNonNumericSuffix !== newNonNumericSuffix
           ) {
             let nextValue = Math.min(
-              targetNumber,
+              numericPart,
               currentNumber +
-              Math.ceil(targetNumber / Math.round(this.getPropValue("animationDuration") / 30))
+              Math.ceil(numericPart / Math.round(this.getPropValue("animationDuration") / 30))
             );
 
             let formattedNextValue = nextValue
@@ -193,20 +191,26 @@ class Stats8Page extends BaseStats {
       const currentOverlayNumber = parseInt(overlayString.replace(/\D+/g, ""), 10) || 0;
 
       const overlayNumberProp = this.castToString(this.getPropValue("overlayNumber"));
+      const newCurrentOverlayPrefix = overlayNumberProp.match(/^\D+/)?.[0] || "";
+      const newCurrentOverlaySuffix = overlayNumberProp.match(/\D+$/)?.[0] || "";
       const overlayNumericPart = parseInt(overlayNumberProp.replace(/[^\d]/g, ""), 10) || 0;
-      let targetOverlayNumber = overlayNumericPart;
 
-      if (currentOverlayNumber !== targetOverlayNumber) {
+      if (currentOverlayNumber !== overlayNumericPart ||
+        newCurrentOverlayPrefix !== currentOverlayPrefix ||
+        newCurrentOverlaySuffix !== currentOverlaySuffix
+      ) {
         let nextOverlayValue = Math.min(
-          targetOverlayNumber,
-          currentOverlayNumber + Math.ceil(targetOverlayNumber / Math.round(this.getPropValue("animationDuration") / 30))
+          overlayNumericPart,
+          currentOverlayNumber + Math.ceil(overlayNumericPart / Math.round(this.getPropValue("animationDuration") / 30))
         );
 
         let formattedOverlayValue = nextOverlayValue ? nextOverlayValue.toString() : "";
 
-        formattedOverlayValue = currentOverlayPrefix + formattedOverlayValue + currentOverlaySuffix;
+        const updatedValue = overlayNumericPart > 0
+          ? newCurrentOverlayPrefix + formattedOverlayValue + newCurrentOverlaySuffix
+          : newCurrentOverlayPrefix + formattedOverlayValue;
 
-        this.setComponentState("overlayNumberDisplay", formattedOverlayValue);
+        this.setComponentState("overlayNumberDisplay", updatedValue);
       }
     }, 30);
 
@@ -242,30 +246,31 @@ class Stats8Page extends BaseStats {
       statsData.length > 0;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent
           className={
             this.decorateCSS("max-content") +
             (!isContentPresent ? " full-width" : "")
           }
         >
           {isContentPresent && (
-            <div className={this.decorateCSS("stats8-page")}>
+            <Base.VerticalContent className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("content")}>
-                {isTitleExist && (
-                  <h2
-                    className={
-                      this.decorateCSS("title") +
-                      " " +
-                      this.decorateCSS("text-uppercase")
-                    }
-                  >
-                    {title}
-                  </h2>
-                )}
-
+                <Base.VerticalContent>
+                  {isTitleExist && (
+                    <Base.SectionTitle
+                      className={
+                        this.decorateCSS("title") +
+                        " " +
+                        this.decorateCSS("text-uppercase")
+                      }
+                    >
+                      {title}
+                    </Base.SectionTitle>
+                  )}
+                </Base.VerticalContent>
                 {isSubTitleExist && (
-                  <h6 className={this.decorateCSS("subtitle")}>{subtitle}</h6>
+                  <Base.P className={this.decorateCSS("subtitle")}>{subtitle}</Base.P>
                 )}
 
                 {(isTitleExist || isSubTitleExist) && this.getPropValue("showLine") && (
@@ -273,28 +278,28 @@ class Stats8Page extends BaseStats {
                 )}
 
                 {isDesExist && (
-                  <p className={this.decorateCSS("description")}>
+                  <Base.P className={this.decorateCSS("description")}>
                     {description}
-                  </p>
+                  </Base.P>
                 )}
 
                 {isAuthorExist && (
-                  <h5 className={this.decorateCSS("author")}>{author}</h5>
+                  <Base.P className={this.decorateCSS("author")}>{author}</Base.P>
                 )}
                 {isAuthorRoleExist && (
                   <div className={this.decorateCSS("author-role-container")}>
-                    <span className={this.decorateCSS("author-role")}>
+                    <Base.P className={this.decorateCSS("author-role")}>
                       {showBackground && (
                         <span
                           className={this.decorateCSS("author-role-background")}
                         ></span>
                       )}
                       {authorRole}
-                    </span>
+                    </Base.P>
                   </div>
                 )}
 
-                <div className={`${this.decorateCSS("stats")} ${!imageSrc ? this.decorateCSS("full-width") : ""
+                <Base.ListGrid className={`${this.decorateCSS("stats")} ${!imageSrc ? this.decorateCSS("full-width") : ""
                   }`}>
                   {statsData.map(
                     (statData: ICard, indexStat: number) => {
@@ -313,19 +318,19 @@ class Stats8Page extends BaseStats {
                                 <span className={this.decorateCSS("stat-title")}>
                                   {this.getComponentState(`number-${indexStat}`)}
                                 </span>}
-                              <h5
+                              <Base.P
                                 className={this.decorateCSS("stat-description")}
                               >
                                 {statData.description}
-                              </h5>
+                              </Base.P>
                             </div>
                           </div>
                         ))
                     }
                   )}
-                </div>
+                </Base.ListGrid>
               </div>
-            </div>
+            </Base.VerticalContent>
           )}
           {imageSrc && (
             <div className={this.decorateCSS("stats8-page")}>
@@ -343,9 +348,9 @@ class Stats8Page extends BaseStats {
                             </span>
                           )}
                         {overlayDescription && (
-                          <p className={this.decorateCSS("description")}>
+                          <Base.P className={this.decorateCSS("description")}>
                             {overlayDescription}
-                          </p>
+                          </Base.P>
                         )}
                       </div>
                     )}
@@ -353,8 +358,8 @@ class Stats8Page extends BaseStats {
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

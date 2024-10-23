@@ -7,7 +7,7 @@
 }
 
 @mixin threeDots {
-  display: -webkit-box !important;
+  display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -17,7 +17,7 @@
 @mixin threeDotsBlinkPage {
   >blinkpage {
     p {
-      display: -webkit-box !important;
+      display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
@@ -30,12 +30,9 @@ $color-mix: color-mix(in srgb, var(--composer-html-background), var(--composer-f
 $font-color-primary: var(--composer-font-color-primary);
 
 .container {
-  width: 100%;
-  padding: 20px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--composer-html-background);
   height: 100%;
 
   p {
@@ -50,10 +47,7 @@ $font-color-primary: var(--composer-font-color-primary);
   .max-content {
     display: flex;
     justify-content: space-around;
-    max-width: var(--composer-content-width);
-    margin: 0px auto;
-    width: 100%;
-    gap: 50px;
+    gap: var(--composer-gap-xl);
     height: 100%;
 
     &.image-absent {
@@ -63,8 +57,6 @@ $font-color-primary: var(--composer-font-color-primary);
 
     .stats8-page {
       width: 100%;
-      display: flex;
-      flex-direction: column;
       justify-content: flex-start;
 
       .content {
@@ -72,14 +64,13 @@ $font-color-primary: var(--composer-font-color-primary);
         flex-direction: column;
         justify-content: center;
         height: 100%;
+        gap: var(--composer-gap-md);
 
         .title {
-          margin: 0;
-          font-size: 40px;
           letter-spacing: 2px;
           color: $font-color-primary;
           word-break: break-word;
-          padding-bottom: 40px;
+          margin: 0;
         }
 
         .text-uppercase {
@@ -87,12 +78,11 @@ $font-color-primary: var(--composer-font-color-primary);
         }
 
         .subtitle {
-          font-size: 20px;
           color: $font-color-primary;
           word-break: break-word;
-          margin: 0;
-          padding-bottom: 30px;
           letter-spacing: 1.5px;
+          font-weight: bold;
+          margin: 0;
         }
 
         .line {
@@ -102,37 +92,31 @@ $font-color-primary: var(--composer-font-color-primary);
         }
 
         .description {
-          font-size: 16px;
           color: $font-color-primary;
-          margin-top: 0;
+          margin: 0;
           word-break: break-word;
-          padding-bottom: 20px;
         }
 
         .author {
-          font-size: 16px;
           font-weight: 600;
           color: $font-color-primary;
           word-break: break-word;
-          margin: 0;
           text-transform: uppercase;
-          padding-bottom: 15px;
+          margin: 0;
         }
 
         .author-role-container {
-          padding-bottom: 70px;
-
           .author-role {
-            font-size: 16px;
             position: relative;
             z-index: 1;
             color: $font-color-primary;
             word-break: break-word;
             letter-spacing: 1.5px;
+            margin: 0;
           }
 
           .author-role-background {
-            width: 60px;
+            width: 10%;
             background-color: $color-mix;
             position: absolute;
             left: 0;
@@ -144,10 +128,6 @@ $font-color-primary: var(--composer-font-color-primary);
         }
 
         .stats {
-          display: flex;
-          flex-wrap: wrap;
-          width: 100%;
-          gap: 30px;
           height: fit-content;
 
           &.full-width {
@@ -169,35 +149,33 @@ $font-color-primary: var(--composer-font-color-primary);
               display: flex;
               align-items: center;
               background-color: $color-mix;
-              gap: 15px;
+              gap: var(--composer-gap-md);
 
               &.with-background {
                 background-color: $color-mix;
-                margin: 15px;
+                margin: 1rem;
               }
 
               &.no-background {
                 background-color: transparent;
-                margin: 15px;
+                margin: 1rem;
               }
 
               .stat-title {
-                font-size: 55px;
+                font-size: 3rem;
                 font-weight: 700;
                 text-align: center;
                 color: $font-color-primary;
               }
 
               .stat-description {
-                font-size: 16px;
                 font-weight: 400;
                 letter-spacing: 1px;
                 @include blinkpageColor;
                 @include threeDotsBlinkPage;
                 margin: 0;
-                padding: 0 1rem;
                 word-break: break-word;
-                text-overflow: clip !important;
+                text-overflow: clip;
               }
             }
           }
@@ -208,7 +186,7 @@ $font-color-primary: var(--composer-font-color-primary);
         .image-container-border {
           position: relative;
           display: flex;
-          padding: 20px;
+          padding: 1.5rem;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
 
           img {
@@ -227,12 +205,12 @@ $font-color-primary: var(--composer-font-color-primary);
             white-space: normal;
             word-wrap: break-word;
             max-height: 50%;
-            margin: 30px;
-            padding: 30px;
+            margin: 2rem;
+            padding: 2rem;
 
             .number {
-              font-size: 110px;
-              margin-right: 10px;
+              font-size: 8rem;
+              margin-right: .5rem;
               font-weight: 600;
               color: $color-mix;
               text-overflow: ellipsis;
@@ -240,7 +218,6 @@ $font-color-primary: var(--composer-font-color-primary);
             }
 
             .description {
-              font-size: 16px;
               letter-spacing: 1px;
               line-height: 1.5;
               font-weight: 600;
@@ -258,116 +235,82 @@ $font-color-primary: var(--composer-font-color-primary);
 
 @container (min-width: 800px) and (max-width: 1025px) {
 
-  .stat {
-    h5 {
-      blinkpage>p {
-        font-size: 15px !important;
-      }
-    }
-  }
-
-  .stats8-page {
-    .image-container {
-      .image-container-border {
-        img {
-          max-height: 100% !important;
-        }
-        .overlay{
-          .number{
-            font-size: 80px !important;
-          }
-          .description{
-            font-size: 14px !important;
-          }
-        }
-      }
-    }
-  }
-
-  .stats {
-    flex: 1 !important;
-
-    .stat-border {
-      min-width: 200px !important;
-    }
-  }
-}
-
-@container (min-width: 480px) and (max-width: 800px) {
   .container {
-    flex-direction: column;
-    gap: 60px;
-    padding: 20px 30px;
-
     .max-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      padding: 0;
-
       .stats8-page {
-        text-align: start;
-        margin: 0;
+        .image-container {
+          .image-container-border {
+            img {
+              max-height: 100%;
+            }
 
-        .content {
-          .title {
-            padding-top: 0 !important;
-          }
-
-          .image-container {
-            padding: 0;
-            margin: 0 auto;
-          }
-
-          .stats {
-            max-width: 100%;
-
-            .stat-border {
-              width: 100%;
+            .overlay {
+              .number {
+                font-size: 3.5rem;
+              }
 
             }
           }
         }
 
-        .image-container {
-          margin: 0;
+        .content {
+          .stats {
+            flex: 1;
 
-          img {
-            max-height: 300px;
-            transform-origin: top;
+            .stat-border {
+              min-width: 200px;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+@container (min-width: 480px) and (max-width: 800px) {
+  .container {
+    .max-content {
+      display: grid;
+      grid-template-columns: 1fr;
+
+      .stats8-page {
+        .content {
+          .stats {
+            max-width: 100%;
+
+            .stat-border {
+              width: 100%;
+            }
+          }
+        }
+
+        .image-container {
+          .image-container-border {
+            .overlay {
+              .number {
+                font-size: 6rem;
+              }
+            }
           }
         }
       }
 
-      .number {
-        font-size: 75px !important;
-      }
+
     }
   }
 }
 
 @container (max-width: 479px) {
   .container {
-    flex-direction: column;
-    gap: 60px;
-    padding: 20px 30px;
-
     .max-content {
       grid-template-columns: 1fr;
-      padding: 0;
       flex-direction: column;
+      gap: var(--composer-gap-md);
 
       .stats8-page {
-        text-align: start;
-        margin: 0;
-
         .content {
-          justify-content: flex-start;
-          padding: 0;
-
-          .title {
-            padding-top: 0 !important;
-          }
-
           .stats {
             grid-template-columns: repeat(1, 1fr);
 
@@ -377,35 +320,25 @@ $font-color-primary: var(--composer-font-color-primary);
             }
 
             .stat-border {
-              min-width: 100% !important;
+              min-width: 200%;
 
               .stat {
-                margin-right: 0;
-                margin-left: 0;
-
                 .stat-title {
-                  font-size: 40px !important;
+                  font-size: 2.5rem;
                 }
               }
             }
           }
         }
-      }
 
-      .image-container {
-        padding: 0;
-        margin: 0 auto;
+        .image-container {
+          .image-container-border {
+            .overlay {
+              padding: 1rem;
 
-        .image-container-border {
-
-          .overlay {
-            padding: 20px !important;
-
-            .number {
-              font-size: 60px !important;
-            }
-            .description{
-              font-size: 13px !important;
+              .number {
+                font-size: 3.5rem;
+              }
             }
           }
         }
