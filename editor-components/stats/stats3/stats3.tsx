@@ -3,6 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Stats3Page extends BaseStats {
   constructor(props?: any) {
@@ -174,29 +175,29 @@ class Stats3Page extends BaseStats {
     const isBoxVisible = this.getPropValue("is_box_visible");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             {(subtitle || title || description || buttons.length > 0) && (
-              <div className={this.decorateCSS(image ? "left-page" : "left-page-without-image")}>
+              <Base.VerticalContent className={this.decorateCSS(image ? "left-page" : "left-page-without-image")}>
                 {
                   subtitle && (
-                    <h1
+                    <Base.SectionSubTitle
                       className={this.decorateCSS("subTitle")}
                     >
                       {this.getPropValue("subTitle")}
-                    </h1>
+                    </Base.SectionSubTitle>
                   )
                 }
                 {title && (
-                  <h1 className={this.decorateCSS("title")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
-                  </h1>
+                  </Base.SectionTitle>
                 )}
                 {description && (
-                  <h1 className={this.decorateCSS("description")}>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {this.getPropValue("description")}
-                  </h1>
+                  </Base.SectionDescription>
                 )}
                 {buttons.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
@@ -215,11 +216,11 @@ class Stats3Page extends BaseStats {
                   </div>
                 )
                 }
-              </div>
+              </Base.VerticalContent>
             )
             }
             {(image || (cardContent.length > 0 && isBoxVisible)) && (
-              <div className={this.decorateCSS(image ? "right-container" : "right-container-without-image")}>
+              <Base.VerticalContent className={this.decorateCSS(image ? "right-container" : "right-container-without-image")}>
                 {image && (
                   <img
                     src={this.getPropValue("backgroundImage")}
@@ -235,13 +236,13 @@ class Stats3Page extends BaseStats {
                           return (
                             <div className={this.decorateCSS("content")}>
                               <div className={this.decorateCSS("inner-content")}>
-                                <div className={this.decorateCSS("text-container")}>
+                                <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                   <div className={this.decorateCSS("first-container")}>
                                     <ComposerIcon
                                       name={item.icon}
                                       propsIcon={{ className: this.decorateCSS("icon") }}
                                     />
-                                    <div className={this.decorateCSS("text")}>
+                                    <Base.VerticalContent className={this.decorateCSS("text")}>
                                       <div className={this.decorateCSS("number")}>
                                         {item.number}
                                       </div>
@@ -249,9 +250,9 @@ class Stats3Page extends BaseStats {
                                       <div className={this.decorateCSS("right-text")}>
                                         {item.text}
                                       </div>
-                                    </div>
+                                    </Base.VerticalContent>
                                   </div>
-                                </div>
+                                </Base.VerticalContent>
                               </div>
                             </div>
                           );
@@ -260,11 +261,11 @@ class Stats3Page extends BaseStats {
                     </div>
                   </div>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
