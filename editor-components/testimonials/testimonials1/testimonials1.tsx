@@ -3,6 +3,7 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Testimonials1Page extends Testimonials {
   constructor(props?: any) {
@@ -10,21 +11,9 @@ class Testimonials1Page extends Testimonials {
 
     this.addProp({
       type: "image",
-      key: "right-image",
-      displayer: "Right Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616d9dbd2970002c623612?alt=media&timestamp=1719483639149",
-    });
-    this.addProp({
-      type: "color",
-      key: "color",
-      displayer: "Background Color of Component",
-      value: "#faf6f3",
-    });
-    this.addProp({
-      type: "image",
-      key: "left-image",
-      displayer: "Left Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616d71bd2970002c6235f8?alt=media&timestamp=1719483639149",
+      key: "background-image",
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6718b887b4a116002cfd0e2a?alt=media&timestamp=1729673367650",
     });
 
     this.addProp({
@@ -189,7 +178,7 @@ class Testimonials1Page extends Testimonials {
       infinite: true,
       arrows: false,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       beforeChange: (oldIndex: number, nextIndex: number) => {
@@ -198,56 +187,56 @@ class Testimonials1Page extends Testimonials {
     };
 
     return (
-      <div
-        className={this.decorateCSS("container")}
-        style={{ background: this.getPropValue("color") }}
+      <Base.Container
+        className={this.decorateCSS("container")
+        }
+        style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed"
+        }}
       >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("left")}>
-            <img
-              className={this.decorateCSS("food-image")}
-              src={this.getPropValue("left-image")}
-              alt=""
-            />
-          </div>
-          <div className={this.decorateCSS("testimonials1")}>
-            <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
-              {this.castToObject<any>("items").map((item: any, index: number) => (
-                <div className={this.decorateCSS("items")}>
-                  <ComposerIcon
-                    name={item.icons}
-                    propsIcon={{ className: this.decorateCSS("icons") }}
-                  />
-                  <h1 className={this.decorateCSS("longtext")}>{item.longtext}</h1>
-                  <h3 className={this.decorateCSS("name")}>{item.name}</h3>
-                </div>
-              ))}
-            </ComposerSlider>
-            <div className={this.decorateCSS("images")}>
-              {this.castToObject<any>("items").map((item: any, itemIndex: number) => {
-                const isActive = this.getComponentState("active_index") === itemIndex;
-                return (
-                  <img
-                    src={item.button["image-button"]}
-                    className={`${this.decorateCSS("image")} ${
-                      isActive && this.decorateCSS("active")
-                    }`}
-                    alt="avatar"
-                    onClick={() => this.onImageClick(itemIndex)}
-                  />
-                );
-              })}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("wrapper")}>
+            <div className={this.decorateCSS("content-wrapper")}>
+              <div className={this.decorateCSS("content")}>
+                <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
+                  {this.castToObject<any>("items").map((item: any, index: number) => (
+                    <div className={this.decorateCSS("items")}>
+                      <ComposerIcon
+                        name={item.icons}
+                        propsIcon={{ className: this.decorateCSS("icons") }}
+                      />
+                      <Base.VerticalContent>
+                        <Base.P className={this.decorateCSS("longtext")}>{item.longtext}</Base.P>
+                        <div className={this.decorateCSS("name")}>{item.name}</div>
+                      </Base.VerticalContent>
+                    </div>
+                  ))}
+                </ComposerSlider>
+                <Base.ListGrid className={this.decorateCSS("images")}>
+                  {this.castToObject<any>("items").map((item: any, itemIndex: number) => {
+                    const isActive = this.getComponentState("active_index") === itemIndex;
+                    return (
+                      <img
+                        src={item.button["image-button"]}
+                        className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")
+                          }`}
+                        alt="avatar"
+                        onClick={() => this.onImageClick(itemIndex)}
+                      />
+                    );
+                  })}
+                </Base.ListGrid>
+              </div>
             </div>
           </div>
-          <div className={this.decorateCSS("right")}>
-            <img
-              className={this.decorateCSS("food-image")}
-              src={this.getPropValue("right-image")}
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+
+
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
