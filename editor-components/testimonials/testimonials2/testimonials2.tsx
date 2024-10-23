@@ -11,7 +11,7 @@ type Item = {
   description: string;
   subtitle: string;
   icon: string;
-  star: string;
+  star: number;
 };
 
 class Testimonials2Page extends Testimonials {
@@ -28,12 +28,6 @@ class Testimonials2Page extends Testimonials {
       key: "title",
       displayer: "Title",
       value: "Happy Clients' Testimonials",
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 5,
     });
     this.addProp({
       type: "array",
@@ -247,20 +241,21 @@ class Testimonials2Page extends Testimonials {
       autoplaySpeed: 3000,
       slidesToShow: 4,
       slidesToScroll: 1,
+      arrow: false,
     };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials2")}>
-            <div className={this.decorateCSS("top-content")}>
-              <span className={this.decorateCSS("badge")}>
+            <Base.VerticalContent className={this.decorateCSS("top-content")}>
+              <Base.SectionSubTitle className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
-              </span>
-              <h1 className={this.decorateCSS("title")}>
+              </Base.SectionSubTitle>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
-              </h1>
-            </div>
+              </Base.SectionTitle>
+            </Base.VerticalContent>
 
             <ComposerSlider
               {...settings}
@@ -270,21 +265,20 @@ class Testimonials2Page extends Testimonials {
                 (item: Item, index: number) => (
                   <div key={`tsm-2-${index}`}>
                     <div
-                      style={{
-                        width: 100 / this.getPropValue("itemCount") + "%",
-                        display: "flex",
-                        justifyContent: "center",
-                        flexWrap: "wrap",
-                        minWidth: "20px",
-                      }}
+                    // style={{
+                    //   width: 100 / this.getPropValue("itemCount") + "%",
+                    //   display: "flex",
+                    //   justifyContent: "center",
+                    //   flexWrap: "wrap",
+                    //   minWidth: "20px",
+                    // }}
                     >
-                      <div key={index} className={this.decorateCSS("card")}>
+                      <Base.ContainerGrid key={index} className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("icon")}>
                           <span className={this.decorateCSS("item-star")}>
                             {[...Array(Number(item.star))].map(
                               (_: any, index: number) => (
-                                // <ComposerIcon name={item.icon} />
-                                <></>
+                                <ComposerIcon name={item.icon} />
                               )
                             )}
                           </span>
@@ -298,7 +292,7 @@ class Testimonials2Page extends Testimonials {
                         <h5 className={this.decorateCSS("item-subtitle")}>
                           {item.subtitle}{" "}
                         </h5>
-                      </div>
+                      </Base.ContainerGrid>
                     </div>
                   </div>
                 )
@@ -306,7 +300,7 @@ class Testimonials2Page extends Testimonials {
             </ComposerSlider>
           </div>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }

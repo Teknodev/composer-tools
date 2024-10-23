@@ -1,7 +1,6 @@
 import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
 import React, { memo, useEffect, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import { createRoot } from "react-dom/client";
 
 type Coordinate = {
   icon: {
