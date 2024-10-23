@@ -1,174 +1,383 @@
 import * as React from "react";
-import styles from "./header28.module.scss";
 import { BaseHeader } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import styles from "./header28.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class HeaderComponent28 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "The Guarantor of Your Successs",
+      type: "icon",
+      key: "prev_icon",
+      displayer: "Prev icon",
+      value: "GrFormPrevious",
     });
     this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "description",
-      value: "Comprehensive legal support",
+      type: "icon",
+      key: "next_icon",
+      displayer: "Next icon",
+      value: "GrFormNext",
     });
     this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "Button",
-      value: [
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "GET CONSULT",
-        },
-        {
-          type: "page",
-          key: "buttonPath",
-          displayer: "Button Path",
-          value: "",
-        },
-      ],
+      type: "icon",
+      key: "play_icon",
+      displayer: "Play Icon",
+      value: "IoPlay",
     });
     this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edded6057bdf002c2adb5e?alt=media&timestamp=1693310655431",
-    });
-    this.addProp({
-      type: "image",
-      key: "background-image",
-      displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64edded6057bdf002c2adb5f?alt=media&timestamp=1693310655431",
-    });
-    this.addProp({
-      type: "string",
-      key: "left-bottom-top",
-      displayer: "left-bottom-top",
-      value: "1500",
-    });
-    this.addProp({
-      type: "string",
-      key: "left-bottom-bottom",
-      displayer: "left-bottom-bottom",
-      value: "Companies in service",
-    });
-    this.addProp({
-      type: "string",
-      key: "middle-bottom-top",
-      displayer: "middle-bottom-top",
-      value: "180",
-    });
-    this.addProp({
-      type: "string",
-      key: "middle-bottom-bottom",
-      displayer: "middle-bottom-bottom",
-      value: "Received licenses",
-    });
-    this.addProp({
-      type: "string",
-      key: "right-bottom-top",
-      displayer: "right-bottom-top",
-      value: "12",
-    });
-    this.addProp({
-      type: "string",
-      key: "right-bottom-bottom",
-      displayer: "right-bottom-bottom",
-      value: "Professional lawyers",
+      type: "icon",
+      key: "close_icon",
+      displayer: "Close Icon",
+      value: "IoCloseOutline",
     });
     this.addProp({
       type: "boolean",
-      key: "true",
-      displayer: "Column direction",
-      value: false,
+      key: "textAnimation",
+      displayer: "Text Animation",
+      value: true,
     });
+    this.addProp({
+      type: "array",
+      key: "slider",
+      displayer: "Slider",
+      value: [
+        {
+          type: "object",
+          key: "slide",
+          displayer: "Slide",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg",
+            },
+            {
+              type: "video",
+              key: "video",
+              displayer: "Video Embeded Link",
+              value:
+                "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
+            },
+            {
+              type: "string",
+              key: "tag",
+              displayer: "Tag",
+              value: "ACTION",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Dark Poison",
+            },
+            {
+              type: "string",
+              key: "sub_title",
+              displayer: "Sub Title",
+              value: "Official Season 1 Trailer",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "NOW AVAILABLE ON STREAMING SERVICES",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slide",
+          displayer: "Slide",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg",
+            },
+            {
+              type: "video",
+              key: "video",
+              displayer: "Video",
+              value:
+                "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
+            },
+            {
+              type: "string",
+              key: "tag",
+              displayer: "Tag",
+              value: "ACTION",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Frontlines",
+            },
+            {
+              type: "string",
+              key: "sub_title",
+              displayer: "Sub Title",
+              value: "Official Season 1 Trailer",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "NOW AVAILABLE ON STREAMING SERVICES",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slide",
+          displayer: "Slide",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dep-space-1400x700.jpg",
+            },
+            {
+              type: "video",
+              key: "video",
+              displayer: "Video",
+              value:
+                "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
+            },
+            {
+              type: "string",
+              key: "tag",
+              displayer: "Tag",
+              value: "TECHNOLOGY",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Deep Space",
+            },
+            {
+              type: "string",
+              key: "sub_title",
+              displayer: "Sub Title",
+              value: "Worldwide Premiere",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "NOW AVAILABLE ON STREAMING SERVICES",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.setComponentState("animation-active", false);
+    this.setComponentState("active-index", 0);
+    this.setComponentState("display-none", true);
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("video-player-ref", React.createRef());
+    this.setComponentState("play-video", false);
+  }
+  getName(): string {
+    return "Header 28";
   }
 
-  getName(): string {
-    return "Header-28";
+  componentDidMount() {
+    super.componentDidMount();
+    document.addEventListener("click", this.handleDocumentClick, true); // Using capture phase for broader catching
   }
+
+  componentWillUnmount() {
+    super.componentWillUnmount();
+    document.removeEventListener("click", this.handleDocumentClick, true);
+  }
+
+  handleDocumentClick = (event: any) => {
+    if (
+      this.getComponentState("video-player-ref").current &&
+      !this.getComponentState("video-player-ref").current.contains(event.target)
+    ) {
+      this.setComponentState("play-video", false);
+    }
+  };
+
   render() {
-    const button = this.getPropValue("button");
+    const settings = {
+      arrows: false,
+      dots: true,
+      infinite: true,
+      accessibility: true,
+      speed: 1000,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      draggable: false,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
+      fade: true,
+      afterChange: (index: number) => {
+        this.setComponentState("animation-active", false);
+        this.setComponentState("display-none", false);
+        this.setComponentState("play-video", false);
+      },
+      beforeChange: (oldIndex: number, newIndex: number) => {
+        if (oldIndex === newIndex) return;
+        if (this.getPropValue("textAnimation"))
+          this.setComponentState("animation-active", true);
+        this.setComponentState("play-video", false);
+        this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
+
+        this.setComponentState("display-none", true);
+
+        this.setComponentState("active-index", newIndex);
+      },
+    };
 
     return (
-      <div
-        
-        className={this.decorateCSS("container")}
-      >
-        <div className={this.decorateCSS("max-content")} style={{
-          backgroundImage: `url(${this.getPropValue("background-image")})`,
-        }}>
-          <div
-            className={`${this.decorateCSS("wrapper")} ${
-              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
-            }`}
-          >
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("content")}>
-                <div className={this.decorateCSS("main-content")}>
-                  <h3 className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </h3>
-                  <h1 className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </h1>
+      <div className={this.decorateCSS("container")}>
+        <ComposerSlider
+          {...settings}
+          ref={this.getComponentState("slider-ref")}
+          className={this.decorateCSS("carousel")}
+        >
+          {this.getPropValue("slider").map((item: any, indexSlider: number) => (
+            <div className={this.decorateCSS("content")} key={indexSlider}>
+              {item.getPropValue("image") && (
+                <div className={this.decorateCSS("image-box")}>
+                  <img
+                    className={this.decorateCSS("bg-img")}
+                    src={item.getPropValue("image")}
+                    alt={"slider-image"}
+                  />
                 </div>
+              )}
 
-                <div className={this.decorateCSS("form")}>
-                  <input
-                    placeholder="Your Name"
-                    type="text"
-                    className={this.decorateCSS("name")}
-                  />
-                  <input
-                    placeholder="Phone Number"
-                    type="text"
-                    className={this.decorateCSS("phone")}
-                  />
-                  <ComposerLink path={this.getPropValue("button")[1].value}>
-                    <button className={this.decorateCSS("button")}>
-                      {button[0].value}
-                    </button>
-                  </ComposerLink>
+              {item.getPropValue("video") && (
+                <div
+                  className={`${this.decorateCSS("video-player-container")} ${
+                    this.getComponentState("play-video") &&
+                    this.decorateCSS("video-player")
+                  }`}
+                  onClick={() => {
+                    this.setComponentState("play-video", false);
+                  }}
+                >
+                  {this.getComponentState("play-video") && (
+                    <iframe
+                      className={this.decorateCSS("video-iframe")}
+                      width="70%"
+                      height="60%"
+                      src={item.getPropValue("video")}
+                      title="Video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    ></iframe>
+                  )}
+                  {this.getPropValue("close_icon") && (
+                    <div
+                      className={this.decorateCSS("close-button")}
+                      onClick={() =>
+                        this.setComponentState("play-video", false)
+                      }
+                    >
+                      <ComposerIcon
+                        propsIcon={{
+                          className: this.decorateCSS("close-button-icon"),
+                        }}
+                        name={this.getPropValue("close_icon")}
+                      />
+                    </div>
+                  )}
                 </div>
-                <div className={this.decorateCSS("bottom-content")}>
-                  <div className={this.decorateCSS("left-bottom")}>
-                    <h1 className={this.decorateCSS("left-bottom-top")}>{this.getPropValue("left-bottom-top")}</h1>
-                    <h3 className={this.decorateCSS("left-bottom-bottom")}>{this.getPropValue("left-bottom-bottom")}</h3>
-                  </div>
-                  <div className={this.decorateCSS("middle-bottom")}>
-                    <h1 className={this.decorateCSS("middle-bottom-top")}>{this.getPropValue("middle-bottom-top")}</h1>
-                    <h3 className={this.decorateCSS("middle-bottom-bottom")}>{this.getPropValue("middle-bottom-bottom")}</h3>
-                  </div>
-                  <div className={this.decorateCSS("right-bottom")}>
-                    <h1 className={this.decorateCSS("right-bottom-top")}>{this.getPropValue("right-bottom-top")}</h1>
-                    <h3 className={this.decorateCSS("right-bottom-bottom")}>{this.getPropValue("right-bottom-bottom")}</h3>
-                  </div>
+              )}
+              {this.getPropValue("play_icon") && (
+                <div
+                  className={this.decorateCSS("play-button")}
+                  onClick={
+                    item.getPropValue("video")
+                      ? () => this.setComponentState("play-video", true)
+                      : () => {}
+                  }
+                >
+                  <ComposerIcon name={this.getPropValue("play_icon")} />
                 </div>
+              )}
+              <div
+                className={`${this.decorateCSS("slide-content")}
+                ${
+                  !this.getComponentState("animation-active") &&
+                  this.decorateCSS("visible")
+                }`}
+                onClick={
+                  item.getPropValue("video")
+                    ? () => this.setComponentState("play-video", true)
+                    : () => {}
+                }
+              >
+                {this.castToString(item.getPropValue("tag")) && (
+                  <span className={this.decorateCSS("tag")}>
+                    {item.getPropValue("tag")}
+                  </span>
+                )}
+                {this.castToString(item.getPropValue("title")) && (
+                  <h1 className={this.decorateCSS("title")}>
+                    {item.getPropValue("title")}
+                  </h1>
+                )}
+                {this.castToString(item.getPropValue("sub_title")) && (
+                  <h3 className={this.decorateCSS("sub_title")}>
+                    {item.getPropValue("sub_title")}
+                  </h3>
+                )}
+                {this.castToString(item.getPropValue("description")) && (
+                  <p className={this.decorateCSS("description")}>
+                    {item.getPropValue("description")}
+                  </p>
+                )}
               </div>
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <img
-                className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-                alt=""
+              <ComposerIcon
+                name={this.getPropValue("next_icon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("next-icon")} ${this.decorateCSS(
+                    "arrow",
+                  )} ${
+                    !this.getComponentState("display-none") &&
+                    this.decorateCSS("un-visible")
+                  }`,
+                  size: 40,
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickNext();
+                  },
+                }}
+              />
+              <ComposerIcon
+                name={this.getPropValue("prev_icon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS(
+                    "arrow",
+                  )}`,
+                  size: 40,
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickPrev();
+                  },
+                }}
               />
             </div>
-          </div>
-        </div>
+          ))}
+        </ComposerSlider>
       </div>
     );
   }
 }
+
 export default HeaderComponent28;

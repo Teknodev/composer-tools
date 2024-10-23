@@ -4,6 +4,7 @@ import styles from "./testimonials13.module.scss";
 
 //SLIDER
 import Slider from "react-slick";
+import { Base } from "../../../composer-base-components/base/base";
 type CardData = {
   leftMiddle: number;
   // CardDescription: string;
@@ -30,7 +31,7 @@ class Testimonials13Page extends Testimonials {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Hear What Our Clients Have to Say",
+      value: "Hear What Our Clients<br />Have to Say",
     });
     this.addProp({
       type: "string",
@@ -237,7 +238,6 @@ class Testimonials13Page extends Testimonials {
     this.castToObject<CardData[]>("rightBottomBox").map((statsData, index) =>
       this.setComponentState(`number-${index}`, 0)
     );
-
   } //constructor end
 
   getName(): string {
@@ -258,99 +258,103 @@ class Testimonials13Page extends Testimonials {
       slidesToScroll: 1,
     };
 
-
     //RETURN
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("container2")}>
-            <div className={this.decorateCSS("flexItem1")}>
-              <span className={this.decorateCSS("writing")}>
-                {this.getPropValue("writing")}
-              </span>
-              <h1 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h1>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-              <Slider {...settings} className={this.decorateCSS("carousel")}>
-                {this.castToObject<Card[]>("profile-itemList").map(
-                  (item: Card, index: number) => (
-                    <div
-                      className={this.decorateCSS("slider-inner-div")}
-                      key={index}
-                    >
-                      <div className={this.decorateCSS("content-div")}>
-                        <div className={this.decorateCSS("img-div")}>
-                          <img
-                            alt=""
-                            src={item.badge}
-                            className={this.decorateCSS("img")}
-                          />
-                        </div>
-                        <div className={this.decorateCSS("header-page")}>
-                          <span
-                            className={`${this.decorateCSS(
-                              "item-description"
-                            )} ${this.decorateCSS("line-clamp8")}`}
-                          >
-                            {item.text}
-                          </span>
-                          <div
-                            className={this.decorateCSS("item-author")}
-                          ></div>
-                          <span className={this.decorateCSS("first-header")}>
-                            {item.author}
-                          </span>
-                          <span className={this.decorateCSS("item-title")}>
-                            {item.subtitle}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-              </Slider>
-            </div>
-            <div className={this.decorateCSS("container3")}>
-              <div className={this.decorateCSS("flexItem2")}>
-                <img src={this.getPropValue("bigImage1")} alt="" />
-              </div>
-              <div
-                id="flex_Item3"
-                className={this.decorateCSS("flexItem3")}
-              >
-                <div className={this.decorateCSS("item_title_text")}>
-                  {this.getPropValue("boxHeader")}
-                </div>
-
-                <div className={this.decorateCSS("container4")}>
-                  {/* Map for box elements */}
-                  {this.getPropValue("rightBottomBox").map(
-                    (item: any, index: number) => (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ContainerGrid>
+            <Base.GridCell>
+              <Base.VerticalContent className={this.decorateCSS("flexItem1")}>
+                <Base.SectionSubTitle className={this.decorateCSS("writing")}>
+                  {this.getPropValue("writing")}
+                </Base.SectionSubTitle>
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+                <Slider {...settings} className={this.decorateCSS("carousel")}>
+                  {this.castToObject<Card[]>("profile-itemList").map(
+                    (item: Card, index: number) => (
                       <div
+                        className={this.decorateCSS("slider-inner-div")}
                         key={index}
-                        className={this.decorateCSS("containerBottom")}
                       >
-                        <div className={this.decorateCSS("topWriting")}>
-                          {item.value[0].value}
-                        </div>
-                        <div className={this.decorateCSS("MiddleWriting")}>
-                          {item.value[1].value}
-                        </div>
-                        <div className={this.decorateCSS("bottomWriting")}>
-                          {item.value[2].value}
+                        <div className={this.decorateCSS("content-div")}>
+                          <div className={this.decorateCSS("img-div")}>
+                            <img
+                              alt=""
+                              src={item.badge}
+                              className={this.decorateCSS("img")}
+                            />
+                          </div>
+                          <div className={this.decorateCSS("header-page")}>
+                            <Base.P
+                              className={`${this.decorateCSS(
+                                "item-description"
+                              )} ${this.decorateCSS("line-clamp8")}`}
+                            >
+                              {item.text}
+                            </Base.P>
+                            <div
+                              className={this.decorateCSS("item-author")}
+                            ></div>
+                            <Base.H2
+                              className={this.decorateCSS("first-header")}
+                            >
+                              {item.author}
+                            </Base.H2>
+                            <Base.P className={this.decorateCSS("item-title")}>
+                              {item.subtitle}
+                            </Base.P>
+                          </div>
                         </div>
                       </div>
                     )
                   )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                </Slider>
+              </Base.VerticalContent>
+            </Base.GridCell>
+            <Base.GridCell className={this.decorateCSS("container3")}>
+              <Base.ListGrid className={this.decorateCSS("listGrid")}>
+                <Base.GridCell className={this.decorateCSS("flexItem2")}>
+                  <img src={this.getPropValue("bigImage1")} alt="" />
+                </Base.GridCell>
+                <Base.GridCell id="flex_Item3" className={this.decorateCSS("flexItem3")}>
+                  <Base.H1 className={this.decorateCSS("item_title_text")}>
+                    {this.getPropValue("boxHeader")}
+                  </Base.H1>
+
+                  <div className={this.decorateCSS("container4")}>
+                    {/* Map for box elements */}
+                    {this.getPropValue("rightBottomBox").map(
+                      (item: any, index: number) => (
+                        <div
+                          key={index}
+                          className={this.decorateCSS("containerBottom")}
+                        >
+                          <div className={this.decorateCSS("topWriting")}>
+                            {item.value[0].value}
+                          </div>
+                          <div className={this.decorateCSS("MiddleWriting")}>
+                            {item.value[1].value}
+                          </div>
+                          <div className={this.decorateCSS("bottomWriting")}>
+                            {item.value[2].value}
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </Base.GridCell>
+              </Base.ListGrid>
+            </Base.GridCell>
+          </Base.ContainerGrid>
+        </Base.MaxContent>
+      </Base.Container>
     ); //end RETURN
   } //end RENDER
 } //end CLASS
