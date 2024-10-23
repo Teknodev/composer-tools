@@ -237,11 +237,21 @@ class Testimonials2Page extends Testimonials {
       dots: true,
       infinite: true,
       speed: 700,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 4,
       slidesToScroll: 1,
       arrows: false,
+      responsive: [
+        {
+          breakpoint: 450, // 768px ve altı ekranlarda
+          settings: {
+            slidesToShow: 1, // Mobilde 1 kart göster
+            slidesToScroll: 1,
+            centerMode: true,
+          }
+        }
+      ]
     };
 
     return (
@@ -274,24 +284,28 @@ class Testimonials2Page extends Testimonials {
                       }}
                     >
                       <div key={index} className={this.decorateCSS("card")}>
-                        <div className={this.decorateCSS("icon")}>
-                          <span className={this.decorateCSS("item-star")}>
-                            {[...Array(Number(item.star))].map(
-                              (_: any, index: number) => (
-                                <ComposerIcon name={item.icon} />
-                              )
-                            )}
-                          </span>
-                        </div>
-                        <span className={this.decorateCSS("item-description")}>
-                          {item.description}
-                        </span>
-                        <h5 className={this.decorateCSS("item-name")}>
-                          {item.name}
-                        </h5>
-                        <h5 className={this.decorateCSS("item-subtitle")}>
-                          {item.subtitle}{" "}
-                        </h5>
+                        <Base.VerticalContent className={this.decorateCSS("top-container")}>
+                          <div className={this.decorateCSS("icon")}>
+                            <div className={this.decorateCSS("item-star")}>
+                              {[...Array(Number(item.star))].map(
+                                (_: any, index: number) => (
+                                  <ComposerIcon name={item.icon} />
+                                )
+                              )}
+                            </div>
+                            <Base.P className={this.decorateCSS("item-description")}>
+                              {item.description}
+                            </Base.P>
+                          </div>
+                        </Base.VerticalContent>
+                        <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
+                          <div className={this.decorateCSS("item-name")}>
+                            {item.name}
+                          </div>
+                          <div className={this.decorateCSS("item-subtitle")}>
+                            {item.subtitle}{" "}
+                          </div>
+                        </Base.VerticalContent>
                       </div>
                     </div>
                   </div>
@@ -299,7 +313,7 @@ class Testimonials2Page extends Testimonials {
               )}
             </ComposerSlider>
           </div>
-        </Base.MaxContent>
+        </Base.MaxContent >
       </Base.Container >
     );
   }
