@@ -3,6 +3,7 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base"
 
 type Item = {
   name: string;
@@ -249,8 +250,8 @@ class Testimonials2Page extends Testimonials {
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials2")}>
             <div className={this.decorateCSS("top-content")}>
               <span className={this.decorateCSS("badge")}>
@@ -304,8 +305,8 @@ class Testimonials2Page extends Testimonials {
               )}
             </ComposerSlider>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
