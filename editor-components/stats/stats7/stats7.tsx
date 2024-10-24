@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats7.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 
 type Item = {
@@ -121,7 +122,6 @@ class Stats7Page extends BaseStats {
         }
       ]
     })
-
   }
 
   getName(): string {
@@ -137,66 +137,67 @@ class Stats7Page extends BaseStats {
     const enableSubtitleBackground = this.getPropValue("enableSubtitleBackground");
 
     return (
-      <div className={this.decorateCSS("container")} >
-        <div className={`${this.decorateCSS("max-content")} ${!(isTitleExist || isDescriptionExist) && this.decorateCSS("max-content-is-disable")}`}>
+      <Base.Container className={this.decorateCSS("container")} >
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!(isTitleExist || isDescriptionExist) && this.decorateCSS("max-content-is-disable")}`}>
 
-          {showDiv && <div className={this.decorateCSS("title-child")}>
-            {isSubtitleExist && (
-              <h1 className={enableSubtitleBackground ? this.decorateCSS("subTitle") : this.decorateCSS("subTitle-background-is-disable")}>{this.getPropValue("subTitle")}</h1>
-            )}
-            {isTitleExist && (
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            )}
-            {isDescriptionExist && (
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-            )}
-          </div>}
+          {showDiv &&
+            <Base.VerticalContent className={this.decorateCSS("title-child")}>
+              {isSubtitleExist && (
+                <Base.SectionSubTitle className={enableSubtitleBackground ? this.decorateCSS("subTitle") : this.decorateCSS("subTitle-background-is-disable")}>{this.getPropValue("subTitle")}</Base.SectionSubTitle>
+              )}
+              {isTitleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+              )}
+              {isDescriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>}
 
-          {items.length > 0 && <div className={this.decorateCSS("progress-container")}>
-            {items.map((item: Item, index: number) => {
-              const { title, progress, progressText } = item;
-              let percent = progress;
-              let text = progressText ?? <>`${percent}%`</>;
+          {items.length > 0 &&
+            <Base.VerticalContent className={this.decorateCSS("progress-container")}>
+              {items.map((item: Item, index: number) => {
+                const { title, progress, progressText } = item;
+                let percent = progress;
+                let text = progressText ?? <>`${percent}%`</>;
 
-              if (percent === 0) {
-                percent = 1;
-                text = <>"0%"</>;
-              } else if (percent >= 100) {
-                percent = 100;
-              }
+                if (percent === 0) {
+                  percent = 1;
+                  text = <>"0%"</>;
+                } else if (percent >= 100) {
+                  percent = 100;
+                }
 
-              if (this.castToString(title) || this.castToString(progressText))
-                return (
-                  <div className={this.decorateCSS("item")} key={index}>
-
-                    {(
-                      <div className={this.decorateCSS("progress-title")}>
-                        {this.castToString(title) && title}
-                        {this.castToString(text) &&
-                          <div className={this.decorateCSS("progress-percent")}>
-                            <div className={this.decorateCSS("progress-text")}>
-                              {this.castToString(text) && text}
+                if (this.castToString(title) || this.castToString(progressText))
+                  return (
+                    <div className={this.decorateCSS("item")} key={index}>
+                      {(
+                        <div className={this.decorateCSS("progress-title")}>
+                          {this.castToString(title) && title}
+                          {this.castToString(text) &&
+                            <div className={this.decorateCSS("progress-percent")}>
+                              <div className={this.decorateCSS("progress-text")}>
+                                {this.castToString(text) && text}
+                              </div>
                             </div>
-                          </div>
-                        }
-                      </div>
-                    )}
-                    {percent !== null && percent !== undefined && (
-                      <div className={this.decorateCSS("progress-active")}>
-                        <div
-                          className={this.decorateCSS("progress-passive")}
-                          style={{ width: `${percent}%` }}
-                        ></div>
-                      </div>
-                    )}
-                  </div>
-                );
-            })}
-          </div>}
-        </div>
-      </div>
+                          }
+                        </div>
+                      )}
+                      {percent !== null && percent !== undefined && (
+                        <div className={this.decorateCSS("progress-active")}>
+                          <div
+                            className={this.decorateCSS("progress-passive")}
+                            style={{ width: `${percent}%` }}
+                          ></div>
+                        </div>
+                      )}
+                    </div>
+                  );
+              })}
+            </Base.VerticalContent>}
+        </Base.MaxContent>
+      </Base.Container>
 
     );
   }
