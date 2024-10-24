@@ -1,36 +1,20 @@
 .container {
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  background-color: var(--composer-color-background);
-
   .max-content {
-    width: var(--composer-content-width);
     display: flex;
     flex-direction: column;
-    text-align: center;
-    align-items: center;
-    margin: 0 auto;
-
     .title {
-      color: var(--composer-primary-color);
-      font-size: 28px;
-    }
-
-    .description {
-      max-width: 640px;
-      font-size: 17px;
-      font-weight: 500;
       color: var(--composer-font-color-primary);
     }
-
+    .description {
+      max-width: 640px;
+      color: var(--composer-font-color-primary);
+    }
     .cards-box {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 40px;
-      align-items: center;
+      gap: var(--composer-gap-md);
+      margin-top: var(--composer-gap-lg);
       @media only screen and (max-width: 1000px) {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -39,7 +23,7 @@
       }
 
       .card {
-        border-radius: 6px;
+        border-radius: var(--radius-medium);
         overflow: hidden;
         height: 350px;
         position: relative;
@@ -86,7 +70,7 @@
         .overlay2 {
           background: linear-gradient(
             rgba(var(--composer-primary-color-rgb), 0.7),
-            rgba(var(--composer-font-color-primary-rgb), 0.7)
+            rgba(var(--composer-html-background-rgb), 0.7)
           );
           z-index: 2;
           opacity: 0;
@@ -94,17 +78,17 @@
 
         .card-content {
           position: absolute;
-          left: 20px;
-          bottom: 20px;
+          left: var(--composer-gap-md);
+          bottom: var(--composer-gap-md);
           display: flex;
           color: white;
           z-index: 4;
 
           .stick {
-            width: 4px;
+            width:var(--composer-gap-xs);
             background: var(--composer-tertiary-color);
-            margin-right: 20px;
-            border-radius: 3px;
+            margin-right:var(--composer-gap-md);
+            border-radius: var(--radius-medium);
           }
 
           .labels {
@@ -113,15 +97,16 @@
             align-items: start;
 
             .first {
-              font-size: 24px;
-              font-weight: 600;
+              font-size: 1.5rem;
             }
 
             .second {
-              margin: 4px 0 5px 0;
+              display:flex;
+              gap: var(--composer-gap-xs);
+              margin: var(--composer-gap-xs) 0;
               background: rgba(var(--composer-tertiary-color-rgb), 0.7);
-              padding: 2px 6px;
-              border-radius: 6px;
+              padding: var(--composer-gap-xs) var(--composer-gap-xs);
+              border-radius: var(--radius-medium);
               transition: 0.3s;
               color: var(--composer-font-color-secondary);
             }
@@ -133,17 +118,18 @@
     .button {
       display: grid;
       place-items: center;
-      padding: 0 25px;
-      height: 55px;
+      justify-self: center;
+      padding: var(--composer-gap-xs) var(--composer-gap-md);
+      height:auto;
       background: var(--composer-secondary-color);
-      margin: 40px 0 20px 0;
+      margin: var(--composer-gap-lg) 0 var(--composer-gap-md) 0;
       color: var(--composer-font-color-secondary);
-      font-weight: 600;
-      border-radius: 6px;
+      border-radius: var(--radius-medium);
       transition: 0.4s;
-      font-size: 16px;
+      font-size: 1rem;
       cursor: pointer;
-      text-decoration: none;
+      max-width: 30%;
+  
 
       &:hover {
         background: var(--composer-color-background);
