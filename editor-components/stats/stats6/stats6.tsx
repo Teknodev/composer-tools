@@ -1,12 +1,15 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats6.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+
 type CardData = {
-  CardTitle: number;
+  CardValue: number;
   CardDescription: string;
 };
 
 class Stats6Page extends BaseStats {
+  interval: any;
   constructor(props?: any) {
     super(props, styles);
 
@@ -37,8 +40,8 @@ class Stats6Page extends BaseStats {
           value: [
             {
               type: "number",
-              key: "CardTitle",
-              displayer: "Card Title",
+              key: "CardValue",
+              displayer: "Card Value",
               value: 400,
             },
             {
@@ -56,8 +59,8 @@ class Stats6Page extends BaseStats {
           value: [
             {
               type: "number",
-              key: "CardTitle",
-              displayer: "Card Title",
+              key: "CardValue",
+              displayer: "Card Value",
               value: 1000,
             },
             {
@@ -75,8 +78,8 @@ class Stats6Page extends BaseStats {
           value: [
             {
               type: "number",
-              key: "CardTitle",
-              displayer: "Card Title",
+              key: "CardValue",
+              displayer: "Card Value",
               value: 8000,
             },
             {
@@ -96,25 +99,54 @@ class Stats6Page extends BaseStats {
       displayer: "Number Animation Duration (ms)",
       value: 500,
     });
+    this.init();
+    this.animate();
+  }
 
+  init() {
     this.castToObject<CardData[]>("card-list").map((statsData, index) =>
       this.setComponentState(`number-${index}`, 0)
     );
+  }
 
-    let x = setInterval(() => {
-      this.castToObject<CardData[]>("card-list").map(
+  getStats() {
+    const statItems = this.castToObject<CardData[]>("card-list");
+    const stats = statItems.map((statsData: any) =>
+      statsData.CardValue === "" ? 0 : statsData.CardValue,
+    );
+    return stats;
+  }
+
+  getNumbers() {
+    const statItems = this.castToObject<CardData[]>("card-list");
+    const numbers = statItems.map((_, index) =>
+      this.getComponentState(`number-${index}`),
+    );
+    return numbers;
+  }
+
+  animate() {
+    this.interval = setInterval(() => {
+      const statItems = this.castToObject<CardData[]>("card-list");
+
+      if (this.isEqual(this.getStats(), this.getNumbers())) {
+        this.interval = clearInterval(this.interval);
+        return;
+      }
+
+      statItems.map(
         (statsData: CardData, index: number) => {
           let statNumber = this.getComponentState(`number-${index}`);
-          if (statNumber != statsData.CardTitle) {
+          if (statNumber != statsData.CardValue) {
             this.setComponentState(
               `number-${index}`,
               Math.min(
-                statsData.CardTitle,
+                statsData.CardValue,
                 statNumber +
-                  Math.ceil(
-                    statsData.CardTitle /
-                      Math.round(this.getPropValue("animation-duration") / 30)
-                  )
+                Math.ceil(
+                  statsData.CardValue /
+                  Math.round(this.getPropValue("animation-duration") / 30)
+                )
               ) || 0
             );
           }
@@ -127,34 +159,54 @@ class Stats6Page extends BaseStats {
     return "Stats 6";
   }
 
+  isEqual(arr1: any[], arr2: any[]) {
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
+  }
+
+
   render() {
+    const cardList = this.castToObject<CardData[]>("card-list");
+    const header = this.getPropValue("header");
+    const headerExist = this.castToString(header);
+    const description = this.getPropValue("description")
+    const descriptionExist = this.castToString(description);
+
+    if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
+      this.animate();
+    }
+
     return (
-      <>
-        <div className={this.decorateCSS("container")}>
-          <div className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("banner")}>
-              <h1 className={this.decorateCSS("title")}>
-                {this.getPropValue("header")}
-              </h1>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-            </div>
-            <div className={this.decorateCSS("stats6-page")}>
-              {this.castToObject<CardData[]>("card-list").map(
-                (data: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("card")}>
-                    <h4 className={this.decorateCSS("data-card-title")}>
-                      {this.getComponentState(`number-${index}`)}
-                    </h4>
-                    <p className={this.decorateCSS("data-card-description")}>
-                      {data.CardDescription}
-                    </p>
-                  </div>
-                )
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(headerExist || descriptionExist) && <Base.VerticalContent className={this.decorateCSS("banner")}>
+            {headerExist && <Base.SectionTitle className={this.decorateCSS("title")}>
+              {header}
+            </Base.SectionTitle>}
+            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>
+              {description}
+            </Base.SectionDescription>}
+          </Base.VerticalContent>}
+          {cardList.length > 0 &&
+            <Base.ContainerGrid className={this.decorateCSS("stats6-page")}>
+              {cardList.map(
+                (data: any, index: number) => {
+                  return (
+                    <Base.GridCell key={index} className={this.decorateCSS("card")}>
+                      {this.getComponentState(`number-${index}`) !== 0 &&
+                        <Base.P className={this.decorateCSS("data-card-title")}>
+                          {this.getComponentState(`number-${index}`)}
+                        </Base.P>}
+                      {this.castToString(data.CardDescription) &&
+                        <Base.P className={this.decorateCSS("data-card-description")}>
+                          {data.CardDescription}
+                        </Base.P>}
+                    </Base.GridCell>
+                  )
+                }
               )}
-            </div>
-          </div>
-        </div>
-      </>
+            </Base.ContainerGrid>}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
