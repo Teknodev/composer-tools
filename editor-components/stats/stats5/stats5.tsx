@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats5.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   stat: number;
@@ -166,7 +167,7 @@ class Stats5Page extends BaseStats {
 
       if (this.isEqual(this.getStats(), this.getNumbers())) {
         this.interval = clearInterval(this.interval);
-        return; // return to stop animate()
+        return;
       }
       cards.forEach((item: Card, index: number) => {
         const statNumber = this.getComponentState(`number-${index}`) ?? 0;
@@ -194,20 +195,13 @@ class Stats5Page extends BaseStats {
 
     const cards = this.castToObject<Card[]>("cards");
 
-    /**
-     * Execute animate() only if:
-     *    it is executed and it's interval is cleared before
-     * AND,
-     *    prop values of stats and state values are not equal.
-     * (user may change it after animation. so we need to check that)
-     */
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
     }
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {cards?.length > 0 && (
             <div
               className={this.decorateCSS("bottom-child")}
@@ -233,16 +227,16 @@ class Stats5Page extends BaseStats {
                         `}
                     >
                       {item.stat && (
-                        <h4 className={this.decorateCSS("card-data-title")}>
+                        <Base.SectionTitle className={this.decorateCSS("card-data-title")}>
                           {statValue}
-                        </h4>
+                        </Base.SectionTitle>
                       )}
                       {titleExist && (
-                        <p
+                        <Base.SectionDescription
                           className={this.decorateCSS("card-data-description")}
                         >
                           {item.title}
-                        </p>
+                        </Base.SectionDescription>
                       )}
                     </div>
                   );
@@ -250,8 +244,8 @@ class Stats5Page extends BaseStats {
               })}
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
