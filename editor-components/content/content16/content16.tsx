@@ -7,6 +7,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { useRef } from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type CardType = {
   title: JSX.Element;
@@ -343,7 +344,7 @@ class Content16 extends BaseContent {
 
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         {(rightTextArrow || text) && (
           <div className={this.decorateCSS("right-link")}>
             <ComposerLink path={textUrl}>
@@ -361,20 +362,20 @@ class Content16 extends BaseContent {
             </ComposerLink>
           </div>
         )}
-        <div className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <header>
             {isTitleExist && (
-              <h1 className={this.decorateCSS("title")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
-              </h1>
+              </Base.SectionTitle>
             )}
             {faintLine && (
               <hr className={this.decorateCSS("faint-line")} />
             )}
             {isSubTitleExist && (
-              <h2 className={this.decorateCSS("subtitle")}>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {subtitle}
-              </h2>
+              </Base.SectionDescription>
             )}
           </header>
 
@@ -442,14 +443,14 @@ class Content16 extends BaseContent {
                           )}
                           {(this.castToString(item.imageSubtitle) ||
                             this.castToString(item.imageTitle)) && (
-                              <div className={this.decorateCSS("item-page")}>
+                              <Base.VerticalContent className={this.decorateCSS("item-page")}>
                                 {this.castToString(item.imageSubtitle) && (
-                                  <h3 className={this.decorateCSS("first-item")}>
+                                  <Base.P className={this.decorateCSS("first-item")}>
                                     {item.imageSubtitle}
-                                  </h3>
+                                  </Base.P>
                                 )}
                                 {this.castToString(item.imageTitle) && (
-                                  <h2
+                                  <Base.H2
                                     className={`${this.decorateCSS(
                                       "item-title"
                                     )} ${disableAnimation
@@ -458,9 +459,9 @@ class Content16 extends BaseContent {
                                       }`}
                                   >
                                     {item.imageTitle}
-                                  </h2>
+                                  </Base.H2>
                                 )}
-                              </div>
+                              </Base.VerticalContent>
                             )}
                         </div>
                       </article>
@@ -486,8 +487,8 @@ class Content16 extends BaseContent {
               </button>
             )}
           </main>
-        </div >
-      </div >
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

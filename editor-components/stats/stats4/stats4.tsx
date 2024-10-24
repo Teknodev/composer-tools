@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats4.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Faq = {
   title: JSX.Element;
@@ -233,13 +234,6 @@ class Stats4Page extends BaseStats {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "lineExist",
-      displayer: "Title Line",
-      value: true,
-    });
-
-    this.addProp({
       type: "number",
       key: "animation-duration",
       displayer: "Stat Animation Duration (ms)",
@@ -288,7 +282,7 @@ class Stats4Page extends BaseStats {
 
       if (this.isEqual(this.getStats(), this.getNumbers())) {
         this.interval = clearInterval(this.interval);
-        return; // return to stop animate()
+        return;
       }
       statItems.forEach((item: Stat, index: number) => {
         const statNumber = this.getComponentState(`number-${index}`) ?? 0;
@@ -330,40 +324,29 @@ class Stats4Page extends BaseStats {
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
     const statIcon = this.getPropValue("statIcon");
-    const lineExist = this.getPropValue("lineExist");
 
-    /**
-     * Execute animate() only if:
-     *    it is executed and it's interval is cleared before
-     * AND,
-     *    prop values of stats and state values are not equal.
-     * (user may change it after animation. so we need to check that)
-     */
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
     }
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats-container")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("stats-container")}>
             {mainTitle && (
               <header className={this.decorateCSS("main-header")}>
-                {lineExist && (
-                  <span className={this.decorateCSS("title-line")} />
-                )}
-                <h3 className={this.decorateCSS("title")}>
+                <Base.SectionSubTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("mainTitle")}
-                </h3>
+                </Base.SectionSubTitle>
               </header>
             )}
             {(mainDescription || faqs?.length > 0) && (
               <div className={this.decorateCSS("upper-container")}>
                 {mainDescription && (
                   <main className={this.decorateCSS("upper-container-main")}>
-                    <p className={this.decorateCSS("main-description")}>
+                    <Base.SectionTitle className={this.decorateCSS("main-description")}>
                       {this.getPropValue("mainDescription")}
-                    </p>
+                    </Base.SectionTitle>
                   </main>
                 )}
                 {faqs?.length > 0 && (
@@ -383,13 +366,13 @@ class Stats4Page extends BaseStats {
                                 className={this.decorateCSS("faq-item-header")}
                               >
                                 {titleExist && (
-                                  <h3
+                                  <p
                                     className={this.decorateCSS(
                                       "faq-item-title",
                                     )}
                                   >
                                     {item.title}
-                                  </h3>
+                                  </p>
                                 )}
                                 <button
                                   className={this.decorateCSS(
@@ -435,7 +418,7 @@ class Stats4Page extends BaseStats {
               </div>
             )}
             {statItems?.length > 0 && (
-              <section className={this.decorateCSS("stats")}>
+              <Base.ListGrid className={this.decorateCSS("stats")}>
                 {statItems.map((item: Stat, index: number) => {
                   const titleExist = this.castToString(item.title);
                   const contentExist = this.castToString(item.content);
@@ -455,22 +438,22 @@ class Stats4Page extends BaseStats {
                           <>
                             <div className={this.decorateCSS("stat-item-body")}>
                               {titleExist && (
-                                <h4
+                                <Base.P
                                   className={this.decorateCSS(
                                     "stat-item-title",
                                   )}
                                 >
                                   {item.title}
-                                </h4>
+                                </Base.P>
                               )}
                               {contentExist && (
-                                <p
+                                <Base.P
                                   className={this.decorateCSS(
                                     "stat-item-content",
                                   )}
                                 >
                                   {item.content}
-                                </p>
+                                </Base.P>
                               )}
                             </div>
                             <div className={this.decorateCSS("stat-line")} />
@@ -499,11 +482,11 @@ class Stats4Page extends BaseStats {
                     );
                   return null;
                 })}
-              </section>
+              </Base.ListGrid>
             )}
-          </div>
-        </div>
-      </div>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
