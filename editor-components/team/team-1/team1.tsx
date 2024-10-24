@@ -307,32 +307,28 @@ class Team1 extends Team {
                     width: 90 / this.getPropValue("itemCount") + "%",
                   }}
                 >
-                  {card.image && (
-                    <Base.VerticalContent className={this.decorateCSS("card")}>
-                      <div className={this.decorateCSS("top")}>
-                        {card.image && <img className={this.decorateCSS("image")} src={card.image} alt="" />}
-                        {card.name && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                        {card.value.some((item: { key: string }) => item.key === "position") && (
-                          <Base.P className={this.decorateCSS("position")}>{card.value.filter((item: { key: string }) => item.key === "position").map((item: { value: string }) => item.value)}</Base.P>
-                        )}
-                      </div>
-                      {card.description && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                      {card.platforms.length > 0 && (
-                        <div className={this.decorateCSS("icon-group")}>
-                          {card.platforms.map((item: Platform, indexPlatforms: number) => (
-                            <ComposerLink key={indexPlatforms} path={item.url}>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                              />
-                            </ComposerLink>
-                          ))}
-                        </div>
-                      )}
-                    </Base.VerticalContent>
-                  )}
+                  <Base.VerticalContent className={this.decorateCSS("card")}>
+                    <div className={this.decorateCSS("top")}>
+                      {card.image && <img className={this.decorateCSS("image")} src={card.image} alt="" />}
+                      <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>
+                      <Base.P className={this.decorateCSS("position")}>{card.value.filter((item: { key: string }) => item.key === "position").map((item: { value: string }) => item.value)}</Base.P>
+                    </div>
+                    <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>
+                    <div className={this.decorateCSS("icon-group")}>
+                      {card.platforms.map((item: Platform, indexPlatforms: number) => {
+                        return (
+                          <ComposerLink key={indexPlatforms} path={item.url}>
+                            <ComposerIcon
+                              name={item.icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            />
+                          </ComposerLink>
+                        );
+                      })}
+                    </div>
+                  </Base.VerticalContent>
                 </Base.ContainerGrid>
               );
             })}
