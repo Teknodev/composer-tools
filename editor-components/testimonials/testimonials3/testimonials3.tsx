@@ -9,7 +9,6 @@ interface CardItem {
   subtitle: JSX.Element,
   image: string
 }
-
 class Testimonials3Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
@@ -115,35 +114,39 @@ class Testimonials3Page extends Testimonials {
     },
     );
   }
-
   getName(): string {
     return "Testimonials 3";
   }
-
-
   render() {
     const card = this.castToObject<CardItem[]>("card-items")
-    console.log("itemCount", this.getPropValue("itemCount"));
-    console.log("title", this.getPropValue("title"))
+    console.log("star", this.getPropValue("star_icon"))
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials3")}>
-            <Base.H1 className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </Base.H1>
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.H1 className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </Base.H1>
+            )}
             <Base.ListGrid className={this.decorateCSS("card-container")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
               {card.map((card: any, index: number) => (
                 <div className={this.decorateCSS("card")}>
-                  <div className={this.decorateCSS("stars")}>
-                    {[...Array(Number(card.star))].map(
-                      (_: any, index: number) => (
-                        <ComposerIcon name={this.getPropValue("star_icon")} />
-                      )
-                    )}
-                  </div>
-                  <Base.P className={this.decorateCSS("cardSubtitle")} > {card.subtitle}</Base.P>
-                  <img className={this.decorateCSS("image")} src={card.image}></img>
+                  {((card.star > 0) && this.getPropValue("star_icon")) && (
+                    <div className={this.decorateCSS("stars")}>
+                      {[...Array(Number(card.star))].map(
+                        (_: any, index: number) => (
+                          <ComposerIcon name={this.getPropValue("star_icon")} />
+                        )
+                      )}
+                    </div>
+                  )}
+                  {this.castToString(card.subtitle) && (
+                    <Base.P className={this.decorateCSS("cardSubtitle")} > {card.subtitle}</Base.P>
+                  )}
+                  {card.image && (
+                    <img className={this.decorateCSS("image")} src={card.image} alt={card.image} />
+                  )}
                 </div>
               )
               )}
