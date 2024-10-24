@@ -1,7 +1,4 @@
 .container {
-  width: 100%;
-  padding: 20px 50px;
-  background-color: var(--composer-html-background);
   @mixin link-underline($duration: 0.6s, $scale: 1) {
     position: relative;
     &::after {
@@ -65,25 +62,19 @@
     }
   }
   .max-content {
-    max-width: var(--composer-content-width);
-    margin:0px;
     .title {
-      font-size: 7rem;
       color: var(--composer-font-color-primary);
       position: relative;
-      margin-bottom: 20px;
       width: 100%;
       word-break: break-word;
     }
     .faint-line {
       border: none;
       border-top: 1px solid var(--composer-font-color-primary);
-      margin-bottom: 40px;
+      margin-bottom: var(--composer-gap-lg);
     }
-    .subtitle {
+    .description {
       color: var(--composer-font-color-primary);
-      font-size: 2.45rem;
-      margin-bottom: 30px;
       font-weight: lighter;
     }
     .wrapper {
@@ -157,20 +148,19 @@
       width: 100%;
       height: 100%;
       .slider-inner-div {
+        padding: var(--composer-gap-sm);
         .content-div {
-          width: 100%;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          margin-bottom: 30px;
-          padding: 20px 10px;
           box-sizing: border-box;
           transition: filter 0.5s;
         }
         .img-div {
           width: 100%;
           overflow: hidden;
-          margin-bottom: 10px;
+          border-radius: var(--composer-border-radius-sm);
+          margin-bottom: var(--composer-gap-sm);
         }
         .img-div img {
           width: 100%;
@@ -198,11 +188,12 @@
           width: 100%;
           .first-item, .item-title {
             color: var(--composer-font-color-primary);
-            margin: 10px 0;
             word-break: break-word;
           }
+          .first-item{
+            font-size: 0.8rem;
+          }
           .item-title {
-            font-size: 1.75rem;
             font-weight: 700;
             letter-spacing: 1.2px;
             position: relative;
@@ -259,13 +250,11 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
+      padding: 0px;
     }
   }
 }
 @media only screen and (max-width: 1280px) {
-  .container {
-    padding: 20px 30px;
-  }
   .slider-parent-two{
     .content-div{
       width: 100% !important;
@@ -277,14 +266,7 @@
     }
   }
   .faint-line{
-    margin-bottom: 20px !important;
-  }
-  .title {
-    font-size: 4rem !important;
-  }
-  .subtitle {
-    font-size: 1.5rem !important; 
-    margin-bottom: 20px;
+    margin-bottom: var(--composer-gap-md) !important;
   }
   .slider-button-left,.slider-button-right {
     height: 150px !important;
@@ -293,24 +275,12 @@
   .img-div img {
     height: 150px !important;
   }
-  .first-item {
-    font-size: 1rem !important;
-  }
-  .item-title {
-    font-size: 1.5rem !important;
-  }
   .carousel {
     width: 100%; 
     margin: 0 auto;
   }
 }
 @media only screen and (max-width: 600px) {
-  .container {
-    padding: 20px 30px;
-  }
-  .right-link{
-    font-size: 1rem !important;
-  }
   .icon{
     width: 10px !important;
     height: 10px !important;
@@ -323,11 +293,11 @@
     font-size: 3rem !important;
   }
   .faint-line{
-    margin-bottom: 30px !important;
+    margin-bottom: var(--composer-gap-md) !important;
   }
   .subtitle {
     font-size: 1.25rem !important;
-    margin-bottom:30px !important;
+    margin-bottom:var(--composer-gap-md) !important;
   }
   .slider-parent-two{
     .content-div{
@@ -362,7 +332,7 @@
   .content-div {
     width: 100% !important;
     margin: 0px !important;
-    padding: 0px 10px !important;
+    padding: 0px var(--composer-gap-sm) !important;
   }
   .img-div img {
     height: 180px !important;
@@ -370,8 +340,5 @@
   .item-page .first-item {
     font-size: 1rem !important;
     margin: 10px 0 !important;
-  }
-  .item-title {
-    font-size: 1.25rem !important;
   }
 }
