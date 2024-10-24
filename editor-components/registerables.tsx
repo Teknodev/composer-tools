@@ -395,7 +395,7 @@ function Registerables(composer: ComponentsRegistery) {
     new StatsComponent2(),
     new StatsComponent3(),
     // new StatsComponent4(),
-    // new StatsComponent5(),
+    new StatsComponent5(),
     // new StatsComponent6(),
     new StatsComponent7(),
     new StatsComponent8(),
