@@ -66,6 +66,7 @@
     margin-bottom: 1em;
 }
 
+
 .container{
     width: 100%;
     padding: 20px 50px;
@@ -171,6 +172,19 @@
     }
 }
 
+.modalContainer{
+    padding: 20px;
+    .h1{
+        font-size: 2.5rem;
+    }
+    .h2{
+        font-size: 1.35rem;
+    }
+    .h3{
+        font-size: 1.15rem;
+    }
+}
+
 .maxContent{
     max-width: var(--composer-content-width);
     margin: auto;
@@ -197,11 +211,14 @@
 
 .listGrid{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(var(--composer-grid-count), 1fr);
     gap: var(--composer-gap-md);
     @media only screen and (max-width: $composer-tablet-width-sm) {
-        flex-direction: column;
+        grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr);
+    }
+    @media only screen and (max-width: $composer-tablet-width-sm) {
+        grid-template-columns: repeat(var(--composer-grid-count-phone), 1fr);
     }
 }
 

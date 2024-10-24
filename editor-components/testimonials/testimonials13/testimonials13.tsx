@@ -319,7 +319,7 @@ class Testimonials13Page extends Testimonials {
               </Base.VerticalContent>
             </Base.GridCell>
             <Base.GridCell className={this.decorateCSS("container3")}>
-              <Base.ListGrid className={this.decorateCSS("listGrid")}>
+              <Base.ContainerGrid className={this.decorateCSS("containerGrid")}>
                 <Base.GridCell className={this.decorateCSS("flexItem2")}>
                   <img src={this.getPropValue("bigImage1")} alt="" />
                 </Base.GridCell>
@@ -350,7 +350,7 @@ class Testimonials13Page extends Testimonials {
                     )}
                   </div>
                 </Base.GridCell>
-              </Base.ListGrid>
+              </Base.ContainerGrid>
             </Base.GridCell>
           </Base.ContainerGrid>
         </Base.MaxContent>
