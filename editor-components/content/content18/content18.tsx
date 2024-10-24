@@ -36,6 +36,13 @@ class Content18 extends BaseContent {
 
     });
     this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      value: "IoClose"
+
+    });
+    this.addProp({
       type: "page",
       displayer: "Video",
       key: "video",
@@ -261,7 +268,7 @@ class Content18 extends BaseContent {
                                   onClick={() => {
                                     this.setComponentState("is_video_visible", false);
                                   }}>
-                                  <ComposerIcon name={"IoClose"} propsIcon={{ className: this.decorateCSS("close-icon") }} ></ComposerIcon>
+                                  <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{ className: this.decorateCSS("close-icon") }} ></ComposerIcon>
                                 </div>
                               </div>
                             </div>
