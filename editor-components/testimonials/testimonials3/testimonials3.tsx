@@ -24,7 +24,13 @@ class Testimonials3Page extends Testimonials {
       key: "title",
       displayer: "Title",
       value: "295+ Customers gave their opinion"
-    })
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
     this.addProp({
       type: "array",
       key: "card-items",
@@ -50,7 +56,7 @@ class Testimonials3Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              value: "https://pagedone.io/block_preview_image/Testimonial-8.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1719584962573",
               displayer: "Image",
             },
           ],
@@ -75,7 +81,7 @@ class Testimonials3Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              value: "https://pagedone.io/block_preview_image/Testimonial-8.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573",
               displayer: "Image",
             },
           ],
@@ -99,8 +105,8 @@ class Testimonials3Page extends Testimonials {
             },
             {
               type: "image",
-              key: "Image",
-              value: "https://pagedone.io/block_preview_image/Testimonial-8.jpg",
+              key: "image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573",
               displayer: "Image",
             },
           ],
@@ -117,7 +123,8 @@ class Testimonials3Page extends Testimonials {
 
   render() {
     const card = this.castToObject<CardItem[]>("card-items")
-    console.log(card[0].star)
+    console.log("itemCount", this.getPropValue("itemCount"));
+    console.log("title", this.getPropValue("title"))
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -125,9 +132,9 @@ class Testimonials3Page extends Testimonials {
             <Base.H1 className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
             </Base.H1>
-            <div className={this.decorateCSS("card-container")}>
+            <Base.ListGrid className={this.decorateCSS("card-container")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
               {card.map((card: any, index: number) => (
-                <Base.VerticalContent className={this.decorateCSS("card")}>
+                <div className={this.decorateCSS("card")}>
                   <div className={this.decorateCSS("stars")}>
                     {[...Array(Number(card.star))].map(
                       (_: any, index: number) => (
@@ -137,10 +144,10 @@ class Testimonials3Page extends Testimonials {
                   </div>
                   <Base.P className={this.decorateCSS("cardSubtitle")} > {card.subtitle}</Base.P>
                   <img className={this.decorateCSS("image")} src={card.image}></img>
-                </Base.VerticalContent>
+                </div>
               )
               )}
-            </div>
+            </Base.ListGrid>
           </div>
         </Base.MaxContent >
       </Base.Container >

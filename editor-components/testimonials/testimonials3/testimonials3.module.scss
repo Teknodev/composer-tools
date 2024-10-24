@@ -2,17 +2,17 @@
   .max-content {
     .testimonials3 {
       display: flex;
-      width: 100%;
       flex-direction: column;
-      gap: var(--composer-gap-xl);
+      gap: var(--composer-gap-lg);
       .title{
         width: 100%;
         margin: 0px;
       }
       .card-container{
-        display: flex;
         .card {
-          flex: 1 1;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
           .stars {
             display: flex;
             gap: var(--composer-gap-xs);
@@ -24,6 +24,7 @@
           .image{
             max-width: 50%;
             height: auto;
+            border-radius: var(--composer-border-radius-xs);
           }
         }
       }

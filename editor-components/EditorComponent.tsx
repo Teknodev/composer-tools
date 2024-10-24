@@ -11,8 +11,8 @@ type PreSufFix = {
 };
 
 export type TypeLocation = {
-  lat: number;
   lng: number;
+  lat: number;
 
 };
 
