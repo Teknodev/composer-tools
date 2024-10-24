@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials4.module.scss";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base"
 
 
 class Testimonials4Page extends Testimonials {
@@ -185,7 +185,7 @@ class Testimonials4Page extends Testimonials {
     const settings = {
       dots: false,
       infinite: true,
-      arrows:false,
+      arrows: false,
       speed: 700,
       autoplay: false,
       autoplaySpeed: 3000,
@@ -197,58 +197,58 @@ class Testimonials4Page extends Testimonials {
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials4")}>
+
+      <div className={this.decorateCSS("overlay")} style={{
+        backgroundImage: `url(${this.getPropValue("cover-image")})`,
+      }}>
+        <Base.Container className={this.decorateCSS("container")} >
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <div className={this.decorateCSS("testimonials4")}>
+              <div className={this.decorateCSS("cover-image")}>
+                <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
+
+                  {this.getPropValue("items").map((item: any, index: number) => (
+                    <div className={this.decorateCSS("items")}>
+
+                      <h1 className={this.decorateCSS("longtext")}>
+                        {item.value[0].value}
+                      </h1>
+                      <h3 className={this.decorateCSS("title")}>
+                        {item.value[1].value}
+                      </h3>
+                      <h4 className={this.decorateCSS("subtitle")}>
+                        {item.value[2].value}
+                      </h4>
 
 
-            <div className={this.decorateCSS("cover-image")}
+                    </div>
+                  ))}
 
-              style={{
-                backgroundImage: `url(${this.getPropValue("cover-image")})`,
-              }}>
+                </ComposerSlider>
+                <div className={this.decorateCSS("arrows")}>
 
-              <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
+                </div>
+                <div className={this.decorateCSS("images")}>
+                  {this.getPropValue("items").map((item: any, itemIndex: number) => {
 
-                {this.getPropValue("items").map((item: any, index: number) => (
-                  <div className={this.decorateCSS("items")}>
+                    const imageSrc = item.getPropValue("button")[0].value;
 
-                    <h1 className={this.decorateCSS("longtext")}>
-                      {item.value[0].value}
-                    </h1>
-                    <h3 className={this.decorateCSS("title")}>
-                      {item.value[1].value}
-                    </h3>
-                    <h4 className={this.decorateCSS("subtitle")}>
-                      {item.value[2].value}
-                    </h4>
-
-
-                  </div>
-                ))}
-
-              </ComposerSlider>
-              <div className={this.decorateCSS("arrows")}>
-
+                    return <img
+                      src={imageSrc}
+                      className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") == itemIndex && this.decorateCSS("active")}`}
+                      onClick={() => this.onImageClick(itemIndex)} />
+                  }
+                  )}
+                </div>
               </div>
-              <div className={this.decorateCSS("images")}>
-                {this.getPropValue("items").map((item: any, itemIndex: number) => {
 
-                  const imageSrc = item.getPropValue("button")[0].value;
 
-                  return <img
-                    src={imageSrc}
-                    className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") == itemIndex && this.decorateCSS("active")}`}
-                    onClick={() => this.onImageClick(itemIndex)} />
-                }
-                )}
-              </div>
             </div>
+          </Base.MaxContent>
+        </Base.Container>
+      </div >
 
 
-          </div>
-        </div>
-      </div>
 
     );
   }
