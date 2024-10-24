@@ -234,21 +234,28 @@ class Testimonials2Page extends Testimonials {
 
   render() {
     const settings = {
+      arrows: false,
       dots: true,
       infinite: true,
-      speed: 700,
-      autoplay: false,
+      speed: 725,
+      autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: 4,
+      slidesToShow: 3.65,
+      centerMode: true,
       slidesToScroll: 1,
-      arrows: false,
       responsive: [
         {
-          breakpoint: 450, // 768px ve altı ekranlarda
+          breakpoint: 850,
           settings: {
-            slidesToShow: 1, // Mobilde 1 kart göster
-            slidesToScroll: 1,
-            centerMode: true,
+            slidesToShow: 1.65,
+          }
+        },
+        {
+          breakpoint: 450,
+          settings: {
+            slidesToShow: 1,
+            centerMode: false,
+            padding: "0px"
           }
         }
       ]
@@ -274,15 +281,7 @@ class Testimonials2Page extends Testimonials {
               {this.castToObject<Item[]>("card-items").map(
                 (item: Item, index: number) => (
                   <div key={`tsm-2-${index}`} className={this.decorateCSS("card-wrapper")}>
-                    <div
-                      style={{
-                        width: 100 / this.getPropValue("itemCount") + "%",
-                        display: "flex",
-                        justifyContent: "center",
-                        flexWrap: "wrap",
-                        minWidth: "20px",
-                      }}
-                    >
+                    <div>
                       <div key={index} className={this.decorateCSS("card")}>
                         <Base.VerticalContent className={this.decorateCSS("top-container")}>
                           <div className={this.decorateCSS("icon")}>
