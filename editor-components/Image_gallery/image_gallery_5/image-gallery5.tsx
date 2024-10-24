@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class ImageGalleryComponent5 extends BaseImageGallery {
   private imageGalleryRef: React.RefObject<HTMLDivElement>;
@@ -231,11 +232,9 @@ class ImageGalleryComponent5 extends BaseImageGallery {
         onKeyDown={this.handleKeyPress}
       >
         <div className={this.decorateCSS("max-content")}>
-          <div
+          <Base.ListGrid
             className={this.decorateCSS("images")}
-            style={{
-              gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)`,
-            }}
+            gridCount={{pc: this.getPropValue("itemCount"), tablet: 2, phone: 1}}
           >
             {galleries.map((galleryItem: any, index: number) => {
               const image = galleryItem.value.find((item: any) => item.type === "image").value;
@@ -250,7 +249,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                 </div>
               );
             })}
-          </div>
+          </Base.ListGrid>
           {isImageClicked && (
             <div
               className={this.decorateCSS("overlay")}

@@ -1,60 +1,26 @@
 .container {
-  width: 100%;
-  padding: 50px 0;
-  background-color: var(--composer-html-background);
-
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 100%;
 
     .table {
       display: flex;
       flex-direction: column;
-      border-radius: 6px;
-      padding: 20px;
-      width: 70%;
-      @media only screen and (max-width: 1000px) {
-        width: 90%;
-      }
-      @media only screen and (max-width: 1200px) {
-        width: 80%;
-      }
-
+      width: 100%;
       @media only screen and (max-width: 800px) {
         .items{
           .item-card{
             width: 100% !important;
             flex: unset !important;
             border: 1px solid var(--composer-primary-color);
-            border-radius: var(--composer-border-radius);
             overflow: hidden;
           }
         }
       }
 
       .top-titles {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        margin-bottom: 20px;
-        color: var(--composer-primary-color);
-
         .title {
-          font-size: 3rem;
-          max-width: 450px;
-        }
-        .subtitle {
-          padding: 6px 20px;
-          border-radius: 25px;
-          background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
-          color: var(--composer-primary-color);
-          font-size: 1.2rem;
         }
       }
 
@@ -71,8 +37,10 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          margin-bottom: 20px;
+          margin-bottom: var(--composer-gap-md);
           flex: 1;
+          border-radius: var(--composer-border-radius-md);
+          overflow: hidden;
 
           &.active {
             box-shadow: var(--composer-box-shadow);
@@ -88,7 +56,7 @@
               var(--composer-secondary-color)
             );
 
-            padding: 10px 0;
+            padding: var(--composer-gap-sm) 0;
 
             &.active {
               opacity: 1;
@@ -101,14 +69,14 @@
           .cardsubtitle {
             background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
             color: var(--composer-primary-color);
-            padding: 4px 15px;
-            border-radius: 25px;
+            padding: var(--composer-gap-xs) var(--composer-gap-md);
+            border-radius: var(--composer-border-radius-xl);
             font-weight: 500;
             font-size: 0.75rem;
           }
 
           .card-title {
-            margin: 0 0 10px 0;
+            margin: 0 0 var(--composer-gap-sm) 0;
             font-size: 1.4rem;
             color: var(--composer-font-color-primary);
 
@@ -123,7 +91,7 @@
               display: flex;
               align-items: center;
               gap: 6px;
-              padding: 15px 30px;
+              padding: var(--composer-gap-sm) var(--composer-gap-lg);
               border-top: 1px solid var(--composer-tertiary-color);
               color: var(--composer-font-color-primary);
 
@@ -134,7 +102,7 @@
           }
 
           .card-bottom {
-            padding: 15px 30px;
+            padding: var(--composer-gap-md) var(--composer-gap-lg);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -165,16 +133,16 @@
             }
 
             .card-button {
-              padding: 15px 0;
+              padding: var(--composer-gap-md) 0;
               width: 100%;
-              border-radius: var(--composer-border-radius);
+              border-radius: var(--composer-border-radius-sm);
               background: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
               border: none;
             }
 
             .pricingTitle {
-              margin-top: 15px;
+              margin-top: var(--composer-gap-md);
               font-size: 0.8rem;
             }
           }
@@ -185,7 +153,7 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        margin: 30px 0;
+        margin: var(--composer-gap-lg) 0;
         flex-wrap: wrap;
         gap: 20px;
         color: var(--composer-font-color-primary);
