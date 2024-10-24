@@ -41,18 +41,18 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
 
   const getBounds = () => {
     if (markers.length === 0) return null;
-  
+
     const lngs = markers.map((marker) => marker.lng);
     const lats = markers.map((marker) => marker.lat);
-  
+
     const north = Math.max(...lats);
     const south = Math.min(...lats);
     const east = Math.max(...lngs);
     const west = Math.min(...lngs);
-  
+
     return { north, south, east, west };
   };
-  
+
 
   useEffect(() => {
     if (allContentShow) {
@@ -90,12 +90,12 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
   useEffect(() => {
     if (map) {
       if (markers.length === 0) {
-        map.setCenter({ lat: 0, lng: 0 }); 
-        map.setZoom(1); 
+        map.setCenter({ lat: 0, lng: 0 });
+        map.setZoom(1);
       }
     }
   }, [map, markers]);
-  
+
 
   useEffect(() => {
     if (map && defaultZoom !== undefined) {
@@ -108,32 +108,32 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
 
   useEffect(() => {
     if (!map) return;
-  
+
     const bounds = getBounds();
-    if (!bounds) return; 
-  
+    if (!bounds) return;
+
     const calculatedCenter = getCenter(bounds);
-  
+
     const hasMarkersChanged = (markers: Coordinate[], prevMarkers: Coordinate[]) => {
       if (markers.length !== prevMarkers.length) {
         return true;
       }
-  
+
       return markers.some((marker, index) => {
         const prevMarker = prevMarkers[index];
         return prevMarker && (marker.lat !== prevMarker.lat || marker.lng !== prevMarker.lng);
       });
     };
-  
+
     if (hasMarkersChanged(markers, prevMarkersRef.current)) {
       map.fitBounds(bounds);
       map.setCenter(calculatedCenter);
-      map.panTo(calculatedCenter); 
+      map.panTo(calculatedCenter);
     }
-  
+
     prevMarkersRef.current = markers;
   }, [map, markers]);
-  
+
   const defaultMarker = defaultMarkerIcon || "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
 
   const createOverlayView = (marker: Coordinate) => {
@@ -163,6 +163,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
         }
 
         const panes = this.getPanes();
+        if (panes) panes.overlayMouseTarget.appendChild(this.div);
         if (panes) panes.overlayMouseTarget.appendChild(this.div);
       }
 

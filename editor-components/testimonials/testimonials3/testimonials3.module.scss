@@ -1,79 +1,33 @@
 .container {
-  width: 100%;
-  padding: 150px 0;
-  background-color: var(--composer-html-background);
-
-
   .max-content {
-    padding: 20px;
-    max-width: var(--composer-content-width);
-
-
     .testimonials3 {
-      display: block;
+      display: flex;
       width: 100%;
-
-      .card-child {
+      flex-direction: column;
+      gap: var(--composer-gap-xl);
+      .title{
+        width: 100%;
+        margin: 0px;
+      }
+      .card-container{
         display: flex;
-        flex-wrap: wrap;
-        text-align: center;
-        gap: 20px;
-
-
         .card {
-          display: flex;
-          flex-direction: column;
-          min-width: 250px;
-          justify-content: center;
-          align-items: center;
-          height: max-content;
           flex: 1 1;
-
           .stars {
             display: flex;
-            gap: 5px;
+            gap: var(--composer-gap-xs);
             color: var(--composer-secondary-color);
-
-            img {
-              width: 15px;
-              height: 15px;
-            }
-
-            .star {
-              color: var(--composer-primary-color);
-            }
           }
-
-          .item-value1 {
-            font-weight: 500;
-            font-size: 2rem;
-            margin: 20px 0;
+          .cardSubtitle{
             color: var(--composer-font-color-primary);
           }
-
-          .item-value2 {
-            font-weight: 200;
-            font-size: 1rem;
-            margin-bottom: 100px;
-            color: var(--composer-font-color-primary);
+          .image{
+            max-width: 50%;
+            height: auto;
           }
         }
       }
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    background-color: var(--composer-html-background);
-
-    .max-content {
-      .testimonials3 {
-        .card-child {
-          gap: 60px;
-        }
       }
     }
-  }
+  
 }

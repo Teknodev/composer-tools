@@ -2,13 +2,14 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials3.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base"
 
-type Item = {
-  image: string;
-};
-type ISection = {
-  section: Item[];
-};
+interface CardItem {
+  star: number,
+  subtitle: JSX.Element,
+  image: string
+}
+
 class Testimonials3Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
@@ -19,137 +20,130 @@ class Testimonials3Page extends Testimonials {
       value: "FaStar"
     })
     this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "295+ Customers gave their opinion"
+    })
+    this.addProp({
       type: "array",
       key: "card-items",
       displayer: "Card Items",
       value: [
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''good and responsive design''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      value: "Matt Kenton",
-                      displayer: "Title",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''fast and good support team''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      value: "Tamsen Fannie",
-                      displayer: "Title",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''Innovative designs and easy use''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      value: "Brynn Samantha",
-                      displayer: "Title",
-                    },
-                  ],
-                },
-              ],
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Star",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              value: "Thanks to pagedone, I feel more informed and confident about my investment decisions than ever before.",
+              displayer: "Subtitle",
+            },
+            {
+              type: "image",
+              key: "image",
+              value: "https://pagedone.io/block_preview_image/Testimonial-8.jpg",
+              displayer: "Image",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Star",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              value: "Pagedone has made it possible for me to stay on top of my portolio and make informed decisions quickly and easily.",
+              displayer: "Subtitle",
+            },
+            {
+              type: "image",
+              key: "image",
+              value: "https://pagedone.io/block_preview_image/Testimonial-8.jpg",
+              displayer: "Image",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Star",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              value: "The customer service team at pagedone went above and beyond to help me resolve a billing issue.",
+              displayer: "Subtitle",
+            },
+            {
+              type: "image",
+              key: "Image",
+              value: "https://pagedone.io/block_preview_image/Testimonial-8.jpg",
+              displayer: "Image",
             },
           ],
         },
       ],
-    });
+    },
+    );
   }
 
   getName(): string {
     return "Testimonials 3";
   }
 
+
   render() {
+    const card = this.castToObject<CardItem[]>("card-items")
+    console.log(card[0].star)
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials3")}>
-            {this.castToObject<ISection[]>("card-items").map(
-              (section: any, index: number) => (
-                <div key={index} className={this.decorateCSS("card-child")}>
-                  {section.items.map((item: any, index: number) => (
-                    <div
-                      key={`testimonials3-${index}`}
-                      className={this.decorateCSS("card")}
-                    >
-                      <div className={styles["stars"]}>
-                        {[...Array(Number(item.value[0].value))].map(
-                          (item: any, index: number) => (
-                            <ComposerIcon name={this.getPropValue("star_icon")} propsIcon={{ className: this.decorateCSS("star") }} />
-                          )
-                        )}
-                      </div>
-                      <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
-                      <h5 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h5>
-                    </div>
-                  ))}
-                </div>
+            <Base.H1 className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </Base.H1>
+            <div className={this.decorateCSS("card-container")}>
+              {card.map((card: any, index: number) => (
+                <Base.VerticalContent className={this.decorateCSS("card")}>
+                  <div className={this.decorateCSS("stars")}>
+                    {[...Array(Number(card.star))].map(
+                      (_: any, index: number) => (
+                        <ComposerIcon name={this.getPropValue("star_icon")} />
+                      )
+                    )}
+                  </div>
+                  <Base.P className={this.decorateCSS("cardSubtitle")} > {card.subtitle}</Base.P>
+                  <img className={this.decorateCSS("image")} src={card.image}></img>
+                </Base.VerticalContent>
               )
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }
