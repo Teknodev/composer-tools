@@ -1,51 +1,55 @@
 .container {
-    width: 100%;
-    padding: 50px 0;
     .max-content {
-        display: flex;
         justify-content: space-around;
-        max-width: var(--composer-content-width);
-        margin: auto;
+
         .stats1-page {
-            display: block;
             width: 100%;
+
             .title {
                 text-align: center;
                 width: 100%;
-                margin: 0;
-                color: var(--composer-primary-color);
             }
+
             .description {
                 text-align: center;
-                width: calc(100% - 50px);
-                margin: 40px auto;
-                color: var(--composer-font-color-primary);
-            }
-            .bottom-child {
-                display: flex;
-                justify-content: space-around;
-                box-shadow: var(--composer-box-shadow);
                 width: 100%;
-                margin: 0 auto;
-                border-radius: 6px;
-                padding: 40px 0;
+            }
+
+            .bottom-child {
+                align-items: center;
+                box-shadow: var(--composer-box-shadow);
+                border-radius: var(--composer-border-radius-sm);
+                padding: var(--composer-gap-md) 0;
+
                 .card {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: var(--composer-gap-md);
+                    flex: 1 1 20%;
+
                     .card-data-title {
                         text-align: center;
                         font-size: 3rem;
-                        margin: 0;
                         color: var(--composer-font-color-primary);
+                        font-weight: bold;
+                        margin: 0;
                     }
+
                     .card-data-subtitle {
                         text-align: center;
                         font-size: 1.5rem;
                         color: var(--composer-primary-color);
-                        margin: 20px 0;
+                        font-weight: bold;
+                        margin: 0;
                     }
+
                     .card-data-description {
                         text-align: center;
                         font-size: 1.5rem;
                         color: var(--composer-font-color-primary);
+                        margin: 0;
                     }
                 }
             }
@@ -53,18 +57,17 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: 768px) {
     .container {
-        flex-direction: column;
-        gap: 60px;
         .max-content {
-            padding: 0 20px;
             .stats1-page {
                 text-align: center;
+
                 .bottom-child {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
+
                     .card {
                         width: 100%;
                     }

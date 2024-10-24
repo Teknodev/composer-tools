@@ -1,11 +1,12 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats1.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ICard = {
-  subtitle: string;
-  title: string;
-  description: string;
+  subtitle: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
 };
 
 class Stats1Page extends BaseStats {
@@ -115,26 +116,51 @@ class Stats1Page extends BaseStats {
   }
 
   render() {
+
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescExist = this.castToString(this.getPropValue("description"));
+    const cardList = this.castToObject<ICard[]>("card-content");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats1-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
-            <div className={this.decorateCSS("bottom-child")}>
-              {this.castToObject<ICard[]>("card-content").map(
-                (cardData: any, indexCard: number) => (
-                  <div key={indexCard} className={this.decorateCSS("card")}>
-                    <h5 className={this.decorateCSS("card-data-subtitle")}>{cardData.subtitle}</h5>
-                    <h4 className={this.decorateCSS("card-data-title")}>{cardData.title}</h4>
-                    <p className={this.decorateCSS("card-data-description")}>{cardData.description}</p>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("stats1-page")}>
+            {isTitleExist &&
+              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+            }
+            {isDescExist &&
+              <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
+            }
+            {cardList.length > 0 &&
+              <Base.ContainerGrid className={this.decorateCSS("bottom-child")}>
+                {cardList.map(
+                  (cardData: ICard, indexCard: number) => {
+
+                    const isSubtitleExist = this.castToString(cardData.subtitle);
+                    const isTitleExist = this.castToString(cardData.title);
+                    const isDescExist = this.castToString(cardData.description);
+
+                    if (isSubtitleExist || isTitleExist || isDescExist)
+                      return (
+                        <Base.GridCell key={indexCard} className={this.decorateCSS("card")}>
+                          {isSubtitleExist &&
+                            <p className={this.decorateCSS("card-data-subtitle")}>{cardData.subtitle}</p>
+                          }
+                          {isTitleExist &&
+                            <p className={this.decorateCSS("card-data-title")}>{cardData.title}</p>
+                          }
+                          {isDescExist &&
+                            <p className={this.decorateCSS("card-data-description")}>{cardData.description}</p>
+                          }
+                        </Base.GridCell>
+                      );
+                  }
+                )}
+              </Base.ContainerGrid>
+            }
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
