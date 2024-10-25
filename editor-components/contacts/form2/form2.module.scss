@@ -2,16 +2,17 @@
     width: 100%;
     padding: 0px 0px;
     height: 100vh;
-    
+
     .max-content {
-        max-width: var(--composer-content-width);
         margin: auto;
 
         .input-items {
+
             .background-image {
                 width: 100%;
                 height: max-content;
                 position: relative;
+                opacity: 0.9;
 
                 .img {
                     width: 100%;
@@ -23,21 +24,22 @@
 
             .input-item {
                 width: 100%;
-                max-width: 400px;
+                max-width: var(--composer-content-width);
                 z-index: 1;
+                width: 500px;
                 display: flex;
                 flex-direction: column;
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background: rgba(255, 255, 255, 0.2);
+                background-color: rgba(var(--composer-html-background-rgb), 0);;
                 border-radius: 16px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(5px);
-                -webkit-backdrop-filter: blur(5px);
-                border: 1px solid rgba(255, 255, 255, 0.3);
-                padding: 40px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(var(--composer-html-background-rgb), 0);
+                padding: 40px 60px 40px 60px;
                 border-radius: 10px;
                 gap: 25px;
 
@@ -46,17 +48,26 @@
 
                     letter-spacing: 4px;
                     font-weight: bold;
-                    text-align: center;
+                    text-align: start;
                     color: var(--composer-primary-color);
                 }
 
                 .form {
                     display: flex;
                     flex-direction: column;
-                    gap: 25px;
+                    gap: 15px;
 
                     .input-container {
                         position: relative;
+
+                        .error-message {
+                            text-align: end;
+
+                            blinkpage p {
+                                margin-top: 5px;
+                                color: var(--composer-font-color-primary);
+                            }
+                        }
 
                         .placeholder {
                             font-size: 15px;
@@ -65,14 +76,14 @@
                             left: 10px;
                             transition: all 0.3s ease;
                             pointer-events: none;
-                            color: var(--composer-font-color-primary);
+                            color: var(--composer-font-color-secondary);
 
                         }
 
                         .placeholder {
                             top: 5px;
                             font-size: 10px;
-                            color: var(--composer-font-color-primary)
+                            color: var(--composer-font-color-secondary);
                         }
 
                         .input {
@@ -81,14 +92,11 @@
                             border-radius: 4px;
                             font-size: 12px;
                             transition: border-color 0.3s ease;
-                            background: rgba(255, 255, 255, 0.2);
-                            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                            backdrop-filter: blur(5px);
-                            -webkit-backdrop-filter: blur(5px);
-                            border: 1px solid rgba(255, 255, 255, 0.3);
+                            background-color: rgba(255, 255, 255, 0);
+                            border: 1px solid rgba(var(--composer-html-background-rgb),0.4);
                             padding-left: 10px;
                             outline: none;
-                            color: var(--composer-font-color-primary);
+                            color: var(--composer-font-color-secondary);
 
                             &.textarea {
                                 padding-top: 20px;
@@ -109,22 +117,38 @@
                     }
                 }
 
+                .button-div {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+
+                .button-div .submit-button:nth-child(odd):last-child {
+                    flex-basis: 100%;
+                    justify-content: center;
+                }
+
                 .submit-button {
-                    display: grid;
+                    display: flex;
                     place-items: center;
+                    flex-basis: calc(50% - 10px);
+                    justify-content: center;
                     padding: 0 25px;
                     min-height: 50px;
-                    background: var(--composer-secondary-color);
+                    background: var(--composer-primary-color);
                     color: var(--composer-font-color-secondary);
                     border-radius: 4px;
-                    border: 1px solid var(--composer-secondary-color);
+                    border: 1px solid var(--composer-primary-color);
                     font-size: 14px;
+                    position: relative;
+                    overflow: hidden;
 
                     &:hover {
                         background: transparent;
-                        color: var(--composer-font-color-primary);
+                        color: var(--composer-font-color-secondary);
                     }
-
                 }
             }
         }
@@ -139,7 +163,8 @@
             .input-items {
                 .input-item {
                     width: 100%;
-                    max-width: 320px;
+                    max-width: 300px;
+                    padding: 20px;
                 }
             }
         }

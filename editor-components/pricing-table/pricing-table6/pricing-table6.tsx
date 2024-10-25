@@ -8,16 +8,6 @@ type Pricing = {
   title: JSX.Element;
   product: Array<{
     cardTitle1: string;
-    list: {
-      property: string;
-      dash_icon: string;
-    }[];
-    buttons: {
-      buttonTitle: JSX.Element;
-      url: string;
-      buttonText: JSX.Element;
-      disabled: boolean;
-    }[];
     description: string;
     badge: JSX.Element;
     property: string;
@@ -25,13 +15,26 @@ type Pricing = {
     subtitle: string;
     product: {
       per: string;
-      price: number;
-      currency: string;
+      price: string;
       plan: string;
       tag: JSX.Element;
       check_icon: string;
       circle_icon: string;
     }[];
+    right_items: {
+      badge: JSX.Element;
+      title: JSX.Element;
+      list: {
+        property: string;
+        dash_icon: string;
+      }[];
+      buttons: {
+        buttonTitle: JSX.Element;
+        url: string;
+        buttonText: JSX.Element;
+        disabled: boolean;
+      }[];
+    };
   }>;
 };
 
@@ -67,7 +70,7 @@ class PricingMultipleTwo extends BasePricingTable {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Per month",
+              value: "Annual",
             },
             {
               type: "array",
@@ -104,18 +107,11 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 10%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 3000,
+                      value: "3000$",
                     },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
-                    },
-
                     {
                       type: "string",
                       key: "per",
@@ -123,104 +119,116 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "Per month",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value:
-                                "3 hours of training (VR therapy + platform use)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Unlimited technical support",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Hours of supervision per month",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Product 1",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "60 hour package per month",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Join this plan",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                             {
                               type: "boolean",
@@ -264,18 +272,11 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 20%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 5000,
+                      value: "5000$",
                     },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
-                    },
-
                     {
                       type: "string",
                       key: "per",
@@ -283,103 +284,116 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "Per month",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value:
-                                "3 hours of training (VR therapy + platform use)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Unlimited technical support",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Hours of supervision per month",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Product 2",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "60 hour package per month",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Join this plan",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                             {
                               type: "boolean",
@@ -423,16 +437,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 30%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 6000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "6000$",
                     },
                     {
                       type: "string",
@@ -441,103 +449,116 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "Per month",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value:
-                                "3 hours of training (VR therapy + platform use)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Unlimited technical support",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Hours of supervision per month",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Product 3",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "60 hour package per month",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Join this plan",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                             {
                               type: "boolean",
@@ -581,16 +602,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 40%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 20000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "20000$",
                     },
                     {
                       type: "string",
@@ -599,103 +614,116 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "Per month",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value:
-                                "3 hours of training (VR therapy + platform use)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Unlimited technical support",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Hours of supervision per month",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Product 4",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "60 hour package per month",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Join this plan",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                             {
                               type: "boolean",
@@ -722,7 +750,7 @@ class PricingMultipleTwo extends BasePricingTable {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Per year",
+              value: "Yearly",
             },
             {
               type: "array",
@@ -759,18 +787,11 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 10%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 30000,
+                      value: "30000$",
                     },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
-                    },
-
                     {
                       type: "string",
                       key: "per",
@@ -778,104 +799,116 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "Per year",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value:
-                                "3 hours of training (VR therapy + platform use)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Unlimited technical support",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Hours of supervision per month",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Product 1",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "60 hour package per month",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Join this plan",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                             {
                               type: "boolean",
@@ -919,16 +952,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 20%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 50000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "50000$",
                     },
 
                     {
@@ -938,104 +965,116 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "Per year",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value:
-                                "3 hours of training (VR therapy + platform use)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Unlimited technical support",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Hours of supervision per month",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Product 2",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "60 hour package per month",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Join this plan",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                             {
                               type: "boolean",
@@ -1079,16 +1118,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 30%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 60000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "60000$",
                     },
                     {
                       type: "string",
@@ -1097,104 +1130,116 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "Per year",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value:
-                                "3 hours of training (VR therapy + platform use)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Unlimited technical support",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Hours of supervision per month",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Product 3",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "60 hour package per month",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Join this plan",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                             {
                               type: "boolean",
@@ -1238,16 +1283,10 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "SAVE 40%",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: 80000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "$",
+                      value: "80000$",
                     },
                     {
                       type: "string",
@@ -1256,103 +1295,116 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: "Per year",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value:
-                                "3 hours of training (VR therapy + platform use)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Unlimited technical support",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Hours of supervision per month",
-                            },
-                            {
-                              type: "icon",
-                              key: "dash_icon",
-                              displayer: "Dash Icon",
-                              value: "GoDash",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Product 4",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "60 hour package per month",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Join this plan",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                             {
                               type: "boolean",
@@ -1406,9 +1458,11 @@ class PricingMultipleTwo extends BasePricingTable {
                   {this.getPropValue("badge")}
                 </div>
               )}
-              <h1 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h1>
+              {this.castToString(this.getPropValue("title")) && (
+                <h1 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h1>
+              )}
             </div>
             {hasPlans && (
               <div className={this.decorateCSS("plan-items")}>
@@ -1469,7 +1523,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           )}
                           <div className={this.decorateCSS("item-price")}>
                             <h5 className={this.decorateCSS("price")}>
-                              {tab.price} {tab.currency}
+                              {tab.price}
                             </h5>
                             <h5 className={this.decorateCSS("per")}>
                               {" "}
@@ -1479,63 +1533,79 @@ class PricingMultipleTwo extends BasePricingTable {
                         </div>
                       ))}
                     </div>
-
                     <div className={this.decorateCSS("right-page")}>
                       <div className={this.decorateCSS("content")}>
-                        {this.castToString(plan[planIndex].badge) && (
-                          <span className={this.decorateCSS("badge")}>
-                            {plan[planIndex].badge}
-                          </span>
+                        {plan[planIndex].right_items.badge &&
+                          this.castToString(
+                            plan[planIndex].right_items.badge
+                          ) && (
+                            <span className={this.decorateCSS("badge")}>
+                              {plan[planIndex].right_items.badge}
+                            </span>
+                          )}
+                        {this.castToString(
+                          plan[planIndex].right_items.title
+                        ) && (
+                          <h1 className={this.decorateCSS("title")}>
+                            {plan[planIndex].right_items.title}
+                          </h1>
                         )}
-                        <h1 className={this.decorateCSS("title")}>
-                          {plan[planIndex].title}
-                        </h1>
+
                         <div className={this.decorateCSS("list-body")}>
-                          {plan[planIndex].list.map(
-                            (item, itemIndex: number) => (
+                          {plan[planIndex]?.right_items?.list?.map(
+                            (listItem: any, listItemIndex: number) => (
                               <div
-                                className={this.decorateCSS("li")}
-                                key={itemIndex}
+                                key={listItemIndex}
+                                className={this.decorateCSS("list-item")}
                               >
                                 <ComposerIcon
                                   propsIcon={{
                                     className: this.decorateCSS("dash_icon"),
                                   }}
-                                  name={item.dash_icon}
+                                  name={
+                                    listItem.value.find(
+                                      (item: any) => item.key === "dash_icon"
+                                    ).value
+                                  }
                                 />
                                 <div className={this.decorateCSS("property")}>
-                                  {item.property}
+                                  {
+                                    listItem.value.find(
+                                      (item: any) => item.key === "property"
+                                    ).value
+                                  }
                                 </div>
                               </div>
                             )
                           )}
                         </div>
-                        <div className={this.decorateCSS("body-bottom")}>
-                          <div className={this.decorateCSS("buttons")}>
-                            {plan[planIndex].buttons.map(
-                              (button: any, buttonIndex: number) => {
-                                return this.castToString(button.buttonText) ? (
-                                  <ComposerLink
-                                    key={buttonIndex}
-                                    url={button.url}
-                                  >
-                                    <button
-                                      className={`${this.decorateCSS(
-                                        "button"
-                                      )} ${
-                                        !button.disabled &&
-                                        this.decorateCSS("disabled")
-                                      }`}
-                                      disabled={button.disabled}
-                                    >
-                                      {button.buttonText}
-                                    </button>
-                                  </ComposerLink>
-                                ) : null;
-                              }
-                            )}
+                        {plan[planIndex]?.right_items?.buttons.length > 0 && (
+                          <div className={this.decorateCSS("body-bottom")}>
+                            <div className={this.decorateCSS("buttons")}>
+                              {plan[planIndex]?.right_items?.buttons.map(
+                                (button: any, buttonIndex: number) => {
+                                  const buttonText = this.castToString(button.getPropValue("buttonText"));
+                                  const buttonUrl = button.getPropValue("url");
+                                  const isDisabled = button.getPropValue("disabled");
+
+                                  return (
+                                    buttonText && (
+                                      <ComposerLink key={buttonIndex} path={buttonUrl}>
+                                        <button
+                                          className={`${this.decorateCSS("button")} ${
+                                            !isDisabled ? this.decorateCSS("disabled") : ""
+                                          }`}
+                                        >
+                                          {buttonText}
+                                        </button>
+                                      </ComposerLink>
+                                    )
+                                  );
+                                }
+                              )}
+                            </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </>
