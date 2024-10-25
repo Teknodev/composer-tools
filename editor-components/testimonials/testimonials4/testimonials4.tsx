@@ -12,6 +12,10 @@ interface SliderItem {
   subtitle: JSX.Element,
   image: string,
 }
+interface ArrowItem {
+  nextArrow: string,
+  prevArrow: string
+}
 
 
 class Testimonials4Page extends Testimonials {
@@ -147,10 +151,27 @@ class Testimonials4Page extends Testimonials {
       key: "cover-image",
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623725?alt=media&timestamp=1719483639150"
-
-
     });
+    this.addProp({
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "icon",
+          key: "prevArrow",
+          displayer: "Prev Icon",
+          value: "GrLinkPrevious"
+        },
+        {
+          type: "icon",
+          key: "nextArrow",
+          displayer: "Next Icon",
+          value: "GrLinkNext"
+        }
 
+      ]
+    });
     this.setComponentState("active_index", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
@@ -170,7 +191,7 @@ class Testimonials4Page extends Testimonials {
     const settings = {
       dots: false,
       infinite: true,
-      arrows: true,
+      arrows: false,
       speed: 700,
       autoplay: false,
       autoplaySpeed: 3000,
@@ -178,49 +199,79 @@ class Testimonials4Page extends Testimonials {
       beforeChange: (oldIndex: number, nextIndex: number) => {
         this.setComponentState("active_index", nextIndex)
       }
-
     };
     const sliderItem = this.castToObject<SliderItem[]>("items");
-    console.log("sliderItem", sliderItem)
+    const sliderRef = this.getComponentState("slider-ref");
+    const arrows = this.castToObject<ArrowItem>("arrows");
     return (
-      <div className={this.decorateCSS("overlay")} style={{
+      <Base.Container className={this.decorateCSS("container")} isFull="true" style={{
         backgroundImage: `url(${this.getPropValue("cover-image")})`,
       }}>
-        <Base.Container className={this.decorateCSS("container")} >
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("testimonials4")}>
-              <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
-                {sliderItem.map((item: any, index: number) => (
-                  <div className={this.decorateCSS("items")}>
-                    <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
-                    <Base.P className={this.decorateCSS("longtext")}>
-                      {item.description}
-                    </Base.P>
-                    <h3 className={this.decorateCSS("title")}>
-                      {item.title}
-                    </h3>
-                    <h4 className={this.decorateCSS("subtitle")}>
-                      {item.subtitle}
-                    </h4>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {arrows.prevArrow && (
+            <button className={this.decorateCSS("prevArrow")} onClick={() => {
+              sliderRef.current.slickPrev();
+            }}>
+              <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+            </button>
+          )}
+
+          <div className={this.decorateCSS("testimonials4")}>
+            <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
+              {sliderItem.map((item: any, index: number) => {
+                const hasContent = item.icon || this.castToString(item.description) || this.castToString(item.title) || this.castToString(item.subtitle);
+                return (
+                  <div className={hasContent ? this.decorateCSS("items") : ""}>
+                    {item.icon && (
+                      <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                    )}
+                    {(this.castToString(item.description) || this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                      <Base.VerticalContent className={this.decorateCSS("content")}>
+                        {this.castToString(item.description) && (
+                          <Base.P className={this.decorateCSS("longtext")}>
+                            {item.description}
+                          </Base.P>
+                        )}
+                        {this.castToString(item.title) && (
+                          <div className={this.decorateCSS("title")}>
+                            {item.title}
+                          </div>
+                        )}
+                        {this.castToString(item.subtitle) && (
+                          <div className={this.decorateCSS("subtitle")}>
+                            {item.subtitle}
+                          </div>
+                        )}
+                      </Base.VerticalContent>
+                    )}
                   </div>
-                ))}
-              </ComposerSlider>
+                );
+              })}
+            </ComposerSlider>
+            {sliderItem.length > 0 && (
               <div className={this.decorateCSS("images")}>
                 {sliderItem.map((item: any, itemIndex: number) => {
-                  return <img
-                    src={item.image}
-                    className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") == itemIndex && this.decorateCSS("active")}`}
-                    onClick={() => this.onImageClick(itemIndex)} />
-                }
-                )}
+                  return item.image ? (
+                    <img
+                      src={item.image}
+                      className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") === itemIndex ? this.decorateCSS("active") : ""}`}
+                      onClick={() => this.onImageClick(itemIndex)}
+                    />
+                  ) : null;
+                })}
               </div>
-            </div>
-          </Base.MaxContent>
-        </Base.Container>
-      </div >
+            )}
 
-
-
+          </div>
+          {arrows.nextArrow && (
+            <button className={this.decorateCSS("nextArrow")} onClick={() => {
+              sliderRef.current.slickNext();
+            }}>
+              <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+            </button>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
