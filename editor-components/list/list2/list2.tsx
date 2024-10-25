@@ -36,7 +36,6 @@ class List2 extends BaseList {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 5,
     });
 
     this.addProp({
@@ -302,23 +301,32 @@ class List2 extends BaseList {
   render() {
     const cards = this.castToObject<CardItem[]>("cards");
     const button = this.getPropValue("button");
-    const count=this.getPropValue("itemCount")
-    console.log("asdas",count)
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-         <Base.SectionTitle className={this.decorateCSS("title")}>
-            {this.getPropValue("title")}
-          </Base.SectionTitle>
-          <Base.SectionDescription className={this.decorateCSS("description")}>
-            {this.getPropValue("description")}
-          </Base.SectionDescription>
-          <Base.ListGrid className={this.decorateCSS("cards-box")} gridCount={{pc:this.getPropValue("itemCount"),phone:1,tablet:2}}>
+          <Base.VerticalContent>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+            <Base.SectionDescription
+              className={this.decorateCSS("description")}
+            >
+              {this.getPropValue("description")}
+            </Base.SectionDescription>
+          </Base.VerticalContent>
+          <Base.ListGrid
+            className={this.decorateCSS("cards-box")}
+            gridCount={{
+              pc: this.getPropValue("itemCount"),
+              tablet: 2,
+              phone: 1,
+            }}
+          >
             {cards.map((item: CardItem, index: number) => (
               <ComposerLink key={index} path={item.page}>
                 <div className={this.decorateCSS("card")}>
-                  <img src={item.image}/>
+                  <img src={item.image} />
                   <div className={this.decorateCSS("overlay")}></div>
                   <div className={this.decorateCSS("overlay2")}></div>
                   <div className={this.decorateCSS("card-content")}>
@@ -329,18 +337,20 @@ class List2 extends BaseList {
                       </Base.H2>
                       <Base.P className={this.decorateCSS("second")}>
                         {item.count} {item.count_text}
-                      </Base.P >
+                      </Base.P>
                     </div>
                   </div>
                 </div>
               </ComposerLink>
             ))}
           </Base.ListGrid>
-            <ComposerLink path={button[1].value}>
-              <div className={this.decorateCSS("button")}>
-                <span>{button[0].value}</span>
-              </div>
-            </ComposerLink>
+          {button[0].value &&(
+          <ComposerLink path={button[1].value}>
+          <div className={this.decorateCSS("button")}>
+            <span>{button[0].value}</span>
+          </div>
+        </ComposerLink>
+          )} 
         </Base.MaxContent>
       </Base.Container>
     );
