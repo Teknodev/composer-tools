@@ -217,7 +217,7 @@
     @media only screen and (max-width: $composer-tablet-width-sm) {
         grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr);
     }
-    @media only screen and (max-width: $composer-tablet-width-sm) {
+    @media only screen and (max-width: $composer-phone-width-sm) {
         grid-template-columns: repeat(var(--composer-grid-count-phone), 1fr);
     }
 }
