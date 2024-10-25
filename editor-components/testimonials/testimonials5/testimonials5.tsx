@@ -2,177 +2,104 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base"
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-type Item = {
-  image: string;
-};
-type ISection = {
-  section: Item[];
-};
+interface LeftItem {
+  subtitle: JSX.Element,
+  title: JSX.Element,
+  prevIcon: string,
+  nextIcon: string
+}
+
+interface SliderItem {
+  image: string,
+  sliderTitle: JSX.Element,
+  description: JSX.Element,
+  nextIcon: string,
+  star: number,
+  starIcon: string
+}
+
 class Testimonials5Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "icon",
-      key: "star_icon",
-      displayer: "Star Icon",
-      value: "FaStar"
+      type: "object",
+      key: "leftItem",
+      displayer: "Left Item",
+      value: [
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "TESTIMONIALS"
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Our happy traveller."
+        },
+        {
+          type: "icon",
+          key: "prevIcon",
+          displayer: "PrevIcon",
+          value: "GrLinkPrevious"
+        },
+        {
+          type: "icon",
+          key: "nextIcon",
+          displayer: "NextIcon",
+          value: "GrLinkNext"
+        }
+      ]
     })
     this.addProp({
-      type: "string",
-      key: "title",
-      value: "Testimonials",
-      displayer: "title",
-    });
-    this.addProp({
       type: "array",
-      key: "card-items",
-      displayer: "Card Items",
+      key: "sliders",
+      displayer: "Sliders",
       value: [
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "slider",
+          displayer: "Slider",
           value: [
             {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''DESIGN''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "Their communication skills were top-notch, and they made sure to keep us informed throughout the entire process.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Derren Avalon",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''LEARNING PLATFORM''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "An online learning platform can provide access to educational content from anywhere with an internet connection.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Jaylyn Kaleigh",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''FINANCE WEBSITE''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Candyce Jeannine",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''E-COMMERCE''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "An e-commerce website can provide a platform for businesses to sell their products online.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Kasey Kim",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-              ],
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-18.png"
             },
-          ],
-        },
-      ],
-    });
+            {
+              type: "string",
+              key: "sliderTitle",
+              displayer: "Slider Title",
+              value: "Alexender Moore"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Excellent travel company. We have already "
+            },
+            {
+              type: "number",
+              key: "star",
+              displayer: "Star",
+              value: 5
+            },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Star Icon",
+              value: "FaStar"
+            },
+          ]
+        }
+      ]
+    })
+
   }
 
   getName(): string {
@@ -180,39 +107,69 @@ class Testimonials5Page extends Testimonials {
   }
 
   render() {
+    const leftItem = this.castToObject<LeftItem>("leftItem");
+    const sliderItem = this.castToObject<SliderItem[]>("sliders");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials5")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            {this.castToObject<ISection[]>("card-items").map(
-              (section: any, index: number) => (
-                <div
-                  key={`testimonials5-${index}`}
-                  className={this.decorateCSS("card-child")}
-                >
-                  {section.items.map((item: any, indexCard: number) => (
-                    <div
-                      key={`testimonials5-card-${indexCard}`}
-                      className={this.decorateCSS("card")}
-                    >
-                      <div className={styles["stars"]}>
-                        {[...Array(Number(item.value[0].value))].map(
-                          (item: any, index: number) => (
-                            <ComposerIcon name={this.getPropValue("star_icon")} propsIcon={{ className: this.decorateCSS("star") }} />
-                          ))}
-                      </div>
-                      <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
-                      <h5 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h5>
-                      <span className={this.decorateCSS("item-value3")}>{item.value[3].value}</span>
+      <Base.Container className={this.decorateCSS("container")} >
+        <Base.MaxContent className={this.decorateCSS("maxContent")} >
+          <Base.ContainerGrid className={this.decorateCSS("containerGrid")} >
+            <div className={this.decorateCSS("leftContainer")}>
+              {this.castToString(leftItem.subtitle) && (
+                <Base.P className={this.decorateCSS("subtitle")}>
+                  {leftItem.subtitle}
+                </Base.P>
+              )}
+              {this.castToString(leftItem.title) && (
+                <Base.H1 className={this.decorateCSS("title")}>
+                  {leftItem.title}
+                </Base.H1>
+              )}
+              {(leftItem.nextIcon || leftItem.prevIcon) && (
+                <div className={this.decorateCSS("arrow")}>
+                  {leftItem.prevIcon && (
+                    <div className={this.decorateCSS("prevArrow")}>
+                      <ComposerIcon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                     </div>
-                  ))}
+                  )}
+                  {leftItem.nextIcon && (
+                    <div className={this.decorateCSS("nextArrow")}>
+                      <ComposerIcon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                    </div>
+                  )}
                 </div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
+              )}
+              <div>
+              </div>
+            </div>
+
+            {sliderItem.map((item: SliderItem, index: number) => (
+              <div className={this.decorateCSS("slider")}>
+                <img src={item.image} alt={item.image} />
+
+                <div className={this.decorateCSS("sliderTitle")}>
+                  {item.sliderTitle}
+                </div>
+                <div className={this.decorateCSS("line")}>
+
+                </div>
+                <div className={this.decorateCSS("rightContainer")}>
+                  <div className={this.decorateCSS("description")}>
+                    {item.description}
+                  </div>
+                  <div className={this.decorateCSS("star")}>
+                    {[...Array(Number(item.star))].map(
+                      (_: any, index: number) => (
+                        <ComposerIcon name={item.starIcon} />
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Base.ContainerGrid>
+        </Base.MaxContent>
+      </Base.Container >
+
     );
   }
 }

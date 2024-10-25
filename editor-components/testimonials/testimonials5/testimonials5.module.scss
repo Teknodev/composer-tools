@@ -1,95 +1,67 @@
-.container {
-  width: 100%;
-  padding: 150px 50px;
-  background-color: var(--composer-html-background);
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    display: flex;
-    margin: auto;
-
-    .testimonials5 {
-      display: block;
-      width: 100%;
-
-      .title {
-        text-align: center;
-        font-size: 3rem;
-        margin: 0 0 80px 0;
-        color: var(--composer-primary-color);
-      }
-
-      .card-child {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-
-        .card {
-          flex: 1 1;
-          min-width: 250px;
-          border-radius: 6px;
-          background-color: var(--composer-html-background);
-          border: 1px solid var(--composer-tertiary-color);
-          padding: 20px;
+.container{
+  .maxContent{
+    .containerGrid{
+      .leftContainer{
+        .subtitle{
+  
+        }
+        .title{
+  
+        }
+        .arrow{
           display: flex;
-          flex-direction: column;
-          margin-bottom: 100px;
-
-          .stars {
-            color: var(--composer-secondary-color);
-
-            img {
-              width: 15px;
-              height: 15px;
-            }
-
-            .star {
-              color: var(--composer-secondary-color);
-            }
+          gap: var(--composer-gap-md);
+          .prevArrow{
+            padding: var(--composer-gap-sm);
+  background-color: var(--composer-font-color-primary);
+  border-radius: 50%;
+  color: var(--composer-font-color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .icon{
+    width: 20px;
+    height: 20px;
+  }
           }
-
-          img {
-            margin-bottom: 20px;
-          }
-
-          .item-value1 {
-            margin-top: 5px;
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--composer-font-color-primary);
-          }
-
-          .item-value3 {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--composer-font-color-primary);
-          }
-
-          .item-value2 {
-            opacity: 0.8;
-            font-weight: 500;
-            font-size: 1.5rem;
-            margin: 20px 0;
-            color: var(--composer-font-color-primary);
+          .nextArrow{
+            padding: var(--composer-gap-sm);
+  background-color: var(--composer-font-color-primary);
+  border-radius: 50%;
+  color: var(--composer-font-color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .icon{
+    width: 20px;
+    height: 20px;
+  }
           }
         }
       }
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    background-color: var(--composer-html-background);
-
-    .max-content {
-      .testimonials5 {
-        .card {
-          align-items: center;
+      .slider{
+        display: flex;
+        .image{
+  
+        }
+        .sliderTitle{
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
           text-align: center;
-          border: var(--composer-testiary-color);
+        }
+        .line {
+          height: 100%;
+          width: 1px;
+          background-color: var(--composer-font-color-primary);
+          opacity: 0.5;
+        }
+        .rightContainer{
+          .description{
+  
+          }
+          .star{
+  
+          }
         }
       }
     }
