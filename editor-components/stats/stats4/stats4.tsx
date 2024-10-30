@@ -246,6 +246,13 @@ class Stats4Page extends BaseStats {
       displayer: "Stat Animation Increment Value",
       value: 20,
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4,
+      max: 4,
+    });
 
     this.init();
     this.animate();
@@ -315,15 +322,13 @@ class Stats4Page extends BaseStats {
 
   render() {
     const mainTitle = this.getPropValue("mainTitle", { as_string: true });
-    const mainDescription = this.getPropValue("mainDescription", {
-      as_string: true,
-    });
+    const mainDescription = this.getPropValue("mainDescription", { as_string: true, });
     const faqs = this.castToObject<Faq[]>("faqItems");
     const statItems = this.castToObject<Stat[]>("statItems");
-
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
     const statIcon = this.getPropValue("statIcon");
+    const itemCount = this.getPropValue("itemCount");
 
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
@@ -341,7 +346,7 @@ class Stats4Page extends BaseStats {
               </header>
             )}
             {(mainDescription || faqs?.length > 0) && (
-              <div className={this.decorateCSS("upper-container")}>
+              <Base.ContainerGrid className={this.decorateCSS("upper-container")}>
                 {mainDescription && (
                   <main className={this.decorateCSS("upper-container-main")}>
                     <Base.SectionTitle className={this.decorateCSS("main-description")}>
@@ -415,10 +420,10 @@ class Stats4Page extends BaseStats {
                     })}
                   </div>
                 )}
-              </div>
+              </Base.ContainerGrid>
             )}
             {statItems?.length > 0 && (
-              <Base.ListGrid className={this.decorateCSS("stats")}>
+              <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats")}>
                 {statItems.map((item: Stat, index: number) => {
                   const titleExist = this.castToString(item.title);
                   const contentExist = this.castToString(item.content);
@@ -460,7 +465,7 @@ class Stats4Page extends BaseStats {
                           </>
                         )}
                         {item.stat && (
-                          <h3
+                          <p
                             className={this.decorateCSS("stat-item-stat-value")}
                           >
                             {statValue}
@@ -476,7 +481,7 @@ class Stats4Page extends BaseStats {
                                 />
                               </span>
                             )}
-                          </h3>
+                          </p>
                         )}
                       </article>
                     );

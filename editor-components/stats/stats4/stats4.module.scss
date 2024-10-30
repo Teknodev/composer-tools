@@ -18,11 +18,7 @@
       }
 
       .upper-container {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        gap: var(--composer-gap-md);
-
+        flex-wrap: unset;
         .upper-container-main {
           width: 100%;
 
@@ -85,9 +81,6 @@
       .stats {
         margin-top: var(--composer-gap-lg);
         .stat-item {
-          width: 23%;
-          flex: 1;
-
           .stat-line {
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             width: 100%;
@@ -131,14 +124,6 @@
       flex-direction: column;
 
       .stats-container {
-        .stats {
-          flex-direction: row;
-          .stat-item {
-            width: 45%;
-            flex: auto;
-          }
-        }
-
         .upper-container {
           flex-direction: column;
           gap: 0;
