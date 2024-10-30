@@ -1,90 +1,43 @@
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        margin: auto;
-        .title,
-        .description {
-            text-align: center;
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+
+    .up-content {
+      .title {
+        color: var(--composer-font-color-primary);
+      }
+
+      .description {
+        color: var(--composer-font-color-primary);
+        opacity: 0.5;
+      }
+    }
+
+    .team-members {
+      .team-member {
+        flex: 1 1;
+        min-width: 250px;
+        height: 100%;
+        gap: var(--composer-gap-sm);
+
+        .member-image {
+          max-height: 500px;
+          height: auto;
+          width: 100%;
+          border-radius: var(--composer-border-radius-xl);
+          object-fit: cover;
         }
-        .title {
-            word-break: break-word;
-            font-size: 3rem;
-            color: var(--composer-primary-color);
-        }
-        .description {
-            margin: 20px 0;
+        .name-and-position {
+          .team-member-name {
             color: var(--composer-font-color-primary);
+          }
+          .team-member-position {
+            color: var(--composer-primary-color);
+          }
         }
-        .team-members {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-            gap: 50px;
-            .team-member {
-                flex: 1 1;
-                min-width: 250px;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                border-radius: 6px;
-                overflow: hidden;
-                background: var(--composer-html-background);
-                border: 1px solid var(--composer-tertiary-color);
-                box-shadow: var(--composer-box-shadow);
-                border-radius: 6px;
-                gap: 10px;
-                .member-image {
-                    max-height: 500px;
-                    height: 100%;
-                    width: 100%;
-                    object-fit: cover;
-                }
-                .name-and-position {
-                    text-align: center;
-                    font-weight: 500;
-                    padding: 5px;
-                     :first-child {
-                        font-size: 1.2rem;
-                        font-weight: 700;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .team-member-position {
-                        margin: 10px 0 0 0;
-                        color: var(--composer-primary-color);
-                    }
-                }
-                .icon-group{
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: row;
-                    text-align: center;
-                    font-size: 2rem;
-                    gap: 5px;
-
-                    .icon{
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-            }
-        }
+      }
     }
-}
-
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .max-content {
-            align-items: center;
-            flex-direction: column;
-            .card-item-count {
-                min-width: 100%;
-            }
-        }
-    }
+  }
 }
