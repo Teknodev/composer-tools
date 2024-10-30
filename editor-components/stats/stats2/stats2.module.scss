@@ -4,8 +4,6 @@
 
   .max-content {
     display: flex;
-    justify-content: center;
-    align-items: start;
     flex-direction: column;
 
     .header-wrapper {
@@ -21,13 +19,10 @@
     }
 
     .bottom-content {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: flex-start;
+      flex-wrap: unset;
 
       .subHeader {
-        width: 65%;
+        flex: 1;
         position: sticky;
         top: 5rem;
         display: unset;
@@ -85,19 +80,17 @@
         }
       }
 
-      .no-title{
+      .no-title {
         top: 0;
       }
 
       .cards-container {
         gap: 0;
+        flex: 3;
 
         .listed {
           display: flex;
-          width: 50%;
           flex-direction: column;
-          justify-content: space-between;
-          flex-grow: 1;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
           border-bottom: none;
           padding: 1rem 3rem 1.5rem 3rem;

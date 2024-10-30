@@ -199,6 +199,13 @@ class Stats2Page extends BaseStats {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 2,
+      max: 4,
+    });
   }
 
   getName(): string {
@@ -218,6 +225,7 @@ class Stats2Page extends BaseStats {
     const contactButtonIcon = this.getPropValue("contactButtonIcon");
     const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
     const contactButtonLink = this.getPropValue("contactButtonLink");
+    const itemCount = this.getPropValue("itemCount");
 
     const AnimatedCard = ({
       card,
@@ -336,7 +344,7 @@ class Stats2Page extends BaseStats {
             </Base.VerticalContent>
           )}
 
-          <div className={this.decorateCSS("bottom-content")}>
+          <Base.ContainerGrid className={this.decorateCSS("bottom-content")}>
             {(isSubHeader || isContactButtonExist || contactButtonIcon) && (
               <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!isHeaderExist && this.decorateCSS("no-title")}`}>
                 {isSubHeader && (
@@ -359,7 +367,7 @@ class Stats2Page extends BaseStats {
             )}
 
             {cards.length > 0 && (
-              <Base.ContainerGrid className={this.decorateCSS("cards-container")}>
+              <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card, index) => {
                   const isTextExist = this.castToString(card.text);
                   return (
@@ -371,9 +379,9 @@ class Stats2Page extends BaseStats {
                     />
                   );
                 })}
-              </Base.ContainerGrid>
+              </Base.ListGrid>
             )}
-          </div>
+          </Base.ContainerGrid>
         </Base.MaxContent>
       </Base.Container>
     );
