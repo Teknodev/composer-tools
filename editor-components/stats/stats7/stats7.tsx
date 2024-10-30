@@ -138,8 +138,7 @@ class Stats7Page extends BaseStats {
 
     return (
       <Base.Container className={this.decorateCSS("container")} >
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!(isTitleExist || isDescriptionExist) && this.decorateCSS("max-content-is-disable")}`}>
-
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {showDiv &&
             <Base.VerticalContent className={this.decorateCSS("title-child")}>
               {isSubtitleExist && (
