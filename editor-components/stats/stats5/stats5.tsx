@@ -96,7 +96,24 @@ class Stats5Page extends BaseStats {
         },
       ],
     });
-
+    this.addProp({
+      type: "number",
+      key: "animation-duration",
+      displayer: "Stat Animation Duration (ms)",
+      value: 30,
+    });
+    this.addProp({
+      type: "number",
+      key: "increment-value",
+      displayer: "Stat Animation Increment Value",
+      value: 20,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "lines",
+      displayer: "Toggle Lines",
+      value: true,
+    });
     this.addProp({
       type: "number",
       key: "itemCountInRow",
@@ -105,26 +122,6 @@ class Stats5Page extends BaseStats {
       max: 4,
     });
 
-    this.addProp({
-      type: "number",
-      key: "animation-duration",
-      displayer: "Stat Animation Duration (ms)",
-      value: 30,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "increment-value",
-      displayer: "Stat Animation Increment Value",
-      value: 20,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "lines",
-      displayer: "Toggle Lines",
-      value: true,
-    });
 
     this.init();
     this.animate();
@@ -203,15 +200,10 @@ class Stats5Page extends BaseStats {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {cards?.length > 0 && (
-            <div
-              className={this.decorateCSS("bottom-child")}
-              style={{
-                gridTemplateColumns: `repeat(${itemCountInRow}, 1fr)`,
-              }}
-            >
+            <Base.ListGrid gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }} className={this.decorateCSS("bottom-child")}>
               {cards.map((item: Card, index: number) => {
-                const titleExist = this.castToString(item.title);
 
+                const titleExist = this.castToString(item.title);
                 const statValue =
                   item.stat === this.getComponentState(`number-${index}`)
                     ? item.stat
@@ -242,7 +234,7 @@ class Stats5Page extends BaseStats {
                   );
                 return null;
               })}
-            </div>
+            </Base.ListGrid>
           )}
         </Base.MaxContent>
       </Base.Container>
