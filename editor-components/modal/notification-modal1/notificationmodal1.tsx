@@ -4,7 +4,7 @@ import { BaseModal } from "../../EditorComponent";
 import styles from "./notificationmodal1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
+import { Base } from "../../../composer-base-components/base/base";
 
 type Button = {
   buttonText: JSX.Element;
@@ -19,8 +19,7 @@ class NotificationModal1 extends BaseModal {
       type: "image",
       key: "background_image",
       displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a793902f8a5b002ce6e47f?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a793902f8a5b002ce6e47f?alt=media",
     });
 
     this.addProp({
@@ -48,15 +47,13 @@ class NotificationModal1 extends BaseModal {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Please pay premium by 05 Dec 2021, otherwise you will be charged 20% amount of your premium.",
+      value: "Please pay premium by 05 Dec 2021, otherwise you will be charged 20% amount of your premium.",
     });
     this.addProp({
       type: "icon",
       key: "exitIcon",
       displayer: "ExitIcon",
-      value:
-        "IoCloseSharp"
+      value: "IoCloseSharp",
     });
 
     this.addProp({
@@ -97,65 +94,70 @@ class NotificationModal1 extends BaseModal {
   render() {
     const backgroundImage = this.getPropValue("background_image");
     const overlay = this.getPropValue("overlay");
+    const exitIcon = this.getPropValue("exitIcon");
     const firstTitleExist = this.castToString(this.getPropValue("firstTitle"));
     const secondTitleExist = this.castToString(this.getPropValue("secondTitle"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<Button[]>("buttons");
     const validButtons = buttons.filter((item: Button) => this.castToString(item.buttonText));
+
+    if (!backgroundImage && !firstTitleExist && !secondTitleExist && !descriptionExist && validButtons.length === 0) {
+      return null;
+    }
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container
+        isModal="true"
+        className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("top-wrapper")}>
-              <div className={this.decorateCSS("exit-icon")}>
-                <ComposerModalClose>
-                  <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
-                </ComposerModalClose>
-
+            {(exitIcon || secondTitleExist || descriptionExist) && (
+              <div className={this.decorateCSS("top-wrapper")}>
+                {exitIcon && (
+                  <div className={this.decorateCSS("exit-icon")}>
+                    <ComposerIcon
+                      propsIcon={{ className: this.decorateCSS("exit-icon") }}
+                      name={this.getPropValue("exitIcon")}
+                    />
+                  </div>
+                )}
+                {(backgroundImage || firstTitleExist) && (
+                  <div className={`${this.decorateCSS("wrapper")} ${!backgroundImage && this.decorateCSS("without-image")}`}>
+                    {backgroundImage && (
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={backgroundImage}
+                      />
+                    )}
+                    <Base.H1 className={this.decorateCSS("first-header")}>{this.getPropValue("firstTitle")}</Base.H1>
+                    {overlay && <div className={this.decorateCSS("overlay")}></div>}
+                  </div>
+                )}
               </div>
-              {(backgroundImage || firstTitleExist) && (
-                <div className={`${this.decorateCSS("wrapper")} ${!backgroundImage && this.decorateCSS("without-image")}`}>
-                  {backgroundImage && <img
-                    className={this.decorateCSS("image")}
-                    src={backgroundImage}
-                  />}
-                  <h2 className={this.decorateCSS("first-header")}>
-                    {this.getPropValue("firstTitle")}
-                  </h2>
-                  {overlay && <div className={this.decorateCSS("overlay")}>
-                  </div>}
-                </div>
-              )}
-            </div>
-
-
-
-            <div className={this.decorateCSS("second-div")}>
-              {secondTitleExist &&
-                <h3 className={this.decorateCSS("second-header")}>
-                  {this.getPropValue("secondTitle")}
-                </h3>}
-              {descriptionExist &&
-                <p className={this.decorateCSS("notice-content")}>
-                  {this.getPropValue("description")}
-                </p>}
-            </div>
+            )}
+            {(secondTitleExist || descriptionExist) && (
+              <Base.VerticalContent className={this.decorateCSS("second-div")}>
+                {secondTitleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("second-header")}>{this.getPropValue("secondTitle")}</Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("notice-content")}>{this.getPropValue("description")}</Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
 
             {validButtons.length > 0 && (
               <div className={this.decorateCSS("button-background")}>
-                {validButtons.map((item: Button, index: number) => (
-                  <ComposerLink path={item.link} >
-                    <div className={this.decorateCSS("button")}>
-                      {item.buttonText}
-                    </div>
+                {validButtons.map((item: Button) => (
+                  <ComposerLink path={item.link}>
+                    <div className={`${this.decorateCSS("button")} `}>{item.buttonText}</div>
                   </ComposerLink>
-
                 ))}
               </div>
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
