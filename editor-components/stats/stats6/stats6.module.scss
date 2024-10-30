@@ -10,17 +10,10 @@
     }
 
     .stats6-page {
-      width: auto;
-      justify-content: center;
       margin-bottom: var(--composer-gap-xl);
 
       .card {
-        text-align: center;
-        display: flex;
         gap: var(--composer-gap-md);
-        flex-direction: column;
-        flex-wrap: wrap;
-        min-width: 380px;
 
         .data-card-title {
           font-size: 2.5rem;
@@ -32,6 +25,18 @@
         .data-card-description {
           margin: 0;
           color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: 768px) {
+  .container {
+    .max-content {
+      .banner {
+        .description {
+          width: 100%;
         }
       }
     }

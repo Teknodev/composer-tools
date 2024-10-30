@@ -92,13 +92,20 @@ class Stats6Page extends BaseStats {
         },
       ],
     });
-
     this.addProp({
       type: "number",
       key: "animation-duration",
       displayer: "Number Animation Duration (ms)",
       value: 500,
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+      max: 4,
+    });
+
     this.init();
     this.animate();
   }
@@ -136,6 +143,7 @@ class Stats6Page extends BaseStats {
 
       statItems.map(
         (statsData: CardData, index: number) => {
+
           let statNumber = this.getComponentState(`number-${index}`);
           if (statNumber != statsData.CardValue) {
             this.setComponentState(
@@ -170,6 +178,7 @@ class Stats6Page extends BaseStats {
     const headerExist = this.castToString(header);
     const description = this.getPropValue("description")
     const descriptionExist = this.castToString(description);
+    const itemCount = this.getPropValue("itemCount");
 
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
@@ -187,11 +196,11 @@ class Stats6Page extends BaseStats {
             </Base.SectionDescription>}
           </Base.VerticalContent>}
           {cardList.length > 0 &&
-            <Base.ContainerGrid className={this.decorateCSS("stats6-page")}>
+            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats6-page")}>
               {cardList.map(
                 (data: any, index: number) => {
                   return (
-                    <Base.GridCell key={index} className={this.decorateCSS("card")}>
+                    <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                       {this.getComponentState(`number-${index}`) !== 0 &&
                         <Base.P className={this.decorateCSS("data-card-title")}>
                           {this.getComponentState(`number-${index}`)}
@@ -200,11 +209,11 @@ class Stats6Page extends BaseStats {
                         <Base.P className={this.decorateCSS("data-card-description")}>
                           {data.CardDescription}
                         </Base.P>}
-                    </Base.GridCell>
+                    </Base.VerticalContent>
                   )
                 }
               )}
-            </Base.ContainerGrid>}
+            </Base.ListGrid>}
         </Base.MaxContent>
       </Base.Container>
     );
