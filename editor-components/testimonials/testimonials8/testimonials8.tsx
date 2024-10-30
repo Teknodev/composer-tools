@@ -2,14 +2,22 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Item = {
   image: string;
-  name: string;
-  nameId: string;
-  description: string;
-  time: string;
+  name: JSX.Element;
+  nameId: JSX.Element;
+  description: JSX.Element;
+  starNumber: number;
+  starIcon: string;
+  lineActive: boolean;
 };
+interface ArrowItem {
+  nextArrow: string,
+  prevArrow: string
+}
 
 class Testimonials8Page extends Testimonials {
   constructor(props?: any) {
@@ -18,7 +26,7 @@ class Testimonials8Page extends Testimonials {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Testimonials",
+      value: "Some of out valuable customers feedback",
     });
     this.addProp({
       type: "array",
@@ -46,22 +54,37 @@ class Testimonials8Page extends Testimonials {
             {
               type: "string",
               key: "nameId",
-              value: "@Erle_Philomena",
+              value: "Erle_Philomena",
               displayer: "Name Id",
             },
             {
               type: "string",
               key: "description",
               value:
-                "Flat design is characterized by simple, two-dimensional elements and a clean, minimal aesthetic. It's a great way to create a streamlined and modern look.",
+                "I have been using pagedone for several months now, and I must say that it has made my life a lo easier. The platform's intuitive interface and ease of use have allowed me to managed my finances more effectively and make informed incestment decisions. I particularly like the product's auto-tracking feature, which has saved me a lot of time and effort. Moreover, the personalized insights and recommendations have helped me maximize my profits and miimize my risks. Overall, I am highly satisfied with and recommend it to anyone looking to simplfy their financal managment. ",
               displayer: "Description",
             },
             {
-              type: "string",
-              key: "time",
-              value: "15 days ago",
-              displayer: "time",
+              type: "number",
+              key: "starNumber",
+              displayer: "Star Number",
+              value: 5,
             },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Star Icon",
+              value: "FaStar",
+
+            },
+            {
+              type: "boolean",
+              key: "lineActive",
+              displayer: "Line Active",
+              value: true,
+
+            },
+
           ],
         },
         {
@@ -85,7 +108,7 @@ class Testimonials8Page extends Testimonials {
             {
               type: "string",
               key: "nameId",
-              value: "@Shonda_Kadence",
+              value: "Shonda_Kadence",
               displayer: "Name Id",
             },
             {
@@ -96,10 +119,24 @@ class Testimonials8Page extends Testimonials {
               displayer: "Description",
             },
             {
-              type: "string",
-              key: "time",
-              value: "5 month ago",
-              displayer: "time",
+              type: "number",
+              key: "starNumber",
+              displayer: "Star Number",
+              value: 5,
+            },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Star Icon",
+              value: "FaStar",
+
+            },
+            {
+              type: "boolean",
+              key: "lineActive",
+              displayer: "Line Active",
+              value: true,
+
             },
           ],
         },
@@ -124,7 +161,7 @@ class Testimonials8Page extends Testimonials {
             {
               type: "string",
               key: "nameId",
-              value: "@Laurie_Darwin",
+              value: "Laurie_Darwin",
               displayer: "Name Id",
             },
             {
@@ -135,15 +172,49 @@ class Testimonials8Page extends Testimonials {
               displayer: "Description",
             },
             {
-              type: "string",
-              key: "time",
-              value: "2 years ago",
-              displayer: "time",
+              type: "number",
+              key: "starNumber",
+              displayer: "Star Number",
+              value: 5,
             },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Star Icon",
+              value: "FaStar",
+            },
+            {
+              type: "boolean",
+              key: "lineActive",
+              displayer: "Line Active",
+              value: true,
+            }
           ],
         },
       ],
     });
+    this.addProp({
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "icon",
+          key: "prevArrow",
+          displayer: "Prev Icon",
+          value: "GrLinkPrevious"
+        },
+        {
+          type: "icon",
+          key: "nextArrow",
+          displayer: "Next Icon",
+          value: "GrLinkNext"
+        }
+
+      ]
+    });
+    this.setComponentState("active_index", 0);
+    this.setComponentState("slider-ref", React.createRef());
   }
 
   getName(): string {
@@ -153,45 +224,96 @@ class Testimonials8Page extends Testimonials {
   render() {
     const settings = {
       dots: true,
+      arrows: false,
       infinite: true,
       speed: 700,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("active_index", next);
+      },
     };
+    const arrows = this.castToObject<ArrowItem>("arrows");
+    const sliderRef = this.getComponentState("slider-ref");
+    const cards = this.castToObject<Item[]>("card-items");
+    console.log("card", cards.length)
     return (
-
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials2")}>
-            <div>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            </div>
-            <ComposerSlider {...settings}>
-              {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
-                <div key={`tsm-8-${index}`}>
-                  <section>
-                    <div className={this.decorateCSS("card")}>
-                      <div className={this.decorateCSS("profile")}>
-                        <img width={50} height={50} src={item.image} alt={item.name} />
-                        <div className={this.decorateCSS("profile-text")}>
-                          <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
-                          <p className={this.decorateCSS("item-name-id")}>{item.nameId}</p>
-                        </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("maxContent")}>
+          <div className={this.decorateCSS("testimonials8")}>
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>
+            )}
+            <div className={this.decorateCSS("content")}>
+              {(arrows.prevArrow && (cards.length > 1)) && (
+                <button className={this.decorateCSS("prevArrow")} onClick={() => {
+                  sliderRef.current.slickPrev();
+                }}>
+                  <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                </button>
+              )}
+              <ComposerSlider {...settings} ref={sliderRef} >
+                {cards.map((item: Item, index: number) => (
+                  <div className={this.decorateCSS("card")}>
+                    <div className={this.decorateCSS("topContainer")}>
+                      {item.image && (
+                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                      )}
+                      <div className={this.decorateCSS("personal")}>
+                        {this.castToString(item.name) && (
+                          <div className={this.decorateCSS("name")}>
+                            {item.name}
+                          </div>
+                        )}
+                        {this.castToString(item.nameId) && (
+                          <div className={this.decorateCSS("personTitle")}>
+                            {item.nameId}
+                          </div>
+                        )}
                       </div>
-                      <span className={this.decorateCSS("item-description")}>{item.description}</span>
-                      <h5 className={this.decorateCSS("item-time")}>{item.time}</h5>
                     </div>
-                  </section>
-                </div>
-              ))}
-            </ComposerSlider>
+                    {this.castToString(item.description) && (
+                      <Base.P className={this.decorateCSS("description")}>
+                        {item.description}
+                      </Base.P>
+                    )}
+
+                    <div className={this.decorateCSS("bottomContainer")}>
+                      {((item.starNumber > 0) && (item.starIcon)) && (
+                        <div className={this.decorateCSS("star")}>
+                          {[...Array(Number(item.starNumber))].map(
+                            (_: any, index: number) => (
+                              <ComposerIcon name={item.starIcon} />
+                            )
+                          )}
+                        </div>
+                      )}
+                      {item.lineActive && (
+                        <div className={this.decorateCSS("line")}></div>
+                      )}
+                      {(item.starNumber > 0) && (
+                        <div className={this.decorateCSS("starNumber")}>
+                          {item.starNumber}
+                        </div>
+                      )}
+
+                    </div>
+                  </div>
+                ))}
+              </ComposerSlider>
+              {(arrows.nextArrow && (cards.length > 1)) && (
+                <button className={this.decorateCSS("nextArrow")} onClick={() => {
+                  sliderRef.current.slickNext();
+                }}>
+                  <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-
-
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
 
     );
   }
