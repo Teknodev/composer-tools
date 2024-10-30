@@ -1,87 +1,28 @@
 .container {
-  width: 100%;
-  height: fit-content;
-  padding: 20px 0 20px 50px;
-  background-color: var(--composer-html-background);
-
+  padding-left: 50px !important;
   .max-content {
-    max-width: var(--composer-content-width);
-    display: flex;
-    margin: 0 auto;
-    min-height: 730px;
-
     .container2 {
-      display: flex;
-      margin: 0 auto;
-      justify-content: center;
-
       .testimonials10 {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
+        flex-wrap: nowrap;
         .left-content {
-          width: 40%;
-          min-width: 450px;
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-          padding: 0 40px 0 0;
-          justify-content: start;
-          align-items: start;
-
-          .title-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            .title {
-              margin-top: 0;
-              margin-bottom: 0;
-              color: var(--composer-font-color-primary);
-              font-size: 2rem;
-            }
-
-            .line {
-              background-color: var(--composer-font-color-primary);
-              width: 40px;
-              height: 3px;
-              margin-top: 0;
-              margin-bottom: 0;
-            }
-          }
-
+          width: 30%;
           .subtitle {
-            margin: 0;
-            color: var(--composer-font-color-primary);
-            font-size: 3.5rem;
-            text-align: start;
-            margin-bottom: 15px;
-            margin-top: 15px;
           }
-
+          .title {
+          }
           .description {
-            color: var(--composer-font-color-primary);
-            font-size: 1.5rem;
-            margin-top: 5px;
-            margin-bottom: 15px;
           }
-
           .button-group {
             display: flex;
             flex-direction: row;
-            margin-top: 10px;
-            gap: 20px;
-
+            gap: var(--composer-gap-md);
             .button {
-              font-size: 14px;
+              font-size: 1rem;
               border: none;
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-secondary-color);
-              padding: 15px 40px;
-              transition-duration: 0.3s easein-out;
-              min-width: 167px;
+              padding: var(--composer-gap-sm) var(--composer-gap-lg);
+              transition-duration: 0.3s ease-in-out;
               text-align: center;
               cursor: pointer;
             }
@@ -89,46 +30,41 @@
         }
 
         .slider-style {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: start;
           background: var(--composer-font-color-primary);
-          width: 100%;
+          width: 70%;
           height: 100%;
+          >div{
+            width: 70%;
+          }
 
           .hiliteTitle {
-            font-size: 100px;
+            font-size: 5rem;
             color: var(--composer-font-color-secondary);
             width: 100%;
             text-align: end;
-            padding-right: 50px;
           }
 
-          .slider-inner-div-with-image {
+          .slider-inner-div-with-image, .slider-inner-div  {
             background: var(--composer-font-color-primary);
-            width: 75%;
-            display: flex !important;
-            justify-content: center;
-            margin-top: 30px;
-
+            display: flex !important;            
+            z-index: 2;
+            position: relative;
             .img-div {
               z-index: 1;
+              max-width: 20%;  
+              margin: var(--composer-gap-lg) 0 0 var(--composer-gap-lg);          
               .img {
-                width: 90%;
+                width: 100%;
                 border: 2px solid var(--composer-html-background);
               }
             }
-
-            .header-page {
-              position: relative;
-              width: 70%;
-              font-size: 1.5rem;
+            .header-page {            
+              width: 80%;
               background-color: var(--composer-html-background);
-              padding: 60px 35px 30px 40px;
-              margin: 80px 0 0 -50px;
-
+              padding:var(--composer-gap-md);
+              margin-top: calc( var(--composer-gap-xl) * (3));
+              margin-left:calc( var(--composer-gap-md) * (-1));
+              margin-bottom: calc( var(--composer-gap-xl) * (3));
               .icons {
                 font-size: 3rem;
                 display: flex;
@@ -146,81 +82,31 @@
                   }
                 }
               }
-
               .iconquote {
                 position: absolute;
-                font-size: 7rem;
+                font-size: 5rem;
                 color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-                top: 50px;
-                left: 40px;
+                top: 13rem;
+                left: 13rem;
               }
-
               .card {
                 .text {
-                  text-align: start;
-                  font-size: 1.5rem;
                   color: var(--composer-font-color-primary);
                 }
                 .author {
                   color: var(--composer-font-color-primary);
-                  font-size: 2rem;
+                  font-size:1.5rem;
                   margin-bottom: 0;
                 }
                 .position {
                   color: var(--composer-font-color-primary);
-                  font-size: 1.5rem;
-                  margin-top: 5px;
+                  font-size: 1rem;
                 }
               }
             }
           }
           .slider-inner-div {
-            background: var(--composer-font-color-primary);
-            width: 75%;
-            display: flex !important;
-            justify-content: center;
-
-            .header-page {
-              position: relative;
-              width: 70%;
-              font-size: 1.5rem;
-              background-color: var(--composer-html-background);
-              padding: 25px 40px;
-              margin-top: 20px;
-
-              .icons {
-                font-size: 3rem;
-                display: flex;
-                justify-content: flex-end;
-                gap: 15px;
-                color: var(--composer-font-color-primary);
-              }
-
-              .iconquote {
-                position: absolute;
-                font-size: 7rem;
-                color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-                top: 20px;
-                left: 40px;
-              }
-
-              .card {
-                .text {
-                  text-align: start;
-                  font-size: 1.5rem;
-                  color: var(--composer-font-color-primary);
-                }
-                .author {
-                  color: var(--composer-font-color-primary);
-                  font-size: 2rem;
-                  margin-bottom: 0;
-                }
-                .position {
-                  color: var(--composer-font-color-primary);
-                  font-size: 1.5rem;
-                }
-              }
-            }
+  
           }
 
           .slider {
