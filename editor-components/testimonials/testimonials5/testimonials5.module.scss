@@ -1,8 +1,11 @@
 .container{
   .maxContent{
     .containerGrid{
+      display: flex;
       .leftContainer{
+        min-width: 25%;
         .subtitle{
+          margin: 0px;
   
         }
         .title{
@@ -13,35 +16,48 @@
           gap: var(--composer-gap-md);
           .prevArrow{
             padding: var(--composer-gap-sm);
-  background-color: var(--composer-font-color-primary);
-  border-radius: 50%;
-  color: var(--composer-font-color-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .icon{
-    width: 20px;
-    height: 20px;
-  }
+            background-color: var(--composer-font-color-primary);
+            border-radius: 50%;
+            color: var(--composer-font-color-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .icon{
+              width: 20px;
+              height: 20px;
+            }
           }
           .nextArrow{
             padding: var(--composer-gap-sm);
-  background-color: var(--composer-font-color-primary);
-  border-radius: 50%;
-  color: var(--composer-font-color-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .icon{
-    width: 20px;
-    height: 20px;
-  }
+            background-color: var(--composer-font-color-primary);
+            border-radius: 50%;
+            color: var(--composer-font-color-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .icon{
+              width: 20px;
+              height: 20px;
+            }
           }
         }
       }
       .slider{
-        display: flex;
+        >div{
+          >div{
+            display: flex !important;
+            >div{
+              >div{
+                >div{
+                  display: flex !important;
+                }
+              }
+
+            }
+          }
+        }
         .image{
+          padding-right: calc(var(--composer-gap-xl) * 2);
   
         }
         .sliderTitle{
@@ -49,18 +65,33 @@
           transform: rotate(180deg);
           text-align: center;
         }
-        .line {
+        .lineContainer{
           height: 100%;
-          width: 1px;
-          background-color: var(--composer-font-color-primary);
-          opacity: 0.5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .line {
+            height: 50%;
+            width: 1px;
+            background-color: var(--composer-font-color-primary);
+            opacity:0.5;
+          }
         }
+
         .rightContainer{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: var(--composer-gap-md);
+          padding-left: var(--composer-gap-xl);
           .description{
   
           }
-          .star{
-  
+          .stars{
+            background-color: var(--composer-secondary-color);
+            padding: var(--composer-gap-xs) calc(var(--composer-gap-xs) * 2);
+            border-radius: var(--composer-border-radius-xl);
+            width: fit-content;
           }
         }
       }

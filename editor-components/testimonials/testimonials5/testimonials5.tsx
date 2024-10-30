@@ -4,6 +4,7 @@ import styles from "./testimonials5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base"
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Autoplay } from "swiper";
 
 interface LeftItem {
   subtitle: JSX.Element,
@@ -24,6 +25,14 @@ interface SliderItem {
 class Testimonials5Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "image",
+      key: "background-image",
+      displayer: "Background Image",
+      value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-bg-03.jpg",
+    });
+
     this.addProp({
       type: "object",
       key: "leftItem",
@@ -81,7 +90,81 @@ class Testimonials5Page extends Testimonials {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Excellent travel company. We have already "
+              value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure."
+            },
+            {
+              type: "number",
+              key: "star",
+              displayer: "Star",
+              value: 5
+            },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Star Icon",
+              value: "FaStar"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-17.png"
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
+              displayer: "Slider Title",
+              value: "Alexender Moore"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure."
+            },
+            {
+              type: "number",
+              key: "star",
+              displayer: "Star",
+              value: 5
+            },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Star Icon",
+              value: "FaStar"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-15.png"
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
+              displayer: "Slider Title",
+              value: "Alexender Moore"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure."
             },
             {
               type: "number",
@@ -99,7 +182,9 @@ class Testimonials5Page extends Testimonials {
         }
       ]
     })
-
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active", 0);
+    this.setComponentState("activeSlideIndex", 0);
   }
 
   getName(): string {
@@ -109,15 +194,35 @@ class Testimonials5Page extends Testimonials {
   render() {
     const leftItem = this.castToObject<LeftItem>("leftItem");
     const sliderItem = this.castToObject<SliderItem[]>("sliders");
+    const sliderRef = this.getComponentState("slider-ref");
+    var settings = {
+      dots: false,
+      autoplay: true,
+      infinite: false,
+      arrows: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("active", next);
+        this.setComponentState("activeSlideIndex", next);
+      },
+    };
     return (
-      <Base.Container className={this.decorateCSS("container")} >
+      <Base.Container className={this.decorateCSS("container")}
+        style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}>
         <Base.MaxContent className={this.decorateCSS("maxContent")} >
-          <Base.ContainerGrid className={this.decorateCSS("containerGrid")} >
+          <div className={this.decorateCSS("containerGrid")} >
             <div className={this.decorateCSS("leftContainer")}>
               {this.castToString(leftItem.subtitle) && (
-                <Base.P className={this.decorateCSS("subtitle")}>
+                <Base.H3 className={this.decorateCSS("subtitle")}>
                   {leftItem.subtitle}
-                </Base.P>
+                </Base.H3>
               )}
               {this.castToString(leftItem.title) && (
                 <Base.H1 className={this.decorateCSS("title")}>
@@ -127,46 +232,52 @@ class Testimonials5Page extends Testimonials {
               {(leftItem.nextIcon || leftItem.prevIcon) && (
                 <div className={this.decorateCSS("arrow")}>
                   {leftItem.prevIcon && (
-                    <div className={this.decorateCSS("prevArrow")}>
+                    <button onClick={() => {
+                      sliderRef.current.slickPrev();
+                    }} className={this.decorateCSS("prevArrow")}>
                       <ComposerIcon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                    </div>
+                    </button>
                   )}
                   {leftItem.nextIcon && (
-                    <div className={this.decorateCSS("nextArrow")}>
+                    <button onClick={() => {
+                      sliderRef.current.slickNext();
+                    }} className={this.decorateCSS("nextArrow")}>
                       <ComposerIcon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                    </div>
+                    </button>
                   )}
                 </div>
               )}
               <div>
               </div>
             </div>
+            <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
+              {sliderItem.map((item: SliderItem, index: number) => (
+                <div >
+                  <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
 
-            {sliderItem.map((item: SliderItem, index: number) => (
-              <div className={this.decorateCSS("slider")}>
-                <img src={item.image} alt={item.image} />
-
-                <div className={this.decorateCSS("sliderTitle")}>
-                  {item.sliderTitle}
-                </div>
-                <div className={this.decorateCSS("line")}>
-
-                </div>
-                <div className={this.decorateCSS("rightContainer")}>
-                  <div className={this.decorateCSS("description")}>
-                    {item.description}
+                  <Base.H3 className={this.decorateCSS("sliderTitle")}>
+                    {item.sliderTitle}
+                  </Base.H3>
+                  <div className={this.decorateCSS("lineContainer")}>
+                    <div className={this.decorateCSS("line")}></div>
                   </div>
-                  <div className={this.decorateCSS("star")}>
-                    {[...Array(Number(item.star))].map(
-                      (_: any, index: number) => (
-                        <ComposerIcon name={item.starIcon} />
-                      )
-                    )}
+                  <div className={this.decorateCSS("rightContainer")}>
+                    <Base.P className={this.decorateCSS("description")}>
+                      {item.description}
+                    </Base.P>
+                    <div className={this.decorateCSS("stars")}>
+                      {[...Array(Number(item.star))].map(
+                        (_: any, index: number) => (
+                          <ComposerIcon name={item.starIcon} propsIcon={{ className: this.decorateCSS("star") }} />
+                        )
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </Base.ContainerGrid>
+              ))}
+            </ComposerSlider>
+
+          </div>
         </Base.MaxContent>
       </Base.Container >
 
