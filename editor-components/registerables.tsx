@@ -212,6 +212,7 @@ import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
 import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
+import FormModal1 from "./modal/formmodal1/formmodal1";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
 
 function Registerables(composer: ComponentsRegistery) {
@@ -361,7 +362,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FeatureComponent10(),
     new FeatureComponent11(),
     new FeatureComponent12(),
-    new FeatureComponent13(),
+    // new FeatureComponent13(),
     new FeatureComponent14(),
     new CallToAction1(),
     new CallToAction2(),
@@ -395,9 +396,9 @@ function Registerables(composer: ComponentsRegistery) {
     new StatsComponent1(),
     new StatsComponent2(),
     new StatsComponent3(),
-    new StatsComponent4(),
-    new StatsComponent5(),
-    new StatsComponent6(),
+    // new StatsComponent4(),
+    // new StatsComponent5(),
+    // new StatsComponent6(),
     new StatsComponent7(),
     new StatsComponent8(),
     new ContactsComponent1(),
@@ -428,6 +429,7 @@ function Registerables(composer: ComponentsRegistery) {
     new NoticeModal(),
     new NotificationModal2(),
     new SubscriptionModal(),
+    new FormModal1(),
     new LocationComponent1(),
     new ConfirmationModal2(),
   ]);
