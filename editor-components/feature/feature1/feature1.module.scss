@@ -92,188 +92,200 @@
       }
     }
 
-    .card-column {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 30px;
-      grid-column: span 1;
-      grid-row: span 2;
+    .cards-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-md);
+      justify-content: center;
 
-      .card {
+      .block {
+        // margin-bottom: var(--composer-gap-md);
+        height: 575px;
         display: flex;
         flex-direction: column;
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 95%);
-        border-radius: var(--composer-border-radius-xs);
-        padding: 0;
+        justify-content: space-between;
+        gap: var(--composer-gap-md);
 
-        &.mini {
-          height: 50%;
-
-          .image-container {
-            display: none;
-          }
-        }
-
-        .image-container {
-          display: flex;
-          align-items: center;
-          width: 100%;
+        .card {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 95%);
+          border-radius: var(--composer-border-radius-xs);
+          padding: 0;
           height: 100%;
-          overflow: hidden;
-          box-shadow: var(--box-shadow);
-
-          .image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-          }
-
-          &:hover img {
-            transform: scale(1.1);
-            filter: brightness(1.2);
-          }
-        }
-
-        .card-content {
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
-          gap: var(--composer-gap-sm);
-          padding: 30px 20px;
-          height: 100%;
-
-          .date-time {
+          gap: var(--composer-gap-md);
+          font-size: 1rem;
+  
+          &.mini {
+            height: 50%;
             display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            color: var(--composer-font-color-secondary);
-            white-space: nowrap;
+            justify-content: center;
 
-            .date {
-              display: flex;
-              column-gap: var(--composer-gap-xs);
-              align-items: center;
-              white-space: normal;
-              width: 100%;
-
-              .date_icon {
-                flex-shrink: 0;
-              }
-
-              .date-text {
-                margin: 0;
-
-                >blinkpage p {
-                  display: -webkit-box;
-                  -webkit-line-clamp: 1;
-                  line-clamp: 1;
-                  -webkit-box-orient: vertical;
-                  overflow: hidden;
-                }
-              }
+            .image-container {
+              display: none;
             }
 
-            .time {
-              display: flex;
-              justify-content: flex-end;
-              column-gap: var(--composer-gap-xs);
-              align-items: center;
-              white-space: normal;
-              width: 100%;
-
-              .time_icon {
-                flex-shrink: 0;
-              }
-
-              .time-text {
-                margin: 0;
-
-                >blinkpage p {
-                  display: -webkit-box;
-                  -webkit-line-clamp: 1;
-                  line-clamp: 1;
-                  -webkit-box-orient: vertical;
-                  overflow: hidden;
-                }
-              }
+            .card-content {
+              margin-top: 0;
+              justify-content: center;
             }
           }
-
-          .title {
-            position: relative;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--composer-font-color-secondary);
-            margin: 0;
-
-            &::after {
-              @include itemTitleAfter(hidden, 0, transform 0 ease);
-            }
-
-            &:hover::after {
-              @include itemTitleAfter(visible, 100%, transform 0.5s ease);
-            }
-          }
-
-          .description {
-            font-size: 1rem;
-            color: var(--composer-font-color-secondary);
-            width: 100%;
-            margin: 0;
-          }
-
-          .user-info {
+  
+          .image-container {
             display: flex;
-            align-items: end;
-            gap: var(--composer-gap-sm);
+            align-items: center;
             width: 100%;
-          }
-
-          .profile-image {
-            width: 2.5rem;
-            height: 2.5rem;
-
-            &:hover {
+            height: 50%;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+  
+            .image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: transform 0.3s ease;
+              cursor: pointer;
+            }
+  
+            &:hover img {
+              transform: scale(1.1);
               filter: brightness(1.2);
             }
           }
-
-          .user {
+  
+          .card-content {
             display: flex;
             flex-direction: column;
-            justify-content: end;
-            gap: var(--composer-gap-xs);
-            height: 2.5rem;
-
-            .profile-description {
-              margin: 0;
+            gap: var(--composer-gap-sm);
+            padding: var(--composer-gap-md);
+            // margin-top: calc(var(--composer-gap-md) / 2);
+  
+            .date-time {
+              display: flex;
+              justify-content: space-between;
               color: var(--composer-font-color-secondary);
-              font-size: 1rem;
-
-              >blinkpage p {
-                display: -webkit-box;
-                -webkit-line-clamp: 1;
-                line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+              white-space: nowrap;
+  
+              .date {
+                display: flex;
+                column-gap: var(--composer-gap-xs);
+                align-items: center;
+                white-space: normal;
+                width: 100%;
+  
+                .date_icon {
+                  flex-shrink: 0;
+                }
+  
+                .date-text {
+                  margin: 0;
+  
+                  >blinkpage p {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                  }
+                }
+              }
+  
+              .time {
+                display: flex;
+                justify-content: flex-end;
+                column-gap: var(--composer-gap-xs);
+                align-items: center;
+                white-space: normal;
+                width: 100%;
+  
+                .time_icon {
+                  flex-shrink: 0;
+                }
+  
+                .time-text {
+                  margin: 0;
+  
+                  >blinkpage p {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                  }
+                }
               }
             }
-
-            .fullname {
-              margin: 0;
-              font-weight: 600;
+  
+            .title {
+              position: relative;
+              font-size: 1.5rem;
+              font-weight: bold;
               color: var(--composer-font-color-secondary);
-              font-size: 1rem;
-
-              >blinkpage p {
-                display: -webkit-box;
-                -webkit-line-clamp: 1;
-                line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+              margin: 0;
+  
+              &::after {
+                @include itemTitleAfter(hidden, 0, transform 0 ease);
+              }
+  
+              &:hover::after {
+                @include itemTitleAfter(visible, 100%, transform 0.5s ease);
+              }
+            }
+  
+            .description {
+              color: var(--composer-font-color-secondary);
+              width: 100%;
+              margin: 0;
+            }
+  
+            .user-info {
+              display: flex;
+              align-items: end;
+              gap: var(--composer-gap-sm);
+              width: 100%;
+            }
+  
+            .profile-image {
+              width: 2.5rem;
+              height: 2.5rem;
+  
+              &:hover {
+                filter: brightness(1.2);
+              }
+            }
+  
+            .user {
+              display: flex;
+              flex-direction: column;
+              justify-content: end;
+              gap: var(--composer-gap-xs);
+              height: 2.5rem;
+  
+              .profile-description {
+                margin: 0;
+                color: var(--composer-font-color-secondary);
+  
+                >blinkpage p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                }
+              }
+  
+              .fullname {
+                margin: 0;
+                font-weight: 600;
+                color: var(--composer-font-color-secondary);
+  
+                >blinkpage p {
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                }
               }
             }
           }
@@ -283,7 +295,7 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@container (max-width: 1200px) {
   .container {
     .max-content {
       .header {
@@ -307,28 +319,30 @@
         }
       }
 
-      .card-column {
-        grid-template-columns: repeat(2, 1fr);
+      .cards-row {
+        .block {
+          height: 650px;
+          width: 48% !important;
+        }
       }
     }
   }
 }
 
-@media only screen and (max-width: 600px) {
+@container (max-width: 600px) {
   .container {
     .max-content {
       .header {
-        .left-side {
-          max-width: 100%;
-        }
-
         .right-side {
           display: none;
         }
       }
 
-      .card-column {
-        grid-template-columns: repeat(1, 1fr);
+      .cards-row {
+        .block {
+          width: 100% !important;
+          height: auto;
+        }
       }
     }
   }
