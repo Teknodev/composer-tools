@@ -2,7 +2,6 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { update } from "@spica-devkit/bucket";
 
 type ICard = {
   counter: JSX.Element;

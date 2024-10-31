@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 @mixin blinkpageColor {
   >blinkpage {
     p {
@@ -128,7 +130,7 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .stats {
           height: fit-content;
-          
+
           &.full-width {
             display: flex;
             flex-direction: row;
@@ -232,7 +234,7 @@ $font-color-primary: var(--composer-font-color-primary);
   }
 }
 
-@container (min-width: 800px) and (max-width: 1025px) {
+@container (max-width: $composer-tablet-width-lg) {
 
   .container {
     .max-content {
@@ -268,40 +270,7 @@ $font-color-primary: var(--composer-font-color-primary);
   }
 }
 
-@container (min-width: 480px) and (max-width: 800px) {
-  .container {
-    .max-content {
-      display: grid;
-      grid-template-columns: 1fr;
-
-      .stats8-page {
-        .content {
-          .stats {
-            max-width: 100%;
-
-            .stat-border {
-              width: 100%;
-            }
-          }
-        }
-
-        .image-container {
-          .image-container-border {
-            .overlay {
-              .number {
-                font-size: 6rem;
-              }
-            }
-          }
-        }
-      }
-
-
-    }
-  }
-}
-
-@container (max-width: 479px) {
+@container (max-width: #{$composer-phone-width-lg}) {
   .container {
     .max-content {
       display: grid;
