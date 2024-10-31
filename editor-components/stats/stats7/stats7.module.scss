@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 @mixin title-child {
   display: block;
   margin: auto;
@@ -96,7 +98,7 @@
 }
 
 
-@container (max-width: 768px) {
+@container (max-width: #{$composer-phone-width-lg}) {
   .container {
     .max-content {
       flex-direction: column;
