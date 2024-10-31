@@ -46,7 +46,6 @@ $font-color-primary: var(--composer-font-color-primary);
 
   .max-content {
     display: flex;
-    justify-content: space-around;
     gap: var(--composer-gap-xl);
     height: 100%;
 
@@ -129,7 +128,7 @@ $font-color-primary: var(--composer-font-color-primary);
 
         .stats {
           height: fit-content;
-
+          
           &.full-width {
             display: flex;
             flex-direction: row;
@@ -161,7 +160,7 @@ $font-color-primary: var(--composer-font-color-primary);
                 margin: 1rem;
               }
 
-              .stat-title {
+              .stat-counter {
                 font-size: 3rem;
                 font-weight: 700;
                 text-align: center;
@@ -173,7 +172,7 @@ $font-color-primary: var(--composer-font-color-primary);
                 letter-spacing: 1px;
                 @include blinkpageColor;
                 @include threeDotsBlinkPage;
-                margin: 0;
+                margin: 0 var(--composer-gap-xs) 0 0;
                 word-break: break-word;
                 text-overflow: clip;
               }
@@ -186,7 +185,7 @@ $font-color-primary: var(--composer-font-color-primary);
         .image-container-border {
           position: relative;
           display: flex;
-          padding: 1.5rem;
+          padding: var(--composer-gap-md);
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
 
           img {
@@ -205,8 +204,8 @@ $font-color-primary: var(--composer-font-color-primary);
             white-space: normal;
             word-wrap: break-word;
             max-height: 50%;
-            margin: 2rem;
-            padding: 2rem;
+            margin: var(--composer-gap-xl);
+            padding: var(--composer-gap-xl);
 
             .number {
               font-size: 8rem;
@@ -305,14 +304,15 @@ $font-color-primary: var(--composer-font-color-primary);
 @container (max-width: 479px) {
   .container {
     .max-content {
+      display: grid;
       grid-template-columns: 1fr;
-      flex-direction: column;
       gap: var(--composer-gap-md);
 
       .stats8-page {
         .content {
           .stats {
             grid-template-columns: repeat(1, 1fr);
+            max-width: 100%;
 
             &.full-width {
               display: grid;
@@ -320,10 +320,8 @@ $font-color-primary: var(--composer-font-color-primary);
             }
 
             .stat-border {
-              min-width: 200%;
-
               .stat {
-                .stat-title {
+                .stat-counter {
                   font-size: 2.5rem;
                 }
               }
@@ -334,7 +332,7 @@ $font-color-primary: var(--composer-font-color-primary);
         .image-container {
           .image-container-border {
             .overlay {
-              padding: 1rem;
+              padding: var(--composer-gap-sm);
 
               .number {
                 font-size: 3.5rem;

@@ -2,13 +2,16 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { update } from "@spica-devkit/bucket";
 
 type ICard = {
-  title: JSX.Element;
+  counter: JSX.Element;
   description: JSX.Element;
 };
 
 class Stats8Page extends BaseStats {
+  interval: any;
+
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -74,7 +77,7 @@ class Stats8Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "counter",
               displayer: "Value",
               value: "37",
             },
@@ -93,7 +96,7 @@ class Stats8Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "title",
+              key: "counter",
               displayer: "Value",
               value: "19",
             },
@@ -133,28 +136,89 @@ class Stats8Page extends BaseStats {
     this.addProp({
       type: "number",
       key: "animationDuration",
-      displayer: "Number Animation Duration (ms)",
-      value: 500,
+      displayer: "Stat Animation Duration (ms)",
+      value: 30,
+    });
+    this.addProp({
+      type: "number",
+      key: "incrementValue",
+      displayer: "Stat Animation Increment Value",
+      value: 200,
     });
 
-    this.castToObject<ICard[]>("stats").map((statsData, index) =>
-      this.setComponentState(`number-${index}`, 0)
-    );
+    this.init();
+    this.animate();
+  }
 
-    let interval = setInterval(() => {
+  init() {
+    this.castToObject<ICard[]>("stats").map((statsData, index) =>
+      this.setComponentState(`number-${index}`, "")
+    );
+    this.setComponentState("overlayNumberDisplay", "");
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    return arr1.every((value, index) => {
+      const otherValue = arr2[index];
+      return (
+        value === otherValue ||
+        (value === '' && otherValue === 0) ||
+        (value === 0 && otherValue === '')
+      );
+    });
+  }
+
+  isOverlayNumbersEqual(value1: any, value2: any) {
+    return String(value1) === String(value2);
+  }
+
+  getStats() {
+    const statItems = this.castToObject<ICard[]>("stats");
+    const stats = statItems.map((card: any) =>
+      card.counter === "" ? null : this.castToString(card.counter),
+    );
+    return stats;
+  }
+
+  getNumbers() {
+    const statItems = this.castToObject<ICard[]>("stats");
+    const numbers = statItems.map((_, index) =>
+      this.getComponentState(`number-${index}`),
+    );
+    return numbers;
+  }
+
+  formatNumberWithDots(value: any) {
+    const number = Number(value);
+    if (isNaN(number)) {
+      return "";
+    }
+    return number.toLocaleString("tr-TR");
+  }
+
+  animate() {
+    const animationDuration = this.getPropValue("animationDuration");
+    const incrementValue = this.getPropValue("incrementValue");
+
+    this.interval = setInterval(() => {
+
+      if (this.isEqual(this.getStats(), this.getNumbers()) || this.isOverlayNumbersEqual(this.castToString(this.getPropValue("overlayNumber")), this.getComponentState("overlayNumberDisplay"))) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
+
       this.castToObject<ICard[]>("stats").map((statData: ICard, index: number) => {
         let currentNumberState = this.getComponentState(`number-${index}`);
-
         const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
         const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
         const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
         const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
 
-        if (statData.title) {
-          const titleString = this.castToString(statData.title);
-          const newNonNumericPrefix = titleString.match(/^\D+/)?.[0] || "";
-          const newNonNumericSuffix = titleString.match(/\D+$/)?.[0] || "";
-          const numericPart = parseInt(titleString.replace(/[^\d]/g, ""), 10) || 0;
+        if (statData.counter) {
+          const counterString = this.castToString(statData.counter);
+          const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
+          const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
+          const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
 
           if (
             currentNumber !== numericPart ||
@@ -164,16 +228,25 @@ class Stats8Page extends BaseStats {
             let nextValue = Math.min(
               numericPart,
               currentNumber +
-              Math.ceil(numericPart / Math.round(this.getPropValue("animationDuration") / 30))
+              Math.ceil(numericPart / Math.round(incrementValue / 30))
             );
 
             let formattedNextValue = nextValue
               ? nextValue.toString()
               : "";
 
-            const updatedValue = currentNumber > 0
-              ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
-              : newNonNumericPrefix + formattedNextValue;
+            if (this.formatNumberWithDots(formattedNextValue) === "0") {
+              var updatedValue = currentNumber > 0
+                ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
+                : newNonNumericPrefix + formattedNextValue;
+            }
+            else {
+              var updatedValue = currentNumber > 0
+                ? newNonNumericPrefix + this.formatNumberWithDots(formattedNextValue) + newNonNumericSuffix
+                : newNonNumericPrefix + this.formatNumberWithDots(formattedNextValue);
+            }
+
+            this.formatNumberWithDots(updatedValue);
 
             this.setComponentState(
               `number-${index}`,
@@ -184,8 +257,8 @@ class Stats8Page extends BaseStats {
       });
 
       const overlayNumberState = this.getComponentState("overlayNumberDisplay");
-      const overlayString = typeof overlayNumberState === "string" ? overlayNumberState : "";
 
+      const overlayString = typeof overlayNumberState === "string" ? overlayNumberState : "";
       const currentOverlayPrefix = overlayString.match(/^\D+/)?.[0] || "";
       const currentOverlaySuffix = overlayString.match(/\D+$/)?.[0] || "";
       const currentOverlayNumber = parseInt(overlayString.replace(/\D+/g, ""), 10) || 0;
@@ -201,19 +274,27 @@ class Stats8Page extends BaseStats {
       ) {
         let nextOverlayValue = Math.min(
           overlayNumericPart,
-          currentOverlayNumber + Math.ceil(overlayNumericPart / Math.round(this.getPropValue("animationDuration") / 30))
+          currentOverlayNumber +
+          Math.ceil(overlayNumericPart / Math.round(incrementValue / 30))
         );
 
-        let formattedOverlayValue = nextOverlayValue ? nextOverlayValue.toString() : "";
+        let formattedOverlayValue = nextOverlayValue
+          ? nextOverlayValue.toString()
+          : "";
 
-        const updatedValue = overlayNumericPart > 0
-          ? newCurrentOverlayPrefix + formattedOverlayValue + newCurrentOverlaySuffix
-          : newCurrentOverlayPrefix + formattedOverlayValue;
-
+        if (this.formatNumberWithDots(formattedOverlayValue) === "0") {
+          var updatedValue = currentOverlayNumber > 0
+            ? newCurrentOverlayPrefix + formattedOverlayValue + newCurrentOverlaySuffix
+            : newCurrentOverlayPrefix + formattedOverlayValue;
+        }
+        else {
+          var updatedValue = currentOverlayNumber > 0
+            ? newCurrentOverlayPrefix + this.formatNumberWithDots(formattedOverlayValue) + newCurrentOverlaySuffix
+            : newCurrentOverlayPrefix + this.formatNumberWithDots(formattedOverlayValue);
+        }
         this.setComponentState("overlayNumberDisplay", updatedValue);
       }
-    }, 30);
-
+    }, animationDuration);
   }
 
   getName(): string {
@@ -245,12 +326,21 @@ class Stats8Page extends BaseStats {
       isAuthorRoleExist ||
       statsData.length > 0;
 
+    const statsEqual = this.isEqual(this.getStats(), this.getNumbers());
+    const overlayNumberState = this.getComponentState("overlayNumberDisplay");
+    const overlayNumberProp = this.castToString(this.getPropValue("overlayNumber"));
+    const overlayEqual = overlayNumberState === overlayNumberProp;
+
+    if (!this.interval && (!statsEqual || !overlayEqual)) {
+      this.animate();
+    }
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent
           className={
             this.decorateCSS("max-content") +
-            (!isContentPresent ? " full-width" : "")
+            (!isContentPresent ? "full-width" : "")
           }
         >
           {isContentPresent && (
@@ -299,11 +389,11 @@ class Stats8Page extends BaseStats {
                   </div>
                 )}
 
-                <Base.ListGrid className={`${this.decorateCSS("stats")} ${!imageSrc ? this.decorateCSS("full-width") : ""
+                <Base.ContainerGrid className={`${this.decorateCSS("stats")} ${!imageSrc ? this.decorateCSS("full-width") : ""
                   }`}>
                   {statsData.map(
                     (statData: ICard, indexStat: number) => {
-                      return ((this.castToString(statData.title) ||
+                      return ((this.castToString(statData.counter) ||
                         this.castToString(statData.description)) && (
                           <div className={`${this.decorateCSS("stat-border")} ${!imageSrc ? this.decorateCSS("stat-border-full-width") : ""
                             }`}>
@@ -315,7 +405,7 @@ class Stats8Page extends BaseStats {
                                 }`}
                             >
                               {(this.getComponentState(`number-${indexStat}`) !== 0) &&
-                                <span className={this.decorateCSS("stat-title")}>
+                                <span className={this.decorateCSS("stat-counter")}>
                                   {this.getComponentState(`number-${indexStat}`)}
                                 </span>}
                               <Base.P
@@ -328,7 +418,7 @@ class Stats8Page extends BaseStats {
                         ))
                     }
                   )}
-                </Base.ListGrid>
+                </Base.ContainerGrid>
               </div>
             </Base.VerticalContent>
           )}
@@ -343,8 +433,7 @@ class Stats8Page extends BaseStats {
                         {this.getComponentState('overlayNumberDisplay')
                           && (
                             <span className={this.decorateCSS("number")}>
-                              {this.getComponentState('overlayNumberDisplay')
-                              }
+                              {this.getComponentState('overlayNumberDisplay')}
                             </span>
                           )}
                         {overlayDescription && (
