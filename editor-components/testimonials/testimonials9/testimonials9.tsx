@@ -3,11 +3,12 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials9.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 type Card = {
   image: string;
-  title: string;
-  subtitle: string;
-  description: string;
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  description: JSX.Element;
 };
 class Testimonials9Page extends Testimonials {
   constructor(props?: any) {
@@ -19,12 +20,6 @@ class Testimonials9Page extends Testimonials {
       displayer: "Title",
       value: "Testimonials",
     });
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Testimonials"
-    })
     this.addProp({
       type: "icon",
       key: "left_icon",
@@ -306,14 +301,16 @@ class Testimonials9Page extends Testimonials {
     return "Testimonials 9";
   }
 
+
   render() {
+    const slider = this.getPropValue("slider");
     const settings = {
       dots: false,
       infinite: true,
       speed: 500,
       autoplay: true,
       autoplaySpeed: 2500,
-      slidesToShow: 4,
+      slidesToShow: Math.min(slider.length, 4),
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
@@ -327,53 +324,59 @@ class Testimonials9Page extends Testimonials {
       }
     };
     const activeIndex = this.getComponentState("active-index");
-    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("up-page")}>
-            {subtitle && <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>}
-            {title && <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>}
-          </div>
-          <div className={this.decorateCSS("down-page")}>
-            <div className={this.decorateCSS("carousel")}>
-              <ComposerSlider {...settings} >
-                {this.castToObject<Card[]>("slider").map(
-                  (item: Card, index: number) => (
-                    <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}
-                      key={index}
-                    >
-                      {item.image && (
-                      <img alt="" src={item.image} className={this.decorateCSS("img")} />
-                      )}
-                      <div className={this.decorateCSS("text")}>
-                        <span className={this.decorateCSS("title")}>{item.title}</span>
-                        <span className={this.decorateCSS("subtitle")}>{item.subtitle}</span>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+            {this.castToString(title) && (
+              <div className={this.decorateCSS("up-page")}>
+                <Base.H1 className={this.decorateCSS("title")}>{title}</Base.H1>
+              </div>
+            )}
+            <Base.ContainerGrid className={this.decorateCSS("down-page")}>
+              <div className={this.decorateCSS("carousel")}>
+                <ComposerSlider {...settings} >
+                  {this.castToObject<Card[]>("slider").map(
+                    (item: Card, index: number) => (
+                      <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}
+                        key={index}
+                      >
+                        {item.image && (
+                          <img alt="" src={item.image} className={this.decorateCSS("img")} />
+                        )}
+                        <Base.VerticalContent className={this.decorateCSS("text")}>
+                          {this.castToString(item.title) && (
+                            <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
+                          )}
+                          {this.castToString(item.subtitle) && (
+                            <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>
+                          )}
+                        </Base.VerticalContent>
                       </div>
-                    </div>
-                  )
-                )}
-              </ComposerSlider>
-            </div>
-            <div className={this.decorateCSS("right-page")}>
-              <ComposerIcon name={this.getPropValue("left_icon")} propsIcon={{
-                className: this.decorateCSS("left_icon")
-              }} />
-              {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
-                <div className={this.decorateCSS("text-container")} key={index}>
-                  {index === activeIndex && (
-                    <div className={this.decorateCSS("description")}>{item.description}</div>
+                    )
                   )}
-                </div>
-              ))}
-              <ComposerIcon name={this.getPropValue("right_icon")} propsIcon={{
-                className: this.decorateCSS("right_icon")
-              }} />
-            </div>
-          </div>
-        </div>
-      </div>
+                </ComposerSlider>
+              </div>
+              <div className={this.decorateCSS("right-page")}>
+                <ComposerIcon name={this.getPropValue("left_icon")} propsIcon={{
+                  className: this.decorateCSS("left-icon")
+                }} />
+                {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
+                  <div className={this.decorateCSS("text")} key={index}>
+                    {((index === activeIndex) && (this.castToString(item.description))) && (
+                      <Base.H3 className={this.decorateCSS("description")}>{item.description}</Base.H3>
+                    )}
+                  </div>
+                ))}
+                <ComposerIcon name={this.getPropValue("right_icon")} propsIcon={{
+                  className: this.decorateCSS("right-icon")
+                }} />
+              </div>
+            </Base.ContainerGrid>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
