@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     .bottom-child {
@@ -19,13 +21,14 @@
             bottom: 35%;
             width: 1px;
             background-color: var(--composer-font-color-primary);
-            opacity: 0.3;
+            opacity: 0.5;
           }
         }
 
+
         .card-data-title {
           font-size: 13rem;
-          color: rgba(var(--composer-font-color-primary-rgb), 0.05);
+          color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           margin: 0;
         }
 
@@ -44,7 +47,7 @@
   }
 }
 
-@container (max-width: 800px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .bottom-child {
@@ -72,7 +75,7 @@
   }
 }
 
-@container (max-width: 550px) {
+@container (max-width: #{$composer-phone-width-lg}) {
   .container {
     .max-content {
       .bottom-child {

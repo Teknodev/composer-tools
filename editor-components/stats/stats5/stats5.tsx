@@ -4,7 +4,7 @@ import styles from "./stats5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  stat: number;
+  stat: JSX.Element;
   title: JSX.Element;
 };
 
@@ -97,22 +97,22 @@ class Stats5Page extends BaseStats {
       ],
     });
     this.addProp({
+      type: "boolean",
+      key: "lines",
+      displayer: "Toggle Lines",
+      value: true,
+    });
+    this.addProp({
       type: "number",
-      key: "animation-duration",
+      key: "animationDuration",
       displayer: "Stat Animation Duration (ms)",
       value: 30,
     });
     this.addProp({
       type: "number",
-      key: "increment-value",
+      key: "incrementValue",
       displayer: "Stat Animation Increment Value",
-      value: 20,
-    });
-    this.addProp({
-      type: "boolean",
-      key: "lines",
-      displayer: "Toggle Lines",
-      value: true,
+      value: 200,
     });
     this.addProp({
       type: "number",
@@ -121,7 +121,6 @@ class Stats5Page extends BaseStats {
       value: 4,
       max: 4,
     });
-
 
     this.init();
     this.animate();
@@ -132,47 +131,83 @@ class Stats5Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<Card[]>("cards").map((card, index) =>
-      this.setComponentState(`number-${index}`, 0),
-    );
+    this.castToObject<Card[]>("cards").map((card, index) => {
+      this.setComponentState(`number-${index}`, 0);
+      this.setComponentState(`numberForControl-${index}`, 0);
+    });
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    for (let i = 0; i < arr1.length; i++) {
+      const val1 = arr1[i];
+      const val2 = arr2[i];
+
+      if (val1 === null || val2 === null) continue;
+
+      if (Number(val1) !== Number(val2)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   getStats() {
     const cards = this.castToObject<Card[]>("cards");
-    const stats = cards.map((card: any) => (card.stat === "" ? 0 : card.stat));
+    const stats = cards.map((card: any) =>
+      (card.stat === "" ? null : card.stat));
     return stats;
   }
 
   getNumbers() {
     const cards = this.castToObject<Card[]>("cards");
-    const numbers = cards.map((_, index) =>
-      this.getComponentState(`number-${index}`),
-    );
+    const numbers = cards.map((_, index) => {
+      const number = this.getComponentState(`numberForControl-${index}`);
+      return number !== undefined ? number : "";
+    });
     return numbers;
   }
 
-  isEqual(arr1: any[], arr2: any[]) {
-    return JSON.stringify(arr1) === JSON.stringify(arr2);
+  formatNumberWithDots(value: any) {
+    const number = Number(value);
+    if (isNaN(number)) {
+      return "";
+    }
+    return number.toLocaleString("tr-TR");
   }
 
   animate() {
-    const animationDuration = this.getPropValue("animation-duration");
-    const incrementValue = this.getPropValue("increment-value");
+    const animationDuration = this.getPropValue("animationDuration");
+    const incrementValue = this.getPropValue("incrementValue");
 
     this.interval = setInterval(() => {
       const cards = this.castToObject<Card[]>("cards");
 
       if (this.isEqual(this.getStats(), this.getNumbers())) {
-        this.interval = clearInterval(this.interval);
-        return;
+        clearInterval(this.interval);
+        this.interval = null;
       }
-      cards.forEach((item: Card, index: number) => {
-        const statNumber = this.getComponentState(`number-${index}`) ?? 0;
 
-        this.setComponentState(
-          `number-${index}`,
-          Math.min(item.stat, statNumber + incrementValue),
-        );
+      cards.forEach((item: Card, index: number) => {
+
+        let currentNumber = this.getComponentState(`number-${index}`) ?? 0;
+
+        if (typeof currentNumber === "string") {
+          currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
+        }
+
+        if (typeof item.stat === "number") {
+          if (currentNumber !== item.stat) {
+            let nextValue = Math.min(
+              item.stat,
+              currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30))
+            );
+
+            const formattedNextValue = this.formatNumberWithDots(nextValue);
+
+            this.setComponentState(`number-${index}`, formattedNextValue);
+            this.setComponentState(`numberForControl-${index}`, nextValue);
+          }
+        }
       });
     }, animationDuration);
   }
@@ -189,7 +224,6 @@ class Stats5Page extends BaseStats {
 
   render() {
     const itemCountInRow = this.getPropValue("itemCountInRow");
-
     const cards = this.castToObject<Card[]>("cards");
 
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
