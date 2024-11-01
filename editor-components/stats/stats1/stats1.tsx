@@ -4,9 +4,9 @@ import styles from "./stats1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type ICard = {
-  counterValue: JSX.Element;
-  counterLabel: JSX.Element;
+type CardData = {
+  cardValue: JSX.Element;
+  cardLabel: JSX.Element;
 };
 
 class Stats1Page extends BaseStats {
@@ -43,7 +43,7 @@ class Stats1Page extends BaseStats {
     });
     this.addProp({
       type: "array",
-      key: "card-content",
+      key: "card-list",
       additionalParams: ({
         maxElementCount: 5
       }),
@@ -56,13 +56,13 @@ class Stats1Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "counterValue",
+              key: "cardValue",
               displayer: "Counter Value",
               value: "1002",
             },
             {
               type: "string",
-              key: "counterLabel",
+              key: "cardLabel",
               displayer: "Counter Label",
               value: "Active Users",
             },
@@ -75,13 +75,13 @@ class Stats1Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "counterValue",
+              key: "cardValue",
               displayer: "Counter Value",
               value: "2999",
             },
             {
               type: "string",
-              key: "counterLabel",
+              key: "cardLabel",
               displayer: "Counter Label",
               value: "Articles",
             },
@@ -94,13 +94,13 @@ class Stats1Page extends BaseStats {
           value: [
             {
               type: "string",
-              key: "counterValue",
+              key: "cardValue",
               displayer: "Counter Value",
               value: "97",
             },
             {
               type: "string",
-              key: "counterLabel",
+              key: "cardLabel",
               displayer: "Counter Label",
               value: "Authors",
             },
@@ -108,97 +108,129 @@ class Stats1Page extends BaseStats {
         },
       ],
     });
-
     this.addProp({
       type: "number",
       key: "animationDuration",
-      displayer: "Number Animation Duration (ms)",
-      value: 500,
+      displayer: "Stat Animation Duration (ms)",
+      value: 30,
     });
+    this.addProp({
+      type: "number",
+      key: "incrementValue",
+      displayer: "Stat Animation Increment Value",
+      value: 200,
+    });
+
     this.init();
     this.animate();
 
   }
 
   init() {
-    this.castToObject<ICard[]>("card-content").map((statsData, index) =>
-      this.setComponentState(`number-${index}`, 0),
-    );
+    this.castToObject<CardData[]>("card-list").map((statsData, index) => {
+      this.setComponentState(`number-${index}`, "");
+      this.setComponentState(`numberForControl-${index}`, "");
+    });
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    return arr1.every((value, index) => {
+      const otherValue = arr2[index];
+      return (
+        value === otherValue ||
+        (value === '' && otherValue === 0) ||
+        (value === 0 && otherValue === '')
+      );
+    });
   }
 
   getStats() {
-    const statItems = this.castToObject<ICard[]>("card-content");
-    const stats = statItems.map((card: any) =>
-      card.counterValue === "" ? 0 : this.castToString(card.counterValue),
+    const statItems = this.castToObject<CardData[]>("card-list");
+    const stats = statItems.map((statsData: any) =>
+      statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue),
     );
     return stats;
   }
 
   getNumbers() {
-    const statItems = this.castToObject<ICard[]>("card-content");
-    const numbers = statItems.map((_, index) =>
-      this.getComponentState(`number-${index}`),
-    );
+    const statItems = this.castToObject<CardData[]>("card-list");
+    const numbers = statItems.map((_, index) => {
+      const number = this.getComponentState(`numberForControl-${index}`);
+      return number !== undefined ? number : "";
+    });
     return numbers;
   }
 
-  isEqual(arr1: any[], arr2: any[]) {
-    return JSON.stringify(arr1) === JSON.stringify(arr2);
+  formatNumberWithDots(value: any) {
+    const number = Number(value);
+    if (isNaN(number)) {
+      return "";
+    }
+    return number.toLocaleString("tr-TR");
   }
 
   animate() {
+    const animationDuration = this.getPropValue("animationDuration");
+    const incrementValue = this.getPropValue("incrementValue");
+
     this.interval = setInterval(() => {
-      if (this.isEqual(this.getStats(), this.getNumbers())) {
-        this.interval = clearInterval(this.interval);
-        return;
+
+      if (this.isEqual((this.getStats()), this.getNumbers())) {
+        clearInterval(this.interval);
+        this.interval = null;
       }
 
-      this.castToObject<ICard[]>("card-content").map((statData: ICard, index: number) => {
+      this.castToObject<CardData[]>("card-list").map((statData: CardData, index: number) => {
+
         let currentNumberState = this.getComponentState(`number-${index}`);
         const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
         const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
         const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
         const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
 
-        if (statData.counterValue) {
-          const titleString = this.castToString(statData.counterValue);
-          const newNonNumericPrefix = titleString.match(/^\D+/)?.[0] || "";
-          const newNonNumericSuffix = titleString.match(/\D+$/)?.[0] || "";
-          const numericPart = parseInt(titleString.replace(/[^\d]/g, ""), 10) || 0;
+        const counterString = this.castToString(statData.cardValue);
+        const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
+        const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
+        const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
 
-          if (
-            currentNumber !== numericPart ||
-            currentNonNumericPrefix !== newNonNumericPrefix ||
-            currentNonNumericSuffix !== newNonNumericSuffix
-          ) {
-            let nextValue = Math.min(
-              numericPart,
-              currentNumber +
-              Math.ceil(numericPart / Math.round(this.getPropValue("animationDuration") / 30))
-            );
+        if (
+          currentNumber !== numericPart ||
+          currentNonNumericPrefix !== newNonNumericPrefix ||
+          currentNonNumericSuffix !== newNonNumericSuffix
+        ) {
+          let nextValue = Math.min(
+            numericPart,
+            currentNumber +
+            Math.ceil(numericPart / Math.round(incrementValue / 30))
+          );
 
-            let formattedNextValue = nextValue
-              ? nextValue.toString()
-              : "";
+          let formattedNextValue = nextValue
+            ? nextValue.toString()
+            : "";
 
-            const updatedValue = currentNumber > 0
-              ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
-              : newNonNumericPrefix + formattedNextValue;
+          const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
 
-            this.setComponentState(
-              `number-${index}`,
-              updatedValue
-            );
-          }
+          var updatedValue = currentNumber > 0
+            ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix
+            : newNonNumericPrefix + formattedNextValueWithDots;
+
+          var updatedValueForControl = currentNumber > 0
+            ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
+            : newNonNumericPrefix + formattedNextValue;
+
+          this.setComponentState(
+            `number-${index}`,
+            updatedValue
+          );
+
+          this.setComponentState(
+            `numberForControl-${index}`,
+            updatedValueForControl
+          );
         }
       });
-    }, 30);
-  }
 
-  componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
+    }, animationDuration);
   }
 
   getName(): string {
@@ -214,7 +246,7 @@ class Stats1Page extends BaseStats {
     const isDescExist = this.castToString(description);
     const buttonText = this.getPropValue("buttonText");
     const isButtonTextExist = this.castToString(buttonText);
-    const cardList = this.castToObject<ICard[]>("card-content");
+    const cardList = this.castToObject<CardData[]>("card-list");
     const radius = 200;
 
     const badgeColors = [
@@ -267,26 +299,25 @@ class Stats1Page extends BaseStats {
                   ))}
 
                   {cardList.map(
-                    (cardData: ICard, indexCard: number) => {
+                    (cardData: CardData, indexCard: number) => {
                       const angle = (indexCard / cardList.length) * 360;
-                      const isCounterValueExist = this.castToString(cardData.counterValue);
-                      const isCounterLabelExist = this.castToString(cardData.counterLabel);
+                      const iscardLabelExist = this.castToString(cardData.cardLabel);
 
-                      if (isCounterValueExist || isCounterLabelExist)
+                      if (this.getComponentState(`number-${indexCard}`) !== "0" || iscardLabelExist)
                         return (
                           <div
                             key={indexCard}
                             className={this.decorateCSS("card")}
                             style={{ "--angle": `${angle}deg` } as Record<string, any>}
                           >
-                            {(this.getComponentState(`number-${indexCard}`) !== 0) &&
+                            {(this.getComponentState(`number-${indexCard}`) !== "0") &&
                               <p className={this.decorateCSS("counter-value")} style={{
                                 color: `${indexCard < 3 ? badgeColors[indexCard % (badgeColors.length)] : badgeColors[(indexCard % (badgeColors.length) + 1)]}`,
                               }}>
                                 {this.getComponentState(`number-${indexCard}`)}
                               </p>}
-                            {isCounterLabelExist && (
-                              <Base.P className={this.decorateCSS("counter-label")}>{cardData.counterLabel}</Base.P>
+                            {iscardLabelExist && (
+                              <Base.P className={this.decorateCSS("counter-label")}>{cardData.cardLabel}</Base.P>
                             )}
                           </div>
                         );
