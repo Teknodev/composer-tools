@@ -3,6 +3,7 @@ import styles from "./team10.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 interface TTeam {
   image: string;
@@ -22,8 +23,6 @@ interface TTeam {
 class Team10 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-
 
     let twitter: TypeUsableComponentProps = {
       type: "object",
@@ -86,12 +85,6 @@ class Team10 extends Team {
     };
 
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 8,
-    });
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -108,8 +101,8 @@ class Team10 extends Team {
       type: "image",
       key: "background-image",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841"
-    })
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628226?alt=media&timestamp=1719558632841",
+    });
 
     this.addProp({
       type: "array",
@@ -179,19 +172,14 @@ class Team10 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
               type: "array",
               key: "icons",
               displayer: "Icons",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(instagram)),
-              ],
-            }
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+            },
           ],
         },
         {
@@ -257,19 +245,14 @@ class Team10 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
               type: "array",
               key: "icons",
               displayer: "Icons",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(instagram)),
-              ],
-            }
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+            },
           ],
         },
         {
@@ -335,26 +318,19 @@ class Team10 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             },
             {
               type: "array",
               key: "icons",
               displayer: "Icons",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(instagram)),
-              ],
-            }
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+            },
           ],
-        }
+        },
       ],
     });
   }
-
-
 
   getName(): string {
     return "Team 10";
@@ -363,82 +339,58 @@ class Team10 extends Team {
   render() {
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("left")}>
-            <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>
-            <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
-            <img
-              className={this.decorateCSS("background-image")}
-              src={this.getPropValue("background-image")}
-            />
-          </div>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("left")}>
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+            <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+            <img className={this.decorateCSS("background-image")} src={this.getPropValue("background-image")} />
+          </Base.VerticalContent>
           <div className={this.decorateCSS("right")}>
-            {this.castToObject<TTeam[]>("team").map(
-              (teamMember: any, index: number) => (
-                <div className={this.decorateCSS("team-member")}>
-                  <div className={this.decorateCSS("info")}>
-                    <div className={this.decorateCSS("icon-group")}>
-                      <div className={this.decorateCSS("icon-list-container")}>
-                        {teamMember.icons.map((icon: any, indexIcons: number) => {
-                          return (
-                            <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                              <ComposerLink path={icon.url}>
-
-                                <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                              </ComposerLink>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                    <div className={this.decorateCSS("subtitle")}>
-                      {teamMember.getPropValue("subtitle")}
-                    </div>
-                    <div className={this.decorateCSS("title")}>
-                      {teamMember.getPropValue("title")}
-                    </div>
-                    <div className={this.decorateCSS("meta-info")}>
-                      <div className={this.decorateCSS("meta")}>
-                        <div className={this.decorateCSS("label")}>
-                          {teamMember.getPropValue("value1-title")}
-                          <div className={this.decorateCSS("value")}>
-                            {teamMember.getPropValue("value1-description")}
+            {this.castToObject<TTeam[]>("team").map((teamMember: any, index: number) => (
+              <Base.VerticalContent className={this.decorateCSS("team-member")}>
+                <div className={this.decorateCSS("info")}>
+                  <div className={this.decorateCSS("icon-group")}>
+                    <div className={this.decorateCSS("icon-list-container")}>
+                      {teamMember.icons.map((icon: any, indexIcons: number) => {
+                        return (
+                          <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                            <ComposerLink path={icon.url}>
+                              <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            </ComposerLink>
                           </div>
-                        </div>
-
-                      </div>
-                      <div className={this.decorateCSS("meta")}>
-                        <div className={this.decorateCSS("label")}>
-                          {teamMember.getPropValue("value2-title")}
-                          <div className={this.decorateCSS("value")}>
-                            {teamMember.getPropValue("value2-description")}
-                          </div>
-                        </div>
-
-                      </div>
-                      <div className={this.decorateCSS("meta")}>
-                        <div className={this.decorateCSS("label")}>
-                          {teamMember.getPropValue("value3-title")}
-                          <div className={this.decorateCSS("value")}>
-                            {teamMember.getPropValue("value3-description")}
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {teamMember.getPropValue("description")}
+                        );
+                      })}
                     </div>
                   </div>
-                  <img
-                    className={this.decorateCSS("image")}
-                    src={teamMember.getPropValue("image")}
-                  />
+                  <Base.H3 className={this.decorateCSS("subtitle")}>{teamMember.getPropValue("subtitle")}</Base.H3>
+                  <Base.H1 className={this.decorateCSS("title")}>{teamMember.getPropValue("title")}</Base.H1>
+                  <div className={this.decorateCSS("meta-info")}>
+                    <div className={this.decorateCSS("meta")}>
+                      <div className={this.decorateCSS("label")}>
+                        {teamMember.getPropValue("value1-title")}
+                        <Base.H5 className={this.decorateCSS("value")}>{teamMember.getPropValue("value1-description")}</Base.H5>
+                      </div>
+                    </div>
+                    <div className={this.decorateCSS("meta")}>
+                      <div className={this.decorateCSS("label")}>
+                        {teamMember.getPropValue("value2-title")}
+                        <div className={this.decorateCSS("value")}>{teamMember.getPropValue("value2-description")}</div>
+                      </div>
+                    </div>
+                    <div className={this.decorateCSS("meta")}>
+                      <div className={this.decorateCSS("label")}>
+                        {teamMember.getPropValue("value3-title")}
+                        <div className={this.decorateCSS("value")}>{teamMember.getPropValue("value3-description")}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.SectionDescription>
                 </div>
-              )
-            )}
+                <img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />
+              </Base.VerticalContent>
+            ))}
           </div>
-        </div>
+        </Base.MaxContent>
       </div>
     );
   }
