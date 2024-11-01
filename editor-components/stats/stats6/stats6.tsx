@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
   cardValue: JSX.Element;
-  cardDescription: string;
+  cardDescription: JSX.Element;
 };
 
 class Stats6Page extends BaseStats {
@@ -137,7 +137,7 @@ class Stats6Page extends BaseStats {
   getStats() {
     const statItems = this.castToObject<CardData[]>("card-list");
     const stats = statItems.map((statsData: any) =>
-      statsData.cardValue === "" ? null : this.castToString(statsData.cardValue),
+      statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue),
     );
     return stats;
   }
@@ -160,11 +160,6 @@ class Stats6Page extends BaseStats {
     return number.toLocaleString("tr-TR");
   }
 
-  convertToDefaultFormat(value: string) {
-    const number = Number(value.replace(/\./g, ''));
-    return isNaN(number) ? "" : number.toString();
-  }
-
   animate() {
     const animationDuration = this.getPropValue("animationDuration");
     const incrementValue = this.getPropValue("incrementValue");
@@ -184,47 +179,46 @@ class Stats6Page extends BaseStats {
         const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
         const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
 
-        if (statData.cardValue) {
-          const counterString = this.castToString(statData.cardValue);
-          const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
-          const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
-          const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
+        const counterString = this.castToString(statData.cardValue);
+        const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
+        const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
+        const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
 
-          if (
-            currentNumber !== numericPart ||
-            currentNonNumericPrefix !== newNonNumericPrefix ||
-            currentNonNumericSuffix !== newNonNumericSuffix
-          ) {
-            let nextValue = Math.min(
-              numericPart,
-              currentNumber +
-              Math.ceil(numericPart / Math.round(incrementValue / 30))
-            );
+        if (
+          currentNumber !== numericPart ||
+          currentNonNumericPrefix !== newNonNumericPrefix ||
+          currentNonNumericSuffix !== newNonNumericSuffix
+        ) {
+          let nextValue = Math.min(
+            numericPart,
+            currentNumber +
+            Math.ceil(numericPart / Math.round(incrementValue / 30))
+          );
 
-            let formattedNextValue = nextValue
-              ? nextValue.toString()
-              : "";
+          let formattedNextValue = nextValue
+            ? nextValue.toString()
+            : "";
 
-            var updatedValue = currentNumber > 0
-              ? newNonNumericPrefix + this.formatNumberWithDots(formattedNextValue) + newNonNumericSuffix
-              : newNonNumericPrefix + this.formatNumberWithDots(formattedNextValue);
+          const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
 
-            var updatedValueForControl = currentNumber > 0
-              ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
-              : newNonNumericPrefix + formattedNextValue;
 
-            this.formatNumberWithDots(updatedValue);
+          var updatedValue = currentNumber > 0
+            ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix
+            : newNonNumericPrefix + formattedNextValueWithDots;
 
-            this.setComponentState(
-              `number-${index}`,
-              updatedValue
-            );
+          var updatedValueForControl = currentNumber > 0
+            ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
+            : newNonNumericPrefix + formattedNextValue;
 
-            this.setComponentState(
-              `numberForControl-${index}`,
-              updatedValueForControl
-            );
-          }
+          this.setComponentState(
+            `number-${index}`,
+            updatedValue
+          );
+
+          this.setComponentState(
+            `numberForControl-${index}`,
+            updatedValueForControl
+          );
         }
       });
 
