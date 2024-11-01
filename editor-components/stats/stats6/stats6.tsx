@@ -4,8 +4,8 @@ import styles from "./stats6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
-  CardValue: number;
-  CardDescription: string;
+  cardValue: JSX.Element;
+  cardDescription: string;
 };
 
 class Stats6Page extends BaseStats {
@@ -39,14 +39,14 @@ class Stats6Page extends BaseStats {
           displayer: "Pricing List",
           value: [
             {
-              type: "number",
-              key: "CardValue",
+              type: "string",
+              key: "cardValue",
               displayer: "Card Value",
-              value: 400,
+              value: "400",
             },
             {
               type: "string",
-              key: "CardDescription",
+              key: "cardDescription",
               displayer: "Card Description",
               value: "Customers are satisfied with our professional support",
             },
@@ -58,14 +58,14 @@ class Stats6Page extends BaseStats {
           displayer: "Pricing List",
           value: [
             {
-              type: "number",
-              key: "CardValue",
+              type: "string",
+              key: "cardValue",
               displayer: "Card Value",
-              value: 1000,
+              value: "1000",
             },
             {
               type: "string",
-              key: "CardDescription",
+              key: "cardDescription",
               displayer: "Card Description",
               value: "Amazing preset options to be mixed an combined",
             },
@@ -77,14 +77,14 @@ class Stats6Page extends BaseStats {
           displayer: "Pricing List",
           value: [
             {
-              type: "number",
-              key: "CardValue",
+              type: "string",
+              key: "cardValue",
               displayer: "Card Value",
-              value: 8000,
+              value: "8000",
             },
             {
               type: "string",
-              key: "CardDescription",
+              key: "cardDescription",
               displayer: "Card Description",
               value: "Average response time on live chat support channel",
             },
@@ -94,9 +94,15 @@ class Stats6Page extends BaseStats {
     });
     this.addProp({
       type: "number",
-      key: "animation-duration",
-      displayer: "Number Animation Duration (ms)",
-      value: 500,
+      key: "animationDuration",
+      displayer: "Stat Animation Duration (ms)",
+      value: 30,
+    });
+    this.addProp({
+      type: "number",
+      key: "incrementValue",
+      displayer: "Stat Animation Increment Value",
+      value: 200,
     });
     this.addProp({
       type: "number",
@@ -111,66 +117,123 @@ class Stats6Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<CardData[]>("card-list").map((statsData, index) =>
-      this.setComponentState(`number-${index}`, 0)
-    );
+    this.castToObject<CardData[]>("card-list").map((statsData, index) => {
+      this.setComponentState(`number-${index}`, "");
+      this.setComponentState(`numberForControl-${index}`, "");
+    });
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    return arr1.every((value, index) => {
+      const otherValue = arr2[index];
+      return (
+        value === otherValue ||
+        (value === '' && otherValue === 0) ||
+        (value === 0 && otherValue === '')
+      );
+    });
   }
 
   getStats() {
     const statItems = this.castToObject<CardData[]>("card-list");
     const stats = statItems.map((statsData: any) =>
-      statsData.CardValue === "" ? 0 : statsData.CardValue,
+      statsData.cardValue === "" ? null : this.castToString(statsData.cardValue),
     );
     return stats;
   }
 
   getNumbers() {
     const statItems = this.castToObject<CardData[]>("card-list");
-    const numbers = statItems.map((_, index) =>
-      this.getComponentState(`number-${index}`),
-    );
+    const numbers = statItems.map((_, index) => {
+      const number = this.getComponentState(`numberForControl-${index}`);
+      return number !== undefined ? number : "";
+    });
     return numbers;
   }
 
-  animate() {
-    this.interval = setInterval(() => {
-      const statItems = this.castToObject<CardData[]>("card-list");
 
-      if (this.isEqual(this.getStats(), this.getNumbers())) {
-        this.interval = clearInterval(this.interval);
-        return;
+  formatNumberWithDots(value: any) {
+    const number = Number(value);
+    if (isNaN(number)) {
+      return "";
+    }
+    return number.toLocaleString("tr-TR");
+  }
+
+  convertToDefaultFormat(value: string) {
+    const number = Number(value.replace(/\./g, ''));
+    return isNaN(number) ? "" : number.toString();
+  }
+
+  animate() {
+    const animationDuration = this.getPropValue("animationDuration");
+    const incrementValue = this.getPropValue("incrementValue");
+
+    this.interval = setInterval(() => {
+
+      if (this.isEqual((this.getStats()), this.getNumbers())) {
+        clearInterval(this.interval);
+        this.interval = null;
       }
 
-      statItems.map(
-        (statsData: CardData, index: number) => {
+      this.castToObject<CardData[]>("card-list").map((statData: CardData, index: number) => {
 
-          let statNumber = this.getComponentState(`number-${index}`);
-          if (statNumber != statsData.CardValue) {
+        let currentNumberState = this.getComponentState(`number-${index}`);
+        const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
+        const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
+        const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
+        const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
+
+        if (statData.cardValue) {
+          const counterString = this.castToString(statData.cardValue);
+          const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
+          const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
+          const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
+
+          if (
+            currentNumber !== numericPart ||
+            currentNonNumericPrefix !== newNonNumericPrefix ||
+            currentNonNumericSuffix !== newNonNumericSuffix
+          ) {
+            let nextValue = Math.min(
+              numericPart,
+              currentNumber +
+              Math.ceil(numericPart / Math.round(incrementValue / 30))
+            );
+
+            let formattedNextValue = nextValue
+              ? nextValue.toString()
+              : "";
+
+            var updatedValue = currentNumber > 0
+              ? newNonNumericPrefix + this.formatNumberWithDots(formattedNextValue) + newNonNumericSuffix
+              : newNonNumericPrefix + this.formatNumberWithDots(formattedNextValue);
+
+            var updatedValueForControl = currentNumber > 0
+              ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
+              : newNonNumericPrefix + formattedNextValue;
+
+            this.formatNumberWithDots(updatedValue);
+
             this.setComponentState(
               `number-${index}`,
-              Math.min(
-                statsData.CardValue,
-                statNumber +
-                Math.ceil(
-                  statsData.CardValue /
-                  Math.round(this.getPropValue("animation-duration") / 30)
-                )
-              ) || 0
+              updatedValue
+            );
+
+            this.setComponentState(
+              `numberForControl-${index}`,
+              updatedValueForControl
             );
           }
         }
-      );
-    }, 30);
+      });
+
+    }, animationDuration);
   }
 
   getName(): string {
     return "Stats 6";
   }
-
-  isEqual(arr1: any[], arr2: any[]) {
-    return JSON.stringify(arr1) === JSON.stringify(arr2);
-  }
-
 
   render() {
     const cardList = this.castToObject<CardData[]>("card-list");
@@ -200,14 +263,15 @@ class Stats6Page extends BaseStats {
               {cardList.map(
                 (data: any, index: number) => {
                   return (
+                    (this.getComponentState(`number-${index}`) !== "0" || this.castToString(data.cardDescription)) &&
                     <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                      {this.getComponentState(`number-${index}`) !== 0 &&
+                      {this.getComponentState(`number-${index}`) !== "0" &&
                         <Base.P className={this.decorateCSS("data-card-title")}>
                           {this.getComponentState(`number-${index}`)}
                         </Base.P>}
-                      {this.castToString(data.CardDescription) &&
+                      {this.castToString(data.cardDescription) &&
                         <Base.P className={this.decorateCSS("data-card-description")}>
-                          {data.CardDescription}
+                          {data.cardDescription}
                         </Base.P>}
                     </Base.VerticalContent>
                   )
