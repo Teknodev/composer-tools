@@ -1,56 +1,33 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  padding: 50px 20px;
-
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
     .basic-page {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
 
       .up-page {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
 
         .title {
-          font-size: 6.9rem;
-          margin: unset;
-          text-align: center;
+          font-size: 7rem;
+          margin-top: 0;
           color: transparent;
           -webkit-text-stroke: 1px var(--composer-primary-color);
-          letter-spacing: 3px;
+          letter-spacing: 0.5rem;
         }
       }
 
       .down-page,
       .slider {
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-
         .card {
-          display: flex;
-          justify-content: center;
-          position: relative;
           flex-direction: column-reverse;
+          gap: var(--composer-gap-sm);
 
           .person-image {
-            position: relative;
             height: 400px;
             min-height: 400px;
             width: 100%;
             object-fit: cover;
-            border-radius: 6px;
             transition: 0.4s;
           }
 
@@ -60,33 +37,15 @@
           }
 
           .person-info {
-            overflow: hidden;
             width: 100%;
-            display: flex;
-            flex-direction: column-reverse;
-            align-items: center;
-            bottom: 0;
-            border-radius: 6px;
-            opacity: 0.8;
-            padding: 15px 15px;
             height: 140px;
 
             .text-group {
-              padding: 15px 0;
-              background-color: var(--composer-html-background);
               z-index: 2;
               width: 100%;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              transition:
-                margin-bottom 1s,
-                border-bottom 1s,
-                padding-bottom 1s;
+              transition: margin-bottom 1s, border-bottom 1s, padding-bottom 1s;
 
               .item-name {
-                margin: unset;
-                font-size: 1.6rem;
                 color: var(--composer-font-color-primary);
               }
             }
@@ -95,17 +54,15 @@
               transition: 0.5s;
               display: flex;
               opacity: 0;
-              flex-direction: row;
-              gap: 13px;
+              gap: var(--composer-gap-sm);
               width: 100%;
-              margin-bottom: -55px;
 
               .icon {
-                font-size: 40px;
+                font-size: 2.5rem;
                 color: var(--composer-font-color-primary);
                 border-radius: 50%;
                 border: 1px solid var(--composer-font-color-primary);
-                padding: 10px;
+                padding: 0.5rem;
                 transition: 300ms;
                 cursor: pointer;
 
@@ -118,7 +75,6 @@
 
           &:hover {
             .icons-bar {
-              margin-bottom: 0px;
               opacity: 1;
             }
           }
@@ -129,10 +85,6 @@
         }
       }
 
-      .down-page {
-        display: flex;
-      }
-
       .slider {
         display: none;
       }
@@ -140,21 +92,8 @@
   }
 }
 
-.card-noimg {
-  align-items: center !important;
-}
-
-.personinfo-noimg {
-  width: auto !important;
-}
-
-.itemname-noimg {
-  text-align: center !important;
-}
-
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    height: 100vh;
     .max-content {
       .basic-page {
         .up-page {
@@ -169,30 +108,56 @@
 
         .slider {
           display: flex !important;
-          gap: 10px;
-          height: 550px;
+          height: 600px;
+          width: 100%;
 
-          div {
-            height: 100%;
+          .dots {
+            position: absolute;
+            bottom: 0;
+            left: 40%;
+            display: flex !important;
+            flex-direction: row;
+            margin: 0 auto;
+            width: fit-content;
+            gap: var(--composer-gap-md);
+            list-style-type: none;
+            margin-top: -24px;
+            padding: 0;
+
+            li {
+              button {
+                border: none;
+                transition: 0.3s;
+                content-visibility: hidden;
+                width: 10px;
+                height: 10px;
+                background: var(--composer-font-color-primary);
+                border-radius: 100px;
+                margin: 0;
+                padding: 0;
+              }
+            }
+          }
+
+          .dots :global(li.slick-active) button {
+            opacity: 0.5;
           }
 
           .card {
-            padding: 0 10px 0 10px;
+            padding: var(--composer-gap-md);
             display: flex !important;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
 
             .person-info {
-              height: 136px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              .text-group {
+                .item-name {
+                  margin: 0;
+                }
+              }
 
               .icons-bar {
                 .icon {
-                  font-size: 35px;
+                  font-size: 2rem;
                 }
               }
             }
@@ -200,7 +165,6 @@
 
           :nth-child(2n) {
             .card {
-              display: flex;
               flex-direction: column-reverse;
             }
           }
@@ -210,10 +174,44 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
-  .up-page {
-    .title {
-      font-size: 3.2rem !important;
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .basic-page {
+        .up-page {
+          .title {
+            font-size: 3rem;
+          }
+        }
+
+        .slider {
+          height: 580px;
+          .dots {
+            left: 35%;
+          }
+
+          .card {
+            padding: 0;
+            gap: var(--composer-gap-sm);
+
+            .person-info {
+              gap: var(--composer-gap-sm);
+              .text-group {
+                .item-name {
+                  margin: 0;
+                }
+              }
+
+              .icons-bar {
+                .icon {
+                  font-size: 2.5rem;
+                  padding: 0.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
