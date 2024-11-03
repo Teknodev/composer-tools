@@ -1,57 +1,26 @@
-.container {
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  background-color: var(--composer-color-background);
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
 
+.container {
   .max-content {
-    width: var(--composer-content-width);
     display: flex;
     flex-direction: column;
-    text-align: center;
-    align-items: center;
-    margin: 0 auto;
 
     .up-page {
-      width: 100%;
-
-      .badge {
-        color: var(--composer-primary-color);
-        font-size: 40px;
+      .title {
+        color: var(--composer-font-color-primary);
       }
 
       .cards-box {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-top: 40px;
-        justify-content: center;
-        align-items: center;
-        padding: 0 150px;
-
-        @media only screen and (max-width: 768px) {
-          grid-template-columns: repeat(2, 1fr) !important;
-          padding: 0 !important;
-        }
-
-        @media only screen and (max-width: 400px) {
-          grid-template-columns: repeat(1, 1fr) !important;
-          padding: 0 !important;
-        }
-
         .card {
-
-          border-radius: 6px;
+          border-radius: var(--composer-border-radius-md);
           overflow: hidden;
-          height: 500px;
+          height: 600px;
+          width: 100%;
           position: relative;
           cursor: pointer;
-          justify-content: center;
-          align-items: center;
           margin: 0 auto;
 
-          img {
+          .image {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -59,19 +28,9 @@
           }
 
           &:hover {
-            img {
-              transform: scale(1.2);
+            .image {
+              transform: scale(1.1);
             }
-
-            .overlay {
-              opacity: 0;
-            }
-
-            .overlay2 {
-              opacity: 1;
-            }
-
-
           }
 
           .overlay,
@@ -90,23 +49,21 @@
           }
 
           .overlay2 {
-
             z-index: 2;
             opacity: 0;
           }
 
           .card-content {
             position: absolute;
-            left: 20px;
-            bottom: 20px;
-            top: 20px;
-            right: 20px;
+            left: 1.5rem;
+            bottom: 1.5rem;
+            top: 1.5rem;
+            right: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
+            border-radius: var(--composer-border-radius-sm);
             display: flex;
-            color: white;
+            color: var(--composer-font-color-secondary);
             z-index: 4;
-
 
             .icon-list-container {
               height: 0;
@@ -115,40 +72,36 @@
               transform: scaleY(0);
               position: absolute;
               right: 40px;
-              display: flex;
-              flex-direction: column;
-              bottom: 38px;
+              bottom: 50px;
               background-color: white;
-              border-radius: 5px;
+              border-radius: var(--composer-border-radius-sm);
               text-align: center;
               padding: 15px 13px 15px;
-              gap: 10px;
-              height: 90px;
+              gap: var(--composer-gap-sm);
+              height: auto;
               overflow: hidden;
               transform-origin: bottom center;
 
               .icon {
                 width: 0;
                 height: 0;
-                color: black;
-
+                color: var(--composer-font-color-primary);
               }
             }
-
-
           }
 
           &:hover {
-
             .icon-list-container {
               transform: scaleY(1);
 
               .icon {
-                width: 12px;
-                height: 12px;
+                width: 1rem;
+                height: 1rem;
                 object-fit: cover;
                 position: relative;
-
+                &:hover {
+                  color: var(--composer-secondary-color);
+                }
               }
             }
           }
@@ -156,12 +109,12 @@
           .title {
             width: 100px;
             position: absolute;
-            bottom: 60px;
+            bottom: 70px;
             left: 15px;
-            font-size: 22px;
-            font-weight: 600;
-            text-align: left;
-            color: white;
+            color: var(--composer-font-color-secondary);
+            &:hover {
+              color: var(--composer-secondary-color);
+            }
           }
 
           .labels {
@@ -173,30 +126,62 @@
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            font-size: 15px;
+            color: var(--composer-font-color-secondary);
             padding: 10px 15px 8px;
+
+            .description {
+              opacity: 0.5;
+            }
 
             .icons {
               display: flex;
-              gap: 20px;
+              gap: var(--composer-gap-md);
 
+              .firstIcon,
+              .secondIcon {
+                &:hover {
+                  color: var(--composer-secondary-color);
+                }
+              }
             }
-
           }
         }
-
-
-
-        // .second {
-        //   margin: 4px 0 5px 0;
-        //   background: rgba(var(--composer-tertiary-color-rgb), 0.7);
-        //   padding: 2px 6px;
-        //   border-radius: 6px;
-        //   transition: 0.3s;
-        //   color: var(--composer-font-color-secondary);
-        // }
       }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container .max-content .up-page .cards-box .card {
+    height: 450px;
+    width: 100%;
+
+    .icon-list-container {
+      bottom: 55px !important;
+    }
+
+    .card-content {
+      left: 1rem;
+      bottom: 1rem;
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content .up-page .cards-box .card {
+    height: 400px;
+
+    .icon-list-container {
+      right: 35px !important;
+      bottom: 45px !important;
+      padding: 10px 8px !important;
+      gap: 0px !important;
+    }
+
+    .labels {
+      padding: 0.5rem;
     }
   }
 }
