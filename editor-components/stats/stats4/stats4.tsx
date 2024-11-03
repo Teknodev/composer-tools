@@ -12,7 +12,7 @@ type Faq = {
 type Stat = {
   title: JSX.Element;
   content: JSX.Element;
-  stat: number;
+  stat: JSX.Element;
 };
 
 class Stats4Page extends BaseStats {
@@ -25,7 +25,7 @@ class Stats4Page extends BaseStats {
       type: "string",
       key: "mainTitle",
       displayer: "Main Title",
-      value: "Branding services",
+      value: "BRANDING SERVICES",
     });
     this.addProp({
       type: "string",
@@ -225,26 +225,23 @@ class Stats4Page extends BaseStats {
       displayer: "Icon",
       value: "FaMinus",
     });
-
     this.addProp({
       type: "icon",
       key: "statIcon",
       displayer: "Stat Value Icon",
       value: "FaPlus",
     });
-
     this.addProp({
       type: "number",
-      key: "animation-duration",
+      key: "animationDuration",
       displayer: "Stat Animation Duration (ms)",
       value: 30,
     });
-
     this.addProp({
       type: "number",
-      key: "increment-value",
+      key: "incrementValue",
       displayer: "Stat Animation Increment Value",
-      value: 20,
+      value: 200,
     });
     this.addProp({
       type: "number",
@@ -259,55 +256,88 @@ class Stats4Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<Stat[]>("statItems").map((statsData, index) =>
-      this.setComponentState(`number-${index}`, 0),
-    );
+    this.castToObject<Stat[]>("statItems").map((card, index) => {
+      this.setComponentState(`number-${index}`, 0);
+      this.setComponentState(`numberForControl-${index}`, 0);
+    });
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    for (let i = 0; i < arr1.length; i++) {
+      const val1 = arr1[i];
+      const val2 = arr2[i];
+
+      if (val1 === null || val2 === null) continue;
+
+      if (Number(val1) !== Number(val2)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   getStats() {
     const statItems = this.castToObject<Stat[]>("statItems");
     const stats = statItems.map((card: any) =>
-      card.stat === "" ? 0 : card.stat,
-    );
+      (card.stat === "" ? null : card.stat));
     return stats;
   }
 
   getNumbers() {
     const statItems = this.castToObject<Stat[]>("statItems");
-    const numbers = statItems.map((_, index) =>
-      this.getComponentState(`number-${index}`),
-    );
+    const numbers = statItems.map((_, index) => {
+      const number = this.getComponentState(`numberForControl-${index}`);
+      return number !== undefined ? number : "";
+    });
     return numbers;
   }
 
+  formatNumberWithDots(value: any) {
+    const number = Number(value);
+    if (isNaN(number)) {
+      return "";
+    }
+    return number.toLocaleString("tr-TR");
+  }
+
   animate() {
-    const animationDuration = this.getPropValue("animation-duration");
-    const incrementValue = this.getPropValue("increment-value");
+    const animationDuration = this.getPropValue("animationDuration");
+    const incrementValue = this.getPropValue("incrementValue");
 
     this.interval = setInterval(() => {
       const statItems = this.castToObject<Stat[]>("statItems");
 
       if (this.isEqual(this.getStats(), this.getNumbers())) {
-        this.interval = clearInterval(this.interval);
-        return;
+        clearInterval(this.interval);
+        this.interval = null;
       }
-      statItems.forEach((item: Stat, index: number) => {
-        const statNumber = this.getComponentState(`number-${index}`) ?? 0;
 
-        this.setComponentState(
-          `number-${index}`,
-          Math.min(item.stat, statNumber + incrementValue),
-        );
+      statItems.forEach((item: Stat, index: number) => {
+        let currentNumber = this.getComponentState(`number-${index}`) ?? 0;
+
+        if (typeof currentNumber === "string") {
+          currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
+        }
+
+        if (typeof item.stat === "number") {
+          if (currentNumber !== item.stat) {
+            let nextValue = Math.min(
+              item.stat,
+              currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30))
+            );
+
+            const formattedNextValue = this.formatNumberWithDots(nextValue);
+
+            this.setComponentState(`number-${index}`, formattedNextValue);
+            this.setComponentState(`numberForControl-${index}`, nextValue);
+          }
+        }
       });
     }, animationDuration);
   }
 
   getName(): string {
     return "Stats 4";
-  }
-
-  isEqual(arr1: any[], arr2: any[]) {
-    return JSON.stringify(arr1) === JSON.stringify(arr2);
   }
 
   toggleFaqItem = (index: number) => {
@@ -371,13 +401,13 @@ class Stats4Page extends BaseStats {
                                 className={this.decorateCSS("faq-item-header")}
                               >
                                 {titleExist && (
-                                  <p
+                                  <Base.P
                                     className={this.decorateCSS(
                                       "faq-item-title",
                                     )}
                                   >
                                     {item.title}
-                                  </p>
+                                  </Base.P>
                                 )}
                                 <button
                                   className={this.decorateCSS(
@@ -408,12 +438,13 @@ class Stats4Page extends BaseStats {
                               </header>
                             )}
                             {contentExist && (
-                              <p
+                              <Base.P
                                 className={`${this.decorateCSS("faq-item-content")}  ${this.getComponentState("selectedFaqIndex") === index ? this.decorateCSS("show-faq-item") : ""}`}
                               >
                                 {item.content}
-                              </p>
+                              </Base.P>
                             )}
+                            <hr className={this.decorateCSS("bottom-line")} />
                           </div>
                         );
                       return null;
