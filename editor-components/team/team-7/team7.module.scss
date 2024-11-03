@@ -1,3 +1,5 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     .basic-page {
@@ -118,7 +120,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .up-page {
     .up-page-bottom {
       flex-direction: column !important;
