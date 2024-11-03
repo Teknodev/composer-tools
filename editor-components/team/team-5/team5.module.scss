@@ -1,3 +1,5 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     display: flex;
@@ -84,7 +86,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .container-top {
