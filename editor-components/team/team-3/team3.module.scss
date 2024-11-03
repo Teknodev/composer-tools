@@ -1,11 +1,10 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     display: flex;
     justify-content: center;
     .page {
-      display: flex;
-      flex-direction: column;
-
       .text-group {
         .title {
           color: var(--composer-font-color-primary);
@@ -79,7 +78,7 @@
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .down-page {
       gap: var(--composer-gap-xl);
@@ -93,7 +92,7 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .card {
       margin-left: 1rem !important;
