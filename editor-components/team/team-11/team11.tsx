@@ -3,14 +3,15 @@ import styles from "./team11.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface Card {
-  image: string,
-  name: string,
-  position: string
-  icons: { icon: string, url: string }[],
-  getPropValue: (key: string) => any
-  
+  image: string;
+  name: string;
+  position: string;
+  icons: { icon: string; url: string }[];
+  getPropValue: (key: string) => any;
 }
 class Team11 extends Team {
   constructor(props?: any) {
@@ -97,130 +98,304 @@ class Team11 extends Team {
       displayer: "Title",
       value: "Our Team",
     });
-    let card1: TypeUsableComponentProps = {
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
-        },
-        {
-          type: "array",
-          key: "icons",
-          displayer: "Social Media Platforms",
-          value: [
-            JSON.parse(JSON.stringify(twitter)),
-            JSON.parse(JSON.stringify(facebook)),
-            JSON.parse(JSON.stringify(instagram)),
-            JSON.parse(JSON.stringify(youtube)),
-          ]
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: "Willie Perry",
-        },
-        {
-          type: "string",
-          key: "position",
-          displayer: "position",
-          value: "Defender",
-        },
-
-      ]
-    };
-    let card2: TypeUsableComponentProps = {
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
-        },
-        {
-          type: "array",
-          key: "icons",
-          displayer: "Social Media Platforms",
-          value: [
-            JSON.parse(JSON.stringify(twitter)),
-            JSON.parse(JSON.stringify(facebook)),
-            JSON.parse(JSON.stringify(instagram)),
-            JSON.parse(JSON.stringify(youtube)),
-          ]
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: "Paul Hicks",
-        },
-        {
-          type: "string",
-          key: "position",
-          displayer: "position",
-          value: "Defender",
-        },
-      ]
-    };
-    let card3: TypeUsableComponentProps = {
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
-        },
-        {
-          type: "array",
-          key: "icons",
-          displayer: "Social Media Platforms",
-          value: [
-            JSON.parse(JSON.stringify(twitter)),
-            JSON.parse(JSON.stringify(facebook)),
-            JSON.parse(JSON.stringify(instagram)),
-            JSON.parse(JSON.stringify(youtube)),
-          ]
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: "Sarah Brown",
-        },
-        {
-          type: "string",
-          key: "position",
-          displayer: "position",
-          value: "Defender",
-        },
-      ]
-    };
+    // let card1: TypeUsableComponentProps = {
+    //   type: "object",
+    //   key: "card",
+    //   displayer: "Card",
+    //   value: [
+    //     {
+    //       type: "image",
+    //       key: "image",
+    //       displayer: "Image",
+    //       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
+    //     },
+    //     {
+    //       type: "array",
+    //       key: "icons",
+    //       displayer: "Social Media Platforms",
+    //       value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+    //     },
+    //     {
+    //       type: "string",
+    //       key: "name",
+    //       displayer: "Person Name",
+    //       value: "Willie Perry",
+    //     },
+    //     {
+    //       type: "string",
+    //       key: "position",
+    //       displayer: "position",
+    //       value: "Defender",
+    //     },
+    //   ],
+    // };
+    // let card2: TypeUsableComponentProps = {
+    //   type: "object",
+    //   key: "card",
+    //   displayer: "Card",
+    //   value: [
+    //     {
+    //       type: "image",
+    //       key: "image",
+    //       displayer: "Image",
+    //       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
+    //     },
+    //     {
+    //       type: "array",
+    //       key: "icons",
+    //       displayer: "Social Media Platforms",
+    //       value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+    //     },
+    //     {
+    //       type: "string",
+    //       key: "name",
+    //       displayer: "Person Name",
+    //       value: "Paul Hicks",
+    //     },
+    //     {
+    //       type: "string",
+    //       key: "position",
+    //       displayer: "position",
+    //       value: "Defender",
+    //     },
+    //   ],
+    // };
+    // let card3: TypeUsableComponentProps = {
+    //   type: "object",
+    //   key: "card",
+    //   displayer: "Card",
+    //   value: [
+    //     {
+    //       type: "image",
+    //       key: "image",
+    //       displayer: "Image",
+    //       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
+    //     },
+    //     {
+    //       type: "array",
+    //       key: "icons",
+    //       displayer: "Social Media Platforms",
+    //       value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+    //     },
+    //     {
+    //       type: "string",
+    //       key: "name",
+    //       displayer: "Person Name",
+    //       value: "Sarah Brown",
+    //     },
+    //     {
+    //       type: "string",
+    //       key: "position",
+    //       displayer: "position",
+    //       value: "Defender",
+    //     },
+    //   ],
+    // };
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
       value: 3,
-      max:3
+      max: 3,
     });
+    // this.addProp({
+    //   type: "array",
+    //   key: "team-members",
+    //   displayer: "Team Members",
+    //   value: [JSON.parse(JSON.stringify(card1)), JSON.parse(JSON.stringify(card2)), JSON.parse(JSON.stringify(card3))],
+    // });
+
     this.addProp({
       type: "array",
-      key: "team-members",
-      displayer: "Team Members",
+      key: "slider",
+      displayer: "Slider",
       value: [
-        JSON.parse(JSON.stringify(card1)),
-        JSON.parse(JSON.stringify(card2)),
-        JSON.parse(JSON.stringify(card3)),
+        {
+          type: "object",
+          key: "slider-card",
+          displayer: "Slider Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Sarah Brown",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "position",
+              value: "Defender",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Social Media Platforms",
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider-card",
+          displayer: "Slider Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Social Media Platforms",
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Paul Hicks",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "position",
+              value: "Defender",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider-card",
+          displayer: "Slider Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Social Media Platforms",
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Willie Perry",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "position",
+              value: "Defender",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider-card",
+          displayer: "Slider Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Sarah Brown",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "position",
+              value: "Defender",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Social Media Platforms",
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider-card",
+          displayer: "Slider Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Social Media Platforms",
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Paul Hicks",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "position",
+              value: "Defender",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider-card",
+          displayer: "Slider Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Social Media Platforms",
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram)), JSON.parse(JSON.stringify(youtube))],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Person Name",
+              value: "Willie Perry",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "position",
+              value: "Defender",
+            },
+          ],
+        },
       ],
     });
   }
@@ -228,46 +403,88 @@ class Team11 extends Team {
     return "Team 11";
   }
   render() {
-    
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      dotsClass: this.decorateCSS("dots"),
+      autoplaySpeed: 3000,
+      slidesToShow: this.getPropValue("itemCount"),
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 500,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
+    };
+
+    const titleExist = this.getPropValue("title");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("basic-page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            </div>   
-            <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("basic-page")}>
+            {titleExist && (
+              <div className={this.decorateCSS("up-page")}>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+              </div>
+            )}
+
+            <ComposerSlider {...settings} className={this.decorateCSS("down-page")}>
+              {this.castToObject<any[]>("slider").map((item: any, index: number) => {
+                const itemNameExist = this.castToString(item.name);
+                const itemPositionExist = this.castToString(item.position);
+
+                console.log(itemNameExist, "itemNameExist");
+                console.log(itemPositionExist, "itemPositionExist");
+
+                console.log("itemNameExist:", itemNameExist);
+                console.log("itemPositionExist:", itemPositionExist);
+                console.log("item.image:", item.image);
+                console.log("item.icons:", item.icons);
+
+                const itemExits = itemNameExist || itemPositionExist || item.image || item.icons.length > 0;
+
                 return (
-                <div className={this.decorateCSS("item")} style={{ width: 90 / this.getPropValue("itemCount") + "%",}}>                                 
-                  <div key={indexCard} className={this.decorateCSS("card")}>                 
-                    <div className={this.decorateCSS("hover")}>
-                      <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
-                      <div className={this.decorateCSS("icons-bar")}>
-                        {item.icons.map((el: any, indexIcon: number) => {
-                          return (
-                            <ComposerLink path={el.url} key={indexIcon}>
-                              <ComposerIcon name={el.icon} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
-                            </ComposerLink>
-                          )
-                        })}
-                      </div>
+                  itemExits && (
+                    <div key={index} className={this.decorateCSS("item")}>
+                      <Base.VerticalContent className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("hover")}>
+                          {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt="" />}
+                          {item.icons && item.icons.length > 0 && (
+                            <div className={this.decorateCSS("icons-bar")}>
+                              {item.icons.map((el: any, indexIcon: number) => (
+                                <ComposerLink path={el.url} key={indexIcon}>
+                                  <ComposerIcon name={el.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                </ComposerLink>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        <Base.VerticalContent className={this.decorateCSS("person-info")}>
+                          <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                            {itemNameExist && <Base.H2 className={this.decorateCSS("item-name")}>{item.name}</Base.H2>}
+                            {itemPositionExist && <Base.H3 className={this.decorateCSS("item-position")}>{item.position}</Base.H3>}
+                          </Base.VerticalContent>
+                        </Base.VerticalContent>
+                      </Base.VerticalContent>
                     </div>
-                    <div className={this.decorateCSS("person-info")}>
-                      <div className={this.decorateCSS("text-group")}>
-                        <h1 className={this.decorateCSS("item-name")}>{item.getPropValue("name")}</h1>
-                        <h2 className={this.decorateCSS("item-position")}>{item.getPropValue("position")}</h2>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                )
+                  )
+                );
               })}
-     
-            </div>
-          </div>
-        </div>
-      </div>
+            </ComposerSlider>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
