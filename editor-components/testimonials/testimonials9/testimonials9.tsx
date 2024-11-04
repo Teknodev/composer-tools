@@ -339,39 +339,43 @@ class Testimonials9Page extends Testimonials {
                 <ComposerSlider {...settings} >
                   {this.castToObject<Card[]>("slider").map(
                     (item: Card, index: number) => (
-                      <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}
-                        key={index}
-                      >
+                      <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
                         {item.image && (
                           <img alt="" src={item.image} className={this.decorateCSS("img")} />
                         )}
-                        <Base.VerticalContent className={this.decorateCSS("text")}>
-                          {this.castToString(item.title) && (
-                            <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
-                          )}
-                          {this.castToString(item.subtitle) && (
-                            <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>
-                          )}
-                        </Base.VerticalContent>
+                        {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                          <Base.VerticalContent className={this.decorateCSS("text")}>
+                            {this.castToString(item.title) && (
+                              <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
+                            )}
+                            {this.castToString(item.subtitle) && (
+                              <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>
+                            )}
+                          </Base.VerticalContent>
+                        )}
                       </div>
                     )
                   )}
                 </ComposerSlider>
               </div>
               <div className={this.decorateCSS("right-page")}>
-                <ComposerIcon name={this.getPropValue("left_icon")} propsIcon={{
-                  className: this.decorateCSS("left-icon")
-                }} />
+                {this.getPropValue("left_icon") && (
+                  <ComposerIcon name={this.getPropValue("left_icon")} propsIcon={{
+                    className: this.decorateCSS("left-icon")
+                  }} />
+                )}
                 {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
-                  <div className={this.decorateCSS("text")} key={index}>
+                  <div className={this.decorateCSS("text")}>
                     {((index === activeIndex) && (this.castToString(item.description))) && (
                       <Base.H3 className={this.decorateCSS("description")}>{item.description}</Base.H3>
                     )}
                   </div>
                 ))}
-                <ComposerIcon name={this.getPropValue("right_icon")} propsIcon={{
-                  className: this.decorateCSS("right-icon")
-                }} />
+                {this.getPropValue("right_icon") && (
+                  <ComposerIcon name={this.getPropValue("right_icon")} propsIcon={{
+                    className: this.decorateCSS("right-icon")
+                  }} />
+                )}
               </div>
             </Base.ContainerGrid>
           </Base.VerticalContent>
