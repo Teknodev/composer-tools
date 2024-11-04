@@ -22,7 +22,7 @@
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
           .text-box {
-            padding: 1.5rem;
+            padding: var(--composer-gap-md);
             width: 100%;
             transition: 0.4s;
 
@@ -65,7 +65,7 @@
         .button-element {
           width: 100%;
           height: 100%;
-          padding: 0.5rem;
+          padding: var(--composer-gap-sm);
           background-color: var(--composer-secondary-color);
           color: var(--composer-font-color-primary);
           border-radius: var(--composer-border-radius-xl);
