@@ -28,7 +28,7 @@
           }
           .card-items {
             height: 100%;
-            padding: 2rem 0;
+            padding: var(--composer-gap-md) 0;
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           }
           .item-content {
@@ -66,8 +66,8 @@
             .icons {
               cursor: pointer;
               object-fit: cover;
-              width: 1.5rem;
-              height: 1.5rem;
+              width: var(--composer-gap-md);
+              height: var(--composer-gap-md);
               margin: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
             }
@@ -95,22 +95,22 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .card {
-      margin-left: 1rem !important;
+      margin-left: var(--composer-gap-md) !important;
     }
     .profile-image {
-      margin-left: 1.5rem !important;
+      margin-left: var(--composer-gap-md) !important;
     }
 
     .all-card {
       .box-text {
-        padding: 0 2rem !important;
+        padding: 0 var(--composer-gap-lg) !important;
       }
       .icon-group {
         gap: var(--composer-gap-xs) !important;
-        margin-top: 1rem !important;
+        margin-top: var(--composer-gap-md) !important;
         .icons {
-          width: 1rem !important;
-          height: 1rem !important;
+          width: var(--composer-gap-md) !important;
+          height: var(--composer-gap-md) !important;
         }
       }
     }
