@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container{
   .maxContent{
     .containerGrid{
@@ -43,6 +44,7 @@
         }
       }
       .slider{
+        width: 75%;
         >div{
           >div{
             display: flex !important;
@@ -60,41 +62,110 @@
           padding-right: calc(var(--composer-gap-xl) * 2);
   
         }
-        .sliderTitle{
-          writing-mode: vertical-rl;
-          transform: rotate(180deg);
-          text-align: center;
-        }
-        .lineContainer{
-          height: 100%;
+        .rightWrapper{
           display: flex;
-          align-items: center;
-          justify-content: center;
-          .line {
-            height: 50%;
-            width: 1px;
-            background-color: var(--composer-font-color-primary);
-            opacity:0.5;
+          .sliderTitle{
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-align: center;
           }
-        }
-
-        .rightContainer{
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          gap: var(--composer-gap-md);
-          padding-left: var(--composer-gap-xl);
-          .description{
-  
+          .lineContainer{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .line {
+              height: 75%;
+              width: 1px;
+              background-color: var(--composer-font-color-primary);
+              opacity:0.5;
+            }
           }
-          .stars{
-            background-color: var(--composer-secondary-color);
-            padding: var(--composer-gap-xs) calc(var(--composer-gap-xs) * 2);
-            border-radius: var(--composer-border-radius-xl);
-            width: fit-content;
+          .rightContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: var(--composer-gap-md);
+            padding-left: var(--composer-gap-xl);
+            .description{
+    
+            }
+            .stars{
+              background-color: var(--composer-secondary-color);
+              padding: var(--composer-gap-xs) calc(var(--composer-gap-xs) * 2);
+              border-radius: var(--composer-border-radius-xl);
+              width: fit-content;
+            }
           }
         }
       }
     }
+  }
+}
+@container (max-width: #{$composer-tablet-width-lg}){
+  .container{
+    .maxContent{
+      .containerGrid{
+        flex-direction: column;
+        .leftContainer{
+          display: flex;
+          flex-direction: column;
+          gap:var(--composer-gap-xs);
+          .title{
+            margin:0px;
+          }
+        }
+        .slider{
+          width: 100%;          
+          .image{
+            padding: 0px;
+            max-width: 40%;
+            object-fit: cover;
+          }
+        }
+      }
+    }      
+  }
+}
+
+@container (max-width: #{$composer-phone-width-sm}){
+  .container{
+    .maxContent{
+      .containerGrid{
+        .slider{
+          .image{
+            max-width: 100%;
+          }
+          >div{
+            >div{
+              >div{
+                >div{
+                  >div{
+                    flex-direction: column;
+                  }
+                }
+              }
+            }
+          }
+          .rightWrapper{
+            flex-direction: column-reverse;
+            gap: var(--composer-gap-xs);
+            .sliderTitle{
+              writing-mode:unset;
+              transform: rotate(0deg);
+              text-align: start;
+              margin: 0;
+            }
+            .lineContainer{
+              display: none;
+            }
+            .rightContainer{
+              padding-left: 0px;
+            }
+          }
+
+        }
+      }
+    }      
   }
 }

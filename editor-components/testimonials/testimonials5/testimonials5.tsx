@@ -190,14 +190,35 @@ class Testimonials5Page extends Testimonials {
   getName(): string {
     return "Testimonials 5";
   }
+  handleSlideChange(direction: "next" | "prev") {
+    const currentIndex = this.getComponentState("activeSlideIndex");
+    const lastIndex = this.getPropValue("sliders").length - 1;
 
+    if (direction === "next") {
+      if (currentIndex === lastIndex) {
+        this.setComponentState("activeSlideIndex", 0);
+        this.getComponentState("slider-ref").current.slickGoTo(0);
+      } else {
+        this.setComponentState("activeSlideIndex", currentIndex + 1);
+        this.getComponentState("slider-ref").current.slickNext();
+      }
+    } else if (direction === "prev") {
+      if (currentIndex === 0) {
+        this.setComponentState("activeSlideIndex", lastIndex);
+        this.getComponentState("slider-ref").current.slickGoTo(lastIndex);
+      } else {
+        this.setComponentState("activeSlideIndex", currentIndex - 1);
+        this.getComponentState("slider-ref").current.slickPrev();
+      }
+    }
+  }
   render() {
     const leftItem = this.castToObject<LeftItem>("leftItem");
     const sliderItem = this.castToObject<SliderItem[]>("sliders");
     const sliderRef = this.getComponentState("slider-ref");
     var settings = {
       dots: false,
-      autoplay: true,
+      autoplay: false,
       infinite: false,
       arrows: false,
       speed: 500,
@@ -232,16 +253,16 @@ class Testimonials5Page extends Testimonials {
               {(leftItem.nextIcon || leftItem.prevIcon) && (
                 <div className={this.decorateCSS("arrow")}>
                   {leftItem.prevIcon && (
-                    <button onClick={() => {
-                      sliderRef.current.slickPrev();
-                    }} className={this.decorateCSS("prevArrow")}>
+                    <button
+                      onClick={() => this.handleSlideChange("prev")}
+                      className={this.decorateCSS("prevArrow")}>
                       <ComposerIcon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                     </button>
                   )}
                   {leftItem.nextIcon && (
-                    <button onClick={() => {
-                      sliderRef.current.slickNext();
-                    }} className={this.decorateCSS("nextArrow")}>
+                    <button
+                      onClick={() => this.handleSlideChange("next")}
+                      className={this.decorateCSS("nextArrow")}>
                       <ComposerIcon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                     </button>
                   )}
@@ -254,25 +275,27 @@ class Testimonials5Page extends Testimonials {
               {sliderItem.map((item: SliderItem, index: number) => (
                 <div >
                   <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
-
-                  <Base.H3 className={this.decorateCSS("sliderTitle")}>
-                    {item.sliderTitle}
-                  </Base.H3>
-                  <div className={this.decorateCSS("lineContainer")}>
-                    <div className={this.decorateCSS("line")}></div>
-                  </div>
-                  <div className={this.decorateCSS("rightContainer")}>
-                    <Base.P className={this.decorateCSS("description")}>
-                      {item.description}
-                    </Base.P>
-                    <div className={this.decorateCSS("stars")}>
-                      {[...Array(Number(item.star))].map(
-                        (_: any, index: number) => (
-                          <ComposerIcon name={item.starIcon} propsIcon={{ className: this.decorateCSS("star") }} />
-                        )
-                      )}
+                  <div className={this.decorateCSS("rightWrapper")}>
+                    <Base.H3 className={this.decorateCSS("sliderTitle")}>
+                      {item.sliderTitle}
+                    </Base.H3>
+                    <div className={this.decorateCSS("lineContainer")}>
+                      <div className={this.decorateCSS("line")}></div>
+                    </div>
+                    <div className={this.decorateCSS("rightContainer")}>
+                      <Base.P className={this.decorateCSS("description")}>
+                        {item.description}
+                      </Base.P>
+                      <div className={this.decorateCSS("stars")}>
+                        {[...Array(Number(item.star))].map(
+                          (_: any, index: number) => (
+                            <ComposerIcon name={item.starIcon} propsIcon={{ className: this.decorateCSS("star") }} />
+                          )
+                        )}
+                      </div>
                     </div>
                   </div>
+
                 </div>
               ))}
             </ComposerSlider>
