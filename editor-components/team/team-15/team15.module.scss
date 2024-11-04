@@ -55,10 +55,10 @@
 
           .card-content {
             position: absolute;
-            left: 1.5rem;
-            bottom: 1.5rem;
-            top: 1.5rem;
-            right: 1.5rem;
+            left: var(--composer-gap-md);
+            bottom: var(--composer-gap-md);
+            top: var(--composer-gap-md);
+            right: var(--composer-gap-md);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--composer-border-radius-sm);
             display: flex;
@@ -95,8 +95,8 @@
               transform: scaleY(1);
 
               .icon {
-                width: 1rem;
-                height: 1rem;
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
                 object-fit: cover;
                 position: relative;
                 color: var(--composer-font-color-secondary);
@@ -163,10 +163,10 @@
     }
 
     .card-content {
-      left: 1rem;
-      bottom: 1rem;
-      top: 1rem;
-      right: 1rem;
+      left: var(--composer-gap-sm);
+      bottom: var(--composer-gap-sm);
+      top: var(--composer-gap-sm);
+      right: var(--composer-gap-sm);
     }
   }
 }
@@ -177,9 +177,14 @@
 
     .icon-list-container {
       right: 35px !important;
-      bottom: 45px !important;
-      padding: 10px 8px !important;
-      gap: 0px !important;
+      bottom: var(--composer-gap-xl) !important;
+      padding: var(--composer-gap-sm) !important;
+      gap: 0 !important;
+
+      .icon {
+        width: var(--composer-gap-sm) !important;
+        height: var(--composer-gap-sm) !important;
+      }
     }
 
     .labels {
