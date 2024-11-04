@@ -3,6 +3,7 @@ import styles from "./content4.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Content4 extends BaseContent {
   constructor(props?: any) {
@@ -246,8 +247,8 @@ class Content4 extends BaseContent {
       itemBottomRight.Visibility;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {itemLeft.Visibility && itemLeft.image ? (
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
@@ -264,9 +265,9 @@ class Content4 extends BaseContent {
                   {(itemLeft.title || itemLeft.icon || itemLeft.icon2) && (
                     <div className={this.decorateCSS("content")}>
                       {itemLeft.title && (
-                        <h2 className={this.decorateCSS("title")}>
+                        <Base.H2 className={this.decorateCSS("title")}>
                           {itemLeft.title}
-                        </h2>
+                        </Base.H2>
                       )}
                       <div className={this.decorateCSS("icons")}>
                         {itemLeft.icon && (
@@ -310,9 +311,9 @@ class Content4 extends BaseContent {
                           itemTopRight.icon2) && (
                             <div className={this.decorateCSS("content")}>
                               {itemTopRight.title && (
-                                <h2 className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                   {itemTopRight.title}
-                                </h2>
+                                </Base.H2>
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemTopRight.icon && (
@@ -354,9 +355,9 @@ class Content4 extends BaseContent {
                           itemTopLeft.icon2) && (
                             <div className={this.decorateCSS("content")}>
                               {itemTopLeft.title && (
-                                <h2 className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                   {itemTopLeft.title}
-                                </h2>
+                                </Base.H2>
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemTopLeft.icon && (
@@ -402,9 +403,9 @@ class Content4 extends BaseContent {
                           itemBottomLeft.icon2) && (
                             <div className={this.decorateCSS("content")}>
                               {itemBottomLeft.title && (
-                                <h2 className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                   {itemBottomLeft.title}
-                                </h2>
+                                </Base.H2>
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemBottomLeft.icon && (
@@ -446,9 +447,9 @@ class Content4 extends BaseContent {
                           itemBottomRight.icon2) && (
                             <div className={this.decorateCSS("content")}>
                               {itemBottomRight.title && (
-                                <h2 className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                   {itemBottomRight.title}
-                                </h2>
+                                </Base.H2>
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemBottomRight.icon && (
@@ -477,8 +478,8 @@ class Content4 extends BaseContent {
               ) : null}
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

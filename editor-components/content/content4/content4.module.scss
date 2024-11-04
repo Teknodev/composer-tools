@@ -1,38 +1,28 @@
-$gap: 20px;
-
 .container {
-  background-color: var(--composer-html-background);
-  width: 100%;
-  display: flex;
-
   .max-content {
-    width: var(--composer-content-width);
     height: 100vh;
     display: flex;
-    gap: $gap;
-    margin: 0 auto;
+    gap: var(--composer-gap-md);
   }
 
   .left {
-    display: flex;
     width: 100%;
-
+    display: flex;
     .item {
       align-items: flex-start;
-      padding: 25px 50px;
+      padding: var(--composer-gap-lg) var(--composer-gap-xl);
 
       .content {
         text-overflow: ellipsis;
         white-space: nowrap;
 
         .title {
-          font-size: 1.2rem;
           overflow: hidden;
           display: -webkit-box;
           line-clamp: 2;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
-          margin-bottom: 10px;
+          margin-bottom: var(--composer-gap-sm);
         }
       }
     }
@@ -42,13 +32,13 @@ $gap: 20px;
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap: $gap;
+    gap: var(--composer-gap-md);
     height: 100%;
 
     .top {
       flex: 2;
       display: flex;
-      gap: $gap;
+      gap: var(--composer-gap-md);
 
       .item {
         flex: 1;
@@ -57,7 +47,7 @@ $gap: 20px;
 
     .bottom {
       display: flex;
-      gap: $gap;
+      gap: var(--composer-gap-md);
       flex: 2;
 
       .item {
@@ -67,7 +57,7 @@ $gap: 20px;
   }
 
   .item {
-    padding: 25px;
+    padding: var(--composer-gap-lg);
     display: flex;
     justify-content: flex-start;
     position: relative;
@@ -86,7 +76,7 @@ $gap: 20px;
         position: absolute;
         left: -10px;
         transition: left 0.3s ease;
-        width: calc(100% + 20px);
+        width: calc(100% + var(--composer-gap-md));
         height: 100%;
         object-fit: cover;
       }
@@ -99,23 +89,22 @@ $gap: 20px;
     .content {
       z-index: 5;
       display: flex;
-      color: white;
-      max-width: 90%;
+      color: var(--composer-font-color-secondary);
       margin-top: auto;
       height: auto;
-      font-size: 1rem;
       white-space: normal;
 
       .title {
-        font-size: 2.3rem;
         font-weight: bold;
-        color: white;
+        color: var(--composer-font-color-secondary);
         overflow: hidden;
         display: -webkit-box;
         line-clamp: 2;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        margin-right: 20px;
+        margin-right: var(--composer-gap-md);
+        margin-top: 0px;
+        margin-bottom: 0px;
       }
 
       .icons {
@@ -150,7 +139,7 @@ $gap: 20px;
 
 @media only screen and (max-width: 1170px) {
   .container {
-    padding-bottom: 30px;
+    padding-bottom: var(--composer-gap-lg);
 
     .max-content {
       display: grid;
@@ -163,7 +152,7 @@ $gap: 20px;
 
       .item {
         align-items: flex-start;
-        padding: 50px;
+        padding: var(--composer-gap-xl);
         height: 100%;
       }
     }
@@ -171,7 +160,7 @@ $gap: 20px;
     .right {
       grid-row: 2 / 3;
       display: flex;
-      gap: 1%;
+      gap: var(--composer-gap-xs);
       height: 100%;
     }
 
@@ -183,7 +172,6 @@ $gap: 20px;
 
       .content {
         .title {
-          font-size: 2.2rem;
         }
       }
     }
@@ -209,9 +197,5 @@ $gap: 20px;
   .right .top,
   .right .bottom {
     flex-direction: column;
-  }
-
-  .right .item .content .title {
-    font-size: 2rem;
   }
 }
