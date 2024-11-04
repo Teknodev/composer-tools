@@ -1,54 +1,56 @@
 .container {
-  width: 100%;
   background-size: cover;
-  background-position: center center;
+  background-position: center;
+  padding-bottom: 0px !important;
   .max-content {
-    display: flex;
-    max-width: var(--composer-content-width);
-    margin: auto;
     .testimonials7 {
       flex-direction: column;
       display: block;
       width: 100%;
       .slider-style {
-        width: 100%;
-        button {
-            display: none !important;
-        }
+        margin-left: calc(var(--composer-gap-xl)*5);
+        margin-top: calc(var(--composer-gap-xl)*5);
+        width: 35%;
       }
     }  
       .card{
         color: var(--composer-font-color-primary);
-        display: flex;
-        flex-direction: column;
+        display: flex !important;
         gap: 60px;
         font-size: 20px;
         background-color: var(--composer-html-background);
-        margin-left: 100px;
-        margin-top: 175px;
-        margin-bottom: 50px;
-        padding: 100px;
+        padding: 50px;
         width: 100%;
-        max-width: 800px;
-         .profile{
-          display: flex; 
-          flex-direction: row-reverse;
-          justify-content: flex-end;
-          gap: 30px;
-          color: var(--composer-primary-color);
-          .profile-text{ 
-            flex-direction: column;
-            margin-top: -25px;
-            .item-name-id{
-             padding-bottom: 40px;
-              letter-spacing: 10px;
-            }
-          }     
+        .button{
+          border: none;
+          background-color: transparent;
+
         }
-        .image {    
-          width: 100px;
-          height: 100px;
-          } 
+        .item-content{
+          .item-description{
+
+          }
+           .profile{
+            display: flex; 
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 30px;
+            color: var(--composer-primary-color);
+            .profile-text{ 
+              flex-direction: column;
+              margin-top: -25px;
+              .item-name-id{
+               padding-bottom: 40px;
+                letter-spacing: 10px;
+              }
+            }     
+          }
+          .image {    
+            width: 100px;
+            height: 100px;
+            } 
+        }
+
         }
       }
     }

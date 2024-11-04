@@ -2,6 +2,8 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials7.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Item = {
   image: string;
@@ -18,6 +20,20 @@ class Testimonials7Page extends Testimonials {
       displayer: "Background Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617330bd2970002c623799?alt=media&timestamp=1719483639150",
+    });
+    this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Prev Icon",
+      value:
+        "FaArrowLeft",
+    });
+    this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Next Icon",
+      value:
+        "FaArrowRight",
     });
     this.addProp({
       type: "array",
@@ -125,6 +141,9 @@ class Testimonials7Page extends Testimonials {
         },
       ],
     });
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active", 0);
+    this.setComponentState("activeSlideIndex", 0);
   }
 
   getName(): string {
@@ -140,24 +159,39 @@ class Testimonials7Page extends Testimonials {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      arrows: false,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("active", next);
+        this.setComponentState("activeSlideIndex", next);
+      },
     };
+    const sliderRef = this.getComponentState("slider-ref");
     return (
-      <div
+      <Base.Container
         className={this.decorateCSS("container")}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
+        isFull={true}
       >
-        <div className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials7")}>
             <ComposerSlider
+              ref={sliderRef}
               {...settings}
               className={this.decorateCSS("slider-style")}
             >
               {this.castToObject<Item[]>("card-items").map(
                 (item: Item, index: number) => (
-                  <div key={`tsm-7-${index}`}>
-                    <div className={this.decorateCSS("card")}>
+                  <div className={this.decorateCSS("card")}>
+                    {this.getPropValue("prevIcon") && (
+                      <button onClick={() => {
+                        sliderRef.current.slickPrev();
+                      }} className={this.decorateCSS("button")}>
+                        <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></ComposerIcon>
+                      </button>
+                    )}
+                    <div className={this.decorateCSS("item-content")}>
                       <span className={this.decorateCSS("item-description")}>
                         {item.description}
                       </span>
@@ -179,13 +213,20 @@ class Testimonials7Page extends Testimonials {
                         />
                       </div>
                     </div>
+                    {this.getPropValue("nextIcon") && (
+                      <button onClick={() => {
+                        sliderRef.current.slickPrev();
+                      }} className={this.decorateCSS("button")}>
+                        <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></ComposerIcon>
+                      </button>
+                    )}
                   </div>
                 )
               )}
             </ComposerSlider>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
