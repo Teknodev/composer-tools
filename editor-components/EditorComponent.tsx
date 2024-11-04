@@ -11,8 +11,8 @@ type PreSufFix = {
 };
 
 export type TypeLocation = {
-  lat: number;
   lng: number;
+  lat: number;
 
 };
 
@@ -35,7 +35,7 @@ export type iComponent = {
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
-  id: number
+  id: string
 };
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -56,6 +56,7 @@ export type TypeReactComponent = {
   props: TypeUsableComponentProps[];
   cssClasses: TypeCSSProp;
   children: string;
+  id: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -92,7 +93,7 @@ export enum CATEGORIES {
 export abstract class Component extends React.Component<{}, { states: any; componentProps: any }> implements iComponent {
   private styles: any;
   private _props: any;
-  public id: number;
+  public id: string;
   protected category: CATEGORIES;
   abstract getName(): string;
 
@@ -100,7 +101,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     super(props);
     this._props = props;
     this.styles = styles;
-    this.id = Math.random();
+    this.id = Math.random().toString();
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = (props && props[key]) || [];
@@ -158,9 +159,9 @@ export abstract class Component extends React.Component<{}, { states: any; compo
       const stringPrefix = renderToString(prefix || <></>);
       const stringSuffix = renderToString(suffix || <></>);
 
-      const hasHtmlTag = html.includes("<");
+      const hasHtmlTag = html.indexOf("<");
 
-      if (!hasHtmlTag) {
+      if (hasHtmlTag != 0 && hasHtmlTag != -1) {
         html = `<p> ${html} </p>`;
       }
 

@@ -3,6 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Pricing = {
   buttonIcon: string;
@@ -681,13 +682,13 @@ class PricingTable1 extends BasePricingTable {
   }
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("table")}>
-            <div className={this.decorateCSS("top-titles")}>
-              <span className={this.decorateCSS("subtitle")}>{this.getPropValue("pricing-table-subtitle")}</span>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</h1>
-            </div>
+            <Base.VerticalContent className={this.decorateCSS("top-titles")}>
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("pricing-table-subtitle")}</Base.SectionSubTitle>
+              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</Base.SectionTitle>
+            </Base.VerticalContent>
             <div className={this.decorateCSS("items")}>
               {this.castToObject<Pricing[]>("pricingTableItem").map(
                 (table: Pricing, index: number) => {
@@ -754,8 +755,8 @@ class PricingTable1 extends BasePricingTable {
               }
             </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
