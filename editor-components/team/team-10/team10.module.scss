@@ -1,6 +1,7 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   width: 100%;
-
   .max-content {
     display: flex;
     overflow-x: auto;
@@ -21,7 +22,7 @@
       }
 
       .title {
-        padding: 1rem;
+        padding: var(--composer-gap-md);
         color: var(--composer-font-color-primary);
         z-index: 1;
       }
@@ -29,7 +30,7 @@
       .subtitle {
         color: var(--composer-font-color-primary);
         font-size: 1.5rem;
-        padding: 1rem;
+        padding: var(--composer-gap-md);
         z-index: 1;
       }
     }
@@ -46,26 +47,31 @@
 
         .icon-group {
           height: 15%;
-          border-radius: 6px;
+          border-radius: var(--composer-border-radius-md);
           position: absolute;
           top: 0;
           right: 0;
 
           .icon-item {
             background-color: var(--composer-html-background);
-            padding: 10px;
+            padding: var(--composer-gap-sm);
             color: var(--composer-font-color-primary);
           }
         }
 
         .icon {
-          width: 1rem;
+          width: 16px;
+        }
+
+        .info,
+        .image {
+          flex: 1 1 auto;
+          width: 100%;
         }
 
         .info {
-          height: 49%;
-          padding: 3rem;
-          position: relative;
+          padding: var(--composer-gap-xl);
+          box-sizing: border-box;
 
           .subtitle {
             font-size: 1rem;
@@ -85,7 +91,6 @@
             .meta {
               .label {
                 color: var(--composer-font-color-primary);
-                font-weight: 700;
               }
 
               .value {
@@ -95,14 +100,12 @@
           }
 
           .description {
-            font-size: 1rem;
-            line-height: 1.5;
             color: var(--composer-font-color-primary);
           }
         }
 
         .image {
-          width: 100%;
+          min-height: 555px;
           object-fit: cover;
         }
 
@@ -114,10 +117,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-  }
-
+@container (max-width: #{$composer-tablet-width-lg}) {
   .max-content {
     flex-direction: column;
     overflow-x: hidden !important;
@@ -132,13 +132,13 @@
 
       .team-member {
         flex-direction: row !important;
-        height: auto;
         .info {
-          padding: 42px !important;
+          width: 50% !important;
         }
 
         .image {
-          height: 100% !important;
+          height: auto !important;
+          width: 50% !important;
         }
 
         &:nth-child(2n) {
@@ -149,34 +149,34 @@
   }
 }
 
-@media only screen and (max-width: 575px) {
-  .container {
-    width: 100%;
-  }
-
+@container (max-width: #{$composer-phone-width}) {
   .max-content {
-    flex-direction: column;
-
     .left {
       width: unset !important;
       min-height: 200px;
 
       .subtitle {
-        font-size: 12px !important;
+        font-size: 1rem !important;
       }
 
       .title {
-        font-size: 22px !important;
+        font-size: 1.5rem !important;
       }
     }
 
     .right {
-      flex-direction: column;
-
       .team-member {
         flex-direction: column !important;
         width: 100% !important;
         min-width: unset !important;
+
+        .info {
+          width: 100% !important;
+        }
+
+        .image {
+          width: 100% !important;
+        }
 
         &:nth-child(2n) {
           flex-direction: column !important;

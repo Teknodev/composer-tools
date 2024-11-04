@@ -367,20 +367,20 @@ class Team10 extends Team {
                   <div className={this.decorateCSS("meta-info")}>
                     <div className={this.decorateCSS("meta")}>
                       <div className={this.decorateCSS("label")}>
-                        {teamMember.getPropValue("value1-title")}
+                        <Base.H5>{teamMember.getPropValue("value1-title")}</Base.H5>
                         <Base.H5 className={this.decorateCSS("value")}>{teamMember.getPropValue("value1-description")}</Base.H5>
                       </div>
                     </div>
                     <div className={this.decorateCSS("meta")}>
                       <div className={this.decorateCSS("label")}>
-                        {teamMember.getPropValue("value2-title")}
-                        <div className={this.decorateCSS("value")}>{teamMember.getPropValue("value2-description")}</div>
+                        <Base.H5>{teamMember.getPropValue("value2-title")}</Base.H5>
+                        <Base.H5 className={this.decorateCSS("value")}>{teamMember.getPropValue("value2-description")}</Base.H5>
                       </div>
                     </div>
                     <div className={this.decorateCSS("meta")}>
                       <div className={this.decorateCSS("label")}>
-                        {teamMember.getPropValue("value3-title")}
-                        <div className={this.decorateCSS("value")}>{teamMember.getPropValue("value3-description")}</div>
+                        <Base.H5>{teamMember.getPropValue("value3-title")}</Base.H5>
+                        <Base.H5 className={this.decorateCSS("value")}>{teamMember.getPropValue("value3-description")}</Base.H5>
                       </div>
                     </div>
                   </div>
