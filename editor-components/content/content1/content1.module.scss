@@ -1,64 +1,50 @@
 .container {
-    width: 100%;
-    padding: 150px 0;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .heading-page {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .heading {
+            margin: 0px;
+            text-align: center;
+        }
+        .heading-h1 {
+            margin: 0px;
+            text-align: center;
+        }
+        .button-container {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            .heading {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--composer-gap-sm);
+            .button {
                 text-align: center;
-                font-size: 2rem;
-                font-weight: 100;
-                margin: 0;
+                cursor: pointer;
+                transition: 0.3s;
                 color: var(--composer-font-color-primary);
-            }
-            .heading-h1 {
-                text-align: center;
-                margin: 0;
-                font-size: 3rem;
-                color: var(--composer-primary-color);
-            }
-            .button-wrapper {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-                margin-top: 30px;
-                .button {
-                    text-align: center;
-                    cursor: pointer;
-                    transition: 0.3s;
-                    color: white;
-                    background-color: var(--composer-secondary-color);
-                    padding: 15px 30px;
-                    border-radius: 6px;
-                    border: 1px solid transparent;
-                    font-size: 1.5rem;
-                    width: 150px;
-                    &:hover {
-                        color: var(--composer-secondary-color);
-                        background-color: transparent;
-                        border: 1px solid var(--composer-secondary-color);
-                    }
-                }
-                .button-reverse {
-                    text-align: center;
-                    cursor: pointer;
-                    padding: 15px 30px;
-                    transition: 0.3s;
-                    width: 150px;
-                    border-radius: 6px;
+                background-color: var(--composer-secondary-color);
+                padding: var(--composer-gap-md) var(--composer-gap-xl);
+                border-radius: var(--composer-border-radius-sm);
+                border: 1px solid transparent;
+                font-size: 1rem;
+                &:hover {
                     color: var(--composer-secondary-color);
                     background-color: transparent;
                     border: 1px solid var(--composer-secondary-color);
-                    &:hover {
-                        color: white;
-                        background-color: var(--composer-secondary-color);
-                    }
+                }
+            }
+            .button-reverse {
+                text-align: center;
+                cursor: pointer;
+                padding: var(--composer-gap-md) var(--composer-gap-xl);
+                transition: 0.3s;
+                width: 150px;
+                border-radius: var(--composer-border-radius-sm);
+                color: var(--composer-secondary-color);
+                background-color: transparent;
+                border: 1px solid var(--composer-secondary-color);
+                &:hover {
+                    color: var(--composer-font-color-primary);
+                    background-color: var(--composer-secondary-color);
                 }
             }
         }
@@ -67,17 +53,13 @@
 
 @media only screen and (max-width: 768px) {
     .container {
-        padding: 50px 20px;
         .max-content {
             .heading-page {
                 .heading {
                     min-width: auto !important;
                 }
-                .button-wrapper {
-                    .button {
-                        width: 100%;
-                    }
-                    .button-reverse {
+                .button-container {
+                    .button, .button-reverse {
                         width: 100%;
                     }
                 }

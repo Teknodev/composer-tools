@@ -2,34 +2,35 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
+type Button = {
+  text: JSX.Element;
+  link: string;
+};
 class Content1 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "object",
-      key: "heading",
-      displayer: "Heading",
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Are you ready to turn more ad clicks into conversions?",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "This statement is a call to action aimed at businesses or individuals looking to improve the effectiveness of their online advertising campaigns. ",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
       value: [
-        {
-          type: "string",
-          key: "titleColored",
-          displayer: "Title Colored",
-          value: "Are you ready to turn more ad clicks into conversions?",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "business",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value:
-            "This statement is a call to action aimed at businesses or individuals looking to improve the effectiveness of their online advertising campaigns. ",
-        },
         {
           type: "object",
           key: "button",
@@ -37,33 +38,14 @@ class Content1 extends BaseContent {
           value: [
             {
               type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Yes",
+              key: "text",
+              displayer: "Text",
+              value: "Button Text",
             },
             {
               type: "page",
               key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "buttontwo",
-          displayer: "Second Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonTextTwo",
-              displayer: "Button Text Two",
-              value: "Thanks",
-            },
-            {
-              type: "page",
-              key: "link2",
-              displayer: "Button Link",
+              displayer: "Link",
               value: "",
             },
           ],
@@ -75,35 +57,38 @@ class Content1 extends BaseContent {
     return "Content 1";
   }
   render() {
+    const buttons = this.castToObject<Button[]>("buttons");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("heading-page")}>
-            <h1 className={this.decorateCSS("heading-h1")}>
-              {this.getPropValue("heading")[0].value}
-            </h1>
-            <h3 className={this.decorateCSS("heading")}>
-              {this.getPropValue("heading")[2].value}
-            </h3>
-            <div className={this.decorateCSS("button-wrapper")}>
-              <div className={this.decorateCSS("button")}>
-                <ComposerLink
-                  path={this.getPropValue("heading")[3].value[1].value}
-                >
-                  {this.getPropValue("heading")[3].value[0].value}
-                </ComposerLink>
-              </div>
-              <div className={this.decorateCSS("button")}>
-                <ComposerLink
-                  path={this.getPropValue("heading")[4].value[1].value}
-                >
-                  {this.getPropValue("heading")[4].value[0].value}
-                </ComposerLink>
-              </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {this.castToString(this.getPropValue("title")) && (
+            <Base.SectionTitle className={this.decorateCSS("heading-h1")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          )}
+          {this.castToString(this.getPropValue("description")) && (
+            <Base.SectionDescription className={this.decorateCSS("heading")}>
+              {this.getPropValue("description")}
+            </Base.SectionDescription>
+          )}
+          {buttons?.length > 0 && (
+            <div className={this.decorateCSS("button-container")}>
+              {buttons.map((button: Button, index: number) => {
+                const buttonTextExist = this.castToString(button.text);
+                return (
+                  buttonTextExist && (
+                    <div key={index} className={this.decorateCSS("button")}>
+                      <ComposerLink path={button.link}>
+                        {button.text}
+                      </ComposerLink>
+                    </div>
+                  )
+                );
+              })}
             </div>
-          </div>
-        </div>
-      </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
