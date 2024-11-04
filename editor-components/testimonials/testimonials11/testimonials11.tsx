@@ -1,6 +1,14 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials11.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+
+interface CardItem {
+  image: string,
+  title: JSX.Element,
+  subtitle: JSX.Element,
+  description: JSX.Element,
+}
 
 class Testimonials11Page extends Testimonials {
   constructor(props?: any) {
@@ -16,11 +24,11 @@ class Testimonials11Page extends Testimonials {
       key: "cover-image",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617848bd2970002c623df5?alt=media&timestamp=1719483639150",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67239fe77acba6002c5d6377?alt=media",
     });
     this.addProp({
       type: "array",
-      key: "item-list",
+      key: "items",
       displayer: "Item List",
       value: [
         {
@@ -30,26 +38,26 @@ class Testimonials11Page extends Testimonials {
           value: [
             {
               type: "image",
-              key: "item-image",
+              key: "image",
               displayer: "Card Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
-              key: "item-title",
+              key: "title",
               displayer: "Card Title",
               value: "Sarah Lewin",
             },
             {
               type: "string",
-              key: "item-subtitle",
+              key: "subtitle",
               displayer: "Card Subtitle",
               value: "Project manager in Pixels",
             },
             {
               type: "string",
-              key: "item-description",
+              key: "description",
               displayer: "Card Description",
               value:
                 "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
@@ -63,26 +71,26 @@ class Testimonials11Page extends Testimonials {
           value: [
             {
               type: "image",
-              key: "item-image",
+              key: "image",
               displayer: "Card Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
-              key: "item-title",
+              key: "title",
               displayer: "Card Title",
               value: "Gregory Tabot",
             },
             {
               type: "string",
-              key: "item-subtitle",
+              key: "subtitle",
               displayer: "Card Subtitle",
               value: "Photographer",
             },
             {
               type: "string",
-              key: "item-description",
+              key: "description",
               displayer: "Card Description",
               value:
                 "The principal element of Suprematism in painting, as in architecture, is its liberation from all social or materialist tendencies. Through Suprematism, art comes into its pure and unpolluted form.",
@@ -96,26 +104,26 @@ class Testimonials11Page extends Testimonials {
           value: [
             {
               type: "image",
-              key: "item-image",
+              key: "image",
               displayer: "Card Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
-              key: "item-title",
+              key: "title",
               displayer: "Card Title",
               value: "Jess Simpson",
             },
             {
               type: "string",
-              key: "item-subtitle",
+              key: "subtitle",
               displayer: "Card Subtitle",
               value: "Team lead in TBB",
             },
             {
               type: "string",
-              key: "item-description",
+              key: "description",
               displayer: "Card Description",
               value:
                 "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
@@ -123,104 +131,104 @@ class Testimonials11Page extends Testimonials {
           ],
         },
         {
-            type: "object",
-            key: "item",
-            displayer: "Item",
-            value: [
-              {
-                type: "image",
-                key: "item-image",
-                displayer: "Card Image",
-                value:
-                  "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
-              },
-              {
-                type: "string",
-                key: "item-title",
-                displayer: "Card Title",
-                value: "Jess Simpson",
-              },
-              {
-                type: "string",
-                key: "item-subtitle",
-                displayer: "Card Subtitle",
-                value: "Team lead in TBB",
-              },
-              {
-                type: "string",
-                key: "item-description",
-                displayer: "Card Description",
-                value:
-                  "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "item",
-            displayer: "Item",
-            value: [
-              {
-                type: "image",
-                key: "item-image",
-                displayer: "Card Image",
-                value:
-                  "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
-              },
-              {
-                type: "string",
-                key: "item-title",
-                displayer: "Card Title",
-                value: "Jess Simpson",
-              },
-              {
-                type: "string",
-                key: "item-subtitle",
-                displayer: "Card Subtitle",
-                value: "Team lead in TBB",
-              },
-              {
-                type: "string",
-                key: "item-description",
-                displayer: "Card Description",
-                value:
-                  "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "item",
-            displayer: "Item",
-            value: [
-              {
-                type: "image",
-                key: "item-image",
-                displayer: "Card Image",
-                value:
-                  "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
-              },
-              {
-                type: "string",
-                key: "item-title",
-                displayer: "Card Title",
-                value: "Jess Simpson",
-              },
-              {
-                type: "string",
-                key: "item-subtitle",
-                displayer: "Card Subtitle",
-                value: "Team lead in TBB",
-              },
-              {
-                type: "string",
-                key: "item-description",
-                displayer: "Card Description",
-                value:
-                  "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
-              },
-            ],
-          },
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Card Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Card Title",
+              value: "Jess Simpson",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "Team lead in TBB",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Card Description",
+              value:
+                "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Card Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Card Title",
+              value: "Jess Simpson",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "Team lead in TBB",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Card Description",
+              value:
+                "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Card Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Card Title",
+              value: "Jess Simpson",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Card Subtitle",
+              value: "Team lead in TBB",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Card Description",
+              value:
+                "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
+            },
+          ],
+        },
       ],
     });
     this.addProp({
@@ -228,7 +236,6 @@ class Testimonials11Page extends Testimonials {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 4,
     });
   }
   getName(): string {
@@ -236,53 +243,55 @@ class Testimonials11Page extends Testimonials {
   }
 
   render() {
+    const cardList = this.castToObject<CardItem[]>("items");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("cover-image")}
-            style={{
-              backgroundImage: `url(${this.getPropValue("cover-image")})`,
-            }}
-          >
-            <div className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </div>
-            <div className={this.decorateCSS("testimonials11")}>
-              {this.getPropValue("item-list").map(
+      <Base.Container className={this.decorateCSS("container")}
+        style={{
+          backgroundImage: `url(${this.getPropValue("cover-image")})`
+        }}>
+        <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-background")}>
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.SectionTitle className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-background")}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
+            )}
+
+            <Base.ListGrid gridCount={{ phone: 1, tablet: 2, pc: this.getPropValue("itemCount") }} className={this.decorateCSS("testimonials11")}>
+              {cardList.map(
                 (item: any, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("cards")}
-                    style={{
-                      width: 90 / this.getPropValue("itemCount") + "%",
-                    }}
-                  >
+                  <div className={this.getPropValue("cover-image") ? this.decorateCSS("cards") : this.decorateCSS("cards-no-background")}>
                     <div className={this.decorateCSS("card-top")}>
-                      <img
-                        src={item.value[0].value}
-                        alt="cardPhoto"
-                        className={this.decorateCSS("card-image")}
-                      />
-                      <div className={this.decorateCSS("card-top-right")}>
-                        <div className={this.decorateCSS("card-title")}>
-                          {item.value[1].value}
-                        </div>
-                        <div className={this.decorateCSS("card-subtitle")}>
-                          {item.value[2].value}
-                        </div>
-                      </div>
+                      {item.image && (
+                        <img
+                          src={item.image}
+                          alt={item.image}
+                          className={this.decorateCSS("card-image")}
+                        />
+                      )}
+                      <Base.VerticalContent className={this.decorateCSS("card-top-right")}>
+                        {this.castToString(item.title) && (
+                          <Base.H4 className={this.decorateCSS("card-title")}>
+                            {item.title}
+                          </Base.H4>
+                        )}
+                        {this.castToString(item.subtitle) && (
+                          <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                            {item.subtitle}
+                          </Base.H5>
+                        )}
+                      </Base.VerticalContent>
                     </div>
-                    <div className={this.decorateCSS("card-description")}>
-                      {item.value[3].value}
-                    </div>
+                    <Base.P className={this.decorateCSS("card-description")}>
+                      {item.description}
+                    </Base.P>
                   </div>
                 )
               )}
-            </div>
-          </div>
-        </div>
-      </div>
+            </Base.ListGrid>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container >
     );
   }
 }
