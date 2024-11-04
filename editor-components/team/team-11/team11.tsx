@@ -101,6 +101,19 @@ class Team11 extends Team {
     });
 
     this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Next icon",
+      value: "GrCaretNext",
+    });
+    this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Prev icon",
+      value: "GrCaretPrevious",
+    });
+
+    this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
@@ -293,13 +306,16 @@ class Team11 extends Team {
         },
       ],
     });
+
+    this.setComponentState("slider-ref", React.createRef());
   }
   getName(): string {
     return "Team 11";
   }
   render() {
     const settings = {
-      dots: true,
+      dots: false,
+      arrows: false,
       infinite: true,
       speed: 500,
       autoplay: true,
@@ -334,15 +350,15 @@ class Team11 extends Team {
               </div>
             )}
 
-            <ComposerSlider {...settings} className={this.decorateCSS("down-page")}>
-              {this.castToObject<any[]>("slider").map((item: any, index: number) => {
+            <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("down-page")}>
+              {this.castToObject<any[]>("slider").map((item: any, indexSlider: number) => {
                 const itemNameExist = this.castToString(item.name);
                 const itemPositionExist = this.castToString(item.position);
 
                 const itemExits = itemNameExist || itemPositionExist || item.image || item.icons.length > 0;
                 return (
                   itemExits && (
-                    <div key={index} className={this.decorateCSS("item")}>
+                    <div key={indexSlider} className={this.decorateCSS("item")}>
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("hover")}>
                           {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt="" />}
@@ -368,6 +384,29 @@ class Team11 extends Team {
                 );
               })}
             </ComposerSlider>
+
+            <div className={this.decorateCSS("nav-buttons")}>
+              <ComposerIcon
+                name={this.getPropValue("prevIcon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("prev_icon")}`,
+                  size: 45,
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickPrev();
+                  },
+                }}
+              />
+              <ComposerIcon
+                name={this.getPropValue("nextIcon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("next_icon")}`,
+                  size: 45,
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickNext();
+                  },
+                }}
+              />
+            </div>
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
