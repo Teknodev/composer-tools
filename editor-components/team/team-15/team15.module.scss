@@ -73,7 +73,7 @@
               position: absolute;
               right: 40px;
               bottom: 50px;
-              background-color: white;
+              background-color: var(--composer-font-color-primary);
               border-radius: var(--composer-border-radius-sm);
               text-align: center;
               padding: 15px 13px 15px;
@@ -99,6 +99,7 @@
                 height: 1rem;
                 object-fit: cover;
                 position: relative;
+                color: var(--composer-font-color-secondary);
                 &:hover {
                   color: var(--composer-secondary-color);
                 }
@@ -111,7 +112,7 @@
             position: absolute;
             bottom: 70px;
             left: 15px;
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-font-color-primary);
             &:hover {
               color: var(--composer-secondary-color);
             }
@@ -126,7 +127,7 @@
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-font-color-primary);
             padding: 10px 15px 8px;
 
             .description {
@@ -136,11 +137,12 @@
             .icons {
               display: flex;
               gap: var(--composer-gap-md);
+              color: var(--composer-secondary-color);
 
               .firstIcon,
               .secondIcon {
                 &:hover {
-                  color: var(--composer-secondary-color);
+                  color: var(--composer-font-color-primary);
                 }
               }
             }

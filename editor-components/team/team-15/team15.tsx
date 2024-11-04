@@ -415,6 +415,8 @@ class Team15 extends Team {
                 const titleExists = this.castToString(card.title);
                 const descriptionExists = this.castToString(card.description);
 
+                const firstIcon = card.getPropValue("firstIcon");
+
                 const cardExists = imageExists || titleExists || descriptionExists;
                 return (
                   cardExists && (
@@ -423,7 +425,7 @@ class Team15 extends Team {
                       <div className={this.decorateCSS("overlay")}></div>
                       <div className={this.decorateCSS("overlay2")}></div>
                       <div className={this.decorateCSS("card-content")}>
-                        {card.icons.length > 0 && (
+                        {card.icons.length > 0 && firstIcon && (
                           <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
                             {card.icons.map((icon: any, indexIcons: number) => {
                               return (
