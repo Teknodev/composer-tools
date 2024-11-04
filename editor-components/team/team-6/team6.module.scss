@@ -47,13 +47,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 height: 550px;
                 object-fit: cover;
                 border-radius: var(--composer-border-radius-lg);
-                margin-bottom: 0.5rem;
+                margin-bottom: var(--composer-gap-sm);
                 transition: $transition;
               }
 
               .image.shrink {
                 height: 200px;
-                margin-bottom: 1.5rem;
+                margin-bottom: var(--composer-gap-md);
               }
 
               .overlay-bar {
@@ -98,7 +98,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         width: fit-content;
         color: var(--font-color-primary);
         opacity: 0.5;
-        padding: 0.5rem;
+        padding: var(--composer-gap-sm);
       }
 
       button {
