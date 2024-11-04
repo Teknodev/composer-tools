@@ -13,7 +13,7 @@
           margin-top: 0;
           color: transparent;
           -webkit-text-stroke: 1px var(--composer-primary-color);
-          letter-spacing: 0.5rem;
+          letter-spacing: var(--composer-gap-sm);
         }
       }
 
@@ -62,7 +62,7 @@
                 color: var(--composer-font-color-primary);
                 border-radius: 50%;
                 border: 1px solid var(--composer-font-color-primary);
-                padding: 0.5rem;
+                padding: var(--composer-gap-sm);
                 transition: 300ms;
                 cursor: pointer;
 
@@ -121,7 +121,7 @@
             width: fit-content;
             gap: var(--composer-gap-md);
             list-style-type: none;
-            margin-top: -24px;
+            margin-top: -var(--composer-gap-md);
             padding: 0;
 
             li {
@@ -129,12 +129,13 @@
                 border: none;
                 transition: 0.3s;
                 content-visibility: hidden;
-                width: 10px;
-                height: 10px;
+                width: var(--composer-gap-sm);
+                height: var(--composer-gap-sm);
                 background: var(--composer-font-color-primary);
                 border-radius: 100px;
                 margin: 0;
                 padding: 0;
+                cursor: pointer;
               }
             }
           }
@@ -205,7 +206,7 @@
               .icons-bar {
                 .icon {
                   font-size: 2.5rem;
-                  padding: 0.5rem;
+                  padding: var(--composer-gap-sm);
                 }
               }
             }
