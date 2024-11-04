@@ -3,6 +3,7 @@ import styles from "./team12.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Platform = { url: string; icon: string };
 interface TeamMember {
@@ -75,7 +76,7 @@ class Team12 extends Team {
         },
       ],
     };
-    
+
     this.addProp({
       type: "array",
       key: "team",
@@ -102,25 +103,19 @@ class Team12 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "There are many variations of passages of ıpsum available, but the majority sued alteration",
+              value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370ff268c3c2002cd3083a?alt=media&timestamp=1719558632843",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370ff268c3c2002cd3083a?alt=media&timestamp=1719558632843",
             },
             {
               type: "array",
               key: "platforms",
               displayer: "Social Medias",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(google)),
-              ],
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(google))],
             },
           ],
         },
@@ -145,25 +140,19 @@ class Team12 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "There are many variations of passages of ıpsum available, but the majority sued alteration",
+              value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575",
             },
             {
               type: "array",
               key: "platforms",
               displayer: "Social Medias",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(google)),
-              ],
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(google))],
             },
           ],
         },
@@ -188,25 +177,19 @@ class Team12 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "There are many variations of passages of ıpsum available, but the majority sued alteration",
+              value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334db9?alt=media&timestamp=1719560421360",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334db9?alt=media&timestamp=1719560421360",
             },
             {
               type: "array",
               key: "platforms",
               displayer: "Social Medias",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(google)),
-              ],
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(google))],
             },
           ],
         },
@@ -231,75 +214,79 @@ class Team12 extends Team {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "There are many variations of passages of ıpsum available, but the majority sued alteration",
+              value: "There are many variations of passages of ıpsum available, but the majority sued alteration",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334dba?alt=media&timestamp=1719560421360",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e68d60181a1002c334dba?alt=media&timestamp=1719560421360",
             },
             {
               type: "array",
               key: "platforms",
               displayer: "Social Medias",
-              value: [
-                JSON.parse(JSON.stringify(twitter)),
-                JSON.parse(JSON.stringify(facebook)),
-                JSON.parse(JSON.stringify(google)),
-              ],
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(google))],
             },
           ],
         },
       ],
     });
 
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 4,
+      max: 6,
+    });
   }
   getName(): string {
     return "Team 12";
   }
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {this.castToObject<TeamMember[]>("team").map(
-            (teamMember: any, index: number) => (
-              <div className={this.decorateCSS("member")}>
-                <img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />
-                <div className={this.decorateCSS("info")}>
-                  <div className={this.decorateCSS("name")}>
-                    {teamMember.getPropValue("name")}
-                  </div>
-                  <div className={this.decorateCSS("profession")}>
-                    {teamMember.getPropValue("profession")}
-                  </div>
-                  <div className={this.decorateCSS("description")}>
-                    {teamMember.getPropValue("description")}
-                  </div>
-                  <div className={this.decorateCSS("platforms")}>
-                    {teamMember.platforms.map(
-                      (platform: any, index: number) => (
-                        <div className={this.decorateCSS("platform")}>
-                          <ComposerLink path={platform.getPropValue("url")}>
-                            <ComposerIcon
-                              name={platform.getPropValue("icon")}
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                              }}
-                            ></ComposerIcon>
-                          </ComposerLink>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards")}>
+            {this.castToObject<TeamMember[]>("team").map((teamMember: any, index: number) => {
+              const nameExist = this.castToString(teamMember.name);
+              const professionExist = this.castToString(teamMember.profession);
+              const descriptionExist = this.castToString(teamMember.description);
+
+              const hasItem = nameExist || professionExist || descriptionExist || teamMember.image || teamMember.platforms.length > 0;
+              return (
+                hasItem && (
+                  <div className={this.decorateCSS("member")}>
+                    {teamMember.image && <img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />}
+                    <Base.VerticalContent className={this.decorateCSS("info")}>
+                      {nameExist && <Base.H2 className={this.decorateCSS("name")}>{teamMember.getPropValue("name")}</Base.H2>}
+                      {professionExist && <Base.H5 className={this.decorateCSS("profession")}>{teamMember.getPropValue("profession")}</Base.H5>}
+                      {descriptionExist && <Base.P className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.P>}
+                      {teamMember.platforms.length > 0 && (
+                        <div className={this.decorateCSS("platforms")}>
+                          {teamMember.platforms.map((platform: any, index: number) => (
+                            <div className={this.decorateCSS("platform")}>
+                              <ComposerLink path={platform.getPropValue("url")}>
+                                <ComposerIcon
+                                  name={platform.getPropValue("icon")}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                  }}
+                                ></ComposerIcon>
+                              </ComposerLink>
+                            </div>
+                          ))}
                         </div>
-                      )
-                    )}
+                      )}
+                    </Base.VerticalContent>
                   </div>
-                </div>
-              </div>
-            )
-          )}
-        </div>
-      </div>
+                )
+              );
+            })}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
