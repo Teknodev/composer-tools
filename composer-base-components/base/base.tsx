@@ -99,7 +99,7 @@ export namespace Base {
     );
   }
 
-  export function ListGrid({ className, gridCount, children, ...props }: { gridCount: {pc: number, tablet: number, phone: number}, [key: string]: any }) {
+  export function ListGrid({ className, gridCount, children, ...props }: { gridCount: {pc?: number, tablet?: number, phone?: number}, [key: string]: any }) {
     return (
       <div
         className={`${styles.listGrid} ${className}`}
