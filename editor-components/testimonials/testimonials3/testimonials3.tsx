@@ -119,15 +119,14 @@ class Testimonials3Page extends Testimonials {
   }
   render() {
     const card = this.castToObject<CardItem[]>("card-items")
-    console.log("star", this.getPropValue("star_icon"))
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials3")}>
+          <Base.VerticalContent className={this.decorateCSS("testimonials3")}>
             {this.castToString(this.getPropValue("title")) && (
-              <Base.H1 className={this.decorateCSS("title")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
-              </Base.H1>
+              </Base.SectionTitle>
             )}
             <Base.ListGrid className={this.decorateCSS("card-container")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
               {card.map((card: any, index: number) => (
@@ -151,7 +150,7 @@ class Testimonials3Page extends Testimonials {
               )
               )}
             </Base.ListGrid>
-          </div>
+          </Base.VerticalContent>
         </Base.MaxContent >
       </Base.Container >
     );
