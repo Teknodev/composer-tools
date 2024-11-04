@@ -1,3 +1,5 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
 .container {
   position: relative;
   z-index: 1; 
@@ -101,7 +103,7 @@
       }
     }
 
-@container (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .prevArrow{
@@ -118,7 +120,7 @@
 }
 
 
-@container (max-width: 400px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .prevArrow{
