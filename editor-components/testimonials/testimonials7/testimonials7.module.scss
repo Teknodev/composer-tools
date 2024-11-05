@@ -1,57 +1,76 @@
 .container {
   background-size: cover;
-  background-position: center;
-  padding-bottom: 0px !important;
+  background-position: center center;
+  padding: 0px;
   .max-content {
+    display: flex;
+    justify-content: center;
     .testimonials7 {
       flex-direction: column;
       display: block;
-      width: 100%;
-      .slider-style {
-        margin-left: calc(var(--composer-gap-xl)*5);
-        margin-top: calc(var(--composer-gap-xl)*5);
-        width: 35%;
+      width: 50%;
+      position: relative;
+      margin-top: calc(var(--composer-gap-xl)*5);
+      .button-right, .button-left{
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        .arrow{
+          width: 25px;
+          height: 25px;
+        }
       }
-    }  
-      .card{
-        color: var(--composer-font-color-primary);
-        display: flex !important;
-        gap: 60px;
-        font-size: 20px;
-        background-color: var(--composer-html-background);
-        padding: 50px;
-        width: 100%;
-        .button{
-          border: none;
-          background-color: transparent;
-
-        }
-        .item-content{
-          .item-description{
-
+      .button-right{
+        top:50%;
+        right: calc(var(--composer-gap-md) + 40%);
+      }
+      .button-left{
+        left: var(--composer-gap-md);
+        top:50%;
+        z-index: 2;
+      }
+      .slider-style {
+        width: 60%;
+        display: flex;
+        .card{
+          color: var(--composer-font-color-primary);
+          display: flex !important;
+          gap: 60px;
+          font-size: 20px;
+          background-color: var(--composer-html-background);
+          padding: var(--composer-gap-xl) calc(var(--composer-gap-xl)*2)  var(--composer-gap-md) calc(var(--composer-gap-xl)*2) ;
+          width: 100%;
+  
+          .item-content{
+            gap:var(--composer-gap-md);
+            .item-description{
+  
+            }
+             .profile{
+              display: flex;
+              gap: var(--composer-gap-md);
+              color: var(--composer-primary-color);
+              align-items: center;
+              .profile-text{ 
+                flex-direction: column;
+                .item-name{
+                  font-size:1rem;
+  
+                }
+                .item-name-id{
+                  font-size:1rem;
+                }
+              }     
+            }
+            .image {    
+              width: 100px;
+              height: 100px;
+              } 
           }
-           .profile{
-            display: flex; 
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-            gap: 30px;
-            color: var(--composer-primary-color);
-            .profile-text{ 
-              flex-direction: column;
-              margin-top: -25px;
-              .item-name-id{
-               padding-bottom: 40px;
-                letter-spacing: 10px;
-              }
-            }     
           }
-          .image {    
-            width: 100px;
-            height: 100px;
-            } 
-        }
+          }
+        }  
 
-        }
       }
     }
   
@@ -59,17 +78,23 @@
 
 @media only screen and (max-width: 800px) {
   .container {
-    background-color: var(--composer-html-background);
     .max-content {
       .testimonials7 {
-          .card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border: var(--composer-testiary-color);
-            padding: 20px;
-            margin-left: 0px;
+        width: 60%;
+        .button-right{
+          top:50%;
+          right: calc(var(--composer-gap-md));
+        }
+        .button-left{
+          left: var(--composer-gap-md);
+          top:50%;
+          z-index: 2;
+        }
+        .slider-style {
+          width: 100%;
+          .card{
+            padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) * 2) var(--composer-gap-md) calc(var(--composer-gap-xl) * 2);
+          }
         }
       }
     }
@@ -83,6 +108,7 @@
     .max-content {
       width: 100%;
       .testimonials7 {
+        width: 75%;
           .card {
             border: var(--composer-testiary-color);
           .profile{

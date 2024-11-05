@@ -152,10 +152,10 @@ class Testimonials7Page extends Testimonials {
 
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 700,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -172,58 +172,61 @@ class Testimonials7Page extends Testimonials {
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
-        isFull={true}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials7")}>
+            {this.getPropValue("prevIcon") && (
+              <button onClick={() => {
+                sliderRef.current.slickPrev();
+              }} className={this.decorateCSS("button-left")}>
+                <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+              </button>
+            )}
             <ComposerSlider
               ref={sliderRef}
               {...settings}
               className={this.decorateCSS("slider-style")}
             >
+
               {this.castToObject<Item[]>("card-items").map(
                 (item: Item, index: number) => (
                   <div className={this.decorateCSS("card")}>
-                    {this.getPropValue("prevIcon") && (
-                      <button onClick={() => {
-                        sliderRef.current.slickPrev();
-                      }} className={this.decorateCSS("button")}>
-                        <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></ComposerIcon>
-                      </button>
-                    )}
-                    <div className={this.decorateCSS("item-content")}>
-                      <span className={this.decorateCSS("item-description")}>
-                        {item.description}
-                      </span>
-                      <div className={this.decorateCSS("profile")}>
-                        <div className={this.decorateCSS("profile-text")}>
-                          <h2 className={this.decorateCSS("item-name")}>
-                            {item.name}
-                          </h2>
 
-                          <p className={this.decorateCSS("item-name-id")}>
-                            {item.nameId}
-                          </p>
-                        </div>
+                    <Base.VerticalContent className={this.decorateCSS("item-content")}>
+                      <div className={this.decorateCSS("item-description")}>
+                        {item.description}
+                      </div>
+                      <div className={this.decorateCSS("profile")}>
 
                         <img
                           src={item.image}
                           alt={item.name}
                           className={this.decorateCSS("image")}
                         />
+                        <Base.VerticalContent className={this.decorateCSS("profile-text")}>
+                          <div className={this.decorateCSS("item-name")}>
+                            {item.name}
+                          </div>
+
+                          <div className={this.decorateCSS("item-name-id")}>
+                            {item.nameId}
+                          </div>
+                        </Base.VerticalContent>
+
                       </div>
-                    </div>
-                    {this.getPropValue("nextIcon") && (
-                      <button onClick={() => {
-                        sliderRef.current.slickPrev();
-                      }} className={this.decorateCSS("button")}>
-                        <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></ComposerIcon>
-                      </button>
-                    )}
+                    </Base.VerticalContent>
                   </div>
                 )
               )}
+
             </ComposerSlider>
+            {this.getPropValue("nextIcon") && (
+              <button onClick={() => {
+                sliderRef.current.slickPrev();
+              }} className={this.decorateCSS("button-right")}>
+                <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+              </button>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
