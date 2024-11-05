@@ -1,21 +1,20 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
-
-.container {
+ .container {
   position: relative;
   z-index: 1; 
   background-color: transparent;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--composer-primary-color) ;
-      opacity: 0.5;
-      z-index: 1; 
-    }
-    .max-content {
+  &.overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-primary-color);
+    opacity: 0.5;
+    z-index: 1;
+  }
+    .max-content, .max-content-no-image {
       position: relative;
       z-index: 2; 
       display: flex;
@@ -33,19 +32,24 @@
         background-color: transparent;      
         cursor: pointer;
         border: none;
-        .arrow{
+        .arrow, .arrow-dark{
           width: 20px;
           height: 20px;
+        }
+        .arrow{
           color: var(--composer-font-color-secondary);
+        }
+        .arrow-dark{
+          color: var(--composer-font-color-primary);
         }
       }
       
       .prevArrow {
-        left:calc(var(--composer-gap-xl) * 5);
+        left:50px;
       }
       
       .nextArrow {
-        right: calc(var(--composer-gap-xl) * 5);
+        right: 50px;
       }
       
       .testimonials4 {
@@ -55,30 +59,50 @@
             flex-direction: column;
             gap: var(--composer-gap-xl);
             padding-bottom: var(--composer-gap-xl);
-            .icon{
+            .icon, .icon-dark{
               width: 100%;
               height: 40px;
+            }
+            .icon{
               color: var(--composer-font-color-secondary);
+            }
+            .icon-dark{
+              color: var(--composer-font-color-primary);
             }
             .content{
               align-items: center;
-              .longtext {
+              .longtext, .longtext-dark {
                 font-size: 20px;
-                text-align: center;
+                text-align: center; 
+              }
+              .longtext{
                 color: var(--composer-font-color-secondary);
               }
+              .longtext-dark{
+                color: var(--composer-font-color-primary);
+              }
       
-              .title {
+              .title, .title-dark {
                 text-transform: capitalize;
                 font-size: 19px;
-                color: var(--composer-font-color-secondary);
                 text-align: center;
               }
-      
-              .subtitle {
-                font-size: 15px;
+              .title{
                 color: var(--composer-font-color-secondary);
+              }
+              .title-dark{
+                color: var(--composer-font-color-primary);
+              }
+      
+              .subtitle, .subtitle-dark {
+                font-size: 15px;
                 text-align: center;
+              }
+              .subtitle{
+                color: var(--composer-font-color-secondary);
+              }
+              .subtitle-dark{
+                color: var(--composer-font-color-primary);
               }
             }
           }
@@ -100,6 +124,9 @@
             }
           }
         }
+      }
+      .max-content-no-image{
+        padding: 0px;
       }
     }
 

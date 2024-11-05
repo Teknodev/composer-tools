@@ -153,6 +153,12 @@ class Testimonials4Page extends Testimonials {
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623725?alt=media&timestamp=1719483639150"
     });
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true
+    });
+    this.addProp({
       type: "object",
       key: "arrows",
       displayer: "Arrows",
@@ -204,15 +210,19 @@ class Testimonials4Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     const arrows = this.castToObject<ArrowItem>("arrows");
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull="true" style={{
-        backgroundImage: `url(${this.getPropValue("cover-image")})`,
-      }}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+        isFull="true"
+        style={{
+          backgroundImage: `url(${this.getPropValue("cover-image")})`,
+        }}
+      >
+        <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
           {arrows.prevArrow && (
             <button className={this.decorateCSS("prevArrow")} onClick={() => {
               sliderRef.current.slickPrev();
             }}>
-              <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+              <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-dark") }}></ComposerIcon>
             </button>
           )}
 
@@ -223,22 +233,22 @@ class Testimonials4Page extends Testimonials {
                 return (
                   <div className={hasContent ? this.decorateCSS("items") : ""}>
                     {item.icon && (
-                      <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      <ComposerIcon name={item.icon} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("icon") : this.decorateCSS("icon-dark") }} />
                     )}
                     {(this.castToString(item.description) || this.castToString(item.title) || this.castToString(item.subtitle)) && (
                       <Base.VerticalContent className={this.decorateCSS("content")}>
                         {this.castToString(item.description) && (
-                          <Base.P className={this.decorateCSS("longtext")}>
+                          <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-dark")}>
                             {item.description}
                           </Base.P>
                         )}
                         {this.castToString(item.title) && (
-                          <div className={this.decorateCSS("title")}>
+                          <div className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-dark")}>
                             {item.title}
                           </div>
                         )}
                         {this.castToString(item.subtitle) && (
-                          <div className={this.decorateCSS("subtitle")}>
+                          <div className={this.getPropValue("cover-image") ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-dark")}>
                             {item.subtitle}
                           </div>
                         )}
