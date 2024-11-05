@@ -13,7 +13,7 @@ class Testimonials1Page extends Testimonials {
       type: "image",
       key: "background-image",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6718b887b4a116002cfd0e2a?alt=media&timestamp=1729673367650",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6729d54e7acba6002c5e6e52?alt=media&timestamp=1730794845964",
     });
 
     this.addProp({
@@ -46,23 +46,10 @@ class Testimonials1Page extends Testimonials {
               value: "RiDoubleQuotesL",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "image",
-                  key: "image-button",
-                  displayer: "Image-button",
-                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361d?alt=media&timestamp=1719483639149",
-                },
-                {
-                  type: "page",
-                  key: "src",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
+              type: "image",
+              key: "imageButton",
+              displayer: "Image Button",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361d?alt=media&timestamp=1719483639149",
             },
           ],
         },
@@ -91,23 +78,10 @@ class Testimonials1Page extends Testimonials {
               value: "RiDoubleQuotesL",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "image",
-                  key: "image-button",
-                  displayer: "Image-button",
-                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361e?alt=media&timestamp=1719483639149",
-                },
-                {
-                  type: "page",
-                  key: "src",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
+              type: "image",
+              key: "imageButton",
+              displayer: "Image Button",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361e?alt=media&timestamp=1719483639149",
             },
           ],
         },
@@ -136,23 +110,10 @@ class Testimonials1Page extends Testimonials {
               value: "RiDoubleQuotesL",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "image",
-                  key: "image-button",
-                  displayer: "Image-button",
-                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361f?alt=media&timestamp=1719483639150",
-                },
-                {
-                  type: "page",
-                  key: "src",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
+              type: "image",
+              key: "imageButton",
+              displayer: "Image Button",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361f?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -192,10 +153,6 @@ class Testimonials1Page extends Testimonials {
         }
         style={{
           backgroundImage: `url(${this.getPropValue("background-image")})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed"
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -205,14 +162,22 @@ class Testimonials1Page extends Testimonials {
                 <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                   {this.castToObject<any>("items").map((item: any, index: number) => (
                     <div className={this.decorateCSS("items")}>
-                      <ComposerIcon
-                        name={item.icons}
-                        propsIcon={{ className: this.decorateCSS("icons") }}
-                      />
-                      <Base.VerticalContent>
-                        <Base.P className={this.decorateCSS("longtext")}>{item.longtext}</Base.P>
-                        <div className={this.decorateCSS("name")}>{item.name}</div>
-                      </Base.VerticalContent>
+                      {item.icons && (
+                        <ComposerIcon
+                          name={item.icons}
+                          propsIcon={{ className: this.decorateCSS("icons") }}
+                        />
+                      )}
+                      {(this.castToString(item.longtext) || this.castToString(item.name)) && (
+                        <Base.VerticalContent>
+                          {this.castToString(item.longtext) && (
+                            <Base.P className={this.decorateCSS("longtext")}>{item.longtext}</Base.P>
+                          )}
+                          {this.castToString(item.name) && (
+                            <div className={this.decorateCSS("name")}>{item.name}</div>
+                          )}
+                        </Base.VerticalContent>
+                      )}
                     </div>
                   ))}
                 </ComposerSlider>
@@ -220,21 +185,23 @@ class Testimonials1Page extends Testimonials {
                   {this.castToObject<any>("items").map((item: any, itemIndex: number) => {
                     const isActive = this.getComponentState("active_index") === itemIndex;
                     return (
-                      <img
-                        src={item.button["image-button"]}
-                        className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")
-                          }`}
-                        alt="avatar"
-                        onClick={() => this.onImageClick(itemIndex)}
-                      />
+                      <div className={this.decorateCSS("image-container")}>
+                        {item.imageButton && (
+                          <img
+                            src={item.imageButton}
+                            className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")
+                              }`}
+                            alt={item.imageButton}
+                            onClick={() => this.onImageClick(itemIndex)}
+                          />
+                        )}
+                      </div>
                     );
                   })}
                 </Base.ListGrid>
               </div>
             </div>
           </div>
-
-
         </Base.MaxContent>
       </Base.Container>
     );

@@ -1,4 +1,9 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 50px;
   .max-content {
     display: flex;
     gap: var(--composer-gap-xl);
@@ -10,14 +15,15 @@
         align-items: center;
         justify-content: center;
         .content{
-          width: 50%;
+          width: 30%;
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-xl);
           .items {
             display: flex !important;
             flex-direction: column;
-            gap: var(--composer-gap-xs);
+            gap: var(--composer-gap-md);
+            align-items: center;
               .icons {
                 font-size: 50px;
                 color: var(--composer-font-color-secondry);
@@ -28,27 +34,32 @@
               }     
             .longtext {
               color: var(--composer-font-color-primary);
-              text-transform: uppercase;
+              font-size:1.3rem;
+              text-align: center;
             }
     
             .name {
+              width: 100%;
               font-size: 1rem;
               color: var(--composer-secondary-color);
+              text-align: center;
             }
           }
-          .images {     
-            .image {
-              width: 100px;
-              height: 100px;
-              object-fit: cover;
-              border-radius: 50%;
-              transition: 0.3s;
-              &.active {
-                transform: scale(1.1);
+          .images {   
+            justify-content: center;  
+            .image-container{
+              .image {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 50%;
+                transition: 0.3s;
+                &.active {
+                  transform: scale(1.1);
+                }
               }
             }
           }
-
         }
       }
     }
@@ -56,93 +67,50 @@
 }
 
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
+    background-size:cover;
     .max-content {
-      display: flex;
-      justify-content: center;
-      flex-direction: row-reverse;
-      .testimonials1 {
-        text-align: center;
-
-        .images {
-          position: relative;
-
-          .image {
-            width: 80px;
-            height: 80px;
-
-            &.active {
-            
-              transform: scale(1.2);
+      .wrapper{
+        .content-wrapper{
+          .content{
+            width: 80%;
+            .images{
+              flex-direction: row;
+              .image-container{
+                .image{
+                  width: 80px;
+                  height: 80px;
+                }
+              }
             }
           }
         }
       }
     }
   }
+
 }
 
-@media only screen and (max-width: 400px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    background-color: var(--composer-html-background);
-
+    background-size:cover;
     .max-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .left {
-        top: 0 !important;
-      }
-
-      .testimonials1 {
-        width: 100% !important;
-
-        .right {
-          position: relative;
-          top: 60px;
-        }
-
-        .images {
-          
-          .image {
-            width: 77px !important;
-            height: 77px !important;
-
-            &.active {
-              transform: scale(1.2);
-            }
-            
-          }
-        }
-
-        .items {
-          padding: 0px 20px 0px 20px;
-
-          .longtext {
-            font-size: 16px;
-
-          }
-        }
-
-        .images {
-
-          .image {
-
-            width: 80px;
-            height: 80px;
-
-            &.active {
-            
+      .wrapper{
+        .content-wrapper{
+          .content{
+            width: 100%;
+            .images{
+              .image-container{
+                .image{
+                  width: 70px;
+                  height: 70px;
+                }
+              }
             }
           }
-
         }
       }
     }
   }
-
-
-
 }
