@@ -307,7 +307,7 @@ class Testimonials10Page extends Testimonials {
           <div className={this.decorateCSS("container2")}>
             <Base.ContainerGrid className={this.decorateCSS("testimonials10")}>
               {(title || subtitle || description || hasButtons) && (
-                <Base.VerticalContent className={this.decorateCSS("left-content")}>
+                <Base.GridCell className={this.decorateCSS("left-content")}>
                   {title && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                       {this.getPropValue("title")}
@@ -342,105 +342,103 @@ class Testimonials10Page extends Testimonials {
                       }
                     )}
                   </div>
-                </Base.VerticalContent>
+                </Base.GridCell>
               )}
-              <div className={this.decorateCSS("slider-style")}>
-                <ComposerSlider
-                  {...settings}
-                  ref={this.getComponentState("slider-ref")}
-                >
-                  {this.castToObject<Item[]>("profile-itemList").map(
-                    (item: Item, index: number) => (
-                      <div className={
-                        item.image
-                          ? this.decorateCSS("slider-inner-div-with-image")
-                          : this.decorateCSS("slider-inner-div")
-                      }>
-                        <div className={this.decorateCSS("slider-card")}>
-                          {item.image && (
-                            <div className={this.decorateCSS("img-div")}>
-                              <img
-                                alt=""
-                                src={item.image}
-                                className={this.decorateCSS("img")}
-                              />
-                            </div>
-                          )}
-
-                          {(this.castToString(item.text) ||
-                            this.castToString(item.position) ||
-                            this.castToString(item.author)) && (
-                              <div className={this.decorateCSS("header-page-container")}>
-                                <div className={this.decorateCSS("header-page")}>
-                                  <div className={this.decorateCSS("icons")}>
-                                    <ComposerIcon
-                                      name={this.getPropValue("previcon")}
-                                      propsIcon={{
-                                        className: this.decorateCSS("previcon"),
-                                        onClick: () =>
-                                          this.getComponentState(
-                                            "slider-ref"
-                                          ).current.slickPrev(),
-                                      }}
-                                    />
-                                    <ComposerIcon
-                                      name={this.getPropValue("nexticon")}
-                                      propsIcon={{
-                                        className: this.decorateCSS("nexticon"),
-                                        onClick: () =>
-                                          this.getComponentState(
-                                            "slider-ref"
-                                          ).current.slickNext(),
-                                      }}
-                                    />
-                                  </div>
-                                  <div className={this.decorateCSS("iconquote")}>
-                                    <ComposerIcon
-                                      name={this.getPropValue("quoteicon")}
-                                      propsIcon={{
-                                        className: this.decorateCSS("quoteicon"),
-                                        onClick: () =>
-                                          this.getComponentState(
-                                            "slider-ref"
-                                          ).current.slickNext(),
-                                      }}
-                                    />
-                                  </div>
-                                  <div className={this.decorateCSS("card")}>
-                                    {this.castToString(item.text) && (
-                                      <Base.P className={this.decorateCSS("text")}>
-                                        {this.castToString(item.text)}
-                                      </Base.P>
+              <Base.GridCell className={this.decorateCSS("right-content")}>
+                <div className={this.decorateCSS("slider-style")}>
+                  <ComposerSlider
+                    {...settings}
+                    ref={this.getComponentState("slider-ref")}
+                  >
+                    {this.castToObject<Item[]>("profile-itemList").map(
+                      (item: Item, index: number) => (
+                        <div className={
+                          item.image
+                            ? this.decorateCSS("slider-inner-div-with-image")
+                            : this.decorateCSS("slider-inner-div")
+                        }>
+                          <div className={this.decorateCSS("slider-card")}>
+                            {(this.castToString(item.text) ||
+                              this.castToString(item.position) ||
+                              this.castToString(item.author)) && (
+                                <div className={this.decorateCSS("header-page-container")}>
+                                  <div className={this.decorateCSS("header-page")}>
+                                    {item.image && (
+                                      <div className={this.decorateCSS("img-div")}>
+                                        <img
+                                          alt=""
+                                          src={item.image}
+                                          className={this.decorateCSS("img")}
+                                        />
+                                      </div>
                                     )}
-                                    {this.castToString(item.author) && (
-                                      <h2 className={this.decorateCSS("author")}>
-                                        {this.castToString(item.author)}
-                                      </h2>
-                                    )}
-                                    {this.castToString(item.position) && (
-                                      <h3 className={this.decorateCSS("position")}>
-                                        {this.castToString(item.position)}
-                                      </h3>
-                                    )}
+                                    <div className={this.decorateCSS("icons")}>
+                                      <ComposerIcon
+                                        name={this.getPropValue("previcon")}
+                                        propsIcon={{
+                                          className: this.decorateCSS("previcon"),
+                                          onClick: () =>
+                                            this.getComponentState(
+                                              "slider-ref"
+                                            ).current.slickPrev(),
+                                        }}
+                                      />
+                                      <ComposerIcon
+                                        name={this.getPropValue("nexticon")}
+                                        propsIcon={{
+                                          className: this.decorateCSS("nexticon"),
+                                          onClick: () =>
+                                            this.getComponentState(
+                                              "slider-ref"
+                                            ).current.slickNext(),
+                                        }}
+                                      />
+                                    </div>
+                                    <div className={this.decorateCSS("iconquote")}>
+                                      <ComposerIcon
+                                        name={this.getPropValue("quoteicon")}
+                                        propsIcon={{
+                                          className: this.decorateCSS("quoteicon"),
+                                          onClick: () =>
+                                            this.getComponentState(
+                                              "slider-ref"
+                                            ).current.slickNext(),
+                                        }}
+                                      />
+                                    </div>
+                                    <div className={this.decorateCSS("card")}>
+                                      {this.castToString(item.text) && (
+                                        <Base.P className={this.decorateCSS("text")}>
+                                          {this.castToString(item.text)}
+                                        </Base.P>
+                                      )}
+                                      {this.castToString(item.author) && (
+                                        <h2 className={this.decorateCSS("author")}>
+                                          {this.castToString(item.author)}
+                                        </h2>
+                                      )}
+                                      {this.castToString(item.position) && (
+                                        <h3 className={this.decorateCSS("position")}>
+                                          {this.castToString(item.position)}
+                                        </h3>
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            )}
-                        </div>
-
-                        {hiliteTitle && (
-                          <div className={this.decorateCSS("hiliteTitle")}>
-                            {this.getPropValue("hiliteTitle")}
+                              )}
                           </div>
-                        )}
+                        </div>
+                      )
+                    )}
+                  </ComposerSlider>
 
-                      </div>
-
-                    )
-                  )}
-                </ComposerSlider>
-
-              </div>
+                </div>
+                {hiliteTitle && (
+                  <div className={this.decorateCSS("hiliteTitle")}>
+                    {this.getPropValue("hiliteTitle")}
+                  </div>
+                )}
+              </Base.GridCell>
             </Base.ContainerGrid>
           </div>
         </Base.MaxContent>
