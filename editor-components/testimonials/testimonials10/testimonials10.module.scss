@@ -46,10 +46,11 @@
             justify-content: center;
             align-items: center;
             .slider-card{
+              width: 100%;
               .img-div {
                 position: relative;
                 z-index: 2;
-                max-width: 20%;
+                max-width: 15%;
                 top: 2rem;
                 left: 2rem;     
                 .img {
@@ -59,12 +60,10 @@
               }
             .header-page-container{
               display: flex;
-              justify-content: center;
               .header-page {            
-                width: 75%;
+                width: 50%;
                 background-color: var(--composer-html-background);
                 padding:var(--composer-gap-md);
-                transform: translateX(3rem);
                 .icons {
                   font-size: 2rem;
                   display: flex;
