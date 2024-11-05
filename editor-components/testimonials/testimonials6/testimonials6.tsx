@@ -54,7 +54,7 @@ class Testimonials6Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",
@@ -99,7 +99,7 @@ class Testimonials6Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",
@@ -144,7 +144,7 @@ class Testimonials6Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",
@@ -189,7 +189,7 @@ class Testimonials6Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",
@@ -234,7 +234,7 @@ class Testimonials6Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",
@@ -279,7 +279,7 @@ class Testimonials6Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",

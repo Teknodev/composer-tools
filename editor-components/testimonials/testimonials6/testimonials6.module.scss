@@ -6,6 +6,7 @@
     gap:var(--composer-gap-xl);
     .title{
       margin:0px;
+      color: var(--composer-font-color-primary);
     }
     .cardContainer{
       .card{
@@ -18,6 +19,7 @@
         background-color:color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);;
         .description{
           margin:0px;
+          color: var(--composer-font-color-primary);
         }
         .line {
           width: 100%;
