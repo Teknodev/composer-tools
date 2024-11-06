@@ -1,30 +1,27 @@
 .container {
   width: 100%;
-  max-width: 813px;
+  max-width: 800px;
   max-height: 590px;
+  padding: 0;
 
   .max-content {
-    max-width: var(--composer-content-width);
     height: 100%;
     background-color: var(--composer-font-color-secondary);
     position: relative;
     container-type: inline-size;
 
     @container (max-width: 657px) {
-
       .content {
-        padding: 40px 30px 0 30px !important;
-
         .year-text {
           font-size: 4.5rem !important;
-          left: 40px !important;
+          left: var(--composer-gap-lg) !important;
           top: -3.5% !important;
         }
 
         .header {
-          h2 {
+          .header-text {
             font-size: 4rem !important;
-            width: 60% !important;
+            width: 60%;
           }
         }
 
@@ -34,7 +31,7 @@
         }
 
         .event-content {
-          gap: 15px !important;
+          gap: var(--composer-gap-sm) !important;
 
           .event-speakers {
             .speakers {
@@ -50,12 +47,12 @@
           }
 
           .event-details {
-            gap: 20px !important;
+            gap: var(--composer-gap-md) !important;
             flex-direction: row !important;
 
             .event-button {
               font-size: 1rem !important;
-              padding: 10px 20px !important;
+              padding: var(--composer-gap-sm) var(--composer-gap-md) !important;
             }
 
             .event-date {
@@ -66,26 +63,22 @@
       }
 
       .contact-infos {
-        padding: 15px 30px !important;
+        padding: var(--composer-gap-sm) var(--composer-gap-md) !important;
       }
     }
 
     @container (max-width: 508px) {
-
       .content {
-        padding: 30px 20px !important;
-
         .year-text {
-          font-size: 3.7rem !important;
-          left: 30px !important;
+          font-size: 3.5rem !important;
+          left: var(--composer-gap-lg) !important;
           top: -3% !important;
         }
 
         .header {
-          h2 {
+          padding: 0 !important ;
+          .header-text {
             font-size: 3.2rem !important;
-            width: 67% !important;
-            margin-bottom: 0 !important;
           }
         }
 
@@ -93,7 +86,7 @@
           top: -10% !important;
         }
 
-        .exit-icon{
+        .exit-icon {
           width: 23px !important;
           height: 23px !important;
         }
@@ -108,36 +101,24 @@
                   width: 75px !important;
                   height: 75px !important;
                 }
-
-                .speaker-name {
-                  font-size: 0.9rem !important;
-                }
-
-                .speaker-title {
-                  font-size: 0.8rem !important;
-                }
               }
             }
           }
 
           .event-details {
             flex-direction: row !important;
-            gap: 10px !important;
+            gap: var(--composer-gap-sm) !important;
 
             .event-button {
-              font-size: 0.9rem !important;
-            }
-
-            .event-date {
-              font-size: 0.9rem !important;
+              padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
             }
           }
         }
       }
 
       .contact-infos {
-        padding: 10px 20px !important;
-
+        padding: var(--composer-gap-sm) var(--composer-gap-md) !important;
+        gap: var(--composer-gap-xs) !important;
         .contact-info {
           .contact-icon {
             font-size: 1rem !important;
@@ -151,7 +132,7 @@
     }
 
     .content {
-      padding: 0 40px;
+      padding: 0 var(--composer-gap-lg);
       padding-top: 70px;
       position: relative;
       z-index: 1;
@@ -159,24 +140,24 @@
 
       .year-text {
         color: var(--composer-font-color-primary);
-        opacity: 0.3;
+        opacity: 0.5;
         position: absolute;
         top: -5%;
-        left: 50px;
+        left: var(--composer-gap-xl);
         font-size: 6.5rem;
         margin: 0;
       }
 
       .header {
         text-align: left;
-        padding: 10px;
+        padding: var(--composer-gap-sm);
 
-        h2 {
-          margin: 0 0 0.25em 0;
+        .header-text {
+          margin: 0;
           font-size: 5rem;
           white-space: wrap;
-          width: 55%;
-          line-height: 1.05;
+          width: 70%;
+          line-height: 1;
           color: var(--composer-font-color-primary);
         }
 
@@ -198,14 +179,10 @@
       .exit-icon {
         width: 30px;
         height: 30px;
-        display: flex;
-        justify-content: flex-end;
         position: absolute;
-        z-index: 10;
-        right: 20px;
-        top: 20px;
-        margin: 5px 5px 0px 0px;
-        color: var(--composer-font-color-primary);
+        right: var(--composer-gap-md);
+        top: var(--composer-gap-md);
+        color: var(--composer-font-color-secondary);
       }
 
       .background-image {
@@ -214,34 +191,29 @@
         position: absolute;
         border-radius: 50%;
         z-index: -1;
-        top: -140px;
-        right: -110px;
-        pointer-events: none;
+        top: -10%;
+        right: -15%;
         overflow: hidden;
 
         .image {
           width: 100%;
           height: 100%;
-          top: -20px;
-          right: -20px;
           object-fit: cover;
-          pointer-events: none;
         }
       }
 
       .event-content {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         padding-bottom: 5%;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: var(--composer-gap-md);
 
         .event-speakers {
           text-align: left;
-          padding: 0 10px;
+          padding: 0 var(--composer-gap-sm);
 
-          h2 {
+          .subheader {
             color: var(--composer-font-color-primary);
           }
 
@@ -251,120 +223,98 @@
 
           .speakers {
             display: flex;
-            justify-content: start;
-            margin-top: 20px;
-            flex-direction: row;
-            gap: 20px;
+            gap: var(--composer-gap-md);
             width: 100%;
             flex-wrap: wrap;
 
             .speaker {
-              text-align: start;
-              display: flex;
-              gap: 5px;
-              flex-direction: column;
+              gap: var(--composer-gap-xs);
               min-width: 100px;
 
               img {
                 width: 100px;
                 height: 100px;
-                margin-bottom: 10px;
               }
 
               .speaker-name {
                 font-size: 1.1rem;
-                margin: 0;
-                padding: 0;
+                word-break: break-all;
                 color: var(--composer-font-color-primary);
               }
 
               .speaker-title {
-                font-size: 0.9rem;
-                margin: 0;
-                padding: 0;
+                word-break: break-all;
                 color: var(--composer-font-color-primary);
                 opacity: 0.5;
               }
-
-
             }
           }
         }
 
         .event-details {
           text-align: center;
-          display: flex;
-          flex-direction: column;
           justify-content: end;
           align-items: center;
-          gap: 20px;
+          gap: var(--composer-gap-md);
 
           .event-button {
             border: 1px solid var(--composer-secondary-color);
-            border-radius: 100px;
+            border-radius: var(--composer-border-radius-xl);
             background-color: var(--composer-secondary-color);
             color: var(--composer-font-color-secondary);
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: var(--composer-gap-md) var(--composer-gap-md);
             width: fit-content;
           }
-
           .event-date {
             display: flex;
             flex-direction: row;
-            font-size: 1.2rem;
-            font-weight: 900;
             margin: 0;
-            gap: 10px;
+            gap: var(--composer-gap-sm);
             justify-content: center;
             align-items: center;
             width: 100%;
 
             .divider {
               width: 2px;
-              height: 0.9vw;
+              min-height: 16px;
+              height: 100%;
               background-color: var(--composer-secondary-color);
               flex-shrink: 0;
-              margin: 0 0px;
             }
 
             .first-part {
-              text-align: right;
               flex: 1;
               color: var(--composer-font-color-primary);
+              margin: 0;
             }
 
             .second-part {
-              text-align: left;
               flex: 1;
               color: var(--composer-font-color-primary);
+              margin: 0;
             }
           }
         }
       }
-
     }
-
 
     .line {
       height: 1px;
       color: var(--composer-font-color-primary);
       opacity: 0.5;
       width: 100%;
-      margin: 0;
     }
 
     .contact-infos {
-      padding: 20px 50px;
+      padding: var(--composer-gap-md) var(--composer-gap-xl);
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
 
       .contact-info {
         display: flex;
-        flex-direction: row;
         align-items: center;
-        gap: 5px;
+        gap: var(--composer-gap-xs);
         flex: 1;
 
         .contact-icon {
@@ -373,8 +323,6 @@
         }
 
         .contact-text {
-          margin: 0;
-          font-size: 1.1rem;
           color: var(--composer-font-color-primary);
         }
       }
