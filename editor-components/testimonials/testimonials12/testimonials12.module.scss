@@ -6,9 +6,35 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             .top-content {
-                .title {
+                display: flex;
+                .top-content-text{
+                    width: 100%;
+                    .title {
+                    }
+                    .subtitle {
+                    }
                 }
-                .subtitle {
+                .arrows{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap:var(--composer-gap-xl);
+                    .button{
+                        border: none;
+                        background-color: transparent;
+                        .prev-arrow, .next-arrow{
+                            width: 30px;
+                            height: 30px;
+                            opacity: 0.5;
+                            color: var(--composer-font-color-primary);
+                            transition: opacity 0.5s ease;
+                        }
+                        &:hover{
+                            .prev-arrow, .next-arrow{
+                               opacity: 1;
+                            }
+                        }
+                    }
                 }
             }
             .slider-style {
@@ -23,6 +49,13 @@
                     display: none !important;
                 }
                 .card {
+                    border-radius: var(--composer-gap-md);
+                    padding: var(--composer-gap-md);
+                    background-color: color-mix(
+                        in srgb,
+                        var(--composer-html-background),
+                        var(--composer-font-color-primary) 5%
+                      );
                     .span-image {
                         width: 45px;
                         height: 45px;
@@ -62,10 +95,15 @@
     .container{
         .max-content{
             .testimonials12{
+                .top-content{
+                    .arrows{
+                        display: none;
+                    }
+                }
                 .slider-style{
                     >div{
                         >div{
-                            gap: 0px;
+                            gap: var(--composer-gap-xs);
                         }
                     }
                     .card{

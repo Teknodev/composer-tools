@@ -34,6 +34,18 @@ class Testimonials12Page extends Testimonials {
       value: "ImQuotesLeft",
     });
     this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Prev Icon",
+      value: "FaArrowLeft",
+    });
+    this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Next Icon",
+      value: "FaArrowRight",
+    });
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -172,22 +184,46 @@ class Testimonials12Page extends Testimonials {
         },
       ],
     });
-
-
+    this.setComponentState("activeSlideIndex", 0);
+    this.setComponentState("slider-ref", React.createRef());
   }
 
   getName(): string {
     return "Testimonials 12";
+  }
+  handleSlideChange(direction: "next" | "prev") {
+    const currentIndex = this.getComponentState("activeSlideIndex");
+    const lastIndex = this.getPropValue("cards").length - 1;
+
+    if (direction === "next") {
+      if (currentIndex === lastIndex) {
+        this.setComponentState("activeSlideIndex", 0);
+        this.getComponentState("slider-ref").current.slickGoTo(0);
+      } else {
+        this.setComponentState("activeSlideIndex", currentIndex + 1);
+        this.getComponentState("slider-ref").current.slickNext();
+      }
+    } else if (direction === "prev") {
+      if (currentIndex === 0) {
+        this.setComponentState("activeSlideIndex", lastIndex);
+        this.getComponentState("slider-ref").current.slickGoTo(lastIndex);
+      } else {
+        this.setComponentState("activeSlideIndex", currentIndex - 1);
+        this.getComponentState("slider-ref").current.slickPrev();
+      }
+    }
   }
 
   render() {
     const cards = this.castToObject<CardItem[]>("cards");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+    const sliderRef = this.getComponentState("slider-ref");
+
     const settings = {
-      infinite: true,
+      infinite: false,
       speed: 700,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 4000,
       slidesToShow: 2,
       slidesToScroll: 1,
@@ -200,24 +236,47 @@ class Testimonials12Page extends Testimonials {
           },
         },
       ],
+      beforeChange: (oldIndex: number, nextIndex: number) => {
+        this.setComponentState("activeSlideIndex", nextIndex)
+      }
     };
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("testimonials12")}>
             {(this.castToString(title) || this.castToString(subtitle)) && (
-              <Base.VerticalContent className={this.decorateCSS("top-content")}>
-                {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-                )}
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
-                )}
-              </Base.VerticalContent>
+              <div className={this.decorateCSS("top-content")}>
+                <Base.VerticalContent className={this.decorateCSS("top-content-text")}>
+                  {this.castToString(subtitle) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                  )}
+                  {this.castToString(title) && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+                  )}
+                </Base.VerticalContent>
+
+                <div className={this.decorateCSS("arrows")}>
+                  {(this.getPropValue("prevIcon") && cards.length > 1) && (
+                    <button
+                      onClick={() => this.handleSlideChange("prev")}
+                      className={this.decorateCSS("button")}>
+                      <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }} />
+                    </button>
+                  )}
+                  {(this.getPropValue("nextIcon") && cards.length > 1) && (
+                    <button
+                      onClick={() => this.handleSlideChange("next")}
+                      className={this.decorateCSS("button")}>
+                      <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("next-arrow") }} />
+                    </button>
+                  )}
+                </div>
+              </div>
             )}
             <ComposerSlider
               {...settings}
               className={this.decorateCSS("slider-style")}
+              ref={this.getComponentState("slider-ref")}
             >
               {cards.map((card: any, index: number) => {
                 const shouldRenderCard =
@@ -268,7 +327,7 @@ class Testimonials12Page extends Testimonials {
             </ComposerSlider>
           </div>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }
