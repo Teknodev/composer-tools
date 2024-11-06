@@ -67,8 +67,9 @@
                     }
 
                     .card-icon {
-                        width: 70px;
-                        height: 70px;
+                        margin: 0;
+                        width: 75px;
+                        height: 75px;
                         transition: opacity 0.5s ease, transform 0.5s ease;
                     }
 
@@ -82,7 +83,7 @@
             .logos-container {
                 display: flex;
                 justify-content: space-between;
-                gap: 20px;
+                gap: var(--composer-gap-md);
                 flex-wrap: wrap;
 
                 .logo-container {
@@ -182,11 +183,6 @@
                     .card {
                         width: 100%;
                         height: auto;
-
-                        .card-icon {
-                            height: 3rem;
-                            width: 3rem;
-                        }
 
                         .card-title {
                             font-size: 1.5rem;
