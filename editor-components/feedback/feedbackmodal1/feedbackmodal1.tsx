@@ -5,6 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerModalClose from "../../../composer-base-components/close/close";
 
 type Emoji = {
   value: string;
@@ -270,7 +271,7 @@ class FeedbackModal1 extends BaseModal {
     const requiredMessage = this.castToString(this.getPropValue("requiredMessage"));
 
     return (
-      <Base.Container className={this.decorateCSS("feedback-modal")}>
+      <Base.Container isModule={true} className={this.decorateCSS("feedback-modal")}>
         <div className={this.decorateCSS("header-container")}>
           <div className={this.decorateCSS("header-content")}>
             <div className={this.decorateCSS("feedback-modal-header")}>
@@ -282,15 +283,17 @@ class FeedbackModal1 extends BaseModal {
                   }}
                 />
               )}
-              {isTitleExist && <Base.H2 className={this.decorateCSS("feedback-modal-header-h1")}>{this.getPropValue("title")}</Base.H2>}
+              {isTitleExist && <Base.H2 className={this.decorateCSS("feedback-modal-header-h2")}>{this.getPropValue("title")}</Base.H2>}
             </div>
             <button className={this.decorateCSS("feedback-modal-close-button")}>
-              <ComposerIcon
-                name={this.getPropValue("close_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("close_icon")}`,
-                }}
-              />
+              <ComposerModalClose>
+                <ComposerIcon
+                  name={this.getPropValue("close_icon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS("close_icon")}`,
+                  }}
+                />
+              </ComposerModalClose>
             </button>
           </div>
           {(isFeedbackIconExist || isTitleExist) && (
@@ -302,15 +305,9 @@ class FeedbackModal1 extends BaseModal {
         {isHeaderTitleExist || isDescriptionExist ? (
           <>
             <div className={this.decorateCSS("modal-content-wrapper")}>
-              {isHeaderTitleExist && (
-                <Base.SectionTitle className={this.decorateCSS("modalContent")}>{this.getPropValue("headerTitle")}</Base.SectionTitle>
-              )}
+              {isHeaderTitleExist && <Base.SectionTitle className={this.decorateCSS("modalContent")}>{this.getPropValue("headerTitle")}</Base.SectionTitle>}
 
-              {isDescriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("descriptionContent")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
+              {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("descriptionContent")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </div>
           </>
         ) : (
@@ -329,31 +326,30 @@ class FeedbackModal1 extends BaseModal {
                 input1: data.selectedEmojiLabel,
               });
               resetForm();
-            }}>
+            }}
+          >
             {({ handleChange, values, setFieldValue }) => (
               <>
                 <div className={this.decorateCSS("feedbackModalEmojis")}>
                   {this.castToObject<Emoji[]>("emojis").map((item: Emoji, index: number) => (
-                    <div
+                    <Base.VerticalContent
                       className={this.decorateCSS("emojiWrapper")}
                       style={{
                         width: 100 / emojis.length + "%",
                       }}
-                      key={index}>
+                      key={index}
+                    >
                       <div
                         id={`emoji-${index + 1}`}
                         className={`${this.decorateCSS("feedbackModalEmoji")} ${index === 2 && this.decorateCSS("selected")}`}
                         onClick={() => {
                           this.setComponentState("selectedEmojiLabel", this.castToString(item.label));
                           this.handleEmojiClick(index + 1, setFieldValue);
-                        }}>
+                        }}
+                      >
                         {item.image ? (
                           <div className={this.decorateCSS("emojiImageWrapper")}>
-                            <img
-                              src={item.image}
-                              alt={this.castToString(item.label)}
-                              className={this.decorateCSS("feedbackModalEmojiImage")}
-                            />
+                            <img src={item.image} alt={this.castToString(item.label)} className={this.decorateCSS("feedbackModalEmojiImage")} />
                           </div>
                         ) : (
                           <div className={this.decorateCSS("emoji-wrapper")}>
@@ -368,33 +364,15 @@ class FeedbackModal1 extends BaseModal {
                       </div>
 
                       {<>{this.castToString(item.label) && <Base.P className={this.decorateCSS("emojiLabel")}>{item.label}</Base.P>}</>}
-                    </div>
+                    </Base.VerticalContent>
                   ))}
                 </div>
                 <div className={this.decorateCSS("contact-form")}>
                   <Form className={this.decorateCSS("form-container")}>
-                    {inputPlaceholder && (
-                      <textarea
-                        placeholder={inputPlaceholder}
-                        id="text"
-                        name="message"
-                        value={values.message}
-                        onChange={handleChange}
-                        className={this.decorateCSS("input")}
-                        rows={5}
-                      />
-                    )}
-                    {inputPlaceholder && (
-                      <ErrorMessage
-                        className={this.decorateCSS("error-message")}
-                        name="message"
-                        component={"span"}
-                      />
-                    )}
+                    {inputPlaceholder && <textarea placeholder={inputPlaceholder} id="text" name="message" value={values.message} onChange={handleChange} className={this.decorateCSS("input")} rows={5} />}
+                    {inputPlaceholder && <ErrorMessage className={this.decorateCSS("error-message")} name="message" component={"span"} />}
                     {buttonval && (
-                      <button
-                        className={this.decorateCSS("button")}
-                        type="submit">
+                      <button className={this.decorateCSS("button")} type="submit">
                         {buttonval}
                       </button>
                     )}
