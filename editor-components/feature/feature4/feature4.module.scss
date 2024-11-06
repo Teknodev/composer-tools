@@ -155,23 +155,16 @@
         }
 
         .card-item-count {
-          .overlay-content {
-            .long-text {
-              font-size: 1rem;
-            }
-
-            .overlay-links-container {
-              .overlay-link {
-                font-size: 1rem;
-              }
-            }
-          }
-
           .vertical {
             padding: var(--composer-gap-md);
             align-items: center;
 
+            .title {
+              font-size: 1rem;
+            }
+
             .subtitle {
+              font-size: 1rem;
               text-align: center;
             }
           }
