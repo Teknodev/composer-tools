@@ -39,6 +39,7 @@
                         width: 20px;
                         height: 20px;
                         opacity: 0.5;
+                        color: var(--composer-font-color-primary);
                       }
                     }
                     .img-div {
@@ -73,15 +74,15 @@
                       .item-icon{
                         width: 30px;
                         height: 30px;
-                        color: var(--composer-secondary-color);
+                        color: var(--composer-primary-color);
                       }
       
                       .first-header {
-                        color: var(--composer-primary-color);
+                        color: var(--composer-font-color-primary);
                       }
       
                       .item-title {
-                        color: var(--composer-primary-color);
+                        color: var(--composer-font-color-primary);
                       }
                     }
   
