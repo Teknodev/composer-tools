@@ -3,6 +3,7 @@ import { BaseFeature } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./feature4.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   title: JSX.Element;
@@ -24,21 +25,21 @@ class Feature4 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
       max: 3,
     });
     this.addProp({
       type: "image",
       key: "backgroundImage",
-      displayer: "backgroundImage",
+      displayer: "Background Image",
       value:
-        "https://www.nicdarkthemes.com/themes/cake-bakery/wp/demo/bakery-wordpress-theme/wp-content/uploads/sites/5/2023/10/clear-02-1.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6724ecef7acba6002c5dc76a?alt=media",
     });
     this.addProp({
       type: "boolean",
       key: "imageOverlay",
-      displayer: "image Overlay",
+      displayer: "Image Overlay",
       value: true,
     });
     this.addProp({
@@ -420,138 +421,132 @@ class Feature4 extends BaseFeature {
   }
 
   render() {
-    const featuredSubtitle = this.getPropValue("subtitle", { as_string: true });
-    const featuredTitle = this.getPropValue("title", { as_string: true });
     const cards = this.castToObject<Card[]>("cards");
-    const backgroundImage = this.getPropValue("backgroundImage");
-    const imageOverlay: boolean = this.getPropValue("imageOverlay");
+
     const itemCount = this.getPropValue("itemCount");
 
+    const subtitleExist = !!this.getPropValue("subtitle", { as_string: true });
+    const titleExist = !!this.getPropValue("title", { as_string: true });
+    const linkTextExist = !!this.getPropValue("linkText", { as_string: true });
+
+    const imageOverlay = !!this.getPropValue("imageOverlay");
+
     return (
-      <div
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-        }}
+      <Base.Container
         className={this.decorateCSS("container")}
+        style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }}
       >
-        <div className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(featuredSubtitle || featuredTitle) && (
-              <div
+            {(subtitleExist || titleExist) && (
+              <Base.VerticalContent
                 className={this.decorateCSS("featured-card")}
                 style={{ width: `${95 / itemCount}%` }}
               >
-                <div className={this.decorateCSS("backgroundImage")}></div>
-
-                <div
-                  className={this.decorateCSS("card-item-count")}
-                  style={{
-                    width: `${95 / itemCount}%`,
-                  }}
-                ></div>
-                {featuredSubtitle && (
-                  <h5 className={this.decorateCSS("subtitle")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {this.getPropValue("subtitle")}
-                  </h5>
+                  </Base.SectionSubTitle>
                 )}
-                {featuredTitle && (
-                  <h2 className={this.decorateCSS("title")}>
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
-                  </h2>
+                  </Base.SectionTitle>
                 )}
-                {this.getPropValue("linkText", { as_string: true }) && (
+                {linkTextExist && (
                   <span className={this.decorateCSS("featured-card-link")}>
                     <ComposerLink path={this.getPropValue("link")}>
                       {this.getPropValue("linkText")}
                     </ComposerLink>
                   </span>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
 
-            {cards.map((card: Card, index: number) => {
-              const titleExist = this.castToString(card.title);
-              const subtitleExist = this.castToString(card.subtitle);
-              const descExist = this.castToString(card.description);
+            {cards?.length > 0 && cards.map((card: Card, index: number) => {
+              const titleExist = !!this.castToString(card.title);
+              const subtitleExist = !!this.castToString(card.subtitle);
+              const descExist = !!this.castToString(card.description);
 
-              return (
-                <div
-                  key={index}
-                  className={this.decorateCSS("card-item-count")}
-                  style={{
-                    width: `${95 / itemCount}%`,
-                  }}
-                >
-                  <div className={this.decorateCSS("vertical")}>
-                    <div className={this.decorateCSS("vertical-content")}>
-                      {card.icon && (
-                        <div className={this.decorateCSS("icon")}>
+              if (titleExist || subtitleExist || descExist) {
+                return (
+                  <div
+                    key={index}
+                    className={this.decorateCSS("card-item-count")}
+                    style={{ width: 95 / itemCount + "%" }}
+                  >
+                    <Base.VerticalContent className={this.decorateCSS("vertical")}>
+                      {!!card.icon && (
+                        <div className={this.decorateCSS("icon-container")}>
                           <ComposerIcon
-                            propsIcon={{
-                              className: this.decorateCSS("Icon"),
-                            }}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
                             name={card.icon}
                           />
                         </div>
                       )}
                       {titleExist && (
-                        <h3 className={this.decorateCSS("title")}>
+                        <Base.H3 className={this.decorateCSS("title")}>
                           {card.title}
-                        </h3>
+                        </Base.H3>
                       )}
                       {subtitleExist && (
-                        <h5 className={this.decorateCSS("subtitle")}>
+                        <Base.H4 className={this.decorateCSS("subtitle")}>
                           {card.subtitle}
-                        </h5>
+                        </Base.H4>
                       )}
-                    </div>
-                  </div>
-                  <div
-                    className={this.decorateCSS("overlay")}
-                    style={{ backgroundImage: `url(${card.image})` }}
-                  >
-                    <div
-                      className={`
-                      ${this.decorateCSS("overlay-content")}
-                      ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
-                      `}
-                    >
-                      {descExist && (
-                        <p className={this.decorateCSS("long-text")}>
-                          {card.description}
-                        </p>
-                      )}
+                    </Base.VerticalContent>
 
-                      {card.buttons.length > 0 && (
-                        <div
-                          className={this.decorateCSS(
-                            "overlay-links-container"
-                          )}
+                    {(descExist || card?.buttons?.length > 0) && (
+                      <div
+                        className={this.decorateCSS("overlay")}
+                        style={{ backgroundImage: `url(${card.image})` }}
+                      >
+                        <Base.VerticalContent
+                          className={`
+                            ${this.decorateCSS("overlay-content")}
+                            ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
+                          `}
                         >
-                          {card.buttons.map(
-                            (item: Button, idx: number) =>
-                              this.castToString(item.text) && (
-                                <span
-                                  className={this.decorateCSS("overlay-link")}
-                                  key={idx}
-                                >
-                                  <ComposerLink
-                                    children={item.text}
-                                    path={item.link}
-                                  />
-                                </span>
-                              )
+                          {descExist && (
+                            <Base.P className={this.decorateCSS("long-text")}>
+                              {card.description}
+                            </Base.P>
                           )}
-                        </div>
-                      )}
-                    </div>
+
+                          {card?.buttons?.length > 0 && (
+                            <div
+                              className={this.decorateCSS("overlay-links-container")}
+                            >
+                              {card?.buttons.map(
+                                (item: Button, index: number) => {
+                                  if (!this.castToString(item.text)) return null;
+
+                                  return (
+                                    <span
+                                      key={index}
+                                      className={this.decorateCSS("overlay-link")}
+                                    >
+                                      <ComposerLink path={item.link}>
+                                        {item.text}
+                                      </ComposerLink>
+                                    </span>
+                                  );
+                                }
+                              )}
+                            </div>
+                          )}
+                        </Base.VerticalContent>
+                      </div>
+                    )}
                   </div>
-                </div>
-              );
+                );
+              }
+
+              return null;
             })}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
