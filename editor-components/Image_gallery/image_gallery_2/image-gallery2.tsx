@@ -27,6 +27,12 @@ class ImageGallery2 extends BaseImageGallery {
       displayer: "Show All Category",
       value: true,
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
 
     this.addProp({
       type: "array",
@@ -707,7 +713,7 @@ class ImageGallery2 extends BaseImageGallery {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
+          <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("section-selector-text")}>
               {showAll && (
                 <Base.H4
@@ -722,14 +728,13 @@ class ImageGallery2 extends BaseImageGallery {
                 <Base.H4
                   className={`${this.decorateCSS("section-text")} ${index === currentIndex ? this.decorateCSS("active") : ""
                     }`}
-                  key={index}
                   onClick={() => this.setComponentState("default", index)}
                 >
                   {element.getPropValue("title")}
                 </Base.H4>
               ))}
             </div>
-            <div className={this.decorateCSS("gallery-grid")}>
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("gallery-grid")}>
               {currentGallery.map((section: ImageType, imageIndex: number) => {
                 if (!section.image) return null;
                 return (
@@ -755,8 +760,8 @@ class ImageGallery2 extends BaseImageGallery {
                   </div>
                 );
               })}
-            </div>
-          </Base.VerticalContent>
+            </Base.ListGrid>
+          </div>
           {modalOpen && (
             <div
               className={this.decorateCSS("modal")}
