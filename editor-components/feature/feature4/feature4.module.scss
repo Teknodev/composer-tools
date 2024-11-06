@@ -50,8 +50,6 @@
           opacity: 0;
         }
 
-        /* overlay start */
-
         .overlay {
           background-position: center;
           background-repeat: no-repeat;
@@ -103,8 +101,6 @@
           }
         }
 
-        /* overlay end */
-
         .vertical {
           display: flex;
           justify-content: center;
@@ -126,8 +122,8 @@
 
             .icon {
               margin: 0;
-              width: 3rem;
-              height: 3rem;
+              width: 50px;
+              height: 50px;
             }
           }
 
@@ -148,7 +144,7 @@
   }
 }
 
-@media only screen and (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .content {
@@ -156,17 +152,9 @@
 
         .featured-card {
           width: 100% !important;
-
-          .subtitle {}
-
-          .title {}
-
-          .featured-card-link {}
         }
 
         .card-item-count {
-          .overlay {}
-
           .overlay-content {
             .long-text {
               font-size: 1rem;
@@ -179,24 +167,27 @@
             }
           }
 
-          /* overlay end */
-
           .vertical {
             padding: var(--composer-gap-md);
             align-items: center;
 
-            .icon-container {
-              .icon {}
-            }
-
-            .title {}
-
             .subtitle {
               text-align: center;
             }
-
-            .long-text {}
           }
+        }
+      }
+    }
+  }
+}
+
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        .card-item-count {
+          width: 100% !important;
         }
       }
     }
