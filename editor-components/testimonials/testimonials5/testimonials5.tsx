@@ -277,7 +277,10 @@ class Testimonials5Page extends Testimonials {
             <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
               {sliderItem.map((item: SliderItem, index: number) => (
                 <div >
-                  <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                  {item.image && (
+                    <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                  )}
+
                   <div className={this.decorateCSS("rightWrapper")}>
                     <Base.H3 className={this.getPropValue("background-image") ? this.decorateCSS("sliderTitle") : this.decorateCSS("sliderTitlePrimary")}>
                       {item.sliderTitle}

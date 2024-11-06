@@ -44,8 +44,11 @@
           >div{
             display: flex !important;
             >div{
+              height: auto !important;
               >div{
+                height: 100%;
                 >div{
+                  height: 100%;
                   display: flex !important;
                 }
               }
