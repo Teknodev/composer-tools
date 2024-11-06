@@ -55,7 +55,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "nameId",
               value: "Erle_Philomena",
-              displayer: "Name Id",
+              displayer: "Person's Title",
             },
             {
               type: "string",
@@ -109,7 +109,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "nameId",
               value: "Shonda_Kadence",
-              displayer: "Name Id",
+              displayer: "Person's Title",
             },
             {
               type: "string",
@@ -162,7 +162,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "nameId",
               value: "Laurie_Darwin",
-              displayer: "Name Id",
+              displayer: "Person's Title",
             },
             {
               type: "string",
@@ -227,7 +227,7 @@ class Testimonials8Page extends Testimonials {
       arrows: false,
       infinite: true,
       speed: 700,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -246,7 +246,11 @@ class Testimonials8Page extends Testimonials {
             {this.castToString(this.getPropValue("title")) && (
               <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>
             )}
-            <div className={this.decorateCSS("content")}>
+            <div
+              className={`${this.decorateCSS("content")} 
+              ${arrows.prevArrow && cards.length > 1 ? this.decorateCSS("contentPaddingLeft") : ""} 
+              ${arrows.nextArrow && cards.length > 1 ? this.decorateCSS("contentPaddingRight") : ""}`}
+            >
               {(arrows.prevArrow && (cards.length > 1)) && (
                 <button className={this.decorateCSS("prevArrow")} onClick={() => {
                   sliderRef.current.slickPrev();

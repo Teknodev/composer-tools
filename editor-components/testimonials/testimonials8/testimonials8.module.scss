@@ -10,11 +10,14 @@
       .title{
         width: 100%;
         margin:0px;
+        color: var(--composer-font-color-primary);
       }
+      
       .content{
         width: 100%;
         display: flex;
         position: relative;
+        
         .prevArrow, .nextArrow{
           position: absolute;
           top:calc(50% - 20px);
@@ -29,6 +32,7 @@
           border: 1px solid var(--composer-font-color-primary);
           border-radius: 50%; 
           justify-content: center;
+          color: var(--composer-font-color-primary);
         }
         .prevArrow{
           left: 0;
@@ -39,7 +43,9 @@
         }
         >div{
           width: 100%;
-          padding: 0px calc(var(--composer-gap-xl) * 3); 
+          >div{
+            padding-bottom: var(--composer-gap-lg);
+          }
           >ul{
             left: 0px;
             bottom: 0px;
@@ -67,16 +73,18 @@
               flex-direction: column;
               gap: var(--composer-gap-sm);
               .name{
-
+                color: var(--composer-font-color-primary);
               }
               .personTitle{
                 opacity: 0.5;
+                color: var(--composer-font-color-primary);
   
               }
             }
 
           }
-          .description{            
+          .description{  
+            color: var(--composer-font-color-primary);          
 
           }
           .bottomContainer{
@@ -100,6 +108,13 @@
 
         }
       }
+      .contentPaddingLeft {
+        padding-left: calc(var(--composer-gap-xl) * 3);
+      }
+      
+      .contentPaddingRight {
+        padding-right: calc(var(--composer-gap-xl) * 3);
+      }
     }
   }
 }
@@ -109,6 +124,10 @@
     .maxContent{
       .testimonials8{
         .content{
+          padding: 0px;
+          .prevArrow, .nextArrow{
+            display: none;
+          }
           >div{
             padding:0px var(--composer-gap-xl)
           }
