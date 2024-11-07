@@ -56,6 +56,7 @@ export type TypeReactComponent = {
   props: TypeUsableComponentProps[];
   cssClasses: TypeCSSProp;
   children: string;
+  id: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
