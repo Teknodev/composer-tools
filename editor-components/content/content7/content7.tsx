@@ -4,7 +4,9 @@ import styles from "./content7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { $flushMutations } from "lexical/LexicalUtils";
 interface Card {
+  direction: boolean;
   title: JSX.Element;
   button: {
     buttonText: JSX.Element;
@@ -28,12 +30,14 @@ class Content7 extends BaseContent {
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c62866f?alt=media&timestamp=1719561551671",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "LOREM IPSUM",
     });
+
     this.addProp({
       type: "array",
       key: "cards",
@@ -44,6 +48,12 @@ class Content7 extends BaseContent {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "boolean",
+              key: "direction",
+              displayer: "Reverse Direction",
+              value: false,
+            },
             {
               type: "string",
               key: "title",
@@ -159,39 +169,39 @@ class Content7 extends BaseContent {
             {this.castToObject<Card[]>("cards").map(
               (card: Card, indexCards: number) => {
                 return (
-                  <div key={indexCards} className={this.decorateCSS("card")}>
+                  <Base.ContainerGrid key={indexCards} className={this.decorateCSS("card") + ` ${card.direction ? styles["reverse"] : ""}`}>
                     {(this.castToString(card.title) ||
                       this.castToString(card.description)) && (
-                        <Base.VerticalContent
-                          className={this.decorateCSS("left-card")}
-                        >
-                          {this.castToString(card.title) && (
-                            <Base.H2 className={this.decorateCSS("title")}>
-                              {card.title}
-                            </Base.H2>
-                          )}
-                          {this.castToString(card.description) && (
-                            <Base.P className={this.decorateCSS("description")}>
-                              {card.description}
-                            </Base.P>
-                          )}
-                          {this.castToString(card.button.buttonText) && (
-                            <ComposerLink path={card.button.link}>
-                              <button className={this.decorateCSS("button")}>
-                                {card.button.buttonText}
-                                {card.next_icon && (
-                                  <ComposerIcon
-                                    name={card.next_icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon"),
-                                    }}
-                                  />
-                                )}
-                              </button>
-                            </ComposerLink>
-                          )}
-                        </Base.VerticalContent>
-                      )}
+                      <Base.VerticalContent
+                        className={this.decorateCSS("left-card")}
+                      >
+                        {this.castToString(card.title) && (
+                          <Base.H2 className={this.decorateCSS("title")}>
+                            {card.title}
+                          </Base.H2>
+                        )}
+                        {this.castToString(card.description) && (
+                          <Base.P className={this.decorateCSS("description")}>
+                            {card.description}
+                          </Base.P>
+                        )}
+                        {this.castToString(card.button.buttonText) && (
+                          <ComposerLink path={card.button.link}>
+                            <button className={this.decorateCSS("button")}>
+                              {card.button.buttonText}
+                              {card.next_icon && (
+                                <ComposerIcon
+                                  name={card.next_icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                  }}
+                                />
+                              )}
+                            </button>
+                          </ComposerLink>
+                        )}
+                      </Base.VerticalContent>
+                    )}
 
                     {(card.backgroundImage || card.foregroundImage) && (
                       <div className={this.decorateCSS("right-card")}>
@@ -261,7 +271,7 @@ class Content7 extends BaseContent {
                         </div>
                       </div>
                     )}
-                  </div>
+                  </Base.ContainerGrid>
                 );
               }
             )}
