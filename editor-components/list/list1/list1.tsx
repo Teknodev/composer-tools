@@ -345,16 +345,18 @@ class List1 extends BaseList {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-text")}>
-            {this.castToString(subTitle) && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.castToString(subTitle)}
-              </Base.SectionSubTitle>
-            )}
-            {this.castToString(title) && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.castToString(title)}
-              </Base.SectionTitle>
-            )}
+            <Base.VerticalContent>
+              {this.castToString(subTitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.castToString(subTitle)}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.castToString(title)}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
           </div>
           <Base.ListGrid className={this.decorateCSS("carousel-div")}>
             <ComposerSlider
