@@ -2,6 +2,7 @@
   .max-content {
     .title {        
       color: white;
+      margin-top: 0px;
       &.no-image{
         color: var(--composer-font-color-primary);
       }
@@ -11,7 +12,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-xl);
       .card {
         min-height: 600px;
         height: 100%;
@@ -120,19 +121,19 @@
                 transition: opacity 0.3s ease;
                 z-index: 1;
 
-                .before-text,
-                .after-text {
+                .left-text,
+                .right-text {
                   background: rgba(255, 255, 255, 0.2);
                   line-height: 2.4rem;
                   padding: 0 var(--composer-gap-md);
                   border-radius: var(--composer-border-radius-xs);
                 }
 
-                .before-text {
+                .left-text {
                   margin-left: var(--composer-gap-xs);
                 }
 
-                .after-text {
+                .right-text {
                   margin-right: var(--composer-gap-xs);
                 }
               }
@@ -170,7 +171,7 @@
                 &::-webkit-slider-thumb {
                   appearance: none;
                   width: 4px;
-                  height: 600px;
+                  height: 2000px;
                   background: var(--composer-font-color-primary);
                   cursor: pointer;
                 }
@@ -233,7 +234,6 @@
 
           .right-card {
             width: 100%;
-            aspect-ratio: 13 / 9;
           }
         }
       }

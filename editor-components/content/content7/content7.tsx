@@ -13,11 +13,11 @@ interface Card {
     link: string;
   };
   next_icon: string;
-  backgroundImage: string;
-  foregroundImage: string;
+  leftImage: string;
+  rightImage: string;
   description: JSX.Element;
-  beforeText: string;
-  afterText: string;
+  leftText: string;
+  rightText: string;
 }
 class Content7 extends BaseContent {
   constructor(props?: any) {
@@ -94,28 +94,28 @@ class Content7 extends BaseContent {
             },
             {
               type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
+              key: "leftImage",
+              displayer: "Left Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c628671?alt=media&timestamp=1719561551671",
             },
             {
               type: "string",
-              key: "beforeText",
-              displayer: "Before Text",
+              key: "leftText",
+              displayer: "Left Text",
               value: "Before",
             },
             {
               type: "image",
-              key: "foregroundImage",
-              displayer: "Foreground Image",
+              key: "rightImage",
+              displayer: "Right Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c628670?alt=media&timestamp=1719561551671",
             },
             {
               type: "string",
-              key: "afterText",
-              displayer: "After Text",
+              key: "rightText",
+              displayer: "Right Text",
               value: "After",
             },
           ],
@@ -203,37 +203,37 @@ class Content7 extends BaseContent {
                       </Base.VerticalContent>
                     )}
 
-                    {(card.backgroundImage || card.foregroundImage) && (
+                    {(card.leftImage || card.rightImage) && (
                       <div className={this.decorateCSS("right-card")}>
                         <div
                           className={
                             this.decorateCSS("image-container") +
                             ` ${
-                              card.backgroundImage && card.backgroundImage
+                              card.leftImage && card.rightImage
                                 ? styles["active"]
                                 : ""
                             }`
                           }
                         >
-                          {card.backgroundImage && (
+                          {card.leftImage && (
                             <img
-                              src={card.backgroundImage}
-                              alt="Before"
+                              src={card.leftImage}
+                              alt=""
                               className={this.decorateCSS("background-image")}
                               id={`background-${indexCards}`}
                             />
                           )}
 
-                          {card.foregroundImage && (
+                          {card.rightImage && (
                             <img
-                              src={card.foregroundImage}
-                              alt="After"
+                              src={card.rightImage}
+                              alt=""
                               className={this.decorateCSS("foreground-image")}
                               id={`foregroundImage-${indexCards}`}
                             />
                           )}
 
-                          {card.foregroundImage && card.backgroundImage && (
+                          {card.rightImage && card.leftImage && (
                             <div className={this.decorateCSS("slider-wrapper")}>
                               <input
                                 type="range"
@@ -254,12 +254,12 @@ class Content7 extends BaseContent {
                               />
                               <div className={this.decorateCSS("text")}>
                                 <div
-                                  className={this.decorateCSS("before-text")}
+                                  className={this.decorateCSS("left-text")}
                                 >
-                                  {card.beforeText}
+                                  {card.leftText}
                                 </div>
-                                <div className={this.decorateCSS("after-text")}>
-                                  {card.afterText}
+                                <div className={this.decorateCSS("right-text")}>
+                                  {card.rightText}
                                 </div>
                               </div>
                               <div
