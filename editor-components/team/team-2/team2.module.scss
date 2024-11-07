@@ -27,7 +27,7 @@
     .team {
       flex: 1 1;
       gap: var(--composer-gap-xs);
-      box-shadow: 2px 4px 20px 0px color-mix(in srgb, rgba(var(--composer-html-background-rgb), 1), rgba(var(--composer-font-color-primary-rgb), 0.5));
+      box-shadow: var(--box-shadow-active);
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       border-radius: var(--composer-border-radius-md);
       height: max-content;
