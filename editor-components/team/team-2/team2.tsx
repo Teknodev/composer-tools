@@ -344,10 +344,10 @@ class Team2 extends Team {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("up-content")}>
-            {titleValue && <Base.H2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H2>}
-            {descriptionValue && <Base.H4 className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.H4>}
+            {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {descriptionValue && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
           </Base.VerticalContent>
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("team-members")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("team-members")}>
             {this.castToObject<TeamCardMember[]>("team-card").map((team: any, index: number) => (
               <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index}>
                 {team.image && <img className={this.decorateCSS("image")} src={team.image} alt="" />}
