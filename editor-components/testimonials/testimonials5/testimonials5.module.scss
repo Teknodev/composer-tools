@@ -24,13 +24,13 @@
             align-items: center;
             justify-content: center;
             .icon{
-              width: 20px;
-              height: 20px;
+              width: 15px;
+              height: 15px;
             }
           }
           .prevArrow, .nextArrow{
-            background-color:black;
-            color: white;
+            background-color:white;
+            color: black;
           }
           .prevArrowPrimary, .nextArrowPrimary{
             background-color:var(--composer-font-color-primary);
@@ -38,7 +38,7 @@
           }
         }
       }
-      .slider{
+      .slider, .fullSlider{
         width: 75%;
         >div{
           >div{
@@ -120,6 +120,9 @@
             }
           }
         }
+      }
+      .fullSlider{
+        width: 100%;
       }
     }
   }

@@ -32,6 +32,12 @@ class Testimonials5Page extends Testimonials {
       displayer: "Background Image",
       value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-bg-03.jpg",
     });
+    this.addProp({
+      type: "boolean",
+      key: "lineIsActive",
+      displayer: "Line Active",
+      value: true,
+    });
 
     this.addProp({
       type: "object",
@@ -216,9 +222,10 @@ class Testimonials5Page extends Testimonials {
     const leftItem = this.castToObject<LeftItem>("leftItem");
     const sliderItem = this.castToObject<SliderItem[]>("sliders");
     const sliderRef = this.getComponentState("slider-ref");
+    const hasLeftContent = Boolean(this.castToString(leftItem.subtitle) || this.castToString(leftItem.title) || leftItem.nextIcon || leftItem.prevIcon);
     var settings = {
       dots: false,
-      autoplay: false,
+      autoplay: true,
       infinite: false,
       arrows: false,
       speed: 500,
@@ -239,42 +246,45 @@ class Testimonials5Page extends Testimonials {
         }}>
         <Base.MaxContent className={this.decorateCSS("maxContent")} >
           <div className={this.decorateCSS("containerGrid")} >
-            <div className={this.decorateCSS("leftContainer")}>
-              <Base.VerticalContent className={this.decorateCSS("leftContainerText")}>
-                {this.castToString(leftItem.subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {leftItem.subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {this.castToString(leftItem.title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {leftItem.title}
-                  </Base.SectionTitle>
-                )}
-              </Base.VerticalContent>
+            {hasLeftContent && (
+              <div className={this.decorateCSS("leftContainer")}>
+                <Base.VerticalContent className={this.decorateCSS("leftContainerText")}>
+                  {this.castToString(leftItem.subtitle) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {leftItem.subtitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {this.castToString(leftItem.title) && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {leftItem.title}
+                    </Base.SectionTitle>
+                  )}
+                </Base.VerticalContent>
 
-              {(leftItem.nextIcon || leftItem.prevIcon) && (
-                <div className={this.decorateCSS("arrow")}>
-                  {leftItem.prevIcon && (
-                    <button
-                      onClick={() => this.handleSlideChange("prev")}
-                      className={this.getPropValue("background-image") ? this.decorateCSS("prevArrow") : this.decorateCSS("prevArrowPrimary")}>
-                      <ComposerIcon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                    </button>
-                  )}
-                  {leftItem.nextIcon && (
-                    <button
-                      onClick={() => this.handleSlideChange("next")}
-                      className={this.getPropValue("background-image") ? this.decorateCSS("nextArrow") : this.decorateCSS("nextArrowPrimary")}>
-                      <ComposerIcon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                    </button>
-                  )}
+                {(leftItem.nextIcon || leftItem.prevIcon) && (
+                  <div className={this.decorateCSS("arrow")}>
+                    {leftItem.prevIcon && (
+                      <button
+                        onClick={() => this.handleSlideChange("prev")}
+                        className={this.getPropValue("background-image") ? this.decorateCSS("prevArrow") : this.decorateCSS("prevArrowPrimary")}>
+                        <ComposerIcon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      </button>
+                    )}
+                    {leftItem.nextIcon && (
+                      <button
+                        onClick={() => this.handleSlideChange("next")}
+                        className={this.getPropValue("background-image") ? this.decorateCSS("nextArrow") : this.decorateCSS("nextArrowPrimary")}>
+                        <ComposerIcon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      </button>
+                    )}
+                  </div>
+                )}
+                <div>
                 </div>
-              )}
-              <div>
               </div>
-            </div>
-            <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
+            )}
+
+            <ComposerSlider {...settings} ref={sliderRef} className={hasLeftContent ? this.decorateCSS("slider") : this.decorateCSS("fullSlider")}>
               {sliderItem.map((item: SliderItem, index: number) => (
                 <div >
                   {item.image && (
@@ -282,16 +292,22 @@ class Testimonials5Page extends Testimonials {
                   )}
 
                   <div className={this.decorateCSS("rightWrapper")}>
-                    <Base.H3 className={this.getPropValue("background-image") ? this.decorateCSS("sliderTitle") : this.decorateCSS("sliderTitlePrimary")}>
-                      {item.sliderTitle}
-                    </Base.H3>
-                    <div className={this.decorateCSS("lineContainer")}>
-                      <div className={this.getPropValue("background-image") ? this.decorateCSS("line") : this.decorateCSS("linePrimary")}></div>
-                    </div>
+                    {this.castToString(item.sliderTitle) && (
+                      <Base.H3 className={this.getPropValue("background-image") ? this.decorateCSS("sliderTitle") : this.decorateCSS("sliderTitlePrimary")}>
+                        {item.sliderTitle}
+                      </Base.H3>
+                    )}
+                    {this.getPropValue("lineIsActive") && (
+                      <div className={this.decorateCSS("lineContainer")}>
+                        <div className={this.getPropValue("background-image") ? this.decorateCSS("line") : this.decorateCSS("linePrimary")}></div>
+                      </div>
+                    )}
                     <div className={this.decorateCSS("rightContainer")}>
-                      <Base.P className={this.getPropValue("background-image") ? this.decorateCSS("description") : this.decorateCSS("descriptionPrimary")}>
-                        {item.description}
-                      </Base.P>
+                      {this.castToString(item.description) && (
+                        <Base.P className={this.getPropValue("background-image") ? this.decorateCSS("description") : this.decorateCSS("descriptionPrimary")}>
+                          {item.description}
+                        </Base.P>
+                      )}
                       {(item.starIcon && (item.star > 0)) && (
                         <div className={this.getPropValue("background-image") ? this.decorateCSS("stars") : this.decorateCSS("starsPrimary")}>
                           {[...Array(Number(item.star))].map(
