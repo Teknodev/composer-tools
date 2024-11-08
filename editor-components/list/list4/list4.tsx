@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   title: string;
@@ -9,29 +10,22 @@ type Card = {
   subtitle: string;
 };
 
-type Card2 = {
-  title2: string;
-  description2: string;
-  subtitle2: string;
-  image: string;
-};
-
 class list4 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "We are delivering beautiful digital products for you.",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Services",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Our Services",
+      key: "title",
+      displayer: "Title",
+      value: "We are delivering beautiful digital products for you.",
     });
 
     this.addProp({
@@ -156,55 +150,55 @@ class list4 extends BaseList {
 
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header")}>
-            <span className={this.decorateCSS("subtitle")}>
-              {this.getPropValue("subtitle")}
-            </span>
-            <h2 className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </h2>
-          </div>
-          <div className={this.decorateCSS("card-child")}>
-            {this.castToObject<Card[]>("content-card").map(
-              (card: any, index: number) => (
-                <div
-                  key={index}
-                  className={this.decorateCSS("card-item-count")}
-                  style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
-                  }}
-                >
-                  <div className={this.decorateCSS("line-box")}>
-                    <div className={this.decorateCSS("line-1")}></div>
-                    <div className={this.decorateCSS("line-2")}></div>
-                    <div className={this.decorateCSS("line-3")}></div>
-                    <div className={this.decorateCSS("line-4")}></div>
-                  </div>
-                  <h5 className={this.decorateCSS("card-title")}>
-                    {card.title}
-                  </h5>
+      <Base.Container className={this.decorateCSS("container")} >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.VerticalContent className={this.decorateCSS("header")}>
+              <Base.H2 className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.H2>
+              <Base.H2 className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </Base.H2>
+            </Base.VerticalContent>
+            <div className={this.decorateCSS("card-child")}>
+              {this.castToObject<Card[]>("content-card").map(
+                (card: any, index: number) => (
                   <div
-                    key={`cnt-4-card-${index}`}
-                    className={this.decorateCSS("card")}
+                    key={index}
+                    className={this.decorateCSS("card-item-count")}
+                    style={{
+                      width: 90 / this.getPropValue("itemCount") + "%",
+                    }}
                   >
-                    <div className={this.decorateCSS("color-box")}>
-                      <img alt="server" src={card.image} />
-                      <h4 className={this.decorateCSS("card-subtitle")}>
-                        {card.subtitle}
-                      </h4>
-                      <p className={this.decorateCSS("card-description")}>
-                        {card.description}
-                      </p>
+                    <div className={this.decorateCSS("line-box")}>
+                      <div className={this.decorateCSS("line-1")}></div>
+                      <div className={this.decorateCSS("line-2")}></div>
+                      <div className={this.decorateCSS("line-3")}></div>
+                      <div className={this.decorateCSS("line-4")}></div>
+                    </div>
+                    <Base.H5 className={this.decorateCSS("card-title")}>
+                      {card.title}
+                    </Base.H5>
+                    <div
+                      key={`cnt-4-card-${index}`}
+                      className={this.decorateCSS("card")}
+                    >
+                      <div className={this.decorateCSS("color-box")}>
+                        <img alt="server" src={card.image} />
+                        <Base.H4 className={this.decorateCSS("card-subtitle")}>
+                          {card.subtitle}
+                        </Base.H4>
+                        <Base.P className={this.decorateCSS("card-description")}>
+                          {card.description}
+                        </Base.P>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
+                )
+              )}
+            </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

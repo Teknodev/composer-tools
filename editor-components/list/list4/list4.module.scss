@@ -1,22 +1,11 @@
 .container {
-  width: 100%;
   padding: 50px 0;
   .max-content {
     max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
     .header {
-      text-align: initial;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      text-align: center;
+      align-items: center;
       .subtitle {
           margin: 0;
-          font-weight: 800;
           font-size: 2rem;
           color: var(--composer-primary-color);
           text-transform: uppercase;
@@ -31,20 +20,20 @@
     .card-title {
       position: relative;
       font-size: 2rem;
-      margin: 5px 0px 0px 20px;
+      margin: var(--composer-gap-xs) 0px 0px 20px;
       color: var(--composer-primary-color);
-      padding-bottom: 20px;
+      padding-bottom: var(--composer-gap-md);
     }
 
     .card-child {
       display: flex;
       justify-content: center;
       height: 100%;
-      gap: 40px;
+      gap: var(--composer-gap-lg);
       flex-wrap: wrap;
       .card-item-count{
         position: relative;
-        padding: 40px;
+        padding: var(--composer-gap-lg);
         .line-box{
           position: absolute;
           width: calc(100% - 80px);
@@ -98,15 +87,15 @@
         }
         .card {
           position: relative;
-          padding: 20px;
+          padding: var(--composer-gap-md);
 
           .color-box{
-            padding: 20px;
+            padding: var(--composer-gap-md);
             background-color:  rgba(var(--composer-secondary-color-rgb), 0.2);
 
             img {
                 height: 65px;
-                margin-top: 20px;
+                margin-top: var(--composer-gap-md);
             }
 
             .card-number{
@@ -129,7 +118,7 @@
               font-size: 1.3rem;
               color: var(--composer-font-color-primary);
               font-weight: 400;
-              margin-top: 20px;
+              margin-top: var(--composer-gap-md);
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: normal;
@@ -162,7 +151,7 @@
               flex-wrap: wrap;
               .card-item-count{
                 position: relative;
-                padding: 40px;
+                padding: var(--composer-gap-lg);
               .line-box{
                 position: absolute;
                 width: calc(100% + 20px);
@@ -171,10 +160,10 @@
               }
               .card {
                 position: relative;
-                margin-bottom: 20px;     
+                margin-bottom: var(--composer-gap-md);     
                 .color-box{
                   width: calc(100% + 100px);
-                  padding: 20px;
+                  padding: var(--composer-gap-md);
                   background-color: rgba(var(--composer-composer-secondary-color-rgb), 02);
                 }
               }
@@ -204,7 +193,7 @@
                   display: block;
                   justify-content: center;
                   height: 100%;
-                  margin-left: 50px;
+                  margin-left: -1rem;
                   flex-wrap: wrap;
                   .card-item-count{
                     position: relative;
@@ -216,7 +205,7 @@
                   .card {
                     width: calc(100% + 120px);
                     position: relative;
-                    margin-bottom: 20px;     
+                    margin-bottom: var(--composer-gap-md);     
                     left: 25px;
                     .color-box{
                       background-color: rgba(var(--composer-composer-secondary-color-rgb), 02);
