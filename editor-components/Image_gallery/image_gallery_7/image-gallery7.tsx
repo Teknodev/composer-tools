@@ -384,30 +384,37 @@ class ImageGallery7 extends BaseImageGallery {
         return (
             <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
-                    {gallery.map((cards: CardItemType, columnIndex: number) => {
-                        const isEven = (columnIndex) % 2 !== 0;
-                        const columnClass = isEven ? "columnEven" : "columnOdd";
-                        const style = isEven ? null : { transform: `translateY(-${this.scrollOffset}px)` };
-                        return (
-                            <div
-                                key={columnIndex}
-                                className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
-                                style={style}
-                            >
-                                <div key={columnIndex} className={this.decorateCSS("wrapper")}>
-                                    {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
-                                        <div className={this.decorateCSS("card")}>
-                                            <img src={cards.image} alt={this.castToString(cards.subtitle)} className={this.decorateCSS("image")} />
-                                            <div className={this.decorateCSS("textContainer")}>
-                                                <div className={this.decorateCSS("title")}>{cards.title}</div>
-                                                <div className={this.decorateCSS("subtitle")}>{cards.subtitle}</div>
+                    <Base.ListGrid gridCount={{ pc: 4, tablet: 1, phone: 1 }} className={this.decorateCSS("gridContainer")} >
+                        {gallery.map((cards: CardItemType, columnIndex: number) => {
+                            const isEven = (columnIndex) % 2 !== 0;
+                            const columnClass = isEven ? "columnEven" : "columnOdd";
+                            const style = isEven ? null : { transform: `translateY(-${this.scrollOffset}px)` };
+                            return (
+                                <div className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
+                                    style={style}>
+                                    <div className={this.decorateCSS("wrapper")}>
+                                        {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
+                                            <div className={this.decorateCSS("card")}>
+                                                {cards.image && (
+                                                    <img src={cards.image} alt={cards.image} className={this.decorateCSS("image")} />
+                                                )}
+                                                {(this.castToString(cards.title) || this.castToString(cards.subtitle)) && (
+                                                    <div className={this.decorateCSS("textContainer")}>
+                                                        {this.castToString(cards.title) && (
+                                                            <div className={this.decorateCSS("title")}>{cards.title}</div>
+                                                        )}
+                                                        {this.castToString(cards.subtitle) && (
+                                                            <div className={this.decorateCSS("subtitle")}>{cards.subtitle}</div>
+                                                        )}
+                                                    </div>
+                                                )}
                                             </div>
-                                        </div>
-                                    }
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </Base.ListGrid>
                 </Base.MaxContent>
             </Base.Container>
         );
