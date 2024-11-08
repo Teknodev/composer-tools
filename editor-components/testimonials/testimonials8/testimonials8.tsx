@@ -49,7 +49,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "name",
               value: "Erle Philomena",
-              displayer: "Name",
+              displayer: "Author",
             },
             {
               type: "string",
@@ -62,7 +62,7 @@ class Testimonials8Page extends Testimonials {
               key: "description",
               value:
                 "I have been using pagedone for several months now, and I must say that it has made my life a lo easier. The platform's intuitive interface and ease of use have allowed me to managed my finances more effectively and make informed incestment decisions. I particularly like the product's auto-tracking feature, which has saved me a lot of time and effort. Moreover, the personalized insights and recommendations have helped me maximize my profits and miimize my risks. Overall, I am highly satisfied with and recommend it to anyone looking to simplfy their financal managment. ",
-              displayer: "Description",
+              displayer: "Review Text",
             },
             {
               type: "number",
@@ -103,7 +103,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "name",
               value: "Shonda Kadence",
-              displayer: "Name",
+              displayer: "Author",
             },
             {
               type: "string",
@@ -116,7 +116,7 @@ class Testimonials8Page extends Testimonials {
               key: "description",
               value:
                 "Grunge design is all about creating a rough, raw, and edgy look. It can be a great way to add personality and attitude to a design.",
-              displayer: "Description",
+              displayer: "Review Text",
             },
             {
               type: "number",
@@ -156,7 +156,7 @@ class Testimonials8Page extends Testimonials {
               type: "string",
               key: "name",
               value: "Laurie Darwin",
-              displayer: "Name",
+              displayer: "Author",
             },
             {
               type: "string",
@@ -169,7 +169,7 @@ class Testimonials8Page extends Testimonials {
               key: "description",
               value:
                 "Responsive design is a must for modern websites and interfaces. It ensures that content is displayed optimally on different screen sizes and devices.",
-              displayer: "Description",
+              displayer: "Review Text",
             },
             {
               type: "number",

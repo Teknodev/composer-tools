@@ -49,6 +49,13 @@
           >ul{
             left: 0px;
             bottom: 0px;
+            >li{
+              >button{
+                &::before{
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
           }
         }
         .card{
@@ -123,6 +130,7 @@
   .container{
     .maxContent{
       .testimonials8{
+        gap: var(--composer-gap-md);
         .content{
           padding :0px;
           .prevArrow, .nextArrow{
@@ -131,6 +139,7 @@
           >div{
             padding:0px;
             >div{
+              padding-bottom: var(--composer-gap-sm);
               >div{
                 >div{
                   padding: var(--composer-gap-sm);
