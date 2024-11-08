@@ -1,10 +1,14 @@
 .container {
     .max-content {
         .wrapper{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
             .up-page {
                 width: 100%;
                 .title {
-                    margin:0px;                    
+                    margin:0px;  
+                    color: var(--composer-font-color-primary);                  
                 }
             }
             .down-page {
@@ -34,10 +38,12 @@
                         .text {
                             justify-content: center;
                             .title {
+                                color: var(--composer-font-color-primary);
                             }
     
                             .subtitle {
                                 opacity: 0.5;
+                                color: var(--composer-font-color-primary);
                             }
                         }
     
@@ -68,7 +74,7 @@
                 position: relative;
 
                 .left-icon, .right-icon{
-                    color: var(--composer-tertiary-color);
+                    color: var(--composer-primary-color);
                     position: absolute;
                     width: 40px;
                     height: 40px;

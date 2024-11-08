@@ -328,7 +328,7 @@ class Testimonials9Page extends Testimonials {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+          <div className={this.decorateCSS("wrapper")}>
             {this.castToString(title) && (
               <div className={this.decorateCSS("up-page")}>
                 <Base.H1 className={this.decorateCSS("title")}>{title}</Base.H1>
@@ -378,7 +378,7 @@ class Testimonials9Page extends Testimonials {
                 )}
               </div>
             </Base.ContainerGrid>
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
