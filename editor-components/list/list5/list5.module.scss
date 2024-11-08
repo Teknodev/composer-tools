@@ -1,25 +1,13 @@
-.container {
-  width: 100%;
-  margin: auto;
-  background-color: var(--composer-html-background);
-  padding: 0 12px;
-}
-
-.max-content {
-  max-width: var(--composer-content-width);
-  margin: auto;
-}
 .header {
-  font-size: 2.3rem;
   font-weight: 600;
   margin: 0 auto;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: var(--composer-gap-sm);
   color: var(--composer-primary-color);
 }
 
 .list-item {
-  gap: 20px;
+  gap: var(--composer-gap-md);
   padding-bottom: 4rem;
 }
 
@@ -28,7 +16,7 @@
   flex-direction: column;
   border-radius: var(--composer-border-radius);
   background: color-mix(in srgb, var(--composer-html-background), #fff 50%);
-  padding: 30px;
+  padding: var(--composer-gap-lg);
   &:nth-child(2n) {
     margin-top: 6rem;
     margin-bottom: 6rem;
@@ -88,12 +76,12 @@
     font-weight: 600;
     font-size: 2rem;
     color: var(--composer-primary-color);
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: var(--composer-gap-xl);
+    margin-bottom: var(--composer-gap-md);
   }
   .list-item-value-p {
-    margin-top: 40px;
-    margin-bottom: 50px;
+    margin-top: var(--composer-gap-lg);
+    margin-bottom: var(--composer-gap-xl);
     text-align: left;
     font-size: 1.5rem;
     line-height: 1.55;

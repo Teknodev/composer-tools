@@ -3,6 +3,7 @@ import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class List5 extends BaseList {
   getName(): string {
@@ -138,17 +139,15 @@ class List5 extends BaseList {
   render(): ReactNode {
     return (
       <>
-        <div className={this.decorateCSS("header")}>
-          <h1>{this.getPropValue("header")}</h1>
-        </div>
-        <div className={this.decorateCSS("container")}>
-          <div className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("list-item")} style={{
-              display: "grid",
-              gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)`
-            }}>
-              {this.getPropValue("list-items").map(
-                (listItem: any, index: number) => {
+        <Base.Container>
+          <Base.MaxContent>
+            <Base.VerticalContent>
+              <div className={this.decorateCSS("header")}>
+                <Base.H1>{this.getPropValue("header")}</Base.H1>
+              </div>
+              <Base.ListGrid gridCount={{pc: this.getPropValue("itemCount")}}>
+                {this.getPropValue("list-items").map(
+                  (listItem: any, index: number) => {
                   return (
                     <div
                       key={index}
@@ -159,31 +158,32 @@ class List5 extends BaseList {
                           <ComposerIcon
                             name={listItem.value[1].value}
                             propsIcon={{
-                              className: this.decorateCSS("icon"),
-                              size: 60,
-                            }}
+                            className: this.decorateCSS("icon"),
+                            size: 60,
+                              }}
                           />
                         </div>
                         <div className={this.decorateCSS("item-index")}>
                           {(index + 1).toLocaleString("en-US", {
-                            minimumIntegerDigits: 2,
-                            useGrouping: false,
+                          minimumIntegerDigits: 2,
+                          useGrouping: false,
                           })}
-                        </div>
+                          </div>
                       </div>
-                      <h1 className={this.decorateCSS("list-item-value-h1")}>
+                      <Base.H1 className={this.decorateCSS("list-item-value-h1")}>
                         {listItem.value[0].value}
-                      </h1>
-                      <p className={this.decorateCSS("list-item-value-p")}>
+                      </Base.H1>
+                      <Base.P className={this.decorateCSS("list-item-value-p")}>
                         {listItem.value[2].value}
-                      </p>
+                      </Base.P>
                     </div>
-                  );
-                }
-              )}
-            </div>
-          </div>
-        </div>
+                      );
+                    }
+                  )}
+              </Base.ListGrid>
+            </Base.VerticalContent>
+          </Base.MaxContent>
+        </Base.Container>
       </>
     );
   }
