@@ -4,12 +4,14 @@ import styles from "./list2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
-interface List2Items {
-  listEmoji: string;
-  listTitle: string;
-  listDesc: string;
-  link: string;
+type CardItem = {
+  page: string,
+  image: string,
+  count: number,
+  count_text: JSX.Element,
+  card_text: JSX.Element,
 }
+
 class List2 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
@@ -29,21 +31,47 @@ class List2 extends BaseList {
     });
 
     this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "Action Button",
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
       value: [
         {
-          type: "string",
-          key: "text",
-          displayer: "Text of Button",
-          value: "View More Categories"
+          type: "object",
+          key: "button",
+          displayer: "Action Button",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text of Button",
+              value: "View More Categories"
+            },
+            {
+              type: "page",
+              displayer: "Navigate",
+              value: "",
+              key: "navigate"
+            }
+          ]
         },
         {
-          type: "page",
-          displayer: "Navigate",
-          value: "",
-          key: "navigate"
+          type: "object",
+          key: "button",
+          displayer: "Action Button",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text of Button",
+              value: "View More Categories"
+            },
+            {
+              type: "page",
+              displayer: "Navigate",
+              value: "",
+              key: "navigate"
+            }
+          ]
         }
       ]
     });
@@ -284,45 +312,48 @@ class List2 extends BaseList {
   }
 
   render() {
+    const cards = this.castToObject<any>("cards");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent>
-            <h3 className={this.decorateCSS("title")}>
+            <Base.H2 className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
-            </h3>
-            <span className={this.decorateCSS("description")}>
+            </Base.H2>
+            <Base.H5 className={this.decorateCSS("description")}>
               {this.getPropValue("description")}
-            </span>
-          </Base.VerticalContent>
+              </Base.H5>
+            </Base.VerticalContent>
           <div className={this.decorateCSS("cards-box")}>
-            {this.getPropValue("cards").map((card: any, index: number) =>
-              <ComposerLink key={index} path={card.getPropValue("page")}>
+            {cards.map((card: CardItem, index: number) => (
+              <ComposerLink key={index} path={card.page}>
                 <div className={this.decorateCSS("card")}>
-                  <img src={card.getPropValue("image")} alt={card.getPropValue("card_text")} />
+                  <img src={card.image} alt={this.castToString(card.card_text)} />
                   <div className={this.decorateCSS("overlay")}></div>
                   <div className={this.decorateCSS("overlay2")}></div>
                   <div className={this.decorateCSS("card-content")}>
                     <div className={this.decorateCSS("stick")}></div>
                     <div className={this.decorateCSS("labels")}>
-                      <span className={this.decorateCSS("first")}>{card.getPropValue("card_text")}</span>
-                      <p className={this.decorateCSS("second")}>{card.getPropValue("count") + " " + card.getPropValue("count_text")}</p>
-
+                      <Base.H2 className={this.decorateCSS("first")}>{card.card_text}</Base.H2>
+                      <Base.P className={this.decorateCSS("second")}>{String(card.count) + " " + this.castToString(card.count_text)}</Base.P>
                     </div>
-
                   </div>
+                </div>
+              </ComposerLink>)
+            )}
+          </div>
+
+          <div className={this.decorateCSS("buttons-box")}>
+            {this.getPropValue("buttons").map((button: any) =>
+              <ComposerLink path={button.getPropValue("navigate")}>
+                <div className={this.decorateCSS("button")}>
+                  <Base.H5>{button.getPropValue("text")}</Base.H5>
                 </div>
               </ComposerLink>
             )}
           </div>
-
-          <ComposerLink path={this.getPropValue("button")[1].value}>
-            <div className={this.decorateCSS("button")}>
-              <span>{this.getPropValue("button")[0].value}</span>
-            </div>
-          </ComposerLink>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
