@@ -3,12 +3,13 @@ import styles from "./pricing-table4.module.scss";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Pricing = {
-  title1: string;
+  title1: JSX.Element;
   list: TypeUsableComponentProps[];
-  title2: string;
-  pricing: string;
+  title2: JSX.Element;
+  pricing: JSX.Element;
   buttons: Array<Button>;
   isFocus: boolean;
   icons: string;
@@ -16,7 +17,7 @@ type Pricing = {
 
 type Button = {
   url: string;
-  buttonText: string;
+  buttonText: JSX.Element;
   isPrimary: boolean;
 };
 
@@ -42,8 +43,7 @@ class PricingMultiple extends BasePricingTable {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Pricing is a crucial element of any business strategy, and small businesses need to adopt effective pricing strategies to stay competitive.",
+      value: "Pricing is a crucial element of any business strategy, and small businesses need to adopt effective pricing strategies to stay competitive.",
     });
 
     this.addProp({
@@ -64,12 +64,6 @@ class PricingMultiple extends BasePricingTable {
           key: "card",
           displayer: "Card",
           value: [
-            {
-              type: "icon",
-              key: "icons",
-              displayer: "Icon",
-              value: "FaCheck",
-            },
             {
               type: "boolean",
               key: "isFocus",
@@ -100,38 +94,102 @@ class PricingMultiple extends BasePricingTable {
               displayer: "List Items",
               value: [
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "One database",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "One database",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Unlimited websites",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Unlimited websites",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "CMS Navigation",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "CMS Navigation",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Free updates",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Free updates",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Priority support",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Priority support",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
               ],
             },
-
             {
               type: "array",
               key: "buttons",
@@ -165,12 +223,6 @@ class PricingMultiple extends BasePricingTable {
           key: "card",
           displayer: "Card",
           value: [
-            {
-              type: "icon",
-              key: "icons",
-              displayer: "Icon",
-              value: "FaCheck",
-            },
             {
               type: "boolean",
               key: "isFocus",
@@ -201,34 +253,99 @@ class PricingMultiple extends BasePricingTable {
               displayer: "List Items",
               value: [
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "10 databases",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "One database",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Unlimited websites",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Unlimited websites",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "CMS navigation",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "CMS Navigation",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Free Updates",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Free updates",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Priority support",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Priority support",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
               ],
             },
@@ -267,12 +384,6 @@ class PricingMultiple extends BasePricingTable {
           displayer: "Card",
           value: [
             {
-              type: "icon",
-              key: "icons",
-              displayer: "Icon",
-              value: "FaCheck",
-            },
-            {
               type: "boolean",
               key: "isFocus",
               displayer: "isFocus",
@@ -302,34 +413,99 @@ class PricingMultiple extends BasePricingTable {
               displayer: "List Items",
               value: [
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Unlimited databases",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "One database",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Unlimited websites",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Unlimited websites",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "CMS navigation",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "CMS Navigation",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Free updates",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Free updates",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
                 {
-                  type: "string",
-                  key: "liText",
-                  displayer: "List Item",
-                  value: "Priority support",
+                  type: "object",
+                  key: "li",
+                  displayer: "List",
+                  value: [
+                    {
+                      type: "string",
+                      key: "liText",
+                      displayer: "List Item",
+                      value: "Priority support",
+                    },
+                    {
+                      type: "icon",
+                      key: "icons",
+                      displayer: "Icon",
+                      value: "FaCheck",
+                    },
+                  ],
                 },
               ],
             },
@@ -369,75 +545,71 @@ class PricingMultiple extends BasePricingTable {
     return "Pricing 4";
   }
   render() {
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("page-up")}>
-              <h2 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h2>
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <h1 className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </h1>
-            </div>
-            <div className={this.decorateCSS("page-down")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("page")}>
+            <Base.VerticalContent className={this.decorateCSS("page-up")}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("page-down")}>
               {this.castToObject<Pricing[]>("cards").map((price: Pricing, indexCards: number) => {
+                const title1 = this.castToString(price.title1);
+                const title2 = this.castToString(price.title2);
+                const pricing = this.castToString(price.pricing);
                 return (
-                  <div
-                    key={indexCards}
-                    className={this.decorateCSS("all-card")}
-                    style={{
-                      width: 100 / this.getPropValue("itemCount") + "%",
-                    }}
-                  >
-                    <div
-                      className={`${this.decorateCSS("card")} ${
-                        price.isFocus && this.decorateCSS("focused")
-                      }`}
-                    >
+                  <div key={indexCards} className={this.decorateCSS("all-card")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("card")} ${price.isFocus && this.decorateCSS("focused")}`}>
                       <div className={this.decorateCSS("card-up")}>
-                        <div className={this.decorateCSS("card-up-texts")}>
-                          <h1 className={this.decorateCSS("price-title1")}>{price.title1}</h1>
-                          <p className={this.decorateCSS("price-title2")}>{price.title2}</p>
-                          <h1 className={this.decorateCSS("price-pricing")}>{price.pricing}</h1>
-                        </div>
+                        <Base.VerticalContent className={this.decorateCSS("card-up-texts")}>
+                          {title1 && <Base.H5 className={this.decorateCSS("price-title1")}>{price.title1}</Base.H5>}
+                          {title2 && <Base.P className={this.decorateCSS("price-title2")}>{price.title2}</Base.P>}
+                          {pricing && <Base.H1 className={this.decorateCSS("price-pricing")}>{price.pricing}</Base.H1>}
+                        </Base.VerticalContent>
                       </div>
                       <div className={this.decorateCSS("card-middle")}>
-                        <ul className={this.decorateCSS("list-group")}>
+                        <Base.VerticalContent className={this.decorateCSS("list-group")}>
                           {price.list.map((item: any, indexListGroup: number) => {
+                            const liElement = this.castToString(item.liText);
                             return (
-                              <li key={indexListGroup} className={this.decorateCSS("li")}>
-                                <div className={this.decorateCSS("circle-icon")}>
-                                  <ComposerIcon
-                                    name={price.icons}
-                                    propsIcon={{ className: this.decorateCSS("icons") }}
-                                  />
-                                </div>
-                                {item.value}
-                              </li>
+                              liElement && (
+                                <Base.P key={indexListGroup} className={this.decorateCSS("list-element")}>
+                                  <div className={this.decorateCSS("circle-icon")}>
+                                    <ComposerIcon name={item.icons} propsIcon={{ className: this.decorateCSS("icons") }} />
+                                  </div>
+                                  {item.liText}
+                                </Base.P>
+                              )
                             );
                           })}
-                        </ul>
+                        </Base.VerticalContent>
                       </div>
                       <div className={this.decorateCSS("card-down")}>
                         {price.buttons.map((item: Button, indexButtons: number) => {
+                          const buttonValue = this.castToString(item.buttonText);
                           return (
-                            <ComposerLink key={indexButtons} path={item.url}>
-                              <button className={this.decorateCSS("button")}>
-                                {item.buttonText}
-                              </button>
-                            </ComposerLink>
+                            buttonValue && (
+                              <ComposerLink key={indexButtons} path={item.url}>
+                                <button className={this.decorateCSS("button")}>{item.buttonText}</button>
+                              </ComposerLink>
+                            )
                           );
                         })}
                       </div>
-                    </div>
+                    </Base.VerticalContent>
                   </div>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </div>
+            </Base.ListGrid>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
