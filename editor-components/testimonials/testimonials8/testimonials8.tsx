@@ -43,19 +43,19 @@ class Testimonials8Page extends Testimonials {
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388a?alt=media&timestamp=1719483639150",
-              displayer: "Image",
+              displayer: "Author Image",
             },
             {
               type: "string",
               key: "name",
               value: "Erle Philomena",
-              displayer: "Author",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "nameId",
-              value: "Erle_Philomena",
-              displayer: "Person's Title",
+              value: "Product Designer",
+              displayer: "Author Position",
             },
             {
               type: "string",
@@ -97,19 +97,19 @@ class Testimonials8Page extends Testimonials {
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388b?alt=media&timestamp=1719483639150",
-              displayer: "Image",
+              displayer: "Author Image",
             },
             {
               type: "string",
               key: "name",
               value: "Shonda Kadence",
-              displayer: "Author",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "nameId",
-              value: "Shonda_Kadence",
-              displayer: "Person's Title",
+              value: "Developer",
+              displayer: "Author Position",
             },
             {
               type: "string",
@@ -150,19 +150,19 @@ class Testimonials8Page extends Testimonials {
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661740cbd2970002c623895?alt=media&timestamp=1719483639150",
-              displayer: "Image",
+              displayer: "Author Image",
             },
             {
               type: "string",
               key: "name",
               value: "Laurie Darwin",
-              displayer: "Author",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "nameId",
-              value: "Laurie_Darwin",
-              displayer: "Person's Title",
+              value: "Design Lead",
+              displayer: "Author Position",
             },
             {
               type: "string",
