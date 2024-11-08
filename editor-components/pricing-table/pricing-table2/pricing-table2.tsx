@@ -39,15 +39,16 @@ class PricingTable2 extends BasePricingTable {
       type: "string",
       key: "pricing-table-description",
       displayer: "Desctiption",
-      value:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     });
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
+      max: 5,
     });
+
     this.addProp({
       type: "array",
       key: "pricingTableItem",
@@ -80,7 +81,7 @@ class PricingTable2 extends BasePricingTable {
               type: "icon",
               key: "cardIcon",
               displayer: "Icon",
-              value: "IoIosAirplane",
+              value: "TfiAnnouncement",
             },
             {
               type: "array",
@@ -225,7 +226,7 @@ class PricingTable2 extends BasePricingTable {
               type: "icon",
               key: "cardIcon",
               displayer: "Icon",
-              value: "IoIosAirplane",
+              value: "FaExternalLinkAlt",
             },
             {
               type: "array",
@@ -370,7 +371,7 @@ class PricingTable2 extends BasePricingTable {
               type: "icon",
               key: "cardIcon",
               displayer: "Icon",
-              value: "IoIosAirplane",
+              value: "FaAnchor",
             },
             {
               type: "array",
@@ -642,137 +643,85 @@ class PricingTable2 extends BasePricingTable {
   }
 
   render() {
-    const subtitle = this.castToString(
-      this.getPropValue("pricing-table-subtitle")
-    );
+    const subtitle = this.castToString(this.getPropValue("pricing-table-subtitle"));
     const title = this.castToString(this.getPropValue("pricing-table-title"));
-    const description = this.castToString(
-      this.getPropValue("pricing-table-description")
-    );
+    const description = this.castToString(this.getPropValue("pricing-table-description"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("table")}>
-            <Base.VerticalContent>
-              {subtitle && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </Base.SectionSubTitle>
-              )}
-
-              {title && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
-
-              {description && (
-                <Base.SectionDescription
-                  className={this.decorateCSS("description")}
-                >
-                  {description}
-                </Base.SectionDescription>
-              )}
+            <Base.VerticalContent className={this.decorateCSS("up-content")}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
             <Base.ListGrid
               gridCount={{
                 pc: this.getPropValue("itemCount"),
-                tablet: 2,
+                tablet: 1,
                 phone: 1,
               }}
               className={this.decorateCSS("item-div")}
             >
-              {this.castToObject<PricingItems[]>("pricingTableItem").map(
-                (table: PricingItems, index: number) => {
-                  table.cardList.map((listItem: ListItem, index: number) => {
-                    return "";
-                  });
-                  const cardTitle = this.castToString(table.cardTitle);
-                  const cardPrice = this.castToString(table.cardPrice);
-                  const cardDuration = this.castToString(table.cardDuration);
+              {this.castToObject<PricingItems[]>("pricingTableItem").map((table: PricingItems, index: number) => {
+                table.cardList.map((listItem: ListItem, index: number) => {
+                  return "";
+                });
+                const cardTitle = this.castToString(table.cardTitle);
+                const cardPrice = this.castToString(table.cardPrice);
+                const cardDuration = this.castToString(table.cardDuration);
 
-                  return (
-                    <Base.VerticalContent
-                      className={this.decorateCSS("card-item-count")}
-                    >
-                      <div
-                        key={index}
-                        className={this.decorateCSS("item-card")}
-                      >
-                        <div className={this.decorateCSS("card-upper")}>
-                          {cardTitle && (
-                            <Base.H3 className={this.decorateCSS("card-title")}>
-                              {cardTitle}
-                            </Base.H3>
-                          )}
-                          {(cardPrice || cardDuration) && (
-                            <div className={this.decorateCSS("card-price")}>
-                              <span className={this.decorateCSS("price")}>
-                                {table.cardPrice}
-                              </span>
-                              <span className={this.decorateCSS("duration")}>
-                                {table.cardDuration}
-                              </span>
-                            </div>
-                          )}
+                return (
+                  <Base.VerticalContent className={this.decorateCSS("card-item-count")}>
+                    <div key={index} className={this.decorateCSS("item-card")}>
+                      <Base.VerticalContent className={`${this.decorateCSS("card-upper")} ${cardTitle || cardPrice || cardDuration ? "" : this.decorateCSS("hidden")}`}>
+                        {cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{cardTitle}</Base.H2>}
+                        <div className={this.decorateCSS("card-price")}>
+                          {cardPrice && <Base.H1 className={this.decorateCSS("price")}>{table.cardPrice}</Base.H1>}
+                          {cardDuration && <Base.H2 className={this.decorateCSS("duration")}>{table.cardDuration}</Base.H2>}
                         </div>
+                      </Base.VerticalContent>
 
-                        <div className={this.decorateCSS("card-bottom")}>
-                          {table.cardIcon && (
-                            <div className={this.decorateCSS("card-img")}>
-                              <ComposerIcon name={table.cardIcon} />
-                            </div>
-                          )}
-                          {table.cardList.length > 0 && (
-                            <ul className={this.decorateCSS("card-list")}>
-                              {table.cardList.map(
-                                (listItem: ListItem, index: number) => {
-                                  const cardListItem = this.castToString(
-                                    listItem.cardListItem
-                                  );
-                                  const listIcon = listItem.listIcon;
-
-                                  return (
-                                    <>
-                                      {cardListItem && (
-                                        <li
-                                          key={index}
-                                          className={this.decorateCSS(
-                                            "card-list-item"
-                                          )}
-                                        >
-                                          <ComposerIcon name={listIcon} />
-                                          <span
-                                            className={this.decorateCSS(
-                                              "list-item"
-                                            )}
-                                          >
-                                            {listItem.cardListItem}
-                                          </span>
-                                        </li>
-                                      )}
-                                    </>
-                                  );
-                                }
-                              )}
-                            </ul>
-                          )}
-                          {this.castToString(table.cardButtonText) && (
-                            <ComposerLink path={table.cardButtonLink}>
-                              <button
-                                className={this.decorateCSS("card-button")}
-                              >
-                                {table.cardButtonText}
-                              </button>
-                            </ComposerLink>
-                          )}
-                        </div>
-                      </div>
-                    </Base.VerticalContent>
-                  );
-                }
-              )}
+                      <Base.VerticalContent className={this.decorateCSS("card-bottom")}>
+                        {table.cardIcon && (
+                          <div className={this.decorateCSS("card-img")}>
+                            <ComposerIcon name={table.cardIcon} />
+                          </div>
+                        )}
+                        {table.cardList.length > 0 && (
+                          <Base.VerticalContent className={this.decorateCSS("card-list")}>
+                            {table.cardList.map((listItem: ListItem, index: number) => {
+                              const cardListItem = this.castToString(listItem.cardListItem);
+                              const listIcon = listItem.listIcon;
+                              return (
+                                <>
+                                  {cardListItem && (
+                                    <span key={index} className={this.decorateCSS("card-list-item")}>
+                                      <ComposerIcon
+                                        name={listIcon}
+                                        propsIcon={{
+                                          className: this.decorateCSS("list-icon"),
+                                        }}
+                                      />
+                                      <span className={this.decorateCSS("list-item")}>{listItem.cardListItem}</span>
+                                    </span>
+                                  )}
+                                </>
+                              );
+                            })}
+                          </Base.VerticalContent>
+                        )}
+                        {this.castToString(table.cardButtonText) && (
+                          <ComposerLink path={table.cardButtonLink}>
+                            <button className={this.decorateCSS("card-button")}>{table.cardButtonText}</button>
+                          </ComposerLink>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  </Base.VerticalContent>
+                );
+              })}
             </Base.ListGrid>
           </div>
         </Base.MaxContent>
