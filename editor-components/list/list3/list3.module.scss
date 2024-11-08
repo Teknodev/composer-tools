@@ -7,6 +7,7 @@
 
   .row {
     display: grid;
+    gap: 0;
   }
 
   .first {
@@ -41,7 +42,7 @@
   }
 
   .card {
-    padding: var(--composer-gap-xl);
+    padding: var(--composer-gap-xl) var(--composer-gap-xl) calc(var(--composer-gap-xl) + 3rem) var(--composer-gap-xl);
     position: relative;
     overflow: hidden;
     transition: background-color 0.3s ease;
@@ -88,8 +89,7 @@
         letter-spacing: -5px;
         -webkit-text-fill-color: transparent;
         margin: 0;
-        bottom: -70px;
-        
+        bottom: -17%;
     }
 
 
@@ -100,6 +100,22 @@
   .container {
     .row {
       grid-template-columns: 1fr !important;
+    }
+
+    .card {
+      .index {
+        bottom: -21%;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    .card {
+      .index {
+        bottom: -15%;
+      }
     }
   }
 }

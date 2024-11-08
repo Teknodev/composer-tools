@@ -162,16 +162,9 @@ class List3 extends BaseList {
     const buttonExist = this.castToString(this.getPropValue("button"));
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} isFull="true" >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("row")}
-            style={{
-              gridTemplateColumns: `repeat(${this.getPropValue(
-                "itemCount"
-              )}, 1fr)`,
-            }}
-          >
+          <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
             {(title || description) && (
               <div className={this.decorateCSS("first")}>
                 <div className={this.decorateCSS("firstContent")}>
@@ -239,7 +232,7 @@ class List3 extends BaseList {
                 </div>
               );
             })}
-          </div>
+          </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
     );
