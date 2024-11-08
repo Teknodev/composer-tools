@@ -352,49 +352,51 @@ class Testimonials13Page extends Testimonials {
                 </ComposerSlider>
               </Base.VerticalContent>
             </Base.GridCell>
-            <Base.GridCell className={this.decorateCSS("container3")}>
-              <Base.ContainerGrid className={this.decorateCSS("containerGrid")}>
-                {this.getPropValue("image") && (
-                  <Base.GridCell className={this.decorateCSS("flexItem2")}>
-                    <img src={this.getPropValue("image")} alt={this.getPropValue("image")} />
-                  </Base.GridCell>
-                )}
-                {(this.castToString(this.getPropValue("boxHeader")) || (box.length > 0)) && (
-                  <Base.GridCell className={this.decorateCSS("flexItem3")}>
-                    {this.castToString(this.getPropValue("boxHeader")) && (
-                      <Base.H1 className={this.decorateCSS("item_title_text")}>
-                        {this.getPropValue("boxHeader")}
-                      </Base.H1>
-                    )}
-                    <div className={this.decorateCSS("container4")}>
-                      {box.map(
-                        (item: any, index: number) => (
-                          <Base.VerticalContent
-                            className={this.decorateCSS("containerBottom")}
-                          >
-                            {this.castToString(item.topText) && (
-                              <div className={this.decorateCSS("topWriting")}>
-                                {item.topText}
-                              </div>
-                            )}
-                            {item.number && (
-                              <div className={this.decorateCSS("middleWriting")}>
-                                {item.number}
-                              </div>
-                            )}
-                            {this.castToString(item.bottomText) && (
-                              <div className={this.decorateCSS("bottomWriting")}>
-                                {item.bottomText}
-                              </div>
-                            )}
-                          </Base.VerticalContent>
-                        )
+            {(this.getPropValue("image") || this.castToString(this.getPropValue("boxHeader")) || (box.length > 0)) && (
+              <Base.GridCell className={this.decorateCSS("container3")}>
+                <Base.ContainerGrid className={this.decorateCSS("containerGrid")}>
+                  {this.getPropValue("image") && (
+                    <Base.GridCell className={this.decorateCSS("flexItem2")}>
+                      <img src={this.getPropValue("image")} alt={this.getPropValue("image")} />
+                    </Base.GridCell>
+                  )}
+                  {(this.castToString(this.getPropValue("boxHeader")) || (box.length > 0)) && (
+                    <Base.GridCell className={this.decorateCSS("flexItem3")}>
+                      {this.castToString(this.getPropValue("boxHeader")) && (
+                        <Base.H1 className={this.decorateCSS("item_title_text")}>
+                          {this.getPropValue("boxHeader")}
+                        </Base.H1>
                       )}
-                    </div>
-                  </Base.GridCell>
-                )}
-              </Base.ContainerGrid>
-            </Base.GridCell>
+                      <div className={this.decorateCSS("container4")}>
+                        {box.map(
+                          (item: any, index: number) => (
+                            <Base.VerticalContent
+                              className={this.decorateCSS("containerBottom")}
+                            >
+                              {this.castToString(item.topText) && (
+                                <div className={this.decorateCSS("topWriting")}>
+                                  {item.topText}
+                                </div>
+                              )}
+                              {item.number && (
+                                <div className={this.decorateCSS("middleWriting")}>
+                                  {item.number}
+                                </div>
+                              )}
+                              {this.castToString(item.bottomText) && (
+                                <div className={this.decorateCSS("bottomWriting")}>
+                                  {item.bottomText}
+                                </div>
+                              )}
+                            </Base.VerticalContent>
+                          )
+                        )}
+                      </div>
+                    </Base.GridCell>
+                  )}
+                </Base.ContainerGrid>
+              </Base.GridCell>
+            )}
           </Base.ContainerGrid>
         </Base.MaxContent >
       </Base.Container >
