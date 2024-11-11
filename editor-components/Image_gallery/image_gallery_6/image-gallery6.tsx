@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery6.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 interface GalleryItem {
   image: string,
   badge: JSX.Element,
@@ -204,10 +205,10 @@ class ImageGalleryComponent6 extends BaseImageGallery {
           value: [
             {
               type: "image",
-              key: "Image",
-              displayer: "image",
+              key: "image",
+              displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161e87b4a116002cfc671a?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6716195ab4a116002cfc64c8?alt=media",
             },
             {
               type: "string",
@@ -241,6 +242,8 @@ class ImageGalleryComponent6 extends BaseImageGallery {
             },
           ],
         },
+
+
         {
           type: "object",
           key: "gallery",
@@ -386,80 +389,76 @@ class ImageGalleryComponent6 extends BaseImageGallery {
     console.log("galleries", galleries[0].title)
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {galleries.map((item: GalleryItem, index: number) => {
-              const position = (index % 4) + 1;
-              const smallCard = position === 2 || position === 3;
-              const left = (index % 2) === 0;
-              return (
-                <div className={left ? this.decorateCSS("left-container") : this.decorateCSS("right-container")}>
-                  <div className={`${this.decorateCSS("images")} ${smallCard ? this.decorateCSS("small-image") : this.decorateCSS("large-image")}`}>
-                    <div className={this.decorateCSS("image-wrapper")}>
-                      <img src={item.image} alt={item.image} />
+            <div className={this.decorateCSS("left-container")}>
+              {galleries.map((item: GalleryItem, index: number) => {
+                if (index % 2 === 0) {
+                  return (
+                    <div className={`${this.decorateCSS("images")} ${(index / 2) % 2 === 0 ? this.decorateCSS("large-image") : this.decorateCSS("small-image")}`}>
+                      <div className={this.decorateCSS("image-wrapper")}>
+                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                        <div className={this.decorateCSS("badge")}>
+                        </div>
+                        <div className={this.decorateCSS("badge-container")}>
+
+                          <div className={this.decorateCSS("text-container")}>
+                            <div className={this.decorateCSS("title")}>
+                              {item.title}
+                            </div>
+                            <div className={this.decorateCSS("bottom-container")}>
+
+                              <div className={this.decorateCSS("description")}>
+                                {item.description}
+                              </div>
+                              <button className={this.decorateCSS("button")}></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  );
+                }
+                return null;
+              })}
+            </div>
 
-              )
+            <div className={this.decorateCSS("right-container")}>
+              {galleries.map((item: GalleryItem, index: number) => {
+                if (index % 2 === 1) {
+                  return (
+                    <div className={`${this.decorateCSS("images")} ${((index - 1) / 2) % 2 === 0 ? this.decorateCSS("small-image") : this.decorateCSS("large-image")}`}>
+                      <div className={this.decorateCSS("image-wrapper")}>
+                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                        <div className={this.decorateCSS("badge")}>
+                        </div>
+                        <div className={this.decorateCSS("badge-container")}>
 
-            })}
-            {/* {galleries.map((item: any, index: number) => {
-              const position = (index % 4) + 1;
-              const smallCard = position === 2 || position === 3;
-              <img src={item.value[0]} className={this.decorateCSS("image")}>
-              </img>
-            })
-              // galleries
-              //   .filter((_: unknown, index: number) => index % 2 === 0)
-              //   .map((item: any, index: number) => (
-              // <div key={index} className={`${this.decorateCSS("images")} ${index % 2 === 0 ? this.decorateCSS("large-image") : this.decorateCSS("small-image")}`}>
-              //   <div className={this.decorateCSS("image-wrapper")}>
-              //     <img src={item.value[0].value} alt={`Gallery Image ${index + 1}`} />
-              //     <div className={this.decorateCSS("badge")}>
-              //       {item.value[1]?.value}
-              //     </div>
-              //   </div>
-              //   <div className={this.decorateCSS("title")}>
-              //     {item.value[2]?.value}
-              //   </div>
-              //   <div className={this.decorateCSS("description")}>
-              //     {item.value[3]?.value}
-              //   </div>
-              //   <div className={this.decorateCSS("button")}>
-              //     {item.value[4]?.value}
-              //   </div>
-              // </div>
-              // ))
-            } */}
+                          <div className={this.decorateCSS("text-container")}>
+                            <div className={this.decorateCSS("title")}>
+                              {item.title}
+                            </div>
+                            <div className={this.decorateCSS("bottom-container")}>
+
+                              <div className={this.decorateCSS("description")}>
+                                {item.description}
+                              </div>
+                              <button className={this.decorateCSS("button")}></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              })}
+
+            </div>
           </div>
-
-          {/* <div className={this.decorateCSS("right-content")}>
-            {galleries
-              .filter((_: unknown, index: number) => index % 2 === 1)
-              .map((item: any, index: number) => (
-                <div key={index} className={`${this.decorateCSS("images")} ${index % 2 === 0 ? this.decorateCSS("large-image") : this.decorateCSS("small-image")}`}>
-                  <div className={this.decorateCSS("image-wrapper")}>
-                    <img src={item.value[0].value} alt={`Gallery Image ${index + 1}`} />
-                    <div className={this.decorateCSS("badge")}>
-                      {item.value[1]?.value}
-                    </div>
-                  </div>
-                  <div className={this.decorateCSS("title")}>
-                    {item.value[2]?.value}
-                  </div>
-                  <div className={this.decorateCSS("description")}>
-                    {item.value[3]?.value}
-                  </div>
-                  <div className={this.decorateCSS("button")}>
-                    {item.value[4]?.value}
-                  </div>
-                </div>
-              ))}
-          </div> */}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
