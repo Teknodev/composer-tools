@@ -20,6 +20,16 @@ export namespace Base {
     return getStyleValue("--composer-view-type");
   }
 
+  export function setStyleValue(property: string, value: any){
+    const rootStyle = document.documentElement.style;
+    return rootStyle.setProperty(property, value);
+  }
+
+  export function setViewType(){}
+  export function setContentAlignment(){}
+  export function setSubtitleOption(){}
+  export function setFontSize(){}
+
   export function H1({ className, children, ...props }: any) {
     return (
       <h1 className={`${styles.h1} ${className}`} {...props}>
