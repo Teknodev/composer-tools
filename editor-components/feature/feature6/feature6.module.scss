@@ -1,55 +1,38 @@
-.container {
-  width: 100%;
-  padding: 20px 0;
-  color: var(--composer-html-background);
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
+.container {
+  .max-content {
     .content {
-      display: flex;
       justify-content: center;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
+      align-items: center;
+      gap: var(--composer-gap-md);
 
       .header-title {
-        display: flex;
-        justify-content: center;
-        text-align: center;
+        margin: 0;
         font-size: 6rem;
-        line-height: 5rem;
-        width: 100%;
-        color: var(--composer-font-color-primary);
-      }
-      .header-subtitle {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        font-size: 3rem;
-        width: 100%;
-        color: var(--composer-secondary-color);
       }
 
-      .button-position {
-        display: flex;
+      .header-subtitle {
+        margin: 0;
+        font-size: 3rem;
+      }
+
+      .button-container {
         justify-content: center;
         align-items: center;
         margin: 0 auto;
-        gap: 20px;
+        gap: var(--composer-gap-md);
       }
 
       .button {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.8em 1em;
+        padding: var(--composer-gap-sm) var(--composer-gap-md);
         background: var(--composer-secondary-color);
         color: var(--composer-font-color-secondary);
         transition: 0.4s;
-        font-size: 18px;
+        font-size: 1rem;
         cursor: pointer;
 
         &:hover {
@@ -68,7 +51,7 @@
   width: 90%;
   flex-wrap: wrap;
   margin: 0 auto;
-  gap: 20px;
+  gap: var(--composer-gap-md);
 
   .card-item-count {
     display: flex;
@@ -96,6 +79,7 @@
         object-fit: cover;
         text-align: center;
       }
+
       .image-shadow {
         position: absolute;
         left: 0;
@@ -106,16 +90,20 @@
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        padding: 0 20px 20px 20px;
+        padding: var(--composer-gap-md);
+        padding-top: 0;
       }
+
       .image-shadow.overlay {
         color: white;
         background: linear-gradient(to bottom, rgba(var(--composer-html-background-rgb), 0) 0%, rgba(var(--composer-font-color-primary-rgb), 0.8) 100%);
       }
+
       .title {
+        margin: var(--composer-gap-sm);
+        margin-top: 0;
         font-weight: 400;
         font-size: 2.5rem;
-        line-height: 2.75rem;
         color: var(--composer-font-color-secondary);
       }
     }
@@ -125,57 +113,72 @@
 .listed-height-modify {
   height: 300px;
 }
+
 .image-shadow-full-height {
   height: 100%;
 }
 
-@media only screen and (max-width: 768px) {
-  .header-title {
-    font-size: 4rem !important;
-    line-height: 4rem !important;
-  }
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .content {
+        justify-content: center;
+        align-items: center;
+        gap: var(--composer-gap-md);
 
-  .header-subtitle {
-    font-size: 2.25rem !important;
-  }
+        .header-title {
+          font-size: 4rem;
+        }
 
-  .image {
-    height: 300px !important;
-  }
-
-  .title {
-    font-size: 1.8rem !important;
-    line-height: 2rem !important;
-  }
-
-  .image-shadow {
-    padding: 0 12px 12px 12px !important;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .header-title {
-    font-size: 3rem !important;
-    line-height: 3rem !important;
-  }
-
-  .header-subtitle {
-    font-size: 1.75rem !important;
-  }
-
-  .cards-container {
-    flex-direction: column;
-    .card-item-count {
-      width: 100% !important;
+        .header-subtitle {
+          font-size: 2rem;
+        }
+      }
     }
   }
 
-  .button-position {
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
+  .cards-container {
+    .card-item-count {
+      width: 100% !important;
 
-  .button {
-    font-size: 14px !important;
+      .listed {
+        .image {
+          height: 300px;
+        }
+
+        .image-shadow {
+          padding: var(--composer-gap-sm);
+          padding-top: 0;
+        }
+
+        .image-shadow.overlay {
+          color: white;
+          background: linear-gradient(to bottom,
+              rgba(var(--composer-html-background-rgb), 0) 0%,
+              rgba(var(--composer-font-color-primary-rgb), 0.8) 100%);
+        }
+
+        .title {
+          font-size: 2rem;
+          line-height: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        .header-title {
+          font-size: 2rem;
+        }
+
+        .header-subtitle {
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
 }
