@@ -20,7 +20,7 @@
           cursor: pointer;
 
           .icon {
-            font-size: 2rem;
+            font-size: 1rem;
             margin: var(--composer-gap-xs);
           }
         }
@@ -44,14 +44,18 @@
           }
 
           .terms-container {
-            display: flex;
-            column-gap: var(--composer-gap-xs);
-            .termsDescription {
-              opacity: 0.5;
-            }
-            .termsText {
-              opacity: 0.5;
-              border-bottom: 1px solid;
+            .terms {
+              width: 380px;
+              .termsDescription {
+                display: inline;
+              }
+
+              .termsText {
+                display: inline-block;
+                margin-left: var(--composer-gap-xs);
+                text-decoration: underline;
+                cursor: pointer;
+              }
             }
           }
         }
@@ -116,6 +120,7 @@
           .button-background {
             flex-direction: row;
             gap: var(--composer-gap-md);
+            margin-top: var(--composer-gap-md);
 
             .button {
               padding: var(--composer-gap-sm);

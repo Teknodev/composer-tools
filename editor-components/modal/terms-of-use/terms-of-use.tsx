@@ -144,9 +144,16 @@ class TermsOfUseModal extends BaseModal {
               <div className={this.decorateCSS("second-div")}>
                 {title && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H3>}
                 <div className={this.decorateCSS("terms-container")}>
-                  {termsDescription && <Base.P className={this.decorateCSS("termsDescription")}>{this.getPropValue("termsDescription")}</Base.P>}
-                  {termsText && <Base.H5 className={this.decorateCSS("termsText")}>{this.getPropValue("termsText")}</Base.H5>}
+                  {(termsDescription || termsText) && (
+                    <Base.P className={this.decorateCSS("terms")}>
+                      <span className={this.decorateCSS("termsDescription")}>{termsDescription}</span>
+                      <span className={this.decorateCSS("termsText")}>
+                        <ComposerLink path={this.getPropValue("termsLink")}> {termsText}</ComposerLink>
+                      </span>
+                    </Base.P>
+                  )}
                 </div>
+
                 {description && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
               </div>
 
