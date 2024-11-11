@@ -7,9 +7,9 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Item = {
   image: string;
-  name: string;
-  nameId: string;
-  description: string;
+  name: JSX.Element;
+  nameId: JSX.Element;
+  description: JSX.Element;
 };
 class Testimonials7Page extends Testimonials {
   constructor(props?: any) {
@@ -164,6 +164,14 @@ class Testimonials7Page extends Testimonials {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);
       },
+      responsive: [
+        {
+          breakpoint: 450,
+          settings: {
+            dots: true,
+          },
+        },
+      ],
     };
     const sliderRef = this.getComponentState("slider-ref");
     return (
@@ -174,6 +182,9 @@ class Testimonials7Page extends Testimonials {
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {this.getPropValue("cover-image") && (
+            <img src={this.getPropValue("cover-image")} className={this.decorateCSS("background-image")} />
+          )}
           <div className={this.decorateCSS("testimonials7")}>
             {this.getPropValue("prevIcon") && (
               <button onClick={() => {
@@ -191,26 +202,31 @@ class Testimonials7Page extends Testimonials {
               {this.castToObject<Item[]>("card-items").map(
                 (item: Item, index: number) => (
                   <div className={this.decorateCSS("card")}>
-
                     <Base.VerticalContent className={this.decorateCSS("item-content")}>
-                      <div className={this.decorateCSS("item-description")}>
-                        {item.description}
-                      </div>
+                      {this.castToString(item.description) && (
+                        <div className={this.decorateCSS("item-description")}>
+                          {item.description}
+                        </div>
+                      )}
                       <div className={this.decorateCSS("profile")}>
-
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className={this.decorateCSS("image")}
-                        />
+                        {item.image && (
+                          <img
+                            src={item.image}
+                            alt={item.image}
+                            className={this.decorateCSS("image")}
+                          />
+                        )}
                         <Base.VerticalContent className={this.decorateCSS("profile-text")}>
-                          <div className={this.decorateCSS("item-name")}>
-                            {item.name}
-                          </div>
-
-                          <div className={this.decorateCSS("item-name-id")}>
-                            {item.nameId}
-                          </div>
+                          {this.castToString(item.name) && (
+                            <div className={this.decorateCSS("item-name")}>
+                              {item.name}
+                            </div>
+                          )}
+                          {this.castToString(item.nameId) && (
+                            <div className={this.decorateCSS("item-name-id")}>
+                              {item.nameId}
+                            </div>
+                          )}
                         </Base.VerticalContent>
 
                       </div>
@@ -228,8 +244,8 @@ class Testimonials7Page extends Testimonials {
               </button>
             )}
           </div>
-        </Base.MaxContent>
-      </Base.Container>
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }

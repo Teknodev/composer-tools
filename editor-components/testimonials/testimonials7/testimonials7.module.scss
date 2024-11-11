@@ -5,16 +5,21 @@
   .max-content {
     display: flex;
     justify-content: center;
+    height: 100vh;
+    .background-image{
+      display: none;      
+    }
     .testimonials7 {
       flex-direction: column;
       display: block;
       width: 50%;
       position: relative;
-      margin-top: calc(var(--composer-gap-xl)*5);
+      // margin-top: calc(var(--composer-gap-xl)*5);
       .button-right, .button-left{
         border: none;
         background-color: transparent;
         position: absolute;
+        cursor: pointer;
         .arrow{
           width: 25px;
           height: 25px;
@@ -32,6 +37,8 @@
       .slider-style {
         width: 60%;
         display: flex;
+        position: absolute;
+        bottom: 0px;
         .card{
           color: var(--composer-font-color-primary);
           display: flex !important;
@@ -40,11 +47,10 @@
           background-color: var(--composer-html-background);
           padding: var(--composer-gap-xl) calc(var(--composer-gap-xl)*2)  var(--composer-gap-md) calc(var(--composer-gap-xl)*2) ;
           width: 100%;
-  
           .item-content{
             gap:var(--composer-gap-md);
             .item-description{
-  
+              font-size: 1rem;
             }
              .profile{
               display: flex;
@@ -85,11 +91,6 @@
           top:50%;
           right: calc(var(--composer-gap-md));
         }
-        .button-left{
-          left: var(--composer-gap-md);
-          top:50%;
-          z-index: 2;
-        }
         .slider-style {
           width: 100%;
           .card{
@@ -104,21 +105,55 @@
 
 @media only screen and (max-width: 400px) {
   .container {
-    background-color: var(--composer-html-background);
+    background-image: none !important;
     .max-content {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      .background-image{
+        display: block;
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+      }
       .testimonials7 {
-        width: 75%;
+        margin-top:0px;
+        width: 100%;
+        .button-left{
+          display: none;
+        }
+        .button-right{
+          display: none;
+        }
+        .slider-style{
+          >ul{
+            b
+            >li{
+              >button{
+                &::before{
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
+          }
           .card {
             border: var(--composer-testiary-color);
-          .profile{
-            font-size: 10px;
-            .profile-text{
-             margin-top: 5px;
-            }     
-          }
-        }  
-        
+            padding:  var(--composer-gap-lg) 20px;
+            .item-content{
+              padding: var(--composer-gap-xs);
+              .profile{
+                .profile-text{
+                 margin-top: 5px;
+                }     
+                .image{
+                  width: 80px;
+                  height: 80px;
+                }
+              }
+
+            }
+         }  
+        }
       }
     }
   }
