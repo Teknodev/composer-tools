@@ -31,7 +31,7 @@
           gap: var(--composer-gap-md);
           padding: var(--composer-gap-xl);
           justify-content: center;
-          background-color: var(--composer-html-background);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
           .title {
             color: var(--composer-font-color-primary);
@@ -203,12 +203,12 @@
                 &:after{
                   left: 50%;
                   margin-left: -17px;
-                  border-right: 6px solid white;
+                  border-right: 6px solid var(--composer-font-color-secondary);
                 }
                 &:before{
                   right: 50%;
                   margin-right: -17px;
-                  border-left: 6px solid white;
+                  border-left: 6px solid var(--composer-font-color-secondary);
                 }
               }
             }
