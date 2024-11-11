@@ -1,53 +1,26 @@
-.container,
-.container-alternate {
-  width: 100%;
-  background: var(--composer-html-background);
-  color: var(--composer-font-color-primary);
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
-  }
-}
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-.container {
-  padding: 20px 50px;
-}
 .container-alternate {
-  padding: 57px 50px 42px;
+  margin: var(--composer-gap-xl) 0;
 }
 
 .wrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 2em;
+  gap: var(--composer-gap-xl);
 }
 
 .featured,
 .featured-alternate {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  > h1,
-  p {
-    margin: 0;
-  }
-  .title {
-    font-weight: 600;
-    font-size: 3.5em;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
-  }
   .description {
-    font-size: 1.5em;
-    margin-bottom: 20px;
+    color: var(--composer-font-color-primary);
+    opacity: 0.5;
   }
 }
+
 .featured {
-  width: calc(100% / 2);
-  padding: 0 4em 4em 0;
+  width: 40%;
+  gap: var(--composer-gap-md);
 }
 .featured-alternate {
   width: 100%;
@@ -57,7 +30,6 @@
 .cards-div-alternate {
   display: flex;
   align-items: center;
-  gap: 0;
 }
 
 .cards-div {
@@ -72,12 +44,11 @@
 .card-container {
   width: 100%;
   border: 1px solid var(--composer-font-color-primary);
-  min-height: 25em;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--composer-html-background);
-  padding: 5%;
+  padding: var(--composer-gap-lg);
 }
 
 .card-container.active {
@@ -88,7 +59,7 @@
     position: absolute;
     top: 0;
     left: 50%;
-    padding: 0.5em 1.5em;
+    padding: var(--composer-gap-xs);
     transform: translate(-50%, -50%);
     color: var(--composer-font-color-secondary);
     border: 1px solid var(--composer-primary-color);
@@ -99,103 +70,65 @@
 }
 
 .card {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center !important;
 
   .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 20px;
-    > h1,
-    h3 {
-      margin: 0;
-    }
+    align-items: center !important;
 
     .icon {
       color: var(--composer-primary-color);
-      width: 50px;
-      height: 50px;
-      margin-bottom: 20px;
+      width: var(--composer-gap-xl);
+      height: var(--composer-gap-xl);
     }
     .title {
-      font-size: 16px;
-      font-weight: 500;
       color: var(--composer-font-color-primary);
-      word-break: break-word;
     }
     .price {
-      font-size: 3.3em;
-      font-weight: 600;
+      margin: 0;
       color: var(--composer-font-color-primary);
-      text-wrap: nowrap;
     }
   }
 
   .body {
-    margin-bottom: 20px;
-    width: 100%;
-    > ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
     .items {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
       .item {
-        padding: 1em 0;
+        padding: var(--composer-gap-sm);
+        width: 100%;
+        color: var(--composer-font-color-primary);
         border-bottom: 1px solid var(--composer-font-color-primary);
         text-align: center;
         word-break: break-word;
       }
-      > li:last-child {
-        border-bottom: none;
-      }
-      > li {
-        font-size: 16px;
-        font-weight: 500;
-      }
     }
   }
-}
-
-.featured-button-container {
-  margin-bottom: 20px;
 }
 
 .button {
   max-width: 100%;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  border-radius: 5px;
+  border-radius: var(--composer-border-radius-sm);
   transition: 0.5s ease;
-  padding: 1em 2em;
+  padding: var(--composer-gap-sm) var(--composer-gap-md);
   color: var(--composer-font-color-primary);
   background-color: var(--composer-font-color-secondary);
-  border: 1px solid var(--composer-font-color-primary);
-  word-break: break-word;
+  border: none;
+  margin-top: var(--composer-gap-md);
+  align-items: center;
 
   .button-text {
     position: relative;
     color: var(--composer-text-color-primary);
     right: 0;
-    transition: 0.6s all;
+    transition: 0.5s all;
   }
 
   .button-icon {
     position: absolute;
-    right: 20px;
+    right: var(--composer-gap-md);
     opacity: 0;
-    transition: 0.6s;
+    transition: 0.5s;
     color: var(--composer-font-color-primary);
   }
 
@@ -205,27 +138,19 @@
 
   &.has-icon:hover {
     .button-text {
-      right: 10px;
+      right: var(--composer-gap-xs);
     }
 
     .button-icon {
       opacity: 1;
-      right: 10px;
+      right: var(--composer-gap-xs);
     }
   }
 }
 
-@media only screen and (max-width: 1000px) {
-  .container {
-    padding: 20px 30px;
-  }
-
+@media only screen and (max-width: $composer-tablet-width-sm) {
   .container-alternate {
-    padding: 20px 30px 43px;
-  }
-
-  .card {
-    width: 85%;
+    margin-top: 0;
   }
 
   .wrapper {
@@ -234,43 +159,21 @@
     .featured,
     .featured-alternate {
       width: 100%;
-      gap: 2em;
-      padding-right: 0;
     }
 
     .cards-div,
     .cards-div-alternate {
       width: 100%;
-
-      .card-container {
-        width: 100% !important;
-      }
     }
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container,
-  .container-alternate {
-    padding: 20px 30px;
-  }
-
-  .featured,
-  .featured-alternate {
+@media only screen and (max-width: $composer-phone-width-sm) {
+  .cards-div,
+  .cards-div-alternate {
     width: 100%;
-    padding: 0;
-    align-items: center;
-
-    .button {
-      justify-content: end;
-    }
-  }
-
-  .cards-div,
-  .cards-div-alternate {
-    width: 90%;
     flex-direction: column;
-    gap: 2em;
+    gap: var(--composer-gap-lg);
 
     .card-container {
       width: 100%;
@@ -280,31 +183,12 @@
       scale: 1;
     }
   }
-}
 
-@media only screen and (max-width: 500px) {
-  .container,
-  .container-alternate {
-    padding: 20px 30px;
+  .wrapper {
+    gap: var(--composer-gap-lg);
   }
 
-  .featured,
-  .featured-alternate {
-    align-items: flex-start;
-  }
-
-  .cards-div,
-  .cards-div-alternate {
-    width: 90%;
-    flex-direction: column;
-    gap: 2em;
-
-    .card-container {
-      width: 100%;
-    }
-
-    .card-container.active {
-      scale: 1;
-    }
+  .button {
+    margin-top: var(--composer-gap-xs);
   }
 }

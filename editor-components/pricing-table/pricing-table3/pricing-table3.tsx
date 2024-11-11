@@ -3,6 +3,7 @@ import styles from "./pricing-table3.module.scss";
 import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   icon: string;
@@ -39,8 +40,7 @@ class PricingTable3 extends BasePricingTable {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
+      value: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
     });
 
     this.addProp({
@@ -440,19 +440,13 @@ class PricingTable3 extends BasePricingTable {
     const hasVisibleTag = cards?.some((card) => card.tagSettings.showTag);
 
     return (
-      <div className={this.decorateCSS(hasVisibleTag ? "container-alternate" : "container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS(hasVisibleTag ? "container-alternate" : "container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || descExist || buttonExist) && (
-              <div className={this.decorateCSS(hasCards ? "featured" : "featured-alternate")}>
-                {titleExist && (
-                  <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-                )}
-                {descExist && (
-                  <p className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </p>
-                )}
+              <Base.VerticalContent className={this.decorateCSS(hasCards ? "featured" : "featured-alternate")}>
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttonExist && (
                   <ComposerLink path={featuredButton.link}>
                     <div className={this.decorateCSS("featured-button-container")}>
@@ -461,8 +455,9 @@ class PricingTable3 extends BasePricingTable {
                       ${featuredButton.icon ? this.decorateCSS("has-icon") : ""}`}
                         onClick={(event) => {
                           event.preventDefault();
-                        }}>
-                        <div className={this.decorateCSS("button-text")}>{featuredButton.text}</div>
+                        }}
+                      >
+                        {featuredButton.text}
                         <ComposerIcon
                           name={featuredButton.icon}
                           propsIcon={{
@@ -473,29 +468,20 @@ class PricingTable3 extends BasePricingTable {
                     </div>
                   </ComposerLink>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
             {hasCards && (
-              <div
-                className={this.decorateCSS(
-                  titleExist || descExist || buttonExist ? "cards-div" : "cards-div-alternate"
-                )}>
+              <div className={this.decorateCSS(titleExist || descExist || buttonExist ? "cards-div" : "cards-div-alternate")}>
                 {cards.map((card: Card, idx: number) => {
                   const showTag = card.tagSettings.showTag;
                   const titleExist = this.castToString(card.title);
 
                   return (
-                    <div
-                      key={idx}
-                      className={`${this.decorateCSS("card-container")} ${
-                        showTag && this.decorateCSS("active")
-                      }`}>
-                      <div className={this.decorateCSS("card")}>
-                        {showTag && this.castToString(card.tagSettings.tag) && (
-                          <div className={this.decorateCSS("tag")}>{card.tagSettings.tag}</div>
-                        )}
+                    <div key={idx} className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")}`}>
+                      <Base.VerticalContent className={this.decorateCSS("card")}>
+                        {showTag && this.castToString(card.tagSettings.tag) && <div className={this.decorateCSS("tag")}>{card.tagSettings.tag}</div>}
 
-                        <div className={this.decorateCSS("header")}>
+                        <Base.VerticalContent className={this.decorateCSS("header")}>
                           {card.icon && (
                             <ComposerIcon
                               name={card.icon}
@@ -504,24 +490,20 @@ class PricingTable3 extends BasePricingTable {
                               }}
                             />
                           )}
-                          {titleExist && (
-                            <h1 className={this.decorateCSS("title")}>{card.title}</h1>
-                          )}
-                          <h3 className={this.decorateCSS("price")}>{card.price}</h3>
-                        </div>
+                          {titleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
+                          <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>
+                        </Base.VerticalContent>
                         {card.items.length > 0 && (
                           <div className={this.decorateCSS("body")}>
-                            <ul className={this.decorateCSS("items")}>
+                            <Base.VerticalContent className={this.decorateCSS("items")}>
                               {card.items.map((item: { value: JSX.Element }, idx: number) => {
                                 return (
-                                  <li
-                                    key={idx}
-                                    className={this.decorateCSS("item")}>
+                                  <Base.P key={idx} className={this.decorateCSS("item")}>
                                     {item.value}
-                                  </li>
+                                  </Base.P>
                                 );
                               })}
-                            </ul>
+                            </Base.VerticalContent>
                           </div>
                         )}
 
@@ -530,10 +512,10 @@ class PricingTable3 extends BasePricingTable {
                             <ComposerLink path={card.button.link}>
                               <button
                                 className={`${this.decorateCSS("button")}
-                                       ${card.button.icon ? this.decorateCSS("has-icon") : ""}`}>
-                                <div className={this.decorateCSS("button-text")}>
-                                  {card.button.text}
-                                </div>
+                                       ${card.button.icon ? this.decorateCSS("has-icon") : ""}`}
+                              >
+                                {/* <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P> */}
+                                {card.button.text}
                                 {card.button.icon && (
                                   <ComposerIcon
                                     name={card.button.icon}
@@ -546,15 +528,15 @@ class PricingTable3 extends BasePricingTable {
                             </ComposerLink>
                           </div>
                         )}
-                      </div>
+                      </Base.VerticalContent>
                     </div>
                   );
                 })}
               </div>
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
