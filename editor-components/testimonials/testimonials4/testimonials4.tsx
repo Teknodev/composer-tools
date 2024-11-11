@@ -212,7 +212,6 @@ class Testimonials4Page extends Testimonials {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
-        isFull="true"
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
@@ -277,7 +276,7 @@ class Testimonials4Page extends Testimonials {
             <button className={this.decorateCSS("nextArrow")} onClick={() => {
               sliderRef.current.slickNext();
             }}>
-              <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+              <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-dark") }}></ComposerIcon>
             </button>
           )}
         </Base.MaxContent>

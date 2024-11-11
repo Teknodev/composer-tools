@@ -3,6 +3,7 @@
   position: relative;
   z-index: 1; 
   background-color: transparent;
+  padding:0px;
   &.overlay::before {
     content: '';
     position: absolute;
