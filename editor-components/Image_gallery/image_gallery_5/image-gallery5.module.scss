@@ -1,37 +1,12 @@
 .container {
-  width: 100%;
-  background-color: var(--composer-color-background);
-  padding: 20px 50px;
-  display: flex;
-  justify-content: center;
-
   .max-content {
-    width: var(--composer-content-width);
-    margin: 0 auto;
-
     .images {
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
       .image-container {
-        justify-content: center;
-        display: flex;
-        text-align: center;
-        max-width: 100%;
-        max-height: 100%;
         overflow: hidden;
-        position: relative;
         cursor: pointer;
         .image {
-          display: grid;
-          margin: auto;
-          height: 100%;
-          max-height: 100vh;
+          height: 500px;
           width: 100%;
-          grid-gap: 20px;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
           object-fit: cover;
           transition: transform 0.3s ease-in-out;
           &:hover {
@@ -55,24 +30,21 @@
       cursor: zoom-out;
       z-index: 10;
       .overlay-content {
-        position: relative;
         display: flex;
-        justify-content: center;
+        height: 100%;
         width: 100%;
         .middle-content {
           display: flex;
           flex-direction: column;
-          position: relative;
           max-height: 100%;
           margin: auto;
-          padding-bottom: 20px;
           width: 35%;
           max-width: 100%;
-          text-align: center;
+          gap: var(--composer-gap-xs);
           .image-close-button {
-            position: absolute;
-            top: -30px; 
-            right: -5px; 
+            padding: 0px;
+            display: flex;
+            justify-content: flex-end;
             background: none;
             border: none;
             color: #ffffff;
@@ -81,28 +53,22 @@
           }
           .large-image {
             max-height: 100%;
-            position: relative;
             cursor: pointer;
-            width: auto;
             max-width: 100%;
 
           }
           .caption-container{
             display: flex;
-            margin-top: 10px;
             font-size: 16px;
             color: #ccc;
             max-width: 100%;
             .gallery-image {
               flex: 1;
-              text-align: left; 
-              position: absolute;
-              width: 80%;
+              display: flex;
+              justify-content: flex-end;
             }
             .image-caption {
-              flex: 1;
-              text-align: right; 
-              width: 20%;
+              flex: 1;  
             }
           }
       
@@ -112,7 +78,6 @@
         .prev-button,
         .next-button {
           position: absolute;
-          top: 50px;
           background: transparent;
           color: white;
           border: none;
@@ -135,11 +100,8 @@
 
 @media screen and (max-width: 768px) {
   .container{ 
-    padding: 20px 30px;
     .max-content{
       .images{
-        display: grid !important;
-        grid-template-columns: repeat(auto-fill,minmax(200px 1fr)) !important;
         .image-container{
           max-width: 100%;
           max-height: 100%;
@@ -149,7 +111,6 @@
         .overlay-content {
           .middle-content {
             flex-direction: column;
-            padding-bottom: 20px;
             width: 60%;
             max-width: 100%;
           }
@@ -160,17 +121,11 @@
 }
 @media screen and (max-width: 430px) {
   .container{ 
-    padding: 20px 30px;
     .max-content{
-      .images{
-        display: grid !important;
-        grid-template-columns: repeat(1, 1fr) !important;
-      }
       .overlay {
         .overlay-content {
           .middle-content {
             flex-direction: column;
-            padding-bottom: 20px;
             width: auto;
             max-width: 90%;
           }

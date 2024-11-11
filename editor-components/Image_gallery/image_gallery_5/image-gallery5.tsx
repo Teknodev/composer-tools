@@ -26,7 +26,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "imageGallery",
               displayer: "Image1",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
             },
             {
               type: "string",
@@ -46,7 +46,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "imageGallery",
               displayer: "Image2",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
             },
             {
               type: "string",
@@ -66,7 +66,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "imageGallery",
               displayer: "Image3",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
             },
             {
               type: "string",
@@ -106,7 +106,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "imageGallery",
               displayer: "Image5",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
             },
             {
               type: "string",
@@ -126,7 +126,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "imageGallery",
               displayer: "Image6",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
             },
             {
               type: "string",
@@ -225,16 +225,16 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     const closeIcon = this.getPropValue("closeIcon");
 
     return (
-      <div
+      <Base.Container
         className={this.decorateCSS("container")}
         ref={this.imageGalleryRef}
         tabIndex={0}
         onKeyDown={this.handleKeyPress}
       >
-        <div className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid
             className={this.decorateCSS("images")}
-            gridCount={{pc: this.getPropValue("itemCount"), tablet: 2, phone: 1}}
+            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}
           >
             {galleries.map((galleryItem: any, index: number) => {
               const image = galleryItem.value.find((item: any) => item.type === "image").value;
@@ -257,6 +257,11 @@ class ImageGalleryComponent5 extends BaseImageGallery {
             >
               <div className={this.decorateCSS("overlay-content")}>
                 <div className={this.decorateCSS("middle-content")}>
+                  {closeIcon && (
+                    <button className={this.decorateCSS("image-close-button")}>
+                      <ComposerIcon name={closeIcon} />
+                    </button>
+                  )}
                   <img
                     src={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
                     alt=""
@@ -266,18 +271,16 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                       this.handleNextImage();
                     }}
                   />
-                  <button className={this.decorateCSS("image-close-button")}>
-                    <ComposerIcon name={closeIcon} />
-                  </button>
+
                   <div className={this.decorateCSS("caption-container")}>
-                  {imageIndex && (
-                    <div className={this.decorateCSS("image-caption")}>
-                      {clickedImageIndex + 1} of {galleries.length}
+                    {imageIndex && (
+                      <div className={this.decorateCSS("image-caption")}>
+                        {clickedImageIndex + 1} of {galleries.length}
+                      </div>
+                    )}
+                    <div className={this.decorateCSS("gallery-image")}>
+                      {galleries[clickedImageIndex].value.find((item: any) => item.type === "string").value}
                     </div>
-                  )}
-                  <div className={this.decorateCSS("gallery-image")}>
-                    {galleries[clickedImageIndex].value.find((item: any) => item.type === "string").value}
-                  </div>
                   </div>
                 </div>
                 <button
@@ -301,10 +304,10 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
-}
+  }
 
 }
 
