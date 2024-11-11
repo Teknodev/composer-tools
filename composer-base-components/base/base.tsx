@@ -8,6 +8,11 @@ export namespace Base {
     return rootStyles.getPropertyValue(cssVariable).trim();
   }
 
+  function setStyleValue(property: string, value: any){
+    const rootStyle = document.documentElement.style;
+    return rootStyle.setProperty(property, value);
+  }
+
   export function getSectionSubTitleType() {
     return getStyleValue("--composer-subtitle-type");
   }
@@ -20,6 +25,7 @@ export namespace Base {
     return getStyleValue("--composer-view-type");
   }
 
+  
   export function H1({ className, children, ...props }: any) {
     return (
       <h1 className={`${styles.h1} ${className}`} {...props}>
