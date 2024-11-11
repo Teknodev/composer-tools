@@ -240,12 +240,14 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               const image = galleryItem.value.find((item: any) => item.type === "image").value;
               return (
                 <div className={this.decorateCSS("image-container")} key={index}>
-                  <img
-                    src={image}
-                    alt={`Gallery Image ${index + 1}`}
-                    className={this.decorateCSS("image")}
-                    onClick={() => this.handleImageClick(index)}
-                  />
+                  {image && (
+                    <img
+                      src={image}
+                      alt={image}
+                      className={this.decorateCSS("image")}
+                      onClick={() => this.handleImageClick(index)}
+                    />
+                  )}
                 </div>
               );
             })}
@@ -262,16 +264,17 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                       <ComposerIcon name={closeIcon} />
                     </button>
                   )}
-                  <img
-                    src={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
-                    alt=""
-                    className={this.decorateCSS("large-image")}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      this.handleNextImage();
-                    }}
-                  />
-
+                  {galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value && (
+                    <img
+                      src={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
+                      alt={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
+                      className={this.decorateCSS("large-image")}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        this.handleNextImage();
+                      }}
+                    />
+                  )}
                   <div className={this.decorateCSS("caption-container")}>
                     {imageIndex && (
                       <div className={this.decorateCSS("image-caption")}>
@@ -283,24 +286,28 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                     </div>
                   </div>
                 </div>
-                <button
-                  className={this.decorateCSS("prev-button")}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    this.handlePrevImage();
-                  }}
-                >
-                  <ComposerIcon name={prevIcon} />
-                </button>
-                <button
-                  className={this.decorateCSS("next-button")}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    this.handleNextImage();
-                  }}
-                >
-                  <ComposerIcon name={nextIcon} />
-                </button>
+                {prevIcon && (
+                  <button
+                    className={this.decorateCSS("prev-button")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      this.handlePrevImage();
+                    }}
+                  >
+                    <ComposerIcon name={prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                  </button>
+                )}
+                {nextIcon && (
+                  <button
+                    className={this.decorateCSS("next-button")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      this.handleNextImage();
+                    }}
+                  >
+                    <ComposerIcon name={nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                  </button>
+                )}
               </div>
             </div>
           )}
@@ -308,7 +315,6 @@ class ImageGalleryComponent5 extends BaseImageGallery {
       </Base.Container>
     );
   }
-
 }
 
 export default ImageGalleryComponent5;

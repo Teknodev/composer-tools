@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   .max-content {
     .images {
@@ -5,7 +6,9 @@
         overflow: hidden;
         cursor: pointer;
         .image {
-          height: 500px;
+          border-radius: var(--composer-border-radius-xs);
+          max-height: 70vh;
+          height: 100%;
           width: 100%;
           object-fit: cover;
           transition: transform 0.3s ease-in-out;
@@ -48,32 +51,29 @@
             background: none;
             border: none;
             color: #ffffff;
-            font-size: 15px;
+            height: 15px;
             cursor: pointer;
           }
           .large-image {
             max-height: 100%;
             cursor: pointer;
             max-width: 100%;
-
           }
           .caption-container{
             display: flex;
-            font-size: 16px;
+            font-size: 1rem;
             color: #ccc;
             max-width: 100%;
-            .gallery-image {
-              flex: 1;
-              display: flex;
-              justify-content: flex-end;
-            }
             .image-caption {
               flex: 1;  
             }
+            .gallery-image {
+              flex: 1.5;
+              display: flex;
+              justify-content: flex-end;
+            }
           }
-      
           }
- 
         }
         .prev-button,
         .next-button {
@@ -82,8 +82,11 @@
           color: white;
           border: none;
           cursor: pointer;
-          font-size: 24px;
           transform: translateY(-50%);
+          .icon{
+            width: 25px;
+            height: 25px;
+          }
         }
         .prev-button {
           left: 20px;
@@ -98,36 +101,26 @@
   }
 
 
-@media screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container{ 
     .max-content{
-      .images{
-        .image-container{
-          max-width: 100%;
-          max-height: 100%;
-          }
-      }
       .overlay {
         .overlay-content {
           .middle-content {
-            flex-direction: column;
             width: 60%;
-            max-width: 100%;
           }
         }
       }
     }
   }
 }
-@media screen and (max-width: 430px) {
+@container (max-width: #{$composer-phone-width}) {
   .container{ 
     .max-content{
       .overlay {
         .overlay-content {
           .middle-content {
-            flex-direction: column;
-            width: auto;
-            max-width: 90%;
+            width: 90%;
           }
         }
       }
