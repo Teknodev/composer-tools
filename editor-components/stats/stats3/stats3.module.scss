@@ -8,7 +8,6 @@
     height: 100%;
 
     .page {
-
       .left-page,
       .left-page-without-image {
         height: auto;
@@ -26,6 +25,7 @@
         .button-container {
           display: flex;
           align-items: center;
+          gap: var(--composer-gap-md);
 
           .button {
             border-radius: var(--composer-border-radius-sm);
@@ -39,8 +39,8 @@
               color: var(--composer-primary-color);
               font-size: 1.5rem;
 
-              >blinkpage {
-                >p {
+              > blinkpage {
+                > p {
                   flex-wrap: wrap;
                   word-break: break-word;
                 }
@@ -104,70 +104,48 @@
               justify-content: center;
               align-items: flex-start;
               padding: var(--composer-gap-sm);
+              border-right: 1px solid var(--composer-font-color-primary);
+            }
 
-              .inner-content {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
+            .content:last-child {
+              border-right: none;
+            }
 
-                .text-container {
-                  .first-container {
-                    display: flex;
-                    gap: var(--composer-gap-md);
+            .content .inner-content {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+            }
 
-                    .icon {
-                      width: 2rem;
-                      height: 2rem;
-                      min-width: 2rem;
-                      color: var(--composer-font-color-primary);
-                    }
+            .content .inner-content .text-container .first-container {
+              display: flex;
+              gap: var(--composer-gap-md);
+            }
 
-                    .text {
-                      .number {
-                        max-width: 300px;
-                        font-size: 2rem;
-                        color: var(--composer-font-color-primary);
+            .content .inner-content .text-container .first-container .icon {
+              width: 2rem;
+              height: 2rem;
+              min-width: 2rem;
+              color: var(--composer-font-color-primary);
+            }
 
-                        >blinkpage {
-                          >p {
-                            flex-wrap: wrap;
-                            word-break: break-word;
-                          }
-                        }
-                      }
+            .content .inner-content .text-container .first-container .text .number {
+              max-width: 300px;
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+            }
 
-                      .right-text {
-                        max-width: 300px;
-                        font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
+            .content .inner-content .text-container .first-container .text .number > blinkpage > p,
+            .content .inner-content .text-container .first-container .text .right-text > blinkpage > p {
+              flex-wrap: wrap;
+              word-break: break-word;
+            }
 
-                        >blinkpage {
-                          >p {
-                            flex-wrap: wrap;
-                            word-break: break-word;
-                          }
-                        }
-                      }
-
-
-                    }
-                  }
-                }
-              }
-
-              &::after {
-                content: "";
-                display: block;
-                width: 1px;
-                height: 100%;
-                background-color: var(--composer-font-color-primary);
-                margin: 0 var(--composer-gap-xs);
-              }
-
-              &:last-child::after {
-                display: none;
-              }
+            .content .inner-content .text-container .first-container .text .right-text {
+              max-width: 300px;
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
             }
           }
         }
@@ -281,7 +259,7 @@
           .button-container {
             flex-direction: column;
 
-            >div {
+            > div {
               width: 100% !important;
             }
 

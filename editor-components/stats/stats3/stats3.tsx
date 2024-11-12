@@ -52,13 +52,6 @@ class Stats3Page extends BaseStats {
               displayer: "Button Link",
               value: "",
             },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: false,
-              max: 3,
-            },
           ],
         },
       ],
@@ -67,8 +60,7 @@ class Stats3Page extends BaseStats {
       type: "image",
       key: "backgroundImage",
       displayer: "Card Background Image",
-      value:
-        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/group-therapy-support-or-mental-health-community-2023-11-27-05-33-38-utc.jpg",
+      value: "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/group-therapy-support-or-mental-health-community-2023-11-27-05-33-38-utc.jpg",
     });
     this.addProp({
       type: "array",
@@ -171,7 +163,7 @@ class Stats3Page extends BaseStats {
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.getPropValue("buttons");
     const image = this.getPropValue("backgroundImage");
-    const cardContent = this.getPropValue("card-content")
+    const cardContent = this.getPropValue("card-content");
     const isBoxVisible = this.getPropValue("is_box_visible");
 
     return (
@@ -180,84 +172,48 @@ class Stats3Page extends BaseStats {
           <Base.ContainerGrid className={this.decorateCSS("page")}>
             {(subtitle || title || description || buttons.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS(image ? "left-page" : "left-page-without-image")}>
-                {
-                  subtitle && (
-                    <Base.SectionSubTitle
-                      className={this.decorateCSS("subTitle")}
-                    >
-                      {this.getPropValue("subTitle")}
-                    </Base.SectionSubTitle>
-                  )
-                }
-                {title && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
-                )}
-                {description && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </Base.SectionDescription>
-                )}
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subTitle")}>{this.getPropValue("subTitle")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttons.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
                     {this.castToObject<any>("buttons").map((item: any, index: number) => {
                       return (
                         <ComposerLink key={`stats-${index}`} path={item.url}>
-                          <button
-                            className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")
-                              }`}
-                          >
+                          <button className={this.decorateCSS("button")}>
                             <span className={this.decorateCSS("button-text")}>{item.buttonText}</span>
                           </button>
                         </ComposerLink>
                       );
                     })}
                   </div>
-                )
-                }
+                )}
               </Base.VerticalContent>
-            )
-            }
+            )}
             {(image || (cardContent.length > 0 && isBoxVisible)) && (
               <Base.VerticalContent className={this.decorateCSS(image ? "right-container" : "right-container-without-image")}>
-                {image && (
-                  <img
-                    src={this.getPropValue("backgroundImage")}
-                    alt="image"
-                    className={this.decorateCSS("image")}
-                  />
-                )}
-                {(isBoxVisible && cardContent.length > 0) && (
+                {image && <img src={this.getPropValue("backgroundImage")} alt="image" className={this.decorateCSS("image")} />}
+                {isBoxVisible && cardContent.length > 0 && (
                   <div className={this.decorateCSS(image ? "card-container" : "card-container-without-image")}>
                     <div className={this.decorateCSS("card")}>
-                      {this.castToObject<any>("card-content").map(
-                        (item: any, index: number) => {
-                          return (
-                            <div className={this.decorateCSS("content")}>
-                              <div className={this.decorateCSS("inner-content")}>
-                                <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                                  <div className={this.decorateCSS("first-container")}>
-                                    <ComposerIcon
-                                      name={item.icon}
-                                      propsIcon={{ className: this.decorateCSS("icon") }}
-                                    />
-                                    <Base.VerticalContent className={this.decorateCSS("text")}>
-                                      <div className={this.decorateCSS("number")}>
-                                        {item.number}
-                                      </div>
+                      {this.castToObject<any>("card-content").map((item: any, index: number) => {
+                        return (
+                          <div className={this.decorateCSS("content")}>
+                            <div className={this.decorateCSS("inner-content")}>
+                              <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                                <div className={this.decorateCSS("first-container")}>
+                                  <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                  <Base.VerticalContent className={this.decorateCSS("text")}>
+                                    <div className={this.decorateCSS("number")}>{item.number}</div>
 
-                                      <div className={this.decorateCSS("right-text")}>
-                                        {item.text}
-                                      </div>
-                                    </Base.VerticalContent>
-                                  </div>
-                                </Base.VerticalContent>
-                              </div>
+                                    <div className={this.decorateCSS("right-text")}>{item.text}</div>
+                                  </Base.VerticalContent>
+                                </div>
+                              </Base.VerticalContent>
                             </div>
-                          );
-                        }
-                      )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
