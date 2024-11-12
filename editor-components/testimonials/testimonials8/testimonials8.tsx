@@ -67,13 +67,13 @@ class Testimonials8Page extends Testimonials {
             {
               type: "number",
               key: "starNumber",
-              displayer: "Star Number",
+              displayer: "Icon Number",
               value: 5,
             },
             {
               type: "icon",
               key: "starIcon",
-              displayer: "Star Icon",
+              displayer: "Icon",
               value: "FaStar",
 
             },
@@ -121,13 +121,13 @@ class Testimonials8Page extends Testimonials {
             {
               type: "number",
               key: "starNumber",
-              displayer: "Star Number",
+              displayer: "Icon Number",
               value: 5,
             },
             {
               type: "icon",
               key: "starIcon",
-              displayer: "Star Icon",
+              displayer: "Icon",
               value: "FaStar",
 
             },
@@ -174,13 +174,13 @@ class Testimonials8Page extends Testimonials {
             {
               type: "number",
               key: "starNumber",
-              displayer: "Star Number",
+              displayer: "Icon Number",
               value: 5,
             },
             {
               type: "icon",
               key: "starIcon",
-              displayer: "Star Icon",
+              displayer: "Icon",
               value: "FaStar",
             },
             {
@@ -227,7 +227,7 @@ class Testimonials8Page extends Testimonials {
       arrows: false,
       infinite: true,
       speed: 700,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,

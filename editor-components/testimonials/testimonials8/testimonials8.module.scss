@@ -17,6 +17,15 @@
         width: 100%;
         display: flex;
         position: relative;
+        >div{
+          >div{
+            >div{
+              >div{
+                padding : 0px var(--composer-gap-xs);
+              }
+            }
+          }
+        }
         
         .prevArrow, .nextArrow{
           position: absolute;
@@ -69,6 +78,7 @@
           .topContainer{
             display: flex;
             gap: var(--composer-gap-sm);
+            align-items: center;
             .image{
               width: 50px;
               height: 50px;
