@@ -153,8 +153,7 @@ class Stats5Page extends BaseStats {
 
   getStats() {
     const cards = this.castToObject<Card[]>("cards");
-    const stats = cards.map((card: any) =>
-      (card.stat === "" ? null : card.stat));
+    const stats = cards.map((card: any) => (card.stat === "" ? null : card.stat));
     return stats;
   }
 
@@ -188,7 +187,6 @@ class Stats5Page extends BaseStats {
       }
 
       cards.forEach((item: Card, index: number) => {
-
         let currentNumber = this.getComponentState(`number-${index}`) ?? 0;
 
         if (typeof currentNumber === "string") {
@@ -197,10 +195,7 @@ class Stats5Page extends BaseStats {
 
         if (typeof item.stat === "number") {
           if (currentNumber !== item.stat) {
-            let nextValue = Math.min(
-              item.stat,
-              currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30))
-            );
+            let nextValue = Math.min(item.stat, currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30)));
 
             const formattedNextValue = this.formatNumberWithDots(nextValue);
 
@@ -214,12 +209,9 @@ class Stats5Page extends BaseStats {
 
   getCardClasses(index: number, itemCountInRow: number) {
     const totalCards = this.castToObject<Card[]>("cards").length;
-    const isLastInRow =
-      (index + 1) % itemCountInRow === 0 || index === totalCards - 1;
+    const isLastInRow = (index + 1) % itemCountInRow === 0 || index === totalCards - 1;
 
-    return !isLastInRow && this.getPropValue("lines")
-      ? this.decorateCSS("stick")
-      : "";
+    return !isLastInRow && this.getPropValue("lines") ? this.decorateCSS("stick") : "";
   }
 
   render() {
@@ -236,12 +228,8 @@ class Stats5Page extends BaseStats {
           {cards?.length > 0 && (
             <Base.ListGrid gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }} className={this.decorateCSS("bottom-child")}>
               {cards.map((item: Card, index: number) => {
-
                 const titleExist = this.castToString(item.title);
-                const statValue =
-                  item.stat === this.getComponentState(`number-${index}`)
-                    ? item.stat
-                    : this.getComponentState(`number-${index}`);
+                const statValue = item.stat === this.getComponentState(`number-${index}`) ? item.stat : this.getComponentState(`number-${index}`);
 
                 if (titleExist || item.stat)
                   return (
@@ -252,18 +240,8 @@ class Stats5Page extends BaseStats {
                           ${this.getCardClasses(index, itemCountInRow)}
                         `}
                     >
-                      {item.stat && (
-                        <Base.SectionTitle className={this.decorateCSS("card-data-title")}>
-                          {statValue}
-                        </Base.SectionTitle>
-                      )}
-                      {titleExist && (
-                        <Base.SectionDescription
-                          className={this.decorateCSS("card-data-description")}
-                        >
-                          {item.title}
-                        </Base.SectionDescription>
-                      )}
+                      {item.stat && <Base.SectionTitle className={this.decorateCSS("card-data-title")}>{statValue}</Base.SectionTitle>}
+                      {titleExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{item.title}</Base.SectionDescription>}
                     </div>
                   );
                 return null;

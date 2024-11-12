@@ -9,6 +9,7 @@
         align-items: center;
         text-align: center;
         min-height: 100px;
+        width: 100%;
         position: relative;
         padding: var(--composer-gap-md);
 
@@ -24,7 +25,6 @@
             opacity: 0.5;
           }
         }
-
 
         .card-data-title {
           font-size: 13rem;
@@ -63,7 +63,7 @@
           margin: 0px;
 
           .card-data-title {
-            font-size: 6rem;
+            font-size: 5rem !important;
           }
 
           .card-data-description {
