@@ -1,4 +1,4 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 
 .container {
   .max-content {
@@ -7,10 +7,7 @@
       gap: var(--composer-gap-md);
       .up-page {
         display: flex;
-        margin-bottom: 40px;
-        .title {
-          color: var(--composer-primary-color);
-        }
+        margin-bottom: var(--composer-gap-lg);
       }
       .down-page {
         width: 100%;
@@ -23,6 +20,7 @@
           justify-content: center;
           position: relative;
           align-items: center;
+          text-align: center;
           .hover {
             position: relative;
             overflow: hidden;
@@ -137,17 +135,6 @@
               }
             }
           }
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .basic-page {
-        .down-page {
         }
       }
     }

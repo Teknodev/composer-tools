@@ -339,7 +339,8 @@ class Team11 extends Team {
       ],
     };
 
-    const titleExist = this.getPropValue("title");
+    const title = this.getPropValue("title");
+    const titleExist = this.castToString(title);
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
