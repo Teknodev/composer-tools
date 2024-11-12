@@ -9,7 +9,7 @@
     .container-top {
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
       flex-wrap: wrap;
       width: 100%;
 
@@ -18,10 +18,12 @@
       }
 
       .description-container {
-        width: 30%;
+        width: 40%;
 
         .description-inner {
+          color: var(--composer-font-color-primary);
           line-height: 1.7em;
+          text-align: right;
         }
       }
     }
@@ -72,12 +74,14 @@
         }
 
         .members-container {
+          align-items: center;
           .name {
             color: var(--composer-font-color-primary);
           }
 
           .occupation {
             opacity: 0.5;
+            text-align: center;
             color: var(--composer-font-color-primary);
           }
         }
@@ -99,6 +103,9 @@
         }
         .description-container {
           width: 100%;
+          .description-inner {
+            text-align: left;
+          }
         }
       }
     }

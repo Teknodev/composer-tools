@@ -124,7 +124,7 @@ class Team5 extends Team {
             {
               type: "string",
               key: "occupation",
-              displayer: "Occupation",
+              displayer: "Position",
               value: "Office Manager",
             },
           ],
@@ -314,7 +314,7 @@ class Team5 extends Team {
             {
               type: "string",
               key: "occupation",
-              displayer: "Occupation",
+              displayer: "Position",
               value: "Accounting",
             },
           ],
@@ -409,7 +409,7 @@ class Team5 extends Team {
             {
               type: "string",
               key: "occupation",
-              displayer: "Occupation",
+              displayer: "Position",
               value: "Pet Trainer",
             },
           ],
@@ -430,19 +430,17 @@ class Team5 extends Team {
   }
 
   render() {
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("container-top")}>
-            <div className={this.decorateCSS("title-container")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-            </div>
-            <div className={this.decorateCSS("description-container")}>
-              <Base.SectionDescription className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</Base.SectionDescription>
-            </div>
+            <div className={this.decorateCSS("title-container")}>{titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}</div>
+            <div className={this.decorateCSS("description-container")}>{descriptionExist && <Base.SectionDescription className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</Base.SectionDescription>}</div>
           </div>
 
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("container-bottom")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("container-bottom")}>
             {this.castToObject<eggs[]>("teamList").map((item: eggs, index: number) => {
               const itemName = this.castToString(item.name);
               const itemOccupation = this.castToString(item.occupation);
