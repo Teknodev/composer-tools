@@ -30,9 +30,9 @@
       box-shadow: var(--box-shadow-active);
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       border-radius: var(--composer-border-radius-md);
-      height: max-content;
       padding: var(--composer-gap-md);
       min-width: 250px;
+      height: 100%;
       align-items: center;
 
       .image {

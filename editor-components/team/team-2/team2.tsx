@@ -348,16 +348,20 @@ class Team2 extends Team {
             {descriptionValue && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
           </Base.VerticalContent>
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("team-members")}>
-            {this.castToObject<TeamCardMember[]>("team-card").map((team: any, index: number) => (
-              <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index}>
-                {team.image && <img className={this.decorateCSS("image")} src={team.image} alt="" />}
-                {team.name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
-                {team.position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}
-                {team.description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
-                <div className={this.decorateCSS("icon-group")}>
-                  {team.platforms &&
-                    team.platforms.map((item: Platform, indexPlatforms: number) => {
-                      return (
+            {this.castToObject<TeamCardMember[]>("team-card").map((team: any, index: number) => {
+              const name = this.castToString(team.name);
+              const position = this.castToString(team.position);
+              const description = this.castToString(team.description);
+
+              return (
+                <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index}>
+                  {team.image && <img className={this.decorateCSS("image")} src={team.image} alt="" />}
+                  {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
+                  {position && <Base.H4 className={this.decorateCSS("position")}>{position}</Base.H4>}
+                  {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
+                  <div className={this.decorateCSS("icon-group")}>
+                    {team.platforms &&
+                      team.platforms.map((item: Platform, indexPlatforms: number) => (
                         <ComposerLink key={indexPlatforms} path={item.url}>
                           <ComposerIcon
                             name={item.icon}
@@ -366,11 +370,11 @@ class Team2 extends Team {
                             }}
                           />
                         </ComposerLink>
-                      );
-                    })}
-                </div>
-              </Base.VerticalContent>
-            ))}
+                      ))}
+                  </div>
+                </Base.VerticalContent>
+              );
+            })}
           </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
