@@ -29,14 +29,14 @@ class Testimonials1Page extends Testimonials {
             {
               type: "string",
               key: "longtext",
-              displayer: "Long Text",
+              displayer: "Review Text",
               value:
                 "I really like the clean and simple aesthetic of flat design. It's great for creating a modern and minimal look, and it also works well for responsive design since it's easy to adapt to different screen sizes. Plus, the lack of textures and gradients makes it easier to focus on the content itself.",
             },
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Author Name",
               value: "Jerrie Corinna",
             },
             {
@@ -48,7 +48,7 @@ class Testimonials1Page extends Testimonials {
             {
               type: "image",
               key: "imageButton",
-              displayer: "Image Button",
+              displayer: "Author Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361d?alt=media&timestamp=1719483639149",
             },
           ],
@@ -61,14 +61,14 @@ class Testimonials1Page extends Testimonials {
             {
               type: "string",
               key: "longtext",
-              displayer: "Long Text",
+              displayer: "Review Text",
               value:
                 "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Author Name",
               value: "Kevin Corinna",
             },
             {
@@ -80,7 +80,7 @@ class Testimonials1Page extends Testimonials {
             {
               type: "image",
               key: "imageButton",
-              displayer: "Image Button",
+              displayer: "Author Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361e?alt=media&timestamp=1719483639149",
             },
           ],
@@ -93,14 +93,14 @@ class Testimonials1Page extends Testimonials {
             {
               type: "string",
               key: "longtext",
-              displayer: "Long Text",
+              displayer: "Review Text",
               value:
                 "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
               type: "string",
               key: "name",
-              displayer: "Name",
+              displayer: "Author Name",
               value: "Kevin Corinna",
             },
             {
@@ -112,7 +112,7 @@ class Testimonials1Page extends Testimonials {
             {
               type: "image",
               key: "imageButton",
-              displayer: "Image Button",
+              displayer: "Author Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361f?alt=media&timestamp=1719483639150",
             },
           ],
@@ -148,9 +148,7 @@ class Testimonials1Page extends Testimonials {
     };
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")
-        }
+      <Base.Container className={this.decorateCSS("container")} isFull={this.getPropValue("background-image") ? true : false}
         style={{
           backgroundImage: `url(${this.getPropValue("background-image")})`,
         }}
@@ -158,25 +156,22 @@ class Testimonials1Page extends Testimonials {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("content-wrapper")}>
-              <div className={this.decorateCSS("content")}>
+              <div className={this.getPropValue("background-image") ? this.decorateCSS("content") : this.decorateCSS("content-no-image")}>
                 <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                   {this.castToObject<any>("items").map((item: any, index: number) => (
                     <div className={this.decorateCSS("items")}>
                       {item.icons && (
                         <ComposerIcon
                           name={item.icons}
-                          propsIcon={{ className: this.decorateCSS("icons") }}
+                          propsIcon={{ className: this.getPropValue("background-image") ? this.decorateCSS("icons") : this.decorateCSS("icons-no-image") }}
                         />
                       )}
-                      {(this.castToString(item.longtext) || this.castToString(item.name)) && (
-                        <Base.VerticalContent>
-                          {this.castToString(item.longtext) && (
-                            <Base.P className={this.decorateCSS("longtext")}>{item.longtext}</Base.P>
-                          )}
-                          {this.castToString(item.name) && (
-                            <div className={this.decorateCSS("name")}>{item.name}</div>
-                          )}
-                        </Base.VerticalContent>
+                      {this.castToString(item.longtext) && (
+                        <div className={this.getPropValue("background-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-no-image")}>
+                          {item.longtext}</div>
+                      )}
+                      {this.castToString(item.name) && (
+                        <div className={this.getPropValue("background-image") ? this.decorateCSS("name") : this.decorateCSS("name-no-image")}>{item.name}</div>
                       )}
                     </div>
                   ))}
