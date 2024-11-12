@@ -528,32 +528,50 @@ class Team6 extends Team {
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
                 const cardNameExist = this.castToString(card.name);
-                const cardPositionnExist = this.castToString(card.position);
+                const cardPositionExist = this.castToString(card.position);
+                const hasCard = cardNameExist || cardPositionExist || card.image || card.features.length > 0;
 
-                const hasCard = cardNameExist || cardPositionnExist || card.image || card.features.length > 0;
                 return (
                   hasCard && (
                     <div key={indexItems} className={this.decorateCSS("all-card")}>
                       <div className={this.decorateCSS("top")}>
                         <div className={this.decorateCSS("image-wrapper")}>
-                          <button onClick={() => handleButton(indexItems)} className="image-button">
-                            {card.features.length > 0 &&
-                              (this.getComponentState("activeIndex") === indexItems ? (
-                                <ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
-                              ) : (
-                                <ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
-                              ))}
-
-                            {card.image && (
+                          {card.image ? (
+                            <button onClick={() => handleButton(indexItems)} className="image-button">
+                              {card.features.length > 0 &&
+                                (this.getComponentState("activeIndex") === indexItems ? (
+                                  <ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                                ) : (
+                                  <ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                                ))}
                               <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} />
-                            )}
+                              <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
+                                {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
+                                {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
 
-                            <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
-                              {this.castToString(card.name) && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
+                                {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
+                                  <Base.VerticalContent className={this.decorateCSS("features")}>
+                                    {card.features.map((feature: Feature, idx: number) => (
+                                      <div key={idx} className={this.decorateCSS("feature")}>
+                                        <ComposerIcon
+                                          name={feature.icon}
+                                          propsIcon={{
+                                            className: this.decorateCSS("icon"),
+                                          }}
+                                        />
+                                        <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
+                                      </div>
+                                    ))}
+                                  </Base.VerticalContent>
+                                )}
+                              </Base.VerticalContent>
+                            </button>
+                          ) : (
+                            <Base.VerticalContent className={`${this.decorateCSS("overlay-bar")} ${this.decorateCSS("overlay-visible")}`}>
+                              {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
+                              {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
 
-                              {this.castToString(card.position) && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
-
-                              {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
+                              {card.features.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("features")}>
                                   {card.features.map((feature: Feature, idx: number) => (
                                     <div key={idx} className={this.decorateCSS("feature")}>
@@ -569,7 +587,7 @@ class Team6 extends Team {
                                 </Base.VerticalContent>
                               )}
                             </Base.VerticalContent>
-                          </button>
+                          )}
                         </div>
                       </div>
                     </div>

@@ -1,4 +1,4 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 .container {
@@ -13,10 +13,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         .text-group {
           .title1 {
             color: var(--composer-primary-color);
-          }
-
-          .description {
-            color: var(--composer-font-color-primary);
           }
         }
       }
@@ -87,6 +83,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .position {
               color: var(--composer-font-color-primary);
+              margin: 0;
             }
           }
         }
@@ -118,6 +115,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   .container {
     .page {
       gap: var(--composer-gap-xs) !important;
+
+      .up-page {
+        .text-group {
+          .title1 {
+            width: 90%;
+          }
+        }
+      }
     }
 
     .down-page {
