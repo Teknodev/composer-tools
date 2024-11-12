@@ -1,9 +1,8 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
- .container {
+ .container, .container-no-image{
   position: relative;
   z-index: 1; 
   background-color: transparent;
-  padding:0px;
   &.overlay::before {
     content: '';
     position: absolute;
@@ -46,11 +45,11 @@
       }
       
       .prevArrow {
-        left:50px;
+        left:0px;
       }
       
       .nextArrow {
-        right: 50px;
+        right: 0px;
       }
       
       .testimonials4 {
@@ -70,19 +69,21 @@
             .icon-dark{
               color: var(--composer-font-color-primary);
             }
-            .content{
-              align-items: center;
-              .longtext, .longtext-dark {
-                font-size: 20px;
-                text-align: center; 
-              }
-              .longtext{
-                color: var(--composer-font-color-secondary);
-              }
-              .longtext-dark{
-                color: var(--composer-font-color-primary);
-              }
-      
+            .longtext, .longtext-dark {
+              font-size: 20px;
+              text-align: center; 
+            }
+            .longtext{
+              color: var(--composer-font-color-secondary);
+            }
+            .longtext-dark{
+              color: var(--composer-font-color-primary);
+            }
+            .person-text{
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-xs);
+              align-items: center;      
               .title, .title-dark {
                 text-transform: capitalize;
                 font-size: 19px;
@@ -129,35 +130,50 @@
       .max-content-no-image{
         padding: 0px;
       }
-    }
+}
+.container{
+  padding:0px 50px;
+}
+.container-no-image{
+  padding : 20px 50px
+}
 
 @container (max-width: #{$composer-tablet-width-lg}) {
-  .container {
-    .max-content {
-      .prevArrow{
-        left:var(--composer-gap-xl);
-      }
-      .nextArrow {
-        right:var(--composer-gap-xl);
-      }
+  .container, .container-no-image {
+    .max-content, .max-content-no-image {
       .testimonials4 {
         width: 75%;
       }
     }
   }
+  .container{
+    padding: 0px 40px;
+  }
+  .container-no-image{
+    padding: 20px 40px;
+  }
 }
 
 
+
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
+  .container, .container-no-image {
+    .max-content, .max-content-no-image {
+      .testimonials4{
+        width: 100%;
+      }
       .prevArrow{
-        display: none;
+        display: none !important;
       }
       .nextArrow {
-        display: none;
+        display: none !important;
       }
-
     }
+  }
+  .container{
+    padding: 0px 20px;
+  }
+  .container-no-image{
+    padding: 20px;
   }
 }

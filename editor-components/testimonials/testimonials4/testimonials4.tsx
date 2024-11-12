@@ -41,26 +41,26 @@ class Testimonials4Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Review Text",
               value:
                 "I really like the clean and simple aesthetic of flat design. It's great for creating a modern and minimal look, and it also works well for responsive design since it's easy to adapt to different screen sizes. Plus, the lack of textures and gradients makes it easier to focus on the content itself.",
             },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Author Name",
               value: "Jerrie Corinna",
             },
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle",
+              displayer: "Author Position",
               value: "UX Developer",
             },
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
             },
           ],
@@ -79,26 +79,26 @@ class Testimonials4Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Review Text",
               value:
                 "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Author Name",
               value: "Kevin Corinna",
             },
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle",
+              displayer: "Author Position",
               value: "Solutions Architect",
             },
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
             },
 
@@ -118,26 +118,26 @@ class Testimonials4Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Review Text",
               value:
                 "I have been consistently impressed with the results achieved by this team. Their strategic approach and innovative ideas have greatly contributed to our marketing success.",
             },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Author Name",
               value: "John Corinna",
             },
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle",
+              displayer: "Author Position",
               value: "UX Developer",
             },
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
             },
           ],
@@ -211,7 +211,7 @@ class Testimonials4Page extends Testimonials {
     const arrows = this.castToObject<ArrowItem>("arrows");
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+        className={`${this.getPropValue("cover-image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
@@ -234,13 +234,14 @@ class Testimonials4Page extends Testimonials {
                     {item.icon && (
                       <ComposerIcon name={item.icon} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("icon") : this.decorateCSS("icon-dark") }} />
                     )}
-                    {(this.castToString(item.description) || this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                      <Base.VerticalContent className={this.decorateCSS("content")}>
-                        {this.castToString(item.description) && (
-                          <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-dark")}>
-                            {item.description}
-                          </Base.P>
-                        )}
+                    {this.castToString(item.description) && (
+                      <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-dark")}>
+                        {item.description}
+                      </Base.P>
+                    )}
+                    {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                      <div className={this.decorateCSS("person-text")}>
+
                         {this.castToString(item.title) && (
                           <div className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-dark")}>
                             {item.title}
@@ -251,7 +252,7 @@ class Testimonials4Page extends Testimonials {
                             {item.subtitle}
                           </div>
                         )}
-                      </Base.VerticalContent>
+                      </div>
                     )}
                   </div>
                 );
