@@ -3,12 +3,11 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-
 type Item = {
   title: JSX.Element;
   progress: number;
   progressText: JSX.Element;
-}
+};
 
 class Stats7Page extends BaseStats {
   constructor(props?: any) {
@@ -18,8 +17,8 @@ class Stats7Page extends BaseStats {
       type: "string",
       key: "subTitle",
       displayer: "SubTitle",
-      value: "Our Skills."
-    })
+      value: "Our Skills.",
+    });
 
     this.addProp({
       type: "string",
@@ -31,14 +30,7 @@ class Stats7Page extends BaseStats {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Fierent abhorreant intellegam nam no. Eam minim di neglegentur te, ei etiamas corpora eam disentiun sea. Ut aeterno invidunt sententiae vel, assum adipisci eu vix. Ea ferri cetero ceteros eos, mea ne cibo dis entiet."
-    });
-    this.addProp({
-      type: "boolean",
-      key: "enableSubtitleBackground",
-      displayer: "Enable Subtitle Background",
-      value: true
+      value: "Fierent abhorreant intellegam nam no. Eam minim di neglegentur te, ei etiamas corpora eam disentiun sea. Ut aeterno invidunt sententiae vel, assum adipisci eu vix. Ea ferri cetero ceteros eos, mea ne cibo dis entiet.",
     });
     this.addProp({
       type: "array",
@@ -54,7 +46,7 @@ class Stats7Page extends BaseStats {
               type: "string",
               key: "title",
               displayer: "Progress Title",
-              value: "Design"
+              value: "Design",
             },
             {
               type: "number",
@@ -66,8 +58,8 @@ class Stats7Page extends BaseStats {
               type: "string",
               key: "progressText",
               displayer: "Progress Text",
-              value: "75%"
-            }
+              value: "75%",
+            },
           ],
         },
         {
@@ -79,7 +71,7 @@ class Stats7Page extends BaseStats {
               type: "string",
               key: "title",
               displayer: "Progress Title",
-              value: "Brand Identity"
+              value: "Brand Identity",
             },
             {
               type: "number",
@@ -91,8 +83,8 @@ class Stats7Page extends BaseStats {
               type: "string",
               key: "progressText",
               displayer: "Progress Text",
-              value: "57%"
-            }
+              value: "57%",
+            },
           ],
         },
         {
@@ -104,7 +96,7 @@ class Stats7Page extends BaseStats {
               type: "string",
               key: "title",
               displayer: "Progress Title",
-              value: "Sketch"
+              value: "Sketch",
             },
             {
               type: "number",
@@ -116,12 +108,12 @@ class Stats7Page extends BaseStats {
               type: "string",
               key: "progressText",
               displayer: "Progress Text",
-              value: "84%"
-            }
+              value: "84%",
+            },
           ],
-        }
-      ]
-    })
+        },
+      ],
+    });
   }
 
   getName(): string {
@@ -134,27 +126,18 @@ class Stats7Page extends BaseStats {
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist;
     const items = this.castToObject<Item[]>("items");
-    const enableSubtitleBackground = this.getPropValue("enableSubtitleBackground");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} >
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {showDiv &&
+          {showDiv && (
             <Base.VerticalContent className={this.decorateCSS("title-child")}>
-              {isSubtitleExist && (
-                <Base.SectionSubTitle className={enableSubtitleBackground ? this.decorateCSS("subTitle") : this.decorateCSS("subTitle-background-is-disable")}>{this.getPropValue("subTitle")}</Base.SectionSubTitle>
-              )}
-              {isTitleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              )}
-              {isDescriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>}
+              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
 
-          {items.length > 0 &&
+          {items.length > 0 && (
             <Base.VerticalContent className={this.decorateCSS("progress-container")}>
               {items.map((item: Item, index: number) => {
                 const { title, progress, progressText } = item;
@@ -171,36 +154,30 @@ class Stats7Page extends BaseStats {
                 if (this.castToString(title) || this.castToString(progressText))
                   return (
                     <div className={this.decorateCSS("item")} key={index}>
-                      {(
+                      {
                         <div className={this.decorateCSS("progress-title")}>
                           {this.castToString(title) && title}
-                          {this.castToString(text) &&
+                          {this.castToString(text) && (
                             <div className={this.decorateCSS("progress-percent")}>
-                              <div className={this.decorateCSS("progress-text")}>
-                                {this.castToString(text) && text}
-                              </div>
+                              <div className={this.decorateCSS("progress-text")}>{this.castToString(text) && text}</div>
                             </div>
-                          }
+                          )}
                         </div>
-                      )}
+                      }
                       {percent !== null && percent !== undefined && (
                         <div className={this.decorateCSS("progress-active")}>
-                          <div
-                            className={this.decorateCSS("progress-passive")}
-                            style={{ width: `${percent}%` }}
-                          ></div>
+                          <div className={this.decorateCSS("progress-passive")} style={{ width: `${percent}%` }}></div>
                         </div>
                       )}
                     </div>
                   );
               })}
-            </Base.VerticalContent>}
+            </Base.VerticalContent>
+          )}
         </Base.MaxContent>
       </Base.Container>
-
     );
   }
 }
 
 export default Stats7Page;
-

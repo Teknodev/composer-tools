@@ -11,12 +11,6 @@
     text-transform: uppercase;
   }
 
-  .subTitle-background-is-disable {
-    display: inline-block;
-    text-transform: uppercase;
-    padding: var(--composer-gap-xs) var(--composer-gap-sm);
-  }
-
   .title {
     width: 100%;
   }
@@ -56,7 +50,11 @@
       color: (--composer-font-color-primary);
       align-items: end;
       text-align: end;
-      max-width: 10%;
+      max-width: 50%;
+
+      .progress-text {
+        width: max-content;
+      }
     }
   }
 
@@ -96,7 +94,6 @@
     }
   }
 }
-
 
 @container (max-width: #{$composer-phone-width-lg}) {
   .container {
