@@ -83,31 +83,31 @@ class Testimonials5Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-18.png"
             },
             {
               type: "string",
               key: "sliderTitle",
-              displayer: "Slider Title",
+              displayer: "Author Name",
               value: "Alexender Moore"
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Review Text",
               value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure."
             },
             {
               type: "number",
               key: "star",
-              displayer: "Star Number",
+              displayer: "Icon Number",
               value: 5
             },
             {
               type: "icon",
               key: "starIcon",
-              displayer: "Star Icon",
+              displayer: "Icon",
               value: "FaStar"
             },
           ]
@@ -120,31 +120,31 @@ class Testimonials5Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-17.png"
             },
             {
               type: "string",
               key: "sliderTitle",
-              displayer: "Slider Title",
+              displayer: "Author Name",
               value: "Alexender Moore"
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Review Text",
               value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure."
             },
             {
               type: "number",
               key: "star",
-              displayer: "Star Number",
+              displayer: "Icon Number",
               value: 5
             },
             {
               type: "icon",
               key: "starIcon",
-              displayer: "Star Icon",
+              displayer: "Icon",
               value: "FaStar"
             },
           ]
@@ -157,31 +157,31 @@ class Testimonials5Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-15.png"
             },
             {
               type: "string",
               key: "sliderTitle",
-              displayer: "Slider Title",
+              displayer: "Author Name",
               value: "Alexender Moore"
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Review Text",
               value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure."
             },
             {
               type: "number",
               key: "star",
-              displayer: "Star Number",
+              displayer: "Icon Number",
               value: 5
             },
             {
               type: "icon",
               key: "starIcon",
-              displayer: "Star Icon",
+              displayer: "Icon",
               value: "FaStar"
             },
           ]
@@ -225,7 +225,7 @@ class Testimonials5Page extends Testimonials {
     const hasLeftContent = Boolean(this.castToString(leftItem.subtitle) || this.castToString(leftItem.title) || leftItem.nextIcon || leftItem.prevIcon);
     var settings = {
       dots: false,
-      autoplay: true,
+      autoplay: false,
       infinite: false,
       arrows: false,
       speed: 500,

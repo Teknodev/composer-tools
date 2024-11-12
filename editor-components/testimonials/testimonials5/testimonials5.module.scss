@@ -63,10 +63,12 @@
         }
         .rightWrapper{
           display: flex;
+          align-items: center;
           .sliderTitle, .sliderTitlePrimary{
             writing-mode: vertical-rl;
             transform: rotate(180deg);
             text-align: center;
+            max-height: 300px;
           }
           .sliderTitle{
             color: black;
