@@ -16,16 +16,15 @@ class Stats6Page extends BaseStats {
     this.addProp({
       type: "string",
       key: "header",
-      displayer: "Header Content",
+      displayer: "Title",
       value: "Our Achievements",
     });
 
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Header Description",
-      value:
-        "Far far away.behind the word mountains, far from the countries Vokalia and Consanantia, there live the blind texts. Seperated they live in",
+      displayer: "Description",
+      value: "Far far away.behind the word mountains, far from the countries Vokalia and Consanantia, there live the blind texts. Seperated they live in",
     });
 
     this.addProp({
@@ -126,19 +125,13 @@ class Stats6Page extends BaseStats {
   isEqual(arr1: any[], arr2: any[]) {
     return arr1.every((value, index) => {
       const otherValue = arr2[index];
-      return (
-        value === otherValue ||
-        (value === '' && otherValue === 0) ||
-        (value === 0 && otherValue === '')
-      );
+      return value === otherValue || (value === "" && otherValue === 0) || (value === 0 && otherValue === "");
     });
   }
 
   getStats() {
     const statItems = this.castToObject<CardData[]>("card-list");
-    const stats = statItems.map((statsData: any) =>
-      statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue),
-    );
+    const stats = statItems.map((statsData: any) => (statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue)));
     return stats;
   }
 
@@ -150,7 +143,6 @@ class Stats6Page extends BaseStats {
     });
     return numbers;
   }
-
 
   formatNumberWithDots(value: any) {
     const number = Number(value);
@@ -165,14 +157,12 @@ class Stats6Page extends BaseStats {
     const incrementValue = this.getPropValue("incrementValue");
 
     this.interval = setInterval(() => {
-
-      if (this.isEqual((this.getStats()), this.getNumbers())) {
+      if (this.isEqual(this.getStats(), this.getNumbers())) {
         clearInterval(this.interval);
         this.interval = null;
       }
 
       this.castToObject<CardData[]>("card-list").map((statData: CardData, index: number) => {
-
         let currentNumberState = this.getComponentState(`number-${index}`);
         const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
         const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
@@ -184,44 +174,22 @@ class Stats6Page extends BaseStats {
         const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
         const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
 
-        if (
-          currentNumber !== numericPart ||
-          currentNonNumericPrefix !== newNonNumericPrefix ||
-          currentNonNumericSuffix !== newNonNumericSuffix
-        ) {
-          let nextValue = Math.min(
-            numericPart,
-            currentNumber +
-            Math.ceil(numericPart / Math.round(incrementValue / 30))
-          );
+        if (currentNumber !== numericPart || currentNonNumericPrefix !== newNonNumericPrefix || currentNonNumericSuffix !== newNonNumericSuffix) {
+          let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
 
-          let formattedNextValue = nextValue
-            ? nextValue.toString()
-            : "";
+          let formattedNextValue = nextValue ? nextValue.toString() : "";
 
           const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
 
+          var updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
 
-          var updatedValue = currentNumber > 0
-            ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix
-            : newNonNumericPrefix + formattedNextValueWithDots;
+          var updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
 
-          var updatedValueForControl = currentNumber > 0
-            ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
-            : newNonNumericPrefix + formattedNextValue;
+          this.setComponentState(`number-${index}`, updatedValue);
 
-          this.setComponentState(
-            `number-${index}`,
-            updatedValue
-          );
-
-          this.setComponentState(
-            `numberForControl-${index}`,
-            updatedValueForControl
-          );
+          this.setComponentState(`numberForControl-${index}`, updatedValueForControl);
         }
       });
-
     }, animationDuration);
   }
 
@@ -233,7 +201,7 @@ class Stats6Page extends BaseStats {
     const cardList = this.castToObject<CardData[]>("card-list");
     const header = this.getPropValue("header");
     const headerExist = this.castToString(header);
-    const description = this.getPropValue("description")
+    const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
     const itemCount = this.getPropValue("itemCount");
 
@@ -244,34 +212,26 @@ class Stats6Page extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(headerExist || descriptionExist) && <Base.VerticalContent className={this.decorateCSS("banner")}>
-            {headerExist && <Base.SectionTitle className={this.decorateCSS("title")}>
-              {header}
-            </Base.SectionTitle>}
-            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>
-              {description}
-            </Base.SectionDescription>}
-          </Base.VerticalContent>}
-          {cardList.length > 0 &&
+          {(headerExist || descriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("banner")}>
+              {headerExist && <Base.SectionTitle className={this.decorateCSS("title")}>{header}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
+          {cardList.length > 0 && (
             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats6-page")}>
-              {cardList.map(
-                (data: any, index: number) => {
-                  return (
-                    (this.getComponentState(`number-${index}`) !== "0" || this.castToString(data.cardDescription)) &&
+              {cardList.map((data: any, index: number) => {
+                return (
+                  (this.getComponentState(`number-${index}`) !== "0" || this.castToString(data.cardDescription)) && (
                     <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                      {this.getComponentState(`number-${index}`) !== "0" &&
-                        <Base.P className={this.decorateCSS("data-card-title")}>
-                          {this.getComponentState(`number-${index}`)}
-                        </Base.P>}
-                      {this.castToString(data.cardDescription) &&
-                        <Base.P className={this.decorateCSS("data-card-description")}>
-                          {data.cardDescription}
-                        </Base.P>}
+                      {this.getComponentState(`number-${index}`) !== "0" && <Base.P className={this.decorateCSS("data-card-title")}>{this.getComponentState(`number-${index}`)}</Base.P>}
+                      {this.castToString(data.cardDescription) && <Base.P className={this.decorateCSS("data-card-description")}>{data.cardDescription}</Base.P>}
                     </Base.VerticalContent>
                   )
-                }
-              )}
-            </Base.ListGrid>}
+                );
+              })}
+            </Base.ListGrid>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
