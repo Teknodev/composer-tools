@@ -85,6 +85,11 @@
           .portfolio {
             height: 450px;
 
+            .info {
+              max-height: 400px;
+              overflow: auto;
+            }
+
             &:hover {
               .info {
                 transform: translateY(-5%);
@@ -107,6 +112,11 @@
           .portfolio {
             width: 90%;
             height: 400px;
+
+            .info {
+              max-height: 300px;
+              overflow: auto;
+            }
           }
         }
       }
