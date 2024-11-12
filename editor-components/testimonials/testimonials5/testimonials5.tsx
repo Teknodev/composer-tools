@@ -225,7 +225,7 @@ class Testimonials5Page extends Testimonials {
     const hasLeftContent = Boolean(this.castToString(leftItem.subtitle) || this.castToString(leftItem.title) || leftItem.nextIcon || leftItem.prevIcon);
     var settings = {
       dots: false,
-      autoplay: false,
+      autoplay: true,
       infinite: false,
       arrows: false,
       speed: 500,
