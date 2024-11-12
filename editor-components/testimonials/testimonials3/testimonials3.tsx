@@ -15,7 +15,7 @@ class Testimonials3Page extends Testimonials {
     this.addProp({
       type: "icon",
       key: "star_icon",
-      displayer: "Star Icon",
+      displayer: "Icon",
       value: "FaStar"
     })
     this.addProp({
@@ -44,13 +44,13 @@ class Testimonials3Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",
               key: "subtitle",
               value: "Thanks to pagedone, I feel more informed and confident about my investment decisions than ever before.",
-              displayer: "Subtitle",
+              displayer: "Review Text",
             },
             {
               type: "image",
@@ -69,13 +69,13 @@ class Testimonials3Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",
               key: "subtitle",
               value: "Pagedone has made it possible for me to stay on top of my portolio and make informed decisions quickly and easily.",
-              displayer: "Subtitle",
+              displayer: "Review Text",
             },
             {
               type: "image",
@@ -94,13 +94,13 @@ class Testimonials3Page extends Testimonials {
               type: "number",
               key: "star",
               value: 5,
-              displayer: "Star",
+              displayer: "Icon Number",
             },
             {
               type: "string",
               key: "subtitle",
               value: "The customer service team at pagedone went above and beyond to help me resolve a billing issue.",
-              displayer: "Subtitle",
+              displayer: "Review Text",
             },
             {
               type: "image",
