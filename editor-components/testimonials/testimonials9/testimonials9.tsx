@@ -45,7 +45,7 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150",
             },
@@ -53,7 +53,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "title",
               value: "Thein N.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -65,7 +65,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet velit id nunc posuere, et fringilla leo convallis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -77,7 +77,7 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150",
             },
@@ -85,7 +85,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "title",
               value: "Bailey H.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -97,7 +97,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Nulla facilisi. Fusce et justo eget tortor consectetur facilisis vel id turpis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -109,7 +109,7 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b34?alt=media&timestamp=1719483639150",
             },
@@ -117,7 +117,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "title",
               value: "Ashley S.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -129,7 +129,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Duis blandit est eu magna tristique, ut vestibulum orci feugiat. Integer nec semper neque. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -141,7 +141,7 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
             },
@@ -149,7 +149,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "title",
               value: "Tom H.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -161,7 +161,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Quisque sodales justo nec ante vestibulum, ut dictum justo facilisis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -173,7 +173,7 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b36?alt=media&timestamp=1719483639150",
             },
@@ -181,7 +181,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "title",
               value: "Ronald R.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -193,7 +193,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Sed id condimentum mi. Aliquam cursus scelerisque elit ut facilisis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -205,7 +205,7 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b35?alt=media&timestamp=1719483639150",
             },
@@ -213,7 +213,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "title",
               value: "Olivia D.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -225,7 +225,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Vivamus nec sem quis enim iaculis gravida. Donec volutpat fermentum erat, sit amet cursus risus tincidunt quis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -237,7 +237,7 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617728bd2970002c623bd5?alt=media&timestamp=1719483639150",
             },
@@ -245,7 +245,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "title",
               value: "Sarah B.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -257,7 +257,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Aenean euismod, velit a lacinia fringilla, urna libero ultrices lectus, non interdum quam nunc eu elit. Ut non lobortis purus. Nam ullamcorper, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -269,7 +269,7 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
             },
@@ -277,7 +277,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "title",
               value: "Mary J.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -289,7 +289,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Curabitur a sapien ut neque eleifend vehicula id a sem. Phasellus sodales, ex sit amet eleifend consectetur, erat magna dictum elit, eu interdum nisi lacus id nunc.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
