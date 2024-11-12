@@ -130,63 +130,13 @@ class Team4 extends Team {
             },
           ],
         },
-        {
-          type: "object",
-          key: "teamMember",
-          displayer: "Team Member",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d2?alt=media&timestamp=1719502692150",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Reagan Colby",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Web Developer",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "teamMember",
-          displayer: "Team Member",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d1?alt=media&timestamp=1719502692150",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Genevieve Sara",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "UI/UX Developer",
-            },
-          ],
-        },
       ],
     });
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 3,
+      value: 4,
       max: 4,
     });
   }
@@ -196,15 +146,20 @@ class Team4 extends Team {
   }
 
   render() {
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const hasHeaderExist = titleExist || descriptionExist;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("up-content")}>
-            <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>
-            <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
-          </Base.VerticalContent>
+          {hasHeaderExist && (
+            <Base.VerticalContent className={this.decorateCSS("up-content")}>
+              {titleExist && <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>}
+              {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+            </Base.VerticalContent>
+          )}
 
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("team-members")}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("team-members")}>
             {this.castToObject<TeamMember[]>("teamMembers").map((teamMember: TeamMember, indexTeamMembers: number) => {
               const teamMemberName = this.castToString(teamMember.name);
               const teamMemberPosition = this.castToString(teamMember.position);

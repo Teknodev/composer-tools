@@ -23,8 +23,9 @@
         gap: var(--composer-gap-sm);
 
         .member-image {
+          min-height: 500px;
           max-height: 500px;
-          height: auto;
+          height: 100%;
           width: 100%;
           border-radius: var(--composer-border-radius-xl);
           object-fit: cover;
