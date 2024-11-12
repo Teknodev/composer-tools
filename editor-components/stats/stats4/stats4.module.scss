@@ -24,7 +24,7 @@
           width: 100%;
 
           .main-description {
-            width: 70%;
+            width: 100%;
             margin-top: 0;
           }
         }
@@ -34,7 +34,6 @@
           color: var(--composer-font-color-primary);
 
           .faq-item {
-
             .bottom-line {
               height: 1px;
               width: 100%;
@@ -62,7 +61,7 @@
             .faq-item-content {
               overflow: hidden;
               max-height: 0;
-              transition: 2000ms; //200 yap
+              transition: 0.3s;
               margin: 0;
               opacity: 0;
             }
@@ -80,7 +79,6 @@
         margin-top: var(--composer-gap-lg);
 
         .stat-item {
-
           .stat-line {
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             width: 100%;
