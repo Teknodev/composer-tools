@@ -31,22 +31,20 @@ class Stats1Page extends BaseStats {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Health and wellness are important aspects that many of us spend alot of time thinking about. Many people think of health and wellnessand think only of diet and exercise",
+      value: "Health and wellness are important aspects that many of us spend alot of time thinking about. Many people think of health and wellnessand think only of diet and exercise",
     });
     this.addProp({
       type: "string",
       key: "buttonText",
       displayer: "Button Text",
-      value:
-        "Register Now!",
+      value: "Register Now!",
     });
     this.addProp({
       type: "array",
       key: "card-list",
-      additionalParams: ({
-        maxElementCount: 5
-      }),
+      additionalParams: {
+        maxElementCount: 5,
+      },
       displayer: "Card Content",
       value: [
         {
@@ -123,7 +121,6 @@ class Stats1Page extends BaseStats {
 
     this.init();
     this.animate();
-
   }
 
   init() {
@@ -136,19 +133,13 @@ class Stats1Page extends BaseStats {
   isEqual(arr1: any[], arr2: any[]) {
     return arr1.every((value, index) => {
       const otherValue = arr2[index];
-      return (
-        value === otherValue ||
-        (value === '' && otherValue === 0) ||
-        (value === 0 && otherValue === '')
-      );
+      return value === otherValue || (value === "" && otherValue === 0) || (value === 0 && otherValue === "");
     });
   }
 
   getStats() {
     const statItems = this.castToObject<CardData[]>("card-list");
-    const stats = statItems.map((statsData: any) =>
-      statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue),
-    );
+    const stats = statItems.map((statsData: any) => (statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue)));
     return stats;
   }
 
@@ -174,14 +165,12 @@ class Stats1Page extends BaseStats {
     const incrementValue = this.getPropValue("incrementValue");
 
     this.interval = setInterval(() => {
-
-      if (this.isEqual((this.getStats()), this.getNumbers())) {
+      if (this.isEqual(this.getStats(), this.getNumbers())) {
         clearInterval(this.interval);
         this.interval = null;
       }
 
       this.castToObject<CardData[]>("card-list").map((statData: CardData, index: number) => {
-
         let currentNumberState = this.getComponentState(`number-${index}`);
         const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
         const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
@@ -193,43 +182,22 @@ class Stats1Page extends BaseStats {
         const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
         const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
 
-        if (
-          currentNumber !== numericPart ||
-          currentNonNumericPrefix !== newNonNumericPrefix ||
-          currentNonNumericSuffix !== newNonNumericSuffix
-        ) {
-          let nextValue = Math.min(
-            numericPart,
-            currentNumber +
-            Math.ceil(numericPart / Math.round(incrementValue / 30))
-          );
+        if (currentNumber !== numericPart || currentNonNumericPrefix !== newNonNumericPrefix || currentNonNumericSuffix !== newNonNumericSuffix) {
+          let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
 
-          let formattedNextValue = nextValue
-            ? nextValue.toString()
-            : "";
+          let formattedNextValue = nextValue ? nextValue.toString() : "";
 
           const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
 
-          var updatedValue = currentNumber > 0
-            ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix
-            : newNonNumericPrefix + formattedNextValueWithDots;
+          var updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
 
-          var updatedValueForControl = currentNumber > 0
-            ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
-            : newNonNumericPrefix + formattedNextValue;
+          var updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
 
-          this.setComponentState(
-            `number-${index}`,
-            updatedValue
-          );
+          this.setComponentState(`number-${index}`, updatedValue);
 
-          this.setComponentState(
-            `numberForControl-${index}`,
-            updatedValueForControl
-          );
+          this.setComponentState(`numberForControl-${index}`, updatedValueForControl);
         }
       });
-
     }, animationDuration);
   }
 
@@ -249,11 +217,7 @@ class Stats1Page extends BaseStats {
     const cardList = this.castToObject<CardData[]>("card-list");
     const radius = 200;
 
-    const badgeColors = [
-      'var(--composer-primary-color)',
-      'var(--composer-secondary-color)',
-      'var(--composer-tertiary-color)',
-    ];
+    const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
@@ -262,72 +226,54 @@ class Stats1Page extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={this.decorateCSS("stats1-page")}>
-            {(isSubtitleExist ||
-              isTitleExist ||
-              isDescExist ||
-              isButtonTextExist
-            ) &&
+          <div className={this.decorateCSS("stats1-page")}>
+            {(isSubtitleExist || isTitleExist || isDescExist || isButtonTextExist) && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
-                {isSubtitleExist &&
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-                }
-                {isTitleExist &&
-                  <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
-                }
-                {isDescExist &&
-                  <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
-                }
-                {isButtonTextExist &&
+                {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {isDescExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                {isButtonTextExist && (
                   <ComposerLink>
                     <div className={this.decorateCSS("button-text-wrapper")}>
                       <span className={this.decorateCSS("button-text")}>{buttonText}</span>
                     </div>
                   </ComposerLink>
-                }
-              </Base.VerticalContent>}
+                )}
+              </Base.VerticalContent>
+            )}
 
-            {cardList.length > 0 &&
+            {cardList.length > 0 && (
               <div className={this.decorateCSS("right-container")}>
                 <div className={this.decorateCSS("content-div")}>
                   {[...Array(5)].map((_, index) => (
-                    <div
-                      key={index}
-                      className={this.decorateCSS("content-item")}
-                      style={{ transform: `scale(${1 - index * 0.2})` }}
-                    ></div>
+                    <div key={index} className={this.decorateCSS("content-item")} style={{ transform: `scale(${1 - index * 0.2})` }}></div>
                   ))}
 
-                  {cardList.map(
-                    (cardData: CardData, indexCard: number) => {
-                      const angle = (indexCard / cardList.length) * 360;
-                      const iscardLabelExist = this.castToString(cardData.cardLabel);
+                  {cardList.map((cardData: CardData, indexCard: number) => {
+                    const angle = (indexCard / cardList.length) * 360;
+                    const iscardLabelExist = this.castToString(cardData.cardLabel);
 
-                      if (this.getComponentState(`number-${indexCard}`) !== "0" || iscardLabelExist)
-                        return (
-                          <div
-                            key={indexCard}
-                            className={this.decorateCSS("card")}
-                            style={{ "--angle": `${angle}deg` } as Record<string, any>}
-                          >
-                            {(this.getComponentState(`number-${indexCard}`) !== "0") &&
-                              <p className={this.decorateCSS("counter-value")} style={{
-                                color: `${indexCard < 3 ? badgeColors[indexCard % (badgeColors.length)] : badgeColors[(indexCard % (badgeColors.length) + 1)]}`,
-                              }}>
-                                {this.getComponentState(`number-${indexCard}`)}
-                              </p>}
-                            {iscardLabelExist && (
-                              <Base.P className={this.decorateCSS("counter-label")}>{cardData.cardLabel}</Base.P>
-                            )}
-                          </div>
-                        );
-                    }
-                  )}
+                    if (this.getComponentState(`number-${indexCard}`) !== "0" || iscardLabelExist)
+                      return (
+                        <div key={indexCard} className={this.decorateCSS("card")} style={{ "--angle": `${angle}deg` } as Record<string, any>}>
+                          {this.getComponentState(`number-${indexCard}`) !== "0" && (
+                            <p
+                              className={this.decorateCSS("counter-value")}
+                              style={{
+                                color: `${indexCard < 3 ? badgeColors[indexCard % badgeColors.length] : badgeColors[(indexCard % badgeColors.length) + 1]}`,
+                              }}
+                            >
+                              {this.getComponentState(`number-${indexCard}`)}
+                            </p>
+                          )}
+                          {iscardLabelExist && <Base.P className={this.decorateCSS("counter-label")}>{cardData.cardLabel}</Base.P>}
+                        </div>
+                      );
+                  })}
                 </div>
-
               </div>
-            }
-          </Base.ContainerGrid>
+            )}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

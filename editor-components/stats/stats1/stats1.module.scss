@@ -1,114 +1,168 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-    .max-content {
-        .stats1-page {
-            .left-container {
-                flex: 1;
-
-                .description {
-                    color: var(--composer-font-color-primary);
-                }
-
-                .button-text-wrapper {
-                    background-color: var(--composer-primary-color);
-                    padding: var(--composer-gap-sm) var(--composer-gap-md);
-                    border-radius: var(--composer-border-radius-xs);
-
-                    .button-text {
-                        color: var(--composer-font-color-secondary);
-                        font-size: 1.5rem;
-                    }
-                }
-            }
-
-            .right-container {
-                flex: 1;
-                padding: var(--composer-gap-lg);
-
-                .content-div {
-                    position: relative;
-                    width: 400px;
-                    height: 400px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 50%;
-
-                    .content-item {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        left: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border: 2px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-                        border-radius: 50%;
-                    }
-
-                    .card {
-                        position: absolute;
-                        width: 125px;
-                        height: 125px;
-                        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
-                        border-radius: 50%;
-                        box-shadow: 0 var(--composer-gap-sm) var(--composer-gap-md) color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        text-align: center;
-                        flex-direction: column;
-                        transform: rotate(var(--angle)) translate(200px) rotate(calc(-1 * var(--angle)));
-
-                        .counter-value {
-                            font-size: 2.5rem;
-                            font-weight: 700;
-                            margin: 0;
-                        }
-
-                        .counter-label {
-                            margin: 0;
-                        }
-                    }
-                }
-            }
+  .max-content {
+    padding-bottom: 1.5rem;
+    .stats1-page {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--composer-gap-xl);
+      flex: 1 1;
+      .left-container {
+        max-width: 50%;
+        .description {
+          color: var(--composer-font-color-primary);
         }
+
+        .button-text-wrapper {
+          background-color: var(--composer-primary-color);
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          border-radius: var(--composer-border-radius-xs);
+
+          .button-text {
+            color: var(--composer-font-color-secondary);
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .right-container {
+        margin-right: 1%;
+        padding: var(--composer-gap-xl);
+
+        .content-div {
+          position: relative;
+          width: 500px;
+          height: 500px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+
+          .content-item {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+            border-radius: 50%;
+          }
+
+          .card {
+            position: absolute;
+            max-width: 200px;
+            min-height: 125px;
+            padding: 20px;
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
+            border-radius: 50%;
+            box-shadow: 0 var(--composer-gap-sm) var(--composer-gap-md) color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+
+            .counter-value {
+              font-size: 2.5rem;
+              font-weight: 700;
+              margin: 0;
+              word-break: break-all;
+            }
+
+            .counter-label {
+              margin: 0;
+              color: var(--composer-font-color-primary);
+              word-break: break-all;
+            }
+          }
+        }
+      }
     }
+  }
 }
 
-@container (max-width: #{$composer-phone-width-lg}) {
-    .container {
-        .max-content {
-            .stats1-page {
-                .left-container {
-                    .button-text-wrapper {
-                        .button-text {
-                            font-size: 1rem;
-                        }
-                    }
-                }
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .stats1-page {
+        flex-direction: column;
+        .left-container {
+          max-width: 100%;
 
-                .right-container {
-                    .content-div {
-                        width: 280px;
-                        height: 280px;
-
-                        .card {
-                            width: 90px;
-                            height: 90px;
-                            transform: rotate(var(--angle)) translate(140px) rotate(calc(-1 * var(--angle)));
-
-                            .counter-value {
-                                font-size: 1.5rem;
-                                font-weight: 700;
-                                margin: 0;
-                            }
-                        }
-                    }
-                }
+          .button-text-wrapper {
+            .button-text {
+              font-size: 1.5rem;
             }
+          }
         }
+
+        .right-container {
+          padding: 0;
+
+          .content-div {
+            width: 500px !important;
+            height: 500px !important;
+
+            .card {
+              min-width: 125px;
+              max-width: 200px;
+              min-height: 125px;
+              transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+
+              .counter-value {
+                margin: 0;
+                font-size: 1rem !important;
+              }
+
+              .counter-label {
+                margin: 0;
+                font-size: 1rem !important;
+              }
+            }
+          }
+        }
+      }
     }
+  }
+}
+
+@container (max-width: #{$composer-phone-width-sm}) {
+  .container {
+    .max-content {
+      .stats1-page {
+        .left-container {
+          .subtitle {
+            width: 90%;
+          }
+          .button-text-wrapper {
+            .button-text {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .right-container {
+          margin-right: 5% !important;
+          .content-div {
+            width: 250px !important;
+            height: 250px !important;
+
+            .card {
+              min-width: 50px !important;
+              max-width: 115px !important;
+              min-height: 80px !important;
+              transform: rotate(var(--angle)) translate(120px) rotate(calc(-1 * var(--angle)));
+            }
+          }
+        }
+      }
+    }
+  }
 }
