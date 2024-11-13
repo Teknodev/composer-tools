@@ -9,13 +9,12 @@ import { Base } from "../../../composer-base-components/base/base";
 type IIconBoxes = {
   bars: any;
   description: any;
-  planTitle: any;
   list: any;
-  title: string;
+  title: JSX.Element;
   image: string;
-  price: string;
-  priceBig: string;
-  plan: string;
+  price: JSX.Element;
+  priceBig: JSX.Element;
+  plan: JSX.Element;
   link: string;
   iconsButton: Button;
 };
@@ -74,12 +73,7 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Plan",
               value: "Basic plan",
             },
-            {
-              type: "string",
-              key: "planTitle",
-              displayer: "Plan Title",
-              value: "Basic plan",
-            },
+
             {
               type: "string",
               key: "description",
@@ -193,12 +187,7 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Plan",
               value: "Medium plan",
             },
-            {
-              type: "string",
-              key: "planTitle",
-              displayer: "Plan Title",
-              value: "Medium plan",
-            },
+
             {
               type: "string",
               key: "description",
@@ -312,12 +301,7 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Plan",
               value: "Professional plan",
             },
-            {
-              type: "string",
-              key: "planTitle",
-              displayer: "Plan Title",
-              value: "Professional plan",
-            },
+
             {
               type: "string",
               key: "description",
@@ -468,52 +452,69 @@ class PricingTable8 extends BasePricingTable {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("box")}>
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-              {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} key={index}>
-                  <Base.VerticalContent className={this.decorateCSS("pricing")}>
-                    <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>
-                    <Base.H3 className={this.decorateCSS("price")}>{card.price}</Base.H3>
-                    <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>
-                    <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>
+              {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => {
+                const cardTitleExist = this.castToString(card.title);
+                const cardPriceExist = this.castToString(card.price);
+                const cardPriceBigExist = this.castToString(card.priceBig);
+                const cardPlanExist = this.castToString(card.plan);
 
-                    <ComposerLink path={card.iconsButton.url}>
-                      <ComposerIcon
-                        name={card.iconsButton.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                    </ComposerLink>
-                  </Base.VerticalContent>
-                </div>
-              ))}
+                return (
+                  <div className={this.decorateCSS("card-item-count")} key={index}>
+                    <Base.VerticalContent className={this.decorateCSS("pricing")}>
+                      {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
+                      {cardPriceExist && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
+                      {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}
+                      {cardPlanExist && <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>}
+
+                      {card.iconsButton.icon && (
+                        <ComposerLink path={card.iconsButton.url}>
+                          <ComposerIcon
+                            name={card.iconsButton.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                        </ComposerLink>
+                      )}
+                    </Base.VerticalContent>
+                  </div>
+                );
+              })}
             </ComposerSlider>
 
             <div className={this.decorateCSS("upper-container")}>
-              {this.castToObject<IIconBoxes[]>("cards").map((card, index) => (
-                <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}`} key={index} onClick={() => handleCardClick(index)}>
-                  <Base.VerticalContent className={this.decorateCSS("pricing")}>
-                    <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>
-                    <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>
-                    <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>
-                    <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>
+              {this.castToObject<IIconBoxes[]>("cards").map((card, index) => {
+                const cardTitleExist = this.castToString(card.title);
+                const cardPriceExist = this.castToString(card.price);
+                const cardPriceBigExist = this.castToString(card.priceBig);
+                const cardPlanExist = this.castToString(card.plan);
+                return (
+                  <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}`} key={index} onClick={() => handleCardClick(index)}>
+                    <Base.VerticalContent className={this.decorateCSS("pricing")}>
+                      {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
+                      {cardPriceExist && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
+                      {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}
+                      {cardPlanExist && <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>}
 
-                    <ComposerLink path={card.iconsButton.url}>
-                      <ComposerIcon
-                        name={card.iconsButton.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                    </ComposerLink>
-                  </Base.VerticalContent>
-                </div>
-              ))}
+                      {card.iconsButton.icon && (
+                        <ComposerLink path={card.iconsButton.url}>
+                          <ComposerIcon
+                            name={card.iconsButton.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                        </ComposerLink>
+                      )}
+                    </Base.VerticalContent>
+                  </div>
+                );
+              })}
             </div>
 
             <div className={this.decorateCSS("lower-container")}>
               <Base.VerticalContent className={this.decorateCSS("plan-desc")}>
-                <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3>
+                {/* <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3> */}
                 <Base.P className={this.decorateCSS("description-text")}>{cards[this.getComponentState("currentIndex")].description}</Base.P>
               </Base.VerticalContent>
 
