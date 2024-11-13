@@ -2,44 +2,44 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature8.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
-type Features = {
-  title: string;
-  description: string;
+type Card = {
   image: string;
-  buttonText: string;
-  link: string;
+  title: JSX.Element;
+  description: JSX.Element;
 };
+
 class Feature8 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "card-title",
+      key: "title",
       value: "Card",
       displayer: "Card Title",
     });
     this.addProp({
       type: "string",
-      key: "card-button",
+      key: "buttonText",
       value: "Learn More",
       displayer: "Button Text",
     });
     this.addProp({
       type: "page",
-      key: "link",
+      key: "buttonLink",
       displayer: "Button Link",
       value: "",
     });
     this.addProp({
       type: "array",
-      key: "features-card",
-      displayer: "Features Card",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "features",
-          displayer: "Features",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -65,8 +65,8 @@ class Feature8 extends BaseFeature {
         },
         {
           type: "object",
-          key: "features",
-          displayer: "Features",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -92,8 +92,8 @@ class Feature8 extends BaseFeature {
         },
         {
           type: "object",
-          key: "features",
-          displayer: "Features",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -132,38 +132,48 @@ class Feature8 extends BaseFeature {
   }
 
   render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <h1 className={this.decorateCSS("card-title")}>{this.getPropValue("card-title")}</h1>
+    const cards = this.castToObject<Card[]>("cards");
 
-            <div className={this.decorateCSS("card")}>
-              {this.castToObject<Features[]>("features-card").map(
-                (features: any, index: number) => (
-                  <div className={this.decorateCSS("card-item-count")} style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
-                  }}>
-                  <div className={this.decorateCSS("features")} key={index}>
-                    <img className={this.decorateCSS("image")} src={features.image} alt=""></img>
-                    <h3 className={this.decorateCSS("title")}>{features.title}</h3>
-                    <p className={this.decorateCSS("long-text")}>
-                      {features.description}
-                    </p>
-                  </div>
-                  </div>
-                )
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+            <Base.SectionTitle className={this.decorateCSS("section-title")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+
+            <Base.ContainerGrid className={this.decorateCSS("cards-container")}>
+              {cards.map((item: Card, index: number) => {
+                const titleExist = !!this.castToString(item.title);
+                const descExist = !!this.castToString(item.description);
+
+                return (
+                  <Base.GridCell
+                    key={index}
+                    className={this.decorateCSS("card")}
+                    style={{ width: 90 / this.getPropValue("itemCount") + "%" }}
+                  >
+                    {!!item.image && <img className={this.decorateCSS("image")} src={item.image} alt="" />}
+                    {titleExist && <Base.H2 className={this.decorateCSS("title")}>{item.title}</Base.H2>}
+                    {descExist && (
+                      <Base.P className={this.decorateCSS("description")}>
+                        {item.description}
+                      </Base.P>
+                    )}
+                  </Base.GridCell>
+                );
+              }
               )}
-            </div>
+            </Base.ContainerGrid>
 
             <div className={this.decorateCSS("button")}>
-              <ComposerLink path={this.getPropValue("link")}>
-                {this.getPropValue("card-button")}
+              <ComposerLink path={this.getPropValue("buttonLink")}>
+                {this.getPropValue("buttonText")}
               </ComposerLink>
             </div>
-          </div>
-        </div>
-      </div>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

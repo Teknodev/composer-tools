@@ -1,79 +1,70 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        display: flex;
-        justify-content: space-around;
-        .content {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            .card-title {
+        .wrapper {
+            .section-title {
                 text-align: center;
-                font-size: 3rem;
-                margin: 40px 0;
-                color: var(--composer-primary-color);
-            }
-            .card {
                 width: 100%;
-                display: flex;
+                font-size: 3rem;
+            }
+
+            .cards-container {
                 justify-content: center;
-                flex-wrap: wrap;
-                gap: 20px;
-                .features {
+                gap: var(--composer-gap-md);
+
+                .card {
                     transition: all 0.6s;
                     display: flex;
                     flex-direction: column;
                     text-align: center;
-                    border-radius: 6px;
+                    border-radius: var(--composer-border-radius-sm);
                     min-height: 350px;
                     border: 1px solid transparent;
                     box-shadow: var(--composer-box-shadow);
                     padding: 20px;
                     flex: 1 1;
+                    gap: var(--composer-gap-sm);
+
                     &:hover {
                         border: 1px solid var(--composer-tertiary-color);
                     }
+
                     .image {
                         display: block;
-                        margin: auto;
+                        margin: 0 auto;
                         width: 100%;
                         max-width: 250px;
-                        padding: 0;
                         object-fit: cover;
-                        border-radius: 6px;
+                        border-radius: var(--composer-border-radius-sm);
                     }
+
                     .title {
-                        display: block;
-                        font-weight: bold;
                         color: var(--composer-primary-color);
+                        margin: 0;
                     }
-                    .long-text {
-                        display: block;
+
+                    .description {
                         color: var(--composer-font-color-primary);
                         margin: 0;
                     }
                 }
             }
+
             .button {
-                width: 100%;
                 cursor: pointer;
                 text-decoration: none;
                 text-align: center;
                 transition: 0.3s;
-                display: block;
-                margin: 10px auto 10px auto;
-                color: white;
+                margin: 0 auto;
+                margin-top: var(--composer-gap-sm);
+                color: var(--composer-font-color-secondary);
                 background-color: var(--composer-secondary-color);
-                padding: 10px 30px;
-                border-radius: 6px;
-                border: 1px solid transparent;
-                width: 200px;
-                font-weight: 400;
-                font-size: 1.5em;
+                padding: var(--composer-gap-sm) var(--composer-gap-lg);
+                border-radius: var(--button-radius);
+                border: 1px solid var(--composer-secondary-color);
+                font-size: 1.5rem;
+
                 &:hover {
                     color: var(--composer-primary-color);
                     background-color: transparent;
@@ -84,15 +75,32 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: #{$composer-tablet-width}) {
     .container {
-        padding: 50px 20px;
         .max-content {
-            .content {
-                .card-item-count {
-                    min-width: 100%;
+            .wrapper {
+                .section-title {
+                }
+
+                .cards-container {
+                    .card {
+                        width: 100% !important;
+                        .image {
+                        }
+
+                        .title {
+                        }
+
+                        .description {
+                        }
+                    }
+                }
+
+                .button {
                 }
             }
         }
     }
 }
+
+@media only screen and (max-width: #{$composer-phone-width}) {}
