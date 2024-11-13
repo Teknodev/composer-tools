@@ -269,16 +269,22 @@ $font-color-primary: var(--composer-font-color-primary);
           .stats {
             flex-direction: row !important;
             justify-content: space-between;
-            align-items: center;
+            align-items: unset;
 
             .stat-border {
-              // flex: 1;
               width: 48% !important;
               height: auto;
+              padding: 1rem !important;
               .with-background {
-                height: auto;
+                height: 100%;
+                margin: 0 !important;
+              }
+
+              .stat-counter {
+                margin: 10px !important;
               }
               .stat-description {
+                margin: 5px !important;
               }
             }
           }
