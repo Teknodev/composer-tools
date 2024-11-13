@@ -24,8 +24,7 @@ class Stats8Page extends BaseStats {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value:
-        "We’re a creative agency with an expertise in make custom websites",
+      value: "We’re a creative agency with an expertise in make custom websites",
     });
 
     this.addProp({
@@ -128,8 +127,7 @@ class Stats8Page extends BaseStats {
       type: "image",
       key: "imageSrc",
       displayer: "Image Source",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a36aa42f8a5b002ce6a087?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a36aa42f8a5b002ce6a087?alt=media",
     });
 
     this.addProp({
@@ -151,7 +149,7 @@ class Stats8Page extends BaseStats {
 
   init() {
     this.castToObject<CardData[]>("stats").map((statsData, index) => {
-      this.setComponentState(`number-${index}`, "")
+      this.setComponentState(`number-${index}`, "");
       this.setComponentState(`numberForControl-${index}`, "");
     });
     this.setComponentState("overlayNumberDisplay", "");
@@ -161,11 +159,7 @@ class Stats8Page extends BaseStats {
   isEqual(arr1: any[], arr2: any[]) {
     return arr1.every((value, index) => {
       const otherValue = arr2[index];
-      return (
-        value === otherValue ||
-        (value === '' && otherValue === 0) ||
-        (value === 0 && otherValue === '')
-      );
+      return value === otherValue || (value === "" && otherValue === 0) || (value === 0 && otherValue === "");
     });
   }
 
@@ -175,9 +169,7 @@ class Stats8Page extends BaseStats {
 
   getStats() {
     const statItems = this.castToObject<CardData[]>("stats");
-    const stats = statItems.map((card: any) =>
-      card.counter === "" ? "" : this.castToString(card.counter),
-    );
+    const stats = statItems.map((card: any) => (card.counter === "" ? "" : this.castToString(card.counter)));
     return stats;
   }
 
@@ -203,13 +195,11 @@ class Stats8Page extends BaseStats {
     const incrementValue = this.getPropValue("incrementValue");
 
     this.interval = setInterval(() => {
-
       if (this.isEqual(this.getStats(), this.getNumbers()) || this.isOverlayNumbersEqual(this.castToString(this.getPropValue("overlayNumber")), this.getComponentState("overlayNumberDisplayForControl"))) {
         clearInterval(this.interval);
         this.interval = null;
       }
       this.castToObject<CardData[]>("stats").map((statData: CardData, index: number) => {
-
         let currentNumberState = this.getComponentState(`number-${index}`);
         const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
         const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
@@ -221,40 +211,20 @@ class Stats8Page extends BaseStats {
         const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
         const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
 
-        if (
-          currentNumber !== numericPart ||
-          currentNonNumericPrefix !== newNonNumericPrefix ||
-          currentNonNumericSuffix !== newNonNumericSuffix
-        ) {
-          let nextValue = Math.min(
-            numericPart,
-            currentNumber +
-            Math.ceil(numericPart / Math.round(incrementValue / 30))
-          );
+        if (currentNumber !== numericPart || currentNonNumericPrefix !== newNonNumericPrefix || currentNonNumericSuffix !== newNonNumericSuffix) {
+          let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
 
-          let formattedNextValue = nextValue
-            ? nextValue.toString()
-            : "";
+          let formattedNextValue = nextValue ? nextValue.toString() : "";
 
           const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
 
-          var updatedValue = currentNumber > 0
-            ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix
-            : newNonNumericPrefix + formattedNextValueWithDots;
+          var updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
 
-          var updatedValueForControl = currentNumber > 0
-            ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix
-            : newNonNumericPrefix + formattedNextValue;
+          var updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
 
-          this.setComponentState(
-            `number-${index}`,
-            updatedValue
-          );
+          this.setComponentState(`number-${index}`, updatedValue);
 
-          this.setComponentState(
-            `numberForControl-${index}`,
-            updatedValueForControl
-          );
+          this.setComponentState(`numberForControl-${index}`, updatedValueForControl);
         }
       });
 
@@ -270,33 +240,19 @@ class Stats8Page extends BaseStats {
       const newCurrentOverlaySuffix = overlayNumberProp.match(/\D+$/)?.[0] || "";
       const overlayNumericPart = parseInt(overlayNumberProp.replace(/[^\d]/g, ""), 10) || 0;
 
-      if (currentOverlayNumber !== overlayNumericPart ||
-        newCurrentOverlayPrefix !== currentOverlayPrefix ||
-        newCurrentOverlaySuffix !== currentOverlaySuffix
-      ) {
-        let nextOverlayValue = Math.min(
-          overlayNumericPart,
-          currentOverlayNumber +
-          Math.ceil(overlayNumericPart / Math.round(incrementValue / 30))
-        );
+      if (currentOverlayNumber !== overlayNumericPart || newCurrentOverlayPrefix !== currentOverlayPrefix || newCurrentOverlaySuffix !== currentOverlaySuffix) {
+        let nextOverlayValue = Math.min(overlayNumericPart, currentOverlayNumber + Math.ceil(overlayNumericPart / Math.round(incrementValue / 30)));
 
-        let formattedOverlayValue = nextOverlayValue
-          ? nextOverlayValue.toString()
-          : "";
+        let formattedOverlayValue = nextOverlayValue ? nextOverlayValue.toString() : "";
 
         const formattedNextValueWithDots = this.formatNumberWithDots(formattedOverlayValue) === "0" ? "" : this.formatNumberWithDots(formattedOverlayValue);
 
-        var updatedValue = currentOverlayNumber > 0
-          ? newCurrentOverlayPrefix + formattedNextValueWithDots + newCurrentOverlaySuffix
-          : newCurrentOverlayPrefix + formattedNextValueWithDots;
+        var updatedValue = currentOverlayNumber > 0 ? newCurrentOverlayPrefix + formattedNextValueWithDots + newCurrentOverlaySuffix : newCurrentOverlayPrefix + formattedNextValueWithDots;
 
-        var updatedValueForControl = currentOverlayNumber > 0
-          ? newCurrentOverlayPrefix + formattedOverlayValue + newCurrentOverlaySuffix
-          : newCurrentOverlayPrefix + formattedOverlayValue;
+        var updatedValueForControl = currentOverlayNumber > 0 ? newCurrentOverlayPrefix + formattedOverlayValue + newCurrentOverlaySuffix : newCurrentOverlayPrefix + formattedOverlayValue;
 
         this.setComponentState("overlayNumberDisplay", updatedValue);
         this.setComponentState("overlayNumberDisplayForControl", updatedValue);
-
       }
     }, animationDuration);
   }
@@ -318,17 +274,11 @@ class Stats8Page extends BaseStats {
     const isAuthorExist = this.castToString(author);
     const authorRole = this.getPropValue("authorRole");
     const isAuthorRoleExist = this.castToString(authorRole);
-    const overlayDescription = this.castToString(
-      this.getPropValue("overlayDescription")
-    );
+    const overlayDescription = this.castToString(this.getPropValue("overlayDescription"));
     const showBackground = this.getPropValue("showBackground");
-    const isContentPresent =
-      isTitleExist ||
-      isSubTitleExist ||
-      isDesExist ||
-      isAuthorExist ||
-      isAuthorRoleExist ||
-      statsData.length > 0;
+    const isContentPresent = isTitleExist || isSubTitleExist || isDesExist || isAuthorExist || isAuthorRoleExist || statsData.length > 0;
+
+    console.log(isContentPresent, "isContentPresent");
 
     const statsEqual = this.isEqual(this.getStats(), this.getNumbers());
     const overlayNumberState = this.getComponentState("overlayNumberDisplayForControl");
@@ -341,87 +291,40 @@ class Stats8Page extends BaseStats {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent
-          className={
-            this.decorateCSS("max-content") +
-            (!isContentPresent ? "full-width" : "")
-          }
-        >
+        <Base.MaxContent className={!isContentPresent ? this.decorateCSS("max-content") : this.decorateCSS("max-content")}>
           {isContentPresent && (
             <Base.VerticalContent className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("content")}>
-                <Base.VerticalContent>
-                  {isTitleExist && (
-                    <Base.SectionTitle
-                      className={
-                        this.decorateCSS("title") +
-                        " " +
-                        this.decorateCSS("text-uppercase")
-                      }
-                    >
-                      {title}
-                    </Base.SectionTitle>
-                  )}
-                </Base.VerticalContent>
-                {isSubTitleExist && (
-                  <Base.P className={this.decorateCSS("subtitle")}>{subtitle}</Base.P>
-                )}
+                <Base.VerticalContent>{isTitleExist && <Base.SectionTitle className={this.decorateCSS("title") + " " + this.decorateCSS("text-uppercase")}>{title}</Base.SectionTitle>}</Base.VerticalContent>
+                {isSubTitleExist && <Base.P className={this.decorateCSS("subtitle")}>{subtitle}</Base.P>}
 
-                {(isTitleExist || isSubTitleExist) && this.getPropValue("showLine") && (
-                  <hr className={this.decorateCSS("line")} />
-                )}
+                {(isTitleExist || isSubTitleExist) && this.getPropValue("showLine") && <hr className={this.decorateCSS("line")} />}
 
-                {isDesExist && (
-                  <Base.P className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.P>
-                )}
+                {isDesExist && <Base.P className={this.decorateCSS("description")}>{description}</Base.P>}
 
-                {isAuthorExist && (
-                  <Base.P className={this.decorateCSS("author")}>{author}</Base.P>
-                )}
+                {isAuthorExist && <Base.P className={this.decorateCSS("author")}>{author}</Base.P>}
                 {isAuthorRoleExist && (
                   <div className={this.decorateCSS("author-role-container")}>
                     <Base.P className={this.decorateCSS("author-role")}>
-                      {showBackground && (
-                        <span
-                          className={this.decorateCSS("author-role-background")}
-                        ></span>
-                      )}
+                      {showBackground && <span className={this.decorateCSS("author-role-background")}></span>}
                       {authorRole}
                     </Base.P>
                   </div>
                 )}
 
-                <Base.ContainerGrid className={`${this.decorateCSS("stats")} ${!imageSrc ? this.decorateCSS("full-width") : ""
-                  }`}>
-                  {statsData.map(
-                    (statData: CardData, indexStat: number) => {
-                      return ((this.castToString(statData.counter) ||
-                        this.castToString(statData.description)) && (
-                          <div className={`${this.decorateCSS("stat-border")} ${!imageSrc ? this.decorateCSS("stat-border-full-width") : ""
-                            }`}>
-                            <div
-                              key={indexStat}
-                              className={`${this.decorateCSS("stat")} ${showBackground
-                                ? this.decorateCSS("with-background")
-                                : this.decorateCSS("no-background")
-                                }`}
-                            >
-                              {(this.getComponentState(`number-${indexStat}`) !== "0") &&
-                                <span className={this.decorateCSS("stat-counter")}>
-                                  {this.getComponentState(`number-${indexStat}`)}
-                                </span>}
-                              <Base.P
-                                className={this.decorateCSS("stat-description")}
-                              >
-                                {statData.description}
-                              </Base.P>
-                            </div>
+                <Base.ContainerGrid className={this.decorateCSS("stats")}>
+                  {statsData.map((statData: CardData, indexStat: number) => {
+                    return (
+                      (this.castToString(statData.counter) || this.castToString(statData.description)) && (
+                        <div className={`${this.decorateCSS("stat-border")} ${!imageSrc ? this.decorateCSS("stat-border-full-width") : ""}`}>
+                          <div key={indexStat} className={`${this.decorateCSS("stat")} ${showBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
+                            {this.getComponentState(`number-${indexStat}`) !== "0" && <span className={this.decorateCSS("stat-counter")}>{this.getComponentState(`number-${indexStat}`)}</span>}
+                            <Base.P className={this.decorateCSS("stat-description")}>{statData.description}</Base.P>
                           </div>
-                        ))
-                    }
-                  )}
+                        </div>
+                      )
+                    );
+                  })}
                 </Base.ContainerGrid>
               </div>
             </Base.VerticalContent>
@@ -431,22 +334,12 @@ class Stats8Page extends BaseStats {
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-container-border")}>
                   <img src={imageSrc} alt="Digital Experience" />
-                  {(this.getComponentState('overlayNumberDisplay') !== "0"
-                    || overlayDescription) && (
-                      <div className={this.decorateCSS("overlay")}>
-                        {this.getComponentState('overlayNumberDisplay') !== "0"
-                          && (
-                            <span className={this.decorateCSS("number")}>
-                              {this.getComponentState('overlayNumberDisplay')}
-                            </span>
-                          )}
-                        {overlayDescription && (
-                          <Base.P className={this.decorateCSS("description")}>
-                            {overlayDescription}
-                          </Base.P>
-                        )}
-                      </div>
-                    )}
+                  {(this.getComponentState("overlayNumberDisplay") !== "0" || overlayDescription) && (
+                    <div className={this.decorateCSS("overlay")}>
+                      {this.getComponentState("overlayNumberDisplay") !== "0" && <span className={this.decorateCSS("number")}>{this.getComponentState("overlayNumberDisplay")}</span>}
+                      {overlayDescription && <Base.P className={this.decorateCSS("description")}>{overlayDescription}</Base.P>}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
