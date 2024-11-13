@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   background-size: cover;
   background-position: center center;
@@ -5,7 +6,7 @@
   .max-content {
     display: flex;
     justify-content: center;
-    height: 100vh;
+    min-height: 70vh;
     .background-image{
       display: none;      
     }
@@ -14,145 +15,197 @@
       display: block;
       width: 50%;
       position: relative;
-      // margin-top: calc(var(--composer-gap-xl)*5);
-      .button-right, .button-left{
-        border: none;
-        background-color: transparent;
-        position: absolute;
-        cursor: pointer;
-        .arrow{
-          width: 25px;
-          height: 25px;
-        }
-      }
-      .button-right{
-        top:50%;
-        right: calc(var(--composer-gap-md) + 40%);
-      }
-      .button-left{
-        left: var(--composer-gap-md);
-        top:50%;
-        z-index: 2;
-      }
-      .slider-style {
-        width: 60%;
-        display: flex;
-        position: absolute;
-        bottom: 0px;
-        .card{
-          color: var(--composer-font-color-primary);
-          display: flex !important;
-          gap: 60px;
-          font-size: 20px;
-          background-color: var(--composer-html-background);
-          padding: var(--composer-gap-xl) calc(var(--composer-gap-xl)*2)  var(--composer-gap-md) calc(var(--composer-gap-xl)*2) ;
+      .slider-wrapper{
+        width: 80%;
+        height: 100%;
+        position: relative;
+        .slider-style {
           width: 100%;
-          .item-content{
-            gap:var(--composer-gap-md);
-            .item-description{
-              font-size: 1rem;
-            }
-             .profile{
+          display: flex;
+          position: absolute;
+          bottom: 0px;
+          >div{
+            >div{
               display: flex;
-              gap: var(--composer-gap-md);
-              color: var(--composer-primary-color);
-              align-items: center;
-              .profile-text{ 
-                flex-direction: column;
-                .item-name{
-                  font-size:1rem;
-  
+              align-items: stretch;
+              height: 100%;
+              >div{
+                >div{
+                  height: 100%;
                 }
-                .item-name-id{
-                  font-size:1rem;
-                }
-              }     
+              }
             }
-            .image {    
-              width: 100px;
-              height: 100px;
-              } 
           }
-          }
-          }
+          .card, .card-no-image{
+            height: 100%;
+            display: flex !important;
+            padding: calc(var(--composer-gap-xl)*2) ;
+            width: 100%;
+            position: relative;
+            align-items: center;
+            .item-content{
+              gap:var(--composer-gap-md);
+              .item-description, .item-description-no-image{
+                font-size: 1.5rem;
+              }
+              .item-description{
+                color: white;
+              }
+              .item-description-no-image{
+                color: var(--composer-font-color-primary);
+              }
+               .profile{
+                display: flex;
+                gap: var(--composer-gap-md);
+                align-items: center;
+                .profile-text{ 
+                  flex-direction: column;
+                  .item-name, .item-name-no-image{
+                    font-size:1rem;                    
+                  }
+                  .item-name{
+                    color: white;
+                  }
+                  .item-name-no-image{
+                    color: var(--composer-font-color-primary);
+                  }
+                  .item-name-id, .item-name-id-no-image{
+                    font-size:1rem;
+                  }
+                  .item-name-id{
+                    color:white;
+                  }
+                  .item-name-id-no-image{
+                    color: var(--composer-primary-color);
+                  }
+                }     
+              }
+              .image {    
+                width: 100px;
+                height: 100px;
+                } 
+            }
+            .button-right, .button-left, .button-left-no-image, .button-right-no-image{
+              border: none;
+              background-color: transparent;
+              position: absolute;
+              cursor: pointer;
+              .arrow{
+                width: 25px;
+                height: 25px;
+              }
+            }
+            .button-right, .button-right-no-image{
+              right: var(--composer-gap-md);
+            }
+            .button-right, .button-left{
+              color: white;
+            }
+            .button-right-no-image, .button-left-no-image{
+              color: var(--composer-font-color-primary);
+            }
+            .button-left, .button-left-no-image{
+              left: var(--composer-gap-md);
+            }
+            }
+            .card{
+              background-color: black;
+            }
+            .card-no-image{
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            }
+            
+            }
+         }
         }  
-
       }
     }
-  
-
-
-@media only screen and (max-width: 800px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .testimonials7 {
-        width: 60%;
-        .button-right{
-          top:50%;
-          right: calc(var(--composer-gap-md));
-        }
-        .slider-style {
-          width: 100%;
-          .card{
-            padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) * 2) var(--composer-gap-md) calc(var(--composer-gap-xl) * 2);
+        width: 90%;
+
+        .slider-wrapper{
+          width: 70%;
+          .slider-style {
+            .card, .card-no-image{
+              padding: var(--composer-gap-xl);
+              .item-content{
+                .item-description, .item-description-no-image{
+                  font-size: 1rem;
+                }
+              }
+              .button-right, .button-right-no-image{
+                right: var(--composer-gap-xs);
+              }
+              .button-left, .button-left-no-image{
+                left: var(--composer-gap-xs);
+              }
+            }
           }
         }
       }
     }
   }
 }
-
-
-@media only screen and (max-width: 400px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     background-image: none !important;
     .max-content {
+      min-height: 100%;
       width: 100%;
       display: flex;
       flex-direction: column;
+      justify-content: unset;
       .background-image{
         display: block;
-        height: 250px;
+        min-height: 250px;
         width: 100%;
         object-fit: cover;
       }
       .testimonials7 {
-        margin-top:0px;
         width: 100%;
-        .button-left{
+        .button-left, .button-left-no-image{
           display: none;
         }
-        .button-right{
+        .button-right, .button-right-no-image{
           display: none;
         }
-        .slider-style{
-          >ul{
-            b
-            >li{
-              >button{
-                &::before{
-                  color: var(--composer-font-color-primary);
+        .slider-wrapper{
+          margin-top:0px;
+          width: 100%;
+          .slider-style{
+            position: static;
+            >ul{
+              bottom: 0px;
+              padding-bottom: 20px;
+              >li{
+                >button{
+                  &::before{
+                    color: var(--composer-font-color-primary);
+                  }
                 }
               }
             }
+            .card, .card-no-image{
+              border: var(--composer-testiary-color);
+              padding:  var(--composer-gap-lg) 20px;
+              .item-content{
+                padding: var(--composer-gap-xs);
+                .profile{
+                  .profile-text{
+                   margin-top: 5px;
+                  }     
+                  .image{
+                    width: 80px;
+                    height: 80px;
+                  }
+                }
+  
+              }
+           }  
           }
-          .card {
-            border: var(--composer-testiary-color);
-            padding:  var(--composer-gap-lg) 20px;
-            .item-content{
-              padding: var(--composer-gap-xs);
-              .profile{
-                .profile-text{
-                 margin-top: 5px;
-                }     
-                .image{
-                  width: 80px;
-                  height: 80px;
-                }
-              }
-
-            }
-         }  
         }
       }
     }

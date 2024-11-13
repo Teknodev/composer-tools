@@ -26,14 +26,14 @@ class Testimonials7Page extends Testimonials {
       key: "prevIcon",
       displayer: "Prev Icon",
       value:
-        "FaArrowLeft",
+        "HiArrowLeft",
     });
     this.addProp({
       type: "icon",
       key: "nextIcon",
       displayer: "Next Icon",
       value:
-        "FaArrowRight",
+        "HiArrowRight",
     });
     this.addProp({
       type: "array",
@@ -49,7 +49,7 @@ class Testimonials7Page extends Testimonials {
               type: "string",
               key: "description",
               value:
-                " 'Our office is something we are pleased with.our office is something we are pleased with.our office is something we are pleased with'.",
+                "'Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.'",
               displayer: "Description",
             },
             {
@@ -82,7 +82,7 @@ class Testimonials7Page extends Testimonials {
               type: "string",
               key: "description",
               value:
-                " 'Our office is something we are pleased with.our office is something we are pleased with.our office is something we are pleased with'.",
+                "'Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.'",
               displayer: "Description",
             },
             {
@@ -115,7 +115,7 @@ class Testimonials7Page extends Testimonials {
               type: "string",
               key: "description",
               value:
-                " 'Our office is something we are pleased with.our office is something we are pleased with.our office is something we are pleased with'.",
+                "'“Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.”'",
               displayer: "Description",
             },
             {
@@ -186,63 +186,66 @@ class Testimonials7Page extends Testimonials {
             <img src={this.getPropValue("cover-image")} className={this.decorateCSS("background-image")} />
           )}
           <div className={this.decorateCSS("testimonials7")}>
-            {this.getPropValue("prevIcon") && (
-              <button onClick={() => {
-                sliderRef.current.slickPrev();
-              }} className={this.decorateCSS("button-left")}>
-                <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
-              </button>
-            )}
-            <ComposerSlider
-              ref={sliderRef}
-              {...settings}
-              className={this.decorateCSS("slider-style")}
-            >
-
-              {this.castToObject<Item[]>("card-items").map(
-                (item: Item, index: number) => (
-                  <div className={this.decorateCSS("card")}>
-                    <Base.VerticalContent className={this.decorateCSS("item-content")}>
-                      {this.castToString(item.description) && (
-                        <div className={this.decorateCSS("item-description")}>
-                          {item.description}
-                        </div>
+            <div className={this.decorateCSS("slider-wrapper")}>
+              <ComposerSlider
+                ref={sliderRef}
+                {...settings}
+                className={this.decorateCSS("slider-style")}
+              >
+                {this.castToObject<Item[]>("card-items").map(
+                  (item: Item, index: number) => (
+                    <div className={this.getPropValue("cover-image") ? this.decorateCSS("card") : this.decorateCSS("card-no-image")}>
+                      {this.getPropValue("prevIcon") && (
+                        <button onClick={() => {
+                          sliderRef.current.slickPrev();
+                        }} className={this.getPropValue("cover-image") ? this.decorateCSS("button-left") : this.decorateCSS("button-left-no-image")}>
+                          <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                        </button>
                       )}
-                      <div className={this.decorateCSS("profile")}>
-                        {item.image && (
-                          <img
-                            src={item.image}
-                            alt={item.image}
-                            className={this.decorateCSS("image")}
-                          />
-                        )}
-                        <Base.VerticalContent className={this.decorateCSS("profile-text")}>
-                          {this.castToString(item.name) && (
-                            <div className={this.decorateCSS("item-name")}>
-                              {item.name}
+                      {(this.castToString(item.description) || item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
+                        <Base.VerticalContent className={this.decorateCSS("item-content")}>
+                          {this.castToString(item.description) && (
+                            <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-image")}>
+                              {item.description}
                             </div>
                           )}
-                          {this.castToString(item.nameId) && (
-                            <div className={this.decorateCSS("item-name-id")}>
-                              {item.nameId}
+                          {(item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
+                            <div className={this.decorateCSS("profile")}>
+                              {item.image && (
+                                <img
+                                  src={item.image}
+                                  alt={item.image}
+                                  className={this.decorateCSS("image")}
+                                />
+                              )}
+                              <Base.VerticalContent className={this.decorateCSS("profile-text")}>
+                                {this.castToString(item.name) && (
+                                  <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-name") : this.decorateCSS("item-name-no-image")}>
+                                    {item.name}
+                                  </div>
+                                )}
+                                {this.castToString(item.nameId) && (
+                                  <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-name-id") : this.decorateCSS("item-name-id-no-image")}>
+                                    {item.nameId}
+                                  </div>
+                                )}
+                              </Base.VerticalContent>
                             </div>
                           )}
                         </Base.VerticalContent>
-
-                      </div>
-                    </Base.VerticalContent>
-                  </div>
-                )
-              )}
-
-            </ComposerSlider>
-            {this.getPropValue("nextIcon") && (
-              <button onClick={() => {
-                sliderRef.current.slickPrev();
-              }} className={this.decorateCSS("button-right")}>
-                <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
-              </button>
-            )}
+                      )}
+                      {this.getPropValue("nextIcon") && (
+                        <button onClick={() => {
+                          sliderRef.current.slickPrev();
+                        }} className={this.getPropValue("cover-image") ? this.decorateCSS("button-right") : this.decorateCSS("button-right-no-image")}>
+                          <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                        </button>
+                      )}
+                    </div>
+                  )
+                )}
+              </ComposerSlider>
+            </div>
           </div>
         </Base.MaxContent >
       </Base.Container >
