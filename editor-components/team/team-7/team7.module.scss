@@ -28,6 +28,10 @@
             flex: 1;
             text-align: right;
           }
+
+          .description-left {
+            text-align: left;
+          }
         }
       }
 
@@ -127,6 +131,10 @@
     .up-page-bottom {
       flex-direction: column !important;
       align-items: baseline !important;
+
+      .description {
+        text-align: left !important;
+      }
     }
   }
 }
