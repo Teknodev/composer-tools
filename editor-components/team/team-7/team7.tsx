@@ -88,7 +88,7 @@ class Team7 extends Team {
                     type: "image",
                     key: "image",
                     displayer: "Image",
-                    value: "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b1fabd2970002c627d1b?alt=media&timestamp=1719558632841",
                 },
                 {
                     type: "string",
@@ -124,7 +124,7 @@ class Team7 extends Team {
                     type: "image",
                     key: "image",
                     displayer: "Image",
-                    value: "https://images.pexels.com/photos/5393594/pexels-photo-5393594.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b1fabd2970002c627d19?alt=media&timestamp=1719558632841",
                 },
                 {
                     type: "string",
@@ -160,7 +160,7 @@ class Team7 extends Team {
                     type: "image",
                     key: "image",
                     displayer: "Image",
-                    value: "https://images.pexels.com/photos/8434878/pexels-photo-8434878.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b1fabd2970002c627d1c?alt=media&timestamp=1719558632841",
                 },
                 {
                     type: "string",
@@ -196,7 +196,7 @@ class Team7 extends Team {
                     type: "image",
                     key: "image",
                     displayer: "Image",
-                    value: "https://images.pexels.com/photos/5697738/pexels-photo-5697738.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b1fabd2970002c627d1a?alt=media&timestamp=1719558632841",
                 },
                 {
                     type: "string",

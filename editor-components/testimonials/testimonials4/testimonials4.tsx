@@ -47,7 +47,7 @@ class Testimonials4Page extends Testimonials {
                   type: "image",
                   key: "image-button",
                   displayer: "Image-button",
-                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6477170dfba070002b75a122?alt=media&timestamp=1685526270154",
+                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
                 },
                 {
                   type: "page",
@@ -93,7 +93,7 @@ class Testimonials4Page extends Testimonials {
                   type: "image",
                   key: "image-button",
                   displayer: "Image-button",
-                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6477170dfba070002b75a124?alt=media&timestamp=1685526270154",
+                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
                 },
                 {
                   type: "page",
@@ -139,7 +139,7 @@ class Testimonials4Page extends Testimonials {
                   type: "image",
                   key: "image-button",
                   displayer: "Image-button",
-                  value: "https://re-bytes.ancorathemes.com/wp-content/uploads/2020/04/testimonials-image-2-120x120.jpg",
+                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
                 },
                 {
                   type: "page",
@@ -161,7 +161,7 @@ class Testimonials4Page extends Testimonials {
       type: "image",
       key: "cover-image",
       displayer: "Background Image",
-      value: "https://re-bytes.ancorathemes.com/wp-content/uploads/2022/03/bg-testimonials.jpg"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623725?alt=media&timestamp=1719483639150"
 
 
     });

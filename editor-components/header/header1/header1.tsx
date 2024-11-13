@@ -10,14 +10,14 @@ class Header1 extends BaseHeader {
       key: "background-layout",
       displayer: "Background Layout",
       value:
-        "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-bg-03.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d7?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "image",
       key: "sun",
       displayer: "Sun",
       value:
-        "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-bg-01.png",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d6?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "array",
@@ -52,7 +52,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-1",
               value:
-                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-01.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d8?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -84,7 +84,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-2",
               value:
-                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-02.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d9?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -116,7 +116,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-3",
               value:
-                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-03.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243da?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -148,7 +148,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-4",
               value:
-                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-04.jpg",
+                "hhttps://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -180,7 +180,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-5",
               value:
-                "https://craftohtml.themezaa.com/images/demo-vertical-portfolio-slider-img-05.jpg",
+                "hhttps://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
             },
           ],
         },
