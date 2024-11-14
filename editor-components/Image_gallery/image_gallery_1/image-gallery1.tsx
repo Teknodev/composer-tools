@@ -1,153 +1,377 @@
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery1.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
-interface ImageType {
-  type: string;
-  key: string;
-  displayer: string;
-  value: string;
+interface ImageGallery {
+  sectionTitle: JSX.Element;
+  images: Image[];
+
+}
+interface Image {
+  title: JSX.Element;
+  cardImage: string;
+
 }
 
 class ImageGallery1 extends BaseImageGallery {
   constructor(props?: any) {
     super(props, styles);
-    this.setComponentState("deneme", 0);
     this.addProp({
       type: "array",
-      key: "gallery",
-      displayer: "gallery",
+      key: "imageGalleries",
+      displayer: "Image Galleries",
       value: [
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "imageGallery",
+          displayer: "Image Gallery",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Section 1",
+              key: "sectionTitle",
+              displayer: "Section Title",
+              value: "Digital"
             },
             {
               type: "array",
-              key: "imageGallery",
-              displayer: "Image Gallery 1",
+              key: "images",
+              displayer: "Images",
               value: [
                 {
-                  type: "image",
-                  key: "image1",
-                  displayer: "Image 1",
-                  value:
-                    "https://i.hizliresim.com/RBieg0.jpg",
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Design Blast"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+
+                    }
+                  ]
                 },
                 {
-                  type: "image",
-                  key: "image2",
-                  displayer: "Image 2",
-                  value:
-                    "https://i.hizliresim.com/RBieg0.jpg",
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Cropo Identity"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+
+                    }
+                  ]
                 },
                 {
-                  type: "image",
-                  key: "image3",
-                  displayer: "Image 3",
-                  value:
-                    "https://i.hizliresim.com/RBieg0.jpg",
-                },
-              ],
-            },
-          ],
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+
+                    }
+                  ]
+                }
+
+              ]
+            }
+
+          ]
         },
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "imageGallery",
+          displayer: "Image Gallery",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Section 2",
+              key: "sectionTitle",
+              displayer: "Section Title",
+              value: "Branding"
             },
             {
               type: "array",
-              key: "imageGallery",
-              displayer: "Image Gallery 2",
+              key: "images",
+              displayer: "Images",
               value: [
                 {
-                  type: "image",
-                  key: "image1",
-                  displayer: "Image 1",
-                  value:
-                    "https://i.pinimg.com/736x/a3/e7/2d/a3e72daf8c518ef535bec3115135c376.jpg",
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Tailoring Inteo"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-207.jpg"
+
+                    }
+                  ]
                 },
                 {
-                  type: "image",
-                  key: "image2",
-                  displayer: "Image 2",
-                  value:
-                    "https://i.pinimg.com/736x/a3/e7/2d/a3e72daf8c518ef535bec3115135c376.jpg",
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Herbal Beauty"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+
+                    }
+                  ]
                 },
                 {
-                  type: "image",
-                  key: "image3",
-                  displayer: "Image 3",
-                  value:
-                    "https://i.pinimg.com/736x/a3/e7/2d/a3e72daf8c518ef535bec3115135c376.jpg",
-                },
-              ],
-            },
-          ],
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+
+                    }
+                  ]
+                }
+
+              ]
+            }
+
+          ]
         },
-      ],
-    });
+        {
+          type: "object",
+          key: "imageGallery",
+          displayer: "Image Gallery",
+          value: [
+            {
+              type: "string",
+              key: "sectionTitle",
+              displayer: "Section Title",
+              value: "Web"
+            },
+            {
+              type: "array",
+              key: "images",
+              displayer: "Images",
+              value: [
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Design Blast"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
 
+                    }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Herbal Beauty"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
 
-    this.setComponentState("deneme-1", 1);
+                    }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Cropo Identity",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+
+                    }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
+                    },
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+
+                    }
+                  ]
+                }
+              ]
+            }
+
+          ]
+        }
+      ]
+
+    })
+    this.setComponentState("selectedSection", null as JSX.Element);
+
   }
 
 
   getName(): string {
     return "Image Gallery 1";
   }
-
-  componentDidMount(): void {
+  handleSectionClick(sectionTitle: JSX.Element): void {
+    console.log("click", sectionTitle)
+    return this.setComponentState("selectedSection", sectionTitle);
   }
 
 
   render() {
-    const galleries = this.getPropValue("gallery");
-
+    const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
+    const selectedSection = this.getComponentState("selectedSection");
+    const seenImages = new Set<string>();
+    console.log("render", selectedSection)
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-          <div className={this.decorateCSS("button-css")}>
-            {this.getPropValue("gallery").map((element: any, index: number) => (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("section-title-container")}>
+            {
               <button
-              className={this.decorateCSS("button")}
-              key={index}
-              onClick={() => {
-                this.setComponentState("deneme", index);
-              }}
-            >
-                {element.getPropValue("title")}
+                className={this.decorateCSS("section-title")}
+                onClick={() => this.handleSectionClick(null)}
+              >
+                All
               </button>
-            ))}
-            </div>
-            <div className={this.decorateCSS("border")}>
-              <div className={this.decorateCSS("image-css")}>
-              {this.getPropValue("gallery")
-                [this.getComponentState("deneme")].getPropValue("imageGallery")
-                .map((element: any, index: number) => (
-                  <img key={index} src={element.value}></img>
-                ))}
-                </div>
-            </div>
+            }
+            {
+              imageGallery.map((item: ImageGallery, index: number) => (
+                <button
+                  key={index}
+                  className={this.decorateCSS("section-title")}
+                  onClick={() => this.handleSectionClick(item.sectionTitle)}
+                >
+                  {item.sectionTitle}
+                </button>
+              ))
+            }
+
           </div>
-        </div>
-      </div>
+          {imageGallery
+            .filter(
+              (item: ImageGallery) =>
+                !selectedSection ||
+                (item.sectionTitle &&
+                  selectedSection &&
+                  this.castToString(item.sectionTitle) === this.castToString(selectedSection))
+            )
+            .map((item: ImageGallery, index: number) => (
+              <Base.ListGrid key={index} gridCount={{ pc: 3 }}>
+                {item.images
+                  .filter((image: Image) => {
+                    if (seenImages.has(image.cardImage)) {
+                      return false; // Eğer `cardImage` zaten `Set` içindeyse, bu görüntüyü atla
+                    }
+                    seenImages.add(image.cardImage); // Yeni `cardImage` URL'sini Set'e ekle
+                    return true; // Aksi halde göster
+                  })
+                  .map((image: Image, imgIndex: number) => (
+                    <div
+                      key={imgIndex}
+                      className={this.decorateCSS("card-container")}
+                    >
+                      <img
+                        alt={image.cardImage}
+                        src={image.cardImage}
+                        className={this.decorateCSS("image")}
+                      />
+                      <div className={this.decorateCSS("title")}>
+                        {image.title}
+                      </div>
+                    </div>
+                  ))}
+              </Base.ListGrid>
+            ))}
+        </Base.MaxContent>
+
+      </Base.Container>
     );
   }
 }
