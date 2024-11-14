@@ -16,6 +16,41 @@ class Team16 extends Team {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Introducing Our Talented Team",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Meet Our Exceptional Team! Our diverse talents converge to create a dynamic force, driven by shared vakues and a commitment to excellence.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "button-text",
+      displayer: "Button",
+      value: "Join Our Team",
+    });
+    this.addProp({
+      type: "page",
+      key: "button_url",
+      displayer: "Button Url",
+      value: "",
+    });
+
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4,
+      max: 5,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "cards",
@@ -47,7 +82,7 @@ class Team16 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8437acba6002c5dfa38?alt=media&timestamp=1730663935389",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f5?alt=media&timestamp=1731587983245",
             },
           ],
         },
@@ -78,7 +113,7 @@ class Team16 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b7ca7acba6002c5dfa2c?alt=media&timestamp=1730663935389",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735df16506a40002c2a4f73?alt=media&timestamp=1731587983245",
             },
           ],
         },
@@ -109,46 +144,42 @@ class Team16 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8527acba6002c5dfa3e?alt=media&timestamp=1730663935389",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Sylvia Morales",
+            },
+            {
+              type: "string",
+              key: "job",
+              displayer: "Job",
+              value: "Product Manager",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "The inception of this venture has been an immensely rewarding experience, representing a pivotal milestone in my personal.",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1731587983245",
             },
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Introducing Our Talented Team",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Meet Our Exceptional Team! Our diverse talents converge to create a dynamic force, driven by shared vakues and a commitment to excellence.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "button-text",
-      displayer: "Button",
-      value: "Join Our Team",
-    });
-    this.addProp({
-      type: "page",
-      key: "button_url",
-      displayer: "Button Url",
-      value: "",
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 5,
     });
   }
 
