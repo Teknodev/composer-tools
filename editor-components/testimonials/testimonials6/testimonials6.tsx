@@ -20,7 +20,7 @@ class Testimonials6Page extends Testimonials {
       type: "string",
       key: "title",
       value: "What our customers say about Pagedone",
-      displayer: "Section Title",
+      displayer: "Title",
     });
     this.addProp({
       type: "number",
@@ -323,7 +323,7 @@ class Testimonials6Page extends Testimonials {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
           {this.castToString(this.getPropValue("title")) && (
-            <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>
+            <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
           )}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cardContainer")}>
             {card.map((item: any, index: number) => (
