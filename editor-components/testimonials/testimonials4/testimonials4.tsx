@@ -207,6 +207,7 @@ class Testimonials4Page extends Testimonials {
       }
     };
     const sliderItem = this.castToObject<SliderItem[]>("items");
+    console.log(sliderItem.length)
     const sliderRef = this.getComponentState("slider-ref");
     const arrows = this.castToObject<ArrowItem>("arrows");
     return (
@@ -217,7 +218,7 @@ class Testimonials4Page extends Testimonials {
         }}
       >
         <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
-          {arrows.prevArrow && (
+          {(arrows.prevArrow && (sliderItem.length > 1)) && (
             <button className={this.decorateCSS("prevArrow")} onClick={() => {
               sliderRef.current.slickPrev();
             }}>
@@ -273,7 +274,7 @@ class Testimonials4Page extends Testimonials {
             )}
 
           </div>
-          {arrows.nextArrow && (
+          {(arrows.nextArrow && (sliderItem.length > 1)) && (
             <button className={this.decorateCSS("nextArrow")} onClick={() => {
               sliderRef.current.slickNext();
             }}>
