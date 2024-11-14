@@ -6,15 +6,12 @@
     flex-direction: column;
 
     .up-page {
-      .title {
-        color: var(--composer-font-color-primary);
-      }
-
       .cards-box {
         .card {
           border-radius: var(--composer-border-radius-md);
           overflow: hidden;
-          height: 600px;
+          min-height: 600px;
+          height: 100%;
           width: 100%;
           position: relative;
           cursor: pointer;
@@ -43,7 +40,7 @@
           }
 
           .overlay {
-            background-image: -webkit-linear-gradient(90deg, rgb(26, 20, 20) 0%, rgba(26, 20, 20, 0) 100%);
+            background: linear-gradient(to bottom, rgba(var(--composer-html-background-rgb), 0) 30%, rgba(var(--composer-font-color-primary-rgb), 0.8) 100%);
             z-index: 1;
             opacity: 1;
           }
@@ -81,6 +78,7 @@
               height: auto;
               overflow: hidden;
               transform-origin: bottom center;
+              z-index: 5;
 
               .icon {
                 width: 0;
@@ -108,11 +106,12 @@
           }
 
           .title {
-            width: 100px;
+            min-width: 100px;
+            width: 100%;
             position: absolute;
             bottom: 70px;
             left: 15px;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-font-color-secondary);
             &:hover {
               color: var(--composer-secondary-color);
             }
@@ -127,11 +126,13 @@
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--composer-font-color-primary);
+            color: var(--composer-font-color-secondary);
             padding: 10px 15px 8px;
 
             .description {
+              color: var(--composer-font-color-secondary);
               opacity: 0.5;
+              margin: 0;
             }
 
             .icons {
@@ -141,6 +142,8 @@
 
               .firstIcon,
               .secondIcon {
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
                 &:hover {
                   color: var(--composer-font-color-primary);
                 }

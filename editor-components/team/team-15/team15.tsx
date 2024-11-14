@@ -86,6 +86,13 @@ class Team15 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "cards",
@@ -118,6 +125,12 @@ class Team15 extends Team {
               key: "firstIcon",
               displayer: "First Icon",
               value: "IoMdShare",
+            },
+            {
+              type: "page",
+              key: "firstIconUrl",
+              displayer: "First Icon URL",
+              value: "",
             },
             {
               type: "icon",
@@ -169,6 +182,12 @@ class Team15 extends Team {
               value: "IoMdShare",
             },
             {
+              type: "page",
+              key: "firstIconUrl",
+              displayer: "First Icon URL",
+              value: "",
+            },
+            {
               type: "icon",
               key: "secondIcon",
               displayer: "Second Icon",
@@ -216,6 +235,12 @@ class Team15 extends Team {
               key: "firstIcon",
               displayer: "First Icon",
               value: "IoMdShare",
+            },
+            {
+              type: "page",
+              key: "firstIconUrl",
+              displayer: "First Icon URL",
+              value: "",
             },
             {
               type: "icon",
@@ -268,6 +293,12 @@ class Team15 extends Team {
               value: "IoMdShare",
             },
             {
+              type: "page",
+              key: "firstIconUrl",
+              displayer: "First Icon URL",
+              value: "",
+            },
+            {
               type: "icon",
               key: "secondIcon",
               displayer: "Second Icon",
@@ -315,6 +346,12 @@ class Team15 extends Team {
               key: "firstIcon",
               displayer: "First Icon",
               value: "IoMdShare",
+            },
+            {
+              type: "page",
+              key: "firstIconUrl",
+              displayer: "First Icon URL",
+              value: "",
             },
             {
               type: "icon",
@@ -366,6 +403,12 @@ class Team15 extends Team {
               value: "IoMdShare",
             },
             {
+              type: "page",
+              key: "firstIconUrl",
+              displayer: "First Icon URL",
+              value: "",
+            },
+            {
               type: "icon",
               key: "secondIcon",
               displayer: "Second Icon",
@@ -404,6 +447,7 @@ class Team15 extends Team {
   render() {
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
+    const overlay = this.getPropValue("overlay");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -422,8 +466,8 @@ class Team15 extends Team {
                   cardExists && (
                     <div key={index} className={this.decorateCSS("card")}>
                       {imageExists && <img src={card.getPropValue("image")} className={this.decorateCSS("image")} alt="" />}
-                      <div className={this.decorateCSS("overlay")}></div>
-                      <div className={this.decorateCSS("overlay2")}></div>
+                      {overlay && <div className={this.decorateCSS("overlay")}></div>}
+                      {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                       <div className={this.decorateCSS("card-content")}>
                         {card.icons.length > 0 && firstIcon && (
                           <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
@@ -442,7 +486,9 @@ class Team15 extends Team {
                         <div className={this.decorateCSS("labels")}>
                           {descriptionExists && <Base.H5 className={this.decorateCSS("description")}>{card.getPropValue("description")}</Base.H5>}
                           <div className={this.decorateCSS("icons")}>
-                            <ComposerIcon name={card.getPropValue("firstIcon")} propsIcon={{ className: this.decorateCSS("firstIcon") }} />
+                            <ComposerLink path={card.getPropValue("firstIconUrl")}>
+                              <ComposerIcon name={card.getPropValue("firstIcon")} propsIcon={{ className: this.decorateCSS("firstIcon") }} />
+                            </ComposerLink>
 
                             <ComposerLink path={card.getPropValue("secondIconUrl")}>
                               <ComposerIcon name={card.getPropValue("secondIcon")} propsIcon={{ className: this.decorateCSS("secondIcon") }} />
