@@ -1,6 +1,9 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   padding: 0;
   .max-content {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     .cards {
@@ -61,6 +64,38 @@
           .info {
             transform: translateX(0px);
             opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .cards {
+        .member {
+          .info {
+            gap: var(--composer-gap-xs);
+            .name {
+              font-size: 1rem;
+            }
+            .profession {
+              font-size: 1rem;
+            }
+            .description {
+              font-size: 1rem;
+            }
+            .platforms {
+              gap: var(--composer-gap-sm);
+              .platform {
+                .icon {
+                  width: 1rem;
+                  height: 1rem;
+                }
+              }
+            }
           }
         }
       }

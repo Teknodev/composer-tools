@@ -247,7 +247,7 @@ class Team12 extends Team {
   render() {
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards")}>
             {this.castToObject<TeamMember[]>("team").map((teamMember: any, index: number) => {
               const nameExist = this.castToString(teamMember.name);
@@ -285,7 +285,7 @@ class Team12 extends Team {
               );
             })}
           </Base.ListGrid>
-        </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }
