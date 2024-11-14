@@ -469,21 +469,21 @@ class Team15 extends Team {
                       {overlay && <div className={this.decorateCSS("overlay")}></div>}
                       {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                       <div className={this.decorateCSS("card-content")}>
-                        {card.icons.length > 0 && firstIcon && (
-                          <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
-                            {card.icons.map((icon: any, indexIcons: number) => {
-                              return (
-                                <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                                  <ComposerLink path={icon.url}>
-                                    <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                                  </ComposerLink>
-                                </div>
-                              );
-                            })}
-                          </Base.VerticalContent>
-                        )}
                         {titleExists && <Base.H2 className={this.decorateCSS("title")}>{card.getPropValue("title")}</Base.H2>}
                         <div className={this.decorateCSS("labels")}>
+                          {card.icons.length > 0 && firstIcon && (
+                            <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
+                              {card.icons.map((icon: any, indexIcons: number) => {
+                                return (
+                                  <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                                    <ComposerLink path={icon.url}>
+                                      <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                    </ComposerLink>
+                                  </div>
+                                );
+                              })}
+                            </Base.VerticalContent>
+                          )}
                           {descriptionExists && <Base.H5 className={this.decorateCSS("description")}>{card.getPropValue("description")}</Base.H5>}
                           <div className={this.decorateCSS("icons")}>
                             <ComposerLink path={card.getPropValue("firstIconUrl")}>
