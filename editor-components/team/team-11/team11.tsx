@@ -97,7 +97,6 @@ class Team11 extends Team {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 3,
-      max: 3,
     });
 
     this.addProp({
@@ -362,7 +361,8 @@ class Team11 extends Team {
                     <div key={indexSlider} className={this.decorateCSS("item")}>
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("hover")}>
-                          {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt="" />}
+                          {/* {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt="" />} */}
+                          <img className={this.decorateCSS("person-image")} src={item.image} alt={" "} />
                           {item.icons && item.icons.length > 0 && (
                             <div className={this.decorateCSS("icons-bar")}>
                               {item.icons.map((el: any, indexIcon: number) => (

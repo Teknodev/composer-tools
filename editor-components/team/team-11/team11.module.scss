@@ -59,16 +59,23 @@
                 top: 0;
                 width: calc(100% - var(--composer-gap-md));
                 height: calc(100% - var(--composer-gap-md));
-                background-color: var(--composer-tertiary-color);
+                background-color: var(--composer-primary-color);
                 opacity: 0.5;
                 border-radius: 100%;
                 margin: var(--composer-gap-sm);
               }
               .icon {
                 position: relative;
-                transition: height 1s;
                 font-size: 2.2rem;
                 color: var(--composer-font-color-secondary);
+                transform: translateY(var(--composer-gap-xl));
+                opacity: 0;
+                transition: transform 0.5s ease, opacity 0.5s ease;
+              }
+
+              &:hover .icon {
+                transform: translateY(0);
+                opacity: 1;
               }
             }
           }
@@ -87,6 +94,10 @@
               }
               .item-name {
                 color: var(--composer-font-color-primary);
+                transition: 0.5s;
+                &:hover {
+                  color: var(--composer-primary-color);
+                }
               }
             }
           }
@@ -101,11 +112,21 @@
         .prev_icon {
           cursor: pointer;
           color: var(--composer-font-color-primary);
+          transition: 0.5s;
+
+          &:hover {
+            color: var(--composer-primary-color);
+          }
         }
 
         .next_icon {
           cursor: pointer;
           color: var(--composer-font-color-primary);
+          transition: 0.5s;
+
+          &:hover {
+            color: var(--composer-primary-color);
+          }
         }
       }
     }
