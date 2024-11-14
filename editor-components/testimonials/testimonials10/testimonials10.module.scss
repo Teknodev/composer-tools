@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   padding-left: 50px !important;
   .max-content {
@@ -23,7 +24,6 @@
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-secondary-color);
               padding: var(--composer-gap-sm) var(--composer-gap-lg);
-              transition-duration: 0.3s ease-in-out;
               text-align: center;
               cursor: pointer;
             }
@@ -54,58 +54,69 @@
                 display: flex;
                 padding-left: calc(var(--composer-gap-xl) * 2);
                 padding-top: calc(var(--composer-gap-xl) * 2);
-                .header-page {            
+                .header-page {  
+                  min-height: 100px;          
                   width: 100%;
                   background-color: var(--composer-html-background);
                   padding:var(--composer-gap-md) var(--composer-gap-xl);
                   position: relative;
                   display: flex;
                   flex-direction: column;
-                  .img-div {
-                    position: absolute;
-                    z-index: 2;
-                    max-width: 25%;
-                    left:calc(var(--composer-gap-md) * (-5)); 
-                    top:calc(var(--composer-gap-md) * (-4)); 
-                    .img {
-                      width: 100%;
-                      border: 2px solid var(--composer-html-background);
+                  .top-container{
+                    .img-div {
+                      position: absolute;
+                      z-index: 2;
+                      max-width: 25%;
+                      min-width: 25%;
+                      left:calc(var(--composer-gap-md) * (-5)); 
+                      top:calc(var(--composer-gap-md) * (-4)); 
+                      .img {
+                        width: 100%;
+                        border: 2px solid var(--composer-html-background);
+                      }
                     }
-                  }
-                  .icons {
-                    font-size: 2rem;
-                    display: flex;
-                    justify-content: flex-end;
-                    gap: 15px;
-                    z-index: 2;
-                    color: var(--composer-font-color-primary);
-                    svg {
-                      cursor: pointer;
-                      transition: 0.4s;
-                      &:hover {
-                        color: var(--composer-secondary-color);
+                    .icons {
+                      font-size: 2rem;
+                      display: flex;
+                      justify-content: flex-end;
+                      gap: var(--composer-gap-md);
+                      color: var(--composer-font-color-primary);
+                      svg {
+                        cursor: pointer;
+                        transition: 0.4s;
+                        &:hover {
+                          color: var(--composer-secondary-color);
+                        }
                       }
                     }
                   }
+        
                   .iconquote {
                     position: absolute;
-                    font-size: 5rem;
                     color: rgba(var(--composer-font-color-primary-rgb), 0.2);
                     top: var(--composer-gap-md);
                     left: var(--composer-gap-xl);
+                    .quoteicon{
+                      font-size: 5rem;
+                    }
                   }
                   .card {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-md);
                     .text {
                       color: var(--composer-font-color-primary);
+                      margin:0px;
                     }
                     .author {
                       color: var(--composer-font-color-primary);
                       font-size:1.5rem;
-                      margin-bottom: 0;
+                      margin: 0;
                     }
                     .position {
                       color: var(--composer-font-color-primary);
                       font-size: 1rem;
+                      margin: 0px;
                     }
                   }
                 }
@@ -143,12 +154,11 @@
             text-align: end;
           }
         }
-
       }
     }
   }
 }
-@media screen and (max-width: 900px){
+@container (max-width: #{$composer-tablet-width}){
   .container {
     padding: 20px 30px !important;
     .max-content{
@@ -162,8 +172,10 @@
               width: 100%;
               .slider-inner-div-with-image, .slider-inner-div  {
                 .slider-card{
-                  .img-div {
-                    max-width: 25%;
+                  .top-container{
+                    .img-div {
+                      max-width: 25%;
+                    }
                   }
                 }
               }
@@ -175,7 +187,7 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@container (max-width: #{$composer-phone-width-sm}) {
   .container {
     padding: 20px 30px !important;
     .max-content{
@@ -185,21 +197,37 @@
             .slider-style{
               padding-left: 0px;
               .slider-inner-div-with-image, .slider-inner-div  {
-                .header-page-container{
-                  padding-left: 0px !important;
-                  padding-top: var(--composer-gap-xs) !important;
-                  .header-page{
-                    padding-top:0px !important;
-                    padding: 0px !important;
-                    .img-div{
-                      position: static !important;
-                      max-width: 30% !important;
-                    }
-                    .iconquote{
-                      position: static !important;
+                .slider-card{
+                  padding: var(--composer-gap-md) var(--composer-gap-sm);
+                  .header-page-container{
+                    padding-left: 0px ;
+                    padding-top: var(--composer-gap-xs);
+                    .header-page{
+                      padding: var(--composer-gap-md);
+                      gap: var(--composer-gap-md);
+                      .top-container{
+                        display: flex;
+                        .img-div{
+                          flex:1;
+                          position: static ;
+                          max-width: 40% ;
+                        }
+                        .icons{
+                          flex:1;
+                        }
+                      }
+                      .iconquote{
+                        position: static;
+                        .quoteicon{
+                          width: 3rem;
+                          height: 3rem;
+                        }
+                      }
                     }
                   }
+
                 }
+     
               }
             }
             .hiliteTitle {
