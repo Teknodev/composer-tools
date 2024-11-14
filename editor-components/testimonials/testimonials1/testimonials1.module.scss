@@ -97,7 +97,7 @@
     .max-content {
       .wrapper{
         .content-wrapper{
-          .content{
+          .content, .content-no-image{
             width: 100%;
             .images{
               flex-direction: row;
