@@ -334,9 +334,9 @@ class Stats8Page extends BaseStats {
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-container-border")}>
                   <img src={imageSrc} alt="Digital Experience" />
-                  {(this.getComponentState("overlayNumberDisplay") !== "0" || overlayDescription) && (
+                  {(this.getComponentState("overlayNumberDisplay") || overlayDescription) && (
                     <div className={this.decorateCSS("overlay")}>
-                      {this.getComponentState("overlayNumberDisplay") !== "0" && <span className={this.decorateCSS("number")}>{this.getComponentState("overlayNumberDisplay")}</span>}
+                      {this.getComponentState("overlayNumberDisplay") && <span className={this.decorateCSS("number")}>{this.getComponentState("overlayNumberDisplay")}</span>}
                       {overlayDescription && <Base.P className={this.decorateCSS("description")}>{overlayDescription}</Base.P>}
                     </div>
                   )}
