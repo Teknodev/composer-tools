@@ -4,7 +4,6 @@ import styles from "./testimonials5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base"
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { Autoplay } from "swiper";
 
 interface LeftItem {
   subtitle: JSX.Element,
@@ -225,7 +224,7 @@ class Testimonials5Page extends Testimonials {
     const hasLeftContent = Boolean(this.castToString(leftItem.subtitle) || this.castToString(leftItem.title) || leftItem.nextIcon || leftItem.prevIcon);
     var settings = {
       dots: false,
-      autoplay: true,
+      autoplay: false,
       infinite: false,
       arrows: false,
       speed: 500,
@@ -261,7 +260,7 @@ class Testimonials5Page extends Testimonials {
                   )}
                 </Base.VerticalContent>
 
-                {(leftItem.nextIcon || leftItem.prevIcon) && (
+                {((leftItem.nextIcon || leftItem.prevIcon) && (sliderItem.length > 1)) && (
                   <div className={this.decorateCSS("arrow")}>
                     {leftItem.prevIcon && (
                       <button

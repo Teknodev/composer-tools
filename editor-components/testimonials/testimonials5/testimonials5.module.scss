@@ -5,10 +5,10 @@
       display: flex;
       .leftContainer{
         min-width: 25%;
+        max-width: 100%;
         .leftContainerText{
           .subtitle{
             margin: 0px;
-    
           }
           .title{
     
@@ -41,7 +41,11 @@
       }
       .slider, .fullSlider{
         width: 75%;
+        min-height: 330px;
+        display: flex;
+        align-items: center;
         >div{
+          width: 100%;
           >div{
             display: flex !important;
             >div{
@@ -143,7 +147,7 @@
             margin:0px;
           }
         }
-        .slider{
+        .slider, .fullSlider{
           width: 100%;          
           .image{
             padding: 0px;
@@ -160,7 +164,7 @@
   .container{
     .maxContent{
       .containerGrid{
-        .slider{
+        .slider, .fullSlider{
           .image{
             max-width: 100%;
           }
@@ -188,6 +192,7 @@
               display: none;
             }
             .rightContainer{
+              align-items: center;
               padding-left: 0px;
             }
           }
