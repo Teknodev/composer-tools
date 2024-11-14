@@ -20,7 +20,7 @@ class Testimonials6Page extends Testimonials {
       type: "string",
       key: "title",
       value: "What our customers say about Pagedone",
-      displayer: "title",
+      displayer: "Section Title",
     });
     this.addProp({
       type: "number",
