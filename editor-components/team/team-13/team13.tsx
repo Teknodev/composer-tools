@@ -49,6 +49,13 @@ class Team13 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -126,7 +133,7 @@ class Team13 extends Team {
               type: "icon",
               key: "name",
               displayer: "Icon",
-              value: "FaCcJcb",
+              value: "SlSocialFacebook",
             },
           ],
         },
@@ -145,7 +152,7 @@ class Team13 extends Team {
               type: "icon",
               key: "name",
               displayer: "Icon",
-              value: "FaClosedCaptioning",
+              value: "SlSocialVkontakte",
             },
           ],
         },
@@ -164,7 +171,7 @@ class Team13 extends Team {
               type: "icon",
               key: "name",
               displayer: "Icon",
-              value: "FaAudioDescription",
+              value: "SlSocialLinkedin",
             },
           ],
         },
@@ -179,6 +186,7 @@ class Team13 extends Team {
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const icons = this.castToObject<Icon[]>("icons");
+    const line = this.getPropValue("line");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -188,9 +196,12 @@ class Team13 extends Team {
               <Base.VerticalContent>
                 <Base.VerticalContent className={this.decorateCSS("label")}>
                   <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
-                  <ComposerLink path={this.getPropValue("buttonUrl")}>
-                    <Base.H4 className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.H4>
-                  </ComposerLink>
+                  <div className={this.decorateCSS("button-container")}>
+                    <ComposerLink path={this.getPropValue("buttonUrl")}>
+                      <Base.H4 className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.H4>
+                    </ComposerLink>
+                    {line && <div className={this.decorateCSS("line")}></div>}
+                  </div>
                 </Base.VerticalContent>
                 <div className={this.decorateCSS("icon-container")}>
                   {icons.map((icon: any, indexIcons: number) => {

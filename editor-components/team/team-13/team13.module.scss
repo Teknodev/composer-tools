@@ -9,7 +9,7 @@
       .featured-card {
         width: 100%;
         min-height: 700px;
-        height: auto;
+        height: 100%;
         justify-content: space-between;
         .title {
           color: var(--composer-font-color-primary);
@@ -20,12 +20,24 @@
           margin-bottom: var(--composer-gap-lg);
           .description {
             color: var(--composer-font-color-primary);
-            width: 70%;
+            width: 100%;
             opacity: 0.5;
           }
 
-          .button {
-            color: var(--composer-font-color-primary);
+          .button-container {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            gap: var(--composer-gap-xl);
+            .button {
+              color: var(--composer-font-color-primary);
+            }
+
+            .line {
+              height: 2px;
+              width: calc(2 * var(--composer-gap-xl));
+              background: var(--composer-font-color-primary);
+            }
           }
         }
 
@@ -45,8 +57,10 @@
 
         .image {
           width: 100%;
-          height: 700px;
+          min-height: 700px;
+          height: 100%;
           object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
         }
 
         .name {
