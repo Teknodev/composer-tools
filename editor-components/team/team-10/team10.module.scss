@@ -1,14 +1,14 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 
 .container {
-  width: 100%;
+  padding: 0;
   .max-content {
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
 
     .left {
-      width: 740px;
+      width: 540px;
       position: relative;
       justify-content: center;
 
@@ -21,17 +21,42 @@
         opacity: 0.8;
       }
 
-      .title {
-        padding: var(--composer-gap-md);
-        color: var(--composer-font-color-primary);
+      .overlay {
+        position: absolute;
         z-index: 1;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .title {
+        color: white;
+        padding: var(--composer-gap-md);
+        z-index: 2;
+      }
+
+      .title-no-image {
+        padding: var(--composer-gap-md);
+        z-index: 2;
       }
 
       .subtitle {
-        color: var(--composer-font-color-primary);
+        color: white;
         font-size: 1.5rem;
         padding: var(--composer-gap-md);
-        z-index: 1;
+        margin: var(--composer-gap-md);
+        z-index: 2;
+
+        &::before {
+          background-color: white;
+        }
+      }
+
+      .subtitle-no-image {
+        font-size: 1.5rem;
+        padding: var(--composer-gap-md);
+        margin: var(--composer-gap-md);
+        z-index: 2;
       }
     }
 
@@ -45,17 +70,26 @@
         justify-content: space-between;
         height: auto;
 
-        .icon-group {
-          height: 15%;
-          border-radius: var(--composer-border-radius-md);
-          position: absolute;
-          top: 0;
-          right: 0;
+        .info {
+          position: relative;
+          .icon-group {
+            height: 15%;
+            border-radius: var(--composer-border-radius-md);
+            position: absolute;
+            top: 0;
+            right: 0;
 
-          .icon-item {
-            background-color: var(--composer-html-background);
-            padding: var(--composer-gap-sm);
-            color: var(--composer-font-color-primary);
+            .icon-item {
+              background-color: var(--composer-primary-color);
+              padding: var(--composer-gap-sm);
+              color: var(--composer-font-color-secondary);
+              transition: opacity 0.5s ease;
+              cursor: pointer;
+
+              &:hover {
+                opacity: 0.5;
+              }
+            }
           }
         }
 
@@ -76,6 +110,7 @@
           .subtitle {
             font-size: 1rem;
             color: var(--composer-font-color-primary);
+            opacity: 0.5;
           }
 
           .title {
@@ -93,8 +128,12 @@
                 color: var(--composer-font-color-primary);
               }
 
-              .value {
-                color: var(--composer-primary-color);
+              .value-title {
+                color: var(--composer-font-color-primary);
+                opacity: 0.5;
+              }
+              .value-description {
+                color: var(--composer-font-color-primary);
               }
             }
           }
@@ -104,9 +143,24 @@
           }
         }
 
-        .image {
-          min-height: 555px;
-          object-fit: cover;
+        .image-container {
+          width: 100%;
+          height: 555px;
+          overflow: hidden;
+          position: relative;
+
+          .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            transform-origin: center center;
+
+            &:hover {
+              opacity: 0.5;
+              transform: scale(1.1);
+            }
+          }
         }
 
         &:nth-child(2n) {
@@ -124,7 +178,16 @@
 
     .left {
       width: unset !important;
-      min-height: 300px;
+      min-height: 200px;
+      height: auto;
+
+      .title {
+        font-size: 2rem !important;
+      }
+
+      .title-no-image {
+        font-size: 2rem !important;
+      }
     }
 
     .right {
@@ -134,11 +197,38 @@
         flex-direction: row !important;
         .info {
           width: 50% !important;
+
+          .subtitle {
+            font-size: 1rem;
+          }
+
+          .title {
+            font-size: 2rem !important;
+          }
+
+          .meta-info {
+            gap: var(--composer-gap-md) !important;
+            .meta {
+              .label {
+                font-size: 1rem !important;
+
+                color: var(--composer-font-color-primary);
+              }
+
+              .value-title {
+                color: var(--composer-font-color-primary);
+                opacity: 0.5;
+              }
+              .value-description {
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
         }
 
-        .image {
-          height: auto !important;
+        .image-container {
           width: 50% !important;
+          height: 580px !important;
         }
 
         &:nth-child(2n) {
@@ -153,13 +243,22 @@
   .max-content {
     .left {
       width: unset !important;
-      min-height: 200px;
+      min-height: 100px;
+      height: auto;
 
       .subtitle {
         font-size: 1rem !important;
       }
 
+      .subtitle-no-image {
+        font-size: 1rem !important;
+      }
+
       .title {
+        font-size: 1.5rem !important;
+      }
+
+      .title-no-image {
         font-size: 1.5rem !important;
       }
     }
@@ -174,8 +273,9 @@
           width: 100% !important;
         }
 
-        .image {
+        .image-container {
           width: 100% !important;
+          height: 100% !important;
         }
 
         &:nth-child(2n) {

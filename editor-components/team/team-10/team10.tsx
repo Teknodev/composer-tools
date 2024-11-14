@@ -105,6 +105,13 @@ class Team10 extends Team {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "team",
       displayer: "Team",
@@ -123,7 +130,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle",
+              displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
@@ -191,18 +198,18 @@ class Team10 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628227?alt=media&timestamp=1719558632841",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e77?alt=media&timestamp=1731568292649",
             },
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle ",
+              displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
               type: "string",
               key: "title",
-              displayer: "Title ",
+              displayer: "Title",
               value: "MARINA GONZALES",
             },
             {
@@ -238,7 +245,7 @@ class Team10 extends Team {
             {
               type: "string",
               key: "value3-description",
-              displayer: "Value 2 Description",
+              displayer: "Value 3 Description",
               value: "COSTA RİCA",
             },
             {
@@ -264,12 +271,85 @@ class Team10 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b520bd2970002c628227?alt=media&timestamp=1719558632841",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e79?alt=media&timestamp=1731568292648",
             },
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle ",
+              displayer: "Position",
+              value: "TEAM MANAGER",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "MARINA GONZALES",
+            },
+            {
+              type: "string",
+              key: "value1-title",
+              displayer: "Value 1 Title",
+              value: "AGE",
+            },
+            {
+              type: "string",
+              key: "value2-title",
+              displayer: "Value 2 Title",
+              value: "JOINED",
+            },
+            {
+              type: "string",
+              key: "value3-title",
+              displayer: "Value 3 Title",
+              value: "COUNTRY",
+            },
+            {
+              type: "string",
+              key: "value1-description",
+              displayer: "Value 1 Description",
+              value: "22 YEARS",
+            },
+            {
+              type: "string",
+              key: "value2-description",
+              displayer: "Value 2 Description",
+              value: "2016",
+            },
+            {
+              type: "string",
+              key: "value3-description",
+              displayer: "Value 3 Description",
+              value: "COSTA RİCA",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            },
+            {
+              type: "array",
+              key: "icons",
+              displayer: "Icons",
+              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "member",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735a270506a40002c2a2e78?alt=media&timestamp=1731568292648",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Position",
               value: "TEAM MANAGER",
             },
             {
@@ -337,61 +417,74 @@ class Team10 extends Team {
   }
 
   render() {
+    const backgroundImageExist = this.getPropValue("background-image");
+    const subtitleExist = this.getPropValue("subtitle");
+    const titleExist = this.getPropValue("title");
+    const overlayExist = this.getPropValue("overlay");
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("left")}>
-            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
-            <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-            <img className={this.decorateCSS("background-image")} src={this.getPropValue("background-image")} />
+            {subtitleExist && <Base.SectionSubTitle className={backgroundImageExist ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            {titleExist && <Base.SectionTitle className={backgroundImageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {overlayExist && <div className={this.decorateCSS("overlay")}></div>}
+            {backgroundImageExist && <img className={this.decorateCSS("background-image")} src={this.getPropValue("background-image")} />}
           </Base.VerticalContent>
           <div className={this.decorateCSS("right")}>
-            {this.castToObject<TTeam[]>("team").map((teamMember: any, index: number) => (
-              <Base.VerticalContent className={this.decorateCSS("team-member")}>
-                <div className={this.decorateCSS("info")}>
-                  <div className={this.decorateCSS("icon-group")}>
-                    <div className={this.decorateCSS("icon-list-container")}>
-                      {teamMember.icons.map((icon: any, indexIcons: number) => {
-                        return (
-                          <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                            <ComposerLink path={icon.url}>
-                              <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                            </ComposerLink>
-                          </div>
-                        );
-                      })}
+            {this.castToObject<TTeam[]>("team").map((teamMember: any, index: number) => {
+              const imageExist = teamMember.getPropValue("image");
+              return (
+                <Base.VerticalContent className={this.decorateCSS("team-member")}>
+                  <div className={this.decorateCSS("info")}>
+                    <div className={this.decorateCSS("icon-group")}>
+                      {
+                        <div className={this.decorateCSS("icon-list-container")}>
+                          {teamMember.icons.map((icon: any, indexIcons: number) => {
+                            const iconExist = icon.icon;
+                            return (
+                              iconExist && (
+                                <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                                  <ComposerLink path={icon.url}>
+                                    <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                  </ComposerLink>
+                                </div>
+                              )
+                            );
+                          })}
+                        </div>
+                      }
                     </div>
+                    <Base.H3 className={this.decorateCSS("subtitle")}>{teamMember.getPropValue("subtitle")}</Base.H3>
+                    <Base.H1 className={this.decorateCSS("title")}>{teamMember.getPropValue("title")}</Base.H1>
+                    <div className={this.decorateCSS("meta-info")}>
+                      <div className={this.decorateCSS("meta")}>
+                        <div className={this.decorateCSS("label")}>
+                          <Base.H5 className={this.decorateCSS("value-title")}>{teamMember.getPropValue("value1-title")}</Base.H5>
+                          <Base.H5 className={this.decorateCSS("value-description")}>{teamMember.getPropValue("value1-description")}</Base.H5>
+                        </div>
+                      </div>
+                      <div className={this.decorateCSS("meta")}>
+                        <div className={this.decorateCSS("label")}>
+                          <Base.H5 className={this.decorateCSS("value-title")}>{teamMember.getPropValue("value2-title")}</Base.H5>
+                          <Base.H5 className={this.decorateCSS("value-description")}>{teamMember.getPropValue("value2-description")}</Base.H5>
+                        </div>
+                      </div>
+                      <div className={this.decorateCSS("meta")}>
+                        <div className={this.decorateCSS("label")}>
+                          <Base.H5 className={this.decorateCSS("value-title")}>{teamMember.getPropValue("value3-title")}</Base.H5>
+                          <Base.H5 className={this.decorateCSS("value-description")}>{teamMember.getPropValue("value3-description")}</Base.H5>
+                        </div>
+                      </div>
+                    </div>
+                    <Base.SectionDescription className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.SectionDescription>
                   </div>
-                  <Base.H3 className={this.decorateCSS("subtitle")}>{teamMember.getPropValue("subtitle")}</Base.H3>
-                  <Base.H1 className={this.decorateCSS("title")}>{teamMember.getPropValue("title")}</Base.H1>
-                  <div className={this.decorateCSS("meta-info")}>
-                    <div className={this.decorateCSS("meta")}>
-                      <div className={this.decorateCSS("label")}>
-                        <Base.H5>{teamMember.getPropValue("value1-title")}</Base.H5>
-                        <Base.H5 className={this.decorateCSS("value")}>{teamMember.getPropValue("value1-description")}</Base.H5>
-                      </div>
-                    </div>
-                    <div className={this.decorateCSS("meta")}>
-                      <div className={this.decorateCSS("label")}>
-                        <Base.H5>{teamMember.getPropValue("value2-title")}</Base.H5>
-                        <Base.H5 className={this.decorateCSS("value")}>{teamMember.getPropValue("value2-description")}</Base.H5>
-                      </div>
-                    </div>
-                    <div className={this.decorateCSS("meta")}>
-                      <div className={this.decorateCSS("label")}>
-                        <Base.H5>{teamMember.getPropValue("value3-title")}</Base.H5>
-                        <Base.H5 className={this.decorateCSS("value")}>{teamMember.getPropValue("value3-description")}</Base.H5>
-                      </div>
-                    </div>
-                  </div>
-                  <Base.SectionDescription className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.SectionDescription>
-                </div>
-                <img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />
-              </Base.VerticalContent>
-            ))}
+                  {imageExist && <div className={this.decorateCSS("image-container")}>{<img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />}</div>}
+                </Base.VerticalContent>
+              );
+            })}
           </div>
         </Base.MaxContent>
-      </div>
+      </Base.Container>
     );
   }
 }
