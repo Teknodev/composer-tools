@@ -180,13 +180,14 @@ class Testimonials7Page extends Testimonials {
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
+        isFull={this.getPropValue("cover-image") ? true : false}
       >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
           {this.getPropValue("cover-image") && (
             <img src={this.getPropValue("cover-image")} className={this.decorateCSS("background-image")} />
           )}
-          <div className={this.decorateCSS("testimonials7")}>
-            <div className={this.decorateCSS("slider-wrapper")}>
+          <div className={this.getPropValue("cover-image") ? this.decorateCSS("testimonials7") : this.decorateCSS("testimonials7-no-image")}>
+            <div className={this.getPropValue("cover-image") ? this.decorateCSS("slider-wrapper") : this.decorateCSS("slider-wrapper-no-image")}>
               <ComposerSlider
                 ref={sliderRef}
                 {...settings}
