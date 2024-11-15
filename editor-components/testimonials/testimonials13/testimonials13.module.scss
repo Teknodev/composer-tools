@@ -7,6 +7,8 @@
           .flexItem1 {
             height: 100%;
             .subtitle {
+              width: 90%;
+              word-break: break-word;
             }
             .title {
             }
@@ -16,6 +18,7 @@
             .carousel {
               width: 100%;
               .slider-inner-div {
+                height: 100%;
                 background-color: color-mix(
                   in srgb,
                   var(--composer-html-background),
@@ -87,6 +90,19 @@
                       }
                     }
   
+                  }
+                }
+              }
+              >div{
+                >div{
+                  height: 100%;
+                  align-items: stretch;
+                  display: flex;
+                  >div{
+                    height: auto;
+                    >div{
+                      height: 100%;
+                    }
                   }
                 }
               }
@@ -193,6 +209,13 @@
     .max-content{
       .container-grid{
         flex-direction: column;
+        .grid-cell{
+          .flexItem1{
+            .subtitle{
+              width: 85%;
+            }
+          }
+        }
         .container3{
           width: 100%;
         }
