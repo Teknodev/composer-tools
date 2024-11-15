@@ -7,7 +7,7 @@
     width: 100%;
     .box {
       margin: var(--composer-gap-lg) 0;
-      width: 90%;
+      width: 100%;
       background: var(--composer-primary-color);
       padding-bottom: var(--composer-gap-lg);
       position: relative;
@@ -21,6 +21,8 @@
         justify-content: center;
         .card-item-count {
           width: 27%;
+          height: 100% !important;
+
           cursor: pointer;
           .pricing {
             position: relative;
@@ -56,13 +58,14 @@
               font-weight: bold;
               opacity: 0.07;
               top: 35%;
-              margin: var(--composer-gap-md);
+              margin: var(--composer-gap-lg);
             }
             .plan {
               position: relative;
               display: block;
-              margin: var(--composer-gap-md);
+              margin: var(--composer-gap-lg);
               color: var(--composer-font-color-primary);
+              text-align: center;
             }
             .icon {
               position: absolute;
@@ -184,108 +187,102 @@
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
-  .max-content {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    .box {
-      height: auto !important;
-      .carousel {
+  .container {
+    .max-content {
+      .box {
+        margin: var(--composer-gap-lg) 0;
+        padding-bottom: var(--composer-gap-lg);
         position: relative;
-        display: flex !important;
-        margin-left: 0 !important;
+        .carousel {
+          position: relative;
+          display: flex !important;
+          margin-left: 0 !important;
 
-        .pricing {
-          width: 100%;
-          align-items: center;
-          height: 100%;
-          min-height: 400px;
-          height: auto;
-          padding-bottom: 3rem;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          padding-top: var(--composer-gap-md);
+          .card-item-count {
+            .pricing {
+              width: 100%;
+              align-items: center;
+              height: 100%;
+              min-height: 400px;
+              height: auto;
+              padding-bottom: 3rem;
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              padding-top: var(--composer-gap-md);
 
-          .title {
-            color: var(--composer-primary-color);
-          }
-
-          .price {
-            position: relative;
-            display: block;
-            font-size: 3rem;
-            font-weight: bold;
-            margin: var(--composer-gap-md);
-
-            top: 15%;
-            color: var(--composer-font-color-primary);
-          }
-          .price-big {
-            position: absolute;
-            color: var(--composer-font-color-primary);
-            font-size: 10rem;
-            letter-spacing: -5px;
-            font-weight: 700;
-            opacity: 0.07;
-            top: 35%;
-            margin: var(--composer-gap-md);
-
-            color: var(--composer-font-color-primary);
-          }
-
-          .plan {
-            position: relative;
-            display: block;
-            font-size: 1.1rem;
-            margin: 0px;
-            top: 14%;
-            margin: var(--composer-gap-md);
-
-            color: var(--composer-font-color-primary);
-          }
-
-          .icon {
-            position: relative;
-            bottom: calc(-1 * var(--composer-gap-xl));
-            color: var(--composer-font-color-secondary);
-            background-color: var(--composer-secondary-color);
-            font-size: 4.7rem;
-            padding: var(--composer-gap-sm);
-            border-radius: 50%;
-            border: 2px solid var(--composer-secondary-color);
-          }
-        }
-      }
-
-      .upper-container {
-        display: none !important;
-      }
-
-      .lower-container {
-        flex-direction: column !important;
-        gap: 0 !important;
-        padding: 0 !important;
-        .plan-desc {
-          margin-bottom: var(--composer-gap-sm);
-          width: 78% !important;
-          .text {
-          }
-          .description-text {
-          }
-        }
-
-        .bar-rows {
-          width: 70% !important;
-          .bar-row {
-            .bar-desc {
-              .bar-title {
-                width: 40% !important;
-                text-align: left !important;
+              .title {
+                color: var(--composer-primary-color);
+                margin: var(--composer-gap-md);
               }
-              .bar-percent {
-                width: 100% !important;
-                .percent-background {
+
+              .price {
+                position: relative;
+                display: block;
+                font-size: 3rem;
+                font-weight: bold;
+                margin: var(--composer-gap-md);
+                top: 15%;
+                color: var(--composer-font-color-primary);
+              }
+              .price-big {
+                position: absolute;
+                color: var(--composer-font-color-primary);
+                font-size: 10rem;
+                letter-spacing: calc(-1 * var(--composer-gap-xs));
+                font-weight: 700;
+                opacity: 0.07;
+                top: 35%;
+                margin: var(--composer-gap-md);
+                color: var(--composer-font-color-primary);
+              }
+
+              .plan {
+                position: relative;
+                display: block;
+                font-size: 1rem;
+                margin: 0;
+                top: 14%;
+                margin: var(--composer-gap-md);
+                color: var(--composer-font-color-primary);
+              }
+
+              .icon {
+                position: relative;
+                bottom: calc(-1 * var(--composer-gap-xl));
+                color: var(--composer-font-color-secondary);
+                background-color: var(--composer-secondary-color);
+                font-size: 4.5rem;
+                padding: var(--composer-gap-sm);
+                border-radius: 50%;
+                border: 2px solid var(--composer-secondary-color);
+              }
+            }
+          }
+        }
+
+        .upper-container {
+          display: none !important;
+        }
+
+        .lower-container {
+          flex-direction: column !important;
+          gap: 0 !important;
+          padding: 0 !important;
+          margin-top: calc(2 * var(--composer-gap-sm)) !important;
+          .plan-desc {
+            margin-bottom: var(--composer-gap-sm);
+            width: 78% !important;
+          }
+
+          .bar-rows {
+            width: 70% !important;
+            .bar-row {
+              .bar-desc {
+                .bar-title {
+                  width: 40% !important;
+                  text-align: left !important;
                 }
-                .percent {
+                .bar-percent {
+                  width: 100% !important;
                 }
               }
             }

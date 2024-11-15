@@ -7,6 +7,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
 type IIconBoxes = {
+  planTitle: JSX.Element;
   bars: any;
   description: any;
   list: any;
@@ -25,7 +26,7 @@ type Button = {
 };
 
 type Buttons = {
-  buttonText: string;
+  buttonText: JSX.Element;
   url: string;
 };
 
@@ -73,7 +74,12 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Plan",
               value: "Basic plan",
             },
-
+            {
+              type: "string",
+              key: "planTitle",
+              displayer: "Plan Title",
+              value: "Basic plan",
+            },
             {
               type: "string",
               key: "description",
@@ -187,7 +193,12 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Plan",
               value: "Medium plan",
             },
-
+            {
+              type: "string",
+              key: "planTitle",
+              displayer: "Plan Title",
+              value: "Medium plan",
+            },
             {
               type: "string",
               key: "description",
@@ -301,7 +312,12 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Plan",
               value: "Professional plan",
             },
-
+            {
+              type: "string",
+              key: "planTitle",
+              displayer: "Plan Title",
+              value: "Professional plan",
+            },
             {
               type: "string",
               key: "description",
@@ -514,36 +530,44 @@ class PricingTable8 extends BasePricingTable {
 
             <div className={this.decorateCSS("lower-container")}>
               <Base.VerticalContent className={this.decorateCSS("plan-desc")}>
-                {/* <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3> */}
-                <Base.P className={this.decorateCSS("description-text")}>{cards[this.getComponentState("currentIndex")].description}</Base.P>
+                {cards[this.getComponentState("currentIndex")].planTitle && <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3>}
+                {cards[this.getComponentState("currentIndex")].description && <Base.P className={this.decorateCSS("description-text")}>{cards[this.getComponentState("currentIndex")].description}</Base.P>}
               </Base.VerticalContent>
 
               <div className={this.decorateCSS("bar-rows")}>
                 <div className={this.decorateCSS("bar-row")}>
-                  {cards[this.getComponentState("currentIndex")].bars.map((bar: any, index: any) => (
-                    <div className={this.decorateCSS("bar-desc")} key={index}>
-                      <Base.H5 className={this.decorateCSS("bar-title")}>{bar.barTitle}</Base.H5>
-                      <div className={this.decorateCSS("bar-percent")}>
-                        <div
-                          className={this.decorateCSS("percent")}
-                          style={{
-                            width: `${bar.percent}%`,
-                            backgroundColor: `${bar.color}`,
-                          }}
-                        ></div>
+                  {cards[this.getComponentState("currentIndex")].bars.map((bar: any, index: any) => {
+                    const barTitleExist = this.castToString(bar.barTitle);
+                    return (
+                      <div className={this.decorateCSS("bar-desc")} key={index}>
+                        {barTitleExist && <Base.H5 className={this.decorateCSS("bar-title")}>{bar.barTitle}</Base.H5>}
+                        <div className={this.decorateCSS("bar-percent")}>
+                          <div
+                            className={this.decorateCSS("percent")}
+                            style={{
+                              width: `${bar.percent}%`,
+                              backgroundColor: `${bar.color}`,
+                            }}
+                          ></div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
             <div className={this.decorateCSS("button-position")}>
-              {this.castToObject<Buttons[]>("buttons").map((item, index) => (
-                <ComposerLink path={item.url} key={index}>
-                  <div className={this.decorateCSS("button")}>{item.buttonText}</div>
-                </ComposerLink>
-              ))}
+              {this.castToObject<Buttons[]>("buttons").map((item, index) => {
+                const buttonExist = this.castToString(item.buttonText);
+                return (
+                  buttonExist && (
+                    <ComposerLink path={item.url} key={index}>
+                      <div className={this.decorateCSS("button")}>{item.buttonText}</div>
+                    </ComposerLink>
+                  )
+                );
+              })}
             </div>
           </div>
         </Base.MaxContent>
