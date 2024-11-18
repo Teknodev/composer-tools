@@ -257,14 +257,14 @@ class Stats1Page extends BaseStats {
                       return (
                         <div key={indexCard} className={this.decorateCSS("card")} style={{ "--angle": `${angle}deg` } as Record<string, any>}>
                           {this.getComponentState(`number-${indexCard}`) !== "0" && (
-                            <p
+                            <Base.H5
                               className={this.decorateCSS("counter-value")}
                               style={{
                                 color: `${indexCard < 3 ? badgeColors[indexCard % badgeColors.length] : badgeColors[(indexCard % badgeColors.length) + 1]}`,
                               }}
                             >
                               {this.getComponentState(`number-${indexCard}`)}
-                            </p>
+                            </Base.H5>
                           )}
                           {iscardLabelExist && <Base.P className={this.decorateCSS("counter-label")}>{cardData.cardLabel}</Base.P>}
                         </div>

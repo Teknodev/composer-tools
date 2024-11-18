@@ -4,8 +4,8 @@
   .max-content {
     padding-bottom: 1.5rem;
     .stats1-page {
-      display: flex;
       width: 100%;
+      display: flex;
       justify-content: space-between;
       align-items: center;
       gap: var(--composer-gap-xl);
@@ -19,7 +19,7 @@
         .button-text-wrapper {
           background-color: var(--composer-primary-color);
           padding: var(--composer-gap-sm) var(--composer-gap-md);
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-sm);
 
           .button-text {
             color: var(--composer-font-color-secondary);
@@ -31,6 +31,7 @@
       .right-container {
         margin-right: 1%;
         padding: var(--composer-gap-xl);
+        margin: var(--composer-gap-xs) 0;
 
         .content-div {
           position: relative;
@@ -56,12 +57,17 @@
 
           .card {
             position: absolute;
-            max-width: 200px;
-            min-height: 125px;
-            padding: 20px;
+            width: 100%;
+            max-width: 150px;
+            min-width: 100px;
+            aspect-ratio: 1;
+            max-height: 150px;
+            min-height: 100px;
+            overflow: hidden;
+            padding: var(--composer-gap-md);
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
             border-radius: 50%;
-            box-shadow: 0 var(--composer-gap-sm) var(--composer-gap-md) color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
+            box-shadow: var(--box-shadow-active);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -71,7 +77,6 @@
 
             .counter-value {
               font-size: 2.5rem;
-              font-weight: 700;
               margin: 0;
               word-break: break-all;
             }
@@ -98,22 +103,24 @@
 
           .button-text-wrapper {
             .button-text {
-              font-size: 1.5rem;
+              font-size: 1rem;
             }
           }
         }
 
         .right-container {
           padding: 0;
+          margin: var(--composer-gap-lg) 0;
 
           .content-div {
             width: 500px !important;
             height: 500px !important;
 
             .card {
-              min-width: 125px;
-              max-width: 200px;
-              min-height: 125px;
+              max-width: 130px;
+              min-width: 100px;
+              max-height: 130px;
+              min-height: 100px;
               transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
 
               .counter-value {
@@ -150,14 +157,16 @@
 
         .right-container {
           margin-right: 5% !important;
+          margin: var(--composer-gap-sm) 0;
           .content-div {
             width: 250px !important;
             height: 250px !important;
 
             .card {
-              min-width: 50px !important;
-              max-width: 115px !important;
-              min-height: 80px !important;
+              max-width: 85px;
+              min-width: 60px;
+              max-height: 85px;
+              min-height: 60px;
               transform: rotate(var(--angle)) translate(120px) rotate(calc(-1 * var(--angle)));
             }
           }
