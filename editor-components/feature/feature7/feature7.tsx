@@ -210,6 +210,9 @@ class Feature7 extends BaseFeature {
                   <ul className={this.decorateCSS("featuresList")}>
                     {features.map((item: Feature, index: number) => {
                       const titleExist = !!this.castToString(item.title);
+
+                      if(!titleExist && !item.iconFeature) return null;
+
                       return (
                         <li key={index} className={this.decorateCSS("feature")}>
                           {item.iconFeature && (
@@ -239,8 +242,8 @@ class Feature7 extends BaseFeature {
                       const textExist = !!this.castToString(item.linkText);
 
                       return (
-                        <div className={this.decorateCSS("linkContainer")}>
-                          <li key={index} className={this.decorateCSS("link")}>
+                        <div key={index} className={this.decorateCSS("linkContainer")}>
+                          <li className={this.decorateCSS("link")}>
                             {textExist && (
                               <ComposerLink path={item.url}>
                                 <span className={this.decorateCSS("linkText")}>
