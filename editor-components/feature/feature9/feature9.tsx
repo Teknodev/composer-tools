@@ -272,9 +272,9 @@ class Feature9 extends BaseFeature {
             {titleExist &&
               <div className={this.decorateCSS("title-container")}>
                 <div className={this.decorateCSS("title-wrapper")}>
-                  <h1 className={this.decorateCSS("title")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
-                  </h1>
+                  </Base.SectionTitle>
                 </div>
               </div>
             }
