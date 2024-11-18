@@ -11,12 +11,19 @@ interface ImageGallery {
 interface Image {
   title: JSX.Element;
   cardImage: string;
+  section: JSX.Element
 
 }
 
 class ImageGallery1 extends BaseImageGallery {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "boolean",
+      key: "lineActive",
+      displayer: "Line Active",
+      value: true
+    })
     this.addProp({
       type: "array",
       key: "imageGalleries",
@@ -44,18 +51,24 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+
+                    },
+                    {
                       type: "string",
                       key: "title",
                       displayer: "Title",
                       value: "Design Blast"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Photography"
+                    },
                   ]
                 },
                 {
@@ -63,6 +76,13 @@ class ImageGallery1 extends BaseImageGallery {
                   key: "image",
                   displayer: "Image",
                   value: [
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+
+                    },
                     {
                       type: "string",
                       key: "title",
@@ -70,12 +90,11 @@ class ImageGallery1 extends BaseImageGallery {
                       value: "Cropo Identity"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Packaging"
+                    },
                   ]
                 },
                 {
@@ -84,18 +103,24 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+
+                    },
+                    {
                       type: "string",
                       key: "title",
                       displayer: "Title",
                       value: "Harddot Stone"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Graphics"
+                    },
                   ]
                 }
 
@@ -126,18 +151,23 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-207.jpg"
+                    },
+                    {
                       type: "string",
                       key: "title",
                       displayer: "Title",
                       value: "Tailoring Inteo"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-207.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Branding"
+                    },
                   ]
                 },
                 {
@@ -145,6 +175,12 @@ class ImageGallery1 extends BaseImageGallery {
                   key: "image",
                   displayer: "Image",
                   value: [
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+                    },
                     {
                       type: "string",
                       key: "title",
@@ -152,12 +188,11 @@ class ImageGallery1 extends BaseImageGallery {
                       value: "Herbal Beauty"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Application"
+                    },
                   ]
                 },
                 {
@@ -166,18 +201,23 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                    },
+                    {
                       type: "string",
                       key: "title",
                       displayer: "Title",
                       value: "Harddot Stone"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Graphics"
+                    },
                   ]
                 }
 
@@ -208,18 +248,24 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+
+                    },
+                    {
                       type: "string",
                       key: "title",
                       displayer: "Title",
                       value: "Design Blast"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Photograhy"
+                    },
                   ]
                 },
                 {
@@ -227,6 +273,13 @@ class ImageGallery1 extends BaseImageGallery {
                   key: "image",
                   displayer: "Image",
                   value: [
+                    {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+
+                    },
                     {
                       type: "string",
                       key: "title",
@@ -234,12 +287,11 @@ class ImageGallery1 extends BaseImageGallery {
                       value: "Herbal Beauty"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Application"
+                    },
                   ]
                 },
                 {
@@ -247,19 +299,25 @@ class ImageGallery1 extends BaseImageGallery {
                   key: "image",
                   displayer: "Image",
                   value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Harddot Stone"
-                    },
                     {
                       type: "image",
                       key: "cardImage",
                       displayer: "Cropo Identity",
                       value: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
 
-                    }
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Harddot Stone"
+                    },
+                    {
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Graphics"
+                    },
                   ]
                 },
                 {
@@ -268,18 +326,24 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
+                      type: "image",
+                      key: "cardImage",
+                      displayer: "Card Image",
+                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+
+                    },
+                    {
                       type: "string",
                       key: "title",
                       displayer: "Title",
                       value: "Harddot Stone"
                     },
                     {
-                      type: "image",
-                      key: "cardImage",
-                      displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
-
-                    }
+                      type: "string",
+                      key: "section",
+                      displayer: "Title",
+                      value: "Graphics"
+                    },
                   ]
                 }
               ]
@@ -299,7 +363,6 @@ class ImageGallery1 extends BaseImageGallery {
     return "Image Gallery 1";
   }
   handleSectionClick(sectionTitle: JSX.Element): void {
-    console.log("click", sectionTitle)
     return this.setComponentState("selectedSection", sectionTitle);
   }
 
@@ -307,6 +370,7 @@ class ImageGallery1 extends BaseImageGallery {
   render() {
     const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
     const selectedSection = this.getComponentState("selectedSection");
+    console.log(selectedSection)
     const seenImages = new Set<string>();
     console.log("render", selectedSection)
     return (
@@ -325,7 +389,7 @@ class ImageGallery1 extends BaseImageGallery {
               imageGallery.map((item: ImageGallery, index: number) => (
                 <button
                   key={index}
-                  className={this.decorateCSS("section-title")}
+                  className={`${this.decorateCSS("section-title")} ${selectedSection !== null && this.castToString(item.sectionTitle) === this.castToString(selectedSection) ? this.decorateCSS("active-section-title") : ""}`}
                   onClick={() => this.handleSectionClick(item.sectionTitle)}
                 >
                   {item.sectionTitle}
@@ -347,23 +411,39 @@ class ImageGallery1 extends BaseImageGallery {
                 {item.images
                   .filter((image: Image) => {
                     if (seenImages.has(image.cardImage)) {
-                      return false; // Eğer `cardImage` zaten `Set` içindeyse, bu görüntüyü atla
+                      return false;
                     }
-                    seenImages.add(image.cardImage); // Yeni `cardImage` URL'sini Set'e ekle
-                    return true; // Aksi halde göster
+                    seenImages.add(image.cardImage);
+                    return true;
                   })
                   .map((image: Image, imgIndex: number) => (
                     <div
                       key={imgIndex}
                       className={this.decorateCSS("card-container")}
                     >
-                      <img
-                        alt={image.cardImage}
-                        src={image.cardImage}
-                        className={this.decorateCSS("image")}
-                      />
-                      <div className={this.decorateCSS("title")}>
-                        {image.title}
+                      <div className={this.decorateCSS("image-container")}>
+                        {image.cardImage && (
+                          <img
+                            alt={image.cardImage}
+                            src={image.cardImage}
+                            className={this.decorateCSS("image")}
+                          />
+                        )}
+                      </div>
+                      <div className={this.decorateCSS("text-container")}>
+                        {this.castToString(image.title) && (
+                          <div className={this.decorateCSS("title")}>
+                            {image.title}
+                          </div>
+                        )}
+                        {this.getPropValue("lineActive") && (
+                          <div className={this.decorateCSS("line")}></div>
+                        )}
+                        {this.castToString(image.section) && (
+                          <div className={this.decorateCSS("section")}>
+                            {image.section}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
