@@ -1,114 +1,41 @@
 .container {
-  width: 100%;
-  overflow: auto;
-  background-color: var(--composer-html-background);
-  margin: auto;
-
   .max-content {
-    color: var(--composer-font-color-primary);
-    max-width: var(--composer-content-width);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
+    .sectionTitle, .sectionTitle-no-animation{
+      margin:0px;
+    }
 
-    .description1 {
-      font-size: 3rem;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 3rem;
-      margin-top: 3rem;
-      font-weight: bold;
+    .sectionTitle{
       animation: fadeInUp 400ms ease-out;
-      flex-direction: column;
-      letter-spacing: -2px;
-      max-width: 80%;
     }
-
-    .description2 {
-      font-size: 3rem;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 3rem;
-      margin-top: 3rem;
-      font-weight: bold;
-      flex-direction: column;
-      letter-spacing: -2px;
-      max-width: 80%;
-    }
-
-    @media only screen and (max-width: 900px) {
-      .description1,
-      .description2 {
-        width: 90%;
-        max-width: none;
-      }
-    }
-
-    @media only screen and (max-width: 500px) {
-      .description1,
-      .description2 {
-        font-size: 1.5rem;
-        letter-spacing: 1px;
-      }
-    }
-
     .list-item {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      justify-content: center;
-      flex-direction: column;
-      padding-left: 0;
-      max-width: 80%;
-
-      @media only screen and (max-width: 900px) {
-        width: 90%;
-        margin: 0 auto;
-        max-width: none;
-      }
-
-      > li {
-        border-bottom: 1px solid var(--composer-font-color-primary);
-      }
-      > li:first-child {
-        border-top: 1px solid var(--composer-font-color-primary);
-      }
+      max-width: 100%;
 
       .item-container {
+        width: 100%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         gap: 100px;
         padding-top: 20px;
         padding-bottom: 20px;
-        min-height: 150px;
-
-        @media only screen and (max-width: 900px) {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0;
-          padding-left: 0;
-          padding-right: 0;
+        position: relative;
+        .item-container:not(:first-child):not(:last-child)::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-top: 1px solid var(--composer-border-color, #ddd); /* Çizgi rengi */
           width: 100%;
-
-          .index {
-            padding-left: 0 !important;
-          }
-
-          .cards {
-            flex-direction: column;
-          }
+          margin: 0;
         }
-
         .index {
           font-size: 18px;
-          padding-left: 30px;
           color: var(--composer-font-color-primary);
-          font-weight: normal;
         }
 
         .cards {
@@ -116,7 +43,6 @@
           justify-content: space-between;
           align-items: center;
           width: 100%;
-          min-height: 50px;
           color: var(--composer-font-color-primary);
 
           .icon-title-container {
@@ -128,29 +54,23 @@
           }
 
           .icon {
-            width: 50px !important;
-            height: 50px !important;
-            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
             color: var(--composer-primary-color);
           }
 
-          .list-item-h1 {
+          .title {
             text-align: center;
             white-space: nowrap;
             font-weight: bold;
             font-size: 22px;
-            line-height: 1.35;
-            letter-spacing: 3px;
-            max-width: 16rem;
             color: var(--composer-font-color-primary);
           }
 
-          .list-item-p {
+          .description {
             display: flex;
             justify-content: flex-end;
             text-align: left;
-            font-size: 16px;
-            line-height: 1.55;
             color: var(--composer-font-color-primary);
           }
         }
