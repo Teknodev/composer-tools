@@ -15,8 +15,8 @@ class Stats7Page extends BaseStats {
 
     this.addProp({
       type: "string",
-      key: "subTitle",
-      displayer: "SubTitle",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Our Skills.",
     });
 
@@ -121,7 +121,7 @@ class Stats7Page extends BaseStats {
   }
 
   render() {
-    const isSubtitleExist = this.castToString(this.getPropValue("subTitle"));
+    const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const showDiv = isSubtitleExist || isTitleExist || isDescriptionExist;
@@ -132,6 +132,7 @@ class Stats7Page extends BaseStats {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {showDiv && (
             <Base.VerticalContent className={this.decorateCSS("title-child")}>
+              {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
