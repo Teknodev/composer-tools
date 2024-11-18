@@ -102,6 +102,12 @@ class Team1 extends Team {
     };
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "We're Hiring!",
+    });
+    this.addProp({
+      type: "string",
       key: "title1",
       displayer: "Title-1",
       value: "Our Team",
@@ -282,17 +288,20 @@ class Team1 extends Team {
   }
 
   render() {
+    const subtitle = this.getPropValue("subtitle");
     const title1 = this.getPropValue("title1");
     const title2 = this.getPropValue("title2");
 
     const title1Value = title1.props.html;
     const title2Value = title2.props.html;
+    const subtitleValue = subtitle.props.html;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-page")}>
             <Base.VerticalContent className={this.decorateCSS("text-group")}>
+              {subtitleValue && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {title1Value && <Base.SectionTitle className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</Base.SectionTitle>}
               {title2Value && <Base.SectionDescription className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</Base.SectionDescription>}
             </Base.VerticalContent>

@@ -9,7 +9,11 @@
       .text-group {
         width: 100%;
         gap: var(--composer-gap-xs);
-
+        .subtitle {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          padding: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-xl);
+        }
         .title2 {
           color: var(--composer-font-color-primary);
         }
