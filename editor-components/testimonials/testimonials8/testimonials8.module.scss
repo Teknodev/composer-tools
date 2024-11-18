@@ -10,9 +10,7 @@
       .title{
         width: 100%;
         margin:0px;
-        color: var(--composer-font-color-primary);
       }
-      
       .content{
         width: 100%;
         display: flex;
@@ -20,8 +18,15 @@
         >div{
           >div{
             >div{
+              display: flex;
+              height: 100%;
+              align-items: stretch;
               >div{
                 padding : 0px var(--composer-gap-xs);
+                height: auto;
+                >div{
+                  height: 100%;
+                }
               }
             }
           }
@@ -75,6 +80,7 @@
           flex-direction: column;
           gap: var(--composer-gap-md);
           margin-bottom: 20px;
+          height: 100%;
           .topContainer{
             display: flex;
             gap: var(--composer-gap-sm);

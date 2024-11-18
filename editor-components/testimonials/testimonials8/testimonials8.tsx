@@ -12,7 +12,6 @@ type Item = {
   description: JSX.Element;
   starNumber: number;
   starIcon: string;
-  lineActive: boolean;
 };
 interface ArrowItem {
   nextArrow: string,
@@ -27,6 +26,18 @@ class Testimonials8Page extends Testimonials {
       key: "title",
       displayer: "Title",
       value: "Some of out valuable customers feedback",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "numberIsActive",
+      displayer: "Icon Number Active",
+      value: true,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "lineActive",
+      displayer: "Line Active",
+      value: true,
     });
     this.addProp({
       type: "array",
@@ -77,13 +88,6 @@ class Testimonials8Page extends Testimonials {
               value: "FaStar",
 
             },
-            {
-              type: "boolean",
-              key: "lineActive",
-              displayer: "Line Active",
-              value: true,
-
-            },
 
           ],
         },
@@ -131,13 +135,6 @@ class Testimonials8Page extends Testimonials {
               value: "FaStar",
 
             },
-            {
-              type: "boolean",
-              key: "lineActive",
-              displayer: "Line Active",
-              value: true,
-
-            },
           ],
         },
         {
@@ -183,12 +180,6 @@ class Testimonials8Page extends Testimonials {
               displayer: "Icon",
               value: "FaStar",
             },
-            {
-              type: "boolean",
-              key: "lineActive",
-              displayer: "Line Active",
-              value: true,
-            }
           ],
         },
       ],
@@ -244,7 +235,7 @@ class Testimonials8Page extends Testimonials {
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
           <div className={this.decorateCSS("testimonials8")}>
             {this.castToString(this.getPropValue("title")) && (
-              <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>
+              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
             )}
             <div
               className={`${this.decorateCSS("content")} 
@@ -294,10 +285,10 @@ class Testimonials8Page extends Testimonials {
                           )}
                         </div>
                       )}
-                      {item.lineActive && (
+                      {this.getPropValue("lineActive") && (
                         <div className={this.decorateCSS("line")}></div>
                       )}
-                      {(item.starNumber > 0) && (
+                      {((item.starNumber > 0) && (this.getPropValue("numberIsActive"))) && (
                         <div className={this.decorateCSS("starNumber")}>
                           {item.starNumber}
                         </div>
