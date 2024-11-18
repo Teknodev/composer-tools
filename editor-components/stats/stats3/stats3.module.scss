@@ -37,7 +37,7 @@
 
             .button-text {
               color: var(--composer-primary-color);
-              font-size: 1.5rem;
+              font-size: 1rem;
 
               > blinkpage {
                 > p {
@@ -57,7 +57,7 @@
       }
 
       .left-page-without-image {
-        padding-top: 0px;
+        padding-top: 0;
       }
 
       .right-container,
@@ -82,16 +82,16 @@
           height: 100%;
           position: relative;
           min-height: 150px;
-          margin-top: -50px;
+          margin-top: calc(-1 * var(--composer-gap-xl));
 
           .card {
             position: absolute;
-            bottom: 0px;
+            bottom: 0;
             width: 90%;
             display: flex;
             border-radius: var(--composer-border-radius-xl);
             border: 8px solid var(--composer-html-background);
-            padding: var(--composer-gap-md);
+            padding: var(--composer-gap-lg);
             max-width: 100%;
             background-color: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 95%);
 
@@ -132,7 +132,8 @@
 
             .content .inner-content .text-container .first-container .text .number {
               max-width: 300px;
-              font-size: 2rem;
+              font-size: 1rem;
+              font-weight: bold;
               color: var(--composer-font-color-primary);
             }
 
@@ -144,7 +145,7 @@
 
             .content .inner-content .text-container .first-container .text .right-text {
               max-width: 300px;
-              font-size: 1.5rem;
+              font-size: 1rem;
               color: var(--composer-font-color-primary);
             }
           }
@@ -175,14 +176,18 @@
     .max-content {
       .page {
         flex-direction: column;
+        flex-wrap: nowrap;
 
         .left-page,
         .left-page-without-image {
           flex: auto;
-          padding-top: 0px;
+          padding-top: 0;
 
           .button-container {
+            display: flex;
+            flex-direction: row !important;
             .button {
+              width: max-content;
               .button-text {
                 font-size: 1rem;
               }
@@ -201,18 +206,20 @@
 
           .card-container,
           .card-container-without-image {
-            margin-top: 0px;
+            margin-top: 0;
             position: static;
 
             .card {
               width: 100%;
               position: static;
               border: none;
+              flex-direction: row !important;
 
               .content {
                 .inner-content {
                   .text-container {
                     .first-container {
+                      flex-direction: column;
                       .icon {
                         width: 1.5rem;
                         height: 1.5rem;
@@ -220,11 +227,11 @@
 
                       .text {
                         .number {
-                          font-size: 1.5rem;
+                          font-size: 1rem !important;
                         }
 
                         .right-text {
-                          font-size: 1rem;
+                          font-size: 1rem !important;
                         }
                       }
                     }
@@ -236,7 +243,7 @@
 
           .card-container-without-image {
             .card {
-              bottom: 0px;
+              bottom: 0;
             }
           }
         }
@@ -249,7 +256,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-lg}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .page {
@@ -285,13 +292,14 @@
           .card-container-without-image {
             .card {
               position: relative;
-              flex-direction: column;
+              flex-direction: column !important;
               max-width: 100%;
               gap: var(--composer-gap-md);
 
               .content {
                 flex-direction: column;
                 width: 100%;
+                border: 0;
 
                 .inner-content {
                   flex-direction: column;
@@ -303,7 +311,7 @@
                     align-items: center;
                     display: flex;
                     flex-direction: column;
-                    margin: 0px;
+                    margin: 0;
 
                     .first-container {
                       display: flex;
@@ -321,7 +329,7 @@
 
                         .right-text {
                           font-size: 1.5rem;
-                          margin-right: 0px;
+                          margin-right: 0;
                         }
                       }
                     }

@@ -178,12 +178,15 @@ class Stats3Page extends BaseStats {
                 {buttons.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
                     {this.castToObject<any>("buttons").map((item: any, index: number) => {
+                      const buttonTextExist = this.castToString(item.buttonText);
                       return (
-                        <ComposerLink key={`stats-${index}`} path={item.url}>
-                          <button className={this.decorateCSS("button")}>
-                            <span className={this.decorateCSS("button-text")}>{item.buttonText}</span>
-                          </button>
-                        </ComposerLink>
+                        buttonTextExist && (
+                          <ComposerLink key={`stats-${index}`} path={item.url}>
+                            <button className={this.decorateCSS("button")}>
+                              <span className={this.decorateCSS("button-text")}>{item.buttonText}</span>
+                            </button>
+                          </ComposerLink>
+                        )
                       );
                     })}
                   </div>
@@ -204,9 +207,8 @@ class Stats3Page extends BaseStats {
                                 <div className={this.decorateCSS("first-container")}>
                                   <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                                   <Base.VerticalContent className={this.decorateCSS("text")}>
-                                    <div className={this.decorateCSS("number")}>{item.number}</div>
-
-                                    <div className={this.decorateCSS("right-text")}>{item.text}</div>
+                                    <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>
+                                    <Base.P className={this.decorateCSS("right-text")}>{item.text}</Base.P>
                                   </Base.VerticalContent>
                                 </div>
                               </Base.VerticalContent>
