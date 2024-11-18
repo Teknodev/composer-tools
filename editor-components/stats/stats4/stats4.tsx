@@ -31,8 +31,7 @@ class Stats4Page extends BaseStats {
       type: "string",
       key: "mainDescription",
       displayer: "Main Description",
-      value:
-        "We create to brands and businesses to stand out in this digital era.",
+      value: "We create to brands and businesses to stand out in this digital era.",
     });
 
     this.addProp({
@@ -55,8 +54,7 @@ class Stats4Page extends BaseStats {
               type: "string",
               key: "content",
               displayer: "Content",
-              value:
-                "We strive to develop real-world web solutions that are ideal for small to large project.",
+              value: "We strive to develop real-world web solutions that are ideal for small to large project.",
             },
           ],
         },
@@ -75,8 +73,7 @@ class Stats4Page extends BaseStats {
               type: "string",
               key: "content",
               displayer: "Content",
-              value:
-                "We strive to develop real-world web solutions that are ideal for small to large project.",
+              value: "We strive to develop real-world web solutions that are ideal for small to large project.",
             },
           ],
         },
@@ -95,8 +92,7 @@ class Stats4Page extends BaseStats {
               type: "string",
               key: "content",
               displayer: "Content",
-              value:
-                "We strive to develop real-world web solutions that are ideal for small to large project.",
+              value: "We strive to develop real-world web solutions that are ideal for small to large project.",
             },
           ],
         },
@@ -278,8 +274,7 @@ class Stats4Page extends BaseStats {
 
   getStats() {
     const statItems = this.castToObject<Stat[]>("statItems");
-    const stats = statItems.map((card: any) =>
-      (card.stat === "" ? null : card.stat));
+    const stats = statItems.map((card: any) => (card.stat === "" ? null : card.stat));
     return stats;
   }
 
@@ -321,10 +316,7 @@ class Stats4Page extends BaseStats {
 
         if (typeof item.stat === "number") {
           if (currentNumber !== item.stat) {
-            let nextValue = Math.min(
-              item.stat,
-              currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30))
-            );
+            let nextValue = Math.min(item.stat, currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30)));
 
             const formattedNextValue = this.formatNumberWithDots(nextValue);
 
@@ -352,7 +344,7 @@ class Stats4Page extends BaseStats {
 
   render() {
     const mainTitle = this.getPropValue("mainTitle", { as_string: true });
-    const mainDescription = this.getPropValue("mainDescription", { as_string: true, });
+    const mainDescription = this.getPropValue("mainDescription", { as_string: true });
     const faqs = this.castToObject<Faq[]>("faqItems");
     const statItems = this.castToObject<Stat[]>("statItems");
     const expandIcon = this.getPropValue("expandIcon");
@@ -370,18 +362,14 @@ class Stats4Page extends BaseStats {
           <Base.VerticalContent className={this.decorateCSS("stats-container")}>
             {mainTitle && (
               <header className={this.decorateCSS("main-header")}>
-                <Base.SectionSubTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("mainTitle")}
-                </Base.SectionSubTitle>
+                <Base.SectionSubTitle className={this.decorateCSS("title")}>{this.getPropValue("mainTitle")}</Base.SectionSubTitle>
               </header>
             )}
             {(mainDescription || faqs?.length > 0) && (
               <Base.ContainerGrid className={this.decorateCSS("upper-container")}>
                 {mainDescription && (
                   <main className={this.decorateCSS("upper-container-main")}>
-                    <Base.SectionTitle className={this.decorateCSS("main-description")}>
-                      {this.getPropValue("mainDescription")}
-                    </Base.SectionTitle>
+                    <Base.SectionTitle className={this.decorateCSS("main-description")}>{this.getPropValue("mainDescription")}</Base.SectionTitle>
                   </main>
                 )}
                 {faqs?.length > 0 && (
@@ -392,34 +380,17 @@ class Stats4Page extends BaseStats {
 
                       if (titleExist || contentExist || item.icon)
                         return (
-                          <div
-                            className={this.decorateCSS("faq-item")}
-                            key={index}
-                          >
+                          <div className={this.decorateCSS("faq-item")} key={index}>
                             {(titleExist || item.icon) && (
-                              <header
-                                className={this.decorateCSS("faq-item-header")}
-                              >
-                                {titleExist && (
-                                  <Base.P
-                                    className={this.decorateCSS(
-                                      "faq-item-title",
-                                    )}
-                                  >
-                                    {item.title}
-                                  </Base.P>
-                                )}
+                              <header className={this.decorateCSS("faq-item-header")}>
+                                {titleExist && <Base.P className={this.decorateCSS("faq-item-title")}>{item.title}</Base.P>}
                                 <button
-                                  className={this.decorateCSS(
-                                    "faq-item-button",
-                                  )}
+                                  className={this.decorateCSS("faq-item-button")}
                                   onClick={() => {
                                     this.toggleFaqItem(index);
                                   }}
                                 >
-                                  {this.getComponentState(
-                                    "selectedFaqIndex",
-                                  ) === index ? (
+                                  {this.getComponentState("selectedFaqIndex") === index ? (
                                     <ComposerIcon
                                       propsIcon={{
                                         className: this.decorateCSS("Icon"),
@@ -438,11 +409,9 @@ class Stats4Page extends BaseStats {
                               </header>
                             )}
                             {contentExist && (
-                              <Base.P
-                                className={`${this.decorateCSS("faq-item-content")}  ${this.getComponentState("selectedFaqIndex") === index ? this.decorateCSS("show-faq-item") : ""}`}
-                              >
-                                {item.content}
-                              </Base.P>
+                              <div className={`${this.decorateCSS("faq-item-content")}  ${this.getComponentState("selectedFaqIndex") === index ? this.decorateCSS("show-faq-item") : ""}`}>
+                                <Base.P>{item.content}</Base.P>
+                              </div>
                             )}
                             <hr className={this.decorateCSS("bottom-line")} />
                           </div>
@@ -459,51 +428,25 @@ class Stats4Page extends BaseStats {
                   const titleExist = this.castToString(item.title);
                   const contentExist = this.castToString(item.content);
 
-                  const statValue =
-                    item.stat === this.getComponentState(`number-${index}`)
-                      ? item.stat
-                      : this.getComponentState(`number-${index}`);
+                  const statValue = item.stat === this.getComponentState(`number-${index}`) ? item.stat : this.getComponentState(`number-${index}`);
 
                   if (titleExist || contentExist || item.stat)
                     return (
-                      <article
-                        className={this.decorateCSS("stat-item")}
-                        key={index}
-                      >
+                      <article className={this.decorateCSS("stat-item")} key={index}>
                         {(titleExist || contentExist) && (
                           <>
                             <div className={this.decorateCSS("stat-item-body")}>
-                              {titleExist && (
-                                <Base.P
-                                  className={this.decorateCSS(
-                                    "stat-item-title",
-                                  )}
-                                >
-                                  {item.title}
-                                </Base.P>
-                              )}
-                              {contentExist && (
-                                <Base.P
-                                  className={this.decorateCSS(
-                                    "stat-item-content",
-                                  )}
-                                >
-                                  {item.content}
-                                </Base.P>
-                              )}
+                              {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
+                              {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.content}</Base.P>}
                             </div>
                             <div className={this.decorateCSS("stat-line")} />
                           </>
                         )}
                         {item.stat && (
-                          <p
-                            className={this.decorateCSS("stat-item-stat-value")}
-                          >
+                          <Base.P className={this.decorateCSS("stat-item-stat-value")}>
                             {statValue}
                             {statIcon && (
-                              <span
-                                className={this.decorateCSS("stat-value-icon")}
-                              >
+                              <span className={this.decorateCSS("stat-value-icon")}>
                                 <ComposerIcon
                                   propsIcon={{
                                     className: this.decorateCSS("stat-icon"),
@@ -512,7 +455,7 @@ class Stats4Page extends BaseStats {
                                 />
                               </span>
                             )}
-                          </p>
+                          </Base.P>
                         )}
                       </article>
                     );
